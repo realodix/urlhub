@@ -1,9 +1,9 @@
 @extends('layouts.home')
 
 @section('content')
-<div class="container">
+<div class="container home">
   <div class="row justify-content-md-center mt-5">
-    <h1 class="col-lg-8 text-center d-block">We will provide a shortened link for the page you're on.</h1>
+    <h1 class="col-lg-8 text-center d-block"><mark>We will provide a shortened link for the page you're on.</mark></h1>
   </div>
 
   <div class="row mt-5 justify-content-md-center">
@@ -23,7 +23,7 @@
         {{ $errors->first('long_url') }}
       </div>
       @endif
-      
+
     </div>
   </div>
 </div>

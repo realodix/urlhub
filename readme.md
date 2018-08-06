@@ -3,7 +3,7 @@
 - MySQL or MariaDB.
 
 
-## Install
+## Quick Start
 1. Run `composer install`
 
 2. Rename `.env.example` file to `.env`
@@ -14,7 +14,9 @@
 
 4. Run `php artisan migrate`
 
-5. Run `php artisan serve`. You should now be able to visit http://localhost:8000 in your browser.
+5. Run `php artisan serve`.
+
+   You should now be able to visit http://localhost:8000 in your browser.
 
 
 ## License

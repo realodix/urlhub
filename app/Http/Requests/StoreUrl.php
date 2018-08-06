@@ -39,5 +39,5 @@ class StoreUrl extends FormRequest
             'long_url.required' => 'Must be filled, should not be empty.',
             'long_url.url'      => 'Incorrect link format. The link must begin "http://" or "https://".',
         ];
-        }
+    }
 }

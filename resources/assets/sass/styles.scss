@@ -6,4 +6,38 @@
 body {
   background: #fff;
   color: #313944;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+//
+// Bootstrap 4 (overrides)
+//
+.home {
+  mark {
+    background-color: #ffeedb;
+    line-height: 1.7;
+  }
+}
+
+.item-detail-- {
+  &created-date {
+    color: rgba(0,0,0,.54);
+    font-size: 12px;
+  }
+
+  &title {
+    color: #292929;
+    font-size: 25px;
+    line-height: 2.4rem;
+  }
+
+  &long-url {
+    color: rgba(0,0,0,.54);
+    font-size: 14px;
+  }
+
+  &short-url {
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
