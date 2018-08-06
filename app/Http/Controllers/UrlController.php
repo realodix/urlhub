@@ -32,11 +32,11 @@ class UrlController extends Controller
         }
 
         Url::create([
-            'long_url'  => $getLongURL,
-            'long_url_title'  => $this->get_title($getLongURL),
-            'short_url' => $shortURL,
-            'users_id'  => 0,
-            'ip'        => $request->ip(),
+            'long_url'          => $getLongURL,
+            'long_url_title'    => $this->get_title($getLongURL),
+            'short_url'         => $shortURL,
+            'users_id'          => 0,
+            'ip'                => $request->ip(),
         ]);
 
         return redirect('/+'.$shortURL);
@@ -51,7 +51,7 @@ class UrlController extends Controller
       }else{
          $title = $getLongURL;
       }
-      
+
       return $title;
    }
 
@@ -73,12 +73,12 @@ class UrlController extends Controller
         ;
 
         return view('short', [
-            'long_url'      => $url->long_url,
-            'long_url_title'      => $url->long_url_title,
-            'short_url'     => $url->short_url,
-            'qrCodeData'    => $qrCode->getContentType(),
-            'qrCodebase64'  => $qrCode->generate(),
-            'created_at'    =>  Carbon::parse($url->created_at)->toDayDateTimeString(),
+            'long_url'        => $url->long_url,
+            'long_url_title'  => $url->long_url_title,
+            'short_url'       => $url->short_url,
+            'qrCodeData'      => $qrCode->getContentType(),
+            'qrCodebase64'    => $qrCode->generate(),
+            'created_at'      =>  Carbon::parse($url->created_at)->toDayDateTimeString(),
         ]);
     }
 
