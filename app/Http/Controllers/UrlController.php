@@ -26,7 +26,7 @@ class UrlController extends Controller
 
         $getLongUrlInDB = Url::where('long_url', $getLongURL)->first();
         if ($getLongUrlInDB == true) {
-            return redirect('/view/'.$getLongUrlInDB->short_url)
+            return redirect('/+'.$getLongUrlInDB->short_url)
                             ->with('msgLinkAlreadyExists', 'Link already exists');;
         }
 
@@ -37,7 +37,7 @@ class UrlController extends Controller
             'ip'        => $request->ip(),
         ]);
 
-        return redirect('/view/'.$shortURL);
+        return redirect('/+'.$shortURL);
     }
 
     public function view($link)
