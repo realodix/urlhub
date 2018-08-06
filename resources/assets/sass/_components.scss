@@ -1,5 +1,14 @@
 
-.bg-purple {
-  background-color: #41367e;
-  //background-image: -webkit-radial-gradient(0% bottom, ellipse, rgba(118,72,160,0.7) 0%, rgba(118,72,160,0) 60%),-webkit-radial-gradient(90% bottom, ellipse, #523f8c 0%, rgba(82,63,140,0) 40%);
+/*
+ * Bootstrap 4 (overrides)
+ */
+.navbar-light {
+  background-color: #fff !important;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
+
+  .navbar-brand {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+    font-weight: bold;
+  }
 }

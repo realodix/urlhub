@@ -1,8 +1,15 @@
-.bg-purple {
-  background-color: #41367e;
+.navbar-light {
+  background-color: #fff !important;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-light .navbar-brand {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 body {
-  background: #f5f6fa;
+  background: #fff;
   color: #313944;
 }

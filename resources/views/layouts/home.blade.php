@@ -10,13 +10,13 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-<link href="{{ asset('css/bootstrap-purple.css') }}" rel="stylesheet">
+<link href="{{ asset('css/bootstrap-custom.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('vendor/fontawesome/css/all.min.css') }}">
 <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-purple navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">Plur</a>
   </div>
