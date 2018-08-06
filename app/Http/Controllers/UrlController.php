@@ -31,10 +31,10 @@ class UrlController extends Controller
         }
 
         Url::create([
-            'long_url'          => $getLongURL,
-            'short_url'         => $shortURL,
-            'users_id'          => 0,
-            'ip'                => $request->ip(),
+            'long_url'  => $getLongURL,
+            'short_url' => $shortURL,
+            'users_id'  => 0,
+            'ip'        => $request->ip(),
         ]);
 
         return redirect('/view/'.$shortURL);
