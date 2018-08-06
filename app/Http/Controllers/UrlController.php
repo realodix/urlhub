@@ -62,13 +62,13 @@ class UrlController extends Controller
         $qrCode = new QrCode();
         $qrCode
             ->setText(url('/', $url->short_url))
-            ->setSize(200)
+            ->setSize(150)
             ->setPadding(10)
             ->setErrorCorrection('high')
             ->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
             ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
             ->setLabel('Scan Qr Code')
-            ->setLabelFontSize(16)
+            ->setLabelFontSize(12)
             ->setImageType(QrCode::IMAGE_TYPE_PNG)
         ;
 
