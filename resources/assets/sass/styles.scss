@@ -1,0 +1,9 @@
+// compileExpanded: ../../../public/css/$1.css
+@import "variables";
+@import "extend";
+@import "components";
+
+body {
+  background: #f5f6fa;
+  color: #313944;
+}
