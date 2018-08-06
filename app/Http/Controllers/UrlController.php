@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\UrlHelper;
 use App\Http\Requests;
 use App\Url;
 use Carbon\Carbon;
+use Facades\App\Helpers\UrlHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -14,11 +14,9 @@ class UrlController extends Controller
 {
     public function create(Requests\StoreUrl $request)
     {
-        $UrlHelper = new UrlHelper();
-
         $getLongURL = Input::get('long_url');
 
-        $short_url = $UrlHelper->urlGenerator();
+        $short_url = UrlHelper::urlGenerator();
 
         $getLongUrlInDB = Url::where('long_url', $getLongURL)->first();
         if ($getLongUrlInDB == true) {
@@ -28,7 +26,7 @@ class UrlController extends Controller
 
         Url::create([
             'long_url'          => $getLongURL,
-            'long_url_title'    => $UrlHelper->get_title($getLongURL),
+            'long_url_title'    => UrlHelper::get_title($getLongURL),
             'short_url'         => $short_url,
             'users_id'          => 0,
             'ip'                => $request->ip(),
@@ -39,11 +37,9 @@ class UrlController extends Controller
 
     public function view($link)
     {
-        $UrlHelper = new UrlHelper();
-
         $url = Url::where('short_url', 'LIKE BINARY', $link)->firstOrFail();
 
-        $qrCode = $UrlHelper->qrCodeGenerator($url->short_url);
+        $qrCode = UrlHelper::qrCodeGenerator($url->short_url);
 
         return view('short', [
             'long_url'          => $url->long_url,
