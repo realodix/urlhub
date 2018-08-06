@@ -33,6 +33,7 @@ class UrlController extends Controller
 
         Url::create([
             'long_url'  => $getLongURL,
+            'long_url_title'  => $this->get_title($getLongURL),
             'short_url' => $shortURL,
             'users_id'  => 0,
             'ip'        => $request->ip(),
@@ -40,6 +41,19 @@ class UrlController extends Controller
 
         return redirect('/+'.$shortURL);
     }
+
+   public function get_title($getLongURL)
+   {
+      $data = @file_get_contents($getLongURL);
+
+      if($data == true){
+         $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
+      }else{
+         $title = $getLongURL;
+      }
+      
+      return $title;
+   }
 
     public function view($link)
     {
@@ -60,6 +74,7 @@ class UrlController extends Controller
 
         return view('short', [
             'long_url'      => $url->long_url,
+            'long_url_title'      => $url->long_url_title,
             'short_url'     => $url->short_url,
             'qrCodeData'    => $qrCode->getContentType(),
             'qrCodebase64'  => $qrCode->generate(),

@@ -26,6 +26,7 @@ class Initial extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('long_url');
+            $table->string('long_url_title');
             $table->string('short_url')->unique();
             $table->string('users_id');
             $table->string('ip');

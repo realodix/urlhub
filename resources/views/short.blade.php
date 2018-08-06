@@ -13,6 +13,7 @@
       </div>
       @endif
 
+      <h3>{{ $long_url_title }}</h3>
       <p>{{ $long_url }}</p>
       <p><a href="{{ url('/', $short_url) }}" target="_blank">{{ url('/', $short_url) }}</a></p>
 
