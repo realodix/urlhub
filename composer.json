@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
+        "codeitnowin/barcode": "^3.0",
         "fideloper/proxy": "^4.0",
         "hashids/hashids": "^3.0",
         "laravel/framework": "5.6.*",

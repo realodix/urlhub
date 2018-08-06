@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6013ddef2ea6802ba447c13d9d6dc53f",
+    "content-hash": "2302dcf417c6e650a56d5f1e8dd44cd5",
     "packages": [
+        {
+            "name": "codeitnowin/barcode",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeitnowin/barcode-generator.git",
+                "reference": "a84e923469a631e48723cd1cca21858605966904"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/a84e923469a631e48723cd1cca21858605966904",
+                "reference": "a84e923469a631e48723cd1cca21858605966904",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeItNow\\": "CodeItNow/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Akhtar Khan",
+                    "email": "er.akhtarkhan@gmail.com"
+                }
+            ],
+            "description": "Barcode & Qr Code generator library by http://www.codeitnow.in. You can use it with Custom PHP application or any PHP Framework such as Laravel, Cakephp, Yii, Codeigneter etc.",
+            "homepage": "http://www.codeitnow.in",
+            "keywords": [
+                "Symfony2",
+                "barcode",
+                "cakephp",
+                "code",
+                "generator",
+                "laravel",
+                "qr",
+                "qrcode",
+                "symfony"
+            ],
+            "time": "2018-06-01T13:33:52+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

@@ -9,6 +9,7 @@ use Hashids\Hashids;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use CodeItNow\BarcodeBundle\Utils\QrCode;
 
 class UrlController extends Controller
 {
@@ -44,9 +45,24 @@ class UrlController extends Controller
     {
         $url = Url::where('short_url', 'LIKE BINARY', $link)->firstOrFail();
 
+        $qrCode = new QrCode();
+        $qrCode
+            ->setText(url('/', $url->short_url))
+            ->setSize(200)
+            ->setPadding(10)
+            ->setErrorCorrection('high')
+            ->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
+            ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
+            ->setLabel('Scan Qr Code')
+            ->setLabelFontSize(16)
+            ->setImageType(QrCode::IMAGE_TYPE_PNG)
+        ;
+
         return view('short', [
             'long_url'      => $url->long_url,
             'short_url'     => $url->short_url,
+            'qrCodeData'    => $qrCode->getContentType(),
+            'qrCodebase64'  => $qrCode->generate(),
             'created_at'    =>  Carbon::parse($url->created_at)->toDayDateTimeString(),
         ]);
     }

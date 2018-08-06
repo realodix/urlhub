@@ -14,7 +14,9 @@
       @endif
 
       <p>{{ $long_url }}</p>
-      <p>{{ url('/', $short_url) }}</p>
+      <p><a href="{{ url('/', $short_url) }}" target="_blank">{{ url('/', $short_url) }}</a></p>
+
+      <img src="data:{{$qrCodeData}};base64,{{$qrCodebase64}}" />
     </div>
   </div>
 </div>
