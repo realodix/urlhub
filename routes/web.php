@@ -15,4 +15,4 @@ Auth::routes();
 Route::view('/', 'welcome');
 Route::post('/create', 'UrlController@create');
 Route::get('/{link}', 'UrlController@url_redirection')->where('link', '[a-zA-Z0-9]+');
-Route::get('view/{link}', 'UrlController@view')->where('link', '[a-zA-Z0-9]+');
+Route::get('+{link}', 'UrlController@view')->where('link', '[a-zA-Z0-9]+');
