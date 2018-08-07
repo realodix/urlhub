@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Url;
 use Carbon\Carbon;
 use Facades\App\Helpers\Hlp;
+use Facades\App\Helpers\UrlHlp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -16,7 +17,7 @@ class UrlController extends Controller
     {
         $getLongURL = Input::get('long_url');
 
-        $short_url = Hlp::urlGenerator();
+        $short_url = UrlHlp::urlGenerator();
 
         $getLongUrlInDB = Url::where('long_url', $getLongURL)->first();
         if ($getLongUrlInDB == true) {
@@ -25,7 +26,7 @@ class UrlController extends Controller
 
         Url::create([
             'long_url'          => $getLongURL,
-            'long_url_title'    => Hlp::get_title($getLongURL),
+            'long_url_title'    => UrlHlp::get_title($getLongURL),
             'short_url'         => $short_url,
             'users_id'          => 0,
             'ip'                => $request->ip(),
@@ -42,7 +43,7 @@ class UrlController extends Controller
 
         return view('short', [
             'long_url_href'     => $url->long_url,
-            'long_url'          => Hlp::url_limit($url->long_url),
+            'long_url'          => UrlHlp::url_limit($url->long_url),
             'long_url_title'    => $url->long_url_title,
             'short_url'         => $url->short_url,
             'qrCodeData'        => $qrCode->getContentType(),
