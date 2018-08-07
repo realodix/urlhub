@@ -1,7 +1,8 @@
 @extends('layouts.home')
 
-@section('content')
+@section('css_class', 'view_short')
 
+@section('content')
 <div class="container">
   <div class="row justify-content-md-cente mt-5">
     <div class="col">
@@ -15,23 +16,19 @@
       <div class="item-detail--title">{{ $long_url_title }}</div>
 
       <div class="row mt-3">
-        <div class="col-md-8">
+        <div class="col-md-9 content">
           <div class="row">
-            <div class="col-md-8">
-              <div class="item-detail--long-url">{{ str_limit($long_url, 60, ' (...)') }}</div>
-              <div class="item-detail--short-url"><a href="{{ url('/', $short_url) }}" target="_blank">{{ url('/', $short_url) }}</a></div>
-            </div>
-            <div class="col-md d-flex flex-row-reverse">
+            <div class="col-md">
               <img src="data:{{$qrCodeData}};base64,{{$qrCodebase64}}" />
+            </div>
+            <div class="col-md-9">
+              <div class="item-detail--long-url"><a href="{{ $long_url_href }}" target="_blank">{{ $long_url }}</a></div>
+              <div class="item-detail--short-url"><a href="{{ url('/', $short_url) }}" target="_blank">{{ url('/', $short_url) }}</a></div>
             </div>
           </div>
         </div>
-        {{-- <div class="col-md">
-          <img src="data:{{$qrCodeData}};base64,{{$qrCodebase64}}" />
-        </div> --}}
       </div>
     </div>
   </div>
 </div>
-
 @endsection

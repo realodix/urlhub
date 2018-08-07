@@ -6,7 +6,7 @@ use App\Url;
 use CodeItNow\BarcodeBundle\Utils\QrCode;
 use Hashids\Hashids;
 
-class UrlHelper
+class Hlp
 {
     public function urlGenerator()
     {
@@ -23,24 +23,24 @@ class UrlHelper
         return $shortURL;
     }
 
-    public function get_title($getLongURL)
+    public function get_title($url)
     {
-        $data = @file_get_contents($getLongURL);
+        $data = @file_get_contents($url);
 
-        if($data == true){
+        if ($data == true) {
             $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
-        }else{
-            $title = $getLongURL;
+        } else {
+            $title = $url;
         }
 
         return $title;
     }
 
-    public function qrCodeGenerator($short_url)
+    public function qrCodeGenerator($url)
     {
         $qrCode = new QrCode();
         $qrCode
-            ->setText(url('/', $short_url))
+            ->setText(url('/', $url))
             ->setSize(150)
             ->setPadding(10)
             ->setErrorCorrection('high')
@@ -52,5 +52,12 @@ class UrlHelper
         ;
 
         return $qrCode;
+    }
+
+    public function dotThree($url)
+    {
+        $l_url = substr($url, 0, 40) .'...'. substr($url, -25);
+
+        return $l_url;
     }
 }

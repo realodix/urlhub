@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Url;
 use Carbon\Carbon;
-use Facades\App\Helpers\UrlHelper;
+use Facades\App\Helpers\Hlp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -16,17 +16,16 @@ class UrlController extends Controller
     {
         $getLongURL = Input::get('long_url');
 
-        $short_url = UrlHelper::urlGenerator();
+        $short_url = Hlp::urlGenerator();
 
         $getLongUrlInDB = Url::where('long_url', $getLongURL)->first();
         if ($getLongUrlInDB == true) {
-            return redirect('/+'.$getLongUrlInDB->short_url)
-                            ->with('msgLinkAlreadyExists', 'Link already exists');;
+            return redirect('/+'.$getLongUrlInDB->short_url)->with('msgLinkAlreadyExists', 'Link already exists');;
         }
 
         Url::create([
             'long_url'          => $getLongURL,
-            'long_url_title'    => UrlHelper::get_title($getLongURL),
+            'long_url_title'    => Hlp::get_title($getLongURL),
             'short_url'         => $short_url,
             'users_id'          => 0,
             'ip'                => $request->ip(),
@@ -39,10 +38,11 @@ class UrlController extends Controller
     {
         $url = Url::where('short_url', 'LIKE BINARY', $link)->firstOrFail();
 
-        $qrCode = UrlHelper::qrCodeGenerator($url->short_url);
+        $qrCode = Hlp::qrCodeGenerator($url->short_url);
 
         return view('short', [
-            'long_url'          => $url->long_url,
+            'long_url_href'     => $url->long_url,
+            'long_url'          => Hlp::dotThree($url->long_url),
             'long_url_title'    => $url->long_url_title,
             'short_url'         => $url->short_url,
             'qrCodeData'        => $qrCode->getContentType(),
@@ -59,3 +59,4 @@ class UrlController extends Controller
         return redirect()->away($url->long_url);
     }
 }
+https://translate.google.com/

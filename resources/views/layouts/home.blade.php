@@ -15,7 +15,7 @@
 <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="@yield('css_class')">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">Plur</a>

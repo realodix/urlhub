@@ -19,25 +19,37 @@ body {
   }
 }
 
-.item-detail-- {
-  &created-date {
-    color: rgba(0,0,0,.54);
-    font-size: 12px;
+.view_short {
+  background-color: #fafafa;
+
+  .content {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 7px rgba(0,0,0,.05);
   }
 
-  &title {
-    color: #292929;
-    font-size: 25px;
-    line-height: 2.4rem;
-  }
+  .item-detail-- {
+    &created-date {
+      color: rgba(0,0,0,.54);
+      font-size: 12px;
+    }
 
-  &long-url {
-    color: rgba(0,0,0,.54);
-    font-size: 14px;
-  }
+    &title {
+      color: #292929;
+      font-size: 25px;
+      line-height: 2.4rem;
+    }
 
-  &short-url {
-    font-size: 18px;
-    font-weight: bold;
+    &long-url {
+      a {
+        color: rgba(0,0,0,.54);
+        font-size: 14px;
+      }
+    }
+
+    &short-url {
+      font-size: 18px;
+      font-weight: bold;
+    }
   }
 }

@@ -20,23 +20,33 @@ body {
   line-height: 1.7;
 }
 
-.item-detail--created-date {
+.view_short {
+  background-color: #fafafa;
+}
+
+.view_short .content {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
+}
+
+.view_short .item-detail--created-date {
   color: rgba(0, 0, 0, 0.54);
   font-size: 12px;
 }
 
-.item-detail--title {
+.view_short .item-detail--title {
   color: #292929;
   font-size: 25px;
   line-height: 2.4rem;
 }
 
-.item-detail--long-url {
+.view_short .item-detail--long-url a {
   color: rgba(0, 0, 0, 0.54);
   font-size: 14px;
 }
 
-.item-detail--short-url {
+.view_short .item-detail--short-url {
   font-size: 18px;
   font-weight: bold;
 }
