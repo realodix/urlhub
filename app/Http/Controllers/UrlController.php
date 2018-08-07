@@ -17,7 +17,7 @@ class UrlController extends Controller
     {
         $getLongURL = Input::get('long_url');
 
-        $short_url = UrlHlp::urlGenerator();
+        $short_url = UrlHlp::url_generator();
 
         $getLongUrlInDB = Url::where('long_url', $getLongURL)->first();
         if ($getLongUrlInDB == true) {

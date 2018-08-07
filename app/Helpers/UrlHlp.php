@@ -7,7 +7,7 @@ use Hashids\Hashids;
 
 class UrlHlp
 {
-    public function urlGenerator()
+    public function url_generator()
     {
         $getUrlIdInDB = Url::orderBy('id', 'desc')->limit(1)->first();
 
