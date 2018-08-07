@@ -9,7 +9,7 @@ class UrlHlp
 {
     public function url_generator()
     {
-        $getUrlIdInDB = Url::orderBy('id', 'desc')->limit(1)->first();
+        $getUrlIdInDB = Url::latest()->first();
 
         $hashids = new Hashids('', 6);
 
