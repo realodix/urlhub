@@ -26,11 +26,7 @@ class UrlHlp
     {
         $data = @file_get_contents($url);
 
-        if ($data == true) {
-            $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : null;
-        } else {
-            $title = $url;
-        }
+        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : $url;
 
         return $title;
     }
