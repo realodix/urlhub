@@ -43,7 +43,7 @@ class UrlController extends Controller
 
         return view('short', [
             'long_url_href'     => $url->long_url,
-            'long_url'          => UrlHlp::url_limit(UrlHlp::urlToDomain($url->long_url)),
+            'long_url'          => UrlHlp::url_limit(UrlHlp::urlToDomain($url->long_url), 50),
             'long_url_title'    => $url->long_url_title,
             'short_url'         => $url->short_url,
             'qrCodeData'        => $qrCode->getContentType(),

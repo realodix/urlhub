@@ -35,15 +35,18 @@ class UrlHlp
         return $title;
     }
 
-    public function url_limit($str)
+    public function url_limit($url, $int)
     {
-        if (strlen($str) > 50) {
-            $s_url = str_limit($str, 30) . substr($str, -20);
+        $int_a = (60 / 100) * $int;
+        $int_b = ($int - $int_a) * -1;
+
+        if (strlen($url) > $int) {
+            $s_url = str_limit($url, $int_a) . substr($url, $int_b);
 
             return $s_url;
         }
 
-        return $str;
+        return $url;
     }
 
     public function urlToDomain($str)
