@@ -54,10 +54,14 @@ class Hlp
         return $qrCode;
     }
 
-    public function dotThree($url)
+    public function addDotThree($str)
     {
-        $l_url = substr($url, 0, 40) .'...'. substr($url, -25);
+        if (strlen($str) > 50) {
+            $l_url = str_limit($str, 30) . substr($str, -20);
 
-        return $l_url;
+            return $l_url;
+        }
+
+        return $str;
     }
 }

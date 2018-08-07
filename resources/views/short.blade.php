@@ -19,10 +19,14 @@
         <div class="col-md-9 content">
           <div class="row">
             <div class="col-md">
-              <img src="data:{{$qrCodeData}};base64,{{$qrCodebase64}}" />
+              <img src="data:{{$qrCodeData}};base64,{{$qrCodebase64}}" alt="QR Code">
             </div>
             <div class="col-md-9">
+              <b>Original URL</b>
               <div class="item-detail--long-url"><a href="{{ $long_url_href }}" target="_blank">{{ $long_url }}</a></div>
+
+              <br>
+              <b>Short URL</b>
               <div class="item-detail--short-url"><a href="{{ url('/', $short_url) }}" target="_blank">{{ url('/', $short_url) }}</a></div>
             </div>
           </div>

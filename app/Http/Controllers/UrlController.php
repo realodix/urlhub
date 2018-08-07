@@ -42,7 +42,7 @@ class UrlController extends Controller
 
         return view('short', [
             'long_url_href'     => $url->long_url,
-            'long_url'          => Hlp::dotThree($url->long_url),
+            'long_url'          => Hlp::addDotThree($url->long_url),
             'long_url_title'    => $url->long_url_title,
             'short_url'         => $url->short_url,
             'qrCodeData'        => $qrCode->getContentType(),
@@ -59,4 +59,3 @@ class UrlController extends Controller
         return redirect()->away($url->long_url);
     }
 }
-https://translate.google.com/
