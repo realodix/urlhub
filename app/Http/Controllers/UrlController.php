@@ -45,7 +45,7 @@ class UrlController extends Controller
             'long_url_href'     => $url->long_url,
             'long_url'          => UrlHlp::url_limit(UrlHlp::urlToDomain($url->long_url), 50),
             'long_url_title'    => $url->long_url_title,
-            'short_url'         => $url->short_url,
+            'short_url'         => url('/', $url->short_url),
             'qrCodeData'        => $qrCode->getContentType(),
             'qrCodebase64'      => $qrCode->generate(),
             'created_at'        => Carbon::parse($url->created_at)->toDayDateTimeString(),

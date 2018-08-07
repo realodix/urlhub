@@ -27,7 +27,7 @@
 
               <br>
               <b>Short URL</b>
-              <div class="item-detail--short-url"><a href="{{ url('/', $short_url) }}" target="_blank">{{ url('/', $short_url) }}</a></div>
+              <div class="item-detail--short-url"><a href="{{ $short_url }}" target="_blank">{{ $short_url }}</a></div>
             </div>
           </div>
         </div>
