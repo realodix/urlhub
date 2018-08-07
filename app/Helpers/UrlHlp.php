@@ -40,10 +40,10 @@ class UrlHlp
         if (strlen($str) > 50) {
             $s_url = str_limit($str, 30) . substr($str, -20);
 
-            return $this->urlToDomain($s_url);
+            return $s_url;
         }
 
-        return $this->urlToDomain($str);
+        return $str;
     }
 
     public function urlToDomain($str)
