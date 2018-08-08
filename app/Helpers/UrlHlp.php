@@ -92,8 +92,7 @@ class UrlHlp
             'j.mp',
             'ow.ly',
             'polr.me',
-            't.co',
-            'tiny.cc',
+            't.co', 'tiny.cc',
             'ur1.ca',
         ];
 
