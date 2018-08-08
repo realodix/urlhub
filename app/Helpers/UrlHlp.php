@@ -85,16 +85,16 @@ class UrlHlp
     public function domainBlocked($value)
     {
         $blockedDomainList = [
-            'polr.me',
-            'bit.ly',
-            'is.gd',
-            'tiny.cc',
             'adf.ly',
-            'ur1.ca',
+            'bit.ly',
             'goo.gl',
-            'ow.ly',
+            'is.gd',
             'j.mp',
+            'ow.ly',
+            'polr.me',
             't.co',
+            'tiny.cc',
+            'ur1.ca',
         ];
 
         $contains = str_contains($value, $blockedDomainList);
