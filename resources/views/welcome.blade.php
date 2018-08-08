@@ -24,6 +24,12 @@
       </div>
       @endif
 
+      @if (session('msgDomainBlocked'))
+      <div class="alert alert-warning mt-3" role="alert">
+        {{ session('msgDomainBlocked') }}
+      </div>
+      @endif
+
     </div>
   </div>
 </div>

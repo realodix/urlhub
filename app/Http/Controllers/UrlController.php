@@ -24,6 +24,25 @@ class UrlController extends Controller
             return redirect('/+'.$getLongUrlInDB->short_url)->with('msgLinkAlreadyExists', 'Link already exists');
         }
 
+        $shortener_domains = [
+            'polr.me',
+            'bit.ly',
+            'is.gd',
+            'tiny.cc',
+            'adf.ly',
+            'ur1.ca',
+            'goo.gl',
+            'ow.ly',
+            'j.mp',
+            't.co',
+        ];
+
+        $contains = str_contains($getLongURL, $shortener_domains);
+
+        if ($contains == true) {
+            return redirect('/')->with('msgDomainBlocked', 'Sorry, we cannot continue. We believe the URL you submitted has been shortened by a similar service.');
+        }
+
         Url::create([
             'long_url'          => $getLongURL,
             'long_url_title'    => UrlHlp::get_title($getLongURL),
