@@ -11,7 +11,7 @@
       <form action="{{ url('/create') }}" method="post" class="mt-5">
       @csrf
         <div class="input-group input-group-lg">
-          <input name="long_url" placeholder="Paste a link to shorten it" class="form-control" id="inputSourceLink" type="text">
+          <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text">
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit" id="actProcess">Shorten</button>
           </div>

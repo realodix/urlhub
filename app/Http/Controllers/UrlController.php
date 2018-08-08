@@ -29,10 +29,10 @@ class UrlController extends Controller
         }
 
         Url::create([
+            'users_id'          => 0,
             'long_url'          => $getLongURL,
             'long_url_title'    => UrlHlp::get_title($getLongURL),
             'short_url'         => $short_url,
-            'users_id'          => 0,
             'ip'                => $request->ip(),
         ]);
 

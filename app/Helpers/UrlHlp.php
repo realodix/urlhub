@@ -87,13 +87,18 @@ class UrlHlp
         $blockedDomainList = [
             'adf.ly',
             'bit.ly',
+            'clc.la', 'clc.to',
             'goo.gl',
             'is.gd',
             'j.mp',
             'ow.ly',
             'polr.me',
-            't.co', 'tiny.cc',
+            's.id',
+            'shorturl.at',
+            't.co',
+            'tiny.cc', 'tinyurl.com',
             'ur1.ca',
+            'v.ht',
         ];
 
         $contains = str_contains($value, $blockedDomainList);
