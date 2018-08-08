@@ -6,11 +6,15 @@ use CodeItNow\BarcodeBundle\Utils\QrCode;
 
 class Hlp
 {
-    public function qrCodeGenerator($url)
+    /**
+     * @param  mixed $value
+     * @return mixed
+     */
+    public function qrCodeGenerator($value)
     {
         $qrCode = new QrCode();
         $qrCode
-            ->setText(url('/', $url))
+            ->setText(url('/', $value))
             ->setSize(150)
             ->setPadding(10)
             ->setErrorCorrection('high')

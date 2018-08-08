@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-9">
               <b>Original URL</b>
-              <div class="item-detail--long-url"><a href="{{ $long_url_href }}" target="_blank">{{ $long_url }}</a></div>
+              <div class="item-detail--long-url"><a href="{{ $long_url_href }}" target="_blank" title="{{ $long_url_href }}">{{ $long_url }}</a></div>
 
               <br>
               <b>Short URL</b>

@@ -7,6 +7,9 @@ use Hashids\Hashids;
 
 class UrlHlp
 {
+    /**
+     * @return string
+     */
     public function url_generator()
     {
         $getUrlIdInDB = Url::latest()->first();
@@ -22,16 +25,25 @@ class UrlHlp
         return $shortURL;
     }
 
-    public function get_title($url)
+    /**
+     * @param  string $value
+     * @return string
+     */
+    public function get_title($value)
     {
-        $data = @file_get_contents($url);
+        $data = @file_get_contents($value);
 
-        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : $url;
+        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : $value;
 
         return $title;
     }
 
-    public function url_limit($url, $int)
+    /**
+     * @param  string $url
+     * @param  integer $int
+     * @return string
+     */
+    public function url_limit($url, $int=50)
     {
         $int_a = (60 / 100) * $int;
         $int_b = ($int - $int_a) * -1;
@@ -45,20 +57,24 @@ class UrlHlp
         return $url;
     }
 
-    public function urlToDomain($str)
+    /**
+     * @param  string $value
+     * @return string
+     */
+    public function urlToDomain($value)
     {
-        if (str_contains($str, 'http://')) {
-            $str = str_replace_first('http://', '', $str);
+        if (str_contains($value, 'http://')) {
+            $value = str_replace_first('http://', '', $value);
         }
 
-        if (str_contains($str, 'https://')) {
-            $str = str_replace_first('https://', '', $str);
+        if (str_contains($value, 'https://')) {
+            $value = str_replace_first('https://', '', $value);
         }
 
-        if (str_contains($str, 'www.')) {
-            $str = str_replace_first('www.', '', $str);
+        if (str_contains($value, 'www.')) {
+            $value = str_replace_first('www.', '', $value);
         }
 
-        return $str;
+        return $value;
     }
 }
