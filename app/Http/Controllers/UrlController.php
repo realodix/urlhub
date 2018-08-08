@@ -33,6 +33,7 @@ class UrlController extends Controller
             'long_url'          => $getLongURL,
             'long_url_title'    => UrlHlp::get_title($getLongURL),
             'short_url'         => $short_url,
+            'views'             => 0,
             'ip'                => $request->ip(),
         ]);
 
@@ -49,7 +50,9 @@ class UrlController extends Controller
             'long_url'          => UrlHlp::url_limit(UrlHlp::urlToDomain(url($url->long_url))),
             'long_url_href'     => $url->long_url,
             'long_url_title'    => $url->long_url_title,
+            'views'             => $url->views,
             'short_url'         => UrlHlp::urlToDomain(url('/', $url->short_url)),
+            'short_url_href'    => $url->short_url,
             'qrCodeData'        => $qrCode->getContentType(),
             'qrCodebase64'      => $qrCode->generate(),
             'created_at'        => Carbon::parse($url->created_at)->toDayDateTimeString(),
@@ -59,6 +62,8 @@ class UrlController extends Controller
     public function url_redirection($link)
     {
         $url = Url::where('short_url', 'LIKE BINARY', $link)->firstOrFail();
+
+        $url->increment('views');
 
         // Redirect to final destination
         return redirect()->away($url->long_url);

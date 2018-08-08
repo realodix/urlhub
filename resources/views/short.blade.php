@@ -12,7 +12,16 @@
       </div>
       @endif
 
-      <div class="item-detail--created-date"><i class="far fa-clock"></i> {{ $created_at }}</div>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <i class="far fa-clock"></i>
+          <i>{{ $created_at }}</i>
+        </li>
+        <li class="list-inline-item">
+          <i class="far fa-eye"></i>
+          <i>{{ $views }}</i>
+        </li>
+      <ul>
       <div class="item-detail--title">{{ $long_url_title }}</div>
 
       <div class="row mt-3">
