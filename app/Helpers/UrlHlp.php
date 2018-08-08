@@ -77,4 +77,28 @@ class UrlHlp
 
         return $value;
     }
+
+    /**
+     * @param  string $value
+     * @return boolean
+     */
+    public function domainBlocked($value)
+    {
+        $blockedDomainList = [
+            'polr.me',
+            'bit.ly',
+            'is.gd',
+            'tiny.cc',
+            'adf.ly',
+            'ur1.ca',
+            'goo.gl',
+            'ow.ly',
+            'j.mp',
+            't.co',
+        ];
+
+        $contains = str_contains($value, $blockedDomainList);
+
+        return $contains;
+    }
 }
