@@ -22,32 +22,34 @@ body {
 .view_short {
   background-color: #fafafa;
 
-  .content {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 1px 7px rgba(0,0,0,.05);
-  }
-
-  .item-detail-- {
-    &created-date {
+  .header {
+    ul {
       color: rgba(0,0,0,.54);
       font-size: 12px;
+      // Bootstrap 4
+      margin-bottom: 0;
     }
 
-    &title {
+    .title {
       color: #292929;
       font-size: 25px;
       line-height: 2.4rem;
     }
+  }
 
-    &long-url {
+  .content {
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 1px 7px rgba(0,0,0,.05);
+
+    .long-url {
       a {
         color: rgba(0, 0, 0, 0.4);
         font-size: 14px;
       }
     }
 
-    &short-url {
+    .short-url {
       font-size: 14px;
       font-weight: bold;
     }

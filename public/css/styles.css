@@ -24,29 +24,30 @@ body {
   background-color: #fafafa;
 }
 
-.view_short .content {
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
-}
-
-.view_short .item-detail--created-date {
+.view_short .header ul {
   color: rgba(0, 0, 0, 0.54);
   font-size: 12px;
+  margin-bottom: 0;
 }
 
-.view_short .item-detail--title {
+.view_short .header .title {
   color: #292929;
   font-size: 25px;
   line-height: 2.4rem;
 }
 
-.view_short .item-detail--long-url a {
+.view_short .content {
+  background-color: #fff;
+  padding: 20px 0;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
+}
+
+.view_short .content .long-url a {
   color: rgba(0, 0, 0, 0.4);
   font-size: 14px;
 }
 
-.view_short .item-detail--short-url {
+.view_short .content .short-url {
   font-size: 14px;
   font-weight: bold;
 }
