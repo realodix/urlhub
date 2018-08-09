@@ -41,8 +41,9 @@
         <div class="long-url"><a href="{{ $long_url_href }}" target="_blank" title="{{ $long_url_href }}">{{ $long_url }}</a></div>
 
         <br>
-        <b>Short URL</b>
-        <div class="short-url"><a href="{{ $short_url_href }}" target="_blank">{{ $short_url }}</a></div>
+        <b>Short URL</b> <br>
+        <span class="short-url"><a href="{{ $short_url_href }}" target="_blank" id="copy">{{ $short_url }}</a></span>
+        <button class="btn btn-outline-success btn-copy" data-clipboard-text="{{ $short_url }}">Copy</button>
       </div>
     </div>
   </div>

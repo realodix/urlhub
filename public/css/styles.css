@@ -51,3 +51,8 @@ body {
   font-size: 14px;
   font-weight: bold;
 }
+
+.view_short .content .btn-copy {
+  font-size: 14px;
+  padding: 0 5px;
+}

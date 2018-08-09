@@ -24,7 +24,18 @@
 
 @yield('content')
 
-<script src="{{ asset('js/app.js') }}">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
+<script>
+var clipboard = new ClipboardJS('.btn-copy');
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+</script>
 
 </body>
 </html>
