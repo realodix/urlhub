@@ -16,6 +16,7 @@ class UrlController extends Controller
     public function create(Requests\StoreUrl $request)
     {
         $getLongURL = Input::get('long_url');
+        $shortUrlCustom = Input::get('short_url_custom');
         $getUrlInDB = Url::where('long_url', $getLongURL)->first();
         $short_url = UrlHlp::url_generator();
 
@@ -27,7 +28,7 @@ class UrlController extends Controller
             return redirect('/+'.$getUrlInDB->short_url)->with('msgLinkAlreadyExists', 'Link already exists');
         }
 
-        if ($shortUrlCustom == true) {
+        if ($shortUrlCustom) {
             $blabla = $shortUrlCustom;
         } else {
             $blabla = $short_url;
@@ -38,7 +39,7 @@ class UrlController extends Controller
             'long_url'          => $getLongURL,
             'long_url_title'    => UrlHlp::get_title($getLongURL),
             'short_url'         => $short_url,
-            'short_url_custom'  => $shortUrlCustom ? $shortUrlCustom : 0,
+            'short_url_custom'  => $shortUrlCustom ?? 0,
             'views'             => 0,
             'ip'                => $request->ip(),
         ]);
@@ -52,7 +53,7 @@ class UrlController extends Controller
                     ->orWhere('short_url_custom', $link)
                     ->firstOrFail();
 
-        if ($url->short_url_custom == true) {
+        if ($url->short_url_custom) {
             $blabla = $url->short_url_custom;
         } else {
             $blabla = $url->short_url;
