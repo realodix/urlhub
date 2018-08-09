@@ -16,6 +16,7 @@ class UrlController extends Controller
     public function create(Requests\StoreUrl $request)
     {
         $getLongURL = Input::get('long_url');
+        $shortUrlCustom = Input::get('short_url_custom');
 
         $short_url = UrlHlp::url_generator();
 
@@ -28,21 +29,30 @@ class UrlController extends Controller
             return back()->with('msgDomainBlocked', 'Sorry, we cannot continue. We believe the URL you submitted has been shortened by a similar service.');
         }
 
+        if ($shortUrlCustom == true) {
+            $blabla = $shortUrlCustom;
+        } else {
+            $blabla = $short_url;
+        }
+
         Url::create([
             'users_id'          => 0,
             'long_url'          => $getLongURL,
             'long_url_title'    => UrlHlp::get_title($getLongURL),
             'short_url'         => $short_url,
+            'short_url_custom'  => $shortUrlCustom ? $shortUrlCustom : 0,
             'views'             => 0,
             'ip'                => $request->ip(),
         ]);
 
-        return redirect('/+'.$short_url);
+        return redirect('/+'.$blabla);
     }
 
     public function view($link)
     {
-        $url = Url::where('short_url', 'LIKE BINARY', $link)->firstOrFail();
+        $url = Url::where('short_url', 'LIKE BINARY', $link)
+                    ->orWhere('short_url_custom', $link)
+                    ->firstOrFail();
 
         $qrCode = Hlp::qrCodeGenerator($url->short_url);
 
@@ -61,7 +71,9 @@ class UrlController extends Controller
 
     public function url_redirection($link)
     {
-        $url = Url::where('short_url', 'LIKE BINARY', $link)->firstOrFail();
+        $url = Url::where('short_url', 'LIKE BINARY', $link)
+                    ->orWhere('short_url_custom', $link)
+                    ->firstOrFail();
 
         $url->increment('views');
 
