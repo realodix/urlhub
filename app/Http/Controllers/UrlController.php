@@ -25,7 +25,7 @@ class UrlController extends Controller
         }
 
         if (UrlHlp::domainBlocked($getLongURL) == true) {
-            return redirect('/')->with('msgDomainBlocked', 'Sorry, we cannot continue. We believe the URL you submitted has been shortened by a similar service.');
+            return back()->with('msgDomainBlocked', 'Sorry, we cannot continue. We believe the URL you submitted has been shortened by a similar service.');
         }
 
         Url::create([
