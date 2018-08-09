@@ -54,6 +54,12 @@ class UrlController extends Controller
                     ->orWhere('short_url_custom', $link)
                     ->firstOrFail();
 
+        if ($url->short_url_custom == true) {
+            $blabla = $url->short_url_custom;
+        } else {
+            $blabla = $url->short_url;
+        }
+
         $qrCode = Hlp::qrCodeGenerator($url->short_url);
 
         return view('short', [
@@ -61,8 +67,8 @@ class UrlController extends Controller
             'long_url_href'     => $url->long_url,
             'long_url_title'    => $url->long_url_title,
             'views'             => $url->views,
-            'short_url'         => UrlHlp::urlToDomain(url('/', $url->short_url)),
-            'short_url_href'    => $url->short_url,
+            'short_url'         => UrlHlp::urlToDomain(url('/', $blabla)),
+            'short_url_href'    => $blabla,
             'qrCodeData'        => $qrCode->getContentType(),
             'qrCodebase64'      => $qrCode->generate(),
             'created_at'        => Carbon::parse($url->created_at)->toDayDateTimeString(),
