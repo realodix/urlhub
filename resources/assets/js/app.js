@@ -18,6 +18,3 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
-
-
-var clipboard = new ClipboardJS('.btn-copy');
