@@ -1,6 +1,7 @@
 .navbar-light {
   background-color: #fff !important;
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.15);
 }
 
 .navbar-light .navbar-brand {
@@ -39,7 +40,8 @@ body {
 .view_short .content {
   background-color: #fff;
   padding: 20px 0;
-  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
 }
 
 .view_short .content .long-url a {
