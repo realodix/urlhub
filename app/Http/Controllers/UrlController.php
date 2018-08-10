@@ -17,15 +17,20 @@ class UrlController extends Controller
     {
         $getLongURL = Input::get('long_url');
         $shortUrlCustom = Input::get('short_url_custom');
-        $getUrlInDB = Url::where('long_url', $getLongURL)->first();
         $short_url = UrlHlp::url_generator();
 
         if (UrlHlp::domainBlocked($getLongURL) == true) {
             return back()->with('msgDomainBlocked', 'Sorry, we cannot continue. We believe the URL you submitted has been shortened by a similar service.');
         }
 
+        $getUrlInDB = Url::where('long_url', $getLongURL)->first();
         if ($getUrlInDB == true) {
             return redirect('/+'.$getUrlInDB->short_url)->with('msgLinkAlreadyExists', 'Link already exists');
+        }
+
+        $cst = Url::where('short_url_custom', $shortUrlCustom)->first();
+        if ($cst == true) {
+            return back()->with('cst_exist', 'Sorry');
         }
 
         if ($shortUrlCustom) {

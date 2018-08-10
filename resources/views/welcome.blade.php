@@ -35,6 +35,12 @@
       </div>
       @endif
 
+      @if (session('cst_exist'))
+      <div class="alert alert-warning mt-3" role="alert">
+        {{ session('cst_exist') }}
+      </div>
+      @endif
+
     </div>
   </div>
 </div>
