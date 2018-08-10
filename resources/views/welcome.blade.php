@@ -16,6 +16,11 @@
             <button class="btn btn-primary" type="submit" id="actProcess">Shorten</button>
           </div>
         </div>
+
+        <br>
+        Custom URL (optional) <br>
+        <h2 class="site-url-field" style="display: inline;">{{$_SERVER['SERVER_NAME']}}/</h2>
+        <input class="form-control custom-url-field" name="short_url_custom" type="text" style="display: inline; width: auto;">
       </form>
 
       @if ($errors->has('long_url'))
@@ -27,6 +32,12 @@
       @if (session('msgDomainBlocked'))
       <div class="alert alert-warning mt-3" role="alert">
         {{ session('msgDomainBlocked') }}
+      </div>
+      @endif
+
+      @if (session('cst_exist'))
+      <div class="alert alert-warning mt-3" role="alert">
+        {{ session('cst_exist') }}
       </div>
       @endif
 

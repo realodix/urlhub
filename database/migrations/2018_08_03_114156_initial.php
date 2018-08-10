@@ -29,6 +29,7 @@ class Initial extends Migration
             $table->longText('long_url');
             $table->string('long_url_title');
             $table->string('short_url')->unique();
+            $table->string('short_url_custom');
             $table->integer('views');
             $table->string('ip');
             $table->timestamps();

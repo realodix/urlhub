@@ -11,6 +11,7 @@ class Url extends Model
         'long_url',
         'long_url_title',
         'short_url',
+        'short_url_custom',
         'views',
         'ip',
     ];
