@@ -29,17 +29,17 @@
       </div>
       @endif
 
-      @if (session('msgDomainBlocked'))
-      <div class="alert alert-warning mt-3" role="alert">
-        {{ session('msgDomainBlocked') }}
-      </div>
-      @endif
-
-      @if (session('cst_exist'))
+      @if (session('cst_exist')->all())
       <div class="alert alert-warning mt-3" role="alert">
         {{ session('cst_exist') }}
       </div>
       @endif
+
+      {{-- @if (session('msgDomainBlocked'))
+      <div class="alert alert-warning mt-3" role="alert">
+        {{ session('msgDomainBlocked') }}
+      </div>
+      @endif --}}
 
     </div>
   </div>

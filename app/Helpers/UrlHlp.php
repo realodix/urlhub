@@ -78,31 +78,31 @@ class UrlHlp
         return $value;
     }
 
-    /**
-     * @param  string $value
-     * @return boolean
-     */
-    public function domainBlocked($value)
-    {
-        $blockedDomainList = [
-            'adf.ly',
-            'bit.ly',
-            'clc.la', 'clc.to',
-            'goo.gl',
-            'is.gd',
-            'j.mp',
-            'ow.ly',
-            'polr.me',
-            's.id',
-            'shorturl.at',
-            't.co',
-            'tiny.cc', 'tinyurl.com',
-            'ur1.ca',
-            'v.ht',
-        ];
-
-        $contains = str_contains($value, $blockedDomainList);
-
-        return $contains;
-    }
+    // /**
+    //  * @param  string $value
+    //  * @return boolean
+    //  */
+    // public function domainBlocked($value)
+    // {
+    //     $blockedDomainList = [
+    //         'adf.ly',
+    //         'bit.ly',
+    //         'clc.la', 'clc.to',
+    //         'goo.gl',
+    //         'is.gd',
+    //         'j.mp',
+    //         'ow.ly',
+    //         'polr.me',
+    //         's.id',
+    //         'shorturl.at',
+    //         't.co',
+    //         'tiny.cc', 'tinyurl.com',
+    //         'ur1.ca',
+    //         'v.ht',
+    //     ];
+    //
+    //     $contains = str_contains($value, $blockedDomainList);
+    //
+    //     return $contains;
+    // }
 }

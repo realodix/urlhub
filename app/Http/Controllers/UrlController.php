@@ -19,9 +19,9 @@ class UrlController extends Controller
         $shortUrlCustom = Input::get('short_url_custom');
         $short_url = UrlHlp::url_generator();
 
-        if (UrlHlp::domainBlocked($getLongURL) == true) {
-            return back()->with('msgDomainBlocked', 'Sorry, we cannot continue. We believe the URL you submitted has been shortened by a similar service.');
-        }
+        // if (UrlHlp::domainBlocked($getLongURL) == true) {
+        //     return back()->with('msgDomainBlocked', 'Sorry, we cannot continue. We believe the URL you submitted has been shortened by a similar service.');
+        // }
 
         $getUrlInDB = Url::where('long_url', $getLongURL)->first();
         if ($getUrlInDB == true) {
