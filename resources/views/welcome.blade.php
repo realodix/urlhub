@@ -11,22 +11,27 @@
       <form action="{{ url('/create') }}" method="post" class="mt-5">
       @csrf
         <div class="input-group input-group-lg">
-          <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text">
+          <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" @if (session('cst_exist'))value="{{ session('long_url') }}"@endif>
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit" id="actProcess">Shorten</button>
           </div>
         </div>
 
         <br>
-        Custom URL (optional) <br>
-        <h2 class="site-url-field" style="display: inline;">{{$_SERVER['SERVER_NAME']}}/</h2>
-        <input class="form-control custom-url-field" name="short_url_custom" type="text" style="display: inline; width: auto;">
+        <div class="custom-url">
+          <div class="title"> Custom URL (optional)</div>
+          <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
+          <input class="form-control form-control-sm url-field" name="short_url_custom" type="text" style="display: inline; width: auto;">
+          (Max 20)
+        </div>
       </form>
 
-      @if ($errors->has('long_url'))
-      <div class="alert alert-warning mt-3" role="alert">
-        {{ $errors->first('long_url') }}
-      </div>
+      @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-warning mt-3" role="alert">
+          {{ $error }}
+        </div>
+        @endforeach
       @endif
 
       @if (session('cst_exist'))

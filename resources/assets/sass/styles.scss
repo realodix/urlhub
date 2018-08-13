@@ -17,6 +17,23 @@ body {
     background-color: #fdfbca;
     line-height: 1.7;
   }
+
+  .custom-url {
+    .title {
+      font-weight: lighter;
+    }
+
+    .site-url {
+      display: inline;
+      font-size: 25px;
+    }
+
+    .url-field {
+      font-size: 1.5rem;
+      height: calc(2rem + 2px);
+      padding: 0 0.5rem;
+    }
+  }
 }
 
 .view_short {

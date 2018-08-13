@@ -20,6 +20,21 @@ body {
   line-height: 1.7;
 }
 
+.home .custom-url .title {
+  font-weight: lighter;
+}
+
+.home .custom-url .site-url {
+  display: inline;
+  font-size: 25px;
+}
+
+.home .custom-url .url-field {
+  font-size: 1.5rem;
+  height: calc(2rem + 2px);
+  padding: 0 0.5rem;
+}
+
 .view_short {
   background-color: #fafafa;
 }

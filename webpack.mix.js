@@ -6,6 +6,7 @@ mix.options({
 
 mix.sass('resources/assets/sass/styles.scss', 'public/css', {outputStyle: 'expanded'})
    .sass('resources/assets/sass/bootstrap-custom/bootstrap-custom.scss', 'public/css', {outputStyle: 'expanded'})
+   .options({ autoprefixer: false })
    .js([
        'node_modules/jquery/dist/jquery.min.js',
        'node_modules/bootstrap/dist/js/bootstrap.min.js',

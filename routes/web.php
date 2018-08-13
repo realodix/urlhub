@@ -13,6 +13,10 @@
 Auth::routes();
 
 Route::view('/', 'welcome');
-Route::post('/create', 'UrlController@create');
+Route::middleware('auth')->group(function () {
+    Route::get('/changepassword','UserController@showChangePasswordForm');
+    Route::post('/changepassword','UserController@changePassword')->name('changePassword');
+});
+Route::post('/create', 'UrlController@create')->middleware('checkurl');
 Route::get('/{link}', 'UrlController@url_redirection')->where('link', '[a-zA-Z0-9]+');
 Route::get('+{link}', 'UrlController@view')->where('link', '[a-zA-Z0-9]+');

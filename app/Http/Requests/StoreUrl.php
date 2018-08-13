@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CustomUrlAlreadyExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrl extends FormRequest
@@ -24,7 +25,8 @@ class StoreUrl extends FormRequest
      public function rules()
     {
         return [
-            'long_url'  => 'required|url',
+            'long_url'          => 'required|url',
+            'short_url_custom'  => 'max:20|alpha_num',
         ];
     }
 
@@ -36,8 +38,10 @@ class StoreUrl extends FormRequest
     public function messages()
     {
         return [
-            'long_url.required' => 'Must be filled, should not be empty.',
-            'long_url.url'      => 'Incorrect link format. The link must begin "http://" or "https://".',
+            'long_url.required'             => 'Must be filled, should not be empty.',
+            'long_url.url'                  => 'Incorrect link format. The link must begin "http://" or "https://".',
+            'short_url_custom.max'          => 'The custom url may not be greater than :max characters.',
+            'short_url_custom.alpha_num'    => '":input" is not valid. The short url custom may only contain letters and numbers. ',
         ];
     }
 }

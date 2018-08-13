@@ -19,16 +19,6 @@ class UrlController extends Controller
         $short_url = UrlHlp::url_generator();
         $short_url_custom = Input::get('short_url_custom');
 
-        $s_url = Url::where('long_url', $long_url)->first();
-        if ($s_url) {
-            return redirect('/+'.$s_url->short_url)->with('msgLinkAlreadyExists', 'Link already exists');
-        }
-
-        $s_url_cst = Url::where('short_url_custom', $short_url_custom)->first();
-        if ($s_url_cst) {
-            return back()->with('cst_exist', 'Sorry');
-        }
-
         $shortUrl = $short_url_custom ?? $short_url;
 
         Url::create([
