@@ -1,7 +1,6 @@
-// compileExpanded: ../../../public/css/$1.css
-@import "variables";
-@import "extend";
-@import "components";
+// compileExpanded: ../../../public/css/$1.css, sourceMap: true
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:100,400');
 
 body {
   background: #fff;
@@ -9,13 +8,11 @@ body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-//
-// Bootstrap 4 (overrides)
-//
 .home {
-  mark {
-    background-color: #fdfbca;
-    line-height: 1.7;
+  .welcome-msg {
+    font-family: 'Raleway', sans-serif;
+    font-size: 3rem;
+    font-weight: 100;
   }
 
   .custom-url {
@@ -32,6 +29,8 @@ body {
       font-size: 1.5rem;
       height: calc(2rem + 2px);
       padding: 0 0.5rem;
+      display: inline;
+      max-width: 200px;
     }
   }
 }
@@ -42,7 +41,7 @@ body {
   .header {
     ul {
       color: rgba(0,0,0,.54);
-      font-size: 12px;
+      font-size: 14px;
       margin-bottom: 0; // Bootstrap 4
     }
 
@@ -53,26 +52,43 @@ body {
     }
   }
 
-  .content {
-    background-color: #fff;
-    padding: 20px 0;
-    box-shadow: 0 1px 7px rgba(0,0,0,.05);
+  .body {
+    @extend %card-body;
 
     .long-url {
       a {
         color: rgba(0, 0, 0, 0.4);
-        font-size: 14px;
       }
     }
 
     .short-url {
-      font-size: 14px;
       font-weight: bold;
     }
 
     .btn-copy {
-      font-size: 14px;
       padding: 0 5px; // Bootstrap 4
     }
   }
 }
+
+.backend {
+  background-color: #fafafa;
+
+  .change-password {
+    .header {
+      .title {
+        color: #292929;
+        font-size: 25px;
+        line-height: 2.4rem;
+      }
+    }
+
+    .body {
+      @extend %card-body;
+    }
+  }
+}
+
+@import "variables";
+@import "extend";
+@import "components";

@@ -15,4 +15,9 @@ class Url extends Model
         'views',
         'ip',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

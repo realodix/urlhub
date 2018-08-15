@@ -7,9 +7,6 @@
 
 <title>{{config('app.name')}}</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
 <link rel="stylesheet" href="{{ asset('css/bootstrap-custom.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -29,7 +26,6 @@
               {{ title_case(Auth::user()->name) }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Profile</a>
               <a class="dropdown-item" href="changepassword">Change Password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"

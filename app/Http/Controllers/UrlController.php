@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Facades\App\Helpers\Hlp;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
@@ -22,7 +23,7 @@ class UrlController extends Controller
         $shortUrl = $short_url_custom ?? $short_url;
 
         Url::create([
-            'users_id'          => 0,
+            'users_id'          => Auth::check() ? Auth::id() : 0,
             'long_url'          => $long_url,
             'long_url_title'    => UrlHlp::get_title($long_url),
             'short_url'         => $short_url,
@@ -49,12 +50,12 @@ class UrlController extends Controller
         $qrCode = Hlp::qrCodeGenerator($url->short_url);
 
         return view('short', [
-            'long_url'          => UrlHlp::url_limit(UrlHlp::urlToDomain(url($url->long_url))),
+            'long_url'          => UrlHlp::urlToDomain(UrlHlp::url_limit($url->long_url)),
             'long_url_href'     => $url->long_url,
             'long_url_title'    => $url->long_url_title,
             'views'             => $url->views,
             'short_url'         => UrlHlp::urlToDomain(url('/', $blabla)),
-            'short_url_href'    => $blabla,
+            'short_url_href'    => url('/', $blabla),
             'qrCodeData'        => $qrCode->getContentType(),
             'qrCodebase64'      => $qrCode->generate(),
             'created_at'        => Carbon::parse($url->created_at)->toDayDateTimeString(),

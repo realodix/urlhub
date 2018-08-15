@@ -1,9 +1,9 @@
 @extends('layouts.home')
 
 @section('content')
-<div class="container home">
-  <div class="row justify-content-md-center mt-5">
-    <h1 class="col-lg-8 text-center d-block"><mark>We will provide a shortened link for the page you're on.</mark></h1>
+<div class="container home pt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-8 text-center welcome-msg">We will provide a shortened link for the page you're on.</div>
   </div>
 
   <div class="row mt-5 justify-content-md-center">
@@ -21,8 +21,7 @@
         <div class="custom-url">
           <div class="title"> Custom URL (optional)</div>
           <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
-          <input class="form-control form-control-sm url-field" name="short_url_custom" type="text" style="display: inline; width: auto;">
-          (Max 20)
+          <input class="form-control form-control-sm url-field" name="short_url_custom">
         </div>
       </form>
 

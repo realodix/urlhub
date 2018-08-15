@@ -7,8 +7,14 @@
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
 
   .navbar-brand {
-    font-family: "Times New Roman", Times, serif;
+    font-family: Georgia, serif;
     font-size: 2rem;
     font-weight: bold;
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $green;
+    }
   }
 }

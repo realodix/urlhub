@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-5">
 <div class="col-md-8">
 
   @if(session()->has('login_error'))
@@ -19,6 +19,12 @@
       @csrf
 
         <div class="form-group row">
+          @if (Request::has('previous'))
+            <input type="hidden" name="previous" value="{{ Request::get('previous') }}">
+          @else
+            <input type="hidden" name="previous" value="{{ URL::previous() }}">
+          @endif
+          
           <label for="identity" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail / Username') }}</label>
 
           <div class="col-md-6">

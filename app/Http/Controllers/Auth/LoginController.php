@@ -34,9 +34,10 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('guest')->except('logout');
+        $this->request = $request;
     }
 
     /**
@@ -50,6 +51,17 @@ class LoginController extends Controller
         request()->merge([$fieldName => $identity]);
 
         return $fieldName;
+    }
+
+    /**
+     * @return string
+     */
+    public function redirectTo()
+    {
+        if ($this->request->has('previous')) {
+            $this->redirectTo = $this->request->get('previous');
+        }
+        return $this->redirectTo ?? '/';
     }
 
     /**

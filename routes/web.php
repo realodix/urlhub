@@ -18,5 +18,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/changepassword','UserController@changePassword')->name('changePassword');
 });
 Route::post('/create', 'UrlController@create')->middleware('checkurl');
-Route::get('/{link}', 'UrlController@url_redirection')->where('link', '[a-zA-Z0-9]+');
-Route::get('+{link}', 'UrlController@view')->where('link', '[a-zA-Z0-9]+');
+Route::get('/+{link}', 'UrlController@view');
+Route::get('/{link}', 'UrlController@url_redirection');

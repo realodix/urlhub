@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Url;
+use Facades\App\Helpers\UrlHlp;
 use Closure;
 
 class CheckUrl
@@ -16,7 +17,9 @@ class CheckUrl
      */
     public function handle($request, Closure $next)
     {
-        $s_url = Url::where('long_url', $request->long_url)->first();
+        $long_url = UrlHlp::urlToDomain($request->long_url);
+
+        $s_url = Url::where('long_url', $long_url)->first();
         if ($s_url) {
             return redirect('/+'.$s_url->short_url)->with('msgLinkAlreadyExists', 'Link already exists');
         }
