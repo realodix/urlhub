@@ -21,6 +21,12 @@
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
         @auth
+          <li class="nav-item">
+            <a class="nav-link" href="allurl">All URLs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="myurl">My URLs</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ title_case(Auth::user()->name) }}

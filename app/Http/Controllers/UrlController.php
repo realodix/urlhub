@@ -23,7 +23,7 @@ class UrlController extends Controller
         $shortUrl = $short_url_custom ?? $short_url;
 
         Url::create([
-            'users_id'          => Auth::check() ? Auth::id() : 0,
+            'user_id'           => Auth::check() ? Auth::id() : 0,
             'long_url'          => $long_url,
             'long_url_title'    => UrlHlp::get_title($long_url),
             'short_url'         => $short_url,
@@ -50,7 +50,7 @@ class UrlController extends Controller
         $qrCode = Hlp::qrCodeGenerator($url->short_url);
 
         return view('short', [
-            'long_url'          => UrlHlp::urlToDomain(UrlHlp::url_limit($url->long_url)),
+            'long_url'          => $url->long_url_mod,
             'long_url_href'     => $url->long_url,
             'long_url_title'    => $url->long_url_title,
             'views'             => $url->views,

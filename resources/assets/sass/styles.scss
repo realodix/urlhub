@@ -87,6 +87,36 @@ body {
       @extend %card-body;
     }
   }
+
+  .all-url {
+    .header {
+      .title {
+        color: #292929;
+        font-size: 25px;
+        line-height: 2.4rem;
+      }
+    }
+
+    .body {
+      @extend %card-body;
+      padding: 20px 15px !important;
+    }
+  }
+
+  .my-url {
+    .header {
+      .title {
+        color: #292929;
+        font-size: 25px;
+        line-height: 2.4rem;
+      }
+    }
+
+    .body {
+      @extend %card-body;
+      padding: 20px 15px !important;
+    }
+  }
 }
 
 @import "variables";

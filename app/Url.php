@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Facades\App\Helpers\UrlHlp;
 use Illuminate\Database\Eloquent\Model;
 
 class Url extends Model
 {
     protected $fillable = [
-        'users_id',
+        'user_id',
         'long_url',
         'long_url_title',
         'short_url',
@@ -19,5 +20,10 @@ class Url extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function getLongUrlModAttribute()
+    {
+        return UrlHlp::urlToDomain(UrlHlp::url_limit($this->long_url));
     }
 }
