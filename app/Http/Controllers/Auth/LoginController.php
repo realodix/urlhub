@@ -42,6 +42,7 @@ class LoginController extends Controller
 
     /**
      * Check either username or email.
+     *
      * @return string
      */
     public function username()
@@ -61,11 +62,13 @@ class LoginController extends Controller
         if ($this->request->has('previous')) {
             $this->redirectTo = $this->request->get('previous');
         }
+
         return $this->redirectTo ?? '/';
     }
 
     /**
      * Validate the user login.
+     *
      * @param Request $request
      */
     protected function validateLogin(Request $request)
@@ -82,13 +85,16 @@ class LoginController extends Controller
             ]
         );
     }
+
     /**
      * @param Request $request
+     *
      * @throws ValidationException
      */
     protected function sendFailedLoginResponse(Request $request)
     {
         $request->session()->put('login_error', trans('auth.failed'));
+
         throw ValidationException::withMessages(
             [
                 'error' => [trans('auth.failed')],

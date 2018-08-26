@@ -7,9 +7,7 @@ use App\Url;
 use Carbon\Carbon;
 use Facades\App\Helpers\Hlp;
 use Facades\App\Helpers\UrlHlp;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
 class UrlController extends Controller
