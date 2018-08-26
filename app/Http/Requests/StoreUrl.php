@@ -37,9 +37,9 @@ class StoreUrl extends FormRequest
     public function messages()
     {
         return [
-            'long_url.required'             => 'Must be filled, should not be empty.',
-            'long_url.url'                  => 'Incorrect link format. The link must begin "http://" or "https://".',
-            'short_url_custom.max'          => 'The custom url may not be greater than :max characters.',
+            'long_url.required'     => 'Must be filled, should not be empty.',
+            'long_url.url'          => 'Incorrect link format. The link must begin "http://" or "https://".',
+            'short_url_custom.max'  => 'The custom url may not be greater than :max characters.',
         ];
     }
 }
