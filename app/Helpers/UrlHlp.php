@@ -26,7 +26,8 @@ class UrlHlp
     }
 
     /**
-     * @param  string $value
+     * @param string $value
+     *
      * @return string
      */
     public function get_title($value)
@@ -39,17 +40,18 @@ class UrlHlp
     }
 
     /**
-     * @param  string $url
-     * @param  integer $int
+     * @param string $url
+     * @param int    $int
+     *
      * @return string
      */
-    public function url_limit($url, $int=50)
+    public function url_limit($url, $int = 50)
     {
         $int_a = (60 / 100) * $int;
         $int_b = ($int - $int_a) * -1;
 
         if (strlen($url) > $int) {
-            $s_url = str_limit($url, $int_a) . substr($url, $int_b);
+            $s_url = str_limit($url, $int_a).substr($url, $int_b);
 
             return $s_url;
         }
@@ -58,7 +60,8 @@ class UrlHlp
     }
 
     /**
-     * @param  string $value
+     * @param string $value
+     *
      * @return string
      */
     public function urlToDomain($value)
