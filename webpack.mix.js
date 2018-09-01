@@ -1,17 +1,14 @@
 let mix = require('laravel-mix');
+require('laravel-mix-auto-extract');
 
-mix.options({
- processCssUrls: false
+mix.setPublicPath('public')
+   .options({
+      processCssUrls: false,
+      autoprefixer: false
 });
 
-mix.sass('resources/assets/sass/styles.scss', 'public/css', {outputStyle: 'expanded'})
-   .sass('resources/assets/sass/bootstrap-custom/bootstrap-custom.scss', 'public/css', {outputStyle: 'expanded'})
-   .options({ autoprefixer: false })
-   .js([
-       'node_modules/jquery/dist/jquery.min.js',
-       'node_modules/bootstrap/dist/js/bootstrap.min.js',
-       //'node_modules/clipboard/dist/clipboard.min.js',
-       // 'resources/assets/js/app.js',
-   ], 'public/js/app.js');
-
-mix.copyDirectory('node_modules/@fortawesome/fontawesome-free', 'public/vendor/fontawesome');
+mix.sass('resources/sass/backend.scss', 'css')
+   .js('resources/js/frontend.js', 'js/frontend.js')
+   .js('resources/js/backend.js', 'js/backend.js')
+   .autoExtract()
+   .version();

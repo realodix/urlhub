@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>{{config('app.name')}}</title>
+  <title>{{config('app.name')}}</title>
 
-<link rel="stylesheet" href="{{ asset('css/bootstrap-custom.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 
 <body class="@yield('css_class')">
@@ -21,12 +20,6 @@
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
         @auth
-          <li class="nav-item">
-            <a class="nav-link" href="allurl">All URLs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="myurl">My URLs</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ title_case(Auth::user()->name) }}
@@ -59,11 +52,8 @@
 
 @yield('content')
 
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<script src="{{ asset('js/app.js') }}"></script>
-
-<script>
-new ClipboardJS('.btn-copy');
-</script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/frontend.js') }}"></script>
 </body>
 </html>

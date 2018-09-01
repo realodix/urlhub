@@ -1,5 +1,7 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/styles.css": "/css/styles.css",
-    "/css/bootstrap-custom.css": "/css/bootstrap-custom.css"
+    "/js/vendor.js": "/js/vendor.js?id=1c20146094d4f0d16f4c",
+    "/js/frontend.js": "/js/frontend.js?id=151132c7ef19631bf8e0",
+    "/css/backend.css": "/css/backend.css?id=149071079560e2d54f80",
+    "/js/backend.js": "/js/backend.js?id=7504f7917e71a0e2e446",
+    "/js/manifest.js": "/js/manifest.js?id=7c0a19fb1a3afbe0a6cb"
 }

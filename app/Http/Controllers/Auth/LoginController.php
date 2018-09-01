@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -59,11 +59,11 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        if ($this->request->has('previous')) {
-            $this->redirectTo = $this->request->get('previous');
-        }
+        // if ($this->request->has('previous')) {
+        //     $this->redirectTo = $this->request->get('previous');
+        // }
 
-        return $this->redirectTo ?? '/';
+        return $this->redirectTo ?? '/admin';
     }
 
     /**

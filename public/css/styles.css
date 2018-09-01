@@ -56,42 +56,12 @@ body {
   padding: 0 5px;
 }
 
-.backend {
-  background-color: #fafafa;
-}
-
-.backend .change-password .header .title {
-  color: #292929;
-  font-size: 25px;
-  line-height: 2.4rem;
-}
-
-.backend .all-url .header .title {
-  color: #292929;
-  font-size: 25px;
-  line-height: 2.4rem;
-}
-
-.backend .all-url .body {
-  padding: 20px 15px !important;
-}
-
-.backend .my-url .header .title {
-  color: #292929;
-  font-size: 25px;
-  line-height: 2.4rem;
-}
-
-.backend .my-url .body {
-  padding: 20px 15px !important;
-}
-
-.view_short .body, .backend .change-password .body, .backend .all-url .body, .backend .my-url .body {
+.view_short .body {
   background-color: #fff;
   padding: 20px 0;
 }
 
-.view_short .body, .backend .change-password .body, .backend .all-url .body, .backend .my-url .body {
+.view_short .body {
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
 }
 
