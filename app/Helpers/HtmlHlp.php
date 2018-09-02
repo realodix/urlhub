@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Support\HtmlString;
 
 /**
  * Class HtmlHelper.
@@ -61,7 +61,6 @@ class HtmlHlp
         return $this->toHtmlString('<script'.$this->attributes($attributes).'></script>'.PHP_EOL);
     }
 
-
     /**
      * Build an HTML attribute string from an array.
      *
@@ -76,7 +75,7 @@ class HtmlHlp
         foreach ((array) $attributes as $key => $value) {
             $element = $this->attributeElement($key, $value);
 
-            if (! is_null($element)) {
+            if (!is_null($element)) {
                 $html[] = $element;
             }
         }
@@ -108,7 +107,7 @@ class HtmlHlp
             return $value ? $key : '';
         }
 
-        if (! is_null($value)) {
+        if (!is_null($value)) {
             return $key.'="'.e($value).'"';
         }
     }
