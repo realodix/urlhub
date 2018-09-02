@@ -7,8 +7,8 @@
 
   <title>{{config('app.name')}}</title>
 
-  <link rel="stylesheet" href="{{ asset('css/bootstrap-custom.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+  {!! style(mix('css/bootstrap-custom.css')) !!}
+  {!! style(asset('css/frontend.css')) !!}
 </head>
 
 <body class="@yield('css_class')">
@@ -52,8 +52,8 @@
 
 @yield('content')
 
-<script src="{{ mix('js/manifest.js') }}"></script>
-<script src="{{ mix('js/vendor.js') }}"></script>
-<script src="{{ mix('js/frontend.js') }}"></script>
+{!! script(mix('js/manifest.js')) !!}
+{!! script(mix('js/vendor.js')) !!}
+{!! script(mix('js/frontend.js')) !!}
 </body>
 </html>

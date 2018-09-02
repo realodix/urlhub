@@ -114,7 +114,7 @@ new ClipboardJS('.btn-copy');
 
 /***/ }),
 
-/***/ "./resources/sass/backend.scss":
+/***/ "./resources/sass/bootstrap-custom.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -125,7 +125,7 @@ new ClipboardJS('.btn-copy');
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/js/frontend.js");
-module.exports = __webpack_require__("./resources/sass/backend.scss");
+module.exports = __webpack_require__("./resources/sass/bootstrap-custom.scss");
 
 
 /***/ })

@@ -22,9 +22,9 @@ Route::middleware('auth')->group(function () {
      * Namespaces indicate folder structure
      */
     Route::namespace('backend')->group(function () {
-        Route::get('/admin', 'DashboardController@index');
-        Route::get('/admin/allurl', 'AllUrlController@index');
-        Route::get('/admin/myurl', 'MyUrlController@index');
+        Route::get('/admin', 'DashboardController@index')->name('admin');
+        Route::get('/admin/allurl', 'AllUrlController@index')->name('admin.allurl');
+        Route::get('/admin/myurl', 'MyUrlController@index')->name('admin.myurl');
     });
 });
 
