@@ -45,7 +45,7 @@ class UrlController extends Controller
             $blabla = $url->short_url;
         }
 
-        $qrCode = Hlp::qrCodeGenerator($url->short_url);
+        $qrCode = qrCodeGenerator($url->short_url);
 
         return view('short', [
             'long_url'          => $url->long_url_mod,
