@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Url;
 use Carbon\Carbon;
-use Facades\App\Helpers\Hlp;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;

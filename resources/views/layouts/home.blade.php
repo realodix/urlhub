@@ -8,7 +8,7 @@
   <title>{{config('app.name')}}</title>
 
   {!! style(mix('css/bootstrap-custom.css')) !!}
-  {!! style(asset('css/frontend.css')) !!}
+  {!! style(mix('css/frontend.css')) !!}
 </head>
 
 <body class="@yield('css_class')">

@@ -4,8 +4,8 @@
   </button>
 
   <a class="navbar-brand" href="{{ url('./') }}">
-    <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="{{config('app.name')}} Logo">
-    <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="{{config('app.name')}} Logo">
+    <div class="navbar-brand-full">{{config('app.name')}}</div>
+    <div class="navbar-brand-minimized">{{config('app.name')}}</div>
   </a>
 
   <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -22,16 +22,22 @@
     </li>
   </ul>
 
-  <ul class="nav navbar-nav ml-auto">
+  <ul class="nav navbar-nav ml-auto mr-5">
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         {{ title_case(Auth::user()->name) }}
       </a>
       <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-user"></i> Edit Profile
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="fas fa-key"></i> Change Password
+        </a>
         <a class="dropdown-item" href="{{ route('logout') }}"
            onclick="event.preventDefault();
            document.getElementById('logout-form').submit();">
-          <i class="fa fa-lock"></i>
+          <i class="fas fa-sign-out-alt"></i>
           {{ __('Logout') }}
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
