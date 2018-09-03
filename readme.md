@@ -1,4 +1,6 @@
-![screenshot](https://i.imgur.com/wFCO4HZ.jpg)
+<h4>Warning: The Plur is still under development.</h4>
+
+![screenshot](https://i.imgur.com/rHJQyQz.jpg)
 <h1 align="center">A modern and robust URL shortener built with Laravel.</h1>
 
 Plur is a open-source link shortening web application. It allows you to host your own URL shortener, and to brand your URLs. Plur is especially easy to use, and provides a modern, themable feel.
@@ -17,11 +19,16 @@ Plur is a open-source link shortening web application. It allows you to host you
 
 3. Run `php artisan key:generate`
 
-4. Run `php artisan migrate`
+4. Run `php artisan migrate --seed`
 
 5. Run `php artisan serve`.
 
-   You should now be able to visit http://localhost:8000 in your browser.
+   After installed and you can access http://localhost:8000 in your browser.
+
+6. Login
+
+   **Username**: admin | **Password**: admin <br>
+   **Username**: user | **Password**: user
 
 
 ## License

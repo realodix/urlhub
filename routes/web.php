@@ -12,7 +12,7 @@
 */
 Auth::routes();
 
-Route::view('/', 'welcome');
+Route::view('/', 'frontend.welcome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/changepassword', 'UserController@showChangePasswordForm');
@@ -24,10 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::namespace('backend')->group(function () {
         Route::get('/admin', 'DashboardController@index')->name('admin');
         Route::get('/admin/allurl', 'AllUrlController@index')->name('admin.allurl');
-        Route::get('/admin/myurl', 'MyUrlController@index')->name('admin.myurl');
     });
 });
 
-Route::post('/create', 'UrlController@create')->middleware('checkurl');
 Route::get('/+{link}', 'UrlController@view');
 Route::get('/{link}', 'UrlController@url_redirection');
+Route::post('/create', 'UrlController@create')->middleware('checkurl');

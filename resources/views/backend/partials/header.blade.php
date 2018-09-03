@@ -14,7 +14,7 @@
 
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
-        <a class="nav-link" href="{{ url('./') }}"><i class="icon-home"></i></a>
+        <a class="nav-link" href="{{ url('./') }}" target="_blank"><i class="icon-home"></i></a>
     </li>
 
     <li class="nav-item px-3">

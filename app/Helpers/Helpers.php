@@ -1,10 +1,60 @@
 <?php
 
 use App\Helpers\HtmlHlp;
+use App\Url;
 use CodeItNow\BarcodeBundle\Utils\QrCode;
 
 /*
- * HTML
+ * URL Helpers
+ */
+ if (!function_exists('url_limit')) {
+     /**
+      * @param string $url
+      * @param int    $int
+      *
+      * @return string
+      */
+     function url_limit($url, $int = 50)
+     {
+         $int_a = (60 / 100) * $int;
+         $int_b = ($int - $int_a) * -1;
+
+         if (strlen($url) > $int) {
+             $s_url = str_limit($url, $int_a).substr($url, $int_b);
+
+             return $s_url;
+         }
+
+         return $url;
+     }
+ }
+
+ if (!function_exists('urlToDomain')) {
+     /**
+      * @param string $value
+      *
+      * @return string
+      */
+     function urlToDomain($value)
+     {
+         if (str_contains($value, 'http://')) {
+             $value = str_replace_first('http://', '', $value);
+         }
+
+         if (str_contains($value, 'https://')) {
+             $value = str_replace_first('https://', '', $value);
+         }
+
+         if (str_contains($value, 'www.')) {
+             $value = str_replace_first('www.', '', $value);
+         }
+
+         return $value;
+     }
+ }
+
+/*
+ * HTML Helpers
  */
 if (!function_exists('style')) {
     /**
@@ -34,6 +84,9 @@ if (!function_exists('script')) {
     }
 }
 
+/*
+ *
+ */
 if (!function_exists('qrCodeGenerator')) {
     function qrCodeGenerator($value)
     {

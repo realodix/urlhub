@@ -46,12 +46,12 @@ class UrlController extends Controller
 
         $qrCode = qrCodeGenerator($url->short_url);
 
-        return view('short', [
+        return view('frontend.short', [
             'long_url'          => $url->long_url_mod,
             'long_url_href'     => $url->long_url,
             'long_url_title'    => $url->long_url_title,
             'views'             => $url->views,
-            'short_url'         => UrlHlp::urlToDomain(url('/', $blabla)),
+            'short_url'         => urlToDomain(url('/', $blabla)),
             'short_url_href'    => url('/', $blabla),
             'qrCodeData'        => $qrCode->getContentType(),
             'qrCodebase64'      => $qrCode->generate(),

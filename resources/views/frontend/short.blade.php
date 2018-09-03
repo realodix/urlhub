@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.frontend')
 
 @section('css_class', 'view_short')
 

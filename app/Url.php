@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Facades\App\Helpers\UrlHlp;
 use Illuminate\Database\Eloquent\Model;
 
 class Url extends Model
@@ -24,6 +23,6 @@ class Url extends Model
 
     public function getLongUrlModAttribute()
     {
-        return UrlHlp::urlToDomain(UrlHlp::url_limit($this->long_url));
+        return urlToDomain(url_limit($this->long_url));
     }
 }

@@ -7,11 +7,6 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/admin/myurl">
-          <i class="nav-icon icon-link"></i> My URL
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="/admin/allurl">
           <i class="nav-icon icon-link"></i> All URL
         </a>
