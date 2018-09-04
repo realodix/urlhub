@@ -4,7 +4,7 @@
 <div class="my-url">
   <div class="card">
     <div class="card-header">
-      <strong>{{ __('All URLs') }}</strong>
+      <strong>{{ __('My URLs') }}</strong>
     </div>
 
     <div class="card-body">

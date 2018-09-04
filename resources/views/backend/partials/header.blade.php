@@ -3,10 +3,10 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <a class="navbar-brand" href="{{ url('./') }}">
+  <div class="navbar-brand">
     <div class="navbar-brand-full">{{config('app.name')}}</div>
     <div class="navbar-brand-minimized">{{config('app.name')}}</div>
-  </a>
+  </div>
 
   <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
     <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
         <a class="dropdown-item" href="#">
           <i class="fas fa-user"></i> Edit Profile
         </a>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="admin/changepassword">
           <i class="fas fa-key"></i> Change Password
         </a>
         <a class="dropdown-item" href="{{ route('logout') }}"

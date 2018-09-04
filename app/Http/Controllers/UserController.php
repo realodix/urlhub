@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function showChangePasswordForm()
     {
-        return view('auth.passwords.changepassword');
+        return view('backend.user.changepassword');
     }
 
     public function changePassword(Request $request)

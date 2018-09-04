@@ -15,8 +15,8 @@ Auth::routes();
 Route::view('/', 'frontend.welcome');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/changepassword', 'UserController@showChangePasswordForm');
-    Route::post('/changepassword', 'UserController@changePassword')->name('changePassword');
+    Route::get('/admin/changepassword', 'UserController@showChangePasswordForm')->name('showChangePassword');
+    Route::post('/admin/changepassword', 'UserController@changePassword')->name('changePassword');
     /*
      * Backend Routes
      * Namespaces indicate folder structure
