@@ -32,10 +32,10 @@ class UrlController extends Controller
         return redirect('/+'.$shortUrl);
     }
 
-    public function view($link)
+    public function view($short_url)
     {
-        $url = Url::where('short_url', 'LIKE BINARY', $link)
-                    ->orWhere('short_url_custom', $link)
+        $url = Url::where('short_url', 'LIKE BINARY', $short_url)
+                    ->orWhere('short_url_custom', $short_url)
                     ->firstOrFail();
 
         if ($url->short_url_custom) {
@@ -59,10 +59,10 @@ class UrlController extends Controller
         ]);
     }
 
-    public function url_redirection($link)
+    public function urlRedirection($short_url)
     {
-        $url = Url::where('short_url', 'LIKE BINARY', $link)
-                    ->orWhere('short_url_custom', $link)
+        $url = Url::where('short_url', 'LIKE BINARY', $short_url)
+                    ->orWhere('short_url_custom', $short_url)
                     ->firstOrFail();
 
         $url->increment('views');

@@ -41,6 +41,16 @@ class LoginController extends Controller
     }
 
     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('frontend.auth.login');
+    }
+
+    /**
      * Check either username or email.
      *
      * @return string
@@ -54,17 +64,19 @@ class LoginController extends Controller
         return $fieldName;
     }
 
-    /**
-     * @return string
-     */
-    public function redirectTo()
-    {
-        // if ($this->request->has('previous')) {
-        //     $this->redirectTo = $this->request->get('previous');
-        // }
-
-        return $this->redirectTo ?? '/admin';
-    }
+    // /**
+    //  * After login redirect back to previous page
+    //  *
+    //  * @return string
+    //  */
+    // public function redirectTo()
+    // {
+    //     if ($this->request->has('previous')) {
+    //         $this->redirectTo = $this->request->get('previous');
+    //     }
+    //
+    //     return $this->redirectTo ?? '/admin';
+    // }
 
     /**
      * Validate the user login.

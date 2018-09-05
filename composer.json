@@ -12,6 +12,7 @@
         "hashids/hashids": "^3.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
+        "spatie/laravel-html": "^2.19",
         "spatie/laravel-permission": "^2.17"
     },
     "require-dev": {

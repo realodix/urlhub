@@ -8,8 +8,7 @@
 
   <div class="row mt-5 justify-content-md-center">
     <div class="col-lg-7">
-      <form action="{{ url('/create') }}" method="post" class="mt-5">
-      @csrf
+      {{ html()->form('POST', url('/create'))->class('mt-5')->open() }}
         <div class="input-group input-group-lg">
           <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" @if (session('cst_exist'))value="{{ session('long_url') }}"@endif>
           <div class="input-group-append">
@@ -23,7 +22,7 @@
           <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
           <input class="form-control form-control-sm url-field" name="short_url_custom">
         </div>
-      </form>
+      {{ html()->form()->close() }}
 
       @if ($errors->any())
         @foreach ($errors->all() as $error)

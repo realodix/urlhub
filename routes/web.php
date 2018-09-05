@@ -14,19 +14,17 @@ Auth::routes();
 
 Route::view('/', 'frontend.welcome');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/changepassword', 'UserController@showChangePasswordForm')->name('showChangePassword');
-    Route::post('/admin/changepassword', 'UserController@changePassword')->name('changePassword');
-    /*
-     * Backend Routes
-     * Namespaces indicate folder structure
-     */
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/changepassword', 'UserController@showChangePasswordForm')->name('showChangePassword');
+    Route::post('/changepassword', 'UserController@changePassword')->name('changePassword');
+
+    // Namespaces indicate folder structure
     Route::namespace('backend')->group(function () {
-        Route::get('/admin', 'DashboardController@index')->name('admin');
-        Route::get('/admin/allurl', 'AllUrlController@index')->name('admin.allurl');
+        Route::get('/', 'DashboardController@index')->name('admin');
+        Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
     });
 });
 
-Route::get('/+{link}', 'UrlController@view');
-Route::get('/{link}', 'UrlController@url_redirection');
+Route::get('/+{short_url}', 'UrlController@view');
+Route::get('/{short_url}', 'UrlController@urlRedirection');
 Route::post('/create', 'UrlController@create')->middleware('checkurl');
