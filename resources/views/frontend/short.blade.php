@@ -39,7 +39,7 @@
         <br>
         <b>Short URL</b> <br>
         <span class="short-url"><a href="{{ $short_url_href }}" target="_blank" id="copy">{{ $short_url }}</a></span>
-        <button class="btn btn-outline-success btn-copy" data-clipboard-text="{{ $short_url }}">Copy</button>
+        <button class="btn btn-outline-success btn-copy" data-clipboard-text="{{ $short_url_href }}">Copy</button>
       </div>
     </div>
   </div>
