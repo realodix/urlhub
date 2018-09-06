@@ -31,7 +31,7 @@
         <a class="dropdown-item" href="#">
           <i class="fas fa-user"></i> Edit Profile
         </a>
-        <a class="dropdown-item" href="admin/changepassword">
+        <a class="dropdown-item" href="{{ route('showChangePassword') }}">
           <i class="fas fa-key"></i> Change Password
         </a>
         <a class="dropdown-item" href="{{ route('logout') }}"

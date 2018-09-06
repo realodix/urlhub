@@ -19,7 +19,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/changepassword', 'UserController@changePassword')->name('changePassword');
 
     // Namespaces indicate folder structure
-    Route::namespace('backend')->group(function () {
+    Route::namespace('Backend')->group(function () {
         Route::get('/', 'DashboardController@index')->name('admin');
         Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
     });
