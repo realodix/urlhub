@@ -21,7 +21,7 @@
           @forelse ($myurls as $myurl)
           <tr>
             <td><a href="{{url('/'.$myurl->short_url)}}" target="_blank">{{$myurl->short_url}}</a></td>
-            <td><a href="{{url('/'.$myurl->long_url)}}" target="_blank">{{$myurl->long_url_mod}}</a></td>
+            <td><a href="{{$myurl->long_url}}" target="_blank">{{$myurl->long_url_mod}}</a></td>
             <td>{{$myurl->views}}</td>
             <td><span title="{{$myurl->created_at}}">{{$myurl->created_at->diffForHumans()}}</span></td>
           </tr>

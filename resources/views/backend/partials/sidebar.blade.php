@@ -12,6 +12,11 @@
           <i class="nav-icon icon-link"></i> All URL
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-users"></i> All Users
+        </a>
+      </li>
       @endrole
     </ul>
   </nav>

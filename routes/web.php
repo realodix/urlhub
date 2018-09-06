@@ -13,6 +13,9 @@
 Auth::routes();
 
 Route::view('/', 'frontend.welcome');
+Route::get('/+{short_url}', 'UrlController@view');
+Route::get('/{short_url}', 'UrlController@urlRedirection')->where('short_url', '[A-Za-z0-9]{6}+');
+Route::post('/create', 'UrlController@create')->middleware('checkurl');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/changepassword', 'UserController@showChangePasswordForm')->name('showChangePassword');
@@ -24,7 +27,3 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
     });
 });
-
-Route::get('/+{short_url}', 'UrlController@view');
-Route::get('/{short_url}', 'UrlController@urlRedirection');
-Route::post('/create', 'UrlController@create')->middleware('checkurl');
