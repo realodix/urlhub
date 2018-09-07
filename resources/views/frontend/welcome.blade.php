@@ -10,7 +10,7 @@
     <div class="col-lg-7">
       {{ html()->form('POST', url('/create'))->class('mt-5')->open() }}
         <div class="input-group input-group-lg">
-          <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" @if (session('cst_exist'))value="{{ session('long_url') }}"@endif>
+          <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit" id="actProcess">Shorten</button>
           </div>
@@ -30,12 +30,6 @@
           {{ $error }}
         </div>
         @endforeach
-      @endif
-
-      @if (session('cst_exist'))
-      <div class="alert alert-warning mt-3" role="alert">
-        {{ session('cst_exist') }}
-      </div>
       @endif
 
       {{-- @if (session('msgDomainBlocked'))

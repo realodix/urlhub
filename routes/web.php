@@ -18,12 +18,19 @@ Route::get('/{short_url}', 'UrlController@urlRedirection')->where('short_url', '
 Route::post('/create', 'UrlController@create')->middleware('checkurl');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/changepassword', 'UserController@showChangePasswordForm')->name('showChangePassword');
-    Route::post('/changepassword', 'UserController@changePassword')->name('changePassword');
-
     // Namespaces indicate folder structure
     Route::namespace('Backend')->group(function () {
+        // Dashboard
         Route::get('/', 'DashboardController@index')->name('admin');
         Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
+
+        // User
+        Route::namespace('User')->group(function () {
+            Route::get('/profile', 'ProfileController@view')->name('viewProfile');
+            Route::post('/profile', 'ProfileController@update')->name('updateProfile');
+
+            Route::get('/changepassword', 'ChangePasswordController@view')->name('viewChangePassword');
+            Route::post('/changepassword', 'ChangePasswordController@update')->name('changePassword');
+        });
     });
 });

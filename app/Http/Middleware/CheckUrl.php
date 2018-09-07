@@ -24,12 +24,6 @@ class CheckUrl
             return redirect('/+'.$s_url->short_url)->with('msgLinkAlreadyExists', 'Link already exists');
         }
 
-        $s_url_cst = Url::where('short_url_custom', $request->short_url_custom)->first();
-        if ($s_url_cst) {
-            return back()->with('cst_exist', 'Sorry, the custom url you entered is not available.')
-                         ->with(['long_url' => $request->long_url]);
-        }
-
         return $next($request);
     }
 }

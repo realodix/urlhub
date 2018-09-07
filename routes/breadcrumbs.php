@@ -9,7 +9,12 @@ Breadcrumbs::for('admin.allurl', function ($trail) {
     $trail->push('All URLs', route('admin.allurl'));
 });
 
-Breadcrumbs::for('showChangePassword', function ($trail) {
+Breadcrumbs::for('viewProfile', function ($trail) {
     $trail->parent('admin');
-    $trail->push('All URLs', route('showChangePassword'));
+    $trail->push('Profile', route('viewProfile'));
+});
+
+Breadcrumbs::for('viewChangePassword', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Change Password', route('viewChangePassword'));
 });

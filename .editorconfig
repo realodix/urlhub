@@ -1,3 +1,7 @@
+# For more information about the properties used in this file,
+# please see the EditorConfig documentation:
+# https://editorconfig.org/
+
 root = true
 
 [*]
@@ -8,8 +12,14 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
+[*.blade.php]
+indent_size = 2
+
 [*.md]
 trim_trailing_whitespace = false
+
+[*.scss]
+indent_size = 2
 
 [*.yml]
 indent_size = 2

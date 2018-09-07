@@ -25,7 +25,7 @@ class StoreUrl extends FormRequest
     {
         return [
             'long_url'          => 'required|url',
-            'short_url_custom'  => 'nullable|max:20|alpha_dash',
+            'short_url_custom'  => 'nullable|max:20|alpha_dash|unique:urls',
         ];
     }
 
@@ -37,9 +37,10 @@ class StoreUrl extends FormRequest
     public function messages()
     {
         return [
-            'long_url.required'     => 'Must be filled, should not be empty.',
-            'long_url.url'          => 'Incorrect link format. The link must begin "http://" or "https://".',
-            'short_url_custom.max'  => 'The custom url may not be greater than :max characters.',
+            'long_url.required'         => 'Must be filled, should not be empty.',
+            'long_url.url'              => 'Incorrect link format. The link must begin "http://" or "https://".',
+            'short_url_custom.max'      => 'The custom url may not be greater than :max characters.',
+            'short_url_custom.unique'   => ':input has already been taken',
         ];
     }
 }
