@@ -6,7 +6,7 @@
 Plur is a open-source link shortening web application. It allows you to host your own URL shortener, and to brand your URLs. Plur is especially easy to use, and provides a modern, themable feel.
 
 ### Features
-* Written in PHP and powered by the Laravel 5.6.
+* Written in PHP and powered by the Laravel 5.7.
 * Modern and simple interface.
 * Made with :heart: &amp; :coffee:.
 

@@ -68,6 +68,6 @@ class UrlController extends Controller
         $url->increment('views');
 
         // Redirect to final destination
-        return redirect()->away($url->long_url);
+        return redirect()->away($url->long_url, 301);
     }
 }
