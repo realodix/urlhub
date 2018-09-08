@@ -1,13 +1,19 @@
-const mix = require('laravel-mix');
+let mix = require('laravel-mix');
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 require('laravel-mix-auto-extract');
 
 mix.setPublicPath('public')
+   .autoExtract()
    .options({
       autoprefixer: false,
       processCssUrls: false,
       purifyCss: true
    })
-   .autoExtract();
+   .webpackConfig({
+       plugins: [
+           new LiveReloadPlugin()
+       ],
+   });
 
 mix.sass('resources/sass/bootstrap-custom.scss', 'css/bootstrap-custom.css')
    .js('resources/js/frontend.js', 'js/frontend.js')

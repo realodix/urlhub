@@ -56,6 +56,15 @@ body {
   padding: 0 5px;
 }
 
+.auth {
+  background: #f0f3f7;
+}
+
+.auth .card {
+  border: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
 .view_short .body {
   background-color: #fff;
   padding: 20px 0;
