@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:100,400");
-body {
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,400);body {
   background: #fff;
   color: #313944;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -89,4 +88,4 @@ body {
   color: #1c9963;
 }
 
-/*# sourceMappingURL=frontend.css.map */
+/*# sourceMappingURL=frontend.css.map*/

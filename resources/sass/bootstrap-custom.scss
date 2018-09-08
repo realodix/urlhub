@@ -1,7 +1,33 @@
+/*!
+ * Bootstrap
+ */
 $green:   #1c9963;
 $indigo:  #3958C8;
 
 $primary: $green;
 $success: $green;
+
+// Breadcrumbs
+$breadcrumb-bg:             #fff;
+$breadcrumb-border-radius:  none;
+
+/*!
+ * CoreUI
+ */
+
+// Sidebar Navigation
+$sidebar-bg:                    #fff;
+$sidebar-nav-color:             #333;
+$sidebar-nav-link-color:        #333;
+$sidebar-nav-link-active-color: #333;
+$sidebar-nav-link-active-bg:    darken($sidebar-bg, 2%);
+
+// Sidebar Minimizer
+$sidebar-minimizer-bg:                      #fff;
+$sidebar-minimizer-hover-bg:                darken($sidebar-bg, 2%);
+$sidebar-minimizer-hover-indicator-color:   $sidebar-nav-link-color;
+
+// Footer
+$footer-bg: #fff;
 
 @import "node_modules/bootstrap/scss/bootstrap";

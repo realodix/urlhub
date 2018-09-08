@@ -1,2 +1,11 @@
-// compileExpanded: ../../../public/css/$1.css, precision: 8
-@import "node_modules/@coreui/coreui/scss/coreui";
+@import "../bootstrap-custom";
+@import "node_modules/@coreui/coreui/scss/coreui-standalone";
+
+body {
+  background: #f0f3f7;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+}
