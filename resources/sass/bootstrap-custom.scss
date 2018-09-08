@@ -2,14 +2,16 @@
  * Bootstrap
  */
 $green:   #1c9963;
-$indigo:  #3958C8;
+$indigo:  #3958c8;
 
 $primary: $green;
 $success: $green;
 
 // Breadcrumbs
-$breadcrumb-bg:             #fff;
+$breadcrumb-bg:             #f0f3f7;
 $breadcrumb-border-radius:  none;
+
+
 
 /*!
  * CoreUI
@@ -20,14 +22,18 @@ $sidebar-bg:                    #fff;
 $sidebar-nav-color:             #333;
 $sidebar-nav-link-color:        #333;
 $sidebar-nav-link-active-color: #333;
-$sidebar-nav-link-active-bg:    darken($sidebar-bg, 2%);
+$sidebar-nav-link-active-bg:    #f9fbfd;
 
 // Sidebar Minimizer
 $sidebar-minimizer-bg:                      #fff;
 $sidebar-minimizer-hover-bg:                darken($sidebar-bg, 2%);
 $sidebar-minimizer-hover-indicator-color:   $sidebar-nav-link-color;
 
+// Breadcrumb
+$breadcrumb-borders: none;
+
 // Footer
-$footer-bg: #fff;
+$footer-bg:         #fff;
+$footer-borders:    none;
 
 @import "node_modules/bootstrap/scss/bootstrap";

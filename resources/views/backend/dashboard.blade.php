@@ -3,11 +3,15 @@
 @section('content')
 <div class="my-url">
   <div class="card">
-    <div class="card-header">
-      <strong>{{ __('My URLs') }}</strong>
-    </div>
-
     <div class="card-body">
+      <div class="row">
+      <div class="col-sm-6">
+        <h4 class="card-title mb-3">
+          {{ __('My URLs') }}
+        </h4>
+      </div><!--col-->
+      </div><!--row-->
+
       <table class="table table-responsive-sm table-striped">
         <thead>
           <tr>

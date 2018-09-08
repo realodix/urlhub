@@ -9,7 +9,7 @@
       @role('admin')
       <li class="nav-item">
         <a class="nav-link" href="/admin/allurl">
-          <i class="nav-icon fas fa-link"></i> All URL
+          <i class="nav-icon fas fa-link"></i> All URLs
         </a>
       </li>
       <li class="nav-item">

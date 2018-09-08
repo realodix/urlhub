@@ -13,7 +13,7 @@
  */
 :root {
   --blue: #007bff;
-  --indigo: #3958C8;
+  --indigo: #3958c8;
   --purple: #6f42c1;
   --pink: #e83e8c;
   --red: #dc3545;
@@ -4358,7 +4358,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #fff;
+  background-color: #f0f3f7;
   border-radius: none;
 }
 
@@ -8840,7 +8840,6 @@ a.text-dark:hover, a.text-dark:focus {
 .breadcrumb {
   position: relative;
   border-radius: none;
-  border-bottom: 1px solid #dee2e6;
 }
 
 .brand-card {
@@ -10560,7 +10559,6 @@ canvas {
   padding: 0 1rem;
   color: #212529;
   background: #fff;
-  border-top: 1px solid #dee2e6;
 }
 
 .row.row-equal {
@@ -11010,7 +11008,7 @@ canvas {
 
 .sidebar .nav-link.active {
   color: #333;
-  background: #fafafa;
+  background: #f9fbfd;
 }
 
 .sidebar .nav-link.active .nav-icon {
@@ -13031,7 +13029,7 @@ button.bg-blue:focus {
 }
 
 .bg-indigo {
-  background-color: #3958C8 !important;
+  background-color: #3958c8 !important;
 }
 
 a.bg-indigo:hover, a.bg-indigo:focus,
@@ -13417,7 +13415,7 @@ body {
 
 .ie-custom-properties {
   blue: #007bff;
-  indigo: #3958C8;
+  indigo: #3958c8;
   purple: #6f42c1;
   pink: #e83e8c;
   red: #dc3545;
@@ -13453,4 +13451,7 @@ body {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-/*# sourceMappingURL=backend.css.map*/
+.card-footer {
+  background: #f7f7f7;
+  border-top: none;
+}

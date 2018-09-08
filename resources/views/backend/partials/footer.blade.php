@@ -5,6 +5,6 @@
   </div>
   <div class="ml-auto">
     <span>Powered by</span>
-    <a href="https://github.com/realodix/plur">Plur</a>
+    <a href="https://laravel.com/">Laravel</a>
   </div>
 </footer>

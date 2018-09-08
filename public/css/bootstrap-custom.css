@@ -12,7 +12,7 @@
  */
 :root {
   --blue: #007bff;
-  --indigo: #3958C8;
+  --indigo: #3958c8;
   --purple: #6f42c1;
   --pink: #e83e8c;
   --red: #dc3545;
@@ -4357,7 +4357,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #fff;
+  background-color: #f0f3f7;
   border-radius: none;
 }
 
@@ -8506,5 +8506,3 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
-/*# sourceMappingURL=bootstrap-custom.css.map*/

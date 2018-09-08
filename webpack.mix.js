@@ -19,12 +19,13 @@ if (!mix.inProduction()) {
     var LiveReloadPlugin = require('webpack-livereload-plugin');
 
     mix.webpackConfig({
-        devtool: 'source-map'
-    })
-    .sourceMaps()
-    .webpackConfig({
-       plugins: [
-           new LiveReloadPlugin()
-       ],
-   });
+          devtool: 'source-map'
+       })
+       .sourceMaps()
+       .browserSync('plur.test')
+       .webpackConfig({
+          plugins: [
+              new LiveReloadPlugin()
+          ],
+       });
 }
