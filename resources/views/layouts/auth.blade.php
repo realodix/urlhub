@@ -8,7 +8,7 @@
 <title>{{config('app.name')}}</title>
 
 <link rel="stylesheet" href="{{ asset('css/bootstrap-custom.css') }}">
-<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+<link rel="stylesheet" href="{{ asset('css/frontend.css') }}">
 </head>
 
 <body class="@yield('css_class')">
@@ -21,6 +21,9 @@
 @yield('content')
 
 <script src="{{ asset('js/app.js') }}"></script>
+@if(config('app.env') == 'local')
+  <script src="http://localhost:35729/livereload.js"></script>
+@endif
 
 </body>
 </html>

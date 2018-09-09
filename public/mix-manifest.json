@@ -1,9 +1,9 @@
 {
-    "/js/vendor.js": "/js/vendor.js?id=1c20146094d4f0d16f4c",
-    "/js/frontend.js": "/js/frontend.js?id=bd11f1046b83aed9dfa3",
-    "/css/bootstrap-custom.css": "/css/bootstrap-custom.css?id=4e9ab0634209aa31cfa7",
-    "/js/backend.js": "/js/backend.js?id=7504f7917e71a0e2e446",
-    "/js/manifest.js": "/js/manifest.js?id=7c0a19fb1a3afbe0a6cb",
-    "/css/backend.css": "/css/backend.css?id=23901269bc050d8430ba",
-    "/css/frontend.css": "/css/frontend.css?id=b3767640faefbed22ed5"
+    "/js/vendor.js": "/js/vendor.js?id=4b816b0a07b75337d627",
+    "/js/frontend.js": "/js/frontend.js?id=4581cfba428e5b2a9966",
+    "/css/backend.css": "/css/backend.css?id=00a78de9d731bbbf41ce",
+    "/css/frontend.css": "/css/frontend.css?id=5faae09500f4931d1053",
+    "/css/bootstrap-custom.css": "/css/bootstrap-custom.css?id=5784c9d77b10a681f814",
+    "/js/backend.js": "/js/backend.js?id=ba46d77edd3ccaefcfdc",
+    "/js/manifest.js": "/js/manifest.js?id=7c0a19fb1a3afbe0a6cb"
 }

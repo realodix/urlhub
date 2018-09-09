@@ -3,11 +3,15 @@
 @section('content')
 <div class="my-url">
   <div class="card">
-    <div class="card-header">
-      <strong>{{ __('My URLs') }}</strong>
-    </div>
-
     <div class="card-body">
+      <div class="row">
+      <div class="col-sm-6">
+        <h4 class="card-title mb-3">
+          {{ __('My URLs') }}
+        </h4>
+      </div><!--col-->
+      </div><!--row-->
+
       <table class="table table-responsive-sm table-striped">
         <thead>
           <tr>
@@ -21,7 +25,7 @@
           @forelse ($myurls as $myurl)
           <tr>
             <td><a href="{{url('/'.$myurl->short_url)}}" target="_blank">{{$myurl->short_url}}</a></td>
-            <td><a href="{{url('/'.$myurl->long_url)}}" target="_blank">{{$myurl->long_url_mod}}</a></td>
+            <td><a href="{{$myurl->long_url}}" target="_blank">{{$myurl->long_url_mod}}</a></td>
             <td>{{$myurl->views}}</td>
             <td><span title="{{$myurl->created_at}}">{{$myurl->created_at->diffForHumans()}}</span></td>
           </tr>

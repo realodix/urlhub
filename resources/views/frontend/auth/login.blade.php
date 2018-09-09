@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('css_class', 'auth')
+
 @section('content')
 <div class="container">
 <div class="row justify-content-center mt-5">
@@ -24,7 +26,7 @@
           @else
             <input type="hidden" name="previous" value="{{ URL::previous() }}">
           @endif
-          
+
           <label for="identity" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail / Username') }}</label>
 
           <div class="col-md-6">

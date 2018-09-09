@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:100,400");
-body {
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,400);body {
   background: #fff;
   color: #313944;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -56,6 +55,15 @@ body {
   padding: 0 5px;
 }
 
+.auth {
+  background: #f0f3f7;
+}
+
+.auth .card {
+  border: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
 .view_short .body {
   background-color: #fff;
   padding: 20px 0;
@@ -79,5 +87,3 @@ body {
 .navbar-light .navbar-nav .nav-link {
   color: #1c9963;
 }
-
-/*# sourceMappingURL=frontend.css.map */

@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\User;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ChangePasswordController extends Controller
 {
-    public function showChangePasswordForm()
+    public function view()
     {
         return view('backend.user.changepassword');
     }
 
-    public function changePassword(Request $request)
+    public function update(Request $request)
     {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
@@ -32,7 +33,7 @@ class UserController extends Controller
 
         //Change Password
         $user = Auth::user();
-        $user->password = bcrypt($request->get('new-password'));
+        $user->password = Hash::make($request->get('new-password'));
         $user->save();
 
         return redirect()->back()->with('success', 'Password changed successfully !');

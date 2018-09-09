@@ -1,5 +1,3 @@
-// compileExpanded: ../../../public/css/$1.css, sourceMap: true
-
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,400');
 
 body {
@@ -71,53 +69,16 @@ body {
   }
 }
 
-// .backend {
-//   background-color: #fafafa;
-//
-//   .change-password {
-//     .header {
-//       .title {
-//         color: #292929;
-//         font-size: 25px;
-//         line-height: 2.4rem;
-//       }
-//     }
-//
-//     .body {
-//       @extend %card-body;
-//     }
-//   }
-//
-//   .all-url {
-//     .header {
-//       .title {
-//         color: #292929;
-//         font-size: 25px;
-//         line-height: 2.4rem;
-//       }
-//     }
-//
-//     .body {
-//       @extend %card-body;
-//       padding: 20px 15px !important;
-//     }
-//   }
-//
-//   .my-url {
-//     .header {
-//       .title {
-//         color: #292929;
-//         font-size: 25px;
-//         line-height: 2.4rem;
-//       }
-//     }
-//
-//     .body {
-//       @extend %card-body;
-//       padding: 20px 15px !important;
-//     }
-//   }
-// }
+
+
+.auth {
+  background: #f0f3f7;
+
+  .card {
+    border: none;
+    box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+  }
+}
 
 @import "variables";
 @import "extend";
