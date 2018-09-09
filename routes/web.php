@@ -13,7 +13,7 @@
 Auth::routes();
 
 Route::view('/', 'frontend.welcome');
-Route::get('/+{short_url}', 'UrlController@view');
+Route::get('/+{short_url}', 'UrlController@view')->name('short_url.statics');
 Route::get('/{short_url}', 'UrlController@urlRedirection')->where('short_url', '[A-Za-z0-9]{6}+');
 Route::post('/create', 'UrlController@create')->middleware('checkurl');
 
