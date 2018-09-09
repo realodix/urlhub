@@ -25,6 +25,7 @@
               {{ title_case(Auth::user()->name) }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('admin') }}">Dashboard</a>
               <a class="dropdown-item" href="{{ route('showChangePassword') }}">Change Password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"
