@@ -19,6 +19,7 @@
             <th scope="col">Long URL</th>
             <th scope="col">View</th>
             <th scope="col">Date</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
             <td><a href="{{$myurl->long_url}}" target="_blank">{{$myurl->long_url_mod}}</a></td>
             <td>{{$myurl->views}}</td>
             <td><span title="{{$myurl->created_at}}">{{$myurl->created_at->diffForHumans()}}</span></td>
+            <td><a role="button" class="btn btn-primary" href="{{ route('short_url.statics', $myurl->short_url) }}" target="_blank"><i class="fa fa-eye"></i> Details</a></td>
           </tr>
           @empty
             Data not found

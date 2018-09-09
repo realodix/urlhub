@@ -1,5 +1,5 @@
 import './bootstrap';
-
+import './plugins';
 
 /**
  * ClipboardJS

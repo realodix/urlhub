@@ -25,8 +25,7 @@
               {{ title_case(Auth::user()->name) }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('admin') }}">Dashboard</a>
-              <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('admin') }}">Dashboard</a>
               <a class="dropdown-item" href="{{ route('viewChangePassword') }}">Change Password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"
@@ -57,8 +56,5 @@
 {!! script(mix('js/manifest.js')) !!}
 {!! script(mix('js/vendor.js')) !!}
 {!! script(mix('js/frontend.js')) !!}
-@if(config('app.env') == 'local')
-  <script src="http://localhost:35729/livereload.js"></script>
-@endif
 </body>
 </html>
