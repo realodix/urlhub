@@ -1,6 +1,7 @@
 /*!
  * Bootstrap
  */
+$blue:    #0070ba;
 $green:   #1c9963;
 $indigo:  #3958c8;
 
@@ -12,17 +13,20 @@ $breadcrumb-bg:             #f0f3f7;
 $breadcrumb-border-radius:  none;
 
 
+$table-accent-bg: rgba($blue, .05) !default;
+
+
 
 /*!
  * CoreUI
  */
 
 // Sidebar Navigation
-$sidebar-bg:                    #fff;
+$sidebar-bg:                    #f0f3f7;
 $sidebar-nav-color:             #333;
 $sidebar-nav-link-color:        #333;
-$sidebar-nav-link-active-color: #333;
-$sidebar-nav-link-active-bg:    #f9fbfd;
+$sidebar-nav-link-active-color: $primary;
+$sidebar-nav-link-active-bg:    $sidebar-bg;
 
 // Sidebar Minimizer
 $sidebar-minimizer-bg:                      #fff;

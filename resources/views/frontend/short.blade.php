@@ -37,10 +37,14 @@
         <div class="long-url"><a href="{{ $long_url_href }}" target="_blank" title="{{ $long_url_href }}">{{ $long_url }}</a></div>
 
         <br>
+
         <b>Short URL</b> <br>
         <span class="short-url"><a href="{{ $short_url_href }}" target="_blank" id="copy">{{ $short_url }}</a></span>
         <button class="btn btn-outline-success btn-copy" data-clipboard-text="{{ $short_url_href }}">Copy</button>
-        <p><b>Share to:</b></p>
+
+        <br>
+
+        <b>Share to:</b>
         <div class="socials-share" data-share-url="{{ $short_url_href }}">
           <button class="btn btn-facebook social-share-network" data-social-network="facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
           <button class="btn btn-twitter social-share-network" data-social-network="twitter"><i class="fab fa-twitter"></i> Twitter</button>

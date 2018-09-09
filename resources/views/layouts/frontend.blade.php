@@ -25,12 +25,21 @@
               {{ title_case(Auth::user()->name) }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('admin') }}">Dashboard</a>
-              <a class="dropdown-item" href="{{ route('viewChangePassword') }}">Change Password</a>
+              <a class="dropdown-item" href="{{ route('admin') }}">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('viewProfile') }}">
+                <i class="fas fa-user"></i> Your Profile
+              </a>
+              <a class="dropdown-item" href="{{ route('viewChangePassword') }}">
+                <i class="fas fa-key"></i> Change Password
+              </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
+                 onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i>
                 {{ __('Logout') }}
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -56,5 +65,8 @@
 {!! script(mix('js/manifest.js')) !!}
 {!! script(mix('js/vendor.js')) !!}
 {!! script(mix('js/frontend.js')) !!}
+@if(config('app.env') == 'local')
+  <script src="http://localhost:35729/livereload.js"></script>
+@endif
 </body>
 </html>

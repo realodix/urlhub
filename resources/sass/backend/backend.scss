@@ -14,3 +14,11 @@ body {
       border-top: none;
   }
 }
+
+.sidebar {
+  .nav-link {
+    &.active {
+      border-left: 4px solid $primary;
+    }
+  }
+}
