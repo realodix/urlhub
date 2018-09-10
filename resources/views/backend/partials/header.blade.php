@@ -18,7 +18,7 @@
     </li>
 
     <li class="nav-item px-3">
-        <a class="nav-link" href="{{ route('admin') }}">Dashboard</a>
+        <a class="nav-link" href="{{ route('admin') }}">@lang('Dashboard')</a>
     </li>
   </ul>
 
@@ -29,10 +29,10 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" href="{{ route('viewProfile') }}">
-          <i class="fas fa-user"></i> Your Profile
+          <i class="fas fa-user"></i> @lang('Your Profile')
         </a>
         <a class="dropdown-item" href="{{ route('viewChangePassword') }}">
-          <i class="fas fa-key"></i> Change Password
+          <i class="fas fa-key"></i> @lang('Change Password')
         </a>
         <a class="dropdown-item" href="{{ route('logout') }}"
            onclick="event.preventDefault();

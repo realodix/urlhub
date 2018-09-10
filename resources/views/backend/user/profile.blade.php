@@ -32,7 +32,7 @@
         <div class="row mt-4 mb-4">
         <div class="col">
           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
-            <label for="name" class="col-sm-3 col-form-label">Name</label>
+            <label for="name" class="col-sm-3 col-form-label">@lang('Name')</label>
 
             <div class="col">
               @role('admin')
@@ -50,7 +50,7 @@
           </div>
 
           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} row">
-            <label for="email" class="col-sm-3 col-form-label">E-mail Address</label>
+            <label for="email" class="col-sm-3 col-form-label">@lang('E-mail Address')</label>
 
             <div class="col">
               <input value="{{$email}}" id="email" type="email" class="form-control" name="email">

@@ -42,13 +42,13 @@
         <span class="short-url"><a href="{{ $short_url_href }}" target="_blank" id="copy">{{ $short_url }}</a></span>
         <button class="btn btn-outline-success btn-copy" data-clipboard-text="{{ $short_url_href }}">Copy</button>
 
-        <br>
+        <br><br>
 
         <b>Share to:</b>
         <div class="socials-share" data-share-url="{{ $short_url_href }}">
-          <button class="btn btn-facebook social-share-network" data-social-network="facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
-          <button class="btn btn-twitter social-share-network" data-social-network="twitter"><i class="fab fa-twitter"></i> Twitter</button>
-          <button class="btn btn-google-plus social-share-network" data-social-network="google"><i class="fab fa-google-plus-g"></i> Google</button>
+          <button class="btn btn-facebook social-share-network" data-social-network="facebook"><i class="fab fa-facebook-f"></i></button>
+          <button class="btn btn-twitter social-share-network" data-social-network="twitter"><i class="fab fa-twitter"></i></button>
+          <button class="btn btn-google-plus social-share-network" data-social-network="google"><i class="fab fa-google-plus-g"></i></button>
         </div>
       </div>
     </div>

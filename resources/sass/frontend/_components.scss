@@ -17,3 +17,59 @@
     }
   }
 }
+
+
+//
+// Socials Share
+//
+.socials-share {
+  .btn {
+    cursor: pointer;
+
+    &:hover, &:active, &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  // Facebook
+  .btn-facebook {
+    color: #fff;
+    background-color: #3b5998;
+
+    &:hover, &.active {
+      border-color: #4c70ba;
+      background-color: #4c70ba;
+    }
+
+    &:hover, &:focus, &.active {
+      color: #fff;
+      background-color: #3b5998;
+      border-color: #3b5998;
+    }
+  }
+
+  // Twitter
+  .btn-twitter {
+    color: #fff;
+    background-color: #00acee;
+
+    &:hover, &.active, &:focus {
+      border-color: #22c2ff;
+      background-color: #22c2ff;
+      color: #fff;
+    }
+  }
+
+  // Google Plus
+  .btn-google-plus {
+    color: #fff;
+    background-color: #dd4b39;
+
+    &:hover, &.active, &:focus {
+      border-color: #e47365;
+      background-color: #e47365;
+      color: #fff;
+    }
+  }
+}

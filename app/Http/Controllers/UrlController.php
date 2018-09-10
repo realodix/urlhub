@@ -59,6 +59,13 @@ class UrlController extends Controller
         ]);
     }
 
+    public function delete($id)
+    {
+        Url::destroy($id);
+
+        return redirect()->back();
+    }
+
     public function urlRedirection($short_url)
     {
         $url = Url::where('short_url', 'LIKE BINARY', $short_url)

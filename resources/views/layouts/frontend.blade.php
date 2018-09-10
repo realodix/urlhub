@@ -26,14 +26,14 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('admin') }}">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <i class="fas fa-tachometer-alt"></i> @lang('Dashboard')
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('viewProfile') }}">
-                <i class="fas fa-user"></i> Your Profile
+                <i class="fas fa-user"></i> @lang('Your Profile')
               </a>
               <a class="dropdown-item" href="{{ route('viewChangePassword') }}">
-                <i class="fas fa-key"></i> Change Password
+                <i class="fas fa-key"></i> @lang('Change Password')
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"
