@@ -26,20 +26,20 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('admin') }}">
-                <i class="fas fa-tachometer-alt"></i> @lang('Dashboard')
+                <i class="dropdown-icon fas fa-tachometer-alt"></i> @lang('Dashboard')
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('viewProfile') }}">
-                <i class="fas fa-user"></i> @lang('Your Profile')
+                <i class="dropdown-icon fas fa-user"></i> @lang('Your Profile')
               </a>
               <a class="dropdown-item" href="{{ route('viewChangePassword') }}">
-                <i class="fas fa-key"></i> @lang('Change Password')
+                <i class="dropdown-icon fas fa-key"></i> @lang('Change Password')
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="dropdown-icon fas fa-sign-out-alt"></i>
                 {{ __('Logout') }}
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

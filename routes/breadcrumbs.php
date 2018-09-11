@@ -9,6 +9,11 @@ Breadcrumbs::for('admin.allurl', function ($trail) {
     $trail->push('All URLs', route('admin.allurl'));
 });
 
+Breadcrumbs::for('user.index', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('All Users', route('user.index'));
+});
+
 Breadcrumbs::for('viewProfile', function ($trail) {
     $trail->parent('admin');
     $trail->push('Profile', route('viewProfile'));

@@ -27,7 +27,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
 
         // User
-        Route::namespace('User')->group(function () {
+        Route::namespace('User')->prefix('user')->group(function () {
+            Route::get('/', 'UserController@index')->name('user.index');
+
             Route::get('/profile', 'ProfileController@view')->name('viewProfile');
             Route::post('/profile', 'ProfileController@update')->name('updateProfile');
 

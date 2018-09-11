@@ -9,7 +9,7 @@ class AllUrlController extends Controller
 {
     public function index()
     {
-        $allurls = Url::all();
+        $allurls = Url::paginate(25);
 
         return view('backend.all-url', [
             'allurls' => $allurls,

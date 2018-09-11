@@ -1,0 +1,46 @@
+@extends('layouts.backend')
+
+@section('content')
+<div class="all-url">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+      <div class="col-sm-6">
+        <h4 class="card-title mb-3">
+          {{ __('All Users') }}
+        </h4>
+      </div><!--col-->
+      </div><!--row-->
+
+      <table class="table table-responsive-sm table-striped">
+        <thead>
+          <tr>
+            <th scope="col">@lang('Username')</th>
+            <th scope="col">@lang('E-Mail')</th>
+            <th scope="col">@lang('Member since')</th>
+            <th scope="col">@lang('Actions')</th>
+          </tr>
+        </thead>
+        <tbody>
+          @forelse ($users as $user)
+          <tr>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
+            <td><span title="{{$user->created_at}}">{{$user->created_at->diffForHumans()}}</span></td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                
+              </div>
+            </td>
+          </tr>
+          @empty
+            Data not found
+          @endforelse
+        </tbody>
+      </table>
+
+      {{ $users->links() }}
+    </div>
+  </div>
+</div>
+@endsection

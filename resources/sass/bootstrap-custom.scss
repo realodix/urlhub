@@ -1,19 +1,27 @@
+$bg-gray: rgb(248, 249, 250);
+
+
 /*!
  * Bootstrap
  */
 $blue:    #0070ba;
 $green:   #1c9963;
 $indigo:  #3958c8;
+$red:     #db4437;
 
 $primary: $green;
 $success: $green;
 
 // Breadcrumbs
-$breadcrumb-bg:             #f0f3f7;
+$breadcrumb-bg:             $bg-gray;
 $breadcrumb-border-radius:  none;
 
+// Table
+$table-accent-bg: rgba($bg-gray, .05) !default;
 
-$table-accent-bg: rgba($blue, .05) !default;
+// Dropdowns
+$dropdown-link-color:       #555 !default;
+$dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
 
 
 
@@ -22,14 +30,14 @@ $table-accent-bg: rgba($blue, .05) !default;
  */
 
 // Sidebar Navigation
-$sidebar-bg:                    #f0f3f7;
+$sidebar-bg:                    $bg-gray;
 $sidebar-nav-color:             #333;
 $sidebar-nav-link-color:        #333;
 $sidebar-nav-link-active-color: $primary;
 $sidebar-nav-link-active-bg:    $sidebar-bg;
 
 // Sidebar Minimizer
-$sidebar-minimizer-bg:                      #fff;
+$sidebar-minimizer-bg:                      $bg-gray;
 $sidebar-minimizer-hover-bg:                darken($sidebar-bg, 2%);
 $sidebar-minimizer-hover-indicator-color:   $sidebar-nav-link-color;
 
@@ -37,7 +45,7 @@ $sidebar-minimizer-hover-indicator-color:   $sidebar-nav-link-color;
 $breadcrumb-borders: none;
 
 // Footer
-$footer-bg:         #fff;
+$footer-bg:         $bg-gray;
 $footer-borders:    none;
 
 @import "node_modules/bootstrap/scss/bootstrap";

@@ -49,6 +49,8 @@
           @endforelse
         </tbody>
       </table>
+
+      {{ $allurls->links() }}
     </div>
   </div>
 </div>
