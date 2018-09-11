@@ -29,7 +29,13 @@
             <td><a href="{{url('/'.$allurl->short_url)}}" target="_blank">{{$allurl->short_url}}</a></td>
             <td><a href="{{$allurl->long_url}}" target="_blank">{{$allurl->long_url_mod}}</a></td>
             <td>{{$allurl->views}}</td>
-            <td>{{$allurl->user->name}}</td>
+            <td>
+              @if (isset($allurl->user->name))
+                {{$allurl->user->name}}
+              @else
+                Guest
+              @endif
+            </td>
             <td><span title="{{$allurl->created_at}}">{{$allurl->created_at->diffForHumans()}}</span></td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
