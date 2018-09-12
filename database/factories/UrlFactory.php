@@ -1,7 +1,6 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +14,6 @@ use App\Http\Controllers\UrlController;
 */
 
 $factory->define(App\Url::class, function (Faker $faker) {
-
     return [
         'user_id'           => $faker->biasedNumberBetween($min = 0, $max = 2, $function = 'sqrt'),
         'long_url'          => $faker->url,
@@ -23,6 +21,6 @@ $factory->define(App\Url::class, function (Faker $faker) {
         'short_url'         => $faker->regexify('[a-zA-Z0-9]{6}'),
         'short_url_custom'  => 0,
         'views'             => 0,
-        'ip'                => $faker->localIpv4
+        'ip'                => $faker->localIpv4,
     ];
 });
