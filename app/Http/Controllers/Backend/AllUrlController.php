@@ -15,7 +15,7 @@ class AllUrlController extends Controller
 
         return view('backend.all-url', [
             'allurls'   => $allurls,
-            'total'     => $total
+            'total'     => $total,
         ]);
     }
 }
