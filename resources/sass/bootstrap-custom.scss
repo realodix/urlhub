@@ -30,11 +30,15 @@ $dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
  */
 
 // Sidebar Navigation
-$sidebar-bg:                    $bg-gray;
-$sidebar-nav-color:             #333;
-$sidebar-nav-link-color:        #333;
-$sidebar-nav-link-active-color: $primary;
-$sidebar-nav-link-active-bg:    $sidebar-bg;
+$sidebar-bg:                            $bg-gray;
+$sidebar-nav-color:                     #333;
+$sidebar-nav-link-color:                #333;
+$sidebar-nav-link-active-color:         $primary;
+$sidebar-nav-link-active-bg:            $sidebar-bg;
+
+$sidebar-nav-dropdown-bg:               $sidebar-bg;
+$sidebar-nav-dropdown-color:            $sidebar-nav-color;
+$sidebar-nav-dropdown-indicator-color:  $sidebar-nav-link-color;
 
 // Sidebar Minimizer
 $sidebar-minimizer-bg:                      $bg-gray;

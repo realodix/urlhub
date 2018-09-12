@@ -28,10 +28,10 @@
         {{ title_case(Auth::user()->name) }}
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="{{ route('viewProfile') }}">
+        <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->name) }}">
           <i class="dropdown-icon fas fa-user"></i> @lang('Your Profile')
         </a>
-        <a class="dropdown-item" href="{{ route('viewChangePassword') }}">
+        <a class="dropdown-item" href="{{ route('user.change-password', Auth::user()->name) }}">
           <i class="dropdown-icon fas fa-key"></i> @lang('Change Password')
         </a>
         <a class="dropdown-item" href="{{ route('logout') }}"

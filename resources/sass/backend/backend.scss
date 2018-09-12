@@ -21,4 +21,22 @@ body {
       border-left: 4px solid $primary;
     }
   }
+
+  .nav-dropdown {
+    &.open {
+      .nav-link {
+        border-left: 4px solid $primary;
+      }
+    }
+
+    .nav-link {
+      &.active {
+        border-left: 4px solid $primary;
+      }
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
 }

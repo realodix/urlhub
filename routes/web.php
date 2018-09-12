@@ -30,11 +30,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::namespace('User')->prefix('user')->group(function () {
             Route::get('/', 'UserController@index')->name('user.index');
 
-            Route::get('/profile', 'ProfileController@view')->name('viewProfile');
-            Route::post('/profile', 'ProfileController@update')->name('updateProfile');
+            Route::get('{user}/edit', 'ProfileController@view')->name('user.edit');
+            Route::post('{user}/edit', 'ProfileController@update')->name('user.update');
 
-            Route::get('/changepassword', 'ChangePasswordController@view')->name('viewChangePassword');
-            Route::post('/changepassword', 'ChangePasswordController@update')->name('changePassword');
+            Route::get('{user}/changepassword', 'ChangePasswordController@view')->name('user.change-password');
+            Route::post('{user}/changepassword', 'ChangePasswordController@update')->name('user.change-password.post');
         });
     });
 });

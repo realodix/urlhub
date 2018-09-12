@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function view()
+    public function view($user)
     {
-        $user = User::find(Auth::id());
+        $user = User::where('name', $user)->first();
 
         return view('backend.user.profile', [
             'name'  => $user->name,

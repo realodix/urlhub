@@ -15,7 +15,7 @@
 
 <div class="row">
   <div class="col-xl-6">
-    {{ html()->form('POST', route('updateProfile'))->class('form-horizontal')->open() }}
+    {{ html()->form('POST', route('user.update', Auth::user()->name))->class('form-horizontal')->open() }}
     <div class="card">
       <div class="card-body">
         <div class="row">

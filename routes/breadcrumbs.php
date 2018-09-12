@@ -14,12 +14,12 @@ Breadcrumbs::for('user.index', function ($trail) {
     $trail->push('All Users', route('user.index'));
 });
 
-Breadcrumbs::for('viewProfile', function ($trail) {
+Breadcrumbs::for('user.edit', function ($trail, $user) {
     $trail->parent('admin');
-    $trail->push('Profile', route('viewProfile'));
+    $trail->push('Profile', route('user.edit', $user));
 });
 
-Breadcrumbs::for('viewChangePassword', function ($trail) {
+Breadcrumbs::for('user.change-password', function ($trail, $user) {
     $trail->parent('admin');
-    $trail->push('Change Password', route('viewChangePassword'));
+    $trail->push('Change Password', route('user.change-password', $user));
 });

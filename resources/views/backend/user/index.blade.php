@@ -24,12 +24,15 @@
         <tbody>
           @forelse ($users as $user)
           <tr>
-            <td>{{$user->name}}</td>
+            <td><a href="{{ route('user.edit', $user->name) }}">{{$user->name}}</a></td>
             <td>{{$user->email}}</td>
             <td><span title="{{$user->created_at}}">{{$user->created_at->diffForHumans()}}</span></td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
-                
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <a role="button" class="btn btn-primary" href="{{ route('user.edit', $user->name) }}" title="@lang('Details')"><i class="fa fa-eye"></i></a>
+                  <a role="button" class="btn btn-danger" href="{{ route('user.change-password', $user->name) }}" title="@lang('Change Password')"><i class="fas fa-key"></i></a>
+                </div>
               </div>
             </td>
           </tr>
