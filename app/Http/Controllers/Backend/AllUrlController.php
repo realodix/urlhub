@@ -11,8 +11,11 @@ class AllUrlController extends Controller
     {
         $allurls = Url::paginate(25);
 
+        $total = Url::count();
+
         return view('backend.all-url', [
-            'allurls' => $allurls,
+            'allurls'   => $allurls,
+            'total'     => $total
         ]);
     }
 }
