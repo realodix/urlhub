@@ -19,7 +19,7 @@ class DashboardController extends Controller
 
         return view('backend.dashboard', [
             'myurls'    => $myurls,
-            'total'     => $total
+            'total'     => $total,
         ]);
     }
 }
