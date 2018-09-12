@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Url;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $myurls = User::find(Auth::id())->url;
-        $sorted = $myurls->sortByDesc('created_at');
+        $myurls = Url::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->paginate(25);
 
         return view('backend.dashboard', [
-            'myurls' => $sorted,
+            'myurls' => $myurls,
         ]);
     }
 }

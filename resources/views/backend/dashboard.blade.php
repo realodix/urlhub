@@ -41,6 +41,8 @@
           @endforelse
         </tbody>
       </table>
+
+      {{ $myurls->links() }}
     </div>
   </div>
 </div>

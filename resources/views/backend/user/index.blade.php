@@ -17,7 +17,7 @@
           <tr>
             <th scope="col">@lang('Username')</th>
             <th scope="col">@lang('E-Mail')</th>
-            <th scope="col">@lang('Member since')</th>
+            <th scope="col">@lang('Member Since')</th>
             <th scope="col">@lang('Actions')</th>
           </tr>
         </thead>
