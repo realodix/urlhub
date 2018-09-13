@@ -8,7 +8,6 @@ Route::get('/{short_url}', 'UrlController@urlRedirection')->where('short_url', '
 Route::post('/create', 'UrlController@create');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
-
     Route::get('url/{id}/delete', 'UrlController@delete')->name('url.delete');
 
     Route::namespace('Backend')->group(function () {
