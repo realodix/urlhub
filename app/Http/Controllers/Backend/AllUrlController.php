@@ -9,13 +9,10 @@ class AllUrlController extends Controller
 {
     public function index()
     {
-        $allurls = Url::paginate(25);
-
-        $total = Url::count();
-
         return view('backend.all-url', [
-            'allurls'   => $allurls,
-            'total'     => $total,
+            'allurls'   => Url::orderBy('updated_at', 'desc')
+                                ->paginate(25),
+            'total'     => Url::count(),
         ]);
     }
 }

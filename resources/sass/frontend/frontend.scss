@@ -1,3 +1,9 @@
+@import "../general-variables";
+@import "variables";
+@import "extend";
+@import "components";
+@import "~bootstrap/scss/bootstrap";
+
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,400');
 
 body {
@@ -79,7 +85,3 @@ body {
     box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
   }
 }
-
-@import "variables";
-@import "extend";
-@import "components";

@@ -1,16 +1,6 @@
-$bg-gray: rgb(248, 249, 250);
-
-
 /*!
  * Bootstrap
  */
-$blue:    #0070ba;
-$green:   #1c9963;
-$indigo:  #3958c8;
-$red:     #db4437;
-
-$primary: $green;
-$success: $green;
 
 // Breadcrumbs
 $breadcrumb-bg:             $bg-gray;
@@ -51,5 +41,3 @@ $breadcrumb-borders: none;
 // Footer
 $footer-bg:         $bg-gray;
 $footer-borders:    none;
-
-@import "node_modules/bootstrap/scss/bootstrap";

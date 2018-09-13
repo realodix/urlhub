@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Input;
 
 class UrlController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkurl')->only('create');
+    }
+
     public function create(Requests\StoreUrl $request)
     {
         $long_url = Input::get('long_url');

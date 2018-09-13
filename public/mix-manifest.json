@@ -1,16 +1,14 @@
 {
-    "/js/vendor.js": "/js/vendor.js?id=487bace2183c08a8436e",
-    "/js/vendor.js.map": "/js/vendor.js.map?id=90033fd601736d245581",
-    "/js/frontend.js": "/js/frontend.js?id=bf405ca5a4fc7f4cc9d9",
-    "/css/backend.css": "/css/backend.css?id=cebc931cdbc7fa988f63",
-    "/css/frontend.css": "/css/frontend.css?id=9399f918184b2aa0f92e",
-    "/css/bootstrap-custom.css": "/css/bootstrap-custom.css?id=8f3df307b822151f0919",
-    "/js/frontend.js.map": "/js/frontend.js.map?id=547bede9fcfb5e6baa7c",
-    "/css/backend.css.map": "/css/backend.css.map?id=7247b18f3cba8fc44eb7",
-    "/css/frontend.css.map": "/css/frontend.css.map?id=87bca285f54ec1325f3c",
-    "/css/bootstrap-custom.css.map": "/css/bootstrap-custom.css.map?id=8754fa25385e3ca2ef91",
-    "/js/backend.js": "/js/backend.js?id=4118a70b91afe3a81a42",
-    "/js/backend.js.map": "/js/backend.js.map?id=13504fce10d41fde7315",
+    "/js/vendor.js": "/js/vendor.js?id=78d2bb3e8efe7db48fcd",
+    "/js/vendor.js.map": "/js/vendor.js.map?id=12fb1369aacc193284ec",
+    "/js/frontend.js": "/js/frontend.js?id=2d061548814822c3449c",
+    "/css/backend.css": "/css/backend.css?id=52702fdf855a0280503e",
+    "/css/frontend.css": "/css/frontend.css?id=67b03cc3b0adcd3b45e2",
+    "/js/frontend.js.map": "/js/frontend.js.map?id=8f9b10e901b9526aacd7",
+    "/css/backend.css.map": "/css/backend.css.map?id=c46087210d27d7fa9161",
+    "/css/frontend.css.map": "/css/frontend.css.map?id=8854db5eb27615c119e0",
+    "/js/backend.js": "/js/backend.js?id=6e68d69bd5ad45bc69d9",
+    "/js/backend.js.map": "/js/backend.js.map?id=d4a1f0af9957e691114e",
     "/js/manifest.js": "/js/manifest.js?id=5b569fef435e020b50a0",
-    "/js/manifest.js.map": "/js/manifest.js.map?id=ea909a9a52653a61acdf"
+    "/js/manifest.js.map": "/js/manifest.js.map?id=f0362dd38791b9d49e2b"
 }

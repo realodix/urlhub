@@ -7,7 +7,6 @@
 
   <title>{{config('app.name')}}</title>
 
-  {!! style(mix('css/bootstrap-custom.css')) !!}
   {!! style(mix('css/frontend.css')) !!}
 </head>
 

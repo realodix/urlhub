@@ -17,7 +17,7 @@ class CheckUrl
      */
     public function handle($request, Closure $next)
     {
-        $long_url = urlToDomain($request->long_url);
+        $long_url = $request->long_url;
 
         $s_url = Url::where('long_url', $long_url)->first();
         if ($s_url) {

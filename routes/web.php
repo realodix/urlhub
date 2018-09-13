@@ -1,26 +1,16 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Auth::routes();
 
 Route::view('/', 'frontend.welcome');
 Route::get('/+{short_url}', 'UrlController@view')->name('short_url.statics');
 Route::get('/{short_url}', 'UrlController@urlRedirection')->where('short_url', '[A-Za-z0-9]{6}+');
-Route::post('/create', 'UrlController@create')->middleware('checkurl');
-
-Route::get('url/{id}/delete', 'UrlController@delete')->name('url.delete');
+Route::post('/create', 'UrlController@create');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
-    // Namespaces indicate folder structure
+
+    Route::get('url/{id}/delete', 'UrlController@delete')->name('url.delete');
+
     Route::namespace('Backend')->group(function () {
         // Dashboard
         Route::get('/', 'DashboardController@index')->name('admin');
