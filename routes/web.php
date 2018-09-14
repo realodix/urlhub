@@ -3,17 +3,22 @@
 Auth::routes();
 
 Route::view('/', 'frontend.welcome');
-Route::get('/+{short_url}', 'UrlController@view')->name('short_url.statics');
-Route::get('/{short_url}', 'UrlController@urlRedirection')->where('short_url', '[A-Za-z0-9]{6}+');
-Route::post('/create', 'UrlController@create');
+Route::post('/create', 'GeneralUrlController@create');
+Route::get('/{short_url}', 'GeneralUrlController@urlRedirection')->where('short_url', '[A-Za-z0-9]{6}+');
 
-Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('url/{id}/delete', 'UrlController@delete')->name('url.delete');
+Route::namespace('Frontend')->group(function () {
+    Route::get('/+{short_url}', 'UrlController@view')->name('short_url.statics');
+});
 
-    Route::namespace('Backend')->group(function () {
-        // Dashboard
+Route::namespace('Backend')->group(function () {
+    Route::middleware('auth')->prefix('admin')->group(function () {
+        // Dashboard (My URLs)
         Route::get('/', 'DashboardController@index')->name('admin');
+        Route::get('/delete/{id}', 'DashboardController@delete')->name('admin.delete');
+
+        // All URLs
         Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
+        Route::get('/allurl/delete/{id}', 'AllUrlController@delete')->name('admin.allurl.delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {

@@ -1,5 +1,7 @@
 @extends('layouts.backend')
 
+@section('title', __('Dashboard'))
+
 @section('content')
 <div class="my-url">
   <div class="card">
@@ -14,10 +16,13 @@
           You have a total of {{ $total }} URLs total.
         </div>
       </div><!--col-->
+      <div class="col-sm-6">
+        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')"><i class="fas fa-plus"></i></a>
+      </div><!--col-->
       </div><!--row-->
 
       @if (count($myurls) >= 1)
-      <table class="table table-responsive-sm table-striped">
+      <table id="datatables" class="table table-responsive-sm table-striped">
         <thead>
           <tr>
             <th scope="col">@lang('Short URL')</th>
@@ -30,14 +35,20 @@
         <tbody>
           @foreach ($myurls as $myurl)
           <tr>
-            <td><a href="{{url('/'.$myurl->short_url)}}" target="_blank">{{url('/'.$myurl->short_url)}}</a></td>
+            <td>
+              @if ($myurl->short_url_custom == false)
+                <a href="{{url('/'.$myurl->short_url)}}" target="_blank">{{url('/'.$myurl->short_url)}}</a>
+              @else
+                <a href="{{url('/'.$myurl->short_url_custom)}}" target="_blank">{{url('/'.$myurl->short_url_custom)}}</a>
+              @endif
+            </td>
             <td><a href="{{$myurl->long_url}}" target="_blank">{{$myurl->long_url_mod}}</a></td>
             <td>{{$myurl->views}}</td>
             <td><span title="{{$myurl->created_at}}">{{$myurl->created_at->diffForHumans()}}</span></td>
             <td>
               <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                <a role="button" class="btn btn-primary" href="{{ route('short_url.statics', $myurl->short_url) }}" target="_blank" title="@lang('Details')"><i class="fa fa-eye"></i></a>
-                <a role="button" class="btn btn-danger" href="{{ route('url.delete', $myurl->id) }}" title="@lang('Delete')"><i class="fas fa-trash-alt"></i></a>
+                <a role="button" class="btn" href="{{ route('short_url.statics', $myurl->short_url) }}" target="_blank" title="@lang('Details')"><i class="fa fa-eye"></i></a>
+                <a role="button" class="btn text-danger" href="{{ route('admin.delete', $myurl->id) }}" title="@lang('Delete')"><i class="fas fa-trash-alt"></i></a>
               </div>
             </td>
           </tr>
@@ -48,7 +59,7 @@
         No URLs found.
       @endif
 
-      {{ $myurls->links() }}
+      {{-- {{ $myurls->links() }} --}}
     </div>
   </div>
 </div>

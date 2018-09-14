@@ -2,6 +2,7 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~@coreui/coreui/scss/coreui-standalone";
+@import "~datatables.net-dt/css/jquery.dataTables.css";
 
 body {
   background: $bg-gray;
@@ -40,5 +41,56 @@ body {
         color: #fff;
       }
     }
+  }
+}
+
+
+
+//
+// DataTables
+//
+.dataTables_wrapper {
+  .dataTables_length {
+    select {
+      border: 1px solid #dee2e6;
+    }
+  }
+
+  .dataTables_filter {
+    input {
+      border: 1px solid #dee2e6;
+    }
+  }
+
+  table {
+    &.dataTable {
+      thead th,
+      &.no-footer {
+        border-color: #dee2e6;
+      }
+    }
+  }
+
+  .dataTables_paginate {
+    .paginate_button {
+      &.current,
+      &.current:hover {
+        background: none;
+        color: $green !important;
+        border-color: transparent;
+        font-weight: bold;
+      }
+
+      &:hover {
+        background: $green;
+        color: #fff !important;
+        border-color: $green;
+      }
+    }
+  }
+
+  .dataTables_paginate,
+  .dataTables_info {
+    margin-top: 1.5rem;
   }
 }

@@ -25,6 +25,10 @@ class ProfileController extends Controller
 
         $user->email = $request->get('email');
 
+        $validatedData = $request->validate([
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
         $user->save();
 
         return redirect()->back()->with('success', 'Profile updated.');

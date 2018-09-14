@@ -21,6 +21,7 @@
         "browser-sync-webpack-plugin": "^2.0.1",
         "clipboard": "^2.0.1",
         "cross-env": "^5.1",
+        "datatables.net-dt": "^1.10.19",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "laravel-mix-auto-extract": "^0.0.4",

@@ -1,5 +1,7 @@
 @extends('layouts.backend')
 
+@section('title', __('Edit Profile'))
+
 @section('content')
 @if (session('error'))
 <div class="alert alert-danger">

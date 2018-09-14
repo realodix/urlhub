@@ -15,7 +15,7 @@
       @endrole
       <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#">
-        <i class="nav-icon fas fa-user-circle"></i> Account</a>
+        <i class="nav-icon fas fa-user-circle"></i> @lang('Users')</a>
         <ul class="nav-dropdown-items">
           <li class="nav-item">
             <a class="nav-link" href="{{ route('user.edit', Auth::user()->name) }}">

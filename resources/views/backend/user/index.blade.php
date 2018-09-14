@@ -1,5 +1,7 @@
 @extends('layouts.backend')
 
+@section('title', __('All Users'))
+
 @section('content')
 <div class="all-url">
   <div class="card">
@@ -12,7 +14,7 @@
       </div><!--col-->
       </div><!--row-->
 
-      <table class="table table-responsive-sm table-striped">
+      <table id="datatables" class="table table-responsive-sm table-striped">
         <thead>
           <tr>
             <th scope="col">@lang('Username')</th>

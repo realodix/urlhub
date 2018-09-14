@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         $myurls = Url::where('user_id', Auth::id())
                         ->orderBy('updated_at', 'desc')
-                        ->paginate(25);
+                        ->get();
 
         $total = Url::where('user_id', Auth::id())
                         ->count();
@@ -21,5 +21,12 @@ class DashboardController extends Controller
             'myurls'    => $myurls,
             'total'     => $total,
         ]);
+    }
+
+    public function delete($id)
+    {
+        Url::destroy($id);
+
+        return redirect()->back();
     }
 }

@@ -10,9 +10,15 @@ class AllUrlController extends Controller
     public function index()
     {
         return view('backend.all-url', [
-            'allurls'   => Url::orderBy('updated_at', 'desc')
-                                ->paginate(25),
+            'allurls'   => Url::orderBy('updated_at', 'desc')->get(),
             'total'     => Url::count(),
         ]);
+    }
+
+    public function delete($id)
+    {
+        Url::destroy($id);
+
+        return redirect()->back();
     }
 }

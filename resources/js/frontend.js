@@ -8,7 +8,6 @@ var ClipboardJS = require('clipboard');
 new ClipboardJS('.btn-copy');
 
 
-
 /**
  * Social Share
  */

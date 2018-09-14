@@ -8,8 +8,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap__ = __webpack_require__("./resources/js/bootstrap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coreui_coreui__ = __webpack_require__("./node_modules/@coreui/coreui/dist/js/coreui.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__coreui_coreui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__coreui_coreui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_datatables_net__ = __webpack_require__("./node_modules/datatables.net/js/jquery.dataTables.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_datatables_net___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_datatables_net__);
 
 
+
+/**
+ * DataTables
+ * https://datatables.net/
+ */
+
+$(document).ready(function () {
+  $('#datatables').DataTable();
+});
 
 /***/ }),
 

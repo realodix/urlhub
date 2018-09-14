@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>Dashboard | {{config('app.name')}}</title>
+  <title>@yield('title') | {{config('app.name')}}</title>
   {{-- Icons --}}
-  {!! style('https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css') !!}
+  {{-- {!! style('https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css') !!} --}}
   {{-- Main styles for this application --}}
   {!! style(mix('css/backend.css')) !!}
 </head>
