@@ -10,8 +10,7 @@ class AllUrlController extends Controller
     public function index()
     {
         return view('backend.all-url', [
-            'allurls'   => Url::orderBy('updated_at', 'desc')->get(),
-            'total'     => Url::count(),
+            'allurls'   => Url::all(),
         ]);
     }
 

@@ -38,8 +38,7 @@ Plur is a open-source link shortening web application. It allows you to host you
 
 ## To Do's
 - [ ] URL shortener on admin dashboard.
-- [ ] Realtime check for available shortlink using ajax & [TypeWatch](https://github.com/dennyferra/TypeWatch).
-- [ ] Use [server-side.options](https://datatables.net/examples/data_sources/server_side) provided by the DataTable.
+- [ ] Realtime check for available shortlink
 
 
 ## License

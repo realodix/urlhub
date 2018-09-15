@@ -11,10 +11,6 @@
         <h4 class="card-title mb-0">
           {{ __('All URLs') }}
         </h4>
-
-        <div class="small text-muted">
-          We have a total of {{ $total }} URLs.
-        </div>
       </div><!--col-->
       <div class="col-sm-6">
         <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')"><i class="fas fa-plus"></i></a>

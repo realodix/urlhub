@@ -19,7 +19,7 @@ if (!mix.inProduction()) {
     var LiveReloadPlugin = require('webpack-livereload-plugin');
 
     mix.webpackConfig({
-          devtool: 'inline-source-map',
+          devtool: 'source-map',
           plugins: [
               new LiveReloadPlugin()
           ],

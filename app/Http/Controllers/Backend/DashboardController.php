@@ -10,16 +10,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $myurls = Url::where('user_id', Auth::id())
-                        ->orderBy('updated_at', 'desc')
-                        ->get();
-
-        $total = Url::where('user_id', Auth::id())
-                        ->count();
-
         return view('backend.dashboard', [
-            'myurls'    => $myurls,
-            'total'     => $total,
+            'myurls'    => Url::where('user_id', Auth::id())->get(),
         ]);
     }
 

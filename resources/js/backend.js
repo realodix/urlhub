@@ -8,5 +8,8 @@ import '@coreui/coreui'
  */
 import 'datatables.net';
 $(document).ready(function() {
-    $('#datatables').DataTable();
+    $('#datatables').DataTable( {
+        order: [ 3, 'dsc' ],
+        stateSave: true
+    } );
 } );
