@@ -8,7 +8,7 @@
 
   <div class="row mt-5 justify-content-md-center">
     <div class="col-lg-7">
-      {{ html()->form('POST', url('/create'))->class('mt-5')->open() }}
+      {{ html()->form('POST', route('createshortlink'))->class('mt-5')->open() }}
         <div class="input-group input-group-lg">
           <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
           <div class="input-group-append">

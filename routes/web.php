@@ -3,7 +3,7 @@
 Auth::routes();
 
 Route::view('/', 'frontend.welcome');
-Route::post('/create', 'GeneralUrlController@create');
+Route::post('/create', 'GeneralUrlController@create')->name('createshortlink');
 Route::get('/{short_url}', 'GeneralUrlController@urlRedirection')->where('short_url', '[A-Za-z0-9]{6}+');
 
 Route::namespace('Frontend')->group(function () {
