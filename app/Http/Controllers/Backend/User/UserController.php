@@ -9,10 +9,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(25);
-
         return view('backend.user.index', [
-            'users' => $users,
+            'users' => $users = User::all(),
         ]);
     }
 }
