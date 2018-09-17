@@ -20,9 +20,11 @@
         <div class="custom-url">
           <div class="title"> Custom URL (optional)</div>
           <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
-          <input class="form-control form-control-sm url-field" name="short_url_custom">
+          <input class="form-control form-control-sm url-field" id="short_url_custom" name="short_url_custom">
         </div>
       {{ html()->form()->close() }}
+
+      <div id='link-availability-status'></div>
 
       @if ($errors->any())
         @foreach ($errors->all() as $error)

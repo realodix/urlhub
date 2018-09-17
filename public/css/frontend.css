@@ -2929,7 +2929,7 @@ input[type="button"].btn-block {
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 400;
-  color: #212529;
+  color: #333;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
@@ -2937,7 +2937,7 @@ input[type="button"].btn-block {
 }
 
 .dropdown-item:hover, .dropdown-item:focus {
-  color: #16181b;
+  color: #262626;
   text-decoration: none;
   background-color: #f8f9fa;
 }
@@ -2969,7 +2969,7 @@ input[type="button"].btn-block {
 .dropdown-item-text {
   display: block;
   padding: 0.25rem 1.5rem;
-  color: #212529;
+  color: #333;
 }
 
 .btn-group,
@@ -8633,7 +8633,7 @@ body {
 }
 
 .auth {
-  background: #f0f3f7;
+  background: #f8f9fa;
 }
 
 .auth .card {

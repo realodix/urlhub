@@ -23,6 +23,7 @@
         "cross-env": "^5.1",
         "datatables.net-dt": "^1.10.19",
         "jquery": "^3.2",
+        "jquery.typewatch": "^3.0.0",
         "laravel-mix": "^2.0",
         "laravel-mix-auto-extract": "^0.0.4",
         "lodash": "^4.17.5",

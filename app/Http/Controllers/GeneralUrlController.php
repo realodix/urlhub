@@ -47,4 +47,17 @@ class GeneralUrlController extends Controller
         // Redirect to final destination
         return redirect()->away($url->long_url, 301);
     }
+
+    public function checkCustomLinkAvailability()
+    {
+        $short_url_custom = Input::get('short_url_custom');
+
+        $link = Url::where('short_url_custom', $short_url_custom)->first();
+
+        if ($link) {
+            return "unavailable";
+        } else {
+            return "available";
+        }
+    }
 }

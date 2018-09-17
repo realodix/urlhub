@@ -11,3 +11,7 @@ $red:     #db4437;
 
 $primary: $green;
 $success: $green;
+
+// Dropdowns
+$dropdown-link-color:       #333 !default;
+$dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;

@@ -9,6 +9,56 @@ new ClipboardJS('.btn-copy');
 
 
 /**
+ * TypeWatch
+ * https://github.com/dennyferra/TypeWatch
+ */
+import 'jquery.typewatch';
+$(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var twOptions = {
+        callback: function (value) {
+            var request = $.ajax({
+                url: "/api/custom-link-avail-check",
+                type: 'POST',
+                data: {
+                    'short_url_custom': $('#short_url_custom').val()
+                },
+                dataType: "html"
+            });
+
+            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading</span>');
+
+            request.done(function(msg) {
+                if (msg == 'unavailable') {
+                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-ban"></i> Already in use</span>');
+                } else if (msg == 'available') {
+                    $('#link-availability-status').html('<span style="color:green"><i class="fa fa-check"></i> Available</span>');
+                } else {
+                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again</span>' + msg);
+                }
+            });
+
+            request.fail(function(jqXHR, textStatus) {
+                $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again </span>' + textStatus);
+            });
+        },
+        wait: 500,
+        highlight: true,
+        allowSubmit: false,
+        captureLength: 1
+    };
+
+    // Add TypeWatch to check when users type
+    $('#short_url_custom').typeWatch(twOptions);
+});
+
+
+/**
  * Social Share
  */
 $(function() {

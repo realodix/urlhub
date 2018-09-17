@@ -99,6 +99,8 @@ window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap__ = __webpack_require__("./resources/js/bootstrap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_typewatch__ = __webpack_require__("./node_modules/jquery.typewatch/jquery.typewatch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_typewatch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_typewatch__);
 
 
 /**
@@ -107,6 +109,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 var ClipboardJS = __webpack_require__("./node_modules/clipboard/dist/clipboard.js");
 new ClipboardJS('.btn-copy');
+
+/**
+ * TypeWatch
+ * https://github.com/dennyferra/TypeWatch
+ */
+
+$(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var twOptions = {
+        callback: function callback(value) {
+            var request = $.ajax({
+                url: "/api/custom-link-avail-check",
+                type: 'POST',
+                data: {
+                    'short_url_custom': $('#short_url_custom').val()
+                },
+                dataType: "html"
+            });
+
+            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading</span>');
+
+            request.done(function (msg) {
+                if (msg == 'unavailable') {
+                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-ban"></i> Already in use</span>');
+                } else if (msg == 'available') {
+                    $('#link-availability-status').html('<span style="color:green"><i class="fa fa-check"></i> Available</span>');
+                } else {
+                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again</span>' + msg);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again </span>' + textStatus);
+            });
+        },
+        wait: 500,
+        highlight: true,
+        allowSubmit: false,
+        captureLength: 1
+    };
+
+    // Add TypeWatch to check when users type
+    $('#short_url_custom').typeWatch(twOptions);
+});
 
 /**
  * Social Share

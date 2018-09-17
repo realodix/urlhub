@@ -38,7 +38,7 @@ Plur is a open-source link shortening web application. It allows you to host you
 
 ## To Do's
 - [ ] URL shortener on admin dashboard.
-- [ ] Realtime check for available shortlink
+- [x] Realtime check for available custom shortlink
 
 
 ## License
