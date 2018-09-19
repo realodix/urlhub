@@ -55,9 +55,9 @@ class GeneralUrlController extends Controller
         $link = Url::where('short_url_custom', $short_url_custom)->first();
 
         if ($link) {
-            return "unavailable";
+            return 'unavailable';
         } else {
-            return "available";
+            return 'available';
         }
     }
 }
