@@ -8,7 +8,17 @@ import '@coreui/coreui'
  */
 import 'datatables.net';
 $(document).ready(function() {
-    $('#datatables').DataTable( {
+    $('#dt-allUrls').DataTable( {
+        order: [ 3, 'dsc' ],
+        stateSave: true
+    } );
+
+    $('#dt-myUrls').DataTable( {
+        order: [ 3, 'dsc' ],
+        stateSave: true
+    } );
+
+    $('#dt-Users').DataTable( {
         order: [ 3, 'dsc' ],
         stateSave: true
     } );

@@ -36,6 +36,16 @@ Plur is a open-source link shortening web application. It allows you to host you
    **E-Mail**: user@plur.test | **Password**: user
 
 
+## Contributing
+If you would like to contribute enhancements or fixes, please do the following:
+
+1. Fork the repository
+2. Hack on a separate topic branch created from the latest `master`
+3. Commit and push the topic branch
+4. Make a pull request
+5. Welcome to the club :sunglasses: and thank you for helping out!
+
+
 ## To Do's
 - [ ] URL shortener on admin dashboard.
 - [x] Realtime check for available custom shortlink

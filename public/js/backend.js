@@ -19,7 +19,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 $(document).ready(function () {
-    $('#datatables').DataTable({
+    $('#dt-allUrls').DataTable({
+        order: [3, 'dsc'],
+        stateSave: true
+    });
+
+    $('#dt-myUrls').DataTable({
+        order: [3, 'dsc'],
+        stateSave: true
+    });
+
+    $('#dt-Users').DataTable({
         order: [3, 'dsc'],
         stateSave: true
     });

@@ -14,7 +14,7 @@
       </div><!--col-->
       </div><!--row-->
 
-      <table id="datatables" class="table table-responsive-sm table-striped">
+      <table id="dt-Users" class="table table-responsive-sm table-striped">
         <thead>
           <tr>
             <th scope="col">@lang('Username')</th>

@@ -50,6 +50,7 @@ class Initial extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('urls');
         Schema::dropIfExists('password_resets');
     }
 }

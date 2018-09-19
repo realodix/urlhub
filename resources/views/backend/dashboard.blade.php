@@ -18,7 +18,7 @@
       </div><!--row-->
 
       @if (count($myurls) >= 1)
-      <table id="datatables" class="table table-responsive-sm table-striped">
+      <table id="dt-myUrls" class="table table-responsive-sm table-striped">
         <thead>
           <tr>
             <th scope="col">@lang('Short URL')</th>
