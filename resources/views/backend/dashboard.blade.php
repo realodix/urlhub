@@ -22,7 +22,7 @@
         <thead>
           <tr>
             <th scope="col">@lang('Short URL')</th>
-            <th scope="col">@lang('Long URL')</th>
+            <th scope="col">@lang('Original URL')</th>
             <th scope="col">@lang('View')</th>
             <th scope="col">@lang('Date')</th>
             <th scope="col">@lang('Actions')</th>
@@ -33,9 +33,9 @@
           <tr>
             <td>
               @if ($myurl->short_url_custom == false)
-                <a href="{{url('/'.$myurl->short_url)}}" target="_blank">{{url('/'.$myurl->short_url)}}</a>
+                <a href="{{url('/'.$myurl->short_url)}}" target="_blank">{{urlToDomain(url('/'.$myurl->short_url))}}</a>
               @else
-                <a href="{{url('/'.$myurl->short_url_custom)}}" target="_blank">{{url('/'.$myurl->short_url_custom)}}</a>
+                <a href="{{url('/'.$myurl->short_url_custom)}}" target="_blank">{{urlToDomain(url('/'.$myurl->short_url_custom))}}</a>
               @endif
             </td>
             <td><a href="{{$myurl->long_url}}" target="_blank">{{$myurl->long_url_mod}}</a></td>
@@ -52,10 +52,8 @@
         </tbody>
       </table>
       @else
-        No URLs found.
+        @lang('No data available.')
       @endif
-
-      {{-- {{ $myurls->links() }} --}}
     </div>
   </div>
 </div>

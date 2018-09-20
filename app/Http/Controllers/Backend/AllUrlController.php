@@ -8,6 +8,11 @@ use Yajra\Datatables\Datatables;
 
 class AllUrlController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+    }
+
     public function index()
     {
         return view('backend.all-url');
@@ -20,9 +25,9 @@ class AllUrlController extends Controller
         return DataTables::of($model)
                 ->editColumn('short_url', function ($url) {
                     if ($url->short_url_custom == false) {
-                        return '<a href="'.url('/'.$url->short_url).'" target="_blank">'.url('/'.$url->short_url).'</a>';
+                        return '<a href="'.url('/'.$url->short_url).'" target="_blank">'.urlToDomain(url('/'.$url->short_url)).'</a>';
                     } else {
-                        return '<a href="'.url('/'.$url->short_url_custom).'" target="_blank">'.url('/'.$url->short_url_custom).'</a>';
+                        return '<a href="'.url('/'.$url->short_url_custom).'" target="_blank">'.urlToDomain(url('/'.$url->short_url_custom)).'</a>';
                     }
                 })
                 ->editColumn('long_url', function ($url) {

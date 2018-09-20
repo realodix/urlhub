@@ -22,7 +22,7 @@
         <thead>
           <tr>
             <th scope="col">@lang('Short URL')</th>
-            <th scope="col">@lang('Long URL')</th>
+            <th scope="col">@lang('Original URL')</th>
             <th scope="col">@lang('Views')</th>
             <th scope="col">@lang('Author')</th>
             <th scope="col">@lang('Date')</th>

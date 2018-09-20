@@ -22,30 +22,26 @@ $(function() {
 
     var twOptions = {
         callback: function (value) {
-            var request = $.ajax({
+            $.ajax({
                 url: "/api/custom-link-avail-check",
                 type: 'POST',
                 data: {
                     'short_url_custom': $('#short_url_custom').val()
                 },
                 dataType: "html"
-            });
-
-            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading</span>');
-
-            request.done(function(msg) {
+            }).done(function(msg) {
                 if (msg == 'unavailable') {
                     $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-ban"></i> Already in use</span>');
                 } else if (msg == 'available') {
                     $('#link-availability-status').html('<span style="color:green"><i class="fa fa-check"></i> Available</span>');
                 } else {
-                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again</span>' + msg);
+                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again </span>' + msg);
                 }
-            });
-
-            request.fail(function(jqXHR, textStatus) {
+            }).fail(function(jqXHR, textStatus) {
                 $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again </span>' + textStatus);
             });
+
+            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading</span>');
         },
         wait: 500,
         highlight: true,
