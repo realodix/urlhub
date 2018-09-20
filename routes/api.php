@@ -18,3 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/custom-link-avail-check', 'GeneralUrlController@checkCustomLinkAvailability');
+
+Route::namespace('Backend')->group(function () {
+    Route::get('allurl/getdata', 'AllUrlController@getData');
+    Route::get('user/getdata', 'User\UserController@getData');
+});

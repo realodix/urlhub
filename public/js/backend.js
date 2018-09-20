@@ -20,8 +20,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 $(document).ready(function () {
     $('#dt-allUrls').DataTable({
-        order: [3, 'dsc'],
-        stateSave: true
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        ajax: '/api/allurl/getdata',
+        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, { data: 'author' }, { data: 'created_at' }, { data: 'action' }]
     });
 
     $('#dt-myUrls').DataTable({
@@ -30,8 +33,11 @@ $(document).ready(function () {
     });
 
     $('#dt-Users').DataTable({
-        order: [3, 'dsc'],
-        stateSave: true
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        ajax: '/api/user/getdata',
+        columns: [{ data: 'name' }, { data: 'email' }, { data: 'created_at' }, { data: 'action' }]
     });
 });
 
