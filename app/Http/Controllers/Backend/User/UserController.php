@@ -8,11 +8,6 @@ use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:admin']);
-    }
-
     public function index()
     {
         return view('backend.user.index');

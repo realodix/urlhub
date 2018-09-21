@@ -5,7 +5,9 @@ import './bootstrap';
  * https://github.com/zenorocha/clipboard.js
  */
 var ClipboardJS = require('clipboard');
-new ClipboardJS('.btn-copy');
+new ClipboardJS('.btn-copy').on('success', function() {
+    document.getElementById("url-copied").innerHTML = "Copied!";
+});
 
 
 /**

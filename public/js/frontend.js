@@ -108,7 +108,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * https://github.com/zenorocha/clipboard.js
  */
 var ClipboardJS = __webpack_require__("./node_modules/clipboard/dist/clipboard.js");
-new ClipboardJS('.btn-copy');
+new ClipboardJS('.btn-copy').on('success', function () {
+    document.getElementById("url-copied").innerHTML = "Copied!";
+});
 
 /**
  * TypeWatch
