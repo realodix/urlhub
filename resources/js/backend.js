@@ -8,6 +8,12 @@ import '@coreui/coreui'
  */
 import 'datatables.net';
 $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $('#dt-allUrls').DataTable( {
         processing: true,
         serverSide: true,

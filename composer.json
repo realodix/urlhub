@@ -11,6 +11,7 @@
         "fideloper/proxy": "^4.0",
         "hashids/hashids": "^3.0",
         "laravel/framework": "5.7.*",
+        "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-html": "^2.19",
         "spatie/laravel-permission": "^2.17",
@@ -52,11 +53,11 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate"
+            "@php artisan key:generate --ansi"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover"
+            "@php artisan package:discover --ansi"
         ]
     },
     "config": {

@@ -5,6 +5,6 @@
   </div>
   <div class="ml-auto">
     <span>Powered by</span>
-    <a href="https://laravel.com/">Laravel</a> {{ App::VERSION() }}
+    <a href="https://laravel.com/" target="_blank">Laravel</a> {{ App::VERSION() }}
   </div>
 </footer>

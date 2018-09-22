@@ -19,6 +19,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 $(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $('#dt-allUrls').DataTable({
         processing: true,
         serverSide: true,
