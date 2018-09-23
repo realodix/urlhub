@@ -17,8 +17,8 @@ $table-accent-bg: rgba($bg-gray, .05) !default;
 
 // Sidebar Navigation
 $sidebar-bg:                            $bg-gray;
-$sidebar-nav-color:                     #333;
-$sidebar-nav-link-color:                #333;
+$sidebar-nav-color:                     #212529;
+$sidebar-nav-link-color:                $sidebar-nav-color;
 $sidebar-nav-link-active-color:         $primary;
 $sidebar-nav-link-active-bg:            $sidebar-bg;
 

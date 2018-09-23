@@ -13,9 +13,14 @@
 
   .navbar-nav {
     .nav-link {
-      color: $green;
+      color: $blue;
     }
   }
+}
+
+.input-group,
+.input-group-append {
+  @extend %box-shadow;
 }
 
 

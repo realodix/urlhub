@@ -1,17 +1,19 @@
-$bg-gray: rgb(248, 249, 250);
-
+$bg-gray: #eff1f4;
 
 /*
  * Bootstrap
  */
-$blue:    #0070ba;
+$blue:    #4c94e3;
 $green:   #1c9963;
 $indigo:  #3958c8;
-$red:     #db4437;
+$red:     #e04a4a;
 
-$primary: $green;
+$primary: $blue;
 $success: $green;
 
 // Dropdowns
 $dropdown-link-color:       #333 !default;
 $dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
+
+// Cards
+$card-border-radius:  0.625rem;

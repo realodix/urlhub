@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,400');
 
 body {
-  background: #fff;
+  background: lighten($bg-gray, 4%);
   color: #313944;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
@@ -40,7 +40,7 @@ body {
 }
 
 .view_short {
-  background-color: #fafafa;
+  background-color: #f5f7fa;
 
   .header {
     ul {
@@ -58,10 +58,11 @@ body {
 
   .body {
     @extend %card-body;
+    border-radius: 0.625rem;
 
     .long-url {
       a {
-        color: rgba(0, 0, 0, 0.4);
+        color: #35393c;
       }
     }
 

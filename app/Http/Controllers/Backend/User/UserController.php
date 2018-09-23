@@ -36,7 +36,7 @@ class UserController extends Controller
                     '<div class="btn-group" role="group" aria-label="Basic example">
                         <div class="btn-group" role="group" aria-label="Basic example">
                           <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
-                          <a role="button" class="btn text-danger" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'"><i class="fas fa-key"></i></a>
+                          <a role="button" class="btn" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'"><i class="fas fa-key"></i></a>
                         </div>
                      </div>';
                 })

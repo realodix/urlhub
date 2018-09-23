@@ -38,12 +38,6 @@
 
             <div class="col">
               <input id="current-password" type="password" class="form-control" name="current-password" required>
-
-              @if ($errors->has('current-password'))
-              <span class="help-block">
-                <strong>{{ $errors->first('current-password') }}</strong>
-              </span>
-              @endif
             </div>
           </div>
 
@@ -54,8 +48,8 @@
               <input id="new-password" type="password" class="form-control" name="new-password" required>
 
               @if ($errors->has('new-password'))
-              <span class="help-block">
-                <strong>{{ $errors->first('new-password') }}</strong>
+              <span class="form-error-feedback">
+                {{ $errors->first('new-password') }}
               </span>
               @endif
             </div>

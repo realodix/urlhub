@@ -16,14 +16,14 @@ mix.setPublicPath('public')
    });
 
 if (!mix.inProduction()) {
-    var LiveReloadPlugin = require('webpack-livereload-plugin');
-
     mix.webpackConfig({
           devtool: 'source-map',
-          plugins: [
-              new LiveReloadPlugin()
-          ],
        })
        .sourceMaps()
-       .browserSync('plur.test');
+       .browserSync({
+           open: 'external',
+           host: 'plur.test',
+           proxy: 'plur.test',
+           port: 3000
+       })
 }

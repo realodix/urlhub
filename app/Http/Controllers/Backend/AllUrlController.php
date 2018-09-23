@@ -31,7 +31,7 @@ class AllUrlController extends Controller
                     }
                 })
                 ->editColumn('long_url', function ($url) {
-                    return '<a href="'.$url->long_url.'" target="_blank">'.$url->long_url_mod.'</a>';
+                    return '<a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'">'.$url->long_url_mod.'</a>';
                 })
                 ->editColumn('created_at', function ($url) {
                     return
@@ -48,7 +48,7 @@ class AllUrlController extends Controller
                     return
                     '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                         <a role="button" class="btn" href="'.route('short_url.statics', $url->short_url).'" target="_blank" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
-                        <a role="button" class="btn text-danger" href="'.route('admin.allurl.delete', $url->id).'" title="'.__('Delete').'"><i class="fas fa-trash-alt"></i></a>
+                        <a role="button" class="btn" href="'.route('admin.allurl.delete', $url->id).'" title="'.__('Delete').'"><i class="fas fa-trash-alt"></i></a>
                      </div>';
                 })
                 ->rawColumns(['short_url', 'long_url', 'created_at', 'author', 'action'])

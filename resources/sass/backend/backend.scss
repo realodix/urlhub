@@ -4,18 +4,11 @@
 @import "~@coreui/coreui/scss/coreui-standalone";
 @import "~datatables.net-dt/css/jquery.dataTables.css";
 
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
+
 body {
   background: $bg-gray;
-}
-
-.card {
-  border: none;
-  box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
-
-  &-footer {
-      background: hsl(0, 0%, 97%);
-      border-top: none;
-  }
+  font-family: 'Nunito', sans-serif;
 }
 
 .sidebar {
@@ -47,6 +40,33 @@ body {
 
 
 //
+// Bootstrap 4 (overrides)
+//
+.navbar {
+  .navbar-nav {
+    .nav-link {
+      color: #212529;
+    }
+  }
+}
+
+.card {
+  border: none;
+  box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+
+  &-title {
+    font-weight: 700;
+  }
+
+  &-footer {
+      background: #f5f7fa;
+      border-top: none;
+  }
+}
+
+
+
+//
 // DataTables
 //
 .dataTables_wrapper {
@@ -64,9 +84,42 @@ body {
 
   table {
     &.dataTable {
+      thead th {
+        background-color: #f5f7fa;
+        color: #7b858e;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+
       thead th,
       &.no-footer {
         border-color: #dee2e6;
+      }
+
+      tbody {
+        color: #262d37;
+
+        a {
+          color: #262d37;
+        }
+
+        .svg-inline--fa {
+          color: #b3b9bf;
+        }
+
+        .fa-eye:hover {
+          color: $green;
+        }
+
+        .fa-trash-alt:hover {
+          color: $red;
+        }
+
+        .fa-key:hover {
+          color: $orange;
+        }
       }
     }
   }
@@ -93,4 +146,14 @@ body {
   .dataTables_info {
     margin-top: 1.5rem;
   }
+}
+
+
+
+//
+// Form
+//
+.form-error-feedback {
+  color: $red;
+  font-size: 80%;
 }
