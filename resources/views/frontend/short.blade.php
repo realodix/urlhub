@@ -34,14 +34,13 @@
       </div>
       <div class="col-md-9">
         <b>Original URL</b>
-        <div class="long-url"><a href="{{ $long_url_href }}" target="_blank" title="{{ $long_url_href }}">{{ $long_url }}</a></div>
+        <div class="long-url"><a href="{{ $long_url_href }}" target="_blank" title="{{ $long_url_href }}" data-toggle="tooltip">{{ $long_url }}</a></div>
 
         <br>
 
         <b>Short URL</b> <br>
         <span class="short-url"><a href="{{ $short_url_href }}" target="_blank" id="copy">{{ $short_url }}</a></span>
-        <button class="btn btn-outline-success btn-copy ml-3" data-clipboard-text="{{ $short_url_href }}" title="Copy to clipboard">Copy</button>
-        <small class="text-info" id="url-copied"></small>
+        <button class="btn btn-sm btn-outline-success btn-clipboard ml-3" data-clipboard-text="{{ $short_url_href }}" title="Copy to clipboard" data-toggle="tooltip">Copy</button>
 
         <br><br>
 

@@ -29,14 +29,14 @@ class UserController extends Controller
                 })
                 ->editColumn('created_at', function ($user) {
                     return
-                    '<span title="'.$user->created_at.'">'.$user->created_at->diffForHumans().'</span>';
+                    '<span title="'.$user->created_at.'" data-toggle="tooltip">'.$user->created_at->diffForHumans().'</span>';
                 })
                 ->addColumn('action', function ($user) {
                     return
                     '<div class="btn-group" role="group" aria-label="Basic example">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
-                          <a role="button" class="btn" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'"><i class="fas fa-key"></i></a>
+                          <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                          <a role="button" class="btn" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" data-toggle="tooltip"><i class="fas fa-key"></i></a>
                         </div>
                      </div>';
                 })

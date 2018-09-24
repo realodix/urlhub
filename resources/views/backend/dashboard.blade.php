@@ -13,7 +13,7 @@
         </h4>
       </div><!--col-->
       <div class="col-sm-6">
-        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')"><i class="fas fa-plus"></i></a>
+        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" data-toggle="tooltip"><i class="fas fa-plus"></i></a>
       </div><!--col-->
       </div><!--row-->
 
@@ -38,13 +38,13 @@
                 <a href="{{url('/'.$myurl->short_url_custom)}}" target="_blank">{{urlToDomain(url('/'.$myurl->short_url_custom))}}</a>
               @endif
             </td>
-            <td><a href="{{$myurl->long_url}}" target="_blank" title="{{$myurl->long_url}}">{{$myurl->long_url_mod}}</a></td>
+            <td><a href="{{$myurl->long_url}}" target="_blank" title="{{$myurl->long_url}}" data-toggle="tooltip">{{$myurl->long_url_mod}}</a></td>
             <td>{{$myurl->views}}</td>
-            <td><span title="{{$myurl->created_at}}">{{$myurl->created_at->diffForHumans()}}</span></td>
+            <td><span title="{{$myurl->created_at}}" data-toggle="tooltip">{{$myurl->created_at->diffForHumans()}}</span></td>
             <td>
               <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                <a role="button" class="btn" href="{{ route('short_url.statics', $myurl->short_url) }}" target="_blank" title="@lang('Details')"><i class="fa fa-eye"></i></a>
-                <a role="button" class="btn" href="{{ route('admin.delete', $myurl->id) }}" title="@lang('Delete')"><i class="fas fa-trash-alt"></i></a>
+                <a role="button" class="btn" href="{{ route('short_url.statics', $myurl->short_url) }}" target="_blank" title="@lang('Details')" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                <a role="button" class="btn" href="{{ route('admin.delete', $myurl->id) }}" title="@lang('Delete')" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
               </div>
             </td>
           </tr>

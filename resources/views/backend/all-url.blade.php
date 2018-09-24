@@ -13,7 +13,7 @@
         </h4>
       </div><!--col-->
       <div class="col-sm-6">
-        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')"><i class="fas fa-plus"></i></a>
+        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" data-toggle="tooltip"><i class="fas fa-plus"></i></a>
       </div><!--col-->
       </div><!--row-->
 

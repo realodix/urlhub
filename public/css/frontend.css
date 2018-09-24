@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:100,400);/*
+@import url(https://fonts.googleapis.com/css?family=Raleway:100);@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);/*
  * Bootstrap
  */
 /*!
@@ -8525,8 +8525,20 @@ a.text-dark:hover, a.text-dark:focus {
   font-weight: bold;
 }
 
+.navbar-light .navbar-nav {
+  font-weight: 700;
+}
+
 .navbar-light .navbar-nav .nav-link {
   color: #4c94e3;
+}
+
+.navbar-light .navbar-nav .dropdown-item {
+  font-weight: 300;
+}
+
+.navbar-light .navbar-nav .dropdown-item svg {
+  color: #1f6dc4;
 }
 
 .socials-share .btn {
@@ -8579,7 +8591,7 @@ a.text-dark:hover, a.text-dark:focus {
 body {
   background: #fbfcfc;
   color: #313944;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 .home .welcome-msg {
@@ -8633,7 +8645,7 @@ body {
   font-weight: bold;
 }
 
-.view_short .body .btn-copy {
+.view_short .body .btn-clipboard {
   padding: 0 5px;
 }
 

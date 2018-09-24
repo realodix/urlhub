@@ -13898,6 +13898,19 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
+.navbar-brand {
+  font-family: Georgia, serif;
+  font-weight: bold;
+}
+
+.navbar .dropdown-item {
+  font-weight: 300;
+}
+
+.navbar .dropdown-item svg {
+  color: #1f6dc4;
+}
+
 .sidebar .nav-link.active {
   border-left: 4px solid #4c94e3;
 }

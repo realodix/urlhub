@@ -4,12 +4,13 @@
 @import "extend";
 @import "components";
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:100,400');
+@import url('https://fonts.googleapis.com/css?family=Raleway:100');
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 body {
   background: lighten($bg-gray, 4%);
   color: #313944;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 .home {
@@ -70,7 +71,7 @@ body {
       font-weight: bold;
     }
 
-    .btn-copy {
+    .btn-clipboard {
       padding: 0 5px; // Bootstrap 4
     }
   }

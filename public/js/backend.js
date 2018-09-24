@@ -100,6 +100,15 @@ __WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["a" /* dom */].w
 window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 // window._ = _; // Lodash
 
+
+/**
+ * Bootstrap tooltips
+ * https://getbootstrap.com/docs/4.1/components/tooltips/
+ */
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()("body").tooltip({
+  selector: '[data-toggle="tooltip"]'
+});
+
 // /**
 //  * We'll load the axios HTTP library which allows us to easily issue requests
 //  * to our Laravel back-end. This library automatically handles sending the

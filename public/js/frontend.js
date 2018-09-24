@@ -51,6 +51,15 @@ __WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_svg_core__["a" /* dom */].w
 window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 // window._ = _; // Lodash
 
+
+/**
+ * Bootstrap tooltips
+ * https://getbootstrap.com/docs/4.1/components/tooltips/
+ */
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()("body").tooltip({
+  selector: '[data-toggle="tooltip"]'
+});
+
 // /**
 //  * We'll load the axios HTTP library which allows us to easily issue requests
 //  * to our Laravel back-end. This library automatically handles sending the
@@ -108,8 +117,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * https://github.com/zenorocha/clipboard.js
  */
 var ClipboardJS = __webpack_require__("./node_modules/clipboard/dist/clipboard.js");
-new ClipboardJS('.btn-copy').on('success', function () {
-    document.getElementById("url-copied").innerHTML = "Copied!";
+new ClipboardJS('.btn-clipboard').on('success', function () {
+    $('.btn-clipboard').attr('data-original-title', 'Copied!').tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle");
 });
 
 /**
@@ -126,31 +135,30 @@ $(function () {
 
     var twOptions = {
         callback: function callback(value) {
+
+            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading..</span>');
+
             $.ajax({
                 url: "/api/custom-link-avail-check",
                 type: 'POST',
                 data: {
                     'short_url_custom': $('#short_url_custom').val()
                 },
-                dataType: "html"
-            }).done(function (msg) {
-                if (msg == 'unavailable') {
-                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-ban"></i> Already in use</span>');
-                } else if (msg == 'available') {
-                    $('#link-availability-status').html('<span style="color:green"><i class="fa fa-check"></i> Available</span>');
+                dataType: "json"
+            }).done(function (data) {
+                if (data.errors) {
+                    $("#link-availability-status").removeClass("text-info").addClass("text-danger");
+                    document.getElementById("link-availability-status").innerHTML = data.errors[0];
                 } else {
-                    $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again </span>' + msg);
+                    $("#link-availability-status").removeClass("text-danger").addClass("text-info");
+                    document.getElementById("link-availability-status").innerHTML = data.success;
                 }
-            }).fail(function (jqXHR, textStatus) {
-                $('#link-availability-status').html(' <span style="color:red"><i class="fa fa-exclamation-circle"></i> An error occured. Try again </span>' + textStatus);
             });
-
-            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading</span>');
         },
         wait: 500,
+        captureLength: 1,
         highlight: true,
-        allowSubmit: false,
-        captureLength: 1
+        allowSubmit: false
     };
 
     // Add TypeWatch to check when users type

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Url;
+use App\Http\Requests;
 use Facades\App\Helpers\UrlHlp;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Validator;
 
 class GeneralUrlController extends Controller
 {
@@ -48,16 +50,16 @@ class GeneralUrlController extends Controller
         return redirect()->away($url->long_url, 301);
     }
 
-    public function checkCustomLinkAvailability()
+    public function checkCustomLinkAvailability(Request $request)
     {
-        $short_url_custom = Input::get('short_url_custom');
+        $validator = Validator::make($request->all(), [
+            'short_url_custom'  => 'nullable|max:20|alpha_dash|unique:urls',
+        ]);
 
-        $link = Url::where('short_url_custom', $short_url_custom)->first();
-
-        if ($link) {
-            return 'unavailable';
-        } else {
-            return 'available';
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()->all()]);
         }
+
+        return response()->json(['success'=>'Available']);
     }
 }

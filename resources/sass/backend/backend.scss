@@ -11,6 +11,21 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
+.navbar {
+  &-brand {
+    font-family: Georgia, serif;
+    font-weight: bold;
+  }
+
+  .dropdown-item {
+    font-weight: 300;
+
+    svg {
+      color: darken($primary, 15%);
+    }
+  }
+}
+
 .sidebar {
   .nav-link {
     &.active {

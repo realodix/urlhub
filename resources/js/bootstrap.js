@@ -8,6 +8,7 @@ import $ from 'jquery';
 import 'popper.js/dist/umd/popper'; // Required for BS4
 import 'bootstrap';
 
+
 /**
  * Font Awesome >=5.1
  *
@@ -26,6 +27,8 @@ library.add(fab, far, fas);
 // Kicks off the process of finding <i> tags and replacing with <svg>
 dom.watch();
 
+
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -34,6 +37,18 @@ dom.watch();
 
 window.$ = window.jQuery = $;
 // window._ = _; // Lodash
+
+
+
+/**
+ * Bootstrap tooltips
+ * https://getbootstrap.com/docs/4.1/components/tooltips/
+ */
+$("body").tooltip({
+    selector: '[data-toggle="tooltip"]'
+});
+
+
 
 // /**
 //  * We'll load the axios HTTP library which allows us to easily issue requests
