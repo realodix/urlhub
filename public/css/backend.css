@@ -8961,7 +8961,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 /*!
  * CoreUI - Open Source Dashboard UI Kit
- * @version v2.0.6
+ * @version v2.0.10
  * @link https://coreui.io
  * Copyright (c) 2018 creativeLabs Łukasz Holeczek
  * Licensed under MIT (https://coreui.io/license)
@@ -11760,6 +11760,16 @@ canvas {
   .sidebar-minimized .sidebar .sidebar-header {
     display: none;
   }
+  .sidebar-minimized .sidebar .sidebar-minimizer {
+    position: fixed;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #e0e4ea;
+  }
+  .sidebar-minimized .sidebar .sidebar-nav {
+    padding-bottom: 50px;
+  }
   .sidebar-minimized .sidebar .sidebar-minimizer::before {
     width: 100%;
     transform: rotate(-180deg);
@@ -13184,6 +13194,7 @@ html[dir="rtl"] .aside-menu-show .aside-menu {
   }
   .app-header .navbar-brand {
     position: absolute;
+    top: 0;
     left: 50%;
     margin-left: -77.5px;
   }
@@ -13916,15 +13927,15 @@ body {
 }
 
 .sidebar .nav-link.active {
-  border-left: 4px solid #3B5998;
+  border-left: 4px solid #4c94e3;
 }
 
 .sidebar .nav-dropdown.open .nav-link {
-  border-left: 4px solid #3B5998;
+  border-left: 4px solid #4c94e3;
 }
 
 .sidebar .nav-dropdown .nav-link.active {
-  border-left: 4px solid #3B5998;
+  border-left: 4px solid #4c94e3;
 }
 
 .sidebar .nav-dropdown .nav-link:hover {

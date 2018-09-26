@@ -8607,7 +8607,7 @@ a.text-dark:hover, a.text-dark:focus {
   color: #4c94e3;
   background: none;
   border: none;
-  border-bottom: 4px solid #42476f;
+  border-bottom: 4px solid #0073aa;
 }
 
 .home form .original-url input:focus {
@@ -8616,11 +8616,11 @@ a.text-dark:hover, a.text-dark:focus {
 
 .home form button {
   color: #fff;
-  background: #42476f;
+  background: #0073aa;
 }
 
 .home form button:hover {
-  background: #2f334f;
+  background: #005177;
 }
 
 .home form button:focus {
