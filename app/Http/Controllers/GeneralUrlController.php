@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Url;
 use App\Http\Requests;
+use App\Url;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

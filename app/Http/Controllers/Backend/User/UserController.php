@@ -30,7 +30,7 @@ class UserController extends Controller
             ->editColumn('created_at', function ($user) {
                 return [
                     'display'   => '<span title="'.$user->created_at->toDayDateTimeString().'" data-toggle="tooltip" style="cursor: default;">'.$user->created_at->diffForHumans().'</span>',
-                    'timestamp' => $user->created_at->timestamp
+                    'timestamp' => $user->created_at->timestamp,
                 ];
             })
             ->addColumn('action', function ($user) {
