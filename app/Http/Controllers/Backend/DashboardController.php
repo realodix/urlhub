@@ -35,7 +35,7 @@ class DashboardController extends Controller
             ->editColumn('created_at', function ($url) {
                 return [
                     'display'   => '<span title="'.$url->created_at->toDayDateTimeString().'" data-toggle="tooltip" style="cursor: default;">'.$url->created_at->diffForHumans().'</span>',
-                    'timestamp' => $url->created_at->timestamp
+                    'timestamp' => $url->created_at->timestamp,
                 ];
             })
             ->addColumn('action', function ($url) {
