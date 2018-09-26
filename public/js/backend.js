@@ -30,12 +30,29 @@ $(document).ready(function () {
         serverSide: true,
         stateSave: true,
         ajax: '/api/allurl/getdata',
-        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, { data: 'author' }, { data: 'created_at' }, { data: 'action' }]
+        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, { data: 'author' }, {
+            data: 'created_at',
+            type: 'num',
+            render: {
+                _: 'display',
+                sort: 'timestamp'
+            }
+        }, { data: 'action' }]
     });
 
     $('#dt-myUrls').DataTable({
-        order: [3, 'dsc'],
-        stateSave: true
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        ajax: '/api/myurl/getdata',
+        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, {
+            data: 'created_at',
+            type: 'num',
+            render: {
+                _: 'display',
+                sort: 'timestamp'
+            }
+        }, { data: 'action' }]
     });
 
     $('#dt-Users').DataTable({
@@ -43,7 +60,14 @@ $(document).ready(function () {
         serverSide: true,
         stateSave: true,
         ajax: '/api/user/getdata',
-        columns: [{ data: 'name' }, { data: 'email' }, { data: 'created_at' }, { data: 'action' }]
+        columns: [{ data: 'name' }, { data: 'email' }, {
+            data: 'created_at',
+            type: 'num',
+            render: {
+                _: 'display',
+                sort: 'timestamp'
+            }
+        }, { data: 'action' }]
     });
 });
 

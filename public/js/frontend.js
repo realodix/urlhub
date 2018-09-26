@@ -135,9 +135,6 @@ $(function () {
 
     var twOptions = {
         callback: function callback(value) {
-
-            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading..</span>');
-
             $.ajax({
                 url: "/api/custom-link-avail-check",
                 type: 'POST',
@@ -147,13 +144,17 @@ $(function () {
                 dataType: "json"
             }).done(function (data) {
                 if (data.errors) {
-                    $("#link-availability-status").removeClass("text-info").addClass("text-danger");
+                    $("#link-availability-status").removeClass("text-success").addClass("text-danger");
                     document.getElementById("link-availability-status").innerHTML = data.errors[0];
                 } else {
-                    $("#link-availability-status").removeClass("text-danger").addClass("text-info");
+                    $("#link-availability-status").removeClass("text-danger").addClass("text-success");
                     document.getElementById("link-availability-status").innerHTML = data.success;
                 }
+            }).fail(function (jqXHR, textStatus) {
+                document.getElementById("link-availability-status").innerHTML = "Hmm. We're having trouble connecting to the server.";
             });
+
+            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading..</span>');
         },
         wait: 500,
         captureLength: 1,

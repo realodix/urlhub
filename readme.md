@@ -16,39 +16,48 @@ Plur is a open-source link shortening web application. It allows you to host you
 
 
 ## Quick Start
-1. Run `composer install`
+### Installation Instructions
+1. Run `composer install`.
 
-2. Rename `.env.example` file to `.env`
+2. Rename `.env.example` file to `.env` or run `cp .env.example .env`.
 
    Update `.env` to your specific needs. Don't forget to set `DB_USERNAME` and `DB_PASSWORD` with the settings used behind.
 
-3. Run `php artisan key:generate`
+3. Run `php artisan key:generate`.
 
-4. Run `php artisan migrate --seed`
+4. Run `php artisan migrate --seed`.
 
 5. Run `php artisan serve`.
 
-   After installed and you can access http://localhost:8000 in your browser.
+   After installed, you can access http://localhost:8000 in your browser.
 
 6. Login
 
-   **E-Mail**: admin@plur.test | **Password**: admin <br>
-   **E-Mail**: user@plur.test | **Password**: user
+   | Email           | Username | Password | Access       |
+   |-----------------|----------|----------|--------------|
+   | admin@plur.test | admin    | admin    | Admin Access |
+   | user@plur.test  | user     | user     | User Access  |
+
+### Build the Front End Assets with Mix
+#### Using NPM:
+1. From the projects root folder run `npm install`
+2. From the projects root folder run `npm run dev` or `npm run production`
+  * You can watch assets with `npm run watch`
+
+#### Using Yarn:
+1. From the projects root folder run `yarn install`
+2. From the projects root folder run `yarn run dev` or `yarn run production`
+  * You can watch assets with `yarn run watch`
 
 
 ## Contributing
 If you would like to contribute enhancements or fixes, please do the following:
 
-1. Fork the repository
-2. Hack on a separate topic branch created from the latest `master`
-3. Commit and push the topic branch
-4. Make a pull request
+1. Fork the repository.
+2. Hack on a separate topic branch created from the latest `master`.
+3. Commit and push the topic branch.
+4. Make a pull request.
 5. Welcome to the club :sunglasses: and thank you for helping out!
-
-
-## To Do's
-- [ ] URL shortener on admin dashboard.
-- [x] Realtime check for available custom shortlink
 
 
 ## License

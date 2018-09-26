@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Change Password'))
+@section('title', title_case(Auth::user()->name) .' ‹ '. __('Change Password'))
 
 @section('content')
 @if (session('error'))
@@ -20,14 +20,10 @@
     {{ html()->form('POST', route('user.change-password.post', Auth::user()->name))->class('form-horizontal')->open() }}
     <div class="card">
       <div class="card-body">
-        <div class="row">
-        <div class="col-sm-6">
-          <h4 class="card-title mb-0">
-            User
-            <small class="text-muted">@lang('Change Password')</small>
-          </h4>
-        </div><!--col-->
-        </div><!--row-->
+        <h4 class="card-title mb-0">
+          Account Management
+          <small class="text-muted">@lang('Change Password')</small>
+        </h4>
 
         <hr />
 

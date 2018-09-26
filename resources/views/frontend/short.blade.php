@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('css_class', 'view_short')
+@section('css_class', 'frontend view_short')
 
 @section('content')
 <div class="container">

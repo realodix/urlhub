@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Edit Profile'))
+@section('title', title_case(Auth::user()->name) .' ‹ '. __('Edit Profile'))
 
 @section('content')
 @if (session('error'))
@@ -20,28 +20,21 @@
     {{ html()->form('POST', route('user.update', Auth::user()->name))->class('form-horizontal')->open() }}
     <div class="card">
       <div class="card-body">
-        <div class="row">
-        <div class="col-sm-6">
-          <h4 class="card-title mb-0">
-            Profile
-            <small class="text-muted">Edit</small>
-          </h4>
-        </div><!--col-->
-        </div><!--row-->
+        <h4 class="card-title mb-0">
+          Profile
+          <small class="text-muted">Edit</small>
+        </h4>
 
         <hr />
 
         <div class="row mt-4 mb-4">
         <div class="col">
           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
-            <label for="name" class="col-sm-3 col-form-label">@lang('Name')</label>
+            <label for="name" class="col-sm-3 col-form-label">@lang('Username')</label>
 
             <div class="col">
-              @role('admin')
-                <input value="{{$name}}" id="name" type="text" class="form-control" name="name">
-              @else
-                <input value="{{$name}}" id="name" type="text" class="form-control" name="name" disabled>
-              @endrole
+              <input value="{{$name}}" id="name" type="text" class="form-control" name="name" disabled>
+              <small class="text-muted"><i>Usernames cannot be changed.</i></small>
 
               @if ($errors->has('name'))
               <span class="help-block">

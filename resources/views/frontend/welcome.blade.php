@@ -1,5 +1,7 @@
 @extends('layouts.frontend')
 
+@section('css_class', 'frontend home')
+
 @section('content')
 <div class="container home pt-5">
   <div class="row justify-content-md-center">
@@ -9,10 +11,10 @@
   <div class="row mt-5 justify-content-md-center">
     <div class="col-lg-7">
       {{ html()->form('POST', route('createshortlink'))->class('mt-5')->id('formUrl')->open() }}
-        <div class="input-group input-group-lg">
+        <div class="input-group input-group-lg original-url">
           <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
           <div class="input-group-append">
-            <button class="btn btn-primary" type="submit" id="actProcess">Shorten</button>
+            <button class="btn" type="submit" id="actProcess">Shorten</button>
           </div>
         </div>
 

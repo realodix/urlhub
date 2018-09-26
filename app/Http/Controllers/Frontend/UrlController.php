@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Url;
-use Carbon\Carbon;
 
 class UrlController extends Controller
 {
@@ -31,7 +30,7 @@ class UrlController extends Controller
             'short_url_href'    => url('/', $blabla),
             'qrCodeData'        => $qrCode->getContentType(),
             'qrCodebase64'      => $qrCode->generate(),
-            'created_at'        => Carbon::parse($url->created_at)->toDayDateTimeString(),
+            'created_at'        => $url->created_at->toDayDateTimeString(),
         ]);
     }
 }

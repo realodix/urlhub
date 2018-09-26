@@ -11,6 +11,10 @@ class ProfileController extends Controller
 {
     public function view($user)
     {
+        if ((Auth::user()->name != $user) && Auth::user()->hasRole('admin') == false) {
+            return abort(403);
+        }
+
         $user = User::where('name', $user)->first();
 
         return view('backend.user.profile', [

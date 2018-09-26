@@ -14,6 +14,7 @@
 Route::post('/custom-link-avail-check', 'GeneralUrlController@checkCustomLinkAvailability');
 
 Route::namespace('Backend')->middleware('auth:api')->group(function () {
+    Route::get('myurl/getdata', 'DashboardController@getData');
     Route::get('allurl/getdata', 'AllUrlController@getData');
     Route::get('user/getdata', 'User\UserController@getData');
 });

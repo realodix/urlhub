@@ -11,21 +11,35 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
+
+//
+// Navbar
+//
 .navbar {
   &-brand {
     font-family: Georgia, serif;
     font-weight: bold;
   }
 
-  .dropdown-item {
-    font-weight: 300;
+  .navbar-nav {
+    .nav-link {
+      color: #212529;
+    }
 
-    svg {
-      color: darken($primary, 15%);
+    .dropdown-item {
+      font-weight: 300;
+
+      svg {
+        color: $primary;
+      }
     }
   }
 }
 
+
+//
+// Sidebar
+//
 .sidebar {
   .nav-link {
     &.active {
@@ -53,18 +67,9 @@ body {
 }
 
 
-
 //
-// Bootstrap 4 (overrides)
+// Card
 //
-.navbar {
-  .navbar-nav {
-    .nav-link {
-      color: #212529;
-    }
-  }
-}
-
 .card {
   border: none;
   box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
@@ -78,7 +83,6 @@ body {
       border-top: none;
   }
 }
-
 
 
 //
@@ -124,7 +128,8 @@ body {
           color: #b3b9bf;
         }
 
-        .fa-eye:hover {
+        .fa-eye:hover,
+        .fa-user-edit:hover {
           color: $green;
         }
 
@@ -162,7 +167,6 @@ body {
     margin-top: 1.5rem;
   }
 }
-
 
 
 //

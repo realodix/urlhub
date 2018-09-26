@@ -6,7 +6,9 @@ import './bootstrap';
  */
 var ClipboardJS = require('clipboard');
 new ClipboardJS('.btn-clipboard').on('success', function() {
-    $('.btn-clipboard').attr('data-original-title','Copied!').tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle");
+    $('.btn-clipboard')
+        .attr('data-original-title','Copied!').tooltip("_fixTitle").tooltip("show")
+        .attr("title", "Copy to clipboard").tooltip("_fixTitle");
 });
 
 
@@ -25,9 +27,6 @@ $(function() {
 
     var twOptions = {
         callback: function (value) {
-
-            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading..</span>');
-
             $.ajax({
                 url: "/api/custom-link-avail-check",
                 type: 'POST',
@@ -39,16 +38,20 @@ $(function() {
             .done(function(data) {
                 if (data.errors) {
                     $("#link-availability-status")
-                        .removeClass("text-info")
+                        .removeClass("text-success")
                         .addClass("text-danger");
                     document.getElementById("link-availability-status").innerHTML = data.errors[0];
                 } else {
                     $("#link-availability-status")
                         .removeClass("text-danger")
-                        .addClass("text-info");
+                        .addClass("text-success");
                     document.getElementById("link-availability-status").innerHTML = data.success;
                 }
+            }).fail(function (jqXHR, textStatus) {
+                document.getElementById("link-availability-status").innerHTML = "Hmm. We're having trouble connecting to the server.";
             });
+
+            $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading..</span>');
         },
         wait: 500,
         captureLength: 1,

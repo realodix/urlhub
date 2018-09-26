@@ -23,14 +23,37 @@ $(document).ready(function() {
             {data: 'long_url'},
             {data: 'views'},
             {data: 'author'},
-            {data: 'created_at'},
+            {
+                data: 'created_at',
+                type: 'num',
+                render: {
+                    _: 'display',
+                    sort: 'timestamp'
+                }
+            },
             {data: 'action'},
         ]
     } );
 
     $('#dt-myUrls').DataTable( {
-        order: [ 3, 'dsc' ],
+        processing: true,
+        serverSide: true,
         stateSave: true,
+        ajax: '/api/myurl/getdata',
+        columns: [
+            {data: 'short_url'},
+            {data: 'long_url'},
+            {data: 'views'},
+            {
+                data: 'created_at',
+                type: 'num',
+                render: {
+                    _: 'display',
+                    sort: 'timestamp'
+                }
+            },
+            {data: 'action'},
+        ]
     } );
 
     $('#dt-Users').DataTable( {
@@ -41,7 +64,14 @@ $(document).ready(function() {
         columns: [
             {data: 'name'},
             {data: 'email'},
-            {data: 'created_at'},
+            {
+                data: 'created_at',
+                type: 'num',
+                render: {
+                    _: 'display',
+                    sort: 'timestamp'
+                }
+            },
             {data: 'action'},
         ]
     } );

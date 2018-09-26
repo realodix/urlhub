@@ -7,12 +7,16 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100');
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
-body {
-  background: lighten($bg-gray, 4%);
+.frontend {
   color: #313944;
+  background: #f9fbfd;
   font-family: 'Nunito', sans-serif;
 }
 
+
+//
+// Home page
+//
 .home {
   .welcome-msg {
     font-family: 'Raleway', sans-serif;
@@ -20,26 +24,69 @@ body {
     font-weight: 100;
   }
 
-  .custom-url {
-    .title {
-      font-weight: lighter;
+
+  form {
+    .original-url {
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+
+      input {
+        color: #4c94e3;
+        background: none;
+        border: none;
+        border-bottom: 4px solid #42476f;;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
     }
 
-    .site-url {
-      display: inline;
-      font-size: 25px;
+    button {
+      color: #fff;
+      background: #42476f;
+
+      &:hover {
+        background: darken(#42476f, 10%);
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
     }
 
-    .url-field {
-      font-size: 1.5rem;
-      height: calc(2rem + 2px);
-      padding: 0 0.5rem;
-      display: inline;
-      max-width: 200px;
+    .custom-url {
+      .title {
+        font-weight: lighter;
+      }
+
+      .site-url {
+        display: inline;
+        font-size: 25px;
+      }
+
+      .url-field {
+        color: $orange;
+        font-size: 1.5rem;
+        height: calc(2rem + 2px);
+        padding: 0 0.5rem;
+        display: inline;
+        max-width: 200px;
+        background: none;
+        border: none;
+        border-bottom: 4px solid $orange;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
     }
   }
 }
 
+
+//
+// URL Detail
+//
 .view_short {
   background-color: #f5f7fa;
 
@@ -78,7 +125,9 @@ body {
 }
 
 
-
+//
+// Login & Register
+//
 .auth {
   background: $bg-gray;
 
