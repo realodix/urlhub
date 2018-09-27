@@ -21,7 +21,7 @@ class Url extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function getLongUrlModAttribute()
+    public function getLongUrlLimitAttribute()
     {
         return urlToDomain(url_limit($this->long_url));
     }

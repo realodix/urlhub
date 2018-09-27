@@ -19,7 +19,6 @@
     <div class="card-body">
       <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
       @csrf
-
         <div class="form-group row">
           @if (Request::has('previous'))
             <input type="hidden" name="previous" value="{{ Request::get('previous') }}">
@@ -73,7 +72,7 @@
             </button>
 
             <a class="btn btn-link" href="{{ route('password.request') }}">
-              {{ __('Forgot Your Password?') }}
+              {{ __('Forgot Password?') }}
             </a>
           </div>
         </div>

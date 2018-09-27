@@ -30,7 +30,7 @@ class DashboardController extends Controller
                 }
             })
             ->editColumn('long_url', function ($url) {
-                return '<a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip">'.$url->long_url_mod.'</a>';
+                return '<a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip">'.$url->long_url_limit.'</a>';
             })
             ->editColumn('created_at', function ($url) {
                 return [

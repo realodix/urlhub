@@ -38,16 +38,16 @@ Plur is a open-source link shortening web application. It allows you to host you
    | admin@plur.test | admin    | admin    | Admin Access |
    | user@plur.test  | user     | user     | User Access  |
 
-### Build the Front End Assets with Mix
+### Compiling assets with Laravel Mix
 #### Using NPM:
 1. From the projects root folder run `npm install`
-2. From the projects root folder run `npm run dev` or `npm run production`
-  * You can watch assets with `npm run watch`
+2. Run `npm run dev` or `npm run prod`
+  * *You can watch assets with `npm run watch`*
 
 #### Using Yarn:
 1. From the projects root folder run `yarn install`
-2. From the projects root folder run `yarn run dev` or `yarn run production`
-  * You can watch assets with `yarn run watch`
+2. Run `yarn run dev` or `yarn run prod`
+  * *You can watch assets with `yarn run watch`*
 
 
 ## Contributing
@@ -61,4 +61,4 @@ If you would like to contribute enhancements or fixes, please do the following:
 
 
 ## License
-The Plur is open-sourced software licensed under the [MIT license](https://github.com/realodix/plur/blob/master/LICENSE).
+Plur is an open-sourced software licensed under the [MIT license](https://github.com/realodix/plur/blob/master/LICENSE).

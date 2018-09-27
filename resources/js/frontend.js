@@ -1,10 +1,11 @@
 import './bootstrap';
 
 /**
- * ClipboardJS
- * https://github.com/zenorocha/clipboard.js
+ * Copy long url to clipboard
  */
+// https://github.com/zenorocha/clipboard.js
 var ClipboardJS = require('clipboard');
+
 new ClipboardJS('.btn-clipboard').on('success', function() {
     $('.btn-clipboard')
         .attr('data-original-title','Copied!').tooltip("_fixTitle").tooltip("show")
@@ -14,10 +15,11 @@ new ClipboardJS('.btn-clipboard').on('success', function() {
 
 
 /**
- * TypeWatch
- * https://github.com/dennyferra/TypeWatch
+ * Custom link Avail Check
  */
+// https://github.com/dennyferra/TypeWatch
 import 'jquery.typewatch';
+
 $(function() {
     $.ajaxSetup({
         headers: {

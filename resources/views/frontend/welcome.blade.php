@@ -10,7 +10,8 @@
 
   <div class="row mt-5 justify-content-md-center">
     <div class="col-lg-7">
-      {{ html()->form('POST', route('createshortlink'))->class('mt-5')->id('formUrl')->open() }}
+      <form method="post" action="{{route('createshortlink')}}" class="mt-5" id="formUrl">
+      @csrf
         <div class="input-group input-group-lg original-url">
           <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
           <div class="input-group-append">
@@ -24,7 +25,7 @@
           <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
           <input class="form-control form-control-sm url-field" id="short_url_custom" name="short_url_custom">
         </div>
-      {{ html()->form()->close() }}
+      </form>
 
       <small id="link-availability-status"></small>
 

@@ -120,8 +120,14 @@ body {
       tbody {
         color: #262d37;
 
+        // Short & Long URL column
         a {
           color: #262d37;
+        }
+
+        // Actions collumn
+        .btn:focus {
+          box-shadow: none;
         }
 
         .svg-inline--fa {

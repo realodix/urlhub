@@ -113,18 +113,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /**
- * ClipboardJS
- * https://github.com/zenorocha/clipboard.js
+ * Copy long url to clipboard
  */
+// https://github.com/zenorocha/clipboard.js
 var ClipboardJS = __webpack_require__("./node_modules/clipboard/dist/clipboard.js");
+
 new ClipboardJS('.btn-clipboard').on('success', function () {
     $('.btn-clipboard').attr('data-original-title', 'Copied!').tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle");
 });
 
 /**
- * TypeWatch
- * https://github.com/dennyferra/TypeWatch
+ * Custom link Avail Check
  */
+// https://github.com/dennyferra/TypeWatch
+
 
 $(function () {
     $.ajaxSetup({

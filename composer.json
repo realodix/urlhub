@@ -13,7 +13,6 @@
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-html": "^2.19",
         "spatie/laravel-permission": "^2.17",
         "yajra/laravel-datatables-oracle": "~8.0"
     },

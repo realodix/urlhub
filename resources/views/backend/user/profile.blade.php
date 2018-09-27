@@ -17,61 +17,62 @@
 
 <div class="row">
   <div class="col-xl-6">
-    {{ html()->form('POST', route('user.update', Auth::user()->name))->class('form-horizontal')->open() }}
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title mb-0">
-          Profile
-          <small class="text-muted">Edit</small>
-        </h4>
+    <form method="post" action="{{route('user.update', Auth::user()->name)}}" class="form-horizontal">
+    @csrf
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-0">
+            Profile
+            <small class="text-muted">Edit</small>
+          </h4>
 
-        <hr />
+          <hr />
 
-        <div class="row mt-4 mb-4">
-        <div class="col">
-          <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
-            <label for="name" class="col-sm-3 col-form-label">@lang('Username')</label>
+          <div class="row mt-4 mb-4">
+          <div class="col">
+            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
+              <label for="name" class="col-sm-3 col-form-label">@lang('Username')</label>
 
-            <div class="col">
-              <input value="{{$name}}" id="name" type="text" class="form-control" name="name" disabled>
-              <small class="text-muted"><i>Usernames cannot be changed.</i></small>
+              <div class="col">
+                <input value="{{$name}}" id="name" type="text" class="form-control" name="name" disabled>
+                <small class="text-muted"><i>Usernames cannot be changed.</i></small>
 
-              @if ($errors->has('name'))
-              <span class="help-block">
-                <strong>{{ $errors->first('name') }}</strong>
-              </span>
-              @endif
+                @if ($errors->has('name'))
+                <span class="help-block">
+                  <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                @endif
+              </div>
             </div>
-          </div>
 
-          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} row">
-            <label for="email" class="col-sm-3 col-form-label">@lang('E-mail Address')</label>
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} row">
+              <label for="email" class="col-sm-3 col-form-label">@lang('E-mail Address')</label>
 
-            <div class="col">
-              <input value="{{$email}}" id="email" type="email" class="form-control" name="email">
+              <div class="col">
+                <input value="{{$email}}" id="email" type="email" class="form-control" name="email">
 
-              @if ($errors->has('email'))
-              <span class="help-block">
-                <strong>{{ $errors->first('email') }}</strong>
-              </span>
-              @endif
+                @if ($errors->has('email'))
+                <span class="help-block">
+                  <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
+              </div>
             </div>
-          </div>
-        </div><!--col-->
-        </div><!--row-->
-      </div><!--card-body-->
-
-      <div class="card-footer">
-        <div class="row">
-          <div class="col text-right">
-            <button type="submit" class="btn btn-primary">
-              Save
-            </button>
+          </div><!--col-->
           </div><!--row-->
-        </div><!--row-->
-      </div><!--card-footer-->
-    </div><!--card-->
-    {{ html()->form()->close() }}
+        </div><!--card-body-->
+
+        <div class="card-footer">
+          <div class="row">
+            <div class="col text-right">
+              <button type="submit" class="btn btn-primary">
+                Save
+              </button>
+            </div><!--row-->
+          </div><!--row-->
+        </div><!--card-footer-->
+      </div><!--card-->
+    </form>
   </div>
 </div>
 @endsection

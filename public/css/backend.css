@@ -13985,6 +13985,10 @@ body {
   color: #262d37;
 }
 
+.dataTables_wrapper table.dataTable tbody .btn:focus {
+  box-shadow: none;
+}
+
 .dataTables_wrapper table.dataTable tbody .svg-inline--fa {
   color: #b3b9bf;
 }
