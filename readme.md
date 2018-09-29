@@ -45,9 +45,9 @@ Plur is a open-source link shortening web application. It allows you to host you
   * *You can watch assets with `npm run watch`*
 
 #### Using Yarn:
-1. From the projects root folder run `yarn install`
-2. Run `yarn run dev` or `yarn run prod`
-  * *You can watch assets with `yarn run watch`*
+1. From the projects root folder run `yarn`
+2. Run `yarn dev` or `yarn prod`
+  * *You can watch assets with `yarn watch`*
 
 
 ## Contributing

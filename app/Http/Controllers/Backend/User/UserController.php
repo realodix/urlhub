@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware('role:admin')->only('index');
     }
 
     public function index()
@@ -44,5 +46,34 @@ class UserController extends Controller
             })
             ->rawColumns(['name', 'created_at.display', 'action'])
             ->toJson();
+    }
+
+    public function edit($user)
+    {
+        if ((Auth::user()->name != $user) && Auth::user()->hasRole('admin') == false) {
+            return abort(403);
+        }
+
+        $user = User::where('name', $user)->first();
+
+        return view('backend.user.profile', [
+            'name'  => $user->name,
+            'email' => $user->email,
+        ]);
+    }
+
+    public function update(Request $request, $user)
+    {
+        $user = User::where('name', $user)->first();
+
+        $user->email = $request->get('email');
+
+        $validatedData = $request->validate([
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profile updated.');
     }
 }
