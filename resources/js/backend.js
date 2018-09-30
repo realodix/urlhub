@@ -33,7 +33,8 @@ $(document).ready(function() {
             },
             {data: 'action'},
         ]
-    } );
+    } )
+    .order([4, 'desc']).draw();
 
     $('#dt-myUrls').DataTable( {
         processing: true,
@@ -54,7 +55,8 @@ $(document).ready(function() {
             },
             {data: 'action'},
         ]
-    } );
+    } )
+    .order([3, 'desc']).draw();
 
     $('#dt-Users').DataTable( {
         processing: true,
@@ -74,5 +76,6 @@ $(document).ready(function() {
             },
             {data: 'action'},
         ]
-    } );
+    } )
+    .order([2, 'desc']).draw();
 } );

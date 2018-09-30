@@ -135,4 +135,14 @@
     border: none;
     box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
   }
+
+  .form-control {
+    background: #f1f3f4;
+    border-color: #f1f3f4;
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 2px solid $green;
+    }
+  }
 }

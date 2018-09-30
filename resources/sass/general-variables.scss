@@ -1,4 +1,4 @@
-$bg-gray: #eff1f4;
+$bg-gray: #f8f9fa;
 
 /*
  * Bootstrap
@@ -18,4 +18,5 @@ $dropdown-link-color:       #333 !default;
 $dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
 
 // Cards
+$card-cap-bg:         none;
 $card-border-radius:  0.625rem;

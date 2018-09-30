@@ -11,15 +11,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // return view('backend.dashboard', [
-        //     'myurls'    => Url::where('user_id', Auth::id())->get(),
-        // ]);
         return view('backend.dashboard');
     }
 
     public function getData()
     {
-        $model = Url::query();
+        $model = Url::where('user_id', 2);
 
         return DataTables::of($model)
             ->editColumn('short_url', function ($url) {

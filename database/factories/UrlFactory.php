@@ -20,7 +20,7 @@ $factory->define(App\Url::class, function (Faker $faker) {
         'long_url_title'    => $faker->numerify('URL Title ###'),
         'short_url'         => $faker->regexify('[a-zA-Z0-9]{6}'),
         'short_url_custom'  => 0,
-        'views'             => 0,
+        'views'             => $faker->biasedNumberBetween($min = 0, $max = 1000, $function = 'sqrt'),
         'ip'                => $faker->localIpv4,
     ];
 });

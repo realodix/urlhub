@@ -4157,7 +4157,7 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -4171,7 +4171,7 @@ input[type="button"].btn-block {
 
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: none;
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -8685,12 +8685,22 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .auth {
-  background: #eff1f4;
+  background: #f8f9fa;
 }
 
 .auth .card {
   border: none;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.auth .form-control {
+  background: #f1f3f4;
+  border-color: #f1f3f4;
+}
+
+.auth .form-control:focus {
+  box-shadow: none;
+  border-bottom: 2px solid #1c9963;
 }
 
 /*# sourceMappingURL=frontend.css.map*/

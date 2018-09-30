@@ -17,7 +17,7 @@
 
 <div class="row">
   <div class="col-xl-6">
-    <form method="post" action="{{route('user.change-password.post', Auth::user()->name)}}" class="form-horizontal">
+    <form method="post" action="{{route('user.change-password.post', $name)}}" class="form-horizontal">
     @csrf
       <div class="card">
         <div class="card-body">
@@ -59,19 +59,17 @@
                 <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
               </div>
             </div>
+
+            <div class="row">
+              <div class="col text-right">
+                <button type="submit" class="btn btn-primary">
+                  @lang('Change Password')
+                </button>
+              </div>
+            </div>
           </div><!--col-->
           </div><!--row-->
         </div><!--card-body-->
-
-        <div class="card-footer">
-          <div class="row">
-            <div class="col text-right">
-              <button type="submit" class="btn btn-primary">
-                @lang('Change Password')
-              </button>
-            </div><!--row-->
-          </div><!--row-->
-        </div><!--card-footer-->
       </div><!--card-->
     </form>
   </div>

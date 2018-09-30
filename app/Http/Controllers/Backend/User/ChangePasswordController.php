@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,11 @@ class ChangePasswordController extends Controller
             return abort(403);
         }
 
-        return view('backend.user.changepassword');
+        $user = User::where('name', $user)->first();
+
+        return view('backend.user.changepassword', [
+            'name'  => $user->name,
+        ]);
     }
 
     public function update(Request $request)
