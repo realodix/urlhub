@@ -16,7 +16,7 @@ class DashboardController extends Controller
 
     public function getData()
     {
-        $model = Url::where('user_id', 2);
+        $model = Url::where('user_id', Auth::id());
 
         return DataTables::of($model)
             ->editColumn('short_url', function ($url) {
