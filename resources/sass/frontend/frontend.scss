@@ -9,7 +9,6 @@
 
 .frontend {
   color: #313944;
-  background: #f9fbfd;
   font-family: 'Nunito', sans-serif;
 }
 
@@ -27,13 +26,14 @@
 
   form {
     .original-url {
-      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
+                  rgba(60, 64, 67, .15) 0 1px 3px 1px;
+      border-radius: 0.3rem;
 
       input {
-        color: #4c94e3;
-        background: none;
+        color: $primary;
+        background: #f1f3f4;
         border: none;
-        border-bottom: 4px solid #0073aa;
 
         &:focus {
           box-shadow: none;
@@ -43,10 +43,10 @@
 
     button {
       color: #fff;
-      background: #0073aa;
+      background: $primary;
 
       &:hover {
-        background: darken(#0073aa, 10%);
+        background: darken($primary, 10%);
       }
 
       &:focus {
@@ -133,16 +133,26 @@
 
   .card {
     border: none;
-    box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
+                rgba(60, 64, 67, .15) 0 1px 3px 1px;
   }
 
   .form-control {
     background: #f1f3f4;
     border-color: #f1f3f4;
 
+    &:hover {
+      background: rgb(232, 234, 237);
+    }
+
     &:focus {
       box-shadow: none;
       border-bottom: 2px solid $green;
     }
+  }
+
+  .input-group-text {
+    background: #f1f3f4;
+    border: none;
   }
 }

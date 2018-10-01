@@ -20,6 +20,6 @@ Breadcrumbs::for('user.edit', function ($trail, $user) {
 });
 
 Breadcrumbs::for('user.change-password', function ($trail, $user) {
-    $trail->parent('user.index');
+    $trail->parent('user.edit', $user);
     $trail->push(__('Change Password'), route('user.change-password', $user));
 });

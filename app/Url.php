@@ -23,6 +23,6 @@ class Url extends Model
 
     public function getLongUrlLimitAttribute()
     {
-        return urlToDomain(url_limit($this->long_url));
+        return url_normalize(url_limit($this->long_url));
     }
 }

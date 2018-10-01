@@ -28,7 +28,7 @@ class GeneralUrlController extends Controller
         Url::create([
             'user_id'           => Auth::check() ? Auth::id() : 0,
             'long_url'          => $long_url,
-            'long_url_title'    => UrlHlp::get_title($long_url),
+            'long_url_title'    => UrlHlp::url_get_title($long_url),
             'short_url'         => $short_url,
             'short_url_custom'  => $short_url_custom ?? 0,
             'views'             => 0,

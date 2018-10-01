@@ -13944,7 +13944,7 @@ body {
 
 .card {
   border: none;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
 }
 
 .card-title {
@@ -13957,11 +13957,21 @@ body {
 }
 
 .dataTables_wrapper .dataTables_length select {
-  border: 1px solid #dee2e6;
+  color: #5c5c5c;
+  border: 1px solid #f1f3f4;
+  background: #f1f3f4;
+  border-radius: 4px;
 }
 
 .dataTables_wrapper .dataTables_filter input {
-  border: 1px solid #dee2e6;
+  border: none;
+  border-radius: 4px;
+  background: #f1f3f4;
+  padding: 6px 8px;
+}
+
+.dataTables_wrapper .dataTables_filter input::placeholder {
+  color: #5c5c5c;
 }
 
 .dataTables_wrapper table.dataTable thead th {
@@ -14027,6 +14037,23 @@ body {
 .form-error-feedback {
   color: #e04a4a;
   font-size: 80%;
+}
+
+.form-horizontal input {
+  background: #f1f3f4;
+  border: none;
+}
+
+.form-horizontal input:focus {
+  background: #f1f3f4;
+  box-shadow: none;
+}
+
+.form-horizontal input#name:disabled {
+  color: #3B5998;
+  font-weight: bold;
+  background: #fff;
+  border: none;
 }
 
 /*# sourceMappingURL=backend.css.map*/

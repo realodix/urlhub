@@ -36,12 +36,6 @@
               <div class="col">
                 <input value="{{$name}}" id="name" type="text" class="form-control" name="name" disabled>
                 <small class="text-muted"><i>Usernames cannot be changed.</i></small>
-
-                @if ($errors->has('name'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('name') }}</strong>
-                </span>
-                @endif
               </div>
             </div>
 
@@ -52,25 +46,23 @@
                 <input value="{{$email}}" id="email" type="email" class="form-control" name="email">
 
                 @if ($errors->has('email'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('email') }}</strong>
+                <span class="help-block text-danger">
+                  {{ $errors->first('email') }}
                 </span>
                 @endif
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col text-right">
+                <button type="submit" class="btn btn-primary">
+                  Save
+                </button>
               </div>
             </div>
           </div><!--col-->
           </div><!--row-->
         </div><!--card-body-->
-
-        <div class="card-footer">
-          <div class="row">
-            <div class="col text-right">
-              <button type="submit" class="btn btn-primary">
-                Save
-              </button>
-            </div><!--row-->
-          </div><!--row-->
-        </div><!--card-footer-->
       </div><!--card-->
     </form>
   </div>

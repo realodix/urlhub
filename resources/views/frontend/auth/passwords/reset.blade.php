@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', __('Reset Password'))
+
 @section('css_class', 'auth')
 
 @section('content')

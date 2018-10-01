@@ -37,7 +37,11 @@ $(document).ready(function () {
                 _: 'display',
                 sort: 'timestamp'
             }
-        }, { data: 'action' }]
+        }, { data: 'action' }],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        }
     }).order([4, 'desc']).draw();
 
     $('#dt-myUrls').DataTable({
@@ -52,7 +56,11 @@ $(document).ready(function () {
                 _: 'display',
                 sort: 'timestamp'
             }
-        }, { data: 'action' }]
+        }, { data: 'action' }],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        }
     }).order([3, 'desc']).draw();
 
     $('#dt-Users').DataTable({
@@ -67,7 +75,11 @@ $(document).ready(function () {
                 _: 'display',
                 sort: 'timestamp'
             }
-        }, { data: 'action' }]
+        }, { data: 'action' }],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        }
     }).order([2, 'desc']).draw();
 });
 

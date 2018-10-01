@@ -30,7 +30,7 @@ class UrlHlp
      *
      * @return string
      */
-    public function get_title($value)
+    public function url_get_title($value)
     {
         $data = @file_get_contents($value);
 
@@ -64,7 +64,7 @@ class UrlHlp
      *
      * @return string
      */
-    public function urlToDomain($value)
+    public function url_normalize($value)
     {
         if (str_contains($value, 'http://')) {
             $value = str_replace_first('http://', '', $value);

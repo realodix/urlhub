@@ -1,34 +1,34 @@
 //
 // Bootstrap 4 (overrides)
 //
-.navbar-light {
-  background-color: #fff !important;
+.navbar {
+  background-color: $primary !important;
   box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
+  padding: 0;
 
-  .navbar {
-    &-brand {
-      font-family: Georgia, serif;
-      font-size: 2rem;
-      font-weight: bold;
+  &-brand {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  &-nav {
+    font-weight: 700;
+
+    .nav-link {
+      color: $blue;
     }
 
-    &-nav {
-      font-weight: 700;
+    .dropdown-item {
+      font-weight: 300;
 
-      .nav-link {
-        color: $blue;
-      }
-
-      .dropdown-item {
-        font-weight: 300;
-
-        svg {
-          color: darken($primary, 15%);
-        }
+      svg {
+        color: darken($primary, 15%);
       }
     }
   }
 }
+
 
 
 //

@@ -8513,30 +8513,31 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-.navbar-light {
-  background-color: #fff !important;
+.navbar {
+  background-color: #3B5998 !important;
   box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
+  padding: 0;
 }
 
-.navbar-light .navbar-brand {
+.navbar-brand {
   font-family: Georgia, serif;
   font-size: 2rem;
   font-weight: bold;
 }
 
-.navbar-light .navbar-nav {
+.navbar-nav {
   font-weight: 700;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.navbar-nav .nav-link {
   color: #3B5998;
 }
 
-.navbar-light .navbar-nav .dropdown-item {
+.navbar-nav .dropdown-item {
   font-weight: 300;
 }
 
-.navbar-light .navbar-nav .dropdown-item svg {
+.navbar-nav .dropdown-item svg {
   color: #263961;
 }
 
@@ -8589,7 +8590,6 @@ a.text-dark:hover, a.text-dark:focus {
 
 .frontend {
   color: #313944;
-  background: #f9fbfd;
   font-family: 'Nunito', sans-serif;
 }
 
@@ -8600,14 +8600,14 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .home form .original-url {
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+  border-radius: 0.3rem;
 }
 
 .home form .original-url input {
-  color: #4c94e3;
-  background: none;
+  color: #3B5998;
+  background: #f1f3f4;
   border: none;
-  border-bottom: 4px solid #0073aa;
 }
 
 .home form .original-url input:focus {
@@ -8616,11 +8616,11 @@ a.text-dark:hover, a.text-dark:focus {
 
 .home form button {
   color: #fff;
-  background: #0073aa;
+  background: #3B5998;
 }
 
 .home form button:hover {
-  background: #005177;
+  background: #2d4373;
 }
 
 .home form button:focus {
@@ -8690,7 +8690,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .auth .card {
   border: none;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
 }
 
 .auth .form-control {
@@ -8698,9 +8698,18 @@ a.text-dark:hover, a.text-dark:focus {
   border-color: #f1f3f4;
 }
 
+.auth .form-control:hover {
+  background: #e8eaed;
+}
+
 .auth .form-control:focus {
   box-shadow: none;
   border-bottom: 2px solid #1c9963;
+}
+
+.auth .input-group-text {
+  background: #f1f3f4;
+  border: none;
 }
 
 /*# sourceMappingURL=frontend.css.map*/

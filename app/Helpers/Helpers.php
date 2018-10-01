@@ -20,15 +20,15 @@ use CodeItNow\BarcodeBundle\Utils\QrCode;
      }
  }
 
- if (!function_exists('urlToDomain')) {
+ if (!function_exists('url_normalize')) {
      /**
       * @param string $value
       *
       * @return string
       */
-     function urlToDomain($value)
+     function url_normalize($value)
      {
-         return resolve(UrlHlp::class)->urlToDomain($value);
+         return resolve(UrlHlp::class)->url_normalize($value);
      }
  }
 

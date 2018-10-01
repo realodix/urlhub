@@ -32,7 +32,11 @@ $(document).ready(function() {
                 }
             },
             {data: 'action'},
-        ]
+        ],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        }
     } )
     .order([4, 'desc']).draw();
 
@@ -54,7 +58,11 @@ $(document).ready(function() {
                 }
             },
             {data: 'action'},
-        ]
+        ],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        }
     } )
     .order([3, 'desc']).draw();
 
@@ -75,7 +83,11 @@ $(document).ready(function() {
                 }
             },
             {data: 'action'},
-        ]
+        ],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search..."
+        }
     } )
     .order([2, 'desc']).draw();
 } );

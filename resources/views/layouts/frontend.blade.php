@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +11,7 @@
 </head>
 
 <body class="@yield('css_class')">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand navbar-dark">
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">{{config('app.name')}}</a>
 
@@ -50,9 +50,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Login</a>
           </li>
+          @if (Route::has('register'))
           <li class="nav-item">
             <a class="nav-link" href="{{ route('register') }}">Register</a>
           </li>
+          @endif
         @endauth
       </ul>
     </div>
