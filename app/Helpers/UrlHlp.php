@@ -66,8 +66,17 @@ class UrlHlp
      */
     public function url_normalize($value)
     {
-        $collection = collect(['http://', 'https://', 'www.']);
-        $value = str_replace_first($collection, '', $value);
+        if (str_contains($value, 'http://')) {
+            $value = str_replace_first('http://', '', $value);
+        }
+
+        if (str_contains($value, 'https://')) {
+            $value = str_replace_first('https://', '', $value);
+        }
+
+        if (str_contains($value, 'www.')) {
+            $value = str_replace_first('www.', '', $value);
+        }
 
         return $value;
     }
