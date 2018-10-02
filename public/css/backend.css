@@ -13951,11 +13951,6 @@ body {
   font-weight: 700;
 }
 
-.card-footer {
-  background: #f5f7fa;
-  border-top: none;
-}
-
 .dataTables_wrapper .dataTables_length select {
   color: #5c5c5c;
   border: 1px solid #f1f3f4;
@@ -14039,17 +14034,17 @@ body {
   font-size: 80%;
 }
 
-.form-horizontal input {
+.form-control {
   background: #f1f3f4;
-  border: none;
+  border-color: #f1f3f4;
 }
 
-.form-horizontal input:focus {
-  background: #f1f3f4;
+.form-control:focus {
   box-shadow: none;
+  border-bottom: 2px solid #1c9963;
 }
 
-.form-horizontal input#name:disabled {
+.form-control#name:disabled {
   color: #3B5998;
   font-weight: bold;
   background: #fff;

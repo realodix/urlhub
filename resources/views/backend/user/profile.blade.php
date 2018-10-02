@@ -17,7 +17,7 @@
 
 <div class="row">
   <div class="col-xl-6">
-    <form method="post" action="{{route('user.update', $name)}}" class="form-horizontal">
+    <form method="post" action="{{route('user.update', $name)}}">
     @csrf
       <div class="card">
         <div class="card-body">

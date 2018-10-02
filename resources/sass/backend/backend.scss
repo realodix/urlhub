@@ -78,11 +78,6 @@ body {
   &-title {
     font-weight: 700;
   }
-
-  &-footer {
-      background: #f5f7fa;
-      border-top: none;
-  }
 }
 
 
@@ -194,21 +189,19 @@ body {
   font-size: 80%;
 }
 
-.form-horizontal {
-  input {
-   background: #f1f3f4;
-   border: none;
+.form-control {
+  background: #f1f3f4;
+  border-color: #f1f3f4;
 
-   &:focus {
-     background: #f1f3f4;
-     box-shadow: none;
-   }
+  &:focus {
+    box-shadow: none;
+    border-bottom: 2px solid $green;
+  }
 
-   &#name:disabled {
-     color: $primary;
-     font-weight: bold;
-     background: #fff;
-     border: none;
-   }
+  &#name:disabled {
+    color: $primary;
+    font-weight: bold;
+    background: #fff;
+    border: none;
   }
 }
