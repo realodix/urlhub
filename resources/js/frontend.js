@@ -1,7 +1,7 @@
 import './bootstrap';
 
 /**
- * Copy long url to clipboard
+ * Copy short url to clipboard
  */
 // https://github.com/zenorocha/clipboard.js
 var ClipboardJS = require('clipboard');

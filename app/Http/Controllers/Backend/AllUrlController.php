@@ -25,13 +25,16 @@ class AllUrlController extends Controller
         return DataTables::of($model)
             ->editColumn('short_url', function ($url) {
                 if ($url->short_url_custom == false) {
-                    return '<a href="'.url('/'.$url->short_url).'" target="_blank">'.url_normalize(url('/'.$url->short_url)).'</a>';
+                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url).'" title="Copy to clipboard" data-toggle="tooltip">'.url_normalize(url('/'.$url->short_url)).'</span>';
                 } else {
-                    return '<a href="'.url('/'.$url->short_url_custom).'" target="_blank">'.url_normalize(url('/'.$url->short_url_custom)).'</a>';
+                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url_custom).'" title="Copy to clipboard" data-toggle="tooltip">'.url_normalize(url('/'.$url->short_url_custom)).'</span>';
                 }
             })
             ->editColumn('long_url', function ($url) {
-                return '<a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip">'.$url->long_url_limit.'</a>';
+                return '
+                    <span title="'.$url->long_url_title.'" data-toggle="tooltip">'.str_limit($url->long_url_title, 90).'</span>
+                    <br>
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
             })
             ->editColumn('created_at', function ($url) {
                 return [

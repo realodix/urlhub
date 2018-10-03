@@ -113,7 +113,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /**
- * Copy long url to clipboard
+ * Copy short url to clipboard
  */
 // https://github.com/zenorocha/clipboard.js
 var ClipboardJS = __webpack_require__("./node_modules/clipboard/dist/clipboard.js");

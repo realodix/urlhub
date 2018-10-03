@@ -41,7 +41,8 @@ $(document).ready(function () {
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        }
+        },
+        aoColumnDefs: [{ "bSearchable": false, "aTargets": [2, 4] }]
     }).order([4, 'desc']).draw();
 
     $('#dt-myUrls').DataTable({
@@ -60,7 +61,8 @@ $(document).ready(function () {
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        }
+        },
+        aoColumnDefs: [{ "bSearchable": false, "aTargets": [2, 3] }]
     }).order([3, 'desc']).draw();
 
     $('#dt-Users').DataTable({
@@ -79,8 +81,19 @@ $(document).ready(function () {
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        }
+        },
+        aoColumnDefs: [{ "bSearchable": false, "aTargets": 2 }]
     }).order([2, 'desc']).draw();
+});
+
+/**
+ * Copy short url to clipboard
+ */
+// https://github.com/zenorocha/clipboard.js
+var ClipboardJS = __webpack_require__("./node_modules/clipboard/dist/clipboard.js");
+
+new ClipboardJS('[data-clipboard-text]').on('success', function (e) {
+    $(e.trigger).attr('data-original-title', 'Copied!').tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle");
 });
 
 /***/ }),

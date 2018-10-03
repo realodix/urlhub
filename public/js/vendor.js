@@ -4,7 +4,7 @@ webpackJsonp([0],{
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * CoreUI v2.0.10 (https://coreui.io)
+  * CoreUI v2.0.14 (https://coreui.io)
   * Copyright 2018 Łukasz Holeczek
   * Licensed under MIT (https://coreui.io)
   */
@@ -35,7 +35,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.0.10): ajax-load.js
+   * CoreUI (v2.0.14): ajax-load.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -47,7 +47,7 @@ webpackJsonp([0],{
      * ------------------------------------------------------------------------
      */
     var NAME = 'ajaxLoad';
-    var VERSION = '2.0.10';
+    var VERSION = '2.0.14';
     var DATA_KEY = 'coreui.ajaxLoad';
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
     var ClassName = {
@@ -240,7 +240,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.0.10): toggle-classes.js
+   * CoreUI (v2.0.14): toggle-classes.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -265,7 +265,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.0.10): aside-menu.js
+   * CoreUI (v2.0.14): aside-menu.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -277,7 +277,7 @@ webpackJsonp([0],{
      * ------------------------------------------------------------------------
      */
     var NAME = 'aside-menu';
-    var VERSION = '2.0.10';
+    var VERSION = '2.0.14';
     var DATA_KEY = 'coreui.aside-menu';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -374,7 +374,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.0.10): sidebar.js
+   * CoreUI (v2.0.14): sidebar.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -386,7 +386,7 @@ webpackJsonp([0],{
      * ------------------------------------------------------------------------
      */
     var NAME = 'sidebar';
-    var VERSION = '2.0.10';
+    var VERSION = '2.0.14';
     var DATA_KEY = 'coreui.sidebar';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -463,7 +463,9 @@ webpackJsonp([0],{
             if (document.body.classList.contains(ClassName.SIDEBAR_MINIMIZED)) {
               this.destroyScrollbar();
             } else {
-              this.ps = this.makeScrollbar();
+              this.ps = this.makeScrollbar(); // ToDo: find real fix for ps rtl
+
+              this.ps.isRtl = false;
             }
           }
 
@@ -472,7 +474,9 @@ webpackJsonp([0],{
             setTimeout(function () {
               _this.destroyScrollbar();
 
-              _this.ps = _this.makeScrollbar();
+              _this.ps = _this.makeScrollbar(); // ToDo: find real fix for ps rtl
+
+              _this.ps.isRtl = false;
             }, Default.transition);
           }
         }
@@ -601,7 +605,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI Utilities (v2.0.10): get-style.js
+   * CoreUI Utilities (v2.0.14): get-style.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -668,7 +672,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI Utilities (v2.0.10): hex-to-rgb.js
+   * CoreUI Utilities (v2.0.14): hex-to-rgb.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -704,7 +708,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI Utilities (v2.0.10): hex-to-rgba.js
+   * CoreUI Utilities (v2.0.14): hex-to-rgba.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -744,7 +748,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.0.10): rgb-to-hex.js
+   * CoreUI (v2.0.14): rgb-to-hex.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -769,7 +773,7 @@ webpackJsonp([0],{
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.0.10): index.js
+   * CoreUI (v2.0.14): index.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
