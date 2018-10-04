@@ -110,6 +110,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap__ = __webpack_require__("./resources/js/bootstrap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_typewatch__ = __webpack_require__("./node_modules/jquery.typewatch/jquery.typewatch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_typewatch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_typewatch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jssocials__ = __webpack_require__("./node_modules/jssocials/dist/jssocials.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jssocials___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jssocials__);
 
 
 /**
@@ -170,38 +172,13 @@ $(function () {
 
 /**
  * Social Share
+ * https://github.com/tabalinas/jssocials
  */
-$(function () {
-    if ($('.socials-share').length) {
-        $('.social-share').on('mouseleave', function () {
-            $(this).find('.social-share-menu').hide();
-        });
-        // Action on click share network
-        $('.social-share-network').on('click', function () {
-            var socialNetwork = $(this).data('social-network');
-            var shareUrl = $(this).parent().data('share-url');
-            popupSocialShare(socialNetwork, shareUrl);
-        });
-    }
 
-    function popupSocialShare(socialNetwork, shareUrl) {
-        switch (socialNetwork) {
-            case 'facebook':
-                window.open("https://www.facebook.com/sharer/sharer.php?u=" + shareUrl, "pop", "width=600, height=400, scrollbars=no");
-                return false;
-                break;
-            case 'google':
-                window.open("https://plus.google.com/share?url=" + shareUrl, "pop", "width=600, height=400, scrollbars=no");
-                return false;
-                break;
-            case 'twitter':
-                window.open("http://twitter.com/intent/tweet?url=" + shareUrl, "pop", "width=600, height=400, scrollbars=no");
-                return false;
-                break;
-            default:
-                break;
-        }
-    }
+$("#jssocials").jsSocials({
+    shareIn: "popup",
+    showLabel: false,
+    shares: [{ share: "facebook", logo: "fab fa-facebook" }, { share: "twitter", logo: "fab fa-twitter" }, { share: "googleplus", logo: "fab fa-google-plus" }, { share: "line", logo: "fab fa-line" }]
 });
 
 /***/ }),

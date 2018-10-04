@@ -448,7 +448,10 @@ table.dataTable td {
 }
 @charset "UTF-8";
 /*
- * Bootstrap
+ * Variables
+ */
+/*
+ * Extend
  */
 /*!
  * Bootstrap
@@ -13961,11 +13964,6 @@ body {
   margin-top: 1.5rem;
 }
 
-.form-error-feedback {
-  color: #e04a4a;
-  font-size: 80%;
-}
-
 .form-control {
   background: #f1f3f4;
   border-color: #f1f3f4;
@@ -13981,6 +13979,11 @@ body {
   font-weight: bold;
   background: #fff;
   border: none;
+}
+
+.form-error-feedback {
+  color: #e04a4a;
+  font-size: 80%;
 }
 
 /*# sourceMappingURL=backend.css.map*/

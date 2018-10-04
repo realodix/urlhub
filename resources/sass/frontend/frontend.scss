@@ -1,11 +1,8 @@
-@import "../general-variables";
+@import "../general";
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
-@import "extend";
-@import "components";
-
+@import "~jssocials/styles/jssocials";
 @import url('https://fonts.googleapis.com/css?family=Raleway:100');
-@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 .frontend {
   color: #313944;
@@ -147,12 +144,67 @@
 
     &:focus {
       box-shadow: none;
-      border-bottom: 2px solid $green;
     }
   }
 
   .input-group-text {
     background: #f1f3f4;
     border: none;
+  }
+}
+
+
+//
+// Navigation
+//
+.navbar {
+  background-color: $primary !important;
+  box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
+  padding: 0;
+
+  &-brand {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  &-nav {
+    font-weight: 700;
+
+    .nav-link {
+      color: $blue;
+    }
+
+    .dropdown-item {
+      font-weight: 300;
+
+      svg {
+        color: darken($primary, 15%);
+      }
+    }
+  }
+}
+
+
+//
+// Socials Share
+//
+.jssocials-share{
+  font-size: 1.2rem;
+
+  &-facebook {
+    color: #3b5998;
+  }
+
+  &-twitter a {
+    color: #1da1f2;
+  }
+
+  &-googleplus a {
+    color: #dd4b39;
+  }
+
+  &-line a {
+    color: #00c300;
   }
 }

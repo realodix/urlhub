@@ -1,10 +1,8 @@
-@import "../general-variables";
+@import "../general";
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~@coreui/coreui/scss/coreui-standalone";
 @import "~datatables.net-dt/css/jquery.dataTables.css";
-
-@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 body {
   background: $bg-gray;
@@ -188,11 +186,6 @@ body {
 //
 // Form
 //
-.form-error-feedback {
-  color: $red;
-  font-size: 80%;
-}
-
 .form-control {
   background: #f1f3f4;
   border-color: #f1f3f4;
@@ -208,4 +201,9 @@ body {
     background: #fff;
     border: none;
   }
+}
+
+.form-error-feedback {
+  color: $red;
+  font-size: 80%;
 }

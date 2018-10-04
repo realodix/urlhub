@@ -20,9 +20,4 @@ class Url extends Model
     {
         return $this->belongsTo('App\User');
     }
-
-    public function getLongUrlLimitAttribute()
-    {
-        return url_normalize(url_limit($this->long_url));
-    }
 }

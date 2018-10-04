@@ -10,6 +10,12 @@ An open-source link shortening web application. It allows you to host your own U
 * Modern and simple interface.
 * Made with :heart: &amp; :coffee:.
 
+### Screenshots
+
+| ![screenshot](https://i.imgur.com/KrLJEd1.jpg) | ![screenshot](https://i.imgur.com/imRINvR.jpg) | ![screenshot](https://i.imgur.com/Vf1Cyaz.jpg) | ![screenshot](https://i.imgur.com/emsQXxc.jpg) |
+|-|-|-|-|
+
+
 ## Requirements
 - [All requirements by Laravel](https://laravel.com/docs/installation#server-requirements) - PHP, OpenSSL, [Composer](https://getcomposer.org/) and such.
 - MySQL or MariaDB.

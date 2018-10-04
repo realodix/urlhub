@@ -23,7 +23,6 @@ class UrlController extends Controller
 
         return view('frontend.short', [
             'long_url'          => $url->long_url,
-            'long_url_limit'    => $url->long_url_limit,
             'long_url_title'    => $url->long_url_title,
             'views'             => $url->views,
             'short_url'         => url_normalize(url('/', $blabla)),
