@@ -10,8 +10,11 @@
 <div class="col-md-8">
 
   @if(session()->has('login_error'))
-  <div class="alert alert-danger">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
     {{ session()->get('login_error') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
   @endif
 

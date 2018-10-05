@@ -13,11 +13,11 @@ class DashboardController extends Controller
     public function index()
     {
         return view('backend.dashboard', [
-            'countUrlShortened'      => number_format($this->countUrlShortened()),
-            'countUrlShortenedAuth'  => number_format($this->countUrlShortenedAuth()),
-            'countClickRedirect'     => number_format($this->countClickRedirect()),
-            'countClickRedirectAuth' => number_format($this->countClickRedirectAuth()),
-            'countUser'              => number_format($this->countUser()),
+            'shortenedUrlCount'     => number_format($this->shortenedUrlCount()),
+            'shortenedUrlCountById' => number_format($this->shortenedUrlCountById()),
+            'viewCount'             => number_format($this->viewCount()),
+            'viewCountById'         => number_format($this->viewCountById()),
+            'userCount'             => number_format($this->userCount()),
         ]);
     }
 
@@ -63,27 +63,27 @@ class DashboardController extends Controller
         return redirect()->back();
     }
 
-    public function countUrlShortened()
+    public function shortenedUrlCount()
     {
         return Url::count('short_url');
     }
 
-    public function countUrlShortenedAuth()
+    public function shortenedUrlCountById()
     {
         return Url::where('user_id', Auth::id())->count('short_url');
     }
 
-    public function countClickRedirect()
+    public function viewCount()
     {
         return Url::sum('views');
     }
 
-    public function countClickRedirectAuth()
+    public function viewCountById()
     {
         return Url::where('user_id', Auth::id())->sum('views');
     }
 
-    public function countUser()
+    public function userCount()
     {
         return User::count();
     }
