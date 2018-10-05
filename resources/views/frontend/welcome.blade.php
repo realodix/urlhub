@@ -15,19 +15,19 @@
         <div class="input-group input-group-lg original-url">
           <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
           <div class="input-group-append">
-            <button class="btn" type="submit" id="actProcess">Shorten</button>
+            <button class="btn" type="submit" id="actProcess">@lang('Shorten')</button>
           </div>
         </div>
 
         <br>
         <div class="custom-url">
-          <div class="title"> Custom URL (optional)</div>
+          <div class="custom-url--title">@lang('Custom URL (optional)')</div>
+          <span class="custom-url--description text-muted d-block">@lang('Replace clunky URLs with meaningful short links that get more clicks.')</span>
           <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
           <input class="form-control form-control-sm url-field" id="short_url_custom" name="short_url_custom">
+          <small class="ml-3" id="link-availability-status"></small>
         </div>
       </form>
-
-      <small id="link-availability-status"></small>
 
       @if ($errors->any())
         @foreach ($errors->all() as $error)

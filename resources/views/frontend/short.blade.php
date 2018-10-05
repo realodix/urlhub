@@ -33,14 +33,14 @@
         <img src="data:{{$qrCodeData}};base64,{{$qrCodebase64}}" alt="QR Code">
       </div>
       <div class="col-md-9">
-        <b>Original URL</b>
+        <b>@lang('Original URL')</b>
         <div class="long-url"><a href="{{ $long_url }}" target="_blank" title="{{ $long_url }}" data-toggle="tooltip">{{ url_limit($long_url) }}</a></div>
 
         <br>
 
-        <b>Short URL</b> <br>
+        <b>@lang('Short URL')</b> <br>
         <span class="short-url"><a href="{{ $short_url_href }}" target="_blank" id="copy">{{ $short_url }}</a></span>
-        <button class="btn btn-sm btn-outline-success btn-clipboard ml-3" data-clipboard-text="{{ $short_url }}" title="Copy to clipboard" data-toggle="tooltip">Copy</button>
+        <button class="btn btn-sm btn-outline-success btn-clipboard ml-3" data-clipboard-text="{{ $short_url }}" title="@lang('Copy to clipboard')" data-toggle="tooltip">@lang('Copy')</button>
 
         <div class="mt-5" id="jssocials"></div>
       </div>

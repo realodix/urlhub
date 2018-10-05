@@ -4,6 +4,9 @@
 
 @section('content')
 <div class="my-url">
+
+  @include('backend.partials.stat')
+
   <div class="card">
     <div class="card-body">
       <div class="row mb-3">

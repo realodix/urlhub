@@ -66,6 +66,40 @@ body {
 
 
 //
+// Stat
+//
+.right_now {
+  .hint {
+    .all {
+      color: $primary;
+    }
+
+    .me {
+      color: $secondary;
+    }
+  }
+
+  &-label {
+    font-weight: 300;
+  }
+
+  &-text {
+    &--primary {
+      color: $primary;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    &--secondary {
+      color: $secondary;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+}
+
+
+//
 // Card
 //
 .card {

@@ -17,9 +17,7 @@
         <a class="nav-link" href="{{ url('./') }}" target="_blank" title="{{config('app.name')}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
     </li>
 
-    <li class="nav-item px-3">
-        <a class="nav-link" href="{{ route('admin') }}">@lang('Dashboard')</a>
-    </li>
+    {!! Breadcrumbs::render() !!}
   </ul>
 
   <ul class="nav navbar-nav ml-auto mr-5">

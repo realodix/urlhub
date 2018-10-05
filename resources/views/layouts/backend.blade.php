@@ -17,8 +17,7 @@
 <div class="app-body">
   @include('backend.partials.sidebar')
 
-  <main class="main">
-    {!! Breadcrumbs::render() !!}
+  <main class="main mt-4">
     <div class="container-fluid">
       @yield('content')
     </div>

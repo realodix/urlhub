@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Url;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
@@ -11,7 +12,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('backend.dashboard');
+        return view('backend.dashboard', [
+            'countUrlShortened'      => number_format($this->countUrlShortened()),
+            'countUrlShortenedAuth'  => number_format($this->countUrlShortenedAuth()),
+            'countClickRedirect'     => number_format($this->countClickRedirect()),
+            'countClickRedirectAuth' => number_format($this->countClickRedirectAuth()),
+            'countUser'              => number_format($this->countUser()),
+        ]);
     }
 
     public function getData()
@@ -54,5 +61,30 @@ class DashboardController extends Controller
         Url::destroy($id);
 
         return redirect()->back();
+    }
+
+    public function countUrlShortened()
+    {
+        return Url::count('short_url');
+    }
+
+    public function countUrlShortenedAuth()
+    {
+        return Url::where('user_id', Auth::id())->count('short_url');
+    }
+
+    public function countClickRedirect()
+    {
+        return Url::sum('views');
+    }
+
+    public function countClickRedirectAuth()
+    {
+        return Url::where('user_id', Auth::id())->sum('views');
+    }
+
+    public function countUser()
+    {
+        return User::count();
     }
 }
