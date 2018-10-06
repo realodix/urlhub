@@ -77,6 +77,10 @@ body {
     .me {
       color: $secondary;
     }
+
+    .guest {
+      color: $orange;
+    }
   }
 
   &-label {
@@ -92,6 +96,12 @@ body {
 
     &--secondary {
       color: $secondary;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    &--tertiary {
+      color: $orange;
       font-size: 1.5rem;
       font-weight: 600;
     }

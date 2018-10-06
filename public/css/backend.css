@@ -13881,6 +13881,10 @@ body {
   color: #1c9963;
 }
 
+.right_now .hint .guest {
+  color: #ff813f;
+}
+
 .right_now-label {
   font-weight: 300;
 }
@@ -13893,6 +13897,12 @@ body {
 
 .right_now-text--secondary {
   color: #1c9963;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.right_now-text--tertiary {
+  color: #ff813f;
   font-size: 1.5rem;
   font-weight: 600;
 }
