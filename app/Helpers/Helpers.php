@@ -78,9 +78,10 @@ if (!function_exists('qrCodeGenerator')) {
 // https://github.com/sandervanhooft/laravel-blade-readable-numbers
 if (!function_exists('readable_int')) {
     /**
+     * Convert large positive numbers in to short form like 1K+, 100K+, 199K+, 1M+, 10M+, 1B+ etc
+     *
      * @param   $n
      * @return  string
-     * Use to convert large positive numbers in to short form like 1K+, 100K+, 199K+, 1M+, 10M+, 1B+ etc
      */
     function readable_int($n)
     {
@@ -106,6 +107,6 @@ if (!function_exists('readable_int')) {
             $suffix = 'T+';
         }
 
-        return !empty($n_format . $suffix) ? $n_format . $suffix : 0;
+        return !empty($n_format.$suffix) ? $n_format.$suffix : 0;
     }
 }
