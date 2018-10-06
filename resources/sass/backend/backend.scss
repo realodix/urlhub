@@ -15,6 +15,7 @@ body {
 //
 .navbar {
   &-brand {
+    font-size: 1.5rem;
     font-family: Georgia, serif;
     font-weight: bold;
   }
@@ -22,6 +23,10 @@ body {
   .navbar-nav {
     .nav-link {
       color: #212529;
+    }
+
+    #homepage-icon:hover {
+      color: $primary;
     }
 
     .dropdown-item {

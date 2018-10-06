@@ -14,7 +14,7 @@
 
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
-        <a class="nav-link" href="{{ url('./') }}" target="_blank" title="{{config('app.name')}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
+        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" target="_blank" title="{{config('app.name')}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
     </li>
 
     {!! Breadcrumbs::render() !!}

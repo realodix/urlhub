@@ -13841,12 +13841,17 @@ body {
 }
 
 .navbar-brand {
+  font-size: 1.5rem;
   font-family: Georgia, serif;
   font-weight: bold;
 }
 
 .navbar .navbar-nav .nav-link {
   color: #212529;
+}
+
+.navbar .navbar-nav #homepage-icon:hover {
+  color: #3B5998;
 }
 
 .navbar .navbar-nav .dropdown-item {

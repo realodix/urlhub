@@ -13,13 +13,13 @@ class DashboardController extends Controller
     public function index()
     {
         return view('backend.dashboard', [
-            'totalShortUrl'        => number_format($this->totalShortUrl()),
-            'totalShortUrlById'    => number_format($this->totalShortUrlById()),
-            'totalShortUrlByGuest' => number_format($this->totalShortUrlByGuest()),
-            'viewCount'            => number_format($this->viewCount()),
-            'viewCountById'        => number_format($this->viewCountById()),
-            'viewCountByGuest'     => number_format($this->viewCountByGuest()),
-            'userCount'            => number_format($this->userCount()),
+            'totalShortUrl'        => $this->totalShortUrl(),
+            'totalShortUrlById'    => $this->totalShortUrlById(),
+            'totalShortUrlByGuest' => $this->totalShortUrlByGuest(),
+            'viewCount'            => $this->viewCount(),
+            'viewCountById'        => $this->viewCountById(),
+            'viewCountByGuest'     => $this->viewCountByGuest(),
+            'userCount'            => $this->userCount(),
         ]);
     }
 

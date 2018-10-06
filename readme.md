@@ -1,8 +1,8 @@
-<h1 align="center">Plur</h1>
+<h1>Plur</h1>
 
 **Warning: Plur is still under development.**
 
-Plur is a free and open-source URL shortener web application. It allows you to host your own URL shortener, and to brand your URLs. Plur is especially easy to use, and provides a modern, themable feel.
+Plur is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and to brand your URLs. Plur is especially easy to use, and provides a modern, themable feel.
 
 ### Features
 * Written in PHP and powered by the Laravel 5.7.
@@ -11,7 +11,7 @@ Plur is a free and open-source URL shortener web application. It allows you to h
 
 ### Screenshots
 
-| ![screenshot](https://i.imgur.com/KrLJEd1.jpg) | ![screenshot](https://i.imgur.com/xUjlqEg.jpg) | ![screenshot](https://i.imgur.com/n3NVd52.jpg) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
+| ![screenshot](https://i.imgur.com/KrLJEd1.jpg) | ![screenshot](https://i.imgur.com/kupmRf3.jpg) | ![screenshot](https://i.imgur.com/n3NVd52.jpg) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
 |-|-|-|-|
 
 
