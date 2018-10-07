@@ -37,12 +37,17 @@ class UserController extends Controller
             })
             ->addColumn('action', function ($user) {
                 return
-                '<div class="btn-group" role="group" aria-label="Basic example">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                      <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" data-toggle="tooltip"><i class="fas fa-user-edit"></i></a>
-                      <a role="button" class="btn" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" data-toggle="tooltip"><i class="fas fa-key"></i></a>
-                    </div>
-                 </div>';
+                // '<div class="btn-group" role="group" aria-label="Basic example">
+                //     <div class="btn-group" role="group" aria-label="Basic example">
+                //       <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" data-toggle="tooltip"><i class="fas fa-user-edit"></i></a>
+                //       <a role="button" class="btn" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" data-toggle="tooltip"><i class="fas fa-key"></i></a>
+                //     </div>
+                //  </div>';
+                 '<div class="btn-group" role="group" aria-label="Basic example">
+                     <div class="btn-group" role="group" aria-label="Basic example">
+                       <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" data-toggle="tooltip"><i class="fas fa-user-edit"></i></a>
+                     </div>
+                  </div>';
             })
             ->rawColumns(['name', 'created_at.display', 'action'])
             ->toJson();
@@ -66,7 +71,7 @@ class UserController extends Controller
     {
         $user = User::where('name', $user)->first();
 
-        $user->email = $request->get('email');
+        $user->email = $request->input('email');
 
         $validatedData = $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
