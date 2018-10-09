@@ -2,9 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Url;
 use Hidehalo\Nanoid\Client;
-use Hidehalo\Nanoid\GeneratorInterface;
 
 class UrlHlp
 {
