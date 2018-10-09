@@ -14,10 +14,10 @@ if (!function_exists('url_limit')) {
     }
 }
 
-if (!function_exists('url_normalize')) {
-    function url_normalize($value)
+if (!function_exists('url_parsed')) {
+    function url_parsed($value)
     {
-        return resolve(UrlHlp::class)->url_normalize($value);
+        return resolve(UrlHlp::class)->url_parsed($value);
     }
 }
 

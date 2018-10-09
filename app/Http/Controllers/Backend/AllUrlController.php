@@ -25,9 +25,9 @@ class AllUrlController extends Controller
         return DataTables::of($model)
             ->editColumn('short_url', function ($url) {
                 if ($url->short_url_custom == false) {
-                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url).'" title="Copy to clipboard" data-toggle="tooltip">'.url_normalize(url('/'.$url->short_url)).'</span>';
+                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url).'" title="Copy to clipboard" data-toggle="tooltip">'.url_parsed(url('/'.$url->short_url)).'</span>';
                 } else {
-                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url_custom).'" title="Copy to clipboard" data-toggle="tooltip">'.url_normalize(url('/'.$url->short_url_custom)).'</span>';
+                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url_custom).'" title="Copy to clipboard" data-toggle="tooltip">'.url_parsed(url('/'.$url->short_url_custom)).'</span>';
                 }
             })
             ->editColumn('long_url', function ($url) {
@@ -36,15 +36,19 @@ class AllUrlController extends Controller
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
             })
+            ->editColumn('views', function ($url) {
+                return '
+                <span title="'.number_format($url->views).' views" data-toggle="tooltip">'.readable_int($url->views).'</span>';
+            })
             ->editColumn('created_at', function ($url) {
                 return [
-                    'display'   => '<span title="'.$url->created_at->toDayDateTimeString().'" data-toggle="tooltip" style="cursor: default;">'.$url->created_at->diffForHumans().'</span>',
+                    'display'   => '<span title="'.$url->created_at->toDayDateTimeString().'" data-toggle="tooltip">'.$url->created_at->diffForHumans().'</span>',
                     'timestamp' => $url->created_at->timestamp,
                 ];
             })
             ->addColumn('author', function ($url) {
                 if (isset($url->user->name)) {
-                    return '<span style="cursor: default;">'.$url->user->name.'</span>';
+                    return '<a href="'.route('user.edit', $url->user->name).'">'.$url->user->name.'</a>';
                 } else {
                     return '<span style="cursor: default;">Guest</span>';
                 }
@@ -56,7 +60,7 @@ class AllUrlController extends Controller
                     <a role="button" class="btn" href="'.route('admin.allurl.delete', $url->id).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
-            ->rawColumns(['short_url', 'long_url', 'created_at.display', 'author', 'action'])
+            ->rawColumns(['short_url', 'long_url', 'views', 'created_at.display', 'author', 'action'])
             ->make(true);
     }
 

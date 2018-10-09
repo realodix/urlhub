@@ -16,14 +16,14 @@ class ChangePasswordController extends Controller
             return abort(403);
         }
 
-        $user = User::where('name', $user)->first();
+        $user = User::where('name', $user)->firstOrFail();
 
         return view('backend.user.changepassword', [
             'name'  => $user->name,
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $user)
     {
         if (!(Hash::check($request->input('current-password'), Auth::user()->password))) {
             // The passwords matches
@@ -40,7 +40,7 @@ class ChangePasswordController extends Controller
         ]);
 
         //Change Password
-        $user = Auth::user();
+        $user = User::where('name', $user)->first();
         $user->password = Hash::make($request->input('new-password'));
         $user->save();
 

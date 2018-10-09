@@ -35,21 +35,22 @@ class UserController extends Controller
                     'timestamp' => $user->created_at->timestamp,
                 ];
             })
+            ->editColumn('updated_at', function ($user) {
+                return [
+                    'display'   => '<span title="'.$user->updated_at->toDayDateTimeString().'" data-toggle="tooltip" style="cursor: default;">'.$user->updated_at->diffForHumans().'</span>',
+                    'timestamp' => $user->updated_at->timestamp,
+                ];
+            })
             ->addColumn('action', function ($user) {
                 return
-                // '<div class="btn-group" role="group" aria-label="Basic example">
-                //     <div class="btn-group" role="group" aria-label="Basic example">
-                //       <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" data-toggle="tooltip"><i class="fas fa-user-edit"></i></a>
-                //       <a role="button" class="btn" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" data-toggle="tooltip"><i class="fas fa-key"></i></a>
-                //     </div>
-                //  </div>';
-                 '<div class="btn-group" role="group" aria-label="Basic example">
-                     <div class="btn-group" role="group" aria-label="Basic example">
-                       <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" data-toggle="tooltip"><i class="fas fa-user-edit"></i></a>
-                     </div>
-                  </div>';
+                '<div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <a role="button" class="btn" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" data-toggle="tooltip"><i class="fas fa-user-edit"></i></a>
+                      <a role="button" class="btn" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" data-toggle="tooltip"><i class="fas fa-key"></i></a>
+                    </div>
+                 </div>';
             })
-            ->rawColumns(['name', 'created_at.display', 'action'])
+            ->rawColumns(['name', 'created_at.display', 'updated_at.display', 'action'])
             ->toJson();
     }
 
@@ -59,7 +60,7 @@ class UserController extends Controller
             return abort(403);
         }
 
-        $user = User::where('name', $user)->first();
+        $user = User::where('name', $user)->firstOrFail();
 
         return view('backend.user.profile', [
             'name'  => $user->name,

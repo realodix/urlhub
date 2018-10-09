@@ -88,6 +88,14 @@ $(document).ready(function() {
                     sort: 'timestamp'
                 }
             },
+            {
+                data: 'updated_at',
+                type: 'num',
+                render: {
+                    _: 'display',
+                    sort: 'timestamp'
+                }
+            },
             {data: 'action'},
         ],
         language: {

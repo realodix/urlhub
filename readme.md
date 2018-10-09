@@ -5,13 +5,16 @@
 Plur is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and to brand your URLs. Plur is especially easy to use, and provides a modern, themable feel.
 
 ### Features
-* Written in PHP and powered by the Laravel 5.7.
+* URL Shortener
+* Customized short URL's(ex: example.com/laravel)
+* Written in PHP and Laravel 5.7.
+* Datatables with server-side processing.
 * Modern and simple interface.
 * Made with :heart: &amp; :coffee:.
 
 ### Screenshots
 
-| ![screenshot](https://i.imgur.com/KrLJEd1.jpg) | ![screenshot](https://i.imgur.com/kupmRf3.jpg) | ![screenshot](https://i.imgur.com/n3NVd52.jpg) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
+| ![screenshot](https://i.imgur.com/KrLJEd1.jpg) | ![screenshot](https://i.imgur.com/EAPiOxS.jpg) | ![screenshot](https://i.imgur.com/n3NVd52.jpg) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
 |-|-|-|-|
 
 
@@ -56,7 +59,7 @@ Plur is a free, open-source and easy-to-use but powerful URL shortener. It allow
 
 
 ## Contributing
-If you would like to contribute enhancements or fixes, please do the following:
+Any useful suggestion and PR are welcomed. If you would like to contribute, please do the following:
 
 1. Fork the repository.
 2. Hack on a separate topic branch created from the latest `master`.

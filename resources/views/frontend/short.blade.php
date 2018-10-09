@@ -19,7 +19,7 @@
       </li>
       <li class="list-inline-item">
         <i class="far fa-eye"></i>
-        <i>{{ $views }}</i>
+        <i><span title="{{number_format($views)}} views" data-toggle="tooltip">{{readable_int($views)}}</span></i>
       </li>
     </ul>
     <div class="title">{{ $long_url_title }}</div>

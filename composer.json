@@ -9,7 +9,7 @@
         "codeitnowin/barcode": "^3.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.1",
         "fideloper/proxy": "^4.0",
-        "hashids/hashids": "^3.0",
+        "hidehalo/nanoid-php": "^1.1",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",

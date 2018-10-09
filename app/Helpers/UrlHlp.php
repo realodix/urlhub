@@ -3,7 +3,8 @@
 namespace App\Helpers;
 
 use App\Url;
-use Hashids\Hashids;
+use Hidehalo\Nanoid\Client;
+use Hidehalo\Nanoid\GeneratorInterface;
 
 class UrlHlp
 {
@@ -12,17 +13,9 @@ class UrlHlp
      */
     public function url_generator()
     {
-        $getUrlIdInDB = Url::latest()->first();
+        $shortURL = new Client();
 
-        $hashids = new Hashids('', 6);
-
-        if (empty($getUrlIdInDB)) {
-            $shortURL = $hashids->encode(1);
-        } else {
-            $shortURL = $hashids->encode($getUrlIdInDB->id + 1);
-        }
-
-        return $shortURL;
+        return $shortURL->generateId($size = 8);
     }
 
     /**
@@ -64,7 +57,7 @@ class UrlHlp
      *
      * @return string
      */
-    public function url_normalize($value)
+    public function url_parsed($value)
     {
         if (str_contains($value, 'http://')) {
             $value = str_replace_first('http://', '', $value);

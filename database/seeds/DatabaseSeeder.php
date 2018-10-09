@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
 
         // Multiple with factory
+        // factory(App\Url::class, 100000)->create();
         // factory(App\User::class, 200)->create();
-        // factory(App\Url::class, 200)->create();
     }
 }

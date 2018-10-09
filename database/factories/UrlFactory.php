@@ -1,5 +1,6 @@
 <?php
 
+use Facades\App\Helpers\UrlHlp;
 use Faker\Generator as Faker;
 
 /*
@@ -16,11 +17,11 @@ use Faker\Generator as Faker;
 $factory->define(App\Url::class, function (Faker $faker) {
     return [
         'user_id'           => $faker->biasedNumberBetween($min = 0, $max = 2, $function = 'sqrt'),
-        'long_url'          => $faker->url,
-        'long_url_title'    => $faker->numerify('URL Title ###'),
-        'short_url'         => $faker->regexify('[a-zA-Z0-9]{6}'),
+        'long_url'          => 'https://github.com/realodix/plur',
+        'long_url_title'    => 'URL Title',
+        'short_url'         => UrlHlp::url_generator(),
         'short_url_custom'  => 0,
-        'views'             => $faker->biasedNumberBetween($min = 0, $max = 1000, $function = 'sqrt'),
-        'ip'                => $faker->localIpv4,
+        'views'             => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
+        'ip'                => '8.8.8.8',
     ];
 });

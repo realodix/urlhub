@@ -77,6 +77,13 @@ $(document).ready(function () {
                 _: 'display',
                 sort: 'timestamp'
             }
+        }, {
+            data: 'updated_at',
+            type: 'num',
+            render: {
+                _: 'display',
+                sort: 'timestamp'
+            }
         }, { data: 'action' }],
         language: {
             search: "_INPUT_",

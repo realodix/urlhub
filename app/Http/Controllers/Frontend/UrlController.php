@@ -19,13 +19,13 @@ class UrlController extends Controller
             $blabla = $url->short_url;
         }
 
-        $qrCode = qrCodeGenerator($url->short_url);
+        $qrCode = qrCodeGenerator($blabla);
 
         return view('frontend.short', [
             'long_url'          => $url->long_url,
             'long_url_title'    => $url->long_url_title,
             'views'             => $url->views,
-            'short_url'         => url_normalize(url('/', $blabla)),
+            'short_url'         => url_parsed(url('/', $blabla)),
             'short_url_href'    => url('/', $blabla),
             'qrCodeData'        => $qrCode->getContentType(),
             'qrCodebase64'      => $qrCode->generate(),
