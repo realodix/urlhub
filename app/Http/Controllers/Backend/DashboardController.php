@@ -14,11 +14,11 @@ class DashboardController extends Controller
     {
         return view('backend.dashboard', [
             'totalShortUrl'        => $this->totalShortUrl(),
-            'totalShortUrlById'    => $this->totalShortUrlById(),
-            'totalShortUrlByGuest' => $this->totalShortUrlByGuest(),
+            'totalShortUrlByMe'    => $this->totalShortUrlById(Auth::id()),
+            'totalShortUrlByGuest' => $this->totalShortUrlById(0),
             'viewCount'            => $this->viewCount(),
-            'viewCountById'        => $this->viewCountById(),
-            'viewCountByGuest'     => $this->viewCountByGuest(),
+            'viewCountByMe'        => $this->viewCountById(Auth::id()),
+            'viewCountByGuest'     => $this->viewCountById(0),
             'userCount'            => $this->userCount(),
         ]);
     }
@@ -74,14 +74,9 @@ class DashboardController extends Controller
         return Url::count('short_url');
     }
 
-    public function totalShortUrlById()
+    public function totalShortUrlById($id)
     {
-        return Url::where('user_id', Auth::id())->count('short_url');
-    }
-
-    public function totalShortUrlByGuest()
-    {
-        return Url::where('user_id', 0)->count('short_url');
+        return Url::where('user_id', $id)->count('short_url');
     }
 
     public function viewCount()
@@ -89,14 +84,9 @@ class DashboardController extends Controller
         return Url::sum('views');
     }
 
-    public function viewCountById()
+    public function viewCountById($id)
     {
-        return Url::where('user_id', Auth::id())->sum('views');
-    }
-
-    public function viewCountByGuest()
-    {
-        return Url::where('user_id', 0)->sum('views');
+        return Url::where('user_id', $id)->sum('views');
     }
 
     public function userCount()

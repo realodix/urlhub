@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Url;
 use Hidehalo\Nanoid\Client;
 
 class UrlHlp
@@ -11,9 +12,19 @@ class UrlHlp
      */
     public function url_generator()
     {
-        $shortURL = new Client();
+        $generateId = new Client();
 
-        return $shortURL->generateId($size = 8);
+        $shortURL = $generateId->generateId($size = 7);
+
+        // If it is already used (not available),
+        // find the next available base64 ending.
+        $link = Url::where('short_url', $shortURL)->first();
+        while ($link) {
+            $shortURL = $generateId->generateId($size = 7);
+            $link = Url::where('short_url', $shortURL)->first();
+        }
+
+        return $shortURL;
     }
 
     /**

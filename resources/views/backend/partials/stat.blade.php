@@ -17,7 +17,7 @@
           </div>
           <div class="col-4">
             <div class="right_now-text--secondary">
-              <span title="{{number_format($totalShortUrlById)}}" data-toggle="tooltip">{{readable_int($totalShortUrlById)}}</span>
+              <span title="{{number_format($totalShortUrlByMe)}}" data-toggle="tooltip">{{readable_int($totalShortUrlByMe)}}</span>
             </div>
             <div class="right_now-label">@lang('Urls Shortened')</div>
           </div>
@@ -43,7 +43,7 @@
           </div>
           <div class="col-4">
             <div class="right_now-text--secondary">
-              <span title="{{number_format($viewCountById)}}" data-toggle="tooltip">{{readable_int($viewCountById)}}</span>
+              <span title="{{number_format($viewCountByMe)}}" data-toggle="tooltip">{{readable_int($viewCountByMe)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
@@ -74,7 +74,7 @@
       <div class="card">
       <div class="card-body">
         <div class="right_now-text--primary">
-          <span title="{{number_format($totalShortUrlById)}}" data-toggle="tooltip">{{readable_int($totalShortUrlById)}}</span>
+          <span title="{{number_format($totalShortUrlByMe)}}" data-toggle="tooltip">{{readable_int($totalShortUrlByMe)}}</span>
         </div>
         <div class="right_now-label">@lang('Urls Shortened')</div>
       </div>
@@ -84,7 +84,7 @@
       <div class="card">
       <div class="card-body">
         <div class="right_now-text--primary">
-          <span title="{{number_format($viewCountById)}}" data-toggle="tooltip">{{readable_int($viewCountById)}}</span>
+          <span title="{{number_format($viewCountByMe)}}" data-toggle="tooltip">{{readable_int($viewCountByMe)}}</span>
         </div>
         <div class="right_now-label">@lang('Clicks & Redirects')</div>
       </div>

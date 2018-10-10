@@ -36,7 +36,7 @@ class GeneralUrlController extends Controller
 
     public function urlRedirection($short_url)
     {
-        $url = Url::where('short_url', 'LIKE BINARY', $short_url)
+        $url = Url::where('short_url', $short_url)
                     ->orWhere('short_url_custom', $short_url)
                     ->firstOrFail();
 

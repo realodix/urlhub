@@ -48,9 +48,9 @@ class AllUrlController extends Controller
             })
             ->addColumn('author', function ($url) {
                 if (isset($url->user->name)) {
-                    return '<a href="'.route('user.edit', $url->user->name).'">'.$url->user->name.'</a>';
+                    return '<span>'.$url->user->name.'</span>';
                 } else {
-                    return '<span style="cursor: default;">Guest</span>';
+                    return '<span>Guest</span>';
                 }
             })
             ->addColumn('action', function ($url) {
