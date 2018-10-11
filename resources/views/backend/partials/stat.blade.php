@@ -5,7 +5,21 @@
       <span class="me ml-5"><i class="fas fa-square"></i> @lang('Me')</span>
       <span class="guest ml-5"><i class="fas fa-square"></i> @lang('Guest')</span>
     </div>
-    <div class="col-md-6 col-xl-5 text-center">
+    <div class="col-md-6 col-xl-4" style="font-size: 1.25rem; font-weight: 300;">
+      <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4"><b>Quotas</b></div>
+          <div class="col"><span title="{{number_format($qTotal)}}" data-toggle="tooltip">{{readable_int($qTotal)}}</span></div>
+        </div>
+        <div class="row">
+          <div class="col-4"><b>Remaining</b></div>
+          <div class="col"><span title="{{number_format($qTotal-$totalShortUrl)}}" data-toggle="tooltip">{{readable_int($qTotal-$totalShortUrl)}} ({{round(100-(($totalShortUrl/$qTotal)*100))}}%)</span></div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xl text-center">
       <div class="card">
       <div class="card-body">
         <div class="row">
@@ -31,7 +45,21 @@
       </div>
       </div>
     </div>
-    <div class="col-md-6 col-xl-5 text-center">
+  </div>
+
+  <div class="row right_now">
+    <div class="col-md-6 col-xl-4 text-center">
+      <div class="card">
+      <div class="card-body">
+        <div class="right_now-text--primary">
+          <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{readable_int($userCount)}}</span>
+        </div>
+        <div class="right_now-label">@lang('Active Users')</div>
+      </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xl text-center">
       <div class="card">
       <div class="card-body">
         <div class="row">
@@ -57,16 +85,7 @@
       </div>
       </div>
     </div>
-    <div class="col-md-6 col-xl text-center">
-      <div class="card">
-      <div class="card-body">
-        <div class="right_now-text--primary">
-          <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{readable_int($userCount)}}</span>
-        </div>
-        <div class="right_now-label">@lang('Active Users')</div>
-      </div>
-      </div>
-    </div>
+
   </div>
 @else
   <div class="row right_now">

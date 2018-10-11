@@ -13,14 +13,17 @@ class UrlHlp
     public function url_generator()
     {
         $generateId = new Client();
+        $alphabet = config('plur.hash_alphabet');
+        $size1 = config('plur.hash_size_1');
+        $size2 = config('plur.hash_size_2');
 
-        $shortURL = $generateId->generateId($size = 7);
+        $shortURL = $generateId->formatedId($alphabet, $size1);
 
         // If it is already used (not available),
         // find the next available base64 ending.
         $link = Url::where('short_url', $shortURL)->first();
         while ($link) {
-            $shortURL = $generateId->generateId($size = 7);
+            $shortURL = $generateId->formatedId($alphabet, $size2);
             $link = Url::where('short_url', $shortURL)->first();
         }
 

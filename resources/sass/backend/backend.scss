@@ -241,7 +241,7 @@ body {
 
   &:focus {
     box-shadow: none;
-    border-bottom: 2px solid $green;
+    border-color: $secondary;
   }
 
   &#name:disabled {

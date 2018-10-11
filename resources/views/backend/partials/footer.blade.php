@@ -1,6 +1,6 @@
 <footer class="app-footer">
   <div>
-    <a href="https://github.com/realodix/plur">{{config('app.name')}}</a> <small>{{config('app.app_version')}}</small>
+    <a href="https://github.com/realodix/plur">{{config('app.name')}}</a> <small>{{config('plur.version')}}</small>
     <span>&copy; 2018 <a href="https://github.com/realodix">Realodix</a></span>
   </div>
   <div class="ml-auto">
