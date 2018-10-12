@@ -197,7 +197,11 @@
 .jssocials-share{
   font-size: 1.2rem;
 
-  &-facebook {
+  &-email a {
+    color: #4e4e4e;
+  }
+
+  &-facebook a {
     color: #3b5998;
   }
 
@@ -205,11 +209,15 @@
     color: #1da1f2;
   }
 
-  &-googleplus a {
-    color: #dd4b39;
-  }
-
   &-line a {
     color: #00c300;
+  }
+
+  &-whatsapp a {
+    color: #128c7e;
+  }
+
+  &-telegram a {
+    color: #0088cc;
   }
 }

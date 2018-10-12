@@ -178,7 +178,7 @@ $(function () {
 $("#jssocials").jsSocials({
     shareIn: "popup",
     showLabel: false,
-    shares: [{ share: "facebook", logo: "fab fa-facebook" }, { share: "twitter", logo: "fab fa-twitter" }, { share: "googleplus", logo: "fab fa-google-plus" }, { share: "line", logo: "fab fa-line" }]
+    shares: [{ share: "email", logo: "fas fa-envelope" }, { share: "facebook", logo: "fab fa-facebook" }, { share: "twitter", logo: "fab fa-twitter" }, { share: "line", logo: "fab fa-line" }, { share: "whatsapp", logo: "fab fa-whatsapp" }, { share: "telegram", logo: "fab fa-telegram" }]
 });
 
 /***/ }),

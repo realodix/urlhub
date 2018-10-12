@@ -22,6 +22,11 @@ class UrlHlp
         // If it is already used (not available),
         // find the next available base64 ending.
         $link = Url::where('short_url', $shortURL)->first();
+
+        if (($size1 == $size2) || $size2 == 0) {
+            $size2 = $size1;
+        }
+
         while ($link) {
             $shortURL = $generateId->formatedId($alphabet, $size2);
             $link = Url::where('short_url', $shortURL)->first();
@@ -39,7 +44,7 @@ class UrlHlp
     {
         $data = @file_get_contents($value);
 
-        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : $value;
+        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : __('No Title');
 
         return $title;
     }
@@ -85,32 +90,4 @@ class UrlHlp
 
         return $value;
     }
-
-    // /**
-    //  * @param  string $value
-    //  * @return boolean
-    //  */
-    // public function domainBlocked($value)
-    // {
-    //     $blockedDomainList = [
-    //         'adf.ly',
-    //         'bit.ly',
-    //         'clc.la', 'clc.to',
-    //         'goo.gl',
-    //         'is.gd',
-    //         'j.mp',
-    //         'ow.ly',
-    //         'polr.me',
-    //         's.id',
-    //         'shorturl.at',
-    //         't.co',
-    //         'tiny.cc', 'tinyurl.com',
-    //         'ur1.ca',
-    //         'v.ht',
-    //     ];
-    //
-    //     $contains = str_contains($value, $blockedDomainList);
-    //
-    //     return $contains;
-    // }
 }

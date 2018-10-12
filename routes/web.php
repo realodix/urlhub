@@ -12,7 +12,7 @@ Route::namespace('Frontend')->group(function () {
 Route::namespace('Backend')->group(function () {
     Route::middleware('auth')->prefix('admin')->group(function () {
         // Dashboard (My URLs)
-        Route::get('/', 'DashboardController@index')->name('admin');
+        Route::get('/', 'DashboardController@view')->name('admin');
         Route::get('/delete/{id}', 'DashboardController@delete')->name('admin.delete');
 
         // All URLs

@@ -10,11 +10,17 @@ use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function view()
     {
         $alphabet = strlen(config('plur.hash_alphabet'));
         $size1 = config('plur.hash_size_1');
         $size2 = config('plur.hash_size_2');
+
+        $qTotal = pow($alphabet, $size1) + pow($alphabet, $size2);
+
+        if (($size1 == $size2) || $size2 == 0) {
+            $qTotal = pow($alphabet, $size1);
+        }
 
         return view('backend.dashboard', [
             'totalShortUrl'        => Url::count('short_url'),
@@ -24,7 +30,7 @@ class DashboardController extends Controller
             'viewCountByMe'        => $this->viewCountById(Auth::id()),
             'viewCountByGuest'     => $this->viewCountById(0),
             'userCount'            => User::count(),
-            'qTotal'               => pow($alphabet, $size1) + pow($alphabet, $size2),
+            'qTotal'               => $qTotal,
         ]);
     }
 

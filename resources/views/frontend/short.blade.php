@@ -22,7 +22,7 @@
         <i><span title="{{number_format($views)}} views" data-toggle="tooltip">{{readable_int($views)}}</span></i>
       </li>
     </ul>
-    <div class="title">{{ $long_url_title }}</div>
+    <div class="title">{!! $long_url_title !!}</div>
   </div>
   </div>
 
