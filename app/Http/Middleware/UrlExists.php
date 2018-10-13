@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Url;
 use Closure;
 
-class CheckUrl
+class UrlExists
 {
     /**
      * Handle an incoming request.

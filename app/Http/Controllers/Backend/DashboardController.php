@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Url;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
@@ -22,6 +23,14 @@ class DashboardController extends Controller
             $qTotal = pow($alphabet, $size1);
         }
 
+        // Counting the number of guests on the url column based on IP
+        $guestCount = DB::table('urls')
+            ->select('ip', DB::raw('count(*) as total'))
+            ->where('user_id', 0)
+            ->groupBy('ip')
+            ->get()
+            ->count();
+
         return view('backend.dashboard', [
             'totalShortUrl'        => Url::count('short_url'),
             'totalShortUrlByMe'    => $this->totalShortUrlById(Auth::id()),
@@ -30,6 +39,7 @@ class DashboardController extends Controller
             'viewCountByMe'        => $this->viewCountById(Auth::id()),
             'viewCountByGuest'     => $this->viewCountById(0),
             'userCount'            => User::count(),
+            'guestCount'           => $guestCount,
             'qTotal'               => $qTotal,
         ]);
     }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{config('app.name')}}</title>
+  <title>{{config('app.name')}} - Simplify your links</title>
 
   {!! style(mix('css/frontend.css')) !!}
 </head>
@@ -48,11 +48,11 @@
           </li>
         @else
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
+            <a class="nav-link" href="{{ route('login') }}">@lang('Login')</a>
           </li>
           @if (Route::has('register'))
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">Register</a>
+            <a class="nav-link" href="{{ route('register') }}">@lang('Register')</a>
           </li>
           @endif
         @endauth

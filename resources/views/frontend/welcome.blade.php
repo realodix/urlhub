@@ -5,7 +5,7 @@
 @section('content')
 <div class="container home pt-5">
   <div class="row justify-content-md-center">
-    <div class="col-lg-8 text-center welcome-msg">We will provide a shortened link for the page you're on.</div>
+    <div class="col-lg-8 text-center welcome-msg">Shorten links to better spread your story on social media</div>
   </div>
 
   <div class="row mt-5 justify-content-md-center">
@@ -36,12 +36,6 @@
         </div>
         @endforeach
       @endif
-
-      {{-- @if (session('msgDomainBlocked'))
-      <div class="alert alert-warning mt-3" role="alert">
-        {{ session('msgDomainBlocked') }}
-      </div>
-      @endif --}}
 
     </div>
   </div>

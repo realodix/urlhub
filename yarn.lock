@@ -8,9 +8,9 @@
   integrity sha512-yeeoWp+bNS84nP1977Y8UCiQ9pssO+f4QuVj3i0/gYZFjjvOgxx0dnyWhtowD5sLYnCRMPlPpqyjwXze3SlkYg==
 
 "@coreui/coreui@^2.0.4":
-  version "2.0.17"
-  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.0.17.tgz#3accf3f3bda4fc75556e8b141b623b8ebfcb631e"
-  integrity sha512-StMn8rgbchTMB5g/AuafdHL99hbuard3BBYh3hJXUWb2vn+TneERbzY3tFnqFJtQrEf3Dou01oOQIlLTkdFuNg==
+  version "2.0.18"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.0.18.tgz#68d49bc0e242d309a431c27c8bcef676bc876afd"
+  integrity sha512-3P+ANdHpasPYNRsohj6vy0nA0aKcf1tG7Fw5tuPq/MqLSL/nHaBMi0UALIxQkDjU1VrdC8QzUfgxg+ydjnWl3A==
   dependencies:
     "@coreui/coreui-plugin-npm-postinstall" "^1.0.2"
     bootstrap "^4.1.3"
@@ -2279,9 +2279,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30, electron-to-chromium@^1.3.47:
-  version "1.3.78"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.78.tgz#ecb72b5b166ba6598efb384461d63cad74678ebf"
-  integrity sha512-p4D/5iX08c3LNep5bWn/X3dFmec1K9le6O43lgRsO/vYKBTH2smWDMDfkGlPtERFcLVkI8xdKW5EokBZODh1xg==
+  version "1.3.79"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.79.tgz#774718f06284a4bf8f578ac67e74508fe659f13a"
+  integrity sha512-LQdY3j4PxuUl6xfxiFruTSlCniTrTrzAd8/HfsLEMi0PUpaQ0Iy+Pr4N4VllDYjs0Hyu2lkTbvzqlG+PX9NsNw==
 
 elliptic@^6.0.0:
   version "6.4.1"
@@ -5512,9 +5512,9 @@ postcss-unique-selectors@^2.0.2:
     uniqs "^2.0.0"
 
 postcss-value-parser@^3.0.1, postcss-value-parser@^3.0.2, postcss-value-parser@^3.1.1, postcss-value-parser@^3.1.2, postcss-value-parser@^3.2.3, postcss-value-parser@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.0.tgz#87f38f9f18f774a4ab4c8a232f5c5ce8872a9d15"
-  integrity sha1-h/OPnxj3dKSrTIojL1xc6IcqnRU=
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-3.3.1.tgz#9ff822547e2893213cf1c30efa51ac5fd1ba8281"
+  integrity sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/xHAbB7N49OS4gWNyQ==
 
 postcss-zindex@^2.0.1:
   version "2.2.0"

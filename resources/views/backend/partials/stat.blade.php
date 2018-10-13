@@ -51,10 +51,20 @@
     <div class="col-md-6 col-xl-4 text-center">
       <div class="card">
       <div class="card-body">
-        <div class="right_now-text--primary">
-          <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{readable_int($userCount)}}</span>
+        <div class="row">
+          <div class="col-6">
+            <div class="right_now-text--primary">
+              <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{readable_int($userCount)}}</span>
+            </div>
+            <div class="right_now-label">@lang('Active Users')</div>
+          </div>
+          <div class="col-6">
+            <div class="right_now-text--primary">
+              <span title="{{number_format($guestCount)}}" data-toggle="tooltip">{{readable_int($guestCount)}}</span>
+            </div>
+            <div class="right_now-label">@lang('Guest')</div>
+          </div>
         </div>
-        <div class="right_now-label">@lang('Active Users')</div>
       </div>
       </div>
     </div>

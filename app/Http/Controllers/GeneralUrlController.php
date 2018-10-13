@@ -13,7 +13,7 @@ class GeneralUrlController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkurl')->only('create');
+        $this->middleware('urlexists')->only('create');
     }
 
     public function create(Requests\StoreUrl $request)

@@ -2,11 +2,13 @@
 
 **Warning: Plur is still under development.**
 
-Plur is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and to brand your URLs. Plur is especially easy to use, and provides a modern, themable feel.
+Plur is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
-* URL Shortener
-* Customized short URL's(ex: example.com/laravel)
+* URL Shortener.
+* Customized short URL's(ex: example.com/laravel).
+* QR code generator for each short link.
+* Sortable list of shortened URLs.
 * Written in PHP and Laravel 5.7.
 * Datatables with server-side processing.
 * Modern and simple interface.
@@ -19,7 +21,7 @@ Plur is a free, open-source and easy-to-use but powerful URL shortener. It allow
 
 
 ## Requirements
-- [All requirements by Laravel](https://laravel.com/docs/installation#server-requirements) - PHP, OpenSSL, [Composer](https://getcomposer.org/) and such.
+- [All requirements by Laravel](https://laravel.com/docs/installation#server-requirements) - PHP >= 7.1.3, [Composer](https://getcomposer.org/) and such.
 - MySQL or MariaDB.
 
 
