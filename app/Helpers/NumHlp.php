@@ -6,12 +6,13 @@ class NumHlp
 {
     /**
      * Convert large positive numbers in to short form like 1K+, 100K+, 199K+, 1M+, 10M+, 1B+ etc.
-     * https://gist.github.com/RadGH/84edff0cc81e6326029c
-     * https://github.com/sandervanhooft/laravel-blade-readable-numbers
+     *
+     * @link https://gist.github.com/RadGH/84edff0cc81e6326029c
+     * @link https://github.com/sandervanhooft/laravel-blade-readable-numbers
      *
      * @param   $n
      *
-     * @return  string
+     * @return string
      */
     public function readable_int($n)
     {
@@ -42,13 +43,14 @@ class NumHlp
 
     /**
      * Alternative to make number_format() not to round numbers up
-     * https://stackoverflow.com/a/40125597
      *
-     * @param   $number     number
-     * @param   $precision  int
-     * @param   $separator  string
+     * @link https://stackoverflow.com/a/40125597
      *
-     * @return  number
+     * @param   $number    number
+     * @param   $precision int
+     * @param   $separator string
+     *
+     * @return number
      */
     public function number_format_precision($number, $precision = 2, $separator = '.')
     {
