@@ -42,7 +42,7 @@ class NumHlp
     }
 
     /**
-     * Alternative to make number_format() not to round numbers up
+     * Alternative to make number_format() not to round numbers up.
      *
      * @link https://stackoverflow.com/a/40125597
      *
