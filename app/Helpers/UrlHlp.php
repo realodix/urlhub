@@ -49,11 +49,10 @@ class UrlHlp
         if ($title) {
             $title = $matches[1];
         } else {
-
-            $title = title_case($this->url_get_domain($value)) .' - '. __('No Title');
+            $title = title_case($this->url_get_domain($value)).' - '.__('No Title');
 
             if (!$this->url_get_domain($value)) {
-                $title =  __('No Title');
+                $title = __('No Title');
             }
         }
 
@@ -66,7 +65,8 @@ class UrlHlp
      * @return mixed
      */
     // https://stackoverflow.com/a/399316
-    public function url_get_domain($url) {
+    public function url_get_domain($url)
+    {
         $pieces = parse_url($url);
         $domain = isset($pieces['host']) ? $pieces['host'] : '';
 
@@ -107,7 +107,7 @@ class UrlHlp
         return str_replace([
                     'http://',
                     'https://',
-                    'www.'
+                    'www.',
                 ], '', $value);
     }
 }
