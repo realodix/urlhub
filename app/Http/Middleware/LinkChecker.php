@@ -23,11 +23,9 @@ class LinkChecker
         $domains_blocked = config('plur.domains_blocked');
 
         foreach ($domains_blocked as $domain_blocked) {
-
-            $url_segment = ('://' . $domain_blocked . '/');
+            $url_segment = ('://'.$domain_blocked.'/');
 
             if (strstr($long_url, $url_segment)) {
-
                 return redirect()->back()->with('error', __('Sorry, the URL you entered is on our internal blacklist. It may have been used abusively in the past, or it may link to another URL redirection service.'));
             }
         }
