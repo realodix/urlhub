@@ -16,14 +16,22 @@ $secondary: $green;
 $tertiary:  $orange;
 $success:   $green;
 
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "tertiary":  $tertiary
+  ),
+  $theme-colors
+);
+
 // Dropdowns
 $dropdown-link-color:       #333 !default;
 $dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
 
 // Cards
 $card-cap-bg:         none;
-$card-border-radius:  0.625rem;
-
+$card-border-radius:  0.25rem;
 
 /*
  * Extend
@@ -35,5 +43,6 @@ $card-border-radius:  0.625rem;
 }
 
 %box-shadow {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
+              rgba(60, 64, 67, .15) 0 1px 3px 1px;
 }

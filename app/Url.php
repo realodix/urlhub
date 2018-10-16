@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Facades\App\Helpers\UrlHlp;
 use Illuminate\Database\Eloquent\Model;
 
 class Url extends Model
@@ -19,5 +20,10 @@ class Url extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function setLongUrlTitleAttribute($value)
+    {
+        $this->attributes['long_url_title'] = UrlHlp::url_get_title($value);
     }
 }

@@ -24,7 +24,7 @@
             <th scope="col">@lang('Short URL')</th>
             <th scope="col">@lang('Original URL')</th>
             <th scope="col">@lang('Views')</th>
-            <th scope="col">@lang('Author')</th>
+            <th scope="col">@lang('Created By')</th>
             <th scope="col">@lang('Date')</th>
             <th scope="col">@lang('Actions')</th>
           </tr>

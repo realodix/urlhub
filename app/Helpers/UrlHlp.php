@@ -10,7 +10,7 @@ class UrlHlp
     /**
      * @return string
      */
-    public function url_generator()
+    public function link_generator()
     {
         $generateId = new Client();
         $alphabet = config('plur.hash_alphabet');
@@ -20,7 +20,7 @@ class UrlHlp
         $shortURL = $generateId->formatedId($alphabet, $size1);
 
         // If it is already used (not available),
-        // find the next available base64 ending.
+        // find the next available base62 ending.
         $link = Url::where('short_url', $shortURL)->first();
 
         if (($size1 == $size2) || $size2 == 0) {
@@ -44,9 +44,37 @@ class UrlHlp
     {
         $data = @file_get_contents($value);
 
-        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches) ? $matches[1] : __('No Title');
+        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches);
+
+        if ($title) {
+            $title = $matches[1];
+        } else {
+
+            $title = title_case($this->url_get_domain($value)) .' - '. __('No Title');
+
+            if (!$this->url_get_domain($value)) {
+                $title =  __('No Title');
+            }
+        }
 
         return $title;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return mixed
+     */
+    // https://stackoverflow.com/a/399316
+    public function url_get_domain($url) {
+        $pieces = parse_url($url);
+        $domain = isset($pieces['host']) ? $pieces['host'] : '';
+
+        if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
+            return $regs['domain'];
+        }
+
+        return false;
     }
 
     /**
@@ -76,18 +104,10 @@ class UrlHlp
      */
     public function url_parsed($value)
     {
-        if (str_contains($value, 'http://')) {
-            $value = str_replace_first('http://', '', $value);
-        }
-
-        if (str_contains($value, 'https://')) {
-            $value = str_replace_first('https://', '', $value);
-        }
-
-        if (str_contains($value, 'www.')) {
-            $value = str_replace_first('www.', '', $value);
-        }
-
-        return $value;
+        return str_replace([
+                    'http://',
+                    'https://',
+                    'www.'
+                ], '', $value);
     }
 }

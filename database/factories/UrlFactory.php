@@ -19,7 +19,7 @@ $factory->define(App\Url::class, function (Faker $faker) {
         'user_id'           => $faker->biasedNumberBetween($min = 0, $max = 2, $function = 'sqrt'),
         'long_url'          => 'https://github.com/realodix/plur',
         'long_url_title'    => 'URL Title',
-        'short_url'         => UrlHlp::url_generator(),
+        'short_url'         => UrlHlp::link_generator(),
         'short_url_custom'  => 0,
         'views'             => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
         'ip'                => '8.8.8.8',

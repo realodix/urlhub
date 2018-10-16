@@ -22,7 +22,7 @@ $(document).ready(function() {
             {data: 'short_url'},
             {data: 'long_url'},
             {data: 'views'},
-            {data: 'author'},
+            {data: 'created_by'},
             {
                 data: 'created_at',
                 type: 'num',

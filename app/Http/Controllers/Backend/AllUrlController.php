@@ -46,7 +46,7 @@ class AllUrlController extends Controller
                     'timestamp' => $url->created_at->timestamp,
                 ];
             })
-            ->addColumn('author', function ($url) {
+            ->addColumn('created_by', function ($url) {
                 if (isset($url->user->name)) {
                     return '<span>'.$url->user->name.'</span>';
                 } else {
@@ -60,7 +60,7 @@ class AllUrlController extends Controller
                     <a role="button" class="btn" href="'.route('admin.allurl.delete', $url->id).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
-            ->rawColumns(['short_url', 'long_url', 'views', 'created_at.display', 'author', 'action'])
+            ->rawColumns(['short_url', 'long_url', 'views', 'created_at.display', 'created_by', 'action'])
             ->make(true);
     }
 

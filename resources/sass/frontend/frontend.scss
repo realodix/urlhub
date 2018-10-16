@@ -108,7 +108,7 @@
 
   .body {
     @extend %card-body;
-    border-radius: 0.625rem;
+    border-radius: $card-border-radius;
 
     .long-url {
       a {

@@ -6,21 +6,21 @@
       <span class="guest ml-5"><i class="fas fa-square"></i> @lang('Guest')</span>
     </div>
     <div class="col-md-6 col-xl-4" style="font-size: 1.25rem; font-weight: 300;">
-      <div class="card">
+      <div class="card border-left border-primary">
       <div class="card-body">
         <div class="row">
-          <div class="col-4"><b>Quotas</b></div>
-          <div class="col"><span title="{{number_format($qTotal)}}" data-toggle="tooltip">{{readable_int($qTotal)}}</span></div>
+          <div class="col-4"><b>@lang('Capacity')</b></div>
+          <div class="col"><span title="{{number_format($capacity)}}" data-toggle="tooltip">{{readable_int($capacity)}}</span></div>
         </div>
         <div class="row">
-          <div class="col-4"><b>Remaining</b></div>
-          <div class="col"><span title="{{number_format($qTotal-$totalShortUrl)}}" data-toggle="tooltip">{{readable_int($qTotal-$totalShortUrl)}} ({{round(100-(($totalShortUrl/$qTotal)*100))}}%)</span></div>
+          <div class="col-4"><b>@lang('Remaining')</b></div>
+          <div class="col"><span title="{{number_format($capacity-$totalShortUrl)}}" data-toggle="tooltip">{{readable_int($capacity-$totalShortUrl)}} ({{round(100-(($totalShortUrl/$capacity)*100))}}%)</span></div>
         </div>
       </div>
       </div>
     </div>
     <div class="col-md-6 col-xl text-center">
-      <div class="card">
+      <div class="card border-left border-primary">
       <div class="card-body">
         <div class="row">
           <div class="col-4">
@@ -49,7 +49,7 @@
 
   <div class="row right_now">
     <div class="col-md-6 col-xl-4 text-center">
-      <div class="card">
+      <div class="card border-left border-secondary">
       <div class="card-body">
         <div class="row">
           <div class="col-6">
@@ -70,7 +70,7 @@
     </div>
 
     <div class="col-md-6 col-xl text-center">
-      <div class="card">
+      <div class="card border-left border-tertiary">
       <div class="card-body">
         <div class="row">
           <div class="col-4">

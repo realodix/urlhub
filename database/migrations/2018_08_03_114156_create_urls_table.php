@@ -16,10 +16,10 @@ class CreateUrlsTable extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->longText('long_url');
-            $table->string('long_url_title');
             $table->string('short_url')->unique();
             $table->string('short_url_custom');
+            $table->longText('long_url');
+            $table->string('long_url_title');
             $table->integer('views');
             $table->ipAddress('ip');
             $table->timestamps();

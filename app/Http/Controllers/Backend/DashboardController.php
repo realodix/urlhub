@@ -17,10 +17,10 @@ class DashboardController extends Controller
         $size1 = config('plur.hash_size_1');
         $size2 = config('plur.hash_size_2');
 
-        $qTotal = pow($alphabet, $size1) + pow($alphabet, $size2);
+        $capacity = pow($alphabet, $size1) + pow($alphabet, $size2);
 
         if (($size1 == $size2) || $size2 == 0) {
-            $qTotal = pow($alphabet, $size1);
+            $capacity = pow($alphabet, $size1);
         }
 
         // Counting the number of guests on the url column based on IP
@@ -40,7 +40,7 @@ class DashboardController extends Controller
             'viewCountByGuest'     => $this->viewCountById(0),
             'userCount'            => User::count(),
             'guestCount'           => $guestCount,
-            'qTotal'               => $qTotal,
+            'capacity'             => $capacity,
         ]);
     }
 

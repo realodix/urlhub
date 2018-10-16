@@ -30,7 +30,7 @@ $(document).ready(function () {
         serverSide: true,
         stateSave: true,
         ajax: '/api/allurl/getdata',
-        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, { data: 'author' }, {
+        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, { data: 'created_by' }, {
             data: 'created_at',
             type: 'num',
             render: {

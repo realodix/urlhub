@@ -13,19 +13,19 @@ class GeneralUrlController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('urlexists')->only('create');
+        $this->middleware('linkchecker')->only('create');
     }
 
     public function create(Requests\StoreUrl $request)
     {
-        $url_generator = UrlHlp::url_generator();
-        $short_url = $request->short_url_custom ?? $url_generator;
+        $link_generator = UrlHlp::link_generator();
+        $short_url = $request->short_url_custom ?? $link_generator;
 
         Url::create([
             'user_id'           => Auth::check() ? Auth::id() : 0,
             'long_url'          => $request->long_url,
-            'long_url_title'    => UrlHlp::url_get_title($request->long_url),
-            'short_url'         => $url_generator,
+            'long_url_title'    => $request->long_url,
+            'short_url'         => $link_generator,
             'short_url_custom'  => $request->short_url_custom ?? 0,
             'views'             => 0,
             'ip'                => $request->ip(),
