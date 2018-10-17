@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use App\Url;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Facades\App\Helpers\UrlHlp;
+use Illuminate\Support\Facades\Auth;
 
 class LinkChecker
 {
@@ -35,7 +35,7 @@ class LinkChecker
 
         // check whether it is already in the database
         $s_url = Url::where('long_url', $long_url)
-                    ->where('user_id', '==' , 0)
+                    ->where('user_id', '==', 0)
                     ->first();
 
         if (Auth::check()) {
