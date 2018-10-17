@@ -6,7 +6,7 @@
       <span class="guest ml-5"><i class="fas fa-square"></i> @lang('Guest')</span>
     </div>
     <div class="col-md-6 col-xl-4" style="font-size: 1.25rem; font-weight: 300;">
-      <div class="card border-left border-primary">
+      <div class="card border-left">
       <div class="card-body">
         <div class="row">
           <div class="col-4"><b>@lang('Capacity')</b></div>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="col-md-6 col-xl text-center">
-      <div class="card border-left border-primary">
+      <div class="card border-left">
       <div class="card-body">
         <div class="row">
           <div class="col-4">
@@ -49,7 +49,7 @@
 
   <div class="row right_now">
     <div class="col-md-6 col-xl-4 text-center">
-      <div class="card border-left border-secondary">
+      <div class="card border-left">
       <div class="card-body">
         <div class="row">
           <div class="col-6">
@@ -70,7 +70,7 @@
     </div>
 
     <div class="col-md-6 col-xl text-center">
-      <div class="card border-left border-tertiary">
+      <div class="card border-left">
       <div class="card-body">
         <div class="row">
           <div class="col-4">

@@ -30,7 +30,7 @@ $(function() {
     var twOptions = {
         callback: function (value) {
             $.ajax({
-                url: "/api/custom-link-avail-check",
+                url: "/custom-link-avail-check",
                 type: 'POST',
                 data: {
                     'short_url_custom': $('#short_url_custom').val()
@@ -78,9 +78,6 @@ $("#jssocials").jsSocials({
     shares: [
         { share: "email", logo: "fas fa-envelope" },
         { share: "facebook", logo: "fab fa-facebook" },
-        { share: "twitter", logo: "fab fa-twitter" },
-        { share: "line", logo: "fab fa-line" },
-        { share: "whatsapp", logo: "fab fa-whatsapp" },
-        { share: "telegram", logo: "fab fa-telegram" }
+        { share: "twitter", logo: "fab fa-twitter" }
     ]
 });

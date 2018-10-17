@@ -20,7 +20,7 @@ class UrlHlp
         $shortURL = $generateId->formatedId($alphabet, $size1);
 
         // If it is already used (not available),
-        // find the next available base62 ending.
+        // find the next available ending.
         $link = Url::where('short_url', $shortURL)->first();
 
         if (($size1 == $size2) || $size2 == 0) {

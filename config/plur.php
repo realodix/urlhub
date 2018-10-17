@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'version' => 'build.181016',
+    'version' => 'build.181017',
 
     'hash_size_1'   => 6, // >= 1
     'hash_size_2'   => 7, // >= 0
@@ -16,6 +16,6 @@ return [
         'ow.ly',
         'j.mp',
         't.co',
-        $_SERVER['SERVER_NAME'],
+        config('app.url'),
     ],
 ];

@@ -14232,6 +14232,7 @@ body {
 
 .card.border-left {
   border-width: .25rem !important;
+  border-color: #009689 !important;
 }
 
 .card-title {

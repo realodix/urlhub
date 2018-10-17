@@ -29,7 +29,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         stateSave: true,
-        ajax: '/api/allurl/getdata',
+        ajax: '/admin/allurl/getdata',
         columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, { data: 'created_by' }, {
             data: 'created_at',
             type: 'num',
@@ -49,7 +49,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         stateSave: true,
-        ajax: '/api/myurl/getdata',
+        ajax: '/admin/myurl/getdata',
         columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, {
             data: 'created_at',
             type: 'num',
@@ -69,7 +69,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         stateSave: true,
-        ajax: '/api/user/getdata',
+        ajax: '/admin/user/user/getdata',
         columns: [{ data: 'name' }, { data: 'email' }, {
             data: 'created_at',
             type: 'num',
