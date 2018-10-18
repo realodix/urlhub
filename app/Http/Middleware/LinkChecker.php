@@ -21,6 +21,11 @@ class LinkChecker
     {
         $long_url = $request->long_url;
 
+        if (UrlHlp::url_remaining() == 0) {
+            return redirect()->back()
+                             ->with('error', __('Sorry, our service is currently under maintenance.'));
+        }
+
         // check whether the domain is blacklisted
         $domains_blocked = UrlHlp::url_parsed(config('plur.domains_blocked'));
 

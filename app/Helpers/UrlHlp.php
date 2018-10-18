@@ -110,4 +110,26 @@ class UrlHlp
                     'www.',
                 ], '', $value);
     }
+
+    public function url_capacity()
+    {
+        $alphabet = strlen(config('plur.hash_alphabet'));
+        $size1 = config('plur.hash_size_1');
+        $size2 = config('plur.hash_size_2');
+
+        $capacity = pow($alphabet, $size1) + pow($alphabet, $size2);
+
+        if (($size1 == $size2) || $size2 == 0) {
+            $capacity = pow($alphabet, $size1);
+        }
+
+        return $capacity;
+    }
+
+    public function url_remaining()
+    {
+        $totalShortUrlCustom = Url::where('short_url_custom', '!=', '')->count();
+
+        return ($this->url_capacity() + $totalShortUrlCustom) - Url::count('short_url');
+    }
 }

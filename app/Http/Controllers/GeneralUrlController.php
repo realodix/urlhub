@@ -25,8 +25,8 @@ class GeneralUrlController extends Controller
             'user_id'           => Auth::check() ? Auth::id() : 0,
             'long_url'          => $request->long_url,
             'long_url_title'    => $request->long_url,
-            'short_url'         => $link_generator,
-            'short_url_custom'  => $request->short_url_custom ?? 0,
+            'short_url'         => $request->short_url_custom ? sha1($link_generator) : $link_generator,
+            'short_url_custom'  => $request->short_url_custom ?? '',
             'views'             => 0,
             'ip'                => $request->ip(),
         ]);

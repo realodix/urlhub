@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Url;
 use App\User;
+use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
@@ -13,16 +14,6 @@ class DashboardController extends Controller
 {
     public function view()
     {
-        $alphabet = strlen(config('plur.hash_alphabet'));
-        $size1 = config('plur.hash_size_1');
-        $size2 = config('plur.hash_size_2');
-
-        $capacity = pow($alphabet, $size1) + pow($alphabet, $size2);
-
-        if (($size1 == $size2) || $size2 == 0) {
-            $capacity = pow($alphabet, $size1);
-        }
-
         // Counting the number of guests on the url column based on IP
         $guestCount = DB::table('urls')
             ->select('ip', DB::raw('count(*) as total'))
@@ -30,6 +21,8 @@ class DashboardController extends Controller
             ->groupBy('ip')
             ->get()
             ->count();
+
+        $totalShortUrlCustom = Url::where('short_url_custom', '!=', '')->count();
 
         return view('backend.dashboard', [
             'totalShortUrl'        => Url::count('short_url'),
@@ -40,7 +33,10 @@ class DashboardController extends Controller
             'viewCountByGuest'     => $this->viewCountById(0),
             'userCount'            => User::count(),
             'guestCount'           => $guestCount,
-            'capacity'             => $capacity,
+            'capacity'             => UrlHlp::url_capacity(),
+            'remaining'            => UrlHlp::url_remaining(),
+            'totalShortUrlCustom'  => $totalShortUrlCustom,
+
         ]);
     }
 
