@@ -40,7 +40,7 @@ class LinkChecker
 
         // check whether it is already in the database
         $s_url = Url::where('long_url', $long_url)
-                    ->where('user_id', '==', 0)
+                    ->where('user_id', 0)
                     ->first();
 
         if (Auth::check()) {
