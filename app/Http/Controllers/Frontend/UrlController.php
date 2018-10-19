@@ -22,7 +22,6 @@ class UrlController extends Controller
                         ->firstOrFail();
         }
 
-
         if ($url->short_url_custom) {
             $blabla = $url->short_url_custom;
         } else {
