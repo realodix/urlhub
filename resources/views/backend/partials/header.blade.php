@@ -14,16 +14,19 @@
 
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
-        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" target="_blank" title="{{config('app.name')}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
+        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" title="{{config('app.name')}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
     </li>
 
-    {!! Breadcrumbs::render() !!}
+    @if(Breadcrumbs::exists())
+      {!! Breadcrumbs::render() !!}
+    @endif
   </ul>
 
   <ul class="nav navbar-nav ml-auto mr-5">
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         {{ title_case(Auth::user()->name) }}
+        <img class="img-avatar" src="{{ Auth::user()->avatar }}" alt="Avatar">
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->name) }}">

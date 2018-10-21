@@ -8896,6 +8896,13 @@ img.jssocials-share-logo {
   color: #263961;
 }
 
+.navbar-nav .img-avatar {
+  height: 35px;
+  margin: 0 10px;
+  max-width: 100%;
+  border-radius: 50em;
+}
+
 .jssocials-share {
   font-size: 1.2rem;
 }

@@ -17,15 +17,15 @@ class UrlHlp
         $size1 = config('plur.hash_size_1');
         $size2 = config('plur.hash_size_2');
 
+        if (($size1 == $size2) || $size2 == 0) {
+            $size2 = $size1;
+        }
+
         $shortURL = $generateId->formatedId($alphabet, $size1);
 
         // If it is already used (not available),
         // find the next available ending.
         $link = Url::where('short_url', $shortURL)->first();
-
-        if (($size1 == $size2) || $size2 == 0) {
-            $size2 = $size1;
-        }
 
         while ($link) {
             $shortURL = $generateId->formatedId($alphabet, $size2);

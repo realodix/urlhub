@@ -187,6 +187,13 @@
         color: darken($primary, 15%);
       }
     }
+
+    .img-avatar {
+      height: 35px;
+      margin: 0 10px;
+      max-width: 100%;
+      border-radius: 50em;
+    }
   }
 }
 

@@ -22,6 +22,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ title_case(Auth::user()->name) }}
+              <img class="img-avatar" src="{{ Auth::user()->avatar }}" alt="Avatar">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('admin') }}">

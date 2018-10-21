@@ -7,7 +7,7 @@ use Closure;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 
-class LinkChecker
+class PlurLinkChecker
 {
     /**
      * Handle an incoming request.

@@ -3,8 +3,10 @@
 namespace App;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Creativeorange\Gravatar\Gravatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravolt\Avatar\Avatar;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -33,5 +35,20 @@ class User extends Authenticatable
     public function url()
     {
         return $this->hasMany('App\Url');
+    }
+
+    /**
+     * Get User avatar
+     */
+    public function getAvatarAttribute()
+    {
+        $avatar = new Avatar();
+        $gravatar = new Gravatar();
+
+        if ($gravatar->exists($this->email) == true) {
+            return $gravatar->get($this->email);
+        }
+
+        return $avatar->create(title_case($this->email))->toBase64();
     }
 }
