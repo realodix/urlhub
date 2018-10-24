@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Url;
-use Illuminate\Support\Facades\DB;
 
 class UrlController extends Controller
 {
