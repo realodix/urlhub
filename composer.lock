@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b109fa788e6d1377a5715559a75d4d7",
+    "content-hash": "f9b20996e9d4548bee33ba599c813c7d",
     "packages": [
         {
             "name": "codeitnowin/barcode",
@@ -584,6 +584,66 @@
             "time": "2018-02-07T20:20:57+00:00"
         },
         {
+            "name": "graham-campbell/manager",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
+                "reference": "9aff87cb08fa57a1b471bd74d84317c2abfc0f6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/9aff87cb08fa57a1b471bd74d84317c2abfc0f6b",
+                "reference": "9aff87cb08fa57a1b471bd74d84317c2abfc0f6b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.5.*|5.6.*|5.7.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "graham-campbell/analyzer": "^2.1",
+                "graham-campbell/testbench-core": "^3.0",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.5|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GrahamCampbell\\Manager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "Manager Provides Some Manager Functionality For Laravel 5",
+            "keywords": [
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Manager",
+                "Laravel-Manager",
+                "connector",
+                "framework",
+                "interface",
+                "laravel",
+                "manager"
+            ],
+            "time": "2018-08-23T10:42:08+00:00"
+        },
+        {
             "name": "guzzlehttp/psr7",
             "version": "1.4.2",
             "source": {
@@ -647,6 +707,72 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "hashids/hashids",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivanakimov/hashids.php.git",
+                "reference": "b6c61142bfe36d43740a5419d11c351dddac0458"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/b6c61142bfe36d43740a5419d11c351dddac0458",
+                "reference": "b6c61142bfe36d43740a5419d11c351dddac0458",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "suggest": {
+                "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
+                "ext-gmp": "Required to use GNU multiple precision mathematics (*)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hashids\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Akimov",
+                    "email": "ivan@barreleye.com",
+                    "homepage": "https://twitter.com/IvanAkimov"
+                },
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com",
+                    "homepage": "https://vinkla.com"
+                }
+            ],
+            "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
+            "homepage": "http://hashids.org/php",
+            "keywords": [
+                "bitly",
+                "decode",
+                "encode",
+                "hash",
+                "hashid",
+                "hashids",
+                "ids",
+                "obfuscate",
+                "youtube"
+            ],
+            "time": "2018-03-12T16:30:09+00:00"
         },
         {
             "name": "hidehalo/nanoid-php",
@@ -859,16 +985,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.9",
+            "version": "v5.7.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "172f69f86bb86e107fb9fafff293b4b01291cf05"
+                "reference": "7d748c33b8c409b9b0c96704d6493853de41754d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/172f69f86bb86e107fb9fafff293b4b01291cf05",
-                "reference": "172f69f86bb86e107fb9fafff293b4b01291cf05",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7d748c33b8c409b9b0c96704d6493853de41754d",
+                "reference": "7d748c33b8c409b9b0c96704d6493853de41754d",
                 "shasum": ""
             },
             "require": {
@@ -950,6 +1076,7 @@
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
                 "ext-pcntl": "Required to use all features of the queue worker.",
                 "ext-posix": "Required to use all features of the queue worker.",
+                "filp/whoops": "Required for friendly error pages in development (^2.1.4).",
                 "fzaninotto/faker": "Required to use the eloquent factory builder (^1.4).",
                 "guzzlehttp/guzzle": "Required to use the Mailgun and Mandrill mail drivers and the ping methods on schedules (^6.0).",
                 "laravel/tinker": "Required to use the tinker console command (^1.0).",
@@ -997,7 +1124,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-10-09T13:28:28+00:00"
+            "time": "2018-10-23T14:05:19+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2894,6 +3021,78 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "vinkla/hashids",
+            "version": "5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/laravel-hashids.git",
+                "reference": "a453f7872986bb3e1d7373f1544df1ad66405bdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/laravel-hashids/zipball/a453f7872986bb3e1d7373f1544df1ad66405bdc",
+                "reference": "a453f7872986bb3e1d7373f1544df1ad66405bdc",
+                "shasum": ""
+            },
+            "require": {
+                "graham-campbell/manager": "^4.0",
+                "hashids/hashids": "^3.0",
+                "illuminate/contracts": "5.7.*",
+                "illuminate/support": "5.7.*",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "graham-campbell/analyzer": "^2.0",
+                "graham-campbell/testbench": "^5.0",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.1-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Vinkla\\Hashids\\HashidsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Hashids": "Vinkla\\Hashids\\Facades\\Hashids"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vinkla\\Hashids\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com",
+                    "homepage": "https://vinkla.com"
+                }
+            ],
+            "description": "A Hashids bridge for Laravel",
+            "keywords": [
+                "bitly",
+                "decrypt",
+                "encrypt",
+                "hash",
+                "hashid",
+                "hashids",
+                "ids",
+                "laravel",
+                "obfuscate",
+                "youtube"
+            ],
+            "time": "2018-08-23T11:16:23+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.5.1",
             "source": {
@@ -3133,16 +3332,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "a9f129b99df316f847584d482c89c14a9f796e2b"
+                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/a9f129b99df316f847584d482c89c14a9f796e2b",
-                "reference": "a9f129b99df316f847584d482c89c14a9f796e2b",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
+                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
                 "shasum": ""
             },
             "require": {
@@ -3190,7 +3389,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2018-10-20T09:00:00+00:00"
+            "time": "2018-10-23T09:00:00+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -3785,16 +3984,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "6.1.1",
+            "version": "6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "b097681a19a48e52706f57e47a09594bac4f7cab"
+                "reference": "4d3ae9b21a7d7e440bd0cf65565533117976859f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/b097681a19a48e52706f57e47a09594bac4f7cab",
-                "reference": "b097681a19a48e52706f57e47a09594bac4f7cab",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/4d3ae9b21a7d7e440bd0cf65565533117976859f",
+                "reference": "4d3ae9b21a7d7e440bd0cf65565533117976859f",
                 "shasum": ""
             },
             "require": {
@@ -3844,7 +4043,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-18T09:01:38+00:00"
+            "time": "2018-10-23T05:59:32+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4037,16 +4236,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.4.1",
+            "version": "7.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c5a120ade60992bd671a912188ee9ee9f8083bbd"
+                "reference": "c151651fb6ed264038d486ea262e243af72e5e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c5a120ade60992bd671a912188ee9ee9f8083bbd",
-                "reference": "c5a120ade60992bd671a912188ee9ee9f8083bbd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c151651fb6ed264038d486ea262e243af72e5e64",
+                "reference": "c151651fb6ed264038d486ea262e243af72e5e64",
                 "shasum": ""
             },
             "require": {
@@ -4117,7 +4316,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-18T09:02:52+00:00"
+            "time": "2018-10-23T05:57:41+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -4286,28 +4485,28 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "3.1.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "cd0871b3975fb7fc44d11314fd1ee20925fce4f5"
+                "reference": "66691f8e2dc4641909166b275a9a4f45c0e89092"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/cd0871b3975fb7fc44d11314fd1ee20925fce4f5",
-                "reference": "cd0871b3975fb7fc44d11314fd1ee20925fce4f5",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/66691f8e2dc4641909166b275a9a4f45c0e89092",
+                "reference": "66691f8e2dc4641909166b275a9a4f45c0e89092",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0"
+                "php": "^7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.1"
+                "phpunit/phpunit": "^7.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1.x-dev"
+                    "dev-master": "4.0-dev"
                 }
             },
             "autoload": {
@@ -4332,7 +4531,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2017-07-01T08:51:00+00:00"
+            "time": "2018-10-23T05:04:33+00:00"
         },
         {
             "name": "sebastian/exporter",

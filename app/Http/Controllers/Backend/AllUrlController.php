@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Url;
+use Vinkla\Hashids\Facades\Hashids;
 use Yajra\Datatables\Datatables;
 
 class AllUrlController extends Controller
@@ -66,7 +67,7 @@ class AllUrlController extends Controller
 
     public function delete($id)
     {
-        Url::destroy($id);
+        Url::destroy(Hashids::decode($id));
 
         return redirect()->back();
     }

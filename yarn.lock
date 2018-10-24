@@ -1393,14 +1393,14 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000893"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000893.tgz#2781b8d2ce50d8dd9d091425461b528ca4556c07"
-  integrity sha512-JfGWsX2JtyXnjGAAjXMHiv4OEGFZvArB5pxdd5oa5xCuEYYN1rhBMwogMIKnKoUBi6lKRyO4JQAPJwqchv20Yg==
+  version "1.0.30000898"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000898.tgz#f6e8f87393631e3bec1d3ff401237cac73497ee9"
+  integrity sha512-i8WfgaYakyxHs5kmITs/XHjrdm7QsuuFmI5cE43I0pJ0NIJpe52t2Rz6mliG8yyu1NMXjNceC7udWdiQuA5hUA==
 
 caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844:
-  version "1.0.30000893"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000893.tgz#284b20932bd41b93e21626975f2050cb01561986"
-  integrity sha512-kOddHcTEef+NgN/fs0zmX2brHTNATVOWMEIhlZHCuwQRtXobjSw9pAECc44Op4bTBcavRjkLaPrGomknH7+Jvg==
+  version "1.0.30000898"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000898.tgz#651306e690ca83caca5814da5afa3eb4de0f86c2"
+  integrity sha512-ytlTZqO4hYe4rNAJhMynUAIUI33jsP2Bb1two/9OVC39wZjPZ8exIO0eCLw5mqAtegOGiGF0kkTWTn3B02L+mw==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -2275,9 +2275,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30, electron-to-chromium@^1.3.47:
-  version "1.3.80"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.80.tgz#e99ec7efe64c2c6a269d3885ff411ea88852fa53"
-  integrity sha512-WClidEWEUNx7OfwXehB0qaxCuetjbKjev2SmXWgybWPLKAThBiMTF/2Pd8GSUDtoGOavxVzdkKwfFAPRSWlkLw==
+  version "1.3.81"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.81.tgz#32af69206ef78973b6a6771b0c8450c2ce253913"
+  integrity sha512-+rym2xtzwPWmoi8AYRrCdW65QOT0vfUHjZb5mjgh0VLyj31pGM3CpP3znKhQNBzQaWujR/KEl/mfC2lnKYgADA==
 
 elliptic@^6.0.0:
   version "6.4.1"
@@ -3307,9 +3307,9 @@ http-errors@1.6.3, http-errors@~1.6.2, http-errors@~1.6.3:
     statuses ">= 1.4.0 < 2"
 
 http-parser-js@>=0.4.0:
-  version "0.4.13"
-  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.4.13.tgz#3bd6d6fde6e3172c9334c3b33b6c193d80fe1137"
-  integrity sha1-O9bW/ebjFyyTNMOzO2wZPYD+ETc=
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.5.0.tgz#d65edbede84349d0dc30320815a15d39cc3cbbd8"
+  integrity sha512-cZdEF7r4gfRIq7ezX9J0T+kQmJNOub71dWbgAXVHDct80TKP4MCETtZQ31xyv38UwgzkWPYF/Xc0ge55dW9Z9w==
 
 http-proxy-middleware@~0.17.4:
   version "0.17.4"
@@ -5183,9 +5183,9 @@ popper.js@^1.12:
   integrity sha1-juwdj/AqWjoVLdQ0FKFce3n9abY=
 
 portfinder@^1.0.9:
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.18.tgz#cf1106ff336fd4329b7ce32fda7d17d62c6bcf37"
-  integrity sha512-KanzLOERzKoX3En5yTiV8K/arnU1ykYVokmtEn0PgCzqKZG9489tqW8ifp9+v3/VJZ5YDjvDt/PAP5WaPgk7FA==
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.19.tgz#07e87914a55242dcda5b833d42f018d6875b595f"
+  integrity sha512-23aeQKW9KgHe6citUrG3r9HjeX6vls0h713TAa+CwTKZwNIr/pD2ApaxYF4Um3ZZyq4ar+Siv3+fhoHaIwSOSw==
   dependencies:
     async "^1.5.2"
     debug "^2.2.0"
@@ -7171,7 +7171,7 @@ vue-template-es2015-compiler@^1.6.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
   integrity sha512-x3LV3wdmmERhVCYy3quqA57NJW7F3i6faas++pJQWtknWT+n7k30F4TVdHvCLn48peTJFRvCpxs3UuFPqgeELg==
 
-vue@^2.5.7:
+vue@^2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==

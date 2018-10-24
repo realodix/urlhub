@@ -10,17 +10,9 @@ class UrlController extends Controller
 {
     public function view($short_url)
     {
-        // Run a different SQL query depending on database driver
-        $db_driver = DB::connection()->getDriverName();
-        if ($db_driver == 'pgsql') {
-            $url = Url::where('short_url', $short_url)
-                        ->orWhere('short_url_custom', $short_url)
-                        ->firstOrFail();
-        } else {
-            $url = Url::where('short_url', 'LIKE BINARY', $short_url)
-                        ->orWhere('short_url_custom', $short_url)
-                        ->firstOrFail();
-        }
+        $url = Url::where('short_url', $short_url)
+                    ->orWhere('short_url_custom', $short_url)
+                    ->firstOrFail();
 
         if ($url->short_url_custom) {
             $blabla = $url->short_url_custom;

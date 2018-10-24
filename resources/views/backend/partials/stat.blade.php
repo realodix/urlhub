@@ -100,7 +100,7 @@
 @else
   <div class="row right_now">
     <div class="col-sm-6 col-lg-3 text-center">
-      <div class="card">
+      <div class="card border-left">
       <div class="card-body">
         <div class="right_now-text--primary">
           <span title="{{number_format($totalShortUrlByMe)}}" data-toggle="tooltip">{{readable_int($totalShortUrlByMe)}}</span>
@@ -110,7 +110,7 @@
       </div>
     </div>
     <div class="col-sm-6 col-lg-3 text-center">
-      <div class="card">
+      <div class="card border-left">
       <div class="card-body">
         <div class="right_now-text--primary">
           <span title="{{number_format($viewCountByMe)}}" data-toggle="tooltip">{{readable_int($viewCountByMe)}}</span>

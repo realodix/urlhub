@@ -24,22 +24,23 @@
 
   <ul class="nav navbar-nav ml-auto mr-5">
     <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        {{ title_case(Auth::user()->name) }}
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         <img class="img-avatar" src="{{ Auth::user()->avatar }}" alt="Avatar">
       </a>
       <div class="dropdown-menu dropdown-menu-right">
+        <span class="dropdown-item" href="{{ route('admin') }}">
+          @lang('Signed in as') {{ title_case(Auth::user()->name) }}
+        </span>
         <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->name) }}">
-          <i class="dropdown-icon fas fa-user"></i> @lang('Your Profile')
+          @lang('Your Profile')
         </a>
         <a class="dropdown-item" href="{{ route('user.change-password', Auth::user()->name) }}">
-          <i class="dropdown-icon fas fa-key"></i> @lang('Change Password')
+          @lang('Change Password')
         </a>
         <a class="dropdown-item" href="{{ route('logout') }}"
            onclick="event.preventDefault();
            document.getElementById('logout-form').submit();">
-          <i class="dropdown-icon fas fa-sign-out-alt"></i>
-          {{ __('Logout') }}
+          {{ __('Sign out') }}
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
