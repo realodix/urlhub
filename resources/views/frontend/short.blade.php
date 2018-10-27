@@ -22,7 +22,7 @@
         <i><span title="{{number_format($views)}} views" data-toggle="tooltip">{{readable_int($views)}}</span></i>
       </li>
     </ul>
-    <div class="title">{!! $long_url_title !!}</div>
+    <div class="title">{!! $meta_title !!}</div>
   </div>
   </div>
 
@@ -33,14 +33,14 @@
         <img src="data:{{$qrCodeData}};base64,{{$qrCodebase64}}" alt="QR Code">
       </div>
       <div class="col-md-9">
-        <b>@lang('Original URL')</b>
-        <div class="long-url"><a href="{{ $long_url }}" target="_blank" title="{{ $long_url }}" data-toggle="tooltip">{{ url_limit($long_url) }}</a></div>
-
-        <br>
-
         <b>@lang('Short URL')</b> <br>
         <span class="short-url"><a href="{{ $short_url_href }}" target="_blank" id="copy">{{ $short_url }}</a></span>
         <button class="btn btn-sm btn-outline-success btn-clipboard ml-3" data-clipboard-text="{{ $short_url }}" title="@lang('Copy to clipboard')" data-toggle="tooltip">@lang('Copy')</button>
+
+        <br> <br>
+
+        <b>@lang('Original URL')</b>
+        <div class="long-url"><a href="{{ $long_url }}" target="_blank" title="{{ $long_url }}" data-toggle="tooltip">{{ url_limit($long_url) }}</a></div>
 
         <div class="mt-5" id="jssocials"></div>
       </div>

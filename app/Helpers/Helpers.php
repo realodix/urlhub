@@ -15,10 +15,10 @@ if (!function_exists('url_limit')) {
     }
 }
 
-if (!function_exists('url_parsed')) {
-    function url_parsed($value)
+if (!function_exists('remove_url_schemes')) {
+    function remove_url_schemes($value)
     {
-        return resolve(UrlHlp::class)->url_parsed($value);
+        return resolve(UrlHlp::class)->remove_url_schemes($value);
     }
 }
 

@@ -12,9 +12,7 @@ class ChangePasswordController extends Controller
 {
     public function view($user)
     {
-        if ((Auth::user()->name != $user) && Auth::user()->hasRole('admin') == false) {
-            return abort(403);
-        }
+        $this->authorize('view', User::class);
 
         $user = User::where('name', $user)->firstOrFail();
 

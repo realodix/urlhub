@@ -10,7 +10,7 @@ class NumHlp
      * @link https://gist.github.com/RadGH/84edff0cc81e6326029c
      * @link https://github.com/sandervanhooft/laravel-blade-readable-numbers
      *
-     * @param   $n
+     * @param int $n
      *
      * @return string
      */

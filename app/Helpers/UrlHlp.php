@@ -40,7 +40,7 @@ class UrlHlp
      *
      * @return string
      */
-    public function url_get_title($value)
+    public function getTitle($value)
     {
         $data = @file_get_contents($value);
 
@@ -49,9 +49,9 @@ class UrlHlp
         if ($title) {
             $title = $matches[1];
         } else {
-            $title = title_case($this->url_get_domain($value)).' - '.__('No Title');
+            $title = title_case($this->getDomain($value)).' - '.__('No Title');
 
-            if (!$this->url_get_domain($value)) {
+            if (!$this->getDomain($value)) {
                 $title = __('No Title');
             }
         }
@@ -65,7 +65,7 @@ class UrlHlp
      * @return mixed
      */
     // https://stackoverflow.com/a/399316
-    public function url_get_domain($url)
+    public function getDomain($url)
     {
         $pieces = parse_url($url);
         $domain = isset($pieces['host']) ? $pieces['host'] : '';
@@ -102,7 +102,7 @@ class UrlHlp
      *
      * @return string
      */
-    public function url_parsed($value)
+    public function remove_url_schemes($value)
     {
         return str_replace([
                     'http://',
@@ -111,6 +111,9 @@ class UrlHlp
                 ], '', $value);
     }
 
+    /**
+     * @return int
+     */
     public function url_capacity()
     {
         $alphabet = strlen(config('plur.hash_alphabet'));
@@ -126,6 +129,9 @@ class UrlHlp
         return $capacity;
     }
 
+    /**
+     * @return int
+     */
     public function url_remaining()
     {
         $totalShortUrlCustom = Url::where('short_url_custom', '!=', '')->count();

@@ -11,7 +11,7 @@ class Url extends Model
     protected $fillable = [
         'user_id',
         'long_url',
-        'long_url_title',
+        'meta_title',
         'short_url',
         'short_url_custom',
         'views',
@@ -23,13 +23,22 @@ class Url extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function setLongUrlTitleAttribute($value)
+    public function setMetaTitleAttribute($value)
     {
-        $this->attributes['long_url_title'] = UrlHlp::url_get_title($value);
+        $this->attributes['meta_title'] = UrlHlp::getTitle($value);
     }
 
     public function getIdAttribute($value)
     {
         return Hashids::encode($value);
+    }
+
+    public function getViewByIdAttribute()
+    {
+        if ($this->attributes['short_url_custom'] == null) {
+            return $this->attributes['short_url'];
+        }
+
+        return $this->attributes['short_url_custom'];
     }
 }
