@@ -75,7 +75,7 @@ class HtmlHlp
         foreach ((array) $attributes as $key => $value) {
             $element = $this->attributeElement($key, $value);
 
-            if (!is_null($element)) {
+            if (! is_null($element)) {
                 $html[] = $element;
             }
         }
@@ -107,7 +107,7 @@ class HtmlHlp
             return $value ? $key : '';
         }
 
-        if (!is_null($value)) {
+        if (! is_null($value)) {
             return $key.'="'.e($value).'"';
         }
     }

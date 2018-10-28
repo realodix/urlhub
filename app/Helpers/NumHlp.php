@@ -38,7 +38,7 @@ class NumHlp
             $suffix = 'T+';
         }
 
-        return !empty($n_format.$suffix) ? $n_format.$suffix : 0;
+        return ! empty($n_format.$suffix) ? $n_format.$suffix : 0;
     }
 
     /**

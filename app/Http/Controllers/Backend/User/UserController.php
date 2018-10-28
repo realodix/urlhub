@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\User;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
 class UserController extends Controller

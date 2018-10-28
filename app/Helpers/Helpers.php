@@ -8,14 +8,14 @@ use CodeItNow\BarcodeBundle\Utils\QrCode;
 /*
  * URL Helpers
  */
-if (!function_exists('url_limit')) {
+if (! function_exists('url_limit')) {
     function url_limit($url, $int = 50)
     {
         return resolve(UrlHlp::class)->url_limit($url, $int);
     }
 }
 
-if (!function_exists('remove_url_schemes')) {
+if (! function_exists('remove_url_schemes')) {
     function remove_url_schemes($value)
     {
         return resolve(UrlHlp::class)->remove_url_schemes($value);
@@ -25,7 +25,7 @@ if (!function_exists('remove_url_schemes')) {
 /*
  * HTML Helpers
  */
-if (!function_exists('style')) {
+if (! function_exists('style')) {
     /**
      * @param       $url
      * @param array $attributes
@@ -39,7 +39,7 @@ if (!function_exists('style')) {
     }
 }
 
-if (!function_exists('script')) {
+if (! function_exists('script')) {
     /**
      * @param       $url
      * @param array $attributes
@@ -56,7 +56,7 @@ if (!function_exists('script')) {
 /*
  *
  */
-if (!function_exists('qrCodeGenerator')) {
+if (! function_exists('qrCodeGenerator')) {
     function qrCodeGenerator($value)
     {
         $qrCode = new QrCode();
@@ -75,7 +75,7 @@ if (!function_exists('qrCodeGenerator')) {
     }
 }
 
-if (!function_exists('readable_int')) {
+if (! function_exists('readable_int')) {
     function readable_int($n)
     {
         return resolve(NumHlp::class)->readable_int($n);
