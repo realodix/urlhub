@@ -51,7 +51,7 @@ class UrlHlp
         } else {
             $title = title_case($this->getDomain($value)).' - '.__('No Title');
 
-            if (!$this->getDomain($value)) {
+            if (! $this->getDomain($value)) {
                 $title = __('No Title');
             }
         }
