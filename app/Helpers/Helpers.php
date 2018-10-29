@@ -8,7 +8,7 @@ use CodeItNow\BarcodeBundle\Utils\QrCode;
 /*
  * URL Helpers
  */
-if (! function_exists('url_limit')) {
+if (!function_exists('url_limit')) {
     function url_limit($url, $int = 50)
     {
         return resolve(UrlHlp::class)->url_limit($url, $int);
