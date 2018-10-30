@@ -31,8 +31,9 @@ class PlurLinkChecker
 
         foreach ($domains_blocked as $domain_blocked) {
             $url_segment = ('://'.$domain_blocked.'/');
+            $url_segment2 = ('://www.'.$domain_blocked.'/');
 
-            if (strstr($long_url, $url_segment)) {
+            if (strstr($long_url, $url_segment) || strstr($long_url, $url_segment2)) {
                 return redirect()->back()
                                  ->with('error', __('Sorry, the URL you entered is on our internal blacklist. It may have been used abusively in the past, or it may link to another URL redirection service.'));
             }
@@ -40,7 +41,7 @@ class PlurLinkChecker
 
         // check whether it is already in the database
         $s_url = Url::where('long_url', $long_url)
-                    ->where('user_id', 0)
+                    ->whereNull('user_id')
                     ->first();
 
         if (Auth::check()) {
@@ -50,7 +51,7 @@ class PlurLinkChecker
         }
 
         if ($s_url) {
-            return redirect('/+'.$s_url->short_url)->with('msgLinkAlreadyExists', __('Link already exists'));
+            return redirect('/+'.$s_url->url_key)->with('msgLinkAlreadyExists', __('Link already exists'));
         }
 
         return $next($request);
