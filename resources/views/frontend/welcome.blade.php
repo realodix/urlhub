@@ -24,7 +24,7 @@
           <div class="custom-url--title">@lang('Custom URL (optional)')</div>
           <span class="custom-url--description text-muted d-block">@lang('Replace clunky URLs with meaningful short links that get more clicks.')</span>
           <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
-          <input class="form-control form-control-sm url-field" id="short_url_custom" name="short_url_custom">
+          <input class="form-control form-control-sm url-field" id="custom_url_key" name="custom_url_key">
           <small class="ml-3" id="link-availability-status"></small>
         </div>
       </form>

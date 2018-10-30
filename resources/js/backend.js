@@ -19,7 +19,7 @@ $(document).ready(function() {
         stateSave: true,
         ajax: '/admin/allurl/getdata',
         columns: [
-            {data: 'short_url'},
+            {data: 'url_key'},
             {data: 'long_url'},
             {data: 'views'},
             {data: 'created_by'},
@@ -49,7 +49,7 @@ $(document).ready(function() {
         stateSave: true,
         ajax: '/admin/myurl/getdata',
         columns: [
-            {data: 'short_url'},
+            {data: 'url_key'},
             {data: 'long_url'},
             {data: 'views'},
             {

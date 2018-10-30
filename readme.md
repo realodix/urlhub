@@ -1,6 +1,6 @@
 <h1>Plur</h1>
 
-**Warning: Plur is still under development.**
+**Warning: This software is still in development,** so we don’t recommend you run it on a production site.
 
 Plur is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 

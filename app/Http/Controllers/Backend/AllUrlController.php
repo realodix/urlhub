@@ -24,12 +24,8 @@ class AllUrlController extends Controller
         $model = Url::query();
 
         return DataTables::of($model)
-            ->editColumn('short_url', function ($url) {
-                if (empty($url->short_url_custom)) {
-                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url).'" title="Copy to clipboard" data-toggle="tooltip">'.remove_url_schemes(url('/'.$url->short_url)).'</span>';
-                } else {
-                    return '<span class="short_url" data-clipboard-text="'.url('/'.$url->short_url_custom).'" title="Copy to clipboard" data-toggle="tooltip">'.remove_url_schemes(url('/'.$url->short_url_custom)).'</span>';
-                }
+            ->editColumn('url_key', function ($url) {
+                return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.remove_url_schemes($url->short_url).'</span>';
             })
             ->editColumn('long_url', function ($url) {
                 return '
@@ -48,20 +44,16 @@ class AllUrlController extends Controller
                 ];
             })
             ->addColumn('created_by', function ($url) {
-                if (isset($url->user->name)) {
-                    return '<span>'.$url->user->name.'</span>';
-                } else {
-                    return '<span>'.__('Guest').'</span>';
-                }
+                return '<span>'.$url->user->name.'</span>';
             })
             ->addColumn('action', function ($url) {
                 return
                 '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <a role="button" class="btn" href="'.route('short_url.stats', $url->view_by_id).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                    <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
                     <a role="button" class="btn" href="'.route('admin.allurl.delete', $url->id).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
-            ->rawColumns(['short_url', 'long_url', 'views', 'created_at.display', 'created_by', 'action'])
+            ->rawColumns(['url_key', 'long_url', 'views', 'created_at.display', 'created_by', 'action'])
             ->make(true);
     }
 

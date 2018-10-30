@@ -7,26 +7,19 @@ use App\Url;
 
 class UrlController extends Controller
 {
-    public function view($short_url)
+    public function view($url_key)
     {
-        $url = Url::where('short_url', $short_url)
-                    ->orWhere('short_url_custom', $short_url)
+        $url = Url::where('url_key', $url_key)
                     ->firstOrFail();
 
-        if ($url->short_url_custom) {
-            $blabla = $url->short_url_custom;
-        } else {
-            $blabla = $url->short_url;
-        }
-
-        $qrCode = qrCodeGenerator($blabla);
+        $qrCode = qrCodeGenerator($url->url_key);
 
         return view('frontend.short', [
             'long_url'       => $url->long_url,
             'meta_title'     => $url->meta_title,
             'views'          => $url->views,
-            'short_url'      => remove_url_schemes(url('/', $blabla)),
-            'short_url_href' => url('/', $blabla),
+            'short_url'      => remove_url_schemes($url->short_url),
+            'short_url_href' => $url->short_url,
             'qrCodeData'     => $qrCode->getContentType(),
             'qrCodebase64'   => $qrCode->generate(),
             'created_at'     => $url->created_at->toDayDateTimeString(),

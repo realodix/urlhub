@@ -10,7 +10,7 @@ class UrlHlp
     /**
      * @return string
      */
-    public function link_generator()
+    public function key_generator()
     {
         $generateId = new Client();
         $alphabet = config('plur.hash_alphabet');
@@ -21,18 +21,18 @@ class UrlHlp
             $size2 = $size1;
         }
 
-        $shortURL = $generateId->formatedId($alphabet, $size1);
+        $urlKey = $generateId->formatedId($alphabet, $size1);
 
         // If it is already used (not available),
         // find the next available ending.
-        $link = Url::where('short_url', $shortURL)->first();
+        $link = Url::where('url_key', $urlKey)->first();
 
         while ($link) {
-            $shortURL = $generateId->formatedId($alphabet, $size2);
-            $link = Url::where('short_url', $shortURL)->first();
+            $urlKey = $generateId->formatedId($alphabet, $size2);
+            $link = Url::where('url_key', $urlKey)->first();
         }
 
-        return $shortURL;
+        return $urlKey;
     }
 
     /**
@@ -134,8 +134,8 @@ class UrlHlp
      */
     public function url_remaining()
     {
-        $totalShortUrlCustom = Url::where('short_url_custom', '!=', '')->count();
+        $totalShortUrl = Url::where('is_custom', 0)->count();
 
-        return ($this->url_capacity() + $totalShortUrlCustom) - Url::count('short_url');
+        return $this->url_capacity() - $totalShortUrl;
     }
 }

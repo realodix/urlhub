@@ -16,12 +16,12 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Url::class, function (Faker $faker) {
     return [
-        'user_id'          => $faker->biasedNumberBetween($min = 0, $max = 20, $function = 'sqrt'),
-        'long_url'         => 'https://github.com/realodix/plur',
-        'meta_title'       => 'URL Title',
-        'short_url'        => UrlHlp::link_generator(),
-        'short_url_custom' => '',
-        'views'            => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
-        'ip'               => $faker->ipv4,
+        'user_id'    => $faker->biasedNumberBetween($min = 0, $max = 20, $function = 'sqrt'),
+        'long_url'   => 'https://github.com/realodix/plur',
+        'meta_title' => 'URL Title',
+        'url_key'    => UrlHlp::key_generator(),
+        'is_custom'  => 0,
+        'views'      => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
+        'ip'         => $faker->ipv4,
     ];
 });

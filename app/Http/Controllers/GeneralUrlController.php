@@ -19,29 +19,29 @@ class GeneralUrlController extends Controller
 
     public function create(Requests\StoreUrl $request)
     {
-        $link_generator = UrlHlp::link_generator();
-        $short_url = $request->short_url_custom ?? $link_generator;
+        $generated_key = UrlHlp::key_generator();
+        $url_key = $request->custom_url_key ?? $generated_key;
 
         Url::create([
-            'user_id'          => Auth::check() ? Auth::id() : 0,
-            'long_url'         => $request->long_url,
-            'meta_title'       => $request->long_url,
-            'short_url'        => $request->short_url_custom ? sha1($link_generator) : $link_generator,
-            'short_url_custom' => $request->short_url_custom ?? '',
-            'views'            => 0,
-            'ip'               => $request->ip(),
+            'user_id'    => Auth::id(),
+            'long_url'   => $request->long_url,
+            'meta_title' => $request->long_url,
+            'url_key'    => $request->custom_url_key ?? $generated_key,
+            'is_custom'  => $request->custom_url_key ? 1 : 0,
+            'ip'         => $request->ip(),
         ]);
 
-        return redirect('/+'.$short_url);
+        return redirect('/+'.$url_key);
     }
 
-    public function urlRedirection($short_url)
+    public function urlRedirection($url_key)
     {
-        $url = Url::where('short_url', $short_url)
-                    ->orWhere('short_url_custom', $short_url)
+        $url = Url::where('url_key', $url_key)
                     ->firstOrFail();
 
-        $url->increment('views');
+        // $url->increment('views');
+        Url::where('url_key', $url_key)
+            ->increment('views');
 
         // Redirect to final destination
         return redirect()->away($url->long_url, 301);
@@ -50,7 +50,7 @@ class GeneralUrlController extends Controller
     public function checkCustomLinkAvailability(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'short_url_custom'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase],
+            'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase],
         ]);
 
         if ($validator->fails()) {

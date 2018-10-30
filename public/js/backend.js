@@ -30,7 +30,7 @@ $(document).ready(function () {
         serverSide: true,
         stateSave: true,
         ajax: '/admin/allurl/getdata',
-        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, { data: 'created_by' }, {
+        columns: [{ data: 'url_key' }, { data: 'long_url' }, { data: 'views' }, { data: 'created_by' }, {
             data: 'created_at',
             type: 'num',
             render: {
@@ -50,7 +50,7 @@ $(document).ready(function () {
         serverSide: true,
         stateSave: true,
         ajax: '/admin/myurl/getdata',
-        columns: [{ data: 'short_url' }, { data: 'long_url' }, { data: 'views' }, {
+        columns: [{ data: 'url_key' }, { data: 'long_url' }, { data: 'views' }, {
             data: 'created_at',
             type: 'num',
             render: {

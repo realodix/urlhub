@@ -15,14 +15,18 @@ class CreateUrlsTable extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
-            $table->string('short_url')->collation('utf8mb4_bin')->unique();
-            $table->string('short_url_custom');
+            $table->unsignedInteger('user_id')->nullable($value = true);
+            $table->string('url_key')->collation('utf8mb4_bin')->unique();
+            $table->boolean('is_custom');
             $table->longText('long_url');
             $table->string('meta_title');
-            $table->integer('views');
+            $table->unsignedInteger('views')->default(0);
             $table->ipAddress('ip');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
         });
     }
 

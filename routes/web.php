@@ -7,7 +7,7 @@ Route::post('/create', 'GeneralUrlController@create')->name('createshortlink');
 Route::post('/custom-link-avail-check', 'GeneralUrlController@checkCustomLinkAvailability');
 
 Route::namespace('Frontend')->group(function () {
-    Route::get('/+{short_url}', 'UrlController@view')->name('short_url.stats');
+    Route::get('/+{url_key}', 'UrlController@view')->name('short_url.stats');
 });
 
 Route::namespace('Backend')->group(function () {
@@ -36,4 +36,4 @@ Route::namespace('Backend')->group(function () {
     });
 });
 
-Route::get('/{short_url}', 'GeneralUrlController@urlRedirection');
+Route::get('/{url_key}', 'GeneralUrlController@urlRedirection');

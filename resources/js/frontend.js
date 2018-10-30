@@ -33,7 +33,7 @@ $(function() {
                 url: "/custom-link-avail-check",
                 type: 'POST',
                 data: {
-                    'short_url_custom': $('#short_url_custom').val()
+                    'url_key': $('#custom_url_key').val()
                 },
                 dataType: "json"
             })
@@ -62,7 +62,7 @@ $(function() {
     };
 
     // Add TypeWatch to check when users type
-    $('#short_url_custom').typeWatch(twOptions);
+    $('#custom_url_key').typeWatch(twOptions);
 });
 
 

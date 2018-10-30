@@ -10,17 +10,19 @@ class Url extends Model
 {
     protected $fillable = [
         'user_id',
+        'url_key',
+        'is_custom',
         'long_url',
         'meta_title',
-        'short_url',
-        'short_url_custom',
         'views',
         'ip',
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User')->withDefault([
+            'name' => 'Guest',
+        ]);
     }
 
     public function setMetaTitleAttribute($value)
@@ -33,12 +35,8 @@ class Url extends Model
         return Hashids::encode($value);
     }
 
-    public function getViewByIdAttribute()
+    public function getShortUrlAttribute()
     {
-        if ($this->attributes['short_url_custom'] == null) {
-            return $this->attributes['short_url'];
-        }
-
-        return $this->attributes['short_url_custom'];
+        return url('/'.$this->attributes['url_key']);
     }
 }
