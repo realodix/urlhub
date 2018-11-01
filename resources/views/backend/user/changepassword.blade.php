@@ -29,7 +29,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title mb-0">
-            Account Management
+            @lang('Account Management')
             <small class="text-muted">@lang('Change Password')</small>
           </h4>
 

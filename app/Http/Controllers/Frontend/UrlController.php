@@ -7,6 +7,9 @@ use App\Url;
 
 class UrlController extends Controller
 {
+    /**
+     * @param string $url_key
+     */
     public function view($url_key)
     {
         $url = Url::where('url_key', $url_key)

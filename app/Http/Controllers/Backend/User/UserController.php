@@ -59,14 +59,13 @@ class UserController extends Controller
 
         $user = User::where('name', $user)->firstOrFail();
 
-        return view('backend.user.profile', [
-            'name'  => $user->name,
-            'email' => $user->email,
-        ]);
+        return view('backend.user.profile', compact('user'));
     }
 
     public function update(Request $request, $user)
     {
+        $this->authorize('update', User::class);
+
         $user = User::where('name', $user)->first();
 
         $user->email = $request->input('email');

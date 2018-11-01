@@ -46,9 +46,9 @@ class NumHlp
      *
      * @link https://stackoverflow.com/a/40125597
      *
-     * @param   $number    number
-     * @param   $precision int
-     * @param   $separator string
+     * @param number $number
+     * @param int    $precision
+     * @param string $separator
      *
      * @return number
      */

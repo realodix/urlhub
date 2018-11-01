@@ -21,7 +21,7 @@ class PlurLinkChecker
     {
         $long_url = $request->long_url;
 
-        if (UrlHlp::url_remaining() == 0) {
+        if (UrlHlp::url_key_remaining() == 0) {
             return redirect()->back()
                              ->with('error', __('Sorry, our service is currently under maintenance.'));
         }

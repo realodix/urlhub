@@ -17,6 +17,9 @@ class GeneralUrlController extends Controller
         $this->middleware('plurlinkchecker')->only('create');
     }
 
+    /**
+     * @param \App\Http\Requests\StoreUrl $request
+     */
     public function create(Requests\StoreUrl $request)
     {
         $generated_key = UrlHlp::key_generator();
@@ -34,6 +37,9 @@ class GeneralUrlController extends Controller
         return redirect('/+'.$url_key);
     }
 
+    /**
+     * @param string $url_key
+     */
     public function urlRedirection($url_key)
     {
         $url = Url::where('url_key', $url_key)

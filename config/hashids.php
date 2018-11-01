@@ -41,7 +41,7 @@ return [
 
         'main' => [
             'salt'   => env('APP_KEY'),
-            'length' => 'your-length-integer',
+            'length' => 16,
         ],
 
         'alternative' => [

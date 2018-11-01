@@ -54,13 +54,13 @@
         <div class="row">
           <div class="col-6">
             <div class="right_now-text--primary">
-              <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{readable_int($userCount)}}</span>
+              <span title="{{number_format($totalUser)}}" data-toggle="tooltip">{{readable_int($totalUser)}}</span>
             </div>
-            <div class="right_now-label">@lang('Active Users')</div>
+            <div class="right_now-label">@lang('Registered Users')</div>
           </div>
           <div class="col-6">
             <div class="right_now-text--primary">
-              <span title="{{number_format($guestCount)}}" data-toggle="tooltip">{{readable_int($guestCount)}}</span>
+              <span title="{{number_format($totalGuest)}}" data-toggle="tooltip">{{readable_int($totalGuest)}}</span>
             </div>
             <div class="right_now-label">@lang('Guest')</div>
           </div>

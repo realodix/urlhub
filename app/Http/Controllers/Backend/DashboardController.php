@@ -16,9 +16,9 @@ class DashboardController extends Controller
     public function view()
     {
         // Counting the number of guests on the url column based on IP
-        $guestCount = DB::table('urls')
+        $totalGuest = DB::table('urls')
             ->select('ip', DB::raw('count(*) as total'))
-            ->where('user_id', 0)
+            ->whereNull('user_id')
             ->groupBy('ip')
             ->get()
             ->count();
@@ -32,10 +32,10 @@ class DashboardController extends Controller
             'viewCount'            => Url::sum('views'),
             'viewCountByMe'        => $this->viewCountById(Auth::id()),
             'viewCountByGuest'     => $this->viewCountById(0),
-            'userCount'            => User::count(),
-            'guestCount'           => $guestCount,
-            'capacity'             => UrlHlp::url_capacity(),
-            'remaining'            => UrlHlp::url_remaining(),
+            'totalUser'            => User::count(),
+            'totalGuest'           => $totalGuest,
+            'capacity'             => UrlHlp::url_key_capacity(),
+            'remaining'            => UrlHlp::url_key_remaining(),
             'totalShortUrlCustom'  => $totalShortUrlCustom,
 
         ]);
@@ -69,25 +69,37 @@ class DashboardController extends Controller
                 return
                 '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
-                    <a role="button" class="btn" href="'.route('admin.delete', $url->id).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
+                    <a role="button" class="btn" href="'.route('admin.delete', $url->hash_id).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
             ->rawColumns(['url_key', 'long_url', 'views', 'created_at.display', 'action'])
             ->make(true);
     }
 
-    public function delete($id)
+    /**
+     * @param string   $hashId
+     * @param \App\Url $url
+     */
+    public function delete($hashId, Url $url)
     {
-        Url::destroy(Hashids::decode($id));
+        $this->authorize('forceDelete', $url);
+
+        Url::destroy(Hashids::decode($hashId));
 
         return redirect()->back();
     }
 
+    /**
+     * @param int $id
+     */
     public function totalShortUrlById($id)
     {
         return Url::where('user_id', $id)->count('url_key');
     }
 
+    /**
+     * @param int $id
+     */
     public function viewCountById($id)
     {
         return Url::where('user_id', $id)->sum('views');

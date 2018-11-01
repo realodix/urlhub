@@ -28,9 +28,9 @@ class HtmlHlp
     }
 
     /**
-     * @param       $url
-     * @param array $attributes
-     * @param null  $secure
+     * @param string $url
+     * @param array  $attributes
+     * @param null   $secure
      *
      * @return mixed
      */

@@ -2575,7 +2575,7 @@ textarea.form-control {
   }
 }
 
-.btn {
+.btn, button {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -2591,25 +2591,25 @@ textarea.form-control {
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
-  .btn {
+  .btn, button {
     transition: none;
   }
 }
 
-.btn:hover, .btn:focus {
+.btn:hover, button:hover, .btn:focus, button:focus {
   text-decoration: none;
 }
 
-.btn:focus, .btn.focus {
+.btn:focus, button:focus, .btn.focus, button.focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(59, 89, 152, 0.25);
 }
 
-.btn.disabled, .btn:disabled {
+.btn.disabled, button.disabled, .btn:disabled, button:disabled {
   opacity: 0.65;
 }
 
-.btn:not(:disabled):not(.disabled) {
+.btn:not(:disabled):not(.disabled), button:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
 
@@ -3254,14 +3254,14 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > button {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > button {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -3525,31 +3525,43 @@ input[type="button"].btn-block {
   vertical-align: middle;
 }
 
-.btn-group > .btn,
-.btn-group-vertical > .btn {
+.btn-group > .btn, .btn-group > button,
+.btn-group-vertical > .btn,
+.btn-group-vertical > button {
   position: relative;
   flex: 0 1 auto;
 }
 
-.btn-group > .btn:hover,
-.btn-group-vertical > .btn:hover {
+.btn-group > .btn:hover, .btn-group > button:hover,
+.btn-group-vertical > .btn:hover,
+.btn-group-vertical > button:hover {
   z-index: 1;
 }
 
-.btn-group > .btn:focus, .btn-group > .btn:active, .btn-group > .btn.active,
+.btn-group > .btn:focus, .btn-group > button:focus, .btn-group > .btn:active, .btn-group > button:active, .btn-group > .btn.active, .btn-group > button.active,
 .btn-group-vertical > .btn:focus,
+.btn-group-vertical > button:focus,
 .btn-group-vertical > .btn:active,
-.btn-group-vertical > .btn.active {
+.btn-group-vertical > button:active,
+.btn-group-vertical > .btn.active,
+.btn-group-vertical > button.active {
   z-index: 1;
 }
 
-.btn-group .btn + .btn,
+.btn-group .btn + .btn, .btn-group button + .btn, .btn-group .btn + button, .btn-group button + button,
 .btn-group .btn + .btn-group,
+.btn-group button + .btn-group,
 .btn-group .btn-group + .btn,
+.btn-group .btn-group + button,
 .btn-group .btn-group + .btn-group,
 .btn-group-vertical .btn + .btn,
+.btn-group-vertical button + .btn,
+.btn-group-vertical .btn + button,
+.btn-group-vertical button + button,
 .btn-group-vertical .btn + .btn-group,
+.btn-group-vertical button + .btn-group,
 .btn-group-vertical .btn-group + .btn,
+.btn-group-vertical .btn-group + button,
 .btn-group-vertical .btn-group + .btn-group {
   margin-left: -1px;
 }
@@ -3564,18 +3576,20 @@ input[type="button"].btn-block {
   width: auto;
 }
 
-.btn-group > .btn:first-child {
+.btn-group > .btn:first-child, .btn-group > button:first-child {
   margin-left: 0;
 }
 
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group > .btn-group:not(:last-child) > .btn {
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > button:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn,
+.btn-group > .btn-group:not(:last-child) > button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.btn-group > .btn:not(:first-child),
-.btn-group > .btn-group:not(:first-child) > .btn {
+.btn-group > .btn:not(:first-child), .btn-group > button:not(:first-child),
+.btn-group > .btn-group:not(:first-child) > .btn,
+.btn-group > .btn-group:not(:first-child) > button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -3595,12 +3609,12 @@ input[type="button"].btn-block {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > button + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > button + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -3611,40 +3625,48 @@ input[type="button"].btn-block {
   justify-content: center;
 }
 
-.btn-group-vertical .btn,
+.btn-group-vertical .btn, .btn-group-vertical button,
 .btn-group-vertical .btn-group {
   width: 100%;
 }
 
-.btn-group-vertical > .btn + .btn,
+.btn-group-vertical > .btn + .btn, .btn-group-vertical > button + .btn, .btn-group-vertical > .btn + button, .btn-group-vertical > button + button,
 .btn-group-vertical > .btn + .btn-group,
+.btn-group-vertical > button + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
+.btn-group-vertical > .btn-group + button,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0;
 }
 
-.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group-vertical > .btn-group:not(:last-child) > .btn {
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > button:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn-group:not(:last-child) > .btn,
+.btn-group-vertical > .btn-group:not(:last-child) > button {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.btn-group-vertical > .btn:not(:first-child),
-.btn-group-vertical > .btn-group:not(:first-child) > .btn {
+.btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > button:not(:first-child),
+.btn-group-vertical > .btn-group:not(:first-child) > .btn,
+.btn-group-vertical > .btn-group:not(:first-child) > button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.btn-group-toggle > .btn,
-.btn-group-toggle > .btn-group > .btn {
+.btn-group-toggle > .btn, .btn-group-toggle > button,
+.btn-group-toggle > .btn-group > .btn,
+.btn-group-toggle > .btn-group > button {
   margin-bottom: 0;
 }
 
-.btn-group-toggle > .btn input[type="radio"],
+.btn-group-toggle > .btn input[type="radio"], .btn-group-toggle > button input[type="radio"],
 .btn-group-toggle > .btn input[type="checkbox"],
+.btn-group-toggle > button input[type="checkbox"],
 .btn-group-toggle > .btn-group > .btn input[type="radio"],
-.btn-group-toggle > .btn-group > .btn input[type="checkbox"] {
+.btn-group-toggle > .btn-group > button input[type="radio"],
+.btn-group-toggle > .btn-group > .btn input[type="checkbox"],
+.btn-group-toggle > .btn-group > button input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
@@ -3722,20 +3744,28 @@ input[type="button"].btn-block {
   display: flex;
 }
 
-.input-group-prepend .btn,
-.input-group-append .btn {
+.input-group-prepend .btn, .input-group-prepend button,
+.input-group-append .btn,
+.input-group-append button {
   position: relative;
   z-index: 2;
 }
 
-.input-group-prepend .btn + .btn,
+.input-group-prepend .btn + .btn, .input-group-prepend button + .btn, .input-group-prepend .btn + button, .input-group-prepend button + button,
 .input-group-prepend .btn + .input-group-text,
+.input-group-prepend button + .input-group-text,
 .input-group-prepend .input-group-text + .input-group-text,
 .input-group-prepend .input-group-text + .btn,
+.input-group-prepend .input-group-text + button,
 .input-group-append .btn + .btn,
+.input-group-append button + .btn,
+.input-group-append .btn + button,
+.input-group-append button + button,
 .input-group-append .btn + .input-group-text,
+.input-group-append button + .input-group-text,
 .input-group-append .input-group-text + .input-group-text,
-.input-group-append .input-group-text + .btn {
+.input-group-append .input-group-text + .btn,
+.input-group-append .input-group-text + button {
   margin-left: -1px;
 }
 
@@ -3772,7 +3802,9 @@ input[type="button"].btn-block {
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
-.input-group-lg > .input-group-append > .btn {
+.input-group-lg > .input-group-prepend > button,
+.input-group-lg > .input-group-append > .btn,
+.input-group-lg > .input-group-append > button {
   height: calc(2.875rem + 2px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
@@ -3784,7 +3816,9 @@ input[type="button"].btn-block {
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
-.input-group-sm > .input-group-append > .btn {
+.input-group-sm > .input-group-prepend > button,
+.input-group-sm > .input-group-append > .btn,
+.input-group-sm > .input-group-append > button {
   height: calc(1.8125rem + 2px);
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -3792,21 +3826,25 @@ input[type="button"].btn-block {
   border-radius: 0.2rem;
 }
 
-.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > button,
 .input-group > .input-group-prepend > .input-group-text,
 .input-group > .input-group-append:not(:last-child) > .btn,
+.input-group > .input-group-append:not(:last-child) > button,
 .input-group > .input-group-append:not(:last-child) > .input-group-text,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > button:not(:last-child):not(.dropdown-toggle),
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .btn, .input-group > .input-group-append > button,
 .input-group > .input-group-append > .input-group-text,
 .input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > button,
 .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > button:not(:first-child),
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -5037,7 +5075,7 @@ input[type="button"].btn-block {
   display: none;
 }
 
-.btn .badge {
+.btn .badge, button .badge {
   position: relative;
   top: -1px;
 }
@@ -9041,7 +9079,7 @@ a.text-tertiary:hover, a.text-tertiary:focus {
     text-shadow: none !important;
     box-shadow: none !important;
   }
-  a:not(.btn) {
+  a:not(.btn):not(button) {
     text-decoration: underline;
   }
   abbr[title]::after {
@@ -9115,7 +9153,7 @@ a.text-tertiary:hover, a.text-tertiary:focus {
 
 /*!
  * CoreUI - Open Source Dashboard UI Kit
- * @version v2.0.21
+ * @version v2.0.22
  * @link https://coreui.io
  * Copyright (c) 2018 creativeLabs Łukasz Holeczek
  * Licensed under MIT (https://coreui.io/license)
@@ -9415,19 +9453,19 @@ a.text-tertiary:hover, a.text-tertiary:focus {
   vertical-align: top;
 }
 
-.breadcrumb-menu .btn {
+.breadcrumb-menu .btn, .breadcrumb-menu button {
   padding: 0 0.75rem;
   color: #6c757d;
   vertical-align: top;
   border: 0;
 }
 
-.breadcrumb-menu .btn:hover, .breadcrumb-menu .btn.active {
+.breadcrumb-menu .btn:hover, .breadcrumb-menu button:hover, .breadcrumb-menu .btn.active, .breadcrumb-menu button.active {
   color: #212529;
   background: transparent;
 }
 
-.breadcrumb-menu .open .btn {
+.breadcrumb-menu .open .btn, .breadcrumb-menu .open button {
   color: #212529;
   background: transparent;
 }
@@ -9531,25 +9569,25 @@ a.text-tertiary:hover, a.text-tertiary:focus {
   margin-left: 1.5rem;
 }
 
-.btn-brand.btn-lg i, .btn-group-lg > .btn-brand.btn i {
+.btn-brand.btn-lg i, .btn-group-lg > .btn-brand.btn i, .btn-group-lg > button.btn-brand i {
   width: 2.875rem;
   margin: -0.5rem -1rem;
   line-height: 2.875rem;
   border-radius: 0.3rem;
 }
 
-.btn-brand.btn-lg i + span, .btn-group-lg > .btn-brand.btn i + span {
+.btn-brand.btn-lg i + span, .btn-group-lg > .btn-brand.btn i + span, .btn-group-lg > button.btn-brand i + span {
   margin-left: 2rem;
 }
 
-.btn-brand.btn-sm i, .btn-group-sm > .btn-brand.btn i {
+.btn-brand.btn-sm i, .btn-group-sm > .btn-brand.btn i, .btn-group-sm > button.btn-brand i {
   width: 1.8125rem;
   margin: -0.25rem -0.5rem;
   line-height: 1.8125rem;
   border-radius: 0.2rem;
 }
 
-.btn-brand.btn-sm i + span, .btn-group-sm > .btn-brand.btn i + span {
+.btn-brand.btn-sm i + span, .btn-group-sm > .btn-brand.btn i + span, .btn-group-sm > button.btn-brand i + span {
   margin-left: 1rem;
 }
 
@@ -10407,18 +10445,15 @@ a.text-tertiary:hover, a.text-tertiary:focus {
   box-shadow: 0 0 0 0.2rem rgba(170, 212, 80, 0.5);
 }
 
-button {
-  cursor: pointer;
-}
-
 .btn-transparent {
   color: #fff;
   background-color: transparent;
   border-color: transparent;
 }
 
-.btn [class^="icon-"],
-.btn [class*=" icon-"] {
+.btn [class^="icon-"], button [class^="icon-"],
+.btn [class*=" icon-"],
+button [class*=" icon-"] {
   display: inline-block;
   margin-top: -2px;
   vertical-align: middle;
@@ -11208,16 +11243,16 @@ canvas {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.dropdown-header .btn {
+.dropdown-header .btn, .dropdown-header button {
   margin-top: -7px;
   color: #6c757d;
 }
 
-.dropdown-header .btn:hover {
+.dropdown-header .btn:hover, .dropdown-header button:hover {
   color: #212529;
 }
 
-.dropdown-header .btn.pull-right {
+.dropdown-header .btn.pull-right, .dropdown-header button.pull-right {
   margin-right: -20px;
 }
 
@@ -14259,7 +14294,7 @@ body {
   cursor: default;
 }
 
-.dataTables_wrapper table.dataTable tbody .btn:focus {
+.dataTables_wrapper table.dataTable tbody .btn:focus, .dataTables_wrapper table.dataTable tbody button:focus {
   box-shadow: none;
 }
 

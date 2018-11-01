@@ -114,7 +114,7 @@ class UrlHlp
     /**
      * @return int
      */
-    public function url_capacity()
+    public function url_key_capacity()
     {
         $alphabet = strlen(config('plur.hash_alphabet'));
         $size1 = config('plur.hash_size_1');
@@ -132,10 +132,10 @@ class UrlHlp
     /**
      * @return int
      */
-    public function url_remaining()
+    public function url_key_remaining()
     {
         $totalShortUrl = Url::where('is_custom', 0)->count();
 
-        return $this->url_capacity() - $totalShortUrl;
+        return $this->url_key_capacity() - $totalShortUrl;
     }
 }

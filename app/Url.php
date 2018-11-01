@@ -30,9 +30,9 @@ class Url extends Model
         $this->attributes['meta_title'] = UrlHlp::getTitle($value);
     }
 
-    public function getIdAttribute($value)
+    public function getHashIdAttribute()
     {
-        return Hashids::encode($value);
+        return Hashids::encode($this->attributes['id']);
     }
 
     public function getShortUrlAttribute()

@@ -15,12 +15,12 @@ Route::namespace('Backend')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', 'DashboardController@view')->name('admin');
         Route::get('/myurl/getdata', 'DashboardController@getData');
-        Route::get('/delete/{id}', 'DashboardController@delete')->name('admin.delete');
+        Route::get('/delete/{hashId}', 'DashboardController@delete')->name('admin.delete');
 
         // All URLs
         Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
         Route::get('/allurl/getdata', 'AllUrlController@getData');
-        Route::get('/allurl/delete/{id}', 'AllUrlController@delete')->name('admin.allurl.delete');
+        Route::get('/allurl/delete/{hashId}', 'AllUrlController@delete')->name('admin.allurl.delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {

@@ -22,7 +22,12 @@ class UserPolicy
 
     public function update()
     {
-        //
+        return Auth::user()->hasRole('admin') || Auth::user()->name == request()->route()->parameter('user');
+    }
+
+    public function updatePass()
+    {
+        return Auth::user()->hasRole('admin') || Auth::user()->name == request()->route()->parameter('user');
     }
 
     public function delete()

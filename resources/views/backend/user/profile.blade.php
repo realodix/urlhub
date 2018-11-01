@@ -24,13 +24,13 @@
 
 <div class="row">
   <div class="col-xl-6">
-    <form method="post" action="{{route('user.update', $name)}}">
+    <form method="post" action="{{route('user.update', $user->name)}}">
     @csrf
       <div class="card">
         <div class="card-body">
           <h4 class="card-title mb-0">
-            Profile
-            <small class="text-muted">Edit</small>
+            @lang('Profile')
+            <small class="text-muted">@lang('Edit')</small>
           </h4>
 
           <hr />
@@ -41,8 +41,8 @@
               <label for="name" class="col-sm-3 col-form-label">@lang('Username')</label>
 
               <div class="col">
-                <input value="{{$name}}" id="name" type="text" class="form-control" name="name" disabled>
-                <small class="text-muted"><i>Usernames cannot be changed.</i></small>
+                <input value="{{$user->name}}" id="name" type="text" class="form-control" name="name" disabled>
+                <small class="text-muted"><i>@lang('Usernames cannot be changed.')'</i></small>
               </div>
             </div>
 
@@ -50,7 +50,7 @@
               <label for="email" class="col-sm-3 col-form-label">@lang('E-mail Address')</label>
 
               <div class="col">
-                <input value="{{$email}}" id="email" type="email" class="form-control" name="email">
+                <input value="{{$user->email}}" id="email" type="email" class="form-control" name="email">
 
                 @if ($errors->has('email'))
                 <span class="help-block text-danger">
@@ -63,7 +63,7 @@
             <div class="row">
               <div class="col text-right">
                 <button type="submit" class="btn btn-primary">
-                  Save
+                  @lang('Save')
                 </button>
               </div>
             </div>
