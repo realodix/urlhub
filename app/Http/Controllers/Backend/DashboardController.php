@@ -8,7 +8,6 @@ use App\User;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Vinkla\Hashids\Facades\Hashids;
 use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
@@ -69,7 +68,7 @@ class DashboardController extends Controller
                 return
                 '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
-                    <a role="button" class="btn" href="'.route('admin.delete', $url->hash_id).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
+                    <a role="button" class="btn" href="'.route('admin.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
             ->rawColumns(['url_key', 'long_url', 'views', 'created_at.display', 'action'])
@@ -77,14 +76,15 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param string   $hashId
      * @param \App\Url $url
+     *
+     * @return \Illuminate\Routing\Redirector
      */
-    public function delete($hashId, Url $url)
+    public function delete(Url $url)
     {
         $this->authorize('forceDelete', $url);
 
-        Url::destroy(Hashids::decode($hashId));
+        $url->delete();
 
         return redirect()->back();
     }

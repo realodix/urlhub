@@ -24,8 +24,29 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
         parent::boot();
+
+        Route::bind('user', function ($value, $route) {
+            return \App\User::where('name', $value)->firstOrFail();
+        });
+
+        Route::bind('user_hashId', function ($value, $route) {
+            return $this->getModel(\App\User::class, $value);
+        });
+
+        Route::bind('url_hashId', function ($value, $route) {
+            return $this->getModel(\App\Url::class, $value);
+        });
+
+
+    }
+
+    private function getModel($model, $routeKey)
+    {
+        $id = \Hashids::connection($model)->decode($routeKey)[0] ?? null;
+        $modelInstance = resolve($model);
+
+        return  $modelInstance->findOrFail($id);
     }
 
     /**

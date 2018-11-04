@@ -15,12 +15,12 @@ Route::namespace('Backend')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', 'DashboardController@view')->name('admin');
         Route::get('/myurl/getdata', 'DashboardController@getData');
-        Route::get('/delete/{hashId}', 'DashboardController@delete')->name('admin.delete');
+        Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('admin.delete');
 
         // All URLs
         Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
         Route::get('/allurl/getdata', 'AllUrlController@getData');
-        Route::get('/allurl/delete/{hashId}', 'AllUrlController@delete')->name('admin.allurl.delete');
+        Route::get('/allurl/delete/{url_hashId}', 'AllUrlController@delete')->name('admin.allurl.delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
@@ -28,10 +28,10 @@ Route::namespace('Backend')->group(function () {
             Route::get('/user/getdata', 'UserController@getData');
 
             Route::get('{user}/edit', 'UserController@edit')->name('user.edit');
-            Route::post('{user}/edit', 'UserController@update')->name('user.update');
+            Route::post('{user_hashId}/edit', 'UserController@update')->name('user.update');
 
             Route::get('{user}/changepassword', 'ChangePasswordController@view')->name('user.change-password');
-            Route::post('{user}/changepassword', 'ChangePasswordController@update')->name('user.change-password.post');
+            Route::post('{user_hashId}/changepassword', 'ChangePasswordController@update')->name('user.change-password.post');
         });
     });
 });

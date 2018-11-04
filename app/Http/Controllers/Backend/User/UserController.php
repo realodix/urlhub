@@ -25,8 +25,7 @@ class UserController extends Controller
 
         return Datatables::of($users)
             ->editColumn('name', function ($user) {
-                return
-                '<a href="'.route('user.edit', $user->name).'">'.$user->name.'</a>';
+                return '<a href="'.route('user.edit', $user->name).'">'.$user->name.'</a>';
             })
             ->editColumn('created_at', function ($user) {
                 return [
@@ -53,20 +52,23 @@ class UserController extends Controller
             ->toJson();
     }
 
+    /**
+     * @param string $user
+     */
     public function edit($user)
     {
         $this->authorize('view', User::class);
 
-        $user = User::where('name', $user)->firstOrFail();
-
         return view('backend.user.profile', compact('user'));
     }
 
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param string $user
+     */
     public function update(Request $request, $user)
     {
         $this->authorize('update', User::class);
-
-        $user = User::where('name', $user)->first();
 
         $user->email = $request->input('email');
 

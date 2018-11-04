@@ -3,6 +3,7 @@
 namespace App;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Traits\Hashidable;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    use Hashidable;
     use HasRoles;
     use Notifiable;
 

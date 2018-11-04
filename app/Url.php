@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Http\Traits\Hashidable;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Database\Eloquent\Model;
-use Vinkla\Hashids\Facades\Hashids;
 
 class Url extends Model
 {
+    use Hashidable;
+
     protected $fillable = [
         'user_id',
         'url_key',
@@ -28,11 +30,6 @@ class Url extends Model
     public function setMetaTitleAttribute($value)
     {
         $this->attributes['meta_title'] = UrlHlp::getTitle($value);
-    }
-
-    public function getHashIdAttribute()
-    {
-        return Hashids::encode($this->attributes['id']);
     }
 
     public function getShortUrlAttribute()

@@ -10,17 +10,20 @@ use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
+    /**
+     * @param string $user
+     */
     public function view($user)
     {
         $this->authorize('view', User::class);
 
-        $user = User::where('name', $user)->firstOrFail();
-
-        return view('backend.user.changepassword', [
-            'name'  => $user->name,
-        ]);
+        return view('backend.user.changepassword', compact('user'));
     }
 
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param string $user
+     */
     public function update(Request $request, $user)
     {
         $this->authorize('updatePass', User::class);
@@ -40,7 +43,6 @@ class ChangePasswordController extends Controller
         ]);
 
         //Change Password
-        $user = User::where('name', $user)->first();
         $user->password = Hash::make($request->input('new-password'));
         $user->save();
 

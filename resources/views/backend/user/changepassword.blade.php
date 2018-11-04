@@ -24,7 +24,7 @@
 
 <div class="row">
   <div class="col-xl-6">
-    <form method="post" action="{{route('user.change-password.post', $name)}}">
+    <form method="post" action="{{route('user.change-password.post', $user->getRouteKey())}}">
     @csrf
       <div class="card">
         <div class="card-body">
