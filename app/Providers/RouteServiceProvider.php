@@ -37,8 +37,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('url_hashId', function ($value, $route) {
             return $this->getModel(\App\Url::class, $value);
         });
-
-
     }
 
     private function getModel($model, $routeKey)
