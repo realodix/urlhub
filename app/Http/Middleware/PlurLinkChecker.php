@@ -51,7 +51,7 @@ class PlurLinkChecker
         }
 
         if ($s_url) {
-            return redirect('/+'.$s_url->url_key)->with('msgLinkAlreadyExists', __('Link already exists'));
+            return redirect('/+'.$s_url->url_key)->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 
         return $next($request);

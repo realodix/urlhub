@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Url;
+use Facades\App\Helpers\UrlHlp;
+use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
 {
@@ -17,15 +19,29 @@ class UrlController extends Controller
 
         $qrCode = qrCodeGenerator($url->url_key);
 
-        return view('frontend.short', [
-            'long_url'       => $url->long_url,
-            'meta_title'     => $url->meta_title,
-            'views'          => $url->views,
-            'short_url'      => remove_url_schemes($url->short_url),
-            'short_url_href' => $url->short_url,
+        return view('frontend.short', compact('url'), [
             'qrCodeData'     => $qrCode->getContentType(),
-            'qrCodebase64'   => $qrCode->generate(),
-            'created_at'     => $url->created_at->toDayDateTimeString(),
+            'qrCodeBase64'   => $qrCode->generate(),
         ]);
+    }
+
+    /**
+     * @param string $url_key
+     */
+    public function duplicate($url_key)
+    {
+        $url = Url::where('url_key', $url_key)
+                    ->firstOrFail();
+
+        $url_key = UrlHlp::key_generator();
+
+        $replicate = $url->replicate();
+        $replicate->user_id = Auth::id();
+        $replicate->url_key = $url_key;
+        $replicate->is_custom = 0;
+        $replicate->views = 0;
+        $replicate->save();
+
+        return redirect('/+'.$url_key);
     }
 }

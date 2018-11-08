@@ -68,6 +68,7 @@ class DashboardController extends Controller
                 return
                 '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                    <a role="button" class="btn" href="'.route('admin.duplicate', $url->url_key).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
                     <a role="button" class="btn" href="'.route('admin.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
@@ -85,6 +86,24 @@ class DashboardController extends Controller
         $this->authorize('forceDelete', $url);
 
         $url->delete();
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param string $url_key
+     */
+    public function duplicate($url_key)
+    {
+        $url = Url::where('url_key', $url_key)
+                    ->firstOrFail();
+
+        $replicate = $url->replicate();
+        $replicate->user_id = Auth::id();
+        $replicate->url_key = UrlHlp::key_generator();
+        $replicate->is_custom = 0;
+        $replicate->views = 0;
+        $replicate->save();
 
         return redirect()->back();
     }
