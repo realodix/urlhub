@@ -14,15 +14,12 @@ class DashboardController extends Controller
 {
     public function view()
     {
-        // Counting the number of guests on the url column based on IP
-        $totalGuest = DB::table('urls')
-            ->select('ip', DB::raw('count(*) as total'))
-            ->whereNull('user_id')
-            ->groupBy('ip')
-            ->get()
-            ->count();
-
-        $totalShortUrlCustom = Url::where('is_custom', 1)->count();
+        // Count the number of guests in the url column based on IP and grouped by ip.
+        $totalGuest = Url::select('ip', DB::raw('count(*) as total'))
+                           ->whereNull('user_id')
+                           ->groupBy('ip')
+                           ->get()
+                           ->count();
 
         return view('backend.dashboard', [
             'totalShortUrl'        => Url::count('url_key'),
@@ -35,14 +32,13 @@ class DashboardController extends Controller
             'totalGuest'           => $totalGuest,
             'capacity'             => UrlHlp::url_key_capacity(),
             'remaining'            => UrlHlp::url_key_remaining(),
-            'totalShortUrlCustom'  => $totalShortUrlCustom,
 
         ]);
     }
 
     public function getData()
     {
-        $model = Url::where('user_id', Auth::id());
+        $model = Url::whereUserId(Auth::id());
 
         return DataTables::of($model)
             ->editColumn('url_key', function ($url) {
@@ -92,10 +88,11 @@ class DashboardController extends Controller
 
     /**
      * @param string $url_key
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($url_key)
     {
-        $url = Url::where('url_key', $url_key)
+        $url = Url::whereUrlKey($url_key)
                     ->firstOrFail();
 
         $replicate = $url->replicate();
@@ -113,7 +110,7 @@ class DashboardController extends Controller
      */
     public function totalShortUrlById($id)
     {
-        return Url::where('user_id', $id)->count('url_key');
+        return Url::whereUserId($id)->count('url_key');
     }
 
     /**
@@ -121,6 +118,6 @@ class DashboardController extends Controller
      */
     public function viewCountById($id)
     {
-        return Url::where('user_id', $id)->sum('views');
+        return Url::whereUserId($id)->sum('views');
     }
 }

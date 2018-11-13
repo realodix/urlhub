@@ -13,6 +13,15 @@
 </div>
 @endif
 
+@if ($errors->has('new-password'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{ $errors->first('new-password') }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
+
 @if (session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   {{ session('success') }}
@@ -50,12 +59,6 @@
 
               <div class="col">
                 <input id="new-password" type="password" class="form-control" name="new-password" required>
-
-                @if ($errors->has('new-password'))
-                <span class="form-error-feedback">
-                  {{ $errors->first('new-password') }}
-                </span>
-                @endif
               </div>
             </div>
 

@@ -25,11 +25,11 @@ class UrlHlp
 
         // If it is already used (not available),
         // find the next available ending.
-        $link = Url::where('url_key', $urlKey)->first();
+        $link = Url::whereUrlKey($urlKey)->first();
 
         while ($link) {
             $urlKey = $generateId->formatedId($alphabet, $size2);
-            $link = Url::where('url_key', $urlKey)->first();
+            $link = Url::whereUrlKey($urlKey)->first();
         }
 
         return $urlKey;
@@ -37,7 +37,6 @@ class UrlHlp
 
     /**
      * @param string $value
-     *
      * @return string
      */
     public function getTitle($value)
@@ -61,7 +60,6 @@ class UrlHlp
 
     /**
      * @param string $url
-     *
      * @return mixed
      */
     // https://stackoverflow.com/a/399316
@@ -80,7 +78,6 @@ class UrlHlp
     /**
      * @param string $url
      * @param int    $int
-     *
      * @return string
      */
     public function url_limit($url, $int = 50)
@@ -99,7 +96,6 @@ class UrlHlp
 
     /**
      * @param string $value
-     *
      * @return string
      */
     public function remove_url_schemes($value)

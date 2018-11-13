@@ -9,6 +9,9 @@ use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
+    /**
+     * UserController constructor.
+     */
     public function __construct()
     {
         $this->middleware('role:admin')->only('index');
@@ -54,6 +57,8 @@ class UserController extends Controller
 
     /**
      * @param string $user
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit($user)
     {
@@ -65,6 +70,9 @@ class UserController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      * @param string $user
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, $user)
     {

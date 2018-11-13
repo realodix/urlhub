@@ -8,10 +8,13 @@ use App\Url;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class GeneralUrlController extends Controller
 {
+    /**
+     * GeneralUrlController constructor.
+     */
     public function __construct()
     {
         $this->middleware('plurlinkchecker')->only('create');
@@ -19,17 +22,17 @@ class GeneralUrlController extends Controller
 
     /**
      * @param \App\Http\Requests\StoreUrl $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function create(Requests\StoreUrl $request)
     {
-        $generated_key = UrlHlp::key_generator();
-        $url_key = $request->custom_url_key ?? $generated_key;
+        $url_key = $request->custom_url_key ?? UrlHlp::key_generator();
 
         Url::create([
             'user_id'    => Auth::id(),
             'long_url'   => $request->long_url,
             'meta_title' => $request->long_url,
-            'url_key'    => $request->custom_url_key ?? $generated_key,
+            'url_key'    => $url_key,
             'is_custom'  => $request->custom_url_key ? 1 : 0,
             'ip'         => $request->ip(),
         ]);
@@ -39,20 +42,25 @@ class GeneralUrlController extends Controller
 
     /**
      * @param string $url_key
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function urlRedirection($url_key)
     {
-        $url = Url::where('url_key', $url_key)
+        $url = Url::whereUrlKey($url_key)
                     ->firstOrFail();
 
         // $url->increment('views');
-        Url::where('url_key', $url_key)
+        Url::whereUrlKey($url_key)
             ->increment('views');
 
         // Redirect to final destination
         return redirect()->away($url->long_url, 301);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function checkCustomLinkAvailability(Request $request)
     {
         $validator = Validator::make($request->all(), [

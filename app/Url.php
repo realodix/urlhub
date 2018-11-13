@@ -10,6 +10,11 @@ class Url extends Model
 {
     use Hashidable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'user_id',
         'url_key',

@@ -40,13 +40,13 @@ class PlurLinkChecker
         }
 
         // check whether it is already in the database
-        $s_url = Url::where('long_url', $long_url)
+        $s_url = Url::whereLongUrl($long_url)
                     ->whereNull('user_id')
                     ->first();
 
         if (Auth::check()) {
-            $s_url = Url::where('long_url', $long_url)
-                        ->where('user_id', Auth::id())
+            $s_url = Url::whereUserId(Auth::id())
+                        ->whereLongUrl($long_url)
                         ->first();
         }
 

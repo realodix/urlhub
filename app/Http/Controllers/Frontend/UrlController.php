@@ -14,7 +14,7 @@ class UrlController extends Controller
      */
     public function view($url_key)
     {
-        $url = Url::where('url_key', $url_key)
+        $url = Url::whereUrlKey($url_key)
                     ->firstOrFail();
 
         $qrCode = qrCodeGenerator($url->url_key);
@@ -27,10 +27,11 @@ class UrlController extends Controller
 
     /**
      * @param string $url_key
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function duplicate($url_key)
     {
-        $url = Url::where('url_key', $url_key)
+        $url = Url::whereUrlKey($url_key)
                     ->firstOrFail();
 
         $url_key = UrlHlp::key_generator();

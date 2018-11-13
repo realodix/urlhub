@@ -12,6 +12,8 @@ class ChangePasswordController extends Controller
 {
     /**
      * @param string $user
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function view($user)
     {
@@ -23,6 +25,9 @@ class ChangePasswordController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      * @param string $user
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, $user)
     {

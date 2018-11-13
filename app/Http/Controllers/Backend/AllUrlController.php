@@ -8,6 +8,9 @@ use Yajra\Datatables\Datatables;
 
 class AllUrlController extends Controller
 {
+    /**
+     * AllUrlController constructor.
+     */
     public function __construct()
     {
         $this->middleware('role:admin');
@@ -58,8 +61,7 @@ class AllUrlController extends Controller
 
     /**
      * @param \App\Url $url
-     *
-     * @return \Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function delete(Url $url)
     {
