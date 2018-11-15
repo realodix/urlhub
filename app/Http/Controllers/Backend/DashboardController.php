@@ -16,18 +16,18 @@ class DashboardController extends Controller
     {
         // Count the number of guests in the url column based on IP and grouped by ip.
         $totalGuest = Url::select('ip', DB::raw('count(*) as total'))
-                           ->whereNull('user_id')
-                           ->groupBy('ip')
-                           ->get()
-                           ->count();
+                         ->whereNull('user_id')
+                         ->groupBy('ip')
+                         ->get()
+                         ->count();
 
         return view('backend.dashboard', [
             'totalShortUrl'        => Url::count('url_key'),
             'totalShortUrlByMe'    => $this->totalShortUrlById(Auth::id()),
             'totalShortUrlByGuest' => $this->totalShortUrlById(0),
-            'viewCount'            => Url::sum('views'),
-            'viewCountByMe'        => $this->viewCountById(Auth::id()),
-            'viewCountByGuest'     => $this->viewCountById(0),
+            'totalViews'           => Url::sum('views'),
+            'totalViewsByMe'       => $this->totalViewsById(Auth::id()),
+            'totalViewsByGuest'    => $this->totalViewsById(0),
             'totalUser'            => User::count(),
             'totalGuest'           => $totalGuest,
             'capacity'             => UrlHlp::url_key_capacity(),
@@ -74,7 +74,6 @@ class DashboardController extends Controller
 
     /**
      * @param \App\Url $url
-     *
      * @return \Illuminate\Routing\Redirector
      */
     public function delete(Url $url)
@@ -93,7 +92,7 @@ class DashboardController extends Controller
     public function duplicate($url_key)
     {
         $url = Url::whereUrlKey($url_key)
-                    ->firstOrFail();
+                  ->firstOrFail();
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();
@@ -116,7 +115,7 @@ class DashboardController extends Controller
     /**
      * @param int $id
      */
-    public function viewCountById($id)
+    public function totalViewsById($id)
     {
         return Url::whereUserId($id)->sum('views');
     }

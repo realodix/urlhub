@@ -20,8 +20,8 @@ class UrlController extends Controller
         $qrCode = qrCodeGenerator($url->url_key);
 
         return view('frontend.short', compact('url'), [
-            'qrCodeData'     => $qrCode->getContentType(),
-            'qrCodeBase64'   => $qrCode->generate(),
+            'qrCodeData'   => $qrCode->getContentType(),
+            'qrCodeBase64' => $qrCode->generate(),
         ]);
     }
 
@@ -32,7 +32,7 @@ class UrlController extends Controller
     public function duplicate($url_key)
     {
         $url = Url::whereUrlKey($url_key)
-                    ->firstOrFail();
+                  ->firstOrFail();
 
         $url_key = UrlHlp::key_generator();
 

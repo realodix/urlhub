@@ -59,13 +59,13 @@ class UrlHlp
     }
 
     /**
-     * @param string $url
+     * @param string $value
      * @return mixed
      */
     // https://stackoverflow.com/a/399316
-    public function getDomain($url)
+    public function getDomain($value)
     {
-        $pieces = parse_url($url);
+        $pieces = parse_url($value);
         $domain = isset($pieces['host']) ? $pieces['host'] : '';
 
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
@@ -76,22 +76,20 @@ class UrlHlp
     }
 
     /**
-     * @param string $url
+     * @param string $value
      * @param int    $int
      * @return string
      */
-    public function url_limit($url, $int = 50)
+    public function url_limit($value, $int = 50)
     {
         $int_a = (60 / 100) * $int;
         $int_b = ($int - $int_a) * -1;
 
-        if (strlen($url) > $int) {
-            $s_url = str_limit($url, $int_a).substr($url, $int_b);
-
-            return $s_url;
+        if (strlen($value) > $int) {
+            return str_limit($value, $int_a).substr($value, $int_b);
         }
 
-        return $url;
+        return $value;
     }
 
     /**

@@ -47,18 +47,18 @@ class GeneralUrlController extends Controller
     public function urlRedirection($url_key)
     {
         $url = Url::whereUrlKey($url_key)
-                    ->firstOrFail();
+                  ->firstOrFail();
 
         // $url->increment('views');
         Url::whereUrlKey($url_key)
-            ->increment('views');
+           ->increment('views');
 
         // Redirect to final destination
         return redirect()->away($url->long_url, 301);
     }
 
     /**
-     * @param Request $request
+     * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function checkCustomLinkAvailability(Request $request)
