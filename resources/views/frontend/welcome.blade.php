@@ -13,7 +13,7 @@
       <form method="post" action="{{route('createshortlink')}}" class="mt-5" id="formUrl">
       @csrf
         <div class="input-group input-group-lg original-url">
-          <input name="long_url" placeholder="Paste a link to be shortened" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
+          <input name="long_url" placeholder="@lang('Paste a link to be shortened')" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
           <div class="input-group-append">
             <button class="btn" type="submit" id="actProcess">@lang('Shorten')</button>
           </div>

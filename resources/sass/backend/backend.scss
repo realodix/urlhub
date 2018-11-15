@@ -123,8 +123,8 @@ body {
   border: none;
 
   &.border-left {
-    border-width: .25rem !important;
     border-color: #009689 !important;
+    border-width: .25rem !important;
   }
 
   &-title {
@@ -140,17 +140,17 @@ body {
   .dataTables_length {
     select {
       color: #5c5c5c;
-      border: 1px solid #f1f3f4;
       background: #f1f3f4;
+      border: 1px solid #f1f3f4;
       border-radius: 4px;
     }
   }
 
   .dataTables_filter {
     input {
+      background: #f1f3f4;
       border: none;
       border-radius: 4px;
-      background: #f1f3f4;
       padding: 6px 8px;
 
       &::placeholder {
@@ -216,10 +216,10 @@ body {
     .paginate_button {
       &.current,
       &.current:hover {
-        background: none;
         color: $green !important;
-        border-color: transparent;
         font-weight: bold;
+        background: none;
+        border-color: transparent;
       }
 
       &:hover {
@@ -245,8 +245,8 @@ body {
   border-color: #f1f3f4;
 
   &:focus {
-    box-shadow: none;
     border-color: $secondary;
+    box-shadow: none;
   }
 
   &#name:disabled {

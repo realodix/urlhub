@@ -14246,8 +14246,8 @@ body {
 }
 
 .card.border-left {
-  border-width: .25rem !important;
   border-color: #009689 !important;
+  border-width: .25rem !important;
 }
 
 .card-title {
@@ -14256,15 +14256,15 @@ body {
 
 .dataTables_wrapper .dataTables_length select {
   color: #5c5c5c;
-  border: 1px solid #f1f3f4;
   background: #f1f3f4;
+  border: 1px solid #f1f3f4;
   border-radius: 4px;
 }
 
 .dataTables_wrapper .dataTables_filter input {
+  background: #f1f3f4;
   border: none;
   border-radius: 4px;
-  background: #f1f3f4;
   padding: 6px 8px;
 }
 
@@ -14319,10 +14319,10 @@ body {
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  background: none;
   color: #1c9963 !important;
-  border-color: transparent;
   font-weight: bold;
+  background: none;
+  border-color: transparent;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
@@ -14342,8 +14342,8 @@ body {
 }
 
 .form-control:focus {
-  box-shadow: none;
   border-color: #1c9963;
+  box-shadow: none;
 }
 
 .form-control#name:disabled {

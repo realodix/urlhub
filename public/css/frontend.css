@@ -8794,13 +8794,13 @@ img.jssocials-share-logo {
 }
 
 .home form .custom-url .url-field {
+  display: inline;
   color: #ff813f;
   font-size: 1.5rem;
-  height: calc(2rem + 2px);
-  padding: 0 0.5rem;
-  display: inline;
-  max-width: 200px;
   background: none;
+  height: calc(2rem + 2px);
+  max-width: 200px;
+  padding: 0 0.5rem;
   border: none;
   border-bottom: 4px solid #ff813f;
 }
@@ -8899,8 +8899,8 @@ img.jssocials-share-logo {
 
 .navbar-nav .img-avatar {
   height: 35px;
-  margin: 0 10px;
   max-width: 100%;
+  margin: 0 10px;
   border-radius: 50em;
 }
 
