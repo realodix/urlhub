@@ -75,19 +75,19 @@
         <div class="row">
           <div class="col-4">
             <div class="right_now-text--primary">
-              <span title="{{number_format($totalViews)}}" data-toggle="tooltip">{{readable_int($totalViews)}}</span>
+              <span title="{{number_format($totalClicks)}}" data-toggle="tooltip">{{readable_int($totalClicks)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--secondary">
-              <span title="{{number_format($totalViewsByMe)}}" data-toggle="tooltip">{{readable_int($totalViewsByMe)}}</span>
+              <span title="{{number_format($totalClicksByMe)}}" data-toggle="tooltip">{{readable_int($totalClicksByMe)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--tertiary">
-              <span title="{{number_format($totalViewsByGuest)}}" data-toggle="tooltip">{{readable_int($totalViewsByGuest)}}</span>
+              <span title="{{number_format($totalClicksByGuest)}}" data-toggle="tooltip">{{readable_int($totalClicksByGuest)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
@@ -113,7 +113,7 @@
       <div class="card border-left">
       <div class="card-body">
         <div class="right_now-text--primary">
-          <span title="{{number_format($totalViewsByMe)}}" data-toggle="tooltip">{{readable_int($totalViewsByMe)}}</span>
+          <span title="{{number_format($totalClicksByMe)}}" data-toggle="tooltip">{{readable_int($totalClicksByMe)}}</span>
         </div>
         <div class="right_now-label">@lang('Clicks & Redirects')</div>
       </div>

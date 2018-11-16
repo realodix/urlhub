@@ -39,7 +39,7 @@ class ChangePasswordController extends Controller
         }
 
         if (strcmp($request->input('current-password'), $request->input('new-password')) == 0) {
-            //Current password and new password are same
+            // Current password and new password are same
             return redirect()->back()->with('error', __('New Password cannot be same as your current password. Please choose a different password.'));
         }
 
@@ -47,7 +47,7 @@ class ChangePasswordController extends Controller
             'new-password' => 'required|string|min:6|confirmed',
         ]);
 
-        //Change Password
+        // Change password
         $user->password = Hash::make($request->input('new-password'));
         $user->save();
 

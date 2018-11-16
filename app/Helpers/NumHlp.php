@@ -5,7 +5,8 @@ namespace App\Helpers;
 class NumHlp
 {
     /**
-     * Convert large positive numbers in to short form like 1K+, 100K+, 199K+, 1M+, 10M+, 1B+ etc.
+     * Convert large positive numbers in to short form like 1K+, 100K+, 199K+,
+     * 1M+, 10M+, 1B+ etc.
      *
      * @link https://gist.github.com/RadGH/84edff0cc81e6326029c
      * @link https://github.com/sandervanhooft/laravel-blade-readable-numbers

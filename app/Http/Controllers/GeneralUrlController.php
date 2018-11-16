@@ -49,9 +49,9 @@ class GeneralUrlController extends Controller
         $url = Url::whereUrlKey($url_key)
                   ->firstOrFail();
 
-        // $url->increment('views');
+        // $url->increment('clicks');
         Url::whereUrlKey($url_key)
-           ->increment('views');
+           ->increment('clicks');
 
         // Redirect to final destination
         return redirect()->away($url->long_url, 301);

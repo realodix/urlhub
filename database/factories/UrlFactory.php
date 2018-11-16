@@ -21,7 +21,7 @@ $factory->define(App\Url::class, function (Faker $faker) {
         'meta_title' => 'URL Title',
         'url_key'    => UrlHlp::key_generator(),
         'is_custom'  => 0,
-        'views'      => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
+        'clicks'     => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
         'ip'         => $faker->ipv4,
     ];
 });

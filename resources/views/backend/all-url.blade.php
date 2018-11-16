@@ -9,7 +9,7 @@
       <div class="row mb-3">
       <div class="col-sm-6">
         <h4 class="card-title mb-0">
-          {{ __('All URLs') }}
+          @lang('All URLs')
         </h4>
       </div><!--col-->
       <div class="col-sm-6">
@@ -23,7 +23,7 @@
           <tr>
             <th scope="col">@lang('Short URL')</th>
             <th scope="col">@lang('Original URL')</th>
-            <th scope="col">@lang('Views')</th>
+            <th scope="col">@lang('Clicks')</th>
             <th scope="col">@lang('Created By')</th>
             <th scope="col">@lang('Date')</th>
             <th scope="col">@lang('Actions')</th>

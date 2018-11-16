@@ -40,7 +40,7 @@ class UrlController extends Controller
         $replicate->user_id = Auth::id();
         $replicate->url_key = $url_key;
         $replicate->is_custom = 0;
-        $replicate->views = 0;
+        $replicate->clicks = 0;
         $replicate->save();
 
         return redirect('/+'.$url_key);

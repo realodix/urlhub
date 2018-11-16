@@ -1,7 +1,7 @@
 @if($breadcrumbs)
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">@lang('Home')</li>
 
     @foreach($breadcrumbs as $breadcrumb)
       @if($breadcrumb->url && !$loop->last)

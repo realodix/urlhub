@@ -35,9 +35,9 @@ class AllUrlController extends Controller
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
             })
-            ->editColumn('views', function ($url) {
+            ->editColumn('clicks', function ($url) {
                 return '
-                <span title="'.number_format($url->views).' views" data-toggle="tooltip">'.readable_int($url->views).'</span>';
+                <span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.readable_int($url->clicks).'</span>';
             })
             ->editColumn('created_at', function ($url) {
                 return [
@@ -55,7 +55,7 @@ class AllUrlController extends Controller
                     <a role="button" class="btn" href="'.route('admin.allurl.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
-            ->rawColumns(['url_key', 'long_url', 'views', 'created_at.display', 'created_by', 'action'])
+            ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'created_by', 'action'])
             ->make(true);
     }
 

@@ -21,7 +21,7 @@ $(document).ready(function() {
         columns: [
             {data: 'url_key'},
             {data: 'long_url'},
-            {data: 'views'},
+            {data: 'clicks'},
             {data: 'created_by'},
             {
                 data: 'created_at',
@@ -51,7 +51,7 @@ $(document).ready(function() {
         columns: [
             {data: 'url_key'},
             {data: 'long_url'},
-            {data: 'views'},
+            {data: 'clicks'},
             {
                 data: 'created_at',
                 type: 'num',

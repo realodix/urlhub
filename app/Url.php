@@ -21,7 +21,7 @@ class Url extends Model
         'is_custom',
         'long_url',
         'meta_title',
-        'views',
+        'clicks',
         'ip',
     ];
 

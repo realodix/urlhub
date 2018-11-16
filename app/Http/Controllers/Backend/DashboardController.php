@@ -14,7 +14,8 @@ class DashboardController extends Controller
 {
     public function view()
     {
-        // Count the number of guests in the url column based on IP and grouped by ip.
+        // Count the number of guests in the url column based on IP
+        // and grouped by ip.
         $totalGuest = Url::select('ip', DB::raw('count(*) as total'))
                          ->whereNull('user_id')
                          ->groupBy('ip')
@@ -24,10 +25,10 @@ class DashboardController extends Controller
         return view('backend.dashboard', [
             'totalShortUrl'        => Url::count('url_key'),
             'totalShortUrlByMe'    => $this->totalShortUrlById(Auth::id()),
-            'totalShortUrlByGuest' => $this->totalShortUrlById(0),
-            'totalViews'           => Url::sum('views'),
-            'totalViewsByMe'       => $this->totalViewsById(Auth::id()),
-            'totalViewsByGuest'    => $this->totalViewsById(0),
+            'totalShortUrlByGuest' => $this->totalShortUrlById(),
+            'totalClicks'          => Url::sum('clicks'),
+            'totalClicksByMe'      => $this->totalClicksById(Auth::id()),
+            'totalClicksByGuest'   => $this->totalClicksById(),
             'totalUser'            => User::count(),
             'totalGuest'           => $totalGuest,
             'capacity'             => UrlHlp::url_key_capacity(),
@@ -50,9 +51,9 @@ class DashboardController extends Controller
                 <br>
                 <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
             })
-            ->editColumn('views', function ($url) {
+            ->editColumn('clicks', function ($url) {
                 return '
-                <span title="'.number_format($url->views).' views" data-toggle="tooltip">'.readable_int($url->views).'</span>';
+                <span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.readable_int($url->clicks).'</span>';
             })
             ->editColumn('created_at', function ($url) {
                 return [
@@ -68,7 +69,7 @@ class DashboardController extends Controller
                     <a role="button" class="btn" href="'.route('admin.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
-            ->rawColumns(['url_key', 'long_url', 'views', 'created_at.display', 'action'])
+            ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'action'])
             ->make(true);
     }
 
@@ -98,7 +99,7 @@ class DashboardController extends Controller
         $replicate->user_id = Auth::id();
         $replicate->url_key = UrlHlp::key_generator();
         $replicate->is_custom = 0;
-        $replicate->views = 0;
+        $replicate->clicks = 0;
         $replicate->save();
 
         return redirect()->back();
@@ -107,7 +108,7 @@ class DashboardController extends Controller
     /**
      * @param int $id
      */
-    public function totalShortUrlById($id)
+    public function totalShortUrlById($id = null)
     {
         return Url::whereUserId($id)->count('url_key');
     }
@@ -115,8 +116,8 @@ class DashboardController extends Controller
     /**
      * @param int $id
      */
-    public function totalViewsById($id)
+    public function totalClicksById($id = null)
     {
-        return Url::whereUserId($id)->sum('views');
+        return Url::whereUserId($id)->sum('clicks');
     }
 }
