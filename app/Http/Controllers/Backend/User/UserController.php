@@ -17,6 +17,9 @@ class UserController extends Controller
         $this->middleware('role:admin')->only('index');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('backend.user.index');
@@ -56,27 +59,27 @@ class UserController extends Controller
     }
 
     /**
-     * @param string $user
+     * @param \App\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit($user)
+    public function edit(User $user)
     {
-        $this->authorize('view', User::class);
+        $this->authorize('view', $user);
 
         return view('backend.user.profile', compact('user'));
     }
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param string $user
+     * @param \App\User                $user
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, $user)
+    public function update(Request $request, User $user)
     {
-        $this->authorize('update', User::class);
+        $this->authorize('update', $user);
 
         $user->email = $request->input('email');
 

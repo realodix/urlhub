@@ -12,6 +12,9 @@ use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function view()
     {
         // Count the number of guests in the url column based on IP

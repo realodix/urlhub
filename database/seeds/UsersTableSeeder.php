@@ -14,19 +14,19 @@ class UsersTableSeeder extends Seeder
         $now = now();
 
         DB::table('users')->insert([
-            'name'           => 'admin',
-            'email'          => 'admin@plur.test',
-            'password'       => bcrypt('admin'),
-            'created_at'     => $now,
-            'updated_at'     => $now,
+            'name'       => 'admin',
+            'email'      => 'admin@plur.test',
+            'password'   => bcrypt('admin'),
+            'created_at' => $now,
+            'updated_at' => $now,
         ]);
 
         DB::table('users')->insert([
-            'name'           => 'user',
-            'email'          => 'user@plur.test',
-            'password'       => bcrypt('user'),
-            'created_at'     => $now,
-            'updated_at'     => $now,
+            'name'       => 'user',
+            'email'      => 'user@plur.test',
+            'password'   => bcrypt('user'),
+            'created_at' => $now,
+            'updated_at' => $now,
         ]);
     }
 }

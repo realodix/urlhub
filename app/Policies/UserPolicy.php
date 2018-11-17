@@ -10,9 +10,9 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function view()
+    public function view(User $authenticatedUser, User $user)
     {
-        return Auth::user()->hasRole('admin') || Auth::user()->name == request()->route()->parameter('user');
+        return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
     }
 
     public function create()
@@ -20,14 +20,14 @@ class UserPolicy
         //
     }
 
-    public function update()
+    public function update(User $authenticatedUser, User $user)
     {
-        return Auth::user()->hasRole('admin') || Auth::user()->name == request()->route()->parameter('user');
+        return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
     }
 
-    public function updatePass()
+    public function updatePass(User $authenticatedUser, User $user)
     {
-        return Auth::user()->hasRole('admin') || Auth::user()->name == request()->route()->parameter('user');
+        return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
     }
 
     public function delete()

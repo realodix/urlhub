@@ -16,6 +16,9 @@ class AllUrlController extends Controller
         $this->middleware('role:admin');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('backend.all-url');

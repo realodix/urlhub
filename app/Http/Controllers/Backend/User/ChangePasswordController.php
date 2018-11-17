@@ -11,27 +11,27 @@ use Illuminate\Support\Facades\Hash;
 class ChangePasswordController extends Controller
 {
     /**
-     * @param string $user
+     * @param \App\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function view($user)
+    public function view(User $user)
     {
-        $this->authorize('view', User::class);
+        $this->authorize('view', $user);
 
         return view('backend.user.changepassword', compact('user'));
     }
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param string $user
+     * @param \App\User                $user
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, $user)
+    public function update(Request $request, User $user)
     {
-        $this->authorize('updatePass', User::class);
+        $this->authorize('updatePass', $user);
 
         if (! (Hash::check($request->input('current-password'), Auth::user()->password))) {
             // The passwords matches
