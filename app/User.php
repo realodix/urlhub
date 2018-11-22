@@ -44,10 +44,13 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute()
     {
+        // Check if Gravatar has an avatar for the given email address
         if (Gravatar::exists($this->email) == true) {
+            // Get the gravatar url
             return Gravatar::get($this->email);
         }
 
+        // Create unique avatar based on their email
         return Avatar::create(title_case($this->email))->toBase64();
     }
 }

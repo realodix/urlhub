@@ -31,7 +31,6 @@ class HtmlHlp
      * @param string $url
      * @param array  $attributes
      * @param null   $secure
-     *
      * @return mixed
      */
     public function style($url, $attributes = [], $secure = null)
@@ -51,7 +50,6 @@ class HtmlHlp
      * @param string $url
      * @param array  $attributes
      * @param bool   $secure
-     *
      * @return \Illuminate\Support\HtmlString
      */
     public function script($url, $attributes = [], $secure = null)
@@ -65,7 +63,6 @@ class HtmlHlp
      * Build an HTML attribute string from an array.
      *
      * @param array $attributes
-     *
      * @return string
      */
     public function attributes($attributes)
@@ -88,7 +85,6 @@ class HtmlHlp
      *
      * @param string $key
      * @param string $value
-     *
      * @return string
      */
     protected function attributeElement($key, $value)
@@ -116,7 +112,6 @@ class HtmlHlp
      * Transform the string to an Html serializable object.
      *
      * @param $html
-     *
      * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString($html)

@@ -9115,7 +9115,7 @@ a.text-tertiary:hover, a.text-tertiary:focus {
 
 /*!
  * CoreUI - Open Source Dashboard UI Kit
- * @version v2.1.0
+ * @version v2.1.1
  * @link https://coreui.io
  * Copyright (c) 2018 creativeLabs Łukasz Holeczek
  * Licensed under MIT (https://coreui.io/license)
@@ -12139,7 +12139,7 @@ canvas {
     display: inline;
   }
   *[dir="rtl"] .sidebar-minimized .sidebar .nav {
-    list-style-image: url("data:,");
+    list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
   }
   *[dir="rtl"] .sidebar-minimized .sidebar .nav .divider {
     height: 0;
@@ -14356,6 +14356,10 @@ body {
 .form-error-feedback {
   color: #e04a4a;
   font-size: 80%;
+}
+
+.app-footer {
+  font-size: 13px;
 }
 
 /*# sourceMappingURL=backend.css.map*/

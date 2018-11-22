@@ -22,7 +22,7 @@ class GeneralUrlController extends Controller
 
     /**
      * @param \App\Http\Requests\StoreUrl $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(Requests\StoreUrl $request)
     {
@@ -37,7 +37,7 @@ class GeneralUrlController extends Controller
             'ip'         => $request->ip(),
         ]);
 
-        return redirect('/+'.$url_key);
+        return redirect()->route('short_url.stats', ['url_key' => $url_key]);
     }
 
     /**
@@ -53,7 +53,6 @@ class GeneralUrlController extends Controller
         Url::whereUrlKey($url_key)
            ->increment('clicks');
 
-        // Redirect to final destination
         return redirect()->away($url->long_url, 301);
     }
 

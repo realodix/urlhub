@@ -20,8 +20,8 @@ $(document).ready(function() {
         ajax: '/admin/allurl/getdata',
         columns: [
             {data: 'url_key'},
-            {data: 'long_url'},
-            {data: 'clicks'},
+            {data: 'long_url', name: 'meta_title'},
+            {data: 'clicks', searchable: false,},
             {data: 'created_by'},
             {
                 data: 'created_at',
@@ -29,50 +29,44 @@ $(document).ready(function() {
                 render: {
                     _: 'display',
                     sort: 'timestamp'
-                }
+                },
+                searchable: false
             },
-            {data: 'action'},
+            {data: 'action'}
         ],
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        },
-        aoColumnDefs: [
-          { "bSearchable": false, "aTargets": [ 2, 4 ] }
-        ]
-    } )
-    .order([4, 'desc']).draw();
+        }
+    }).order([4, 'desc']).draw();
 
-    $('#dt-myUrls').DataTable( {
+    $('#dt-myUrls').DataTable({
         processing: true,
         serverSide: true,
         stateSave: true,
         ajax: '/admin/myurl/getdata',
         columns: [
             {data: 'url_key'},
-            {data: 'long_url'},
-            {data: 'clicks'},
+            {data: 'long_url', name: 'meta_title'},
+            {data: 'clicks', searchable: false},
             {
                 data: 'created_at',
                 type: 'num',
                 render: {
                     _: 'display',
                     sort: 'timestamp'
-                }
+                },
+                searchable: false
             },
-            {data: 'action'},
+            {data: 'action'}
         ],
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        },
-        aoColumnDefs: [
-          { "bSearchable": false, "aTargets": [ 2, 3 ] }
-        ]
-    } )
-    .order([3, 'desc']).draw();
+        }
+    }).order([3, 'desc']).draw();
 
-    $('#dt-Users').DataTable( {
+    $('#dt-Users').DataTable({
         processing: true,
         serverSide: true,
         stateSave: true,
@@ -94,20 +88,17 @@ $(document).ready(function() {
                 render: {
                     _: 'display',
                     sort: 'timestamp'
-                }
+                },
+                searchable: false,
             },
-            {data: 'action'},
+            {data: 'action'}
         ],
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        },
-        aoColumnDefs: [
-          { "bSearchable": false, "aTargets": 2  }
-        ]
-    } )
-    .order([2, 'desc']).draw();
-} );
+        }
+    }).order([2, 'desc']).draw();
+});
 
 
 /**

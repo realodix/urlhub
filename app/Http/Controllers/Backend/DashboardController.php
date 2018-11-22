@@ -12,9 +12,6 @@ use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function view()
     {
         // Count the number of guests in the url column based on IP
@@ -73,12 +70,14 @@ class DashboardController extends Controller
                  </div>';
             })
             ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'action'])
-            ->make(true);
+            ->toJson();
     }
 
     /**
      * @param \App\Url $url
-     * @return \Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function delete(Url $url)
     {

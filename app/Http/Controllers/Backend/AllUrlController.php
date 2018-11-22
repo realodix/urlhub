@@ -16,9 +16,6 @@ class AllUrlController extends Controller
         $this->middleware('role:admin');
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         return view('backend.all-url');
@@ -59,7 +56,7 @@ class AllUrlController extends Controller
                  </div>';
             })
             ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'created_by', 'action'])
-            ->make(true);
+            ->toJson();
     }
 
     /**

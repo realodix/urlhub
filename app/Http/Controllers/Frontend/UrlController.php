@@ -11,7 +11,6 @@ class UrlController extends Controller
 {
     /**
      * @param string $url_key
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function view($url_key)
     {

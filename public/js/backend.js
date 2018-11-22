@@ -30,19 +30,19 @@ $(document).ready(function () {
         serverSide: true,
         stateSave: true,
         ajax: '/admin/allurl/getdata',
-        columns: [{ data: 'url_key' }, { data: 'long_url' }, { data: 'clicks' }, { data: 'created_by' }, {
+        columns: [{ data: 'url_key' }, { data: 'long_url', name: 'meta_title' }, { data: 'clicks', searchable: false }, { data: 'created_by' }, {
             data: 'created_at',
             type: 'num',
             render: {
                 _: 'display',
                 sort: 'timestamp'
-            }
+            },
+            searchable: false
         }, { data: 'action' }],
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        },
-        aoColumnDefs: [{ "bSearchable": false, "aTargets": [2, 4] }]
+        }
     }).order([4, 'desc']).draw();
 
     $('#dt-myUrls').DataTable({
@@ -50,19 +50,19 @@ $(document).ready(function () {
         serverSide: true,
         stateSave: true,
         ajax: '/admin/myurl/getdata',
-        columns: [{ data: 'url_key' }, { data: 'long_url' }, { data: 'clicks' }, {
+        columns: [{ data: 'url_key' }, { data: 'long_url', name: 'meta_title' }, { data: 'clicks', searchable: false }, {
             data: 'created_at',
             type: 'num',
             render: {
                 _: 'display',
                 sort: 'timestamp'
-            }
+            },
+            searchable: false
         }, { data: 'action' }],
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        },
-        aoColumnDefs: [{ "bSearchable": false, "aTargets": [2, 3] }]
+        }
     }).order([3, 'desc']).draw();
 
     $('#dt-Users').DataTable({
@@ -83,13 +83,13 @@ $(document).ready(function () {
             render: {
                 _: 'display',
                 sort: 'timestamp'
-            }
+            },
+            searchable: false
         }, { data: 'action' }],
         language: {
             search: "_INPUT_",
             searchPlaceholder: "Search..."
-        },
-        aoColumnDefs: [{ "bSearchable": false, "aTargets": 2 }]
+        }
     }).order([2, 'desc']).draw();
 });
 

@@ -13,59 +13,40 @@ class UrlPolicy
 
     /**
      * Determine whether the user can view the url.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Url  $url
-     * @return mixed
      */
-    public function view(User $user, Url $url)
+    public function view()
     {
         //
     }
 
     /**
      * Determine whether the user can create urls.
-     *
-     * @param  \App\User  $user
-     * @return mixed
      */
-    public function create(User $user)
+    public function create()
     {
         //
     }
 
     /**
      * Determine whether the user can update the url.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Url  $url
-     * @return mixed
      */
-    public function update(User $user, Url $url)
+    public function update()
     {
         //
     }
 
     /**
      * Determine whether the user can delete the url.
-     *
-     * @param  \App\User $user
-     * @param  \App\Url  $url
-     * @return mixed
      */
-    public function delete(User $user, Url $url)
+    public function delete()
     {
         ///
     }
 
     /**
      * Determine whether the user can restore the url.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Url  $url
-     * @return mixed
      */
-    public function restore(User $user, Url $url)
+    public function restore()
     {
         //
     }
@@ -75,7 +56,7 @@ class UrlPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Url  $url
-     * @return mixed
+     * @return bool
      */
     public function forceDelete(User $user, Url $url)
     {
