@@ -37,7 +37,6 @@ class UrlHlp
 
     /**
      * Gets the title of page from its url.
-     * 
      * @param string $url
      * @return string
      */
@@ -54,7 +53,6 @@ class UrlHlp
 
     /**
      * Get Domain from url.
-     * 
      * @param string $url
      * @return mixed
      */
