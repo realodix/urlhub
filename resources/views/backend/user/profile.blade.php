@@ -42,7 +42,7 @@
 
               <div class="col">
                 <input value="{{$user->name}}" id="name" type="text" class="form-control" name="name" disabled>
-                <small class="text-muted"><i>@lang('Usernames cannot be changed.')'</i></small>
+                <small class="text-muted"><i>@lang('Usernames cannot be changed.')</i></small>
               </div>
             </div>
 
