@@ -36,7 +36,7 @@ class UrlHlp
     }
 
     /**
-     * Gets the title of page from its url
+     * Gets the title of page from its url.
      * 
      * @param string $url
      * @return string
@@ -44,7 +44,7 @@ class UrlHlp
     public function getTitle($url)
     {
         if ($title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', @file_get_contents($url), $matches)) {
-           return $matches[1];
+            return $matches[1];
         } elseif ($domain = $this->getDomain($url)) {
             return title_case($domain).' - '.__('No Title');
         } else {
@@ -53,7 +53,8 @@ class UrlHlp
     }
 
     /**
-     * Get Domain from url
+     * Get Domain from url.
+     * 
      * @param string $url
      * @return mixed
      */
