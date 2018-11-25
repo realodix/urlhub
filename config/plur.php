@@ -1,21 +1,24 @@
 <?php
 
 return [
-    'version' => 'build.181124',
+    'version' => 'build.181125',
 
-    'hash_size_1'   => 6, // >= 1
-    'hash_size_2'   => 7, // >= 0
-    'hash_alphabet' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    // Number of symbols in generating unique url_key. If hash_size_1 == hash_size_2,
+    // hash_size_2 is automatically declared to be of no value.
+    'hash_size_1'   => env('HASH_SIZE_1', 6), // >= 1
+    'hash_size_2'   => env('HASH_SIZE_2', 7), // >= 0
+
+    // Symbols to be used in generating unique url_key.
+    'hash_alphabet' => env(
+                        'HASH_ALPHABET',
+                        '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                       ),
 
     'domains_blocked' => [
-        'bit.ly',
-        'bitly.is',
-        'is.gd',
-        'adf.ly',
-        'goo.gl',
-        'ow.ly',
-        'j.mp',
-        't.co',
         config('app.url'),
+        // 'bit.ly',
+        // 'adf.ly',
+        // 'goo.gl',
+        // 't.co',
     ],
 ];

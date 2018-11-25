@@ -98,7 +98,7 @@ class UrlHlp
                     'http://',
                     'https://',
                     'www.',
-                ], '', $value);
+               ], '', $value);
     }
 
     /**
@@ -110,13 +110,18 @@ class UrlHlp
         $size1 = config('plur.hash_size_1');
         $size2 = config('plur.hash_size_2');
 
-        $capacity = pow($alphabet, $size1) + pow($alphabet, $size2);
+        // If the hash size is filled with integers that do not match the rules,
+        // change the variable's value to 0.
+        if ($size1 < 1) $size1 = 0;
+        if ($size2 < 0) $size2 = 0;
 
-        if (($size1 == $size2) || $size2 == 0) {
-            $capacity = pow($alphabet, $size1);
+        if ($size1 == 0 && $size2 == 0) {
+            return 0;
+        } elseif ($size1 == $size2 || $size2 == 0) {
+            return pow($alphabet, $size1);
+        } else {
+            return pow($alphabet, $size1) + pow($alphabet, $size2);
         }
-
-        return $capacity;
     }
 
     /**
@@ -125,6 +130,10 @@ class UrlHlp
     public function url_key_remaining()
     {
         $totalShortUrl = Url::where('is_custom', 0)->count();
+
+        if ($this->url_key_capacity() < $totalShortUrl) {
+            return 0;
+        }
 
         return $this->url_key_capacity() - $totalShortUrl;
     }

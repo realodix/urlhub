@@ -1,6 +1,7 @@
 <h1>Plur</h1>
 
-[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link) [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
+[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link) 
+[![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
 [![GitHub license](https://img.shields.io/github/license/realodix/plur.svg)](https://github.com/realodix/plur/blob/master/LICENSE)
 
 **Warning: This software is still in development,** so we don’t recommend you run it on a production site.

@@ -14,7 +14,16 @@
         </div>
         <div class="row">
           <div class="col-4"><b>@lang('Remaining')</b></div>
-          <div class="col"><span title="{{number_format($remaining)}}" data-toggle="tooltip">{{readable_int($remaining)}} ({{round(100-((($capacity-$remaining)/$capacity)*100))}}%)</span></div>
+          <div class="col">
+            <span title="{{number_format($remaining)}}" data-toggle="tooltip">
+              {{readable_int($remaining)}}
+              @if ($capacity == 0)
+                (0%)
+              @else
+                ({{round(100-((($capacity-$remaining)/$capacity)*100))}}%)
+              @endif
+            </span>
+          </div>
         </div>
       </div>
       </div>
