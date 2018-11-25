@@ -52,10 +52,10 @@ class UrlHlp
     }
 
     /**
+     * Get Domain from external url.
      * Extract the domain name using the classic parse_url() and then look
      * for a valid domain without any subdomain (www being a subdomain).
-     * Won't work on things like 'localhost'. Will return false if it didn't
-     * match anything.
+     * Won't work on things like 'localhost'.
      *
      * @param string $url
      * @return mixed
@@ -69,8 +69,6 @@ class UrlHlp
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
             return $regs['domain'];
         }
-
-        return false;
     }
 
     /**
