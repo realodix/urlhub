@@ -36,43 +36,35 @@ class UrlHlp
     }
 
     /**
-     * @param string $value
+     * Gets the title of page from its url.
+     * @param string $url
      * @return string
      */
-    public function getTitle($value)
+    public function getTitle($url)
     {
-        $data = @file_get_contents($value);
-
-        $title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', $data, $matches);
-
-        if ($title) {
-            $title = $matches[1];
+        if ($title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', @file_get_contents($url), $matches)) {
+            return $matches[1];
+        } elseif ($domain = $this->getDomain($url)) {
+            return title_case($domain).' - '.__('No Title');
         } else {
-            $title = title_case($this->getDomain($value)).' - '.__('No Title');
-
-            if (! $this->getDomain($value)) {
-                $title = __('No Title');
-            }
+            return __('No Title');
         }
-
-        return $title;
     }
 
     /**
-     * @param string $value
+     * Get Domain from url.
+     * @param string $url
      * @return mixed
      */
     // https://stackoverflow.com/a/399316
-    public function getDomain($value)
+    public function getDomain($url)
     {
-        $pieces = parse_url($value);
+        $pieces = parse_url($url);
         $domain = isset($pieces['host']) ? $pieces['host'] : '';
 
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
             return $regs['domain'];
         }
-
-        return false;
     }
 
     /**
