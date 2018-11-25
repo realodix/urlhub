@@ -1,5 +1,8 @@
 <h1>Plur</h1>
 
+[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link) [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
+[![GitHub license](https://img.shields.io/github/license/realodix/plur.svg)](https://github.com/realodix/plur/blob/master/LICENSE)
+
 **Warning: This software is still in development,** so we don’t recommend you run it on a production site.
 
 Plur is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
@@ -49,15 +52,15 @@ Plur is a free, open-source and easy-to-use but powerful URL shortener. It allow
    | user@plur.test  | user     | user     | User Access  |
 
 ### Compiling assets with Laravel Mix
-#### Using NPM:
-1. From the projects root folder run `npm install`
-2. Run `npm run dev` or `npm run prod`
-  * *You can watch assets with `npm run watch`*
-
 #### Using Yarn:
 1. From the projects root folder run `yarn`
 2. Run `yarn dev` or `yarn prod`
   * *You can watch assets with `yarn watch`*
+
+#### Using NPM:
+1. From the projects root folder run `npm install`
+2. Run `npm run dev` or `npm run prod`
+  * *You can watch assets with `npm run watch`*
 
 
 ## Contributing

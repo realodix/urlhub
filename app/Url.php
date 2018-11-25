@@ -32,6 +32,11 @@ class Url extends Model
         ]);
     }
 
+    public function setLongUrlAttribute($value)
+    {
+        $this->attributes['long_url'] =  rtrim($value, '/');
+    }
+
     public function setMetaTitleAttribute($value)
     {
         $this->attributes['meta_title'] = UrlHlp::getTitle($value);

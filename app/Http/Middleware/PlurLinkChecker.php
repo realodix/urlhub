@@ -19,7 +19,7 @@ class PlurLinkChecker
      */
     public function handle($request, Closure $next)
     {
-        $long_url = $request->long_url;
+        $long_url = rtrim($request->long_url, '/');
 
         if (UrlHlp::url_key_remaining() == 0) {
             return redirect()->back()

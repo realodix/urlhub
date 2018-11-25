@@ -17,7 +17,7 @@ class UrlController extends Controller
         $url = Url::whereUrlKey($url_key)
                     ->firstOrFail();
 
-        $qrCode = qrCodeGenerator($url->url_key);
+        $qrCode = qrCodeGenerator($url->short_url);
 
         return view('frontend.short', compact('url'), [
             'qrCodeData'   => $qrCode->getContentType(),

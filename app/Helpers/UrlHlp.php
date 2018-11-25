@@ -52,36 +52,42 @@ class UrlHlp
     }
 
     /**
-     * Get Domain from url.
+     * Extract the domain name using the classic parse_url() and then look
+     * for a valid domain without any subdomain (www being a subdomain).
+     * Won't work on things like 'localhost'. Will return false if it didn't
+     * match anything.
+     *
      * @param string $url
      * @return mixed
      */
-    // https://stackoverflow.com/a/399316
     public function getDomain($url)
     {
+        // https://stackoverflow.com/a/399316
         $pieces = parse_url($url);
         $domain = isset($pieces['host']) ? $pieces['host'] : '';
 
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
             return $regs['domain'];
         }
+
+        return false;
     }
 
     /**
-     * @param string $value
-     * @param int    $int
+     * @param string $url
+     * @param int    $maxlength
      * @return string
      */
-    public function url_limit($value, $int = 50)
+    public function url_limit($url, $maxlength)
     {
-        $int_a = (60 / 100) * $int;
-        $int_b = ($int - $int_a) * -1;
+        $int_a = $maxlength * 0.6;
+        $int_b = $maxlength * 0.4 * -1;
 
-        if (strlen($value) > $int) {
-            return str_limit($value, $int_a).substr($value, $int_b);
+        if (strlen($url) > $maxlength) {
+            return str_limit($url, $int_a).substr($url, $int_b);
         }
 
-        return $value;
+        return $url;
     }
 
     /**
