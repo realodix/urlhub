@@ -112,8 +112,8 @@ class UrlHlp
 
         // If the hash size is filled with integers that do not match the rules,
         // change the variable's value to 0.
-        $size1 = !($size1 < 1) ? $size1 : 0;
-        $size2 = !($size2 < 0) ? $size2 : 0;
+        $size1 = ! ($size1 < 1) ? $size1 : 0;
+        $size2 = ! ($size2 < 0) ? $size2 : 0;
 
         if ($size1 == 0 && $size2 == 0) {
             return 0;
