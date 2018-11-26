@@ -14,8 +14,8 @@ class UrlHlp
     {
         $generateId = new Client();
         $alphabet = config('plur.hash_alphabet');
-        $size1 = config('plur.hash_size_1');
-        $size2 = config('plur.hash_size_2');
+        $size1 = (int) config('plur.hash_size_1');
+        $size2 = (int) config('plur.hash_size_2');
 
         if (($size1 == $size2) || $size2 == 0) {
             $size2 = $size1;
@@ -107,13 +107,13 @@ class UrlHlp
     public function url_key_capacity()
     {
         $alphabet = strlen(config('plur.hash_alphabet'));
-        $size1 = config('plur.hash_size_1');
-        $size2 = config('plur.hash_size_2');
+        $size1 = (int) config('plur.hash_size_1');
+        $size2 = (int) config('plur.hash_size_2');
 
         // If the hash size is filled with integers that do not match the rules,
         // change the variable's value to 0.
-        $size1 = ($size1 < 1) ? 0 : $size1;
-        $size2 = ($size2 < 0) ? 0 : $size2;
+        $size1 = !($size1 < 1) ? $size1 : 0;
+        $size2 = !($size2 < 0) ? $size2 : 0;
 
         if ($size1 == 0 && $size2 == 0) {
             return 0;
@@ -129,7 +129,7 @@ class UrlHlp
      */
     public function url_key_remaining()
     {
-        $totalShortUrl = Url::where('is_custom', 0)->count();
+        $totalShortUrl = Url::whereIsCustom(false)->count();
 
         if ($this->url_key_capacity() < $totalShortUrl) {
             return 0;

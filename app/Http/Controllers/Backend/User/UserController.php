@@ -86,6 +86,6 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', __('Profile updated.'));
+        return redirect()->back()->withFlashSuccess(__('Profile updated.'));
     }
 }

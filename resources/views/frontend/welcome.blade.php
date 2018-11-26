@@ -10,7 +10,7 @@
 
   <div class="row mt-5 justify-content-md-center">
     <div class="col-lg-7">
-      <form method="post" action="{{route('createshortlink')}}" class="mt-5" id="formUrl">
+      <form method="post" action="{{route('createshortlink')}}" class="mt-5 mb-3" id="formUrl">
       @csrf
         <div class="input-group input-group-lg original-url">
           <input name="long_url" placeholder="@lang('Paste a link to be shortened')" class="form-control" id="inputSourceLink" type="text" value="{{ old('long_url') }}">
@@ -29,22 +29,7 @@
         </div>
       </form>
 
-      @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <div class="alert alert-warning mt-3" role="alert">
-          {{ $error }}
-        </div>
-        @endforeach
-      @endif
-
-      @if (session('error'))
-      <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        {{ session('error') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      @endif
+      @include('messages')
 
     </div>
   </div>

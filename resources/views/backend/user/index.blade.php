@@ -9,7 +9,7 @@
       <div class="row">
       <div class="col-sm-6">
         <h4 class="card-title mb-3">
-          {{ __('All Users') }}
+          @lang('All Users')
         </h4>
       </div><!--col-->
       </div><!--row-->

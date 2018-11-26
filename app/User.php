@@ -34,14 +34,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // Relations
     public function url()
     {
         return $this->hasMany('App\Url');
     }
 
-    /**
-     * Get User avatar.
-     */
+    // Accessors
     public function getAvatarAttribute()
     {
         // Check if Gravatar has an avatar for the given email address

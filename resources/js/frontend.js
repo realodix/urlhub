@@ -78,6 +78,12 @@ $("#jssocials").jsSocials({
     shares: [
         { share: "email", logo: "fas fa-envelope" },
         { share: "facebook", logo: "fab fa-facebook" },
-        { share: "twitter", logo: "fab fa-twitter" }
+        { share: "twitter", logo: "fab fa-twitter" },
+        {
+            share: "telegram",
+            logo: "fab fa-telegram",
+            shareUrl: "https://telegram.me/share/url?url={url}",
+            shareIn: "popup"
+        }
     ]
 });

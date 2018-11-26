@@ -37,7 +37,7 @@ class GeneralUrlController extends Controller
             'ip'         => $request->ip(),
         ]);
 
-        return redirect()->route('short_url.stats', ['url_key' => $url_key]);
+        return redirect()->route('short_url.stats', $url_key);
     }
 
     /**
@@ -49,7 +49,6 @@ class GeneralUrlController extends Controller
         $url = Url::whereUrlKey($url_key)
                   ->firstOrFail();
 
-        // $url->increment('clicks');
         Url::whereUrlKey($url_key)
            ->increment('clicks');
 

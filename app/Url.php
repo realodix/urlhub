@@ -25,6 +25,16 @@ class Url extends Model
         'ip',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_custom' => 'boolean',
+    ];
+
+    // Relations
     public function user()
     {
         return $this->belongsTo('App\User')->withDefault([
@@ -32,6 +42,7 @@ class Url extends Model
         ]);
     }
 
+    // Mutator
     public function setLongUrlAttribute($value)
     {
         $this->attributes['long_url'] = rtrim($value, '/');
@@ -42,6 +53,7 @@ class Url extends Model
         $this->attributes['meta_title'] = UrlHlp::getTitle($value);
     }
 
+    // Accessor
     public function getShortUrlAttribute()
     {
         return url('/'.$this->attributes['url_key']);

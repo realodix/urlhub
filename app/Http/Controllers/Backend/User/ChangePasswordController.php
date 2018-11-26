@@ -35,12 +35,12 @@ class ChangePasswordController extends Controller
 
         if (! (Hash::check($request->input('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with('error', __('Your current password does not matches with the password you provided. Please try again.'));
+            return redirect()->back()->withFlashError(__('Your current password does not matches with the password you provided. Please try again.'));
         }
 
         if (strcmp($request->input('current-password'), $request->input('new-password')) == 0) {
             // Current password and new password are same
-            return redirect()->back()->with('error', __('New Password cannot be same as your current password. Please choose a different password.'));
+            return redirect()->back()->withFlashError(__('New Password cannot be same as your current password. Please choose a different password.'));
         }
 
         $validatedData = $request->validate([
@@ -51,6 +51,6 @@ class ChangePasswordController extends Controller
         $user->password = Hash::make($request->input('new-password'));
         $user->save();
 
-        return redirect()->back()->with('success', __('Password changed successfully !'));
+        return redirect()->back()->withFlashSuccess(__('Password changed successfully !'));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'version' => 'build.181125',
+    'version' => 'build.181126',
 
     // Number of symbols in generating unique url_key. If hash_size_1 == hash_size_2,
     // hash_size_2 is automatically declared to be of no value.

@@ -27,7 +27,7 @@ class UrlController extends Controller
 
     /**
      * @param string $url_key
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($url_key)
     {
@@ -43,6 +43,6 @@ class UrlController extends Controller
         $replicate->clicks = 0;
         $replicate->save();
 
-        return redirect('/+'.$url_key);
+        return redirect()->route('short_url.stats', $url_key);
     }
 }
