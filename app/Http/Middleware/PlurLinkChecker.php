@@ -41,7 +41,7 @@ class PlurLinkChecker
             }
         }
 
-        /**
+        /*
          * Checks whether the url entered is already in the database.
          */
         if (Auth::check()) {
