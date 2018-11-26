@@ -7,14 +7,13 @@ class NumHlp
     /**
      * Convert large positive numbers in to short form like 1K+, 100K+, 199K+,
      * 1M+, 10M+, 1B+ etc.
+     * Based on: {@link https://gist.github.com/RadGH/84edff0cc81e6326029c}
      *
      * @param int $n
      * @return string
      */
     public function readable_int($n)
     {
-        // https://gist.github.com/RadGH/84edff0cc81e6326029c
-        // https://github.com/sandervanhooft/laravel-blade-readable-numbers
         if ($n >= 0 && $n < 1000) {
             // 1 - 999
             $n_format = floor($n);
