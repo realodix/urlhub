@@ -52,7 +52,7 @@ class ResetPasswordController extends Controller
         return view('frontend.auth.passwords.reset')->with(
             [
                 'token' => $token,
-                'email' => $request->email
+                'email' => $request->email,
             ]
         );
     }
