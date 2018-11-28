@@ -16,38 +16,38 @@ return [
     | Supported: "gd", "imagick"
     |
     */
-    'driver'    => 'gd',
+    'driver' => 'gd',
 
     // Initial generator class
     'generator' => \Laravolt\Avatar\Generator\DefaultGenerator::class,
 
     // Whether all characters supplied must be replaced with their closest ASCII counterparts
-    'ascii'     => false,
+    'ascii' => false,
 
     // Image shape: circle or square
-    'shape'     => 'circle',
+    'shape' => 'circle',
 
     // Image width, in pixel
-    'width'     => 100,
+    'width' => 100,
 
     // Image height, in pixel
-    'height'    => 100,
+    'height' => 100,
 
     // Number of characters used as initials. If name consists of single word, the first N character will be used
-    'chars'     => 2,
+    'chars' => 2,
 
     // font size
-    'fontSize'  => 48,
+    'fontSize' => 48,
 
     // convert initial letter in uppercase
     'uppercase' => false,
 
     // Fonts used to render text.
     // If contains more than one fonts, randomly selected based on name supplied
-    'fonts'     => [__DIR__.'/../fonts/OpenSans-Bold.ttf', __DIR__.'/../fonts/rockwell.ttf'],
+    'fonts' => [__DIR__.'/../fonts/OpenSans-Bold.ttf', __DIR__.'/../fonts/rockwell.ttf'],
 
     // List of foreground colors to be used, randomly selected based on name supplied
-    'foregrounds'   => [
+    'foregrounds' => [
         '#FFFFFF',
     ],
 
@@ -70,7 +70,7 @@ return [
         '#FF5722',
     ],
 
-    'border'    => [
+    'border' => [
         'size'  => 1,
 
         // border color, available value are:

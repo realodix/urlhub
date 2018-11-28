@@ -17,6 +17,7 @@
       </div><!--col-->
       </div><!--row-->
 
+      @include('messages')
 
       <table id="dt-allUrls" class="table table-responsive-sm table-striped">
         <thead>

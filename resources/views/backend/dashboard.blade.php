@@ -20,6 +20,8 @@
       </div><!--col-->
       </div><!--row-->
 
+      @include('messages')
+
       <table id="dt-myUrls" class="table table-responsive-sm table-striped">
         <thead>
           <tr>

@@ -6,12 +6,8 @@
 <div class="container">
   <div class="row header mt-5">
   <div class="col-md-9">
-    @if (session('msgLinkAlreadyExists'))
-    <div class="alert alert-success">
-      {{ session('msgLinkAlreadyExists') }}
-      @auth<a href="{{route('duplicate', $url->url_key)}}">@lang('Duplicate this')<a>@endauth
-    </div>
-    @endif
+
+    @include('messages')
 
     <ul class="list-inline">
       <li class="list-inline-item">

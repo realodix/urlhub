@@ -22,4 +22,9 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+@elseif (session('msgLinkAlreadyExists'))
+  <div class="alert alert-success">
+    {{ session('msgLinkAlreadyExists') }}
+    @auth<a href="{{route('duplicate', $url->url_key)}}">@lang('Duplicate this')<a>@endauth
+  </div>
 @endif

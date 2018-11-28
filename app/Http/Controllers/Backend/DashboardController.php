@@ -85,7 +85,8 @@ class DashboardController extends Controller
 
         $url->delete();
 
-        return redirect()->back();
+        return redirect()->back()
+                         ->withFlashSuccess(__('Link was successfully deleted.'));
     }
 
     /**
@@ -104,7 +105,8 @@ class DashboardController extends Controller
         $replicate->clicks = 0;
         $replicate->save();
 
-        return redirect()->back();
+        return redirect()->back()
+                         ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 
     /**

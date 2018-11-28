@@ -67,6 +67,7 @@ class AllUrlController extends Controller
     {
         $url->delete();
 
-        return redirect()->back();
+        return redirect()->back()
+                         ->withFlashSuccess(__('Link was successfully deleted.'));
     }
 }

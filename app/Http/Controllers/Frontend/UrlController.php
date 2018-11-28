@@ -43,6 +43,7 @@ class UrlController extends Controller
         $replicate->clicks = 0;
         $replicate->save();
 
-        return redirect()->route('short_url.stats', $url_key);
+        return redirect()->route('short_url.stats', $url_key)
+                         ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }
