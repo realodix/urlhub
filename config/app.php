@@ -5,7 +5,6 @@ return [
     'name'        => env('APP_NAME', 'Plur'),
     'description' => env('APP_DESCRIPTION', 'Simplify your links'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Application Environment
