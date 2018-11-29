@@ -27,7 +27,7 @@ class AllUrlController extends Controller
 
         return DataTables::of($model)
             ->editColumn('url_key', function ($url) {
-                return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.remove_url_schemes($url->short_url).'</span>';
+                return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.remove_schemes($url->short_url).'</span>';
             })
             ->editColumn('long_url', function ($url) {
                 return '

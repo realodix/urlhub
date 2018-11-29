@@ -23,8 +23,8 @@ class UrlHlp
 
         $urlKey = $generateId->formatedId($alphabet, $size1);
 
-        // If it is already used (not available),
-        // find the next available ending.
+        // If it is already used (not available), find the next available
+        // ending.
         $link = Url::whereUrlKey($urlKey)->first();
 
         while ($link) {
@@ -37,6 +37,7 @@ class UrlHlp
 
     /**
      * Gets the title of page from its url.
+     *
      * @param string $url
      * @return string
      */
@@ -53,6 +54,7 @@ class UrlHlp
 
     /**
      * Get Domain from external url.
+     *
      * Extract the domain name using the classic parse_url() and then look
      * for a valid domain without any subdomain (www being a subdomain).
      * Won't work on things like 'localhost'.
@@ -92,7 +94,7 @@ class UrlHlp
      * @param string $value
      * @return string
      */
-    public function remove_url_schemes($value)
+    public function remove_schemes($value)
     {
         return str_replace([
                     'http://',
