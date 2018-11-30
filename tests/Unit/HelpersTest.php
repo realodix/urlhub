@@ -34,17 +34,17 @@ class HelpersTest extends TestCase
         $this->assertSame(
              'https://laravel.com/',
              url_limit('https://laravel.com/')
-         );
+        );
 
         $this->assertSame(
-             'https://laravel.com/docs/5.7/h...available-assertions',
+             'https://laravel.com/docs/5.7/h...ilable-assertions',
              url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions')
-         );
+        );
 
         $this->assertEquals(
-             20 + 3,
+             20,
              strlen(url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions', 20))
-         );
+        );
     }
 
     public function test_remove_schemes()
