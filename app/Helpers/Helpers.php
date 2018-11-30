@@ -15,7 +15,7 @@ if (! function_exists('url_limit')) {
     }
 }
 
-if (! function_exists('remove_schemes(')) {
+if (! function_exists('remove_schemes')) {
     function remove_schemes($value)
     {
         return resolve(UrlHlp::class)->remove_schemes($value);
