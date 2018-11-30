@@ -37,7 +37,7 @@ class UserTest extends TestCase
         $this->withoutExceptionHandling();
         $this->expectException(ValidationException::class);
         $this->post('/login', [
-            'email'    => 'not-existend@user.com',
+            'email' => 'not-existend@user.com',
             'password' => '9s8gy8s9diguh4iev',
         ]);
     }
@@ -56,8 +56,8 @@ class UserTest extends TestCase
     public function name_should_not_be_too_long()
     {
         $response = $this->post('/register', [
-            'name'     => str_repeat('a', 51),
-            'email'    => $this->user->email,
+            'name' => str_repeat('a', 51),
+            'email' => $this->user->email,
             'password' => 'secret',
         ]);
 
@@ -71,7 +71,7 @@ class UserTest extends TestCase
     public function email_should_not_be_too_long()
     {
         $response = $this->post('/register', [
-            'name'  => $this->user->name,
+            'name' => $this->user->name,
             'email' => str_repeat('a', 247).'@test.com', // 256
         ]);
 
@@ -86,8 +86,8 @@ class UserTest extends TestCase
     {
         collect(['you@example,com', 'bad_user.org', 'example@bad+user.com'])->each(function ($invalidEmail) {
             $this->post('/register', [
-                'name'     => $this->user->name,
-                'email'    => $invalidEmail,
+                'name' => $this->user->name,
+                'email' => $invalidEmail,
                 'password' => 'secret',
             ])->assertSessionHasErrors([
                 'email' => 'The email must be a valid email address.',
