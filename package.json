@@ -26,7 +26,7 @@
         "jquery.typewatch": "^3.0.0",
         "jssocials": "^1.5.0",
         "laravel-mix": "^3.0",
-        "laravel-mix-auto-extract": "^1.0.1",
+        "laravel-mix-auto-extract": "^0.0.4",
         "lodash": "^4.17.5",
         "perfect-scrollbar": "^1.4.0",
         "popper.js": "^1.14",
