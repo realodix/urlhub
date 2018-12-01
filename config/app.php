@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'version'     => 'build.181129',
+    'version'     => 'build.181201',
     'name'        => env('APP_NAME', 'Plur'),
     'description' => env('APP_DESCRIPTION', 'Simplify your links'),
 
