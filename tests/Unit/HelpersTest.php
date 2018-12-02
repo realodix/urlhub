@@ -89,11 +89,6 @@ class HelpersTest extends TestCase
     public function test_url_key_capacity()
     {
         config()->set('plur.hash_alphabet', 'abc');
-        config()->set('plur.hash_size_1', -1);
-        config()->set('plur.hash_size_2', -2);
-        $this->assertSame(0, UrlHlp::url_key_capacity());
-
-        config()->set('plur.hash_alphabet', 'abc');
         config()->set('plur.hash_size_1', 0);
         config()->set('plur.hash_size_2', 0);
         $this->assertSame(0, UrlHlp::url_key_capacity());
@@ -108,23 +103,45 @@ class HelpersTest extends TestCase
         config()->set('plur.hash_size_2', 2);
         // $alphabet_length^$hash_size_1 or 3^2
         $this->assertSame(9, UrlHlp::url_key_capacity());
+    }
+
+    public function test_url_key_capacity_input_negative()
+    {
+        config()->set('plur.hash_alphabet', 'abc');
+        config()->set('plur.hash_size_1', 1);
+        config()->set('plur.hash_size_2', -2);
+        $this->assertSame(3, UrlHlp::url_key_capacity());
 
         config()->set('plur.hash_alphabet', 'abc');
-        config()->set('plur.hash_size_1', 2.7);
+        config()->set('plur.hash_size_1', -1);
         config()->set('plur.hash_size_2', 2);
-        // $alphabet_length^$hash_size_1 or 3^2
-        $this->assertSame(9, UrlHlp::url_key_capacity());
+        $this->assertSame(0, UrlHlp::url_key_capacity());
+
+        config()->set('plur.hash_alphabet', 'abc');
+        config()->set('plur.hash_size_1', -1);
+        config()->set('plur.hash_size_2', -2);
+        $this->assertSame(0, UrlHlp::url_key_capacity());
+    }
+
+    public function test_url_key_capacity_input_number()
+    {
+        config()->set('plur.hash_alphabet', 'abc');
+        config()->set('plur.hash_size_1', 2.7);
+        config()->set('plur.hash_size_2', 3);
+        $this->assertSame(36, UrlHlp::url_key_capacity()); // (3^2)+(3^3)
 
         config()->set('plur.hash_alphabet', 'abc');
         config()->set('plur.hash_size_1', 2);
-        config()->set('plur.hash_size_2', 2.7);
-        // $alphabet_length^$hash_size_1 or 3^2
-        $this->assertSame(9, UrlHlp::url_key_capacity());
+        config()->set('plur.hash_size_2', 3.7);
+        $this->assertSame(36, UrlHlp::url_key_capacity()); // (3^2)+(3^3)
+    }
 
+    public function test_url_key_capacity_input_string()
+    {
         config()->set('plur.hash_alphabet', 'abc');
         config()->set('plur.hash_size_1', 'string');
         config()->set('plur.hash_size_2', 2);
-        $this->assertSame(10, UrlHlp::url_key_capacity()); // (3^0)+(3^2)
+        $this->assertSame(0, UrlHlp::url_key_capacity());
 
         config()->set('plur.hash_alphabet', 'abc');
         config()->set('plur.hash_size_1', 2);

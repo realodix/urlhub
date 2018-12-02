@@ -117,7 +117,7 @@ class UrlHlp
         $size1 = ! ($size1 < 1) ? $size1 : 0;
         $size2 = ! ($size2 < 0) ? $size2 : 0;
 
-        if ($size1 == 0 && $size2 == 0) {
+        if ($size1 == 0 || ($size1 == 0 && $size2 == 0)) {
             return 0;
         } elseif ($size1 == $size2 || $size2 == 0) {
             return pow($alphabet, $size1);
