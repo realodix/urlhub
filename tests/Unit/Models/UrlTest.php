@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Models;
 
-use App\User;
 use App\Url;
+use App\User;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -32,7 +32,7 @@ class UrlTest extends TestCase
     {
         $url = factory(Url::class)
                ->create([
-                   'long_url' => 'https://laravel.com/'
+                   'long_url' => 'https://laravel.com/',
                ]);
 
         $this->assertSame(
