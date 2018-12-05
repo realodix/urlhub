@@ -19,10 +19,11 @@ class UserTest extends TestCase
      * Login
      */
 
-    /** @test */
-    public function the_login_route_exists()
+    public function test_user_can_view_a_login_form()
     {
-        $this->get('/login')->assertStatus(200);
+        $response = $this->get('/login');
+        $response->assertSuccessful();
+        $response->assertViewIs('frontend.auth.login');
     }
 
     /** @test */
