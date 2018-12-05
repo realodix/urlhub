@@ -33,7 +33,7 @@ class UrlTest extends TestCase
         $url = factory(Url::class)
                ->create([
                    'user_id'  => null,
-                   'long_url' => 'https://laravel.com/'
+                   'long_url' => 'https://laravel.com/',
                ]);
 
         $this->assertSame(
