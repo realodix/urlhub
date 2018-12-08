@@ -31,14 +31,11 @@ class UrlTest extends TestCase
     public function test_setLongUrlAttribute()
     {
         $url = factory(Url::class)
-               ->create([
-                   'user_id'  => null,
-                   'long_url' => 'https://laravel.com/',
-               ]);
+               ->create(['user_id' => null]);
 
         $this->assertSame(
             $url->long_url,
-            rtrim($url->long_url, '/')
+            'https://github.com/realodix/plur'
         );
     }
 }
