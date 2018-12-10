@@ -32,6 +32,6 @@
         "popper.js": "^1.14",
         "purify-css": "^1.2.5",
         "purifycss-webpack": "^0.7.0",
-        "vue": "^2.5.17"
+        "vue": "^2.5.19"
     }
 }
