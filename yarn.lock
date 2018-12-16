@@ -4033,11 +4033,6 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-laravel-mix-auto-extract@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/laravel-mix-auto-extract/-/laravel-mix-auto-extract-1.0.1.tgz#4ed945fcb29c17569095fe4e9f55fbf9ccdea7cd"
-  integrity sha512-dg27n44M+XNvyL8iJ9KY5rGhED+kGF6OfefNGHs1GUcEpC+yO36UKoiJXmRuPszLgzg03TnYVZNS+ji2vPTAzA==
-
 laravel-mix@^4.0.7:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-4.0.8.tgz#d5c451275d1cd2816c7ed9f4a6b74f6f719d1e05"
