@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-require('laravel-mix-auto-extract');
 
 mix.sass('resources/sass/backend/backend.scss', 'css/backend.css')
    .sass('resources/sass/frontend/frontend.scss', 'css/frontend.css')
@@ -9,7 +8,7 @@ mix.sass('resources/sass/backend/backend.scss', 'css/backend.css')
    .version();
 
 mix.setPublicPath('public')
-   .autoExtract()
+   .extract()
    .options({
       autoprefixer: false,
       processCssUrls: false,
