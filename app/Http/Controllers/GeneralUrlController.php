@@ -17,7 +17,7 @@ class GeneralUrlController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('plurlinkchecker')->only('create');
+        $this->middleware('newtlinkchecker')->only('create');
     }
 
     /**

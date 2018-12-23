@@ -35,7 +35,7 @@ class UrlTest extends TestCase
 
         $this->assertSame(
             $url->long_url,
-            'https://github.com/realodix/plur'
+            'https://github.com/realodix/newt'
         );
     }
 }

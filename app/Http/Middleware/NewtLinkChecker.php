@@ -7,7 +7,7 @@ use Closure;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 
-class PlurLinkChecker
+class NewtLinkChecker
 {
     /**
      * Handle an incoming request.
@@ -29,7 +29,7 @@ class PlurLinkChecker
         /*
          * Check whether the URL contains a blacklisted domain name.
          */
-        $domains_blocked = remove_schemes(config('plur.domains_blocked'));
+        $domains_blocked = remove_schemes(config('newt.domains_blocked'));
 
         foreach ($domains_blocked as $domain_blocked) {
             $url_segment = ('://'.$domain_blocked.'/');

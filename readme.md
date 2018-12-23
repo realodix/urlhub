@@ -1,12 +1,12 @@
-<h1>Plur</h1>
+<h1>Newt</h1>
 
-[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link) 
+[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
-[![GitHub license](https://img.shields.io/github/license/realodix/plur.svg)](https://github.com/realodix/plur/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/realodix/newt.svg)](https://github.com/realodix/newt/blob/master/LICENSE)
 
 **Warning: This software is still in development,** so we don’t recommend you run it on a production site.
 
-Plur is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
+Newt is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
 * URL Shortener.
@@ -49,8 +49,8 @@ Plur is a free, open-source and easy-to-use but powerful URL shortener. It allow
 
    | Email           | Username | Password | Access       |
    |-----------------|----------|----------|--------------|
-   | admin@plur.test | admin    | admin    | Admin Access |
-   | user@plur.test  | user     | user     | User Access  |
+   | admin@newt.test | admin    | admin    | Admin Access |
+   | user@newt.test  | user     | user     | User Access  |
 
 ### Compiling assets with Laravel Mix
 #### Using Yarn:
@@ -75,4 +75,4 @@ Any useful suggestion and PR are welcomed. If you would like to contribute, plea
 
 
 ## License
-Plur is an open-sourced software licensed under the [MIT license](https://github.com/realodix/plur/blob/master/LICENSE).
+Newt is an open-sourced software licensed under the [MIT license](https://github.com/realodix/newt/blob/master/LICENSE).
