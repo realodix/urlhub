@@ -3773,16 +3773,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v8.13.1",
+            "version": "v8.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "3d7f05687069d90ca5dc3e75bf269e13eecccc76"
+                "reference": "a5d2cbc876d08b07d4fd8504b36cf1681a660d94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/3d7f05687069d90ca5dc3e75bf269e13eecccc76",
-                "reference": "3d7f05687069d90ca5dc3e75bf269e13eecccc76",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/a5d2cbc876d08b07d4fd8504b36cf1681a660d94",
+                "reference": "a5d2cbc876d08b07d4fd8504b36cf1681a660d94",
                 "shasum": ""
             },
             "require": {
@@ -3840,7 +3840,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2018-11-23T08:05:22+00:00"
+            "time": "2019-01-04T02:40:37+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
