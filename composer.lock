@@ -1539,7 +1539,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2532,16 +2532,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.29.0",
+            "version": "2.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "7f308806ca051fca42685e4a97a282139a6a7982"
+                "reference": "60744813f22535415b8a716fb9252ba063ba056c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/7f308806ca051fca42685e4a97a282139a6a7982",
-                "reference": "7f308806ca051fca42685e4a97a282139a6a7982",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/60744813f22535415b8a716fb9252ba063ba056c",
+                "reference": "60744813f22535415b8a716fb9252ba063ba056c",
                 "shasum": ""
             },
             "require": {
@@ -2593,7 +2593,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2018-12-16T00:49:22+00:00"
+            "time": "2019-01-28T23:50:25+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3201,7 +3201,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
