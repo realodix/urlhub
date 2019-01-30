@@ -1539,7 +1539,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -3201,7 +3201,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -3774,16 +3774,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v8.13.3",
+            "version": "v8.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "387512371d3688f3fe1bf75e3e9e53b3d1426736"
+                "reference": "8aedd88a02599d5d0a4a1a2bb5aac849397dd594"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/387512371d3688f3fe1bf75e3e9e53b3d1426736",
-                "reference": "387512371d3688f3fe1bf75e3e9e53b3d1426736",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/8aedd88a02599d5d0a4a1a2bb5aac849397dd594",
+                "reference": "8aedd88a02599d5d0a4a1a2bb5aac849397dd594",
                 "shasum": ""
             },
             "require": {
@@ -3841,7 +3841,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-01-05T02:12:47+00:00"
+            "time": "2019-01-29T03:12:37+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
