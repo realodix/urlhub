@@ -7,6 +7,16 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
      * Bootstrap any application services.
      *
      * @return void
@@ -16,15 +26,5 @@ class AppServiceProvider extends ServiceProvider
         if (! file_exists(public_path('/mix-manifest.json'))) {
             return abort('503', 'The Mix manifest does not exist. See https://github.com/realodix/newt#compiling-assets-with-laravel-mix');
         }
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }
