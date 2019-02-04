@@ -2532,16 +2532,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.30.0",
+            "version": "2.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "60744813f22535415b8a716fb9252ba063ba056c"
+                "reference": "5f9960854295c6aec1c706aaa3b146962d6ee905"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/60744813f22535415b8a716fb9252ba063ba056c",
-                "reference": "60744813f22535415b8a716fb9252ba063ba056c",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/5f9960854295c6aec1c706aaa3b146962d6ee905",
+                "reference": "5f9960854295c6aec1c706aaa3b146962d6ee905",
                 "shasum": ""
             },
             "require": {
@@ -2593,7 +2593,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2019-01-28T23:50:25+00:00"
+            "time": "2019-02-04T03:56:54+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3201,7 +3201,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
