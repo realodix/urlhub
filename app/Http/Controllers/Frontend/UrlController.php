@@ -26,8 +26,8 @@ class UrlController extends Controller
     }
 
     /**
-     * Defaultly Newt only permited only one link at the time, but you can
-     * duplicate it.
+     * Defaultly Newt only permited only one link at the time, but you can duplicate
+     * it.
      *
      * @param string $url_key
      * @return \Illuminate\Http\RedirectResponse
