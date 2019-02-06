@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url'       => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -109,7 +109,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key'    => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
