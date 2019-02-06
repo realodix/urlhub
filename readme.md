@@ -75,4 +75,4 @@ Any useful suggestion and PR are welcomed. If you would like to contribute, plea
 
 
 ## License
-Newt is an open-sourced software licensed under the [MIT license](https://github.com/realodix/newt/blob/master/LICENSE).
+Newt is an open-source software licensed under the [MIT license](https://github.com/realodix/newt/blob/master/LICENSE).
