@@ -623,13 +623,13 @@
   integrity sha512-yeeoWp+bNS84nP1977Y8UCiQ9pssO+f4QuVj3i0/gYZFjjvOgxx0dnyWhtowD5sLYnCRMPlPpqyjwXze3SlkYg==
 
 "@coreui/coreui@^2.1.5":
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.6.tgz#e6219297ad74baf9ca9634225b448f5240848e6f"
-  integrity sha512-04uY01hOXOaED85U/3IrBQpstC6wEE7fOft7nybuFy7uikTgreep6dWeNflKzWbIAMHQRwi5G0B4ZKNhgHG86w==
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.7.tgz#a7c9872377f7d224d32fe1c9d110de6c58b3bd59"
+  integrity sha512-921Qi1ujd8yUhLdwMggEnEPEOr/OX9mAKjJitH4PaEGFTCmPL2Fb00wuWUzUN0uTRekCmkns1Zt1hJ1ezigG6g==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@coreui/coreui-plugin-npm-postinstall" "^1.0.2"
-    bootstrap "^4.2.1"
+    bootstrap "^4.3.1"
 
 "@fortawesome/fontawesome-common-types@^0.2.15":
   version "0.2.15"
@@ -1262,7 +1262,7 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@^4.2.1:
+bootstrap@^4.2.1, bootstrap@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
   integrity sha512-rXqOmH1VilAt2DyPzluTi2blhk17bO7ef+zLLPlWvG494pDxcM234pJ8wTc/6R40UWizAIIMgxjvxZg5kmsbag==
@@ -1943,9 +1943,9 @@ copy-descriptor@^0.1.0:
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
 core-js@^2.5.7:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.4.tgz#b8897c062c4d769dd30a0ac5c73976c47f92ea0d"
-  integrity sha512-05qQ5hXShcqGkPZpXEFLIpxayZscVD2kuMBZewxiIPPEagukO4mqgPA9CWhUvFBJfy3ODdK2p9xyHh7FTU9/7A==
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
+  integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
 
 core-util-is@~1.0.0:
   version "1.0.2"
