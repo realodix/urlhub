@@ -167,26 +167,26 @@
         },
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
-            "version": "5.2.0",
+            "version": "5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davejamesmiller/laravel-breadcrumbs.git",
-                "reference": "e2ed8b0992231ebc61480c63f095a2cf3b8829a1"
+                "reference": "6465e8710341578092fdd8aea24319d4f53ab27c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/e2ed8b0992231ebc61480c63f095a2cf3b8829a1",
-                "reference": "e2ed8b0992231ebc61480c63f095a2cf3b8829a1",
+                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/6465e8710341578092fdd8aea24319d4f53ab27c",
+                "reference": "6465e8710341578092fdd8aea24319d4f53ab27c",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.6.*|5.7.*",
-                "illuminate/view": "5.6.*|5.7.*",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*",
+                "illuminate/view": "5.6.*|5.7.*|5.8.*",
                 "php": ">=7.1.3"
             },
             "require-dev": {
-                "laravel/framework": "5.6.*|5.7.*",
-                "orchestra/testbench": "3.6.*|3.7.*",
+                "laravel/framework": "5.6.*|5.7.*|5.8.*",
+                "orchestra/testbench": "3.6.*|3.7.*|3.8.*",
                 "php-coveralls/php-coveralls": "^1.0",
                 "phpunit/phpunit": "7.*"
             },
@@ -221,7 +221,7 @@
             "keywords": [
                 "laravel"
             ],
-            "time": "2018-10-30T22:06:33+00:00"
+            "time": "2019-02-27T13:09:37+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
