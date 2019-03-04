@@ -2533,16 +2533,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.34.0",
+            "version": "2.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "10f6b2e19cce79936e42b65f08549cbf564c052e"
+                "reference": "c29eaa782e222299bd669feb37a39285c04f2ee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/10f6b2e19cce79936e42b65f08549cbf564c052e",
-                "reference": "10f6b2e19cce79936e42b65f08549cbf564c052e",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/c29eaa782e222299bd669feb37a39285c04f2ee4",
+                "reference": "c29eaa782e222299bd669feb37a39285c04f2ee4",
                 "shasum": ""
             },
             "require": {
@@ -2553,7 +2553,7 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.4.2|~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+                "orchestra/testbench": "~3.4.2|~3.5.0|~3.6.0|~3.7.0",
                 "phpunit/phpunit": "^5.7|6.2|^7.0",
                 "predis/predis": "^1.1"
             },
@@ -2594,7 +2594,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2019-02-26T21:25:08+00:00"
+            "time": "2019-03-01T19:52:03+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
