@@ -622,10 +622,10 @@
   resolved "https://registry.yarnpkg.com/@coreui/coreui-plugin-npm-postinstall/-/coreui-plugin-npm-postinstall-1.0.2.tgz#6daeb2ec786580d9c0849b05bc3e8d0222d5c463"
   integrity sha512-yeeoWp+bNS84nP1977Y8UCiQ9pssO+f4QuVj3i0/gYZFjjvOgxx0dnyWhtowD5sLYnCRMPlPpqyjwXze3SlkYg==
 
-"@coreui/coreui@^2.1.5":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.7.tgz#a7c9872377f7d224d32fe1c9d110de6c58b3bd59"
-  integrity sha512-921Qi1ujd8yUhLdwMggEnEPEOr/OX9mAKjJitH4PaEGFTCmPL2Fb00wuWUzUN0uTRekCmkns1Zt1hJ1ezigG6g==
+"@coreui/coreui@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.8.tgz#9246359da602487a693af0215fc3bbcbbd21ad87"
+  integrity sha512-YyGfMNcu47QbRpUoMejVXOFcKBL4huWy3szhIC2VIrzxufB5LZq9qOrVf2n25NeBtVCw5Y4Y2oIoN0k998U8ww==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@coreui/coreui-plugin-npm-postinstall" "^1.0.2"
