@@ -21,7 +21,7 @@
         "laravolt/avatar": "^2.0",
         "spatie/laravel-permission": "^2.17",
         "vinkla/hashids": "^5.1",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
