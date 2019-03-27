@@ -13,7 +13,7 @@ Newt is a free, open-source and easy-to-use but powerful URL shortener. It allow
 * Customized short URL's(ex: example.com/laravel).
 * QR code generator for each short link.
 * Sortable list of shortened URLs.
-* Written in PHP and Laravel 5.7.
+* Written in PHP and [Laravel 5.8](https://laravel.com/docs/5.8).
 * Datatables with server-side processing.
 * Modern and simple interface.
 * Made with :heart: &amp; :coffee:.
