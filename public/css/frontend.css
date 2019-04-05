@@ -9961,7 +9961,7 @@ img.jssocials-share-logo {
 }
 
 .auth {
-  background: #f8f9fa;
+  background: #f5f5f7;
 }
 .auth .card {
   border: none;
@@ -10016,12 +10016,15 @@ img.jssocials-share-logo {
   font-size: 1.2rem;
 }
 .jssocials-share-email a {
-  color: #4e4e4e;
+  color: #d14836;
 }
 .jssocials-share-facebook a {
   color: #3b5998;
 }
 .jssocials-share-twitter a {
   color: #1da1f2;
+}
+.jssocials-share-telegram a {
+  color: #2ca5e0;
 }
 /*# sourceMappingURL=frontend.css.map*/
