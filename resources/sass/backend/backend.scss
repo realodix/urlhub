@@ -162,7 +162,7 @@ body {
   table {
     &.dataTable {
       thead th {
-        background-color: #f5f7fa;
+        background-color: $bg-gray;
         color: #7b858e;
 
         &:hover {
