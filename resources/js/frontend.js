@@ -80,6 +80,12 @@ $("#jssocials").jsSocials({
         { share: "facebook", logo: "fab fa-facebook" },
         { share: "twitter", logo: "fab fa-twitter" },
         {
+            share: "whatsapp",
+            logo: "fab fa-whatsapp",
+            shareUrl: "https://wa.me/?text={url}",
+            shareIn: "popup"
+        },
+        {
             share: "telegram",
             logo: "fab fa-telegram",
             shareUrl: "https://telegram.me/share/url?url={url}",
