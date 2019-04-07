@@ -236,7 +236,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").tooltip({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\laragon\www\newt-master\resources\js\backend.js */"./resources/js/backend.js");
+module.exports = __webpack_require__(/*! D:\laragon\www\newt\resources\js\backend.js */"./resources/js/backend.js");
 
 
 /***/ })

@@ -224,9 +224,9 @@ $("#jssocials").jsSocials({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\newt-master\resources\js\frontend.js */"./resources/js/frontend.js");
-__webpack_require__(/*! D:\laragon\www\newt-master\resources\sass\backend\backend.scss */"./resources/sass/backend/backend.scss");
-module.exports = __webpack_require__(/*! D:\laragon\www\newt-master\resources\sass\frontend\frontend.scss */"./resources/sass/frontend/frontend.scss");
+__webpack_require__(/*! D:\laragon\www\newt\resources\js\frontend.js */"./resources/js/frontend.js");
+__webpack_require__(/*! D:\laragon\www\newt\resources\sass\backend\backend.scss */"./resources/sass/backend/backend.scss");
+module.exports = __webpack_require__(/*! D:\laragon\www\newt\resources\sass\frontend\frontend.scss */"./resources/sass/frontend/frontend.scss");
 
 
 /***/ })
