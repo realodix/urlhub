@@ -46,7 +46,7 @@
 
             <div class="row">
               <div class="col text-right">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-secondary">
                   @lang('Save')
                 </button>
               </div>
