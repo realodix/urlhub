@@ -8,10 +8,9 @@ return [
 
     // Symbols to be used in generating unique url_key.
     'hash_alphabet' => env(
-                        'HASH_ALPHABET',
-                        '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-                       ),
-
+        'HASH_ALPHABET',
+        '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ),
     'domains_blocked' => [
         config('app.url'),
         // 'bit.ly',

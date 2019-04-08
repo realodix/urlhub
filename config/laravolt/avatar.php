@@ -52,7 +52,7 @@ return [
     ],
 
     // List of background colors to be used, randomly selected based on name supplied
-    'backgrounds'   => [
+    'backgrounds' => [
         '#f44336',
         '#E91E63',
         '#9C27B0',
