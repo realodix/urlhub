@@ -13,8 +13,8 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title mb-0">
-            @lang('Profile')
-            <small class="text-muted">@lang('Edit')</small>
+            @lang('Account Settings')
+            <small class="text-muted">@lang('Profile')</small>
           </h4>
 
           <hr />
