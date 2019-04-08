@@ -22,10 +22,10 @@
           <div class="row mt-4 mb-4">
           <div class="col">
             <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }} row">
-              <label for="current-password" class="col-sm-3 col-form-label">@lang('Current Password')</label>
+              <label for="current-password" class="col-sm-3 col-form-label">@lang('Your Password')</label>
 
               <div class="col">
-                <input id="current-password" type="password" class="form-control" name="current-password" required>
+                <input id="current-password" type="password" class="form-control" name="current-password" placeholder="Enter your password" required>
               </div>
             </div>
 

@@ -36,7 +36,7 @@ class ChangePasswordController extends Controller
         if (! (Hash::check($request->input('current-password'), Auth::user()->password))) {
             // The passwords matches
             return redirect()->back()
-                             ->withFlashError(__('Your current password does not matches with the password you provided. Please try again.'));
+                             ->withFlashError(__('The password you entered does not match your password. Please try again.'));
         }
 
         if (strcmp($request->input('current-password'), $request->input('new-password')) == 0) {
