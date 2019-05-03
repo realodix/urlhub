@@ -52,7 +52,7 @@ window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a; // win
 
 /**
  * Bootstrap tooltips
- * https://getbootstrap.com/docs/4.1/components/tooltips/
+ * https://getbootstrap.com/docs/4.3/components/tooltips/
  */
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").tooltip({
@@ -112,8 +112,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * Copy short url to clipboard
+ *
+ * https://github.com/zenorocha/clipboard.js
  */
-// https://github.com/zenorocha/clipboard.js
 
 var ClipboardJS = __webpack_require__(/*! clipboard */ "./node_modules/clipboard/dist/clipboard.js");
 
@@ -122,8 +123,9 @@ new ClipboardJS('.btn-clipboard').on('success', function () {
 });
 /**
  * Custom link Avail Check
+ *
+ * https://github.com/dennyferra/TypeWatch
  */
-// https://github.com/dennyferra/TypeWatch
 
 
 $(function () {

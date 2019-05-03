@@ -42,7 +42,7 @@ window.$ = window.jQuery = $;
 
 /**
  * Bootstrap tooltips
- * https://getbootstrap.com/docs/4.1/components/tooltips/
+ * https://getbootstrap.com/docs/4.3/components/tooltips/
  */
 $("body").tooltip({
     selector: '[data-toggle="tooltip"]'

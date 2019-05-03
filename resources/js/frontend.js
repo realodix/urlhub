@@ -2,8 +2,9 @@ import './bootstrap';
 
 /**
  * Copy short url to clipboard
+ *
+ * https://github.com/zenorocha/clipboard.js
  */
-// https://github.com/zenorocha/clipboard.js
 var ClipboardJS = require('clipboard');
 
 new ClipboardJS('.btn-clipboard').on('success', function() {
@@ -16,8 +17,9 @@ new ClipboardJS('.btn-clipboard').on('success', function() {
 
 /**
  * Custom link Avail Check
+ *
+ * https://github.com/dennyferra/TypeWatch
  */
-// https://github.com/dennyferra/TypeWatch
 import 'jquery.typewatch';
 
 $(function() {

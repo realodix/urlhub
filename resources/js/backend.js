@@ -103,8 +103,9 @@ $(document).ready(function() {
 
 /**
  * Copy short url to clipboard
+ *
+ * https://github.com/zenorocha/clipboard.js
  */
-// https://github.com/zenorocha/clipboard.js
 var ClipboardJS = require('clipboard');
 
 new ClipboardJS('[data-clipboard-text]').on('success', function(e) {
