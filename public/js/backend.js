@@ -27,7 +27,8 @@ $(document).ready(function () {
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  });
+  }); // All URL Page
+
   $('#dt-allUrls').DataTable({
     processing: true,
     serverSide: true,
@@ -58,7 +59,8 @@ $(document).ready(function () {
       search: "_INPUT_",
       searchPlaceholder: "Search..."
     }
-  }).order([4, 'desc']).draw();
+  }).order([4, 'desc']).draw(); // My URL Page
+
   $('#dt-myUrls').DataTable({
     processing: true,
     serverSide: true,
@@ -87,7 +89,8 @@ $(document).ready(function () {
       search: "_INPUT_",
       searchPlaceholder: "Search..."
     }
-  }).order([3, 'desc']).draw();
+  }).order([3, 'desc']).draw(); // My User Page
+
   $('#dt-Users').DataTable({
     processing: true,
     serverSide: true,

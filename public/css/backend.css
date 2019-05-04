@@ -447,22 +447,10 @@ table.dataTable td {
   }
 }
 @charset "UTF-8";
-/*
- * Variables
- */
-/*
- * Extend
- */
 .card {
   box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
 }
 
-/*!
- * Bootstrap
- */
-/*!
- * CoreUI
- */
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
