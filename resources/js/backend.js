@@ -13,7 +13,7 @@ $(document).ready(function() {
         }
     });
 
-    // All URL Page
+    // All URLs Page
     $('#dt-allUrls').DataTable( {
         processing: true,
         serverSide: true,
@@ -41,7 +41,7 @@ $(document).ready(function() {
         }
     }).order([4, 'desc']).draw();
 
-    // My URL Page
+    // My URLs Page
     $('#dt-myUrls').DataTable({
         processing: true,
         serverSide: true,
@@ -68,7 +68,7 @@ $(document).ready(function() {
         }
     }).order([3, 'desc']).draw();
 
-    // My User Page
+    // All Users Page
     $('#dt-Users').DataTable({
         processing: true,
         serverSide: true,
