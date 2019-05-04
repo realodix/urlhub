@@ -5,8 +5,8 @@
 @import "~datatables.net-dt/css/jquery.dataTables.css";
 
 body {
-  background: $bg-gray;
   font-family: 'Nunito', sans-serif;
+  background: $bg-gray;
 }
 
 
@@ -223,8 +223,8 @@ body {
       }
 
       &:hover {
-        background: $green;
         color: #fff !important;
+        background: $green;
         border-color: $green;
       }
     }

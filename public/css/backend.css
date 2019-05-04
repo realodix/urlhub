@@ -15742,8 +15742,8 @@ body {
 }
 
 body {
-  background: #f5f5f7;
   font-family: "Nunito", sans-serif;
+  background: #f5f5f7;
 }
 
 .navbar-brand {
@@ -15874,8 +15874,8 @@ body {
   border-color: transparent;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background: #1c9963;
   color: #fff !important;
+  background: #1c9963;
   border-color: #1c9963;
 }
 .dataTables_wrapper .dataTables_paginate,
