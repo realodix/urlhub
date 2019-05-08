@@ -13,7 +13,7 @@
         "@coreui/coreui": "^2.1.5",
         "@fortawesome/fontawesome-svg-core": "^1.2.12",
         "@fortawesome/free-brands-svg-icons": "^5.6.3",
-        "@fortawesome/free-regular-svg-icons": "^5.6.3",
+        "@fortawesome/free-regular-svg-icons": "^5.8.2",
         "@fortawesome/free-solid-svg-icons": "^5.6.3",
         "axios": "^0.18",
         "bootstrap": "^4.2.1",
