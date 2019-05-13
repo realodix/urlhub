@@ -66,7 +66,9 @@ Newt is a free, open-source and easy-to-use but powerful URL shortener. It allow
 
 
 ## Contributing
-Any useful suggestion and PR are welcomed. If you would like to contribute, please do the following:
+Thank you for considering contributing to Newt. Any useful suggestion and pull requests are welcomed.
+
+Please do the following:
 
 1. Fork the repository.
 2. Hack on a separate topic branch created from the latest `master`.
