@@ -4,7 +4,7 @@ Auth::routes();
 
 Route::view('/', 'frontend.welcome');
 Route::post('/create', 'GeneralUrlController@create')->name('createshortlink');
-Route::post('/custom-link-avail-check', 'GeneralUrlController@checkCustomLinkAvailability');
+Route::post('/custom-link-avail-check', 'GeneralUrlController@checkExistingUrl');
 
 Route::namespace('Frontend')->group(function () {
     Route::get('/+{url_key}', 'UrlController@view')->name('short_url.stats');
