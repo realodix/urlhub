@@ -59,7 +59,7 @@ class GeneralUrlController extends Controller
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function checkCustomLinkAvailability(Request $request)
+    public function checkExistingUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase],
