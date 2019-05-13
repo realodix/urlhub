@@ -6,6 +6,17 @@ use App\Helpers\UrlHlp;
 use CodeItNow\BarcodeBundle\Utils\QrCode;
 
 /*
+|--------------------------------------------------------------------------
+| Global Helpers
+|--------------------------------------------------------------------------
+|
+| Here is where you can register helper functions for your application.
+| These helper functions can be uesed anywhere in you application
+| Now create something great!
+|
+*/
+
+/*
  * URL Helpers
  */
 if (! function_exists('url_limit')) {
