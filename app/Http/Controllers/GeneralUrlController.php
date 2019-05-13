@@ -21,6 +21,8 @@ class GeneralUrlController extends Controller
     }
 
     /**
+     * Store the data the user sent to create the Short URL.
+     *
      * @param \App\Http\Requests\StoreUrl $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -56,6 +58,8 @@ class GeneralUrlController extends Controller
     }
 
     /**
+     * Response to an AJAX request by the custom Short URL form.
+     * 
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
      */
