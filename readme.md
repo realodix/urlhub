@@ -5,7 +5,7 @@
 ![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/laravel/framework/v5.8.0.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE)
 
-**Warning: This software is still in development,** so we don’t recommend you run it on a production site.
+> **Warning: Newt is under heavy development** and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
 
 Newt is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
