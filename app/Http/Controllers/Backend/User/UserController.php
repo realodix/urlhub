@@ -61,7 +61,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user.
      *
-     * 
+     *
      * @param \App\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
