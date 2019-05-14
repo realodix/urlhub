@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class GeneralUrlController extends Controller
+class UrlController extends Controller
 {
     /**
-     * GeneralUrlController constructor.
+     * UrlController constructor.
      */
     public function __construct()
     {
