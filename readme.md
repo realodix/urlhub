@@ -67,7 +67,7 @@ UrlHub is a free, open-source and easy-to-use but powerful URL shortener. It all
 
 
 ## Contributing
-Thank you for considering contributing to Newt. Any useful suggestion and pull requests are welcomed.
+Thank you for considering contributing to UrlHub. Any useful suggestion and pull requests are welcomed.
 
 Please do the following:
 
