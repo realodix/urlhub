@@ -3,8 +3,8 @@
 Auth::routes();
 
 Route::view('/', 'frontend.welcome');
-Route::post('/create', 'GeneralUrlController@create')->name('createshortlink');
-Route::post('/custom-link-avail-check', 'GeneralUrlController@checkCustomLinkAvailability');
+Route::post('/create', 'UrlController@create')->name('createshortlink');
+Route::post('/custom-link-avail-check', 'UrlController@checkExistingUrl');
 
 Route::namespace('Frontend')->group(function () {
     Route::get('/+{url_key}', 'UrlController@view')->name('short_url.stats');
@@ -38,4 +38,4 @@ Route::namespace('Backend')->group(function () {
     });
 });
 
-Route::get('/{url_key}', 'GeneralUrlController@urlRedirection');
+Route::get('/{url_key}', 'UrlController@urlRedirection');

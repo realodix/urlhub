@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class GeneralUrlController extends Controller
+class UrlController extends Controller
 {
     /**
-     * GeneralUrlController constructor.
+     * UrlController constructor.
      */
     public function __construct()
     {
@@ -21,6 +21,8 @@ class GeneralUrlController extends Controller
     }
 
     /**
+     * Store the data the user sent to create the Short URL.
+     *
      * @param \App\Http\Requests\StoreUrl $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -56,10 +58,12 @@ class GeneralUrlController extends Controller
     }
 
     /**
+     * Response to an AJAX request by the custom Short URL form.
+     *
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function checkCustomLinkAvailability(Request $request)
+    public function checkExistingUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase],
