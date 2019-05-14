@@ -14,7 +14,6 @@ class DashboardController extends Controller
 {
     /**
      * Show users all their Short URLs.
-     *
      */
     public function view()
     {
