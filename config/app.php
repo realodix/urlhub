@@ -2,7 +2,7 @@
 
 return [
     'version'     => 'build.190514',
-    'name'        => env('APP_NAME', 'Newt'),
+    'name'        => env('APP_NAME', 'UrlHub'),
     'description' => env('APP_DESCRIPTION', 'Simplify your links'),
 
     /*
