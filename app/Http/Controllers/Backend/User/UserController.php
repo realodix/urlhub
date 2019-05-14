@@ -17,6 +17,9 @@ class UserController extends Controller
         $this->middleware('role:admin')->only('index');
     }
 
+    /**
+     * Display a listing of the users.
+     */
     public function index()
     {
         return view('backend.user.index');
@@ -56,6 +59,8 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for editing the specified user.
+     *
      * @param \App\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -68,6 +73,8 @@ class UserController extends Controller
     }
 
     /**
+     * Update the specified user in storage.
+     *
      * @param \Illuminate\Http\Request $request
      * @param \App\User                $user
      * @return \Illuminate\Http\RedirectResponse

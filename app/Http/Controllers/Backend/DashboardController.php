@@ -12,6 +12,9 @@ use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
+    /**
+     * Show users all their Short URLs.
+     */
     public function view()
     {
         // Count the number of guests in the url column based on IP
@@ -74,6 +77,8 @@ class DashboardController extends Controller
     }
 
     /**
+     * Delete a Short URL on user request.
+     *
      * @param \App\Url $url
      * @return \Illuminate\Http\RedirectResponse
      *

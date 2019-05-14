@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 class ChangePasswordController extends Controller
 {
     /**
+     * Show the form for editing password.
+     *
      * @param \App\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -23,6 +25,8 @@ class ChangePasswordController extends Controller
     }
 
     /**
+     * Change the password.
+     *
      * @param \Illuminate\Http\Request $request
      * @param \App\User                $user
      * @return \Illuminate\Http\RedirectResponse
@@ -49,7 +53,6 @@ class ChangePasswordController extends Controller
             'new-password' => 'required|string|min:6|confirmed',
         ]);
 
-        // Change password
         $user->password = Hash::make($request->input('new-password'));
         $user->save();
 
