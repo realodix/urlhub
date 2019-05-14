@@ -25,7 +25,7 @@ class ChangePasswordController extends Controller
     }
 
     /**
-     * Change the password
+     * Change the password.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\User                $user
