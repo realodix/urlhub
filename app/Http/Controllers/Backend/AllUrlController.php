@@ -18,7 +18,6 @@ class AllUrlController extends Controller
 
     /**
      * Show the admin all the Short URLs.
-     *
      */
     public function index()
     {
