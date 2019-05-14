@@ -16,6 +16,9 @@ class AllUrlController extends Controller
         $this->middleware('role:admin');
     }
 
+    /**
+     * Show the admin all the Short URLs.
+     */
     public function index()
     {
         return view('backend.all-url');
@@ -60,6 +63,8 @@ class AllUrlController extends Controller
     }
 
     /**
+     * Delete a Short URL on user (Admin) request.
+     *
      * @param \App\Url $url
      * @return \Illuminate\Http\RedirectResponse
      */
