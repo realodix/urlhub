@@ -59,7 +59,7 @@ class GeneralUrlController extends Controller
 
     /**
      * Response to an AJAX request by the custom Short URL form.
-     * 
+     *
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
      */
