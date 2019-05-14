@@ -12,14 +12,8 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-[*.blade.php]
+[*.{blade.php,scss,yml}]
 indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
-
-[*.scss]
-indent_size = 2
-
-[*.yml]
-indent_size = 2
