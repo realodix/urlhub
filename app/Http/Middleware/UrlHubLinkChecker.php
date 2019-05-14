@@ -7,7 +7,7 @@ use Closure;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 
-class NewtLinkChecker
+class UrlHubLinkChecker
 {
     /**
      * Handle an incoming request.
