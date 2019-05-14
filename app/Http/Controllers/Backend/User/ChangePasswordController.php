@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class ChangePasswordController extends Controller
 {
     /**
+     * Display a listing of the users.
      * @param \App\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
