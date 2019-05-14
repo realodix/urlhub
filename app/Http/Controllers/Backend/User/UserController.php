@@ -17,6 +17,10 @@ class UserController extends Controller
         $this->middleware('role:admin')->only('index');
     }
 
+    /**
+     * Display a listing of the users.
+     *
+     */
     public function index()
     {
         return view('backend.user.index');
