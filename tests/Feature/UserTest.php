@@ -58,11 +58,8 @@ class UserTest extends TestCase
     public function name_should_not_be_too_long()
     {
         $response = $this->post('/register', [
-            'name'     => str_repeat('a', 51),
-            'email'    => $this->user->email,
-            'password' => 'secret',
+            'name'     => str_repeat('a', 51)
         ]);
-
         $response->assertStatus(302);
         $response->assertSessionHasErrors([
             'name' => 'The name may not be greater than 50 characters.',
@@ -73,10 +70,8 @@ class UserTest extends TestCase
     public function email_should_not_be_too_long()
     {
         $response = $this->post('/register', [
-            'name'  => $this->user->name,
             'email' => str_repeat('a', 247).'@test.com', // 256
         ]);
-
         $response->assertStatus(302);
         $response->assertSessionHasErrors([
             'email' => 'The email may not be greater than 255 characters.',
