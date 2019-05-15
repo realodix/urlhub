@@ -3,12 +3,27 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Services\UrlService;
 use App\Url;
-use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
 {
+    /**
+     * @var UrlService
+     */
+    protected $url;
+
+    /**
+     * UrlController constructor.
+     *
+     * @param UrlService $urlService
+     */
+    public function __construct(UrlService $urlService)
+    {
+        $this->url = $urlService;
+    }
+
     /**
      * @param string $url_key
      */
@@ -37,7 +52,7 @@ class UrlController extends Controller
         $url = Url::whereUrlKey($url_key)
                   ->firstOrFail();
 
-        $url_key = UrlHlp::key_generator();
+        $url_key = $this->url->key_generator();
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();

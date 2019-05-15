@@ -2,37 +2,32 @@
 
 namespace App\Helpers;
 
+use App\Services\UrlService;
 use App\Url;
-use Hidehalo\Nanoid\Client;
 
 class UrlHlp
 {
+    /**
+     * @var UrlService
+     */
+    protected $url;
+
+    /**
+     * UrlHlp constructor.
+     *
+     * @param UrlService $urlService
+     */
+    public function __construct(UrlService $urlService)
+    {
+        $this->url = $urlService;
+    }
+
     /**
      * @return string
      */
     public function key_generator()
     {
-        $generateId = new Client();
-        $alphabet = config('urlhub.hash_alphabet');
-        $size1 = (int) config('urlhub.hash_size_1');
-        $size2 = (int) config('urlhub.hash_size_2');
-
-        if (($size1 == $size2) || $size2 == 0) {
-            $size2 = $size1;
-        }
-
-        $urlKey = $generateId->formatedId($alphabet, $size1);
-
-        // If it is already used (not available), find the next available
-        // ending.
-        $link = Url::whereUrlKey($urlKey)->first();
-
-        while ($link) {
-            $urlKey = $generateId->formatedId($alphabet, $size2);
-            $link = Url::whereUrlKey($urlKey)->first();
-        }
-
-        return $urlKey;
+        return $this->url->key_generator();
     }
 
     /**
