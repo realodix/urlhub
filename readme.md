@@ -1,8 +1,8 @@
 <h1>Newt</h1>
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
-![Laravel Version](https://img.shields.io/badge/Laravel-5%20.%208-fb5743.svg?style=flat-square)
-![PHP Version](https://img.shields.io/badge/PHP-^7%20.%202-777BB4.svg?style=flat-square)
+![LaravelVersion](https://img.shields.io/badge/Laravel-5.8-FB5743.svg?style=flat-square)
+![PHPVersion](https://img.shields.io/badge/PHP-%5E7.2-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE)
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
 
