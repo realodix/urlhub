@@ -19,11 +19,11 @@ class UserTest extends TestCase
      * Login
      */
 
-    public function test_user_can_view_a_login_form()
+    public function testLoginFormDisplayed()
     {
         $response = $this->get('/login');
-        $response->assertSuccessful();
         $response->assertViewIs('frontend.auth.login');
+        $response->assertStatus(200);
     }
 
     /** @test */
@@ -47,10 +47,11 @@ class UserTest extends TestCase
      * Register
      */
 
-    /** @test */
-    public function the_register_route_exists()
+    public function testRegisterFormDisplayed()
     {
-        $this->get('/register')->assertStatus(200);
+        $response = $this->get('/register');
+        $response->assertViewIs('frontend.auth.register');
+        $response->assertStatus(200);
     }
 
     /** @test */
