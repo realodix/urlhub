@@ -85,14 +85,20 @@ class UserTest extends TestCase
     /** @test */
     public function email_validation_should_reject_invalid_emails()
     {
-        collect(['you@example,com', 'bad_user.org', 'example@bad+user.com'])->each(function ($invalidEmail) {
-            $this->post('/register', [
-                'name'     => $this->user->name,
-                'email'    => $invalidEmail,
-                'password' => 'secret',
-            ])->assertSessionHasErrors([
-                'email' => 'The email must be a valid email address.',
-            ]);
-        });
+        $response = $this->post('/register', [
+            'email'    => 'you@example,com',
+        ])->assertSessionHasErrors([
+            'email' => 'The email must be a valid email address.',
+        ]);
+
+        $response = $this->post('/register', [
+            'email'    => 'bad_user.org',
+        ])->assertSessionHasErrors([
+            'email' => 'The email must be a valid email address.',
+        ]);
+
+        $response = $this->post('/register', [
+            'email'    => 'example@bad+user.com',
+        ])->assertSessionHasErrors();
     }
 }
