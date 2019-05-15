@@ -58,7 +58,7 @@ class UserTest extends TestCase
     public function name_should_not_be_too_long()
     {
         $response = $this->post('/register', [
-            'name'     => str_repeat('a', 51)
+            'name'     => str_repeat('a', 51),
         ]);
         $response->assertStatus(302);
         $response->assertSessionHasErrors([
