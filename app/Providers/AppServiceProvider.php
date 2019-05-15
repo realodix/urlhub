@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         if (! file_exists(public_path('/mix-manifest.json'))) {
-            return abort('503', 'The Mix manifest does not exist. See https://github.com/realodix/newt#compiling-assets-with-laravel-mix');
+            return abort('503', 'The Mix manifest does not exist. See https://github.com/realodix/urlhub#compiling-assets-with-laravel-mix');
         }
     }
 }

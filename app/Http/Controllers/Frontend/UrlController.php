@@ -26,7 +26,7 @@ class UrlController extends Controller
     }
 
     /**
-     * Defaultly Newt only permited only one link at the time, but you can duplicate
+     * Defaultly UrlHub only permited only one link at the time, but you can duplicate
      * it.
      *
      * @param string $url_key

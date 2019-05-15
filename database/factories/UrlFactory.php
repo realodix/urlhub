@@ -17,7 +17,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Url::class, function (Faker $faker) {
     return [
         'user_id'    => $faker->biasedNumberBetween($min = 0, $max = 20, $function = 'sqrt'),
-        'long_url'   => 'https://github.com/realodix/newt',
+        'long_url'   => 'https://github.com/realodix/urlhub',
         'meta_title' => 'URL Title',
         'url_key'    => UrlHlp::key_generator(),
         'is_custom'  => 0,

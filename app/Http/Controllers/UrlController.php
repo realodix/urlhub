@@ -17,7 +17,7 @@ class UrlController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('newtlinkchecker')->only('create');
+        $this->middleware('urlhublinkchecker')->only('create');
     }
 
     /**
