@@ -27,7 +27,7 @@ class UrlHubLinkChecker
                              ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
 
-        /*
+        /**
          * Check whether the URL contains a blacklisted domain name.
          */
         $domains_blocked = remove_schemes(config('urlhub.domains_blocked'));
