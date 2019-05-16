@@ -18,12 +18,12 @@ $factory->define(App\Url::class, function (Faker $faker) {
     $UrlSrvc = new UrlService();
 
     return [
-        'user_id'    => $faker->biasedNumberBetween($min = 0, $max = 20, $function = 'sqrt'),
+        'user_id'    => mt_rand(1, 50),
         'long_url'   => 'https://github.com/realodix/urlhub',
         'meta_title' => 'URL Title',
         'url_key'    => $UrlSrvc->key_generator(),
         'is_custom'  => 0,
-        'clicks'     => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
+        'clicks'     => mt_rand(10000, 999999999),
         'ip'         => $faker->ipv4,
     ];
 });
