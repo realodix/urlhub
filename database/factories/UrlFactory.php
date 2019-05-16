@@ -15,6 +15,7 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Url::class, function (Faker $faker) {
+
     $url = new UrlService();
 
     return [
