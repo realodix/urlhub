@@ -8,7 +8,7 @@
 
 > **Warning: UrlHub is under heavy development** and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
 
-UrlHub is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
+UrlHub was created by, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
 * URL Shortener.
