@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 
-use App\Services\UrlService;
 use App\Url;
 
 class UrlHlp
