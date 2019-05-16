@@ -12,7 +12,7 @@ class UrlController extends Controller
     /**
      * @var UrlService
      */
-    protected $url;
+    protected $UrlSrvc;
 
     /**
      * UrlController constructor.
@@ -21,7 +21,7 @@ class UrlController extends Controller
      */
     public function __construct(UrlService $urlService)
     {
-        $this->url = $urlService;
+        $this->UrlSrvc = $urlService;
     }
 
     /**
@@ -52,7 +52,7 @@ class UrlController extends Controller
         $url = Url::whereUrlKey($url_key)
                   ->firstOrFail();
 
-        $url_key = $this->url->key_generator();
+        $url_key = $this->UrlSrvc->key_generator();
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();

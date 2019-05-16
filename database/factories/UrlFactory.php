@@ -15,13 +15,13 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Url::class, function (Faker $faker) {
-    $url = new UrlService();
+    $UrlSrvc = new UrlService();
 
     return [
         'user_id'    => $faker->biasedNumberBetween($min = 0, $max = 20, $function = 'sqrt'),
         'long_url'   => 'https://github.com/realodix/urlhub',
         'meta_title' => 'URL Title',
-        'url_key'    => $url->key_generator(),
+        'url_key'    => $UrlSrvc->key_generator(),
         'is_custom'  => 0,
         'clicks'     => $faker->biasedNumberBetween($min = 10000, $max = 999999999, $function = 'sqrt'),
         'ip'         => $faker->ipv4,

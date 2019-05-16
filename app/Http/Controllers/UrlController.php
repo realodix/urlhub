@@ -15,7 +15,7 @@ class UrlController extends Controller
     /**
      * @var UrlService
      */
-    protected $url;
+    protected $UrlSrvc;
 
     /**
      * UrlController constructor.
@@ -26,7 +26,7 @@ class UrlController extends Controller
     {
         $this->middleware('urlhublinkchecker')->only('create');
 
-        $this->url = $urlService;
+        $this->UrlSrvc = $urlService;
     }
 
     /**
@@ -37,7 +37,7 @@ class UrlController extends Controller
      */
     public function create(Requests\StoreUrl $request)
     {
-        $url_key = $request->custom_url_key ?? $this->url->key_generator();
+        $url_key = $request->custom_url_key ?? $this->UrlSrvc->key_generator();
 
         Url::create([
             'user_id'    => Auth::id(),

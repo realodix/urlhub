@@ -16,7 +16,7 @@ class DashboardController extends Controller
     /**
      * @var UrlService
      */
-    protected $url;
+    protected $UrlSrvc;
 
     /**
      * UrlHlp constructor.
@@ -25,7 +25,7 @@ class DashboardController extends Controller
      */
     public function __construct(UrlService $urlService)
     {
-        $this->url = $urlService;
+        $this->UrlSrvc = $urlService;
     }
 
     /**
@@ -50,8 +50,8 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $this->totalClicksById(),
             'totalUser'            => User::count(),
             'totalGuest'           => $totalGuest,
-            'capacity'             => $this->url->url_key_capacity(),
-            'remaining'            => $this->url->url_key_remaining(),
+            'capacity'             => $this->UrlSrvc->url_key_capacity(),
+            'remaining'            => $this->UrlSrvc->url_key_remaining(),
 
         ]);
     }
@@ -124,7 +124,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();
-        $replicate->url_key = $this->url->key_generator();
+        $replicate->url_key = $this->UrlSrvc->key_generator();
         $replicate->is_custom = 0;
         $replicate->clicks = 0;
         $replicate->save();
