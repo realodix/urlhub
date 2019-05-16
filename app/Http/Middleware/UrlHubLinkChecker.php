@@ -26,9 +26,9 @@ class UrlHubLinkChecker
                              ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
 
-        /**
-         * Check whether the URL contains a blacklisted domain name.
-         */
+        //
+        // Check whether the URL contains a blacklisted domain name.
+        //
         $domains_blocked = remove_schemes(config('urlhub.domains_blocked'));
 
         foreach ($domains_blocked as $domain_blocked) {
@@ -41,10 +41,9 @@ class UrlHubLinkChecker
             }
         }
 
-        /*
-         * Checks whether the url entered is already in the database.
-         *
-         */
+        //
+        // Checks whether the url entered is already in the database.
+        //
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
                         ->whereLongUrl($long_url)
