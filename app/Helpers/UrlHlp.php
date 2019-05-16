@@ -8,29 +8,6 @@ use App\Url;
 class UrlHlp
 {
     /**
-     * @var UrlService
-     */
-    protected $url;
-
-    /**
-     * UrlHlp constructor.
-     *
-     * @param UrlService $urlService
-     */
-    public function __construct(UrlService $urlService)
-    {
-        $this->url = $urlService;
-    }
-
-    /**
-     * @return string
-     */
-    public function key_generator()
-    {
-        return $this->url->key_generator();
-    }
-
-    /**
      * Gets the title of page from its url.
      *
      * @param string $url
