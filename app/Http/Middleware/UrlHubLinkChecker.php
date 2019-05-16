@@ -28,7 +28,6 @@ class UrlHubLinkChecker
 
         /**
          * Check whether the URL contains a blacklisted domain name.
-         *
          */
         $domains_blocked = remove_schemes(config('urlhub.domains_blocked'));
 
@@ -42,7 +41,7 @@ class UrlHubLinkChecker
             }
         }
 
-        /**
+        /*
          * Checks whether the url entered is already in the database.
          *
          */
