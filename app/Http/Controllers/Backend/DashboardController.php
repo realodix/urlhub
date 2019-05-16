@@ -124,7 +124,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();
-        $replicate->url_key = UrlHlp::key_generator();
+        $replicate->url_key = $this->url->key_generator();
         $replicate->is_custom = 0;
         $replicate->clicks = 0;
         $replicate->save();
