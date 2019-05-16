@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Services\UrlService;
 use App\Url;
 use App\User;
 use Facades\App\Helpers\UrlHlp;
@@ -12,6 +13,21 @@ use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
+    /**
+     * @var UrlService
+     */
+    protected $url;
+
+    /**
+     * UrlHlp constructor.
+     *
+     * @param UrlService $urlService
+     */
+    public function __construct(UrlService $urlService)
+    {
+        $this->url = $urlService;
+    }
+
     /**
      * Show users all their Short URLs.
      */
@@ -34,8 +50,8 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $this->totalClicksById(),
             'totalUser'            => User::count(),
             'totalGuest'           => $totalGuest,
-            'capacity'             => UrlHlp::url_key_capacity(),
-            'remaining'            => UrlHlp::url_key_remaining(),
+            'capacity'             => $this->url->url_key_capacity(),
+            'remaining'            => $this->url->url_key_remaining(),
 
         ]);
     }
