@@ -14,7 +14,6 @@ class UrlHlpTest extends TestCase
         parent::setUp();
 
         $this->url = new UrlService();
-
     }
 
     public function test_url_limit()
