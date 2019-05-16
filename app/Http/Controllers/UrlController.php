@@ -58,12 +58,13 @@ class UrlController extends Controller
     }
 
     /**
-     * Response to an AJAX request by the custom Short URL form.
+     * Check if the Custom URL already exists.
+     * Response to an AJAX request.
      *
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function checkExistingUrl(Request $request)
+    public function checkExistingCustomUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase],
