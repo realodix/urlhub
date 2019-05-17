@@ -7,7 +7,7 @@ use Closure;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 
-class NewtLinkChecker
+class UrlHubLinkChecker
 {
     /**
      * Handle an incoming request.
@@ -26,10 +26,10 @@ class NewtLinkChecker
                              ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
 
-        /*
-         * Check whether the URL contains a blacklisted domain name.
-         */
-        $domains_blocked = remove_schemes(config('newt.domains_blocked'));
+        //
+        // Check whether the URL contains a blacklisted domain name.
+        //
+        $domains_blocked = remove_schemes(config('urlhub.domains_blocked'));
 
         foreach ($domains_blocked as $domain_blocked) {
             $url_segment = ('://'.$domain_blocked.'/');
@@ -41,9 +41,9 @@ class NewtLinkChecker
             }
         }
 
-        /*
-         * Checks whether the url entered is already in the database.
-         */
+        //
+        // Checks whether the url entered is already in the database.
+        //
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
                         ->whereLongUrl($long_url)

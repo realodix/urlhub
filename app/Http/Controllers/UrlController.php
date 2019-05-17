@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Rules\Lowercase;
+use App\Rules\ShortUrlProtected;
 use App\Url;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class UrlController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('newtlinkchecker')->only('create');
+        $this->middleware('urlhublinkchecker')->only('create');
     }
 
     /**
@@ -58,15 +59,16 @@ class UrlController extends Controller
     }
 
     /**
-     * Response to an AJAX request by the custom Short URL form.
+     * Check if the Custom URL already exists.
+     * Response to an AJAX request.
      *
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function checkExistingUrl(Request $request)
+    public function checkExistingCustomUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase],
+            'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase, new ShortUrlProtected],
         ]);
 
         if ($validator->fails()) {

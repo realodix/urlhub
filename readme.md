@@ -1,14 +1,14 @@
-<h1>Newt</h1>
+<h1>UrlHub</h1>
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
-![Laravel Version](https://img.shields.io/badge/Laravel-5%20.%208-fb5743.svg?style=flat-square)
-![PHP Version](https://img.shields.io/badge/PHP-^7%20.%202-777BB4.svg?style=flat-square)
+![LaravelVersion](https://img.shields.io/badge/Laravel-5.8-FB5743.svg?style=flat-square)
+![PHPVersion](https://img.shields.io/badge/PHP-%5E7.2-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE)
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
 
-> **Warning: Newt is under heavy development** and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
+> **Warning: UrlHub is under heavy development** and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
 
-Newt is a free, open-source and easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
+UrlHub was created by, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
 * URL Shortener.
@@ -49,10 +49,10 @@ Newt is a free, open-source and easy-to-use but powerful URL shortener. It allow
 
 6. Login
 
-   | Email           | Username | Password | Access       |
-   |-----------------|----------|----------|--------------|
-   | admin@newt.test | admin    | admin    | Admin Access |
-   | user@newt.test  | user     | user     | User Access  |
+   | Email             | Username | Password | Access       |
+   |-------------------|----------|----------|--------------|
+   | admin@urlhub.test | admin    | admin    | Admin Access |
+   | user@urlhub.test  | user     | user     | User Access  |
 
 ### Compiling assets with Laravel Mix
 #### Using Yarn:
@@ -67,7 +67,7 @@ Newt is a free, open-source and easy-to-use but powerful URL shortener. It allow
 
 
 ## Contributing
-Thank you for considering contributing to Newt. Any useful suggestion and pull requests are welcomed.
+Thank you for considering contributing to UrlHub. Any useful suggestion and pull requests are welcomed.
 
 Please do the following:
 
@@ -79,4 +79,4 @@ Please do the following:
 
 
 ## License
-Newt is an open-source software licensed under the [MIT license](https://github.com/realodix/newt/blob/master/LICENSE).
+UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).

@@ -13,9 +13,9 @@ class UrlHlp
     public function key_generator()
     {
         $generateId = new Client();
-        $alphabet = config('newt.hash_alphabet');
-        $size1 = (int) config('newt.hash_size_1');
-        $size2 = (int) config('newt.hash_size_2');
+        $alphabet = config('urlhub.hash_alphabet');
+        $size1 = (int) config('urlhub.hash_size_1');
+        $size2 = (int) config('urlhub.hash_size_2');
 
         if (($size1 == $size2) || $size2 == 0) {
             $size2 = $size1;
@@ -108,9 +108,9 @@ class UrlHlp
      */
     public function url_key_capacity()
     {
-        $alphabet = strlen(config('newt.hash_alphabet'));
-        $size1 = (int) config('newt.hash_size_1');
-        $size2 = (int) config('newt.hash_size_2');
+        $alphabet = strlen(config('urlhub.hash_alphabet'));
+        $size1 = (int) config('urlhub.hash_size_1');
+        $size2 = (int) config('urlhub.hash_size_2');
 
         // If the hash size is filled with integers that do not match the rules,
         // change the variable's value to 0.
