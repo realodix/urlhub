@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ShortUrlProtected implements Rule
+class shortUrlProtected implements Rule
 {
     /**
      * Create a new rule instance.
