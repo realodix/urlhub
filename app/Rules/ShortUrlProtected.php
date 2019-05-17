@@ -4,6 +4,10 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+/**
+ * Check if Short URL cannot be created because
+ * it is a path.
+ */
 class ShortUrlProtected implements Rule
 {
     /**
