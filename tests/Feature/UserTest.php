@@ -8,12 +8,12 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
+    // public function setUp(): void
+    // {
+    //     parent::setUp();
 
-        $this->user = factory(User::class)->make();
-    }
+    //     $this->user = factory(User::class)->make();
+    // }
 
     /*
      * Login
