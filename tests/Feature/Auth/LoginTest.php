@@ -99,5 +99,4 @@ class LoginTest extends TestCase
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
     }
-
 }
