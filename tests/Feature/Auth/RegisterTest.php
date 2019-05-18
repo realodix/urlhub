@@ -45,19 +45,23 @@ class RegisterTest extends TestCase
     public function test_user_cannot_view_a_registration_form_when_authenticated()
     {
         $user = factory(User::class)->make();
+
         $response = $this->actingAs($user)->get($this->registerGetRoute());
+
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
     public function test_user_can_register()
     {
         Event::fake();
+
         $response = $this->post($this->registerPostRoute(), [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
+
         $response->assertRedirect($this->successfulRegistrationRoute());
         $this->assertCount(1, $users = User::all());
         $this->assertAuthenticatedAs($user = $users->first());
@@ -74,6 +78,7 @@ class RegisterTest extends TestCase
         $response = $this->post('/register', [
             'name'     => str_repeat('a', 51),
         ]);
+
         $response->assertStatus(302);
         $response->assertSessionHasErrors('name');
     }
@@ -86,7 +91,9 @@ class RegisterTest extends TestCase
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
+
         $users = User::all();
+
         $this->assertCount(0, $users);
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('name');
@@ -103,7 +110,9 @@ class RegisterTest extends TestCase
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
+
         $users = User::all();
+
         $this->assertCount(0, $users);
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('email');
@@ -120,7 +129,9 @@ class RegisterTest extends TestCase
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
+
         $users = User::all();
+
         $this->assertCount(0, $users);
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('email');
@@ -135,6 +146,7 @@ class RegisterTest extends TestCase
         $response = $this->post('/register', [
             'email' => str_repeat('a', 247).'@test.com', // 256
         ]);
+
         $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
     }
@@ -147,7 +159,9 @@ class RegisterTest extends TestCase
             'password' => '',
             'password_confirmation' => '',
         ]);
+
         $users = User::all();
+
         $this->assertCount(0, $users);
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('password');
@@ -165,7 +179,9 @@ class RegisterTest extends TestCase
             'password' => 'i-love-laravel',
             'password_confirmation' => '',
         ]);
+
         $users = User::all();
+
         $this->assertCount(0, $users);
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('password');
@@ -183,7 +199,9 @@ class RegisterTest extends TestCase
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-symfony',
         ]);
+
         $users = User::all();
+
         $this->assertCount(0, $users);
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('password');
