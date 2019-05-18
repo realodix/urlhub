@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\User;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -11,6 +12,8 @@ use Tests\TestCase;
 
 class ForgotPasswordTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function passwordRequestRoute()
     {
         return route('password.request');
@@ -51,6 +54,7 @@ class ForgotPasswordTest extends TestCase
     public function test_user_receives_an_email_with_a_password_reset_link()
     {
         Notification::fake();
+
         $user = factory(User::class)->create([
             'email' => 'john@example.com',
         ]);
