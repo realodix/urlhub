@@ -16,6 +16,11 @@ class UrlServiceTest extends TestCase
         $this->UrlSrvc = new UrlService();
     }
 
+    public function test_key_generator_length()
+    {
+        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->UrlSrvc->key_generator()));
+    }
+
     public function test_url_key_capacity()
     {
         config()->set('urlhub.hash_alphabet', 'abc');
