@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Services\UrlService;
 use App\Url;
 use App\User;
 use Facades\App\Helpers\UrlHlp;
@@ -12,6 +13,21 @@ use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
+    /**
+     * @var UrlSrvc
+     */
+    protected $UrlSrvc;
+
+    /**
+     * UrlHlp constructor.
+     *
+     * @param UrlService $urlService
+     */
+    public function __construct(UrlService $urlService)
+    {
+        $this->UrlSrvc = $urlService;
+    }
+
     /**
      * Show users all their Short URLs.
      */
@@ -34,8 +50,8 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $this->totalClicksById(),
             'totalUser'            => User::count(),
             'totalGuest'           => $totalGuest,
-            'capacity'             => UrlHlp::url_key_capacity(),
-            'remaining'            => UrlHlp::url_key_remaining(),
+            'capacity'             => $this->UrlSrvc->url_key_capacity(),
+            'remaining'            => $this->UrlSrvc->url_key_remaining(),
 
         ]);
     }
@@ -108,7 +124,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();
-        $replicate->url_key = UrlHlp::key_generator();
+        $replicate->url_key = $this->UrlSrvc->key_generator();
         $replicate->is_custom = 0;
         $replicate->clicks = 0;
         $replicate->save();

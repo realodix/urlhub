@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Http\Traits\Hashidable;
-use Facades\App\Helpers\UrlHlp;
+use App\Services\UrlService;
 use Illuminate\Database\Eloquent\Model;
 
 class Url extends Model
@@ -50,7 +50,9 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        $this->attributes['meta_title'] = UrlHlp::getTitle($value);
+        $UrlSrvc = new UrlService();
+
+        $this->attributes['meta_title'] = $UrlSrvc->getTitle($value);
     }
 
     // Accessor

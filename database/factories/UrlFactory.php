@@ -1,6 +1,6 @@
 <?php
 
-use Facades\App\Helpers\UrlHlp;
+use App\Services\UrlService;
 use Faker\Generator as Faker;
 
 /*
@@ -15,11 +15,13 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Url::class, function (Faker $faker) {
+    $UrlSrvc = new UrlService();
+
     return [
         'user_id'    => mt_rand(1, 50),
         'long_url'   => 'https://github.com/realodix/urlhub',
         'meta_title' => 'URL Title',
-        'url_key'    => UrlHlp::key_generator(),
+        'url_key'    => $UrlSrvc->key_generator(),
         'is_custom'  => 0,
         'clicks'     => mt_rand(10000, 999999999),
         'ip'         => $faker->ipv4,

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Rules\Lowercase;
 use App\Rules\ShortUrlProtected;
+use App\Services\UrlService;
 use App\Url;
-use Facades\App\Helpers\UrlHlp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,11 +14,20 @@ use Illuminate\Support\Facades\Validator;
 class UrlController extends Controller
 {
     /**
-     * UrlController constructor.
+     * @var UrlSrvc
      */
-    public function __construct()
+    protected $UrlSrvc;
+
+    /**
+     * UrlController constructor.
+     *
+     * @param UrlService $urlService
+     */
+    public function __construct(UrlService $urlService)
     {
         $this->middleware('urlhublinkchecker')->only('create');
+
+        $this->UrlSrvc = $urlService;
     }
 
     /**
@@ -29,7 +38,7 @@ class UrlController extends Controller
      */
     public function create(Requests\StoreUrl $request)
     {
-        $url_key = $request->custom_url_key ?? UrlHlp::key_generator();
+        $url_key = $request->custom_url_key ?? $this->UrlSrvc->key_generator();
 
         Url::create([
             'user_id'    => Auth::id(),
