@@ -39,24 +39,21 @@ class LoginTest extends TestCase
         return route('home');
     }
 
-    // User can view a login form
-    public function testUserCanViewALoginForm()
+    public function test_user_can_view_a_login_form()
     {
         $response = $this->get($this->loginGetRoute());
         $response->assertSuccessful();
         $response->assertViewIs('frontend.auth.login');
     }
 
-    // User cannot view a login form when authenticated
-    public function testUserCannotViewALoginFormWhenAuthenticated()
+    public function test_user_cannot_view_a_login_form_when_authenticated()
     {
         $user = factory(User::class)->make();
         $response = $this->actingAs($user)->get($this->loginGetRoute());
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
-    // User can login with correct credentials
-    public function testUserCanLoginWithCorrectCredentials()
+    public function test_user_can_login_with_correct_credentials()
     {
         $user = factory(User::class)->create([
             'password' => Hash::make($password = 'i-love-laravel'),
@@ -69,13 +66,7 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /** @test */
-    public function unauthenticated_users_cant_access_the_dashboard()
-    {
-        $this->get('/admin')->assertRedirect('/login');
-    }
-
-    public function testUserCannotLoginWithIncorrectPassword()
+    public function test_user_cannot_login_with_incorrect_password()
     {
         $user = factory(User::class)->create([
             'password' => Hash::make('i-love-laravel'),
@@ -89,5 +80,10 @@ class LoginTest extends TestCase
         $this->assertTrue(session()->hasOldInput('identity'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
+    }
+
+    public function test_unauthenticated_users_cant_access_the_dashboard()
+    {
+        $this->get('/admin')->assertRedirect('/login');
     }
 }

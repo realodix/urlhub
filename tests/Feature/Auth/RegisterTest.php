@@ -8,15 +8,14 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function testRegisterFormDisplayed()
+    public function test_register_form_displayed()
     {
         $response = $this->get('/register');
         $response->assertViewIs('frontend.auth.register');
         $response->assertStatus(200);
     }
 
-    /** @test */
-    public function name_should_not_be_too_long()
+    public function test_name_should_not_be_too_long()
     {
         $response = $this->post('/register', [
             'name'     => str_repeat('a', 51),
@@ -27,8 +26,7 @@ class UserTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function email_should_not_be_too_long()
+    public function test_email_should_not_be_too_long()
     {
         $response = $this->post('/register', [
             'email' => str_repeat('a', 247).'@test.com', // 256
@@ -39,8 +37,7 @@ class UserTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function email_validation_should_reject_invalid_emails()
+    public function test_email_validation_should_reject_invalid_emails()
     {
         $response = $this->post('/register', [
             'email'    => 'you@example,com',
