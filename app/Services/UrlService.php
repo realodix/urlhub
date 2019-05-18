@@ -5,9 +5,6 @@ namespace App\Services;
 use App\Url;
 use Hidehalo\Nanoid\Client;
 
-/**
- * Useful functions to use in the Whole App for Short URLs.
- */
 class UrlService
 {
     /**
