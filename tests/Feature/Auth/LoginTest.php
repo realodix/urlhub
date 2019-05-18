@@ -86,4 +86,18 @@ class LoginTest extends TestCase
     {
         $this->get('/admin')->assertRedirect('/login');
     }
+
+    public function test_user_cannot_login_with_email_that_does_not_exist()
+    {
+        $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+            'identity' => 'nobody@example.com',
+            'password' => 'invalid-password',
+        ]);
+        $response->assertRedirect($this->loginGetRoute());
+        $response->assertSessionHasErrors('error');
+        $this->assertTrue(session()->hasOldInput('identity'));
+        $this->assertFalse(session()->hasOldInput('password'));
+        $this->assertGuest();
+    }
+
 }
