@@ -8,10 +8,6 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    /*
-     * Register
-     */
-
     public function testRegisterFormDisplayed()
     {
         $response = $this->get('/register');
