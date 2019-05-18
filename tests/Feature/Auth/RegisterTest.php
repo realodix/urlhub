@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
-class UserTest extends TestCase
+class RegisterTest extends TestCase
 {
     public function test_register_form_displayed()
     {
