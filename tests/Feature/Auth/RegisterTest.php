@@ -18,14 +18,17 @@ class RegisterTest extends TestCase
     {
         return route('home');
     }
+
     protected function registerGetRoute()
     {
         return route('register');
     }
+
     protected function registerPostRoute()
     {
         return route('register');
     }
+
     protected function guestMiddlewareRoute()
     {
         return route('home');
