@@ -76,7 +76,7 @@ class RegisterTest extends TestCase
     public function test_name_should_not_be_too_long()
     {
         $response = $this->post('/register', [
-            'name'     => str_repeat('a', 51),
+            'name' => str_repeat('a', 51),
         ]);
 
         $response->assertStatus(302);
