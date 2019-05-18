@@ -114,6 +114,4 @@ class LoginTest extends TestCase
         $response->assertRedirect($this->successfulLogoutRoute());
         $this->assertGuest();
     }
-
-
 }
