@@ -100,4 +100,20 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
+    public function test_user_can_logout()
+    {
+        $this->be(factory(User::class)->create());
+        $response = $this->post($this->logoutRoute());
+        $response->assertRedirect($this->successfulLogoutRoute());
+        $this->assertGuest();
+    }
+
+    public function test_user_cannot_logout_when_not_authenticated()
+    {
+        $response = $this->post($this->logoutRoute());
+        $response->assertRedirect($this->successfulLogoutRoute());
+        $this->assertGuest();
+    }
+
+
 }
