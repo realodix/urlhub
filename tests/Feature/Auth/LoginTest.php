@@ -3,34 +3,37 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
-class UserTest extends TestCase
+class LoginTest extends TestCase
 {
     protected function successfulLoginRoute()
     {
         return route('admin');
     }
+
     protected function loginGetRoute()
     {
         return route('login');
     }
+
     protected function loginPostRoute()
     {
         return route('login');
     }
+
     protected function logoutRoute()
     {
         return route('logout');
     }
+
     protected function successfulLogoutRoute()
     {
         return '/';
     }
+
     protected function guestMiddlewareRoute()
     {
         return route('home');
