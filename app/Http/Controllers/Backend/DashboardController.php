@@ -14,7 +14,7 @@ use Yajra\Datatables\Datatables;
 class DashboardController extends Controller
 {
     /**
-     * @var UrlService
+     * @var UrlSrvc
      */
     protected $UrlSrvc;
 

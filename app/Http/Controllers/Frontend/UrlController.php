@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class UrlController extends Controller
 {
     /**
-     * @var UrlService
+     * @var UrlSrvc
      */
     protected $UrlSrvc;
 

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class UrlController extends Controller
 {
     /**
-     * @var UrlService
+     * @var UrlSrvc
      */
     protected $UrlSrvc;
 
