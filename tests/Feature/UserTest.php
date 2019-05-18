@@ -3,46 +3,14 @@
 namespace Tests\Feature;
 
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    // public function setUp(): void
-    // {
-    //     parent::setUp();
-
-    //     $this->user = factory(User::class)->make();
-    // }
-
-    /*
-     * Login
-     */
-
-    public function testLoginFormDisplayed()
-    {
-        $response = $this->get('/login');
-        $response->assertViewIs('frontend.auth.login');
-        $response->assertStatus(200);
-    }
-
-    /** @test */
-    public function unauthenticated_users_cant_access_the_dashboard()
-    {
-        $this->get('/admin')->assertRedirect('/login');
-    }
-
-    /** @test */
-    public function cant_login_with_invalid_credentials()
-    {
-        $this->withoutExceptionHandling();
-        $this->expectException(ValidationException::class);
-        $this->post('/login', [
-            'email' => 'not-existend@user.com',
-            'password' => '9s8gy8s9diguh4iev',
-        ]);
-    }
-
     /*
      * Register
      */

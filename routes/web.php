@@ -2,7 +2,7 @@
 
 Auth::routes();
 
-Route::view('/', 'frontend.welcome');
+Route::view('/', 'frontend.welcome')->name('home');
 Route::post('/create', 'UrlController@create')->name('createshortlink');
 Route::post('/custom-link-avail-check', 'UrlController@checkExistingCustomUrl');
 
