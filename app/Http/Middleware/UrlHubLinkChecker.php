@@ -26,20 +26,6 @@ class UrlHubLinkChecker
                              ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
 
-        //
-        // Check whether the URL contains a blacklisted domain name.
-        //
-        $domains_blocked = remove_schemes(config('urlhub.domains_blocked'));
-
-        foreach ($domains_blocked as $domain_blocked) {
-            $url_segment = ('://'.$domain_blocked.'/');
-            $url_segment2 = ('://www.'.$domain_blocked.'/');
-
-            if (strstr($long_url, $url_segment) || strstr($long_url, $url_segment2)) {
-                return redirect()->back()
-                                 ->withFlashError(__('Sorry, the URL you entered is on our internal blacklist. It may have been used abusively in the past, or it may link to another URL redirection service.'));
-            }
-        }
 
         //
         // Checks whether the url entered is already in the database.
