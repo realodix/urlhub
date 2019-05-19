@@ -15,15 +15,15 @@ class Blacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        $blacklists = remove_schemes(config('urlhub.blacklist'));
+        $black_list = remove_schemes(config('urlhub.blacklist'));
         $long_url = rtrim($value, '/');
 
-        foreach ($blacklists as $blacklist) {
+        foreach ($black_list as $blacklist) {
             $url_segment = ('://'.$blacklist.'/');
             $url_segment2 = ('://www.'.$blacklist.'/');
-
-            return ! ((strstr($long_url, $url_segment)) || (strstr($long_url, $url_segment2)));
         }
+
+        return ! (strstr($long_url, $url_segment) || strstr($long_url, $url_segment2));
     }
 
     /**
