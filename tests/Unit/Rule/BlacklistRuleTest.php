@@ -3,7 +3,6 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\Blacklist;
-use Illuminate\Validation\Rule;
 use Tests\TestCase;
 
 class BlacklistRuleTest extends TestCase
