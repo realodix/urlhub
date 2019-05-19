@@ -18,6 +18,5 @@ return [
         // 'adf.ly',
         // 'goo.gl',
         // 't.co',
-        'github.com',
     ],
 ];
