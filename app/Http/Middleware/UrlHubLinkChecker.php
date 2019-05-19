@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\UrlService;
 use App\Url;
 use Closure;
-use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 
 class UrlHubLinkChecker
@@ -19,9 +19,10 @@ class UrlHubLinkChecker
      */
     public function handle($request, Closure $next)
     {
+        $url = new UrlService();
         $long_url = rtrim($request->long_url, '/');
 
-        if (UrlHlp::url_key_remaining() == 0) {
+        if ($url->url_key_remaining() == 0) {
             return redirect()->back()
                              ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
