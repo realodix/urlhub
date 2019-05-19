@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Blacklist;
+use App\Rules\BlacklistRule;
 use Tests\TestCase;
 
 class BlacklistRuleTest extends TestCase
@@ -13,7 +13,7 @@ class BlacklistRuleTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new Blacklist();
+        $this->rule = new BlacklistRule();
 
         config()->set(
             'urlhub.blacklist',

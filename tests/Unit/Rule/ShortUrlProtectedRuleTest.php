@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\ShortUrlProtected;
+use App\Rules\ShortUrlProtectedRule;
 use Tests\TestCase;
 
 class ShortUrlProtectedRuleTest extends TestCase
@@ -13,7 +13,7 @@ class ShortUrlProtectedRuleTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new ShortUrlProtected();
+        $this->rule = new ShortUrlProtectedRule();
     }
 
     /**

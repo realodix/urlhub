@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Lowercase;
+use App\Rules\LowercaseRule;
 use Tests\TestCase;
 
 class LowercaseRuleTest extends TestCase
@@ -13,7 +13,7 @@ class LowercaseRuleTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new Lowercase();
+        $this->rule = new LowercaseRule();
     }
 
     /**
