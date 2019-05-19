@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Blacklist implements Rule
+class BlacklistRule implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -15,15 +15,20 @@ class Blacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        $black_list = remove_schemes(config('urlhub.blacklist'));
+        $blacklist = remove_schemes(config('urlhub.blacklist'));
         $long_url = rtrim($value, '/');
+        $a = true;
 
-        foreach ($black_list as $blacklist) {
-            $url_segment = ('://'.$blacklist.'/');
-            $url_segment2 = ('://www.'.$blacklist.'/');
+        foreach ($blacklist as $black_list) {
+            $url_segment = ('://'.$black_list.'/');
+            $url_segment2 = ('://www.'.$black_list.'/');
+
+            if ((strstr($long_url, $url_segment) || strstr($long_url, $url_segment2))) {
+                $a = false;
+            }
         }
 
-        return ! (strstr($long_url, $url_segment) || strstr($long_url, $url_segment2));
+        return $a;
     }
 
     /**

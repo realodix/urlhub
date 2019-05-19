@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Lowercase implements Rule
+class LowercaseRule implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -25,6 +25,6 @@ class Lowercase implements Rule
      */
     public function message()
     {
-        return 'The :attribute must be lowercase.';
+        return 'The :attribute must be Lowercase.';
     }
 }
