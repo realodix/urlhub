@@ -10,7 +10,7 @@ class BlacklistRuleTest extends TestCase
 {
     protected $rule;
 
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
 
