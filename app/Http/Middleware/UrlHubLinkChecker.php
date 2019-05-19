@@ -26,7 +26,6 @@ class UrlHubLinkChecker
                              ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
 
-
         //
         // Checks whether the url entered is already in the database.
         //
