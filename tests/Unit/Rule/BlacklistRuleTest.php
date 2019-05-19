@@ -22,32 +22,51 @@ class BlacklistRuleTest extends TestCase
     }
 
     /**
+     * @dataProvider blacklistRulePass
      * @return void
      */
-    public function testBlacklistRulePass()
+    public function testBlacklistRulePass($value)
     {
-        $this->assertTrue($this->rule->passes('test', 'http://laravel.com/docs'));
-        $this->assertTrue($this->rule->passes('test', 'https://laravel.com/docs'));
-        $this->assertTrue($this->rule->passes('test', 'http://www.laravel.com/docs'));
-        $this->assertTrue($this->rule->passes('test', 'https://www.laravel.com/docs'));
-        $this->assertTrue($this->rule->passes('test', 'http://t.com/about'));
-        $this->assertTrue($this->rule->passes('test', 'https://t.com/about'));
-        $this->assertTrue($this->rule->passes('test', 'http://www.t.com/about'));
-        $this->assertTrue($this->rule->passes('test', 'https://www.t.com/about'));
+        $this->assertTrue($this->rule->passes('test', $value));
+    }
+
+    /**
+     * @dataProvider blacklistRuleFail
+     * @return void
+     */
+    public function testBlacklistRuleFail($value)
+    {
+        $this->assertFalse($this->rule->passes('test', $value));
+    }
+
+    public function blacklistRulePass()
+    {
+        return [
+            ['http://laravel.com/docs'],
+            ['https://laravel.com/docs'],
+            ['http://www.laravel.com/docs'],
+            ['https://www.laravel.com/docs'],
+            ['http://t.com/about'],
+            ['https://t.com/about'],
+            ['http://www.t.com/about'],
+            ['https://www.t.com/about'],
+        ];
     }
 
     /**
      * @return void
      */
-    public function testBlacklistRuleFail()
+    public function blacklistRuleFail()
     {
-        $this->assertFalse($this->rule->passes('test', 'http://github.com/laravel/laravel'));
-        $this->assertFalse($this->rule->passes('test', 'https://github.com/laravel/laravel'));
-        $this->assertFalse($this->rule->passes('test', 'http://www.github.com/laravel/laravel'));
-        $this->assertFalse($this->rule->passes('test', 'https://www.github.com/laravel/laravel'));
-        $this->assertFalse($this->rule->passes('test', 'http://t.co/about'));
-        $this->assertFalse($this->rule->passes('test', 'https://t.co/about'));
-        $this->assertFalse($this->rule->passes('test', 'http://www.t.co/about'));
-        $this->assertFalse($this->rule->passes('test', 'https://www.t.co/about'));
+        return [
+            ['http://github.com/laravel/laravel'],
+            ['https://github.com/laravel/laravel'],
+            ['http://www.github.com/laravel/laravel'],
+            ['https://www.github.com/laravel/laravel'],
+            ['http://t.co/about'],
+            ['https://t.co/about'],
+            ['http://www.t.co/about'],
+            ['https://www.t.co/about'],
+        ];
     }
 }
