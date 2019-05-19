@@ -28,7 +28,8 @@ class UrlHubLinkChecker
         }
 
         //
-        // Checks whether the url entered is already in the database.
+        // Check whether the URL entered is already in database.
+        // If there is already, show a warning.
         //
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
