@@ -11,11 +11,13 @@ return [
         'HASH_ALPHABET',
         '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     ),
-    'domains_blocked' => [
+    // A list of non allowed domain.
+    'blacklist' => [
         config('app.url'),
         // 'bit.ly',
         // 'adf.ly',
         // 'goo.gl',
         // 't.co',
+        'github.com',
     ],
 ];

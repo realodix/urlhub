@@ -1,26 +1,11 @@
 <?php
 
-namespace Gallib\ShortUrl\Rules;
+namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
 class Blacklist implements Rule
 {
-    /**
-     * @var array
-     */
-    protected $blacklist = [];
-
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->blacklist = config('urlhub.blacklist');
-    }
-
     /**
      * Determine if the validation rule passes.
      *
@@ -30,7 +15,15 @@ class Blacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        return ! str_contains($value, $this->blacklist);
+        $blacklists = remove_schemes(config('urlhub.blacklist'));
+        $long_url = rtrim($value, '/');
+
+        foreach ($blacklists as $blacklist) {
+            $url_segment = ('://'.$blacklist.'/');
+            $url_segment2 = ('://www.'.$blacklist.'/');
+
+            return ! ((strstr($long_url, $url_segment)) || (strstr($long_url, $url_segment2)));
+        }
     }
 
     /**
