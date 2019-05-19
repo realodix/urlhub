@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\Blacklist;
+use App\Rules\BlacklistRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrl extends FormRequest
@@ -25,7 +25,7 @@ class StoreUrl extends FormRequest
     public function rules()
     {
         return [
-            'long_url'       => ['required', 'url', 'max:65535', new Blacklist],
+            'long_url'       => ['required', 'url', 'max:65535', new BlacklistRule],
             'custom_url_key' => ['nullable', 'max:20', 'alpha_dash', 'unique:urls,url_key'],
         ];
     }
