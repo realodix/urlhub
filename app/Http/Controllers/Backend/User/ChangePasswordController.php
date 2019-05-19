@@ -50,7 +50,7 @@ class ChangePasswordController extends Controller
         }
 
         $validatedData = $request->validate([
-            'new-password' => 'required|string|min:6|confirmed',
+            'new-password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
         $user->password = Hash::make($request->input('new-password'));
