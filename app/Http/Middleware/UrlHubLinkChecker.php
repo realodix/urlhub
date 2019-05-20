@@ -23,7 +23,7 @@ class UrlHubLinkChecker
         $long_url = rtrim($request->long_url, '/');
 
         //
-        // If url_key is no available, prevent creating short URLs.
+        // If url_key is not available, prevent creating short URLs.
         //
         if ($url->url_key_remaining() == 0) {
             return redirect()->back()
