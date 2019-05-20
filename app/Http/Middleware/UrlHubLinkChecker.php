@@ -19,13 +19,13 @@ class UrlHubLinkChecker
      */
     public function handle($request, Closure $next)
     {
-        $url = new UrlService();
+        $UrlSrvc = new UrlService();
         $long_url = rtrim($request->long_url, '/');
 
         //
         // If url_key is not available, prevent creating short URLs.
         //
-        if ($url->url_key_remaining() == 0) {
+        if ($UrlSrvc->url_key_remaining() == 0) {
             return redirect()->back()
                              ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
