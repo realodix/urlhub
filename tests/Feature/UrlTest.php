@@ -25,6 +25,9 @@ class UrlTest extends TestCase
         ]);
     }
 
+    /**
+     * @test
+     */
     public function create_custom_short_url()
     {
         $long_url = 'https://laravel.com';
@@ -36,8 +39,8 @@ class UrlTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('urls', [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
+            'long_url' => $long_url,
+            'url_key'  => $custom_url_key,
         ]);
     }
 }
