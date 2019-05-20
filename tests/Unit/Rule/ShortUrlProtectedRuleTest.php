@@ -49,7 +49,6 @@ class ShortUrlProtectedRuleTest extends TestCase
         return [
             ['login'],
             ['register'],
-            ['admin'],
         ];
     }
 }
