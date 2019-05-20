@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Url;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Url;
 
 class UrlTest extends TestCase
 {
