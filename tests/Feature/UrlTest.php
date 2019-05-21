@@ -29,20 +29,6 @@ class UrlTest extends TestCase
     /**
      * @test
      */
-    public function long_url_already_exist()
-    {
-        $url = factory(Url::class)->make();
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
-
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
-    }
-
-    /**
-     * @test
-     */
     public function create_short_url_with_wrong_url_format()
     {
         $long_url = 'wrong-url-format';
@@ -101,6 +87,22 @@ class UrlTest extends TestCase
 
         $response = $this->get(route('home').'/'.$custom_url_key);
         $response->assertRedirect($long_url);
+    }
+
+    /**
+     * @test
+     */
+    public function create_custom_short_url_long_url_already_exist()
+    {
+        $url = factory(Url::class)->make();
+        $custom_url_key = 'hello';
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+            'custom_url_key'  => $custom_url_key,
+        ]);
+
+        $response->assertRedirect(route('short_url.stats', $custom_url_key));
     }
 
     /**
