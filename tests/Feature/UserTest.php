@@ -32,29 +32,28 @@ class UserTest extends TestCase
     /** @test */
     public function an_admin_can_access_a_user_change_password_page()
     {
-        $this->loginAsAdmin();
-        $user = factory(User::class)->create();
+        $user = $this->loginAsAdmin();
 
         $response = $this->get($this->cPwdGetRoute($user->name));
         $response->assertStatus(200);
     }
 
-    // /** @test */
-    // public function change_password_with_correct_credentials()
-    // {
-    //     $this->loginAsAdmin();
-    //     $user = factory(User::class)->create();
+    /** @test */
+    public function change_password_with_correct_credentials()
+    {
+        $user = $this->loginAsAdmin();
 
-    //     $response = $this->from($this->cPwdGetRoute($user->name))
-    //                      ->post($this->cPwdPostRoute($user->id), [
-    //                         'current-password'          => $user->password,
-    //                         'new-password'              => 'new-awesome-password',
-    //                         'new-password_confirmation' => 'new-awesome-password',
-    //                      ]);
+        $response = $this->from($this->cPwdGetRoute($user->name))
+                         ->post($this->cPwdPostRoute($user->id), [
+                            'current-password'          => 'old-password',
+                            'new-password'              => 'new-awesome-password',
+                            'new-password_confirmation' => 'new-awesome-password',
+                         ]);
 
-    //     $response->assertRedirect($this->cPwdGetRoute($user->name));
-    //     $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
-    // }
+        $response->assertRedirect($this->cPwdGetRoute($user->name));
+        $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHas(['flash_success']);
+    }
 
     /*
      |
@@ -106,7 +105,9 @@ class UserTest extends TestCase
     protected function loginAsAdmin($admin = false)
     {
         if (! $admin) {
-            $admin = $this->createAdmin();
+            $admin = $this->createAdmin([
+                'password' => Hash::make('old-password'),
+            ]);
         }
 
         $this->actingAs($admin);
