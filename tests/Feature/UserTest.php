@@ -79,36 +79,19 @@ class UserTest extends TestCase
     }
 
     /**
-     * Create an administrator.
-     *
-     * @param array $attributes
-     *
-     * @return mixed
-     */
-    protected function createAdmin(array $attributes = [])
-    {
-        $adminRole = $this->getAdminRole();
-
-        $admin = factory(User::class)->create($attributes);
-        $admin->assignRole($adminRole);
-
-        return $admin;
-    }
-
-    /**
      * Login the given administrator or create the first if none supplied.
      *
      * @param bool $admin
      *
      * @return bool|mixed
      */
-    protected function loginAsAdmin($admin = false)
+    protected function loginAsAdmin()
     {
-        if (! $admin) {
-            $admin = $this->createAdmin([
-                'password' => Hash::make('old-password'),
-            ]);
-        }
+        $admin = factory(User::class)->create([
+            'password' => Hash::make('old-password'),
+        ]);
+
+        $admin->assignRole($this->getAdminRole(););
 
         $this->actingAs($admin);
 
