@@ -2,16 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase;
+    use MigrateFreshSeedOnce;
 
     /*
      |
@@ -30,7 +27,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function an_admin_can_access_a_user_change_password_page()
+    public function admin_can_access_a_user_change_password_page()
     {
         $user = $this->loginAsAdmin();
 
@@ -39,13 +36,13 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function change_password_with_correct_credentials()
+    public function admin_can_change_password_with_correct_credentials()
     {
         $user = $this->loginAsAdmin();
 
         $response = $this->from($this->cPwdGetRoute($user->name))
                          ->post($this->cPwdPostRoute($user->id), [
-                            'current-password'          => 'old-password',
+                            'current-password'          => $this->adminPassword(),
                             'new-password'              => 'new-awesome-password',
                             'new-password_confirmation' => 'new-awesome-password',
                          ]);
@@ -55,46 +52,20 @@ class UserTest extends TestCase
         $response->assertSessionHas(['flash_success']);
     }
 
-    /*
-     |
-     |
-     |
-     */
-
-    /**
-     * Create the admin role or return it if it already exists.
-     *
-     * @return mixed
-     */
-    protected function getAdminRole()
+    /** @test */
+    public function user_can_change_password_with_correct_credentials()
     {
-        if ($role = Role::whereName('admin')->first()) {
-            return $role;
-        }
+        $user = $this->loginAsUser();
 
-        $adminRole = Role::create(['name' => 'admin']);
-        $adminRole->givePermissionTo(Permission::create(['name' => 'admin']));
+        $response = $this->from($this->cPwdGetRoute($user->name))
+                         ->post($this->cPwdPostRoute($user->id), [
+                            'current-password'          => $this->userPassword(),
+                            'new-password'              => 'new-awesome-password',
+                            'new-password_confirmation' => 'new-awesome-password',
+                         ]);
 
-        return $adminRole;
-    }
-
-    /**
-     * Login the given administrator or create the first if none supplied.
-     *
-     * @param bool $admin
-     *
-     * @return bool|mixed
-     */
-    protected function loginAsAdmin()
-    {
-        $admin = factory(User::class)->create([
-            'password' => Hash::make('old-password'),
-        ]);
-
-        $admin->assignRole($this->getAdminRole(););
-
-        $this->actingAs($admin);
-
-        return $admin;
+        $response->assertRedirect($this->cPwdGetRoute($user->name));
+        $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHas(['flash_success']);
     }
 }
