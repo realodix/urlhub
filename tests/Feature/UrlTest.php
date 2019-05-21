@@ -62,7 +62,7 @@ class UrlTest extends TestCase
 
     /*
      |
-     |
+     | Custom Short URLs
      |
      |
      */
@@ -70,7 +70,7 @@ class UrlTest extends TestCase
     /**
      * @test
      */
-    public function create_custom_short_url()
+    public function cst_create_short_url()
     {
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
@@ -92,7 +92,7 @@ class UrlTest extends TestCase
     /**
      * @test
      */
-    public function create_custom_short_url_long_url_already_exist()
+    public function cst_long_url_already_exist()
     {
         $url = factory(Url::class)->make();
         $custom_url_key = 'hello';
@@ -108,7 +108,7 @@ class UrlTest extends TestCase
     /**
      * @test
      */
-    public function custom_short_url_redirect_to_original_url()
+    public function cst_redirect_to_original_url()
     {
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
