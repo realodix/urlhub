@@ -4,10 +4,10 @@ namespace Tests\Feature;
 
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
-use Illuminate\Support\Facades\Hash;
 
 class UserTest extends TestCase
 {
@@ -78,6 +78,7 @@ class UserTest extends TestCase
 
         return $adminRole;
     }
+
     /**
      * Create an administrator.
      *
@@ -94,6 +95,7 @@ class UserTest extends TestCase
 
         return $admin;
     }
+
     /**
      * Login the given administrator or create the first if none supplied.
      *
