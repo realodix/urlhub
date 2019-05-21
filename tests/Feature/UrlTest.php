@@ -45,7 +45,7 @@ class UrlTest extends TestCase
     /**
      * @test
      */
-    public function short_url_redirect_to_original_url()
+    public function redirect_to_original_url()
     {
         $long_url = 'https://laravel.com';
 
