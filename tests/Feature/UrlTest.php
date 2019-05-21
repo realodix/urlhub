@@ -29,9 +29,23 @@ class UrlTest extends TestCase
     /**
      * @test
      */
-    public function create_short_url_with_wrong_url()
+    public function long_url_already_exist()
     {
-        $long_url = 'wrong-url';
+        $url = factory(Url::class)->make();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
+    }
+
+    /**
+     * @test
+     */
+    public function create_short_url_with_wrong_url_format()
+    {
+        $long_url = 'wrong-url-format';
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url,
@@ -41,6 +55,31 @@ class UrlTest extends TestCase
         $response->assertSessionHasErrors('long_url');
         $response->assertStatus(302);
     }
+
+    /**
+     * @test
+     */
+    public function short_url_redirect_to_original_url()
+    {
+        $long_url = 'https://laravel.com';
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+
+        $url = Url::whereLongUrl($long_url)
+                    ->first();
+
+        $response = $this->get(route('home').'/'.$url->url_key);
+        $response->assertRedirect($long_url);
+    }
+
+    /*
+     |
+     |
+     |
+     |
+     */
 
     /**
      * @test
@@ -61,24 +100,6 @@ class UrlTest extends TestCase
         ]);
 
         $response = $this->get(route('home').'/'.$custom_url_key);
-        $response->assertRedirect($long_url);
-    }
-
-    /**
-     * @test
-     */
-    public function short_url_redirect_to_original_url()
-    {
-        $long_url = 'https://laravel.com';
-
-        $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-        ]);
-
-        $url = Url::whereLongUrl($long_url)
-                    ->first();
-
-        $response = $this->get(route('home').'/'.$url->url_key);
         $response->assertRedirect($long_url);
     }
 
