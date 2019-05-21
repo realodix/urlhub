@@ -46,7 +46,7 @@ class UserTest extends TestCase
     //     $user = factory(User::class)->create();
 
     //     $response = $this->from($this->cPwdGetRoute($user->name))
-    //                      ->post($this->cPwdPostRoute(($user->id)), [
+    //                      ->post($this->cPwdPostRoute($user->id), [
     //                         'current-password'          => $user->password,
     //                         'new-password'              => 'new-awesome-password',
     //                         'new-password_confirmation' => 'new-awesome-password',
