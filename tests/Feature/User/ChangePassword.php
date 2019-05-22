@@ -6,15 +6,9 @@ use Illuminate\Support\Facades\Hash;
 use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
-class UserTest extends TestCase
+class ChangePassword extends TestCase
 {
     use MigrateFreshSeedOnce;
-
-    /*
-     |
-     | Change User Password
-     |
-     */
 
     protected function cPwdGetRoute($value)
     {
