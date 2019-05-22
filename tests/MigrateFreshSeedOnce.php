@@ -33,22 +33,14 @@ trait MigrateFreshSeedOnce
         }
     }
 
-    protected function loginAsAdmin()
+    protected function admin()
     {
-        $admin = User::whereName('admin')->first();
-
-        $this->actingAs($admin);
-
-        return $admin;
+        return User::whereName('admin')->first();
     }
 
-    protected function loginAsUser()
+    protected function user()
     {
-        $user = User::whereName('user')->first();
-
-        $this->actingAs($user);
-
-        return $user;
+        return User::whereName('admin')->first();
     }
 
     protected function adminPassword()
@@ -59,5 +51,15 @@ trait MigrateFreshSeedOnce
     protected function userPassword()
     {
         return 'user';
+    }
+
+    protected function loginAsAdmin()
+    {
+        return $this->actingAs($this->admin());
+    }
+
+    protected function loginAsUser()
+    {
+        return $this->actingAs($this->user());
     }
 }
