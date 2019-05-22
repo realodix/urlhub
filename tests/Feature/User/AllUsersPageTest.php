@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\User;
 
-use Illuminate\Support\Facades\Hash;
 use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
