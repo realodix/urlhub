@@ -5,7 +5,7 @@ namespace Tests\Feature\User;
 use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
-class Profile extends TestCase
+class ProfileTest extends TestCase
 {
     use MigrateFreshSeedOnce;
 

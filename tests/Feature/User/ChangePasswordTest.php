@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
-class ChangePassword extends TestCase
+class ChangePasswordTest extends TestCase
 {
     use MigrateFreshSeedOnce;
 
