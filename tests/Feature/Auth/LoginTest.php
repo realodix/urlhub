@@ -3,14 +3,14 @@
 namespace Tests\Feature;
 
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
-    use MigrateFreshSeedOnce;
+    use RefreshDatabase;
 
     protected function successfulLoginRoute()
     {
@@ -52,20 +52,26 @@ class LoginTest extends TestCase
 
     public function test_user_cannot_view_a_login_form_when_authenticated()
     {
-        $response = $this->loginAsAdmin()->get($this->loginGetRoute());
+        $user = factory(User::class)->make();
+
+        $response = $this->actingAs($user)->get($this->loginGetRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
     public function test_user_can_login_with_correct_credentials()
     {
+        $user = factory(User::class)->create([
+            'password' => Hash::make($password = 'i-love-laravel'),
+        ]);
+
         $response = $this->post($this->loginPostRoute(), [
-            'identity' => $this->admin()->email,
-            'password' => $this->adminPassword(),
+            'identity' => $user->email,
+            'password' => $password,
         ]);
 
         $response->assertRedirect($this->successfulLoginRoute());
-        $this->assertAuthenticatedAs($this->admin());
+        $this->assertAuthenticatedAs($user);
     }
 
     public function test_user_cannot_login_with_incorrect_password()
