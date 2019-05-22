@@ -40,7 +40,7 @@ trait MigrateFreshSeedOnce
 
     protected function user()
     {
-        return User::whereName('admin')->first();
+        return User::whereName('user')->first();
     }
 
     protected function adminPassword()
@@ -55,11 +55,11 @@ trait MigrateFreshSeedOnce
 
     protected function loginAsAdmin()
     {
-        return $this->actingAs($this->admin());
+        return $this->be($this->admin());
     }
 
     protected function loginAsUser()
     {
-        return $this->actingAs($this->user());
+        return $this->be($this->user());
     }
 }
