@@ -27,45 +27,37 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_access_a_user_change_password_page()
+    public function change_password_with_correct_credentials()
     {
-        $user = $this->loginAsAdmin();
+        $this->loginAsAdmin();
 
-        $response = $this->get($this->cPwdGetRoute($user->name));
-        $response->assertStatus(200);
-    }
-
-    /** @test */
-    public function admin_can_change_password_with_correct_credentials()
-    {
-        $user = $this->loginAsAdmin();
-
-        $response = $this->from($this->cPwdGetRoute($user->name))
-                         ->post($this->cPwdPostRoute($user->id), [
+        $response = $this->from($this->cPwdGetRoute($this->admin()->name))
+                         ->post($this->cPwdPostRoute($this->admin()->id), [
                             'current-password'          => $this->adminPassword(),
                             'new-password'              => 'new-awesome-password',
                             'new-password_confirmation' => 'new-awesome-password',
                          ]);
 
-        $response->assertRedirect($this->cPwdGetRoute($user->name));
-        $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertRedirect($this->cPwdGetRoute($this->admin()->name));
+        $this->assertTrue(Hash::check('new-awesome-password', $this->admin()->fresh()->password));
         $response->assertSessionHas(['flash_success']);
     }
 
     /** @test */
-    public function user_can_change_password_with_correct_credentials()
+    public function admin_can_access_a_user_change_password_page()
     {
-        $user = $this->loginAsUser();
+        $this->loginAsAdmin();
 
-        $response = $this->from($this->cPwdGetRoute($user->name))
-                         ->post($this->cPwdPostRoute($user->id), [
-                            'current-password'          => $this->userPassword(),
-                            'new-password'              => 'new-awesome-password',
-                            'new-password_confirmation' => 'new-awesome-password',
-                         ]);
+        $response = $this->get($this->cPwdGetRoute($this->user()->name));
+        $response->assertStatus(200);
+    }
 
-        $response->assertRedirect($this->cPwdGetRoute($user->name));
-        $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
-        $response->assertSessionHas(['flash_success']);
+    /** @test */
+    public function user_cant_access_a_admin_change_password_page()
+    {
+        $this->loginAsUser();
+
+        $response = $this->get($this->cPwdGetRoute($this->admin()->name));
+        $response->assertStatus(403);
     }
 }
