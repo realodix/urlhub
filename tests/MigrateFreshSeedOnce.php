@@ -55,7 +55,7 @@ trait MigrateFreshSeedOnce
 
     protected function loginAsAdmin()
     {
-        return $this->actingAs($this->admin());;
+        return $this->actingAs($this->admin());
     }
 
     protected function loginAsUser()
