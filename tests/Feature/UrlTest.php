@@ -89,7 +89,7 @@ class UrlTest extends TestCase
     /**
      * @test
      */
-    public function cst_create_short_url_2()
+    public function cst_long_url_already_exist()
     {
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
@@ -106,25 +106,10 @@ class UrlTest extends TestCase
             'long_url'       => $long_url_2,
             'custom_url_key' => $custom_url_key_2,
         ]);
+        $response->assertRedirect(route('home').'/+'.$custom_url_key);
 
-        $response = $this->get(route('home').'/'.$custom_url_key_2);
-        $response->assertStatus(404);
-    }
-
-    /**
-     * @test
-     */
-    public function cst_long_url_already_exist()
-    {
-        $url = factory(Url::class)->make();
-        $custom_url_key = 'hello';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-            'custom_url_key'  => $custom_url_key,
-        ]);
-
-        $response->assertRedirect(route('short_url.stats', $custom_url_key));
+        $response2 = $this->get(route('home').'/'.$custom_url_key_2);
+        $response2->assertStatus(404);
     }
 
     /**
