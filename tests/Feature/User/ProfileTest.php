@@ -2,13 +2,10 @@
 
 namespace Tests\Feature\User;
 
-use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
-    use MigrateFreshSeedOnce;
-
     protected function profileGetRoute($value)
     {
         return route('user.edit', $value);

@@ -2,13 +2,10 @@
 
 namespace Tests\Feature\User;
 
-use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
 class AllUsersPageTest extends TestCase
 {
-    use MigrateFreshSeedOnce;
-
     /** @test */
     public function admin_can_access_all_users_page()
     {
