@@ -3,13 +3,10 @@
 namespace Tests\Feature\User;
 
 use Illuminate\Support\Facades\Hash;
-use Tests\MigrateFreshSeedOnce;
 use Tests\TestCase;
 
 class ChangePasswordTest extends TestCase
 {
-    use MigrateFreshSeedOnce;
-
     protected function cPwdGetRoute($value)
     {
         return route('user.change-password', $value);

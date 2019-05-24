@@ -4,7 +4,6 @@ namespace Tests\Feature\Auth;
 
 use App\User;
 use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -12,8 +11,6 @@ use Tests\TestCase;
 
 class ForgotPasswordTest extends TestCase
 {
-    use RefreshDatabase;
-
     protected function passwordRequestRoute()
     {
         return route('password.request');
@@ -44,9 +41,7 @@ class ForgotPasswordTest extends TestCase
 
     public function test_user_cannot_view_an_email_password_form_when_authenticated()
     {
-        $user = factory(User::class)->make();
-
-        $response = $this->actingAs($user)->get($this->passwordRequestRoute());
+        $response = $this->loginAsUser()->get($this->passwordRequestRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
