@@ -41,9 +41,7 @@ class RegisterTest extends TestCase
 
     public function test_user_cannot_view_a_registration_form_when_authenticated()
     {
-        $user = factory(User::class)->make();
-
-        $response = $this->actingAs($user)->get($this->registerGetRoute());
+        $response = $this->loginAsUser()->get($this->registerGetRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -157,9 +155,7 @@ class RegisterTest extends TestCase
             'password_confirmation' => '',
         ]);
 
-        $users = User::all();
-
-        $this->assertCount(2, $users);
+        $this->assertCount(2, User::all());
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('password');
         $this->assertTrue(session()->hasOldInput('name'));
@@ -177,9 +173,7 @@ class RegisterTest extends TestCase
             'password_confirmation' => '',
         ]);
 
-        $users = User::all();
-
-        $this->assertCount(2, $users);
+        $this->assertCount(2, User::all());
         $response->assertRedirect($this->registerGetRoute());
         $response->assertSessionHasErrors('password');
         $this->assertTrue(session()->hasOldInput('name'));
