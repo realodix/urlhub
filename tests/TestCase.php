@@ -8,8 +8,8 @@ use Tests\Support\CreatesApplication;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
-    use Authentication;
+    use CreatesApplication,
+        Authentication;
 
     /**
      * Boot the testing helper traits.
