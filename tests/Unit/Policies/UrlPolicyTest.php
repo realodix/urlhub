@@ -2,9 +2,8 @@
 
 namespace Tests\Unit\Policies;
 
-use App\Url;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UrlPolicyTest extends TestCase
 {
