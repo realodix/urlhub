@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Support;
 
 use Illuminate\Contracts\Console\Kernel;
 
