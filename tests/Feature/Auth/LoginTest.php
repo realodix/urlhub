@@ -24,16 +24,6 @@ class LoginTest extends TestCase
         return route('login');
     }
 
-    protected function logoutRoute()
-    {
-        return route('logout');
-    }
-
-    protected function successfulLogoutRoute()
-    {
-        return '/';
-    }
-
     protected function guestMiddlewareRoute()
     {
         return route('home');
@@ -49,9 +39,7 @@ class LoginTest extends TestCase
 
     public function test_user_cannot_view_a_login_form_when_authenticated()
     {
-        $user = factory(User::class)->make();
-
-        $response = $this->actingAs($user)->get($this->loginGetRoute());
+        $response = $this->loginAsUser()->get($this->loginGetRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -105,24 +93,6 @@ class LoginTest extends TestCase
         $response->assertSessionHasErrors('error');
         $this->assertTrue(session()->hasOldInput('identity'));
         $this->assertFalse(session()->hasOldInput('password'));
-        $this->assertGuest();
-    }
-
-    public function test_user_can_logout()
-    {
-        $this->be(factory(User::class)->create());
-
-        $response = $this->post($this->logoutRoute());
-
-        $response->assertRedirect($this->successfulLogoutRoute());
-        $this->assertGuest();
-    }
-
-    public function test_user_cannot_logout_when_not_authenticated()
-    {
-        $response = $this->post($this->logoutRoute());
-
-        $response->assertRedirect($this->successfulLogoutRoute());
         $this->assertGuest();
     }
 }
