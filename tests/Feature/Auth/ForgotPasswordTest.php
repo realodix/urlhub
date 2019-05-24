@@ -41,9 +41,7 @@ class ForgotPasswordTest extends TestCase
 
     public function test_user_cannot_view_an_email_password_form_when_authenticated()
     {
-        $user = factory(User::class)->make();
-
-        $response = $this->actingAs($user)->get($this->passwordRequestRoute());
+        $response = $this->loginAsUser()->get($this->passwordRequestRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
