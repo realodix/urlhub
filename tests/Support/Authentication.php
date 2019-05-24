@@ -4,11 +4,10 @@ namespace Tests\Support;
 
 use App\User;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Tests\TestCase;
 
 trait Authentication
 {
-    /** @var User $user **/
+    /** @var User $user * */
     protected $user;
 
     public function setupUser()
