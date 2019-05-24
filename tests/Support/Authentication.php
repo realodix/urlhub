@@ -4,15 +4,24 @@ namespace Tests\Support;
 
 use App\User;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Tests\TestCase;
 
 trait Authentication
 {
-    /** @var User $user * */
+    /**
+     * @var User $user
+     */
     protected $user;
 
     public function setupUser()
     {
-        $this->user = factory(User::class)->create();
+        $attributes = [];
+
+        if (method_exists($this, 'getUserFactoryAttributes')) {
+            $attributes = $this->getUserFactoryAttributes();
+        }
+
+        $this->user = factory(User::class)->create($attributes);
     }
 
     public function authenticated(Authenticatable $user = null)
