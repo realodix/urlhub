@@ -43,9 +43,7 @@ class ResetPasswordTest extends TestCase
 
     public function test_user_can_view_a_password_reset_form()
     {
-        $user = factory(User::class)->create();
-
-        $response = $this->get($this->passwordResetGetRoute($token = $this->getValidToken($user)));
+        $response = $this->get($this->passwordResetGetRoute($token = $this->getValidToken($this->user())));
 
         $response->assertSuccessful();
         $response->assertViewIs('frontend.auth.passwords.reset');
@@ -54,9 +52,10 @@ class ResetPasswordTest extends TestCase
 
     public function test_user_cannot_view_a_password_reset_form_when_authenticated()
     {
-        $user = factory(User::class)->create();
+        $user = $this->user();
 
-        $response = $this->actingAs($user)->get($this->passwordResetGetRoute($this->getValidToken($user)));
+        $response = $this->actingAs($user)
+                         ->get($this->passwordResetGetRoute($this->getValidToken($user)));
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -65,7 +64,7 @@ class ResetPasswordTest extends TestCase
     {
         Event::fake();
 
-        $user = factory(User::class)->create();
+        $user = $this->user();
 
         $response = $this->post($this->passwordResetPostRoute(), [
             'token' => $this->getValidToken($user),
