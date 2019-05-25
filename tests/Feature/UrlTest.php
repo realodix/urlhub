@@ -34,7 +34,7 @@ class UrlTest extends TestCase
         $url_key = Url::whereLongUrl($long_url)->first();
 
         $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url
+            'long_url' => $long_url,
         ]);
         $response->assertRedirect(route('home').'/+'.$url_key->url_key);
     }
