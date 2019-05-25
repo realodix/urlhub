@@ -7,9 +7,7 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function create_short_url()
     {
         $long_url = 'https://laravel.com';
@@ -23,25 +21,25 @@ class UrlTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function long_url_already_exist()
     {
-        $long_url = 'https://github.com/realodix/urlhub';
+        $long_url = 'https://laravel.com';
 
-        $url = factory(Url::class)->create(['user_id' => null, 'long_url' => $long_url]);
-        $url_key = Url::whereLongUrl($long_url)->first();
+        factory(Url::class)->create([
+            'user_id' => null,
+            'long_url' => 'https://laravel.com'
+        ]);
+
+        $url = Url::whereLongUrl($long_url)->first();
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url
         ]);
-        $response->assertRedirect(route('home').'/+'.$url_key->url_key);
+        $response->assertRedirect(route('home').'/+'.$url->url_key);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function create_short_url_with_wrong_url_format()
     {
         $long_url = 'wrong-url-format';
@@ -55,9 +53,7 @@ class UrlTest extends TestCase
         $response->assertStatus(302);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function redirect_to_original_url()
     {
         $long_url = 'https://laravel.com';
@@ -80,9 +76,7 @@ class UrlTest extends TestCase
      |
      */
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cst_create_short_url()
     {
         $long_url = 'https://laravel.com';
@@ -102,9 +96,7 @@ class UrlTest extends TestCase
         $response->assertRedirect($long_url);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cst_long_url_already_exist()
     {
         $long_url = 'https://laravel.com';
@@ -128,9 +120,7 @@ class UrlTest extends TestCase
         $response2->assertStatus(404);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cst_long_url_already_exist_2()
     {
         $long_url = 'https://laravel.com';
@@ -156,9 +146,7 @@ class UrlTest extends TestCase
         $response2->assertRedirect($long_url_2);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cst_redirect_to_original_url()
     {
         $long_url = 'https://laravel.com';
