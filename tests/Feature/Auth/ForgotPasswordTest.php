@@ -35,8 +35,9 @@ class ForgotPasswordTest extends TestCase
     {
         $response = $this->get($this->passwordRequestRoute());
 
-        $response->assertSuccessful();
-        $response->assertViewIs('frontend.auth.passwords.email');
+        $response
+            ->assertSuccessful()
+            ->assertViewIs('frontend.auth.passwords.email');
     }
 
     public function test_user_cannot_view_an_email_password_form_when_authenticated()
@@ -72,8 +73,9 @@ class ForgotPasswordTest extends TestCase
             'email' => 'nobody@example.com',
         ]);
 
-        $response->assertRedirect($this->passwordEmailGetRoute());
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->passwordEmailGetRoute())
+            ->assertSessionHasErrors('email');
         Notification::assertNotSentTo(factory(User::class)->make(['email' => 'nobody@example.com']), ResetPassword::class);
     }
 
@@ -81,8 +83,9 @@ class ForgotPasswordTest extends TestCase
     {
         $response = $this->from($this->passwordEmailGetRoute())->post($this->passwordEmailPostRoute(), []);
 
-        $response->assertRedirect($this->passwordEmailGetRoute());
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->passwordEmailGetRoute())
+            ->assertSessionHasErrors('email');
     }
 
     public function test_email_is_a_valid_email()
@@ -91,7 +94,8 @@ class ForgotPasswordTest extends TestCase
             'email' => 'invalid-email',
         ]);
 
-        $response->assertRedirect($this->passwordEmailGetRoute());
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->passwordEmailGetRoute())
+            ->assertSessionHasErrors('email');
     }
 }

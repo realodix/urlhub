@@ -45,9 +45,10 @@ class ResetPasswordTest extends TestCase
     {
         $response = $this->get($this->passwordResetGetRoute($token = $this->getValidToken($this->user())));
 
-        $response->assertSuccessful();
-        $response->assertViewIs('frontend.auth.passwords.reset');
-        $response->assertViewHas('token', $token);
+        $response
+            ->assertSuccessful()
+            ->assertViewIs('frontend.auth.passwords.reset')
+            ->assertViewHas('token', $token);
     }
 
     public function test_user_cannot_view_a_password_reset_form_when_authenticated()
@@ -114,8 +115,10 @@ class ResetPasswordTest extends TestCase
             'password_confirmation' => '',
         ]);
 
-        $response->assertRedirect($this->passwordResetGetRoute($token));
-        $response->assertSessionHasErrors('password');
+        $response
+            ->assertRedirect($this->passwordResetGetRoute($token))
+            ->assertSessionHasErrors('password');
+
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertEquals($user->email, $user->fresh()->email);
@@ -136,8 +139,10 @@ class ResetPasswordTest extends TestCase
             'password_confirmation' => 'new-awesome-password',
         ]);
 
-        $response->assertRedirect($this->passwordResetGetRoute($token));
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->passwordResetGetRoute($token))
+            ->assertSessionHasErrors('email');
+
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertEquals($user->email, $user->fresh()->email);
         $this->assertTrue(Hash::check('old-password', $user->fresh()->password));

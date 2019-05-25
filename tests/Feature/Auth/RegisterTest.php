@@ -125,11 +125,12 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'i-love-laravel',
         ]);
 
-        $users = User::all();
 
-        $this->assertCount(2, $users);
-        $response->assertRedirect($this->registerGetRoute());
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->registerGetRoute())
+            ->assertSessionHasErrors('email');
+
+        $this->assertCount(2, User::all());
         $this->assertTrue(session()->hasOldInput('name'));
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));

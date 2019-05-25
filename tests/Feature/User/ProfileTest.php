@@ -44,9 +44,10 @@ class ProfileTest extends TestCase
                             'email' => '',
                          ]);
 
-        $response->assertRedirect($this->profileGetRoute($this->admin()->name));
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->profileGetRoute($this->admin()->name))
+            ->assertStatus(302)
+            ->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -59,9 +60,10 @@ class ProfileTest extends TestCase
                             'email' => 'invalid_format',
                          ]);
 
-        $response->assertRedirect($this->profileGetRoute($this->admin()->name));
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->profileGetRoute($this->admin()->name))
+            ->assertStatus(302)
+            ->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -74,9 +76,10 @@ class ProfileTest extends TestCase
                             'email' => $this->user()->email,
                          ]);
 
-        $response->assertRedirect($this->profileGetRoute($this->admin()->name));
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->profileGetRoute($this->admin()->name))
+            ->assertStatus(302)
+            ->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -89,8 +92,10 @@ class ProfileTest extends TestCase
                             'email' => 'new_email_user@urlhub.test',
                          ]);
 
-        $response->assertRedirect($this->profileGetRoute($this->user()->name));
-        $response->assertSessionHas(['flash_success']);
+        $response
+            ->assertRedirect($this->profileGetRoute($this->user()->name))
+            ->assertSessionHas(['flash_success']);
+
         $this->assertSame('new_email_user@urlhub.test', $this->user()->email);
     }
 

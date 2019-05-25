@@ -33,8 +33,9 @@ class LoginTest extends TestCase
     {
         $response = $this->get($this->loginGetRoute());
 
-        $response->assertSuccessful();
-        $response->assertViewIs('frontend.auth.login');
+        $response
+            ->assertSuccessful()
+            ->assertViewIs('frontend.auth.login');
     }
 
     public function test_user_cannot_view_a_login_form_when_authenticated()
@@ -70,8 +71,10 @@ class LoginTest extends TestCase
             'password' => 'invalid-password',
         ]);
 
-        $response->assertRedirect($this->loginGetRoute());
-        $response->assertSessionHasErrors('error');
+        $response
+            ->assertRedirect($this->loginGetRoute())
+            ->assertSessionHasErrors('error');
+
         $this->assertTrue(session()->hasOldInput('identity'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
@@ -89,8 +92,10 @@ class LoginTest extends TestCase
             'password' => 'invalid-password',
         ]);
 
-        $response->assertRedirect($this->loginGetRoute());
-        $response->assertSessionHasErrors('error');
+        $response
+            ->assertRedirect($this->loginGetRoute())
+            ->assertSessionHasErrors('error');
+
         $this->assertTrue(session()->hasOldInput('identity'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();

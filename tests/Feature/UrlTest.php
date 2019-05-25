@@ -78,8 +78,9 @@ class UrlTest extends TestCase
             'long_url' => $long_url,
         ]);
         $url = Url::whereUserId($this->user()->id)->first();
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
-        $response->assertSessionHas(['msgLinkAlreadyExists']);
+        $response
+            ->assertRedirect(route('home').'/+'.$url->url_key)
+            ->assertSessionHas(['msgLinkAlreadyExists']);
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(1, $count);
@@ -119,9 +120,10 @@ class UrlTest extends TestCase
             'long_url' => $long_url,
         ]);
 
-        $response->assertRedirect(route('home'));
-        $response->assertSessionHasErrors('long_url');
-        $response->assertStatus(302);
+        $response
+            ->assertRedirect(route('home'))
+            ->assertSessionHasErrors('long_url')
+            ->assertStatus(302);
     }
 
     /** @test */
