@@ -45,8 +45,8 @@ class UrlTest extends TestCase
         $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
-            'user_id' => null,
-            'long_url' => 'https://laravel.com',
+            'user_id'  => null,
+            'long_url' => $long_url,
         ]);
 
         $this->loginAsUser();
@@ -56,8 +56,55 @@ class UrlTest extends TestCase
         ]);
 
         $url = Url::whereUserId($this->user()->id)->first();
-
         $response->assertRedirect(route('home').'/+'.$url->url_key);
+
+        $count = Url::where('long_url', '=', $long_url)->count();
+        $this->assertSame(2, $count);
+    }
+
+    /** @test */
+    public function long_url_already_exist_3()
+    {
+        $this->loginAsUser();
+
+        $long_url = 'https://laravel.com';
+
+        factory(Url::class)->create([
+            'user_id'  => $this->user()->id,
+            'long_url' => $long_url,
+        ]);
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+        $url = Url::whereUserId($this->user()->id)->first();
+        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertSessionHas(['msgLinkAlreadyExists']);
+
+        $count = Url::where('long_url', '=', $long_url)->count();
+        $this->assertSame(1, $count);
+    }
+
+    /** @test */
+    public function duplicate()
+    {
+        $this->loginAsUser();
+
+        $long_url = 'https://laravel.com';
+
+        factory(Url::class)->create([
+            'user_id'  => $this->user()->id,
+            'long_url' => $long_url,
+        ]);
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+
+        $url = Url::whereUserId($this->user()->id)->first();
+
+        $response = $this->from(route('home').'/+'.$url->url_key)
+                         ->get(route('duplicate', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
