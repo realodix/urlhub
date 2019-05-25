@@ -26,6 +26,22 @@ class UrlTest extends TestCase
     /**
      * @test
      */
+    public function long_url_already_exist()
+    {
+        $long_url = 'https://github.com/realodix/urlhub';
+
+        $url = factory(Url::class)->create(['user_id' => null, 'long_url' => $long_url]);
+        $url_key = Url::whereLongUrl($long_url)->first();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $long_url
+        ]);
+        $response->assertRedirect(route('home').'/+'.$url_key->url_key);
+    }
+
+    /**
+     * @test
+     */
     public function create_short_url_with_wrong_url_format()
     {
         $long_url = 'wrong-url-format';
