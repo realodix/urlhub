@@ -162,9 +162,6 @@ class UrlTest extends TestCase
             'long_url' => $long_url,
             'url_key'  => $custom_url_key,
         ]);
-
-        $response = $this->get(route('home').'/'.$custom_url_key);
-        $response->assertRedirect($long_url);
     }
 
     /** @test */
@@ -211,6 +208,7 @@ class UrlTest extends TestCase
             'long_url'       => $long_url_2,
             'custom_url_key' => $custom_url_key_2,
         ]);
+
         $response->assertRedirect(route('home').'/+'.$custom_url_key_2);
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
@@ -218,6 +216,55 @@ class UrlTest extends TestCase
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
+    }
+
+    /** @test */
+    public function cst_cst_url_key_already_exist()
+    {
+        $long_url = 'https://laravel.com';
+        $custom_url_key = 'laravel';
+
+        $this->post(route('createshortlink'), [
+            'long_url'       => $long_url,
+            'custom_url_key' => $custom_url_key,
+        ]);
+
+        $this->loginAsUser();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url'       => 'https://laravel-news.com',
+            'custom_url_key' => $custom_url_key,
+        ]);
+
+        $response
+            ->assertRedirect(route('home'))
+            ->assertSessionHasErrors('custom_url_key');
+
+        $count = Url::where('long_url', '=', $long_url)->count();
+        $this->assertSame(1, $count);
+    }
+
+    /** @test */
+    public function cst_cst_url_key_already_exist_2()
+    {
+        $long_url = 'https://laravel.com';
+        $custom_url_key = 'laravel';
+
+        $this->post(route('createshortlink'), [
+            'long_url'       => $long_url,
+            'custom_url_key' => $custom_url_key,
+        ]);
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url'       => 'https://laravel-news.com',
+            'custom_url_key' => $custom_url_key,
+        ]);
+        $response
+            ->assertRedirect(route('home'))
+            ->assertSessionHasErrors('custom_url_key');
+
+        $count = Url::where('long_url', '=', $long_url)->count();
+        $this->assertSame(1, $count);
     }
 
     /** @test */
