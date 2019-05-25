@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\User;
 
+use App\User;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -106,5 +107,21 @@ class ProfileTest extends TestCase
 
         $response->assertStatus(403);
         $this->assertSame('admin@urlhub.test', $this->admin()->email);
+    }
+
+    /** @test */
+    public function user_cant_change_other_users_email()
+    {
+        $this->loginAsUser();
+
+        $user2 = factory(User::class)->create(['email' => 'user2@urlhub.test']);
+
+        $response = $this->from($this->getRoute($user2->name))
+                         ->post($this->postRoute($user2->id), [
+                               'email' => 'new_email_user2@urlhub.test',
+                           ]);
+
+        $response->assertStatus(403);
+        $this->assertSame('user2@urlhub.test', $user2->email);
     }
 }
