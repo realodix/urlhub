@@ -40,6 +40,30 @@ class UrlTest extends TestCase
     }
 
     /** @test */
+    public function long_url_already_exist_2()
+    {
+        $long_url = 'https://laravel.com';
+
+        factory(Url::class)->create([
+            'user_id' => null,
+            'long_url' => 'https://laravel.com'
+        ]);
+
+        $this->loginAsUser();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+
+        $user = $this->user();
+        $url = Url::whereUserId($user->id)->first();
+        $count = Url::where('long_url','=', $long_url)->count();
+
+        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $this->assertSame(2, $count);
+    }
+
+    /** @test */
     public function create_short_url_with_wrong_url_format()
     {
         $long_url = 'wrong-url-format';
