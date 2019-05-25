@@ -55,11 +55,11 @@ class UrlTest extends TestCase
             'long_url' => $long_url,
         ]);
 
-        $user = $this->user();
-        $url = Url::whereUserId($user->id)->first();
-        $count = Url::where('long_url','=', $long_url)->count();
+        $url = Url::whereUserId($this->user()->id)->first();
 
         $response->assertRedirect(route('home').'/+'.$url->url_key);
+
+        $count = Url::where('long_url','=', $long_url)->count();
         $this->assertSame(2, $count);
     }
 
@@ -168,6 +168,9 @@ class UrlTest extends TestCase
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
         $response2->assertRedirect($long_url_2);
+
+        $count = Url::where('long_url','=', $long_url)->count();
+        $this->assertSame(2, $count);
     }
 
     /** @test */
