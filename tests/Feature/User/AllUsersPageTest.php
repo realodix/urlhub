@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\User;
 
-Use App\Url;
+use App\Url;
 use Tests\TestCase;
 
 class AllUsersPageTest extends TestCase
