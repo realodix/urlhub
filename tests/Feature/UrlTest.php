@@ -46,7 +46,7 @@ class UrlTest extends TestCase
 
         factory(Url::class)->create([
             'user_id' => null,
-            'long_url' => 'https://laravel.com'
+            'long_url' => 'https://laravel.com',
         ]);
 
         $this->loginAsUser();
@@ -57,7 +57,7 @@ class UrlTest extends TestCase
 
         $user = $this->user();
         $url = Url::whereUserId($user->id)->first();
-        $count = Url::where('long_url','=', $long_url)->count();
+        $count = Url::where('long_url', '=', $long_url)->count();
 
         $response->assertRedirect(route('home').'/+'.$url->url_key);
         $this->assertSame(2, $count);
