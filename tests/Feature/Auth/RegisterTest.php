@@ -125,7 +125,6 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'i-love-laravel',
         ]);
 
-
         $response
             ->assertRedirect($this->registerGetRoute())
             ->assertSessionHasErrors('email');
