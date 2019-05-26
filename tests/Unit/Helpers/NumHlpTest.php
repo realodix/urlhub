@@ -14,11 +14,20 @@ class NumHlpTest extends TestCase
     {
         $this->assertSame($expected, $actual);
         $this->assertIsString($actual);
+
+        if (is_integer($actual)) {
+            $this->assertIsInt($actual);
+        } else {
+            $this->assertIsString($actual);
+        }
     }
 
     public function readableInt()
     {
         return [
+            ['12', readable_int(12)],
+            ['12', readable_int(12.3)],
+
             ['1K', readable_int(1000)],
             ['10K', readable_int(10000)],
             ['100K', readable_int(100000)],
@@ -40,19 +49,6 @@ class NumHlpTest extends TestCase
             ['1B+', readable_int(1234567890)],
             ['1T+', readable_int(1234567890000)],
         ];
-    }
-
-    public function test_readable_int_input_num()
-    {
-        $this->assertSame('12', readable_int(12));
-        $this->assertSame('12', readable_int(12.3));
-    }
-
-    public function test_readable_int_input_str()
-    {
-        $this->assertSame('10', readable_int('10'));
-        $this->assertSame('1K', readable_int('1000'));
-        $this->assertIsString(readable_int('1000'));
     }
 
     public function test_number_format_precision()
