@@ -66,18 +66,19 @@ class UrlTest extends TestCase
     public function long_url_already_exist_3()
     {
         $this->loginAsUser();
+        $user = $this->user();
 
         $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
-            'user_id'  => $this->user()->id,
+            'user_id'  => $user->id,
             'long_url' => $long_url,
         ]);
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
-        $url = Url::whereUserId($this->user()->id)->first();
+        $url = Url::whereUserId($user->id)->first();
         $response
             ->assertRedirect(route('home').'/+'.$url->url_key)
             ->assertSessionHas(['msgLinkAlreadyExists']);
