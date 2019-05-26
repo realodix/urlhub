@@ -21,17 +21,17 @@ class ResetPasswordTest extends TestCase
         return 'invalid-token';
     }
 
-    protected function passwordResetGetRoute($token)
+    protected function getRoute($token)
     {
         return route('password.reset', $token);
     }
 
-    protected function passwordResetPostRoute()
+    protected function postRoute()
     {
         return '/password/reset';
     }
 
-    protected function successfulPasswordResetRoute()
+    protected function successfulRoute()
     {
         return route('home');
     }
@@ -43,7 +43,7 @@ class ResetPasswordTest extends TestCase
 
     public function test_user_can_view_a_password_reset_form()
     {
-        $response = $this->get($this->passwordResetGetRoute($token = $this->getValidToken($this->user())));
+        $response = $this->get($this->getRoute($token = $this->getValidToken($this->user())));
 
         $response
             ->assertSuccessful()
@@ -56,7 +56,7 @@ class ResetPasswordTest extends TestCase
         $user = $this->user();
 
         $response = $this->actingAs($user)
-                         ->get($this->passwordResetGetRoute($this->getValidToken($user)));
+                         ->get($this->getRoute($this->getValidToken($user)));
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -67,14 +67,14 @@ class ResetPasswordTest extends TestCase
 
         $user = $this->user();
 
-        $response = $this->post($this->passwordResetPostRoute(), [
+        $response = $this->post($this->postRoute(), [
             'token' => $this->getValidToken($user),
             'email' => $user->email,
             'password' => 'new-awesome-password',
             'password_confirmation' => 'new-awesome-password',
         ]);
 
-        $response->assertRedirect($this->successfulPasswordResetRoute());
+        $response->assertRedirect($this->successfulRoute());
         $this->assertEquals($user->email, $user->fresh()->email);
         $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
         $this->assertAuthenticatedAs($user);
@@ -89,14 +89,14 @@ class ResetPasswordTest extends TestCase
             'password' => Hash::make('old-password'),
         ]);
 
-        $response = $this->from($this->passwordResetGetRoute($this->getInvalidToken()))->post($this->passwordResetPostRoute(), [
+        $response = $this->from($this->getRoute($this->getInvalidToken()))->post($this->postRoute(), [
             'token' => $this->getInvalidToken(),
             'email' => $user->email,
             'password' => 'new-awesome-password',
             'password_confirmation' => 'new-awesome-password',
         ]);
 
-        $response->assertRedirect($this->passwordResetGetRoute($this->getInvalidToken()));
+        $response->assertRedirect($this->getRoute($this->getInvalidToken()));
         $this->assertEquals($user->email, $user->fresh()->email);
         $this->assertTrue(Hash::check('old-password', $user->fresh()->password));
         $this->assertGuest();
@@ -108,7 +108,7 @@ class ResetPasswordTest extends TestCase
             'password' => Hash::make('old-password'),
         ]);
 
-        $response = $this->from($this->passwordResetGetRoute($token = $this->getValidToken($user)))->post($this->passwordResetPostRoute(), [
+        $response = $this->from($this->getRoute($token = $this->getValidToken($user)))->post($this->postRoute(), [
             'token' => $token,
             'email' => $user->email,
             'password' => '',
@@ -116,7 +116,7 @@ class ResetPasswordTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect($this->passwordResetGetRoute($token))
+            ->assertRedirect($this->getRoute($token))
             ->assertSessionHasErrors('password');
 
         $this->assertTrue(session()->hasOldInput('email'));
@@ -132,7 +132,7 @@ class ResetPasswordTest extends TestCase
             'password' => Hash::make('old-password'),
         ]);
 
-        $response = $this->from($this->passwordResetGetRoute($token = $this->getValidToken($user)))->post($this->passwordResetPostRoute(), [
+        $response = $this->from($this->getRoute($token = $this->getValidToken($user)))->post($this->postRoute(), [
             'token' => $token,
             'email' => '',
             'password' => 'new-awesome-password',
@@ -140,7 +140,7 @@ class ResetPasswordTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect($this->passwordResetGetRoute($token))
+            ->assertRedirect($this->getRoute($token))
             ->assertSessionHasErrors('email');
 
         $this->assertFalse(session()->hasOldInput('password'));
