@@ -16,7 +16,7 @@ class NumHlpTest extends TestCase
 
         $int_or_str = readable_int($actual);
 
-        if (is_integer($int_or_str)) {
+        if (is_int($int_or_str)) {
             $this->assertIsInt($int_or_str);
         } else {
             $this->assertIsString($int_or_str);
