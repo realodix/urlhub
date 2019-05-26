@@ -52,11 +52,21 @@ class NumHlpTest extends TestCase
         ];
     }
 
-    public function test_number_format_precision()
+    /**
+     * @dataProvider numberFormatPrecision
+     */
+    public function test_number_format_precision($expected, $actual, $precision = 2)
     {
-        $this->assertSame(10, NumHlp::number_format_precision(10.0));
-        $this->assertSame(10, NumHlp::number_format_precision(10.00));
-        $this->assertSame(10.11, NumHlp::number_format_precision(10.111));
-        $this->assertSame(10.127, NumHlp::number_format_precision(10.1279, 3));
+        $this->assertSame($expected, NumHlp::number_format_precision($actual, $precision));
+    }
+
+    public function numberFormatPrecision()
+    {
+        return [
+            [10, 10.0],
+            [10, 10.00],
+            [10.11, 10.111],
+            [10.127, 10.1279, 3],
+        ];
     }
 }
