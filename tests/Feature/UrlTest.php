@@ -27,8 +27,8 @@ class UrlTest extends TestCase
         $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
-            'user_id' => null,
-            'long_url' => 'https://laravel.com',
+            'user_id'  => null,
+            'long_url' => $long_url,
         ]);
 
         $url = Url::whereLongUrl($long_url)->first();
@@ -173,16 +173,16 @@ class UrlTest extends TestCase
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
 
-        $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
+        factory(Url::class)->create([
+            'user_id'  => null,
+            'long_url' => $long_url,
+            'url_key'  => $custom_url_key,
         ]);
 
-        $long_url_2 = 'https://laravel.com';
         $custom_url_key_2 = 'laravel2';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $long_url_2,
+            'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key_2,
         ]);
         $response->assertRedirect(route('home').'/+'.$custom_url_key);
@@ -197,25 +197,25 @@ class UrlTest extends TestCase
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
 
-        $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
+        factory(Url::class)->create([
+            'user_id'  => null,
+            'long_url' => $long_url,
+            'url_key'  => $custom_url_key,
         ]);
 
         $this->loginAsUser();
 
-        $long_url_2 = 'https://laravel.com';
         $custom_url_key_2 = 'laravel2';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $long_url_2,
+            'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key_2,
         ]);
 
         $response->assertRedirect(route('home').'/+'.$custom_url_key_2);
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
-        $response2->assertRedirect($long_url_2);
+        $response2->assertRedirect($long_url);
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
@@ -227,12 +227,11 @@ class UrlTest extends TestCase
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
 
-        $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
+        factory(Url::class)->create([
+            'user_id'  => null,
+            'long_url' => $long_url,
+            'url_key'  => $custom_url_key,
         ]);
-
-        $this->loginAsUser();
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => 'https://laravel-news.com',
@@ -253,10 +252,13 @@ class UrlTest extends TestCase
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
 
-        $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
+        factory(Url::class)->create([
+            'user_id'  => null,
+            'long_url' => $long_url,
+            'url_key'  => $custom_url_key,
         ]);
+
+        $this->loginAsUser();
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => 'https://laravel-news.com',
