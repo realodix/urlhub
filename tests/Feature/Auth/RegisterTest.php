@@ -108,7 +108,6 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'i-love-laravel',
         ]);
 
-
         $response
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('email');
@@ -158,7 +157,6 @@ class RegisterTest extends TestCase
             'password_confirmation' => '',
         ]);
 
-
         $response
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('password');
@@ -178,7 +176,6 @@ class RegisterTest extends TestCase
             'password' => 'i-love-laravel',
             'password_confirmation' => '',
         ]);
-
 
         $response
             ->assertRedirect($this->getRoute())
