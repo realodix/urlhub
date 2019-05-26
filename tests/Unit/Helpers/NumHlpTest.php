@@ -15,7 +15,7 @@ class NumHlpTest extends TestCase
         $this->assertSame($expected, $actual);
         $this->assertIsString($actual);
 
-        if (is_integer($actual)) {
+        if (is_int($actual)) {
             $this->assertIsInt($actual);
         } else {
             $this->assertIsString($actual);
