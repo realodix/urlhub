@@ -2,16 +2,17 @@
 
 namespace Tests\Feature\User;
 
+use App\User;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
-    protected function profileGetRoute($value)
+    protected function getRoute($value)
     {
         return route('user.edit', $value);
     }
 
-    protected function profilePostRoute($value)
+    protected function postRoute($value)
     {
         return route('user.update', \Hashids::connection(\App\User::class)->encode($value));
     }
@@ -21,7 +22,7 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->get($this->profileGetRoute($this->user()->name));
+        $response = $this->get($this->getRoute($this->user()->name));
         $response->assertStatus(200);
     }
 
@@ -30,7 +31,7 @@ class ProfileTest extends TestCase
     {
         $this->loginAsUser();
 
-        $response = $this->get($this->profileGetRoute($this->admin()->name));
+        $response = $this->get($this->getRoute($this->admin()->name));
         $response->assertStatus(403);
     }
 
@@ -39,8 +40,8 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->profileGetRoute($this->admin()->name))
-                         ->post($this->profilePostRoute($this->admin()->id), [
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
                             'email' => '',
                          ]);
 
@@ -55,8 +56,8 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->profileGetRoute($this->admin()->name))
-                         ->post($this->profilePostRoute($this->admin()->id), [
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
                             'email' => 'invalid_format',
                          ]);
 
@@ -71,8 +72,8 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->profileGetRoute($this->admin()->name))
-                         ->post($this->profilePostRoute($this->admin()->id), [
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
                             'email' => $this->user()->email,
                          ]);
 
@@ -87,8 +88,8 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->profileGetRoute($this->user()->name))
-                         ->post($this->profilePostRoute($this->user()->id), [
+        $response = $this->from($this->getRoute($this->user()->name))
+                         ->post($this->postRoute($this->user()->id), [
                             'email' => 'new_email_user@urlhub.test',
                          ]);
 
@@ -104,12 +105,28 @@ class ProfileTest extends TestCase
     {
         $this->loginAsUser();
 
-        $response = $this->from($this->profileGetRoute($this->admin()->name))
-                         ->post($this->profilePostRoute($this->admin()->id), [
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
                             'email' => 'new_email_admin@urlhub.test',
                          ]);
 
         $response->assertStatus(403);
         $this->assertSame('admin@urlhub.test', $this->admin()->email);
+    }
+
+    /** @test */
+    public function user_cant_change_other_users_email()
+    {
+        $this->loginAsUser();
+
+        $user2 = factory(User::class)->create(['email' => 'user2@urlhub.test']);
+
+        $response = $this->from($this->getRoute($user2->name))
+                         ->post($this->postRoute($user2->id), [
+                               'email' => 'new_email_user2@urlhub.test',
+                           ]);
+
+        $response->assertStatus(403);
+        $this->assertSame('user2@urlhub.test', $user2->email);
     }
 }
