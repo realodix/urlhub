@@ -46,7 +46,7 @@ class ProfileTest extends TestCase
                          ]);
 
         $response
-            ->assertRedirect($this->profileGetRoute($this->admin()->name))
+            ->assertRedirect($this->getRoute($this->admin()->name))
             ->assertStatus(302)
             ->assertSessionHasErrors('email');
     }
@@ -62,7 +62,7 @@ class ProfileTest extends TestCase
                          ]);
 
         $response
-            ->assertRedirect($this->profileGetRoute($this->admin()->name))
+            ->assertRedirect($this->getRoute($this->admin()->name))
             ->assertStatus(302)
             ->assertSessionHasErrors('email');
     }
@@ -78,7 +78,7 @@ class ProfileTest extends TestCase
                          ]);
 
         $response
-            ->assertRedirect($this->profileGetRoute($this->admin()->name))
+            ->assertRedirect($this->getRoute($this->admin()->name))
             ->assertStatus(302)
             ->assertSessionHasErrors('email');
     }
@@ -94,7 +94,7 @@ class ProfileTest extends TestCase
                          ]);
 
         $response
-            ->assertRedirect($this->profileGetRoute($this->user()->name))
+            ->assertRedirect($this->getRoute($this->user()->name))
             ->assertSessionHas(['flash_success']);
 
         $this->assertSame('new_email_user@urlhub.test', $this->user()->email);
