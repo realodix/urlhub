@@ -13,6 +13,7 @@ class NumHlpTest extends TestCase
     public function test_readable_int($expected, $actual)
     {
         $this->assertSame($expected, $actual);
+        $this->assertIsString($actual);
     }
 
     public function readableInt()
@@ -51,6 +52,7 @@ class NumHlpTest extends TestCase
     {
         $this->assertSame('10', readable_int('10'));
         $this->assertSame('1K', readable_int('1000'));
+        $this->assertIsString(readable_int('1000'));
     }
 
     public function test_number_format_precision()
