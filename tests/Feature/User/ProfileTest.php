@@ -42,7 +42,7 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->admin()->name))
                          ->post($this->postRoute($this->admin()->id), [
-                            'email' => '',
+                             'email' => '',
                          ]);
 
         $response
@@ -58,7 +58,7 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->admin()->name))
                          ->post($this->postRoute($this->admin()->id), [
-                            'email' => 'invalid_format',
+                             'email' => 'invalid_format',
                          ]);
 
         $response
@@ -74,7 +74,7 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->admin()->name))
                          ->post($this->postRoute($this->admin()->id), [
-                            'email' => $this->user()->email,
+                             'email' => $this->user()->email,
                          ]);
 
         $response
@@ -90,7 +90,7 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->user()->name))
                          ->post($this->postRoute($this->user()->id), [
-                            'email' => 'new_email_user@urlhub.test',
+                             'email' => 'new_email_user@urlhub.test',
                          ]);
 
         $response
@@ -123,8 +123,8 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($user2->name))
                          ->post($this->postRoute($user2->id), [
-                               'email' => 'new_email_user2@urlhub.test',
-                           ]);
+                             'email' => 'new_email_user2@urlhub.test',
+                         ]);
 
         $response->assertStatus(403);
         $this->assertSame('user2@urlhub.test', $user2->email);
