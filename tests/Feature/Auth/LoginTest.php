@@ -14,12 +14,12 @@ class LoginTest extends TestCase
         return route('admin');
     }
 
-    protected function loginGetRoute()
+    protected function getRoute()
     {
         return route('login');
     }
 
-    protected function loginPostRoute()
+    protected function postRoute()
     {
         return route('login');
     }
@@ -31,7 +31,7 @@ class LoginTest extends TestCase
 
     public function test_user_can_view_a_login_form()
     {
-        $response = $this->get($this->loginGetRoute());
+        $response = $this->get($this->getRoute());
 
         $response
             ->assertSuccessful()
@@ -40,7 +40,7 @@ class LoginTest extends TestCase
 
     public function test_user_cannot_view_a_login_form_when_authenticated()
     {
-        $response = $this->loginAsUser()->get($this->loginGetRoute());
+        $response = $this->loginAsUser()->get($this->getRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -51,7 +51,7 @@ class LoginTest extends TestCase
             'password' => Hash::make($password = 'i-love-laravel'),
         ]);
 
-        $response = $this->post($this->loginPostRoute(), [
+        $response = $this->post($this->postRoute(), [
             'identity' => $user->email,
             'password' => $password,
         ]);
@@ -66,13 +66,13 @@ class LoginTest extends TestCase
             'password' => Hash::make('i-love-laravel'),
         ]);
 
-        $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+        $response = $this->from($this->getRoute())->post($this->postRoute(), [
             'identity' => $user->email,
             'password' => 'invalid-password',
         ]);
 
         $response
-            ->assertRedirect($this->loginGetRoute())
+            ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('error');
 
         $this->assertTrue(session()->hasOldInput('identity'));
@@ -87,13 +87,13 @@ class LoginTest extends TestCase
 
     public function test_user_cannot_login_with_email_that_does_not_exist()
     {
-        $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+        $response = $this->from($this->getRoute())->post($this->postRoute(), [
             'identity' => 'nobody@example.com',
             'password' => 'invalid-password',
         ]);
 
         $response
-            ->assertRedirect($this->loginGetRoute())
+            ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('error');
 
         $this->assertTrue(session()->hasOldInput('identity'));
