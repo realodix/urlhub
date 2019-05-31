@@ -7,11 +7,6 @@ use Tests\TestCase;
 
 class AllUsersPageTest extends TestCase
 {
-    protected function duplicateGetRoute($value)
-    {
-        return route('admin.duplicate', $value);
-    }
-
     /** @test */
     public function admin_can_access_all_users_page()
     {
@@ -45,7 +40,7 @@ class AllUsersPageTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->from(route('admin.allurl'))
-                         ->get($this->duplicateGetRoute($url->url_key));
+                         ->get(route('admin.duplicate', $url->url_key));
         $response->assertRedirect(route('admin.allurl'));
 
         $count = Url::where('long_url', '=', $long_url)->count();

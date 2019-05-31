@@ -42,12 +42,13 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->admin()->name))
                          ->post($this->postRoute($this->admin()->id), [
-                            'email' => '',
+                             'email' => '',
                          ]);
 
-        $response->assertRedirect($this->getRoute($this->admin()->name));
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertStatus(302)
+            ->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -57,12 +58,13 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->admin()->name))
                          ->post($this->postRoute($this->admin()->id), [
-                            'email' => 'invalid_format',
+                             'email' => 'invalid_format',
                          ]);
 
-        $response->assertRedirect($this->getRoute($this->admin()->name));
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertStatus(302)
+            ->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -72,12 +74,13 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->admin()->name))
                          ->post($this->postRoute($this->admin()->id), [
-                            'email' => $this->user()->email,
+                             'email' => $this->user()->email,
                          ]);
 
-        $response->assertRedirect($this->getRoute($this->admin()->name));
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors('email');
+        $response
+            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertStatus(302)
+            ->assertSessionHasErrors('email');
     }
 
     /** @test */
@@ -87,11 +90,13 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->user()->name))
                          ->post($this->postRoute($this->user()->id), [
-                            'email' => 'new_email_user@urlhub.test',
+                             'email' => 'new_email_user@urlhub.test',
                          ]);
 
-        $response->assertRedirect($this->getRoute($this->user()->name));
-        $response->assertSessionHas(['flash_success']);
+        $response
+            ->assertRedirect($this->getRoute($this->user()->name))
+            ->assertSessionHas(['flash_success']);
+
         $this->assertSame('new_email_user@urlhub.test', $this->user()->email);
     }
 
@@ -118,8 +123,8 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($user2->name))
                          ->post($this->postRoute($user2->id), [
-                               'email' => 'new_email_user2@urlhub.test',
-                           ]);
+                             'email' => 'new_email_user2@urlhub.test',
+                         ]);
 
         $response->assertStatus(403);
         $this->assertSame('user2@urlhub.test', $user2->email);

@@ -24,13 +24,23 @@ class UrlHlpTest extends TestCase
         );
     }
 
-    public function test_remove_schemes()
+    /**
+     * @dataProvider removeSchemes
+     */
+    public function test_remove_schemes($expected, $actual)
     {
-        $this->assertSame('laravel.com', remove_schemes('laravel.com'));
-        $this->assertSame('laravel.com', remove_schemes('www.laravel.com'));
-        $this->assertSame('laravel.com', remove_schemes('http://laravel.com'));
-        $this->assertSame('laravel.com', remove_schemes('http://www.laravel.com'));
-        $this->assertSame('laravel.com', remove_schemes('https://laravel.com'));
-        $this->assertSame('laravel.com', remove_schemes('https://www.laravel.com'));
+        $this->assertSame($expected, remove_schemes($actual));
+    }
+
+    public function removeSchemes()
+    {
+        return [
+            ['laravel.com', 'laravel.com'],
+            ['laravel.com', 'www.laravel.com'],
+            ['laravel.com', 'http://laravel.com'],
+            ['laravel.com', 'http://www.laravel.com'],
+            ['laravel.com', 'https://laravel.com'],
+            ['laravel.com', 'https://www.laravel.com'],
+        ];
     }
 }
