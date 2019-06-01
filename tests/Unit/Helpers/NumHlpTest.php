@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Helpers;
 
 use Facades\App\Helpers\NumHlp;
 use Tests\TestCase;
