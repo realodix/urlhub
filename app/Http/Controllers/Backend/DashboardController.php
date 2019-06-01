@@ -36,10 +36,10 @@ class DashboardController extends Controller
         // Count the number of guests in the url column based on IP
         // and grouped by ip.
         $totalGuest = Url::select('ip', DB::raw('count(*) as total'))
-                         ->whereNull('user_id')
-                         ->groupBy('ip')
-                         ->get()
-                         ->count();
+                           ->whereNull('user_id')
+                           ->groupBy('ip')
+                           ->get()
+                           ->count();
 
         return view('backend.dashboard', [
             'totalShortUrl'        => Url::count('url_key'),
@@ -119,8 +119,7 @@ class DashboardController extends Controller
      */
     public function duplicate($url_key)
     {
-        $url = Url::whereUrlKey($url_key)
-                  ->firstOrFail();
+        $url = Url::whereUrlKey($url_key)->firstOrFail();
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();

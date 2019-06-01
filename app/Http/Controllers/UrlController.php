@@ -58,11 +58,9 @@ class UrlController extends Controller
      */
     public function urlRedirection($url_key)
     {
-        $url = Url::whereUrlKey($url_key)
-                  ->firstOrFail();
+        $url = Url::whereUrlKey($url_key)->firstOrFail();
 
-        Url::whereUrlKey($url_key)
-           ->increment('clicks');
+        Url::whereUrlKey($url_key)->increment('clicks');
 
         return redirect()->away($url->long_url, 301);
     }
