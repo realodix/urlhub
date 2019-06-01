@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Services;
 
 use App\Services\UrlService;
 use Tests\TestCase;
