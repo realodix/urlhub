@@ -17,6 +17,16 @@ use CodeItNow\BarcodeBundle\Utils\QrCode;
 */
 
 /*
+ * Num Helpers
+ */
+if (! function_exists('readable_int')) {
+    function readable_int($value)
+    {
+        return resolve(NumHlp::class)->readable_int($value);
+    }
+}
+
+/*
  * URL Helpers
  */
 if (! function_exists('url_limit')) {
@@ -55,6 +65,7 @@ if (! function_exists('script')) {
      * @param       $url
      * @param array $attributes
      * @param null  $secure
+     *
      * @return mixed
      */
     function script($url, $attributes = [], $secure = null)
@@ -81,12 +92,5 @@ if (! function_exists('qrCodeGenerator')) {
                ->setImageType(QrCode::IMAGE_TYPE_PNG);
 
         return $qrCode;
-    }
-}
-
-if (! function_exists('readable_int')) {
-    function readable_int($value)
-    {
-        return resolve(NumHlp::class)->readable_int($value);
     }
 }
