@@ -18,10 +18,6 @@ dist: trusty
 
 sudo: required
 
-cache:
-  directories:
-    - vendor
-
 install:
   - composer self-update
   - composer install --no-interaction
