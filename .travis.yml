@@ -14,10 +14,20 @@ addons:
     packages:
       - mysql-server
 
+dist: trusty
+
+sudo: required
+
+cache:
+  directories:
+    - vendor
+
+install:
+  - composer self-update
+  - composer install --no-interaction
+
 before_script:
   - mysql -e 'create database homestead;'
-  - travis_retry composer self-update
-  - travis_retry composer install --no-interaction
   - cp .env.travis .env
   - php artisan key:generate
 
