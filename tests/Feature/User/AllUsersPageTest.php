@@ -39,9 +39,9 @@ class AllUsersPageTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response = $this->from(route('admin.allurl'))
-                         ->get(route('admin.duplicate', $url->url_key));
-        $response->assertRedirect(route('admin.allurl'));
+        $response = $this->from(route('dashboard.allurl'))
+                         ->get(route('dashboard.duplicate', $url->url_key));
+        $response->assertRedirect(route('dashboard.allurl'));
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
