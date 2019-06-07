@@ -11,8 +11,8 @@ Route::namespace('Frontend')->group(function () {
     Route::get('/duplicate/{url_key}', 'UrlController@duplicate')->middleware('auth')->name('duplicate');
 });
 
-Route::namespace('Backend')->group(function () {
-    Route::middleware('auth')->prefix('admin')->group(function () {
+Route::namespace('Backend')->prefix('admin')->group(function () {
+    Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', 'DashboardController@view')->name('admin');
         Route::get('/myurl/getdata', 'DashboardController@getData');
