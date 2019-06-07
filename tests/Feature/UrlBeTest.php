@@ -2,13 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Url;
 use Tests\TestCase;
 
 class UrlBeTest extends TestCase
 {
     /**
-     * Dashboard Page
+     * Dashboard Page.
      */
 
     /** @test */
@@ -20,12 +19,11 @@ class UrlBeTest extends TestCase
         $response->assertStatus(200);
     }
 
-
     /**
-     * All URLs Page
+     * All URLs Page.
      */
 
-     /** @test */
+    /** @test */
     public function can_access_allurl_page()
     {
         $this->loginAsAdmin();
