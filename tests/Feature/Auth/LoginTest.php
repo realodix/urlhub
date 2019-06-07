@@ -11,7 +11,7 @@ class LoginTest extends TestCase
 {
     protected function successfulLoginRoute()
     {
-        return route('admin');
+        return route('dashboard');
     }
 
     protected function getRoute()

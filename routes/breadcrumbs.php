@@ -1,12 +1,12 @@
 <?php
 
 Breadcrumbs::for('admin', function ($trail) {
-    $trail->push(__('Dashboard'), route('admin'));
+    $trail->push(__('Dashboard'), route('dashboard'));
 });
 
 Breadcrumbs::for('admin.allurl', function ($trail) {
     $trail->parent('admin');
-    $trail->push(__('All URLs'), route('admin.allurl'));
+    $trail->push(__('All URLs'), route('dashboard.allurl'));
 });
 
 Breadcrumbs::for('user.index', function ($trail) {
