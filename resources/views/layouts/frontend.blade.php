@@ -24,11 +24,11 @@
               <img class="img-avatar" src="{{ Auth::user()->avatar }}" alt="Avatar">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <span class="dropdown-item" href="{{ route('admin') }}">
+              <span class="dropdown-item" href="{{ route('dashboard') }}">
                 @lang('Signed in as') {{ title_case(Auth::user()->name) }}
               </span>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('admin') }}">
+              <a class="dropdown-item" href="{{ route('dashboard') }}">
                 @lang('Dashboard')
               </a>
               <div class="dropdown-divider"></div>
