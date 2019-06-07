@@ -33,7 +33,7 @@ class ResetPasswordTest extends TestCase
 
     protected function successfulRoute()
     {
-        return route('home');
+        return route('dashboard');
     }
 
     protected function guestMiddlewareRoute()
