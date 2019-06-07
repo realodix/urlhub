@@ -12,6 +12,7 @@ before_script:
   - travis_retry composer install --prefer-source --no-interaction
   - cp .env.example .env
   - php artisan key:generate
+  - mysql -e 'CREATE DATABASE forge;
 
 script:
   - vendor/bin/phpunit
