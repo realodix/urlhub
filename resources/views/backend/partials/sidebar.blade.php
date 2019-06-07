@@ -2,13 +2,13 @@
   <nav class="sidebar-nav">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin') }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
           <i class="nav-icon fas fa-tachometer-alt"></i> @lang('Dashboard')
         </a>
       </li>
       @role('admin')
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.allurl') }}">
+        <a class="nav-link" href="{{ route('dashboard.allurl') }}">
           <i class="nav-icon fas fa-link"></i> @lang('All URLs')
         </a>
       </li>
