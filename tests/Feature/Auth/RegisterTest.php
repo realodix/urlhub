@@ -13,7 +13,7 @@ class RegisterTest extends TestCase
 {
     protected function successfulRegistrationRoute()
     {
-        return route('home');
+        return route('dashboard');
     }
 
     protected function getRoute()
