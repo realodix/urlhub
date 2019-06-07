@@ -27,8 +27,8 @@ install:
   - composer install --no-interaction
 
 before_script:
-  - mysql -e 'create database homestead;'
-  - cp .env.travis .env
+  - mysql -e 'create database urlhub;'
+  - cp .env.example .env
   - php artisan key:generate
 
 script:
