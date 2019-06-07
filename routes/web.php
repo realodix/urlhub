@@ -14,15 +14,15 @@ Route::namespace('Frontend')->group(function () {
 Route::namespace('Backend')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
-        Route::get('/', 'DashboardController@view')->name('admin');
+        Route::get('/', 'DashboardController@view')->name('dashboard');
         Route::get('/myurl/getdata', 'DashboardController@getData');
-        Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('admin.delete');
-        Route::get('/duplicate/{url_key}', 'DashboardController@duplicate')->name('admin.duplicate');
+        Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('dashboard.delete');
+        Route::get('/duplicate/{url_key}', 'DashboardController@duplicate')->name('dashboard.duplicate');
 
         // All URLs
-        Route::get('/allurl', 'AllUrlController@index')->name('admin.allurl');
+        Route::get('/allurl', 'AllUrlController@index')->name('dashboard.allurl');
         Route::get('/allurl/getdata', 'AllUrlController@getData');
-        Route::get('/allurl/delete/{url_hashId}', 'AllUrlController@delete')->name('admin.allurl.delete');
+        Route::get('/allurl/delete/{url_hashId}', 'AllUrlController@delete')->name('dashboard.allurl.delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
