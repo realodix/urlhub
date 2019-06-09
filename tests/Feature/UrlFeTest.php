@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Url;
 use Tests\TestCase;
 
-class UrlTest extends TestCase
+class UrlFeTest extends TestCase
 {
     /** @test */
     public function create_short_url()
