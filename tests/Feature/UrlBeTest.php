@@ -7,6 +7,13 @@ use Tests\TestCase;
 
 class UrlBeTest extends TestCase
 {
+    protected function getDeleteRoute($value)
+    {
+        return route('dashboard.delete', \Hashids::connection(\App\Url::class)->encode($value));
+    }
+
+
+
     /**
      * Dashboard Page.
      */
@@ -21,46 +28,54 @@ class UrlBeTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_duplicate_own_short_url()
+    public function can_delete()
     {
+        $user_id = $this->admin()->id;
         $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
-            'user_id'  => $this->user()->id,
+            'user_id'  => $user_id,
             'long_url' => $long_url,
         ]);
 
         $this->loginAsAdmin();
 
-        $url = Url::whereUserId($this->user()->id)->first();
+        $url = Url::whereUserId($user_id)->first();
 
-        $this->from(route('dashboard'))
-                         ->get(route('dashboard.duplicate', $url->url_key));
+        $response = $this->from(route('dashboard'))
+                         ->get($this->getDeleteRoute($url->id));
+        $response->assertRedirect(route('dashboard'));
+        $response->assertSessionHas(['flash_success']);
 
         $count = Url::where('long_url', '=', $long_url)->count();
-        $this->assertSame(2, $count);
+        $this->assertSame(0, $count);
     }
 
     /** @test */
-    public function user_can_duplicate_own_short_url()
+    public function can_duplicate()
     {
+        $user_id = $this->admin()->id;
         $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
-            'user_id'  => $this->user()->id,
+            'user_id'  => $user_id,
             'long_url' => $long_url,
         ]);
 
-        $this->loginAsUser();
+        $this->loginAsAdmin();
 
-        $url = Url::whereUserId($this->user()->id)->first();
+        $url = Url::whereUserId($user_id)->first();
 
-        $this->from(route('dashboard'))
+        $response = $this->from(route('dashboard'))
                          ->get(route('dashboard.duplicate', $url->url_key));
+        $response->assertRedirect(route('dashboard'));
+        $response->assertSessionHas(['flash_success']);
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
     }
+
+
 
     /**
      * All URLs Page.
