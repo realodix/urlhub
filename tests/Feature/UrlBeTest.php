@@ -41,30 +41,26 @@ class UrlBeTest extends TestCase
         $this->assertSame(2, $count);
     }
 
-    // /** @test */
-    // public function user_can_duplicate()
-    // {
-    //     $this->loginAsUser();
+    /** @test */
+    public function user_can_duplicate_own_short_url()
+    {
+        $long_url = 'https://laravel.com';
 
-    //     $long_url = 'https://laravel.com';
+        factory(Url::class)->create([
+            'user_id'  => $this->user()->id,
+            'long_url' => $long_url,
+        ]);
 
-    //     factory(Url::class)->create([
-    //         'user_id'  => $this->user()->id,
-    //         'long_url' => $long_url,
-    //     ]);
+        $this->loginAsUser();
 
-    //     $this->post(route('createshortlink'), [
-    //         'long_url' => $long_url,
-    //     ]);
+        $url = Url::whereUserId($this->user()->id)->first();
 
-    //     $url = Url::whereUserId($this->user()->id)->first();
+        $response = $this->from(route('dashboard'))
+                         ->get(route('dashboard.duplicate', $url->url_key));
 
-    //     $response = $this->from(route('home').'/+'.$url->url_key)
-    //                      ->get(route('duplicate', $url->url_key));
-
-    //     $count = Url::where('long_url', '=', $long_url)->count();
-    //     $this->assertSame(2, $count);
-    // }
+        $count = Url::where('long_url', '=', $long_url)->count();
+        $this->assertSame(2, $count);
+    }
 
     /**
      * All URLs Page.
