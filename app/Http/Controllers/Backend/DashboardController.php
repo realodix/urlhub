@@ -40,14 +40,15 @@ class DashboardController extends Controller
                            ->groupBy('ip')
                            ->get()
                            ->count();
+        $url = new Url;
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => Url::count('url_key'),
-            'totalShortUrlByMe'    => $this->totalShortUrlById(Auth::id()),
-            'totalShortUrlByGuest' => $this->totalShortUrlById(),
-            'totalClicks'          => Url::sum('clicks'),
-            'totalClicksByMe'      => $this->totalClicksById(Auth::id()),
-            'totalClicksByGuest'   => $this->totalClicksById(),
+            'totalShortUrl'        => $url->totalShortUrl(),
+            'totalShortUrlByMe'    => $url->totalShortUrlById(Auth::id()),
+            'totalShortUrlByGuest' => $url->totalShortUrlById(),
+            'totalClicks'          => $url->totalClicks(),
+            'totalClicksByMe'      => $url->totalClicksById(Auth::id()),
+            'totalClicksByGuest'   => $url->totalClicksById(),
             'totalUser'            => User::count(),
             'totalGuest'           => $totalGuest,
             'capacity'             => $this->UrlSrvc->url_key_capacity(),
@@ -130,21 +131,5 @@ class DashboardController extends Controller
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
-    }
-
-    /**
-     * @param int $id
-     */
-    public function totalShortUrlById($id = null)
-    {
-        return Url::whereUserId($id)->count('url_key');
-    }
-
-    /**
-     * @param int $id
-     */
-    public function totalClicksById($id = null)
-    {
-        return Url::whereUserId($id)->sum('clicks');
     }
 }
