@@ -70,10 +70,11 @@ class Url extends Model
         return url('/'.$this->attributes['url_key']);
     }
 
-    /**
-     * |
-     * |.
+    /*
+     |
+     |
      */
+
     public function totalShortUrl()
     {
         return self::count('url_key');
