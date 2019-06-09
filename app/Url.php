@@ -71,13 +71,12 @@ class Url extends Model
     }
 
     /**
-     |
-     |
+     * |
+     * |.
      */
-
     public function totalShortUrl()
     {
-        return Url::count('url_key');
+        return self::count('url_key');
     }
 
     /**
@@ -85,12 +84,12 @@ class Url extends Model
      */
     public function totalShortUrlById($id = null)
     {
-        return Url::whereUserId($id)->count('url_key');
+        return self::whereUserId($id)->count('url_key');
     }
 
     public function totalClicks()
     {
-        return Url::sum('clicks');
+        return self::sum('clicks');
     }
 
     /**
@@ -98,6 +97,6 @@ class Url extends Model
      */
     public function totalClicksById($id = null)
     {
-        return Url::whereUserId($id)->sum('clicks');
+        return self::whereUserId($id)->sum('clicks');
     }
 }
