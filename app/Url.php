@@ -71,10 +71,9 @@ class Url extends Model
     }
 
     /**
-     |
-     |
+     * |
+     * |.
      */
-
     public function totalShortUrl()
     {
         return self::count('url_key');
