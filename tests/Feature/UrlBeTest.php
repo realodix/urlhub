@@ -17,7 +17,7 @@ class UrlBeTest extends TestCase
      */
 
     /** @test */
-    public function can_access_dashboard_page()
+    public function d_can_access_page()
     {
         $this->loginAsAdmin();
 
@@ -26,7 +26,7 @@ class UrlBeTest extends TestCase
     }
 
     /** @test */
-    public function can_delete()
+    public function d_can_delete()
     {
         $user_id = $this->admin()->id;
         $long_url = 'https://laravel.com';
@@ -50,7 +50,7 @@ class UrlBeTest extends TestCase
     }
 
     /** @test */
-    public function can_duplicate()
+    public function d_can_duplicate()
     {
         $user_id = $this->admin()->id;
         $long_url = 'https://laravel.com';
@@ -78,7 +78,7 @@ class UrlBeTest extends TestCase
      */
 
     /** @test */
-    public function admin_can_access_allurl_page()
+    public function au_admin_can_access_page()
     {
         $this->loginAsAdmin();
 
@@ -87,7 +87,7 @@ class UrlBeTest extends TestCase
     }
 
     /** @test */
-    public function user_cant_access_allurl_page()
+    public function au_user_cant_access_page()
     {
         $this->loginAsUser();
 
