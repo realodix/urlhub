@@ -69,4 +69,35 @@ class Url extends Model
     {
         return url('/'.$this->attributes['url_key']);
     }
+
+    /**
+     |
+     |
+     */
+
+    public function totalShortUrl()
+    {
+        return Url::count('url_key');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function totalShortUrlById($id = null)
+    {
+        return Url::whereUserId($id)->count('url_key');
+    }
+
+    public function totalClicks()
+    {
+        return Url::sum('clicks');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function totalClicksById($id = null)
+    {
+        return Url::whereUserId($id)->sum('clicks');
+    }
 }
