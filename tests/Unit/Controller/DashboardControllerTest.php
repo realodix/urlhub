@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Controller;
 
-use App\Url;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Url;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
