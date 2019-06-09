@@ -1,0 +1,35 @@
+language: php
+
+php:
+  - 7.2
+  - 7.3
+
+services:
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+
+dist: trusty
+
+sudo: required
+
+cache:
+  directories:
+    - vendor
+
+install:
+  - composer self-update
+  - composer install --no-interaction
+
+before_script:
+  - mysql -e 'create database urlhub_test;'
+  - cp .env.example .env
+  - php artisan key:generate
+
+script:
+  - vendor/bin/phpunit
