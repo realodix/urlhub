@@ -118,4 +118,27 @@ class UrlBeTest extends TestCase
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(0, $count);
     }
+
+    /** @test */
+    public function au_user_cant_delete()
+    {
+        $user_id = $this->admin()->id;
+        $long_url = 'https://laravel.com';
+
+        factory(Url::class)->create([
+            'user_id'  => $user_id,
+            'long_url' => $long_url,
+        ]);
+
+        $this->loginAsUser();
+
+        $url = Url::whereUserId($user_id)->first();
+
+        $response = $this->from(route('dashboard.allurl'))
+                         ->get($this->getDeleteRoute($url->id));
+        $response->assertStatus(403);
+
+        $count = Url::where('long_url', '=', $long_url)->count();
+        $this->assertSame(1, $count);
+    }
 }
