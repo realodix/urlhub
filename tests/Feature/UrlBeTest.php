@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Url;
 use Tests\TestCase;
 
 class UrlBeTest extends TestCase
@@ -34,7 +35,7 @@ class UrlBeTest extends TestCase
         $url = Url::whereUserId($this->user()->id)->first();
 
         $response = $this->from(route('dashboard'))
-                         ->get(route('dashboard.duplicate'));
+                         ->get(route('dashboard.duplicate', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
