@@ -12,8 +12,6 @@ class UrlBeTest extends TestCase
         return route('dashboard.delete', \Hashids::connection(\App\Url::class)->encode($value));
     }
 
-
-
     /**
      * Dashboard Page.
      */
@@ -74,8 +72,6 @@ class UrlBeTest extends TestCase
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
     }
-
-
 
     /**
      * All URLs Page.
