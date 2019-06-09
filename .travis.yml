@@ -27,7 +27,7 @@ install:
   - composer install --no-interaction
 
 before_script:
-  - mysql -e 'create database urlhub;'
+  - mysql -e 'create database urlhub_test;'
   - cp .env.example .env
   - php artisan key:generate
 
