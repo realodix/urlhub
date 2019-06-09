@@ -35,39 +35,37 @@ class DashboardControllerTest extends TestCase
         ]);
     }
 
+    protected function totalShortUrlById($value = null)
+    {
+        return app(DashboardController::class)->totalShortUrlById($value);
+    }
+
+    protected function totalClicksById($value = null)
+    {
+        return app(DashboardController::class)->totalClicksById($value);
+    }
+
     /** @test */
     public function total_short_url_by_me()
     {
-        $this->assertEquals(1, app(DashboardController::class)->totalShortUrlById($this->admin()->id));
+        $this->assertEquals(1, $this->totalShortUrlById($this->admin()->id));
     }
 
     /** @test */
     public function total_short_url_by_guest()
     {
-        $this->assertEquals(2, app(DashboardController::class)->totalShortUrlById());
+        $this->assertEquals(2, $this->totalShortUrlById());
     }
 
     /** @test */
     public function total_clicks_by_me()
     {
-        $this->assertEquals(10, app(DashboardController::class)->totalClicksById($this->admin()->id));
+        $this->assertEquals(10, $this->totalClicksById($this->admin()->id));
     }
 
     /** @test */
     public function total_clicks_by_guest()
     {
-        $this->assertEquals(20, app(DashboardController::class)->totalClicksById());
-    }
-
-    /** @test */
-    public function total_guest()
-    {
-        $count = Url::select('ip', DB::raw('count(*) as total'))
-                      ->whereNull('user_id')
-                      ->groupBy('ip')
-                      ->get()
-                      ->count();
-
-        $this->assertEquals(2, $count);
+        $this->assertEquals(20, $this->totalClicksById());
     }
 }
