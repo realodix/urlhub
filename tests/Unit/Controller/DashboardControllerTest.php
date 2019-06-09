@@ -4,7 +4,6 @@ namespace Tests\Unit\Controller;
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Url;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class DashboardControllerTest extends TestCase
