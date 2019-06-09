@@ -43,6 +43,15 @@ class Url extends Model
     }
 
     // Mutator
+    public function setUserIdAttribute($value)
+    {
+        if ($value == 0) {
+            $this->attributes['user_id'] = null;
+        } else {
+            $this->attributes['user_id'] = $value;
+        }
+    }
+
     public function setLongUrlAttribute($value)
     {
         $this->attributes['long_url'] = rtrim($value, '/');
