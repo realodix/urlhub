@@ -8,7 +8,34 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    public function test_it_belongs_to_user()
+    public function setUp():void
+    {
+        parent::setUp();
+
+        factory(Url::class)->create([
+            'user_id'  => $this->admin()->id,
+            'long_url' => 'https://laravel.com',
+            'clicks'   => 10,
+            'ip'       => '0.0.0.0',
+        ]);
+
+        factory(Url::class)->create([
+            'user_id'  => 0,
+            'long_url' => 'https://laravel.com',
+            'clicks'   => 10,
+            'ip'       => '0.0.0.0',
+        ]);
+
+        factory(Url::class)->create([
+            'user_id'  => 0,
+            'long_url' => 'https://laravel.com',
+            'clicks'   => 10,
+            'ip'       => '1.1.1.1',
+        ]);
+    }
+
+    /** @test */
+    public function belongs_to_user()
     {
         $user = factory(User::class)->create([]);
         $url = factory(Url::class)->create(['user_id' => $user->id]);
@@ -16,7 +43,8 @@ class UrlTest extends TestCase
         $this->assertTrue($url->user()->exists());
     }
 
-    public function test_getShortUrlAttribute()
+    /** @test */
+    public function getShortUrlAttribute()
     {
         $url = new Url;
         $url->url_key = 'realodix';
@@ -28,7 +56,8 @@ class UrlTest extends TestCase
         );
     }
 
-    public function test_setLongUrlAttribute()
+    /** @test */
+    public function setLongUrlAttribute()
     {
         $url = factory(Url::class)
                ->create(['user_id' => null]);
@@ -37,5 +66,53 @@ class UrlTest extends TestCase
             $url->long_url,
             'https://github.com/realodix/urlhub'
         );
+    }
+
+    /** @test */
+    public function total_short_url()
+    {
+        $url = new Url;
+
+        $this->assertEquals(3, $url->totalShortUrl());
+    }
+
+    /** @test */
+    public function total_short_url_by_me()
+    {
+        $url = new Url;
+
+        $this->assertEquals(1, $url->totalShortUrlById($this->admin()->id));
+    }
+
+    /** @test */
+    public function total_short_url_by_guest()
+    {
+        $url = new Url;
+
+        $this->assertEquals(2, $url->totalShortUrlById());
+    }
+
+    /** @test */
+    public function total_clicks()
+    {
+        $url = new Url;
+
+        $this->assertEquals(30, $url->totalClicks());
+    }
+
+    /** @test */
+    public function total_clicks_by_me()
+    {
+        $url = new Url;
+
+        $this->assertEquals(10, $url->totalClicksById($this->admin()->id));
+    }
+
+    /** @test */
+    public function total_clicks_by_guest()
+    {
+        $url = new Url;
+
+        $this->assertEquals(20, $url->totalClicksById());
     }
 }
