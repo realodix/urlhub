@@ -34,7 +34,7 @@ class UrlBeTest extends TestCase
 
         $url = Url::whereUserId($this->user()->id)->first();
 
-        $response = $this->from(route('dashboard'))
+        $this->from(route('dashboard'))
                          ->get(route('dashboard.duplicate', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
@@ -55,7 +55,7 @@ class UrlBeTest extends TestCase
 
         $url = Url::whereUserId($this->user()->id)->first();
 
-        $response = $this->from(route('dashboard'))
+        $this->from(route('dashboard'))
                          ->get(route('dashboard.duplicate', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
