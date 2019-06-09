@@ -94,4 +94,28 @@ class UrlBeTest extends TestCase
         $response = $this->get(route('dashboard.allurl'));
         $response->assertStatus(403);
     }
+
+    /** @test */
+    public function au_admin_can_delete()
+    {
+        $user_id = $this->admin()->id;
+        $long_url = 'https://laravel.com';
+
+        factory(Url::class)->create([
+            'user_id'  => $user_id,
+            'long_url' => $long_url,
+        ]);
+
+        $this->loginAsAdmin();
+
+        $url = Url::whereUserId($user_id)->first();
+
+        $response = $this->from(route('dashboard.allurl'))
+                         ->get($this->getDeleteRoute($url->id));
+        $response->assertRedirect(route('dashboard.allurl'));
+        $response->assertSessionHas(['flash_success']);
+
+        $count = Url::where('long_url', '=', $long_url)->count();
+        $this->assertSame(0, $count);
+    }
 }
