@@ -8,7 +8,6 @@ use App\Url;
 use App\User;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
@@ -33,23 +32,18 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        // Count the number of guests in the url column based on IP
-        // and grouped by ip.
-        $totalGuest = Url::select('ip', DB::raw('count(*) as total'))
-                           ->whereNull('user_id')
-                           ->groupBy('ip')
-                           ->get()
-                           ->count();
+        $url = new Url;
+        $user = new User;
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => Url::count('url_key'),
-            'totalShortUrlByMe'    => $this->totalShortUrlById(Auth::id()),
-            'totalShortUrlByGuest' => $this->totalShortUrlById(),
-            'totalClicks'          => Url::sum('clicks'),
-            'totalClicksByMe'      => $this->totalClicksById(Auth::id()),
-            'totalClicksByGuest'   => $this->totalClicksById(),
-            'totalUser'            => User::count(),
-            'totalGuest'           => $totalGuest,
+            'totalShortUrl'        => $url->totalShortUrl(),
+            'totalShortUrlByMe'    => $url->totalShortUrlById(Auth::id()),
+            'totalShortUrlByGuest' => $url->totalShortUrlById(),
+            'totalClicks'          => $url->totalClicks(),
+            'totalClicksByMe'      => $url->totalClicksById(Auth::id()),
+            'totalClicksByGuest'   => $url->totalClicksById(),
+            'totalUser'            => $user->totalUser(),
+            'totalGuest'           => $user->totalGuest(),
             'capacity'             => $this->UrlSrvc->url_key_capacity(),
             'remaining'            => $this->UrlSrvc->url_key_remaining(),
 
@@ -130,21 +124,5 @@ class DashboardController extends Controller
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
-    }
-
-    /**
-     * @param int $id
-     */
-    public function totalShortUrlById($id = null)
-    {
-        return Url::whereUserId($id)->count('url_key');
-    }
-
-    /**
-     * @param int $id
-     */
-    public function totalClicksById($id = null)
-    {
-        return Url::whereUserId($id)->sum('clicks');
     }
 }
