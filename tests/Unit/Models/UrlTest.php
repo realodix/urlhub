@@ -3,7 +3,6 @@
 namespace Tests\Unit\Models;
 
 use App\Url;
-use App\User;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
