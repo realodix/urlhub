@@ -43,7 +43,7 @@ class UserTest extends TestCase
     {
         $user = new User;
 
-        $this->assertEquals(2, $user->totalUser());
+        $this->assertSame(2, $user->totalUser());
     }
 
     /** @test */
@@ -51,6 +51,6 @@ class UserTest extends TestCase
     {
         $user = new User;
 
-        $this->assertEquals(2, $user->totalGuest());
+        $this->assertSame(2, $user->totalGuest());
     }
 }
