@@ -8,7 +8,6 @@ use App\Url;
 use App\User;
 use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
@@ -33,7 +32,7 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $url  = new Url;
+        $url = new Url;
         $user = new User;
 
         return view('backend.dashboard', [

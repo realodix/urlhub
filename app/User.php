@@ -4,13 +4,12 @@ namespace App;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Traits\Hashidable;
-use App\Url;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravolt\Avatar\Facade as Avatar;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
