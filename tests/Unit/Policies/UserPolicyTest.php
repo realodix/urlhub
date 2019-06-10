@@ -7,9 +7,7 @@ use Tests\TestCase;
 class UserPolicyTest extends TestCase
 {
     /**
-     *
      * ALl URLs Page.
-     *
      */
 
     /** @test */
