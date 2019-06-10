@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Unit\Policies;
+// namespace Tests\Unit\Policies;
 
-use Tests\TestCase;
+// use Tests\TestCase;
 
-class UrlPolicyTest extends TestCase
-{
-}
+// class UrlPolicyTest extends TestCase
+// {
+// }
