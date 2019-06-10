@@ -33,22 +33,4 @@ class ChangePasswordTest extends TestCase
         $this->assertTrue(Hash::check('new-awesome-password', $this->admin()->fresh()->password));
         $response->assertSessionHas(['flash_success']);
     }
-
-    /** @test */
-    public function admin_can_access_a_user_change_password_page()
-    {
-        $this->loginAsAdmin();
-
-        $response = $this->get($this->getRoute($this->user()->name));
-        $response->assertStatus(200);
-    }
-
-    /** @test */
-    public function user_cant_access_a_admin_change_password_page()
-    {
-        $this->loginAsUser();
-
-        $response = $this->get($this->getRoute($this->admin()->name));
-        $response->assertStatus(403);
-    }
 }
