@@ -6,10 +6,10 @@ use Tests\TestCase;
 
 class UserPolicyTest extends TestCase
 {
-    /**
-     * |
-     * | ALl URLs Page.
-     * |.
+    /*
+     *
+     * ALl URLs Page.
+     *
      */
 
     /** @test */
