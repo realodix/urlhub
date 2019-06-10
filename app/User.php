@@ -4,11 +4,13 @@ namespace App;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Traits\Hashidable;
+use App\Url;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravolt\Avatar\Facade as Avatar;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -60,5 +62,28 @@ class User extends Authenticatable
 
         // Create unique avatar based on their email
         return Avatar::create(title_case($this->email))->toBase64();
+    }
+
+    /*
+     |
+     |
+     */
+
+    public function totalUser()
+    {
+        return self::count();
+    }
+
+    /*
+     * Count the number of guests in the url column based on IP
+     * and grouped by ip.
+     */
+    public function totalGuest()
+    {
+        return Url::select('ip', DB::raw('count(*) as total'))
+                    ->whereNull('user_id')
+                    ->groupBy('ip')
+                    ->get()
+                    ->count();
     }
 }
