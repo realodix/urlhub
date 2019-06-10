@@ -88,7 +88,7 @@ class Url extends Model
         return self::whereUserId($id)->count('url_key');
     }
 
-    public function totalClicks()
+    public function totalClicks():int
     {
         return self::sum('clicks');
     }
@@ -96,7 +96,7 @@ class Url extends Model
     /**
      * @param int $id
      */
-    public function totalClicksById($id = null)
+    public function totalClicksById($id = null):int
     {
         return self::whereUserId($id)->sum('clicks');
     }

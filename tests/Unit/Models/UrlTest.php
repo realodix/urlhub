@@ -83,7 +83,7 @@ class UrlTest extends TestCase
     {
         $url = new Url;
 
-        $this->assertEquals(3, $url->totalShortUrl());
+        $this->assertSame(3, $url->totalShortUrl());
     }
 
     /** @test */
@@ -91,7 +91,7 @@ class UrlTest extends TestCase
     {
         $url = new Url;
 
-        $this->assertEquals(1, $url->totalShortUrlById($this->admin()->id));
+        $this->assertSame(1, $url->totalShortUrlById($this->admin()->id));
     }
 
     /** @test */
@@ -99,7 +99,7 @@ class UrlTest extends TestCase
     {
         $url = new Url;
 
-        $this->assertEquals(2, $url->totalShortUrlById());
+        $this->assertSame(2, $url->totalShortUrlById());
     }
 
     /** @test */
@@ -107,7 +107,7 @@ class UrlTest extends TestCase
     {
         $url = new Url;
 
-        $this->assertEquals(30, $url->totalClicks());
+        $this->assertSame(30, $url->totalClicks());
     }
 
     /** @test */
@@ -115,7 +115,7 @@ class UrlTest extends TestCase
     {
         $url = new Url;
 
-        $this->assertEquals(10, $url->totalClicksById($this->admin()->id));
+        $this->assertSame(10, $url->totalClicksById($this->admin()->id));
     }
 
     /** @test */
@@ -123,6 +123,6 @@ class UrlTest extends TestCase
     {
         $url = new Url;
 
-        $this->assertEquals(20, $url->totalClicksById());
+        $this->assertSame(20, $url->totalClicksById());
     }
 }
