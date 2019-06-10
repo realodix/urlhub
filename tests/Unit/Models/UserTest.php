@@ -30,12 +30,11 @@ class UserTest extends TestCase
     /** @test */
     public function has_many_url()
     {
-        $user = factory(User::class)->create();
         $url = factory(Url::class)->create([
-            'user_id' => $user->id,
+            'user_id' => $this->user()->id,
         ]);
 
-        $this->assertTrue($user->url()->exists());
+        $this->assertTrue($this->user()->url()->exists());
     }
 
     /** @test */
