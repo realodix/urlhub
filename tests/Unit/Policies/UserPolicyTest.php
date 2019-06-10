@@ -8,7 +8,7 @@ class UserPolicyTest extends TestCase
 {
     /*
      *
-     * ALl URLs Page.
+     * ALl Users Page.
      *
      */
 
@@ -22,7 +22,7 @@ class UserPolicyTest extends TestCase
     }
 
     /** @test */
-    public function user_cant_access_all_users_page()
+    public function non_admin_cant_access_all_users_page()
     {
         $this->loginAsUser();
 
