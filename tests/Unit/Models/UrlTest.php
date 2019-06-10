@@ -36,9 +36,21 @@ class UrlTest extends TestCase
     /** @test */
     public function belongs_to_user()
     {
-        $url = factory(Url::class)->create(['user_id' => $this->user()->id]);
+        $url = factory(Url::class)->create([
+            'user_id' => $this->user()->id
+        ]);
 
         $this->assertTrue($url->user()->exists());
+    }
+
+    /** @test */
+    public function default_guest_name()
+    {
+        $url = factory(Url::class)->create([
+            'user_id' => null
+        ]);
+
+        $this->assertSame('Guest', $url->user->name);
     }
 
     /** @test */
