@@ -33,14 +33,8 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        // Count the number of guests in the url column based on IP
-        // and grouped by ip.
-        $totalGuest = Url::select('ip', DB::raw('count(*) as total'))
-                           ->whereNull('user_id')
-                           ->groupBy('ip')
-                           ->get()
-                           ->count();
-        $url = new Url;
+        $url  = new Url;
+        $user = new User;
 
         return view('backend.dashboard', [
             'totalShortUrl'        => $url->totalShortUrl(),
@@ -49,8 +43,8 @@ class DashboardController extends Controller
             'totalClicks'          => $url->totalClicks(),
             'totalClicksByMe'      => $url->totalClicksById(Auth::id()),
             'totalClicksByGuest'   => $url->totalClicksById(),
-            'totalUser'            => User::count(),
-            'totalGuest'           => $totalGuest,
+            'totalUser'            => $user->totalUser(),
+            'totalGuest'           => $user->totalGuest(),
             'capacity'             => $this->UrlSrvc->url_key_capacity(),
             'remaining'            => $this->UrlSrvc->url_key_remaining(),
 
