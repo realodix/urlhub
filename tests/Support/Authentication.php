@@ -21,24 +21,24 @@ trait Authentication
         return User::whereName('admin')->first();
     }
 
-    protected function user()
-    {
-        return User::whereName('user')->first();
-    }
-
     protected function adminPassword()
     {
         return 'admin';
     }
 
-    protected function userPassword()
-    {
-        return 'user';
-    }
-
     protected function loginAsAdmin()
     {
         return $this->actingAs($this->admin());
+    }
+
+    protected function user()
+    {
+        return User::whereName('user')->first();
+    }
+
+    protected function userPassword()
+    {
+        return 'user';
     }
 
     protected function loginAsUser()
