@@ -8,7 +8,7 @@ use Tests\TestCase;
 class UserPolicyTest extends TestCase
 {
     /**
-     * Admin can access the page and other user pages.
+     * Admin can access their own the page and other user pages.
      *
      * @test
      */
@@ -23,7 +23,7 @@ class UserPolicyTest extends TestCase
     }
 
     /**
-     * Non-admin can only access own page.
+     * Non-admin can only access their own page.
      *
      * @test
      */
@@ -38,7 +38,7 @@ class UserPolicyTest extends TestCase
     }
 
     /**
-     * Admin can change the password for himself and other users.
+     * Admin can change their own data and other user data.
      *
      * @test
      */
@@ -53,7 +53,7 @@ class UserPolicyTest extends TestCase
     }
 
     /**
-     * Not an Admin can only change his own password.
+     * Non-admin can only change their own data.
      *
      * @test
      */
@@ -68,7 +68,7 @@ class UserPolicyTest extends TestCase
     }
 
     /**
-     * Admin can access the page and other user pages.
+     * Admin can change their own data and other user data.
      *
      * @test
      */
@@ -83,7 +83,7 @@ class UserPolicyTest extends TestCase
     }
 
     /**
-     * Non-admin can only access own page.
+     * Non-admin can only change their own data.
      *
      * @test
      */
