@@ -18,7 +18,16 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_access_a_user_profile_page()
+    public function users_can_access_their_own_profile_page()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->get($this->getRoute($this->admin()->name));
+        $response->assertStatus(200);
+    }
+
+    /** @test */
+    public function admin_can_access_other_users_profile_pages()
     {
         $this->loginAsAdmin();
 
@@ -27,7 +36,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    public function user_cant_access_a_admin_profile_page()
+    public function non_admin_cant_access_other_users_profile_pages()
     {
         $this->loginAsUser();
 
@@ -98,20 +107,6 @@ class ProfileTest extends TestCase
             ->assertSessionHas(['flash_success']);
 
         $this->assertSame('new_email_user@urlhub.test', $this->user()->email);
-    }
-
-    /** @test */
-    public function user_cant_change_admin_email()
-    {
-        $this->loginAsUser();
-
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
-                            'email' => 'new_email_admin@urlhub.test',
-                         ]);
-
-        $response->assertStatus(403);
-        $this->assertSame('admin@urlhub.test', $this->admin()->email);
     }
 
     /** @test */
