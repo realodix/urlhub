@@ -31,7 +31,8 @@ class RegisterTest extends TestCase
         return route('home');
     }
 
-    public function test_user_can_view_a_registration_form()
+    /** @test */
+    public function user_can_view_a_registration_form()
     {
         $response = $this->get($this->getRoute());
 
@@ -40,14 +41,16 @@ class RegisterTest extends TestCase
             ->assertViewIs('frontend.auth.register');
     }
 
-    public function test_user_cannot_view_a_registration_form_when_authenticated()
+    /** @test */
+    public function user_cannot_view_a_registration_form_when_authenticated()
     {
         $response = $this->loginAsUser()->get($this->getRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
-    public function test_user_can_register()
+    /** @test */
+    public function user_can_register()
     {
         Event::fake();
 
@@ -69,6 +72,7 @@ class RegisterTest extends TestCase
         });
     }
 
+    /** @test */
     public function test_name_should_not_be_too_long()
     {
         $response = $this->post('/register', [
@@ -80,7 +84,8 @@ class RegisterTest extends TestCase
             ->assertSessionHasErrors('name');
     }
 
-    public function test_user_cannot_register_without_name()
+    /** @test */
+    public function user_cannot_register_without_name()
     {
         $response = $this->from($this->getRoute())
                          ->post($this->postRoute(), [
@@ -100,7 +105,8 @@ class RegisterTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_user_cannot_register_without_email()
+    /** @test */
+    public function user_cannot_register_without_email()
     {
         $response = $this->from($this->getRoute())
                          ->post($this->postRoute(), [
@@ -120,7 +126,8 @@ class RegisterTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_user_cannot_register_with_invalid_email()
+    /** @test */
+    public function user_cannot_register_with_invalid_email()
     {
         $response = $this->from($this->getRoute())
                          ->post($this->postRoute(), [
@@ -141,6 +148,7 @@ class RegisterTest extends TestCase
         $this->assertGuest();
     }
 
+    /** @test */
     public function test_email_should_not_be_too_long()
     {
         $response = $this->post('/register', [
@@ -151,7 +159,8 @@ class RegisterTest extends TestCase
         $response->assertSessionHasErrors('email');
     }
 
-    public function test_user_cannot_register_without_password()
+    /** @test */
+    public function user_cannot_register_without_password()
     {
         $response = $this->from($this->getRoute())
                          ->post($this->postRoute(), [
@@ -172,7 +181,8 @@ class RegisterTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_user_cannot_register_without_password_confirmation()
+    /** @test */
+    public function user_cannot_register_without_password_confirmation()
     {
         $response = $this->from($this->getRoute())
                          ->post($this->postRoute(), [
@@ -193,7 +203,8 @@ class RegisterTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_user_cannot_register_with_passwords_not_matching()
+    /** @test */
+    public function user_cannot_register_with_passwords_not_matching()
     {
         $response = $this->from($this->getRoute())
                          ->post($this->postRoute(), [

@@ -29,7 +29,8 @@ class LoginTest extends TestCase
         return route('home');
     }
 
-    public function test_user_can_view_a_login_form()
+    /** @test */
+    public function user_can_view_a_login_form()
     {
         $response = $this->get($this->getRoute());
 
@@ -38,14 +39,16 @@ class LoginTest extends TestCase
             ->assertViewIs('frontend.auth.login');
     }
 
-    public function test_user_cannot_view_a_login_form_when_authenticated()
+    /** @test */
+    public function user_cannot_view_a_login_form_when_authenticated()
     {
         $response = $this->loginAsUser()->get($this->getRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
-    public function test_user_can_login_with_correct_credentials()
+    /** @test */
+    public function user_can_login_with_correct_credentials()
     {
         $user = factory(User::class)->create([
             'password' => Hash::make($password = 'i-love-laravel'),
@@ -60,7 +63,8 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    public function test_user_cannot_login_with_incorrect_password()
+    /** @test */
+    public function user_cannot_login_with_incorrect_password()
     {
         $user = factory(User::class)->create([
             'password' => Hash::make('i-love-laravel'),
@@ -80,12 +84,14 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_unauthenticated_users_cant_access_the_dashboard()
+    /** @test */
+    public function unauthenticated_users_cant_access_the_dashboard()
     {
         $this->get('/admin')->assertRedirect('/login');
     }
 
-    public function test_user_cannot_login_with_email_that_does_not_exist()
+    /** @test */
+    public function user_cannot_login_with_email_that_does_not_exist()
     {
         $response = $this->from($this->getRoute())->post($this->postRoute(), [
             'identity' => 'nobody@example.com',
