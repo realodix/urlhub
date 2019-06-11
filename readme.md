@@ -56,15 +56,16 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
    | user@urlhub.test  | user     | user     | User Access  |
 
 ### Compiling assets with Laravel Mix
+
 #### Using NPM:
-1. From the projects root folder run `npm install`
-2. Run `npm run dev` or `npm run prod`
+1. `npm install`
+2. `npm run dev` or `npm run prod`
 
     *You can watch assets with `npm run watch`*
 
 #### Using Yarn:
-1. From the projects root folder run `yarn`
-2. Run `yarn dev` or `yarn prod`
+1. `yarn`
+2. `yarn dev` or `yarn prod`
 
     *You can watch assets with `yarn watch`*
 
@@ -79,6 +80,12 @@ Please do the following:
 3. Commit and push the topic branch.
 4. Make a pull request.
 5. Welcome to the club :sunglasses: and thank you for helping out!
+
+### Running Tests
+
+From the projects root folder run `./vendor/bin/phpunit`
+
+screenshoot
 
 
 ## License
