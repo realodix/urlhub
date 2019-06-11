@@ -39,7 +39,6 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $admin = $this->admin();
         $user = $this->user();
 
         $response = $this->from($this->getRoute($user->name))
@@ -53,22 +52,4 @@ class ChangePasswordTest extends TestCase
         $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
         $response->assertSessionHas(['flash_success']);
     }
-
-    /* @test */
-    // public function non_admin_cannot_change_another_user_s_password()
-    // {
-    //     $this->loginAsUser();
-
-    //     $admin = $this->admin();
-    //     $user = $this->user();
-
-    //     $response = $this->from($this->getRoute($this->admin()->name))
-    //                      ->post($this->postRoute($this->admin()->id), [
-    //                         'current-password'          => $this->adminPassword(),
-    //                         'new-password'              => 'new-awesome-password',
-    //                         'new-password_confirmation' => 'new-awesome-password',
-    //                      ]);
-
-    //     $response->assertStatus(403);
-    // }
 }
