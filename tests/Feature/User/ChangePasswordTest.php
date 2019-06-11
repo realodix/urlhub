@@ -54,7 +54,7 @@ class ChangePasswordTest extends TestCase
         $response->assertSessionHas(['flash_success']);
     }
 
-    /** @test */
+    /* @test */
     // public function non_admin_cannot_change_another_user_s_password()
     // {
     //     $this->loginAsUser();
