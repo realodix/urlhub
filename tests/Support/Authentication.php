@@ -12,9 +12,6 @@ trait Authentication
     {
         parent::setUp();
 
-        // $this->createAdmin();
-        // $this->createUser();
-
         $now = now();
 
         $admin = factory(User::class)->create([
