@@ -12,8 +12,27 @@ trait Authentication
     {
         parent::setUp();
 
-        $this->createAdmin();
-        $this->createUser();
+        // $this->createAdmin();
+        // $this->createUser();
+
+        $now = now();
+
+        $admin = factory(User::class)->create([
+            'name'       => 'admin',
+            'email'      => 'admin@urlhub.test',
+            'password'   => bcrypt('admin'),
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+        $admin->assignRole($this->getAdminRole());
+
+        factory(User::class)->create([
+            'name'       => 'user',
+            'email'      => 'user@urlhub.test',
+            'password'   => bcrypt('user'),
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
     }
 
     protected function admin()
@@ -46,41 +65,6 @@ trait Authentication
         return $this->actingAs($this->user());
     }
 
-    public function createAdmin()
-    {
-        $now = now();
-
-        $attributes = [
-            'name'       => 'admin',
-            'email'      => 'admin@urlhub.test',
-            'password'   => bcrypt('admin'),
-            'created_at' => $now,
-            'updated_at' => $now,
-        ];
-
-        $admin = factory(User::class)->create($attributes);
-        $admin->assignRole($this->getAdminRole());
-
-        return $admin;
-    }
-
-    public function createUser()
-    {
-        $now = now();
-
-        $attributes = [
-            'name'       => 'user',
-            'email'      => 'user@urlhub.test',
-            'password'   => bcrypt('user'),
-            'created_at' => $now,
-            'updated_at' => $now,
-        ];
-
-        $user = factory(User::class)->create($attributes);
-
-        return  $user;
-    }
-
     public function getAdminRole()
     {
         // create permissions
@@ -90,8 +74,6 @@ trait Authentication
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo(Permission::all());
 
-        // $adminRole = factory(Role::class)->create(['name' => config('access.users.admin_role')]);
-        // $adminRole->givePermissionTo(factory(Permission::class)->create(['name' => 'view backend']));
         return $adminRole;
     }
 }
