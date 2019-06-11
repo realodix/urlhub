@@ -9,7 +9,7 @@ use Tests\TestCase;
 class UrlPolicyTest extends TestCase
 {
     /**
-     * Determine whether the user can permanently delete the url.
+     * Admin can delete their own data and other user data.
      *
      * @test
      */
@@ -18,12 +18,17 @@ class UrlPolicyTest extends TestCase
         $this->loginAsAdmin();
 
         $admin = $this->admin();
+        $their_own_url = factory(Url::class)->create([
+            'user_id'  => $admin->id,
+            'long_url' => 'https://laravel.com',
+        ]);
 
+        $this->assertTrue($admin->can('forceDelete', $their_own_url));
         $this->assertTrue($admin->can('forceDelete', new Url));
     }
 
     /**
-     * Determine whether the user can permanently delete the url.
+     * Non-admin can only delete their own data.
      *
      * @test
      */
@@ -32,7 +37,12 @@ class UrlPolicyTest extends TestCase
         $this->loginAsUser();
 
         $non_admin = $this->user();
+        $their_own_url = factory(Url::class)->create([
+            'user_id'  => $non_admin->id,
+            'long_url' => 'https://laravel.com',
+        ]);
 
+        $this->assertTrue($non_admin->can('forceDelete', $their_own_url));
         $this->assertFalse($non_admin->can('forceDelete', new Url));
     }
 }
