@@ -2827,7 +2827,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -3698,16 +3698,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v9.4.0",
+            "version": "v9.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "fe397a9e3c2164df8eba83352cc51a2ccc380758"
+                "reference": "ac37f93026b6b607d1bb56789d147a4efd8d97d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/fe397a9e3c2164df8eba83352cc51a2ccc380758",
-                "reference": "fe397a9e3c2164df8eba83352cc51a2ccc380758",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/ac37f93026b6b607d1bb56789d147a4efd8d97d9",
+                "reference": "ac37f93026b6b607d1bb56789d147a4efd8d97d9",
                 "shasum": ""
             },
             "require": {
@@ -3765,7 +3765,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-06-06T08:12:54+00:00"
+            "time": "2019-06-12T05:06:59+00:00"
         }
     ],
     "packages-dev": [
