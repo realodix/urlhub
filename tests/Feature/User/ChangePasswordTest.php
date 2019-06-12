@@ -54,7 +54,7 @@ class ChangePasswordTest extends TestCase
     }
 
     /**
-     * Current password is wrong
+     * Current password is wrong.
      *
      * @test
      */
@@ -77,7 +77,7 @@ class ChangePasswordTest extends TestCase
     }
 
     /**
-     * new-password_confirmation is wrong
+     * new-password_confirmation is wrong.
      *
      * @test
      */
