@@ -52,4 +52,50 @@ class ChangePasswordTest extends TestCase
         $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
         $response->assertSessionHas(['flash_success']);
     }
+
+    /**
+     * Current password is wrong
+     *
+     * @test
+     */
+    public function change_password_validation_1()
+    {
+        $this->loginAsUser();
+
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => 'laravel',
+                            'new-password'              => 'new-awesome-password',
+                            'new-password_confirmation' => 'new-awesome-password',
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHas('flash_error');
+    }
+
+    /**
+     * new-password_confirmation is wrong
+     *
+     * @test
+     */
+    public function change_password_validation_2()
+    {
+        $this->loginAsUser();
+
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => $this->userPassword(),
+                            'new-password'              => 'new-awesome-password',
+                            'new-password_confirmation' => 'new-awesome-pass',
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHasErrors('new-password');
+    }
 }
