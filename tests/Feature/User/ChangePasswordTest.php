@@ -76,12 +76,8 @@ class ChangePasswordTest extends TestCase
         $response->assertSessionHas('flash_error');
     }
 
-    /**
-     * new-password_confirmation is wrong
-     *
-     * @test
-     */
-    public function change_password_validation_2()
+    /** @test */
+    public function new_password_validate_confirmed()
     {
         $this->loginAsUser();
 
