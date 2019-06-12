@@ -45,54 +45,6 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    public function validation_email_required()
-    {
-        $this->loginAsAdmin();
-
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
-                             'email' => '',
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($this->admin()->name))
-            ->assertStatus(302)
-            ->assertSessionHasErrors('email');
-    }
-
-    /** @test */
-    public function validation_email_invalid_format()
-    {
-        $this->loginAsAdmin();
-
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
-                             'email' => 'invalid_format',
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($this->admin()->name))
-            ->assertStatus(302)
-            ->assertSessionHasErrors('email');
-    }
-
-    /** @test */
-    public function validation_email_unique()
-    {
-        $this->loginAsAdmin();
-
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
-                             'email' => $this->user()->email,
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($this->admin()->name))
-            ->assertStatus(302)
-            ->assertSessionHasErrors('email');
-    }
-
-    /** @test */
     public function admin_can_change_user_email()
     {
         $this->loginAsAdmin();
@@ -110,7 +62,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    public function user_cant_change_other_users_email()
+    public function non_admin_cant_change_other_users_email()
     {
         $this->loginAsUser();
 
@@ -123,5 +75,66 @@ class ProfileTest extends TestCase
 
         $response->assertStatus(403);
         $this->assertSame('user2@urlhub.test', $user2->email);
+    }
+
+    /** @test */
+    public function validation_email_required()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
+                             'email' => '',
+                         ]);
+
+        $response
+            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function validation_email_invalid_format()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
+                             'email' => 'invalid_format',
+                         ]);
+
+        $response
+            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function validation_email_max_length()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
+                             // 255 + 9
+                             'email' => str_repeat('a', 255).'@mail.com',
+                         ]);
+
+        $response
+            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function validation_email_unique()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->from($this->getRoute($this->admin()->name))
+                         ->post($this->postRoute($this->admin()->id), [
+                             'email' => $this->user()->email,
+                         ]);
+
+        $response
+            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertSessionHasErrors('email');
     }
 }
