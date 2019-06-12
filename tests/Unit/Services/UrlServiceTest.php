@@ -3,6 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Services\UrlService;
+use App\Url;
 use Tests\TestCase;
 
 class UrlServiceTest extends TestCase
@@ -88,5 +89,27 @@ class UrlServiceTest extends TestCase
         config()->set('urlhub.hash_size_1', 'string');
         config()->set('urlhub.hash_size_2', 'string');
         $this->assertSame(0, $this->UrlSrvc->url_key_capacity());
+    }
+
+    /** @test */
+    public function url_key_remaining()
+    {
+        factory(Url::class, 5)->create([
+            'user_id' => null,
+        ]);
+
+        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_size_1', 1);
+        config()->set('urlhub.hash_size_2', 0);
+
+        // 3 - 5 = must be 0
+        $this->assertSame(0, $this->UrlSrvc->url_key_remaining());
+
+        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_size_1', 2);
+        config()->set('urlhub.hash_size_2', 0);
+
+        // 9 - 5 = 4
+        $this->assertSame(4, $this->UrlSrvc->url_key_remaining());
     }
 }
