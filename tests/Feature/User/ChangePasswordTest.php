@@ -54,7 +54,7 @@ class ChangePasswordTest extends TestCase
     }
 
     /**
-     * Current password is wrong
+     * Current password is wrong.
      *
      * @test
      */
