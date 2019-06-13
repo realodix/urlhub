@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
         $id = \Hashids::connection($model)->decode($routeKey)[0] ?? null;
         $modelInstance = resolve($model);
 
-        return  $modelInstance->findOrFail($id);
+        return $modelInstance->findOrFail($id);
     }
 
     /**
