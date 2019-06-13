@@ -13,14 +13,14 @@ class UserTest extends TestCase
         parent::setUp();
 
         factory(Url::class)->create([
-            'user_id'  => 0,
+            'user_id'  => null,
             'long_url' => 'https://laravel.com',
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
-            'user_id'  => 0,
+            'user_id'  => null,
             'long_url' => 'https://laravel.com',
             'clicks'   => 10,
             'ip'       => '1.1.1.1',
@@ -42,10 +42,17 @@ class UserTest extends TestCase
     {
         $user = new User;
 
+        // There are 2 users created
+        // See Tests\Support\Authentication::setUp()
         $this->assertSame(2, $user->totalUser());
     }
 
-    /** @test */
+    /**
+     * The number of guests is calculated based on IP
+     * See setUp()
+     *
+     * @test
+     */
     public function totalGuest()
     {
         $user = new User;
