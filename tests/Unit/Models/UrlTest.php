@@ -43,6 +43,24 @@ class UrlTest extends TestCase
         $this->assertTrue($url->user()->exists());
     }
 
+    /**
+     * The default guest id must be null.
+     *
+     * @test
+     */
+    public function default_guest_id()
+    {
+        $long_url = 'https://example.com';
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $this->assertSame(null, $url->user_id);
+    }
+
     /** @test */
     public function default_guest_name()
     {
