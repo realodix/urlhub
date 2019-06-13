@@ -154,7 +154,7 @@ class UrlControllerTest extends TestCase
         $response->assertStatus(301);
     }
 
-    /**
+    /*
      * checkExistingCustomUrl()
      * @test
      */
