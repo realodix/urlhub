@@ -85,7 +85,7 @@ Please do the following:
 
 From the projects root folder run `./vendor/bin/phpunit`
 
-screenshoot
+![screenshot](https://i.imgur.com/7vOK66n.png)
 
 
 ## License
