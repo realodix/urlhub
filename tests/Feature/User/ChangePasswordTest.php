@@ -35,20 +35,120 @@ class ChangePasswordTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_access_a_user_change_password_page()
+    public function admin_can_change_the_password_of_all_users()
     {
         $this->loginAsAdmin();
 
-        $response = $this->get($this->getRoute($this->user()->name));
-        $response->assertStatus(200);
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => $this->adminPassword(),
+                            'new-password'              => 'new-awesome-password',
+                            'new-password_confirmation' => 'new-awesome-password',
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHas(['flash_success']);
     }
 
-    /** @test */
-    public function user_cant_access_a_admin_change_password_page()
+    /**
+     * Current password is wrong.
+     *
+     * @test
+     */
+    public function verifying_a_password_against_a_hash()
     {
         $this->loginAsUser();
 
-        $response = $this->get($this->getRoute($this->admin()->name));
-        $response->assertStatus(403);
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => 'laravel',
+                            'new-password'              => 'new-awesome-password',
+                            'new-password_confirmation' => 'new-awesome-password',
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHas('flash_error');
+    }
+
+    /** @test */
+    public function new_password_validate_required()
+    {
+        $this->loginAsUser();
+
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => $this->userPassword(),
+                            'new-password'              => '',
+                            'new-password_confirmation' => '',
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHasErrors('new-password');
+    }
+
+    /** @test */
+    public function new_password_validate_string()
+    {
+        $this->loginAsUser();
+
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => $this->userPassword(),
+                            'new-password'              => null,
+                            'new-password_confirmation' => null,
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHasErrors('new-password');
+    }
+
+    /** @test */
+    public function new_password_validate_min_lenght()
+    {
+        $this->loginAsUser();
+
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => $this->userPassword(),
+                            'new-password'              => str_repeat('a', 5),
+                            'new-password_confirmation' => str_repeat('a', 5),
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHasErrors('new-password');
+    }
+
+    /** @test */
+    public function new_password_validate_confirmed()
+    {
+        $this->loginAsUser();
+
+        $user = $this->user();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => $this->userPassword(),
+                            'new-password'              => 'new-awesome-password',
+                            'new-password_confirmation' => 'new-awesome-pass',
+                         ]);
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $response->assertSessionHasErrors('new-password');
     }
 }

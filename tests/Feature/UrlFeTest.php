@@ -8,20 +8,6 @@ use Tests\TestCase;
 class UrlFeTest extends TestCase
 {
     /** @test */
-    public function create_short_url()
-    {
-        $long_url = 'https://laravel.com';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-        ]);
-
-        $this->assertDatabaseHas('urls', [
-            'long_url' => $long_url,
-        ]);
-    }
-
-    /** @test */
     public function long_url_already_exist()
     {
         $long_url = 'https://laravel.com';
@@ -36,7 +22,7 @@ class UrlFeTest extends TestCase
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
     }
 
     /** @test */
@@ -56,7 +42,7 @@ class UrlFeTest extends TestCase
         ]);
 
         $url = Url::whereUserId($this->user()->id)->first();
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
@@ -80,7 +66,7 @@ class UrlFeTest extends TestCase
         ]);
         $url = Url::whereUserId($user->id)->first();
         $response
-            ->assertRedirect(route('home').'/+'.$url->url_key)
+            ->assertRedirect(route('short_url.stats', $url->url_key))
             ->assertSessionHas(['msgLinkAlreadyExists']);
 
         $count = Url::where('long_url', '=', $long_url)->count();
@@ -105,7 +91,7 @@ class UrlFeTest extends TestCase
 
         $url = Url::whereUserId($this->user()->id)->first();
 
-        $response = $this->from(route('home').'/+'.$url->url_key)
+        $response = $this->from(route('short_url.stats', $url->url_key))
                          ->get(route('duplicate', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
@@ -123,24 +109,7 @@ class UrlFeTest extends TestCase
 
         $response
             ->assertRedirect(route('home'))
-            ->assertSessionHasErrors('long_url')
-            ->assertStatus(302);
-    }
-
-    /** @test */
-    public function redirect_to_original_url()
-    {
-        $long_url = 'https://laravel.com';
-
-        $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-        ]);
-
-        $url = Url::whereLongUrl($long_url)
-                    ->first();
-
-        $response = $this->get(route('home').'/'.$url->url_key);
-        $response->assertRedirect($long_url);
+            ->assertSessionHasErrors('long_url');
     }
 
     /*
@@ -149,23 +118,6 @@ class UrlFeTest extends TestCase
      |
      |
      */
-
-    /** @test */
-    public function cst_create_short_url()
-    {
-        $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
-        ]);
-
-        $this->assertDatabaseHas('urls', [
-            'long_url' => $long_url,
-            'url_key'  => $custom_url_key,
-        ]);
-    }
 
     /** @test */
     public function cst_long_url_already_exist()
@@ -185,7 +137,9 @@ class UrlFeTest extends TestCase
             'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key_2,
         ]);
-        $response->assertRedirect(route('home').'/+'.$custom_url_key);
+        $response->assertRedirect(
+            route('short_url.stats', $custom_url_key)
+        );
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
         $response2->assertStatus(404);
@@ -212,7 +166,9 @@ class UrlFeTest extends TestCase
             'custom_url_key' => $custom_url_key_2,
         ]);
 
-        $response->assertRedirect(route('home').'/+'.$custom_url_key_2);
+        $response->assertRedirect(
+            route('short_url.stats', $custom_url_key_2)
+        );
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
         $response2->assertRedirect($long_url);
@@ -270,23 +226,5 @@ class UrlFeTest extends TestCase
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(1, $count);
-    }
-
-    /** @test */
-    public function cst_redirect_to_original_url()
-    {
-        $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
-
-        $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-            'url_key'  => $custom_url_key,
-        ]);
-
-        $url = Url::whereLongUrl($long_url)
-                    ->first();
-
-        $response = $this->get(route('home').'/'.$url->url_key);
-        $response->assertRedirect($long_url);
     }
 }

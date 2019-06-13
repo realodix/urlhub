@@ -41,7 +41,8 @@ class ResetPasswordTest extends TestCase
         return route('home');
     }
 
-    public function test_user_can_view_a_password_reset_form()
+    /** @test */
+    public function user_can_view_a_password_reset_form()
     {
         $response = $this->get($this->getRoute($token = $this->getValidToken($this->user())));
 
@@ -51,7 +52,8 @@ class ResetPasswordTest extends TestCase
             ->assertViewHas('token', $token);
     }
 
-    public function test_user_cannot_view_a_password_reset_form_when_authenticated()
+    /** @test */
+    public function user_cannot_view_a_password_reset_form_when_authenticated()
     {
         $user = $this->user();
 
@@ -61,7 +63,8 @@ class ResetPasswordTest extends TestCase
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
-    public function test_user_can_reset_password_with_valid_token()
+    /** @test */
+    public function user_can_reset_password_with_valid_token()
     {
         Event::fake();
 
@@ -83,7 +86,8 @@ class ResetPasswordTest extends TestCase
         });
     }
 
-    public function test_user_cannot_reset_password_with_invalid_token()
+    /** @test */
+    public function user_cannot_reset_password_with_invalid_token()
     {
         $user = factory(User::class)->create([
             'password' => Hash::make('old-password'),
@@ -103,7 +107,8 @@ class ResetPasswordTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_user_cannot_reset_password_without_providing_a_new_password()
+    /** @test */
+    public function user_cannot_reset_password_without_providing_a_new_password()
     {
         $user = factory(User::class)->create([
             'password' => Hash::make('old-password'),
@@ -128,7 +133,8 @@ class ResetPasswordTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_user_cannot_reset_password_without_providing_an_email()
+    /** @test */
+    public function user_cannot_reset_password_without_providing_an_email()
     {
         $user = factory(User::class)->create([
             'password' => Hash::make('old-password'),

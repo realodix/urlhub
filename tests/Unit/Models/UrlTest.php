@@ -3,7 +3,6 @@
 namespace Tests\Unit\Models;
 
 use App\Url;
-use App\User;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -37,10 +36,39 @@ class UrlTest extends TestCase
     /** @test */
     public function belongs_to_user()
     {
-        $user = factory(User::class)->create([]);
-        $url = factory(Url::class)->create(['user_id' => $user->id]);
+        $url = factory(Url::class)->create([
+            'user_id' => $this->user()->id,
+        ]);
 
         $this->assertTrue($url->user()->exists());
+    }
+
+    /**
+     * The default guest id must be null.
+     *
+     * @test
+     */
+    public function default_guest_id()
+    {
+        $long_url = 'https://example.com';
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $this->assertSame(null, $url->user_id);
+    }
+
+    /** @test */
+    public function default_guest_name()
+    {
+        $url = factory(Url::class)->create([
+            'user_id' => null,
+        ]);
+
+        $this->assertSame('Guest', $url->user->name);
     }
 
     /** @test */
