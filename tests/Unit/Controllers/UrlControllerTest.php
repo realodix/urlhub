@@ -154,12 +154,22 @@ class UrlControllerTest extends TestCase
         $response->assertStatus(301);
     }
 
-    /*
-     * checkExistingCustomUrl()
-     * @test
-     */
-    // public function bb()
-    // {
+    /** @test */
+    public function checkExistingCustomUrl_pass()
+    {
+        $long_url = 'https://laravel.com';
+        $custom_url_key = 'laravel';
 
-    // }
+        factory(Url::class)->create([
+            'user_id'  => null,
+            'long_url' => $long_url,
+            'url_key'  => 'laravel',
+        ]);
+
+        $response = $this->post(route('home').'/custom-link-avail-check', [
+            'url_key'  => 'hello',
+        ]);
+
+        $response->assertJson(['success'=>'Available']);
+    }
 }
