@@ -5,36 +5,67 @@ namespace Tests\Unit\Controllers;
 use App\Url;
 use Tests\TestCase;
 
-/**
- * App\Http\Controllers\UrlController;.
+/*
+ * App\Http\Controllers\UrlController;
  */
 class UrlControllerTest extends TestCase
 {
     /**
-     * create().
      * @test
      */
     public function create()
     {
         $long_url = 'https://laravel.com';
-
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
 
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $response->assertRedirect(route('home').'/+'.$url->url_key);
+
         $this->assertDatabaseHas('urls', [
+            'user_id'  => null,
             'long_url' => $long_url,
         ]);
+
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $this->assertFalse($url->is_custom);
     }
 
     /**
-     * With custom URL.
-     *
-     * create()
+     * With authenticated user.
      *
      * @test
      */
     public function create_2()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->admin();
+        $long_url = 'https://laravel.com';
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $response->assertRedirect(route('home').'/+'.$url->url_key);
+
+        $this->assertDatabaseHas('urls', [
+            'user_id' => $user->id,
+            'long_url' => $long_url,
+        ]);
+        $this->assertFalse($url->is_custom);
+    }
+
+    /**
+     * Custom URL.
+     *
+     * @test
+     */
+    public function create_cst()
     {
         $long_url = 'https://laravel.com';
         $custom_url_key = 'laravel';
@@ -44,16 +75,48 @@ class UrlControllerTest extends TestCase
             'custom_url_key' => $custom_url_key,
         ]);
 
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $response->assertRedirect(route('home').'/+'.$url->url_key);
+
         $this->assertDatabaseHas('urls', [
             'long_url' => $long_url,
             'url_key'  => $custom_url_key,
         ]);
+        $this->assertTrue($url->is_custom);
     }
 
     /**
-     * urlRedirection().
+     * Custom URL, with authenticated user.
+     *
      * @test
      */
+    public function create_cst_2()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->admin();
+        $long_url = 'https://laravel.com';
+        $custom_url_key = 'laravel';
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url'       => $long_url,
+            'custom_url_key' => $custom_url_key,
+        ]);
+
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $response->assertRedirect(route('home').'/+'.$url->url_key);
+
+        $this->assertDatabaseHas('urls', [
+            'user_id'  => $user->id,
+            'long_url' => $long_url,
+            'url_key'  => $custom_url_key,
+        ]);
+        $this->assertTrue($url->is_custom);
+    }
+
+    /** @test */
     public function url_redirection()
     {
         $long_url = 'https://laravel.com';
@@ -62,8 +125,7 @@ class UrlControllerTest extends TestCase
             'long_url' => $long_url,
         ]);
 
-        $url = Url::whereLongUrl($long_url)
-                    ->first();
+        $url = Url::whereLongUrl($long_url)->first();
 
         $response = $this->get(route('home').'/'.$url->url_key);
         $response->assertRedirect($long_url);
@@ -71,11 +133,10 @@ class UrlControllerTest extends TestCase
     }
 
     /**
-     * urlRedirection().
+     * With custom URL.
+     *
      * @test
      */
-
-    /** @test */
     public function url_redirection_2()
     {
         $long_url = 'https://laravel.com';
@@ -86,15 +147,14 @@ class UrlControllerTest extends TestCase
             'url_key'  => $custom_url_key,
         ]);
 
-        $url = Url::whereLongUrl($long_url)
-                    ->first();
+        $url = Url::whereLongUrl($long_url)->first();
 
         $response = $this->get(route('home').'/'.$url->url_key);
         $response->assertRedirect($long_url);
         $response->assertStatus(301);
     }
 
-    /*
+    /**
      * checkExistingCustomUrl()
      * @test
      */
