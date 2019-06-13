@@ -54,7 +54,7 @@ class UrlControllerTest extends TestCase
         $response->assertRedirect(route('home').'/+'.$url->url_key);
 
         $this->assertDatabaseHas('urls', [
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'long_url' => $long_url,
         ]);
         $this->assertFalse($url->is_custom);
@@ -143,13 +143,11 @@ class UrlControllerTest extends TestCase
         $custom_url_key = 'laravel';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-            'url_key'  => $custom_url_key,
+            'long_url'       => $long_url,
+            'custom_url_key' => $custom_url_key,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $response = $this->get(route('home').'/'.$url->url_key);
+        $response = $this->get(route('home').'/'.$custom_url_key);
         $response->assertRedirect($long_url);
         $response->assertStatus(301);
     }
