@@ -25,13 +25,10 @@ class UrlControllerTest extends TestCase
         $response->assertRedirect(route('home').'/+'.$url->url_key);
 
         $this->assertDatabaseHas('urls', [
-            'user_id'  => null,
-            'long_url' => $long_url,
+            'user_id'   => null,
+            'long_url'  => $long_url,
+            'is_custom' => 0,
         ]);
-
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $this->assertFalse($url->is_custom);
     }
 
     /**
@@ -56,8 +53,8 @@ class UrlControllerTest extends TestCase
         $this->assertDatabaseHas('urls', [
             'user_id'  => $user->id,
             'long_url' => $long_url,
+            'is_custom' => 0,
         ]);
-        $this->assertFalse($url->is_custom);
     }
 
     /**
@@ -74,16 +71,13 @@ class UrlControllerTest extends TestCase
             'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key,
         ]);
-
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('home').'/+'.$custom_url_key);
 
         $this->assertDatabaseHas('urls', [
-            'long_url' => $long_url,
-            'url_key'  => $custom_url_key,
+            'long_url'  => $long_url,
+            'url_key'   => $custom_url_key,
+            'is_custom' => 1,
         ]);
-        $this->assertTrue($url->is_custom);
     }
 
     /**
@@ -103,17 +97,14 @@ class UrlControllerTest extends TestCase
             'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key,
         ]);
-
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('home').'/+'.$custom_url_key);
 
         $this->assertDatabaseHas('urls', [
-            'user_id'  => $user->id,
-            'long_url' => $long_url,
-            'url_key'  => $custom_url_key,
+            'user_id'   => $user->id,
+            'long_url'  => $long_url,
+            'url_key'   => $custom_url_key,
+            'is_custom' => 1,
         ]);
-        $this->assertTrue($url->is_custom);
     }
 
     /** @test */
