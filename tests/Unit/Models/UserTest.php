@@ -49,7 +49,7 @@ class UserTest extends TestCase
 
     /**
      * The number of guests is calculated based on IP
-     * See setUp()
+     * See setUp().
      *
      * @test
      */
