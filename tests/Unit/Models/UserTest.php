@@ -37,19 +37,22 @@ class UserTest extends TestCase
         $this->assertTrue($this->user()->url()->exists());
     }
 
-    /** @test */
+    /**
+     * There are 2 users created, see setUp() method
+     * on Tests\Support\Authentication class.
+     *
+     * @test
+     */
     public function totalUser()
     {
         $user = new User;
 
-        // There are 2 users created
-        // See Tests\Support\Authentication::setUp()
         $this->assertSame(2, $user->totalUser());
     }
 
     /**
-     * The number of guests is calculated based on IP
-     * See setUp().
+     * The number of guests is calculated based on IP,
+     * see setUp() method on this class.
      *
      * @test
      */
