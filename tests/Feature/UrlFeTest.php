@@ -22,7 +22,7 @@ class UrlFeTest extends TestCase
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
     }
 
     /** @test */
@@ -42,7 +42,7 @@ class UrlFeTest extends TestCase
         ]);
 
         $url = Url::whereUserId($this->user()->id)->first();
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
         $this->assertSame(2, $count);
@@ -66,7 +66,7 @@ class UrlFeTest extends TestCase
         ]);
         $url = Url::whereUserId($user->id)->first();
         $response
-            ->assertRedirect(route('home').'/+'.$url->url_key)
+            ->assertRedirect(route('short_url.stats', $url->url_key))
             ->assertSessionHas(['msgLinkAlreadyExists']);
 
         $count = Url::where('long_url', '=', $long_url)->count();
@@ -91,7 +91,7 @@ class UrlFeTest extends TestCase
 
         $url = Url::whereUserId($this->user()->id)->first();
 
-        $response = $this->from(route('home').'/+'.$url->url_key)
+        $response = $this->from(route('short_url.stats', $url->url_key))
                          ->get(route('duplicate', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
@@ -137,7 +137,9 @@ class UrlFeTest extends TestCase
             'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key_2,
         ]);
-        $response->assertRedirect(route('home').'/+'.$custom_url_key);
+        $response->assertRedirect(
+            route('short_url.stats', $custom_url_key)
+        );
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
         $response2->assertStatus(404);
@@ -164,7 +166,9 @@ class UrlFeTest extends TestCase
             'custom_url_key' => $custom_url_key_2,
         ]);
 
-        $response->assertRedirect(route('home').'/+'.$custom_url_key_2);
+        $response->assertRedirect(
+            route('short_url.stats', $custom_url_key_2)
+        );
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
         $response2->assertRedirect($long_url);
