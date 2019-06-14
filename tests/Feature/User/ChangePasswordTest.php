@@ -128,9 +128,11 @@ class ChangePasswordTest extends TestCase
                             'new-password_confirmation' => str_repeat('a', 5),
                          ]);
 
-        $response->assertRedirect($this->getRoute($user->name));
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHasErrors('new-password');
+
         $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
-        $response->assertSessionHasErrors('new-password');
     }
 
     /** @test */
@@ -147,8 +149,10 @@ class ChangePasswordTest extends TestCase
                             'new-password_confirmation' => 'new-awesome-pass',
                          ]);
 
-        $response->assertRedirect($this->getRoute($user->name));
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHasErrors('new-password');
+
         $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
-        $response->assertSessionHasErrors('new-password');
     }
 }
