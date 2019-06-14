@@ -45,7 +45,7 @@ class UrlBeTest extends TestCase
         $response->assertRedirect(route('dashboard'));
         $response->assertSessionHas(['flash_success']);
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(0, $count);
     }
 
@@ -69,7 +69,7 @@ class UrlBeTest extends TestCase
         $response->assertRedirect(route('dashboard'));
         $response->assertSessionHas(['flash_success']);
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(2, $count);
     }
 
@@ -115,7 +115,7 @@ class UrlBeTest extends TestCase
         $response->assertRedirect(route('dashboard.allurl'));
         $response->assertSessionHas(['flash_success']);
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(0, $count);
     }
 
@@ -138,7 +138,7 @@ class UrlBeTest extends TestCase
                          ->get($this->getDeleteRoute($url->id));
         $response->assertStatus(403);
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(1, $count);
     }
 }

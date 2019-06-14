@@ -44,7 +44,7 @@ class UrlFeTest extends TestCase
         $url = Url::whereUserId($this->nonAdmin()->id)->first();
         $response->assertRedirect(route('short_url.stats', $url->url_key));
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(2, $count);
     }
 
@@ -69,7 +69,7 @@ class UrlFeTest extends TestCase
             ->assertRedirect(route('short_url.stats', $url->url_key))
             ->assertSessionHas(['msgLinkAlreadyExists']);
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(1, $count);
     }
 
@@ -94,7 +94,7 @@ class UrlFeTest extends TestCase
         $response = $this->from(route('short_url.stats', $url->url_key))
                          ->get(route('duplicate', $url->url_key));
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(2, $count);
     }
 
@@ -173,7 +173,7 @@ class UrlFeTest extends TestCase
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
         $response2->assertRedirect($long_url);
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(2, $count);
     }
 
@@ -198,7 +198,7 @@ class UrlFeTest extends TestCase
             ->assertRedirect(route('home'))
             ->assertSessionHasErrors('custom_url_key');
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(1, $count);
     }
 
@@ -224,7 +224,7 @@ class UrlFeTest extends TestCase
             ->assertRedirect(route('home'))
             ->assertSessionHasErrors('custom_url_key');
 
-        $count = Url::where('long_url', '=', $long_url)->count();
+        $count = Url::whereLongUrl($long_url)->count();
         $this->assertSame(1, $count);
     }
 }
