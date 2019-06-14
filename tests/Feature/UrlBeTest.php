@@ -78,7 +78,7 @@ class UrlBeTest extends TestCase
      */
 
     /** @test */
-    public function au_admin_can_access_page()
+    public function au_admin_can_access_this_page()
     {
         $this->loginAsAdmin();
 
@@ -87,7 +87,7 @@ class UrlBeTest extends TestCase
     }
 
     /** @test */
-    public function au_user_cant_access_page()
+    public function au_non_admin_cant_access_this_page()
     {
         $this->loginAsNonAdmin();
 
@@ -98,7 +98,7 @@ class UrlBeTest extends TestCase
     /** @test */
     public function au_admin_can_delete()
     {
-        $user_id = $this->admin()->id;
+        $user_id = $this->nonAdmin()->id;
         $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
@@ -120,7 +120,7 @@ class UrlBeTest extends TestCase
     }
 
     /** @test */
-    public function au_user_cant_delete()
+    public function au_non_admin_cant_delete()
     {
         $user_id = $this->admin()->id;
         $long_url = 'https://laravel.com';
