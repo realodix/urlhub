@@ -23,7 +23,7 @@ class ProfileTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->get($this->getRoute($this->admin()->name));
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */
@@ -32,7 +32,7 @@ class ProfileTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->get($this->getRoute($this->nonAdmin()->name));
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */

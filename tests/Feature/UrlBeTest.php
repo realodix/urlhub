@@ -22,7 +22,7 @@ class UrlBeTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->get(route('dashboard'));
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */
@@ -81,7 +81,7 @@ class UrlBeTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->get(route('dashboard.allurl'));
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */

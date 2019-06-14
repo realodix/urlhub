@@ -114,7 +114,7 @@ class UserPolicyTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->get($this->getCPRoute($this->nonAdmin()->name));
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */
@@ -138,7 +138,7 @@ class UserPolicyTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->get(route('user.index'));
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */
