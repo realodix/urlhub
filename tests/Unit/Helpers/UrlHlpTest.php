@@ -26,8 +26,8 @@ class UrlHlpTest extends TestCase
     }
 
     /**
-     * @dataProvider removeSchemes
      * @test
+     * @dataProvider removeSchemes
      */
     public function remove_schemes($expected, $actual)
     {

@@ -8,8 +8,8 @@ use Tests\TestCase;
 class NumHlpTest extends TestCase
 {
     /**
-     * @dataProvider readableInt
      * @test
+     * @dataProvider readableInt
      */
     public function readable_int($expected, $actual)
     {
@@ -54,8 +54,8 @@ class NumHlpTest extends TestCase
     }
 
     /**
-     * @dataProvider numberFormatPrecision
      * @test
+     * @dataProvider numberFormatPrecision
      */
     public function number_format_precision($expected, $actual, $precision = 2)
     {
