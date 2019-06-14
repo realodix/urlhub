@@ -85,7 +85,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->userPassword(),
+                            'current-password'          => $this->nonAdminPassword(),
                             'new-password'              => '',
                             'new-password_confirmation' => '',
                          ]);
@@ -104,7 +104,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->userPassword(),
+                            'current-password'          => $this->nonAdminPassword(),
                             'new-password'              => null,
                             'new-password_confirmation' => null,
                          ]);
@@ -123,7 +123,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->userPassword(),
+                            'current-password'          => $this->nonAdminPassword(),
                             'new-password'              => str_repeat('a', 5),
                             'new-password_confirmation' => str_repeat('a', 5),
                          ]);
@@ -142,7 +142,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->userPassword(),
+                            'current-password'          => $this->nonAdminPassword(),
                             'new-password'              => 'new-awesome-password',
                             'new-password_confirmation' => 'new-awesome-pass',
                          ]);

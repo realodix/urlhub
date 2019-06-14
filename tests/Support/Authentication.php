@@ -52,7 +52,7 @@ trait Authentication
         return User::whereName('user')->first();
     }
 
-    protected function userPassword()
+    protected function nonAdminPassword()
     {
         return 'user';
     }
