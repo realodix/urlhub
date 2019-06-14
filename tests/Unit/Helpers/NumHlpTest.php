@@ -9,8 +9,9 @@ class NumHlpTest extends TestCase
 {
     /**
      * @dataProvider readableInt
+     * @test
      */
-    public function test_readable_int($expected, $actual)
+    public function readable_int($expected, $actual)
     {
         $this->assertSame($expected, readable_int($actual));
 
@@ -54,8 +55,9 @@ class NumHlpTest extends TestCase
 
     /**
      * @dataProvider numberFormatPrecision
+     * @test
      */
-    public function test_number_format_precision($expected, $actual, $precision = 2)
+    public function number_format_precision($expected, $actual, $precision = 2)
     {
         $this->assertSame($expected, NumHlp::number_format_precision($actual, $precision));
     }
