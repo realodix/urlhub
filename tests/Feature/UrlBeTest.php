@@ -89,7 +89,7 @@ class UrlBeTest extends TestCase
     /** @test */
     public function au_user_cant_access_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get(route('dashboard.allurl'));
         $response->assertStatus(403);
@@ -130,7 +130,7 @@ class UrlBeTest extends TestCase
             'long_url' => $long_url,
         ]);
 
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $url = Url::whereUserId($user_id)->first();
 

@@ -60,7 +60,7 @@ class ChangePasswordTest extends TestCase
      */
     public function verifying_a_password_against_a_hash()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $user = $this->user();
 
@@ -79,7 +79,7 @@ class ChangePasswordTest extends TestCase
     /** @test */
     public function new_password_validate_required()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $user = $this->user();
 
@@ -98,7 +98,7 @@ class ChangePasswordTest extends TestCase
     /** @test */
     public function new_password_validate_string()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $user = $this->user();
 
@@ -117,7 +117,7 @@ class ChangePasswordTest extends TestCase
     /** @test */
     public function new_password_validate_min_lenght()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $user = $this->user();
 
@@ -136,7 +136,7 @@ class ChangePasswordTest extends TestCase
     /** @test */
     public function new_password_validate_confirmed()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $user = $this->user();
 

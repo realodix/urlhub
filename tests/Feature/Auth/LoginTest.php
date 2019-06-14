@@ -41,7 +41,7 @@ class LoginTest extends TestCase
     /** @test */
     public function user_cannot_view_a_login_form_when_authenticated()
     {
-        $response = $this->loginAsUser()->get($this->getRoute());
+        $response = $this->loginAsNonAdmin()->get($this->getRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }

@@ -29,7 +29,7 @@ class UserPolicyTest extends TestCase
      */
     public function view_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $non_admin = $this->user();
 
@@ -59,7 +59,7 @@ class UserPolicyTest extends TestCase
      */
     public function update_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $non_admin = $this->user();
 
@@ -89,7 +89,7 @@ class UserPolicyTest extends TestCase
      */
     public function updatePass_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $non_admin = $this->user();
 
@@ -120,7 +120,7 @@ class UserPolicyTest extends TestCase
     /** @test */
     public function non_admin_cant_access_change_password_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get($this->getCPRoute($this->admin()->name));
         $response->assertStatus(403);
@@ -144,7 +144,7 @@ class UserPolicyTest extends TestCase
     /** @test */
     public function non_admin_cant_access_all_users_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get(route('user.index'));
         $response->assertStatus(403);

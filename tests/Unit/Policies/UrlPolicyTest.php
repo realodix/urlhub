@@ -34,7 +34,7 @@ class UrlPolicyTest extends TestCase
      */
     public function force_delete_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $non_admin = $this->user();
         $their_own_url = factory(Url::class)->create([

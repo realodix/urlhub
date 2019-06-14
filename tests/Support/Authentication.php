@@ -57,7 +57,7 @@ trait Authentication
         return 'user';
     }
 
-    protected function loginAsUser()
+    protected function loginAsNonAdmin()
     {
         return $this->actingAs($this->user());
     }

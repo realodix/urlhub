@@ -35,7 +35,7 @@ class UrlFeTest extends TestCase
             'long_url' => $long_url,
         ]);
 
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url,
@@ -51,7 +51,7 @@ class UrlFeTest extends TestCase
     /** @test */
     public function long_url_already_exist_3()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
         $user = $this->user();
 
         $long_url = 'https://laravel.com';
@@ -76,7 +76,7 @@ class UrlFeTest extends TestCase
     /** @test */
     public function duplicate()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $long_url = 'https://laravel.com';
 
@@ -157,7 +157,7 @@ class UrlFeTest extends TestCase
             'url_key'  => $custom_url_key,
         ]);
 
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $custom_url_key_2 = 'laravel2';
 
@@ -214,7 +214,7 @@ class UrlFeTest extends TestCase
             'url_key'  => $custom_url_key,
         ]);
 
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => 'https://laravel-news.com',
