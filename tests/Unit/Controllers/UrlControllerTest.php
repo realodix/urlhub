@@ -6,7 +6,7 @@ use App\Url;
 use Tests\TestCase;
 
 /*
- * App\Http\Controllers\UrlController;
+ * App\Http\Controllers\UrlController
  */
 class UrlControllerTest extends TestCase
 {
