@@ -36,7 +36,7 @@ class UrlPolicyTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $non_admin = $this->user();
+        $non_admin = $this->nonAdmin();
         $their_own_url = factory(Url::class)->create([
             'user_id'  => $non_admin->id,
             'long_url' => 'https://laravel.com',

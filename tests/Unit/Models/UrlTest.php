@@ -37,7 +37,7 @@ class UrlTest extends TestCase
     public function belongs_to_user()
     {
         $url = factory(Url::class)->create([
-            'user_id' => $this->user()->id,
+            'user_id' => $this->nonAdmin()->id,
         ]);
 
         $this->assertTrue($url->user()->exists());

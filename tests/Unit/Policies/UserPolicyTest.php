@@ -31,7 +31,7 @@ class UserPolicyTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $non_admin = $this->user();
+        $non_admin = $this->nonAdmin();
 
         $this->assertTrue($non_admin->can('view', $non_admin));
         $this->assertFalse($non_admin->can('view', new User()));
@@ -61,7 +61,7 @@ class UserPolicyTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $non_admin = $this->user();
+        $non_admin = $this->nonAdmin();
 
         $this->assertTrue($non_admin->can('update', $non_admin));
         $this->assertFalse($non_admin->can('update', new User()));
@@ -91,7 +91,7 @@ class UserPolicyTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $non_admin = $this->user();
+        $non_admin = $this->nonAdmin();
 
         $this->assertTrue($non_admin->can('updatePass', $non_admin));
         $this->assertFalse($non_admin->can('updatePass', new User()));
@@ -113,7 +113,7 @@ class UserPolicyTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->get($this->getCPRoute($this->user()->name));
+        $response = $this->get($this->getCPRoute($this->nonAdmin()->name));
         $response->assertStatus(200);
     }
 

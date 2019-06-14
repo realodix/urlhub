@@ -47,7 +47,7 @@ trait Authentication
         return $this->actingAs($this->admin());
     }
 
-    protected function user()
+    protected function nonAdmin()
     {
         return User::whereName('user')->first();
     }
@@ -59,7 +59,7 @@ trait Authentication
 
     protected function loginAsNonAdmin()
     {
-        return $this->actingAs($this->user());
+        return $this->actingAs($this->nonAdmin());
     }
 
     public function getAdminRole()

@@ -39,7 +39,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
@@ -62,7 +62,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
@@ -81,7 +81,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
@@ -100,7 +100,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
@@ -119,7 +119,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
@@ -138,7 +138,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [

@@ -41,7 +41,7 @@ class UrlFeTest extends TestCase
             'long_url' => $long_url,
         ]);
 
-        $url = Url::whereUserId($this->user()->id)->first();
+        $url = Url::whereUserId($this->nonAdmin()->id)->first();
         $response->assertRedirect(route('short_url.stats', $url->url_key));
 
         $count = Url::where('long_url', '=', $long_url)->count();
@@ -52,7 +52,7 @@ class UrlFeTest extends TestCase
     public function long_url_already_exist_3()
     {
         $this->loginAsNonAdmin();
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $long_url = 'https://laravel.com';
 
@@ -81,7 +81,7 @@ class UrlFeTest extends TestCase
         $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
-            'user_id'  => $this->user()->id,
+            'user_id'  => $this->nonAdmin()->id,
             'long_url' => $long_url,
         ]);
 
@@ -89,7 +89,7 @@ class UrlFeTest extends TestCase
             'long_url' => $long_url,
         ]);
 
-        $url = Url::whereUserId($this->user()->id)->first();
+        $url = Url::whereUserId($this->nonAdmin()->id)->first();
 
         $response = $this->from(route('short_url.stats', $url->url_key))
                          ->get(route('duplicate', $url->url_key));

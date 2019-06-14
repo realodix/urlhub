@@ -31,7 +31,7 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->get($this->getRoute($this->user()->name));
+        $response = $this->get($this->getRoute($this->nonAdmin()->name));
         $response->assertStatus(200);
     }
 
@@ -49,16 +49,16 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->getRoute($this->user()->name))
-                         ->post($this->postRoute($this->user()->id), [
+        $response = $this->from($this->getRoute($this->nonAdmin()->name))
+                         ->post($this->postRoute($this->nonAdmin()->id), [
                              'email' => 'new_email_user@urlhub.test',
                          ]);
 
         $response
-            ->assertRedirect($this->getRoute($this->user()->name))
+            ->assertRedirect($this->getRoute($this->nonAdmin()->name))
             ->assertSessionHas(['flash_success']);
 
-        $this->assertSame('new_email_user@urlhub.test', $this->user()->email);
+        $this->assertSame('new_email_user@urlhub.test', $this->nonAdmin()->email);
     }
 
     /** @test */
@@ -130,7 +130,7 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->admin()->name))
                          ->post($this->postRoute($this->admin()->id), [
-                             'email' => $this->user()->email,
+                             'email' => $this->nonAdmin()->email,
                          ]);
 
         $response
