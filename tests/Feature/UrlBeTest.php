@@ -90,7 +90,7 @@ class UrlBeTest extends TestCase
         $this->loginAsNonAdmin();
 
         $response = $this->get(route('dashboard.allurl'));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /** @test */
@@ -133,7 +133,7 @@ class UrlBeTest extends TestCase
 
         $response = $this->from(route('dashboard.allurl'))
                          ->get($this->getDeleteRoute($url->id));
-        $response->assertStatus(403);
+        $response->assertForbidden();
 
         $this->assertCount(1, Url::all());
     }

@@ -123,7 +123,7 @@ class UserPolicyTest extends TestCase
         $this->loginAsNonAdmin();
 
         $response = $this->get($this->getCPRoute($this->admin()->name));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /*
@@ -147,6 +147,6 @@ class UserPolicyTest extends TestCase
         $this->loginAsNonAdmin();
 
         $response = $this->get(route('user.index'));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 }

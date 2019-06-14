@@ -41,7 +41,7 @@ class ProfileTest extends TestCase
         $this->loginAsNonAdmin();
 
         $response = $this->get($this->getRoute($this->admin()->name));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /** @test */
@@ -73,7 +73,7 @@ class ProfileTest extends TestCase
                              'email' => 'new_email_user2@urlhub.test',
                          ]);
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
         $this->assertSame('user2@urlhub.test', $user2->email);
     }
 
