@@ -19,13 +19,13 @@ class UrlTest extends TestCase
         ]);
 
         factory(Url::class)->create([
-            'user_id'  => 0,
+            'user_id'  => null,
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
-            'user_id'  => 0,
+            'user_id'  => null,
             'clicks'   => 10,
             'ip'       => '1.1.1.1',
         ]);
@@ -134,7 +134,11 @@ class UrlTest extends TestCase
         $this->assertSame(10, $url->totalClicksById($this->admin()->id));
     }
 
-    /** @test */
+    /**
+     * The number of guests is calculated based on a unique IP.
+     *
+     * @test
+     */
     public function total_clicks_by_guest()
     {
         $url = new Url;

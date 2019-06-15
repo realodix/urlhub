@@ -14,14 +14,12 @@ class UserTest extends TestCase
 
         factory(Url::class)->create([
             'user_id'  => null,
-            'long_url' => 'https://laravel.com',
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
             'user_id'  => null,
-            'long_url' => 'https://laravel.com',
             'clicks'   => 10,
             'ip'       => '1.1.1.1',
         ]);
@@ -38,8 +36,8 @@ class UserTest extends TestCase
     }
 
     /**
-     * There are 2 users created, see setUp() method
-     * on Tests\Support\Authentication class.
+     * There are 2 authenticated users that have been created,
+     * see setUp() method on Tests\Support\Authentication class.
      *
      * @test
      */
@@ -51,7 +49,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * The number of guests is calculated based on IP,
+     * The number of guests is calculated based on a unique IP,
      * see setUp() method on this class.
      *
      * @test
