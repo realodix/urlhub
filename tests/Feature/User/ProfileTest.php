@@ -45,7 +45,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_change_user_other_users_email()
+    public function admin_can_change_other_users_email()
     {
         $this->loginAsAdmin();
 
