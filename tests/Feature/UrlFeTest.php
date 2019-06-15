@@ -141,7 +141,7 @@ class UrlFeTest extends TestCase
         );
 
         $response2 = $this->get(route('home').'/'.$custom_url_key_2);
-        $response2->assertStatus(404);
+        $response2->assertNotFound();
     }
 
     /** @test */
