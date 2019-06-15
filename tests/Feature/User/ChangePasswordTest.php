@@ -33,7 +33,7 @@ class ChangePasswordTest extends TestCase
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHas(['flash_success']);
+            ->assertSessionHas('flash_success');
 
         $this->assertTrue(
             Hash::check('new-awesome-password',
@@ -57,7 +57,7 @@ class ChangePasswordTest extends TestCase
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHas(['flash_success']);
+            ->assertSessionHas('flash_success');
 
         $this->assertTrue(
             Hash::check('new-awesome-password',

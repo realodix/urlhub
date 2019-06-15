@@ -45,7 +45,7 @@ class UrlBeTest extends TestCase
 
         $response
             ->assertRedirect(route('dashboard'))
-            ->assertSessionHas(['flash_success']);
+            ->assertSessionHas('flash_success');
 
         $this->assertCount(0, Url::all());
     }
@@ -70,7 +70,7 @@ class UrlBeTest extends TestCase
 
         $response
             ->assertRedirect(route('dashboard'))
-            ->assertSessionHas(['flash_success']);
+            ->assertSessionHas('flash_success');
 
         $this->assertCount(2, Url::all());
     }
@@ -117,7 +117,7 @@ class UrlBeTest extends TestCase
 
         $response
             ->assertRedirect(route('dashboard.allurl'))
-            ->assertSessionHas(['flash_success']);
+            ->assertSessionHas('flash_success');
 
         $this->assertCount(0, Url::all());
     }
