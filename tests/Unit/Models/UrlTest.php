@@ -72,9 +72,7 @@ class UrlTest extends TestCase
     /** @test */
     public function getShortUrlAttribute()
     {
-        $url = new Url;
-        $url->url_key = 'realodix';
-        $url->name_order = 'short_url';
+        $url = Url::whereUserId($this->admin()->id)->first();
 
         $this->assertSame(
             $url->short_url,
