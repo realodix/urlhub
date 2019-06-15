@@ -65,22 +65,42 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /**
-     * Current password is wrong.
-     *
-     * @test
-     */
-    public function verifying_a_password_against_a_hash()
+    /** @test */
+    public function current_password_does_not_match()
     {
-        $this->loginAsNonAdmin();
+        $this->loginAsAdmin();
 
-        $user = $this->nonAdmin();
+        $user = $this->admin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
                             'current-password'          => 'laravel',
                             'new-password'              => 'new-awesome-password',
                             'new-password_confirmation' => 'new-awesome-password',
+                         ]);
+
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHas('flash_error');
+
+        $this->assertFalse(
+            Hash::check('new-awesome-password',
+            $user->fresh()->password)
+        );
+    }
+
+    /** @test */
+    public function new_password_cannot_be_same_as_current_password()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->admin();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
+                            'current-password'          => $this->adminPassword(),
+                            'new-password'              => $this->adminPassword(),
+                            'new-password_confirmation' => $this->adminPassword(),
                          ]);
 
         $response
