@@ -22,16 +22,23 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
+        $user = $this->admin();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
                             'current-password'          => $this->adminPassword(),
                             'new-password'              => 'new-awesome-password',
                             'new-password_confirmation' => 'new-awesome-password',
                          ]);
 
-        $response->assertRedirect($this->getRoute($this->admin()->name));
-        $this->assertTrue(Hash::check('new-awesome-password', $this->admin()->fresh()->password));
-        $response->assertSessionHas(['flash_success']);
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHas(['flash_success']);
+
+        $this->assertTrue(
+            Hash::check('new-awesome-password',
+            $user->fresh()->password)
+        );
     }
 
     /** @test */
@@ -48,9 +55,14 @@ class ChangePasswordTest extends TestCase
                             'new-password_confirmation' => 'new-awesome-password',
                          ]);
 
-        $response->assertRedirect($this->getRoute($user->name));
-        $this->assertTrue(Hash::check('new-awesome-password', $user->fresh()->password));
-        $response->assertSessionHas(['flash_success']);
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHas(['flash_success']);
+
+        $this->assertTrue(
+            Hash::check('new-awesome-password',
+            $user->fresh()->password)
+        );
     }
 
     /**
@@ -71,9 +83,14 @@ class ChangePasswordTest extends TestCase
                             'new-password_confirmation' => 'new-awesome-password',
                          ]);
 
-        $response->assertRedirect($this->getRoute($user->name));
-        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
-        $response->assertSessionHas('flash_error');
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHas('flash_error');
+
+        $this->assertFalse(
+            Hash::check('new-awesome-password',
+            $user->fresh()->password)
+        );
     }
 
     /** @test */
@@ -90,9 +107,11 @@ class ChangePasswordTest extends TestCase
                             'new-password_confirmation' => '',
                          ]);
 
-        $response->assertRedirect($this->getRoute($user->name));
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHasErrors('new-password');
+
         $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
-        $response->assertSessionHasErrors('new-password');
     }
 
     /** @test */
@@ -109,9 +128,14 @@ class ChangePasswordTest extends TestCase
                             'new-password_confirmation' => null,
                          ]);
 
-        $response->assertRedirect($this->getRoute($user->name));
-        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
-        $response->assertSessionHasErrors('new-password');
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHasErrors('new-password');
+
+        $this->assertFalse(
+            Hash::check('new-awesome-password',
+            $user->fresh()->password)
+        );
     }
 
     /** @test */
@@ -132,7 +156,10 @@ class ChangePasswordTest extends TestCase
             ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('new-password');
 
-        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $this->assertFalse(
+            Hash::check('new-awesome-password',
+            $user->fresh()->password)
+        );
     }
 
     /** @test */
@@ -153,6 +180,9 @@ class ChangePasswordTest extends TestCase
             ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('new-password');
 
-        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
+        $this->assertFalse(
+            Hash::check('new-awesome-password',
+            $user->fresh()->password)
+        );
     }
 }

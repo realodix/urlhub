@@ -63,7 +63,9 @@ class UrlFeTest extends TestCase
         $response = $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
+
         $url = Url::whereUserId($user->id)->first();
+
         $response
             ->assertRedirect(route('short_url.stats', $url->url_key))
             ->assertSessionHas(['msgLinkAlreadyExists']);
@@ -89,8 +91,8 @@ class UrlFeTest extends TestCase
 
         $url = Url::whereUserId($this->nonAdmin()->id)->first();
 
-        $response = $this->from(route('short_url.stats', $url->url_key))
-                         ->get(route('duplicate', $url->url_key));
+        $this->from(route('short_url.stats', $url->url_key))
+             ->get(route('duplicate', $url->url_key));
 
         $this->assertCount(2, Url::all());
     }
@@ -215,6 +217,7 @@ class UrlFeTest extends TestCase
             'long_url'       => 'https://laravel-news.com',
             'custom_url_key' => $custom_url_key,
         ]);
+
         $response
             ->assertRedirect(route('home'))
             ->assertSessionHasErrors('custom_url_key');

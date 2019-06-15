@@ -45,7 +45,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_change_user_email()
+    public function admin_can_change_user_other_users_email()
     {
         $this->loginAsAdmin();
 
@@ -66,15 +66,15 @@ class ProfileTest extends TestCase
     {
         $this->loginAsNonAdmin();
 
-        $user2 = factory(User::class)->create(['email' => 'user2@urlhub.test']);
+        $user = factory(User::class)->create(['email' => 'user2@urlhub.test']);
 
-        $response = $this->from($this->getRoute($user2->name))
-                         ->post($this->postRoute($user2->id), [
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
                              'email' => 'new_email_user2@urlhub.test',
                          ]);
 
         $response->assertForbidden();
-        $this->assertSame('user2@urlhub.test', $user2->email);
+        $this->assertSame('user2@urlhub.test', $user->email);
     }
 
     /** @test */
@@ -82,13 +82,15 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
+        $user = $this->admin();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
                              'email' => '',
                          ]);
 
         $response
-            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
     }
 
@@ -97,13 +99,15 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
+        $user = $this->admin();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
                              'email' => 'invalid_format',
                          ]);
 
         $response
-            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
     }
 
@@ -112,14 +116,16 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
+        $user = $this->admin();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
                              // 255 + 9
                              'email' => str_repeat('a', 255).'@mail.com',
                          ]);
 
         $response
-            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
     }
 
@@ -128,13 +134,15 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->getRoute($this->admin()->name))
-                         ->post($this->postRoute($this->admin()->id), [
+        $user = $this->admin();
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
                              'email' => $this->nonAdmin()->email,
                          ]);
 
         $response
-            ->assertRedirect($this->getRoute($this->admin()->name))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
     }
 }
