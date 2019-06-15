@@ -20,11 +20,6 @@ class UserPolicy
         return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
     }
 
-    public function create()
-    {
-        //
-    }
-
     /**
      * @param \App\User $authenticatedUser
      * @param \App\User $user
@@ -43,20 +38,5 @@ class UserPolicy
     public function updatePass(User $authenticatedUser, User $user)
     {
         return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
-    }
-
-    public function delete()
-    {
-        //
-    }
-
-    public function restore()
-    {
-        //
-    }
-
-    public function forceDelete()
-    {
-        //
     }
 }
