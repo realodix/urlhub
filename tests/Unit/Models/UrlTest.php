@@ -13,21 +13,21 @@ class UrlTest extends TestCase
 
         factory(Url::class)->create([
             'user_id'  => $this->admin()->id,
-            'long_url' => 'https://laravel.com',
+            'long_url' => 'https://github.com/realodix/urlhub',
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
             'user_id'  => 0,
-            'long_url' => 'https://laravel.com',
+            'long_url' => 'https://laravel.com/',
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
             'user_id'  => 0,
-            'long_url' => 'https://laravel.com',
+            'long_url' => 'https://laravel-news.com/',
             'clicks'   => 10,
             'ip'       => '1.1.1.1',
         ]);
@@ -37,7 +37,7 @@ class UrlTest extends TestCase
     public function belongs_to_user()
     {
         $url = factory(Url::class)->create([
-            'user_id' => $this->nonAdmin()->id,
+            'user_id' => $this->admin()->id,
         ]);
 
         $this->assertTrue($url->user()->exists());
@@ -87,12 +87,14 @@ class UrlTest extends TestCase
     /** @test */
     public function setLongUrlAttribute()
     {
-        $url = factory(Url::class)
-               ->create(['user_id' => null]);
+        $url = factory(Url::class)->create([
+            'user_id'  => null,
+            'long_url' => 'http://example.com/',
+        ]);
 
         $this->assertSame(
             $url->long_url,
-            'https://github.com/realodix/urlhub'
+            'http://example.com'
         );
     }
 
