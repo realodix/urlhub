@@ -49,16 +49,18 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->from($this->getRoute($this->nonAdmin()->name))
-                         ->post($this->postRoute($this->nonAdmin()->id), [
+        $user = factory(User::class)->create(['email' => 'user_email@urlhub.test']);
+
+        $response = $this->from($this->getRoute($user->name))
+                         ->post($this->postRoute($user->id), [
                              'email' => 'new_user_email@urlhub.test',
                          ]);
 
         $response
-            ->assertRedirect($this->getRoute($this->nonAdmin()->name))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHas('flash_success');
 
-        $this->assertSame('new_user_email@urlhub.test', $this->nonAdmin()->email);
+        $this->assertSame('new_user_email@urlhub.test', $user->fresh()->email);
     }
 
     /** @test */
