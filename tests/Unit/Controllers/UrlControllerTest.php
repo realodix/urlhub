@@ -22,7 +22,7 @@ class UrlControllerTest extends TestCase
 
         $url = Url::whereLongUrl($long_url)->first();
 
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
 
         $this->assertDatabaseHas('urls', [
             'user_id'   => null,
@@ -48,7 +48,7 @@ class UrlControllerTest extends TestCase
 
         $url = Url::whereLongUrl($long_url)->first();
 
-        $response->assertRedirect(route('home').'/+'.$url->url_key);
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
 
         $this->assertDatabaseHas('urls', [
             'user_id'  => $user->id,
@@ -71,7 +71,7 @@ class UrlControllerTest extends TestCase
             'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key,
         ]);
-        $response->assertRedirect(route('home').'/+'.$custom_url_key);
+        $response->assertRedirect(route('short_url.stats', $custom_url_key));
 
         $this->assertDatabaseHas('urls', [
             'long_url'  => $long_url,
@@ -97,7 +97,7 @@ class UrlControllerTest extends TestCase
             'long_url'       => $long_url,
             'custom_url_key' => $custom_url_key,
         ]);
-        $response->assertRedirect(route('home').'/+'.$custom_url_key);
+        $response->assertRedirect(route('short_url.stats', $custom_url_key));
 
         $this->assertDatabaseHas('urls', [
             'user_id'   => $user->id,
