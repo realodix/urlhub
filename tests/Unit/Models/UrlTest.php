@@ -20,14 +20,12 @@ class UrlTest extends TestCase
 
         factory(Url::class)->create([
             'user_id'  => 0,
-            'long_url' => 'https://laravel.com/',
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
             'user_id'  => 0,
-            'long_url' => 'https://laravel-news.com/',
             'clicks'   => 10,
             'ip'       => '1.1.1.1',
         ]);
