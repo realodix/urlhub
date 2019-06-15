@@ -51,14 +51,14 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($this->nonAdmin()->name))
                          ->post($this->postRoute($this->nonAdmin()->id), [
-                             'email' => 'new_email_user@urlhub.test',
+                             'email' => 'new_user_email@urlhub.test',
                          ]);
 
         $response
             ->assertRedirect($this->getRoute($this->nonAdmin()->name))
             ->assertSessionHas(['flash_success']);
 
-        $this->assertSame('new_email_user@urlhub.test', $this->nonAdmin()->email);
+        $this->assertSame('new_user_email@urlhub.test', $this->nonAdmin()->email);
     }
 
     /** @test */
