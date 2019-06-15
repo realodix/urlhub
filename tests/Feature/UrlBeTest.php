@@ -33,11 +33,9 @@ class UrlBeTest extends TestCase
     public function d_can_delete()
     {
         $user_id = $this->admin()->id;
-        $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
             'user_id'  => $user_id,
-            'long_url' => $long_url,
         ]);
 
         $this->loginAsAdmin();
@@ -58,11 +56,9 @@ class UrlBeTest extends TestCase
     public function d_can_duplicate()
     {
         $user_id = $this->admin()->id;
-        $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
             'user_id'  => $user_id,
-            'long_url' => $long_url,
         ]);
 
         $this->loginAsAdmin();
@@ -105,11 +101,9 @@ class UrlBeTest extends TestCase
     public function au_admin_can_delete()
     {
         $user_id = $this->nonAdmin()->id;
-        $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
             'user_id'  => $user_id,
-            'long_url' => $long_url,
         ]);
 
         $this->loginAsAdmin();
@@ -130,11 +124,9 @@ class UrlBeTest extends TestCase
     public function au_non_admin_cant_delete()
     {
         $user_id = $this->admin()->id;
-        $long_url = 'https://laravel.com';
 
         factory(Url::class)->create([
             'user_id'  => $user_id,
-            'long_url' => $long_url,
         ]);
 
         $this->loginAsNonAdmin();

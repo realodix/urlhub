@@ -146,13 +146,8 @@ class UrlControllerTest extends TestCase
     /** @test */
     public function checkExistingCustomUrl_pass()
     {
-        $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
-
         factory(Url::class)->create([
             'user_id'  => null,
-            'long_url' => $long_url,
-            'url_key'  => 'laravel',
         ]);
 
         $response = $this->post(route('home').'/custom-link-avail-check', [
