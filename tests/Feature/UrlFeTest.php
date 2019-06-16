@@ -6,7 +6,7 @@ use App\Url;
 use Tests\TestCase;
 
 /**
- * Front-End Test
+ * Front-End Test.
  */
 class UrlFeTest extends TestCase
 {
