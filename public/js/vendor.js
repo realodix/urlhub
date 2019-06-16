@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*!
-  * CoreUI v2.1.11 (https://coreui.io)
+  * CoreUI v2.1.12 (https://coreui.io)
   * Copyright 2019 Łukasz Holeczek
   * Licensed under MIT (https://coreui.io)
   */
@@ -1008,6 +1008,8 @@
     iteratorWithReturn[ITERATOR$2] = function () {
       return this;
     };
+    // eslint-disable-next-line no-throw-literal
+    Array.from(iteratorWithReturn, function () { throw 2; });
   } catch (error) { /* empty */ }
 
   var checkCorrectnessOfIteration = function (exec, SKIP_CLOSING) {
@@ -1028,6 +1030,7 @@
   };
 
   var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
+    Array.from(iterable);
   });
 
   // `Array.from` method
@@ -1301,7 +1304,7 @@
   var createIteratorConstructor = function (IteratorConstructor, NAME, next) {
     var TO_STRING_TAG = NAME + ' Iterator';
     IteratorConstructor.prototype = objectCreate(IteratorPrototype$1, { next: createPropertyDescriptor(1, next) });
-    setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
+    setToStringTag(IteratorConstructor, TO_STRING_TAG, false);
     iterators[TO_STRING_TAG] = returnThis$1;
     return IteratorConstructor;
   };
@@ -1376,7 +1379,7 @@
           }
         }
         // Set @@toStringTag to native iterators
-        setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
+        setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true);
       }
     }
 
@@ -1633,7 +1636,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.1.11): ajax-load.js
+   * CoreUI (v2.1.12): ajax-load.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -1645,7 +1648,7 @@
      * ------------------------------------------------------------------------
      */
     var NAME = 'ajaxLoad';
-    var VERSION = '2.1.11';
+    var VERSION = '2.1.12';
     var DATA_KEY = 'coreui.ajaxLoad';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
     var ClassName = {
@@ -1875,7 +1878,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.1.11): toggle-classes.js
+   * CoreUI (v2.1.12): toggle-classes.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -1900,7 +1903,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.1.11): aside-menu.js
+   * CoreUI (v2.1.12): aside-menu.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -1912,7 +1915,7 @@
      * ------------------------------------------------------------------------
      */
     var NAME = 'aside-menu';
-    var VERSION = '2.1.11';
+    var VERSION = '2.1.12';
     var DATA_KEY = 'coreui.aside-menu';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -2116,7 +2119,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI Utilities (v2.1.11): get-css-custom-properties.js
+   * CoreUI Utilities (v2.1.12): get-css-custom-properties.js
    * Licensed under MIT (https://coreui.io/license)
    * @returns {string} css custom property name
    * --------------------------------------------------------------------------
@@ -2184,7 +2187,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.1.11): sidebar.js
+   * CoreUI (v2.1.12): sidebar.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -2196,7 +2199,7 @@
      * ------------------------------------------------------------------------
      */
     var NAME = 'sidebar';
-    var VERSION = '2.1.11';
+    var VERSION = '2.1.12';
     var DATA_KEY = 'coreui.sidebar';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -2491,7 +2494,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI Utilities (v2.1.11): hex-to-rgb.js
+   * CoreUI Utilities (v2.1.12): hex-to-rgb.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -2527,7 +2530,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI Utilities (v2.1.11): hex-to-rgba.js
+   * CoreUI Utilities (v2.1.12): hex-to-rgba.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -2606,7 +2609,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.1.11): rgb-to-hex.js
+   * CoreUI (v2.1.12): rgb-to-hex.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -2635,7 +2638,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v2.1.11): index.js
+   * CoreUI (v2.1.12): index.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
