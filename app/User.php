@@ -50,7 +50,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Url');
     }
 
-    // Accessors
+    /**
+     * @codeCoverageIgnore
+     * Accessors
+     */
     public function getAvatarAttribute()
     {
         // Check if Gravatar has an avatar for the given email address
