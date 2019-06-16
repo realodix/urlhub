@@ -12,6 +12,10 @@ class UrlBeTest extends TestCase
 {
     protected function getDeleteRoute($value, $route = 0)
     {
+        if ($route = 'au') {
+            return route('dashboard.allurl.delete', \Hashids::connection(\App\Url::class)->encode($value));
+        }
+
         return route('dashboard.delete', \Hashids::connection(\App\Url::class)->encode($value));
     }
 
