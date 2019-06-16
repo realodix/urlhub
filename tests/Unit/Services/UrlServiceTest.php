@@ -137,4 +137,12 @@ class UrlServiceTest extends TestCase
         // 9 - 5 = 4
         $this->assertSame(4, $this->UrlSrvc->url_key_remaining());
     }
+
+    /** @test */
+    public function get_domain()
+    {
+        $domain = 'http://example.com/';
+
+        $this->assertEquals('example.com', $this->UrlSrvc->getDomain($domain));
+    }
 }
