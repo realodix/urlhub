@@ -25,6 +25,9 @@ class UserController extends Controller
         return view('backend.user.index');
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getData()
     {
         $users = User::query();
