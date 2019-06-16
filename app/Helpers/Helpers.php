@@ -75,7 +75,7 @@ if (! function_exists('script')) {
 }
 
 /*
- *
+ * @codeCoverageIgnore
  */
 if (! function_exists('qrCodeGenerator')) {
     function qrCodeGenerator($value)

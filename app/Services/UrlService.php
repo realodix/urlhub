@@ -29,10 +29,12 @@ class UrlService
         // ending.
         $link = Url::whereUrlKey($urlKey)->first();
 
+        // @codeCoverageIgnoreStart
         while ($link) {
             $urlKey = $generateId->formatedId($alphabet, $size2);
             $link = Url::whereUrlKey($urlKey)->first();
         }
+        // @codeCoverageIgnoreEnd
 
         return $urlKey;
     }
