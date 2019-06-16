@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use App\Url;
 use Tests\TestCase;
 
+/**
+ * Back-End Test.
+ */
 class UrlBeTest extends TestCase
 {
     protected function getDeleteRoute($value, $route = 0)
@@ -14,6 +17,11 @@ class UrlBeTest extends TestCase
         }
 
         return route('dashboard.delete', \Hashids::connection(\App\Url::class)->encode($value));
+    }
+
+    protected function getAuDeleteRoute($value, $route = 0)
+    {
+        return route('dashboard.allurl.delete', \Hashids::connection(\App\Url::class)->encode($value));
     }
 
     /**
@@ -111,7 +119,7 @@ class UrlBeTest extends TestCase
         $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard.allurl'))
-                         ->get($this->getDeleteRoute($url->id, 'au'));
+                         ->get($this->getAuDeleteRoute($url->id));
 
         $response
             ->assertRedirect(route('dashboard.allurl'))
@@ -134,7 +142,7 @@ class UrlBeTest extends TestCase
         $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard.allurl'))
-                         ->get($this->getDeleteRoute($url->id, 'au'));
+                         ->get($this->getAuDeleteRoute($url->id));
         $response->assertForbidden();
 
         $this->assertCount(1, Url::all());

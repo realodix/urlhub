@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use App\Url;
 use Tests\TestCase;
 
+/**
+ * Front-End Test.
+ */
 class UrlFeTest extends TestCase
 {
     /** @test */
