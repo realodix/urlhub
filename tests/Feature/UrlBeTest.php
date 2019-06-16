@@ -6,7 +6,7 @@ use App\Url;
 use Tests\TestCase;
 
 /**
- * Back-End Test
+ * Back-End Test.
  */
 class UrlBeTest extends TestCase
 {
