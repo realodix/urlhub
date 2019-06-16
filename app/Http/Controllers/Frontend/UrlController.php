@@ -25,6 +25,8 @@ class UrlController extends Controller
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $url_key
      */
     public function view($url_key)
