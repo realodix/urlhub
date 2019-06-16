@@ -24,9 +24,6 @@ class AllUrlController extends Controller
         return view('backend.all-url');
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function getData()
     {
         $model = Url::query();

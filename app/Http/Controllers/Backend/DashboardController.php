@@ -50,9 +50,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function getData()
     {
         $model = Url::whereUserId(Auth::id());
