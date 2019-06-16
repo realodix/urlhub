@@ -89,7 +89,7 @@ class UrlService
         } elseif ($domain = $this->getDomain($url)) {
             // @codeCoverageIgnoreStart
             return title_case($domain).' - '.__('No Title');
-            // @codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
         } else {
             return __('No Title');
         }
