@@ -29,12 +29,10 @@ class UrlService
         // ending.
         $link = Url::whereUrlKey($urlKey)->first();
 
-        // @codeCoverageIgnoreStart
         while ($link) {
             $urlKey = $generateId->formatedId($alphabet, $size2);
             $link = Url::whereUrlKey($urlKey)->first();
         }
-        // @codeCoverageIgnoreEnd
 
         return $urlKey;
     }
@@ -87,7 +85,8 @@ class UrlService
         if ($title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', @file_get_contents($url), $matches)) {
             return $matches[1];
         } elseif ($domain = $this->getDomain($url)) {
-            return title_case($domain).' - '.__('No Title');
+            // @codeCoverageIgnoreStart
+            return title_case($domain).' - '.__('No Title'); // @codeCoverageIgnoreEnd
         } else {
             return __('No Title');
         }

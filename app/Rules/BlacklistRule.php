@@ -32,7 +32,6 @@ class BlacklistRule implements Rule
     }
 
     /**
-     * @codeCoverageIgnore
      * Get the validation error message.
      *
      * @return string
