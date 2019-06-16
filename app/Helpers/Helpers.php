@@ -74,6 +74,10 @@ if (! function_exists('script')) {
     }
 }
 
+/*
+ *
+ */
+
 if (! function_exists('qrCodeGenerator')) {
     /**
      * @codeCoverageIgnore
