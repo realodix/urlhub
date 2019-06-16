@@ -77,7 +77,11 @@ if (! function_exists('script')) {
 /*
  *
  */
+
 if (! function_exists('qrCodeGenerator')) {
+    /**
+     * @codeCoverageIgnore
+     */
     function qrCodeGenerator($value)
     {
         $qrCode = new QrCode();

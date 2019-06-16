@@ -6,6 +6,7 @@ use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\HtmlString;
 
 /**
+ * @codeCoverageIgnore
  * Class HtmlHelper.
  */
 class HtmlHlp
