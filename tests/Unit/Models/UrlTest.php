@@ -13,21 +13,19 @@ class UrlTest extends TestCase
 
         factory(Url::class)->create([
             'user_id'  => $this->admin()->id,
-            'long_url' => 'https://laravel.com',
+            'long_url' => 'https://github.com/realodix/urlhub',
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
-            'user_id'  => 0,
-            'long_url' => 'https://laravel.com',
+            'user_id'  => null,
             'clicks'   => 10,
             'ip'       => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
-            'user_id'  => 0,
-            'long_url' => 'https://laravel.com',
+            'user_id'  => null,
             'clicks'   => 10,
             'ip'       => '1.1.1.1',
         ]);
@@ -37,7 +35,7 @@ class UrlTest extends TestCase
     public function belongs_to_user()
     {
         $url = factory(Url::class)->create([
-            'user_id' => $this->user()->id,
+            'user_id' => $this->admin()->id,
         ]);
 
         $this->assertTrue($url->user()->exists());
@@ -74,9 +72,7 @@ class UrlTest extends TestCase
     /** @test */
     public function getShortUrlAttribute()
     {
-        $url = new Url;
-        $url->url_key = 'realodix';
-        $url->name_order = 'short_url';
+        $url = Url::whereUserId($this->admin()->id)->first();
 
         $this->assertSame(
             $url->short_url,
@@ -87,12 +83,14 @@ class UrlTest extends TestCase
     /** @test */
     public function setLongUrlAttribute()
     {
-        $url = factory(Url::class)
-               ->create(['user_id' => null]);
+        $url = factory(Url::class)->create([
+            'user_id'  => null,
+            'long_url' => 'http://example.com/',
+        ]);
 
         $this->assertSame(
             $url->long_url,
-            'https://github.com/realodix/urlhub'
+            'http://example.com'
         );
     }
 
@@ -136,7 +134,11 @@ class UrlTest extends TestCase
         $this->assertSame(10, $url->totalClicksById($this->admin()->id));
     }
 
-    /** @test */
+    /**
+     * The number of guests is calculated based on a unique IP.
+     *
+     * @test
+     */
     public function total_clicks_by_guest()
     {
         $url = new Url;

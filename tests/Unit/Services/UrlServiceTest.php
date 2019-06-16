@@ -17,12 +17,34 @@ class UrlServiceTest extends TestCase
         $this->UrlSrvc = new UrlService();
     }
 
-    public function test_key_generator_length()
+    /** @test */
+    public function key_generator_length()
     {
         $this->assertSame(config('urlhub.hash_size_1'), strlen($this->UrlSrvc->key_generator()));
     }
 
-    public function test_url_key_capacity()
+    /** @test */
+    public function key_generator_size1_equal_with_size2()
+    {
+        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_size_1', 2);
+        config()->set('urlhub.hash_size_2', 2);
+
+        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->UrlSrvc->key_generator()));
+    }
+
+    /** @test */
+    public function key_generator_size2_with_zero_value()
+    {
+        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_size_1', 2);
+        config()->set('urlhub.hash_size_2', 0);
+
+        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->UrlSrvc->key_generator()));
+    }
+
+    /** @test */
+    public function url_key_capacity()
     {
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 0);
@@ -41,7 +63,8 @@ class UrlServiceTest extends TestCase
         $this->assertSame(9, $this->UrlSrvc->url_key_capacity());
     }
 
-    public function test_url_key_capacity_input_negative()
+    /** @test */
+    public function url_key_capacity_input_negative()
     {
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 1);
@@ -59,7 +82,8 @@ class UrlServiceTest extends TestCase
         $this->assertSame(0, $this->UrlSrvc->url_key_capacity());
     }
 
-    public function test_url_key_capacity_input_number()
+    /** @test */
+    public function url_key_capacity_input_number()
     {
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 2.7);
@@ -72,7 +96,8 @@ class UrlServiceTest extends TestCase
         $this->assertSame(36, $this->UrlSrvc->url_key_capacity()); // (3^2)+(3^3)
     }
 
-    public function test_url_key_capacity_input_string()
+    /** @test */
+    public function url_key_capacity_input_string()
     {
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 'string');
@@ -111,5 +136,13 @@ class UrlServiceTest extends TestCase
 
         // 9 - 5 = 4
         $this->assertSame(4, $this->UrlSrvc->url_key_remaining());
+    }
+
+    /** @test */
+    public function get_domain()
+    {
+        $domain = 'http://example.com/';
+
+        $this->assertEquals('example.com', $this->UrlSrvc->getDomain($domain));
     }
 }

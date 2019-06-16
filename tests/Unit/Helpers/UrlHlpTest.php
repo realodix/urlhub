@@ -6,7 +6,8 @@ use Tests\TestCase;
 
 class UrlHlpTest extends TestCase
 {
-    public function test_url_limit()
+    /** @test */
+    public function url_limit()
     {
         $this->assertSame(
              'https://laravel.com/',
@@ -25,9 +26,10 @@ class UrlHlpTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider removeSchemes
      */
-    public function test_remove_schemes($expected, $actual)
+    public function remove_schemes($expected, $actual)
     {
         $this->assertSame($expected, remove_schemes($actual));
     }

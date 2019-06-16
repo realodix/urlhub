@@ -43,7 +43,7 @@ class RegisterTest extends TestCase
     /** @test */
     public function user_cannot_view_a_registration_form_when_authenticated()
     {
-        $response = $this->loginAsUser()->get($this->getRoute());
+        $response = $this->loginAsNonAdmin()->get($this->getRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -72,7 +72,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function test_name_should_not_be_too_long()
+    public function name_should_not_be_too_long()
     {
         $response = $this->post('/register', [
             'name' => str_repeat('a', 51),
@@ -148,7 +148,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    public function test_email_should_not_be_too_long()
+    public function email_should_not_be_too_long()
     {
         $response = $this->post('/register', [
             'email' => str_repeat('a', 247).'@test.com', // 256

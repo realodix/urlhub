@@ -29,9 +29,9 @@ class UserPolicyTest extends TestCase
      */
     public function view_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
-        $non_admin = $this->user();
+        $non_admin = $this->nonAdmin();
 
         $this->assertTrue($non_admin->can('view', $non_admin));
         $this->assertFalse($non_admin->can('view', new User()));
@@ -59,9 +59,9 @@ class UserPolicyTest extends TestCase
      */
     public function update_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
-        $non_admin = $this->user();
+        $non_admin = $this->nonAdmin();
 
         $this->assertTrue($non_admin->can('update', $non_admin));
         $this->assertFalse($non_admin->can('update', new User()));
@@ -89,9 +89,9 @@ class UserPolicyTest extends TestCase
      */
     public function updatePass_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
-        $non_admin = $this->user();
+        $non_admin = $this->nonAdmin();
 
         $this->assertTrue($non_admin->can('updatePass', $non_admin));
         $this->assertFalse($non_admin->can('updatePass', new User()));
@@ -113,17 +113,17 @@ class UserPolicyTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->get($this->getCPRoute($this->user()->name));
-        $response->assertStatus(200);
+        $response = $this->get($this->getCPRoute($this->nonAdmin()->name));
+        $response->assertOk();
     }
 
     /** @test */
     public function non_admin_cant_access_change_password_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get($this->getCPRoute($this->admin()->name));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /*
@@ -138,15 +138,15 @@ class UserPolicyTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->get(route('user.index'));
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */
     public function non_admin_cant_access_all_users_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get(route('user.index'));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 }
