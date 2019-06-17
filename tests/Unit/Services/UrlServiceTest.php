@@ -138,11 +138,26 @@ class UrlServiceTest extends TestCase
         $this->assertSame(4, $this->UrlSrvc->url_key_remaining());
     }
 
-    /** @test */
-    public function get_domain()
+    /**
+     * @test
+     * @dataProvider getDomainProvider
+     */
+    public function get_domain($expected, $actutal)
     {
-        $domain = 'http://example.com/';
+        $this->assertEquals($expected, $this->UrlSrvc->getDomain($actutal));
+    }
 
-        $this->assertEquals('example.com', $this->UrlSrvc->getDomain($domain));
+    public function getDomainProvider()
+    {
+        return [
+            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
+        ];
     }
 }
