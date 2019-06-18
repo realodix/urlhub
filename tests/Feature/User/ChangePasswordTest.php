@@ -117,7 +117,7 @@ class ChangePasswordTest extends TestCase
      * @test
      * @dataProvider newPasswordFail
      */
-    public function new_password_validate_required($data1, $data2)
+    public function new_password_validate_fail($data1, $data2)
     {
         $this->loginAsAdmin();
 
