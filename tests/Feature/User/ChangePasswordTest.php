@@ -113,39 +113,21 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /** @test */
-    public function new_password_validate_required()
+    /**
+     * @test
+     * @dataProvider newPasswordFail
+     */
+    public function new_password_validate_required($data1, $data2)
     {
-        $this->loginAsNonAdmin();
+        $this->loginAsAdmin();
 
         $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => '',
-                            'new-password_confirmation' => '',
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
-
-        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
-    }
-
-    /** @test */
-    public function new_password_validate_string()
-    {
-        $this->loginAsNonAdmin();
-
-        $user = $this->nonAdmin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => null,
-                            'new-password_confirmation' => null,
+                            'current-password'          => $this->adminPassword(),
+                            'new-password'              => $data1,
+                            'new-password_confirmation' => $data2,
                          ]);
 
         $response
@@ -153,56 +135,18 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHasErrors('new-password');
 
         $this->assertFalse(
-            Hash::check('new-awesome-password',
+            Hash::check($data1,
             $user->fresh()->password)
         );
     }
 
-    /** @test */
-    public function new_password_validate_min_lenght()
+    public function newPasswordFail()
     {
-        $this->loginAsNonAdmin();
-
-        $user = $this->nonAdmin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => str_repeat('a', 5),
-                            'new-password_confirmation' => str_repeat('a', 5),
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
-
-        $this->assertFalse(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
-        );
-    }
-
-    /** @test */
-    public function new_password_validate_confirmed()
-    {
-        $this->loginAsNonAdmin();
-
-        $user = $this->nonAdmin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => 'new-awesome-password',
-                            'new-password_confirmation' => 'new-awesome-pass',
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
-
-        $this->assertFalse(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
-        );
+        return [
+            ['', ''], // required
+            [null, null], // string
+            [str_repeat('a', 5), str_repeat('a', 5)], // min:6
+            ['new-password', 'new-pass-word'], // confirmed
+        ];
     }
 }
