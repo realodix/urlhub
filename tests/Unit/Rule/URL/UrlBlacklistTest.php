@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Rule;
+namespace Tests\Unit\Rule\URL;
 
 use App\Rules\URL\UrlBlacklist;
 use Tests\TestCase;
