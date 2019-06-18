@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\ShortUrlProtected;
+use App\Rules\URL\ShortUrlProtected;
 use Tests\TestCase;
 
 class ShortUrlProtectedTest extends TestCase

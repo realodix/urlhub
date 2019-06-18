@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\BlacklistRule;
+use App\Rules\URL\BlacklistRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrl extends FormRequest

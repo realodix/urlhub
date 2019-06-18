@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\BlacklistRule;
+use App\Rules\URL\BlacklistRule;
 use Tests\TestCase;
 
 class BlacklistRuleTest extends TestCase
