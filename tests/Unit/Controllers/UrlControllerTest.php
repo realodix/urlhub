@@ -2,7 +2,11 @@
 
 namespace Tests\Unit\Controllers;
 
+use App\Rules\LowercaseRule;
+use App\Rules\ShortUrlProtectedRule;
 use App\Url;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
 /*
@@ -144,16 +148,47 @@ class UrlControllerTest extends TestCase
     }
 
     /** @test */
-    public function checkExistingCustomUrl_pass()
+    public function check_existing_custom_url_pass()
     {
-        factory(Url::class)->create([
-            'user_id'  => null,
-        ]);
-
         $response = $this->post(route('home').'/custom-link-avail-check', [
-            'url_key'  => 'hello',
+            'url_key' => 'hello',
         ]);
 
         $response->assertJson(['success'=>'Available']);
+    }
+
+    /**
+     * @test
+     * @dataProvider checkExistingCustomUrl_fail
+     */
+    public function check_existing_custom_url_fail($data)
+    {
+        factory(Url::class)->create([
+            'user_id' => null,
+            'url_key' => 'laravel'
+        ]);
+
+        $request = new Request;
+
+        $validator = Validator::make($request->all(), [
+            'url_key'  => ['max:20', 'alpha_dash', 'unique:urls', new LowercaseRule, new ShortUrlProtectedRule],
+        ]);
+
+        $response = $this->post(route('home').'/custom-link-avail-check', [
+            'url_key' => $data,
+        ]);
+
+        $response->assertJson(['errors'=>$validator->errors()->all()]);
+    }
+
+    public function checkExistingCustomUrl_fail()
+    {
+        return [
+            [str_repeat('a', 50)],
+            ['laravel~'],
+            ['laravel'],
+            ['Laravel'],
+            ['login'],
+        ];
     }
 }
