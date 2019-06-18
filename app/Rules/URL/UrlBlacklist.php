@@ -4,7 +4,7 @@ namespace App\Rules\URL;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class BlacklistRule implements Rule
+class UrlBlacklist implements Rule
 {
     /**
      * Determine if the validation rule passes.
