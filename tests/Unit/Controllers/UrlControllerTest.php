@@ -3,7 +3,7 @@
 namespace Tests\Unit\Controllers;
 
 use App\Rules\LowercaseRule;
-use App\Rules\ShortUrlProtectedRule;
+use App\Rules\ShortUrlProtected;
 use App\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -171,7 +171,7 @@ class UrlControllerTest extends TestCase
         $request = new Request;
 
         $validator = Validator::make($request->all(), [
-            'url_key'  => ['max:20', 'alpha_dash', 'unique:urls', new LowercaseRule, new ShortUrlProtectedRule],
+            'url_key'  => ['max:20', 'alpha_dash', 'unique:urls', new LowercaseRule, new ShortUrlProtected],
         ]);
 
         $response = $this->post(route('home').'/custom-link-avail-check', [

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Rule;
  * Check if Short URL cannot be created because
  * it is a path.
  */
-class ShortUrlProtectedRule implements Rule
+class ShortUrlProtected implements Rule
 {
     /**
      * Create a new rule instance.
