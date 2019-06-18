@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class LowercaseRule implements Rule
+class Lowercase implements Rule
 {
     /**
      * Determine if the validation rule passes.

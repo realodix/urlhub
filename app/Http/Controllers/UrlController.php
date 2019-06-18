@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Rules\LowercaseRule;
+use App\Rules\Lowercase;
 use App\Rules\ShortUrlProtectedRule;
 use App\Services\UrlService;
 use App\Url;
@@ -75,7 +75,7 @@ class UrlController extends Controller
     public function checkExistingCustomUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new LowercaseRule, new ShortUrlProtectedRule],
+            'url_key'  => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase, new ShortUrlProtectedRule],
         ]);
 
         if ($validator->fails()) {
