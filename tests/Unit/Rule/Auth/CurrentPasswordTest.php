@@ -18,16 +18,16 @@ class CurrentPasswordTest extends TestCase
     }
 
     /**
-    * @return void
-    */
+     * @return void
+     */
     public function testCurrentPasswordPass()
     {
         $this->assertTrue($this->rule->passes('test', $this->adminPassword()));
     }
 
     /**
-    * @return void
-    */
+     * @return void
+     */
     public function testCurrentPasswordFail()
     {
         $this->assertFalse($this->rule->passes('test', 'wrong_password'));

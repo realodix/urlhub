@@ -165,7 +165,7 @@ class UrlControllerTest extends TestCase
     {
         factory(Url::class)->create([
             'user_id' => null,
-            'url_key' => 'laravel'
+            'url_key' => 'laravel',
         ]);
 
         $request = new Request;
