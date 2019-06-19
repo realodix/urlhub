@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
-use App\Rules\Auth\CurrentPassword;
+use App\Http\Requests\UpdateUserPassword;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,20 +28,15 @@ class ChangePasswordController extends Controller
     /**
      * Change the password.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\User                $user
+     * @param \App\Http\Requests\UpdateUserPassword $request
+     * @param \App\User                             $user
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserPassword $request, User $user)
     {
         $this->authorize('updatePass', $user);
-
-        $validatedData = $request->validate([
-            'current-password' => [new CurrentPassword],
-            'new-password'     => ['required', 'different:current-password', 'string', 'min:6', 'confirmed'],
-        ]);
 
         $user->password = Hash::make($request->input('new-password'));
         $user->save();
