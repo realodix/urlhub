@@ -7,28 +7,29 @@ use Tests\TestCase;
 
 class CurrentPasswordTest extends TestCase
 {
-    // protected $rule;
+    protected $rule;
 
-    // public function setUp():void
-    // {
-    //     parent::setUp();
+    public function setUp():void
+    {
+        parent::setUp();
 
-    //     $this->rule = new CurrentPassword();
-    // }
+        $this->rule = new CurrentPassword();
+        $this->loginAsAdmin();
+    }
 
-    // /**
-    //  * @return void
-    //  */
-    // public function testCurrentPasswordPass()
-    // {
-    //     $this->assertTrue($this->rule->passes('test', 'abc'));
-    // }
+    /**
+    * @return void
+    */
+    public function testCurrentPasswordPass()
+    {
+        $this->assertTrue($this->rule->passes('test', $this->adminPassword()));
+    }
 
-    // /**
-    //  * @return void
-    //  */
-    // public function testCurrentPasswordFail()
-    // {
-    //     $this->assertFalse($this->rule->passes('test', 'ABC'));
-    // }
+    /**
+    * @return void
+    */
+    public function testCurrentPasswordFail()
+    {
+        $this->assertFalse($this->rule->passes('test', 'wrong_password'));
+    }
 }
