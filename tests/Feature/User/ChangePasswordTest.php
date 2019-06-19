@@ -89,25 +89,6 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /** @test */
-    public function new_password_cannot_be_same_as_current_password()
-    {
-        $this->loginAsAdmin();
-
-        $user = $this->admin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->adminPassword(),
-                            'new-password'              => $this->adminPassword(),
-                            'new-password_confirmation' => $this->adminPassword(),
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHas('flash_error');
-    }
-
     /**
      * @test
      * @dataProvider newPasswordFail
@@ -139,6 +120,7 @@ class ChangePasswordTest extends TestCase
     {
         return [
             ['', ''], // required
+            [$this->adminPassword(), $this->adminPassword()], // different
             [null, null], // string
             [str_repeat('a', 5), str_repeat('a', 5)], // min:6
             ['new-password', 'new-pass-word'], // confirmed

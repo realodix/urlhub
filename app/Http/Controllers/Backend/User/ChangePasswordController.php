@@ -38,15 +38,9 @@ class ChangePasswordController extends Controller
     {
         $this->authorize('updatePass', $user);
 
-        if (strcmp($request->input('current-password'), $request->input('new-password')) == 0) {
-            // Current password and new password are same
-            return redirect()->back()
-                             ->withFlashError(__('New Password cannot be same as your current password. Please choose a different password.'));
-        }
-
         $validatedData = $request->validate([
             'current-password' => [new CurrentPassword],
-            'new-password'     => ['required', 'string', 'min:6', 'confirmed'],
+            'new-password'     => ['required', 'different:current-password', 'string', 'min:6', 'confirmed'],
         ]);
 
         $user->password = Hash::make($request->input('new-password'));
