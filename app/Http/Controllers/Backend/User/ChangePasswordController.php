@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
+use App\Rules\Auth\CurrentPassword;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +38,6 @@ class ChangePasswordController extends Controller
     {
         $this->authorize('updatePass', $user);
 
-        if (! (Hash::check($request->input('current-password'), Auth::user()->password))) {
-            // The passwords matches
-            return redirect()->back()
-                             ->withFlashError(__('The password you entered does not match your password. Please try again.'));
-        }
-
         if (strcmp($request->input('current-password'), $request->input('new-password')) == 0) {
             // Current password and new password are same
             return redirect()->back()
@@ -50,7 +45,8 @@ class ChangePasswordController extends Controller
         }
 
         $validatedData = $request->validate([
-            'new-password' => ['required', 'string', 'min:6', 'confirmed'],
+            'current-password' => [new CurrentPassword],
+            'new-password'     => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
         $user->password = Hash::make($request->input('new-password'));
