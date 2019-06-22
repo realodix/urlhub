@@ -81,7 +81,7 @@ class ChangePasswordTest extends TestCase
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHas('flash_error');
+            ->assertSessionHasErrors('current-password');
 
         $this->assertFalse(
             Hash::check('new-awesome-password',
@@ -89,63 +89,21 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /** @test */
-    public function new_password_cannot_be_same_as_current_password()
+    /**
+     * @test
+     * @dataProvider newPasswordFail
+     */
+    public function new_password_validate_fail($data1, $data2)
     {
         $this->loginAsAdmin();
 
-        $user = $this->admin();
+        $user = $this->nonAdmin();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
                             'current-password'          => $this->adminPassword(),
-                            'new-password'              => $this->adminPassword(),
-                            'new-password_confirmation' => $this->adminPassword(),
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHas('flash_error');
-
-        $this->assertFalse(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
-        );
-    }
-
-    /** @test */
-    public function new_password_validate_required()
-    {
-        $this->loginAsNonAdmin();
-
-        $user = $this->nonAdmin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => '',
-                            'new-password_confirmation' => '',
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
-
-        $this->assertFalse(Hash::check('new-awesome-password', $user->fresh()->password));
-    }
-
-    /** @test */
-    public function new_password_validate_string()
-    {
-        $this->loginAsNonAdmin();
-
-        $user = $this->nonAdmin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => null,
-                            'new-password_confirmation' => null,
+                            'new-password'              => $data1,
+                            'new-password_confirmation' => $data2,
                          ]);
 
         $response
@@ -153,56 +111,19 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHasErrors('new-password');
 
         $this->assertFalse(
-            Hash::check('new-awesome-password',
+            Hash::check($data1,
             $user->fresh()->password)
         );
     }
 
-    /** @test */
-    public function new_password_validate_min_lenght()
+    public function newPasswordFail()
     {
-        $this->loginAsNonAdmin();
-
-        $user = $this->nonAdmin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => str_repeat('a', 5),
-                            'new-password_confirmation' => str_repeat('a', 5),
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
-
-        $this->assertFalse(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
-        );
-    }
-
-    /** @test */
-    public function new_password_validate_confirmed()
-    {
-        $this->loginAsNonAdmin();
-
-        $user = $this->nonAdmin();
-
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                            'current-password'          => $this->nonAdminPassword(),
-                            'new-password'              => 'new-awesome-password',
-                            'new-password_confirmation' => 'new-awesome-pass',
-                         ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
-
-        $this->assertFalse(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
-        );
+        return [
+            ['', ''], // required
+            [$this->adminPassword(), $this->adminPassword()], // different
+            [null, null], // string
+            [str_repeat('a', 5), str_repeat('a', 5)], // min:6
+            ['new-password', 'new-pass-word'], // confirmed
+        ];
     }
 }

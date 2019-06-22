@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\Rule;
+namespace Tests\Unit\Rule\URL;
 
-use App\Rules\BlacklistRule;
+use App\Rules\URL\UrlBlacklist;
 use Tests\TestCase;
 
-class BlacklistRuleTest extends TestCase
+class UrlBlacklistTest extends TestCase
 {
     protected $rule;
 
@@ -13,7 +13,7 @@ class BlacklistRuleTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new BlacklistRule();
+        $this->rule = new UrlBlacklist();
 
         config()->set(
             'urlhub.blacklist',
@@ -22,24 +22,24 @@ class BlacklistRuleTest extends TestCase
     }
 
     /**
-     * @dataProvider blacklistRulePass
+     * @dataProvider UrlBlacklistPass
      * @return void
      */
-    public function testBlacklistRulePass($value)
+    public function testUrlBlacklistPass($value)
     {
         $this->assertTrue($this->rule->passes('test', $value));
     }
 
     /**
-     * @dataProvider blacklistRuleFail
+     * @dataProvider UrlBlacklistFail
      * @return void
      */
-    public function testBlacklistRuleFail($value)
+    public function testUrlBlacklistFail($value)
     {
         $this->assertFalse($this->rule->passes('test', $value));
     }
 
-    public function blacklistRulePass()
+    public function UrlBlacklistPass()
     {
         return [
             ['http://laravel.com/docs'],
@@ -56,7 +56,7 @@ class BlacklistRuleTest extends TestCase
     /**
      * @return void
      */
-    public function blacklistRuleFail()
+    public function UrlBlacklistFail()
     {
         return [
             ['http://github.com/laravel/laravel'],

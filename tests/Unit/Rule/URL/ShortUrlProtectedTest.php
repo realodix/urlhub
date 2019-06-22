@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\Rule;
+namespace Tests\Unit\Rule\URL;
 
-use App\Rules\ShortUrlProtectedRule;
+use App\Rules\URL\ShortUrlProtected;
 use Tests\TestCase;
 
-class ShortUrlProtectedRuleTest extends TestCase
+class ShortUrlProtectedTest extends TestCase
 {
     protected $rule;
 
@@ -13,30 +13,30 @@ class ShortUrlProtectedRuleTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new ShortUrlProtectedRule();
+        $this->rule = new ShortUrlProtected();
     }
 
     /**
-     * @dataProvider shortUrlProtectedRulePass
+     * @dataProvider ShortUrlProtectedPass
      * @param string $value
      * @return void
      */
-    public function testShortUrlProtectedRulePass($value)
+    public function testShortUrlProtectedPass($value)
     {
         $this->assertTrue($this->rule->passes('test', $value));
     }
 
     /**
-     * @dataProvider shortUrlProtectedRuleFail
+     * @dataProvider ShortUrlProtectedFail
      * @param string $value
      * @return void
      */
-    public function testShortUrlProtectedRuleFail($value)
+    public function testShortUrlProtectedFail($value)
     {
         $this->assertFalse($this->rule->passes('test', $value));
     }
 
-    public function shortUrlProtectedRulePass()
+    public function ShortUrlProtectedPass()
     {
         return [
             ['hello'],
@@ -44,7 +44,7 @@ class ShortUrlProtectedRuleTest extends TestCase
         ];
     }
 
-    public function shortUrlProtectedRuleFail()
+    public function ShortUrlProtectedFail()
     {
         return [
             ['login'],
