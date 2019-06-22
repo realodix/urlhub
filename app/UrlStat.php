@@ -15,4 +15,10 @@ class UrlStat extends Model
         'url_id',
         'ip',
     ];
+
+    // Relations
+    public function url()
+    {
+        return $this->belongsTo('App\Url');
+    }
 }
