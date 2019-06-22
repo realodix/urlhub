@@ -21,6 +21,6 @@ class UrlStat extends Model
     // Relations
     public function url()
     {
-        return $this->belongsTo('App\Url');
+        return $this->belongsTo('App\Url', 'url_key', 'url_key');
     }
 }
