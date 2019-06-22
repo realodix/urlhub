@@ -21,8 +21,8 @@ class CreateUrlStatsTable extends Migration
             $table->ipAddress('ip');
             $table->timestamps();
 
-            $table->foreign('url_id')
-                  ->references('id')->on('urls')
+            $table->foreign('url_key')
+                  ->references('url_key')->on('urls')
                   ->onDelete('cascade');
         });
     }

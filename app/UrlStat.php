@@ -12,7 +12,7 @@ class UrlStat extends Model
      * @var array
      */
     protected $fillable = [
-        'url_id',
+        'url_key',
         'click',
         'referer',
         'ip',
