@@ -16,6 +16,7 @@ class CreateUrlStatsTable extends Migration
         Schema::create('url_stats', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('url_id');
+            $table->string('referer', 300)->nullable()->default(0);
             $table->ipAddress('ip');
             $table->timestamps();
 

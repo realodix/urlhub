@@ -64,8 +64,9 @@ class UrlController extends Controller
         Url::whereUrlKey($url_key)->increment('clicks');
 
         UrlStat::create([
-            'url_id' => $url->id,
-            'ip'     => request()->ip(),
+            'url_id'  => $url->id,
+            'referer' => request()->server('HTTP_REFERER') ?? null,
+            'ip'      => request()->ip(),
         ]);
 
         return redirect()->away($url->long_url, 301);

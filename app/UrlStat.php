@@ -13,6 +13,7 @@ class UrlStat extends Model
      */
     protected $fillable = [
         'url_id',
+        'referer',
         'ip',
     ];
 
