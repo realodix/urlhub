@@ -15,6 +15,11 @@ class UrlStat extends Model
         'url_id',
         'referer',
         'ip',
+        'device',
+        'platform',
+        'platform_version',
+        'browser',
+        'browser_version',
     ];
 
     // Relations

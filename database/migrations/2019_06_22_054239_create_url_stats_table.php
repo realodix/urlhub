@@ -18,6 +18,11 @@ class CreateUrlStatsTable extends Migration
             $table->unsignedBigInteger('url_id');
             $table->string('referer', 300)->nullable()->default(0);
             $table->ipAddress('ip');
+            $table->string('device')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('platform_version')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('browser_version')->nullable();
             $table->timestamps();
 
             $table->foreign('url_id')

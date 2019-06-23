@@ -11,6 +11,7 @@ use App\UrlStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Jenssegers\Agent\Agent;
 
 class UrlController extends Controller
 {
@@ -59,14 +60,20 @@ class UrlController extends Controller
      */
     public function urlRedirection($url_key)
     {
-        Url::whereUrlKey($url_key)->increment('clicks');
-
+        $agent = new Agent();
         $url = Url::whereUrlKey($url_key)->firstOrFail();
 
+        Url::whereUrlKey($url_key)->increment('clicks');
+
         UrlStat::create([
-            'url_id'  => $url->id,
-            'referer' => request()->server('HTTP_REFERER') ?? null,
-            'ip'      => request()->ip(),
+            'url_id'           => $url->id,
+            'referer'          => request()->server('HTTP_REFERER') ?? null,
+            'ip'               => request()->ip(),
+            'device'           => $agent->device(),
+            'platform'         => $agent->platform(),
+            'platform_version' => $agent->version($agent->platform()),
+            'browser'          => $agent->browser(),
+            'browser_version'  => $agent->version($agent->browser()),
         ]);
 
         return redirect()->away($url->long_url, 301);
