@@ -74,6 +74,13 @@ class Url extends Model
         return url('/'.$this->attributes['url_key']);
     }
 
+    public function getClicksAttribute()
+    {
+        $clicks = self::UrlStat()->whereUrlId($this->attributes['id'])->sum('click');
+
+        return $clicks;
+    }
+
     /*
      |
      |
@@ -104,6 +111,6 @@ class Url extends Model
     {
         $url = self::whereUserId($id)->firstOrFail();
 
-        return self::UrlStat()->whereUrlId($url->id)->sum('click');;
+        return self::UrlStat()->whereUrlId($url->id)->sum('click');
     }
 }
