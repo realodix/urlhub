@@ -7,6 +7,7 @@ use App\Rules\Lowercase;
 use App\Rules\URL\ShortUrlProtected;
 use App\Services\UrlService;
 use App\Url;
+use App\UrlStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -61,6 +62,12 @@ class UrlController extends Controller
         $url = Url::whereUrlKey($url_key)->firstOrFail();
 
         Url::whereUrlKey($url_key)->increment('clicks');
+
+        UrlStat::create([
+            'url_id' => $url->id,
+            'referer' => request()->server('HTTP_REFERER') ?? null,
+            'ip'      => request()->ip(),
+        ]);
 
         return redirect()->away($url->long_url, 301);
     }
