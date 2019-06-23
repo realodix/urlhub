@@ -16,13 +16,13 @@ class CreateUrlStatsTable extends Migration
         Schema::create('url_stats', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('url_id');
-            $table->tinyInteger('click')->nullable()->default(1);
+            $table->unsignedInteger('click')->nullable()->default(1);
             $table->string('referer', 300)->nullable()->default(0);
             $table->ipAddress('ip');
             $table->timestamps();
 
-            $table->foreign('url_key')
-                  ->references('url_key')->on('urls')
+            $table->foreign('url_id')
+                  ->references('id')->on('urls')
                   ->onDelete('cascade');
         });
     }

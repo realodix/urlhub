@@ -21,7 +21,6 @@ class Url extends Model
         'is_custom',
         'long_url',
         'meta_title',
-        'clicks',
         'ip',
     ];
 
@@ -44,7 +43,7 @@ class Url extends Model
 
     public function urlStat()
     {
-        return $this->hasMany('App\UrlStat', 'url_key', 'url_key');
+        return $this->hasMany('App\UrlStat');
     }
 
     // Mutator
@@ -95,7 +94,7 @@ class Url extends Model
 
     public function totalClicks():int
     {
-        return self::sum('clicks');
+        return self::UrlStat()->sum('click');
     }
 
     /**
@@ -103,6 +102,8 @@ class Url extends Model
      */
     public function totalClicksById($id = null):int
     {
-        return self::whereUserId($id)->sum('clicks');
+        $url = self::whereUserId($id)->firstOrFail();
+
+        return self::UrlStat()->whereUrlId($url->id)->sum('click');;
     }
 }

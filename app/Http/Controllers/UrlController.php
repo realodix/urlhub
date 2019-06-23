@@ -61,10 +61,8 @@ class UrlController extends Controller
     {
         $url = Url::whereUrlKey($url_key)->firstOrFail();
 
-        Url::whereUrlKey($url_key)->increment('clicks');
-
         UrlStat::create([
-            'url_key' => $url_key,
+            'url_id' => $url->id,
             'referer' => request()->server('HTTP_REFERER') ?? null,
             'ip'      => request()->ip(),
         ]);

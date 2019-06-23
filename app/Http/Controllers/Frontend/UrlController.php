@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Services\UrlService;
 use App\Url;
+use App\UrlStat;
 use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
@@ -32,9 +33,12 @@ class UrlController extends Controller
     {
         $url = Url::whereUrlKey($url_key)->firstOrFail();
 
+        $clicks = UrlStat::whereUrlId($url->id)->count();
+
         $qrCode = qrCodeGenerator($url->short_url);
 
         return view('frontend.short', compact('url'), [
+            'clicks'       => $clicks,
             'qrCodeData'   => $qrCode->getContentType(),
             'qrCodeBase64' => $qrCode->generate(),
         ]);

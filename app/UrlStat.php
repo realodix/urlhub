@@ -12,7 +12,7 @@ class UrlStat extends Model
      * @var array
      */
     protected $fillable = [
-        'url_key',
+        'url_id',
         'click',
         'referer',
         'ip',
@@ -21,6 +21,6 @@ class UrlStat extends Model
     // Relations
     public function url()
     {
-        return $this->belongsTo('App\Url', 'url_key', 'url_key');
+        return $this->belongsTo('App\Url');
     }
 }
