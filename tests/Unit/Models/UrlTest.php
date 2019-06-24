@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Url;
+use App\UrlStat;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -39,6 +40,21 @@ class UrlTest extends TestCase
         ]);
 
         $this->assertTrue($url->user()->exists());
+    }
+
+    /** @test */
+    public function has_many_url_stat()
+    {
+        $url = factory(Url::class)->create([
+            'id'      => 1,
+            'user_id' => $this->admin()->id,
+        ]);
+
+        factory(UrlStat::class)->create([
+            'url_id' => 1,
+        ]);
+
+        $this->assertTrue($url->urlStat()->exists());
     }
 
     /**
