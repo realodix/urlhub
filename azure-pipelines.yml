@@ -6,35 +6,27 @@
 trigger:
 - master
 
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.13'
-    windows:
-      imageName: 'vs2017-win2016'
-
 pool:
-  vmImage: $(imageName)
+  vmImage: 'ubuntu-latest'
 
 variables:
   phpVersion: 7.2
 
 steps:
 - bash: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
-- displayName: 'Deploy Using : InlineSqlTask'
-  inputs:
-    TaskNameSelector: InlineSqlTask
-    SqlInline: |
-     CREATE DATABASE IF NOT EXISTS alm;
-     use alm;
-    ServerName: localhost
-    SqlUsername: root
-    SqlPassword: P2ssw0rd
+- bash: |
+    sudo apt-get install -y mysql-server
+    sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+    sudo mysql -u root -e 'create database urlhub_test;'
+  displayName: 'Installing System Dependencies'
 
 - bash: |
     mysql --version
