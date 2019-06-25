@@ -38,6 +38,7 @@ steps:
 
 - bash: |
     sudo composer self-update
+    composer global require hirak/prestissimo
     composer install --no-interaction --prefer-dist --no-suggest
     composer --version
   displayName: 'Installing Package Dependencies'
