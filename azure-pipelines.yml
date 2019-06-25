@@ -27,7 +27,7 @@ steps:
     sudo apt-get install -y build-essential debconf-utils screen mysql-server
     sudo apt-get install -y unzip xvfb autogen autoconf libtool pkg-config nasm
     sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-    sudo mysql -u root -e 'create database urlhub_test;'
+    sudo mysql -u root -e 'create database urlhub;'
   displayName: 'Installing System Dependencies'
 
 - script: |
@@ -48,3 +48,7 @@ steps:
     php artisan key:generate
     php artisan migrate
   displayName: 'Running Migrations'
+
+- script: |
+    vendor/bin/phpunit
+  displayName: 'Running Unit Tests'
