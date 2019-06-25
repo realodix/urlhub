@@ -37,7 +37,6 @@ steps:
   displayName: 'Environment Setup'
 
 - bash: |
-    sudo composer self-update
     composer global require hirak/prestissimo
     composer install --no-interaction --prefer-dist --no-suggest
     composer --version
