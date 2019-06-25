@@ -62,6 +62,7 @@ class UrlController extends Controller
     {
         $agent = new Agent();
         $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $countries = getCountries(request()->ip());
 
         Url::whereUrlKey($url_key)->increment('clicks');
 
@@ -74,6 +75,8 @@ class UrlController extends Controller
             'platform_version' => $agent->version($agent->platform()),
             'browser'          => $agent->browser(),
             'browser_version'  => $agent->version($agent->browser()),
+            'country'          => $countries['countryCode'],
+            'country_full'     => $countries['countryName'],
         ]);
 
         return redirect()->away($url->long_url, 301);
