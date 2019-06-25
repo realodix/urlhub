@@ -13,7 +13,7 @@ variables:
   phpVersion: 7.2
 
 steps:
-- script: |
+- bash: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
     sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
     sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
@@ -22,30 +22,30 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
-- script: |
+- bash: |
     sudo apt-get install -y mysql-server
     sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
     sudo mysql -u root -e 'create database urlhub_test;'
   displayName: 'Installing System Dependencies'
 
-- script: |
+- bash: |
     mysql --version
   displayName: 'MySQL Version'
 
-- script: |
+- bash: |
     cp .env.example .env
   displayName: 'Environment Setup'
 
-- script: |
+- bash: |
     sudo composer self-update
     composer install --no-interaction --prefer-dist --no-suggest
     composer --version
   displayName: 'Installing Package Dependencies'
 
-- script: |
+- bash: |
     php artisan key:generate
   displayName: 'Running Laravel Artisan'
 
-- script: |
+- bash: |
     vendor/bin/phpunit
   displayName: 'Running Unit Tests'
