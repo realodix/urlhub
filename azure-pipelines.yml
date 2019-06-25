@@ -22,5 +22,29 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
-- script: composer install --no-interaction --prefer-dist
-  displayName: 'composer install'
+- script: |
+    curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+    sudo apt-get install -y build-essential debconf-utils screen nodejs mysql-server google-chrome-stable
+    sudo apt-get install -y unzip xvfb autogen autoconf libtool pkg-config nasm
+    sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('poowf') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+    sudo mysql -u root -ppoowf -e 'create database invoiceneko_test;'
+  displayName: 'Installing System Dependencies'
+
+- script: |
+    mysql --version
+  displayName: 'MySQL Version'
+
+- script: |
+    cp .env.example .env
+  displayName: 'Environment Setup'
+
+- script: |
+    sudo composer self-update
+    composer install --no-interaction --prefer-dist --no-suggest
+    composer --version
+  displayName: 'Installing Package Dependencies'
+
+- script: |
+    php artisan key:generate
+    php artisan migrate
+  displayName: 'Running Migrations'
