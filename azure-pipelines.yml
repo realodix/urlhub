@@ -24,10 +24,10 @@ steps:
 
 - script: |
     curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
-    sudo apt-get install -y build-essential debconf-utils screen nodejs mysql-server google-chrome-stable
+    sudo apt-get install -y build-essential debconf-utils screen mysql-server
     sudo apt-get install -y unzip xvfb autogen autoconf libtool pkg-config nasm
-    sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('poowf') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-    sudo mysql -u root -ppoowf -e 'create database invoiceneko_test;'
+    sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+    sudo mysql -u root -e 'create database urlhub_test;'
   displayName: 'Installing System Dependencies'
 
 - script: |
