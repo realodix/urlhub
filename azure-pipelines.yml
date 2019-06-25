@@ -16,7 +16,6 @@ strategy:
       imageName: 'vs2017-win2016'
 
 pool:
-  vmImage: 'ubuntu-latest'
   vmImage: $(imageName)
 
 variables:
