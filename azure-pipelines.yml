@@ -23,9 +23,7 @@ steps:
   displayName: 'Use PHP version $(phpVersion)'
 
 - script: |
-    curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
-    sudo apt-get install -y build-essential debconf-utils screen mysql-server
-    sudo apt-get install -y unzip xvfb autogen autoconf libtool pkg-config nasm
+    sudo apt-get install -y mysql-server
     sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
     sudo mysql -u root -e 'create database urlhub_test;'
   displayName: 'Installing System Dependencies'
@@ -46,7 +44,7 @@ steps:
 
 - script: |
     php artisan key:generate
-  displayName: 'Running Migrations'
+  displayName: 'Running Laravel Artisan'
 
 - script: |
     vendor/bin/phpunit
