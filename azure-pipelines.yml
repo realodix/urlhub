@@ -26,8 +26,7 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
-- task: MysqlDeploymentOnMachineGroup@1
-  displayName: 'Deploy Using : InlineSqlTask'
+- displayName: 'Deploy Using : InlineSqlTask'
   inputs:
     TaskNameSelector: InlineSqlTask
     SqlInline: |
