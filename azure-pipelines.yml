@@ -46,7 +46,6 @@ steps:
 
 - script: |
     php artisan key:generate
-    php artisan migrate
   displayName: 'Running Migrations'
 
 - script: |
