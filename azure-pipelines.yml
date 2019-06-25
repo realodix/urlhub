@@ -26,11 +26,16 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
-- bash: |
-    sudo apt-get install -y mysql-server
-    sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-    sudo mysql -u root -e 'create database urlhub_test;'
-  displayName: 'Installing System Dependencies'
+- task: MysqlDeploymentOnMachineGroup@1
+  displayName: 'Deploy Using : InlineSqlTask'
+  inputs:
+    TaskNameSelector: InlineSqlTask
+    SqlInline: |
+     CREATE DATABASE IF NOT EXISTS alm;
+     use alm;
+    ServerName: localhost
+    SqlUsername: root
+    SqlPassword: P2ssw0rd
 
 - bash: |
     mysql --version
