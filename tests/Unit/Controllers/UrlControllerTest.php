@@ -34,15 +34,11 @@ class UrlControllerTest extends TestCase
      */
     public function url_redirection_2()
     {
-        $long_url = 'https://foo.com/bar';
-
-        $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+        $url = factory(Url::class)->create([
+            'user_id' => null,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $this->get(route('home').'/'.$url->url_key);
+        $response = $this->get(route('home').'/'.$url->url_key);
         $this->assertCount(1, UrlStat::all());
     }
 
