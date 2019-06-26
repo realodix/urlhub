@@ -30,17 +30,14 @@ class UrlHubLinkCheckerTest extends TestCase
     public function long_url_already_exist_1()
     {
         $user = $this->admin();
-        $long_url = 'https://laravel.com';
-
-        factory(Url::class)->create([
+        $url = factory(Url::class)->create([
             'user_id'  => $user->id,
-            'long_url' => $long_url,
         ]);
 
         $this->loginAsAdmin();
 
         $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $url->long_url,
         ]);
         $response->assertSessionHas('msgLinkAlreadyExists');
     }
@@ -48,15 +45,12 @@ class UrlHubLinkCheckerTest extends TestCase
     /** @test */
     public function long_url_already_exist_2()
     {
-        $long_url = 'https://laravel.com';
-
-        factory(Url::class)->create([
+        $url = factory(Url::class)->create([
             'user_id'  => null,
-            'long_url' => $long_url,
         ]);
 
         $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $url->long_url,
         ]);
         $response->assertSessionHas('msgLinkAlreadyExists');
     }

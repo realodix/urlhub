@@ -36,15 +36,11 @@ class UrlBeTest extends TestCase
     /** @test */
     public function d_can_delete()
     {
-        $user_id = $this->admin()->id;
-
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
+        $url = factory(Url::class)->create([
+            'user_id' => $this->admin()->id,
         ]);
 
         $this->loginAsAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard'))
                          ->get($this->getDeleteRoute($url->id));
@@ -61,13 +57,11 @@ class UrlBeTest extends TestCase
     {
         $user_id = $this->admin()->id;
 
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
+        $url = factory(Url::class)->create([
+            'user_id' => $this->admin()->id,
         ]);
 
         $this->loginAsAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard'))
                          ->get(route('dashboard.duplicate', $url->url_key));
@@ -104,15 +98,9 @@ class UrlBeTest extends TestCase
     /** @test */
     public function au_admin_can_delete()
     {
-        $user_id = $this->nonAdmin()->id;
-
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
-        ]);
+        $url = factory(Url::class)->create();
 
         $this->loginAsAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard.allurl'))
                          ->get($this->getAuDeleteRoute($url->id));
@@ -127,15 +115,9 @@ class UrlBeTest extends TestCase
     /** @test */
     public function au_non_admin_cant_delete()
     {
-        $user_id = $this->admin()->id;
-
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
-        ]);
+        $url = factory(Url::class)->create();
 
         $this->loginAsNonAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard.allurl'))
                          ->get($this->getAuDeleteRoute($url->id));
