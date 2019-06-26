@@ -18,9 +18,7 @@ class UrlControllerTest extends TestCase
     /** @test */
     public function url_redirection()
     {
-        $url = factory(Url::class)->create([
-            'user_id' => null,
-        ]);
+        $url = factory(Url::class)->create();
 
         $response = $this->get(route('home').'/'.$url->url_key);
         $response->assertRedirect($url->long_url);
@@ -34,9 +32,7 @@ class UrlControllerTest extends TestCase
      */
     public function url_redirection_2()
     {
-        $url = factory(Url::class)->create([
-            'user_id' => null,
-        ]);
+        $url = factory(Url::class)->create();
 
         $response = $this->get(route('home').'/'.$url->url_key);
         $this->assertCount(1, UrlStat::all());
@@ -59,7 +55,6 @@ class UrlControllerTest extends TestCase
     public function check_existing_custom_url_fail($data)
     {
         factory(Url::class)->create([
-            'user_id' => null,
             'url_key' => 'laravel',
         ]);
 

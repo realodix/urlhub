@@ -45,13 +45,10 @@ class UrlTest extends TestCase
     /** @test */
     public function has_many_url_stat()
     {
-        $url = factory(Url::class)->create([
-            'id'      => 1,
-            'user_id' => $this->admin()->id,
-        ]);
+        $url = factory(Url::class)->create();
 
-        factory(UrlStat::class)->create([
-            'url_id' => 1,
+        $url_stat = factory(UrlStat::class)->create([
+            'url_id' => $url->id,
         ]);
 
         $this->assertTrue($url->urlStat()->exists());
@@ -100,7 +97,6 @@ class UrlTest extends TestCase
     public function setLongUrlAttribute()
     {
         $url = factory(Url::class)->create([
-            'user_id'  => null,
             'long_url' => 'http://example.com/',
         ]);
 

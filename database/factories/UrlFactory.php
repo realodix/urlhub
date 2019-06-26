@@ -18,7 +18,7 @@ $factory->define(App\Url::class, function (Faker $faker) {
     $UrlSrvc = new UrlService();
 
     return [
-        'user_id'    => mt_rand(0, 50),
+        'user_id'    => mt_rand(0, 2),
         'long_url'   => 'https://github.com/realodix/urlhub',
         'meta_title' => 'URL Title',
         'url_key'    => $UrlSrvc->key_generator(),

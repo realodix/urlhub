@@ -119,9 +119,7 @@ class UrlServiceTest extends TestCase
     /** @test */
     public function url_key_remaining()
     {
-        factory(Url::class, 5)->create([
-            'user_id' => null,
-        ]);
+        factory(Url::class, 5)->create();
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 1);
