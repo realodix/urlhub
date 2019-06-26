@@ -103,7 +103,7 @@ if (! function_exists('qrCodeGenerator')) {
 if (! function_exists('getCountries')) {
     /**
      * We try to get the IP country. If it fails, because GeoLite2 doesn't know
-     * the IP country, we will set it to Unknown
+     * the IP country, we will set it to Unknown.
      */
     function getCountries($ip)
     {
