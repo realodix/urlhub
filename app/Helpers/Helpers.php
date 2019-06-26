@@ -108,8 +108,8 @@ if (! function_exists('getCountries')) {
     function getCountries($ip)
     {
         try {
-            $reader = new Reader(resource_path().'/GeoLite2-Country.mmdb');
             // @codeCoverageIgnoreStart
+            $reader = new Reader(database_path().'/GeoLite2-Country.mmdb');
             $record = $reader->country($ip);
             $countryCode = $record->country->isoCode;
             $countryName = $record->country->name;
