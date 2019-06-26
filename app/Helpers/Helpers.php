@@ -102,7 +102,6 @@ if (! function_exists('qrCodeGenerator')) {
 
 if (! function_exists('getCountries')) {
     /**
-     * @codeCoverageIgnore
      * We try to get the IP country. If it fails, because GeoLite2 doesn't know
      * the IP country, we will set it to Unknown
      */
@@ -110,11 +109,13 @@ if (! function_exists('getCountries')) {
     {
         try {
             $reader = new Reader(resource_path().'/GeoLite2-Country.mmdb');
+            // @codeCoverageIgnoreStart
             $record = $reader->country($ip);
             $countryCode = $record->country->isoCode;
             $countryName = $record->country->name;
 
             return compact('countryCode', 'countryName');
+            // @codeCoverageIgnoreEnd
         } catch (\Exception $e) {
             $countryCode = 'N/A';
             $countryName = 'Unknown';
