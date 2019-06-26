@@ -5,6 +5,7 @@ namespace Tests\Unit\Controllers;
 use App\Rules\Lowercase;
 use App\Rules\URL\ShortUrlProtected;
 use App\Url;
+use App\UrlStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
@@ -17,36 +18,12 @@ class UrlControllerTest extends TestCase
     /** @test */
     public function url_redirection()
     {
-        $long_url = 'https://laravel.com';
-
-        $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+        $url = factory(Url::class)->create([
+            'user_id' => null,
         ]);
-
-        $url = Url::whereLongUrl($long_url)->first();
 
         $response = $this->get(route('home').'/'.$url->url_key);
-        $response->assertRedirect($long_url);
-        $response->assertStatus(301);
-    }
-
-    /**
-     * With custom URL.
-     *
-     * @test
-     */
-    public function url_redirection_2()
-    {
-        $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
-
-        $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
-        ]);
-
-        $response = $this->get(route('home').'/'.$custom_url_key);
-        $response->assertRedirect($long_url);
+        $response->assertRedirect($url->long_url);
         $response->assertStatus(301);
     }
 
@@ -55,7 +32,7 @@ class UrlControllerTest extends TestCase
      *
      * @test
      */
-    public function url_redirection_3()
+    public function url_redirection_2()
     {
         $long_url = 'https://foo.com/bar';
 
@@ -66,9 +43,7 @@ class UrlControllerTest extends TestCase
         $url = Url::whereLongUrl($long_url)->first();
 
         $this->get(route('home').'/'.$url->url_key);
-        $this->assertDatabaseHas('url_stats', [
-            'url_id' => $url->id,
-        ]);
+        $this->assertCount(1, UrlStat::all());
     }
 
     /** @test */
