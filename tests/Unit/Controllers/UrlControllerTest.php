@@ -14,103 +14,6 @@ use Tests\TestCase;
  */
 class UrlControllerTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function create()
-    {
-        $long_url = 'https://laravel.com';
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-        ]);
-
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'user_id'   => null,
-            'long_url'  => $long_url,
-            'is_custom' => 0,
-        ]);
-    }
-
-    /**
-     * With authenticated user.
-     *
-     * @test
-     */
-    public function create_2()
-    {
-        $this->loginAsAdmin();
-
-        $user = $this->admin();
-        $long_url = 'https://laravel.com';
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-        ]);
-
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'user_id'  => $user->id,
-            'long_url' => $long_url,
-            'is_custom' => 0,
-        ]);
-    }
-
-    /**
-     * Custom URL.
-     *
-     * @test
-     */
-    public function create_cst()
-    {
-        $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
-        ]);
-        $response->assertRedirect(route('short_url.stats', $custom_url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'long_url'  => $long_url,
-            'url_key'   => $custom_url_key,
-            'is_custom' => 1,
-        ]);
-    }
-
-    /**
-     * Custom URL, with authenticated user.
-     *
-     * @test
-     */
-    public function create_cst_2()
-    {
-        $this->loginAsAdmin();
-
-        $user = $this->admin();
-        $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
-        ]);
-        $response->assertRedirect(route('short_url.stats', $custom_url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'user_id'   => $user->id,
-            'long_url'  => $long_url,
-            'url_key'   => $custom_url_key,
-            'is_custom' => 1,
-        ]);
-    }
-
     /** @test */
     public function url_redirection()
     {
@@ -145,6 +48,27 @@ class UrlControllerTest extends TestCase
         $response = $this->get(route('home').'/'.$custom_url_key);
         $response->assertRedirect($long_url);
         $response->assertStatus(301);
+    }
+
+    /**
+     * URL statistic check.
+     *
+     * @test
+     */
+    public function url_redirection_3()
+    {
+        $long_url = 'https://foo.com/bar';
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $long_url,
+        ]);
+
+        $url = Url::whereLongUrl($long_url)->first();
+
+        $this->get(route('home').'/'.$url->url_key);
+        $this->assertDatabaseHas('url_stats', [
+            'url_id' => $url->id,
+        ]);
     }
 
     /** @test */
