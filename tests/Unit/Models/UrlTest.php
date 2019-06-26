@@ -20,15 +20,15 @@ class UrlTest extends TestCase
         ]);
 
         factory(Url::class)->create([
-            'user_id'  => null,
-            'clicks'   => 10,
-            'ip'       => '0.0.0.0',
+            'user_id' => null,
+            'clicks'  => 10,
+            'ip'      => '0.0.0.0',
         ]);
 
         factory(Url::class)->create([
-            'user_id'  => null,
-            'clicks'   => 10,
-            'ip'       => '1.1.1.1',
+            'user_id' => null,
+            'clicks'  => 10,
+            'ip'      => '1.1.1.1',
         ]);
     }
 
