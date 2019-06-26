@@ -7,9 +7,11 @@ use App\Rules\Lowercase;
 use App\Rules\URL\ShortUrlProtected;
 use App\Services\UrlService;
 use App\Url;
+use App\UrlStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Jenssegers\Agent\Agent;
 
 class UrlController extends Controller
 {
@@ -58,9 +60,24 @@ class UrlController extends Controller
      */
     public function urlRedirection($url_key)
     {
+        $agent = new Agent();
         $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $countries = getCountries(request()->ip());
 
         Url::whereUrlKey($url_key)->increment('clicks');
+
+        UrlStat::create([
+            'url_id'           => $url->id,
+            'referer'          => request()->server('HTTP_REFERER') ?? null,
+            'ip'               => request()->ip(),
+            'device'           => $agent->device(),
+            'platform'         => $agent->platform(),
+            'platform_version' => $agent->version($agent->platform()),
+            'browser'          => $agent->browser(),
+            'browser_version'  => $agent->version($agent->browser()),
+            'country'          => $countries['countryCode'],
+            'country_full'     => $countries['countryName'],
+        ]);
 
         return redirect()->away($url->long_url, 301);
     }

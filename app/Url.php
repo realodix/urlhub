@@ -42,6 +42,11 @@ class Url extends Model
         ]);
     }
 
+    public function urlStat()
+    {
+        return $this->hasMany('App\UrlStat');
+    }
+
     // Mutator
     public function setUserIdAttribute($value)
     {
