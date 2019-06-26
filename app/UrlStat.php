@@ -20,6 +20,8 @@ class UrlStat extends Model
         'platform_version',
         'browser',
         'browser_version',
+        'country',
+        'country_full',
     ];
 
     // Relations
