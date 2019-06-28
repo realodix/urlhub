@@ -13,22 +13,13 @@ class UrlTest extends TestCase
         parent::setUp();
 
         factory(Url::class)->create([
-            'user_id'  => $this->admin()->id,
-            'long_url' => 'https://github.com/realodix/urlhub',
-            'clicks'   => 10,
-            'ip'       => '0.0.0.0',
+            'user_id' => $this->admin()->id,
+            'clicks'  => 10,
         ]);
 
-        factory(Url::class)->create([
+        factory(Url::class, 2)->create([
             'user_id' => null,
             'clicks'  => 10,
-            'ip'      => '0.0.0.0',
-        ]);
-
-        factory(Url::class)->create([
-            'user_id' => null,
-            'clicks'  => 10,
-            'ip'      => '1.1.1.1',
         ]);
     }
 
