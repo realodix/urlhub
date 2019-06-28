@@ -83,17 +83,6 @@ class UrlTest extends TestCase
     }
 
     /** @test */
-    public function getShortUrlAttribute()
-    {
-        $url = Url::whereUserId($this->admin()->id)->first();
-
-        $this->assertSame(
-            $url->short_url,
-            url('/'.$url->url_key)
-        );
-    }
-
-    /** @test */
     public function setLongUrlAttribute()
     {
         $url = factory(Url::class)->create([
@@ -103,6 +92,17 @@ class UrlTest extends TestCase
         $this->assertSame(
             $url->long_url,
             'http://example.com'
+        );
+    }
+
+    /** @test */
+    public function getShortUrlAttribute()
+    {
+        $url = Url::whereUserId($this->admin()->id)->first();
+
+        $this->assertSame(
+            $url->short_url,
+            url('/'.$url->url_key)
         );
     }
 
