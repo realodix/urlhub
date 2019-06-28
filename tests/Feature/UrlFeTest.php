@@ -23,38 +23,6 @@ class UrlFeTest extends TestCase
         $url = Url::whereLongUrl($long_url)->first();
 
         $response->assertRedirect(route('short_url.stats', $url->url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'user_id'   => null,
-            'long_url'  => $long_url,
-            'is_custom' => 0,
-        ]);
-    }
-
-    /**
-     * With authenticated user.
-     *
-     * @test
-     */
-    public function create_2()
-    {
-        $this->loginAsAdmin();
-
-        $user = $this->admin();
-        $long_url = 'https://laravel.com';
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
-        ]);
-
-        $url = Url::whereLongUrl($long_url)->first();
-
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'user_id'   => $user->id,
-            'long_url'  => $long_url,
-            'is_custom' => 0,
-        ]);
     }
 
     /**
@@ -72,12 +40,6 @@ class UrlFeTest extends TestCase
             'custom_url_key' => $custom_url_key,
         ]);
         $response->assertRedirect(route('short_url.stats', $custom_url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'long_url'  => $long_url,
-            'url_key'   => $custom_url_key,
-            'is_custom' => 1,
-        ]);
     }
 
     /**
@@ -98,20 +60,13 @@ class UrlFeTest extends TestCase
             'custom_url_key' => $custom_url_key,
         ]);
         $response->assertRedirect(route('short_url.stats', $custom_url_key));
-
-        $this->assertDatabaseHas('urls', [
-            'user_id'   => $user->id,
-            'long_url'  => $long_url,
-            'url_key'   => $custom_url_key,
-            'is_custom' => 1,
-        ]);
     }
 
     /** @test */
     public function long_url_already_exist()
     {
         $url = factory(Url::class)->create([
-            'user_id'  => null,
+            'user_id' => null,
         ]);
 
         $response = $this->post(route('createshortlink'), [
@@ -124,7 +79,7 @@ class UrlFeTest extends TestCase
     public function long_url_already_exist_2()
     {
         $url = factory(Url::class)->create([
-            'user_id'  => null,
+            'user_id' => null,
         ]);
 
         $this->loginAsNonAdmin();
@@ -146,7 +101,7 @@ class UrlFeTest extends TestCase
         $user = $this->nonAdmin();
 
         $url = factory(Url::class)->create([
-            'user_id'  => $user->id,
+            'user_id' => $user->id,
         ]);
 
         $response = $this->post(route('createshortlink'), [
@@ -166,7 +121,7 @@ class UrlFeTest extends TestCase
         $this->loginAsNonAdmin();
 
         $url = factory(Url::class)->create([
-            'user_id'  => $this->nonAdmin()->id,
+            'user_id' => $this->nonAdmin()->id,
         ]);
 
         $this->post(route('createshortlink'), [
