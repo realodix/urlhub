@@ -83,6 +83,16 @@ class UrlTest extends TestCase
     }
 
     /** @test */
+    public function setUserIdAttribute_must_be_null()
+    {
+        $url = factory(Url::class)->create([
+            'user_id' => 0,
+        ]);
+
+        $this->assertEquals(null, $url->user_id);
+    }
+
+    /** @test */
     public function setLongUrlAttribute()
     {
         $url = factory(Url::class)->create([
