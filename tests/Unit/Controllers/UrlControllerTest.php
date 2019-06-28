@@ -102,7 +102,6 @@ class UrlControllerTest extends TestCase
     }
 
     /**
-     *
      * @test
      */
     public function shortenUrl_is_custom()
@@ -119,7 +118,6 @@ class UrlControllerTest extends TestCase
     }
 
     /**
-     *
      * @test
      */
     public function shortenUrl_is_custom_2()
