@@ -66,7 +66,7 @@ class Url extends Model
     {
         $UrlSrvc = new UrlService();
 
-        $this->attributes['meta_title'] = $UrlSrvc->getTitle($value);
+        $this->attributes['meta_title'] = $this->getTitle($value);
     }
 
     // Accessor
@@ -104,5 +104,44 @@ class Url extends Model
     public function totalClicksById($id = null):int
     {
         return self::whereUserId($id)->sum('clicks');
+    }
+
+    /**
+     * Gets the title of page from its url.
+     *
+     * @param string $url
+     * @return string
+     */
+    public function getTitle($url)
+    {
+        if ($title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', @file_get_contents($url), $matches)) {
+            return $matches[1];
+        } elseif ($domain = $this->getDomain($url)) {
+            // @codeCoverageIgnoreStart
+            return title_case($domain).' - '.__('No Title'); // @codeCoverageIgnoreEnd
+        } else {
+            return __('No Title');
+        }
+    }
+
+    /**
+     * Get Domain from external url.
+     *
+     * Extract the domain name using the classic parse_url() and then look
+     * for a valid domain without any subdomain (www being a subdomain).
+     * Won't work on things like 'localhost'.
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public function getDomain($url)
+    {
+        // https://stackoverflow.com/a/399316
+        $pieces = parse_url($url);
+        $domain = isset($pieces['host']) ? $pieces['host'] : '';
+
+        if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
+            return $regs['domain'];
+        }
     }
 }
