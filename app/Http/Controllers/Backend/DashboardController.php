@@ -17,7 +17,7 @@ class DashboardController extends Controller
     protected $url;
 
     /**
-     * UrlHlp constructor.
+     * Url constructor.
      *
      * @param Url $url
      */
@@ -31,20 +31,19 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $url = new Url;
         $user = new User;
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => $url->totalShortUrl(),
-            'totalShortUrlByMe'    => $url->totalShortUrlById(Auth::id()),
-            'totalShortUrlByGuest' => $url->totalShortUrlById(),
-            'totalClicks'          => $url->totalClicks(),
-            'totalClicksByMe'      => $url->totalClicksById(Auth::id()),
-            'totalClicksByGuest'   => $url->totalClicksById(),
+            'totalShortUrl'        => $this->url->totalShortUrl(),
+            'totalShortUrlByMe'    => $this->url->totalShortUrlById(Auth::id()),
+            'totalShortUrlByGuest' => $this->url->totalShortUrlById(),
+            'totalClicks'          => $this->url->totalClicks(),
+            'totalClicksByMe'      => $this->url->totalClicksById(Auth::id()),
+            'totalClicksByGuest'   => $this->url->totalClicksById(),
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
-            'capacity'             => $url->url_key_capacity(),
-            'remaining'            => $url->url_key_remaining(),
+            'capacity'             => $this->url->url_key_capacity(),
+            'remaining'            => $this->url->url_key_remaining(),
 
         ]);
     }
