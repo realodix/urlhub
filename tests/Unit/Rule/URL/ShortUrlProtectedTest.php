@@ -17,9 +17,9 @@ class ShortUrlProtectedTest extends TestCase
     }
 
     /**
-     * @dataProvider ShortUrlProtectedPass
      * @param string $value
      * @return void
+     * @dataProvider ShortUrlProtectedPass
      */
     public function testShortUrlProtectedPass($value)
     {
@@ -27,9 +27,9 @@ class ShortUrlProtectedTest extends TestCase
     }
 
     /**
-     * @dataProvider ShortUrlProtectedFail
      * @param string $value
      * @return void
+     * @dataProvider ShortUrlProtectedFail
      */
     public function testShortUrlProtectedFail($value)
     {

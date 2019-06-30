@@ -8,28 +8,25 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
+    protected $url;
+
     public function setUp():void
     {
         parent::setUp();
 
-        factory(Url::class)->create([
-            'user_id'  => $this->admin()->id,
-            'long_url' => 'https://github.com/realodix/urlhub',
-            'clicks'   => 10,
-            'ip'       => '0.0.0.0',
-        ]);
+        $this->url = new Url();
 
         factory(Url::class)->create([
-            'user_id' => null,
+            'user_id' => $this->admin()->id,
             'clicks'  => 10,
-            'ip'      => '0.0.0.0',
         ]);
 
-        factory(Url::class)->create([
+        factory(Url::class, 2)->create([
             'user_id' => null,
             'clicks'  => 10,
-            'ip'      => '1.1.1.1',
         ]);
+
+        config()->set('urlhub.hash_alphabet', 'abc');
     }
 
     /** @test */
@@ -45,13 +42,10 @@ class UrlTest extends TestCase
     /** @test */
     public function has_many_url_stat()
     {
-        $url = factory(Url::class)->create([
-            'id'      => 1,
-            'user_id' => $this->admin()->id,
-        ]);
+        $url = factory(Url::class)->create();
 
         factory(UrlStat::class)->create([
-            'url_id' => 1,
+            'url_id' => $url->id,
         ]);
 
         $this->assertTrue($url->urlStat()->exists());
@@ -86,6 +80,29 @@ class UrlTest extends TestCase
     }
 
     /** @test */
+    public function setUserIdAttribute_must_be_null()
+    {
+        $url = factory(Url::class)->create([
+            'user_id' => 0,
+        ]);
+
+        $this->assertEquals(null, $url->user_id);
+    }
+
+    /** @test */
+    public function setLongUrlAttribute()
+    {
+        $url = factory(Url::class)->create([
+            'long_url' => 'http://example.com/',
+        ]);
+
+        $this->assertSame(
+            $url->long_url,
+            'http://example.com'
+        );
+    }
+
+    /** @test */
     public function getShortUrlAttribute()
     {
         $url = Url::whereUserId($this->admin()->id)->first();
@@ -97,57 +114,48 @@ class UrlTest extends TestCase
     }
 
     /** @test */
-    public function setLongUrlAttribute()
-    {
-        $url = factory(Url::class)->create([
-            'user_id'  => null,
-            'long_url' => 'http://example.com/',
-        ]);
-
-        $this->assertSame(
-            $url->long_url,
-            'http://example.com'
-        );
-    }
-
-    /** @test */
     public function total_short_url()
     {
-        $url = new Url;
-
-        $this->assertSame(3, $url->totalShortUrl());
+        $this->assertSame(
+            3,
+            $this->url->totalShortUrl()
+        );
     }
 
     /** @test */
     public function total_short_url_by_me()
     {
-        $url = new Url;
-
-        $this->assertSame(1, $url->totalShortUrlById($this->admin()->id));
+        $this->assertSame(
+            1,
+            $this->url->totalShortUrlById($this->admin()->id)
+        );
     }
 
     /** @test */
     public function total_short_url_by_guest()
     {
-        $url = new Url;
-
-        $this->assertSame(2, $url->totalShortUrlById());
+        $this->assertSame(
+            2,
+            $this->url->totalShortUrlById()
+        );
     }
 
     /** @test */
     public function total_clicks()
     {
-        $url = new Url;
-
-        $this->assertSame(30, $url->totalClicks());
+        $this->assertSame(
+            30,
+            $this->url->totalClicks()
+        );
     }
 
     /** @test */
     public function total_clicks_by_me()
     {
-        $url = new Url;
-
-        $this->assertSame(10, $url->totalClicksById($this->admin()->id));
+        $this->assertSame(
+            10,
+            $this->url->totalClicksById($this->admin()->id)
+        );
     }
 
     /**
@@ -157,8 +165,81 @@ class UrlTest extends TestCase
      */
     public function total_clicks_by_guest()
     {
-        $url = new Url;
+        $this->assertSame(
+            20,
+            $this->url->totalClicksById()
+        );
+    }
 
-        $this->assertSame(20, $url->totalClicksById());
+    /**
+     * @test
+     * @dataProvider urlKeyCapacityProvider
+     */
+    public function url_key_capacity($size1, $size2, $expected)
+    {
+        config()->set('urlhub.hash_size_1', $size1);
+        config()->set('urlhub.hash_size_2', $size2);
+
+        $this->assertSame($expected, $this->url->url_key_capacity());
+    }
+
+    public function urlKeyCapacityProvider()
+    {
+        return [
+            [0, 0, 0],
+            [1, 2, 12], // (3^1)+(3^2)
+            [2, 2, 9], // $alphabet_length^$hash_size_1 or 3^2
+
+            [1, -2, 3],
+            [-1, 2, 0],
+            [-1, -2, 0],
+
+            [2.7, 3, 36], // (3^2)+(3^3)
+            [2, 3.7, 36], // (3^2)+(3^3)
+
+            ['string', 2, 0],
+            [2, 'string', 9], // $alphabet_length^$hash_size_1 or 3^2
+            ['string', 'string', 0],
+        ];
+    }
+
+    /** @test */
+    public function url_key_remaining()
+    {
+        factory(Url::class, 5)->create();
+
+        config()->set('urlhub.hash_size_1', 1);
+        config()->set('urlhub.hash_size_2', 0);
+
+        // 3 - 5 = must be 0
+        $this->assertSame(0, $this->url->url_key_remaining());
+
+        config()->set('urlhub.hash_size_1', 2);
+
+        // (3^2) - 5 - (2+1) = 1
+        $this->assertSame(1, $this->url->url_key_remaining());
+    }
+
+    /**
+     * @test
+     * @dataProvider getDomainProvider
+     */
+    public function get_domain($expected, $actutal)
+    {
+        $this->assertEquals($expected, $this->url->getDomain($actutal));
+    }
+
+    public function getDomainProvider()
+    {
+        return [
+            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
+        ];
     }
 }

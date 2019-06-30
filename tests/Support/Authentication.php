@@ -15,6 +15,7 @@ trait Authentication
         $now = now();
 
         $admin = factory(User::class)->create([
+            'id'         => 1,
             'name'       => 'admin',
             'email'      => 'admin@urlhub.test',
             'password'   => bcrypt('admin'),
@@ -24,6 +25,7 @@ trait Authentication
         $admin->assignRole($this->getAdminRole());
 
         factory(User::class)->create([
+            'id'         => 2,
             'name'       => 'user',
             'email'      => 'user@urlhub.test',
             'password'   => bcrypt('user'),
