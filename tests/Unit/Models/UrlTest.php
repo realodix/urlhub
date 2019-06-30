@@ -8,9 +8,13 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
+    protected $url;
+
     public function setUp():void
     {
         parent::setUp();
+
+        $this->url = new Url();
 
         factory(Url::class)->create([
             'user_id' => $this->admin()->id,
@@ -157,6 +161,32 @@ class UrlTest extends TestCase
         $url = new Url;
 
         $this->assertSame(20, $url->totalClicksById());
+    }
+
+    /** @test */
+    public function key_generator_length()
+    {
+        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->url->key_generator()));
+    }
+
+    /** @test */
+    public function key_generator_size1_equal_with_size2()
+    {
+        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_size_1', 2);
+        config()->set('urlhub.hash_size_2', 2);
+
+        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->url->key_generator()));
+    }
+
+    /** @test */
+    public function key_generator_size2_with_zero_value()
+    {
+        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_size_1', 2);
+        config()->set('urlhub.hash_size_2', 0);
+
+        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->url->key_generator()));
     }
 
     /** @test */

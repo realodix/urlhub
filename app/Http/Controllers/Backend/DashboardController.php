@@ -13,18 +13,18 @@ use Yajra\Datatables\Datatables;
 class DashboardController extends Controller
 {
     /**
-     * @var UrlSrvc
+     * @var url
      */
-    protected $UrlSrvc;
+    protected $url;
 
     /**
      * UrlHlp constructor.
      *
-     * @param UrlService $urlService
+     * @param Url $url
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(Url $url)
     {
-        $this->UrlSrvc = $urlService;
+        $this->url = $url;
     }
 
     /**
@@ -120,7 +120,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();
-        $replicate->url_key = $this->UrlSrvc->key_generator();
+        $replicate->url_key = $this->url->key_generator();
         $replicate->is_custom = 0;
         $replicate->clicks = 0;
         $replicate->save();

@@ -10,18 +10,18 @@ use Illuminate\Support\Facades\Auth;
 class UrlController extends Controller
 {
     /**
-     * @var UrlSrvc
+     * @var url
      */
-    protected $UrlSrvc;
+    protected $url;
 
     /**
      * UrlController constructor.
      *
-     * @param UrlService $urlService
+     * @param Url $url
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(Url $url)
     {
-        $this->UrlSrvc = $urlService;
+        $this->url = $url;
     }
 
     /**
@@ -51,7 +51,7 @@ class UrlController extends Controller
     {
         $url = Url::whereUrlKey($url_key)->firstOrFail();
 
-        $url_key = $this->UrlSrvc->key_generator();
+        $url_key = $this->url->key_generator();
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();

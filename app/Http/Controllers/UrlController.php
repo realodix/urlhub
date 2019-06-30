@@ -16,20 +16,20 @@ use Jenssegers\Agent\Agent;
 class UrlController extends Controller
 {
     /**
-     * @var UrlSrvc
+     * @var url
      */
-    protected $UrlSrvc;
+    protected $url;
 
     /**
      * UrlController constructor.
      *
-     * @param UrlService $urlService
+     * @param Url $url
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(Url $url)
     {
         $this->middleware('urlhublinkchecker')->only('create');
 
-        $this->UrlSrvc = $urlService;
+        $this->url = $url;
     }
 
     /**
@@ -40,7 +40,7 @@ class UrlController extends Controller
      */
     public function create(Requests\StoreUrl $request)
     {
-        $url_key = $request->custom_url_key ?? $this->UrlSrvc->key_generator();
+        $url_key = $request->custom_url_key ?? $this->url->key_generator();
 
         Url::create([
             'user_id'    => Auth::id(),
