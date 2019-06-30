@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Services\UrlService;
 use App\Url;
 use App\User;
 use Facades\App\Helpers\UrlHlp;
