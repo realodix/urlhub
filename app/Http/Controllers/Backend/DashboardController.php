@@ -44,8 +44,8 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $url->totalClicksById(),
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
-            'capacity'             => $this->UrlSrvc->url_key_capacity(),
-            'remaining'            => $this->UrlSrvc->url_key_remaining(),
+            'capacity'             => $url->url_key_capacity(),
+            'remaining'            => $url->url_key_remaining(),
 
         ]);
     }
