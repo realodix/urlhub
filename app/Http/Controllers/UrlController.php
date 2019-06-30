@@ -82,8 +82,7 @@ class UrlController extends Controller
     }
 
     /**
-     * Check if the Custom URL already exists.
-     * Response to an AJAX request.
+     * Check if the Custom URL already exists. Response to an AJAX request.
      *
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
