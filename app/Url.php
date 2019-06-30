@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Http\Traits\Hashidable;
-use App\Services\UrlService;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 
@@ -65,8 +64,6 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        $UrlSrvc = new UrlService();
-
         $this->attributes['meta_title'] = $this->getTitle($value);
     }
 
