@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\UrlService;
 use App\Url;
 use Closure;
 use Illuminate\Support\Facades\Auth;

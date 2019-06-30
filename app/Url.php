@@ -139,7 +139,7 @@ class Url extends Model
      */
     public function url_key_remaining()
     {
-        $totalShortUrl = Url::whereIsCustom(false)->count();
+        $totalShortUrl = self::whereIsCustom(false)->count();
 
         if ($this->url_key_capacity() < $totalShortUrl) {
             return 0;
