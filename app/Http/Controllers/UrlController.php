@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Rules\Lowercase;
 use App\Rules\URL\ShortUrlProtected;
-use App\Services\UrlService;
 use App\Url;
 use App\UrlStat;
 use Illuminate\Http\Request;
@@ -16,20 +15,20 @@ use Jenssegers\Agent\Agent;
 class UrlController extends Controller
 {
     /**
-     * @var UrlSrvc
+     * @var url
      */
-    protected $UrlSrvc;
+    protected $url;
 
     /**
      * UrlController constructor.
      *
-     * @param UrlService $urlService
+     * @param Url $url
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(Url $url)
     {
         $this->middleware('urlhublinkchecker')->only('create');
 
-        $this->UrlSrvc = $urlService;
+        $this->url = $url;
     }
 
     /**
@@ -40,7 +39,7 @@ class UrlController extends Controller
      */
     public function create(Requests\StoreUrl $request)
     {
-        $url_key = $request->custom_url_key ?? $this->UrlSrvc->key_generator();
+        $url_key = $request->custom_url_key ?? $this->url->key_generator();
 
         Url::create([
             'user_id'    => Auth::id(),
@@ -83,8 +82,7 @@ class UrlController extends Controller
     }
 
     /**
-     * Check if the Custom URL already exists.
-     * Response to an AJAX request.
+     * Check if the Custom URL already exists. Response to an AJAX request.
      *
      * @param \App\Http\Requests  $request
      * @return \Illuminate\Http\JsonResponse
