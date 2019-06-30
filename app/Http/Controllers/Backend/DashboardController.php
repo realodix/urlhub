@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Url;
 use App\User;
-use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
