@@ -114,41 +114,46 @@ class UrlTest extends TestCase
     /** @test */
     public function total_short_url()
     {
-        $url = new Url;
-
-        $this->assertSame(3, $url->totalShortUrl());
+        $this->assertSame(
+            3,
+            $this->url->totalShortUrl()
+        );
     }
 
     /** @test */
     public function total_short_url_by_me()
     {
-        $url = new Url;
-
-        $this->assertSame(1, $url->totalShortUrlById($this->admin()->id));
+        $this->assertSame(
+            1,
+            $this->url->totalShortUrlById($this->admin()->id)
+        );
     }
 
     /** @test */
     public function total_short_url_by_guest()
     {
-        $url = new Url;
-
-        $this->assertSame(2, $url->totalShortUrlById());
+        $this->assertSame(
+            2,
+            $this->url->totalShortUrlById()
+        );
     }
 
     /** @test */
     public function total_clicks()
     {
-        $url = new Url;
-
-        $this->assertSame(30, $url->totalClicks());
+        $this->assertSame(
+            30,
+            $this->url->totalClicks()
+        );
     }
 
     /** @test */
     public function total_clicks_by_me()
     {
-        $url = new Url;
-
-        $this->assertSame(10, $url->totalClicksById($this->admin()->id));
+        $this->assertSame(
+            10,
+            $this->url->totalClicksById($this->admin()->id)
+        );
     }
 
     /**
@@ -158,15 +163,19 @@ class UrlTest extends TestCase
      */
     public function total_clicks_by_guest()
     {
-        $url = new Url;
-
-        $this->assertSame(20, $url->totalClicksById());
+        $this->assertSame(
+            20,
+            $this->url->totalClicksById()
+        );
     }
 
     /** @test */
     public function key_generator_length()
     {
-        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->url->key_generator()));
+        $this->assertSame(
+            config('urlhub.hash_size_1'),
+            strlen($this->url->key_generator())
+        );
     }
 
     /** @test */
@@ -176,7 +185,10 @@ class UrlTest extends TestCase
         config()->set('urlhub.hash_size_1', 2);
         config()->set('urlhub.hash_size_2', 2);
 
-        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->url->key_generator()));
+        $this->assertSame(
+            config('urlhub.hash_size_1'),
+            strlen($this->url->key_generator())
+        );
     }
 
     /** @test */
@@ -186,94 +198,88 @@ class UrlTest extends TestCase
         config()->set('urlhub.hash_size_1', 2);
         config()->set('urlhub.hash_size_2', 0);
 
-        $this->assertSame(config('urlhub.hash_size_1'), strlen($this->url->key_generator()));
+        $this->assertSame(
+            config('urlhub.hash_size_1'),
+            strlen($this->url->key_generator())
+        );
     }
 
     /** @test */
     public function url_key_capacity()
     {
-        $url = new Url;
-
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 0);
         config()->set('urlhub.hash_size_2', 0);
-        $this->assertSame(0, $url->url_key_capacity());
+        $this->assertSame(0, $this->url->url_key_capacity());
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 1);
         config()->set('urlhub.hash_size_2', 2);
-        $this->assertSame(12, $url->url_key_capacity()); // (3^1)+(3^2)
+        $this->assertSame(12, $this->url->url_key_capacity()); // (3^1)+(3^2)
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 2);
         config()->set('urlhub.hash_size_2', 2);
         // $alphabet_length^$hash_size_1 or 3^2
-        $this->assertSame(9, $url->url_key_capacity());
+        $this->assertSame(9, $this->url->url_key_capacity());
     }
 
     /** @test */
     public function url_key_capacity_input_negative()
     {
-        $url = new Url;
-
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 1);
         config()->set('urlhub.hash_size_2', -2);
-        $this->assertSame(3, $url->url_key_capacity());
+        $this->assertSame(3, $this->url->url_key_capacity());
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', -1);
         config()->set('urlhub.hash_size_2', 2);
-        $this->assertSame(0, $url->url_key_capacity());
+        $this->assertSame(0, $this->url->url_key_capacity());
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', -1);
         config()->set('urlhub.hash_size_2', -2);
-        $this->assertSame(0, $url->url_key_capacity());
+        $this->assertSame(0, $this->url->url_key_capacity());
     }
 
     /** @test */
     public function url_key_capacity_input_number()
     {
-        $url = new Url;
-
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 2.7);
         config()->set('urlhub.hash_size_2', 3);
-        $this->assertSame(36, $url->url_key_capacity()); // (3^2)+(3^3)
+        $this->assertSame(36, $this->url->url_key_capacity()); // (3^2)+(3^3)
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 2);
         config()->set('urlhub.hash_size_2', 3.7);
-        $this->assertSame(36, $url->url_key_capacity()); // (3^2)+(3^3)
+        $this->assertSame(36, $this->url->url_key_capacity()); // (3^2)+(3^3)
     }
 
     /** @test */
     public function url_key_capacity_input_string()
     {
-        $url = new Url;
-
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 'string');
         config()->set('urlhub.hash_size_2', 2);
-        $this->assertSame(0, $url->url_key_capacity());
+        $this->assertSame(0, $this->url->url_key_capacity());
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 2);
         config()->set('urlhub.hash_size_2', 'string');
         // $alphabet_length^$hash_size_1 or 3^2
-        $this->assertSame(9, $url->url_key_capacity());
+        $this->assertSame(9, $this->url->url_key_capacity());
 
         config()->set('urlhub.hash_alphabet', 'abc');
         config()->set('urlhub.hash_size_1', 'string');
         config()->set('urlhub.hash_size_2', 'string');
-        $this->assertSame(0, $url->url_key_capacity());
+        $this->assertSame(0, $this->url->url_key_capacity());
     }
 
     /** @test */
     public function url_key_remaining()
     {
-        $url = new Url;
         factory(Url::class, 5)->create();
 
         config()->set('urlhub.hash_alphabet', 'abc');
@@ -281,12 +287,12 @@ class UrlTest extends TestCase
         config()->set('urlhub.hash_size_2', 0);
 
         // 3 - 5 = must be 0
-        $this->assertSame(0, $url->url_key_remaining());
+        $this->assertSame(0, $this->url->url_key_remaining());
 
         config()->set('urlhub.hash_size_1', 2);
 
         // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $url->url_key_remaining());
+        $this->assertSame(1, $this->url->url_key_remaining());
     }
 
     /**
@@ -295,9 +301,7 @@ class UrlTest extends TestCase
      */
     public function get_domain($expected, $actutal)
     {
-        $url = new Url;
-
-        $this->assertEquals($expected, $url->getDomain($actutal));
+        $this->assertEquals($expected, $this->url->getDomain($actutal));
     }
 
     public function getDomainProvider()
