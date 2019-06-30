@@ -240,7 +240,7 @@ class UrlTest extends TestCase
     /** @test */
     public function url_key_capacity_input_number()
     {
-         config()->set('urlhub.hash_size_1', 2.7);
+        config()->set('urlhub.hash_size_1', 2.7);
         config()->set('urlhub.hash_size_2', 3);
         $this->assertSame(36, $this->url->url_key_capacity()); // (3^2)+(3^3)
 
