@@ -28,7 +28,7 @@ class UserTest extends TestCase
     /** @test */
     public function has_many_url()
     {
-        $url = factory(Url::class)->create([
+        factory(Url::class)->create([
             'user_id' => $this->nonAdmin()->id,
         ]);
 

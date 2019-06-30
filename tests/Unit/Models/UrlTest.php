@@ -44,7 +44,7 @@ class UrlTest extends TestCase
     {
         $url = factory(Url::class)->create();
 
-        $url_stat = factory(UrlStat::class)->create([
+        factory(UrlStat::class)->create([
             'url_id' => $url->id,
         ]);
 
