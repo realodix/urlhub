@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Rules\Lowercase;
 use App\Rules\URL\ShortUrlProtected;
-use App\Services\UrlService;
 use App\Url;
 use App\UrlStat;
 use Illuminate\Http\Request;

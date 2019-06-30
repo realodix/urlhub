@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Services\UrlService;
 use App\Url;
 use Illuminate\Support\Facades\Auth;
 
