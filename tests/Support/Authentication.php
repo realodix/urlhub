@@ -42,16 +42,7 @@ trait Authentication
 
     protected function user()
     {
-        $user = factory(User::class)->create([
-            'password'   => bcrypt($this->userPassword()),
-        ]);
-
-        return $user;
-    }
-
-    protected function userPassword()
-    {
-        return 'user';
+        return factory(User::class)->create();;
     }
 
     protected function loginAsUser()
