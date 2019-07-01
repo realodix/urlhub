@@ -12,15 +12,11 @@ trait Authentication
     {
         parent::setUp();
 
-        $now = now();
-
         $admin = factory(User::class)->create([
             'id'         => 1,
             'name'       => 'admin',
             'email'      => 'admin@urlhub.test',
             'password'   => bcrypt('admin'),
-            'created_at' => $now,
-            'updated_at' => $now,
         ]);
         $admin->assignRole($this->getAdminRole());
     }
