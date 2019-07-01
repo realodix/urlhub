@@ -121,9 +121,11 @@ class Url extends Model
         $size1 = (int) config('urlhub.hash_size_1');
         $size2 = (int) config('urlhub.hash_size_2');
 
+        // @codeCoverageIgnoreStart
         if (($size1 == $size2) || $size2 == 0) {
             $size2 = $size1;
         }
+        // @codeCoverageIgnoreEnd
 
         $urlKey = $generateId->formatedId($alphabet, $size1);
 
