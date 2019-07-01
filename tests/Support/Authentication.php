@@ -13,17 +13,15 @@ trait Authentication
         parent::setUp();
 
         $admin = factory(User::class)->create([
-            'id'         => 1,
-            'name'       => 'admin',
-            'email'      => 'admin@urlhub.test',
-            'password'   => bcrypt('admin'),
+            'id'       => 1,
+            'password' => bcrypt('admin'),
         ]);
         $admin->assignRole($this->getAdminRole());
     }
 
     protected function admin()
     {
-        return User::whereName('admin')->first();
+        return User::whereId(1)->first();
     }
 
     protected function adminPassword()
