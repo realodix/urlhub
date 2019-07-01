@@ -40,26 +40,23 @@ trait Authentication
         return $this->actingAs($this->admin());
     }
 
-    protected function nonAdmin()
+    protected function user()
     {
-        $non_admin = factory(User::class)->create([
-            // 'id'         => 2,
-            'name'       => 'user',
-            // 'email'      => 'user@urlhub.test',
-            'password'   => bcrypt('user'),
+        $user = factory(User::class)->create([
+            'password'   => bcrypt($this->userPassword()),
         ]);
 
-        return $non_admin;
+        return $user;
     }
 
-    protected function nonAdminPassword()
+    protected function userPassword()
     {
         return 'user';
     }
 
-    protected function loginAsNonAdmin()
+    protected function loginAsUser()
     {
-        return $this->actingAs($this->nonAdmin());
+        return $this->actingAs($this->user());
     }
 
     public function getAdminRole()

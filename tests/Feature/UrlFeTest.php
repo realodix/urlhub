@@ -180,7 +180,7 @@ class UrlFeTest extends TestCase
             'user_id' => null,
         ]);
 
-        $this->loginAsNonAdmin();
+        $this->loginAsUser();
 
         $custom_url_key = 'laravel';
 
@@ -225,7 +225,7 @@ class UrlFeTest extends TestCase
     {
         $url = factory(Url::class)->create();
 
-        $this->loginAsNonAdmin();
+        $this->loginAsUser();
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => 'https://laravel-news.com',
