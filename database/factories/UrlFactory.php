@@ -1,6 +1,7 @@
 <?php
 
 use App\Url;
+use App\User;
 use Faker\Generator as Faker;
 
 /*
@@ -14,11 +15,13 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Url::class, function (Faker $faker) {
+$factory->define(Url::class, function (Faker $faker) {
     $url = new Url();
 
     return [
-        'user_id'    => mt_rand(0, 2),
+        'user_id'    => function () {
+                return factory(User::class)->create()->id;
+        },
         'long_url'   => 'https://github.com/realodix/urlhub',
         'meta_title' => 'URL Title',
         'url_key'    => $url->key_generator(),

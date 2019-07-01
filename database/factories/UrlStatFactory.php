@@ -1,5 +1,6 @@
 <?php
 
+use App\Url;
 use Faker\Generator as Faker;
 
 /*
@@ -15,7 +16,9 @@ use Faker\Generator as Faker;
 
 $factory->define(App\UrlStat::class, function (Faker $faker) {
     return [
-        'url_id'           => mt_rand(0, 50),
+        'url_id'           => function () {
+            return factory(Url::class)->create()->id;
+        },
         'referer'          => 'https://github.com/realodix/urlhub',
         'ip'               => $faker->ipv4,
         'device'           => 'WebKit',

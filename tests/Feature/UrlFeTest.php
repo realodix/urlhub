@@ -78,17 +78,16 @@ class UrlFeTest extends TestCase
     /** @test */
     public function long_url_already_exist_2()
     {
-        $url = factory(Url::class)->create([
-            'user_id' => null,
-        ]);
+        $url = factory(Url::class)->create();
 
-        $this->loginAsNonAdmin();
+        $this->loginAsAdmin();
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $url->long_url,
         ]);
 
-        $url = Url::whereUserId($this->nonAdmin()->id)->first();
+        $url = Url::whereLongUrl($url->long_url)->latest()->first();
+
         $response->assertRedirect(route('short_url.stats', $url->url_key));
 
         $this->assertCount(2, Url::all());
@@ -97,8 +96,8 @@ class UrlFeTest extends TestCase
     /** @test */
     public function long_url_already_exist_3()
     {
-        $this->loginAsNonAdmin();
-        $user = $this->nonAdmin();
+        $this->loginAsAdmin();
+        $user = $this->admin();
 
         $url = factory(Url::class)->create([
             'user_id' => $user->id,
@@ -118,10 +117,10 @@ class UrlFeTest extends TestCase
     /** @test */
     public function duplicate()
     {
-        $this->loginAsNonAdmin();
+        $this->loginAsAdmin();
 
         $url = factory(Url::class)->create([
-            'user_id' => $this->nonAdmin()->id,
+            'user_id' => $this->admin()->id,
         ]);
 
         $this->post(route('createshortlink'), [

@@ -23,15 +23,6 @@ trait Authentication
             'updated_at' => $now,
         ]);
         $admin->assignRole($this->getAdminRole());
-
-        factory(User::class)->create([
-            'id'         => 2,
-            'name'       => 'user',
-            'email'      => 'user@urlhub.test',
-            'password'   => bcrypt('user'),
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
     }
 
     protected function admin()
@@ -51,7 +42,14 @@ trait Authentication
 
     protected function nonAdmin()
     {
-        return User::whereName('user')->first();
+        $non_admin = factory(User::class)->create([
+            // 'id'         => 2,
+            'name'       => 'user',
+            // 'email'      => 'user@urlhub.test',
+            'password'   => bcrypt('user'),
+        ]);
+
+        return $non_admin;
     }
 
     protected function nonAdminPassword()

@@ -28,11 +28,13 @@ class UserTest extends TestCase
     /** @test */
     public function has_many_url()
     {
+        $user = factory(User::class)->create();
+
         factory(Url::class)->create([
-            'user_id' => $this->nonAdmin()->id,
+            'user_id' => $user->id,
         ]);
 
-        $this->assertTrue($this->nonAdmin()->url()->exists());
+        $this->assertTrue($user->url()->exists());
     }
 
     /**
@@ -45,7 +47,7 @@ class UserTest extends TestCase
     {
         $user = new User;
 
-        $this->assertSame(2, $user->totalUser());
+        $this->assertSame(1, $user->totalUser());
     }
 
     /**
