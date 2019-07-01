@@ -14,7 +14,7 @@ trait Authentication
 
         $admin = factory(User::class)->create([
             'id'       => 1,
-            'password' => bcrypt('admin'),
+            'password' => bcrypt($this->adminPassword()),
         ]);
         $admin->assignRole($this->getAdminRole());
     }
