@@ -36,7 +36,7 @@ trait Authentication
 
     protected function user()
     {
-        return factory(User::class)->create();;
+        return factory(User::class)->create();
     }
 
     protected function loginAsUser()
