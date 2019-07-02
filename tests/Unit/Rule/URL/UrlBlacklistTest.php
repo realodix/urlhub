@@ -25,7 +25,6 @@ class UrlBlacklistTest extends TestCase
     }
 
     /**
-     *
      * @covers ::passes
      * @dataProvider UrlBlacklistPass
      * @return void
