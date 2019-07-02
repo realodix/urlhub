@@ -5,12 +5,16 @@ namespace Tests\Unit\Policies;
 use App\User;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\Policies\UserPolicy
+ */
 class UserPolicyTest extends TestCase
 {
     /**
      * Admin can access their own the page and other user pages.
      *
      * @test
+     * @covers ::view
      */
     public function view_admin()
     {
@@ -26,6 +30,7 @@ class UserPolicyTest extends TestCase
      * Non-admin can only access their own page.
      *
      * @test
+     * @covers ::view
      */
     public function view_non_admin()
     {
@@ -41,6 +46,7 @@ class UserPolicyTest extends TestCase
      * Admin can change their own data and other user data.
      *
      * @test
+     * @covers ::update
      */
     public function update_admin()
     {
@@ -56,6 +62,7 @@ class UserPolicyTest extends TestCase
      * Non-admin can only change their own data.
      *
      * @test
+     * @covers ::update
      */
     public function update_non_admin()
     {
@@ -71,6 +78,7 @@ class UserPolicyTest extends TestCase
      * Admin can change their own data and other user data.
      *
      * @test
+     * @covers ::updatePass
      */
     public function updatePass_admin()
     {
@@ -86,6 +94,7 @@ class UserPolicyTest extends TestCase
      * Non-admin can only change their own data.
      *
      * @test
+     * @covers ::updatePass
      */
     public function updatePass_non_admin()
     {
@@ -108,7 +117,10 @@ class UserPolicyTest extends TestCase
         return route('user.change-password', $value);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::view
+     */
     public function admin_can_access_change_password_page()
     {
         $this->loginAsAdmin();
@@ -117,7 +129,10 @@ class UserPolicyTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::view
+     */
     public function non_admin_cant_access_change_password_page()
     {
         $this->loginAsUser();
@@ -132,7 +147,10 @@ class UserPolicyTest extends TestCase
      *
      */
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::view
+     */
     public function admin_can_access_all_users_page()
     {
         $this->loginAsAdmin();
@@ -141,7 +159,10 @@ class UserPolicyTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::view
+     */
     public function non_admin_cant_access_all_users_page()
     {
         $this->loginAsUser();

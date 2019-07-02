@@ -6,12 +6,16 @@ use App\Url;
 use App\User;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\Policies\UrlPolicy
+ */
 class UrlPolicyTest extends TestCase
 {
     /**
      * Admin can delete their own data and other user data.
      *
      * @test
+     * @covers ::forceDelete
      */
     public function force_delete_admin()
     {
@@ -31,6 +35,7 @@ class UrlPolicyTest extends TestCase
      * Non-admin can only delete their own data.
      *
      * @test
+     * @covers ::forceDelete
      */
     public function force_delete_non_admin()
     {

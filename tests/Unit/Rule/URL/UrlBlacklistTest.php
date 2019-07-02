@@ -5,6 +5,9 @@ namespace Tests\Unit\Rule\URL;
 use App\Rules\URL\UrlBlacklist;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\Rules\URL\UrlBlacklist
+ */
 class UrlBlacklistTest extends TestCase
 {
     protected $rule;
@@ -22,6 +25,8 @@ class UrlBlacklistTest extends TestCase
     }
 
     /**
+     *
+     * @covers ::passes
      * @dataProvider UrlBlacklistPass
      * @return void
      */
@@ -31,6 +36,7 @@ class UrlBlacklistTest extends TestCase
     }
 
     /**
+     * @covers ::passes
      * @dataProvider UrlBlacklistFail
      * @return void
      */

@@ -5,9 +5,15 @@ namespace Tests\Unit\Middleware;
 use App\Url;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\Http\Middleware\UrlHubLinkChecker
+ */
 class UrlHubLinkCheckerTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     * @covers ::handle
+     */
     public function url_key_remaining_zero()
     {
         config()->set('urlhub.hash_size_1', 0);
@@ -26,6 +32,7 @@ class UrlHubLinkCheckerTest extends TestCase
      * With authenticated user.
      *
      * @test
+     * @covers ::handle
      */
     public function long_url_already_exist_1()
     {
@@ -42,7 +49,10 @@ class UrlHubLinkCheckerTest extends TestCase
         $response->assertSessionHas('msgLinkAlreadyExists');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::handle
+     */
     public function long_url_already_exist_2()
     {
         $url = factory(Url::class)->create([

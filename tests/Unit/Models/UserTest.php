@@ -6,6 +6,9 @@ use App\Url;
 use App\User;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\User
+ */
 class UserTest extends TestCase
 {
     public function setUp():void
@@ -25,7 +28,10 @@ class UserTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::url
+     */
     public function has_many_url()
     {
         $user = factory(User::class)->create();
@@ -42,6 +48,7 @@ class UserTest extends TestCase
      * see setUp() method on Tests\Support\Authentication class.
      *
      * @test
+     * @covers ::totalUser
      */
     public function totalUser()
     {
@@ -55,6 +62,7 @@ class UserTest extends TestCase
      * see setUp() method on this class.
      *
      * @test
+     * @covers ::totalGuest
      */
     public function totalGuest()
     {
