@@ -130,7 +130,7 @@ class UrlBeTest extends TestCase
      * All Users Page.
      */
 
-     /** @test */
+    /** @test */
     public function aus_admin_can_access_this_page()
     {
         $this->loginAsAdmin();
