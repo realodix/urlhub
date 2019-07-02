@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Middleware;
 
-use App\Url;
 use Tests\TestCase;
 
 /**
