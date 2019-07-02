@@ -133,6 +133,32 @@ class UrlFeTest extends TestCase
         $this->assertCount(2, Url::all());
     }
 
+    /**
+     * Authen user to guest.
+     *
+     * @test
+     */
+    public function long_url_already_exist_4()
+    {
+        $user = $this->admin();
+
+        $url = factory(Url::class)->create([
+            'user_id' => null,
+        ]);
+
+        $this->loginAsAdmin();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $url = Url::whereUserId($user->id)->first();
+
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
+
+        $this->assertCount(2, Url::all());
+    }
+
     /** @test */
     public function duplicate()
     {
