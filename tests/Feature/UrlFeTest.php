@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Url;
+use App\User;
 use Tests\TestCase;
 
 /**
@@ -63,7 +64,7 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Guest to guest.
+     * Guest A to guest B.
      *
      * @test
      */
@@ -82,7 +83,7 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Guest to authenticated user.
+     * Guest to authen user.
      *
      * @test
      */
@@ -106,28 +107,30 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Authenticated user 1 to Authenticated user 1.
+     * Authen user A to Authen user B.
      *
      * @test
      */
     public function long_url_already_exist_3()
     {
-        $this->loginAsAdmin();
         $user = $this->admin();
+        $user2 = $this->user();
 
         $url = factory(Url::class)->create([
-            'user_id' => $user->id,
+            'user_id' => $user2->id,
         ]);
+
+        $this->loginAsAdmin();
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $url->long_url,
         ]);
 
-        $response
-            ->assertRedirect(route('short_url.stats', $url->url_key))
-            ->assertSessionHas(['msgLinkAlreadyExists']);
+        $url = Url::whereUserId($user->id)->first();
 
-        $this->assertCount(1, Url::all());
+        $response->assertRedirect(route('short_url.stats', $url->url_key));
+
+        $this->assertCount(2, Url::all());
     }
 
     /** @test */
