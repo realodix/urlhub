@@ -62,7 +62,11 @@ class UrlFeTest extends TestCase
         $response->assertRedirect(route('short_url.stats', $custom_url_key));
     }
 
-    /** @test */
+    /**
+     * Guest to guest.
+     *
+     * @test
+     */
     public function long_url_already_exist()
     {
         $url = factory(Url::class)->create([
@@ -73,12 +77,20 @@ class UrlFeTest extends TestCase
             'long_url' => $url->long_url,
         ]);
         $response->assertRedirect(route('short_url.stats', $url->url_key));
+
+        $this->assertCount(1, Url::all());
     }
 
-    /** @test */
+    /**
+     * Guest to authenticated user.
+     *
+     * @test
+     */
     public function long_url_already_exist_2()
     {
-        $url = factory(Url::class)->create();
+        $url = factory(Url::class)->create([
+            'user_id' => null,
+        ]);
 
         $this->loginAsAdmin();
 
@@ -93,7 +105,11 @@ class UrlFeTest extends TestCase
         $this->assertCount(2, Url::all());
     }
 
-    /** @test */
+    /**
+     * Authenticated user 1 to Authenticated user 1.
+     *
+     * @test
+     */
     public function long_url_already_exist_3()
     {
         $this->loginAsAdmin();
