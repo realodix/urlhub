@@ -125,4 +125,26 @@ class UrlBeTest extends TestCase
 
         $this->assertCount(1, Url::all());
     }
+
+    /**
+     * All Users Page.
+     */
+
+     /** @test */
+    public function aus_admin_can_access_this_page()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->get(route('user.index'));
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function aus_non_admin_cant_access_this_page()
+    {
+        $this->loginAsUser();
+
+        $response = $this->get(route('user.index'));
+        $response->assertForbidden();
+    }
 }
