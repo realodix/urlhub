@@ -77,7 +77,10 @@ class UrlFeTest extends TestCase
         $response = $this->post(route('createshortlink'), [
             'long_url' => $url->long_url,
         ]);
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
+
+        $response
+            ->assertRedirect(route('short_url.stats', $url->url_key))
+            ->assertSessionHas('msgLinkAlreadyExists');
 
         $this->assertCount(1, Url::all());
     }
@@ -103,11 +106,37 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Authen user A to Authen user B.
+     * Authen user A to Authen user A.
      *
      * @test
      */
     public function long_url_already_exist_3()
+    {
+        $user = $this->admin();
+
+        $url = factory(Url::class)->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->loginAsAdmin();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $response
+            ->assertRedirect(route('short_url.stats', $url->url_key))
+            ->assertSessionHas('msgLinkAlreadyExists');
+
+        $this->assertCount(1, Url::all());
+    }
+
+    /**
+     * Authen user A to Authen user B.
+     *
+     * @test
+     */
+    public function long_url_already_exist_4()
     {
         $user = $this->admin();
         $user2 = $this->user();
@@ -134,7 +163,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function long_url_already_exist_4()
+    public function long_url_already_exist_5()
     {
         $user = $this->admin();
 
