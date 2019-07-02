@@ -89,17 +89,13 @@ class UrlFeTest extends TestCase
      */
     public function long_url_already_exist_2()
     {
-        $url = factory(Url::class)->create([
-            'user_id' => null,
-        ]);
-
-        $this->loginAsAdmin();
+        $url = factory(Url::class)->create();
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $url->long_url,
         ]);
 
-        $url = Url::whereLongUrl($url->long_url)->latest()->first();
+        $url = Url::whereUserId(null)->first();
 
         $response->assertRedirect(route('short_url.stats', $url->url_key));
 
