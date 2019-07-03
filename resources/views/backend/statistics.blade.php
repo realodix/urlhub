@@ -14,18 +14,21 @@
 
 <br>
 
-  <b>TotalShortUrl</b>        : <br>
-  <b>TotalShortUrlByGuest</b> : <br>
+  <b>Total Short Url</b> <br>
+  Value          : <br>
+  Value By Guest : <br>
 
 <br>
 
-  <b>TotalClicks</b>          : <br>
-  <b>TotalClicksByGuest</b>   : <br>
+  <b>Total Clicks</b> <br>
+  Value          : <br>
+  Value By Guest : <br>
 
 <br>
 
-  <b>TotalUser</b>            : <br>
-  <b>TotalGuest</b>           : <br>
+  <b>Total User</b> <br>
+  Registered User   : <br>
+  Unregistered User : <br>
 
 
 </div>
