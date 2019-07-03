@@ -32,6 +32,9 @@ class StatisticsController extends Controller
     {
         $user = new User;
 
-        return view('backend.statistics');
+        return view('backend.statistics', [
+            'capacity'             => $this->url->url_key_capacity(),
+            'remaining'            => $this->url->url_key_remaining(),
+        ]);
     }
 }

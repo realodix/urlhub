@@ -9,20 +9,27 @@
 
   <h3>UrlHub Statistics</h3>
 <br>
-  <b>Capacity</b>             : <br>
-  <b>Remaining</b>            : <br>
+  <b>Capacity</b>   : <span title="{{number_format($capacity)}}" data-toggle="tooltip">{{readable_int($capacity)}}</span> <br>
+  <b>Remaining</b>  : <span title="{{number_format($remaining)}}" data-toggle="tooltip">
+                        {{readable_int($remaining)}}
+                        @if ($capacity == 0)
+                          (0%)
+                        @else
+                          ({{round(100-((($capacity-$remaining)/$capacity)*100))}}%)
+                        @endif
+                      </span> <br>
 
 <br>
 
   <b>Total Short Url</b> <br>
-  Value          : <br>
-  Value By Guest : <br>
+  Value             : <br>
+  Value By Guest    : <br>
 
 <br>
 
   <b>Total Clicks</b> <br>
-  Value          : <br>
-  Value By Guest : <br>
+  Value             : <br>
+  Value By Guest    : <br>
 
 <br>
 
