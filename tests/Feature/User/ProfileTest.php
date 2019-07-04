@@ -31,14 +31,14 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->get($this->getRoute($this->nonAdmin()->name));
+        $response = $this->get($this->getRoute($this->user()->name));
         $response->assertOk();
     }
 
     /** @test */
     public function non_admin_cant_access_other_users_profile_pages()
     {
-        $this->loginAsNonAdmin();
+        $this->loginAsUser();
 
         $response = $this->get($this->getRoute($this->admin()->name));
         $response->assertForbidden();
@@ -66,7 +66,7 @@ class ProfileTest extends TestCase
     /** @test */
     public function non_admin_cant_change_other_users_email()
     {
-        $this->loginAsNonAdmin();
+        $this->loginAsUser();
 
         $user = factory(User::class)->create(['email' => 'user2@urlhub.test']);
 
@@ -140,7 +140,7 @@ class ProfileTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
-                             'email' => $this->nonAdmin()->email,
+                             'email' => $this->user()->email,
                          ]);
 
         $response

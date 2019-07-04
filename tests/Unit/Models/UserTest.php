@@ -6,6 +6,9 @@ use App\Url;
 use App\User;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\User
+ */
 class UserTest extends TestCase
 {
     public function setUp():void
@@ -25,14 +28,19 @@ class UserTest extends TestCase
         ]);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::url
+     */
     public function has_many_url()
     {
+        $user = factory(User::class)->create();
+
         factory(Url::class)->create([
-            'user_id' => $this->nonAdmin()->id,
+            'user_id' => $user->id,
         ]);
 
-        $this->assertTrue($this->nonAdmin()->url()->exists());
+        $this->assertTrue($user->url()->exists());
     }
 
     /**
@@ -40,12 +48,13 @@ class UserTest extends TestCase
      * see setUp() method on Tests\Support\Authentication class.
      *
      * @test
+     * @covers ::totalUser
      */
     public function totalUser()
     {
         $user = new User;
 
-        $this->assertSame(2, $user->totalUser());
+        $this->assertSame(1, $user->totalUser());
     }
 
     /**
@@ -53,6 +62,7 @@ class UserTest extends TestCase
      * see setUp() method on this class.
      *
      * @test
+     * @covers ::totalGuest
      */
     public function totalGuest()
     {

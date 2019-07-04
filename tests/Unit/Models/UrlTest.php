@@ -6,6 +6,9 @@ use App\Url;
 use App\UrlStat;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\Url
+ */
 class UrlTest extends TestCase
 {
     protected $url;
@@ -29,7 +32,10 @@ class UrlTest extends TestCase
         config()->set('urlhub.hash_alphabet', 'abc');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::user
+     */
     public function belongs_to_user()
     {
         $url = factory(Url::class)->create([
@@ -39,7 +45,23 @@ class UrlTest extends TestCase
         $this->assertTrue($url->user()->exists());
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::user
+     */
+    public function default_guest_name()
+    {
+        $url = factory(Url::class)->create([
+            'user_id' => null,
+        ]);
+
+        $this->assertSame('Guest', $url->user->name);
+    }
+
+    /**
+     * @test
+     * @covers ::urlStat
+     */
     public function has_many_url_stat()
     {
         $url = factory(Url::class)->create();
@@ -55,6 +77,7 @@ class UrlTest extends TestCase
      * The default guest id must be null.
      *
      * @test
+     * @covers ::setUserIdAttribute
      */
     public function default_guest_id()
     {
@@ -69,17 +92,10 @@ class UrlTest extends TestCase
         $this->assertSame(null, $url->user_id);
     }
 
-    /** @test */
-    public function default_guest_name()
-    {
-        $url = factory(Url::class)->create([
-            'user_id' => null,
-        ]);
-
-        $this->assertSame('Guest', $url->user->name);
-    }
-
-    /** @test */
+    /**
+     * @test
+     * @covers ::setUserIdAttribute
+     */
     public function setUserIdAttribute_must_be_null()
     {
         $url = factory(Url::class)->create([
@@ -89,7 +105,10 @@ class UrlTest extends TestCase
         $this->assertEquals(null, $url->user_id);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::setLongUrlAttribute
+     */
     public function setLongUrlAttribute()
     {
         $url = factory(Url::class)->create([
@@ -102,7 +121,10 @@ class UrlTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::getShortUrlAttribute
+     */
     public function getShortUrlAttribute()
     {
         $url = Url::whereUserId($this->admin()->id)->first();
@@ -113,7 +135,10 @@ class UrlTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::totalShortUrl
+     */
     public function total_short_url()
     {
         $this->assertSame(
@@ -122,7 +147,10 @@ class UrlTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::totalShortUrlById
+     */
     public function total_short_url_by_me()
     {
         $this->assertSame(
@@ -131,7 +159,10 @@ class UrlTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::totalShortUrlById
+     */
     public function total_short_url_by_guest()
     {
         $this->assertSame(
@@ -140,7 +171,10 @@ class UrlTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::totalClicks
+     */
     public function total_clicks()
     {
         $this->assertSame(
@@ -149,7 +183,10 @@ class UrlTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::totalClicksById
+     */
     public function total_clicks_by_me()
     {
         $this->assertSame(
@@ -162,6 +199,7 @@ class UrlTest extends TestCase
      * The number of guests is calculated based on a unique IP.
      *
      * @test
+     * @covers ::totalClicksById
      */
     public function total_clicks_by_guest()
     {
@@ -173,6 +211,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @covers ::url_key_capacity
      * @dataProvider urlKeyCapacityProvider
      */
     public function url_key_capacity($size1, $size2, $expected)
@@ -203,7 +242,10 @@ class UrlTest extends TestCase
         ];
     }
 
-    /** @test */
+    /**
+     * @test
+     * @covers ::url_key_remaining
+     */
     public function url_key_remaining()
     {
         factory(Url::class, 5)->create();
@@ -222,6 +264,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @covers ::getDomain
      * @dataProvider getDomainProvider
      */
     public function get_domain($expected, $actutal)
