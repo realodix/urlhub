@@ -11,30 +11,22 @@ use Yajra\Datatables\Datatables;
 class StatisticsController extends Controller
 {
     /**
-     * @var url
-     */
-    protected $url;
-
-    /**
-     * Url constructor.
-     *
-     * @param Url $url
-     */
-    public function __construct(Url $url)
-    {
-        $this->url = $url;
-    }
-
-    /**
      * Show users all their Short URLs.
      */
     public function view()
     {
+        $url = new Url;
         $user = new User;
 
         return view('backend.statistics', [
-            'capacity'             => $this->url->url_key_capacity(),
-            'remaining'            => $this->url->url_key_remaining(),
+            'capacity'             => $url->url_key_capacity(),
+            'remaining'            => $url->url_key_remaining(),
+            'totalShortUrl'        => $url->totalShortUrl(),
+            'totalShortUrlByGuest' => $url->totalShortUrlById(),
+            'totalClicks'          => $url->totalClicks(),
+            'totalClicksByGuest'   => $url->totalClicksById(),
+            'totalUser'            => $user->totalUser(),
+            'totalGuest'           => $user->totalGuest(),
         ]);
     }
 }

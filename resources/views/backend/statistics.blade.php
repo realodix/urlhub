@@ -22,20 +22,20 @@
 <br>
 
   <b>Total Short Url</b> <br>
-  Value             : <br>
-  Value By Guest    : <br>
+  Value             : <span title="{{number_format($totalShortUrl)}}" data-toggle="tooltip">{{readable_int($totalShortUrl)}}</span> <br>
+  Value By Guest    : <span title="{{number_format($totalShortUrlByGuest)}}" data-toggle="tooltip">{{readable_int($totalShortUrlByGuest)}}</span> <br>
 
 <br>
 
   <b>Total Clicks</b> <br>
-  Value             : <br>
-  Value By Guest    : <br>
+  Value             : <span title="{{number_format($totalClicks)}}" data-toggle="tooltip">{{readable_int($totalClicks)}}</span> <br>
+  Value By Guest    : <span title="{{number_format($totalClicksByGuest)}}" data-toggle="tooltip">{{readable_int($totalClicksByGuest)}}</span> <br>
 
 <br>
 
   <b>Total User</b> <br>
-  Registered User   : <br>
-  Unregistered User : <br>
+  Registered User   : <span title="{{number_format($totalUser)}}" data-toggle="tooltip">{{readable_int($totalUser)}}</span> <br>
+  Unregistered User : <span title="{{number_format($totalGuest)}}" data-toggle="tooltip">{{readable_int($totalGuest)}}</span> <br>
 
 
 </div>
