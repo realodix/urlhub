@@ -19,6 +19,9 @@ Route::namespace('Backend')->prefix('admin')->group(function () {
         Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('dashboard.delete');
         Route::get('/duplicate/{url_key}', 'DashboardController@duplicate')->name('dashboard.duplicate');
 
+        // Statistics
+        Route::get('/statistics', 'StatisticsController@view')->name('dashboard.stat');
+
         // All URLs
         Route::get('/allurl', 'AllUrlController@index')->name('dashboard.allurl');
         Route::get('/allurl/getdata', 'AllUrlController@getData');

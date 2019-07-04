@@ -6,9 +6,15 @@ use App\Url;
 use App\UrlStat;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\UrlStat
+ */
 class UrlStatTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     * @covers ::url
+     */
     public function belongs_to_url()
     {
         $url_stat = factory(UrlStat::class)->create([

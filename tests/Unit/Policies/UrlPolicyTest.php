@@ -6,12 +6,16 @@ use App\Url;
 use App\User;
 use Tests\TestCase;
 
+/**
+ * @coversDefaultClass App\Policies\UrlPolicy
+ */
 class UrlPolicyTest extends TestCase
 {
     /**
      * Admin can delete their own data and other user data.
      *
      * @test
+     * @covers ::forceDelete
      */
     public function force_delete_admin()
     {
@@ -31,18 +35,19 @@ class UrlPolicyTest extends TestCase
      * Non-admin can only delete their own data.
      *
      * @test
+     * @covers ::forceDelete
      */
     public function force_delete_non_admin()
     {
-        $this->loginAsNonAdmin();
+        $this->loginAsUser();
 
-        $non_admin = $this->nonAdmin();
+        $user = $this->user();
         $their_own_url = factory(Url::class)->create([
-            'user_id'  => $non_admin->id,
+            'user_id'  => $user->id,
             'long_url' => 'https://laravel.com',
         ]);
 
-        $this->assertTrue($non_admin->can('forceDelete', $their_own_url));
-        $this->assertFalse($non_admin->can('forceDelete', new Url));
+        $this->assertTrue($user->can('forceDelete', $their_own_url));
+        $this->assertFalse($user->can('forceDelete', new Url));
     }
 }
