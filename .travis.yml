@@ -32,4 +32,4 @@ before_script:
   - php artisan key:generate
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-text
