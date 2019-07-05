@@ -9,6 +9,14 @@ use App\User;
 class StatisticsController extends Controller
 {
     /**
+     * StatisticsController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('role:admin');
+    }
+
+    /**
      * Show users all their Short URLs.
      */
     public function view()
