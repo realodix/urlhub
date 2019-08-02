@@ -1,5 +1,7 @@
 dist: bionic
 
+sudo: required
+
 language: php
 
 php:
