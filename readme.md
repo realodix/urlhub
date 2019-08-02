@@ -13,7 +13,7 @@
 UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
-* URL Shortener
+* URL Shortener.
 * Customized short URL's(ex: example.com/laravel).
 * QR code generator for each short link.
 * Sortable list of shortened URLs.
