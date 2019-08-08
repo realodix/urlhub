@@ -58,17 +58,17 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 ### Compiling assets with Laravel Mix
 
-#### Using NPM:
-1. `npm install`
-2. `npm run dev` or `npm run prod`
-
-    *You can watch assets with `npm run watch`*
-
 #### Using Yarn:
 1. `yarn`
 2. `yarn dev` or `yarn prod`
 
     *You can watch assets with `yarn watch`*
+
+#### Using NPM:
+1. `npm install`
+2. `npm run dev` or `npm run prod`
+
+    *You can watch assets with `npm run watch`*
 
 
 ## Contributing
