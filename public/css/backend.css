@@ -1998,7 +1998,7 @@ pre code {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(245, 245, 247, 0.05);
+  background-color: rgba(252, 253, 254, 0.05);
 }
 
 .table-hover tbody tr:hover {
@@ -12043,7 +12043,7 @@ canvas {
   align-items: center;
   padding: 0 1rem;
   color: #212529;
-  background: #f5f5f7;
+  background: #fcfdfe;
 }
 
 .row.row-equal {
@@ -12411,7 +12411,7 @@ canvas {
   flex-direction: column;
   padding: 0;
   color: #fff;
-  background: #f5f5f7;
+  background: #fcfdfe;
 }
 .sidebar .sidebar-close {
   position: absolute;
@@ -12437,7 +12437,7 @@ canvas {
 }
 .sidebar .sidebar-form .form-control {
   color: #fff;
-  background: #d9d9e0;
+  background: #d6e4f1;
   border: 0;
 }
 .sidebar .sidebar-form .form-control::placeholder {
@@ -12512,7 +12512,7 @@ canvas {
 }
 .sidebar .nav-link.active {
   color: #3B5998;
-  background: #f5f5f7;
+  background: #fcfdfe;
 }
 .sidebar .nav-link.active .nav-icon {
   color: #3B5998;
@@ -12674,7 +12674,7 @@ canvas {
   margin-right: 16px;
 }
 .sidebar .nav-dropdown.open {
-  background: #f5f5f7;
+  background: #fcfdfe;
 }
 .sidebar .nav-dropdown.open > .nav-dropdown-items {
   max-height: 1500px;
@@ -12725,7 +12725,7 @@ canvas {
   position: relative;
   flex: 0 0 50px;
   cursor: pointer;
-  background-color: #f5f5f7;
+  background-color: #fcfdfe;
   border: 0;
 }
 .sidebar .sidebar-minimizer::before {
@@ -12745,7 +12745,7 @@ canvas {
   outline: 0;
 }
 .sidebar .sidebar-minimizer:hover {
-  background-color: #efeff2;
+  background-color: #f4f8fb;
 }
 .sidebar .sidebar-minimizer:hover::before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='%23212529' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E");
@@ -12814,7 +12814,7 @@ canvas {
     bottom: 0;
     width: 50px;
     height: 50px;
-    background-color: #e7e7ec;
+    background-color: #e9f0f8;
   }
   .sidebar-minimized .sidebar .sidebar-nav {
     padding-bottom: 50px;
@@ -12839,7 +12839,7 @@ canvas {
   }
   .sidebar-minimized .sidebar .nav-item:hover .nav-link.disabled,
 .sidebar-minimized .sidebar .nav-item:hover .nav-link :disabled {
-    background: #f5f5f7;
+    background: #fcfdfe;
   }
   .sidebar-minimized .sidebar .nav-item:hover .nav-link.disabled .nav-icon,
 .sidebar-minimized .sidebar .nav-item:hover .nav-link :disabled .nav-icon {
@@ -12887,7 +12887,7 @@ canvas {
   .sidebar-minimized .sidebar .nav > .nav-dropdown > .nav-dropdown-items {
     display: none;
     max-height: 1000px;
-    background: #f5f5f7;
+    background: #fcfdfe;
   }
   .sidebar-minimized .sidebar .nav > .nav-dropdown:hover {
     background: #3B5998;
@@ -12924,7 +12924,7 @@ canvas {
   *[dir=rtl] .sidebar-minimized .sidebar .nav > .nav-dropdown > .nav-dropdown-items {
     display: none;
     max-height: 1000px;
-    background: #f5f5f7;
+    background: #fcfdfe;
   }
   *[dir=rtl] .sidebar-minimized .sidebar .nav > .nav-dropdown:hover {
     background: #3B5998;
@@ -15876,7 +15876,7 @@ body {
 
 body {
   font-family: "Nunito", sans-serif;
-  background: #f5f5f7;
+  background: #fcfdfe;
 }
 
 .navbar-brand {
@@ -15966,7 +15966,7 @@ body {
   color: #5c5c5c;
 }
 .dataTables_wrapper table.dataTable thead th {
-  background-color: #f5f5f7;
+  background-color: #fcfdfe;
   color: #7b858e;
 }
 .dataTables_wrapper table.dataTable thead th:hover {
