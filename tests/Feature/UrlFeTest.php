@@ -64,7 +64,7 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Guest A to guest B.
+     * Guest A and guest B.
      *
      * @test
      */
@@ -86,7 +86,7 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Guest to authen user.
+     * Guest and authen user.
      *
      * @test
      */
@@ -106,7 +106,7 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Authen user A to Authen user A.
+     * Authen user A and authen user A.
      *
      * @test
      */
@@ -132,7 +132,7 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Authen user A to Authen user B.
+     * Authen user A and authen user B.
      *
      * @test
      */
@@ -159,7 +159,7 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Authen user to guest.
+     * Authen user and guest.
      *
      * @test
      */
