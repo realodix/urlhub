@@ -8,6 +8,11 @@
       </li>
       @role('admin')
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('dashboard.stat') }}">
+          <i class="nav-icon fas fa-chart-line"></i></i> @lang('Statistics')
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('dashboard.allurl') }}">
           <i class="nav-icon fas fa-link"></i> @lang('All URLs')
         </a>

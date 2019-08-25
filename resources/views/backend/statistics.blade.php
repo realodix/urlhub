@@ -7,6 +7,9 @@
 <div class="card">
 <div class="card-body">
 
+<div class="alert alert-danger" role="alert">
+  Sorry, this page is under development
+</div>
   <h3>UrlHub Statistics</h3>
 <br>
   <b>Capacity</b>   : <span title="{{number_format($capacity)}}" data-toggle="tooltip">{{readable_int($capacity)}}</span> <br>
