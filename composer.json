@@ -18,6 +18,7 @@
         "geoip2/geoip2": "~2.0",
         "hidehalo/nanoid-php": "^1.1",
         "jenssegers/agent": "^2.6",
+        "langleyfoxall/laravel-nist-password-rules": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laravolt/avatar": "^2.0",
