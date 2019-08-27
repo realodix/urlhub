@@ -1115,9 +1115,8 @@
             "description": "Guzzle promises library",
             "keywords": [
                 "promise"
->>>>>>> Stashed changes
             ],
-            "time": "2019-06-30T12:22:27+00:00"
+            "time": "2016-12-20T10:07:11+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
