@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Stripe, Mailgun, Postmark and others. This file provides a sane
+    | as Stripe, Mailgun, Postmark plus others. This file provides a sane
     | location for this type of information, allowing packages to have
     | a conventional file to locate the various service credentials.
     |
