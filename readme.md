@@ -3,9 +3,10 @@
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 [![LaravelVersion](https://img.shields.io/badge/Laravel-5.8-FB5743.svg?style=flat-square)](https://laravel.com/docs/5.8)
 ![PHPVersion](https://img.shields.io/badge/PHP-%5E7.2-777BB4.svg?style=flat-square)
-[![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
 [![Build Status](https://travis-ci.org/realodix/urlhub.svg?branch=master)](https://travis-ci.org/realodix/urlhub)
+[![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub)
 
 > **Warning: UrlHub is under heavy development** and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
 
@@ -57,17 +58,17 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 ### Compiling assets with Laravel Mix
 
-#### Using NPM:
-1. `npm install`
-2. `npm run dev` or `npm run prod`
-
-    *You can watch assets with `npm run watch`*
-
 #### Using Yarn:
 1. `yarn`
 2. `yarn dev` or `yarn prod`
 
     *You can watch assets with `yarn watch`*
+
+#### Using NPM:
+1. `npm install`
+2. `npm run dev` or `npm run prod`
+
+    *You can watch assets with `npm run watch`*
 
 
 ## Contributing
@@ -82,6 +83,8 @@ Please do the following:
 5. Welcome to the club :sunglasses: and thank you for helping out!
 
 ### Running Tests
+
+On `.env` file, set `DB_TEST_` with the settings used behind.
 
 From the projects root folder run `./vendor/bin/phpunit`
 

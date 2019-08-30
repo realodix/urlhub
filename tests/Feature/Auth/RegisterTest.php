@@ -43,7 +43,7 @@ class RegisterTest extends TestCase
     /** @test */
     public function user_cannot_view_a_registration_form_when_authenticated()
     {
-        $response = $this->loginAsNonAdmin()->get($this->getRoute());
+        $response = $this->loginAsUser()->get($this->getRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -61,7 +61,7 @@ class RegisterTest extends TestCase
         ]);
 
         $response->assertRedirect($this->successfulRegistrationRoute());
-        $this->assertCount(3, User::all());
+        $this->assertCount(2, User::all());
         $this->assertAuthenticatedAs($user = User::whereName('John Doe')->first());
         $this->assertEquals('John Doe', $user->name);
         $this->assertEquals('john@example.com', $user->email);
@@ -98,7 +98,7 @@ class RegisterTest extends TestCase
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('name');
 
-        $this->assertCount(2, User::all());
+        $this->assertCount(1, User::all());
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
@@ -119,7 +119,7 @@ class RegisterTest extends TestCase
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('email');
 
-        $this->assertCount(2, User::all());
+        $this->assertCount(1, User::all());
         $this->assertTrue(session()->hasOldInput('name'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
@@ -140,7 +140,7 @@ class RegisterTest extends TestCase
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('email');
 
-        $this->assertCount(2, User::all());
+        $this->assertCount(1, User::all());
         $this->assertTrue(session()->hasOldInput('name'));
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
@@ -173,7 +173,7 @@ class RegisterTest extends TestCase
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('password');
 
-        $this->assertCount(2, User::all());
+        $this->assertCount(1, User::all());
         $this->assertTrue(session()->hasOldInput('name'));
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
@@ -195,7 +195,7 @@ class RegisterTest extends TestCase
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('password');
 
-        $this->assertCount(2, User::all());
+        $this->assertCount(1, User::all());
         $this->assertTrue(session()->hasOldInput('name'));
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
@@ -217,7 +217,7 @@ class RegisterTest extends TestCase
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('password');
 
-        $this->assertCount(2, User::all());
+        $this->assertCount(1, User::all());
         $this->assertTrue(session()->hasOldInput('name'));
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));

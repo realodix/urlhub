@@ -1,3 +1,5 @@
+dist: bionic
+
 language: php
 
 php:
@@ -7,20 +9,9 @@ php:
 services:
   - mysql
 
-addons:
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
-
-dist: trusty
-
-sudo: required
-
 cache:
   directories:
-    - vendor
+    - $HOME/.composer/cache/files
 
 install:
   - composer self-update
@@ -32,4 +23,8 @@ before_script:
   - php artisan key:generate
 
 script:
-  - vendor/bin/phpunit
+  - mkdir -p build/logs
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v

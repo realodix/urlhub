@@ -3,28 +3,26 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Services\UrlService;
 use App\Url;
 use App\User;
-use Facades\App\Helpers\UrlHlp;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
     /**
-     * @var UrlSrvc
+     * @var url
      */
-    protected $UrlSrvc;
+    protected $url;
 
     /**
-     * UrlHlp constructor.
+     * Url constructor.
      *
-     * @param UrlService $urlService
+     * @param Url $url
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(Url $url)
     {
-        $this->UrlSrvc = $urlService;
+        $this->url = $url;
     }
 
     /**
@@ -32,20 +30,19 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $url = new Url;
         $user = new User;
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => $url->totalShortUrl(),
-            'totalShortUrlByMe'    => $url->totalShortUrlById(Auth::id()),
-            'totalShortUrlByGuest' => $url->totalShortUrlById(),
-            'totalClicks'          => $url->totalClicks(),
-            'totalClicksByMe'      => $url->totalClicksById(Auth::id()),
-            'totalClicksByGuest'   => $url->totalClicksById(),
+            'totalShortUrl'        => $this->url->totalShortUrl(),
+            'totalShortUrlByMe'    => $this->url->totalShortUrlById(Auth::id()),
+            'totalShortUrlByGuest' => $this->url->totalShortUrlById(),
+            'totalClicks'          => $this->url->totalClicks(),
+            'totalClicksByMe'      => $this->url->totalClicksById(Auth::id()),
+            'totalClicksByGuest'   => $this->url->totalClicksById(),
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
-            'capacity'             => $this->UrlSrvc->url_key_capacity(),
-            'remaining'            => $this->UrlSrvc->url_key_remaining(),
+            'capacity'             => $this->url->url_key_capacity(),
+            'remaining'            => $this->url->url_key_remaining(),
 
         ]);
     }
@@ -108,8 +105,8 @@ class DashboardController extends Controller
     }
 
     /**
-     * Defaultly UrlHub only permited only one link at the time, but you can duplicate
-     * it.
+     * Defaultly UrlHub only permited only one link at the time,
+     * but you can duplicate it.
      *
      * @param string $url_key
      * @return \Illuminate\Http\RedirectResponse
@@ -120,7 +117,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate();
         $replicate->user_id = Auth::id();
-        $replicate->url_key = $this->UrlSrvc->key_generator();
+        $replicate->url_key = $this->url->key_generator();
         $replicate->is_custom = 0;
         $replicate->clicks = 0;
         $replicate->save();

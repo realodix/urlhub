@@ -12,10 +12,6 @@ class UrlBeTest extends TestCase
 {
     protected function getDeleteRoute($value, $route = 0)
     {
-        if ($route = 'au') {
-            return route('dashboard.allurl.delete', \Hashids::connection(\App\Url::class)->encode($value));
-        }
-
         return route('dashboard.delete', \Hashids::connection(\App\Url::class)->encode($value));
     }
 
@@ -40,15 +36,11 @@ class UrlBeTest extends TestCase
     /** @test */
     public function d_can_delete()
     {
-        $user_id = $this->admin()->id;
-
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
+        $url = factory(Url::class)->create([
+            'user_id' => $this->admin()->id,
         ]);
 
         $this->loginAsAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard'))
                          ->get($this->getDeleteRoute($url->id));
@@ -65,13 +57,11 @@ class UrlBeTest extends TestCase
     {
         $user_id = $this->admin()->id;
 
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
+        $url = factory(Url::class)->create([
+            'user_id' => $this->admin()->id,
         ]);
 
         $this->loginAsAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard'))
                          ->get(route('dashboard.duplicate', $url->url_key));
@@ -99,7 +89,7 @@ class UrlBeTest extends TestCase
     /** @test */
     public function au_non_admin_cant_access_this_page()
     {
-        $this->loginAsNonAdmin();
+        $this->loginAsUser();
 
         $response = $this->get(route('dashboard.allurl'));
         $response->assertForbidden();
@@ -108,15 +98,9 @@ class UrlBeTest extends TestCase
     /** @test */
     public function au_admin_can_delete()
     {
-        $user_id = $this->nonAdmin()->id;
-
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
-        ]);
+        $url = factory(Url::class)->create();
 
         $this->loginAsAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
 
         $response = $this->from(route('dashboard.allurl'))
                          ->get($this->getAuDeleteRoute($url->id));
@@ -131,20 +115,58 @@ class UrlBeTest extends TestCase
     /** @test */
     public function au_non_admin_cant_delete()
     {
-        $user_id = $this->admin()->id;
+        $url = factory(Url::class)->create();
 
-        factory(Url::class)->create([
-            'user_id'  => $user_id,
-        ]);
-
-        $this->loginAsNonAdmin();
-
-        $url = Url::whereUserId($user_id)->first();
+        $this->loginAsUser();
 
         $response = $this->from(route('dashboard.allurl'))
                          ->get($this->getAuDeleteRoute($url->id));
         $response->assertForbidden();
 
         $this->assertCount(1, Url::all());
+    }
+
+    /**
+     * All Users Page.
+     */
+
+    /** @test */
+    public function aus_admin_can_access_this_page()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->get(route('user.index'));
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function aus_non_admin_cant_access_this_page()
+    {
+        $this->loginAsUser();
+
+        $response = $this->get(route('user.index'));
+        $response->assertForbidden();
+    }
+
+    /**
+     * Statistics Page.
+     */
+
+    /** @test */
+    public function stat_admin_can_access_this_page()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->get(route('dashboard.stat'));
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function stat_non_admin_cant_access_this_page()
+    {
+        $this->loginAsUser();
+
+        $response = $this->get(route('dashboard.stat'));
+        $response->assertForbidden();
     }
 }

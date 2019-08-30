@@ -65,11 +65,11 @@ class LoginController extends Controller
         return $fieldName;
     }
 
-    // /**
-    //  * After login redirect back to previous page
-    //  *
-    //  * @return string
-    //  */
+    /**
+     * After login redirect back to previous page.
+     *
+     * @return string
+     */
     // public function redirectTo()
     // {
     //     if ($this->request->has('previous')) {

@@ -18,6 +18,33 @@ class ChangePasswordTest extends TestCase
     }
 
     /** @test */
+    public function users_can_access_their_own_change_password_page()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->get($this->getRoute($this->admin()->name));
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function admin_can_access_other_users_change_password_pages()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->get($this->getRoute($this->user()->name));
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function non_admin_cant_access_other_users_change_password_pages()
+    {
+        $this->loginAsUser();
+
+        $response = $this->get($this->getRoute($this->admin()->name));
+        $response->assertForbidden();
+    }
+
+    /** @test */
     public function change_password_with_correct_credentials()
     {
         $this->loginAsAdmin();
@@ -46,7 +73,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->nonAdmin();
+        $user = $this->user();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [
@@ -97,7 +124,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->nonAdmin();
+        $user = $this->user();
 
         $response = $this->from($this->getRoute($user->name))
                          ->post($this->postRoute($user->id), [

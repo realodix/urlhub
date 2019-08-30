@@ -12,29 +12,16 @@ trait Authentication
     {
         parent::setUp();
 
-        $now = now();
-
         $admin = factory(User::class)->create([
-            'name'       => 'admin',
-            'email'      => 'admin@urlhub.test',
-            'password'   => bcrypt('admin'),
-            'created_at' => $now,
-            'updated_at' => $now,
+            'id'       => 1,
+            'password' => bcrypt($this->adminPassword()),
         ]);
         $admin->assignRole($this->getAdminRole());
-
-        factory(User::class)->create([
-            'name'       => 'user',
-            'email'      => 'user@urlhub.test',
-            'password'   => bcrypt('user'),
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
     }
 
     protected function admin()
     {
-        return User::whereName('admin')->first();
+        return User::whereId(1)->first();
     }
 
     protected function adminPassword()
@@ -47,19 +34,14 @@ trait Authentication
         return $this->actingAs($this->admin());
     }
 
-    protected function nonAdmin()
+    protected function user()
     {
-        return User::whereName('user')->first();
+        return factory(User::class)->create();
     }
 
-    protected function nonAdminPassword()
+    protected function loginAsUser()
     {
-        return 'user';
-    }
-
-    protected function loginAsNonAdmin()
-    {
-        return $this->actingAs($this->nonAdmin());
+        return $this->actingAs($this->user());
     }
 
     public function getAdminRole()

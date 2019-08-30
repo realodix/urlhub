@@ -1,7 +1,6 @@
 <?php
 
 use App\Url;
-use App\User;
 use Faker\Generator as Faker;
 
 /*
@@ -15,18 +14,17 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Url::class, function (Faker $faker) {
-    $url = new Url();
-
+$factory->define(App\UrlStat::class, function (Faker $faker) {
     return [
-        'user_id'    => function () {
-            return factory(User::class)->create()->id;
+        'url_id'           => function () {
+            return factory(Url::class)->create()->id;
         },
-        'long_url'   => 'https://github.com/realodix/urlhub',
-        'meta_title' => 'URL Title',
-        'url_key'    => $url->key_generator(),
-        'is_custom'  => 0,
-        'clicks'     => mt_rand(10000, 999999999),
-        'ip'         => $faker->ipv4,
+        'referer'          => 'https://github.com/realodix/urlhub',
+        'ip'               => $faker->ipv4,
+        'device'           => 'WebKit',
+        'platform'         => 'Windows',
+        'platform_version' => '10',
+        'browser'          => 'Chrome',
+        'browser_version'  => '75.0.3770.100',
     ];
 });
