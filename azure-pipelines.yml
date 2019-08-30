@@ -44,7 +44,7 @@ steps:
 
 - script: |
     php artisan key:generate --env=testing
-  displayName: 'Running Laravel Artisan'
+  displayName: 'Running Laravel Artisanz'
 
 - bash: |
     phpunit
