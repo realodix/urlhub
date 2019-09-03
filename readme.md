@@ -17,8 +17,8 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 * Customized short URL's(ex: example.com/laravel).
 * QR code generator for each short link.
 * Sortable list of shortened URLs.
-* Written in PHP and [Laravel 5.8](https://laravel.com/docs/5.8).
-* Datatables with server-side processing.
+* Written in [PHP](https://www.php.net/) and [Laravel 6](https://laravel.com/docs/6.0).
+* [Datatables](https://datatables.net/) with server-side processing.
 * Modern and simple interface.
 * Made with :heart: &amp; :coffee:.
 
