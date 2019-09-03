@@ -21,8 +21,8 @@ if (!mix.inProduction()) {
        .sourceMaps()
        .browserSync({
            open: 'external',
-           host: 'newt.test',
-           proxy: 'newt.test',
+           host: 'urlhub.test',
+           proxy: 'urlhub.test',
            port: 3000
        })
 }
