@@ -86,7 +86,7 @@ Please do the following:
 
 From the projects root folder run `./vendor/bin/phpunit`
 
-![screenshot](https://i.imgur.com/A8eJJyz.png)
+![screenshot](https://i.imgur.com/nR628gL.png)
 
 ## License
 UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).
