@@ -84,8 +84,6 @@ Please do the following:
 
 ### Running Tests
 
-On `.env` file, set `DB_TEST_` with the settings used behind.
-
 From the projects root folder run `./vendor/bin/phpunit`
 
 ![screenshot](https://i.imgur.com/A8eJJyz.png)
