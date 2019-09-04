@@ -5,6 +5,7 @@ namespace App;
 use App\Http\Traits\Hashidable;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Url extends Model
 {
@@ -192,7 +193,7 @@ class Url extends Model
             return $matches[1];
         } elseif ($domain = $this->getDomain($url)) {
             // @codeCoverageIgnoreStart
-            return title_case($domain).' - '.__('No Title'); // @codeCoverageIgnoreEnd
+            return Str::title($domain).' - '.__('No Title'); // @codeCoverageIgnoreEnd
         } else {
             return __('No Title');
         }

@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', title_case(Auth::user()->name) .' ‹ '. __('Change Password'))
+@section('title', Str::title(Auth::user()->name) .' ‹ '. __('Change Password'))
 
 @section('content')
 
