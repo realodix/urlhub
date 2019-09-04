@@ -22,7 +22,8 @@ class ShortUrlProtected implements Rule
         $routes = array_map(
             function (\Illuminate\Routing\Route $route) {
                 return $route->uri;
-            }, (array) \Route::getRoutes()->getIterator()
+            },
+            (array) \Route::getRoutes()->getIterator()
         );
 
         return $value != in_array($value, $routes);
