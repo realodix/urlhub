@@ -20,7 +20,6 @@
         "jenssegers/agent": "^2.6",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "laravolt/avatar": "^2.0",
         "spatie/laravel-permission": "^3.0",
         "vinkla/hashids": "^6.0",
         "yajra/laravel-datatables-oracle": "~9.0"
