@@ -4146,24 +4146,24 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v9.4.1",
+            "version": "v9.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "ac37f93026b6b607d1bb56789d147a4efd8d97d9"
+                "reference": "d8a965ab91662216956288cafcc4c60306af7b3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/ac37f93026b6b607d1bb56789d147a4efd8d97d9",
-                "reference": "ac37f93026b6b607d1bb56789d147a4efd8d97d9",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/d8a965ab91662216956288cafcc4c60306af7b3f",
+                "reference": "d8a965ab91662216956288cafcc4c60306af7b3f",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "5.8.*",
-                "illuminate/filesystem": "5.8.*",
-                "illuminate/http": "5.8.*",
-                "illuminate/support": "5.8.*",
-                "illuminate/view": "5.8.*",
+                "illuminate/database": "5.8.*|^6.0",
+                "illuminate/filesystem": "5.8.*|^6.0",
+                "illuminate/http": "5.8.*|^6.0",
+                "illuminate/support": "5.8.*|^6.0",
+                "illuminate/view": "5.8.*|^6.0",
                 "php": "^7.1.3"
             },
             "require-dev": {
@@ -4213,7 +4213,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-06-12T05:06:59+00:00"
+            "time": "2019-09-04T05:02:17+00:00"
         }
     ],
     "packages-dev": [
