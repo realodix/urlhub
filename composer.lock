@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "843f3ff9ecde2637f9d768045b28854e",
+    "content-hash": "cf04b642659e518ddec8df81ec3836fc",
     "packages": [
         {
             "name": "codeitnowin/barcode",
@@ -1431,16 +1431,16 @@
         },
         {
             "name": "laravolt/avatar",
-            "version": "dev-master",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/avatar.git",
-                "reference": "88bd38403ae904354b1f25fff3703242bc0102e0"
+                "reference": "d95652df4499790e25d66a4fbfc34dfb93e7314d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/avatar/zipball/88bd38403ae904354b1f25fff3703242bc0102e0",
-                "reference": "88bd38403ae904354b1f25fff3703242bc0102e0",
+                "url": "https://api.github.com/repos/laravolt/avatar/zipball/d95652df4499790e25d66a4fbfc34dfb93e7314d",
+                "reference": "d95652df4499790e25d66a4fbfc34dfb93e7314d",
                 "shasum": ""
             },
             "require": {
@@ -1492,7 +1492,7 @@
                 "laravel",
                 "laravolt"
             ],
-            "time": "2019-09-04T08:20:33+00:00"
+            "time": "2019-09-04T14:39:26+00:00"
         },
         {
             "name": "league/flysystem",
@@ -6531,9 +6531,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "laravolt/avatar": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
