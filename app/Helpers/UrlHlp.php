@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Str;
+
 class UrlHlp
 {
     /**
@@ -12,10 +14,10 @@ class UrlHlp
     public function url_limit($url, $maxlength)
     {
         $int_a = $maxlength * 0.6;
-        $int_b = ($maxlength * 0.4 * -1) + 3; // + 3 dots from str_limit()
+        $int_b = ($maxlength * 0.4 * -1) + 3; // + 3 dots from Str::limit()
 
         if (strlen($url) > $maxlength) {
-            return str_limit($url, $int_a).substr($url, $int_b);
+            return Str::limit($url, $int_a).substr($url, $int_b);
         }
 
         return $url;

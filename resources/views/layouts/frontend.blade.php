@@ -25,7 +25,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <span class="dropdown-item" href="{{ route('dashboard') }}">
-                @lang('Signed in as') {{ title_case(Auth::user()->name) }}
+                @lang('Signed in as') {{ Str::title(Auth::user()->name) }}
               </span>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('dashboard') }}">

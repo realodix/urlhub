@@ -1,7 +1,7 @@
 <h1>UrlHub</h1>
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
-[![LaravelVersion](https://img.shields.io/badge/Laravel-5.8-FB5743.svg?style=flat-square)](https://laravel.com/docs/5.8)
+[![LaravelVersion](https://img.shields.io/badge/Laravel-6.0-f56857.svg?style=flat-square)](https://laravel.com/docs/6.0)
 ![PHPVersion](https://img.shields.io/badge/PHP-%5E7.2-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
@@ -17,8 +17,8 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 * Customized short URL's(ex: example.com/laravel).
 * QR code generator for each short link.
 * Sortable list of shortened URLs.
-* Written in PHP and [Laravel 5.8](https://laravel.com/docs/5.8).
-* Datatables with server-side processing.
+* Written in [PHP](https://www.php.net/) and [Laravel 6](https://laravel.com/docs/6.0).
+* [Datatables](https://datatables.net/) with server-side processing.
 * Modern and simple interface.
 * Made with :heart: &amp; :coffee:.
 
@@ -84,11 +84,9 @@ Please do the following:
 
 ### Running Tests
 
-On `.env` file, set `DB_TEST_` with the settings used behind.
-
 From the projects root folder run `./vendor/bin/phpunit`
 
-![screenshot](https://i.imgur.com/A8eJJyz.png)
+![screenshot](https://i.imgur.com/nR628gL.png)
 
 ## License
 UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).
