@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "realodix/urlhub",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "URL shortener web application based on the Laravel PHP Framework.",
     "keywords": [
         "laravel",
         "url-shortener",
