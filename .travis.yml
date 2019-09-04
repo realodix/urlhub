@@ -19,7 +19,8 @@ install:
 
 before_script:
   - mysql -e 'create database urlhub_test;'
-  - php artisan key:generate --env=testing
+  - cp .env.example .env
+  - php artisan key:generate
 
 script:
   - mkdir -p build/logs
