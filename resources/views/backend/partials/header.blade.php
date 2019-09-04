@@ -29,7 +29,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <span class="dropdown-item" href="{{ route('dashboard') }}">
-          @lang('Signed in as') {{ title_case(Auth::user()->name) }}
+          @lang('Signed in as') {{ Str::title(Auth::user()->name) }}
         </span>
         <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->name) }}">
           @lang('Your Profile')
