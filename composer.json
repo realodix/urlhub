@@ -18,11 +18,11 @@
         "geoip2/geoip2": "~2.0",
         "hidehalo/nanoid-php": "^1.1",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravolt/avatar": "dev-master",
         "spatie/laravel-permission": "^3.0",
-        "vinkla/hashids": "^6.0",
+        "vinkla/hashids": "^7.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
