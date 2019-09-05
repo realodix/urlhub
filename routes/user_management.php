@@ -150,10 +150,10 @@
         /// USER AUTH
         Route::group(
             [
-            'namespace'     => 'App\Http\Controllers\UserManagement\Auth',
-            'as'            => 'auth.user.',
-            'middleware'    => ['web', 'guest'],
-        ],
+                'namespace'     => 'App\Http\Controllers\UserManagement\Auth',
+                'as'            => 'auth.user.',
+                'middleware'    => ['web', 'guest'],
+            ],
             function () {
 
             // auth.user.login
@@ -177,10 +177,10 @@
         ///////////////////
         Route::group(
             [
-            'namespace'     => 'App\Http\Controllers\UserManagement\Auth',
-            'as'            => 'auth.user.',
-            'middleware'    => ['web', 'auth'],
-        ],
+                'namespace'     => 'App\Http\Controllers\UserManagement\Auth',
+                'as'            => 'auth.user.',
+                'middleware'    => ['web', 'auth'],
+            ],
             function () {
 
             // auth.user.logout
