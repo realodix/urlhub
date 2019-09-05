@@ -4278,16 +4278,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.4.10",
+            "version": "1.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "8c3807dfbc1b2725dd87e20793a6b085f9fed381"
+                "reference": "b3aa166ed7d081df90e9f95eef351035f69c3ee9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/8c3807dfbc1b2725dd87e20793a6b085f9fed381",
-                "reference": "8c3807dfbc1b2725dd87e20793a6b085f9fed381",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/b3aa166ed7d081df90e9f95eef351035f69c3ee9",
+                "reference": "b3aa166ed7d081df90e9f95eef351035f69c3ee9",
                 "shasum": ""
             },
             "require": {
@@ -4342,7 +4342,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-04T14:36:37+00:00"
+            "time": "2019-09-05T12:13:00+00:00"
         },
         {
             "name": "filp/whoops",
