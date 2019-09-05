@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement;
+namespace UrlHub\UserManagement;
 
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Exception;

@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Entities;
-use Mekaeil\LaravelUserManagement\Entities\User as UserManagement;
+use UrlHub\UserManagement\Entities\User as UserManagement;
 
 class User extends UserManagement
 {
-    
+
     // protected $fillable = [
     //     'first_name',
     //     'last_name',
@@ -14,7 +14,7 @@ class User extends UserManagement
     //     'password',
     //     'status',           // 'pending','accepted','blocked' | DEFAULT: pending
     //     'email_verified',
-    //     'mobile_verified',        
+    //     'mobile_verified',
     // ];
 
 
@@ -23,6 +23,6 @@ class User extends UserManagement
     // public function setPasswordAttribute($password)
     // {
     //     $this->attributes['password'] = bcrypt($password);
-    // }    
+    // }
 
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entities;
-use Mekaeil\LaravelUserManagement\Entities\Department as UserManagementDepartment;
+use UrlHub\UserManagement\Entities\Department as UserManagementDepartment;
 
 class Department extends UserManagementDepartment
 {

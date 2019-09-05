@@ -15,13 +15,13 @@
     ],
     "autoload": {
         "psr-4": {
-          "Mekaeil\\LaravelUserManagement\\": "src/"
+          "UrlHub\\UserManagement\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Mekaeil\\LaravelUserManagement\\UserManagementProvider"
+                "UrlHub\\UserManagement\\UserManagementProvider"
             ]
         }
     }

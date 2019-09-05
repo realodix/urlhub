@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Contracts;
+namespace UrlHub\UserManagement\Contracts;
 
 interface UserManagementContracts
 {

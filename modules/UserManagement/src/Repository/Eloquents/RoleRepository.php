@@ -1,10 +1,10 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Repository\Eloquents;
+namespace UrlHub\UserManagement\Repository\Eloquents;
 
 use App\Entities\Role;
-use Mekaeil\LaravelUserManagement\Repository\Eloquents\BaseEloquentRepository;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
+use UrlHub\UserManagement\Repository\Eloquents\BaseEloquentRepository;
+use UrlHub\UserManagement\Repository\Contracts\RoleRepositoryInterface;
 
 class RoleRepository extends BaseEloquentRepository implements RoleRepositoryInterface
 {

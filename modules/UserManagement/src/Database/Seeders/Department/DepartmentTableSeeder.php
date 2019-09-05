@@ -1,16 +1,16 @@
 <?php
 
-use Mekaeil\LaravelUserManagement\seeders\Department\MasterDepartmentTableSeeder;
+use UrlHub\UserManagement\seeders\Department\MasterDepartmentTableSeeder;
 
 class DepartmentTableSeeder extends MasterDepartmentTableSeeder
 {
     protected $departments = [
         [
             'title'     => "Clients",
-            'parent'    => '',    
+            'parent'    => '',
         ],
-        
+
     ];
 
-    
+
 }

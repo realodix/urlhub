@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UserManagement;
 
 use Illuminate\Http\Request;
-use Mekaeil\LaravelUserManagement\Http\Controllers\Admin\DepartmentsController as DepartmentUserManager;
+use UrlHub\UserManagement\Http\Controllers\Admin\DepartmentsController as DepartmentUserManager;
 
 class DepartmentsController extends DepartmentUserManager
 {
@@ -13,13 +13,13 @@ class DepartmentsController extends DepartmentUserManager
     |--------------------------------------------------------------------------
     |   All of the functions we have commented below, if you want to overwrite
     |   any of them you can uncomment it and write your code. It's important
-    |   to know the repositories in below are available for work with it. 
+    |   to know the repositories in below are available for work with it.
     */
 
 
     // public function index()
     // {
-        
+
     //     return view('user-management.department.index');
     // }
 
@@ -28,11 +28,11 @@ class DepartmentsController extends DepartmentUserManager
     // }
 
     // public function store(){
-        
+
     // }
 
     // public function update(){
-        
+
     // }
 
     // public function delete()

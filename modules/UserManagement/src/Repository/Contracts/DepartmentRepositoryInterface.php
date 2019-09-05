@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Repository\Contracts;
+namespace UrlHub\UserManagement\Repository\Contracts;
 
 interface DepartmentRepositoryInterface extends BaseRepositoryInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Controllers\Admin;
+namespace UrlHub\UserManagement\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\PermissionRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\StoreRole;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\UpdateRole;
+use UrlHub\UserManagement\Repository\Contracts\PermissionRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\RoleRepositoryInterface;
+use UrlHub\UserManagement\Http\Requests\Admin\StoreRole;
+use UrlHub\UserManagement\Http\Requests\Admin\UpdateRole;
 
 class RolesController extends Controller
 {
@@ -23,7 +23,7 @@ class RolesController extends Controller
     }
 
     public function index()
-    {   
+    {
         $roles = $this->roleRepository->all();
         return view('user-management.role.index', compact('roles'));
     }
@@ -32,7 +32,7 @@ class RolesController extends Controller
     {
         $permissions = $this->permissionRepository->all();
 
-        return view('user-management.role.create', compact('permissions'));    
+        return view('user-management.role.create', compact('permissions'));
     }
 
     public function edit(int $ID)
@@ -41,8 +41,8 @@ class RolesController extends Controller
         {
             $permissions        = $this->permissionRepository->all();
             $roleHasPermissions = array_column(json_decode($role->permissions, true), 'id');
-            
-            return view('user-management.role.edit', compact('role', 'permissions', 'roleHasPermissions'));    
+
+            return view('user-management.role.edit', compact('role', 'permissions', 'roleHasPermissions'));
         }
 
         return redirect()->route('admin.user_management.role.index')->with('message',[
@@ -60,7 +60,7 @@ class RolesController extends Controller
             'guard_name'    => $request->guard_name,
             'description'   => $request->description,
         ]);
-        
+
         if(! empty($request->permissions))
         {
             $this->permissionRepository->setPermissionToRole($role->id, $request->permissions);
@@ -86,7 +86,7 @@ class RolesController extends Controller
 
             $permissions = $request->permissions ?? [];
             $this->permissionRepository->SyncPermToRole($role->id, $permissions);
-   
+
             return redirect()->route('admin.user_management.role.index')->with('message',[
                'type'  => 'success',
                'text'  => "This role << $request->name >> updated successfully.",
@@ -117,5 +117,5 @@ class RolesController extends Controller
             'text'  => 'This role does not exist!'
         ]);
     }
-    
+
 }

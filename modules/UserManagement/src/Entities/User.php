@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Entities;
+namespace UrlHub\UserManagement\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +20,7 @@ class User extends Authenticatable
         'password',
         'status',           // 'pending','accepted','blocked' | DEFAULT: pending
         'email_verified',
-        'mobile_verified',        
+        'mobile_verified',
     ];
 
 
@@ -31,7 +31,7 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
-    
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

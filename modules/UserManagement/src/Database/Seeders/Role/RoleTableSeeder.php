@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Mekaeil\LaravelUserManagement\seeders\Permission\MasterRoleTableSeeder;
+use UrlHub\UserManagement\seeders\Permission\MasterRoleTableSeeder;
 class RoleTableSeeder extends MasterRoleTableSeeder
 {
     protected $roles = [
@@ -17,8 +17,8 @@ class RoleTableSeeder extends MasterRoleTableSeeder
             'guard_name'    => "web",
             'description'   => "This role will assign to user.",
         ],
-        
+
     ];
 
-    
+
 }

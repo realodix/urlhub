@@ -1,12 +1,12 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Controllers\Admin;
+namespace UrlHub\UserManagement\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\PermissionRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\StorePermission;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\UpdatePermission;
+use UrlHub\UserManagement\Repository\Contracts\PermissionRepositoryInterface;
+use UrlHub\UserManagement\Http\Requests\Admin\StorePermission;
+use UrlHub\UserManagement\Http\Requests\Admin\UpdatePermission;
 
 class PermissionsController extends Controller
 {
@@ -35,12 +35,12 @@ class PermissionsController extends Controller
         {
             return view('user-management.permission.edit', compact('permission'));
         }
-    
+
         return redirect()->route('admin.user_management.permission.index')->with('message',[
             'type'   => 'danger',
             'text'   => "This permission << $request->name >> does not exist!",
         ]);
-      
+
 
     }
 
@@ -51,9 +51,9 @@ class PermissionsController extends Controller
             'title'         => $request->title,
             'module'        => $request->module,
             'guard_name'    => $request->guard_name,
-            'description'   => $request->description,            
+            'description'   => $request->description,
         ]);
-            
+
         return redirect()->route('admin.user_management.permission.index')->with('message',[
             'type'   => 'success',
             'text'   => "This permission << $request->name >> created successfully!",
@@ -70,7 +70,7 @@ class PermissionsController extends Controller
                 'title'         => $request->title,
                 'module'        => $request->module,
                 'guard_name'    => $request->guard_name,
-                'description'   => $request->description,        
+                'description'   => $request->description,
             ]);
 
             return redirect()->route('admin.user_management.permission.index')->with('message',[
@@ -78,12 +78,12 @@ class PermissionsController extends Controller
                 'text'   => "This permission << $request->name >> updated successfully!",
             ]);
         }
-    
+
         return redirect()->route('admin.user_management.permission.index')->with('message',[
             'type'   => 'danger',
             'text'   => "This permission << $request->name >> does not exist!",
         ]);
-   
+
     }
 
     public function delete(int $ID)
@@ -98,11 +98,11 @@ class PermissionsController extends Controller
                 'text'   => "This permission << $name >> deleted successfully!",
             ]);
         }
-            
+
         return redirect()->route('admin.user_management.permission.index')->with('message',[
             'type'   => 'danger',
             'text'   => "permission does not exist!",
         ]);
- 
+
     }
 }

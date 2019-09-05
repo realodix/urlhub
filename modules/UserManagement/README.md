@@ -22,12 +22,12 @@ composer require mekaeil/laravel-user-management
 ```
 'providers' => [
     // ...
-    \Mekaeil\LaravelUserManagement\UserManagementProvider::class,
+    \UrlHub\UserManagement\UserManagementProvider::class,
 ];
 ```
 3. Run this command for publish vendor:
 ```
-php artisan vendor:publish --provider="Mekaeil\LaravelUserManagement\UserManagementProvider" 
+php artisan vendor:publish --provider="UrlHub\UserManagement\UserManagementProvider" 
 ```
 4. After publishing vendors, add this code to "run" method in <b>database/DatabaseSeeder.php</b>
 ```

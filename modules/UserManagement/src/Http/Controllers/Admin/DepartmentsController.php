@@ -1,13 +1,13 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Controllers\Admin;
+namespace UrlHub\UserManagement\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\DepartmentRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\UserRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\StoreDepartment;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\UpdateDepartment;
+use UrlHub\UserManagement\Repository\Contracts\DepartmentRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\UserRepositoryInterface;
+use UrlHub\UserManagement\Http\Requests\Admin\StoreDepartment;
+use UrlHub\UserManagement\Http\Requests\Admin\UpdateDepartment;
 
 class DepartmentsController extends Controller
 {
@@ -16,7 +16,7 @@ class DepartmentsController extends Controller
     protected $userRepository;
 
     public function __construct(
-        DepartmentRepositoryInterface $department, 
+        DepartmentRepositoryInterface $department,
         UserRepositoryInterface $user)
     {
         $this->departmentRepository = $department;
@@ -34,21 +34,21 @@ class DepartmentsController extends Controller
     {
         $departments = $this->departmentRepository->all();
 
-        return view('user-management.department.create', compact('departments'));    
+        return view('user-management.department.create', compact('departments'));
     }
 
     public function edit(int $ID)
-    {   
+    {
         if($department = $this->departmentRepository->find($ID))
         {
             $departments = $this->departmentRepository->all();
 
-            return view('user-management.department.edit', compact('department', 'departments'));    
+            return view('user-management.department.edit', compact('department', 'departments'));
         }
 
         return redirect()->route('admin.user_management.department.index')->with('message',[
            'type'   => 'danger',
-           'text'   => 'Department does not exist!' 
+           'text'   => 'Department does not exist!'
         ]);
     }
 
@@ -67,7 +67,7 @@ class DepartmentsController extends Controller
 
         return redirect()->route('admin.user_management.department.index')->with('message',[
             'type'   => 'success',
-            'text'   => "This department << $request->title >> created successfully." 
+            'text'   => "This department << $request->title >> created successfully."
          ]);
     }
 
@@ -88,13 +88,13 @@ class DepartmentsController extends Controller
 
             return redirect()->route('admin.user_management.department.index')->with('message',[
                 'type'   => 'success',
-                'text'   => "This department << $request->title >> updated successfully." 
+                'text'   => "This department << $request->title >> updated successfully."
             ]);
         }
 
         return redirect()->route('admin.user_management.department.index')->with('message',[
            'type'   => 'danger',
-           'text'   => 'Department does not exist!' 
+           'text'   => 'Department does not exist!'
         ]);
     }
 
@@ -106,13 +106,13 @@ class DepartmentsController extends Controller
 
             return redirect()->route('admin.user_management.department.index')->with('message',[
                 'type'   => 'warning',
-                'text'   => 'Department deleted successfully!' 
+                'text'   => 'Department deleted successfully!'
              ]);
         }
 
         return redirect()->route('admin.user_management.department.index')->with('message',[
            'type'   => 'danger',
-           'text'   => 'Department does not exist!' 
+           'text'   => 'Department does not exist!'
         ]);
     }
 

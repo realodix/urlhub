@@ -1,10 +1,10 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\seeders\Permission;
+namespace UrlHub\UserManagement\seeders\Permission;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\RoleRepositoryInterface;
 
 class MasterRoleTableSeeder extends Seeder
 {

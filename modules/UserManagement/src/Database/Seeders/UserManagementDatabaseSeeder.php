@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Database\Seeders;
+namespace UrlHub\UserManagement\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ class UserManagementDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();        
-        
+        Model::unguard();
+
     }
 }

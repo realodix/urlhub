@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Requests\Admin;
+namespace UrlHub\UserManagement\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class UpdateRole extends FormRequest
     public function rules()
     {
         $tableNames = config('permission.table_names');
-        
+
         return [
             'name'          => "required|unique:".$tableNames['roles'].",name," . $this->ID,
             'title'         => 'required|string',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Entities;
+namespace UrlHub\UserManagement\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Mekaeil\LaravelUserManagement\seeders\Permission\MasterPermissionTableSeeder;
+use UrlHub\UserManagement\seeders\Permission\MasterPermissionTableSeeder;
 
 class PermissionTableSeeder extends MasterPermissionTableSeeder
 {
@@ -18,5 +18,5 @@ class PermissionTableSeeder extends MasterPermissionTableSeeder
         ],
     ];
 
-    
+
 }

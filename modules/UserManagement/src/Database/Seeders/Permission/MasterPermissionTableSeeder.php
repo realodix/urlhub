@@ -1,11 +1,11 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\seeders\Permission;
+namespace UrlHub\UserManagement\seeders\Permission;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\PermissionRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\PermissionRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\RoleRepositoryInterface;
 
 class MasterPermissionTableSeeder extends Seeder
 {
@@ -122,7 +122,7 @@ class MasterPermissionTableSeeder extends Seeder
                 'guard_name'    => $guard ?? $permission['guard_name'],
                 'title'         => isset($permission['title']) ? $permission['title'] : null ,
                 'module'        => isset($permission['module']) ? $permission['module'] : null ,
-                'description'   => isset($permission['description']) ? $permission['description'] : null ,                
+                'description'   => isset($permission['description']) ? $permission['description'] : null ,
             ]);
 
             $rolePermissions[$permission['name']] = array_values($permission['roles']) ?? null ;
@@ -137,7 +137,7 @@ class MasterPermissionTableSeeder extends Seeder
             'guard_name'    => $getGuard,
             'title'         => isset($permission['title']) ? $permission['title'] : null ,
             'module'        => isset($permission['module']) ? $permission['module'] : null ,
-            'description'   => isset($permission['description']) ? $permission['description'] : null ,            
+            'description'   => isset($permission['description']) ? $permission['description'] : null ,
         ]);
 
         $rolePermissions[$permission['name']] = array_values($permission['roles']) ?? null ;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Entities;
+namespace UrlHub\UserManagement\Entities;
 
 use Spatie\Permission\Models\Role as SpatieRole;
 
@@ -12,5 +12,5 @@ class Role extends SpatieRole
     }
 
 
-    
+
 }

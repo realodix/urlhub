@@ -1,15 +1,15 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Controllers\Admin;
+namespace UrlHub\UserManagement\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\PermissionRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\UserRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Eloquents\DepartmentRepository;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\StoreUser;
-use Mekaeil\LaravelUserManagement\Http\Requests\Admin\UpdateUser;
+use UrlHub\UserManagement\Repository\Contracts\PermissionRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\RoleRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\UserRepositoryInterface;
+use UrlHub\UserManagement\Repository\Eloquents\DepartmentRepository;
+use UrlHub\UserManagement\Http\Requests\Admin\StoreUser;
+use UrlHub\UserManagement\Http\Requests\Admin\UpdateUser;
 use App\Entities\User;
 
 class UsersController extends Controller
@@ -55,8 +55,8 @@ class UsersController extends Controller
             $departments        = $this->departmentRepository->all();
             $userHasRoles       = $user->roles ? array_column(json_decode($user->roles, true), 'id') : [];
             $userHasDepartments = $user->departments ? array_column(json_decode($user->departments, true), 'id') : [];
-    
-            return view('user-management.user.edit', compact('roles', 'departments', 'user', 'userHasRoles', 'userHasDepartments'));    
+
+            return view('user-management.user.edit', compact('roles', 'departments', 'user', 'userHasRoles', 'userHasDepartments'));
         }
 
         return redirect()->back()->with('message',[
@@ -76,16 +76,16 @@ class UsersController extends Controller
             'status'        => $request->status ?? 'pending',
             'password'      => bcrypt($request->password)
         ]);
-    
+
         $roles       = $request->roles       ?? [];
         $departments = $request->departments ?? [];
-        
+
         $this->roleRepository->setRoleToMember($user, $roles);
         $this->departmentRepository->attachDepartment($user, $departments);
 
         return redirect()->route('admin.user_management.user.index')->with('message',[
             'type'   => 'success',
-            'text'   => 'َUser updated successfully!' 
+            'text'   => 'َUser updated successfully!'
         ]);
     }
 
@@ -101,13 +101,13 @@ class UsersController extends Controller
                 'status'        => $request->status,
                 'mobile'        => $request->mobile,
             ]);
-        
+
             $roles       = $request->roles       ?? [];
 
             $departments = $request->departments ?? [];
             if(count($departments) == 1 && $departments[0] == null)
             {
-                $departments = []; 
+                $departments = [];
             }
             //// IF WE WANT TO CHANGE PASSWORD
             ////////////////////////////////////////////////////////////
@@ -121,10 +121,10 @@ class UsersController extends Controller
 
             $this->roleRepository->syncRoleToUser($user, $roles);
             $this->departmentRepository->syncDepartments($user, $departments);
-       
+
             return redirect()->route('admin.user_management.user.index')->with('message',[
                 'type'   => 'success',
-                'text'   => 'َUser updated successfully!' 
+                'text'   => 'َUser updated successfully!'
             ]);
         }
 
@@ -132,7 +132,7 @@ class UsersController extends Controller
             'type'  => 'danger',
             'text'  => 'This user does not exist!',
         ]);
-        
+
     }
 
     public function delete($ID)
@@ -147,7 +147,7 @@ class UsersController extends Controller
 
             return redirect()->route('admin.user_management.user.index')->with('message',[
                 'type'   => 'warning',
-                'text'   => 'User Deleted successfully!' 
+                'text'   => 'User Deleted successfully!'
             ]);
         }
 
@@ -159,7 +159,7 @@ class UsersController extends Controller
 
     public function restoreBackUser(int $ID)
     {
-        
+
         if($this->userRepository->restoreUser($ID))
         {
             $user = $this->userRepository->update($ID, [
@@ -168,7 +168,7 @@ class UsersController extends Controller
 
             return redirect()->route('admin.user_management.user.index')->with('message',[
                 'type'   => 'success',
-                'text'   => 'User restored successfully!' 
+                'text'   => 'User restored successfully!'
             ]);
         }
 

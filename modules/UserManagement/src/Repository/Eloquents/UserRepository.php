@@ -1,10 +1,10 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Repository\Eloquents;
+namespace UrlHub\UserManagement\Repository\Eloquents;
 
 use App\Entities\User;
-use Mekaeil\LaravelUserManagement\Repository\Eloquents\BaseEloquentRepository;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\UserRepositoryInterface;
+use UrlHub\UserManagement\Repository\Eloquents\BaseEloquentRepository;
+use UrlHub\UserManagement\Repository\Contracts\UserRepositoryInterface;
 
 class UserRepository extends BaseEloquentRepository implements UserRepositoryInterface
 {
@@ -38,7 +38,7 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
     public function restoreUser(int $ID)
     {
         $query = $this->model::query();
-        
+
         return $query->withTrashed()->where('id', $ID)->restore();
     }
 

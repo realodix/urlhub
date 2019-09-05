@@ -1,22 +1,22 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement;
+namespace UrlHub\UserManagement;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Debug\ExceptionHandler;
-use Mekaeil\LaravelUserManagement\Facade\UserManagement;
+use UrlHub\UserManagement\Facade\UserManagement;
 // USER
-use Mekaeil\LaravelUserManagement\Repository\Contracts\UserRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Eloquents\UserRepository;
+use UrlHub\UserManagement\Repository\Contracts\UserRepositoryInterface;
+use UrlHub\UserManagement\Repository\Eloquents\UserRepository;
 // DEPARTMENT
-use Mekaeil\LaravelUserManagement\Repository\Contracts\DepartmentRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Eloquents\DepartmentRepository;
+use UrlHub\UserManagement\Repository\Contracts\DepartmentRepositoryInterface;
+use UrlHub\UserManagement\Repository\Eloquents\DepartmentRepository;
 // PERMISSION
-use Mekaeil\LaravelUserManagement\Repository\Contracts\PermissionRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Eloquents\PermissionRepository;
+use UrlHub\UserManagement\Repository\Contracts\PermissionRepositoryInterface;
+use UrlHub\UserManagement\Repository\Eloquents\PermissionRepository;
 // ROLE
-use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Eloquents\RoleRepository;
+use UrlHub\UserManagement\Repository\Contracts\RoleRepositoryInterface;
+use UrlHub\UserManagement\Repository\Eloquents\RoleRepository;
 
 class UserManagementProvider extends ServiceProvider
 {
@@ -34,7 +34,7 @@ class UserManagementProvider extends ServiceProvider
         }
 
         ///    SET VIEW'S ROUTE
-        $this->loadViewsFrom(base_path('views'), 'LaravelUserManagement');
+        $this->loadViewsFrom(base_path('views'), 'UserManagement');
 
         ///   SET MIGRATION'S ROUTE
         $this->loadMigrationsFrom(base_path('database/migrations'));

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Repository\Eloquents;
+namespace UrlHub\UserManagement\Repository\Eloquents;
 
-use Mekaeil\LaravelUserManagement\Repository\Contracts\BaseRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\BaseRepositoryInterface;
 
 class BaseEloquentRepository implements BaseRepositoryInterface
 {
@@ -12,12 +12,12 @@ class BaseEloquentRepository implements BaseRepositoryInterface
     {
         $query = $this->model::query();
 
-        if (!empty($relations)) 
+        if (!empty($relations))
         {
             $query->with($relations);
         }
 
-        if (!empty($columns)) 
+        if (!empty($columns))
         {
             return $query->get($columns);
         }
@@ -44,7 +44,7 @@ class BaseEloquentRepository implements BaseRepositoryInterface
     {
         $item = $this->find($ID);
 
-        if ($item) 
+        if ($item)
         {
             return $item->update($data);
         }
@@ -54,7 +54,7 @@ class BaseEloquentRepository implements BaseRepositoryInterface
 
     public function delete(int $ID)
     {
-        if (intval($ID) > 0) 
+        if (intval($ID) > 0)
         {
             return $this->model::destroy($ID);
         }
@@ -66,7 +66,7 @@ class BaseEloquentRepository implements BaseRepositoryInterface
     {
         $query = $this->model::query();
 
-        foreach ($criteria as $key => $item) 
+        foreach ($criteria as $key => $item)
         {
             $query->where($key, $item);
         }
@@ -80,7 +80,7 @@ class BaseEloquentRepository implements BaseRepositoryInterface
     {
         $query = $this->model::query();
 
-        foreach ($criteria as $key => $value) 
+        foreach ($criteria as $key => $value)
         {
             $query->where($key, $value);
         }

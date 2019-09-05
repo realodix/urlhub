@@ -1,8 +1,8 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Repository\Contracts;
+namespace UrlHub\UserManagement\Repository\Contracts;
 
-interface BaseRepositoryInterface 
+interface BaseRepositoryInterface
 {
     public function all(array $columns = [], array $relations = [], array $pluck = []);
 

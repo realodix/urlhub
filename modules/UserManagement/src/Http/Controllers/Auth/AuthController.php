@@ -1,13 +1,13 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Controllers\Auth;
+namespace UrlHub\UserManagement\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\UserRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
-use Mekaeil\LaravelUserManagement\Http\Requests\Auth\UserLogin;
-use Mekaeil\LaravelUserManagement\Http\Requests\Auth\UserRegistration;
+use UrlHub\UserManagement\Repository\Contracts\UserRepositoryInterface;
+use UrlHub\UserManagement\Repository\Contracts\RoleRepositoryInterface;
+use UrlHub\UserManagement\Http\Requests\Auth\UserLogin;
+use UrlHub\UserManagement\Http\Requests\Auth\UserRegistration;
 use Auth;
 
 class AuthController extends Controller
@@ -40,9 +40,9 @@ class AuthController extends Controller
         $username    = config('laravel_user_management.auth.username');
         $credentials = [$username => $request->{$username}, 'password' => $request->password, 'status' => 'accepted'];
 
-        if (\Auth::attempt($credentials)) 
+        if (\Auth::attempt($credentials))
         {
-            $user = \Auth::user();              
+            $user = \Auth::user();
             return redirect()->intended('/');
         }
 
@@ -68,7 +68,7 @@ class AuthController extends Controller
             'name'  => config('laravel_user_management.auth.user_default_role')
         ]);
 
-        if (!$userDefaultRole) 
+        if (!$userDefaultRole)
         {
             return redirect()->back()->with('message',[
                 'type'  => 'danger',
@@ -87,16 +87,16 @@ class AuthController extends Controller
         ]);
 
         /// ASSIGN DEFAULT ROLE TO USER
-        $this->roleRepository->setRoleToMember($user, $userDefaultRole);    
-        
-        \Auth::login($user);       
+        $this->roleRepository->setRoleToMember($user, $userDefaultRole);
+
+        \Auth::login($user);
 
         return redirect()->route(config('laravel_user_management.auth.dashboard_route_name_user_redirection'))
         ->with('message',[
             'type'  => 'success',
             'text'  => trans('trans.account_created_successfully')
         ]);
-        
+
     }
 
     public function logout(Request $request)

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UserManagement;
 
 use Illuminate\Http\Request;
-use Mekaeil\LaravelUserManagement\Http\Controllers\Admin\PermissionsController as PermissionUserManager;
+use UrlHub\UserManagement\Http\Controllers\Admin\PermissionsController as PermissionUserManager;
 
 class PermissionsController extends PermissionUserManager
 {
@@ -13,7 +13,7 @@ class PermissionsController extends PermissionUserManager
     |--------------------------------------------------------------------------
     |   All of the functions we have commented below, if you want to overwrite
     |   any of them you can uncomment it and write your code. It's important
-    |   to know the repositories in below are available for work with it. 
+    |   to know the repositories in below are available for work with it.
     */
 
     // public function index(){
@@ -25,11 +25,11 @@ class PermissionsController extends PermissionUserManager
     // }
 
     // public function store(){
-        
+
     // }
 
     // public function update(){
-        
+
     // }
 
     // public function delete()

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Requests\Auth;
+namespace UrlHub\UserManagement\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Entities;
+namespace UrlHub\UserManagement\Entities;
 
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
@@ -11,5 +11,5 @@ class Permission extends SpatiePermission
         parent::__construct($attributes);
     }
 
-    
+
 }

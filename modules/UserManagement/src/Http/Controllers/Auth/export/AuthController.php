@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UserManagement\Auth;
 
 use Illuminate\Http\Request;
-use Mekaeil\LaravelUserManagement\Http\Controllers\Auth\AuthController as AuthUserManager;
+use UrlHub\UserManagement\Http\Controllers\Auth\AuthController as AuthUserManager;
 
 class AuthController extends AuthUserManager
 {
@@ -13,7 +13,7 @@ class AuthController extends AuthUserManager
     |--------------------------------------------------------------------------
     |   All of the functions we have commented below, if you want to overwrite
     |   any of them you can uncomment it and write your code. It's important
-    |   to know the repositories in below are available for work with it. 
+    |   to know the repositories in below are available for work with it.
     */
 
     // public function loginForm()

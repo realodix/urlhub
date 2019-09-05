@@ -1,6 +1,6 @@
 <?php
 
-namespace Mekaeil\LaravelUserManagement\Http\Requests\Admin;
+namespace UrlHub\UserManagement\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
