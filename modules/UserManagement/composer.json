@@ -1,19 +1,10 @@
 {
-    "name": "mekaeil/laravel-user-management",
+    "name": "urlhub/user-management",
     "description": "With this package we can manage all of the users in our project.",
     "type": "project",
-    "homepage": "https://mekaeil.me",
-    "keywords": [
-        "Project",
-        "laravel",
-        "User Management",
-        "Spatie",
-        "laravel permission"
-    ],
+    "homepage": "https://github.com/Mekaeil/LaravelUserManagement",
     "require": {
-        "php": "^7.1.3",
-        "laravel/framework": "5.5.*",
-        "spatie/laravel-permission": "^2.37"
+        "php": "^7.1.3"
     },
     "license": "MIT",
     "authors": [

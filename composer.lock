@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e3519a71c248de47baa1375d1fb07b1",
+    "content-hash": "14238828ca4eb9e22f479ad62d6d94e7",
     "packages": [
         {
             "name": "codeitnowin/barcode",
@@ -3965,6 +3965,42 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "urlhub/user-management",
+            "version": "dev-User-Management",
+            "dist": {
+                "type": "path",
+                "url": "modules/UserManagement",
+                "reference": "a3d2fb84e66c89ef54f6e972da0194e52339aa46"
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mekaeil\\LaravelUserManagement\\LaravelUserManagementProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mekaeil\\LaravelUserManagement\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mekaeil",
+                    "email": "maikel1370@gmail.com"
+                }
+            ],
+            "description": "With this package we can manage all of the users in our project.",
+            "homepage": "https://github.com/Mekaeil/LaravelUserManagement"
+        },
+        {
             "name": "vinkla/hashids",
             "version": "7.0.0",
             "source": {
@@ -4278,16 +4314,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.4.10",
+            "version": "1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "8c3807dfbc1b2725dd87e20793a6b085f9fed381"
+                "reference": "5082ea8e531894dca7ffcee25206d93cd25aca42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/8c3807dfbc1b2725dd87e20793a6b085f9fed381",
-                "reference": "8c3807dfbc1b2725dd87e20793a6b085f9fed381",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/5082ea8e531894dca7ffcee25206d93cd25aca42",
+                "reference": "5082ea8e531894dca7ffcee25206d93cd25aca42",
                 "shasum": ""
             },
             "require": {
@@ -4342,7 +4378,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-04T14:36:37+00:00"
+            "time": "2019-09-04T19:13:40+00:00"
         },
         {
             "name": "filp/whoops",
@@ -6720,7 +6756,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "urlhub/user-management": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

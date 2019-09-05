@@ -23,7 +23,8 @@
         "laravolt/avatar": "^3.0",
         "spatie/laravel-permission": "^3.0",
         "vinkla/hashids": "^7.0",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "urlhub/user-management": "@dev"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -34,6 +35,12 @@
         "phpunit/phpunit": "^8",
         "wnx/laravel-stats": "^2.0"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "modules/UserManagement"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
