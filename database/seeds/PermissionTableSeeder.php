@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use UrlHub\UserManagement\seeders\Permission\MasterPermissionTableSeeder;
 
 class PermissionTableSeeder extends MasterPermissionTableSeeder

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\UserManagement\Auth;
 
-use Illuminate\Http\Request;
 use UrlHub\UserManagement\Http\Controllers\Auth\AuthController as AuthUserManager;
 
 class AuthController extends AuthUserManager

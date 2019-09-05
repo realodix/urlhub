@@ -13,7 +13,7 @@
         'namespace'     => 'App\Http\Controllers\UserManagement',
         'prefix'        => 'admin/user-management',
         'as'            => 'admin.user_management.',
-        'middleware'    => ['web', 'auth:web']
+        'middleware'    => ['web', 'auth:web'],
     ],
         function () {
 
@@ -22,7 +22,7 @@
             Route::group(
             [
             'prefix' => 'user',
-            'as'     => 'user.'
+            'as'     => 'user.',
         ],
             function () {
 
@@ -54,7 +54,7 @@
             Route::group(
             [
             'prefix' => 'role',
-            'as'     => 'role.'
+            'as'     => 'role.',
         ],
             function () {
 
@@ -83,7 +83,7 @@
             Route::group(
             [
             'prefix' => 'permission',
-            'as'     => 'permission.'
+            'as'     => 'permission.',
         ],
             function () {
 
@@ -112,7 +112,7 @@
             Route::group(
             [
             'prefix' => 'department',
-            'as'     => 'department.'
+            'as'     => 'department.',
         ],
             function () {
 
@@ -138,8 +138,6 @@
         }
     );
 
-
-
     /*
     |--------------------------------------------------------------------------
     | IF THE CONFIG USER AUTH ENABLED THIS ROUTE WILL BE AVAILABLE
@@ -147,14 +145,14 @@
     |
     |
     */
-    
+
     if (config('laravel_user_management.auth.enable')) {
         /// USER AUTH
         Route::group(
             [
             'namespace'     => 'App\Http\Controllers\UserManagement\Auth',
             'as'            => 'auth.user.',
-            'middleware'    => ['web', 'guest']
+            'middleware'    => ['web', 'guest'],
         ],
             function () {
 
@@ -175,14 +173,13 @@
                 ->name('register');
             }
         );
-        
 
         ///////////////////
         Route::group(
             [
             'namespace'     => 'App\Http\Controllers\UserManagement\Auth',
             'as'            => 'auth.user.',
-            'middleware'    => ['web', 'auth']
+            'middleware'    => ['web', 'auth'],
         ],
             function () {
 

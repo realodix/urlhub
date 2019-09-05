@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\UserManagement;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use UrlHub\UserManagement\Http\Controllers\Admin\RolesController as RoleUserManager;
 

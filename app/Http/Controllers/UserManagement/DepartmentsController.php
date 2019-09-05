@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\UserManagement;
 
-use Illuminate\Http\Request;
 use UrlHub\UserManagement\Http\Controllers\Admin\DepartmentsController as DepartmentUserManager;
 
 class DepartmentsController extends DepartmentUserManager
@@ -15,7 +14,6 @@ class DepartmentsController extends DepartmentUserManager
     |   any of them you can uncomment it and write your code. It's important
     |   to know the repositories in below are available for work with it.
     */
-
 
     // public function index()
     // {

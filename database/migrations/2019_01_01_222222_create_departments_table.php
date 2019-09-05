@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateDepartmentsTable extends Migration
 {
@@ -13,7 +13,7 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
-        $table = config("laravel_user_management.user_department_table");
+        $table = config('laravel_user_management.user_department_table');
         Schema::create($table, function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
@@ -35,7 +35,7 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
-        $table = config("laravel_user_management.user_department_table");
+        $table = config('laravel_user_management.user_department_table');
         Schema::dropIfExists($table);
     }
 }
