@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\UserManagement;
 
-use Illuminate\Http\Request;
 use UrlHub\UserManagement\Http\Controllers\Admin\PermissionsController as PermissionUserManager;
 
 class PermissionsController extends PermissionUserManager

@@ -6,7 +6,7 @@ class DepartmentTableSeeder extends MasterDepartmentTableSeeder
 {
     protected $departments = [
         [
-            'title'     => "Clients",
+            'title'     => 'Clients',
             'parent'    => '',
         ],
 

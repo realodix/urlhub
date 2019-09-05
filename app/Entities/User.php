@@ -6,7 +6,6 @@ use UrlHub\UserManagement\Entities\User as UserManagement;
 
 class User extends UserManagement
 {
-
     // protected $fillable = [
     //     'first_name',
     //     'last_name',
@@ -17,7 +16,6 @@ class User extends UserManagement
     //     'email_verified',
     //     'mobile_verified',
     // ];
-
 
     ////// !!! IMPORTANT !!!
     ////// WE ENCRYPT PASSWORD IN MODEL YOU CAN OVERWRITE IT AND REMOVE IT

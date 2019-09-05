@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        $table = config("laravel_user_management.users_table");
+        $table = config('laravel_user_management.users_table');
         Schema::create($table, function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->nullable()->unique();
             $table->string('mobile')->nullable()->unique();
             $table->string('password');
-            $table->enum('status', ['pending','accepted','blocked'])->default('pending');
+            $table->enum('status', ['pending', 'accepted', 'blocked'])->default('pending');
             $table->boolean('email_verified')->default(false);
             $table->boolean('mobile_verified')->default(false);
             $table->rememberToken();
@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        $table = config("laravel_user_management.users_table");
+        $table = config('laravel_user_management.users_table');
         Schema::dropIfExists('users');
     }
 
