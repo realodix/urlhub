@@ -3970,7 +3970,7 @@
             "dist": {
                 "type": "path",
                 "url": "modules/UserManagement",
-                "reference": "a3d2fb84e66c89ef54f6e972da0194e52339aa46"
+                "reference": "5d056bfe34ed6e7c480edd2efccc584f8e33b4cf"
             },
             "require": {
                 "php": "^7.1.3"
@@ -3979,13 +3979,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Mekaeil\\LaravelUserManagement\\LaravelUserManagementProvider"
+                        "UrlHub\\UserManagement\\UserManagementProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Mekaeil\\LaravelUserManagement\\": "src/"
+                    "UrlHub\\UserManagement\\": "src/"
                 }
             },
             "license": [
@@ -4314,16 +4314,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.4.11",
+            "version": "1.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "5082ea8e531894dca7ffcee25206d93cd25aca42"
+                "reference": "b3aa166ed7d081df90e9f95eef351035f69c3ee9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/5082ea8e531894dca7ffcee25206d93cd25aca42",
-                "reference": "5082ea8e531894dca7ffcee25206d93cd25aca42",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/b3aa166ed7d081df90e9f95eef351035f69c3ee9",
+                "reference": "b3aa166ed7d081df90e9f95eef351035f69c3ee9",
                 "shasum": ""
             },
             "require": {
@@ -4378,7 +4378,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-04T19:13:40+00:00"
+            "time": "2019-09-05T12:13:00+00:00"
         },
         {
             "name": "filp/whoops",
