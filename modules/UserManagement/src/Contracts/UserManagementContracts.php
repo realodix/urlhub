@@ -4,5 +4,4 @@ namespace UrlHub\UserManagement\Contracts;
 
 interface UserManagementContracts
 {
-
 }

@@ -17,8 +17,7 @@ class CreateUserDepartmentUsersTable extends Migration
         $users_table        = config("laravel_user_management.users_table");
         $table              = config("laravel_user_management.user_department_user_table");
 
-        Schema::create($table, function (Blueprint $table) use($departments_table,$users_table)
-        {
+        Schema::create($table, function (Blueprint $table) use ($departments_table,$users_table) {
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('department_id');
 

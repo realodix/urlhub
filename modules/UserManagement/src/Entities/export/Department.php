@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entities;
+
 use UrlHub\UserManagement\Entities\Department as UserManagementDepartment;
 
 class Department extends UserManagementDepartment
@@ -10,5 +11,4 @@ class Department extends UserManagementDepartment
         'slug',
         'parent_id',
     ];
-
 }

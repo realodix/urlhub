@@ -7,7 +7,4 @@ use PHPUnit\Framework\Exception;
 
 class UserManagement
 {
-
-
-
 }

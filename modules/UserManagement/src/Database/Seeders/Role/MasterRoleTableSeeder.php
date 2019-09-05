@@ -35,18 +35,16 @@ class MasterRoleTableSeeder extends Seeder
         $this->command->info('=============================================================');
         $this->command->info("\n");
 
-        foreach ($this->getRoles() as $role)
-        {
+        foreach ($this->getRoles() as $role) {
             $findRole = $this->roleRepository->findBy([
                 'name'       => $role['name'],
                 'guard_name' => $role['guard_name']
             ]);
 
-            if ($findRole)
-            {
+            if ($findRole) {
                 $this->command->info('THIS ROLE << ' . $role['name'] .'['. $role['guard_name'] . '] >> EXISTED! UPDATING DATA ...');
 
-                $this->roleRepository->update($findRole->id,[
+                $this->roleRepository->update($findRole->id, [
                     'name'          => $role['name'],
                     'title'         => $role['title'],
                     'guard_name'    => $role['guard_name'],
@@ -64,7 +62,6 @@ class MasterRoleTableSeeder extends Seeder
                 'guard_name'    => $role['guard_name'],
                 'description'   => isset($role['description']) ? $role['description'] : null,
             ]);
-
         }
 
         $this->command->info("\n");
@@ -72,7 +69,5 @@ class MasterRoleTableSeeder extends Seeder
         $this->command->info('              INSERTING ROLES FINALIZED!');
         $this->command->info('=============================================================');
         $this->command->info("\n");
-
     }
-
 }

@@ -17,6 +17,4 @@ class PermissionTableSeeder extends MasterPermissionTableSeeder
             ],
         ],
     ];
-
-
 }

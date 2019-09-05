@@ -50,5 +50,4 @@ class User extends Authenticatable
             'department_id'
         );
     }
-
 }

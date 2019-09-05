@@ -14,16 +14,13 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
     {
         $query = $this->model::query();
 
-        return $query->when($roleRequest, function ($q) use($roleRequest){
-
+        return $query->when($roleRequest, function ($q) use ($roleRequest) {
             $q->whereHas('roles', function ($q) use ($roleRequest) {
                 $q->where('name', $roleRequest->name);
             });
-
         })
-            ->orderBy('created_at','DESC')
+            ->orderBy('created_at', 'DESC')
             ->paginate();
-
     }
 
     public function allWithTrashed()
@@ -31,7 +28,7 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
         $query = $this->model::query();
 
         return $query->withTrashed()
-            ->orderBy('created_at','DESC')
+            ->orderBy('created_at', 'DESC')
             ->paginate();
     }
 
@@ -41,6 +38,4 @@ class UserRepository extends BaseEloquentRepository implements UserRepositoryInt
 
         return $query->withTrashed()->where('id', $ID)->restore();
     }
-
-
 }

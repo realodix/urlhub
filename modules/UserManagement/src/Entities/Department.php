@@ -30,7 +30,7 @@ class Department extends Model
 
     public function children()
     {
-        return $this->belongsTo(Department::class,'parent_id','id');
+        return $this->belongsTo(Department::class, 'parent_id', 'id');
     }
 
     public function users()
@@ -44,5 +44,4 @@ class Department extends Model
             'user_id'
         );
     }
-
 }

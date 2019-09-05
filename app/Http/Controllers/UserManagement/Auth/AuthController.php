@@ -40,5 +40,4 @@ class AuthController extends AuthUserManager
    //  {
         /// WRITE YOUR CODE ....
    //  }
-
 }

@@ -11,14 +11,13 @@ use UrlHub\UserManagement\Http\Requests\Admin\UpdateDepartment;
 
 class DepartmentsController extends Controller
 {
-
     protected $departmentRepository;
     protected $userRepository;
 
     public function __construct(
         DepartmentRepositoryInterface $department,
-        UserRepositoryInterface $user)
-    {
+        UserRepositoryInterface $user
+    ) {
         $this->departmentRepository = $department;
         $this->userRepository       = $user;
     }
@@ -39,14 +38,13 @@ class DepartmentsController extends Controller
 
     public function edit(int $ID)
     {
-        if($department = $this->departmentRepository->find($ID))
-        {
+        if ($department = $this->departmentRepository->find($ID)) {
             $departments = $this->departmentRepository->all();
 
             return view('user-management.department.edit', compact('department', 'departments'));
         }
 
-        return redirect()->route('admin.user_management.department.index')->with('message',[
+        return redirect()->route('admin.user_management.department.index')->with('message', [
            'type'   => 'danger',
            'text'   => 'Department does not exist!'
         ]);
@@ -55,8 +53,7 @@ class DepartmentsController extends Controller
     public function store(StoreDepartment $request)
     {
         $parent = null;
-        if($request->parent_id && $findDepartment = $this->departmentRepository->find($request->parent_id))
-        {
+        if ($request->parent_id && $findDepartment = $this->departmentRepository->find($request->parent_id)) {
             $parent = $findDepartment->id;
         }
 
@@ -65,7 +62,7 @@ class DepartmentsController extends Controller
             'parent_id' => $parent,
         ]);
 
-        return redirect()->route('admin.user_management.department.index')->with('message',[
+        return redirect()->route('admin.user_management.department.index')->with('message', [
             'type'   => 'success',
             'text'   => "This department << $request->title >> created successfully."
          ]);
@@ -73,26 +70,24 @@ class DepartmentsController extends Controller
 
     public function update(int $ID, UpdateDepartment $request)
     {
-        if($department = $this->departmentRepository->find($ID))
-        {
+        if ($department = $this->departmentRepository->find($ID)) {
             $parent = null;
-            if($request->parent_id && $findDepartment = $this->departmentRepository->find($request->parent_id))
-            {
+            if ($request->parent_id && $findDepartment = $this->departmentRepository->find($request->parent_id)) {
                 $parent = $findDepartment->id;
             }
 
-            $this->departmentRepository->update($ID,[
+            $this->departmentRepository->update($ID, [
                 'title'     => $request->title,
                 'parent_id' => $parent,
             ]);
 
-            return redirect()->route('admin.user_management.department.index')->with('message',[
+            return redirect()->route('admin.user_management.department.index')->with('message', [
                 'type'   => 'success',
                 'text'   => "This department << $request->title >> updated successfully."
             ]);
         }
 
-        return redirect()->route('admin.user_management.department.index')->with('message',[
+        return redirect()->route('admin.user_management.department.index')->with('message', [
            'type'   => 'danger',
            'text'   => 'Department does not exist!'
         ]);
@@ -100,20 +95,18 @@ class DepartmentsController extends Controller
 
     public function delete(int $ID)
     {
-        if($department = $this->departmentRepository->find($ID))
-        {
+        if ($department = $this->departmentRepository->find($ID)) {
             $this->departmentRepository->delete($ID);
 
-            return redirect()->route('admin.user_management.department.index')->with('message',[
+            return redirect()->route('admin.user_management.department.index')->with('message', [
                 'type'   => 'warning',
                 'text'   => 'Department deleted successfully!'
              ]);
         }
 
-        return redirect()->route('admin.user_management.department.index')->with('message',[
+        return redirect()->route('admin.user_management.department.index')->with('message', [
            'type'   => 'danger',
            'text'   => 'Department does not exist!'
         ]);
     }
-
 }

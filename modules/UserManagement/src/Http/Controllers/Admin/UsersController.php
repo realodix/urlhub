@@ -23,8 +23,8 @@ class UsersController extends Controller
         UserRepositoryInterface $user,
         PermissionRepositoryInterface $permission,
         RoleRepositoryInterface $role,
-        DepartmentRepository $department)
-    {
+        DepartmentRepository $department
+    ) {
         $this->permissionRepository = $permission;
         $this->roleRepository       = $role;
         $this->userRepository       = $user;
@@ -49,8 +49,7 @@ class UsersController extends Controller
 
     public function edit($ID)
     {
-        if($user = $this->userRepository->find($ID))
-        {
+        if ($user = $this->userRepository->find($ID)) {
             $roles              = $this->roleRepository->all();
             $departments        = $this->departmentRepository->all();
             $userHasRoles       = $user->roles ? array_column(json_decode($user->roles, true), 'id') : [];
@@ -59,11 +58,10 @@ class UsersController extends Controller
             return view('user-management.user.edit', compact('roles', 'departments', 'user', 'userHasRoles', 'userHasDepartments'));
         }
 
-        return redirect()->back()->with('message',[
+        return redirect()->back()->with('message', [
             'type'  => 'danger',
             'text'  => 'This user does not exist!',
         ]);
-
     }
 
     public function store(StoreUser $request)
@@ -83,7 +81,7 @@ class UsersController extends Controller
         $this->roleRepository->setRoleToMember($user, $roles);
         $this->departmentRepository->attachDepartment($user, $departments);
 
-        return redirect()->route('admin.user_management.user.index')->with('message',[
+        return redirect()->route('admin.user_management.user.index')->with('message', [
             'type'   => 'success',
             'text'   => 'َUser updated successfully!'
         ]);
@@ -91,9 +89,7 @@ class UsersController extends Controller
 
     public function update(int $ID, UpdateUser $request)
     {
-
-        if($user = $this->userRepository->find($ID))
-        {
+        if ($user = $this->userRepository->find($ID)) {
             $this->userRepository->update($ID, [
                 'first_name'    => $request->first_name,
                 'last_name'     => $request->last_name,
@@ -105,14 +101,12 @@ class UsersController extends Controller
             $roles       = $request->roles       ?? [];
 
             $departments = $request->departments ?? [];
-            if(count($departments) == 1 && $departments[0] == null)
-            {
+            if (count($departments) == 1 && $departments[0] == null) {
                 $departments = [];
             }
             //// IF WE WANT TO CHANGE PASSWORD
             ////////////////////////////////////////////////////////////
-            if($request->password)
-            {
+            if ($request->password) {
                 $this->userRepository->update($ID, [
                     'password'       => bcrypt($request->password)
                 ]);
@@ -122,36 +116,34 @@ class UsersController extends Controller
             $this->roleRepository->syncRoleToUser($user, $roles);
             $this->departmentRepository->syncDepartments($user, $departments);
 
-            return redirect()->route('admin.user_management.user.index')->with('message',[
+            return redirect()->route('admin.user_management.user.index')->with('message', [
                 'type'   => 'success',
                 'text'   => 'َUser updated successfully!'
             ]);
         }
 
-        return redirect()->back()->with('message',[
+        return redirect()->back()->with('message', [
             'type'  => 'danger',
             'text'  => 'This user does not exist!',
         ]);
-
     }
 
     public function delete($ID)
     {
-        if($user = $this->userRepository->find($ID))
-        {
+        if ($user = $this->userRepository->find($ID)) {
             //// soft delete
             $this->userRepository->update($ID, [
                 'status'    => 'deleted'
             ]);
             $user->delete();
 
-            return redirect()->route('admin.user_management.user.index')->with('message',[
+            return redirect()->route('admin.user_management.user.index')->with('message', [
                 'type'   => 'warning',
                 'text'   => 'User Deleted successfully!'
             ]);
         }
 
-        return redirect()->back()->with('message',[
+        return redirect()->back()->with('message', [
             'type'  => 'danger',
             'text'  => 'This user does not exist!',
         ]);
@@ -159,20 +151,18 @@ class UsersController extends Controller
 
     public function restoreBackUser(int $ID)
     {
-
-        if($this->userRepository->restoreUser($ID))
-        {
+        if ($this->userRepository->restoreUser($ID)) {
             $user = $this->userRepository->update($ID, [
                 'status'    => 'accepted',
             ]);
 
-            return redirect()->route('admin.user_management.user.index')->with('message',[
+            return redirect()->route('admin.user_management.user.index')->with('message', [
                 'type'   => 'success',
                 'text'   => 'User restored successfully!'
             ]);
         }
 
-        return redirect()->back()->with('message',[
+        return redirect()->back()->with('message', [
             'type'  => 'danger',
             'text'  => 'This user does not exist!',
         ]);

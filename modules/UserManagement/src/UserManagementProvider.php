@@ -28,8 +28,7 @@ class UserManagementProvider extends ServiceProvider
     public function boot()
     {
         ///   CHECK IF ROUTE EXISTS IN BASE PROJECT USE IT
-        if(file_exists(base_path('routes/user_management.php')))
-        {
+        if (file_exists(base_path('routes/user_management.php'))) {
             $this->loadRoutesFrom(base_path('routes/user_management.php'));
         }
 
@@ -44,8 +43,8 @@ class UserManagementProvider extends ServiceProvider
         /// PUBLISH SECTION
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            /// ROUTE
-            $this->publishes([
+        /// ROUTE
+        $this->publishes([
                 //  ROUTE
                 __DIR__ . '/Routes/user_management.php' => app_path('/../routes/user_management.php'),
                 // CONFIGS
@@ -69,7 +68,6 @@ class UserManagementProvider extends ServiceProvider
                 __DIR__ . '/Resource/lang/en/'  => resource_path('lang/en'),
 
             ]);
-
     }
 
     /**
@@ -80,7 +78,7 @@ class UserManagementProvider extends ServiceProvider
     public function register()
     {
         ///    BIND FOR FACADE PATTERN
-        $this->app->bind('UserManagement', function(){
+        $this->app->bind('UserManagement', function () {
             return new UserManagement();
         });
 
@@ -89,6 +87,5 @@ class UserManagementProvider extends ServiceProvider
         $this->app->bind(DepartmentRepositoryInterface::class, DepartmentRepository::class);
         $this->app->bind(PermissionRepositoryInterface::class, PermissionRepository::class);
         $this->app->bind(RoleRepositoryInterface::class, RoleRepository::class);
-
     }
 }

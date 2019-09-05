@@ -11,6 +11,4 @@ class DepartmentTableSeeder extends MasterDepartmentTableSeeder
         ],
 
     ];
-
-
 }

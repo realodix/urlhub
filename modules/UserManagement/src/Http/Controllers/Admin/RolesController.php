@@ -16,8 +16,8 @@ class RolesController extends Controller
 
     public function __construct(
         PermissionRepositoryInterface $permission,
-        RoleRepositoryInterface $role)
-    {
+        RoleRepositoryInterface $role
+    ) {
         $this->permissionRepository = $permission;
         $this->roleRepository       = $role;
     }
@@ -37,19 +37,17 @@ class RolesController extends Controller
 
     public function edit(int $ID)
     {
-        if($role = $this->roleRepository->find($ID))
-        {
+        if ($role = $this->roleRepository->find($ID)) {
             $permissions        = $this->permissionRepository->all();
             $roleHasPermissions = array_column(json_decode($role->permissions, true), 'id');
 
             return view('user-management.role.edit', compact('role', 'permissions', 'roleHasPermissions'));
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message',[
+        return redirect()->route('admin.user_management.role.index')->with('message', [
             'type'  => 'danger',
             'text'  => 'This role does not exist!'
         ]);
-
     }
 
     public function store(StoreRole $request)
@@ -61,23 +59,20 @@ class RolesController extends Controller
             'description'   => $request->description,
         ]);
 
-        if(! empty($request->permissions))
-        {
+        if (! empty($request->permissions)) {
             $this->permissionRepository->setPermissionToRole($role->id, $request->permissions);
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message',[
+        return redirect()->route('admin.user_management.role.index')->with('message', [
             'type'  => 'success',
             'text'  => "his role << $request->name >> created successfully.",
         ]);
-
     }
 
     public function update(int $ID, UpdateRole $request)
     {
-        if($role = $this->roleRepository->find($ID))
-        {
-            $this->roleRepository->update($ID,[
+        if ($role = $this->roleRepository->find($ID)) {
+            $this->roleRepository->update($ID, [
                 'name'          => $request->name,
                 'title'         => $request->title,
                 'guard_name'    => $request->guard_name,
@@ -87,14 +82,13 @@ class RolesController extends Controller
             $permissions = $request->permissions ?? [];
             $this->permissionRepository->SyncPermToRole($role->id, $permissions);
 
-            return redirect()->route('admin.user_management.role.index')->with('message',[
+            return redirect()->route('admin.user_management.role.index')->with('message', [
                'type'  => 'success',
                'text'  => "This role << $request->name >> updated successfully.",
             ]);
-
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message',[
+        return redirect()->route('admin.user_management.role.index')->with('message', [
             'type'  => 'danger',
             'text'  => 'This role does not exist!'
         ]);
@@ -102,20 +96,18 @@ class RolesController extends Controller
 
     public function delete(int $ID)
     {
-        if($this->roleRepository->find($ID))
-        {
+        if ($this->roleRepository->find($ID)) {
             $this->roleRepository->delete($ID);
 
-            return redirect()->route('admin.user_management.role.index')->with('message',[
+            return redirect()->route('admin.user_management.role.index')->with('message', [
                 'type'  => 'warning',
                 'text'  => 'Role deleted successfully!'
             ]);
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message',[
+        return redirect()->route('admin.user_management.role.index')->with('message', [
             'type'  => 'danger',
             'text'  => 'This role does not exist!'
         ]);
     }
-
 }

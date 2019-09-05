@@ -21,13 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->nullable()->unique();
             $table->string('mobile')->nullable()->unique();
             $table->string('password');
-            $table->enum('status',['pending','accepted','blocked'])->default('pending');
+            $table->enum('status', ['pending','accepted','blocked'])->default('pending');
             $table->boolean('email_verified')->default(false);
             $table->boolean('mobile_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -43,10 +42,7 @@ class CreateUsersTable extends Migration
 
     private function createTable(array $data)
     {
-        foreach($data as $item)
-        {
-            
-
+        foreach ($data as $item) {
         }
     }
 }

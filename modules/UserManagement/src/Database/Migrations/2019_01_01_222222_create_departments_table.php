@@ -14,8 +14,7 @@ class CreateDepartmentsTable extends Migration
     public function up()
     {
         $table = config("laravel_user_management.user_department_table");
-        Schema::create($table, function (Blueprint $table) 
-        {
+        Schema::create($table, function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
             $table->unsignedInteger('parent_id')->nullable();
@@ -26,8 +25,6 @@ class CreateDepartmentsTable extends Migration
                 ->on($table)
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
-
-            
         });
     }
 

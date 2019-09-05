@@ -17,13 +17,13 @@ class MasterPermissionTableSeeder extends Seeder
     public function __construct(
         PermissionRepositoryInterface $repository,
         RoleRepositoryInterface $role
-    )
-    {
+    ) {
         $this->permissionRepository = $repository;
         $this->roleRepository       = $role;
     }
 
-    protected function getPermissions(){
+    protected function getPermissions()
+    {
         return $this->permissions;
     }
     /**
@@ -43,29 +43,26 @@ class MasterPermissionTableSeeder extends Seeder
 
         $rolePermissions = array();
 
-        foreach ($this->getPermissions() as $permission)
-        {
+        foreach ($this->getPermissions() as $permission) {
 
             /// WHEN WE NEED A PERMISSION FOR DIFFERENT GUARD NAMES
             //////////////////////////////////////////////////////////
             if (is_array($permission['guard_name'])) {
-
                 foreach ($permission['guard_name'] as $guard) {
-
-                    $rolePermissions = $this->setPermissions($permission,$guard);
+                    $rolePermissions = $this->setPermissions($permission, $guard);
 
                     $this->command->info('  THIS PERMISSION <<' . array_keys($rolePermissions)[0] . ' >> ASSIGNED TO THESE ROLES <<<< '. implode(' - ', $rolePermissions[array_keys($rolePermissions)[0]]) . ' >>> GUARD NAME = ' . $guard);
                     $permObject = $this->permissionRepository->findBy([
                         'name'          => array_keys($rolePermissions)[0],
                         'guard_name'    => $guard
                     ]);
-                    $permObject->syncRoles( $this->getRolesID($rolePermissions[array_keys($rolePermissions)[0]],$guard) );
+                    $permObject->syncRoles($this->getRolesID($rolePermissions[array_keys($rolePermissions)[0]], $guard));
                 }
 
                 continue;
             }
 
-            $rolePermissions = $this->setPermissions($permission,$permission['guard_name']);
+            $rolePermissions = $this->setPermissions($permission, $permission['guard_name']);
             $this->guardName = $permission['guard_name'];
 
             /*
@@ -75,19 +72,16 @@ class MasterPermissionTableSeeder extends Seeder
             |
             */
 
-            if (!empty($rolePermissions))
-            {
-
+            if (!empty($rolePermissions)) {
                 $this->command->info("\n");
                 $this->command->info('        *********************************************        ');
                 $this->command->info('               UPDATING ROLE\'S PERMISSIONS                  ');
                 $this->command->info('        *********************************************        ');
                 $this->command->info("\n");
-                foreach ($rolePermissions as $perm => $roles)
-                {
+                foreach ($rolePermissions as $perm => $roles) {
                     $this->command->info('  THIS PERMISSION <<' . $perm . ' >> ASSIGNED TO THESE ROLES <<<< '. implode(' - ', $roles) . ' >>> GUARD NAME = ' . $this->guardName);
                     $permObject = $this->permissionRepository->findBy(['name' => $perm]);
-                    $permObject->syncRoles( $this->getRolesID($roles,$this->guardName) );
+                    $permObject->syncRoles($this->getRolesID($roles, $this->guardName));
                 }
 
                 $this->command->info("\n");
@@ -95,7 +89,6 @@ class MasterPermissionTableSeeder extends Seeder
                 $this->command->info('           FINALIZED UPDATING ROLE\'S PERMISSIONS            ');
                 $this->command->info('        *********************************************        ');
             }
-
         }
 
         $this->command->info("\n");
@@ -105,7 +98,7 @@ class MasterPermissionTableSeeder extends Seeder
         $this->command->info("\n");
     }
 
-    private function setPermissions(array $permission , $guard = null)
+    private function setPermissions(array $permission, $guard = null)
     {
         $getGuard       = $guard ?? $permission['guard_name'];
         $getPermission  = $this->permissionRepository->findBy([
@@ -113,11 +106,10 @@ class MasterPermissionTableSeeder extends Seeder
             'guard_name'=> $getGuard
         ]);
 
-        if (! is_null($getPermission))
-        {
+        if (! is_null($getPermission)) {
             $this->command->info('THIS PERMISSION << ' . $permission['name'] . ' >> EXISTED! UPDATING DATA ...');
 
-            $this->permissionRepository->update($getPermission->id,[
+            $this->permissionRepository->update($getPermission->id, [
                 'name'          => $permission['name'],
                 'guard_name'    => $guard ?? $permission['guard_name'],
                 'title'         => isset($permission['title']) ? $permission['title'] : null ,
@@ -149,8 +141,7 @@ class MasterPermissionTableSeeder extends Seeder
     private function getRolesID(array $roles, $guard)
     {
         $roleIDs    = array();
-        foreach ($roles as $role)
-        {
+        foreach ($roles as $role) {
             $findRole = $this->roleRepository->findBy([
                 'name'       => $role,
                 'guard_name' => $guard
@@ -159,5 +150,4 @@ class MasterPermissionTableSeeder extends Seeder
         }
         return array_values($roleIDs);
     }
-
 }

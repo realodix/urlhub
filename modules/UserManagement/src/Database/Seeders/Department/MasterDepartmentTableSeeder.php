@@ -35,11 +35,9 @@ class MasterDepartmentTableSeeder extends Seeder
         $this->command->info('=============================================================');
         $this->command->info("\n");
 
-        foreach ($this->getDepartments() as $item)
-        {
+        foreach ($this->getDepartments() as $item) {
             $parent = null;
-            if($item['parent'] != null)
-            {
+            if ($item['parent'] != null) {
                 $parent = $this->departmentRepository->findBy([
                     'title'         => $item['title'],
                 ])->id;
@@ -50,11 +48,10 @@ class MasterDepartmentTableSeeder extends Seeder
                 'parent_id'     => $parent
             ]);
 
-            if ($findDepartment)
-            {
+            if ($findDepartment) {
                 $this->command->info('THIS DEPARTMENT << ' . $item['title'] . '] >> EXISTED! UPDATING DATA ...');
 
-                $this->departmentRepository->update($findDepartment->id,[
+                $this->departmentRepository->update($findDepartment->id, [
                     'title'     => $item['title'],
                     'parent_id' => $parent,
                 ]);
@@ -68,7 +65,6 @@ class MasterDepartmentTableSeeder extends Seeder
                 'title'     => $item['title'],
                 'parent_id' => $parent,
             ]);
-
         }
 
         $this->command->info("\n");
@@ -76,7 +72,5 @@ class MasterDepartmentTableSeeder extends Seeder
         $this->command->info('              INSERTING DEPARTMENTS DATA FINALIZED!');
         $this->command->info('=============================================================');
         $this->command->info("\n");
-
     }
-
 }

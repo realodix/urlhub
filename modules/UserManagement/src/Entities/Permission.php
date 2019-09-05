@@ -10,6 +10,4 @@ class Permission extends SpatiePermission
     {
         parent::__construct($attributes);
     }
-
-
 }

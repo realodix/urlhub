@@ -2,13 +2,13 @@
 
 /*
 |--------------------------------------------------------------------------
-|   SPATIE PACKAGE'S CONFIG 
+|   SPATIE PACKAGE'S CONFIG
 |--------------------------------------------------------------------------
-|   IN THIS CONFIG WE OVERWRITE MODELS IN CUSTOM MODELS WHICH EXTENDS 
-|   SPATIE'S MODELS. YOU CAN CREATE YOUR OWN MODELS AND EXTENDS OUR 
+|   IN THIS CONFIG WE OVERWRITE MODELS IN CUSTOM MODELS WHICH EXTENDS
+|   SPATIE'S MODELS. YOU CAN CREATE YOUR OWN MODELS AND EXTENDS OUR
 |   MODELS FOR ADD NEW FEATURE AND DEVELOP YUR MODELS.
-|   
-*/    
+|
+*/
 
     return [
 

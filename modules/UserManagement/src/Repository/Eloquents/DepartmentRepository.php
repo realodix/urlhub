@@ -19,6 +19,4 @@ class DepartmentRepository extends BaseEloquentRepository implements DepartmentR
     {
         return $owner->departments()->attach($departments);
     }
-
-
 }

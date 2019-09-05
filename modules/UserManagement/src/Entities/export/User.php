@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entities;
+
 use UrlHub\UserManagement\Entities\User as UserManagement;
 
 class User extends UserManagement
@@ -24,5 +25,4 @@ class User extends UserManagement
     // {
     //     $this->attributes['password'] = bcrypt($password);
     // }
-
 }

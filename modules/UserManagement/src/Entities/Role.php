@@ -10,7 +10,4 @@ class Role extends SpatieRole
     {
         parent::__construct($attributes);
     }
-
-
-
 }

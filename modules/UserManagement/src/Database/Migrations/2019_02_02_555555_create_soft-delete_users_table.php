@@ -16,12 +16,12 @@ class CreateSoftDeleteUsersTable extends Migration
         $table = config("laravel_user_management.users_table");
 
         Schema::table($table, function (Blueprint $table) {
-                $table->softDeletes();
-                $table->dropColumn('status');
+            $table->softDeletes();
+            $table->dropColumn('status');
         });
 
         Schema::table($table, function (Blueprint $table) {
-            $table->enum('status',['pending','accepted','blocked','deleted'])->default('pending');
+            $table->enum('status', ['pending','accepted','blocked','deleted'])->default('pending');
         });
     }
 
@@ -35,12 +35,12 @@ class CreateSoftDeleteUsersTable extends Migration
         $table = config("laravel_user_management.users_table");
 
         Schema::table($table, function (Blueprint $table) {
-                $table->dropColumn('deleted_at');
-                $table->dropColumn('status');
+            $table->dropColumn('deleted_at');
+            $table->dropColumn('status');
         });
 
         Schema::table($table, function (Blueprint $table) {
-            $table->enum('status',['pending','accepted','blocked'])->default('pending');
+            $table->enum('status', ['pending','accepted','blocked'])->default('pending');
         });
     }
 }

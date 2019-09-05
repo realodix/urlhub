@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use UrlHub\UserManagement\seeders\Permission\MasterRoleTableSeeder;
+
 class RoleTableSeeder extends MasterRoleTableSeeder
 {
     protected $roles = [
@@ -19,6 +20,4 @@ class RoleTableSeeder extends MasterRoleTableSeeder
         ],
 
     ];
-
-
 }

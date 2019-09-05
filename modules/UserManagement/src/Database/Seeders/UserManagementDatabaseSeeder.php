@@ -15,6 +15,5 @@ class UserManagementDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
     }
 }

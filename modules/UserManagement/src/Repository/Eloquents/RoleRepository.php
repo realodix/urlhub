@@ -17,8 +17,7 @@ class RoleRepository extends BaseEloquentRepository implements RoleRepositoryInt
 
     public function setRoleToMember($owner, $role, $assign = true)
     {
-        if ($assign)
-        {
+        if ($assign) {
             return $owner->assignRole($role);
         }
 
@@ -27,11 +26,10 @@ class RoleRepository extends BaseEloquentRepository implements RoleRepositoryInt
 
     public function getAllRolePermissions(Role $role, $method = 'get')
     {
-        if ($method == 'pluck'){
-            return $role->getAllPermissions()->pluck('id','id')->toArray();
+        if ($method == 'pluck') {
+            return $role->getAllPermissions()->pluck('id', 'id')->toArray();
         }
 
         return $role->getAllPermissions();
     }
-
 }

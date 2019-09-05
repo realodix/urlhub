@@ -6,6 +6,7 @@ use App\Entities\Permission;
 use App\Entities\Role;
 use UrlHub\UserManagement\Repository\Eloquents\BaseEloquentRepository;
 use UrlHub\UserManagement\Repository\Contracts\PermissionRepositoryInterface;
+
 class PermissionRepository extends BaseEloquentRepository implements PermissionRepositoryInterface
 {
     protected $model        = Permission::class;
@@ -16,8 +17,7 @@ class PermissionRepository extends BaseEloquentRepository implements PermissionR
         $query  = $this->roleModel::query();
         $role   = $query->find($roleID);
 
-        if ($give)
-        {
+        if ($give) {
             return $role->givePermissionTo($permission);
         }
 
@@ -37,6 +37,4 @@ class PermissionRepository extends BaseEloquentRepository implements PermissionR
         $query = $this->model::query();
         return array_keys(collect($query->get())->keyBy('module')->toArray());
     }
-
-
 }

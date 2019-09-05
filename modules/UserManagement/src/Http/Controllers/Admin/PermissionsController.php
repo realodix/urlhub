@@ -31,17 +31,14 @@ class PermissionsController extends Controller
 
     public function edit(int $ID)
     {
-        if($permission = $this->permissionRepository->find($ID))
-        {
+        if ($permission = $this->permissionRepository->find($ID)) {
             return view('user-management.permission.edit', compact('permission'));
         }
 
-        return redirect()->route('admin.user_management.permission.index')->with('message',[
+        return redirect()->route('admin.user_management.permission.index')->with('message', [
             'type'   => 'danger',
             'text'   => "This permission << $request->name >> does not exist!",
         ]);
-
-
     }
 
     public function store(StorePermission $request)
@@ -54,7 +51,7 @@ class PermissionsController extends Controller
             'description'   => $request->description,
         ]);
 
-        return redirect()->route('admin.user_management.permission.index')->with('message',[
+        return redirect()->route('admin.user_management.permission.index')->with('message', [
             'type'   => 'success',
             'text'   => "This permission << $request->name >> created successfully!",
         ]);
@@ -63,9 +60,8 @@ class PermissionsController extends Controller
 
     public function update(int $ID, UpdatePermission $request)
     {
-        if($permission = $this->permissionRepository->find($ID))
-        {
-            $this->permissionRepository->update($ID,[
+        if ($permission = $this->permissionRepository->find($ID)) {
+            $this->permissionRepository->update($ID, [
                 'name'          => $request->name,
                 'title'         => $request->title,
                 'module'        => $request->module,
@@ -73,36 +69,33 @@ class PermissionsController extends Controller
                 'description'   => $request->description,
             ]);
 
-            return redirect()->route('admin.user_management.permission.index')->with('message',[
+            return redirect()->route('admin.user_management.permission.index')->with('message', [
                 'type'   => 'success',
                 'text'   => "This permission << $request->name >> updated successfully!",
             ]);
         }
 
-        return redirect()->route('admin.user_management.permission.index')->with('message',[
+        return redirect()->route('admin.user_management.permission.index')->with('message', [
             'type'   => 'danger',
             'text'   => "This permission << $request->name >> does not exist!",
         ]);
-
     }
 
     public function delete(int $ID)
     {
-        if($permission = $this->permissionRepository->find($ID))
-        {
+        if ($permission = $this->permissionRepository->find($ID)) {
             $name = $permission->name;
             $this->permissionRepository->delete($ID);
 
-            return redirect()->route('admin.user_management.permission.index')->with('message',[
+            return redirect()->route('admin.user_management.permission.index')->with('message', [
                 'type'   => 'warning',
                 'text'   => "This permission << $name >> deleted successfully!",
             ]);
         }
 
-        return redirect()->route('admin.user_management.permission.index')->with('message',[
+        return redirect()->route('admin.user_management.permission.index')->with('message', [
             'type'   => 'danger',
             'text'   => "permission does not exist!",
         ]);
-
     }
 }

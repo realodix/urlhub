@@ -19,5 +19,4 @@ interface BaseRepositoryInterface
     public function updateBy(array $criteria, array $data);
 
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null);
-
 }
