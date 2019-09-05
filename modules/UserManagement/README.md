@@ -22,12 +22,12 @@ composer require mekaeil/laravel-user-management
 ```
 'providers' => [
     // ...
-    \Mekaeil\LaravelUserManagement\LaravelUserManagementProvider::class,
+    \Mekaeil\LaravelUserManagement\UserManagementProvider::class,
 ];
 ```
 3. Run this command for publish vendor:
 ```
-php artisan vendor:publish --provider="Mekaeil\LaravelUserManagement\LaravelUserManagementProvider" 
+php artisan vendor:publish --provider="Mekaeil\LaravelUserManagement\UserManagementProvider" 
 ```
 4. After publishing vendors, add this code to "run" method in <b>database/DatabaseSeeder.php</b>
 ```
@@ -394,5 +394,3 @@ After install package you can set this routes on your admin panel:
 1. The LaravelUserManagement is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 2. Admin Template(PurpleAdmin-Free-Admin-Template) By [Bootstrap Dash](https://github.com/BootstrapDash/PurpleAdmin-Free-Admin-Template)
-
-

@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Mekaeil\\LaravelUserManagement\\LaravelUserManagementProvider"
+                "Mekaeil\\LaravelUserManagement\\UserManagementProvider"
             ]
         }
     }

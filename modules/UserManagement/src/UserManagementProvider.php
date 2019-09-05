@@ -5,7 +5,7 @@ namespace Mekaeil\LaravelUserManagement;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Mekaeil\LaravelUserManagement\Facade\UserManagement;
-// USER 
+// USER
 use Mekaeil\LaravelUserManagement\Repository\Contracts\UserRepositoryInterface;
 use Mekaeil\LaravelUserManagement\Repository\Eloquents\UserRepository;
 // DEPARTMENT
@@ -18,7 +18,7 @@ use Mekaeil\LaravelUserManagement\Repository\Eloquents\PermissionRepository;
 use Mekaeil\LaravelUserManagement\Repository\Contracts\RoleRepositoryInterface;
 use Mekaeil\LaravelUserManagement\Repository\Eloquents\RoleRepository;
 
-class LaravelUserManagementProvider extends ServiceProvider
+class UserManagementProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -27,7 +27,7 @@ class LaravelUserManagementProvider extends ServiceProvider
      */
     public function boot()
     {
-        ///   CHECK IF ROUTE EXISTS IN BASE PROJECT USE IT 
+        ///   CHECK IF ROUTE EXISTS IN BASE PROJECT USE IT
         if(file_exists(base_path('routes/user_management.php')))
         {
             $this->loadRoutesFrom(base_path('routes/user_management.php'));
@@ -39,11 +39,11 @@ class LaravelUserManagementProvider extends ServiceProvider
         ///   SET MIGRATION'S ROUTE
         $this->loadMigrationsFrom(base_path('database/migrations'));
 
-        
-        
+
+
         /// PUBLISH SECTION
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-            
+
             /// ROUTE
             $this->publishes([
                 //  ROUTE
@@ -89,6 +89,6 @@ class LaravelUserManagementProvider extends ServiceProvider
         $this->app->bind(DepartmentRepositoryInterface::class, DepartmentRepository::class);
         $this->app->bind(PermissionRepositoryInterface::class, PermissionRepository::class);
         $this->app->bind(RoleRepositoryInterface::class, RoleRepository::class);
-        
+
     }
 }
