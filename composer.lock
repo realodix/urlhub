@@ -1137,8 +1137,8 @@
             "authors": [
                 {
                     "name": "Mark Beech",
-                    "email": "m@rkbee.ch",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "m@rkbee.ch"
                 }
             ],
             "description": "CrawlerDetect is a PHP class for detecting bots/crawlers/spiders via the user agent",
@@ -1223,16 +1223,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.0.0",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "89c81d4dc37714d82521d05dc003b26b2a86defc"
+                "reference": "f38711564c642ee88a58bf180010a0c7a7ab062e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/89c81d4dc37714d82521d05dc003b26b2a86defc",
-                "reference": "89c81d4dc37714d82521d05dc003b26b2a86defc",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f38711564c642ee88a58bf180010a0c7a7ab062e",
+                "reference": "f38711564c642ee88a58bf180010a0c7a7ab062e",
                 "shasum": ""
             },
             "require": {
@@ -1329,8 +1329,8 @@
                 "moontoast/math": "Required to use ordered UUIDs (^1.1).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^3.0).",
-                "symfony/cache": "Required to PSR-6 cache bridge (^4.3).",
-                "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.1).",
+                "symfony/cache": "Required to PSR-6 cache bridge (^4.3.4).",
+                "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.2).",
                 "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
             },
             "type": "library",
@@ -1364,7 +1364,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-09-03T13:09:57+00:00"
+            "time": "2019-09-05T20:31:10+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1716,9 +1716,9 @@
             "authors": [
                 {
                     "name": "Serban Ghita",
+                    "role": "Developer",
                     "email": "serbanghita@gmail.com",
-                    "homepage": "http://mobiledetect.net",
-                    "role": "Developer"
+                    "homepage": "http://mobiledetect.net"
                 }
             ],
             "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
@@ -3956,8 +3956,8 @@
             "authors": [
                 {
                     "name": "Tijs Verkoyen",
-                    "email": "css_to_inline_styles@verkoyen.eu",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "css_to_inline_styles@verkoyen.eu"
                 }
             ],
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
@@ -4834,18 +4834,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "email": "sebastian@phpeople.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpeople.de"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
@@ -4950,9 +4950,9 @@
             "authors": [
                 {
                     "name": "Kitamura Satoshi",
+                    "role": "Original creator",
                     "email": "with.no.parachute@gmail.com",
-                    "homepage": "https://www.facebook.com/satooshi.jp",
-                    "role": "Original creator"
+                    "homepage": "https://www.facebook.com/satooshi.jp"
                 },
                 {
                     "name": "Takashi Matsuo",
@@ -5295,8 +5295,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Library that provides collection, processing, and rendering functionality for PHP code coverage information.",
@@ -5567,8 +5567,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
@@ -6597,8 +6597,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
