@@ -10,18 +10,18 @@ class UrlHlpTest extends TestCase
     public function url_limit()
     {
         $this->assertSame(
-             'https://laravel.com/',
-             url_limit('https://laravel.com/')
+            'https://laravel.com/',
+            url_limit('https://laravel.com/')
         );
 
         $this->assertSame(
-             'https://laravel.com/docs/5.7/h...ilable-assertions',
-             url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions')
+            'https://laravel.com/docs/5.7/h...ilable-assertions',
+            url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions')
         );
 
         $this->assertEquals(
-             20,
-             strlen(url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions', 20))
+            20,
+            strlen(url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions', 20))
         );
     }
 
