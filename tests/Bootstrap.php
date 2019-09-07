@@ -19,7 +19,7 @@ class Bootstrap implements BeforeFirstTestHook, AfterLastTestHook
     |
     */
 
-    use CreatesApplication;
+    use Support\CreatesApplication;
 
     public function executeBeforeFirstTest(): void
     {
