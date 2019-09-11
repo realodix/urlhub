@@ -1,5 +1,6 @@
 <?php
 
+// Based on https://styleci.readme.io/docs/presets#section-laravel
 $rules = [
     'psr0' => false,
     'array_syntax' => ['syntax' => 'short'], // short_array_syntax
