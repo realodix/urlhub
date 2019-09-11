@@ -23,6 +23,7 @@ $rules = [
     'include' => true,
     'increment_style' => ['style' => 'post'], // post_increment
     'indentation_type' => true,
+    'line_ending' => true, // unix_line_endings
     'lowercase_cast' => true,
     'lowercase_constants' => true,
     'lowercase_keywords' => true,
@@ -99,7 +100,6 @@ $rules = [
     // no_blank_lines_after_throw
     // no_blank_lines_between_imports
     // no_blank_lines_between_traits
-    // unix_line_endings
 ];
 
 $excludes = [
@@ -120,4 +120,5 @@ $finder = PhpCsFixer\Finder::create()
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules($rules)
+    ->setLineEnding("\r\n")
     ->setFinder($finder);
