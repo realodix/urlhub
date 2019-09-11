@@ -71,9 +71,9 @@ class ResetPasswordTest extends TestCase
         $user = $this->user();
 
         $response = $this->post($this->postRoute(), [
-            'token'    => $this->getValidToken($user),
-            'email'    => $user->email,
-            'password' => 'new-awesome-password',
+            'token'                 => $this->getValidToken($user),
+            'email'                 => $user->email,
+            'password'              => 'new-awesome-password',
             'password_confirmation' => 'new-awesome-password',
         ]);
 
@@ -95,9 +95,9 @@ class ResetPasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($this->getInvalidToken()))
                          ->post($this->postRoute(), [
-                             'token'    => $this->getInvalidToken(),
-                             'email'    => $user->email,
-                             'password' => 'new-awesome-password',
+                             'token'                 => $this->getInvalidToken(),
+                             'email'                 => $user->email,
+                             'password'              => 'new-awesome-password',
                              'password_confirmation' => 'new-awesome-password',
                          ]);
 
@@ -116,9 +116,9 @@ class ResetPasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($token = $this->getValidToken($user)))
                          ->post($this->postRoute(), [
-                             'token'    => $token,
-                             'email'    => $user->email,
-                             'password' => '',
+                             'token'                 => $token,
+                             'email'                 => $user->email,
+                             'password'              => '',
                              'password_confirmation' => '',
                          ]);
 
@@ -142,9 +142,9 @@ class ResetPasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($token = $this->getValidToken($user)))
                          ->post($this->postRoute(), [
-                             'token'    => $token,
-                             'email'    => '',
-                             'password' => 'new-awesome-password',
+                             'token'                 => $token,
+                             'email'                 => '',
+                             'password'              => 'new-awesome-password',
                              'password_confirmation' => 'new-awesome-password',
                          ]);
 
