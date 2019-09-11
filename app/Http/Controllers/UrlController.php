@@ -84,7 +84,7 @@ class UrlController extends Controller
     /**
      * Check if the Custom URL already exists. Response to an AJAX request.
      *
-     * @param \App\Http\Requests  $request
+     * @param \App\Http\Requests $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function checkExistingCustomUrl(Request $request)
@@ -94,9 +94,9 @@ class UrlController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors'=>$validator->errors()->all()]);
+            return response()->json(['errors' => $validator->errors()->all()]);
         }
 
-        return response()->json(['success'=>'Available']);
+        return response()->json(['success' => 'Available']);
     }
 }

@@ -177,7 +177,7 @@ class UrlControllerTest extends TestCase
             'url_key' => 'hello',
         ]);
 
-        $response->assertJson(['success'=>'Available']);
+        $response->assertJson(['success' => 'Available']);
     }
 
     /**
@@ -201,7 +201,7 @@ class UrlControllerTest extends TestCase
             'url_key' => $data,
         ]);
 
-        $response->assertJson(['errors'=>$validator->errors()->all()]);
+        $response->assertJson(['errors' => $validator->errors()->all()]);
     }
 
     public function checkExistingCustomUrl_fail()
