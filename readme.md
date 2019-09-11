@@ -23,14 +23,13 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 * Made with :heart: &amp; :coffee:.
 
 ### Screenshots
-
 | ![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
 |-|-|-|-|
 
 
 ## Requirements
-- [All requirements by Laravel](https://laravel.com/docs/installation#server-requirements) - PHP >= 7.2, [Composer](https://getcomposer.org/) and such.
-- MySQL or MariaDB.
+* [All requirements by Laravel](https://laravel.com/docs/installation#server-requirements) - PHP >= 7.2, [Composer](https://getcomposer.org/) and such.
+* MySQL or MariaDB.
 
 
 ## Quick Start
@@ -47,7 +46,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 5. Run `php artisan serve`.
 
-   After installed, you can access http://localhost:8000 in your browser.
+   After installed, you can access `http://localhost:8000` in your browser.
 
 6. Login
 
@@ -56,15 +55,16 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
    | admin@urlhub.test | admin    | admin    | Admin Access |
    | user@urlhub.test  | user     | user     | User Access  |
 
+
 ### Compiling assets with Laravel Mix
 
-#### Using Yarn:
+#### Using Yarn
 1. `yarn`
 2. `yarn dev` or `yarn prod`
 
     *You can watch assets with `yarn watch`*
 
-#### Using NPM:
+#### Using NPM
 1. `npm install`
 2. `npm run dev` or `npm run prod`
 
@@ -87,6 +87,7 @@ Please do the following:
 From the projects root folder run `./vendor/bin/phpunit`
 
 ![screenshot](https://i.imgur.com/nR628gL.png)
+
 
 ## License
 UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).
