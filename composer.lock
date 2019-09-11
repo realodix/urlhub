@@ -1223,16 +1223,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.0.2",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d9b24caa67eacd22d917a5fd3b3601937112a329"
+                "reference": "f38711564c642ee88a58bf180010a0c7a7ab062e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d9b24caa67eacd22d917a5fd3b3601937112a329",
-                "reference": "d9b24caa67eacd22d917a5fd3b3601937112a329",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f38711564c642ee88a58bf180010a0c7a7ab062e",
+                "reference": "f38711564c642ee88a58bf180010a0c7a7ab062e",
                 "shasum": ""
             },
             "require": {
@@ -1364,7 +1364,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-09-10T14:47:28+00:00"
+            "time": "2019-09-05T20:31:10+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4278,16 +4278,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.6.0",
+            "version": "1.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "36a1e4ca0973ac8e5c8289ee31956bbaf8e6bb67"
+                "reference": "52cf237a9ec53062e344a53d50428ca2f989035a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/36a1e4ca0973ac8e5c8289ee31956bbaf8e6bb67",
-                "reference": "36a1e4ca0973ac8e5c8289ee31956bbaf8e6bb67",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/52cf237a9ec53062e344a53d50428ca2f989035a",
+                "reference": "52cf237a9ec53062e344a53d50428ca2f989035a",
                 "shasum": ""
             },
             "require": {
@@ -4342,7 +4342,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-09T14:06:15+00:00"
+            "time": "2019-09-06T09:15:50+00:00"
         },
         {
             "name": "filp/whoops",
