@@ -157,8 +157,12 @@ class ChangePasswordTest extends TestCase
             ['', ''], // required
             [$this->adminPassword(), $this->adminPassword()], // different
             [null, null], // string
-            [str_repeat('a', 5), str_repeat('a', 5)], // min:6
             ['new-password', 'new-pass-word'], // confirmed
+
+            // Laravel NIST Password Rules
+            ['new-awe', 'new-awe'], // min:8
+            [str_repeat('a', 9), str_repeat('a', 9)], // repetitive
+            ['davidcba', 'davidcba'], // sequential
         ];
     }
 }
