@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Url;
-use Illuminate\Support\Facades\Auth;
 use Embed\Embed;
+use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
 {

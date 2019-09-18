@@ -3,10 +3,9 @@
 namespace App;
 
 use App\Http\Traits\Hashidable;
+use Embed\Embed;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Embed\Embed;
 
 class Url extends Model
 {
