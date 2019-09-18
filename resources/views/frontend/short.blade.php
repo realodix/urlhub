@@ -40,6 +40,8 @@
         <div class="long-url"><a href="{{ $url->long_url }}" target="_blank" title="{{ $url->long_url }}" data-toggle="tooltip">{{ url_limit($url->long_url) }}</a></div>
 
         <div class="mt-5" id="jssocials"></div>
+
+        {!! $embed->code !!}
       </div>
     </div>
   </div>
