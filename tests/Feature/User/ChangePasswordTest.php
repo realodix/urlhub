@@ -162,7 +162,7 @@ class ChangePasswordTest extends TestCase
             // Laravel NIST Password Rules
             ['new-awe', 'new-awe'], // min:8
             [str_repeat('a', 9), str_repeat('a', 9)], // repetitive
-            ['davidcba1234', 'davidcba1234'], // sequential
+            ['12345678', '12345678'], // sequential
         ];
     }
 }
