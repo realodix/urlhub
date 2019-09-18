@@ -6,6 +6,7 @@ use App\Http\Traits\Hashidable;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Embed\Embed;
 
 class Url extends Model
 {
@@ -189,14 +190,9 @@ class Url extends Model
      */
     public function getTitle($url)
     {
-        if ($title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', @file_get_contents($url), $matches)) {
-            return $matches[1];
-        } elseif ($domain = $this->getDomain($url)) {
-            // @codeCoverageIgnoreStart
-            return Str::title($domain).' - '.__('No Title'); // @codeCoverageIgnoreEnd
-        } else {
-            return __('No Title');
-        }
+        $info = Embed::create($url);
+
+        return $info->title;
     }
 
     /**
