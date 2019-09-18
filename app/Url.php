@@ -189,9 +189,9 @@ class Url extends Model
      */
     public function getTitle($url)
     {
-        $info = Embed::create($url);
+        $embed = Embed::create($url);
 
-        return $info->title;
+        return $embed->title;
     }
 
     /**
