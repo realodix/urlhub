@@ -14,6 +14,7 @@
         "codeitnowin/barcode": "^3.0",
         "creativeorange/gravatar": "~1.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
+        "embed/embed": "^3.4",
         "fideloper/proxy": "^4.0",
         "geoip2/geoip2": "~2.0",
         "hidehalo/nanoid-php": "^1.1",
