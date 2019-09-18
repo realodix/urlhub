@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Url;
 use Illuminate\Support\Facades\Auth;
+use Embed\Embed;
 
 class UrlController extends Controller
 {
@@ -33,7 +34,9 @@ class UrlController extends Controller
 
         $qrCode = qrCodeGenerator($url->short_url);
 
-        return view('frontend.short', compact('url'), [
+        $embed = Embed::create($url->long_url);
+
+        return view('frontend.short', compact(['url', 'embed']), [
             'qrCodeData'   => $qrCode->getContentType(),
             'qrCodeBase64' => $qrCode->generate(),
         ]);
