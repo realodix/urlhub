@@ -1491,8 +1491,8 @@
             "authors": [
                 {
                     "name": "Mark Beech",
-                    "email": "m@rkbee.ch",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "m@rkbee.ch"
                 }
             ],
             "description": "CrawlerDetect is a PHP class for detecting bots/crawlers/spiders via the user agent",
@@ -1577,16 +1577,16 @@
         },
         {
             "name": "langleyfoxall/laravel-nist-password-rules",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/langleyfoxall/laravel-nist-password-rules.git",
-                "reference": "9b0d1a22722408f0b821e386ca7949efa33036cb"
+                "reference": "a82b91613e49b568130efcb3e98506911b2e7d22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/langleyfoxall/laravel-nist-password-rules/zipball/9b0d1a22722408f0b821e386ca7949efa33036cb",
-                "reference": "9b0d1a22722408f0b821e386ca7949efa33036cb",
+                "url": "https://api.github.com/repos/langleyfoxall/laravel-nist-password-rules/zipball/a82b91613e49b568130efcb3e98506911b2e7d22",
+                "reference": "a82b91613e49b568130efcb3e98506911b2e7d22",
                 "shasum": ""
             },
             "require": {
@@ -1623,7 +1623,7 @@
                 }
             ],
             "description": "🔒 Provides Laravel validation rules that follow the password related recommendations found in NIST Special Publication 800-63B.",
-            "time": "2019-09-06T11:46:07+00:00"
+            "time": "2019-09-17T21:38:25+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2120,9 +2120,9 @@
             "authors": [
                 {
                     "name": "Serban Ghita",
+                    "role": "Developer",
                     "email": "serbanghita@gmail.com",
-                    "homepage": "http://mobiledetect.net",
-                    "role": "Developer"
+                    "homepage": "http://mobiledetect.net"
                 }
             ],
             "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
@@ -5495,8 +5495,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
                 }
             ],
             "description": "php error handling for cool kids",
@@ -6029,9 +6029,9 @@
             "authors": [
                 {
                     "name": "Kitamura Satoshi",
+                    "role": "Original creator",
                     "email": "with.no.parachute@gmail.com",
-                    "homepage": "https://www.facebook.com/satooshi.jp",
-                    "role": "Original creator"
+                    "homepage": "https://www.facebook.com/satooshi.jp"
                 },
                 {
                     "name": "Takashi Matsuo",
