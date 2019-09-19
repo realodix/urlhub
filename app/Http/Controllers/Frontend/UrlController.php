@@ -34,7 +34,11 @@ class UrlController extends Controller
 
         $qrCode = qrCodeGenerator($url->short_url);
 
-        $embed = Embed::create($url->long_url);
+        try {
+            $embed = Embed::create($url->long_url);
+        } catch (\Exception $error) {
+            $embed = null;
+        }
 
         return view('frontend.short', compact(['url', 'embed']), [
             'qrCodeData'   => $qrCode->getContentType(),

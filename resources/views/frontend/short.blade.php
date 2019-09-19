@@ -41,7 +41,9 @@
 
         <div class="mt-5" id="jssocials"></div>
 
-        {!! $embed->code !!}
+        @if (isset($embed->code))
+          {!! $embed->code !!}
+        @endif
       </div>
     </div>
   </div>
