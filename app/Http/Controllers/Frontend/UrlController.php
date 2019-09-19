@@ -40,9 +40,10 @@ class UrlController extends Controller
             $embed = null;
         }
 
-        return view('frontend.short', compact(['url', 'embed']), [
+        return view('frontend.short', compact(['url']), [
             'qrCodeData'   => $qrCode->getContentType(),
             'qrCodeBase64' => $qrCode->generate(),
+            'embedCode'    => $embed->code ?? null,
         ]);
     }
 
