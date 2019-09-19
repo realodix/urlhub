@@ -10006,6 +10006,13 @@ img.jssocials-share-logo {
   margin: 0 10px;
 }
 
+@media (max-width: 1024px) {
+  .qrcode {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
 .jssocials-share {
   font-size: 1rem;
 }
