@@ -47,20 +47,20 @@ body {
 .sidebar {
   .nav-link {
     &.active {
-      border-left: 4px solid #4c94e3;
+      border-left: 4px solid $indigo;
     }
   }
 
   .nav-dropdown {
     &.open {
       .nav-link {
-        border-left: 4px solid #4c94e3;
+        border-left: 4px solid $indigo;
       }
     }
 
     .nav-link {
       &.active {
-        border-left: 4px solid #4c94e3;
+        border-left: 4px solid $indigo;
       }
 
       &:hover {
