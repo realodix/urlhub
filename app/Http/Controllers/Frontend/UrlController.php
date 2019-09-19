@@ -41,7 +41,7 @@ class UrlController extends Controller
         }
 
         return view('frontend.short', compact(['url', 'qrCode']), [
-            'embedCode'    => $embed->code ?? null,
+            'embedCode' => $embed->code ?? null,
         ]);
     }
 
