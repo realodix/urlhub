@@ -171,6 +171,13 @@
     font-family: Georgia, serif;
     font-size: 2rem;
     font-weight: bold;
+    padding-left: 0.3125rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    &-brand {
+      padding-left: 0;
+    }
   }
 
   &-nav {

@@ -9985,6 +9985,12 @@ img.jssocials-share-logo {
   font-family: Georgia, serif;
   font-size: 2rem;
   font-weight: bold;
+  padding-left: 0.3125rem;
+}
+@media (min-width: 768px) {
+  .navbar-brand {
+    padding-left: 0;
+  }
 }
 .navbar-nav {
   font-weight: 700;
