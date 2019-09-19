@@ -27,7 +27,7 @@
   <div class="col-md-9">
     <div class="row body">
       <div class="col-md">
-        <img class="qrcode" src="data:{{$qrCodeData}};base64,{{$qrCodeBase64}}" alt="QR Code">
+        <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
       </div>
       <div class="col-md-9">
         <b>@lang('Short URL')</b> <br>
