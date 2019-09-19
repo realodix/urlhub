@@ -26,7 +26,7 @@
   <div class="row mt-3">
   <div class="col-lg">
     <div class="row body">
-      <div class="col-sm">
+      <div class="col-sm-3">
         <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
       </div>
       <div class="col-sm-9">
