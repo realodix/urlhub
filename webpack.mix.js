@@ -22,7 +22,6 @@ if (!mix.inProduction()) {
        .browserSync({
            open: 'external',
            host: 'urlhub.test',
-           proxy: 'urlhub.test',
-           port: 3000
+           proxy: 'urlhub.test'
        })
 }

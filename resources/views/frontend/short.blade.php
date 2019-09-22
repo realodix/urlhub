@@ -24,12 +24,12 @@
   </div>
 
   <div class="row mt-3">
-  <div class="col-md-9">
+  <div class="col-lg">
     <div class="row body">
-      <div class="col-md">
-        <img src="data:{{$qrCodeData}};base64,{{$qrCodeBase64}}" alt="QR Code">
+      <div class="col-sm-3">
+        <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
       </div>
-      <div class="col-md-9">
+      <div class="col-sm-9">
         <b>@lang('Short URL')</b> <br>
         <span class="short-url"><a href="{{ $url->short_url }}" target="_blank" id="copy">{{ remove_schemes($url->short_url) }}</a></span>
         <button class="btn btn-sm btn-outline-success btn-clipboard ml-3" data-clipboard-text="{{ remove_schemes($url->short_url) }}" title="@lang('Copy to clipboard')" data-toggle="tooltip">@lang('Copy')</button>
@@ -40,6 +40,8 @@
         <div class="long-url"><a href="{{ $url->long_url }}" target="_blank" title="{{ $url->long_url }}" data-toggle="tooltip">{{ url_limit($url->long_url) }}</a></div>
 
         <div class="mt-5" id="jssocials"></div>
+
+        {!! $embedCode !!}
       </div>
     </div>
   </div>

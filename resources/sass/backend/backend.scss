@@ -47,24 +47,24 @@ body {
 .sidebar {
   .nav-link {
     &.active {
-      border-left: 4px solid #4c94e3;
+      border-left: 4px solid $sidebar-nav-link-hover-color;
     }
   }
 
   .nav-dropdown {
     &.open {
       .nav-link {
-        border-left: 4px solid #4c94e3;
+        border-left: 4px solid $sidebar-nav-link-hover-color;
       }
     }
 
     .nav-link {
       &.active {
-        border-left: 4px solid #4c94e3;
+        border-left: 4px solid $sidebar-nav-link-hover-color;
       }
 
       &:hover {
-        color: #fff;
+        color: $sidebar-nav-link-hover-color;
       }
     }
   }

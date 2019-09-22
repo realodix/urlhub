@@ -163,7 +163,7 @@
 // Navigation
 //
 .navbar {
-  background-color: $primary !important;
+  background-color: $blue !important;
   box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
   padding: 0;
 
@@ -171,6 +171,13 @@
     font-family: Georgia, serif;
     font-size: 2rem;
     font-weight: bold;
+    padding-left: 0.3125rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    &-brand {
+      padding-left: 0;
+    }
   }
 
   &-nav {
@@ -196,6 +203,16 @@
       margin: 0 10px;
     }
   }
+}
+
+
+//
+// qrCode
+//
+.qrcode {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 
