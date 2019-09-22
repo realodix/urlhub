@@ -4,7 +4,6 @@ namespace App;
 
 use App\Http\Traits\Hashidable;
 use Embed\Embed;
-use Embed\Exceptions\InvalidUrlException;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 
@@ -193,7 +192,7 @@ class Url extends Model
         try {
             $embed = Embed::create($url);
             $title = $embed->title;
-        } catch (InvalidUrlException $e) {
+        } catch (\Exception $e) {
             $title = 'No Title';
         }
 

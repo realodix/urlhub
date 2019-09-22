@@ -264,6 +264,19 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @covers ::getTitle
+     */
+    public function getTitle()
+    {
+        $url = factory(Url::class)->create([
+            'long_url' => 'https://github123456789.com',
+        ]);
+
+        $this->assertSame('No Title', $url->meta_title);
+    }
+
+    /**
+     * @test
      * @covers ::getDomain
      * @dataProvider getDomainProvider
      */
