@@ -12511,7 +12511,7 @@ canvas {
   margin-top: 2px;
 }
 .sidebar .nav-link.active {
-  color: #1f2835;
+  color: #eff3f6;
   background: #1f2835;
 }
 .sidebar .nav-link.active .nav-icon {
@@ -12522,7 +12522,7 @@ canvas {
   background: #1f2835;
 }
 .sidebar .nav-link:hover .nav-icon {
-  color: #fff;
+  color: #546de5;
 }
 .sidebar .nav-link:hover.nav-dropdown-toggle::before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='%23546de5' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E");
@@ -15902,13 +15902,13 @@ body {
 }
 
 .sidebar .nav-link.active {
-  border-left: 4px solid #3958c8;
+  border-left: 4px solid #546de5;
 }
 .sidebar .nav-dropdown.open .nav-link {
-  border-left: 4px solid #3958c8;
+  border-left: 4px solid #546de5;
 }
 .sidebar .nav-dropdown .nav-link.active {
-  border-left: 4px solid #3958c8;
+  border-left: 4px solid #546de5;
 }
 .sidebar .nav-dropdown .nav-link:hover {
   color: #546de5;
