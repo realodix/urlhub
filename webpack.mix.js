@@ -1,14 +1,18 @@
 const mix = require('laravel-mix');
+require('laravel-mix-purgecss');
 
 mix.sass('resources/sass/backend/backend.scss', 'css/backend.css')
    .sass('resources/sass/frontend/frontend.scss', 'css/frontend.css')
    .js('resources/js/frontend.js', 'js/frontend.js')
    .js('resources/js/backend.js', 'js/backend.js')
-   .copyDirectory('node_modules/datatables.net-dt/images', 'public/images')
-   .version();
+   .copyDirectory('node_modules/datatables.net-dt/images', 'public/images');
 
-mix.setPublicPath('public')
-   .extract()
+mix.extract()
+   .version()
+   .purgeCss({
+      enabled: true,
+   })
+   .setPublicPath('public')
    .options({
       autoprefixer: false,
       processCssUrls: false,
