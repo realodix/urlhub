@@ -10,12 +10,14 @@ mix.sass('resources/sass/backend/backend.scss', 'css/backend.css')
 mix.extract()
    .version()
    .purgeCss({
-      enabled: true,
+       enabled: true,
+       whitelistPatterns: [/dataTable/],
+
    })
    .setPublicPath('public')
    .options({
-      autoprefixer: false,
-      processCssUrls: false,
+       autoprefixer: false,
+       processCssUrls: false,
    });
 
 if (!mix.inProduction()) {
