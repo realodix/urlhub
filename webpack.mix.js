@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-require('laravel-mix-purgecss');
 
 mix.sass('resources/sass/backend/backend.scss', 'css/backend.css')
    .sass('resources/sass/frontend/frontend.scss', 'css/frontend.css')
@@ -9,11 +8,6 @@ mix.sass('resources/sass/backend/backend.scss', 'css/backend.css')
 
 mix.extract()
    .version()
-   .purgeCss({
-       enabled: true,
-       whitelistPatterns: [/dataTable/],
-
-   })
    .setPublicPath('public')
    .options({
        autoprefixer: false,
