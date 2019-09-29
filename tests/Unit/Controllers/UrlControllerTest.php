@@ -199,7 +199,7 @@ class UrlControllerTest extends TestCase
                 'alpha_dash',
                 'unique:urls',
                 new Lowercase,
-                new ShortUrlProtected
+                new ShortUrlProtected,
             ],
         ]);
 
