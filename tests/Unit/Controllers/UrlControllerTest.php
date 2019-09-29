@@ -194,7 +194,7 @@ class UrlControllerTest extends TestCase
         $request = new Request;
 
         $validator = Validator::make($request->all(), [
-            'url_key'  => ['max:20', 'alpha_dash', 'unique:urls', new Lowercase, new ShortUrlProtected],
+            'url_key'  => [
                 'max:20',
                 'alpha_dash',
                 'unique:urls',
