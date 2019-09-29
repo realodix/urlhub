@@ -90,7 +90,14 @@ class UrlController extends Controller
     public function checkExistingCustomUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'url_key' => ['nullable', 'max:20', 'alpha_dash', 'unique:urls', new Lowercase, new ShortUrlProtected],
+            'url_key' => [
+                'nullable',
+                'max:20',
+                'alpha_dash',
+                'unique:urls',
+                new Lowercase,
+                new ShortUrlProtected,
+            ],
         ]);
 
         if ($validator->fails()) {
