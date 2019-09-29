@@ -92,6 +92,7 @@ class UrlController extends Controller
         $validator = Validator::make($request->all(), [
             'url_key' => [
                 'nullable',
+                'min:8',
                 'max:20',
                 'alpha_dash',
                 'unique:urls',
