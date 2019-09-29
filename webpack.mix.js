@@ -12,19 +12,19 @@ mix
   .version()
   .setPublicPath('public')
   .options({
-    autoprefixer: false,
-    processCssUrls: false,
+      autoprefixer: false,
+      processCssUrls: false,
   });
 
 if (!mix.inProduction()) {
   mix
     .webpackConfig({
-      devtool: 'source-map',
+        devtool: 'source-map',
     })
     .sourceMaps()
     .browserSync({
-      open: 'external',
-      host: 'urlhub.test',
-      proxy: 'urlhub.test'
+        open: 'external',
+        host: 'urlhub.test',
+        proxy: 'urlhub.test'
     })
 }
