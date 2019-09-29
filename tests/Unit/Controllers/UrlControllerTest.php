@@ -195,6 +195,12 @@ class UrlControllerTest extends TestCase
 
         $validator = Validator::make($request->all(), [
             'url_key'  => ['max:20', 'alpha_dash', 'unique:urls', new Lowercase, new ShortUrlProtected],
+                'max:20',
+                'alpha_dash',
+                'unique:urls',
+                new Lowercase,
+                new ShortUrlProtected
+            ],
         ]);
 
         $response = $this->post(route('home').'/custom-link-avail-check', [
