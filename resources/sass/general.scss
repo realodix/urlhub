@@ -34,17 +34,3 @@ $dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
 // Cards
 $card-cap-bg:        none;
 $card-border-radius: 0.25rem;
-
-//
-// Extend
-//
-%card-body {
-  @extend %box-shadow;
-  background-color: #fff;
-  padding: 20px 0;
-}
-
-%box-shadow {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
-              rgba(60, 64, 67, .15) 0 1px 3px 1px;
-}
