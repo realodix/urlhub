@@ -1,3 +1,4 @@
+@use "sass:map";
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 //
@@ -20,7 +21,7 @@ $success:   $green;
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
-$theme-colors: map-merge(
+$theme-colors: map.merge(
   (
     "tertiary":  $tertiary
   ),
