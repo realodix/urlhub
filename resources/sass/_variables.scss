@@ -1,10 +1,54 @@
-//
-// Backend variables
-//
+//----------------------------------------------------------------------------
+// General variables
+//----------------------------------------------------------------------------
 
-//*
-//* Bootstrap
-//*
+$bg-gray: #f5f7fb;
+
+$black:   #232d3b;
+$blue:    #3B5998;
+$green:   #1c9963;
+$indigo:  #3958c8;
+$purple:  #546de5;
+$red:     #e04a4a;
+$orange:  #ff813f;
+
+$primary:   $indigo;
+$secondary: $green;
+$tertiary:  $orange;
+$success:   $green;
+
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "tertiary":  $tertiary
+  ),
+  $theme-colors
+);
+
+// Dropdowns
+$dropdown-link-color:       #333 !default;
+$dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
+
+// Cards
+$card-cap-bg:        none;
+$card-border-radius: 0.25rem;
+
+
+
+//----------------------------------------------------------------------------
+// Frontend variables
+//----------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------
+// Backend variables
+//----------------------------------------------------------------------------
+
+//
+// Bootstrap
+//
 
 // Breadcrumbs
 $breadcrumb-bg:            #fff;
@@ -16,9 +60,9 @@ $table-accent-bg: rgba($bg-gray, .05) !default;
 
 
 
-//*
-//* CoreUI
-//*
+//
+// CoreUI
+//
 
 // Sidebar Navigation
 $sidebar-bg:                              $black;

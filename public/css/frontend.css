@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);@import url(https://fonts.googleapis.com/css?family=Raleway:100);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:100);@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);@charset "UTF-8";
 .view_short .body {
   background-color: #fff;
   padding: 20px 0;
@@ -1555,7 +1555,7 @@ pre code {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(35, 45, 59, 0.05);
+  background-color: rgba(245, 247, 251, 0.05);
 }
 
 .table-hover tbody tr:hover {
@@ -4383,10 +4383,10 @@ input[type=button].btn-block {
   display: flex;
   flex-wrap: wrap;
   padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   list-style: none;
-  background-color: #e9ecef;
-  border-radius: 0.25rem;
+  background-color: #fff;
+  border-radius: none;
 }
 
 .breadcrumb-item + .breadcrumb-item {

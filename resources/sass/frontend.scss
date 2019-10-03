@@ -1,8 +1,9 @@
-@import "../general";
+@import "extend";
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~jssocials/styles/jssocials";
 @import url('https://fonts.googleapis.com/css?family=Raleway:100');
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 .frontend {
   color: #313944;
