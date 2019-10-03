@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:color";
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 //
@@ -30,7 +31,7 @@ $theme-colors: map.merge(
 
 // Dropdowns
 $dropdown-link-color:       #333 !default;
-$dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
+$dropdown-link-hover-color: color.adjust($dropdown-link-color, $lightness: -5%) !default;
 
 // Cards
 $card-cap-bg:        none;
