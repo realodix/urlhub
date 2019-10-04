@@ -735,9 +735,9 @@
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
 "@types/node@*":
-  version "12.7.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.9.tgz#da0210f91096aa67138cf5afd04c4d629f8a406a"
-  integrity sha512-P57oKTJ/vYivL2BCfxCC5tQjlS8qW31pbOL6qt99Yrjm95YdHgNZwjrTTjMBh+C2/y6PXIX4oz253+jUzxKKfQ==
+  version "12.7.11"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.11.tgz#be879b52031cfb5d295b047f5462d8ef1a716446"
+  integrity sha512-Otxmr2rrZLKRYIybtdG/sgeO+tHY20GxeDjcGmUnmmlCWyEnv2a2x1ZXBo3BTec4OiTXMQCiazB8NMBf0iRlFw==
 
 "@types/q@^1.5.1":
   version "1.5.2"
@@ -4920,11 +4920,11 @@ node-pre-gyp@^0.12.0:
     tar "^4"
 
 node-releases@^1.1.29:
-  version "1.1.33"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.33.tgz#349f10291234624574f44cf32b7de259bf028303"
-  integrity sha512-I0V30bWQEoHb+10W8oedVoUrdjW5wIkYm0w7vvcrPO95pZY738m1k77GF5sO0vKg5eXYg9oGtrMAETbgZGm11A==
+  version "1.1.34"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.34.tgz#ced4655ee1ba9c3a2c5dcbac385e19434155fd40"
+  integrity sha512-fNn12JTEfniTuCqo0r9jXgl44+KxRH/huV7zM/KAGOKxDKrHr6EbT7SSs4B+DNxyBE2mks28AD+Jw6PkfY5uwA==
   dependencies:
-    semver "^5.3.0"
+    semver "^6.3.0"
 
 nopt@^4.0.1:
   version "4.0.1"
