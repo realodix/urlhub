@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: $bg-gray;
+  background: $uh--bg-gray;
 }
 
 
@@ -163,7 +163,7 @@ body {
   table {
     &.dataTable {
       thead th {
-        background-color: $bg-gray;
+        background-color: $uh--bg-gray;
         color: #7b858e;
 
         &:hover {
