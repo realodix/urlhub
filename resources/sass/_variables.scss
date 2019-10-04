@@ -3,7 +3,18 @@
 //----------------------------------------------------------------------------
 
 $uh--black:   #232d3b;
+$uh--blue:    #3B5998;
+$uh--green:   #1c9963;
+$uh--indigo:  #3958c8;
+$uh--purple:  #546de5;
+$uh--red:     #e04a4a;
+$uh--orange:  #ff813f;
+
 $uh--bg-gray: #f5f7fb;
+
+$uh--primary:   $uh--indigo;
+$uh--secondary: $uh--green;
+$uh--tertiary:  $uh--orange;
 
 
 
@@ -11,22 +22,23 @@ $uh--bg-gray: #f5f7fb;
 // twbs/bootstrap
 //----------------------------------------------------------------------------
 
-$blue:    #3B5998;
-$green:   #1c9963;
-$indigo:  #3958c8;
-$purple:  #546de5;
-$red:     #e04a4a;
-$orange:  #ff813f;
+$black:   $uh--black;
+$blue:    $uh--blue;
+$green:   $uh--green;
+$indigo:  $uh--indigo;
+$purple:  $uh--purple;
+$red:     $uh--red;
+$orange:  $uh--orange;
 
-$primary:   $indigo;
-$secondary: $green;
+$primary:   $uh--primary;
+$secondary: $uh--secondary;
 
 $success:   $green;
 
-$theme-colors: () !default;
+$theme-colors: ();
 $theme-colors: map-merge(
   (
-    "tertiary":  $orange
+    "tertiary":  $uh--tertiary
   ),
   $theme-colors
 );
@@ -35,13 +47,13 @@ $breadcrumb-bg:            #fff;
 $breadcrumb-border-radius: none;
 $breadcrumb-margin-bottom: 0;
 
-$dropdown-link-color:       #333 !default;
-$dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
+$dropdown-link-color:       #333;
+$dropdown-link-hover-color: darken($dropdown-link-color, 5%);
 
 $card-cap-bg:        none;
 $card-border-radius: 0.25rem;
 
-$table-accent-bg: rgba($uh--bg-gray, .05) !default;
+$table-accent-bg: rgba($uh--bg-gray, .05);
 
 
 
@@ -56,9 +68,9 @@ $sidebar-nav-color:                       #eff3f6;
 $sidebar-nav-link-color:                  $sidebar-nav-color;
 $sidebar-nav-link-active-color:           $sidebar-nav-color;
 $sidebar-nav-link-active-bg:              darken($uh--black, 2%);
-$sidebar-nav-link-hover-color:            $purple !default;
-$sidebar-nav-link-hover-bg:               darken($uh--black, 2%) !default;
-$sidebar-nav-link-hover-icon-color:       $sidebar-nav-link-hover-color !default;
+$sidebar-nav-link-hover-color:            $uh--purple;
+$sidebar-nav-link-hover-bg:               darken($uh--black, 2%);
+$sidebar-nav-link-hover-icon-color:       $sidebar-nav-link-hover-color;
 $sidebar-nav-dropdown-bg:                 darken($uh--black, 2%);
 $sidebar-nav-dropdown-color:              $sidebar-nav-color;
 $sidebar-nav-dropdown-indicator-color:    $sidebar-nav-link-color;

@@ -29,7 +29,7 @@
       border-radius: 0.3rem;
 
       input {
-        color: $primary;
+        color: $uh--primary;
         background: #f1f3f4;
         border: none;
 
@@ -41,10 +41,10 @@
 
     button {
       color: #fff;
-      background: $primary;
+      background: $uh--primary;
 
       &:hover {
-        background: darken($primary, 10%);
+        background: darken($uh--primary, 10%);
       }
 
       &:focus {
@@ -69,14 +69,14 @@
 
       .url-field {
         display: inline;
-        color: $orange;
+        color: $uh--orange;
         font-size: 1.5rem;
         background: none;
         height: calc(2rem + 2px);
         max-width: 200px;
         padding: 0 0.5rem;
         border: none;
-        border-bottom: 4px solid $orange;
+        border-bottom: 4px solid $uh--orange;
 
         &:focus {
           box-shadow: none;
@@ -193,7 +193,7 @@
       font-weight: 300;
 
       svg {
-        color: darken($primary, 15%);
+        color: darken($uh--primary, 15%);
       }
     }
 
