@@ -1,10 +1,16 @@
 //----------------------------------------------------------------------------
-// General variables
+// Custom variables
 //----------------------------------------------------------------------------
 
+$black:   #232d3b;
 $bg-gray: #f5f7fb;
 
-$black:   #232d3b;
+
+
+//----------------------------------------------------------------------------
+// twbs/bootstrap
+//----------------------------------------------------------------------------
+
 $blue:    #3B5998;
 $green:   #1c9963;
 $indigo:  #3958c8;
@@ -14,57 +20,37 @@ $orange:  #ff813f;
 
 $primary:   $indigo;
 $secondary: $green;
-$tertiary:  $orange;
+
 $success:   $green;
 
 $theme-colors: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
   (
-    "tertiary":  $tertiary
+    "tertiary":  $orange
   ),
   $theme-colors
 );
 
-// Dropdowns
-$dropdown-link-color:       #333 !default;
-$dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
-
-// Cards
-$card-cap-bg:        none;
-$card-border-radius: 0.25rem;
-
-
-
-//----------------------------------------------------------------------------
-// Frontend variables
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-// Backend variables
-//----------------------------------------------------------------------------
-
-//
-// Bootstrap
-//
-
-// Breadcrumbs
 $breadcrumb-bg:            #fff;
 $breadcrumb-border-radius: none;
 $breadcrumb-margin-bottom: 0;
 
-// Table
+$dropdown-link-color:       #333 !default;
+$dropdown-link-hover-color: darken($dropdown-link-color, 5%) !default;
+
+$card-cap-bg:        none;
+$card-border-radius: 0.25rem;
+
 $table-accent-bg: rgba($bg-gray, .05) !default;
 
 
 
-//
-// CoreUI
-//
+//----------------------------------------------------------------------------
+// coreui/coreui
+//----------------------------------------------------------------------------
 
-// Sidebar Navigation
+$breadcrumb-borders: none;
+
 $sidebar-bg:                              $black;
 $sidebar-nav-color:                       #eff3f6;
 $sidebar-nav-link-color:                  $sidebar-nav-color;
@@ -73,19 +59,12 @@ $sidebar-nav-link-active-bg:              darken($black, 2%);
 $sidebar-nav-link-hover-color:            $purple !default;
 $sidebar-nav-link-hover-bg:               darken($black, 2%) !default;
 $sidebar-nav-link-hover-icon-color:       $sidebar-nav-link-hover-color !default;
-
 $sidebar-nav-dropdown-bg:                 darken($black, 2%);
 $sidebar-nav-dropdown-color:              $sidebar-nav-color;
 $sidebar-nav-dropdown-indicator-color:    $sidebar-nav-link-color;
-
-// Sidebar Minimizer
 $sidebar-minimizer-bg:                    $black;
 $sidebar-minimizer-hover-bg:              darken($black, 2%);
 $sidebar-minimizer-hover-indicator-color: $sidebar-nav-link-color;
 
-// Breadcrumb
-$breadcrumb-borders: none;
-
-// Footer
 $footer-bg:      $bg-gray;
 $footer-borders: none;
