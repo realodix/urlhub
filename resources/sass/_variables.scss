@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:map";
 
 //----------------------------------------------------------------------------
 // Custom variables
@@ -38,7 +39,7 @@ $secondary: $uh--secondary;
 $success:   $green;
 
 $theme-colors: ();
-$theme-colors: map-merge(
+$theme-colors: map.merge(
   (
     "tertiary":  $uh--tertiary
   ),
