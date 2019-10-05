@@ -1,4 +1,4 @@
-@import "extend";
+@import "mixins";
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~@coreui/coreui/scss/coreui-standalone";
@@ -120,7 +120,7 @@ body {
 // Card
 //
 .card {
-  @extend %box-shadow;
+  @include box-shadow;
   border: none;
 
   &.border-left {

@@ -1,5 +1,5 @@
 @use "sass:color";
-@import "extend";
+@import "mixins";
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~jssocials/styles/jssocials";
@@ -109,7 +109,7 @@
   }
 
   .body {
-    @extend %card-body;
+    @include card-body;
     border-radius: $card-border-radius;
 
     .long-url {
@@ -136,9 +136,8 @@
   background: $uh--bg-gray;
 
   .card {
+    @include box-shadow;
     border: none;
-    box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
-                rgba(60, 64, 67, .15) 0 1px 3px 1px;
   }
 
   .form-control {
