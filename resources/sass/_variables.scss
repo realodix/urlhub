@@ -1,3 +1,5 @@
+@use "sass:color";
+
 //----------------------------------------------------------------------------
 // Custom variables
 //----------------------------------------------------------------------------
@@ -48,7 +50,7 @@ $breadcrumb-border-radius: none;
 $breadcrumb-margin-bottom: 0;
 
 $dropdown-link-color:       #333;
-$dropdown-link-hover-color: darken($dropdown-link-color, 5%);
+$dropdown-link-hover-color: color.adjust($dropdown-link-color, $lightness: -5%);
 
 $card-cap-bg:        none;
 $card-border-radius: 0.25rem;
@@ -67,15 +69,15 @@ $sidebar-bg:                              $uh--black;
 $sidebar-nav-color:                       #eff3f6;
 $sidebar-nav-link-color:                  $sidebar-nav-color;
 $sidebar-nav-link-active-color:           $sidebar-nav-color;
-$sidebar-nav-link-active-bg:              darken($uh--black, 2%);
+$sidebar-nav-link-active-bg:              color.adjust($uh--black, $lightness: -2%);
 $sidebar-nav-link-hover-color:            $uh--purple;
-$sidebar-nav-link-hover-bg:               darken($uh--black, 2%);
+$sidebar-nav-link-hover-bg:               color.adjust($uh--black, $lightness: -2%);
 $sidebar-nav-link-hover-icon-color:       $sidebar-nav-link-hover-color;
-$sidebar-nav-dropdown-bg:                 darken($uh--black, 2%);
+$sidebar-nav-dropdown-bg:                 color.adjust($uh--black, $lightness: -2%);
 $sidebar-nav-dropdown-color:              $sidebar-nav-color;
 $sidebar-nav-dropdown-indicator-color:    $sidebar-nav-link-color;
 $sidebar-minimizer-bg:                    $uh--black;
-$sidebar-minimizer-hover-bg:              darken($uh--black, 2%);
+$sidebar-minimizer-hover-bg:              color.adjust($uh--black, $lightness: -2%);
 $sidebar-minimizer-hover-indicator-color: $sidebar-nav-link-color;
 
 $footer-bg:      $uh--bg-gray;

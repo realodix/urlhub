@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "extend";
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
@@ -44,7 +45,7 @@
       background: $uh--primary;
 
       &:hover {
-        background: darken($uh--primary, 10%);
+        background: color.adjust($uh--primary, $lightness: -10%);
       }
 
       &:focus {
@@ -193,7 +194,7 @@
       font-weight: 300;
 
       svg {
-        color: darken($uh--primary, 15%);
+        color: color.adjust($uh--primary, $lightness: -15%);
       }
     }
 
