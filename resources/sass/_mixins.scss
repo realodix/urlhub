@@ -1,0 +1,10 @@
+@mixin card-body {
+  @include box-shadow;
+  background-color: #fff;
+  padding: 20px 0;
+}
+
+@mixin box-shadow {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
+              rgba(60, 64, 67, .15) 0 1px 3px 1px;
+}

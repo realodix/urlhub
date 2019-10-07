@@ -1,0 +1,85 @@
+@use "sass:color";
+@use "sass:map";
+
+//----------------------------------------------------------------------------
+// Custom variables
+//----------------------------------------------------------------------------
+
+$uh--black:   #232d3b;
+$uh--blue:    #3B5998;
+$uh--green:   #1c9963;
+$uh--indigo:  #3958c8;
+$uh--purple:  #546de5;
+$uh--red:     #e04a4a;
+$uh--orange:  #ff813f;
+
+$uh--bg-gray: #f5f7fb;
+
+$uh--primary:   $uh--indigo;
+$uh--secondary: $uh--green;
+$uh--tertiary:  $uh--orange;
+
+
+
+//----------------------------------------------------------------------------
+// twbs/bootstrap
+//----------------------------------------------------------------------------
+
+$black:   $uh--black;
+$blue:    $uh--blue;
+$green:   $uh--green;
+$indigo:  $uh--indigo;
+$purple:  $uh--purple;
+$red:     $uh--red;
+$orange:  $uh--orange;
+
+$primary:   $uh--primary;
+$secondary: $uh--secondary;
+
+$success:   $green;
+
+$theme-colors: ();
+$theme-colors: map.merge(
+  (
+    "tertiary":  $uh--tertiary
+  ),
+  $theme-colors
+);
+
+$breadcrumb-bg:            #fff;
+$breadcrumb-border-radius: none;
+$breadcrumb-margin-bottom: 0;
+
+$dropdown-link-color:       #333;
+$dropdown-link-hover-color: color.adjust($dropdown-link-color, $lightness: -5%);
+
+$card-cap-bg:        none;
+$card-border-radius: 0.25rem;
+
+$table-accent-bg: rgba($uh--bg-gray, .05);
+
+
+
+//----------------------------------------------------------------------------
+// coreui/coreui
+//----------------------------------------------------------------------------
+
+$breadcrumb-borders: none;
+
+$sidebar-bg:                              $uh--black;
+$sidebar-nav-color:                       #eff3f6;
+$sidebar-nav-link-color:                  $sidebar-nav-color;
+$sidebar-nav-link-active-color:           $sidebar-nav-color;
+$sidebar-nav-link-active-bg:              color.adjust($uh--black, $lightness: -2%);
+$sidebar-nav-link-hover-color:            $uh--purple;
+$sidebar-nav-link-hover-bg:               color.adjust($uh--black, $lightness: -2%);
+$sidebar-nav-link-hover-icon-color:       $sidebar-nav-link-hover-color;
+$sidebar-nav-dropdown-bg:                 color.adjust($uh--black, $lightness: -2%);
+$sidebar-nav-dropdown-color:              $sidebar-nav-color;
+$sidebar-nav-dropdown-indicator-color:    $sidebar-nav-link-color;
+$sidebar-minimizer-bg:                    $uh--black;
+$sidebar-minimizer-hover-bg:              color.adjust($uh--black, $lightness: -2%);
+$sidebar-minimizer-hover-indicator-color: $sidebar-nav-link-color;
+
+$footer-bg:      $uh--bg-gray;
+$footer-borders: none;

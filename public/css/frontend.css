@@ -1,13 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);@import url(https://fonts.googleapis.com/css?family=Raleway:100);@charset "UTF-8";
-.view_short .body {
-  background-color: #fff;
-  padding: 20px 0;
-}
-
-.view_short .body {
-  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
-}
-
+@import url(https://fonts.googleapis.com/css?family=Raleway:100);@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);@charset "UTF-8";
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -1555,7 +1546,7 @@ pre code {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(35, 45, 59, 0.05);
+  background-color: rgba(245, 247, 251, 0.05);
 }
 
 .table-hover tbody tr:hover {
@@ -4383,10 +4374,10 @@ input[type=button].btn-block {
   display: flex;
   flex-wrap: wrap;
   padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   list-style: none;
-  background-color: #e9ecef;
-  border-radius: 0.25rem;
+  background-color: #fff;
+  border-radius: none;
 }
 
 .breadcrumb-item + .breadcrumb-item {
@@ -9942,6 +9933,8 @@ img.jssocials-share-logo {
   line-height: 2.4rem;
 }
 .view_short .body {
+  background-color: #fff;
+  padding: 20px 0;
   border-radius: 0.25rem;
 }
 .view_short .body .long-url a {
@@ -9959,7 +9952,6 @@ img.jssocials-share-logo {
 }
 .auth .card {
   border: none;
-  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
 }
 .auth .form-control {
   background: #f1f3f4;

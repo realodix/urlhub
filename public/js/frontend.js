@@ -197,10 +197,10 @@ $("#jssocials").jsSocials({
 
 /***/ }),
 
-/***/ "./resources/sass/backend/backend.scss":
-/*!*********************************************!*\
-  !*** ./resources/sass/backend/backend.scss ***!
-  \*********************************************/
+/***/ "./resources/sass/backend.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/backend.scss ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -208,10 +208,10 @@ $("#jssocials").jsSocials({
 
 /***/ }),
 
-/***/ "./resources/sass/frontend/frontend.scss":
-/*!***********************************************!*\
-  !*** ./resources/sass/frontend/frontend.scss ***!
-  \***********************************************/
+/***/ "./resources/sass/frontend.scss":
+/*!**************************************!*\
+  !*** ./resources/sass/frontend.scss ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -220,15 +220,15 @@ $("#jssocials").jsSocials({
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************************************************!*\
-  !*** multi ./resources/js/frontend.js ./resources/sass/backend/backend.scss ./resources/sass/frontend/frontend.scss ***!
-  \**********************************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** multi ./resources/js/frontend.js ./resources/sass/backend.scss ./resources/sass/frontend.scss ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! D:\laragon\www\urlhub\resources\js\frontend.js */"./resources/js/frontend.js");
-__webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\backend\backend.scss */"./resources/sass/backend/backend.scss");
-module.exports = __webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\frontend\frontend.scss */"./resources/sass/frontend/frontend.scss");
+__webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\backend.scss */"./resources/sass/backend.scss");
+module.exports = __webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\frontend.scss */"./resources/sass/frontend.scss");
 
 
 /***/ })

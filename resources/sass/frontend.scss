@@ -1,8 +1,10 @@
-@import "../general";
+@use "sass:color";
+@import "mixins";
 @import "variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~jssocials/styles/jssocials";
+@import "bootstrap";
+@import "jssocials/styles/jssocials";
 @import url('https://fonts.googleapis.com/css?family=Raleway:100');
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 .frontend {
   color: #313944;
@@ -28,7 +30,7 @@
       border-radius: 0.3rem;
 
       input {
-        color: $primary;
+        color: $uh--primary;
         background: #f1f3f4;
         border: none;
 
@@ -40,10 +42,10 @@
 
     button {
       color: #fff;
-      background: $primary;
+      background: $uh--primary;
 
       &:hover {
-        background: darken($primary, 10%);
+        background: color.adjust($uh--primary, $lightness: -10%);
       }
 
       &:focus {
@@ -68,14 +70,14 @@
 
       .url-field {
         display: inline;
-        color: $orange;
+        color: $uh--orange;
         font-size: 1.5rem;
         background: none;
         height: calc(2rem + 2px);
         max-width: 200px;
         padding: 0 0.5rem;
         border: none;
-        border-bottom: 4px solid $orange;
+        border-bottom: 4px solid $uh--orange;
 
         &:focus {
           box-shadow: none;
@@ -107,7 +109,7 @@
   }
 
   .body {
-    @extend %card-body;
+    @include card-body;
     border-radius: $card-border-radius;
 
     .long-url {
@@ -131,12 +133,11 @@
 // Login & Register
 //
 .auth {
-  background: $bg-gray;
+  background: $uh--bg-gray;
 
   .card {
+    @include box-shadow;
     border: none;
-    box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
-                rgba(60, 64, 67, .15) 0 1px 3px 1px;
   }
 
   .form-control {
@@ -163,7 +164,7 @@
 // Navigation
 //
 .navbar {
-  background-color: $blue !important;
+  background-color: $uh--blue !important;
   box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
   padding: 0;
 
@@ -184,7 +185,7 @@
     font-weight: 700;
 
     .nav-link {
-      color: $blue;
+      color: $uh--blue;
     }
 
     .dropdown-item {
@@ -192,7 +193,7 @@
       font-weight: 300;
 
       svg {
-        color: darken($primary, 15%);
+        color: color.adjust($uh--primary, $lightness: -15%);
       }
     }
 
