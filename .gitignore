@@ -12,6 +12,5 @@ npm-debug.log
 yarn-error.log
 #
 /.idea
-/.vscode
 /public/*/*.map
 .php_cs.cache
