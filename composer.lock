@@ -1512,16 +1512,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.84",
+            "version": "v1.2.85",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "b7f35477a56609dd0d753c07ada912b66af3df01"
+                "reference": "185ff3e00a5b7821eadfce8fe767fcd89193f578"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/b7f35477a56609dd0d753c07ada912b66af3df01",
-                "reference": "b7f35477a56609dd0d753c07ada912b66af3df01",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/185ff3e00a5b7821eadfce8fe767fcd89193f578",
+                "reference": "185ff3e00a5b7821eadfce8fe767fcd89193f578",
                 "shasum": ""
             },
             "require": {
@@ -1557,7 +1557,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2019-06-14T21:10:21+00:00"
+            "time": "2019-10-05T13:27:35+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -2273,16 +2273,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.0",
+            "version": "2.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "b70da677101cca7b584c7489770d2677c2733593"
+                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b70da677101cca7b584c7489770d2677c2733593",
-                "reference": "b70da677101cca7b584c7489770d2677c2733593",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
                 "shasum": ""
             },
             "require": {
@@ -2336,7 +2336,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-09-30T16:22:22+00:00"
+            "time": "2019-10-05T15:52:23+00:00"
         },
         {
             "name": "nikic/php-parser",
