@@ -26,11 +26,6 @@ class ForgotPasswordTest extends TestCase
         return route('password.email');
     }
 
-    protected function guestMiddlewareRoute()
-    {
-        return route('home');
-    }
-
     /** @test */
     public function user_can_view_an_email_password_form()
     {
@@ -39,14 +34,6 @@ class ForgotPasswordTest extends TestCase
         $response
             ->assertSuccessful()
             ->assertViewIs('frontend.auth.passwords.email');
-    }
-
-    /** @test */
-    public function user_cannot_view_an_email_password_form_when_authenticated()
-    {
-        $response = $this->loginAsUser()->get($this->requestRoute());
-
-        $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
     /** @test */
