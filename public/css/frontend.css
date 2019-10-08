@@ -9933,6 +9933,7 @@ img.jssocials-share-logo {
   line-height: 2.4rem;
 }
 .view_short .body {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
   background-color: #fff;
   padding: 20px 0;
   border-radius: 0.25rem;
@@ -9951,6 +9952,7 @@ img.jssocials-share-logo {
   background: #f5f7fb;
 }
 .auth .card {
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
   border: none;
 }
 .auth .form-control {
