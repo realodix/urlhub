@@ -36,11 +36,6 @@ class ResetPasswordTest extends TestCase
         return route('dashboard');
     }
 
-    protected function guestMiddlewareRoute()
-    {
-        return route('home');
-    }
-
     /** @test */
     public function user_can_view_a_password_reset_form()
     {
@@ -50,17 +45,6 @@ class ResetPasswordTest extends TestCase
             ->assertSuccessful()
             ->assertViewIs('frontend.auth.passwords.reset')
             ->assertViewHas('token', $token);
-    }
-
-    /** @test */
-    public function user_cannot_view_a_password_reset_form_when_authenticated()
-    {
-        $user = $this->user();
-
-        $response = $this->actingAs($user)
-                         ->get($this->getRoute($this->getValidToken($user)));
-
-        $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
     /** @test */
