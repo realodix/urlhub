@@ -1,4 +1,5 @@
 import './bootstrap';
+import {initPasswordFields} from './password-toggle';
 import '@coreui/coreui'
 
 /**
@@ -101,6 +102,11 @@ $(document).ready(function() {
             searchPlaceholder: "Search..."
         }
     }).order([2, 'desc']).draw();
+
+    /**
+     * Initialise the password toggle fields.
+     */
+    initPasswordFields();
 });
 
 
