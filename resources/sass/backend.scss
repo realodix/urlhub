@@ -23,7 +23,7 @@ body {
 
   .navbar-nav {
     .nav-link {
-      color: #212529;
+      color: $uh--black;
     }
 
     #homepage-icon:hover {
@@ -177,11 +177,11 @@ body {
       }
 
       tbody {
-        color: #262d37;
+        color: $uh--black;
 
         // Short & Long URL column
         a {
-          color: #262d37;
+          color: $uh--black;
         }
 
         .short_url {

@@ -15884,7 +15884,7 @@ body {
   font-weight: bold;
 }
 .navbar .navbar-nav .nav-link {
-  color: #212529;
+  color: #232d3b;
 }
 .navbar .navbar-nav #homepage-icon:hover {
   color: #3958c8;
@@ -15976,10 +15976,10 @@ body {
   border-color: #dee2e6;
 }
 .dataTables_wrapper table.dataTable tbody {
-  color: #262d37;
+  color: #232d3b;
 }
 .dataTables_wrapper table.dataTable tbody a {
-  color: #262d37;
+  color: #232d3b;
 }
 .dataTables_wrapper table.dataTable tbody .short_url {
   cursor: default;
