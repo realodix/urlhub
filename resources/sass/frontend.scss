@@ -1,5 +1,5 @@
 @use "sass:color";
-@import "mixins";
+@use "mixins" as mixin;
 @import "variables";
 @import "bootstrap";
 @import "jssocials/styles/jssocials";
@@ -25,8 +25,7 @@
 
   form {
     .original-url {
-      box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0,
-                  rgba(60, 64, 67, .15) 0 1px 3px 1px;
+      @include mixin.box-shadow;
       border-radius: 0.3rem;
 
       input {
@@ -109,7 +108,7 @@
   }
 
   .body {
-    @include card-body;
+    @include mixin.card-body;
     border-radius: $card-border-radius;
 
     .long-url {
@@ -136,7 +135,7 @@
   background: $uh--bg-gray;
 
   .card {
-    @include box-shadow;
+    @include mixin.box-shadow;
     border: none;
   }
 
