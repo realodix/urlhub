@@ -110,6 +110,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jssocials__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jssocials */ "./node_modules/jssocials/dist/jssocials.js");
 /* harmony import */ var jssocials__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jssocials__WEBPACK_IMPORTED_MODULE_2__);
 
+
+
 /**
  * Copy short url to clipboard
  *
@@ -126,7 +128,6 @@ new ClipboardJS('.btn-clipboard').on('success', function () {
  *
  * https://github.com/dennyferra/TypeWatch
  */
-
 
 $(function () {
   $.ajaxSetup({
@@ -168,7 +169,6 @@ $(function () {
  * Social Share
  * https://github.com/tabalinas/jssocials
  */
-
 
 $("#jssocials").jsSocials({
   shareIn: "popup",
