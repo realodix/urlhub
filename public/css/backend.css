@@ -16039,4 +16039,13 @@ body {
 .app-footer {
   font-size: 13px;
 }
+
+.password-toggler {
+  border: none;
+  transition: 0.1s all ease-out;
+  cursor: pointer;
+}
+.password-toggler:hover {
+  background-color: #c5c7ca;
+}
 /*# sourceMappingURL=backend.css.map*/

@@ -1,18 +1,20 @@
 import './bootstrap';
 import {initPasswordFields} from './password-toggle';
 import '@coreui/coreui'
-
-/**
- * DataTables
- * https://datatables.net/
- */
 import 'datatables.net';
+
 $(document).ready(function() {
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    /**
+     * DataTables
+     * https://datatables.net/
+     */
 
     // All URLs Page
     $('#dt-allUrls').DataTable( {

@@ -10,16 +10,13 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _coreui_coreui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/coreui */ "./node_modules/@coreui/coreui/dist/js/coreui.js");
-/* harmony import */ var _coreui_coreui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_coreui_coreui__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var datatables_net__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! datatables.net */ "./node_modules/datatables.net/js/jquery.dataTables.js");
-/* harmony import */ var datatables_net__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(datatables_net__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _password_toggle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./password-toggle */ "./resources/js/password-toggle.js");
+/* harmony import */ var _coreui_coreui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @coreui/coreui */ "./node_modules/@coreui/coreui/dist/js/coreui.js");
+/* harmony import */ var _coreui_coreui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_coreui_coreui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var datatables_net__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! datatables.net */ "./node_modules/datatables.net/js/jquery.dataTables.js");
+/* harmony import */ var datatables_net__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(datatables_net__WEBPACK_IMPORTED_MODULE_3__);
 
 
-/**
- * DataTables
- * https://datatables.net/
- */
 
 
 $(document).ready(function () {
@@ -27,7 +24,12 @@ $(document).ready(function () {
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  }); // All URLs Page
+  });
+  /**
+   * DataTables
+   * https://datatables.net/
+   */
+  // All URLs Page
 
   $('#dt-allUrls').DataTable({
     processing: true,
@@ -123,6 +125,11 @@ $(document).ready(function () {
       searchPlaceholder: "Search..."
     }
   }).order([2, 'desc']).draw();
+  /**
+   * Initialise the password toggle fields.
+   */
+
+  Object(_password_toggle__WEBPACK_IMPORTED_MODULE_1__["initPasswordFields"])();
 });
 /**
  * Copy short url to clipboard
@@ -230,6 +237,51 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()("body").tooltip({
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/password-toggle.js":
+/*!*****************************************!*\
+  !*** ./resources/js/password-toggle.js ***!
+  \*****************************************/
+/*! exports provided: initPasswordFields */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initPasswordFields", function() { return initPasswordFields; });
+/**
+ * Export this field so that it can be called in other files.
+ */
+function initPasswordFields() {
+  bindEvents();
+}
+/**
+ * Bind the events that are related to password field toggling.
+ */
+
+function bindEvents() {
+  $('body').on('click', '.password-toggler', togglePasswordField);
+}
+/**
+ * After the toggler has been clicked, show/hide the password
+ * in the input field.
+ */
+
+
+function togglePasswordField() {
+  var $inputField = $(this).closest('.password-toggler-container').find('input');
+
+  if ($inputField.attr('type') === 'text') {
+    $inputField.attr('type', 'password');
+    $(this).find('.fa-eye').removeClass('d-none');
+    $(this).find('.fa-eye-slash').addClass('d-none');
+  } else {
+    $inputField.attr('type', 'text');
+    $(this).find('.fa-eye').addClass('d-none');
+    $(this).find('.fa-eye-slash').removeClass('d-none');
+  }
+}
 
 /***/ }),
 
