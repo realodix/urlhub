@@ -1,4 +1,6 @@
 import './bootstrap';
+import 'jquery.typewatch';
+import 'jssocials';
 
 /**
  * Copy short url to clipboard
@@ -20,8 +22,6 @@ new ClipboardJS('.btn-clipboard').on('success', function() {
  *
  * https://github.com/dennyferra/TypeWatch
  */
-import 'jquery.typewatch';
-
 $(function() {
     $.ajaxSetup({
         headers: {
@@ -73,7 +73,6 @@ $(function() {
  * Social Share
  * https://github.com/tabalinas/jssocials
  */
-import 'jssocials';
 $("#jssocials").jsSocials({
     shareIn: "popup",
     showLabel: false,
