@@ -2,7 +2,7 @@
 
 @section('title', __('Login'))
 
-@section('css_class', 'auth-login')
+@section('css_class', 'auth')
 
 @section('content')
 <div class="container">

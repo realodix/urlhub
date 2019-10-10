@@ -2,7 +2,7 @@
 
 @section('title', __('Reset Password'))
 
-@section('css_class', 'auth-reset')
+@section('css_class', 'auth')
 
 @section('content')
 <div class="container">

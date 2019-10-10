@@ -131,9 +131,7 @@
 //
 // Login & Register
 //
-.auth-login, .auth-register,
-.auth-reset, .auth-email,
-.auth-confirm {
+.auth {
   background: $uh--bg-gray;
 
   .card {

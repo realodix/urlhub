@@ -9948,36 +9948,24 @@ img.jssocials-share-logo {
   padding: 0 5px;
 }
 
-.auth-login, .auth-register,
-.auth-reset, .auth-email,
-.auth-confirm {
+.auth {
   background: #f5f7fb;
 }
-.auth-login .card, .auth-register .card,
-.auth-reset .card, .auth-email .card,
-.auth-confirm .card {
+.auth .card {
   box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
   border: none;
 }
-.auth-login .form-control, .auth-register .form-control,
-.auth-reset .form-control, .auth-email .form-control,
-.auth-confirm .form-control {
+.auth .form-control {
   background: #f1f3f4;
   border-color: #f1f3f4;
 }
-.auth-login .form-control:hover, .auth-register .form-control:hover,
-.auth-reset .form-control:hover, .auth-email .form-control:hover,
-.auth-confirm .form-control:hover {
+.auth .form-control:hover {
   background: #e8eaed;
 }
-.auth-login .form-control:focus, .auth-register .form-control:focus,
-.auth-reset .form-control:focus, .auth-email .form-control:focus,
-.auth-confirm .form-control:focus {
+.auth .form-control:focus {
   box-shadow: none;
 }
-.auth-login .input-group-text, .auth-register .input-group-text,
-.auth-reset .input-group-text, .auth-email .input-group-text,
-.auth-confirm .input-group-text {
+.auth .input-group-text {
   background: #f1f3f4;
   border: none;
 }
