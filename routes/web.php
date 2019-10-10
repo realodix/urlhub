@@ -41,4 +41,4 @@ Route::namespace('Backend')->prefix('admin')->group(function () {
     });
 });
 
-Route::get('/{url_key}', 'UrlController@urlRedirection');
+Route::get('/{url_key}', 'UrlRedirectController');
