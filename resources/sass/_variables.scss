@@ -25,17 +25,17 @@ $uh--tertiary:  $uh--orange;
 // twbs/bootstrap
 //----------------------------------------------------------------------------
 
-$black:   $uh--black;
-$blue:    $uh--blue;
-$green:   $uh--green;
-$indigo:  $uh--indigo;
-$purple:  $uh--purple;
-$red:     $uh--red;
-$orange:  $uh--orange;
+$black:  $uh--black;
+$blue:   $uh--blue;
+$green:  $uh--green;
+$indigo: $uh--indigo;
+$purple: $uh--purple;
+$red:    $uh--red;
+$orange: $uh--orange;
 
 $primary:   $uh--primary;
 $secondary: $uh--secondary;
-$success:   $green;
+$success:   $uh--green;
 
 $theme-colors: ();
 $theme-colors: map.merge(
