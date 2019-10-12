@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Custom\Services\UrlRedirectionService;
+use App\Services\UrlRedirectionService;
 use App\Url;
-use DB;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class UrlRedirectController extends Controller
 {
     /**
-     * Handle the logging of the URL and redirect the
-     * user to the intended long URL.
+     * Handle the logging of the URL and redirect the user to the intended
+     * long URL.
      *
      * @param UrlRedirectionService $service
-     * @param string $url_key
+     * @param string                $url_key
      * @return RedirectResponse
      */
     public function __invoke(UrlRedirectionService $service, string $url_key)

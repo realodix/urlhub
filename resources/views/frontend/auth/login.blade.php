@@ -44,7 +44,7 @@
         </form>
       </div>
     </div>
-    <div class="card text-white bg-secondary py-5 d-none d-md-block" style="width:44%;">
+    <div class="card bg-primary text-white py-5 d-none d-md-block" style="width:44%;">
       <div class="card-body text-center">
         <div>
           <h2>@lang("Don't have an account?")</h2>

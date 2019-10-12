@@ -23,7 +23,7 @@ body {
 
   .navbar-nav {
     .nav-link {
-      color: #212529;
+      color: $uh--black;
     }
 
     #homepage-icon:hover {
@@ -48,24 +48,24 @@ body {
 .sidebar {
   .nav-link {
     &.active {
-      border-left: 4px solid $sidebar-nav-link-hover-color;
+      border-left: 4px solid $sidebar-nav-link-active-color;
     }
   }
 
   .nav-dropdown {
     &.open {
       .nav-link {
-        border-left: 4px solid $sidebar-nav-link-hover-color;
+        border-left: 4px solid $sidebar-nav-link-active-color;
       }
     }
 
     .nav-link {
       &.active {
-        border-left: 4px solid $sidebar-nav-link-hover-color;
+        border-left: 4px solid $sidebar-nav-link-active-color;
       }
 
       &:hover {
-        color: $sidebar-nav-link-hover-color;
+        color: $sidebar-nav-link-active-color;
       }
     }
   }
@@ -177,11 +177,11 @@ body {
       }
 
       tbody {
-        color: #262d37;
+        color: $uh--black;
 
         // Short & Long URL column
         a {
-          color: #262d37;
+          color: $uh--black;
         }
 
         .short_url {
@@ -287,4 +287,3 @@ body {
     background-color: #c5c7ca;
   }
 }
-
