@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Custom\Services\UrlRedirectionService;
 use App\Url;
-use Illuminate\Http\RedirectResponse;
 use DB;
+use Illuminate\Http\RedirectResponse;
 
 class UrlRedirectController extends Controller
 {
@@ -25,5 +25,4 @@ class UrlRedirectController extends Controller
             return $service->handleHttpRedirect($url);
         });
     }
-
 }
