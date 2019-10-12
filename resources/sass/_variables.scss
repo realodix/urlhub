@@ -15,7 +15,7 @@ $uh--orange:  #ff813f;
 
 $uh--bg-gray: #f5f7fb;
 
-$uh--primary:   $uh--indigo;
+$uh--primary:   $uh--blue;
 $uh--secondary: $uh--green;
 $uh--tertiary:  $uh--orange;
 
@@ -64,21 +64,21 @@ $table-accent-bg: rgba($uh--bg-gray, .05);
 //----------------------------------------------------------------------------
 
 $breadcrumb-borders: none;
+$footer-bg:          $uh--bg-gray;
+$footer-borders:     none;
 
-$sidebar-bg:                              $uh--black;
-$sidebar-nav-color:                       #eff3f6;
+$sidebar-bg:                              $uh--bg-gray;
+$sidebar-nav-color:                       $uh--black;
 $sidebar-nav-link-color:                  $sidebar-nav-color;
-$sidebar-nav-link-active-color:           $sidebar-nav-color;
-$sidebar-nav-link-active-bg:              color.adjust($uh--black, $lightness: -2%);
-$sidebar-nav-link-hover-color:            $uh--purple;
-$sidebar-nav-link-hover-bg:               color.adjust($uh--black, $lightness: -2%);
-$sidebar-nav-link-hover-icon-color:       $sidebar-nav-link-hover-color;
-$sidebar-nav-dropdown-bg:                 color.adjust($uh--black, $lightness: -2%);
+$sidebar-nav-link-active-color:           $uh--blue;
+$sidebar-nav-link-active-icon-color:      $sidebar-nav-link-active-color;
+$sidebar-nav-link-active-bg:              color.adjust($sidebar-bg, $lightness: -2%);
+$sidebar-nav-link-hover-color:            $sidebar-nav-link-active-color;
+$sidebar-nav-link-hover-bg:               color.adjust($sidebar-bg, $lightness: -2%);
+$sidebar-nav-link-hover-icon-color:       $sidebar-nav-link-active-color;
+$sidebar-nav-dropdown-bg:                 color.adjust($sidebar-bg, $lightness: -2%);
 $sidebar-nav-dropdown-color:              $sidebar-nav-color;
 $sidebar-nav-dropdown-indicator-color:    $sidebar-nav-link-color;
-$sidebar-minimizer-bg:                    $uh--black;
-$sidebar-minimizer-hover-bg:              color.adjust($uh--black, $lightness: -2%);
+$sidebar-minimizer-bg:                    $sidebar-bg;
+$sidebar-minimizer-hover-bg:              color.adjust($sidebar-bg, $lightness: -2%);
 $sidebar-minimizer-hover-indicator-color: $sidebar-nav-link-color;
-
-$footer-bg:      $uh--bg-gray;
-$footer-borders: none;
