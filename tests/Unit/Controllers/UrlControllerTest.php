@@ -5,7 +5,6 @@ namespace Tests\Unit\Controllers;
 use App\Rules\Lowercase;
 use App\Rules\URL\ShortUrlProtected;
 use App\Url;
-use App\UrlStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
@@ -138,33 +137,6 @@ class UrlControllerTest extends TestCase
         $url = Url::whereLongUrl($long_url)->first();
 
         $this->assertTrue($url->is_custom);
-    }
-
-    /**
-     * @test
-     * @covers ::urlRedirection
-     */
-    public function url_redirection()
-    {
-        $url = factory(Url::class)->create();
-
-        $response = $this->get(route('home').'/'.$url->url_key);
-        $response->assertRedirect($url->long_url);
-        $response->assertStatus(301);
-    }
-
-    /**
-     * URL statistic check.
-     *
-     * @test
-     * @covers ::urlRedirection
-     */
-    public function url_redirection_2()
-    {
-        $url = factory(Url::class)->create();
-
-        $response = $this->get(route('home').'/'.$url->url_key);
-        $this->assertCount(1, UrlStat::all());
     }
 
     /**
