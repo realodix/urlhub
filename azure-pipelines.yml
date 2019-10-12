@@ -36,8 +36,8 @@ steps:
 
 - script: |
     php artisan key:generate --env=testing
-  displayName: 'Running Laravel Artisanz'
+  displayName: 'Set Laravel Configuration'
 
 - script: |
     phpunit
-  displayName: 'Running Unit Tests'
+  displayName: 'Running PHPUnit'
