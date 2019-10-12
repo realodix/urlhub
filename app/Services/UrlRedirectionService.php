@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Custom\Services;
+namespace App\Services;
 
 use App\Url;
 use App\UrlStat;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Custom\Services\UrlRedirectionService;
+use App\Services\UrlRedirectionService;
 use App\Url;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
