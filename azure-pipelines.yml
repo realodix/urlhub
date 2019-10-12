@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  phpVersion: 7.2
+  phpVersion: 7.3
 
 steps:
 - script: |
@@ -23,18 +23,10 @@ steps:
   displayName: 'Use PHP version $(phpVersion)'
 
 - script: |
-    sudo apt-get install -y mysql-server
-    sudo mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-    sudo mysql -u root -e 'create database urlhub_test;'
+    apt-get install -y mysql-server
+    mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+    mysql -u root -e 'create database urlhub_test;'
   displayName: 'Installing System Dependencies'
-
-- script: |
-    mysql --version
-  displayName: 'MySQL Version'
-
-- bash: |
-    cp .env.example .env
-  displayName: 'Environment Setup'
 
 - script: |
     composer global require hirak/prestissimo
@@ -44,8 +36,8 @@ steps:
 
 - script: |
     php artisan key:generate --env=testing
-  displayName: 'Running Laravel Artisanz'
+  displayName: 'Set Laravel Configuration'
 
-- bash: |
+- script: |
     phpunit
-  displayName: 'Running Unit Tests'
+  displayName: 'Running PHPUnit'

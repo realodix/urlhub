@@ -8,6 +8,7 @@ use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Laravolt\Avatar\Facade as Avatar;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -63,7 +64,7 @@ class User extends Authenticatable
         }
 
         // Create unique avatar based on their email
-        return Avatar::create(title_case($this->email))->toBase64();
+        return Avatar::create(Str::title($this->email))->toBase64();
     }
 
     /*
@@ -77,8 +78,8 @@ class User extends Authenticatable
     }
 
     /*
-     * Count the number of guests in the url column based on IP
-     * and grouped by ip.
+     * Count the number of guests in the url column based on IP and grouped
+     * by ip.
      */
     public function totalGuest()
     {

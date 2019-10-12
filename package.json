@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
-    "dependencies": {
+    "devDependencies": {
         "@coreui/coreui": "^2.1.12",
         "@fortawesome/fontawesome-svg-core": "^1.2.21",
         "@fortawesome/free-brands-svg-icons": "^5.10.1",
@@ -17,24 +17,22 @@
         "@fortawesome/free-solid-svg-icons": "^5.10.1",
         "axios": "^0.19",
         "bootstrap": "^4.2.1",
+        "browser-sync": "^2.26.7",
+        "browser-sync-webpack-plugin": "^2.2.2",
         "clipboard": "^2.0.1",
+        "cross-env": "^6.0",
         "datatables.net-dt": "^1.10.19",
         "jquery": "^3.2",
         "jquery.typewatch": "^3.0.0",
         "jssocials": "^1.5.0",
+        "laravel-mix": "^5.0.0",
         "lodash": "^4.17.15",
         "perfect-scrollbar": "^1.4.0",
         "popper.js": "^1.14",
-        "vue": "^2.5.21",
-        "vue-template-compiler": "^2.6.10"
-    },
-    "devDependencies": {
-        "browser-sync": "^2.26.7",
-        "browser-sync-webpack-plugin": "^2.2.2",
-        "cross-env": "^5.1",
-        "laravel-mix": "^4.1.2",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.22.9",
-        "sass-loader": "^7.1.0"
+        "sass-loader": "^7.1.0",
+        "vue": "^2.5.21",
+        "vue-template-compiler": "^2.6.10"
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\Auth\CurrentPassword;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 class UpdateUserPassword extends FormRequest
 {
@@ -27,7 +28,7 @@ class UpdateUserPassword extends FormRequest
     {
         return [
             'current-password' => [new CurrentPassword],
-            'new-password'     => ['required', 'different:current-password', 'string', 'min:6', 'confirmed'],
+            'new-password'     => PasswordRules::changePassword('current-password'),
         ];
     }
 }

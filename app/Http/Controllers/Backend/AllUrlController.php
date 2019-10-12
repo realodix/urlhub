@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Url;
+use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
 
 class AllUrlController extends Controller
@@ -37,7 +38,7 @@ class AllUrlController extends Controller
             })
             ->editColumn('long_url', function ($url) {
                 return '
-                    <span title="'.$url->meta_title.'" data-toggle="tooltip">'.str_limit($url->meta_title, 90).'</span>
+                    <span title="'.$url->meta_title.'" data-toggle="tooltip">'.Str::limit($url->meta_title, 90).'</span>
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
             })

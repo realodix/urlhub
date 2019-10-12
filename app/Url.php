@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Traits\Hashidable;
+use Embed\Embed;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 
@@ -188,14 +189,14 @@ class Url extends Model
      */
     public function getTitle($url)
     {
-        if ($title = preg_match('/<title[^>]*>(.*?)<\/title>/ims', @file_get_contents($url), $matches)) {
-            return $matches[1];
-        } elseif ($domain = $this->getDomain($url)) {
-            // @codeCoverageIgnoreStart
-            return title_case($domain).' - '.__('No Title'); // @codeCoverageIgnoreEnd
-        } else {
-            return __('No Title');
+        try {
+            $embed = Embed::create($url);
+            $title = $embed->title;
+        } catch (\Exception $e) {
+            $title = 'No Title';
         }
+
+        return $title;
     }
 
     /**

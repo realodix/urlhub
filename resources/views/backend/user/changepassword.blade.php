@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', title_case(Auth::user()->name) .' ‹ '. __('Change Password'))
+@section('title', Str::title(Auth::user()->name) .' ‹ '. __('Change Password'))
 
 @section('content')
 
@@ -33,7 +33,15 @@
               <label for="new-password" class="col-sm-3 col-form-label">@lang('New Password')</label>
 
               <div class="col">
-                <input id="new-password" type="password" class="form-control" name="new-password" placeholder="Enter a new password" required>
+                <div class="input-group password-toggler-container">
+                  <input type="password" class="form-control" id="new-password" name="new-password" aria-label="Enter a new password" placeholder="Enter a new password" required>
+                  <div class="input-group-append">
+                    <span class="input-group-text password-toggler">
+                      <i class="fa fa-eye-slash"></i>
+                      <i class="fa fa-eye d-none"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -41,7 +49,15 @@
               <label for="new-password-confirm" class="col-sm-3 col-form-label">@lang('Confirmation')</label>
 
               <div class="col">
-                <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" placeholder="Retype the new password" required>
+                <div class="input-group password-toggler-container">
+                  <input type="password" class="form-control" id="new-password-confirm" name="new-password_confirmation" aria-label="Retype the new password" placeholder="Retype the new password" required>
+                  <div class="input-group-append">
+                    <span class="input-group-text password-toggler">
+                      <i class="fa fa-eye-slash"></i>
+                      <i class="fa fa-eye d-none"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 

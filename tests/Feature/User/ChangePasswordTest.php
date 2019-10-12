@@ -63,8 +63,10 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHas('flash_success');
 
         $this->assertTrue(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
+            Hash::check(
+                'new-awesome-password',
+                $user->fresh()->password
+            )
         );
     }
 
@@ -87,8 +89,10 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHas('flash_success');
 
         $this->assertTrue(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
+            Hash::check(
+                'new-awesome-password',
+                $user->fresh()->password
+            )
         );
     }
 
@@ -111,8 +115,10 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHasErrors('current-password');
 
         $this->assertFalse(
-            Hash::check('new-awesome-password',
-            $user->fresh()->password)
+            Hash::check(
+                'new-awesome-password',
+                $user->fresh()->password
+            )
         );
     }
 
@@ -138,8 +144,10 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHasErrors('new-password');
 
         $this->assertFalse(
-            Hash::check($data1,
-            $user->fresh()->password)
+            Hash::check(
+                $data1,
+                $user->fresh()->password
+            )
         );
     }
 
@@ -149,8 +157,12 @@ class ChangePasswordTest extends TestCase
             ['', ''], // required
             [$this->adminPassword(), $this->adminPassword()], // different
             [null, null], // string
-            [str_repeat('a', 5), str_repeat('a', 5)], // min:6
             ['new-password', 'new-pass-word'], // confirmed
+
+            // Laravel NIST Password Rules
+            ['new-awe', 'new-awe'], // min:8
+            [str_repeat('a', 9), str_repeat('a', 9)], // repetitive
+            ['12345678', '12345678'], // sequential
         ];
     }
 }

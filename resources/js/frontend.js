@@ -1,4 +1,6 @@
 import './bootstrap';
+import 'jquery.typewatch';
+import 'jssocials';
 
 /**
  * Copy short url to clipboard
@@ -20,8 +22,6 @@ new ClipboardJS('.btn-clipboard').on('success', function() {
  *
  * https://github.com/dennyferra/TypeWatch
  */
-import 'jquery.typewatch';
-
 $(function() {
     $.ajaxSetup({
         headers: {
@@ -44,15 +44,15 @@ $(function() {
                     $("#link-availability-status")
                         .removeClass("text-success")
                         .addClass("text-danger");
-                    document.getElementById("link-availability-status").innerHTML = data.errors[0];
+                    $("#link-availability-status").html(data.errors[0]);
                 } else {
                     $("#link-availability-status")
                         .removeClass("text-danger")
                         .addClass("text-success");
-                    document.getElementById("link-availability-status").innerHTML = data.success;
+                    $("#link-availability-status").html(data.success);
                 }
             }).fail(function (jqXHR, textStatus) {
-                document.getElementById("link-availability-status").innerHTML = "Hmm. We're having trouble connecting to the server.";
+                $("#link-availability-status").html("Hmm. We're having trouble connecting to the server.");
             });
 
             $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading..</span>');
@@ -73,7 +73,6 @@ $(function() {
  * Social Share
  * https://github.com/tabalinas/jssocials
  */
-import 'jssocials';
 $("#jssocials").jsSocials({
     shareIn: "popup",
     showLabel: false,

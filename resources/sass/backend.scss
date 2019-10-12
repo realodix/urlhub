@@ -1,12 +1,13 @@
-@import "../general";
+@use "mixins" as mixin;
 @import "variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~@coreui/coreui/scss/coreui-standalone";
+@import "bootstrap";
+@import "@coreui/coreui/scss/coreui-standalone";
 @import "~datatables.net-dt/css/jquery.dataTables.css";
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: $bg-gray;
+  background: $uh--bg-gray;
 }
 
 
@@ -22,11 +23,11 @@ body {
 
   .navbar-nav {
     .nav-link {
-      color: #212529;
+      color: $uh--black;
     }
 
     #homepage-icon:hover {
-      color: $primary;
+      color: $uh--primary;
     }
 
     .dropdown-item {
@@ -34,7 +35,7 @@ body {
       font-weight: 300;
 
       svg {
-        color: $primary;
+        color: $uh--primary;
       }
     }
   }
@@ -47,24 +48,24 @@ body {
 .sidebar {
   .nav-link {
     &.active {
-      border-left: 4px solid #4c94e3;
+      border-left: 4px solid $sidebar-nav-link-active-color;
     }
   }
 
   .nav-dropdown {
     &.open {
       .nav-link {
-        border-left: 4px solid #4c94e3;
+        border-left: 4px solid $sidebar-nav-link-active-color;
       }
     }
 
     .nav-link {
       &.active {
-        border-left: 4px solid #4c94e3;
+        border-left: 4px solid $sidebar-nav-link-active-color;
       }
 
       &:hover {
-        color: #fff;
+        color: $sidebar-nav-link-active-color;
       }
     }
   }
@@ -77,15 +78,15 @@ body {
 .right_now {
   .hint {
     .all {
-      color: $primary;
+      color: $uh--primary;
     }
 
     .me {
-      color: $secondary;
+      color: $uh--secondary;
     }
 
     .guest {
-      color: $orange;
+      color: $uh--tertiary;
     }
   }
 
@@ -95,19 +96,19 @@ body {
 
   &-text {
     &--primary {
-      color: $primary;
+      color: $uh--primary;
       font-size: 1.5rem;
       font-weight: 600;
     }
 
     &--secondary {
-      color: $secondary;
+      color: $uh--secondary;
       font-size: 1.5rem;
       font-weight: 600;
     }
 
     &--tertiary {
-      color: $orange;
+      color: $uh--tertiary;
       font-size: 1.5rem;
       font-weight: 600;
     }
@@ -119,7 +120,7 @@ body {
 // Card
 //
 .card {
-  @extend %box-shadow;
+  @include mixin.box-shadow;
   border: none;
 
   &.border-left {
@@ -162,11 +163,11 @@ body {
   table {
     &.dataTable {
       thead th {
-        background-color: $bg-gray;
+        background-color: $uh--bg-gray;
         color: #7b858e;
 
         &:hover {
-          color: $primary;
+          color: $uh--primary;
         }
       }
 
@@ -176,11 +177,11 @@ body {
       }
 
       tbody {
-        color: #262d37;
+        color: $uh--black;
 
         // Short & Long URL column
         a {
-          color: #262d37;
+          color: $uh--black;
         }
 
         .short_url {
@@ -198,15 +199,15 @@ body {
 
         .fa-eye:hover,
         .fa-user-edit:hover {
-          color: $green;
+          color: $uh--green;
         }
 
         .fa-trash-alt:hover {
-          color: $red;
+          color: $uh--red;
         }
 
         .fa-key:hover {
-          color: $orange;
+          color: $uh--orange;
         }
       }
     }
@@ -216,7 +217,7 @@ body {
     .paginate_button {
       &.current,
       &.current:hover {
-        color: $green !important;
+        color: $uh--green !important;
         font-weight: bold;
         background: none;
         border-color: transparent;
@@ -224,8 +225,8 @@ body {
 
       &:hover {
         color: #fff !important;
-        background: $green;
-        border-color: $green;
+        background: $uh--green;
+        border-color: $uh--green;
       }
     }
   }
@@ -245,12 +246,12 @@ body {
   border-color: #f1f3f4;
 
   &:focus {
-    border-color: $secondary;
+    border-color: $uh--secondary;
     box-shadow: none;
   }
 
   &#name:disabled {
-    color: $primary;
+    color: $uh--primary;
     font-weight: bold;
     background: #fff;
     border: none;
@@ -258,7 +259,7 @@ body {
 }
 
 .form-error-feedback {
-  color: $red;
+  color: $uh--red;
   font-size: 80%;
 }
 
@@ -272,4 +273,17 @@ body {
 //
 .statistics {
 
+}
+
+//
+// Password Toggler
+//
+.password-toggler {
+  border: none;
+  transition: 0.1s all ease-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c5c7ca;
+  }
 }

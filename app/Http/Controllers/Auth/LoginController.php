@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 class LoginController extends Controller
 {
@@ -80,29 +81,23 @@ class LoginController extends Controller
     // }
 
     /**
-     * Validate the user login.
+     * Validate the user login request.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
+     * @return void
      */
     protected function validateLogin(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-                'identity' => 'required|string',
-                'password' => 'required|string',
-            ],
-            [
-                'identity.required' => 'Username or email is required',
-                'password.required' => 'Password is required',
-            ]
-        );
+        $request->validate([
+            'identity' => 'required|string',
+            'password' => PasswordRules::login(),
+        ]);
     }
 
     /**
      * Get the failed login response instance.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Illuminate\Validation\ValidationException
