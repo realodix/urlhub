@@ -16,13 +16,6 @@ try {
 
 
 /**
- * This bootstrap file is used for both frontend and backend
- */
-
-import 'bootstrap';
-
-
-/**
  * Font Awesome >=5.1
  *
  * Is recommended import just the icons that you use, for decrease considerably the file size.
