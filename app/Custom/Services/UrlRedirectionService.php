@@ -16,6 +16,7 @@ class UrlRedirectionService
 
     /**
      * UrlRedirectionService constructor.
+     *
      * @param Agent|null $agent
      */
     public function __construct(Agent $agent = null)
@@ -24,8 +25,7 @@ class UrlRedirectionService
     }
 
     /**
-     * Handle the HTTP redirect and return the redirect
-     * response.
+     * Handle the HTTP redirect and return the redirect response.
      *
      * @param Url $url
      * @return RedirectResponse
@@ -41,7 +41,7 @@ class UrlRedirectionService
     /**
      * Create the UrlStat and store it in the database.
      *
-     * @param Url $url
+     * @param Url   $url
      * @param array $countries
      */
     private function createUrlStat(Url $url, array $countries)
