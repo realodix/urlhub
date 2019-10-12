@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\StoreUrl;
 use App\Rules\Lowercase;
 use App\Rules\URL\ShortUrlProtected;
 use App\Url;
-use App\UrlStat;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Jenssegers\Agent\Agent;
 
 class UrlController extends Controller
 {
@@ -34,10 +34,10 @@ class UrlController extends Controller
     /**
      * Store the data the user sent to create the Short URL.
      *
-     * @param \App\Http\Requests\StoreUrl $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreUrl $request
+     * @return RedirectResponse
      */
-    public function create(Requests\StoreUrl $request)
+    public function create(StoreUrl $request)
     {
         $url_key = $request->custom_url_key ?? $this->url->key_generator();
 
@@ -54,38 +54,10 @@ class UrlController extends Controller
     }
 
     /**
-     * @param string $url_key
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function urlRedirection($url_key)
-    {
-        $agent = new Agent();
-        $url = Url::whereUrlKey($url_key)->firstOrFail();
-        $countries = getCountries(request()->ip());
-
-        Url::whereUrlKey($url_key)->increment('clicks');
-
-        UrlStat::create([
-            'url_id'           => $url->id,
-            'referer'          => request()->server('HTTP_REFERER') ?? null,
-            'ip'               => request()->ip(),
-            'device'           => $agent->device(),
-            'platform'         => $agent->platform(),
-            'platform_version' => $agent->version($agent->platform()),
-            'browser'          => $agent->browser(),
-            'browser_version'  => $agent->version($agent->browser()),
-            'country'          => $countries['countryCode'],
-            'country_full'     => $countries['countryName'],
-        ]);
-
-        return redirect()->away($url->long_url, 301);
-    }
-
-    /**
      * Check if the Custom URL already exists. Response to an AJAX request.
      *
-     * @param \App\Http\Requests $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
      */
     public function checkExistingCustomUrl(Request $request)
     {
