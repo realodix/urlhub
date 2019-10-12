@@ -10,7 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  phpVersion: 7.2
   phpVersion: 7.3
 
 steps:
@@ -39,6 +38,6 @@ steps:
     php artisan key:generate --env=testing
   displayName: 'Running Laravel Artisanz'
 
-- bash: |
+- script: |
     phpunit
   displayName: 'Running Unit Tests'
