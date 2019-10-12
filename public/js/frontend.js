@@ -126,13 +126,13 @@ $(function () {
       }).done(function (data) {
         if (data.errors) {
           $("#link-availability-status").removeClass("text-success").addClass("text-danger");
-          document.getElementById("link-availability-status").innerHTML = data.errors[0];
+          $("#link-availability-status").html(data.errors[0]);
         } else {
           $("#link-availability-status").removeClass("text-danger").addClass("text-success");
-          document.getElementById("link-availability-status").innerHTML = data.success;
+          $("#link-availability-status").html(data.success);
         }
       }).fail(function (jqXHR, textStatus) {
-        document.getElementById("link-availability-status").innerHTML = "Hmm. We're having trouble connecting to the server.";
+        $("#link-availability-status").html("Hmm. We're having trouble connecting to the server.");
       });
       $('#link-availability-status').html('<span><i class="fa fa-spinner"></i> Loading..</span>');
     },
