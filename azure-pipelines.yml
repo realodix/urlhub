@@ -1,0 +1,44 @@
+# PHP
+# Test and package your PHP project.
+# Add steps that run tests, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/php
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  phpVersion: 7.2
+  phpVersion: 7.3
+
+steps:
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+    php -version
+  displayName: 'Use PHP version $(phpVersion)'
+
+- script: |
+    apt-get install -y mysql-server
+    mysql -uroot -proot -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+    mysql -u root -e 'create database urlhub_test;'
+  displayName: 'Installing System Dependencies'
+
+- script: |
+    composer global require hirak/prestissimo
+    composer install --no-interaction --prefer-dist --no-suggest
+    composer --version
+  displayName: 'Installing Package Dependencies'
+
+- script: |
+    php artisan key:generate --env=testing
+  displayName: 'Running Laravel Artisanz'
+
+- bash: |
+    phpunit
+  displayName: 'Running Unit Tests'
