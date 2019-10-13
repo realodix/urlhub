@@ -9,7 +9,7 @@ class NumHlpTest extends TestCase
 {
     /**
      * @test
-     * @group helper
+     * @group u-helper
      * @dataProvider readableInt
      */
     public function readable_int($expected, $actual)
@@ -56,7 +56,7 @@ class NumHlpTest extends TestCase
 
     /**
      * @test
-     * @group helper
+     * @group u-helper
      * @dataProvider numberFormatPrecision
      */
     public function number_format_precision($expected, $actual, $precision = 2)

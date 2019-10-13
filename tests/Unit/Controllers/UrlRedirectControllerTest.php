@@ -10,6 +10,7 @@ class UrlRedirectControllerTest extends TestCase
 {
     /**
      * @test
+     * @group u-controller
      */
     public function url_redirection()
     {

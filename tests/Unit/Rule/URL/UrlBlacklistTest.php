@@ -25,9 +25,9 @@ class UrlBlacklistTest extends TestCase
     }
 
     /**
+     * @group u-rule
      * @covers ::passes
      * @dataProvider UrlBlacklistPass
-     * @return void
      */
     public function testUrlBlacklistPass($value)
     {
@@ -35,9 +35,9 @@ class UrlBlacklistTest extends TestCase
     }
 
     /**
+     * @group u-rule
      * @covers ::passes
      * @dataProvider UrlBlacklistFail
-     * @return void
      */
     public function testUrlBlacklistFail($value)
     {
@@ -58,9 +58,6 @@ class UrlBlacklistTest extends TestCase
         ];
     }
 
-    /**
-     * @return void
-     */
     public function UrlBlacklistFail()
     {
         return [

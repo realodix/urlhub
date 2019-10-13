@@ -13,6 +13,7 @@ class UrlStatTest extends TestCase
 {
     /**
      * @test
+     * @group u-model
      * @covers ::url
      */
     public function belongs_to_url()

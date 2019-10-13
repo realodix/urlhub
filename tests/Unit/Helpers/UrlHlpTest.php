@@ -8,7 +8,7 @@ class UrlHlpTest extends TestCase
 {
     /**
      * @test
-     * @group helper
+     * @group u-helper
      */
     public function url_limit()
     {
@@ -30,7 +30,7 @@ class UrlHlpTest extends TestCase
 
     /**
      * @test
-     * @group helper
+     * @group u-helper
      * @dataProvider removeSchemes
      */
     public function remove_schemes($expected, $actual)

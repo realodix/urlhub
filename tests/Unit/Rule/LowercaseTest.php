@@ -17,7 +17,7 @@ class LowercaseTest extends TestCase
     }
 
     /**
-     * @return void
+     * @group u-rule
      */
     public function testLowercasePass()
     {
@@ -26,7 +26,7 @@ class LowercaseTest extends TestCase
     }
 
     /**
-     * @return void
+     * @group u-rule
      */
     public function testLowercaseFail()
     {

@@ -30,6 +30,7 @@ class UserTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::url
      */
     public function has_many_url()
@@ -48,6 +49,7 @@ class UserTest extends TestCase
      * see setUp() method on Tests\Support\Authentication class.
      *
      * @test
+     * @group u-model
      * @covers ::totalUser
      */
     public function totalUser()
@@ -62,6 +64,7 @@ class UserTest extends TestCase
      * see setUp() method on this class.
      *
      * @test
+     * @group u-model
      * @covers ::totalGuest
      */
     public function totalGuest()

@@ -18,7 +18,7 @@ class CurrentPasswordTest extends TestCase
     }
 
     /**
-     * @return void
+     * @group u-rule
      */
     public function testCurrentPasswordPass()
     {
@@ -26,7 +26,7 @@ class CurrentPasswordTest extends TestCase
     }
 
     /**
-     * @return void
+     * @group u-rule
      */
     public function testCurrentPasswordFail()
     {
