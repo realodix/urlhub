@@ -26,7 +26,6 @@
 
 @include('backend.partials.footer')
 
-{{-- CoreUI and necessary plugins --}}
 {!! script(mix('js/manifest.js')) !!}
 {!! script(mix('js/vendor.js')) !!}
 {!! script(mix('js/backend.js')) !!}
