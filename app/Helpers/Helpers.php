@@ -7,13 +7,13 @@ use CodeItNow\BarcodeBundle\Utils\QrCode;
 use GeoIp2\Database\Reader;
 
 /*
-|--------------------------------------------------------------------------
+|------------------------------------------------------------------------------
 | Global Helpers
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------------------
 |
-| Here is where you can register helper functions for your application.
-| These helper functions can be uesed anywhere in you application.
-| Now create something great!
+| Here is where you can register helper functions for your application. These
+| helper functions can be uesed anywhere in you application. Now create
+| something great!
 |
 */
 
