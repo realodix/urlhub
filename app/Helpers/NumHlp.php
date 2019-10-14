@@ -12,7 +12,7 @@ class NumHlp
      * @param int $n
      * @return string
      */
-    public function readable_int(int $n)
+    public function number_format_short(int $n)
     {
         if ($n >= 0 && $n < pow(10, 3)) {
             // 1 - 999

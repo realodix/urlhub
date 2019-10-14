@@ -12,11 +12,11 @@ class NumHlpTest extends TestCase
      * @group u-helper
      * @dataProvider readableInt
      */
-    public function readable_int($expected, $actual)
+    public function number_format_short($expected, $actual)
     {
-        $this->assertSame($expected, readable_int($actual));
+        $this->assertSame($expected, number_format_short($actual));
 
-        $int_or_str = readable_int($actual);
+        $int_or_str = number_format_short($actual);
 
         if (is_int($int_or_str)) {
             $this->assertIsInt($int_or_str);

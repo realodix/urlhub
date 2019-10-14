@@ -20,10 +20,10 @@ use GeoIp2\Database\Reader;
 /*
  * Num Helpers
  */
-if (! function_exists('readable_int')) {
-    function readable_int($value)
+if (! function_exists('number_format_short')) {
+    function number_format_short($value)
     {
-        return resolve(NumHlp::class)->readable_int($value);
+        return resolve(NumHlp::class)->number_format_short($value);
     }
 }
 
