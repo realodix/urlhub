@@ -48,7 +48,7 @@
       <div class="card-body text-center">
         <div>
           <h2>@lang("Don't have an account?")</h2>
-          <a class="btn btn-tertiary active mt-3" href="{{ route('register') }}">@lang('Register Now!')</a>
+          <a class="btn btn-secondary active mt-3" href="{{ route('register') }}">@lang('Register Now!')</a>
         </div>
       </div>
     </div>
