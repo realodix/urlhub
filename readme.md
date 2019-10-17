@@ -8,7 +8,7 @@
 [![Build Status](https://travis-ci.org/realodix/urlhub.svg?branch=master)](https://travis-ci.org/realodix/urlhub)
 [![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub)
 
-> **Warning: UrlHub is under heavy development** and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
+> **Warning: UrlHub is still in development**, constantly being optimized and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
 
 UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
