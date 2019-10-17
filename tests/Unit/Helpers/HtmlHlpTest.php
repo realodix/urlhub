@@ -7,14 +7,14 @@ use Tests\TestCase;
 
 class HtmlHlpTest extends TestCase
 {
- /**
+    /**
      * @test
      * @group u-helper
      */
     public function script()
     {
         $script = script('foo');
-        $html = new HtmlString('<script src="'. url('/') .'/foo"></script>');
+        $html = new HtmlString('<script src="'.url('/').'/foo"></script>');
 
         $this->assertEquals($script, $html->toHtml().PHP_EOL);
     }
@@ -26,7 +26,7 @@ class HtmlHlpTest extends TestCase
     public function style()
     {
         $style = style('foo');
-        $html = new HtmlString('<link media="all" type="text/css" rel="stylesheet" href="'. url('/') .'/foo">');
+        $html = new HtmlString('<link media="all" type="text/css" rel="stylesheet" href="'.url('/').'/foo">');
 
         $this->assertEquals($style, $html->toHtml().PHP_EOL);
     }
