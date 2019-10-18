@@ -103,12 +103,8 @@ class UrlControllerTest extends TestCase
             'custom_url_key' => $custom_url,
         ]);
 
-        $this->assertGreaterThan(
-            config('urlhub.hash_size_1'),
-            strlen($custom_url)
-        );
-
         $url = Url::whereLongUrl($long_url)->first();
+        $this->assertSame($custom_url, $url->url_key);
         $this->assertTrue($url->is_custom);
     }
 
