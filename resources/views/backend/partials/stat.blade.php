@@ -10,13 +10,13 @@
       <div class="card-body">
         <div class="row">
           <div class="col-4"><b>@lang('Capacity')</b></div>
-          <div class="col"><span title="{{number_format($capacity)}}" data-toggle="tooltip">{{readable_int($capacity)}}</span></div>
+          <div class="col"><span title="{{number_format($capacity)}}" data-toggle="tooltip">{{number_format_short($capacity)}}</span></div>
         </div>
         <div class="row">
           <div class="col-4"><b>@lang('Remaining')</b></div>
           <div class="col">
             <span title="{{number_format($remaining)}}" data-toggle="tooltip">
-              {{readable_int($remaining)}}
+              {{number_format_short($remaining)}}
               @if ($capacity == 0)
                 (0%)
               @else
@@ -34,19 +34,19 @@
         <div class="row">
           <div class="col-4">
             <div class="right_now-text--primary">
-              <span title="{{number_format($totalShortUrl)}}" data-toggle="tooltip">{{readable_int($totalShortUrl)}}</span>
+              <span title="{{number_format($totalShortUrl)}}" data-toggle="tooltip">{{number_format_short($totalShortUrl)}}</span>
             </div>
             <div class="right_now-label">@lang('Urls Shortened')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--secondary">
-              <span title="{{number_format($totalShortUrlByMe)}}" data-toggle="tooltip">{{readable_int($totalShortUrlByMe)}}</span>
+              <span title="{{number_format($totalShortUrlByMe)}}" data-toggle="tooltip">{{number_format_short($totalShortUrlByMe)}}</span>
             </div>
             <div class="right_now-label">@lang('Urls Shortened')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--tertiary">
-              <span title="{{number_format($totalShortUrlByGuest)}}" data-toggle="tooltip">{{readable_int($totalShortUrlByGuest)}}</span>
+              <span title="{{number_format($totalShortUrlByGuest)}}" data-toggle="tooltip">{{number_format_short($totalShortUrlByGuest)}}</span>
             </div>
             <div class="right_now-label">@lang('Urls Shortened')</div>
           </div>
@@ -63,13 +63,13 @@
         <div class="row">
           <div class="col-6">
             <div class="right_now-text--primary">
-              <span title="{{number_format($totalUser)}}" data-toggle="tooltip">{{readable_int($totalUser)}}</span>
+              <span title="{{number_format($totalUser)}}" data-toggle="tooltip">{{number_format_short($totalUser)}}</span>
             </div>
             <div class="right_now-label">@lang('Registered Users')</div>
           </div>
           <div class="col-6">
             <div class="right_now-text--primary">
-              <span title="{{number_format($totalGuest)}}" data-toggle="tooltip">{{readable_int($totalGuest)}}</span>
+              <span title="{{number_format($totalGuest)}}" data-toggle="tooltip">{{number_format_short($totalGuest)}}</span>
             </div>
             <div class="right_now-label">@lang('Guest')</div>
           </div>
@@ -84,19 +84,19 @@
         <div class="row">
           <div class="col-4">
             <div class="right_now-text--primary">
-              <span title="{{number_format($totalClicks)}}" data-toggle="tooltip">{{readable_int($totalClicks)}}</span>
+              <span title="{{number_format($totalClicks)}}" data-toggle="tooltip">{{number_format_short($totalClicks)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--secondary">
-              <span title="{{number_format($totalClicksByMe)}}" data-toggle="tooltip">{{readable_int($totalClicksByMe)}}</span>
+              <span title="{{number_format($totalClicksByMe)}}" data-toggle="tooltip">{{number_format_short($totalClicksByMe)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--tertiary">
-              <span title="{{number_format($totalClicksByGuest)}}" data-toggle="tooltip">{{readable_int($totalClicksByGuest)}}</span>
+              <span title="{{number_format($totalClicksByGuest)}}" data-toggle="tooltip">{{number_format_short($totalClicksByGuest)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
@@ -112,7 +112,7 @@
       <div class="card border-left">
       <div class="card-body">
         <div class="right_now-text--primary">
-          <span title="{{number_format($totalShortUrlByMe)}}" data-toggle="tooltip">{{readable_int($totalShortUrlByMe)}}</span>
+          <span title="{{number_format($totalShortUrlByMe)}}" data-toggle="tooltip">{{number_format_short($totalShortUrlByMe)}}</span>
         </div>
         <div class="right_now-label">@lang('Urls Shortened')</div>
       </div>
@@ -122,7 +122,7 @@
       <div class="card border-left">
       <div class="card-body">
         <div class="right_now-text--primary">
-          <span title="{{number_format($totalClicksByMe)}}" data-toggle="tooltip">{{readable_int($totalClicksByMe)}}</span>
+          <span title="{{number_format($totalClicksByMe)}}" data-toggle="tooltip">{{number_format_short($totalClicksByMe)}}</span>
         </div>
         <div class="right_now-label">@lang('Clicks & Redirects')</div>
       </div>

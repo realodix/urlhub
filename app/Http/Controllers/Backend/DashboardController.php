@@ -67,7 +67,7 @@ class DashboardController extends Controller
             })
             ->editColumn('clicks', function ($url) {
                 return '
-                <span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.readable_int($url->clicks).'</span>';
+                <span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.number_format_short($url->clicks).'</span>';
             })
             ->editColumn('created_at', function ($url) {
                 return [

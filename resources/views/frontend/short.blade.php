@@ -16,7 +16,7 @@
       </li>
       <li class="list-inline-item">
         <i class="far fa-eye"></i>
-        <i><span title="{{number_format($url->clicks)}} clicks" data-toggle="tooltip">{{readable_int($url->clicks)}}</span></i>
+        <i><span title="{{number_format($url->clicks)}} clicks" data-toggle="tooltip">{{number_format_short($url->clicks)}}</span></i>
       </li>
     </ul>
     <div class="title">{!! $url->meta_title !!}</div>

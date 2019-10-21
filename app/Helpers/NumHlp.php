@@ -7,12 +7,12 @@ class NumHlp
     /**
      * Convert large positive numbers in to short form like 1K+, 100K+, 199K+,
      * 1M+, 10M+, 1B+ etc.
-     * Based on: {@link https://gist.github.com/RadGH/84edff0cc81e6326029c}.
+     * Based on: ({@link https://gist.github.com/RadGH/84edff0cc81e6326029c}).
      *
      * @param int $n
      * @return string
      */
-    public function readable_int(int $n)
+    public function number_format_short(int $n)
     {
         if ($n >= 0 && $n < pow(10, 3)) {
             // 1 - 999

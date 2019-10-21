@@ -167,16 +167,16 @@
         },
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
-            "version": "5.3.0",
+            "version": "5.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/davejamesmiller/laravel-breadcrumbs.git",
-                "reference": "1edeee4a77f467293aa5e5ea4a0b8f010216b8da"
+                "reference": "40a73bc9b32fbbee18938dc92228dea161365245"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/1edeee4a77f467293aa5e5ea4a0b8f010216b8da",
-                "reference": "1edeee4a77f467293aa5e5ea4a0b8f010216b8da",
+                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/40a73bc9b32fbbee18938dc92228dea161365245",
+                "reference": "40a73bc9b32fbbee18938dc92228dea161365245",
                 "shasum": ""
             },
             "require": {
@@ -222,7 +222,7 @@
             "keywords": [
                 "laravel"
             ],
-            "time": "2019-09-03T15:24:57+00:00"
+            "time": "2019-10-20T18:25:39+00:00"
         },
         {
             "name": "divineomega/do-file-cache",
@@ -1512,16 +1512,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.85",
+            "version": "v1.2.86",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "185ff3e00a5b7821eadfce8fe767fcd89193f578"
+                "reference": "1835311c4f458b2f59bbfec05ebfc64ac382b6ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/185ff3e00a5b7821eadfce8fe767fcd89193f578",
-                "reference": "185ff3e00a5b7821eadfce8fe767fcd89193f578",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/1835311c4f458b2f59bbfec05ebfc64ac382b6ee",
+                "reference": "1835311c4f458b2f59bbfec05ebfc64ac382b6ee",
                 "shasum": ""
             },
             "require": {
@@ -1557,7 +1557,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2019-10-05T13:27:35+00:00"
+            "time": "2019-10-15T20:54:57+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -1680,16 +1680,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.2.0",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cacce5a77fa94793cf25345d67387632134d75dd"
+                "reference": "80914c430fb5e49f492812d704ba6aeec03d80a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cacce5a77fa94793cf25345d67387632134d75dd",
-                "reference": "cacce5a77fa94793cf25345d67387632134d75dd",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/80914c430fb5e49f492812d704ba6aeec03d80a2",
+                "reference": "80914c430fb5e49f492812d704ba6aeec03d80a2",
                 "shasum": ""
             },
             "require": {
@@ -1822,7 +1822,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-10-08T12:50:06+00:00"
+            "time": "2019-10-15T13:38:24+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1954,16 +1954,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.55",
+            "version": "1.0.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6"
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/33c91155537c6dc899eacdc54a13ac6303f156e6",
-                "reference": "33c91155537c6dc899eacdc54a13ac6303f156e6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
                 "shasum": ""
             },
             "require": {
@@ -2034,7 +2034,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-08-24T11:17:19+00:00"
+            "time": "2019-10-16T21:01:05+00:00"
         },
         {
             "name": "maxmind-db/reader",
@@ -2274,16 +2274,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.1",
+            "version": "2.25.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
+                "reference": "d07636581795383e2fea2d711212d30f941f2039"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d07636581795383e2fea2d711212d30f941f2039",
+                "reference": "d07636581795383e2fea2d711212d30f941f2039",
                 "shasum": ""
             },
             "require": {
@@ -2337,7 +2337,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-05T15:52:23+00:00"
+            "time": "2019-10-20T11:05:44+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2454,16 +2454,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.4.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "60a97fff133b1669a5b1776aa8ab06db3f3962b7"
+                "reference": "e79f851749c3caa836d7ccc01ede5828feb762c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/60a97fff133b1669a5b1776aa8ab06db3f3962b7",
-                "reference": "60a97fff133b1669a5b1776aa8ab06db3f3962b7",
+                "url": "https://api.github.com/repos/opis/closure/zipball/e79f851749c3caa836d7ccc01ede5828feb762c7",
+                "reference": "e79f851749c3caa836d7ccc01ede5828feb762c7",
                 "shasum": ""
             },
             "require": {
@@ -2511,7 +2511,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2019-09-02T21:07:33+00:00"
+            "time": "2019-10-19T18:38:51+00:00"
         },
         {
             "name": "paragonie/certainty",
@@ -2684,16 +2684,16 @@
         },
         {
             "name": "paragonie/sodium_compat",
-            "version": "v1.11.1",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/sodium_compat.git",
-                "reference": "a9f968bc99485f85f9303a8524c3485a7e87bc15"
+                "reference": "8228b286d6b8fe24825f42ce02403f72656ac826"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/a9f968bc99485f85f9303a8524c3485a7e87bc15",
-                "reference": "a9f968bc99485f85f9303a8524c3485a7e87bc15",
+                "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/8228b286d6b8fe24825f42ce02403f72656ac826",
+                "reference": "8228b286d6b8fe24825f42ce02403f72656ac826",
                 "shasum": ""
             },
             "require": {
@@ -2701,7 +2701,7 @@
                 "php": "^5.2.4|^5.3|^5.4|^5.5|^5.6|^7|^8"
             },
             "require-dev": {
-                "phpunit/phpunit": "^3|^4|^5"
+                "phpunit/phpunit": "^3|^4|^5|^6|^7"
             },
             "suggest": {
                 "ext-libsodium": "PHP < 7.0: Better performance, password hashing (Argon2i), secure memory management (memzero), and better security.",
@@ -2762,7 +2762,7 @@
                 "secret-key cryptography",
                 "side-channel resistant"
             ],
-            "time": "2019-09-12T12:05:58+00:00"
+            "time": "2019-10-19T15:30:42+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -3468,16 +3468,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "3.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "5bac2326fe73c7da9a3ae07dcf5fb44224e45f6f"
+                "reference": "e3821559c69b2b1ea8fdd967fa89ba13a01ead78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/5bac2326fe73c7da9a3ae07dcf5fb44224e45f6f",
-                "reference": "5bac2326fe73c7da9a3ae07dcf5fb44224e45f6f",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/e3821559c69b2b1ea8fdd967fa89ba13a01ead78",
+                "reference": "e3821559c69b2b1ea8fdd967fa89ba13a01ead78",
                 "shasum": ""
             },
             "require": {
@@ -3488,7 +3488,7 @@
                 "php": "^7.2"
             },
             "require-dev": {
-                "orchestra/testbench": "^3.8",
+                "orchestra/testbench": "^3.8|^4.0",
                 "phpunit/phpunit": "^8.0",
                 "predis/predis": "^1.1"
             },
@@ -3532,7 +3532,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2019-09-02T14:57:53+00:00"
+            "time": "2019-10-16T19:25:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5441,16 +5441,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.11.1",
+            "version": "1.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "dc56111b19e160236084dc6ab460e9c08912ecac"
+                "reference": "862cbc2dfffa1fa28b47822a116e5b2e03b421db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/dc56111b19e160236084dc6ab460e9c08912ecac",
-                "reference": "dc56111b19e160236084dc6ab460e9c08912ecac",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/862cbc2dfffa1fa28b47822a116e5b2e03b421db",
+                "reference": "862cbc2dfffa1fa28b47822a116e5b2e03b421db",
                 "shasum": ""
             },
             "require": {
@@ -5508,7 +5508,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-10-08T07:36:31+00:00"
+            "time": "2019-10-13T10:42:06+00:00"
         },
         {
             "name": "filp/whoops",

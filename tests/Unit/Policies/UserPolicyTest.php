@@ -14,6 +14,7 @@ class UserPolicyTest extends TestCase
      * Admin can access their own the page and other user pages.
      *
      * @test
+     * @group u-policy
      * @covers ::view
      */
     public function view_admin()
@@ -30,6 +31,7 @@ class UserPolicyTest extends TestCase
      * Non-admin can only access their own page.
      *
      * @test
+     * @group u-policy
      * @covers ::view
      */
     public function view_non_admin()
@@ -46,6 +48,7 @@ class UserPolicyTest extends TestCase
      * Admin can change their own data and other user data.
      *
      * @test
+     * @group u-policy
      * @covers ::update
      */
     public function update_admin()
@@ -62,6 +65,7 @@ class UserPolicyTest extends TestCase
      * Non-admin can only change their own data.
      *
      * @test
+     * @group u-policy
      * @covers ::update
      */
     public function update_non_admin()
@@ -78,6 +82,7 @@ class UserPolicyTest extends TestCase
      * Admin can change their own data and other user data.
      *
      * @test
+     * @group u-policy
      * @covers ::updatePass
      */
     public function updatePass_admin()
@@ -94,6 +99,7 @@ class UserPolicyTest extends TestCase
      * Non-admin can only change their own data.
      *
      * @test
+     * @group u-policy
      * @covers ::updatePass
      */
     public function updatePass_non_admin()
@@ -119,6 +125,7 @@ class UserPolicyTest extends TestCase
 
     /**
      * @test
+     * @group u-policy
      * @covers ::view
      */
     public function admin_can_access_change_password_page()
@@ -131,6 +138,7 @@ class UserPolicyTest extends TestCase
 
     /**
      * @test
+     * @group u-policy
      * @covers ::view
      */
     public function non_admin_cant_access_change_password_page()
@@ -149,6 +157,7 @@ class UserPolicyTest extends TestCase
 
     /**
      * @test
+     * @group u-policy
      * @covers ::view
      */
     public function admin_can_access_all_users_page()

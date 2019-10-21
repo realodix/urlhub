@@ -45,6 +45,7 @@
 
       &:hover {
         background: color.adjust($uh--primary, $lightness: -10%);
+        color: #fff;
       }
 
       &:focus {
@@ -163,7 +164,7 @@
 // Navigation
 //
 .navbar {
-  background-color: $uh--blue !important;
+  background-color: color.adjust($uh--primary, $lightness: -10%) !important;
   box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
   padding: 0;
 
@@ -182,10 +183,6 @@
 
   &-nav {
     font-weight: 700;
-
-    .nav-link {
-      color: $uh--blue;
-    }
 
     .dropdown-item {
       font-size: 14px;

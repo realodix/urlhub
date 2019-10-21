@@ -8,6 +8,7 @@ class HelpersTest extends TestCase
 {
     /**
      * @test
+     * @group u-helper
      */
     public function getCountriesWithUnknownIp()
     {

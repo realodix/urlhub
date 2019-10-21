@@ -7,23 +7,23 @@ use CodeItNow\BarcodeBundle\Utils\QrCode;
 use GeoIp2\Database\Reader;
 
 /*
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------------------
 | Global Helpers
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------------------
 |
-| Here is where you can register helper functions for your application.
-| These helper functions can be uesed anywhere in you application.
-| Now create something great!
+| Here is where you can register helper functions for your application. These
+| helper functions can be uesed anywhere in you application. Now create
+| something great!
 |
 */
 
 /*
  * Num Helpers
  */
-if (! function_exists('readable_int')) {
-    function readable_int($value)
+if (! function_exists('number_format_short')) {
+    function number_format_short($value)
     {
-        return resolve(NumHlp::class)->readable_int($value);
+        return resolve(NumHlp::class)->number_format_short($value);
     }
 }
 

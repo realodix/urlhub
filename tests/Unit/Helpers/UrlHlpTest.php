@@ -6,7 +6,10 @@ use Tests\TestCase;
 
 class UrlHlpTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     * @group u-helper
+     */
     public function url_limit()
     {
         $this->assertSame(
@@ -27,6 +30,7 @@ class UrlHlpTest extends TestCase
 
     /**
      * @test
+     * @group u-helper
      * @dataProvider removeSchemes
      */
     public function remove_schemes($expected, $actual)

@@ -34,6 +34,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::user
      */
     public function belongs_to_user()
@@ -47,6 +48,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::user
      */
     public function default_guest_name()
@@ -60,6 +62,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::urlStat
      */
     public function has_many_url_stat()
@@ -77,6 +80,7 @@ class UrlTest extends TestCase
      * The default guest id must be null.
      *
      * @test
+     * @group u-model
      * @covers ::setUserIdAttribute
      */
     public function default_guest_id()
@@ -94,6 +98,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::setUserIdAttribute
      */
     public function setUserIdAttribute_must_be_null()
@@ -107,6 +112,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::setLongUrlAttribute
      */
     public function setLongUrlAttribute()
@@ -123,6 +129,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::getShortUrlAttribute
      */
     public function getShortUrlAttribute()
@@ -137,6 +144,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::totalShortUrl
      */
     public function total_short_url()
@@ -149,6 +157,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::totalShortUrlById
      */
     public function total_short_url_by_me()
@@ -161,6 +170,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::totalShortUrlById
      */
     public function total_short_url_by_guest()
@@ -173,6 +183,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::totalClicks
      */
     public function total_clicks()
@@ -185,6 +196,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::totalClicksById
      */
     public function total_clicks_by_me()
@@ -199,6 +211,7 @@ class UrlTest extends TestCase
      * The number of guests is calculated based on a unique IP.
      *
      * @test
+     * @group u-model
      * @covers ::totalClicksById
      */
     public function total_clicks_by_guest()
@@ -211,6 +224,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::url_key_capacity
      * @dataProvider urlKeyCapacityProvider
      */
@@ -244,6 +258,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::url_key_remaining
      */
     public function url_key_remaining()
@@ -264,6 +279,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::getTitle
      */
     public function getTitle()
@@ -277,6 +293,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     * @group u-model
      * @covers ::getDomain
      * @dataProvider getDomainProvider
      */
