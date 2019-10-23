@@ -130,8 +130,7 @@ class Url extends Model
 
         $urlKey = $generateId->formatedId($alphabet, $size1);
 
-        // If it is already used (not available), find the next available
-        // ending.
+        // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
         $link = self::whereUrlKey($urlKey)->first();
 
@@ -153,8 +152,8 @@ class Url extends Model
         $size1 = (int) config('urlhub.hash_size_1');
         $size2 = (int) config('urlhub.hash_size_2');
 
-        // If the hash size is filled with integers that do not match
-        // the rules, change the variable's value to 0.
+        // If the hash size is filled with integers that do not match the rules
+        // change the variable's value to 0.
         $size1 = ! ($size1 < 1) ? $size1 : 0;
         $size2 = ! ($size2 < 0) ? $size2 : 0;
 
