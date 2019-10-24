@@ -132,11 +132,6 @@ class Url extends Model
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-
-        // while (self::whereUrlKey($urlKey)->first()) {
-        //     $urlKey = $generateId->formatedId($alphabet, $size2);
-        // }
-
         do {
             $urlKey = $generateId->formatedId($alphabet, $size2);
         } while (self::whereUrlKey($urlKey)->first());
