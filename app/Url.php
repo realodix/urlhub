@@ -128,16 +128,18 @@ class Url extends Model
         }
         // @codeCoverageIgnoreEnd
 
-        $urlKey = $generateId->formatedId($alphabet, $size1);
+        // $urlKey = $generateId->formatedId($alphabet, $size1);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        $link = self::whereUrlKey($urlKey)->first();
 
-        while ($link) {
+        // while (self::whereUrlKey($urlKey)->first()) {
+        //     $urlKey = $generateId->formatedId($alphabet, $size2);
+        // }
+
+        do {
             $urlKey = $generateId->formatedId($alphabet, $size2);
-            $link = self::whereUrlKey($urlKey)->first();
-        }
+        } while (self::whereUrlKey($urlKey)->first());
         // @codeCoverageIgnoreEnd
 
         return $urlKey;
