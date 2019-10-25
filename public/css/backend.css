@@ -12507,21 +12507,21 @@ canvas {
   margin-top: 2px;
 }
 .sidebar .nav-link.active {
-  color: #3B5998;
+  color: #2188B6;
   background: #eef1f8;
 }
 .sidebar .nav-link.active .nav-icon {
-  color: #3B5998;
+  color: #2188B6;
 }
 .sidebar .nav-link:hover {
-  color: #3B5998;
+  color: #2188B6;
   background: #eef1f8;
 }
 .sidebar .nav-link:hover .nav-icon {
-  color: #3B5998;
+  color: #2188B6;
 }
 .sidebar .nav-link:hover.nav-dropdown-toggle::before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='%233B5998' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='%232188B6' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E");
 }
 .sidebar .nav-link.disabled {
   color: #b3b3b3;
@@ -12538,7 +12538,7 @@ canvas {
   color: #6c757d;
 }
 .sidebar .nav-link.disabled:hover.nav-dropdown-toggle::before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='%233B5998' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath fill='%232188B6' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/%3E%3C/svg%3E");
 }
 .sidebar .nav-link.nav-link-primary {
   background: #2188B6;
@@ -12831,7 +12831,7 @@ canvas {
     background: #eef1f8;
   }
   .sidebar-minimized .sidebar .nav-item:hover > .nav-link .nav-icon {
-    color: #3B5998;
+    color: #2188B6;
   }
   .sidebar-minimized .sidebar .nav-item:hover .nav-link.disabled,
 .sidebar-minimized .sidebar .nav-item:hover .nav-link :disabled {
@@ -15895,16 +15895,16 @@ body {
 }
 
 .sidebar .nav-link.active {
-  border-left: 4px solid #3B5998;
+  border-left: 4px solid #2188B6;
 }
 .sidebar .nav-dropdown.open .nav-link {
-  border-left: 4px solid #3B5998;
+  border-left: 4px solid #2188B6;
 }
 .sidebar .nav-dropdown .nav-link.active {
-  border-left: 4px solid #3B5998;
+  border-left: 4px solid #2188B6;
 }
 .sidebar .nav-dropdown .nav-link:hover {
-  color: #3B5998;
+  color: #2188B6;
 }
 
 .right_now .hint .all {
