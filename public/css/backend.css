@@ -454,7 +454,7 @@ table.dataTable td {
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 :root {
-  --blue: #3B5998;
+  --blue: #2188B6;
   --indigo: #3958c8;
   --purple: #546de5;
   --pink: #e83e8c;
@@ -10239,7 +10239,7 @@ h3 {
 }
 /*!
  * CoreUI - Open Source Dashboard UI Kit
- * @version v2.1.15
+ * @version v2.1.16
  * @link https://coreui.io
  * Copyright (c) 2018 creativeLabs Łukasz Holeczek
  * Licensed under MIT (https://coreui.io/license)
@@ -14529,13 +14529,13 @@ button.bg-vimeo:focus {
 }
 
 .bg-blue {
-  background-color: #3B5998 !important;
+  background-color: #2188B6 !important;
 }
 
 a.bg-blue:hover, a.bg-blue:focus,
 button.bg-blue:hover,
 button.bg-blue:focus {
-  background-color: #2d4373 !important;
+  background-color: #19688b !important;
 }
 
 .bg-indigo {
@@ -15830,7 +15830,7 @@ body {
 }
 
 .ie-custom-properties {
-  blue: #3B5998;
+  blue: #2188B6;
   indigo: #3958c8;
   purple: #546de5;
   pink: #e83e8c;
