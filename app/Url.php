@@ -128,8 +128,6 @@ class Url extends Model
         }
         // @codeCoverageIgnoreEnd
 
-        // $urlKey = $generateId->formatedId($alphabet, $size1);
-
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
         do {
