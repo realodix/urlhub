@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Url;
 use Embed\Embed;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class UrlController extends Controller
 {
@@ -27,21 +31,23 @@ class UrlController extends Controller
     /**
      * @codeCoverageIgnore
      * @param string $url_key
+     * @return Factory|View
      */
     public function view($url_key)
     {
-        $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $url = Url::with('urlStat')->whereUrlKey($url_key)->firstOrFail();
 
         $qrCode = qrCodeGenerator($url->short_url);
 
         try {
             $embed = Embed::create($url->long_url);
-        } catch (\Exception $error) {
+        } catch (Exception $error) {
             $embed = null;
         }
 
-        return view('frontend.short', compact(['url', 'qrCode']), [
+        return view('frontend.short', compact(['qrCode']), [
             'embedCode' => $embed->code ?? null,
+            'url' => $url
         ]);
     }
 
@@ -50,7 +56,7 @@ class UrlController extends Controller
      * duplicate it.
      *
      * @param string $url_key
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function duplicate($url_key)
     {
