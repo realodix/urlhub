@@ -105,11 +105,6 @@ class Url extends Model
         return self::whereUserId($id)->sum('clicks');
     }
 
-    /*
-     |
-     |
-     */
-
     /**
      * Generate an unique short URL using Nanoid.
      *
@@ -128,11 +123,15 @@ class Url extends Model
         }
         // @codeCoverageIgnoreEnd
 
+        $urlKey = $generateId->formatedId($alphabet, $size1);
+
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        do {
+        $link = self::whereUrlKey($urlKey)->first();
+        while ($link) {
             $urlKey = $generateId->formatedId($alphabet, $size2);
-        } while (self::whereUrlKey($urlKey)->first());
+            $link = self::whereUrlKey($urlKey)->first();
+        }
         // @codeCoverageIgnoreEnd
 
         return $urlKey;
