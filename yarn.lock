@@ -659,15 +659,15 @@
   resolved "https://registry.yarnpkg.com/@coreui/coreui-plugin-npm-postinstall/-/coreui-plugin-npm-postinstall-1.0.2.tgz#6daeb2ec786580d9c0849b05bc3e8d0222d5c463"
   integrity sha512-yeeoWp+bNS84nP1977Y8UCiQ9pssO+f4QuVj3i0/gYZFjjvOgxx0dnyWhtowD5sLYnCRMPlPpqyjwXze3SlkYg==
 
-"@coreui/coreui@^2.1.12":
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.12.tgz#778b03a59984becb5441410a7595f6a064d388cd"
-  integrity sha512-wO2olnHWyvzW6CHaiU4oRq/tomuuHItiifcyU40UBN00vACjBUH4kpxfhZGGjwM031GRZRL6LnAWzwZb9wg8Lw==
+"@coreui/coreui@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-2.1.16.tgz#93efb7d903bcd53092cc4bcc31ef8703de565457"
+  integrity sha512-1YOnQAlcX2bIgnaX3k9GKaN4lD+wKam7tdDfFj7/ZQTN1XG3dwDELHp4aagWQs78ix2CCO1LyeLrzGpsMcLW3Q==
   dependencies:
     "@coreui/coreui-plugin-npm-postinstall" "^1.0.2"
     bootstrap "^4.3.1"
-    core-js "^3.1.3"
-    regenerator-runtime "^0.13.2"
+    core-js "^3.3.4"
+    regenerator-runtime "^0.13.3"
 
 "@fortawesome/fontawesome-common-types@^0.2.25":
   version "0.2.25"
@@ -2046,10 +2046,10 @@ core-js-compat@^3.1.1:
     browserslist "^4.7.0"
     semver "^6.3.0"
 
-core-js@^3.1.3:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.3.2.tgz#cd42da1d7b0bb33ef11326be3a721934277ceb42"
-  integrity sha512-S1FfZpeBchkhyoY76YAdFzKS4zz9aOK7EeFaNA2aJlyXyA+sgqz6xdxmLPGXEAf0nF44MVN1kSjrA9Kt3ATDQg==
+core-js@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.3.4.tgz#6b0a23392958317bfb46e40b090529a923add669"
+  integrity sha512-BtibooaAmSOptGLRccsuX/dqgPtXwNgqcvYA6kOTTMzonRxZ+pJS4e+6mvVutESfXMeTnK8m3M+aBu3bkJbR+w==
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -6088,7 +6088,7 @@ regenerate@^1.2.1, regenerate@^1.4.0:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
   integrity sha512-1G6jJVDWrt0rK99kBjvEtziZNCICAuvIPkSiUFIQxVP06RCVpq3dmDo2oi6ABpYaDYaTRr67BEhL8r1wgEZZKg==
 
-regenerator-runtime@^0.13.2:
+regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.3:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
   integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
