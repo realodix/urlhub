@@ -6,7 +6,7 @@
 //----------------------------------------------------------------------------
 
 $uh--black:   #232d3b;
-$uh--blue:    #3B5998;
+$uh--blue:    #2ca5e0;
 $uh--green:   #1c9963;
 $uh--indigo:  #3958c8;
 $uh--purple:  #546de5;
@@ -15,7 +15,7 @@ $uh--orange:  #ff813f;
 
 $uh--bg-gray: #f5f7fb;
 
-$uh--primary:   $uh--indigo;
+$uh--primary:   $uh--blue;
 $uh--secondary: $uh--green;
 $uh--tertiary:  $uh--orange;
 
@@ -70,7 +70,7 @@ $footer-borders:     none;
 $sidebar-bg:                              $uh--bg-gray;
 $sidebar-nav-color:                       $uh--black;
 $sidebar-nav-link-color:                  $sidebar-nav-color;
-$sidebar-nav-link-active-color:           $uh--blue;
+$sidebar-nav-link-active-color:           $uh--primary;
 $sidebar-nav-link-active-icon-color:      $sidebar-nav-link-active-color;
 $sidebar-nav-link-active-bg:              color.adjust($sidebar-bg, $lightness: -2%);
 $sidebar-nav-link-hover-color:            $sidebar-nav-link-active-color;
