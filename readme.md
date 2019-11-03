@@ -10,6 +10,8 @@
 
 > **Warning: UrlHub is still in development**, constantly being optimized and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
 
+> **Whatever your idea, feel free to send a pull request** 😃
+
 UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
