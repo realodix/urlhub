@@ -21,7 +21,7 @@
         "jenssegers/agent": "^2.6",
         "langleyfoxall/laravel-nist-password-rules": "^4.1",
         "laravel/framework": "^6.4",
-        "laravel/tinker": "^1.0",
+        "laravel/tinker": "^2.0",
         "laravolt/avatar": "^3.0",
         "spatie/laravel-permission": "^3.0",
         "vinkla/hashids": "^7.0",
