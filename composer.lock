@@ -1891,16 +1891,16 @@
         },
         {
             "name": "laravolt/avatar",
-            "version": "3.0.1",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/avatar.git",
-                "reference": "a3e94f78dc92ec414dc8ff8abdfc51a2a048361b"
+                "reference": "e29718866393dd224e4dabf8a6b8b4c463d70314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/avatar/zipball/a3e94f78dc92ec414dc8ff8abdfc51a2a048361b",
-                "reference": "a3e94f78dc92ec414dc8ff8abdfc51a2a048361b",
+                "url": "https://api.github.com/repos/laravolt/avatar/zipball/e29718866393dd224e4dabf8a6b8b4c463d70314",
+                "reference": "e29718866393dd224e4dabf8a6b8b4c463d70314",
                 "shasum": ""
             },
             "require": {
@@ -1953,7 +1953,7 @@
                 "laravel",
                 "laravolt"
             ],
-            "time": "2019-12-04T15:12:14+00:00"
+            "time": "2019-12-25T11:01:45+00:00"
         },
         {
             "name": "league/flysystem",
@@ -5631,8 +5631,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
                 }
             ],
             "description": "php error handling for cool kids",
@@ -6886,18 +6886,18 @@
             "authors": [
                 {
                     "name": "Geert Bergman",
-                    "role": "Project Author",
-                    "homepage": "http://www.scrivo.org/"
+                    "homepage": "http://www.scrivo.org/",
+                    "role": "Project Author"
                 },
                 {
                     "name": "Vladimir Jimenez",
-                    "role": "Contributor",
-                    "homepage": "https://allejo.io"
+                    "homepage": "https://allejo.io",
+                    "role": "Contributor"
                 },
                 {
                     "name": "Martin Folkers",
-                    "role": "Contributor",
-                    "homepage": "https://twobrain.io"
+                    "homepage": "https://twobrain.io",
+                    "role": "Contributor"
                 }
             ],
             "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
@@ -7932,8 +7932,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "lead",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "lead"
                 }
             ],
             "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convenience and to simplify the usage of DOM.",
