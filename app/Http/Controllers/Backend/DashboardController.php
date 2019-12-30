@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUrl;
 use App\Url;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
-use App\Http\Requests\StoreUrl;
 
 class DashboardController extends Controller
 {

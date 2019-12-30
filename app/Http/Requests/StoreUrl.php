@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Rules\URL\UrlBlacklist;
+use App\Url;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Url;
 
 class StoreUrl extends FormRequest
 {
@@ -35,7 +35,7 @@ class StoreUrl extends FormRequest
                 'alpha_dash',
                 ($url)
                     ? 'unique:urls,url_key,' . $url->id
-                    : 'unique:urls,url_key'
+                    : 'unique:urls,url_key',
             ],
         ];
     }
