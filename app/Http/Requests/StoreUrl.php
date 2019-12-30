@@ -34,7 +34,7 @@ class StoreUrl extends FormRequest
                 'max:20',
                 'alpha_dash',
                 ($url)
-                    ? 'unique:urls,url_key,' . $url->id
+                    ? 'unique:urls,url_key,'.$url->id
                     : 'unique:urls,url_key',
             ],
         ];

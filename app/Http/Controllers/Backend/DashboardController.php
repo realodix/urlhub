@@ -131,7 +131,7 @@ class DashboardController extends Controller
 
     /**
      * Show the form for editing url.
-     * 
+     *
      * @param string $url_key
      * @return Factory|View
      */
