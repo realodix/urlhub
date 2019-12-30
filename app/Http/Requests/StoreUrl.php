@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Rules\URL\UrlBlacklist;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Url;
 
 class StoreUrl extends FormRequest
 {
@@ -24,9 +26,17 @@ class StoreUrl extends FormRequest
      */
     public function rules()
     {
+        $url = Auth::check() ? Url::whereUrlKey($this->input('custom_url_key'))->whereUserId(Auth::id())->first() : null;
         return [
             'long_url'       => ['required', 'url', 'max:65535', new UrlBlacklist],
-            'custom_url_key' => ['nullable', 'max:20', 'alpha_dash', 'unique:urls,url_key'],
+            'custom_url_key' => [
+                'nullable',
+                'max:20',
+                'alpha_dash',
+                ($url)
+                    ? 'unique:urls,url_key,' . $url->id
+                    : 'unique:urls,url_key'
+            ],
         ];
     }
 
