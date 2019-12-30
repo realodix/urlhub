@@ -27,6 +27,7 @@ class StoreUrl extends FormRequest
     public function rules()
     {
         $url = Auth::check() ? Url::whereUrlKey($this->input('custom_url_key'))->whereUserId(Auth::id())->first() : null;
+
         return [
             'long_url'       => ['required', 'url', 'max:65535', new UrlBlacklist],
             'custom_url_key' => [
