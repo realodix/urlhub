@@ -18,6 +18,8 @@ Route::namespace('Backend')->prefix('admin')->group(function () {
         Route::get('/myurl/getdata', 'DashboardController@getData');
         Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('dashboard.delete');
         Route::get('/duplicate/{url_key}', 'DashboardController@duplicate')->name('dashboard.duplicate');
+        Route::get('/edit/{url_key}', 'DashboardController@edit')->name('short_url.edit');
+        Route::post('/edit/{url_hashId}', 'DashboardController@update')->name('short_url.edit.post');
 
         // Statistics
         Route::get('/statistics', 'StatisticsController@view')->name('dashboard.stat');

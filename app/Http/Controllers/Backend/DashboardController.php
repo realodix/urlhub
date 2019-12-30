@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
+use App\Http\Requests\StoreUrl;
 
 class DashboardController extends Controller
 {
@@ -80,6 +81,7 @@ class DashboardController extends Controller
                 '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
                     <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->url_key).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
+                    <a role="button" class="btn" href="'.route('short_url.edit', $url->url_key).'" title="'.__('Edit').'" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
                     <a role="button" class="btn" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                  </div>';
             })
@@ -125,5 +127,41 @@ class DashboardController extends Controller
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
+    }
+
+    /**
+     * Show the form for editing url.
+     * 
+     * @param string $url_key
+     * @return Factory|View
+     */
+    public function edit($url_key)
+    {
+        $url = Url::with('urlStat')->whereUrlKey($url_key)->firstOrFail();
+
+        $this->authorize('updateUrl', $url);
+
+        return view('backend.edit', compact('url'));
+    }
+
+    /**
+     * Change specific url.
+     *
+     * @param \App\Http\Requests\StoreUrl $request
+     * @param \App\Url                             $url
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(StoreUrl $request, Url $url)
+    {
+        $this->authorize('updateUrl', $url);
+
+        $url->url_key = $request->input('custom_url_key');
+        $url->long_url = $request->input('long_url');
+        $url->save();
+
+        return redirect()->back()
+                         ->withFlashSuccess(__('Url changed successfuly !'));
     }
 }

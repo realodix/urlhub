@@ -73,6 +73,25 @@ class UrlBeTest extends TestCase
         $this->assertCount(2, Url::all());
     }
 
+    /** @test */
+    public function d_users_can_access_their_own_edit_urls_page()
+    {
+        $user_id = $this->admin()->id;
+
+        $url = factory(Url::class)->create([
+            'user_id' => $this->admin()->id,
+        ]);
+
+        $this->loginAsAdmin();
+
+        $response = $this->from(route('dashboard'))
+                         ->get(route('short_url.edit', $url->url_key));
+
+        $response->assertOk();
+
+        $this->assertCount(1, Url::all());
+    }
+
     /**
      * All URLs Page.
      */
