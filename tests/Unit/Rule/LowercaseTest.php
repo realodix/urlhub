@@ -9,7 +9,7 @@ class LowercaseTest extends TestCase
 {
     protected $rule;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
 
