@@ -13,7 +13,7 @@ class UrlTest extends TestCase
 {
     protected $url;
 
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
 
