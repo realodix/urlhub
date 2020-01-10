@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 
 trait Authentication
 {
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
 
