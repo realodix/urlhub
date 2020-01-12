@@ -11,7 +11,7 @@ use Tests\TestCase;
  */
 class UserTest extends TestCase
 {
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
 
