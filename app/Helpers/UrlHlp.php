@@ -30,9 +30,9 @@ class UrlHlp
     public function remove_schemes($value)
     {
         return str_replace([
-                    'http://',
-                    'https://',
-                    'www.',
-               ], '', $value);
+            'http://',
+            'https://',
+            'www.',
+        ], '', $value);
     }
 }
