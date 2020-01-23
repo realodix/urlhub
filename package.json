@@ -28,7 +28,7 @@
         "laravel-mix": "^5.0.0",
         "lodash": "^4.17.15",
         "perfect-scrollbar": "^1.4.0",
-        "popper.js": "^1.14",
+        "popper.js": "^1.16",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.22.9",
         "sass-loader": "^7.1.0",
