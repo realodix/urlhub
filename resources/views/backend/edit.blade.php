@@ -28,7 +28,7 @@
                 <div class="col">
                   <div class="input-group mb-3">
                       <div class="input-group-prepend">
-                          <span class="input-group-text" id="short-addon3">{{$_SERVER['SERVER_NAME']}}/</span>
+                          <span class="input-group-text" id="short-addon3">{{$_SERVER['SERVER_NAME'] ?? 'urlhub.test'}}/</span>
                       </div>
                       <input type="text" name="custom_url_key" class="form-control" id="short-url" aria-describedby="short-addon3" required value="{{$url->url_key}}">
                   </div>
