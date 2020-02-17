@@ -3580,16 +3580,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "3.6.0",
+            "version": "3.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "0a063ce206c7545737d19c1beda12003fc66e4e9"
+                "reference": "3aff5437b3e66e877dcc3158f6cfaaced8e468ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/0a063ce206c7545737d19c1beda12003fc66e4e9",
-                "reference": "0a063ce206c7545737d19c1beda12003fc66e4e9",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/3aff5437b3e66e877dcc3158f6cfaaced8e468ab",
+                "reference": "3aff5437b3e66e877dcc3158f6cfaaced8e468ab",
                 "shasum": ""
             },
             "require": {
@@ -3644,7 +3644,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2020-01-17T16:18:51+00:00"
+            "time": "2020-02-15T17:52:58+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -8034,8 +8034,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "lead",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "lead"
                 }
             ],
             "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convenience and to simplify the usage of DOM.",
