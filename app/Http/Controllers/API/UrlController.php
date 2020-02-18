@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUrl;
 use App\Url;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
@@ -47,10 +48,10 @@ class UrlController extends Controller
             'ip'         => $request->ip(),
         ]);
 
-        return [
+        return response([
             'id'        => $url->id,
             'long_url'  => $url->long_url,
             'short_url' => url($url->url_key),
-        ];
+        ], Response::HTTP_CREATED);
     }
 }
