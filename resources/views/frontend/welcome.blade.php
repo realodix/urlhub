@@ -4,6 +4,16 @@
 
 @section('content')
 <div class="container home pt-5">
+  @if (!Auth::check() and !Config::get('app.allow_guest'))
+   <div class="row justify-content-md-center">
+    <div class="col-lg-8 text-center welcome-msg">Please login to shorten URLs</div>
+  </div>
+  <div class="row mt-5 justify-content-md-center">
+    <div class="col-lg-7">
+      @include('messages')
+    </div>
+  </div>
+  @else
   <div class="row justify-content-md-center">
     <div class="col-lg-8 text-center welcome-msg">Shorten links to better spread your story on social media</div>
   </div>
@@ -33,5 +43,6 @@
 
     </div>
   </div>
+  @endif
 </div>
 @endsection

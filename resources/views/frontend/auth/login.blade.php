@@ -44,6 +44,7 @@
         </form>
       </div>
     </div>
+	@if ( Config::get('app.public_register' ))
     <div class="card bg-primary text-white py-5 d-none d-md-block" style="width:44%;">
       <div class="card-body text-center">
         <div>
@@ -52,6 +53,7 @@
         </div>
       </div>
     </div>
+	@endif
   </div>
 
 </div>

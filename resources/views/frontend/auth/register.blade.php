@@ -11,6 +11,12 @@
 <div class="col-md-6">
 <div class="card mx-4">
   <div class="card-body p-4">
+  @if ( !Config::get('app.public_register') )
+  <div class="card-body p-4">
+    <h1>Not allowed to register</h1>
+    <p class="text-muted">Sorry, not allowed to register by administrator</p>
+  </div>
+  @else
     <form method="post" action="{{ route('register') }}" aria-label="@lang('Register')">
     @csrf
       <h1>@lang('Register')</h1>
@@ -54,6 +60,7 @@
       <button class="btn btn-block btn-success" type="submit">@lang('Create Account')</button>
     </form>
   </div>
+  @endif
 </div>
 </div>
 
