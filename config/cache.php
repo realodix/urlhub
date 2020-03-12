@@ -38,8 +38,7 @@ return [
         ],
 
         'array' => [
-            'driver'    => 'array',
-            'serialize' => false,
+            'driver' => 'array',
         ],
 
         'database' => [
