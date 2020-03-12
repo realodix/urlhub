@@ -20,7 +20,7 @@
         "hidehalo/nanoid-php": "^1.1",
         "jenssegers/agent": "^2.6",
         "langleyfoxall/laravel-nist-password-rules": "^4.1",
-        "laravel/framework": "^6.4",
+        "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravolt/avatar": "^3.0",
         "spatie/laravel-permission": "^3.0",
