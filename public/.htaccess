@@ -5,7 +5,7 @@
 
     RewriteEngine On
 
-    # Handle Authorization Header
+    # Send Requests To Front Controller...
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
