@@ -26,7 +26,7 @@
         "laravel/tinker": "^2.0",
         "laravolt/avatar": "^3.0",
         "spatie/laravel-permission": "^3.0",
-        "vinkla/hashids": "^7.0",
+        "vinkla/hashids": "^8.1",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
