@@ -103,6 +103,7 @@ $rules = [
     'phpdoc_var_without_name' => true,
     'psr4' => true, // @Symfony:risky, @PhpCsFixer:risky
     'return_type_declaration' => true,
+    'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
     'short_scalar_cast' => true,
     'simplified_null_return' => true,
     'single_blank_line_at_eof' => true,
@@ -128,7 +129,6 @@ $rules = [
 
     // '@PSR2' => true,
     // 'new_with_braces' => true, // Hardly according to Laravel's rules
-    // 'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
 
     // Not yet found
     // - unix_line_endings
