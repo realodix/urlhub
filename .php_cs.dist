@@ -5,9 +5,9 @@ $rules = [
     'psr0' => false,
     'array_indentation' => true,
     'array_syntax' => ['syntax' => 'short'], // short_array_syntax
-    'binary_operator_spaces' => [
+    'binary_operator_spaces' => [ // unalign_equals (default)
         'operators' => [
-            '=>' => 'align'
+            '=>' => 'align' // custom
         ]
     ],
     'blank_line_after_namespace' => true,
