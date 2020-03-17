@@ -128,10 +128,6 @@ $rules = [
     // - unalign_equals
 ];
 
-$extra_rules = [
-
-];
-
 $excludes = [
     'bootstrap/cache',
     'config',
@@ -150,6 +146,5 @@ $finder = PhpCsFixer\Finder::create()
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules($rules)
-    ->setRules($extra_rules)
     ->setLineEnding("\r\n")
     ->setFinder($finder);
