@@ -123,6 +123,7 @@ $rules = [
     'visibility_required' => true, // property_visibility_required, method_visibility_required
     'whitespace_after_comma_in_array' => true,
 
+    // Custom rules
     'phpdoc_to_comment' => true,
 
     // '@PSR2' => true,
