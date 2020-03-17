@@ -99,7 +99,6 @@ $rules = [
     'phpdoc_scalar' => true,
     'phpdoc_single_line_var_spacing' => true,
     'phpdoc_summary' => true,
-    'phpdoc_to_comment' => true,
     'phpdoc_trim' => true,
     'phpdoc_types' => true,
     'phpdoc_var_without_name' => true,
@@ -123,6 +122,8 @@ $rules = [
     'unary_operator_spaces' => true,
     'visibility_required' => true, // property_visibility_required, method_visibility_required
     'whitespace_after_comma_in_array' => true,
+
+    'phpdoc_to_comment' => true,
 
     // '@PSR2' => true,
     // 'new_with_braces' => true, // Hardly according to Laravel's rules
