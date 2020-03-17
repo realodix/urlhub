@@ -216,11 +216,10 @@ class UrlFeTest extends TestCase
     }
 
     /*
-     |
-     | Custom Short URLs
-     |
-     |
-     */
+    |--------------------------------------------------------------------------
+    | Custom Short URLs
+    |--------------------------------------------------------------------------
+    */
 
     /** @test */
     public function cst_long_url_already_exist()

@@ -20,9 +20,11 @@ class UrlBeTest extends TestCase
         return route('dashboard.allurl.delete', \Hashids::connection(\App\Url::class)->encode($value));
     }
 
-    /**
-     * Dashboard Page.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Page
+    |--------------------------------------------------------------------------
+    */
 
     /** @test */
     public function d_can_access_page()
@@ -73,9 +75,11 @@ class UrlBeTest extends TestCase
         $this->assertCount(2, Url::all());
     }
 
-    /**
-     * All URLs Page.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | All URLs Page
+    |--------------------------------------------------------------------------
+    */
 
     /** @test */
     public function au_admin_can_access_this_page()
@@ -126,9 +130,11 @@ class UrlBeTest extends TestCase
         $this->assertCount(1, Url::all());
     }
 
-    /**
-     * All Users Page.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | All Users Page
+    |--------------------------------------------------------------------------
+    */
 
     /** @test */
     public function aus_admin_can_access_this_page()
@@ -148,9 +154,11 @@ class UrlBeTest extends TestCase
         $response->assertForbidden();
     }
 
-    /**
-     * Statistics Page.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Statistics Page
+    |--------------------------------------------------------------------------
+    */
 
     /** @test */
     public function stat_admin_can_access_this_page()
