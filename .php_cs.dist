@@ -9,7 +9,6 @@ $rules = [
     'blank_line_after_namespace' => true,
     'blank_line_after_opening_tag' => true,
     'blank_line_before_statement' => true, // blank_line_before_return
-    'braces' => true,
     'cast_spaces' => true,
     'class_attributes_separation' => true, // method_separation
     'class_definition' => true,
@@ -116,6 +115,10 @@ $rules = [
     // 'psr4' => true, // @Symfony:risky, @PhpCsFixer:risky
 ];
 
+$extra_rules = [
+    'braces' => true,
+];
+
 $excludes = [
     'bootstrap/cache',
     'config',
@@ -134,5 +137,6 @@ $finder = PhpCsFixer\Finder::create()
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules($rules)
+    ->setRules($extra_rules)
     ->setLineEnding("\r\n")
     ->setFinder($finder);
