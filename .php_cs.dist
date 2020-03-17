@@ -12,6 +12,7 @@ $rules = [
     'cast_spaces' => true,
     'class_attributes_separation' => true, // method_separation
     'class_definition' => true,
+    'compact_nullable_typehint' => true,
     'concat_space' => true,
     'constant_case' => true, // lowercase_constants
     'declare_equal_normalize' => true,
