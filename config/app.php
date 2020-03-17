@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'version'     => 'build.200226',
+    'version'     => 'build.200317',
     'name'        => env('APP_NAME', 'UrlHub'),
     'description' => env('APP_DESCRIPTION', 'Simplify your links'),
 
@@ -197,6 +197,7 @@ return [
         'File'         => Illuminate\Support\Facades\File::class,
         'Gate'         => Illuminate\Support\Facades\Gate::class,
         'Hash'         => Illuminate\Support\Facades\Hash::class,
+        'Http'         => Illuminate\Support\Facades\Http::class,
         'Lang'         => Illuminate\Support\Facades\Lang::class,
         'Log'          => Illuminate\Support\Facades\Log::class,
         'Mail'         => Illuminate\Support\Facades\Mail::class,
