@@ -112,12 +112,9 @@ class UserPolicyTest extends TestCase
         $this->assertFalse($user->can('updatePass', new User()));
     }
 
-    /*
-     *
-     * Change Password.
-     *
-     */
-
+    //
+    // Change Password.
+    //
     protected function getCPRoute($value)
     {
         return route('user.change-password', $value);
@@ -149,11 +146,9 @@ class UserPolicyTest extends TestCase
         $response->assertForbidden();
     }
 
-    /*
-     *
-     * ALl Users Page.
-     *
-     */
+    //
+    // ALl Users Page.
+    //
 
     /**
      * @test

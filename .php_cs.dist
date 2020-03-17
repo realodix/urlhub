@@ -18,7 +18,6 @@ $rules = [
     'full_opening_tag' => true,
     'function_declaration' => true,
     'function_typehint_space' => true,
-    'hash_to_slash_comment' => true,
     'heredoc_to_nowdoc' => true,
     'include' => true,
     'increment_style' => ['style' => 'post'], // post_increment
@@ -82,6 +81,7 @@ $rules = [
     'single_class_element_per_statement' => true,
     'single_import_per_statement' => true,
     'single_line_after_imports' => true,
+    'single_line_comment_style' => true,  // hash_to_slash_comment
     'single_quote' => true,
     'space_after_semicolon' => true,
     'standardize_not_equals' => true,
