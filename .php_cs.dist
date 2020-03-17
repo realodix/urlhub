@@ -131,7 +131,7 @@ $rules = [
     // 'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
 
     // Not yet found
-    // - unalign_equals
+    // - unix_line_endings
 ];
 
 $excludes = [
