@@ -28,6 +28,7 @@ $rules = [
     'line_ending' => true, // unix_line_endings
     'lowercase_cast' => true,
     'lowercase_keywords' => true,
+    'lowercase_static_reference' => true,
     'magic_constant_casing' => true,
     'method_argument_space' => true,
     'multiline_whitespace_before_semicolons' => true, // no_multiline_whitespace_before_semicolons
