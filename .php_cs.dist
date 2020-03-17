@@ -126,7 +126,6 @@ $rules = [
 
     // Custom rules
     'phpdoc_to_comment' => true,
-
     // '@PSR2' => true,
     // 'new_with_braces' => true, // Hardly according to Laravel's rules
 
