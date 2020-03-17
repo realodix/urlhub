@@ -123,6 +123,9 @@ $rules = [
     // 'no_alias_functions' => true, // @Symfony:risky, @PhpCsFixer:risky
     // 'psr4' => true, // @Symfony:risky, @PhpCsFixer:risky
     // 'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
+
+    // Not yet found
+    // - unalign_equals
 ];
 
 $extra_rules = [
