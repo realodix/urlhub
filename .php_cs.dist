@@ -126,9 +126,6 @@ $rules = [
 
     // Custom rules
     'phpdoc_to_comment' => true,
-
-    // Not yet found
-    // - unix_line_endings
 ];
 
 $excludes = [
