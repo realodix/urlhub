@@ -27,6 +27,7 @@ $rules = [
     'increment_style' => ['style' => 'post'], // post_increment
     'indentation_type' => true, // indentation
     'line_ending' => true, // unix_line_endings
+    'list_syntax' => ['syntax' => 'short'], // short_list_syntax
     'lowercase_cast' => true,
     'lowercase_keywords' => true,
     'lowercase_static_reference' => true,
