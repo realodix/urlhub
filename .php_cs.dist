@@ -30,6 +30,7 @@ $rules = [
     'lowercase_keywords' => true,
     'lowercase_static_reference' => true,
     'magic_constant_casing' => true,
+    'magic_method_casing' => true,
     'method_argument_space' => true,
     'multiline_whitespace_before_semicolons' => true, // no_multiline_whitespace_before_semicolons
     'native_function_casing' => true,
