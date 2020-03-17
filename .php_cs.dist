@@ -7,42 +7,47 @@ $rules = [
     'binary_operator_spaces' => ['operators' => ['=>' => 'align_single_space']],
     'blank_line_after_namespace' => true,
     'blank_line_after_opening_tag' => true,
-    'blank_line_before_return' => true,
-    'blank_line_before_return' => true,
+    'blank_line_before_statement' => true, // blank_line_before_return
     'braces' => true,
     'cast_spaces' => true,
+    'class_attributes_separation' => true, // method_separation
     'class_definition' => true,
     'concat_space' => true,
+    'constant_case' => true, // lowercase_constants
     'declare_equal_normalize' => true,
     'elseif' => true,
     'encoding' => true,
     'full_opening_tag' => true,
     'function_declaration' => true,
     'function_typehint_space' => true,
-    'hash_to_slash_comment' => true,
     'heredoc_to_nowdoc' => true,
     'include' => true,
     'increment_style' => ['style' => 'post'], // post_increment
     'indentation_type' => true,
     'line_ending' => true, // unix_line_endings
     'lowercase_cast' => true,
-    'lowercase_constants' => true,
     'lowercase_keywords' => true,
     'magic_constant_casing' => true,
     'method_argument_space' => true,
-    'method_separation' => true,
+    'multiline_whitespace_before_semicolons' => true, // no_multiline_whitespace_before_semicolons
     'native_function_casing' => true,
     'no_blank_lines_after_class_opening' => true,
     'no_blank_lines_after_phpdoc' => true,
     'no_closing_tag' => true,
     'no_empty_phpdoc' => true,
     'no_empty_statement' => true,
-    'no_extra_consecutive_blank_lines' => true,
+    'no_extra_blank_lines' => [
+        'tokens' => [
+            'extra',
+            'throw', // no_blank_lines_after_throw
+            'use', // no_blank_lines_between_imports
+            'use_trait' // no_blank_lines_between_traits
+        ]
+    ],
     'no_leading_import_slash' => true,
     'no_leading_namespace_whitespace' => true,
     'no_mixed_echo_print' => true, // print_to_echo
     'no_multiline_whitespace_around_double_arrow' => true,
-    'no_multiline_whitespace_before_semicolons' => true,
     'no_short_bool_cast' => true,
     'no_singleline_whitespace_before_semicolons' => true,
     'no_spaces_after_function_name' => true,
@@ -83,6 +88,7 @@ $rules = [
     'single_class_element_per_statement' => true,
     'single_import_per_statement' => true,
     'single_line_after_imports' => true,
+    'single_line_comment_style' => true,  // hash_to_slash_comment
     'single_quote' => true,
     'space_after_semicolon' => true,
     'standardize_not_equals' => true,
@@ -100,11 +106,6 @@ $rules = [
     // 'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
     // 'no_alias_functions' => true, // @Symfony:risky, @PhpCsFixer:risky
     // 'psr4' => true, // @Symfony:risky, @PhpCsFixer:risky
-
-    // Not yet found
-    // no_blank_lines_after_throw
-    // no_blank_lines_between_imports
-    // no_blank_lines_between_traits
 ];
 
 $excludes = [

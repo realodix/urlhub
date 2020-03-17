@@ -17,9 +17,9 @@ use GeoIp2\Database\Reader;
 |
 */
 
-/*
- * Num Helpers
- */
+//
+// Num Helpers
+//
 if (! function_exists('number_format_short')) {
     function number_format_short($value)
     {
@@ -27,9 +27,9 @@ if (! function_exists('number_format_short')) {
     }
 }
 
-/*
- * URL Helpers
- */
+//
+// URL Helpers
+//
 if (! function_exists('url_limit')) {
     function url_limit($url, $maxlength = 50)
     {
@@ -44,9 +44,9 @@ if (! function_exists('remove_schemes')) {
     }
 }
 
-/*
- * HTML Helpers
- */
+//
+// HTML Helpers
+//
 if (! function_exists('style')) {
     /**
      * @param       $url
@@ -75,10 +75,9 @@ if (! function_exists('script')) {
     }
 }
 
-/*
- *
- */
-
+//
+//
+//
 if (! function_exists('qrCodeGenerator')) {
     /**
      * @codeCoverageIgnore
