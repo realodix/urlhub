@@ -5,7 +5,11 @@ $rules = [
     'psr0' => false,
     'array_indentation' => true,
     'array_syntax' => ['syntax' => 'short'], // short_array_syntax
-    'binary_operator_spaces' => ['operators' => ['=>' => 'align_single_space']],
+    'binary_operator_spaces' => [
+        'operators' => [
+            '=>' => 'align'
+        ]
+    ],
     'blank_line_after_namespace' => true,
     'blank_line_after_opening_tag' => true,
     'blank_line_before_statement' => true, // blank_line_before_return
