@@ -1,5 +1,6 @@
 <?php
 
+// PHP-CS-Fixer v2.16
 // Based on https://styleci.readme.io/docs/presets#section-laravel
 $rules = [
     'psr0' => false,
