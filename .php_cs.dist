@@ -36,7 +36,14 @@ $rules = [
     'no_closing_tag' => true,
     'no_empty_phpdoc' => true,
     'no_empty_statement' => true,
-    'no_extra_blank_lines' => true, // no_blank_lines_after_throw
+    'no_extra_blank_lines' => [
+        'tokens' => [
+            'extra',
+            'throw', // no_blank_lines_after_throw
+            'use', // no_blank_lines_between_imports
+            'use_trait' // no_blank_lines_between_traits
+        ]
+    ],
     'no_leading_import_slash' => true,
     'no_leading_namespace_whitespace' => true,
     'no_mixed_echo_print' => true, // print_to_echo
@@ -99,10 +106,6 @@ $rules = [
     // 'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
     // 'no_alias_functions' => true, // @Symfony:risky, @PhpCsFixer:risky
     // 'psr4' => true, // @Symfony:risky, @PhpCsFixer:risky
-
-    // Not yet found
-    // no_blank_lines_between_imports
-    // no_blank_lines_between_traits
 ];
 
 $excludes = [
