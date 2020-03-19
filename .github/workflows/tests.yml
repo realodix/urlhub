@@ -25,9 +25,10 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+    - name: Create Logs Folder
+      run: mkdir -p build/logs
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: mkdir -p build/logs
       run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
