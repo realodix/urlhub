@@ -44,7 +44,6 @@ class DashboardController extends Controller
             'totalGuest'           => $user->totalGuest(),
             'capacity'             => $this->url->url_key_capacity(),
             'remaining'            => $this->url->url_key_remaining(),
-
         ]);
     }
 
