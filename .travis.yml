@@ -20,10 +20,3 @@ install:
 before_script:
   - mysql -e 'create database urlhub_test;'
   - php artisan key:generate --env=testing
-
-script:
-  - mkdir -p build/logs
-  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-
-after_success:
-  - travis_retry php vendor/bin/php-coveralls -v
