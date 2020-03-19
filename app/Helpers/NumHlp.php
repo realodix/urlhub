@@ -20,7 +20,7 @@ class NumHlp
             $suffix = '';
         } elseif ($n >= pow(10, 3) && $n < pow(10, 6)) {
             // 1k-999k
-            $n_format = round($n / pow(10, 3));
+            $n_format = $this->numb_prec($n / pow(10, 3));
             $suffix = 'K+';
 
             if (($n / pow(10, 3) == 1) || ($n / pow(10, 4) == 1) || ($n / pow(10, 5) == 1)) {
@@ -28,7 +28,7 @@ class NumHlp
             }
         } elseif ($n >= pow(10, 6) && $n < pow(10, 9)) {
             // 1m-999m
-            $n_format = round($n / pow(10, 6));
+            $n_format = $this->numb_prec($n / pow(10, 6));
             $suffix = 'M+';
 
             if (($n / pow(10, 6) == 1) || ($n / pow(10, 7) == 1) || ($n / pow(10, 8) == 1)) {
@@ -36,7 +36,7 @@ class NumHlp
             }
         } elseif ($n >= pow(10, 9) && $n < pow(10, 12)) {
             // 1b-999b
-            $n_format = round($n / pow(10, 9));
+            $n_format = $this->numb_prec($n / pow(10, 9));
             $suffix = 'B+';
 
             if (($n / pow(10, 9) == 1) || ($n / pow(10, 10) == 1) || ($n / pow(10, 11) == 1)) {
@@ -44,7 +44,7 @@ class NumHlp
             }
         } elseif ($n >= pow(10, 12)) {
             // 1t+
-            $n_format = round($n / pow(10, 12));
+            $n_format = $this->numb_prec($n / pow(10, 12));
             $suffix = 'T+';
 
             if (($n / pow(10, 12) == 1) || ($n / pow(10, 13) == 1) || ($n / pow(10, 14) == 1)) {
@@ -58,24 +58,14 @@ class NumHlp
     /**
      * Alternative to make number_format() not to round numbers up.
      *
+     * Based on: ({@link https://stackoverflow.com/q/3833137}).
+     *
      * @param number $number
      * @param int    $precision
-     * @param string $separator
      * @return number
      */
-    public function number_format_precision($number, $precision = 2, $separator = '.')
+    public function numb_prec($number, $precision = 2)
     {
-        // https://stackoverflow.com/a/40125597
-        $numberParts = explode($separator, $number);
-        $response = $numberParts[0];
-
-        if (count($numberParts) > 1) {
-            $response .= $separator;
-            $response .= substr($numberParts[1], 0, $precision);
-        }
-
-        // Remove useless zero digits from decimals
-        // https://stackoverflow.com/a/14531760
-        return $response + 0;
+        return floor($number * pow(10, $precision))/pow(10, $precision);
     }
 }
