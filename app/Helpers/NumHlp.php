@@ -66,6 +66,6 @@ class NumHlp
      */
     public function numb_prec($number, $precision = 2)
     {
-        return floor($number * pow(10, $precision))/pow(10, $precision);
+        return floor($number * pow(10, $precision)) / pow(10, $precision);
     }
 }

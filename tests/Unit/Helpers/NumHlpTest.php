@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Helpers;
 
-use Facades\App\Helpers\NumHlp;
 use Tests\TestCase;
 
 class NumHlpTest extends TestCase
