@@ -61,13 +61,12 @@ class DashboardController extends Controller
             })
             ->editColumn('long_url', function ($url) {
                 return '
-                <span title="'.$url->meta_title.'" data-toggle="tooltip">'.Str::limit($url->meta_title, 90).'</span>
-                <br>
-                <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
+                    <span title="'.$url->meta_title.'" data-toggle="tooltip">'.Str::limit($url->meta_title, 90).'</span>
+                    <br>
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
             })
             ->editColumn('clicks', function ($url) {
-                return '
-                <span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.number_format_short($url->clicks).'</span>';
+                return '<span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.number_format_short($url->clicks).'</span>';
             })
             ->editColumn('created_at', function ($url) {
                 return [
@@ -77,11 +76,11 @@ class DashboardController extends Controller
             })
             ->addColumn('action', function ($url) {
                 return
-                '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
-                    <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->url_key).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
-                    <a role="button" class="btn" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
-                 </div>';
+                    '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                        <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->url_key).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
+                        <a role="button" class="btn" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
+                    </div>';
             })
             ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'action'])
             ->toJson();

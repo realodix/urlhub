@@ -52,8 +52,8 @@ class UrlController extends Controller
     }
 
     /**
-     * Defaultly UrlHub only permited only one link at the time, but you can
-     * duplicate it.
+     * By default, UrlHub only allows for unique links, but you can duplicate
+     * them.
      *
      * @param string $url_key
      * @return RedirectResponse

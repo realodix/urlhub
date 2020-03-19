@@ -32,8 +32,6 @@ class UrlController extends Controller
     }
 
     /**
-     * Store the data the user sent to create the Short URL.
-     *
      * @param StoreUrl $request
      * @return RedirectResponse
      */
