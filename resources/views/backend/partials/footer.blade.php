@@ -1,7 +1,7 @@
 <footer class="app-footer">
   <div class="footer-left">
     <a href="https://github.com/realodix/urlhub">{{config('app.name')}}</a> <small>{{config('app.version')}}</small>
-    <span>&copy; 2018 <a href="https://github.com/realodix">Realodix</a></span>
+    <span>&copy; 2018-present <a href="https://github.com/realodix">Budi Hermawan</a></span>
   </div>
   <div class="footer-right ml-auto">
     <span>@lang('Powered by')</span>
