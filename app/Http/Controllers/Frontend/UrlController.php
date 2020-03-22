@@ -64,11 +64,12 @@ class UrlController extends Controller
 
         $url_key = $this->url->key_generator();
 
-        $replicate = $url->replicate();
-        $replicate->user_id = Auth::id();
-        $replicate->url_key = $url_key;
-        $replicate->is_custom = 0;
-        $replicate->clicks = 0;
+        $replicate = $url->replicate()->fill([
+            'user_id'   => Auth::id(),
+            'url_key'   => $url_key,
+            'is_custom' => 0,
+            'clicks'    => 0,
+        ]);
         $replicate->save();
 
         return redirect()->route('short_url.stats', $url_key)
