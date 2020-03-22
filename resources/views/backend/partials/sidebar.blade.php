@@ -24,16 +24,19 @@
         <ul class="nav-dropdown-items">
           <li class="nav-item">
             <a class="nav-link" href="{{ route('user.edit', Auth::user()->name) }}">
-              <i class="nav-icon fas fa-user"></i> @lang('Your Profile')</a>
+              <i class="nav-icon fas fa-user"></i> @lang('Your Profile')
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('user.change-password', Auth::user()->name) }}">
-              <i class="nav-icon fas fa-key"></i> @lang('Change Password')</a>
+              <i class="nav-icon fas fa-key"></i> @lang('Change Password')
+            </a>
           </li>
           @role('admin')
           <li class="nav-item">
             <a class="nav-link" href="{{ route('user.index') }}">
-              <i class="nav-icon fas fa-users"></i> @lang('All Users')</a>
+              <i class="nav-icon fas fa-users"></i> @lang('All Users')
+            </a>
           </li>
           @endrole
         </ul>
