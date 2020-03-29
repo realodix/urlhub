@@ -19,7 +19,6 @@ class ShortUrlProtected implements Rule
      */
     public function passes($attribute, $value)
     {
-
         if (in_array($value, config('urlhub.prohibited_ending'), true)) {
             return false;
         }
