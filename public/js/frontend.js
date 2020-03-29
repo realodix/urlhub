@@ -205,9 +205,9 @@ $("#jssocials").jsSocials({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\urlhub\resources\js\frontend.js */"./resources/js/frontend.js");
-__webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\backend.scss */"./resources/sass/backend.scss");
-module.exports = __webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\frontend.scss */"./resources/sass/frontend.scss");
+__webpack_require__(/*! E:\laragon\www\urlhub\resources\js\frontend.js */"./resources/js/frontend.js");
+__webpack_require__(/*! E:\laragon\www\urlhub\resources\sass\backend.scss */"./resources/sass/backend.scss");
+module.exports = __webpack_require__(/*! E:\laragon\www\urlhub\resources\sass\frontend.scss */"./resources/sass/frontend.scss");
 
 
 /***/ })
