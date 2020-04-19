@@ -88,7 +88,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Fungsi untuk menampilkan halaman edit long url
+     * Fungsi untuk menampilkan halaman edit long url.
      *
      * @param string $url_key
      * @return Factory|View
@@ -104,7 +104,7 @@ class DashboardController extends Controller
 
     /**
      * Fungsi untuk memperbarui long url yang telah ditetapkan sebelumnya ke
-     * long url yang baru
+     * long url yang baru.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Url                 $url
