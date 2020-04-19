@@ -22,4 +22,16 @@ class UrlPolicy
     {
         return Auth::user()->hasRole('admin') || $user->id === $url->user_id;
     }
+
+    /**
+     * Determine whether the user can update the url.
+     *
+     * @param \App\User $user
+     * @param \App\Url  $url
+     * @return bool
+     */
+    public function updateUrl(User $user, Url $url)
+    {
+        return Auth::user()->hasRole('admin') || $user->id === $url->user_id;
+    }
 }
