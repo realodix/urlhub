@@ -26,7 +26,10 @@ class UrlBeTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function d_can_access_page()
     {
         $this->loginAsAdmin();
@@ -35,7 +38,10 @@ class UrlBeTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function d_can_delete()
     {
         $url = factory(Url::class)->create([
@@ -54,7 +60,10 @@ class UrlBeTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function d_can_duplicate()
     {
         $user_id = $this->admin()->id;
@@ -75,13 +84,38 @@ class UrlBeTest extends TestCase
         $this->assertCount(2, Url::all());
     }
 
+    /**
+     * @test
+     * @group f-dashboard
+     */
+    public function d_can_update_url()
+    {
+        $user_id = $this->admin()->id;
+
+        $url = factory(Url::class)->create([
+            'user_id' => $this->admin()->id,
+        ]);
+
+        $this->loginAsAdmin();
+
+        $response = $this->from(route('dashboard'))
+            ->get(route('short_url.edit.post', $url->url_key));
+
+        $response
+            ->assertRedirect(route('short_url.edit'))
+            ->assertSessionHas('flash_success');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | All URLs Page
     |--------------------------------------------------------------------------
     */
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function au_admin_can_access_this_page()
     {
         $this->loginAsAdmin();
@@ -90,7 +124,10 @@ class UrlBeTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function au_non_admin_cant_access_this_page()
     {
         $this->loginAsUser();
@@ -99,7 +136,10 @@ class UrlBeTest extends TestCase
         $response->assertForbidden();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function au_admin_can_delete()
     {
         $url = factory(Url::class)->create();
@@ -116,7 +156,10 @@ class UrlBeTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function au_non_admin_cant_delete()
     {
         $url = factory(Url::class)->create();
@@ -136,7 +179,10 @@ class UrlBeTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function aus_admin_can_access_this_page()
     {
         $this->loginAsAdmin();
@@ -145,7 +191,10 @@ class UrlBeTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function aus_non_admin_cant_access_this_page()
     {
         $this->loginAsUser();
@@ -160,7 +209,10 @@ class UrlBeTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function stat_admin_can_access_this_page()
     {
         $this->loginAsAdmin();
@@ -169,7 +221,10 @@ class UrlBeTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-dashboard
+     */
     public function stat_non_admin_cant_access_this_page()
     {
         $this->loginAsUser();
