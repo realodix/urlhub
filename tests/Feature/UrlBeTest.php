@@ -90,19 +90,21 @@ class UrlBeTest extends TestCase
      */
     public function d_can_update_url()
     {
-        $user_id = $this->admin()->id;
-
         $url = factory(Url::class)->create([
             'user_id' => $this->admin()->id,
         ]);
 
         $this->loginAsAdmin();
 
-        $response = $this->from(route('dashboard'))
-            ->get(route('short_url.edit.post', $url->url_key));
+        $response =
+            $this->from(route('short_url.edit', $url->url_key))
+                 ->get(route('short_url.edit.post', $url->url_key), [
+                     'long_url' => 'https://phpunit.readthedocs.io/en/9.1/',
+                 ]
+            );
 
         $response
-            ->assertRedirect(route('short_url.edit'))
+            ->assertRedirect(route('dashboard'))
             ->assertSessionHas('flash_success');
     }
 

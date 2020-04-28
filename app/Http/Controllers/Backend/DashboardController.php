@@ -117,7 +117,7 @@ class DashboardController extends Controller
         $url->long_url = $request->input('long_url');
         $url->save();
 
-        return redirect()->back()
+        return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));
     }
 
