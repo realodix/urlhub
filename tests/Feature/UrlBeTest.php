@@ -50,8 +50,10 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response = $this->from(route('dashboard'))
-                         ->get($this->getDeleteRoute($url->id));
+        $response =
+            $this
+                ->from(route('dashboard'))
+                ->get($this->getDeleteRoute($url->id));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -74,8 +76,10 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response = $this->from(route('dashboard'))
-                         ->get(route('dashboard.duplicate', $url->url_key));
+        $response =
+            $this
+                ->from(route('dashboard'))
+                ->get(route('dashboard.duplicate', $url->url_key));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -104,8 +108,7 @@ class UrlBeTest extends TestCase
                 ]);
 
         $response
-            ->assertRedirect(route('dashboard'))
-            ->assertSessionHas('flash_success');
+            ->assertSuccessful();
     }
 
     /*
@@ -168,8 +171,10 @@ class UrlBeTest extends TestCase
 
         $this->loginAsUser();
 
-        $response = $this->from(route('dashboard.allurl'))
-                         ->get($this->getAuDeleteRoute($url->id));
+        $response =
+            $this
+                ->from(route('dashboard.allurl'))
+                ->get($this->getAuDeleteRoute($url->id));
         $response->assertForbidden();
 
         $this->assertCount(1, Url::all());
