@@ -97,11 +97,11 @@ class UrlBeTest extends TestCase
         $this->loginAsAdmin();
 
         $response =
-            $this->from(route('short_url.edit', $url->url_key))
-                 ->get(route('short_url.edit.post', $url->url_key), [
-                     'long_url' => 'https://phpunit.readthedocs.io/en/9.1/',
-                 ]
-            );
+            $this
+                ->from(route('short_url.edit', $url->url_key))
+                ->get(route('short_url.edit.post', $url->url_key), [
+                    'long_url' => 'https://phpunit.readthedocs.io/en/9.1/',
+                ]);
 
         $response
             ->assertRedirect(route('dashboard'))
