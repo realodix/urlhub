@@ -24,9 +24,22 @@ class UrlStat extends Model
         'country_full',
     ];
 
-    // Relations
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent: Relationships
+    |--------------------------------------------------------------------------
+    | Database tables are often related to one another. Eloquent relationships
+    | are defined as methods on Eloquent model classes.
+    */
+
     public function url()
     {
         return $this->belongsTo('App\Url');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | UrlHub Functions
+    |--------------------------------------------------------------------------
+    */
 }

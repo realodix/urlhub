@@ -52,8 +52,9 @@ class UrlController extends Controller
     }
 
     /**
-     * By default, UrlHub only allows for unique links, but you can duplicate
-     * them.
+     * UrlHub only allows users (registered & unregistered) to have a unique
+     * link. You can duplicate it and it will produce a different ending
+     * url.
      *
      * @param string $url_key
      * @return RedirectResponse

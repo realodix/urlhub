@@ -140,8 +140,9 @@ class DashboardController extends Controller
     }
 
     /**
-     * Defaultly UrlHub only permited only one link at the time,
-     * but you can duplicate it.
+     * UrlHub only allows users (registered & unregistered) to have a unique
+     * link. You can duplicate it and it will produce a different ending
+     * url.
      *
      * @param string $url_key
      * @return \Illuminate\Http\RedirectResponse

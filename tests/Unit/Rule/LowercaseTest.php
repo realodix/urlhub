@@ -21,8 +21,7 @@ class LowercaseTest extends TestCase
      */
     public function testLowercasePass()
     {
-        $this->assertTrue($this->rule->passes('test', 'abc'));
-        $this->assertTrue($this->rule->passes('test', '1bc'));
+        $this->assertTrue($this->rule->passes('test', 'foo'));
     }
 
     /**
@@ -30,8 +29,6 @@ class LowercaseTest extends TestCase
      */
     public function testLowercaseFail()
     {
-        $this->assertFalse($this->rule->passes('test', 'ABC'));
-        $this->assertFalse($this->rule->passes('test', '1BC'));
-        $this->assertFalse($this->rule->passes('test', '1bC'));
+        $this->assertFalse($this->rule->passes('test', 'Foo'));
     }
 }

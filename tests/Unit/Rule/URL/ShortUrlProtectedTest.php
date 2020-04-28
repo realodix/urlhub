@@ -49,6 +49,7 @@ class ShortUrlProtectedTest extends TestCase
         return [
             ['login'],
             ['register'],
+            ['css'], // urlhub.prohibited_ending
         ];
     }
 }

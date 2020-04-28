@@ -45,11 +45,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Relations
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent: Relationships
+    |--------------------------------------------------------------------------
+    | Database tables are often related to one another. Eloquent relationships
+    | are defined as methods on Eloquent model classes.
+    */
+
     public function url()
     {
         return $this->hasMany('App\Url');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent: Mutators
+    |--------------------------------------------------------------------------
+    |
+    | Accessors and mutators allow you to format Eloquent attribute values when
+    | you retrieve or set them on model instances.
+    |
+    */
 
     /**
      * @codeCoverageIgnore
@@ -68,9 +85,10 @@ class User extends Authenticatable
     }
 
     /*
-     |
-     |
-     */
+    |--------------------------------------------------------------------------
+    | UrlHub Functions
+    |--------------------------------------------------------------------------
+    */
 
     public function totalUser()
     {
