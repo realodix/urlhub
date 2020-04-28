@@ -114,7 +114,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-allurl
      */
     public function au_admin_can_access_this_page()
     {
@@ -126,7 +126,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-allurl
      */
     public function au_non_admin_cant_access_this_page()
     {
@@ -138,7 +138,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-allurl
      */
     public function au_admin_can_delete()
     {
@@ -158,7 +158,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-allurl
      */
     public function au_non_admin_cant_delete()
     {
@@ -181,7 +181,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-alluser
      */
     public function aus_admin_can_access_this_page()
     {
@@ -193,7 +193,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-alluser
      */
     public function aus_non_admin_cant_access_this_page()
     {
@@ -211,7 +211,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-stat
      */
     public function stat_admin_can_access_this_page()
     {
@@ -223,7 +223,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
-     * @group f-dashboard
+     * @group f-stat
      */
     public function stat_non_admin_cant_access_this_page()
     {
