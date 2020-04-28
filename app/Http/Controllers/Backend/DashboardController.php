@@ -118,7 +118,7 @@ class DashboardController extends Controller
         $url->save();
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Url changed successfully !'));
+                         ->withFlashSuccess(__('Link changed successfully !'));
     }
 
     /**
