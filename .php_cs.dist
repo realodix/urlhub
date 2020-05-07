@@ -1,7 +1,7 @@
 <?php
 
 // PHP-CS-Fixer v2.16
-// Based on https://styleci.readme.io/docs/presets#section-laravel
+// Based on https://docs.styleci.io/presets#laravel
 $rules = [
     'array_indentation' => true,
     'array_syntax' => ['syntax' => 'short'], // short_array_syntax
