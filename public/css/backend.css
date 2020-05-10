@@ -16261,6 +16261,10 @@ body {
   font-size: 13px;
 }
 
+.short-url {
+  color: #1c9963;
+}
+
 .password-toggler {
   border: none;
   transition: 0.1s all ease-out;
