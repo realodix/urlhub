@@ -107,8 +107,7 @@ class UrlBeTest extends TestCase
                     'long_url' => 'https://phpunit.readthedocs.io/en/9.1/',
                 ]);
 
-        $response
-            ->assertSuccessful();
+        $response->assertSuccessful();
     }
 
     /*
