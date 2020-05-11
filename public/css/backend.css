@@ -16211,6 +16211,7 @@ body {
   color: #b3b9bf;
 }
 .dataTables_wrapper table.dataTable tbody .fa-eye:hover,
+.dataTables_wrapper table.dataTable tbody .fa-clone:hover,
 .dataTables_wrapper table.dataTable tbody .fa-edit:hover,
 .dataTables_wrapper table.dataTable tbody .fa-user-edit:hover {
   color: #1c9963;
