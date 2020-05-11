@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Url;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
@@ -78,11 +79,46 @@ class DashboardController extends Controller
                     '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                         <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
                         <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->url_key).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
+                        <a role="button" class="btn" href="'.route('short_url.edit', $url->url_key).'" title="'.__('Edit').'" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
                         <a role="button" class="btn" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                     </div>';
             })
             ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'action'])
             ->toJson();
+    }
+
+    /**
+     * Fungsi untuk menampilkan halaman edit long url.
+     *
+     * @param string $url_key
+     * @return Factory|View
+     */
+    public function edit($url_key)
+    {
+        $url = Url::with('urlStat')->whereUrlKey($url_key)->firstOrFail();
+
+        $this->authorize('updateUrl', $url);
+
+        return view('backend.edit', compact('url'));
+    }
+
+    /**
+     * Fungsi untuk memperbarui long url yang telah ditetapkan sebelumnya ke
+     * long url yang baru.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Url                 $url
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(Request $request, Url $url)
+    {
+        $url->long_url = $request->input('long_url');
+        $url->save();
+
+        return redirect()->route('dashboard')
+                         ->withFlashSuccess(__('Link changed successfully !'));
     }
 
     /**
