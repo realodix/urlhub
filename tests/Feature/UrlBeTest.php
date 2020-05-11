@@ -92,7 +92,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function d_can_update_url()
+    public function d_authorized_user_can_access_edit_url_page()
     {
         $url = factory(Url::class)->create([
             'user_id' => $this->admin()->id,
@@ -100,14 +100,34 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
+        $response = $this->get(route('short_url.edit', $url->url_key));
+        $response->assertOk();
+    }
+
+    /**
+     * @test
+     * @group f-dashboard
+     */
+    public function d_can_update_url()
+    {
+        $url = factory(Url::class)->create([
+            'user_id' => $this->admin()->id,
+        ]);
+
+        $new_long_url = 'https://phpunit.readthedocs.io/en/9.1/';
+
+        $this->loginAsAdmin();
+
         $response =
             $this
                 ->from(route('short_url.edit', $url->url_key))
-                ->get(route('short_url.edit.post', $url->url_key), [
-                    'long_url' => 'https://phpunit.readthedocs.io/en/9.1/',
+                ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)), [
+                    'long_url' => $new_long_url,
                 ]);
 
-        $response->assertOK();
+        $response
+            ->assertRedirect(route('dashboard'))
+            ->assertSessionHas('flash_success');
     }
 
     /*
