@@ -114,7 +114,7 @@ class UrlBeTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $new_long_url = 'https://phpunit.readthedocs.io/en/9.1/';
+        $new_long_url = 'https://phpunit.readthedocs.io/en/9.1';
 
         $this->loginAsAdmin();
 
@@ -128,6 +128,9 @@ class UrlBeTest extends TestCase
         $response
             ->assertRedirect(route('dashboard'))
             ->assertSessionHas('flash_success');
+
+        $url = $url->fresh();
+        $this->assertSame($new_long_url, $url->long_url);
     }
 
     /*
