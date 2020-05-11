@@ -10,7 +10,7 @@ use Tests\TestCase;
  */
 class UrlBeTest extends TestCase
 {
-    protected function getDeleteRoute($value
+    protected function getDeleteRoute($value)
     {
         return route('dashboard.delete', \Hashids::connection(\App\Url::class)->encode($value));
     }
