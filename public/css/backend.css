@@ -16211,6 +16211,7 @@ body {
   color: #b3b9bf;
 }
 .dataTables_wrapper table.dataTable tbody .fa-eye:hover,
+.dataTables_wrapper table.dataTable tbody .fa-edit:hover,
 .dataTables_wrapper table.dataTable tbody .fa-user-edit:hover {
   color: #1c9963;
 }
@@ -16258,6 +16259,10 @@ body {
 
 .app-footer {
   font-size: 13px;
+}
+
+.short-url {
+  color: #1c9963;
 }
 
 .password-toggler {
