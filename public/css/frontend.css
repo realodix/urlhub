@@ -10157,13 +10157,14 @@ img.jssocials-share-logo {
   line-height: 2.4rem;
 }
 .view_short .body {
-  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
   background-color: #fff;
-  padding: 20px 0;
+  border: 1px solid #e0e0e0;
   border-radius: 0.25rem;
+  padding: 20px 0;
 }
-.view_short .body .long-url a {
-  color: #35393c;
+.view_short .body .long-url {
+  font-size: 14px;
+  word-break: break-all;
 }
 .view_short .body .short-url {
   font-weight: bold;

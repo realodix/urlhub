@@ -110,12 +110,10 @@
 
   .body {
     @include mixin.card-body;
-    border-radius: $card-border-radius;
 
     .long-url {
-      a {
-        color: #35393c;
-      }
+      font-size: 14px;
+      word-break: break-all;
     }
 
     .short-url {

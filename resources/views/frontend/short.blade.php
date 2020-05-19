@@ -41,8 +41,7 @@
           <br> <br>
 
           <b>@lang('Original URL')</b>
-          <div class="long-url"><a href="{{ $url->long_url }}" target="_blank" title="{{ $url->long_url }}"
-              data-toggle="tooltip">{{ url_limit($url->long_url) }}</a></div>
+          <div class="long-url">{{ $url->long_url }}</div>
 
           <div class="mt-5" id="jssocials"></div>
 
@@ -52,9 +51,9 @@
     </div>
   </div>
 
-  <div class="row mt-3">
-    <div class="col-lg">
-      <div class="row body">
+  <div class="row mt-3 body">
+    <div class="col-lg-12">
+      <div class="row ">
         <div class="col">
           <div class="row mb-3">
             <div class="col">
@@ -77,11 +76,9 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-3">
-    <div class="col-lg">
-      <div class="row body">
+    <div class="col-lg-12">
+      <div class="row">
         <div class="col">
           <div class="row mb-3">
             <div class="col">
@@ -104,11 +101,9 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-3">
-    <div class="col-lg">
-      <div class="row body">
+    <div class="col-lg-12">
+      <div class="row">
         <div class="col">
           <div class="row mb-3">
             <div class="col">
