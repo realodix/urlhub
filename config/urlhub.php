@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Number of symbols in generating unique url_key
+    | Number of characters in generating unique url_key
     |--------------------------------------------------------------------------
     |
     | If hash_size_1 is equal to hash_size_2, hash_size_2 is automatically
@@ -17,7 +17,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Symbols to be used in generating unique url_key
+    | Characters to be used in generating unique url_key
     |--------------------------------------------------------------------------
     */
 
