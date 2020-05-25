@@ -70,4 +70,12 @@ return [
     */
 
     'public_register' => env('URLHUB_PUBLICREGISTER', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enable/Disable to show shorten links statstics to Guest
+    |--------------------------------------------------------------------------
+    */
+
+    'show_stat_to_guests' => env('URLHUB_SHOW_STAT_TO_GUESTS', true),
 ];
