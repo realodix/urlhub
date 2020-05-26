@@ -67,7 +67,6 @@ return [
     |--------------------------------------------------------------------------
     | Enable/Disable to register new users
     |--------------------------------------------------------------------------
-    | Type: boolean
     */
 
     'public_register' => env('URLHUB_PUBLICREGISTER', true),
