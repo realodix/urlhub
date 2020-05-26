@@ -28,6 +28,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | URL Redirection Types
+    |--------------------------------------------------------------------------
+    |
+    | https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
+    | https://redirectdetective.com/redirection-types.html
+    |
+    */
+
+    'redirection_type' => env('URLHUB_REDIRECTION_TYPE', 301),
+
+    /*
+    |--------------------------------------------------------------------------
     | A list of non allowed domain
     |--------------------------------------------------------------------------
     */
