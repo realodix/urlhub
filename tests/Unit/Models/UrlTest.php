@@ -228,9 +228,9 @@ class UrlTest extends TestCase
      * @covers ::url_key_capacity
      * @dataProvider urlKeyCapacityProvider
      */
-    public function url_key_capacity($size1, $expected)
+    public function url_key_capacity($hash_size, $expected)
     {
-        config()->set('urlhub.hash_size_1', $size1);
+        config()->set('urlhub.hash_size', $hash_size);
 
         $this->assertSame($expected, $this->url->url_key_capacity());
     }
@@ -240,7 +240,7 @@ class UrlTest extends TestCase
         return [
             [0, 0],
             [1, 3], // (3^1)
-            [2, 9], // $alphabet_length^$hash_size_1 or 3^2
+            [2, 9], // $alphabet_length^$hash_size or 3^2
 
             [-1, 0],
             [2.7, 9], // (3^2)
@@ -257,12 +257,12 @@ class UrlTest extends TestCase
     {
         factory(Url::class, 5)->create();
 
-        config()->set('urlhub.hash_size_1', 1);
+        config()->set('urlhub.hash_size', 1);
 
         // 3 - 5 = must be 0
         $this->assertSame(0, $this->url->url_key_remaining());
 
-        config()->set('urlhub.hash_size_1', 2);
+        config()->set('urlhub.hash_size', 2);
 
         // (3^2) - 5 - (2+1) = 1
         $this->assertSame(1, $this->url->url_key_remaining());

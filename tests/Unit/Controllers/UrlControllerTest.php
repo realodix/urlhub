@@ -77,7 +77,7 @@ class UrlControllerTest extends TestCase
         $url = Url::whereLongUrl($long_url)->first();
 
         $this->assertEquals(
-            config('urlhub.hash_size_1'),
+            config('urlhub.hash_size'),
             strlen($url->url_key)
         );
         $this->assertFalse($url->is_custom);
@@ -93,7 +93,7 @@ class UrlControllerTest extends TestCase
      */
     public function shortenUrl_is_custom()
     {
-        config()->set('urlhub.hash_size_1', 6);
+        config()->set('urlhub.hash_size', 6);
 
         $long_url = 'https://laravel.com';
         $custom_url = 'laravel-http-tests';
