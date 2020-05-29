@@ -125,7 +125,6 @@ class UrlBeTest extends TestCase
             ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)));
 
         $this->assertSame($new_long_url, $url->long_url);
-
     }
 
     /*
