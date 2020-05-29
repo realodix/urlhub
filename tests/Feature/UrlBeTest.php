@@ -10,14 +10,9 @@ use Tests\TestCase;
  */
 class UrlBeTest extends TestCase
 {
-    protected function getDeleteRoute($value)
+    protected function hashIdRoute($rout_name, $url_id)
     {
-        return route('dashboard.delete', \Hashids::connection(\App\Url::class)->encode($value));
-    }
-
-    protected function getAuDeleteRoute($value)
-    {
-        return route('dashboard.allurl.delete', \Hashids::connection(\App\Url::class)->encode($value));
+        return route($rout_name, \Hashids::connection(\App\Url::class)->encode($url_id));
     }
 
     /*
@@ -53,7 +48,7 @@ class UrlBeTest extends TestCase
         $response =
             $this
                 ->from(route('dashboard'))
-                ->get($this->getDeleteRoute($url->id));
+                ->get($this->hashIdRoute('dashboard.delete', $url->id));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -118,18 +113,12 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response =
-            $this
-                ->from(route('short_url.edit', $url->url_key))
-                ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)), [
-                    'long_url' => $new_long_url,
-                ]);
+        $url->long_url = $new_long_url;
 
-        $response
-            ->assertRedirect(route('dashboard'))
-            ->assertSessionHas('flash_success');
+        $this
+            ->from(route('short_url.edit', $url->url_key))
+            ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)));
 
-        $url = $url->fresh();
         $this->assertSame($new_long_url, $url->long_url);
     }
 
@@ -174,7 +163,7 @@ class UrlBeTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->from(route('dashboard.allurl'))
-                         ->get($this->getAuDeleteRoute($url->id));
+                         ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
 
         $response
             ->assertRedirect(route('dashboard.allurl'))
@@ -196,7 +185,7 @@ class UrlBeTest extends TestCase
         $response =
             $this
                 ->from(route('dashboard.allurl'))
-                ->get($this->getAuDeleteRoute($url->id));
+                ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
         $response->assertForbidden();
 
         $this->assertCount(1, Url::all());

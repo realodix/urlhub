@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Number of symbols in generating unique url_key
+    | Number of characters in generating unique url_key
     |--------------------------------------------------------------------------
     |
     | If hash_size_1 is equal to hash_size_2, hash_size_2 is automatically
@@ -17,7 +17,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Symbols to be used in generating unique url_key
+    | Characters to be used in generating unique url_key
     |--------------------------------------------------------------------------
     */
 
@@ -25,6 +25,18 @@ return [
         'HASH_ALPHABET',
         '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | URL Redirection Types
+    |--------------------------------------------------------------------------
+    |
+    | https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
+    | https://redirectdetective.com/redirection-types.html
+    |
+    */
+
+    'redirection_type' => env('URLHUB_REDIRECTION_TYPE', 301),
 
     /*
     |--------------------------------------------------------------------------
