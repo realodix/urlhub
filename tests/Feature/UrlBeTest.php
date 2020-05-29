@@ -185,7 +185,7 @@ class UrlBeTest extends TestCase
         $response =
             $this
                 ->from(route('dashboard.allurl'))
-                ->get($this->getAuDeleteRoute($url->id));
+                ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
         $response->assertForbidden();
 
         $this->assertCount(1, Url::all());
