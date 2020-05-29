@@ -115,6 +115,7 @@ class DashboardController extends Controller
     public function update(Request $request, Url $url)
     {
         $url->long_url = $request->input('long_url');
+        $url->meta_title = $request->input('meta_title');
         $url->save();
 
         return redirect()->route('dashboard')

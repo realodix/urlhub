@@ -6,6 +6,7 @@ use App\Http\Traits\Hashidable;
 use Embed\Embed;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Url extends Model
 {
@@ -83,7 +84,11 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        $this->attributes['meta_title'] = $this->getTitle($value);
+        if (Str::startsWith($value, 'http')) {
+            $this->attributes['meta_title'] = $this->getTitle($value);
+        } else {
+            $this->attributes['meta_title'] = $value;
+        }
     }
 
     // Accessor

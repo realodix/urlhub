@@ -31,6 +31,14 @@
               </div>
             </div>
 
+            <div class="form-group{{ $errors->has('meta-title') ? ' has-error' : '' }} row">
+              <label for="meta-title" class="col-sm-3 col-form-label">@lang('Title')</label>
+
+              <div class="col">
+                <input id="meta-title" type="text" class="form-control" name="meta_title" placeholder="@lang('Title')" required value="{{$url->meta_title}}">
+              </div>
+            </div>
+
             <div class="form-group{{ $errors->has('long-url') ? ' has-error' : '' }} row">
               <label for="long-url" class="col-sm-3 col-form-label">@lang('Long URL')</label>
 
