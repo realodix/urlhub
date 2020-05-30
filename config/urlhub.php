@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'redirection_code' => env('URLHUB_REDIRECTION_CODE', 301),
+    'redirect_code' => env('URLHUB_REDIRECT_CODE', 301),
 
     /*
     |--------------------------------------------------------------------------
