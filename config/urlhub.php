@@ -4,8 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Number of characters in generating unique url_key
+    | Hash Size
     |--------------------------------------------------------------------------
+    |
+    | Number of characters in generating unique url_key
     */
 
     'hash_size' => env('HASH_SIZE', 6), // >= 1
