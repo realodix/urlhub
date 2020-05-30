@@ -31,8 +31,12 @@ return [
     | URL Redirection Status Code
     |--------------------------------------------------------------------------
     |
-    | https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
-    | https://redirectdetective.com/redirection-types.html
+    | The HTTP redirect code, redirect for short, is a way to forward visitors
+    | and search engines from one URL to another.
+    |
+    | You can read the references below to find out what code is good to use.
+    | - https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
+    | - https://redirectdetective.com/redirection-types.html
     |
     */
 
