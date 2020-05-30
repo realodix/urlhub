@@ -4,13 +4,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Hash Size
+    | Hash Length
     |--------------------------------------------------------------------------
     |
-    | Number of characters in generating unique url_key
+    | The expected (and maximum) number of characters in generating unique
+    | url_key.
+    |
     */
 
-    'hash_size' => env('HASH_SIZE', 6), // >= 1
+    'hash_length' => env('HASH_LENGTH', 6), // >= 1
 
     /*
     |--------------------------------------------------------------------------
