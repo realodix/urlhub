@@ -4,6 +4,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Enable/Disable to guest access
+    |--------------------------------------------------------------------------
+    */
+
+    'allow_guest' => env('URLHUB_ALLOWGUEST', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enable/Disable to register new users
+    |--------------------------------------------------------------------------
+    */
+
+    'public_register' => env('URLHUB_PUBLICREGISTER', true),
+
+    /*
+    |--------------------------------------------------------------------------
     | Hash Length
     |--------------------------------------------------------------------------
     |
@@ -16,8 +32,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Characters to be used in generating unique url_key
+    | Hash Alphabet
     |--------------------------------------------------------------------------
+    |
+    | Characters to be used in generating unique url_key. A URL is composed
+    | from a limited set of characters belonging to the US-ASCII character
+    | set. These characters include digits (0-9), letters(A-Z, a-z), and
+    | a few special characters ("-", ".", "_", "~").
+    |
+    | ASCII control characters (e.g. backspace, vertical tab, horizontal tab,
+    | line feed etc), unsafe characters like space, \, <, >, {, } etc, and
+    | any character outside the ASCII charset is not allowed to be placed
+    | directly within URLs.
+
+    | Moreover, there are some characters that have special meaning within
+    | URLs. These characters are called reserved characters. Some examples
+    | of reserved characters are ?, /, #, : etc. Any data transmitted as
+    | part of the URL, whether in query string or path segment, must not
+    | contain these characters.
+    |
     */
 
     'hash_alphabet' => env(
@@ -69,20 +102,4 @@ return [
         'js',
         'svg',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable/Disable to guest access
-    |--------------------------------------------------------------------------
-    */
-
-    'allow_guest' => env('URLHUB_ALLOWGUEST', true),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable/Disable to register new users
-    |--------------------------------------------------------------------------
-    */
-
-    'public_register' => env('URLHUB_PUBLICREGISTER', true),
 ];
