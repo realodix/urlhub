@@ -28,7 +28,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | URL Redirection Types
+    | URL Redirection Status Code
     |--------------------------------------------------------------------------
     |
     | https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
@@ -36,7 +36,7 @@ return [
     |
     */
 
-    'redirection_type' => env('URLHUB_REDIRECTION_TYPE', 301),
+    'redirection_code' => env('URLHUB_REDIRECTION_CODE', 301),
 
     /*
     |--------------------------------------------------------------------------

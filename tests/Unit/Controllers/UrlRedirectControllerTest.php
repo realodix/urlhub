@@ -18,7 +18,7 @@ class UrlRedirectControllerTest extends TestCase
 
         $response = $this->get(route('home').'/'.$url->url_key);
         $response->assertRedirect($url->long_url);
-        $response->assertStatus(config('urlhub.redirection_type'));
+        $response->assertStatus(config('urlhub.redirection_code'));
 
         $this->assertCount(1, UrlStat::all());
     }
