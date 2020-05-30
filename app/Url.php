@@ -138,22 +138,15 @@ class Url extends Model
     {
         $generateId = new Client();
         $alphabet = config('urlhub.hash_alphabet');
-        $size1 = (int) config('urlhub.hash_size_1');
-        $size2 = (int) config('urlhub.hash_size_2');
+        $hash_length = (int) config('urlhub.hash_length');
 
-        // @codeCoverageIgnoreStart
-        if (($size1 == $size2) || $size2 == 0) {
-            $size2 = $size1;
-        }
-        // @codeCoverageIgnoreEnd
-
-        $urlKey = $generateId->formatedId($alphabet, $size1);
+        $urlKey = $generateId->formatedId($alphabet, $hash_length);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
         $link = self::whereUrlKey($urlKey)->first();
         while ($link) {
-            $urlKey = $generateId->formatedId($alphabet, $size2);
+            $urlKey = $generateId->formatedId($alphabet, $hash_length);
             $link = self::whereUrlKey($urlKey)->first();
         }
         // @codeCoverageIgnoreEnd
@@ -167,20 +160,16 @@ class Url extends Model
     public function url_key_capacity()
     {
         $alphabet = strlen(config('urlhub.hash_alphabet'));
-        $size1 = (int) config('urlhub.hash_size_1');
-        $size2 = (int) config('urlhub.hash_size_2');
+        $hash_length = (int) config('urlhub.hash_length');
 
         // If the hash size is filled with integers that do not match the rules
         // change the variable's value to 0.
-        $size1 = ! ($size1 < 1) ? $size1 : 0;
-        $size2 = ! ($size2 < 0) ? $size2 : 0;
+        $hash_length = ! ($hash_length < 1) ? $hash_length : 0;
 
-        if ($size1 == 0 || ($size1 == 0 && $size2 == 0)) {
+        if ($hash_length == 0) {
             return 0;
-        } elseif ($size1 == $size2 || $size2 == 0) {
-            return pow($alphabet, $size1);
         } else {
-            return pow($alphabet, $size1) + pow($alphabet, $size2);
+            return pow($alphabet, $hash_length);
         }
     }
 
