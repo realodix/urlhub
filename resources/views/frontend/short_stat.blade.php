@@ -9,6 +9,7 @@
               {{ $url->urlStat->pluck('platform')->unique()->count() }}</span>
           </div>
         </div>
+
         @foreach($url->urlStat->pluck('platform')->unique() as $platform)
         <div class="card col-lg-3 mb-2 d-inline-block">
           <div class="card-body">
@@ -34,6 +35,7 @@
               {{ $url->urlStat->pluck('browser')->unique()->count() }}</span>
           </div>
         </div>
+
         @foreach($url->urlStat->pluck('browser')->unique() as $browser)
         <div class="card col-lg-3 mb-2 d-inline-block">
           <div class="card-body">
