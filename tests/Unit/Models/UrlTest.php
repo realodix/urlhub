@@ -271,9 +271,9 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::getTitle
+     * @covers ::get_remote_title
      */
-    public function getTitle()
+    public function get_remote_title()
     {
         $url = factory(Url::class)->create([
             'long_url' => 'https://github123456789.com',
