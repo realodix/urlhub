@@ -85,7 +85,7 @@ class Url extends Model
     public function setMetaTitleAttribute($value)
     {
         if (Str::startsWith($value, 'http')) {
-            $this->attributes['meta_title'] = $this->getTitle($value);
+            $this->attributes['meta_title'] = $this->get_remote_title($value);
         } else {
             $this->attributes['meta_title'] = $value;
         }
@@ -207,12 +207,13 @@ class Url extends Model
     }
 
     /**
-     * Gets the title of page from its url.
+     * This function returns a string: either the page title as defined in
+     * HTML, or the string "No Title" if not found.
      *
      * @param string $url
      * @return string
      */
-    public function getTitle($url)
+    public function get_remote_title($url)
     {
         try {
             $embed = Embed::create($url);
