@@ -21,9 +21,17 @@ class UrlHubLinkChecker
         $url = new Url();
         $long_url = rtrim($request->long_url, '/');
 
-        //
-        // If url_key is not available, prevent creating short URLs.
-        //
+        /*
+        |----------------------------------------------------------------------
+        | url_key remaining
+        |----------------------------------------------------------------------
+        |
+        | Periksa apakah URLHub masih memiliki url_key yang tersedia untuk
+        | membuat URL pendek. Jika tidak tersedia, cegah membuat URL
+        | pendek.
+        |
+        */
+
         if ($url->url_key_remaining() == 0) {
             return redirect()
                    ->back()
@@ -32,10 +40,16 @@ class UrlHubLinkChecker
                    );
         }
 
-        //
-        // Check whether the URL entered is already in database.
-        // If there is already, show a warning.
-        //
+        /*
+        |----------------------------------------------------------------------
+        | Long Url Exists
+        |----------------------------------------------------------------------
+        |
+        | Check if a long URL already exists in the database. If found,
+        | display a warning.
+        |
+        */
+
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
                           ->whereLongUrl($long_url)
