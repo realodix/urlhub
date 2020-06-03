@@ -17,7 +17,7 @@
           <div class="col col-sm">
             <span title="{{number_format($remaining)}}" data-toggle="tooltip">
               {{number_format_short($remaining)}}
-              {{$remaining_percent}}
+              ({{$remaining_percent}})
             </span>
           </div>
         </div>

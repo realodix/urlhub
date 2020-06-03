@@ -280,17 +280,17 @@ class UrlTest extends TestCase
         config()->set('urlhub.hash_length', 2);
         config()->set('urlhub.hash_alphabet', 'ab');
 
-        $this->assertSame('(0%)', $this->url->url_key_remaining_percent());
+        $this->assertSame('0%', $this->url->url_key_remaining_percent());
 
         config()->set('urlhub.hash_length', 6);
         config()->set('urlhub.hash_alphabet', 'abcdefghij');
 
-        $this->assertSame('(99.99%)', $this->url->url_key_remaining_percent());
+        $this->assertSame('99.99%', $this->url->url_key_remaining_percent());
 
         config()->set('urlhub.hash_length', 3);
         config()->set('urlhub.hash_alphabet', 'abcdefg');
 
-        $this->assertSame('(98%)', $this->url->url_key_remaining_percent());
+        $this->assertSame('98%', $this->url->url_key_remaining_percent());
     }
 
     /**

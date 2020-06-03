@@ -196,12 +196,12 @@ class Url extends Model
         $remaining = $this->url_key_remaining();
 
         if ($capacity == 0) {
-            return '(0%)';
+            return '0%';
         } else {
             if ((round(($remaining * 100) / $capacity, 2) == 100) && ($capacity != $remaining)) {
-                return '(99.99%)';
+                return '99.99%';
             } else {
-                return '('.round(($remaining * 100) / $capacity).'%)';
+                return round(($remaining * 100) / $capacity).'%';
             }
         }
     }
