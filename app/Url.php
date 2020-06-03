@@ -198,7 +198,7 @@ class Url extends Model
         if ($capacity == 0) {
             return '(0%)';
         } else {
-            if (round(($remaining * 100) / $capacity, 3) == 100) {
+            if ((round(($remaining * 100) / $capacity, 2) == 100) && ($capacity != $remaining)) {
                 return '(99.99%)';
             } else {
                 return '('.round(($remaining * 100) / $capacity).'%)';
