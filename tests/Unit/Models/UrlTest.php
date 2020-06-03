@@ -271,6 +271,18 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
+     * @covers ::url_key_remaining
+     */
+    public function url_key_remaining_percent()
+    {
+        factory(Url::class, 5)->create();
+
+        config()->set('urlhub.hash_length', 1);
+    }
+
+    /**
+     * @test
+     * @group u-model
      * @covers ::getTitle
      */
     public function getTitle()
