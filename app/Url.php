@@ -188,6 +188,25 @@ class Url extends Model
     }
 
     /**
+     * @return string
+     */
+    public function url_key_remaining_percent()
+    {
+        $capacity = $this->url_key_capacity();
+        $remaining = $this->url_key_remaining();
+
+        if ($capacity == 0) {
+            return '(0%)';
+        } else {
+            if (round(($remaining * 100) / $capacity, 3) == 100) {
+                return '(99.99%)';
+            } else {
+                return '('.round(($remaining * 100) / $capacity).'%)';
+            }
+        }
+    }
+
+    /**
      * Gets the title of page from its url.
      *
      * @param string $url

@@ -17,11 +17,7 @@
           <div class="col col-sm">
             <span title="{{number_format($remaining)}}" data-toggle="tooltip">
               {{number_format_short($remaining)}}
-              @if ($capacity == 0)
-                (0%)
-              @else
-                ({{round(100-((($capacity-$remaining)/$capacity)*100))}}%)
-              @endif
+              {{$remaining_percent}}
             </span>
           </div>
         </div>
