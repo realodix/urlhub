@@ -188,6 +188,25 @@ class Url extends Model
     }
 
     /**
+     * @return string
+     */
+    public function url_key_remaining_percent()
+    {
+        $capacity = $this->url_key_capacity();
+        $remaining = $this->url_key_remaining();
+
+        if ($capacity == 0) {
+            return '0%';
+        } else {
+            if ((round(($remaining * 100) / $capacity, 2) == 100) && ($capacity != $remaining)) {
+                return '99.99%';
+            } else {
+                return round(($remaining * 100) / $capacity).'%';
+            }
+        }
+    }
+
+    /**
      * This function returns a string: either the page title as defined in
      * HTML, or the string "No Title" if not found.
      *
