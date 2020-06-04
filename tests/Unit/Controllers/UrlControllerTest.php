@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\Rules\Lowercase;
+use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
 use App\Url;
 use Illuminate\Http\Request;
@@ -141,7 +141,7 @@ class UrlControllerTest extends TestCase
                 'max:20',
                 'alpha_dash',
                 'unique:urls',
-                new Lowercase,
+                new StrLowercase,
                 new KeywordBlacklist,
             ],
         ]);

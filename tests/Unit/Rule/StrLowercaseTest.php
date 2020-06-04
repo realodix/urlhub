@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Lowercase;
+use App\Rules\StrLowercase;
 use Tests\TestCase;
 
-class LowercaseTest extends TestCase
+class StrLowercaseTest extends TestCase
 {
     protected $rule;
 
@@ -13,13 +13,13 @@ class LowercaseTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new Lowercase();
+        $this->rule = new StrLowercase();
     }
 
     /**
      * @group u-rule
      */
-    public function testLowercasePass()
+    public function testStrLowercasePass()
     {
         $this->assertTrue($this->rule->passes('test', 'foo'));
     }
@@ -27,7 +27,7 @@ class LowercaseTest extends TestCase
     /**
      * @group u-rule
      */
-    public function testLowercaseFail()
+    public function testStrLowercaseFail()
     {
         $this->assertFalse($this->rule->passes('test', 'Foo'));
     }
