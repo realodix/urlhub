@@ -15,7 +15,7 @@ class UrlBlacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        $blacklist = remove_schemes(config('urlhub.blacklist'));
+        $blacklist = remove_schemes(config('urlhub.domain_blacklist'));
         $long_url = rtrim($value, '/');
         $a = true;
 
