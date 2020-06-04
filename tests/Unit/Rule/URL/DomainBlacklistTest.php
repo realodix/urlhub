@@ -8,7 +8,7 @@ use Tests\TestCase;
 /**
  * @coversDefaultClass App\Rules\URL\DomainBlacklist
  */
-class UrlBlacklistTest extends TestCase
+class DomainBlacklistTest extends TestCase
 {
     protected $rule;
 
