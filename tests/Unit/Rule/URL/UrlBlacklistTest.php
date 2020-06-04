@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Rule\URL;
 
-use App\Rules\URL\UrlBlacklist;
+use App\Rules\URL\DomainBlacklist;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\Rules\URL\UrlBlacklist
+ * @coversDefaultClass App\Rules\URL\DomainBlacklist
  */
-class UrlBlacklistTest extends TestCase
+class DomainBlacklistTest extends TestCase
 {
     protected $rule;
 
@@ -16,7 +16,7 @@ class UrlBlacklistTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new UrlBlacklist();
+        $this->rule = new DomainBlacklist();
 
         config()->set(
             'urlhub.blacklist',
@@ -27,9 +27,9 @@ class UrlBlacklistTest extends TestCase
     /**
      * @group u-rule
      * @covers ::passes
-     * @dataProvider UrlBlacklistPass
+     * @dataProvider DomainBlacklistPass
      */
-    public function testUrlBlacklistPass($value)
+    public function testDomainBlacklistPass($value)
     {
         $this->assertTrue($this->rule->passes('test', $value));
     }
@@ -37,14 +37,14 @@ class UrlBlacklistTest extends TestCase
     /**
      * @group u-rule
      * @covers ::passes
-     * @dataProvider UrlBlacklistFail
+     * @dataProvider DomainBlacklistFail
      */
-    public function testUrlBlacklistFail($value)
+    public function testDomainBlacklistFail($value)
     {
         $this->assertFalse($this->rule->passes('test', $value));
     }
 
-    public function UrlBlacklistPass()
+    public function DomainBlacklistPass()
     {
         return [
             ['http://t.com/about'],
@@ -54,7 +54,7 @@ class UrlBlacklistTest extends TestCase
         ];
     }
 
-    public function UrlBlacklistFail()
+    public function DomainBlacklistFail()
     {
         return [
             ['https://github.com/laravel/laravel'],
