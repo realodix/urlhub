@@ -5,7 +5,7 @@ namespace Tests\Unit\Rule\URL;
 use App\Rules\URL\KeywordBlacklist;
 use Tests\TestCase;
 
-class KeywordBlacklistTest extends TestCase
+class ShortUrlProtectedTest extends TestCase
 {
     protected $rule;
 
