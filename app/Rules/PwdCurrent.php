@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Rules\Auth;
+namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class CurrentPassword implements Rule
+class PwdCurrent implements Rule
 {
     /**
      * Determine if the validation rule passes.

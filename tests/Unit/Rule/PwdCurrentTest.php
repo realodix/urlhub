@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\Rule\Auth;
+namespace Tests\Unit\Rule;
 
-use App\Rules\Auth\CurrentPassword;
+use App\Rules\PwdCurrent;
 use Tests\TestCase;
 
-class CurrentPasswordTest extends TestCase
+class PwdCurrentTest extends TestCase
 {
     protected $rule;
 
@@ -13,14 +13,14 @@ class CurrentPasswordTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new CurrentPassword();
+        $this->rule = new PwdCurrent();
         $this->loginAsAdmin();
     }
 
     /**
      * @group u-rule
      */
-    public function testCurrentPasswordPass()
+    public function testPwdCurrentPass()
     {
         $this->assertTrue($this->rule->passes('test', $this->adminPassword()));
     }
@@ -28,7 +28,7 @@ class CurrentPasswordTest extends TestCase
     /**
      * @group u-rule
      */
-    public function testCurrentPasswordFail()
+    public function testPwdCurrentFail()
     {
         $this->assertFalse($this->rule->passes('test', 'wrong_password'));
     }
