@@ -19,7 +19,7 @@ class DomainBlacklistTest extends TestCase
         $this->rule = new DomainBlacklist();
 
         config()->set(
-            'urlhub.blacklist',
+            'urlhub.domain_blacklist',
             ['github.com', 't.co']
         );
     }
