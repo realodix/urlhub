@@ -5,8 +5,8 @@ namespace App\Rules\URL;
 use Illuminate\Contracts\Validation\Rule;
 
 /**
- * Check if Short URL cannot be created because
- * it is a path.
+ * Check if keyword id is free (ie not already taken, not a URL path, and not
+ * reserved).
  */
 class ShortUrlProtected implements Rule
 {
