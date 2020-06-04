@@ -94,7 +94,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'prohibited_ending' => [
+    'keyword_blacklist' => [
         'css',
         'images',
         'img',
