@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Rule\URL;
 
-use App\Rules\URL\ShortUrlProtected;
+use App\Rules\URL\KeywordBlacklist;
 use Tests\TestCase;
 
-class ShortUrlProtectedTest extends TestCase
+class KeywordBlacklistTest extends TestCase
 {
     protected $rule;
 
@@ -13,30 +13,30 @@ class ShortUrlProtectedTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new ShortUrlProtected();
+        $this->rule = new KeywordBlacklist();
     }
 
     /**
      * @group u-rule
-     * @dataProvider ShortUrlProtectedPass
+     * @dataProvider KeywordBlacklistPass
      * @param string $value
      */
-    public function testShortUrlProtectedPass($value)
+    public function testKeywordBlacklistPass($value)
     {
         $this->assertTrue($this->rule->passes('test', $value));
     }
 
     /**
      * @group u-rule
-     * @dataProvider ShortUrlProtectedFail
+     * @dataProvider KeywordBlacklistFail
      * @param string $value
      */
-    public function testShortUrlProtectedFail($value)
+    public function testKeywordBlacklistFail($value)
     {
         $this->assertFalse($this->rule->passes('test', $value));
     }
 
-    public function ShortUrlProtectedPass()
+    public function KeywordBlacklistPass()
     {
         return [
             ['hello'],
@@ -44,7 +44,7 @@ class ShortUrlProtectedTest extends TestCase
         ];
     }
 
-    public function ShortUrlProtectedFail()
+    public function KeywordBlacklistFail()
     {
         return [
             ['login'],

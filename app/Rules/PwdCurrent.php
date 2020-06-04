@@ -3,8 +3,10 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class Lowercase implements Rule
+class PwdCurrent implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -15,7 +17,7 @@ class Lowercase implements Rule
      */
     public function passes($attribute, $value)
     {
-        return strtolower($value) === $value;
+        return Hash::check($value, Auth::user()->password);
     }
 
     /**
@@ -26,6 +28,6 @@ class Lowercase implements Rule
      */
     public function message()
     {
-        return 'The :attribute must be Lowercase.';
+        return 'The password you entered does not match your password. Please try again.';
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\Rules\Lowercase;
-use App\Rules\URL\ShortUrlProtected;
+use App\Rules\StrLowercase;
+use App\Rules\URL\KeywordBlacklist;
 use App\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -141,8 +141,8 @@ class UrlControllerTest extends TestCase
                 'max:20',
                 'alpha_dash',
                 'unique:urls',
-                new Lowercase,
-                new ShortUrlProtected,
+                new StrLowercase,
+                new KeywordBlacklist,
             ],
         ]);
 
