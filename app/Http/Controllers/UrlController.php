@@ -37,18 +37,18 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url_key = $request->custom_url_key ?? $this->url->key_generator();
+        $keyword = $request->custom_keyword ?? $this->url->key_generator();
 
         Url::create([
             'user_id'    => Auth::id(),
             'long_url'   => $request->long_url,
             'meta_title' => $request->long_url,
-            'url_key'    => $url_key,
-            'is_custom'  => $request->custom_url_key ? 1 : 0,
+            'keyword'    => $keyword,
+            'is_custom'  => $request->custom_keyword ? 1 : 0,
             'ip'         => $request->ip(),
         ]);
 
-        return redirect()->route('short_url.stats', $url_key);
+        return redirect()->route('short_url.stats', $keyword);
     }
 
     /**
@@ -60,7 +60,7 @@ class UrlController extends Controller
     public function checkExistingCustomUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'url_key' => [
+            'keyword' => [
                 'nullable',
                 'max:20',
                 'alpha_dash',

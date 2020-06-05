@@ -138,7 +138,7 @@ class UrlTest extends TestCase
 
         $this->assertSame(
             $url->short_url,
-            url('/'.$url->url_key)
+            url('/'.$url->keyword)
         );
     }
 
@@ -225,14 +225,14 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::url_key_capacity
+     * @covers ::keyword_capacity
      * @dataProvider keywordCapacityProvider
      */
-    public function url_key_capacity($hash_length, $expected)
+    public function keyword_capacity($hash_length, $expected)
     {
         config()->set('urlhub.hash_length', $hash_length);
 
-        $this->assertSame($expected, $this->url->url_key_capacity());
+        $this->assertSame($expected, $this->url->keyword_capacity());
     }
 
     public function keywordCapacityProvider()
@@ -251,46 +251,46 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::url_key_remaining
+     * @covers ::keyword_remaining
      */
-    public function url_key_remaining()
+    public function keyword_remaining()
     {
         factory(Url::class, 5)->create();
 
         config()->set('urlhub.hash_length', 1);
 
         // 3 - 5 = must be 0
-        $this->assertSame(0, $this->url->url_key_remaining());
+        $this->assertSame(0, $this->url->keyword_remaining());
 
         config()->set('urlhub.hash_length', 2);
 
         // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->url_key_remaining());
+        $this->assertSame(1, $this->url->keyword_remaining());
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::url_key_remaining_percent
+     * @covers ::keyword_remaining_percent
      */
-    public function url_key_remaining_percent()
+    public function keyword_remaining_percent()
     {
         factory(Url::class, 4)->create();
 
         config()->set('urlhub.hash_length', 2);
         config()->set('urlhub.hash_alphabet', 'ab');
 
-        $this->assertSame('0%', $this->url->url_key_remaining_percent());
+        $this->assertSame('0%', $this->url->keyword_remaining_percent());
 
         config()->set('urlhub.hash_length', 6);
         config()->set('urlhub.hash_alphabet', 'abcdefghij');
 
-        $this->assertSame('99.99%', $this->url->url_key_remaining_percent());
+        $this->assertSame('99.99%', $this->url->keyword_remaining_percent());
 
         config()->set('urlhub.hash_length', 3);
         config()->set('urlhub.hash_alphabet', 'abcdefg');
 
-        $this->assertSame('98%', $this->url->url_key_remaining_percent());
+        $this->assertSame('98%', $this->url->keyword_remaining_percent());
     }
 
     /**

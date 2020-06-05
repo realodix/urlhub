@@ -30,12 +30,12 @@ class UrlController extends Controller
 
     /**
      * @codeCoverageIgnore
-     * @param string $url_key
+     * @param string $keyword
      * @return Factory|View
      */
-    public function view($url_key)
+    public function view($keyword)
     {
-        $url = Url::with('urlStat')->whereKeyword($url_key)->firstOrFail();
+        $url = Url::with('urlStat')->whereKeyword($keyword)->firstOrFail();
 
         $qrCode = qrCodeGenerator($url->short_url);
 
@@ -56,24 +56,24 @@ class UrlController extends Controller
      * link. You can duplicate it and it will produce a different ending
      * url.
      *
-     * @param string $url_key
+     * @param string $keyword
      * @return RedirectResponse
      */
-    public function duplicate($url_key)
+    public function duplicate($keyword)
     {
-        $url = Url::whereKeyword($url_key)->firstOrFail();
+        $url = Url::whereKeyword($keyword)->firstOrFail();
 
-        $url_key = $this->url->key_generator();
+        $keyword = $this->url->key_generator();
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),
-            'url_key'   => $url_key,
+            'keyword'   => $keyword,
             'is_custom' => 0,
             'clicks'    => 0,
         ]);
         $replicate->save();
 
-        return redirect()->route('short_url.stats', $url_key)
+        return redirect()->route('short_url.stats', $keyword)
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }

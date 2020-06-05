@@ -17,7 +17,7 @@ $(document).ready(function() {
         stateSave: true,
         ajax: '/admin/allurl/getdata',
         columns: [
-            {data: 'url_key'},
+            {data: 'keyword'},
             {data: 'long_url', name: 'meta_title'},
             {data: 'clicks', searchable: false,},
             {data: 'created_by'},
@@ -45,7 +45,7 @@ $(document).ready(function() {
         stateSave: true,
         ajax: '/admin/myurl/getdata',
         columns: [
-            {data: 'url_key'},
+            {data: 'keyword'},
             {data: 'long_url', name: 'meta_title'},
             {data: 'clicks', searchable: false},
             {

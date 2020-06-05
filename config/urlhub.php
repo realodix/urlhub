@@ -24,7 +24,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | The expected (and maximum) number of characters in generating unique
-    | url_key.
+    | keyword.
     |
     */
 
@@ -35,7 +35,7 @@ return [
     | Hash Alphabet
     |--------------------------------------------------------------------------
     |
-    | Characters to be used in generating unique url_key. A URL is composed
+    | Characters to be used in generating unique keyword. A URL is composed
     | from a limited set of characters belonging to the US-ASCII character
     | set. These characters include digits (0-9), letters(A-Z, a-z), and
     | a few special characters ("-", ".", "_", "~").

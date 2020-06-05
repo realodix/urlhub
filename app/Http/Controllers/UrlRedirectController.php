@@ -14,13 +14,13 @@ class UrlRedirectController extends Controller
      * long URL.
      *
      * @param UrlRedirectionService $service
-     * @param string                $url_key
+     * @param string                $keyword
      * @return RedirectResponse
      */
-    public function __invoke(UrlRedirectionService $service, string $url_key)
+    public function __invoke(UrlRedirectionService $service, string $keyword)
     {
-        return DB::transaction(function () use ($service, $url_key) {
-            $url = Url::whereKeyword($url_key)->firstOrFail();
+        return DB::transaction(function () use ($service, $keyword) {
+            $url = Url::whereKeyword($keyword)->firstOrFail();
 
             return $service->handleHttpRedirect($url);
         });
