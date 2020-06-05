@@ -144,10 +144,10 @@ class Url extends Model
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        $link = self::whereUrlKey($keyword)->first();
+        $link = self::whereKeyword($keyword)->first();
         while ($link) {
             $keyword = $generateId->formatedId($alphabet, $hash_length);
-            $link = self::whereUrlKey($keyword)->first();
+            $link = self::whereKeyword($keyword)->first();
         }
         // @codeCoverageIgnoreEnd
 

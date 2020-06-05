@@ -96,7 +96,7 @@ class DashboardController extends Controller
      */
     public function edit($url_key)
     {
-        $url = Url::with('urlStat')->whereUrlKey($url_key)->firstOrFail();
+        $url = Url::with('urlStat')->whereKeyword($url_key)->firstOrFail();
 
         $this->authorize('updateUrl', $url);
 
@@ -151,7 +151,7 @@ class DashboardController extends Controller
      */
     public function duplicate($url_key)
     {
-        $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $url = Url::whereKeyword($url_key)->firstOrFail();
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),

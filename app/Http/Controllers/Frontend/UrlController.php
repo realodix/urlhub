@@ -35,7 +35,7 @@ class UrlController extends Controller
      */
     public function view($url_key)
     {
-        $url = Url::with('urlStat')->whereUrlKey($url_key)->firstOrFail();
+        $url = Url::with('urlStat')->whereKeyword($url_key)->firstOrFail();
 
         $qrCode = qrCodeGenerator($url->short_url);
 
@@ -61,7 +61,7 @@ class UrlController extends Controller
      */
     public function duplicate($url_key)
     {
-        $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $url = Url::whereKeyword($url_key)->firstOrFail();
 
         $url_key = $this->url->key_generator();
 
