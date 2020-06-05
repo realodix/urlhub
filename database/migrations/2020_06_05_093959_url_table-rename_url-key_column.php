@@ -13,7 +13,7 @@ class UrlTableRenameUrlKeyColumn extends Migration
      */
     public function up()
     {
-        Schema::create('urls', function (Blueprint $table) {
+        Schema::table('urls', function (Blueprint $table) {
             $table->renameColumn('url_key', 'keyword');
         });
     }
