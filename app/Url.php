@@ -140,18 +140,18 @@ class Url extends Model
         $alphabet = config('urlhub.hash_alphabet');
         $hash_length = (int) config('urlhub.hash_length');
 
-        $urlKey = $generateId->formatedId($alphabet, $hash_length);
+        $keyword = $generateId->formatedId($alphabet, $hash_length);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        $link = self::whereUrlKey($urlKey)->first();
+        $link = self::whereUrlKey($keyword)->first();
         while ($link) {
-            $urlKey = $generateId->formatedId($alphabet, $hash_length);
-            $link = self::whereUrlKey($urlKey)->first();
+            $keyword = $generateId->formatedId($alphabet, $hash_length);
+            $link = self::whereUrlKey($keyword)->first();
         }
         // @codeCoverageIgnoreEnd
 
-        return $urlKey;
+        return $keyword;
     }
 
     /**

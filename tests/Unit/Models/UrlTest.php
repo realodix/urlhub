@@ -226,7 +226,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      * @covers ::url_key_capacity
-     * @dataProvider urlKeyCapacityProvider
+     * @dataProvider keywordCapacityProvider
      */
     public function url_key_capacity($hash_length, $expected)
     {
@@ -235,7 +235,7 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $this->url->url_key_capacity());
     }
 
-    public function urlKeyCapacityProvider()
+    public function keywordCapacityProvider()
     {
         return [
             [0, 0],
