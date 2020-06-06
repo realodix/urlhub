@@ -3,8 +3,6 @@
 use App\Helpers\HtmlHlp;
 use App\Helpers\NumHlp;
 use App\Helpers\UrlHlp;
-use CodeItNow\BarcodeBundle\Utils\QrCode;
-use GeoIp2\Database\Reader;
 
 /*
 |-----------------------------------------------------------------------------
@@ -78,56 +76,5 @@ if (! function_exists('script')) {
     function script($url, $attributes = [], $secure = null)
     {
         return resolve(HtmlHlp::class)->script($url, $attributes, $secure);
-    }
-}
-
-/*
-|--------------------------------------------------------------------------
-|
-|--------------------------------------------------------------------------
-*/
-if (! function_exists('qrCodeGenerator')) {
-    /**
-     * @codeCoverageIgnore
-     */
-    function qrCodeGenerator($value)
-    {
-        $qrCode = new QrCode();
-        $qrCode->setText($value)
-               ->setSize(150)
-               ->setPadding(10)
-               ->setErrorCorrection('high')
-               ->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0])
-               ->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0])
-               ->setLabel('Scan QR Code')
-               ->setLabelFontSize(12)
-               ->setImageType(QrCode::IMAGE_TYPE_PNG);
-
-        return $qrCode;
-    }
-}
-
-if (! function_exists('getCountries')) {
-    /**
-     * We try to get the IP country. If it fails, because GeoLite2 doesn't know
-     * the IP country, we will set it to Unknown.
-     */
-    function getCountries($ip)
-    {
-        try {
-            // @codeCoverageIgnoreStart
-            $reader = new Reader(database_path().'/GeoLite2-Country.mmdb');
-            $record = $reader->country($ip);
-            $countryCode = $record->country->isoCode;
-            $countryName = $record->country->name;
-
-            return compact('countryCode', 'countryName');
-            // @codeCoverageIgnoreEnd
-        } catch (\Exception $e) {
-            $countryCode = 'N/A';
-            $countryName = 'Unknown';
-
-            return compact('countryCode', 'countryName');
-        }
     }
 }

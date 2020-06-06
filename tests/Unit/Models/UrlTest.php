@@ -331,4 +331,29 @@ class UrlTest extends TestCase
             ['foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
         ];
     }
+
+    /**
+     * @test
+     * @group u-model
+     * @covers ::getCountries
+     */
+    public function getCountriesWithKnownIp()
+    {
+        $countries = $this->url->getCountries('8.8.8.8');
+
+        $this->assertEquals('US', $countries['countryCode']);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @covers ::getCountries
+     */
+    public function getCountriesWithUnknownIp()
+    {
+        $countries = $this->url->getCountries('127.0.0.1');
+
+        $this->assertEquals('N/A', $countries['countryCode']);
+        $this->assertEquals('Unknown', $countries['countryName']);
+    }
 }

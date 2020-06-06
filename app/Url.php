@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Http\Traits\Hashidable;
+use CodeItNow\BarcodeBundle\Utils\QrCode;
 use Embed\Embed;
+use GeoIp2\Database\Reader;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -226,6 +228,26 @@ class Url extends Model
     }
 
     /**
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function qrCodeGenerator($value)
+    {
+        $qrCode = new QrCode();
+        $qrCode->setText($value)
+               ->setSize(150)
+               ->setPadding(10)
+               ->setErrorCorrection('high')
+               ->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0])
+               ->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0])
+               ->setLabel('Scan QR Code')
+               ->setLabelFontSize(12)
+               ->setImageType(QrCode::IMAGE_TYPE_PNG);
+
+        return $qrCode;
+    }
+
+    /**
      * Get Domain from external url.
      *
      * Extract the domain name using the classic parse_url() and then look
@@ -244,5 +266,28 @@ class Url extends Model
         preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs);
 
         return $regs['domain'];
+    }
+
+    /**
+     * IP Address to Identify Geolocation Information. If it fails, because
+     * GeoLite2 doesn't know the IP country, we will set it to Unknown.
+     */
+    public function getCountries($ip)
+    {
+        try {
+            // @codeCoverageIgnoreStart
+            $reader = new Reader(database_path().'/GeoLite2-Country.mmdb');
+            $record = $reader->country($ip);
+            $countryCode = $record->country->isoCode;
+            $countryName = $record->country->name;
+
+            return compact('countryCode', 'countryName');
+            // @codeCoverageIgnoreEnd
+        } catch (\Exception $e) {
+            $countryCode = 'N/A';
+            $countryName = 'Unknown';
+
+            return compact('countryCode', 'countryName');
+        }
     }
 }
