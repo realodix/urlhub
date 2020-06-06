@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\Traits\Hashidable;
 use Embed\Embed;
+use GeoIp2\Database\Reader;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -244,5 +245,28 @@ class Url extends Model
         preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs);
 
         return $regs['domain'];
+    }
+
+    /**
+     * IP Address to Identify Geolocation Information. If it fails, because
+     * GeoLite2 doesn't know the IP country, we will set it to Unknown.
+     */
+    public function getCountries($ip)
+    {
+        try {
+            // @codeCoverageIgnoreStart
+            $reader = new Reader(database_path().'/GeoLite2-Country.mmdb');
+            $record = $reader->country($ip);
+            $countryCode = $record->country->isoCode;
+            $countryName = $record->country->name;
+
+            return compact('countryCode', 'countryName');
+            // @codeCoverageIgnoreEnd
+        } catch (\Exception $e) {
+            $countryCode = 'N/A';
+            $countryName = 'Unknown';
+
+            return compact('countryCode', 'countryName');
+        }
     }
 }
