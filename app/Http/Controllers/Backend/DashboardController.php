@@ -96,7 +96,7 @@ class DashboardController extends Controller
      */
     public function edit($url_key)
     {
-        $url = Url::with('urlStat')->whereUrlKey($url_key)->firstOrFail();
+        $url = Url::whereUrlKey($url_key)->firstOrFail();
 
         $this->authorize('updateUrl', $url);
 
