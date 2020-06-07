@@ -22,7 +22,7 @@ $factory->define(Url::class, function (Faker $faker) {
         'user_id' => function () {
             return factory(User::class)->create()->id;
         },
-        'long_url'   => 'https://github.com/realodix/urlhub',
+        'long_url'   => 'https://127.0.0.1',
         'meta_title' => 'No Title',
         'url_key'    => $url->key_generator(),
         'is_custom'  => 0,
