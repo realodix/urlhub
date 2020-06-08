@@ -113,13 +113,19 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $url->long_url = $new_long_url;
+        $response =
+            $this
+                ->from(route('short_url.edit', $url->keyword))
+                ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)), [
+                    'meta_title' => $url->meta_title,
+                    'long_url'   => $new_long_url,
+                ]);
 
-        $this
-            ->from(route('short_url.edit', $url->keyword))
-            ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)));
+        $response
+            ->assertRedirect(route('dashboard'))
+            ->assertSessionHas('flash_success');
 
-        $this->assertSame($new_long_url, $url->long_url);
+        $this->assertSame($new_long_url, $url->fresh()->long_url);
     }
 
     /*
