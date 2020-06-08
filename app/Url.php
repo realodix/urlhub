@@ -21,7 +21,7 @@ class Url extends Model
      */
     protected $fillable = [
         'user_id',
-        'url_key',
+        'keyword',
         'is_custom',
         'long_url',
         'meta_title',
@@ -96,7 +96,7 @@ class Url extends Model
     // Accessor
     public function getShortUrlAttribute()
     {
-        return url('/'.$this->attributes['url_key']);
+        return url('/'.$this->attributes['keyword']);
     }
 
     /*
@@ -107,7 +107,7 @@ class Url extends Model
 
     public function totalShortUrl()
     {
-        return self::count('url_key');
+        return self::count('keyword');
     }
 
     /**
@@ -115,7 +115,7 @@ class Url extends Model
      */
     public function totalShortUrlById($id = null)
     {
-        return self::whereUserId($id)->count('url_key');
+        return self::whereUserId($id)->count('keyword');
     }
 
     public function totalClicks(): int
@@ -142,24 +142,24 @@ class Url extends Model
         $alphabet = config('urlhub.hash_alphabet');
         $hash_length = (int) config('urlhub.hash_length');
 
-        $urlKey = $generateId->formatedId($alphabet, $hash_length);
+        $keyword = $generateId->formatedId($alphabet, $hash_length);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        $link = self::whereUrlKey($urlKey)->first();
+        $link = self::whereKeyword($keyword)->first();
         while ($link) {
-            $urlKey = $generateId->formatedId($alphabet, $hash_length);
-            $link = self::whereUrlKey($urlKey)->first();
+            $keyword = $generateId->formatedId($alphabet, $hash_length);
+            $link = self::whereKeyword($keyword)->first();
         }
         // @codeCoverageIgnoreEnd
 
-        return $urlKey;
+        return $keyword;
     }
 
     /**
      * @return int
      */
-    public function url_key_capacity()
+    public function keyword_capacity()
     {
         $alphabet = strlen(config('urlhub.hash_alphabet'));
         $hash_length = (int) config('urlhub.hash_length');
@@ -178,24 +178,24 @@ class Url extends Model
     /**
      * @return int
      */
-    public function url_key_remaining()
+    public function keyword_remaining()
     {
         $totalShortUrl = self::whereIsCustom(false)->count();
 
-        if ($this->url_key_capacity() < $totalShortUrl) {
+        if ($this->keyword_capacity() < $totalShortUrl) {
             return 0;
         }
 
-        return $this->url_key_capacity() - $totalShortUrl;
+        return $this->keyword_capacity() - $totalShortUrl;
     }
 
     /**
      * @return string
      */
-    public function url_key_remaining_percent()
+    public function keyword_remaining_percent()
     {
-        $capacity = $this->url_key_capacity();
-        $remaining = $this->url_key_remaining();
+        $capacity = $this->keyword_capacity();
+        $remaining = $this->keyword_remaining();
 
         if ($capacity == 0) {
             return '0%';

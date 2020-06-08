@@ -23,16 +23,16 @@ class UrlHubLinkChecker
 
         /*
         |----------------------------------------------------------------------
-        | url_key remaining
+        | Remaining Keyword
         |----------------------------------------------------------------------
         |
-        | Periksa apakah URLHub masih memiliki url_key yang tersedia untuk
+        | Periksa apakah URLHub masih memiliki keyword yang tersedia untuk
         | membuat URL pendek. Jika tidak tersedia, cegah membuat URL
         | pendek.
         |
         */
 
-        if ($url->url_key_remaining() == 0) {
+        if ($url->keyword_remaining() == 0) {
             return redirect()
                    ->back()
                    ->withFlashError(
@@ -61,7 +61,7 @@ class UrlHubLinkChecker
         }
 
         if ($s_url) {
-            return redirect()->route('short_url.stats', $s_url->url_key)
+            return redirect()->route('short_url.stats', $s_url->keyword)
                              ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 

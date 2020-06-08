@@ -14,6 +14,7 @@
         "codeitnowin/barcode": "^3.0",
         "creativeorange/gravatar": "~1.0",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
+        "doctrine/dbal": "^2.10",
         "embed/embed": "^3.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",

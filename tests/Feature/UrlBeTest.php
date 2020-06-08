@@ -74,7 +74,7 @@ class UrlBeTest extends TestCase
         $response =
             $this
                 ->from(route('dashboard'))
-                ->get(route('dashboard.duplicate', $url->url_key));
+                ->get(route('dashboard.duplicate', $url->keyword));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -95,7 +95,7 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response = $this->get(route('short_url.edit', $url->url_key));
+        $response = $this->get(route('short_url.edit', $url->keyword));
         $response->assertOk();
     }
 
@@ -116,7 +116,7 @@ class UrlBeTest extends TestCase
         $url->long_url = $new_long_url;
 
         $this
-            ->from(route('short_url.edit', $url->url_key))
+            ->from(route('short_url.edit', $url->keyword))
             ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)));
 
         $this->assertSame($new_long_url, $url->long_url);

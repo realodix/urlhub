@@ -9,8 +9,8 @@ Route::post('/create', 'UrlController@create')->name('createshortlink');
 Route::post('/custom-link-avail-check', 'UrlController@checkExistingCustomUrl');
 
 Route::namespace('Frontend')->group(function () {
-    Route::get('/+{url_key}', 'UrlController@view')->name('short_url.stats');
-    Route::get('/duplicate/{url_key}', 'UrlController@duplicate')->middleware('auth')->name('duplicate');
+    Route::get('/+{keyword}', 'UrlController@view')->name('short_url.stats');
+    Route::get('/duplicate/{keyword}', 'UrlController@duplicate')->middleware('auth')->name('duplicate');
 });
 
 Route::namespace('Backend')->prefix('admin')->group(function () {
@@ -19,8 +19,8 @@ Route::namespace('Backend')->prefix('admin')->group(function () {
         Route::get('/', 'DashboardController@view')->name('dashboard');
         Route::get('/myurl/getdata', 'DashboardController@getData');
         Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('dashboard.delete');
-        Route::get('/duplicate/{url_key}', 'DashboardController@duplicate')->name('dashboard.duplicate');
-        Route::get('/edit/{url_key}', 'DashboardController@edit')->name('short_url.edit');
+        Route::get('/duplicate/{keyword}', 'DashboardController@duplicate')->name('dashboard.duplicate');
+        Route::get('/edit/{keyword}', 'DashboardController@edit')->name('short_url.edit');
         Route::post('/edit/{url_hashId}', 'DashboardController@update')->name('short_url.edit.post');
 
         // Statistics
@@ -45,4 +45,4 @@ Route::namespace('Backend')->prefix('admin')->group(function () {
     });
 });
 
-Route::get('/{url_key}', 'UrlRedirectController');
+Route::get('/{keyword}', 'UrlRedirectController');

@@ -31,7 +31,7 @@ $(document).ready(function () {
     stateSave: true,
     ajax: '/admin/allurl/getdata',
     columns: [{
-      data: 'url_key'
+      data: 'keyword'
     }, {
       data: 'long_url',
       name: 'meta_title'
@@ -63,7 +63,7 @@ $(document).ready(function () {
     stateSave: true,
     ajax: '/admin/myurl/getdata',
     columns: [{
-      data: 'url_key'
+      data: 'keyword'
     }, {
       data: 'long_url',
       name: 'meta_title'

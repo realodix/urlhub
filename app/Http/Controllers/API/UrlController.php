@@ -36,21 +36,21 @@ class UrlController extends Controller
      */
     public function store(StoreUrl $request)
     {
-        $url_key = $request->custom_url_key ?? $this->url->key_generator();
+        $keyword = $request->custom_keyword ?? $this->url->key_generator();
 
         $url = Url::create([
             'user_id'    => Auth::id(),
             'long_url'   => $request->long_url,
             'meta_title' => $request->long_url,
-            'url_key'    => $url_key,
-            'is_custom'  => $request->custom_url_key ? 1 : 0,
+            'keyword'    => $keyword,
+            'is_custom'  => $request->custom_keyword ? 1 : 0,
             'ip'         => $request->ip(),
         ]);
 
         return response([
             'id'        => $url->id,
             'long_url'  => $url->long_url,
-            'short_url' => url($url->url_key),
+            'short_url' => url($url->keyword),
         ], Response::HTTP_CREATED);
     }
 }

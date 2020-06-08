@@ -43,9 +43,9 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $this->url->totalClicksById(),
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
-            'capacity'             => $this->url->url_key_capacity(),
-            'remaining'            => $this->url->url_key_remaining(),
-            'remaining_percent'    => $this->url->url_key_remaining_percent(),
+            'capacity'             => $this->url->keyword_capacity(),
+            'remaining'            => $this->url->keyword_remaining(),
+            'remaining_percent'    => $this->url->keyword_remaining_percent(),
         ]);
     }
 
@@ -57,7 +57,7 @@ class DashboardController extends Controller
         $model = Url::whereUserId(Auth::id());
 
         return DataTables::of($model)
-            ->editColumn('url_key', function ($url) {
+            ->editColumn('keyword', function ($url) {
                 return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.remove_schemes($url->short_url).'</span>';
             })
             ->editColumn('long_url', function ($url) {
@@ -78,25 +78,25 @@ class DashboardController extends Controller
             ->addColumn('action', function ($url) {
                 return
                     '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
-                        <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->url_key).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
-                        <a role="button" class="btn" href="'.route('short_url.edit', $url->url_key).'" title="'.__('Edit').'" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
+                        <a role="button" class="btn" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                        <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
+                        <a role="button" class="btn" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
                         <a role="button" class="btn" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                     </div>';
             })
-            ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'action'])
+            ->rawColumns(['keyword', 'long_url', 'clicks', 'created_at.display', 'action'])
             ->toJson();
     }
 
     /**
      * Fungsi untuk menampilkan halaman edit long url.
      *
-     * @param string $url_key
+     * @param string $keyword
      * @return Factory|View
      */
-    public function edit($url_key)
+    public function edit($keyword)
     {
-        $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $url = Url::whereKeyword($keyword)->firstOrFail();
 
         $this->authorize('updateUrl', $url);
 
@@ -146,16 +146,16 @@ class DashboardController extends Controller
      * link. You can duplicate it and it will produce a different ending
      * url.
      *
-     * @param string $url_key
+     * @param string $keyword
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($url_key)
+    public function duplicate($keyword)
     {
-        $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $url = Url::whereKeyword($keyword)->firstOrFail();
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),
-            'url_key'   => $this->url->key_generator(),
+            'keyword'   => $this->url->key_generator(),
             'is_custom' => 0,
             'clicks'    => 0,
         ]);
