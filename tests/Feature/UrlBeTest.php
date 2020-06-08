@@ -117,7 +117,8 @@ class UrlBeTest extends TestCase
             $this
                 ->from(route('short_url.edit', $url->keyword))
                 ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)), [
-                    'long_url' => $new_long_url,
+                    'meta_title' => $url->meta_title,
+                    'long_url'   => $new_long_url,
                 ]);
 
         $response
