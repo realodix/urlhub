@@ -261,6 +261,9 @@ class UrlFeTest extends TestCase
         $response->assertRedirect(
             route('short_url.stats', $custom_url_key)
         );
+        
+        $response2 = $this->get(route('home').'/'.$custom_url_key);
+        $response2->assertRedirect($url->long_url);
 
         $this->assertCount(2, Url::all());
     }
