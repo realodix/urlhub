@@ -113,12 +113,12 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $new_long_url = $url->long_url;
-
         $response =
             $this
                 ->from(route('short_url.edit', $url->keyword))
-                ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)));
+                ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)), [
+                    'long_url' => $new_long_url,
+                ]);
 
         $response
             ->assertRedirect(route('dashboard'))
