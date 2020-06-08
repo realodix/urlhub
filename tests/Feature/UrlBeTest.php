@@ -125,7 +125,7 @@ class UrlBeTest extends TestCase
             ->assertRedirect(route('dashboard'))
             ->assertSessionHas('flash_success');
 
-        $this->assertSame($new_long_url, $url->long_url);
+        $this->assertSame($new_long_url, $url->fresh()->long_url);
     }
 
     /*
