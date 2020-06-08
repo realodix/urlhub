@@ -113,7 +113,7 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $url->long_url = $new_long_url;
+        $new_long_url = $url->long_url;
 
         $response =
             $this
