@@ -11,7 +11,7 @@ Route::get('/+{keyword}', 'UrlController@view')->name('short_url.stats');
 Route::get('/duplicate/{keyword}', 'UrlController@duplicate')->middleware('auth')->name('duplicate');
 
 
-Route::namespace('Backend')->prefix('admin')->group(function () {
+Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', 'DashboardController@view')->name('dashboard');
