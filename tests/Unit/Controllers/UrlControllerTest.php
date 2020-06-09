@@ -25,7 +25,7 @@ class UrlControllerTest extends TestCase
     {
         $long_url = 'https://laravel.com';
 
-        $response = $this->post(route('createshortlink'), [
+        $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
 
@@ -49,7 +49,7 @@ class UrlControllerTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response = $this->post(route('createshortlink'), [
+        $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
 
@@ -70,7 +70,7 @@ class UrlControllerTest extends TestCase
     {
         $long_url = 'https://laravel.com';
 
-        $response = $this->post(route('createshortlink'), [
+        $this->post(route('createshortlink'), [
             'long_url' => $long_url,
         ]);
 
@@ -98,7 +98,7 @@ class UrlControllerTest extends TestCase
         $long_url = 'https://laravel.com';
         $custom_url = 'laravel-http-tests';
 
-        $response = $this->post(route('createshortlink'), [
+        $this->post(route('createshortlink'), [
             'long_url'       => $long_url,
             'custom_keyword' => $custom_url,
         ]);
