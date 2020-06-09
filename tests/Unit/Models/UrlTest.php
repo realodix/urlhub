@@ -300,11 +300,9 @@ class UrlTest extends TestCase
      */
     public function get_remote_title()
     {
-        $url = factory(Url::class)->create([
-            'long_url' => 'https://github123456789.com',
-        ]);
+        $long_url = 'https://github123456789.com';
 
-        $this->assertSame('No Title', $url->meta_title);
+        $this->assertSame('No Title', $this->url->get_remote_title($long_url));
     }
 
     /**
