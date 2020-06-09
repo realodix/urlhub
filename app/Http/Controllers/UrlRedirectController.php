@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\UrlRedirectionService;
 use App\Url;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
 class UrlRedirectController extends Controller
@@ -15,7 +14,8 @@ class UrlRedirectController extends Controller
      *
      * @param UrlRedirectionService $service
      * @param string                $keyword
-     * @return RedirectResponse
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(UrlRedirectionService $service, string $keyword)
     {

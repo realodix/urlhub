@@ -6,8 +6,8 @@ use App\Http\Requests\StoreUrl;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
 use App\Url;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
+use Embed\Embed;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -32,8 +32,10 @@ class UrlController extends Controller
     }
 
     /**
+     * Shorten long URLs.
+     *
      * @param StoreUrl $request
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(StoreUrl $request)
     {
@@ -52,10 +54,11 @@ class UrlController extends Controller
     }
 
     /**
-     * Check if the Custom URL already exists. Response to an AJAX request.
+     * Validate the eligibility of a custom keyword that you want to use as a
+     * short URL. Response to an AJAX request.
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function checkExistingCustomUrl(Request $request)
     {
@@ -75,5 +78,56 @@ class UrlController extends Controller
         }
 
         return response()->json(['success' => 'Available']);
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * View the shortened URL details.
+     *
+     * @param string $keyword
+     * @return \Illuminate\View\View
+     */
+    public function view($keyword)
+    {
+        $url = Url::with('urlStat')->whereKeyword($keyword)->firstOrFail();
+
+        $qrCode = $this->url->qrCodeGenerator($url->short_url);
+
+        try {
+            $embed = Embed::create($url->long_url);
+        } catch (Exception $error) {
+            $embed = null;
+        }
+
+        return view('frontend.short', compact(['qrCode']), [
+            'embedCode' => $embed->code ?? null,
+            'url'       => $url,
+        ]);
+    }
+
+    /**
+     * UrlHub only allows users (registered & unregistered) to have a unique
+     * link. You can duplicate it and it will produce a different ending
+     * url.
+     *
+     * @param string $keyword
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function duplicate($keyword)
+    {
+        $url = Url::whereKeyword($keyword)->firstOrFail();
+
+        $keyword = $this->url->key_generator();
+
+        $replicate = $url->replicate()->fill([
+            'user_id'   => Auth::id(),
+            'keyword'   => $keyword,
+            'is_custom' => 0,
+            'clicks'    => 0,
+        ]);
+        $replicate->save();
+
+        return redirect()->route('short_url.stats', $keyword)
+            ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }

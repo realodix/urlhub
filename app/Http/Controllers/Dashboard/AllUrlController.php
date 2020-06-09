@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Url;
@@ -19,6 +19,8 @@ class AllUrlController extends Controller
 
     /**
      * Show all short URLs created by all users.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -69,7 +71,7 @@ class AllUrlController extends Controller
      * Delete a Short URL on user (Admin) request.
      *
      * @param \App\Url $url
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function delete(Url $url)
     {
