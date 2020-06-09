@@ -29,6 +29,8 @@ class DashboardController extends Controller
 
     /**
      * Show users all their Short URLs.
+     *
+     * @return \Illuminate\View\View
      */
     public function view()
     {
@@ -92,7 +94,8 @@ class DashboardController extends Controller
      * Fungsi untuk menampilkan halaman edit long url.
      *
      * @param string $keyword
-     * @return Factory|View
+     *
+     * @return \Illuminate\View\View
      */
     public function edit($keyword)
     {
@@ -127,7 +130,7 @@ class DashboardController extends Controller
      * Delete a Short URL on user request.
      *
      * @param \App\Url $url
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -147,7 +150,8 @@ class DashboardController extends Controller
      * url.
      *
      * @param string $keyword
-     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function duplicate($keyword)
     {

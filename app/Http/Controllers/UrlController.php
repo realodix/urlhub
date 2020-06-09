@@ -8,8 +8,6 @@ use App\Rules\URL\KeywordBlacklist;
 use App\Url;
 use Embed\Embed;
 use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -34,8 +32,10 @@ class UrlController extends Controller
     }
 
     /**
+     * Shorten long URLs.
+     *
      * @param StoreUrl $request
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(StoreUrl $request)
     {
@@ -54,10 +54,11 @@ class UrlController extends Controller
     }
 
     /**
-     * Check if the Custom URL already exists. Response to an AJAX request.
+     * Validate the eligibility of a custom keyword that you want to use as a
+     * short URL. Response to an AJAX request.
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function checkExistingCustomUrl(Request $request)
     {
@@ -81,8 +82,10 @@ class UrlController extends Controller
 
     /**
      * @codeCoverageIgnore
+     * View the shortened URL details.
+     *
      * @param string $keyword
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function view($keyword)
     {
@@ -108,7 +111,7 @@ class UrlController extends Controller
      * url.
      *
      * @param string $keyword
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($keyword)
     {
