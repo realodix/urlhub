@@ -94,11 +94,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | List of ending that prohibited
+    | List of reserved URL ending
     |--------------------------------------------------------------------------
+    |
+    | This keyword has a special meaning in UrlHub. Some of them represent
+    | things that look like folder names in public folders. You are free
+    | to add keywords that you want to prevent, for example rude words.
+    |
     */
 
-    'keyword_blacklist' => [
+    'reserved_keyword' => [
         'css',
         'images',
         'img',

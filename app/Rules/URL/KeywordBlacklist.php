@@ -19,7 +19,7 @@ class KeywordBlacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (in_array($value, config('urlhub.keyword_blacklist'), true)) {
+        if (in_array($value, config('urlhub.reserved_keyword'), true)) {
             return false;
         }
 

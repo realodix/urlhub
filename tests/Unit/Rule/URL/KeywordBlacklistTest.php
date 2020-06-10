@@ -49,7 +49,7 @@ class KeywordBlacklistTest extends TestCase
         return [
             ['login'],
             ['register'],
-            ['css'], // urlhub.keyword_blacklist
+            ['css'], // urlhub.reserved_keyword
         ];
     }
 }
