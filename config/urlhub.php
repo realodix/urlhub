@@ -76,8 +76,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | A list of non allowed domain
+    | List of non allowed domain
     |--------------------------------------------------------------------------
+    |
+    | This list is used to prevent shortening of urls that contain one of the
+    | domains below.
+    |
     */
 
     'domain_blacklist' => [
