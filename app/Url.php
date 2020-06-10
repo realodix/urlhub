@@ -3,9 +3,12 @@
 namespace App;
 
 use App\Http\Traits\Hashidable;
+use CodeItNow\BarcodeBundle\Utils\QrCode;
 use Embed\Embed;
+use GeoIp2\Database\Reader;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Url extends Model
 {
@@ -18,7 +21,7 @@ class Url extends Model
      */
     protected $fillable = [
         'user_id',
-        'url_key',
+        'keyword',
         'is_custom',
         'long_url',
         'meta_title',
@@ -36,7 +39,14 @@ class Url extends Model
         'is_custom' => 'boolean',
     ];
 
-    // Relations
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent: Relationships
+    |--------------------------------------------------------------------------
+    | Database tables are often related to one another. Eloquent relationships
+    | are defined as methods on Eloquent model classes.
+    */
+
     public function user()
     {
         return $this->belongsTo('App\User')->withDefault([
@@ -48,6 +58,16 @@ class Url extends Model
     {
         return $this->hasMany('App\UrlStat');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent: Mutators
+    |--------------------------------------------------------------------------
+    |
+    | Accessors and mutators allow you to format Eloquent attribute values when
+    | you retrieve or set them on model instances.
+    |
+    */
 
     // Mutator
     public function setUserIdAttribute($value)
@@ -66,23 +86,28 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        $this->attributes['meta_title'] = $this->getTitle($value);
+        if (Str::startsWith($value, 'http')) {
+            $this->attributes['meta_title'] = $this->get_remote_title($value);
+        } else {
+            $this->attributes['meta_title'] = $value;
+        }
     }
 
     // Accessor
     public function getShortUrlAttribute()
     {
-        return url('/'.$this->attributes['url_key']);
+        return url('/'.$this->attributes['keyword']);
     }
 
     /*
-     |
-     |
-     */
+    |--------------------------------------------------------------------------
+    | UrlHub Functions
+    |--------------------------------------------------------------------------
+    */
 
     public function totalShortUrl()
     {
-        return self::count('url_key');
+        return self::count('keyword');
     }
 
     /**
@@ -90,7 +115,7 @@ class Url extends Model
      */
     public function totalShortUrlById($id = null)
     {
-        return self::whereUserId($id)->count('url_key');
+        return self::whereUserId($id)->count('keyword');
     }
 
     public function totalClicks(): int
@@ -115,73 +140,78 @@ class Url extends Model
     {
         $generateId = new Client();
         $alphabet = config('urlhub.hash_alphabet');
-        $size1 = (int) config('urlhub.hash_size_1');
-        $size2 = (int) config('urlhub.hash_size_2');
+        $hash_length = (int) config('urlhub.hash_length');
 
-        // @codeCoverageIgnoreStart
-        if (($size1 == $size2) || $size2 == 0) {
-            $size2 = $size1;
-        }
-        // @codeCoverageIgnoreEnd
-
-        $urlKey = $generateId->formatedId($alphabet, $size1);
+        $keyword = $generateId->formatedId($alphabet, $hash_length);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        $link = self::whereUrlKey($urlKey)->first();
+        $link = self::whereKeyword($keyword)->first();
         while ($link) {
-            $urlKey = $generateId->formatedId($alphabet, $size2);
-            $link = self::whereUrlKey($urlKey)->first();
+            $keyword = $generateId->formatedId($alphabet, $hash_length);
+            $link = self::whereKeyword($keyword)->first();
         }
         // @codeCoverageIgnoreEnd
 
-        return $urlKey;
+        return $keyword;
     }
 
     /**
      * @return int
      */
-    public function url_key_capacity()
+    public function keyword_capacity()
     {
         $alphabet = strlen(config('urlhub.hash_alphabet'));
-        $size1 = (int) config('urlhub.hash_size_1');
-        $size2 = (int) config('urlhub.hash_size_2');
+        $hash_length = (int) config('urlhub.hash_length');
 
         // If the hash size is filled with integers that do not match the rules
         // change the variable's value to 0.
-        $size1 = ! ($size1 < 1) ? $size1 : 0;
-        $size2 = ! ($size2 < 0) ? $size2 : 0;
+        $hash_length = ! ($hash_length < 1) ? $hash_length : 0;
 
-        if ($size1 == 0 || ($size1 == 0 && $size2 == 0)) {
+        if ($hash_length == 0) {
             return 0;
-        } elseif ($size1 == $size2 || $size2 == 0) {
-            return pow($alphabet, $size1);
         } else {
-            return pow($alphabet, $size1) + pow($alphabet, $size2);
+            return pow($alphabet, $hash_length);
         }
     }
 
     /**
      * @return int
      */
-    public function url_key_remaining()
+    public function keyword_remaining()
     {
         $totalShortUrl = self::whereIsCustom(false)->count();
 
-        if ($this->url_key_capacity() < $totalShortUrl) {
+        if ($this->keyword_capacity() < $totalShortUrl) {
             return 0;
         }
 
-        return $this->url_key_capacity() - $totalShortUrl;
+        return $this->keyword_capacity() - $totalShortUrl;
     }
 
     /**
-     * Gets the title of page from its url.
+     * @return string
+     */
+    public function keyword_remaining_percent()
+    {
+        $capacity = $this->keyword_capacity();
+        $remaining = $this->keyword_remaining();
+
+        if ((round(($remaining * 100) / $capacity, 2) == 100) && ($capacity != $remaining)) {
+            return '99.99%';
+        } else {
+            return round(($remaining * 100) / $capacity).'%';
+        }
+    }
+
+    /**
+     * This function returns a string: either the page title as defined in
+     * HTML, or the string "No Title" if not found.
      *
      * @param string $url
      * @return string
      */
-    public function getTitle($url)
+    public function get_remote_title($url)
     {
         try {
             $embed = Embed::create($url);
@@ -191,6 +221,26 @@ class Url extends Model
         }
 
         return $title;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function qrCodeGenerator($value)
+    {
+        $qrCode = new QrCode();
+        $qrCode->setText($value)
+               ->setSize(150)
+               ->setPadding(10)
+               ->setErrorCorrection('high')
+               ->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0])
+               ->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0])
+               ->setLabel('Scan QR Code')
+               ->setLabelFontSize(12)
+               ->setImageType(QrCode::IMAGE_TYPE_PNG);
+
+        return $qrCode;
     }
 
     /**
@@ -209,8 +259,31 @@ class Url extends Model
         $pieces = parse_url($url);
         $domain = isset($pieces['host']) ? $pieces['host'] : '';
 
-        if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-            return $regs['domain'];
+        preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs);
+
+        return $regs['domain'];
+    }
+
+    /**
+     * IP Address to Identify Geolocation Information. If it fails, because
+     * GeoLite2 doesn't know the IP country, we will set it to Unknown.
+     */
+    public function getCountries($ip)
+    {
+        try {
+            // @codeCoverageIgnoreStart
+            $reader = new Reader(database_path().'/GeoLite2-Country.mmdb');
+            $record = $reader->country($ip);
+            $countryCode = $record->country->isoCode;
+            $countryName = $record->country->name;
+
+            return compact('countryCode', 'countryName');
+            // @codeCoverageIgnoreEnd
+        } catch (\Exception $e) {
+            $countryCode = 'N/A';
+            $countryName = 'Unknown';
+
+            return compact('countryCode', 'countryName');
         }
     }
 }

@@ -6,6 +6,12 @@
         {
             "label": "Run tests",
             "type": "shell",
+            "command": "php artisan test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run tests (PHPUnit)",
+            "type": "shell",
             "command": "./vendor/bin/phpunit",
             "problemMatcher": []
         },

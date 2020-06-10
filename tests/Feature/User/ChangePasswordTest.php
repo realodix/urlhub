@@ -18,45 +18,20 @@ class ChangePasswordTest extends TestCase
     }
 
     /** @test */
-    public function users_can_access_their_own_change_password_page()
-    {
-        $this->loginAsAdmin();
-
-        $response = $this->get($this->getRoute($this->admin()->name));
-        $response->assertOk();
-    }
-
-    /** @test */
-    public function admin_can_access_other_users_change_password_pages()
-    {
-        $this->loginAsAdmin();
-
-        $response = $this->get($this->getRoute($this->user()->name));
-        $response->assertOk();
-    }
-
-    /** @test */
-    public function non_admin_cant_access_other_users_change_password_pages()
-    {
-        $this->loginAsUser();
-
-        $response = $this->get($this->getRoute($this->admin()->name));
-        $response->assertForbidden();
-    }
-
-    /** @test */
     public function change_password_with_correct_credentials()
     {
         $this->loginAsAdmin();
 
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                             'current-password'          => $this->adminPassword(),
-                             'new-password'              => 'new-awesome-password',
-                             'new-password_confirmation' => 'new-awesome-password',
-                         ]);
+        $response =
+            $this
+                ->from($this->getRoute($user->name))
+                ->post($this->postRoute($user->id), [
+                    'current-password'          => $this->adminPassword(),
+                    'new-password'              => 'new-awesome-password',
+                    'new-password_confirmation' => 'new-awesome-password',
+                ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -77,12 +52,14 @@ class ChangePasswordTest extends TestCase
 
         $user = $this->user();
 
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                             'current-password'          => $this->adminPassword(),
-                             'new-password'              => 'new-awesome-password',
-                             'new-password_confirmation' => 'new-awesome-password',
-                         ]);
+        $response =
+            $this
+                ->from($this->getRoute($user->name))
+                ->post($this->postRoute($user->id), [
+                    'current-password'          => $this->adminPassword(),
+                    'new-password'              => 'new-awesome-password',
+                    'new-password_confirmation' => 'new-awesome-password',
+                ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -103,12 +80,14 @@ class ChangePasswordTest extends TestCase
 
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                             'current-password'          => 'laravel',
-                             'new-password'              => 'new-awesome-password',
-                             'new-password_confirmation' => 'new-awesome-password',
-                         ]);
+        $response =
+            $this
+                ->from($this->getRoute($user->name))
+                ->post($this->postRoute($user->id), [
+                    'current-password'          => 'laravel',
+                    'new-password'              => 'new-awesome-password',
+                    'new-password_confirmation' => 'new-awesome-password',
+                ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -132,12 +111,14 @@ class ChangePasswordTest extends TestCase
 
         $user = $this->user();
 
-        $response = $this->from($this->getRoute($user->name))
-                         ->post($this->postRoute($user->id), [
-                             'current-password'          => $this->adminPassword(),
-                             'new-password'              => $data1,
-                             'new-password_confirmation' => $data2,
-                         ]);
+        $response =
+            $this
+                ->from($this->getRoute($user->name))
+                ->post($this->postRoute($user->id), [
+                    'current-password'          => $this->adminPassword(),
+                    'new-password'              => $data1,
+                    'new-password_confirmation' => $data2,
+                ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))

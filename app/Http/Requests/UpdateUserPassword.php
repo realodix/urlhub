@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\Auth\CurrentPassword;
+use App\Rules\PwdCurrent;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
@@ -27,7 +27,7 @@ class UpdateUserPassword extends FormRequest
     public function rules()
     {
         return [
-            'current-password' => [new CurrentPassword],
+            'current-password' => [new PwdCurrent],
             'new-password'     => PasswordRules::changePassword('current-password'),
         ];
     }

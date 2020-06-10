@@ -41,8 +41,7 @@
           <br> <br>
 
           <b>@lang('Original URL')</b>
-          <div class="long-url"><a href="{{ $url->long_url }}" target="_blank" title="{{ $url->long_url }}"
-              data-toggle="tooltip">{{ url_limit($url->long_url) }}</a></div>
+          <div class="long-url">{{ $url->long_url }}</div>
 
           <div class="mt-5" id="jssocials"></div>
 
@@ -52,87 +51,14 @@
     </div>
   </div>
 
-  <div class="row mt-3">
-    <div class="col-lg">
-      <div class="row body">
-        <div class="col">
-          <div class="row mb-3">
-            <div class="col">
-              <b>@lang('Platforms')</b>
-              <span class="badge badge-primary">@lang('Total:')
-                {{ $url->urlStat->pluck('platform')->unique()->count() }}</span>
-            </div>
-          </div>
-          @foreach($url->urlStat->pluck('platform')->unique() as $platform)
-          <div class="card col-lg-3 mb-2 d-inline-block">
-            <div class="card-body">
-              <h5 class="card-title">{{ $platform }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                {{ $url->urlStat->where('platform', $platform)->count() }}
-              </h6>
-              <p class="card-text"></p>
-            </div>
-          </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="row mt-3">
-    <div class="col-lg">
-      <div class="row body">
-        <div class="col">
-          <div class="row mb-3">
-            <div class="col">
-              <b>@lang('Browsers')</b>
-              <span class="badge badge-primary">@lang('Total:')
-                {{ $url->urlStat->pluck('browser')->unique()->count() }}</span>
-            </div>
-          </div>
-          @foreach($url->urlStat->pluck('browser')->unique() as $browser)
-          <div class="card col-lg-3 mb-2 d-inline-block">
-            <div class="card-body">
-              <h5 class="card-title">{{ $browser }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                {{ $url->urlStat->where('browser', $browser)->count() }}
-              </h6>
-              <p class="card-text"></p>
-            </div>
-          </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row mt-3">
-    <div class="col-lg">
-      <div class="row body">
-        <div class="col">
-          <div class="row mb-3">
-            <div class="col">
-              <b>@lang('Countries')</b>
-              <span class="badge badge-primary">@lang('Total:')
-                {{ $url->urlStat->pluck('country')->unique()->count() }}</span>
-            </div>
-          </div>
-
-          @foreach($url->urlStat->pluck('country')->unique() as $country)
-          <div class="card col-lg-3 mb-2 d-inline-block">
-            <div class="card-body">
-              <h5 class="card-title">{{ $country }}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                {{ $url->urlStat->where('country', $country)->count() }}
-              </h6>
-              <p class="card-text"></p>
-            </div>
-          </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
+  @if (config('urlhub.show_stat_to_guests') == true)
+    @include('frontend.short_stat')
+  @else
+    @auth
+      @include('frontend.short_stat')
+    @endauth
+  @endif
 
 </div>
 @endsection

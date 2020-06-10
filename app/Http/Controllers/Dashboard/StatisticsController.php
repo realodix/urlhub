@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Url;
@@ -25,8 +25,8 @@ class StatisticsController extends Controller
         $user = new User;
 
         return view('backend.statistics', [
-            'capacity'             => $url->url_key_capacity(),
-            'remaining'            => $url->url_key_remaining(),
+            'capacity'             => $url->keyword_capacity(),
+            'remaining'            => $url->keyword_remaining(),
             'totalShortUrl'        => $url->totalShortUrl(),
             'totalShortUrlByGuest' => $url->totalShortUrlById(),
             'totalClicks'          => $url->totalClicks(),

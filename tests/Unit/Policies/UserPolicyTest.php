@@ -146,6 +146,15 @@ class UserPolicyTest extends TestCase
         $response->assertForbidden();
     }
 
+    /** @test */
+    public function users_can_access_their_own_change_password_page()
+    {
+        $this->loginAsAdmin();
+
+        $response = $this->get($this->getCPRoute($this->admin()->name));
+        $response->assertOk();
+    }
+
     //
     // ALl Users Page.
     //

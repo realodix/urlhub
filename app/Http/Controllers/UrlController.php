@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
-use App\Rules\Lowercase;
-use App\Rules\URL\ShortUrlProtected;
+use App\Rules\StrAlphaUnderscore;
+use App\Rules\StrLowercase;
+use App\Rules\URL\KeywordBlacklist;
 use App\Url;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
+use Embed\Embed;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -32,41 +33,44 @@ class UrlController extends Controller
     }
 
     /**
+     * Shorten long URLs.
+     *
      * @param StoreUrl $request
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(StoreUrl $request)
     {
-        $url_key = $request->custom_url_key ?? $this->url->key_generator();
+        $keyword = $request->custom_keyword ?? $this->url->key_generator();
 
         Url::create([
             'user_id'    => Auth::id(),
             'long_url'   => $request->long_url,
             'meta_title' => $request->long_url,
-            'url_key'    => $url_key,
-            'is_custom'  => $request->custom_url_key ? 1 : 0,
+            'keyword'    => $keyword,
+            'is_custom'  => $request->custom_keyword ? 1 : 0,
             'ip'         => $request->ip(),
         ]);
 
-        return redirect()->route('short_url.stats', $url_key);
+        return redirect()->route('short_url.stats', $keyword);
     }
 
     /**
-     * Check if the Custom URL already exists. Response to an AJAX request.
+     * Validate the eligibility of a custom keyword that you want to use as a
+     * short URL. Response to an AJAX request.
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function checkExistingCustomUrl(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'url_key' => [
+            'keyword' => [
                 'nullable',
                 'max:20',
-                'alpha_dash',
                 'unique:urls',
-                new Lowercase,
-                new ShortUrlProtected,
+                new StrAlphaUnderscore,
+                new StrLowercase,
+                new KeywordBlacklist,
             ],
         ]);
 
@@ -75,5 +79,56 @@ class UrlController extends Controller
         }
 
         return response()->json(['success' => 'Available']);
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * View the shortened URL details.
+     *
+     * @param string $keyword
+     * @return \Illuminate\View\View
+     */
+    public function view($keyword)
+    {
+        $url = Url::with('urlStat')->whereKeyword($keyword)->firstOrFail();
+
+        $qrCode = $this->url->qrCodeGenerator($url->short_url);
+
+        try {
+            $embed = Embed::create($url->long_url);
+        } catch (Exception $error) {
+            $embed = null;
+        }
+
+        return view('frontend.short', compact(['qrCode']), [
+            'embedCode' => $embed->code ?? null,
+            'url'       => $url,
+        ]);
+    }
+
+    /**
+     * UrlHub only allows users (registered & unregistered) to have a unique
+     * link. You can duplicate it and it will produce a different ending
+     * url.
+     *
+     * @param string $keyword
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function duplicate($keyword)
+    {
+        $url = Url::whereKeyword($keyword)->firstOrFail();
+
+        $keyword = $this->url->key_generator();
+
+        $replicate = $url->replicate()->fill([
+            'user_id'   => Auth::id(),
+            'keyword'   => $keyword,
+            'is_custom' => 0,
+            'clicks'    => 0,
+        ]);
+        $replicate->save();
+
+        return redirect()->route('short_url.stats', $keyword)
+            ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }

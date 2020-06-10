@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\User;
+namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\User;
@@ -80,7 +80,7 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\User                $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

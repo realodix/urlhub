@@ -120,7 +120,7 @@ $(function () {
         url: "/custom-link-avail-check",
         type: 'POST',
         data: {
-          'url_key': $('#custom_url_key').val()
+          'keyword': $('#custom_keyword').val()
         },
         dataType: "json"
       }).done(function (data) {
@@ -142,7 +142,7 @@ $(function () {
     allowSubmit: false
   }; // Add TypeWatch to check when users type
 
-  $('#custom_url_key').typeWatch(twOptions);
+  $('#custom_keyword').typeWatch(twOptions);
 });
 /**
  * Social Share
@@ -205,9 +205,9 @@ $("#jssocials").jsSocials({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\urlhub\resources\js\frontend.js */"./resources/js/frontend.js");
-__webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\backend.scss */"./resources/sass/backend.scss");
-module.exports = __webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\frontend.scss */"./resources/sass/frontend.scss");
+__webpack_require__(/*! E:\laragon\www\urlhub\resources\js\frontend.js */"./resources/js/frontend.js");
+__webpack_require__(/*! E:\laragon\www\urlhub\resources\sass\backend.scss */"./resources/sass/backend.scss");
+module.exports = __webpack_require__(/*! E:\laragon\www\urlhub\resources\sass\frontend.scss */"./resources/sass/frontend.scss");
 
 
 /***/ })

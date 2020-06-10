@@ -138,7 +138,7 @@ class UrlTest extends TestCase
 
         $this->assertSame(
             $url->short_url,
-            url('/'.$url->url_key)
+            url('/'.$url->keyword)
         );
     }
 
@@ -225,70 +225,84 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::url_key_capacity
-     * @dataProvider urlKeyCapacityProvider
+     * @covers ::keyword_capacity
+     * @dataProvider keywordCapacityProvider
      */
-    public function url_key_capacity($size1, $size2, $expected)
+    public function keyword_capacity($hash_length, $expected)
     {
-        config()->set('urlhub.hash_size_1', $size1);
-        config()->set('urlhub.hash_size_2', $size2);
+        config()->set('urlhub.hash_length', $hash_length);
 
-        $this->assertSame($expected, $this->url->url_key_capacity());
+        $this->assertSame($expected, $this->url->keyword_capacity());
     }
 
-    public function urlKeyCapacityProvider()
+    public function keywordCapacityProvider()
     {
         return [
-            [0, 0, 0],
-            [1, 2, 12], // (3^1)+(3^2)
-            [2, 2, 9], // $alphabet_length^$hash_size_1 or 3^2
+            [0, 0],
+            [1, 3], // (3^1)
+            [2, 9], // $alphabet_length^$hash_length or 3^2
 
-            [1, -2, 3],
-            [-1, 2, 0],
-            [-1, -2, 0],
-
-            [2.7, 3, 36], // (3^2)+(3^3)
-            [2, 3.7, 36], // (3^2)+(3^3)
-
-            ['string', 2, 0],
-            [2, 'string', 9], // $alphabet_length^$hash_size_1 or 3^2
-            ['string', 'string', 0],
+            [-1, 0],
+            [2.7, 9], // (3^2)
+            ['string', 0],
         ];
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::url_key_remaining
+     * @covers ::keyword_remaining
      */
-    public function url_key_remaining()
+    public function keyword_remaining()
     {
         factory(Url::class, 5)->create();
 
-        config()->set('urlhub.hash_size_1', 1);
-        config()->set('urlhub.hash_size_2', 0);
+        config()->set('urlhub.hash_length', 1);
 
         // 3 - 5 = must be 0
-        $this->assertSame(0, $this->url->url_key_remaining());
+        $this->assertSame(0, $this->url->keyword_remaining());
 
-        config()->set('urlhub.hash_size_1', 2);
+        config()->set('urlhub.hash_length', 2);
 
         // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->url_key_remaining());
+        $this->assertSame(1, $this->url->keyword_remaining());
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::getTitle
+     * @covers ::keyword_remaining_percent
      */
-    public function getTitle()
+    public function keyword_remaining_percent()
     {
-        $url = factory(Url::class)->create([
-            'long_url' => 'https://github123456789.com',
-        ]);
+        factory(Url::class, 4)->create();
 
-        $this->assertSame('No Title', $url->meta_title);
+        config()->set('urlhub.hash_length', 2);
+        config()->set('urlhub.hash_alphabet', 'ab');
+
+        $this->assertSame('0%', $this->url->keyword_remaining_percent());
+
+        config()->set('urlhub.hash_length', 6);
+        config()->set('urlhub.hash_alphabet', 'abcdefghij');
+
+        $this->assertSame('99.99%', $this->url->keyword_remaining_percent());
+
+        config()->set('urlhub.hash_length', 3);
+        config()->set('urlhub.hash_alphabet', 'abcdefg');
+
+        $this->assertSame('98%', $this->url->keyword_remaining_percent());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @covers ::get_remote_title
+     */
+    public function get_remote_title()
+    {
+        $long_url = 'https://github123456789.com';
+
+        $this->assertSame('No Title', $this->url->get_remote_title($long_url));
     }
 
     /**
@@ -314,5 +328,30 @@ class UrlTest extends TestCase
             ['foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
             ['foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
         ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @covers ::getCountries
+     */
+    public function getCountriesWithKnownIp()
+    {
+        $countries = $this->url->getCountries('8.8.8.8');
+
+        $this->assertEquals('US', $countries['countryCode']);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @covers ::getCountries
+     */
+    public function getCountriesWithUnknownIp()
+    {
+        $countries = $this->url->getCountries('127.0.0.1');
+
+        $this->assertEquals('N/A', $countries['countryCode']);
+        $this->assertEquals('Unknown', $countries['countryName']);
     }
 }

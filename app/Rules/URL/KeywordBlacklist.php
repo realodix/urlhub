@@ -5,10 +5,10 @@ namespace App\Rules\URL;
 use Illuminate\Contracts\Validation\Rule;
 
 /**
- * Check if Short URL cannot be created because
- * it is a path.
+ * Check if keyword id is free (ie not already taken, not a URL path, and not
+ * reserved).
  */
-class ShortUrlProtected implements Rule
+class KeywordBlacklist implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -19,6 +19,10 @@ class ShortUrlProtected implements Rule
      */
     public function passes($attribute, $value)
     {
+        if (in_array($value, config('urlhub.reserved_keyword'), true)) {
+            return false;
+        }
+
         $routes = array_map(
             function (\Illuminate\Routing\Route $route) {
                 return $route->uri;

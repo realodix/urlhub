@@ -198,6 +198,8 @@ body {
         }
 
         .fa-eye:hover,
+        .fa-clone:hover,
+        .fa-edit:hover,
         .fa-user-edit:hover {
           color: $uh--green;
         }
@@ -265,6 +267,13 @@ body {
 
 .app-footer {
   font-size: 13px;
+}
+
+//
+// Edit Url
+//
+.short-url {
+  color: $uh--green;
 }
 
 

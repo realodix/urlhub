@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Url;
@@ -19,6 +19,8 @@ class AllUrlController extends Controller
 
     /**
      * Show all short URLs created by all users.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -33,7 +35,7 @@ class AllUrlController extends Controller
         $model = Url::query();
 
         return DataTables::of($model)
-            ->editColumn('url_key', function ($url) {
+            ->editColumn('keyword', function ($url) {
                 return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.remove_schemes($url->short_url).'</span>';
             })
             ->editColumn('long_url', function ($url) {
@@ -57,11 +59,11 @@ class AllUrlController extends Controller
             ->addColumn('action', function ($url) {
                 return
                     '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                        <a role="button" class="btn" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
                         <a role="button" class="btn" href="'.route('dashboard.allurl.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                     </div>';
             })
-            ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'created_by', 'action'])
+            ->rawColumns(['keyword', 'long_url', 'clicks', 'created_at.display', 'created_by', 'action'])
             ->toJson();
     }
 
@@ -69,7 +71,7 @@ class AllUrlController extends Controller
      * Delete a Short URL on user (Admin) request.
      *
      * @param \App\Url $url
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function delete(Url $url)
     {

@@ -23,7 +23,7 @@ class UrlFeTest extends TestCase
 
         $url = Url::whereLongUrl($long_url)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
+        $response->assertRedirect(route('short_url.stats', $url->keyword));
     }
 
     /**
@@ -34,13 +34,13 @@ class UrlFeTest extends TestCase
     public function create_cst()
     {
         $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
+        $custom_keyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
+            'custom_keyword' => $custom_keyword,
         ]);
-        $response->assertRedirect(route('short_url.stats', $custom_url_key));
+        $response->assertRedirect(route('short_url.stats', $custom_keyword));
     }
 
     /**
@@ -54,13 +54,13 @@ class UrlFeTest extends TestCase
 
         $user = $this->admin();
         $long_url = 'https://laravel.com';
-        $custom_url_key = 'laravel';
+        $custom_keyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => $long_url,
-            'custom_url_key' => $custom_url_key,
+            'custom_keyword' => $custom_keyword,
         ]);
-        $response->assertRedirect(route('short_url.stats', $custom_url_key));
+        $response->assertRedirect(route('short_url.stats', $custom_keyword));
     }
 
     /**
@@ -79,7 +79,7 @@ class UrlFeTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('short_url.stats', $url->url_key))
+            ->assertRedirect(route('short_url.stats', $url->keyword))
             ->assertSessionHas('msgLinkAlreadyExists');
 
         $this->assertCount(1, Url::all());
@@ -100,7 +100,7 @@ class UrlFeTest extends TestCase
 
         $url = Url::whereUserId(null)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
+        $response->assertRedirect(route('short_url.stats', $url->keyword));
 
         $this->assertCount(2, Url::all());
     }
@@ -125,7 +125,7 @@ class UrlFeTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('short_url.stats', $url->url_key))
+            ->assertRedirect(route('short_url.stats', $url->keyword))
             ->assertSessionHas('msgLinkAlreadyExists');
 
         $this->assertCount(1, Url::all());
@@ -153,7 +153,7 @@ class UrlFeTest extends TestCase
 
         $url = Url::whereUserId($user->id)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
+        $response->assertRedirect(route('short_url.stats', $url->keyword));
 
         $this->assertCount(2, Url::all());
     }
@@ -179,7 +179,7 @@ class UrlFeTest extends TestCase
 
         $url = Url::whereUserId($user->id)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->url_key));
+        $response->assertRedirect(route('short_url.stats', $url->keyword));
 
         $this->assertCount(2, Url::all());
     }
@@ -197,8 +197,8 @@ class UrlFeTest extends TestCase
             'long_url' => $url->long_url,
         ]);
 
-        $this->from(route('short_url.stats', $url->url_key))
-             ->get(route('duplicate', $url->url_key));
+        $this->from(route('short_url.stats', $url->keyword))
+             ->get(route('duplicate', $url->keyword));
 
         $this->assertCount(2, Url::all());
     }
@@ -228,17 +228,17 @@ class UrlFeTest extends TestCase
             'user_id' => null,
         ]);
 
-        $custom_url_key = 'laravel';
+        $custom_keyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => $url->long_url,
-            'custom_url_key' => $custom_url_key,
+            'custom_keyword' => $custom_keyword,
         ]);
         $response->assertRedirect(
-            route('short_url.stats', $url->url_key)
+            route('short_url.stats', $url->keyword)
         );
 
-        $response2 = $this->get(route('home').'/'.$custom_url_key);
+        $response2 = $this->get(route('home').'/'.$custom_keyword);
         $response2->assertNotFound();
     }
 
@@ -251,36 +251,36 @@ class UrlFeTest extends TestCase
 
         $this->loginAsUser();
 
-        $custom_url_key = 'laravel';
+        $custom_keyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => $url->long_url,
-            'custom_url_key' => $custom_url_key,
+            'custom_keyword' => $custom_keyword,
         ]);
 
         $response->assertRedirect(
-            route('short_url.stats', $custom_url_key)
+            route('short_url.stats', $custom_keyword)
         );
 
-        $response2 = $this->get(route('home').'/'.$custom_url_key);
+        $response2 = $this->get(route('home').'/'.$custom_keyword);
         $response2->assertRedirect($url->long_url);
 
         $this->assertCount(2, Url::all());
     }
 
     /** @test */
-    public function cst_cst_url_key_already_exist()
+    public function cst_cst_keyword_already_exist()
     {
         $url = factory(Url::class)->create();
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => 'https://laravel-news.com',
-            'custom_url_key' => $url->url_key,
+            'custom_keyword' => $url->keyword,
         ]);
 
         $response
             ->assertRedirect(route('home'))
-            ->assertSessionHasErrors('custom_url_key');
+            ->assertSessionHasErrors('custom_keyword');
 
         $this->assertCount(1, Url::all());
     }
@@ -290,7 +290,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function cst_cst_url_key_already_exist_2()
+    public function cst_cst_keyword_already_exist_2()
     {
         $url = factory(Url::class)->create();
 
@@ -298,12 +298,12 @@ class UrlFeTest extends TestCase
 
         $response = $this->post(route('createshortlink'), [
             'long_url'       => 'https://laravel-news.com',
-            'custom_url_key' => $url->url_key,
+            'custom_keyword' => $url->keyword,
         ]);
 
         $response
             ->assertRedirect(route('home'))
-            ->assertSessionHasErrors('custom_url_key');
+            ->assertSessionHasErrors('custom_keyword');
 
         $this->assertCount(1, Url::all());
     }

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Url;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
@@ -28,6 +29,8 @@ class DashboardController extends Controller
 
     /**
      * Show users all their Short URLs.
+     *
+     * @return \Illuminate\View\View
      */
     public function view()
     {
@@ -42,8 +45,9 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $this->url->totalClicksById(),
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
-            'capacity'             => $this->url->url_key_capacity(),
-            'remaining'            => $this->url->url_key_remaining(),
+            'capacity'             => $this->url->keyword_capacity(),
+            'remaining'            => $this->url->keyword_remaining(),
+            'remaining_percent'    => $this->url->keyword_remaining_percent(),
         ]);
     }
 
@@ -55,7 +59,7 @@ class DashboardController extends Controller
         $model = Url::whereUserId(Auth::id());
 
         return DataTables::of($model)
-            ->editColumn('url_key', function ($url) {
+            ->editColumn('keyword', function ($url) {
                 return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.remove_schemes($url->short_url).'</span>';
             })
             ->editColumn('long_url', function ($url) {
@@ -76,20 +80,57 @@ class DashboardController extends Controller
             ->addColumn('action', function ($url) {
                 return
                     '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <a role="button" class="btn" href="'.route('short_url.stats', $url->url_key).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
-                        <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->url_key).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
+                        <a role="button" class="btn" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+                        <a role="button" class="btn" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" data-toggle="tooltip"><i class="far fa-clone"></i></a>
+                        <a role="button" class="btn" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
                         <a role="button" class="btn" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                     </div>';
             })
-            ->rawColumns(['url_key', 'long_url', 'clicks', 'created_at.display', 'action'])
+            ->rawColumns(['keyword', 'long_url', 'clicks', 'created_at.display', 'action'])
             ->toJson();
+    }
+
+    /**
+     * Fungsi untuk menampilkan halaman edit long url.
+     *
+     * @param string $keyword
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit($keyword)
+    {
+        $url = Url::whereKeyword($keyword)->firstOrFail();
+
+        $this->authorize('updateUrl', $url);
+
+        return view('backend.edit', compact('url'));
+    }
+
+    /**
+     * Fungsi untuk memperbarui long url yang telah ditetapkan sebelumnya ke
+     * long url yang baru.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Url                 $url
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(Request $request, Url $url)
+    {
+        $url->long_url = $request->input('long_url');
+        $url->meta_title = $request->input('meta_title');
+        $url->save();
+
+        return redirect()->route('dashboard')
+                         ->withFlashSuccess(__('Link changed successfully !'));
     }
 
     /**
      * Delete a Short URL on user request.
      *
      * @param \App\Url $url
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -104,21 +145,24 @@ class DashboardController extends Controller
     }
 
     /**
-     * Defaultly UrlHub only permited only one link at the time,
-     * but you can duplicate it.
+     * UrlHub only allows users (registered & unregistered) to have a unique
+     * link. You can duplicate it and it will produce a different ending
+     * url.
      *
-     * @param string $url_key
-     * @return \Illuminate\Http\RedirectResponse
+     * @param string $keyword
+     *
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function duplicate($url_key)
+    public function duplicate($keyword)
     {
-        $url = Url::whereUrlKey($url_key)->firstOrFail();
+        $url = Url::whereKeyword($keyword)->firstOrFail();
 
-        $replicate = $url->replicate();
-        $replicate->user_id = Auth::id();
-        $replicate->url_key = $this->url->key_generator();
-        $replicate->is_custom = 0;
-        $replicate->clicks = 0;
+        $replicate = $url->replicate()->fill([
+            'user_id'   => Auth::id(),
+            'keyword'   => $this->url->key_generator(),
+            'is_custom' => 0,
+            'clicks'    => 0,
+        ]);
         $replicate->save();
 
         return redirect()->back()

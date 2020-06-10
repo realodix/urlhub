@@ -88,7 +88,7 @@ Please do the following:
 
 From the projects root folder run `./vendor/bin/phpunit` (VSCode Task `Run test`) or [Artisan Test Runner](https://laravel.com/docs/testing#artisan-test-runner) `php artisan test`
 
-![screenshot](https://i.imgur.com/ShPy5Iv.jpg)
+![screenshot](https://i.imgur.com/L0XYqS6.png)
 
 
 ## License

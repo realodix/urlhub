@@ -23,8 +23,8 @@ $factory->define(Url::class, function (Faker $faker) {
             return factory(User::class)->create()->id;
         },
         'long_url'   => 'https://github.com/realodix/urlhub',
-        'meta_title' => 'URL Title',
-        'url_key'    => $url->key_generator(),
+        'meta_title' => 'No Title',
+        'keyword'    => $url->key_generator(),
         'is_custom'  => 0,
         'clicks'     => mt_rand(10000, 999999999),
         'ip'         => $faker->ipv4,

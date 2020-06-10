@@ -22,17 +22,20 @@
 
       @include('messages')
 
-      <table id="dt-myUrls" class="table table-responsive-sm table-striped">
-        <thead>
-          <tr>
-            <th scope="col">@lang('Short URL')</th>
-            <th scope="col">@lang('Original URL')</th>
-            <th scope="col">@lang('Clicks')</th>
-            <th scope="col">@lang('Date')</th>
-            <th scope="col">@lang('Actions')</th>
-          </tr>
-        </thead>
-      </table>
+      <div class="table-responsive-md">
+        <table id="dt-myUrls" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">@lang('Short URL')</th>
+              <th scope="col">@lang('Original URL')</th>
+              <th scope="col">@lang('Clicks')</th>
+              <th scope="col">@lang('Date')</th>
+              <th scope="col">@lang('Actions')</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>

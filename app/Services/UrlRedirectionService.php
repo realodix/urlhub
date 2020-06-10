@@ -27,15 +27,18 @@ class UrlRedirectionService
     /**
      * Handle the HTTP redirect and return the redirect response.
      *
+     * Redirect client to an existing short URL (no check performed) and
+     * execute tasks update clicks for short URL.
+     *
      * @param Url $url
      * @return RedirectResponse
      */
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->createUrlStat($url, getCountries(request()->ip()));
+        $this->createUrlStat($url, $url->getCountries(request()->ip()));
 
-        return redirect()->away($url->long_url, 301);
+        return redirect()->away($url->long_url, config('urlhub.redirect_code'));
     }
 
     /**

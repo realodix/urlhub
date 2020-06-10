@@ -31,7 +31,7 @@ $(document).ready(function () {
     stateSave: true,
     ajax: '/admin/allurl/getdata',
     columns: [{
-      data: 'url_key'
+      data: 'keyword'
     }, {
       data: 'long_url',
       name: 'meta_title'
@@ -63,7 +63,7 @@ $(document).ready(function () {
     stateSave: true,
     ajax: '/admin/myurl/getdata',
     columns: [{
-      data: 'url_key'
+      data: 'keyword'
     }, {
       data: 'long_url',
       name: 'meta_title'
@@ -265,7 +265,7 @@ function togglePasswordField() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\laragon\www\urlhub\resources\js\backend.js */"./resources/js/backend.js");
+module.exports = __webpack_require__(/*! E:\laragon\www\urlhub\resources\js\backend.js */"./resources/js/backend.js");
 
 
 /***/ })

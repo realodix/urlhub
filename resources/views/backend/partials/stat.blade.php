@@ -9,19 +9,15 @@
       <div class="card border-left">
       <div class="card-body">
         <div class="row">
-          <div class="col-4"><b>@lang('Capacity')</b></div>
-          <div class="col"><span title="{{number_format($capacity)}}" data-toggle="tooltip">{{number_format_short($capacity)}}</span></div>
+          <div class="col-6 col-sm-5"><b>@lang('Capacity')</b></div>
+          <div class="col col-sm"><span title="{{number_format($capacity)}}" data-toggle="tooltip">{{number_format_short($capacity)}}</span></div>
         </div>
         <div class="row">
-          <div class="col-4"><b>@lang('Remaining')</b></div>
-          <div class="col">
+          <div class="col-6 col-sm-5"><b>@lang('Remaining')</b></div>
+          <div class="col col-sm">
             <span title="{{number_format($remaining)}}" data-toggle="tooltip">
               {{number_format_short($remaining)}}
-              @if ($capacity == 0)
-                (0%)
-              @else
-                ({{round(100-((($capacity-$remaining)/$capacity)*100))}}%)
-              @endif
+              ({{$remaining_percent}})
             </span>
           </div>
         </div>

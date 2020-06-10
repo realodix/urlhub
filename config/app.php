@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'version'     => 'build.200317',
+    'version'     => 'v1.0.0-alpha.3 (master)',
     'name'        => env('APP_NAME', 'UrlHub'),
     'description' => env('APP_DESCRIPTION', 'Simplify your links'),
 
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
