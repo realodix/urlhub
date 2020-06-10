@@ -1,4 +1,4 @@
-name: Laravel
+name: UH
 
 on: ["push", "pull_request"]
 
@@ -11,7 +11,7 @@ jobs:
         operating-system: [ubuntu-latest]
         php-versions: ['7.3', '7.4']
 
-    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+    name: PHP ${{ matrix.php-versions }} - ${{ matrix.operating-system }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -29,7 +29,6 @@ jobs:
     - name: PHP Unit Tests with coverage
       run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
     - name: Send to coveralls
-      if: matrix.php-versions == '7.2'
       run: vendor/bin/coveralls build/logs/clover.xml
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
