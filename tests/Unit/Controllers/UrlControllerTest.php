@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Controllers;
 
+use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
 use App\Url;
@@ -96,7 +97,7 @@ class UrlControllerTest extends TestCase
         config()->set('urlhub.hash_length', 6);
 
         $long_url = 'https://laravel.com';
-        $custom_url = 'laravel-http-tests';
+        $custom_url = 'foo_bar';
 
         $this->post(route('createshortlink'), [
             'long_url'       => $long_url,
@@ -139,8 +140,8 @@ class UrlControllerTest extends TestCase
         $validator = Validator::make($request->all(), [
             'keyword' => [
                 'max:20',
-                'alpha_dash',
                 'unique:urls',
+                new StrAlphaUnderscore,
                 new StrLowercase,
                 new KeywordBlacklist,
             ],
@@ -157,9 +158,9 @@ class UrlControllerTest extends TestCase
     {
         return [
             [str_repeat('a', 50)],
-            ['laravel~'],
-            ['laravel'],
-            ['Laravel'],
+            ['FOOBAR'],
+            ['foo-bar'],
+            ['foo~bar'],
             ['login'],
         ];
     }

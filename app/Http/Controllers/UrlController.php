@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
+use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
 use App\Url;
@@ -66,8 +67,8 @@ class UrlController extends Controller
             'keyword' => [
                 'nullable',
                 'max:20',
-                'alpha_dash',
                 'unique:urls',
+                new StrAlphaUnderscore,
                 new StrLowercase,
                 new KeywordBlacklist,
             ],
