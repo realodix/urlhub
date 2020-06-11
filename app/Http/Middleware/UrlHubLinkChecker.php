@@ -26,7 +26,7 @@ class UrlHubLinkChecker
         | Remaining Keyword
         |----------------------------------------------------------------------
         |
-        | Periksa apakah URLHub masih memiliki keyword yang tersedia untuk
+        | Periksa apakah UrlHub masih memiliki keyword yang tersedia untuk
         | membuat URL pendek. Jika tidak tersedia, cegah membuat URL
         | pendek.
         |
