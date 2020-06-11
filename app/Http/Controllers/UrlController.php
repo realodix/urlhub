@@ -61,7 +61,7 @@ class UrlController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function checkExistingCustomUrl(Request $request)
+    public function customKeywordValidation(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'keyword' => [

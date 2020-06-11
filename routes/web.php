@@ -6,7 +6,7 @@ Auth::routes();
 
 Route::view('/', 'frontend.welcome')->name('home');
 Route::post('/create', 'UrlController@create')->name('createshortlink');
-Route::post('/custom-link-avail-check', 'UrlController@checkExistingCustomUrl');
+Route::post('/validate-custom-keyword', 'UrlController@customKeywordValidation');
 Route::get('/+{keyword}', 'UrlController@view')->name('short_url.stats');
 Route::get('/duplicate/{keyword}', 'UrlController@duplicate')->middleware('auth')->name('duplicate');
 

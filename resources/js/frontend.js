@@ -32,7 +32,7 @@ $(function() {
     var twOptions = {
         callback: function (value) {
             $.ajax({
-                url: "/custom-link-avail-check",
+                url: "/validate-custom-keyword",
                 type: 'POST',
                 data: {
                     'keyword': $('#custom_keyword').val()

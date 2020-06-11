@@ -112,11 +112,11 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @covers ::checkExistingCustomUrl
+     * @covers ::customKeywordValidation
      */
     public function check_existing_custom_url_pass()
     {
-        $response = $this->post(route('home').'/custom-link-avail-check', [
+        $response = $this->post(route('home').'/validate-custom-keyword', [
             'keyword' => 'hello',
         ]);
 
@@ -126,8 +126,8 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @covers ::checkExistingCustomUrl
-     * @dataProvider checkExistingCustomUrl_fail
+     * @covers ::customKeywordValidation
+     * @dataProvider customKeywordValidation_fail
      */
     public function check_existing_custom_url_fail($data)
     {
@@ -147,14 +147,14 @@ class UrlControllerTest extends TestCase
             ],
         ]);
 
-        $response = $this->post(route('home').'/custom-link-avail-check', [
+        $response = $this->post(route('home').'/validate-custom-keyword', [
             'keyword' => $data,
         ]);
 
         $response->assertJson(['errors' => $validator->errors()->all()]);
     }
 
-    public function checkExistingCustomUrl_fail()
+    public function customKeywordValidation_fail()
     {
         return [
             [str_repeat('a', 50)],
