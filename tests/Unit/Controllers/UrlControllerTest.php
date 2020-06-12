@@ -137,7 +137,7 @@ class UrlControllerTest extends TestCase
 
         $request = new Request;
 
-        $validator = Validator::make($request->all(), [
+        $v = Validator::make($request->all(), [
             'keyword' => [
                 'max:20',
                 'unique:urls',
@@ -151,7 +151,7 @@ class UrlControllerTest extends TestCase
             'keyword' => $data,
         ]);
 
-        $response->assertJson(['errors' => $validator->errors()->all()]);
+        $response->assertJson(['errors' => $v->errors()->all()]);
     }
 
     public function customKeywordValidation_fail()

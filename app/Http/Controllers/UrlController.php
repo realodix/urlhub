@@ -63,7 +63,7 @@ class UrlController extends Controller
      */
     public function customKeywordValidation(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $v = Validator::make($request->all(), [
             'keyword' => [
                 'nullable',
                 'max:20',
@@ -74,8 +74,8 @@ class UrlController extends Controller
             ],
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()->all()]);
+        if ($v->fails()) {
+            return response()->json(['errors' => $v->errors()->all()]);
         }
 
         return response()->json(['success' => 'Available']);
