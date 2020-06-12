@@ -21,7 +21,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \DomainBlacklist::passes
+     * @covers \DomainBlacklist
      * @dataProvider domainBlacklistPassDataProvider
      */
     public function domainBlacklistPass($value)
@@ -33,7 +33,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \DomainBlacklist::passes
+     * @covers \DomainBlacklist
      * @dataProvider domainBlacklistFailDataProvider
      */
     public function domainBlacklistFail($value)
@@ -63,7 +63,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \KeywordBlacklist::passes
+     * @covers \KeywordBlacklist
      * @dataProvider keywordBlacklistPassDataProvider
      * @param string $value
      */
@@ -76,7 +76,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \KeywordBlacklist::passes
+     * @covers \KeywordBlacklist
      * @dataProvider keywordBlacklistFailDataProvider
      * @param string $value
      */
