@@ -90,7 +90,7 @@ class UserController extends Controller
 
         $user->email = $request->input('email');
 
-        $validatedData = $request->validate([
+        $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
 
