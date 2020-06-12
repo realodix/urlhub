@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Helpers\General;
 
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\HtmlString;
@@ -9,7 +9,7 @@ use Illuminate\Support\HtmlString;
  * @codeCoverageIgnore
  * Class HtmlHelper.
  */
-class HtmlHlp
+class HtmlHelper
 {
     /**
      * The URL generator instance.
@@ -94,11 +94,10 @@ class HtmlHlp
      */
     protected function attributeElement($key, $value)
     {
-        // For numeric keys we will assume that the value is a boolean attribute
-        // where the presence of the attribute represents a true value and the
-        // absence represents a false value. This will convert HTML attributes
-        // such as "required" to a correct form instead of using incorrect
-        // numerics.
+        // For numeric keys we will assume that the value is a boolean attribute where the
+        // presence of the attribute represents a true value and the absence represents a
+        // false value. This will convert HTML attributes such as "required" to a correct
+        // form instead of using incorrect numerics.
         if (is_numeric($key)) {
             return $value;
         }
