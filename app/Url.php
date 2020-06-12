@@ -271,7 +271,7 @@ class Url extends Model
     {
         try {
             // @codeCoverageIgnoreStart
-            $reader = new Reader(database_path().'/GeoLite2-Country.mmdb');
+            $reader = new Reader(database_path().'/dbip-country-lite-2020-06.mmdb');
             $record = $reader->country($ip);
             $countryCode = $record->country->isoCode;
             $countryName = $record->country->name;
