@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\Http\Controllers\UrlController
+ * @coversDefaultClass \App\Http\Controllers\UrlController
  */
 class UrlControllerTest extends TestCase
 {
