@@ -21,7 +21,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \DomainBlacklist
      * @dataProvider domainBlacklistPassDataProvider
      */
     public function domainBlacklistPass($value)
@@ -33,7 +32,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \DomainBlacklist
      * @dataProvider domainBlacklistFailDataProvider
      */
     public function domainBlacklistFail($value)

@@ -5,9 +5,6 @@ namespace Tests\Unit\Policies;
 use App\User;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass \App\Policies\UserPolicy
- */
 class UserPolicyTest extends TestCase
 {
     /**
@@ -15,7 +12,6 @@ class UserPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::view
      */
     public function view_admin()
     {
@@ -32,7 +28,6 @@ class UserPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::view
      */
     public function view_non_admin()
     {
@@ -49,7 +44,6 @@ class UserPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::update
      */
     public function update_admin()
     {
@@ -66,7 +60,6 @@ class UserPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::update
      */
     public function update_non_admin()
     {
@@ -83,7 +76,6 @@ class UserPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::updatePass
      */
     public function updatePass_admin()
     {
@@ -100,7 +92,6 @@ class UserPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::updatePass
      */
     public function updatePass_non_admin()
     {
@@ -123,7 +114,6 @@ class UserPolicyTest extends TestCase
     /**
      * @test
      * @group u-policy
-     * @covers ::view
      */
     public function admin_can_access_change_password_page()
     {
@@ -136,7 +126,6 @@ class UserPolicyTest extends TestCase
     /**
      * @test
      * @group u-policy
-     * @covers ::view
      */
     public function non_admin_cant_access_change_password_page()
     {
@@ -162,7 +151,6 @@ class UserPolicyTest extends TestCase
     /**
      * @test
      * @group u-policy
-     * @covers ::view
      */
     public function admin_can_access_all_users_page()
     {
@@ -174,7 +162,6 @@ class UserPolicyTest extends TestCase
 
     /**
      * @test
-     * @covers ::view
      */
     public function non_admin_cant_access_all_users_page()
     {

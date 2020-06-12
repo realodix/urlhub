@@ -6,9 +6,6 @@ use App\Url;
 use App\User;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass \App\User
- */
 class UserTest extends TestCase
 {
     public function setUp(): void
@@ -31,7 +28,6 @@ class UserTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::url
      */
     public function has_many_url()
     {
@@ -50,7 +46,6 @@ class UserTest extends TestCase
      *
      * @test
      * @group u-model
-     * @covers ::totalUser
      */
     public function totalUser()
     {
@@ -65,7 +60,6 @@ class UserTest extends TestCase
      *
      * @test
      * @group u-model
-     * @covers ::totalGuest
      */
     public function totalGuest()
     {

@@ -6,9 +6,6 @@ use App\Url;
 use App\User;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass \App\Policies\UrlPolicy
- */
 class UrlPolicyTest extends TestCase
 {
     /**
@@ -16,7 +13,6 @@ class UrlPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::forceDelete
      */
     public function force_delete_admin()
     {
@@ -37,7 +33,6 @@ class UrlPolicyTest extends TestCase
      *
      * @test
      * @group u-policy
-     * @covers ::forceDelete
      */
     public function force_delete_non_admin()
     {

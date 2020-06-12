@@ -9,7 +9,6 @@ class UrlHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
-     * @covers ::url_limit
      */
     public function url_limit()
     {
@@ -32,7 +31,6 @@ class UrlHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
-     * @covers ::remove_schemes
      * @dataProvider removeSchemes
      */
     public function remove_schemes($expected, $actual)

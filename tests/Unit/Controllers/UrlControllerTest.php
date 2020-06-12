@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass \App\Http\Controllers\UrlController
- */
 class UrlControllerTest extends TestCase
 {
     /**
@@ -20,7 +17,6 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_user_id()
     {
@@ -41,7 +37,6 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_user_id_2()
     {
@@ -65,7 +60,6 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_not_custom()
     {
@@ -90,7 +84,6 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_is_custom()
     {
@@ -112,7 +105,6 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @covers ::customKeywordValidation
      */
     public function check_existing_custom_url_pass()
     {
@@ -126,7 +118,6 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @covers ::customKeywordValidation
      * @dataProvider customKeywordValidation_fail
      */
     public function check_existing_custom_url_fail($data)

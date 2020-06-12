@@ -4,14 +4,10 @@ namespace Tests\Unit\Middleware;
 
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass \App\Http\Middleware\UrlHubLinkChecker
- */
 class UrlHubLinkCheckerTest extends TestCase
 {
     /**
      * @test
-     * @covers ::handle
      */
     public function keyword_remaining_zero()
     {
