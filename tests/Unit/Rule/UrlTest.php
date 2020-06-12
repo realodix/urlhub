@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    protected $rule;
-
     public function setUp(): void
     {
         parent::setUp();
