@@ -8,13 +8,9 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    protected $rule;
-
     public function setUp(): void
     {
         parent::setUp();
-
-        $this->rule = new DomainBlacklist();
 
         config()->set(
             'urlhub.domain_blacklist',
@@ -25,7 +21,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers ::passes
      * @dataProvider domainBlacklistPassDataProvider
      */
     public function domainBlacklistPass($value)
@@ -37,7 +32,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers ::passes
      * @dataProvider domainBlacklistFailDataProvider
      */
     public function domainBlacklistFail($value)

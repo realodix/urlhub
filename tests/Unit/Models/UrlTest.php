@@ -6,9 +6,6 @@ use App\Url;
 use App\UrlStat;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass App\Url
- */
 class UrlTest extends TestCase
 {
     protected $url;
@@ -35,7 +32,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::user
      */
     public function belongs_to_user()
     {
@@ -49,7 +45,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::user
      */
     public function default_guest_name()
     {
@@ -63,7 +58,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::urlStat
      */
     public function has_many_url_stat()
     {
@@ -81,7 +75,6 @@ class UrlTest extends TestCase
      *
      * @test
      * @group u-model
-     * @covers ::setUserIdAttribute
      */
     public function default_guest_id()
     {
@@ -99,7 +92,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::setUserIdAttribute
      */
     public function setUserIdAttribute_must_be_null()
     {
@@ -113,7 +105,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::setLongUrlAttribute
      */
     public function setLongUrlAttribute()
     {
@@ -130,7 +121,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::getShortUrlAttribute
      */
     public function getShortUrlAttribute()
     {
@@ -145,7 +135,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::totalShortUrl
      */
     public function total_short_url()
     {
@@ -158,7 +147,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::totalShortUrlById
      */
     public function total_short_url_by_me()
     {
@@ -171,7 +159,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::totalShortUrlById
      */
     public function total_short_url_by_guest()
     {
@@ -184,7 +171,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::totalClicks
      */
     public function total_clicks()
     {
@@ -197,7 +183,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::totalClicksById
      */
     public function total_clicks_by_me()
     {
@@ -212,7 +197,6 @@ class UrlTest extends TestCase
      *
      * @test
      * @group u-model
-     * @covers ::totalClicksById
      */
     public function total_clicks_by_guest()
     {
@@ -225,7 +209,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::keyword_capacity
      * @dataProvider keywordCapacityProvider
      */
     public function keyword_capacity($hash_length, $expected)
@@ -251,7 +234,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::keyword_remaining
      */
     public function keyword_remaining()
     {
@@ -271,7 +253,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::keyword_remaining_percent
      */
     public function keyword_remaining_percent()
     {
@@ -296,7 +277,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::get_remote_title
      */
     public function get_remote_title()
     {
@@ -308,7 +288,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::getDomain
      * @dataProvider getDomainProvider
      */
     public function get_domain($expected, $actutal)
@@ -333,7 +312,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::getCountries
      */
     public function getCountriesWithKnownIp()
     {
@@ -345,7 +323,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::getCountries
      */
     public function getCountriesWithUnknownIp()
     {
