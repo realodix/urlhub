@@ -179,13 +179,24 @@ class Url extends Model
      */
     public function keyword_remaining()
     {
-        $totalShortUrl = self::whereIsCustom(false)->count();
+        $totalShortUrl = $this->getKeywordRemaining();
 
         if ($this->keyword_capacity() < $totalShortUrl) {
             return 0;
         }
 
         return $this->keyword_capacity() - $totalShortUrl;
+    }
+
+    /**
+     * @return int
+     */
+    public function getKeywordRemaining()
+    {
+        $totalShortUrl = self::whereIsCustom(false)->count();
+        $totalCustomShortUrl = self::whereRaw('LENGTH(keyword) = ?', [config('urlhub.hash_length')])->count();
+
+        return $totalShortUrl + $totalCustomShortUrl;
     }
 
     /**
