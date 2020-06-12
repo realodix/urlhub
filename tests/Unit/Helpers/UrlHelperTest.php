@@ -4,7 +4,7 @@ namespace Tests\Unit\Helpers;
 
 use Tests\TestCase;
 
-class UrlHlpTest extends TestCase
+class UrlHelperTest extends TestCase
 {
     /**
      * @test
