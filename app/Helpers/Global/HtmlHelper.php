@@ -2,7 +2,7 @@
 
 use App\Helpers\General\HtmlHelper;
 
-if (!function_exists('style')) {
+if (! function_exists('style')) {
     /**
      * @param       $url
      * @param array $attributes
@@ -16,7 +16,7 @@ if (!function_exists('style')) {
     }
 }
 
-if (!function_exists('script')) {
+if (! function_exists('script')) {
     /**
      * @param       $url
      * @param array $attributes

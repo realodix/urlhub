@@ -4,7 +4,7 @@ namespace Tests\Unit\Helpers;
 
 use Tests\TestCase;
 
-class NumHelperTest extends TestCase
+class NumHlpTest extends TestCase
 {
     /**
      * @test
