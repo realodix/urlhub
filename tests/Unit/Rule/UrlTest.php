@@ -12,8 +12,6 @@ class UrlTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new DomainBlacklist();
-
         config()->set(
             'urlhub.domain_blacklist',
             ['github.com', 't.co']
@@ -23,7 +21,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers ::passes
+     * @covers \DomainBlacklist::passes
      * @dataProvider domainBlacklistPassDataProvider
      */
     public function domainBlacklistPass($value)
@@ -35,7 +33,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers ::passes
+     * @covers \DomainBlacklist::passes
      * @dataProvider domainBlacklistFailDataProvider
      */
     public function domainBlacklistFail($value)
@@ -65,6 +63,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
+     * @covers \KeywordBlacklist::passes
      * @dataProvider keywordBlacklistPassDataProvider
      * @param string $value
      */
@@ -77,6 +76,7 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
+     * @covers \KeywordBlacklist::passes
      * @dataProvider keywordBlacklistFailDataProvider
      * @param string $value
      */
