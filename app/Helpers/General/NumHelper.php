@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Helpers\General;
 
-class NumHlp
+class NumHelper
 {
     /**
      * Convert large positive numbers in to short form like 1K+, 100K+, 199K+,

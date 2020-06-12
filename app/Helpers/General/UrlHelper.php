@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Helpers\General;
 
 use Illuminate\Support\Str;
 
-class UrlHlp
+class UrlHelper
 {
     /**
      * @param string $url
