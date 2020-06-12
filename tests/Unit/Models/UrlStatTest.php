@@ -7,7 +7,7 @@ use App\UrlStat;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\UrlStat
+ * @coversDefaultClass \App\UrlStat
  */
 class UrlStatTest extends TestCase
 {

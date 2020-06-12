@@ -5,7 +5,7 @@ namespace Tests\Unit\Middleware;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\Http\Middleware\UrlHubLinkChecker
+ * @coversDefaultClass \App\Http\Middleware\UrlHubLinkChecker
  */
 class UrlHubLinkCheckerTest extends TestCase
 {

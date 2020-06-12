@@ -6,7 +6,7 @@ use App\User;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\Policies\UserPolicy
+ * @coversDefaultClass \App\Policies\UserPolicy
  */
 class UserPolicyTest extends TestCase
 {

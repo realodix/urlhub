@@ -7,7 +7,7 @@ use App\User;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\User
+ * @coversDefaultClass \App\User
  */
 class UserTest extends TestCase
 {

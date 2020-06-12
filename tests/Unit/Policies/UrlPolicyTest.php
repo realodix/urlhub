@@ -7,7 +7,7 @@ use App\User;
 use Tests\TestCase;
 
 /**
- * @coversDefaultClass App\Policies\UrlPolicy
+ * @coversDefaultClass \App\Policies\UrlPolicy
  */
 class UrlPolicyTest extends TestCase
 {
