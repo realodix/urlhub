@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'allow_guest' => env('URLHUB_ALLOWGUEST', true),
+    'allow_guest' => env('UH_ALLOWGUEST', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'public_register' => env('URLHUB_PUBLICREGISTER', true),
+    'public_register' => env('UH_PUBLICREGISTER', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'redirect_code' => env('URLHUB_REDIRECT_CODE', 301),
+    'redirect_code' => env('UH_REDIRECT_CODE', 301),
 
     /*
     |--------------------------------------------------------------------------
@@ -118,5 +118,5 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'show_stat_to_guests' => env('URLHUB_SHOW_STAT_TO_GUESTS', true),
+    'show_stat_to_guests' => env('UH_SHOW_STAT_TO_GUESTS', true),
 ];
