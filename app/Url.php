@@ -196,7 +196,7 @@ class Url extends Model
         $capacity = $this->keyword_capacity();
         $remaining = $this->keyword_remaining();
 
-        if ((round(($remaining * 100) / $capacity, 2) == 100) && ($capacity != $remaining)) {
+        if ((round(($remaining * 100) / $capacity) == 100) && ($capacity != $remaining)) {
             return '99.99%';
         } else {
             return round(($remaining * 100) / $capacity).'%';
