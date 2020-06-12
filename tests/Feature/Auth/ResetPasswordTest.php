@@ -36,7 +36,10 @@ class ResetPasswordTest extends TestCase
         return route('dashboard');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_can_view_a_password_reset_form()
     {
         $response = $this->get($this->getRoute($token = $this->getValidToken($this->user())));
@@ -47,7 +50,10 @@ class ResetPasswordTest extends TestCase
             ->assertViewHas('token', $token);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_can_reset_password_with_valid_token()
     {
         Event::fake();
@@ -70,7 +76,10 @@ class ResetPasswordTest extends TestCase
         });
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_cannot_reset_password_with_invalid_token()
     {
         $user = factory(User::class)->create([
@@ -93,7 +102,10 @@ class ResetPasswordTest extends TestCase
         $this->assertGuest();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_cannot_reset_password_without_providing_a_new_password()
     {
         $user = factory(User::class)->create([
@@ -121,7 +133,10 @@ class ResetPasswordTest extends TestCase
         $this->assertGuest();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_cannot_reset_password_without_providing_an_email()
     {
         $user = factory(User::class)->create([

@@ -17,7 +17,10 @@ class ChangePasswordTest extends TestCase
         return route('user.change-password.post', \Hashids::connection(\App\User::class)->encode($value));
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function change_password_with_correct_credentials()
     {
         $this->loginAsAdmin();
@@ -45,7 +48,10 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function admin_can_change_the_password_of_all_users()
     {
         $this->loginAsAdmin();
@@ -73,7 +79,10 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function current_password_does_not_match()
     {
         $this->loginAsAdmin();
@@ -103,6 +112,7 @@ class ChangePasswordTest extends TestCase
 
     /**
      * @test
+     * @group f-user
      * @dataProvider newPasswordFail
      */
     public function new_password_validate_fail($data1, $data2)

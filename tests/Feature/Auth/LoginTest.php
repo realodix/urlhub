@@ -28,7 +28,10 @@ class LoginTest extends TestCase
         return route('home');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_can_view_a_login_form()
     {
         $response = $this->get($this->getRoute());
@@ -38,7 +41,10 @@ class LoginTest extends TestCase
             ->assertViewIs('frontend.auth.login');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_cannot_view_a_login_form_when_authenticated()
     {
         $response = $this->loginAsUser()->get($this->getRoute());
@@ -46,7 +52,10 @@ class LoginTest extends TestCase
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_can_login_with_correct_credentials()
     {
         $user = factory(User::class)->create([
@@ -62,7 +71,10 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_cannot_login_with_incorrect_password()
     {
         $user = factory(User::class)->create([
@@ -83,13 +95,19 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function unauthenticated_users_cant_access_the_dashboard()
     {
         $this->get('/admin')->assertRedirect('/login');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_cannot_login_with_email_that_does_not_exist()
     {
         $response = $this->from($this->getRoute())->post($this->postRoute(), [

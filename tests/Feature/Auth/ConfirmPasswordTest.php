@@ -6,7 +6,10 @@ use Tests\TestCase;
 
 class ConfirmPasswordTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_can_view_password_confirm()
     {
         $response = $this->loginAsUser()->get(route('password.confirm'));
@@ -16,7 +19,10 @@ class ConfirmPasswordTest extends TestCase
             ->assertViewIs('frontend.auth.passwords.confirm');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function guest_cant_view_password_confirm()
     {
         $response = $this->get(route('password.confirm'));

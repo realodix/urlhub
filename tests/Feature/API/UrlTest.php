@@ -7,7 +7,10 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     * @group f-api
+     */
     public function can_create_url()
     {
         $data = [
