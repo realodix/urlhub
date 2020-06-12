@@ -9,6 +9,7 @@ class NumHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
+     * @covers ::number_format_short
      * @dataProvider readableInt
      */
     public function number_format_short($expected, $actual)

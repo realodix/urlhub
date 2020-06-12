@@ -63,7 +63,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \KeywordBlacklist
      * @dataProvider keywordBlacklistPassDataProvider
      * @param string $value
      */
@@ -76,7 +75,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @covers \KeywordBlacklist
      * @dataProvider keywordBlacklistFailDataProvider
      * @param string $value
      */
