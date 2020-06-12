@@ -106,7 +106,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function check_existing_custom_url_pass()
+    public function custom_keyword_validation_pass()
     {
         $response = $this->post(route('home').'/validate-custom-keyword', [
             'keyword' => 'hello',
@@ -120,7 +120,7 @@ class UrlControllerTest extends TestCase
      * @group u-controller
      * @dataProvider customKeywordValidation_fail
      */
-    public function check_existing_custom_url_fail($data)
+    public function custom_keyword_validation_fail($data)
     {
         factory(Url::class)->create([
             'keyword' => 'laravel',
