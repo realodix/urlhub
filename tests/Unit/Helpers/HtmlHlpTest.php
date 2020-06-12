@@ -5,7 +5,7 @@ namespace Tests\Unit\Helpers;
 use Illuminate\Support\HtmlString;
 use Tests\TestCase;
 
-class HtmlHelperTest extends TestCase
+class HtmlHlpTest extends TestCase
 {
     /**
      * @test
