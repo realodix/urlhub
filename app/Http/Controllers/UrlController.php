@@ -92,7 +92,7 @@ class UrlController extends Controller
     {
         $url = Url::with('urlStat')->whereKeyword($keyword)->firstOrFail();
 
-        $qrCode = qr_code($url->short_url);
+        $qrCode = qrCode($url->short_url);
 
         try {
             $embed = Embed::create($url->long_url);

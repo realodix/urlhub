@@ -19,26 +19,26 @@ if (! function_exists('uHub')) {
     }
 }
 
-if (! function_exists('app_name')) {
+if (! function_exists('appName')) {
     /**
      * Helper to grab the application name.
      *
      * @return mixed
      */
-    function app_name()
+    function appName()
     {
         return config('app.name');
     }
 }
 
-if (! function_exists('qr_code')) {
+if (! function_exists('qrCode')) {
     /**
      * @codeCoverageIgnore
      * Barcode & QrCode Generator
      *
      * @return string
      */
-    function qr_code($value)
+    function qrCode($value)
     {
         $qrCode = new QrCode();
         $qrCode->setText($value)

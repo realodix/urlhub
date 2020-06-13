@@ -10,21 +10,21 @@ class UrlHelperTest extends TestCase
      * @test
      * @group u-helper
      */
-    public function url_limit()
+    public function urlLimit()
     {
         $this->assertSame(
             'https://laravel.com/',
-            url_limit('https://laravel.com/')
+            urlLimit('https://laravel.com/')
         );
 
         $this->assertSame(
             'https://laravel.com/docs/5.7/h...ilable-assertions',
-            url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions')
+            urlLimit('https://laravel.com/docs/5.7/http-tests#available-assertions')
         );
 
         $this->assertEquals(
             20,
-            strlen(url_limit('https://laravel.com/docs/5.7/http-tests#available-assertions', 20))
+            strlen(urlLimit('https://laravel.com/docs/5.7/http-tests#available-assertions', 20))
         );
     }
 
@@ -33,9 +33,9 @@ class UrlHelperTest extends TestCase
      * @group u-helper
      * @dataProvider removeSchemes
      */
-    public function remove_schemes($expected, $actual)
+    public function urlRemoveSchemes($expected, $actual)
     {
-        $this->assertSame($expected, remove_schemes($actual));
+        $this->assertSame($expected, urlRemoveSchemes($actual));
     }
 
     public function removeSchemes()

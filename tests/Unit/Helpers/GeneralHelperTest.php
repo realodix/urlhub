@@ -22,7 +22,7 @@ class GeneralHelperTest extends TestCase
     public function testAppName()
     {
         $expected = config('app.name');
-        $actual = app_name();
+        $actual = appName();
         $this->assertSame($expected, $actual);
     }
 }
