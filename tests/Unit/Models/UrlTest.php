@@ -78,13 +78,13 @@ class UrlTest extends TestCase
      */
     public function default_guest_id()
     {
-        $long_url = 'https://example.com';
+        $longUrl = 'https://example.com';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertSame(null, $url->user_id);
     }
@@ -211,9 +211,9 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider keywordCapacityProvider
      */
-    public function keyword_capacity($hash_length, $expected)
+    public function keyword_capacity($hashLength, $expected)
     {
-        config()->set('urlhub.hash_length', $hash_length);
+        config()->set('urlhub.hash_length', $hashLength);
 
         $this->assertSame($expected, $this->url->keyword_capacity());
     }
@@ -223,7 +223,7 @@ class UrlTest extends TestCase
         return [
             [0, 0],
             [1, 3], // (3^1)
-            [2, 9], // $alphabet_length^$hash_length or 3^2
+            [2, 9], // $alphabet_length^$hashLength or 3^2
 
             [-1, 0],
             [2.7, 9], // (3^2)
@@ -280,9 +280,9 @@ class UrlTest extends TestCase
      */
     public function get_remote_title()
     {
-        $long_url = 'https://github123456789.com';
+        $longUrl = 'https://github123456789.com';
 
-        $this->assertSame('No Title', $this->url->get_remote_title($long_url));
+        $this->assertSame('No Title', $this->url->get_remote_title($longUrl));
     }
 
     /**

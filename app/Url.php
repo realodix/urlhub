@@ -139,15 +139,15 @@ class Url extends Model
     {
         $generateId = new Client();
         $alphabet = uHub('hash_alphabet');
-        $hash_length = (int) uHub('hash_length');
+        $hashLength = (int) uHub('hash_length');
 
-        $keyword = $generateId->formatedId($alphabet, $hash_length);
+        $keyword = $generateId->formatedId($alphabet, $hashLength);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
         $link = self::whereKeyword($keyword)->first();
         while ($link) {
-            $keyword = $generateId->formatedId($alphabet, $hash_length);
+            $keyword = $generateId->formatedId($alphabet, $hashLength);
             $link = self::whereKeyword($keyword)->first();
         }
         // @codeCoverageIgnoreEnd
@@ -161,16 +161,16 @@ class Url extends Model
     public function keyword_capacity()
     {
         $alphabet = strlen(uHub('hash_alphabet'));
-        $hash_length = (int) uHub('hash_length');
+        $hashLength = (int) uHub('hash_length');
 
         // If the value is smaller than 1, then change the value to 0.
-        $hash_length = ! ($hash_length < 1) ? $hash_length : 0;
+        $hashLength = ! ($hashLength < 1) ? $hashLength : 0;
 
-        if ($hash_length == 0) {
+        if ($hashLength == 0) {
             return 0;
         }
 
-        return pow($alphabet, $hash_length);
+        return pow($alphabet, $hashLength);
     }
 
     /**

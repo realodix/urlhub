@@ -10,9 +10,9 @@ use Tests\TestCase;
  */
 class UrlBeTest extends TestCase
 {
-    protected function hashIdRoute($rout_name, $url_id)
+    protected function hashIdRoute($routName, $url_id)
     {
-        return route($rout_name, \Hashids::connection(\App\Url::class)->encode($url_id));
+        return route($routName, \Hashids::connection(\App\Url::class)->encode($url_id));
     }
 
     /*

@@ -19,12 +19,12 @@ class UrlPolicyTest extends TestCase
         $this->loginAsAdmin();
 
         $admin = $this->admin();
-        $their_own_url = factory(Url::class)->create([
+        $url = factory(Url::class)->create([
             'user_id'  => $admin->id,
             'long_url' => 'https://laravel.com',
         ]);
 
-        $this->assertTrue($admin->can('forceDelete', $their_own_url));
+        $this->assertTrue($admin->can('forceDelete', $url));
         $this->assertTrue($admin->can('forceDelete', new Url));
     }
 
@@ -39,12 +39,12 @@ class UrlPolicyTest extends TestCase
         $this->loginAsUser();
 
         $user = $this->user();
-        $their_own_url = factory(Url::class)->create([
+        $url = factory(Url::class)->create([
             'user_id'  => $user->id,
             'long_url' => 'https://laravel.com',
         ]);
 
-        $this->assertTrue($user->can('forceDelete', $their_own_url));
+        $this->assertTrue($user->can('forceDelete', $url));
         $this->assertFalse($user->can('forceDelete', new Url));
     }
 }
