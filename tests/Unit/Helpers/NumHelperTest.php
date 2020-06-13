@@ -15,12 +15,12 @@ class NumHelperTest extends TestCase
     {
         $this->assertSame($expected, numberFormatShort($actual));
 
-        $int_or_str = numberFormatShort($actual);
+        $intOrString = numberFormatShort($actual);
 
-        if (is_int($int_or_str)) {
-            $this->assertIsInt($int_or_str);
+        if (is_int($intOrString)) {
+            $this->assertIsInt($intOrString);
         } else {
-            $this->assertIsString($int_or_str);
+            $this->assertIsString($intOrString);
         }
     }
 

@@ -19,7 +19,7 @@ class UrlHubLinkChecker
     public function handle($request, Closure $next)
     {
         $url = new Url();
-        $long_url = rtrim($request->long_url, '/');
+        $longUrl = rtrim($request->long_url, '/');
 
         /*
         |----------------------------------------------------------------------
@@ -52,10 +52,10 @@ class UrlHubLinkChecker
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
-                          ->whereLongUrl($long_url)
+                          ->whereLongUrl($longUrl)
                           ->first();
         } else {
-            $s_url = Url::whereLongUrl($long_url)
+            $s_url = Url::whereLongUrl($longUrl)
                           ->whereNull('user_id')
                           ->first();
         }
