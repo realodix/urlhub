@@ -52,7 +52,7 @@
   </div>
 
 
-  @if (config('urlhub.show_stat_to_guests') == true)
+  @if (uHub('show_stat_to_guests') == true)
     @include('frontend.short_stat')
   @else
     @auth

@@ -138,8 +138,8 @@ class Url extends Model
     public function key_generator()
     {
         $generateId = new Client();
-        $alphabet = config('urlhub.hash_alphabet');
-        $hash_length = (int) config('urlhub.hash_length');
+        $alphabet = uHub('hash_alphabet');
+        $hash_length = (int) uHub('hash_length');
 
         $keyword = $generateId->formatedId($alphabet, $hash_length);
 
@@ -160,8 +160,8 @@ class Url extends Model
      */
     public function keyword_capacity()
     {
-        $alphabet = strlen(config('urlhub.hash_alphabet'));
-        $hash_length = (int) config('urlhub.hash_length');
+        $alphabet = strlen(uHub('hash_alphabet'));
+        $hash_length = (int) uHub('hash_length');
 
         // If the value is smaller than 1, then change the value to 0.
         $hash_length = ! ($hash_length < 1) ? $hash_length : 0;

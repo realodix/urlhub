@@ -2,6 +2,23 @@
 
 use CodeItNow\BarcodeBundle\Utils\QrCode;
 
+if (! function_exists('uHub')) {
+    /**
+     * Helper that makes the way to access the configuration value in
+     * '/config/urlhub.php' becomes easier.
+     *
+     * Example:
+     * - uHub('option') is equal to config('urlhub.option').
+     *
+     * @param string $value
+     * @return mixed
+     */
+    function uHub($value)
+    {
+        return config('urlhub.'.$value);
+    }
+}
+
 if (! function_exists('app_name')) {
     /**
      * Helper to grab the application name.
