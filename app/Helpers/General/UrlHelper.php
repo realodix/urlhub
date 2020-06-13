@@ -11,7 +11,7 @@ class UrlHelper
      * @param int    $maxlength
      * @return string
      */
-    public function url_limit($url, $maxlength)
+    public function urlLimit($url, $maxlength)
     {
         $int_a = $maxlength * 0.6;
         $int_b = ($maxlength * 0.4 * -1) + 3; // + 3 dots from Str::limit()
