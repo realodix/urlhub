@@ -38,7 +38,7 @@ class UrlRedirectionService
         $url->increment('clicks');
         $this->createUrlStat($url, $url->getCountries(request()->ip()));
 
-        return redirect()->away($url->long_url, config('urlhub.redirect_code'));
+        return redirect()->away($url->long_url, uHub('redirect_code'));
     }
 
     /**

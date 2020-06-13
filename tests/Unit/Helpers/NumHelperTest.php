@@ -11,11 +11,11 @@ class NumHelperTest extends TestCase
      * @group u-helper
      * @dataProvider readableInt
      */
-    public function number_format_short($expected, $actual)
+    public function numberFormatShort($expected, $actual)
     {
-        $this->assertSame($expected, number_format_short($actual));
+        $this->assertSame($expected, numberFormatShort($actual));
 
-        $int_or_str = number_format_short($actual);
+        $int_or_str = numberFormatShort($actual);
 
         if (is_int($int_or_str)) {
             $this->assertIsInt($int_or_str);

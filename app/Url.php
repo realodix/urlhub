@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Http\Traits\Hashidable;
-use CodeItNow\BarcodeBundle\Utils\QrCode;
 use Embed\Embed;
 use GeoIp2\Database\Reader;
 use Hidehalo\Nanoid\Client;
@@ -139,8 +138,8 @@ class Url extends Model
     public function key_generator()
     {
         $generateId = new Client();
-        $alphabet = config('urlhub.hash_alphabet');
-        $hash_length = (int) config('urlhub.hash_length');
+        $alphabet = uHub('hash_alphabet');
+        $hash_length = (int) uHub('hash_length');
 
         $keyword = $generateId->formatedId($alphabet, $hash_length);
 
@@ -161,8 +160,8 @@ class Url extends Model
      */
     public function keyword_capacity()
     {
-        $alphabet = strlen(config('urlhub.hash_alphabet'));
-        $hash_length = (int) config('urlhub.hash_length');
+        $alphabet = strlen(uHub('hash_alphabet'));
+        $hash_length = (int) uHub('hash_length');
 
         // If the value is smaller than 1, then change the value to 0.
         $hash_length = ! ($hash_length < 1) ? $hash_length : 0;
@@ -226,26 +225,6 @@ class Url extends Model
         }
 
         return $title;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     * @return string
-     */
-    public function qrCodeGenerator($value)
-    {
-        $qrCode = new QrCode();
-        $qrCode->setText($value)
-               ->setSize(150)
-               ->setPadding(10)
-               ->setErrorCorrection('high')
-               ->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0])
-               ->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0])
-               ->setLabel('Scan QR Code')
-               ->setLabelFontSize(12)
-               ->setImageType(QrCode::IMAGE_TYPE_PNG);
-
-        return $qrCode;
     }
 
     /**

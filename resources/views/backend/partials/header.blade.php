@@ -4,8 +4,8 @@
   </button>
 
   <div class="navbar-brand">
-    <div class="navbar-brand-full">{{config('app.name')}}</div>
-    <div class="navbar-brand-minimized">{{config('app.name')}}</div>
+    <div class="navbar-brand-full">{{appName()}}</div>
+    <div class="navbar-brand-minimized">{{appName()}}</div>
   </div>
 
   <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -14,7 +14,7 @@
 
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
-        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" title="{{config('app.name')}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
+        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" title="{{appName()}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
     </li>
 
     @if(Breadcrumbs::exists())

@@ -72,7 +72,7 @@ class UrlControllerTest extends TestCase
         $url = Url::whereLongUrl($long_url)->first();
 
         $this->assertEquals(
-            config('urlhub.hash_length'),
+            uHub('hash_length'),
             strlen($url->keyword)
         );
         $this->assertFalse($url->is_custom);

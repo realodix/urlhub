@@ -17,7 +17,7 @@
         <li class="list-inline-item">
           <i class="far fa-eye"></i>
           <i><span title="{{number_format($url->clicks)}} clicks"
-              data-toggle="tooltip">{{number_format_short($url->clicks)}}</span></i>
+              data-toggle="tooltip">{{numberFormatShort($url->clicks)}}</span></i>
         </li>
       </ul>
       <div class="title">{!! $url->meta_title !!}</div>
@@ -33,9 +33,9 @@
         <div class="col-sm-9">
           <b>@lang('Short URL')</b> <br>
           <span class="short-url"><a href="{{ $url->short_url }}" target="_blank"
-              id="copy">{{ remove_schemes($url->short_url) }}</a></span>
+              id="copy">{{ urlRemoveSchemes($url->short_url) }}</a></span>
           <button class="btn btn-sm btn-outline-success btn-clipboard ml-3"
-            data-clipboard-text="{{ remove_schemes($url->short_url) }}" title="@lang('Copy to clipboard')"
+            data-clipboard-text="{{ urlRemoveSchemes($url->short_url) }}" title="@lang('Copy to clipboard')"
             data-toggle="tooltip">@lang('Copy')</button>
 
           <br> <br>
@@ -52,7 +52,7 @@
   </div>
 
 
-  @if (config('urlhub.show_stat_to_guests') == true)
+  @if (uHub('show_stat_to_guests') == true)
     @include('frontend.short_stat')
   @else
     @auth
