@@ -33,9 +33,9 @@ class UrlHelperTest extends TestCase
      * @group u-helper
      * @dataProvider removeSchemes
      */
-    public function remove_schemes($expected, $actual)
+    public function urlRemoveSchemes($expected, $actual)
     {
-        $this->assertSame($expected, remove_schemes($actual));
+        $this->assertSame($expected, urlRemoveSchemes($actual));
     }
 
     public function removeSchemes()

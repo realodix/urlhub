@@ -15,7 +15,7 @@ class DomainBlacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        $blacklist = remove_schemes(uHub('domain_blacklist'));
+        $blacklist = urlRemoveSchemes(uHub('domain_blacklist'));
         $long_url = rtrim($value, '/');
         $a = true;
 
