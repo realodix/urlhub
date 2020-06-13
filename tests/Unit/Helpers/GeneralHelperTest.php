@@ -11,7 +11,7 @@ class GeneralHelperTest extends TestCase
      */
     public function test_uHub()
     {
-        $expected = uHub('hash_length');
+        $expected = config('urlhub.hash_length');
         $actual = uHub('hash_length');
         $this->assertSame($expected, $actual);
     }
