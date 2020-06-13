@@ -14,12 +14,12 @@ class UrlStatTest extends TestCase
      */
     public function belongs_to_url()
     {
-        $url_stat = factory(UrlStat::class)->create([
+        $urlStat = factory(UrlStat::class)->create([
             'url_id' => function () {
                 return factory(Url::class)->create()->id;
             },
         ]);
 
-        $this->assertTrue($url_stat->url()->exists());
+        $this->assertTrue($urlStat->url()->exists());
     }
 }
