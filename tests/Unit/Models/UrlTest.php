@@ -78,13 +78,13 @@ class UrlTest extends TestCase
      */
     public function default_guest_id()
     {
-        $long_url = 'https://example.com';
+        $longUrl = 'https://example.com';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertSame(null, $url->user_id);
     }
@@ -280,9 +280,9 @@ class UrlTest extends TestCase
      */
     public function get_remote_title()
     {
-        $long_url = 'https://github123456789.com';
+        $longUrl = 'https://github123456789.com';
 
-        $this->assertSame('No Title', $this->url->get_remote_title($long_url));
+        $this->assertSame('No Title', $this->url->get_remote_title($longUrl));
     }
 
     /**

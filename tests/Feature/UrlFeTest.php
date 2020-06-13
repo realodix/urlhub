@@ -16,12 +16,12 @@ class UrlFeTest extends TestCase
      */
     public function create()
     {
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
         $response = $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $response->assertRedirect(route('short_url.stats', $url->keyword));
     }
@@ -33,11 +33,11 @@ class UrlFeTest extends TestCase
      */
     public function create_cst()
     {
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
         $custom_keyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
+            'long_url'       => $longUrl,
             'custom_keyword' => $custom_keyword,
         ]);
         $response->assertRedirect(route('short_url.stats', $custom_keyword));
@@ -53,11 +53,11 @@ class UrlFeTest extends TestCase
         $this->loginAsAdmin();
 
         $user = $this->admin();
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
         $custom_keyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
+            'long_url'       => $longUrl,
             'custom_keyword' => $custom_keyword,
         ]);
         $response->assertRedirect(route('short_url.stats', $custom_keyword));

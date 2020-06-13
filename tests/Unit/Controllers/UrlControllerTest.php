@@ -20,13 +20,13 @@ class UrlControllerTest extends TestCase
      */
     public function shortenUrl_user_id()
     {
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertSame(null, $url->user_id);
     }
@@ -41,15 +41,15 @@ class UrlControllerTest extends TestCase
     public function shortenUrl_user_id_2()
     {
         $user = $this->admin();
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
 
         $this->loginAsAdmin();
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertSame($user->id, $url->user_id);
     }
@@ -63,13 +63,13 @@ class UrlControllerTest extends TestCase
      */
     public function shortenUrl_not_custom()
     {
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertEquals(
             uHub('hash_length'),
@@ -89,15 +89,15 @@ class UrlControllerTest extends TestCase
     {
         config()->set('urlhub.hash_length', 6);
 
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
         $custom_url = 'foo_bar';
 
         $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
+            'long_url'       => $longUrl,
             'custom_keyword' => $custom_url,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
         $this->assertSame($custom_url, $url->keyword);
         $this->assertTrue($url->is_custom);
     }
