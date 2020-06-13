@@ -31,14 +31,14 @@ if (! function_exists('appName')) {
     }
 }
 
-if (! function_exists('qr_code')) {
+if (! function_exists('qrCode')) {
     /**
      * @codeCoverageIgnore
      * Barcode & QrCode Generator
      *
      * @return string
      */
-    function qr_code($value)
+    function qrCode($value)
     {
         $qrCode = new QrCode();
         $qrCode->setText($value)
