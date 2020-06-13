@@ -211,9 +211,9 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider keywordCapacityProvider
      */
-    public function keyword_capacity($hash_length, $expected)
+    public function keyword_capacity($hashLength, $expected)
     {
-        config()->set('urlhub.hash_length', $hash_length);
+        config()->set('urlhub.hash_length', $hashLength);
 
         $this->assertSame($expected, $this->url->keyword_capacity());
     }
@@ -223,7 +223,7 @@ class UrlTest extends TestCase
         return [
             [0, 0],
             [1, 3], // (3^1)
-            [2, 9], // $alphabet_length^$hash_length or 3^2
+            [2, 9], // $alphabet_length^$hashLength or 3^2
 
             [-1, 0],
             [2.7, 9], // (3^2)
