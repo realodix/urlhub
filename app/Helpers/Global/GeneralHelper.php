@@ -15,7 +15,7 @@ if (! function_exists('uHub')) {
      */
     function uHub($value)
     {
-        return uHub(''.$value);
+        return config('urlhub.'.$value);
     }
 }
 
