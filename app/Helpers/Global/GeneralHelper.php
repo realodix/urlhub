@@ -19,13 +19,13 @@ if (! function_exists('uHub')) {
     }
 }
 
-if (! function_exists('app_name')) {
+if (! function_exists('appName')) {
     /**
      * Helper to grab the application name.
      *
      * @return mixed
      */
-    function app_name()
+    function appName()
     {
         return config('app.name');
     }
