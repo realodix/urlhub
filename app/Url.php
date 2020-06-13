@@ -180,7 +180,7 @@ class Url extends Model
     {
         $totalShortUrl = self::whereIsCustom(false)->count();
         $totalCstShortUrl = self::whereIsCustom(true)
-            ->whereRaw('LENGTH(keyword) = ?', [config('urlhub.hash_length')])
+            ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])
             ->whereRaw('keyword LIKE ?', ['[a-zA-Z0-9]'])
             ->count();
 
