@@ -2,7 +2,7 @@
 
 use App\Helpers\General\UrlHelper;
 
-if (! function_exists('urlLimitLength')) {
+if (! function_exists('urlLimit')) {
     function urlLimit($url, $maxlength = 50)
     {
         return resolve(UrlHelper::class)->urlLimit($url, $maxlength);
