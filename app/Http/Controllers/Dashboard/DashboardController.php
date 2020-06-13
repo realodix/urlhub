@@ -69,7 +69,7 @@ class DashboardController extends Controller
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
             })
             ->editColumn('clicks', function ($url) {
-                return '<span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.number_format_short($url->clicks).'</span>';
+                return '<span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.numberFormatShort($url->clicks).'</span>';
             })
             ->editColumn('created_at', function ($url) {
                 return [

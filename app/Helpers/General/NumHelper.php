@@ -12,7 +12,7 @@ class NumHelper
      * @param int $n
      * @return string
      */
-    public function number_format_short(int $n)
+    public function numberFormatShort(int $n)
     {
         if ($n >= 0 && $n < pow(10, 3)) {
             // 1 - 999
