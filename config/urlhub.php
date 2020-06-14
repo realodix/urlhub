@@ -44,7 +44,7 @@ return [
     | line feed etc), unsafe characters like space, \, <, >, {, } etc, and
     | any character outside the ASCII charset is not allowed to be placed
     | directly within URLs.
-
+    |
     | Moreover, there are some characters that have special meaning within
     | URLs. These characters are called reserved characters. Some examples
     | of reserved characters are ?, /, #, : etc. Any data transmitted as
