@@ -36,7 +36,7 @@ class UrlRedirectionService
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->createUrlStat($url, $url->getCountries(request()->ip()));
+        $this->createUrlStat($url, $url->ipToCountry(request()->ip()));
 
         return redirect()->away($url->long_url, uHub('redirect_code'));
     }

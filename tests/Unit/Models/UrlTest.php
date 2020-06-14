@@ -313,9 +313,9 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function getCountriesWithKnownIp()
+    public function ipToCountryWithKnownIp()
     {
-        $countries = $this->url->getCountries('8.8.8.8');
+        $countries = $this->url->ipToCountry('8.8.8.8');
 
         $this->assertEquals('US', $countries['countryCode']);
     }
@@ -324,9 +324,9 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function getCountriesWithUnknownIp()
+    public function ipToCountryWithUnknownIp()
     {
-        $countries = $this->url->getCountries('127.0.0.1');
+        $countries = $this->url->ipToCountry('127.0.0.1');
 
         $this->assertEquals('N/A', $countries['countryCode']);
         $this->assertEquals('Unknown', $countries['countryName']);
