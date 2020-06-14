@@ -178,10 +178,11 @@ class Url extends Model
      */
     public function keyword_remaining()
     {
+        $searchTerm = '['.uHub('hash_alphabet').']{'.uHub('hash_length').'}';
+
         $randomKeyword = self::whereIsCustom(false)->count();
         $customKeyword = self::whereIsCustom(true)
-                               ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])
-                               ->whereRaw('keyword LIKE ?', ['[a-zA-Z0-9]'])
+                               ->where('keyword', 'REGEXP', "$searchTerm")
                                ->count();
 
         $usedKeyword = $randomKeyword + $customKeyword;
