@@ -242,7 +242,7 @@ class Url extends Model
     {
         $url = SpatieUrl::fromString($url);
 
-        return urlRemoveSchemes($url->getHost());
+        return urlRemoveScheme($url->getHost());
     }
 
     /**
