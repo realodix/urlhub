@@ -282,7 +282,7 @@ class UrlTest extends TestCase
     {
         $longUrl = 'https://github123456789.com';
 
-        $this->assertSame('No Title', $this->url->get_remote_title($longUrl));
+        $this->assertSame('github123456789.com - No Title', $this->url->get_remote_title($longUrl));
     }
 
     /**

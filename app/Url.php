@@ -222,7 +222,7 @@ class Url extends Model
             $embed = Embed::create($url);
             $title = $embed->title;
         } catch (\Exception $e) {
-            $title = 'No Title';
+            $title = $this->getDomain($url).' - No Title';
         }
 
         return $title;
