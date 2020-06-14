@@ -9,9 +9,9 @@ if (! function_exists('urlLimit')) {
     }
 }
 
-if (! function_exists('urlRemoveSchemes')) {
-    function urlRemoveSchemes($value)
+if (! function_exists('urlRemoveScheme')) {
+    function urlRemoveScheme($value)
     {
-        return resolve(UrlHelper::class)->urlRemoveSchemes($value);
+        return resolve(UrlHelper::class)->urlRemoveScheme($value);
     }
 }

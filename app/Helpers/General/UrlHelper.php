@@ -27,7 +27,7 @@ class UrlHelper
      * @param string $value
      * @return string
      */
-    public function urlRemoveSchemes($value)
+    public function urlRemoveScheme($value)
     {
         return str_replace([
             'http://',
