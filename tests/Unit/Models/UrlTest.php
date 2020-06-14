@@ -302,10 +302,10 @@ class UrlTest extends TestCase
             ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
             ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
             ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
         ];
     }
 

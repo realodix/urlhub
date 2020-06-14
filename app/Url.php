@@ -8,6 +8,7 @@ use GeoIp2\Database\Reader;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Spatie\Url\Url as SpatieUrl;
 
 class Url extends Model
 {
@@ -239,13 +240,9 @@ class Url extends Model
      */
     public function getDomain($url)
     {
-        // https://stackoverflow.com/a/399316
-        $pieces = parse_url($url);
-        $domain = isset($pieces['host']) ? $pieces['host'] : '';
+        $url = SpatieUrl::fromString($url);
 
-        preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs);
-
-        return $regs['domain'];
+        return urlRemoveSchemes($url->getHost());
     }
 
     /**
