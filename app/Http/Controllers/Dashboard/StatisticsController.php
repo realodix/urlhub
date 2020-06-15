@@ -25,8 +25,8 @@ class StatisticsController extends Controller
         $user = new User;
 
         return view('backend.statistics', [
-            'capacity'             => $url->keyword_capacity(),
-            'remaining'            => $url->keyword_remaining(),
+            'capacity'             => $url->keywordCapacity(),
+            'remaining'            => $url->keywordRemaining(),
             'totalShortUrl'        => $url->totalShortUrl(),
             'totalShortUrlByGuest' => $url->totalShortUrlById(),
             'totalClicks'          => $url->totalClicks(),

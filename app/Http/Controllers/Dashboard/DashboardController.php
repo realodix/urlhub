@@ -45,9 +45,9 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $this->url->totalClicksById(),
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
-            'capacity'             => $this->url->keyword_capacity(),
-            'remaining'            => $this->url->keyword_remaining(),
-            'remaining_percent'    => $this->url->keyword_remaining_percent(),
+            'capacity'             => $this->url->keywordCapacity(),
+            'remaining'            => $this->url->keywordRemaining(),
+            'remaining_percent'    => $this->url->keywordRemainingPercent(),
         ]);
     }
 
@@ -159,7 +159,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),
-            'keyword'   => $this->url->key_generator(),
+            'keyword'   => $this->url->keyGenerator(),
             'is_custom' => 0,
             'clicks'    => 0,
         ]);

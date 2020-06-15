@@ -86,7 +86,7 @@ class Url extends Model
     public function setMetaTitleAttribute($value)
     {
         if (Str::startsWith($value, 'http')) {
-            $this->attributes['meta_title'] = $this->get_remote_title($value);
+            $this->attributes['meta_title'] = $this->getRemoteTitle($value);
         } else {
             $this->attributes['meta_title'] = $value;
         }
@@ -135,7 +135,7 @@ class Url extends Model
      *
      * @return string
      */
-    public function key_generator()
+    public function keyGenerator()
     {
         $generateId = new Client();
         $alphabet = uHub('hash_char');
@@ -158,7 +158,7 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keyword_capacity()
+    public function keywordCapacity()
     {
         $alphabet = strlen(uHub('hash_char'));
         $hashLength = (int) uHub('hash_length');
@@ -176,7 +176,7 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keyword_remaining()
+    public function keywordRemaining()
     {
         $randomKeyword = self::whereIsCustom(false)->count();
         $customKeyword = self::whereIsCustom(true)
@@ -186,20 +186,20 @@ class Url extends Model
 
         $usedKeyword = $randomKeyword + $customKeyword;
 
-        if ($this->keyword_capacity() < $usedKeyword) {
+        if ($this->keywordCapacity() < $usedKeyword) {
             return 0;
         }
 
-        return $this->keyword_capacity() - $usedKeyword;
+        return $this->keywordCapacity() - $usedKeyword;
     }
 
     /**
      * @return string
      */
-    public function keyword_remaining_percent()
+    public function keywordRemainingPercent()
     {
-        $capacity = $this->keyword_capacity();
-        $remaining = $this->keyword_remaining();
+        $capacity = $this->keywordCapacity();
+        $remaining = $this->keywordRemaining();
 
         if ((round(($remaining * 100) / $capacity) == 100) && ($capacity != $remaining)) {
             return '99.99%';
@@ -215,7 +215,7 @@ class Url extends Model
      * @param string $url
      * @return string
      */
-    public function get_remote_title($url)
+    public function getRemoteTitle($url)
     {
         try {
             $embed = Embed::create($url);

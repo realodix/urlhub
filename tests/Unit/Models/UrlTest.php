@@ -211,11 +211,11 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider keywordCapacityProvider
      */
-    public function keyword_capacity($hashLength, $expected)
+    public function keywordCapacity($hashLength, $expected)
     {
         config()->set('urlhub.hash_length', $hashLength);
 
-        $this->assertSame($expected, $this->url->keyword_capacity());
+        $this->assertSame($expected, $this->url->keywordCapacity());
     }
 
     public function keywordCapacityProvider()
@@ -235,54 +235,54 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function keyword_remaining()
+    public function keywordRemaining()
     {
         factory(Url::class, 5)->create();
 
         config()->set('urlhub.hash_length', 1);
 
         // 3 - 5 = must be 0
-        $this->assertSame(0, $this->url->keyword_remaining());
+        $this->assertSame(0, $this->url->keywordRemaining());
 
         config()->set('urlhub.hash_length', 2);
 
         // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->keyword_remaining());
+        $this->assertSame(1, $this->url->keywordRemaining());
     }
 
     /**
      * @test
      * @group u-model
      */
-    public function keyword_remaining_percent()
+    public function keywordRemainingPercent()
     {
         factory(Url::class, 4)->create();
 
         config()->set('urlhub.hash_length', 2);
         config()->set('urlhub.hash_char', 'ab');
 
-        $this->assertSame('0%', $this->url->keyword_remaining_percent());
+        $this->assertSame('0%', $this->url->keywordRemainingPercent());
 
         config()->set('urlhub.hash_length', 6);
         config()->set('urlhub.hash_char', 'abcdefghij');
 
-        $this->assertSame('99.99%', $this->url->keyword_remaining_percent());
+        $this->assertSame('99.99%', $this->url->keywordRemainingPercent());
 
         config()->set('urlhub.hash_length', 3);
         config()->set('urlhub.hash_char', 'abcdefg');
 
-        $this->assertSame('98%', $this->url->keyword_remaining_percent());
+        $this->assertSame('98%', $this->url->keywordRemainingPercent());
     }
 
     /**
      * @test
      * @group u-model
      */
-    public function get_remote_title()
+    public function getRemoteTitle()
     {
         $longUrl = 'https://github123456789.com';
 
-        $this->assertSame('No Title', $this->url->get_remote_title($longUrl));
+        $this->assertSame('No Title', $this->url->getRemoteTitle($longUrl));
     }
 
     /**
