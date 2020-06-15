@@ -46,7 +46,7 @@ class DashboardController extends Controller
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
             'capacity'             => $this->url->keywordCapacity(),
-            'remaining'            => $this->url->keyword_remaining(),
+            'remaining'            => $this->url->keywordRemaining(),
             'remaining_percent'    => $this->url->keywordRemainingPercent(),
         ]);
     }

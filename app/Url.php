@@ -176,7 +176,7 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keyword_remaining()
+    public function keywordRemaining()
     {
         $randomKeyword = self::whereIsCustom(false)->count();
         $customKeyword = self::whereIsCustom(true)
@@ -199,7 +199,7 @@ class Url extends Model
     public function keywordRemainingPercent()
     {
         $capacity = $this->keywordCapacity();
-        $remaining = $this->keyword_remaining();
+        $remaining = $this->keywordRemaining();
 
         if ((round(($remaining * 100) / $capacity) == 100) && ($capacity != $remaining)) {
             return '99.99%';

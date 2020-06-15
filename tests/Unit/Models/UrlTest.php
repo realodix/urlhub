@@ -235,19 +235,19 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function keyword_remaining()
+    public function keywordRemaining()
     {
         factory(Url::class, 5)->create();
 
         config()->set('urlhub.hash_length', 1);
 
         // 3 - 5 = must be 0
-        $this->assertSame(0, $this->url->keyword_remaining());
+        $this->assertSame(0, $this->url->keywordRemaining());
 
         config()->set('urlhub.hash_length', 2);
 
         // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->keyword_remaining());
+        $this->assertSame(1, $this->url->keywordRemaining());
     }
 
     /**

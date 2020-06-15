@@ -41,7 +41,7 @@ return [
     | including digits (0-9), letters (A-Z, a-z).
     |
     | If you add non-alphanumeric characters, the method for calculating the
-    | remaining keywords (/App/Url::keyword_remaining()) will not be optimal
+    | remaining keywords (/App/Url::keywordRemaining()) will not be optimal
     | or get worse.
     |
     */
