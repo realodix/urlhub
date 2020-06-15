@@ -184,7 +184,8 @@ class Url extends Model
 
         $randomKeyword = self::whereIsCustom(false)->count();
         $customKeyword = self::whereIsCustom(true)
-                               ->where('keyword', 'REGEXP', "$searchTerm")
+                               ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])
+                               ->whereRaw('keyword NOT LIKE ?', [[_]%])
                                ->count();
 
         $usedKeyword = $randomKeyword + $customKeyword;
