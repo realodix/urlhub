@@ -40,9 +40,9 @@ return [
     | a limited set of characters belonging to the US-ASCII characters,
     | including digits (0-9), letters (A-Z, a-z).
     |
-    | If you add apart from alphanumeric characters, the method for
-    | calculating the remaining keywords (/App/Url::keyword_remaining())
-    | will not be optimal or get worse.
+    | If you add non-alphanumeric characters, the method for calculating the
+    | remaining keywords (/App/Url::keyword_remaining()) will not be optimal
+    | or get worse.
     |
     */
 
