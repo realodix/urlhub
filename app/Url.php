@@ -174,8 +174,6 @@ class Url extends Model
     }
 
     /**
-     * Count the number of keywords that can still be made.
-     *
      * @return int
      */
     public function keyword_remaining()
