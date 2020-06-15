@@ -158,7 +158,7 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keyword_capacity()
+    public function keywordCapacity()
     {
         $alphabet = strlen(uHub('hash_char'));
         $hashLength = (int) uHub('hash_length');
@@ -186,11 +186,11 @@ class Url extends Model
 
         $usedKeyword = $randomKeyword + $customKeyword;
 
-        if ($this->keyword_capacity() < $usedKeyword) {
+        if ($this->keywordCapacity() < $usedKeyword) {
             return 0;
         }
 
-        return $this->keyword_capacity() - $usedKeyword;
+        return $this->keywordCapacity() - $usedKeyword;
     }
 
     /**
@@ -198,7 +198,7 @@ class Url extends Model
      */
     public function keyword_remaining_percent()
     {
-        $capacity = $this->keyword_capacity();
+        $capacity = $this->keywordCapacity();
         $remaining = $this->keyword_remaining();
 
         if ((round(($remaining * 100) / $capacity) == 100) && ($capacity != $remaining)) {

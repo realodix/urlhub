@@ -211,11 +211,11 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider keywordCapacityProvider
      */
-    public function keyword_capacity($hashLength, $expected)
+    public function keywordCapacity($hashLength, $expected)
     {
         config()->set('urlhub.hash_length', $hashLength);
 
-        $this->assertSame($expected, $this->url->keyword_capacity());
+        $this->assertSame($expected, $this->url->keywordCapacity());
     }
 
     public function keywordCapacityProvider()
