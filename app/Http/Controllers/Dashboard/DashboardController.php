@@ -159,7 +159,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),
-            'keyword'   => $this->url->key_generator(),
+            'keyword'   => $this->url->keyGenerator(),
             'is_custom' => 0,
             'clicks'    => 0,
         ]);

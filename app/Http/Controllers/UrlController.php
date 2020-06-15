@@ -40,7 +40,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $keyword = $request->custom_keyword ?? $this->url->key_generator();
+        $keyword = $request->custom_keyword ?? $this->url->keyGenerator();
 
         Url::create([
             'user_id'    => Auth::id(),
@@ -118,7 +118,7 @@ class UrlController extends Controller
     {
         $url = Url::whereKeyword($keyword)->firstOrFail();
 
-        $keyword = $this->url->key_generator();
+        $keyword = $this->url->keyGenerator();
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),

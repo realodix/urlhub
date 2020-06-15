@@ -135,7 +135,7 @@ class Url extends Model
      *
      * @return string
      */
-    public function key_generator()
+    public function keyGenerator()
     {
         $generateId = new Client();
         $alphabet = uHub('hash_char');
