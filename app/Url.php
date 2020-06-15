@@ -138,7 +138,7 @@ class Url extends Model
     public function key_generator()
     {
         $generateId = new Client();
-        $alphabet = uHub('hash_alphabet');
+        $alphabet = uHub('hash_char');
         $hashLength = (int) uHub('hash_length');
 
         $keyword = $generateId->formatedId($alphabet, $hashLength);
@@ -160,7 +160,7 @@ class Url extends Model
      */
     public function keyword_capacity()
     {
-        $alphabet = strlen(uHub('hash_alphabet'));
+        $alphabet = strlen(uHub('hash_char'));
         $hashLength = (int) uHub('hash_length');
 
         // If the value is smaller than 1, then change the value to 0.

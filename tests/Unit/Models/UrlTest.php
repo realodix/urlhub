@@ -26,7 +26,7 @@ class UrlTest extends TestCase
             'clicks'  => 10,
         ]);
 
-        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_char', 'abc');
     }
 
     /**
@@ -259,17 +259,17 @@ class UrlTest extends TestCase
         factory(Url::class, 4)->create();
 
         config()->set('urlhub.hash_length', 2);
-        config()->set('urlhub.hash_alphabet', 'ab');
+        config()->set('urlhub.hash_char', 'ab');
 
         $this->assertSame('0%', $this->url->keyword_remaining_percent());
 
         config()->set('urlhub.hash_length', 6);
-        config()->set('urlhub.hash_alphabet', 'abcdefghij');
+        config()->set('urlhub.hash_char', 'abcdefghij');
 
         $this->assertSame('99.99%', $this->url->keyword_remaining_percent());
 
         config()->set('urlhub.hash_length', 3);
-        config()->set('urlhub.hash_alphabet', 'abcdefg');
+        config()->set('urlhub.hash_char', 'abcdefg');
 
         $this->assertSame('98%', $this->url->keyword_remaining_percent());
     }
