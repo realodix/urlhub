@@ -87,7 +87,7 @@ class Url extends Model
     public function setMetaTitleAttribute($value)
     {
         if (Str::startsWith($value, 'http')) {
-            $this->attributes['meta_title'] = $this->get_remote_title($value);
+            $this->attributes['meta_title'] = $this->getRemoteTitle($value);
         } else {
             $this->attributes['meta_title'] = $value;
         }
@@ -216,7 +216,7 @@ class Url extends Model
      * @param string $url
      * @return string
      */
-    public function get_remote_title($url)
+    public function getRemoteTitle($url)
     {
         try {
             $embed = Embed::create($url);

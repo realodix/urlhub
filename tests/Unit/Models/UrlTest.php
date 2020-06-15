@@ -278,11 +278,11 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function get_remote_title()
+    public function getRemoteTitle()
     {
         $longUrl = 'https://github123456789.com';
 
-        $this->assertSame('github123456789.com - No Title', $this->url->get_remote_title($longUrl));
+        $this->assertSame('github123456789.com - No Title', $this->url->getRemoteTitle($longUrl));
     }
 
     /**
