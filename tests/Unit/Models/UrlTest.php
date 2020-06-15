@@ -254,24 +254,24 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function keyword_remaining_percent()
+    public function keywordRemainingPercent()
     {
         factory(Url::class, 4)->create();
 
         config()->set('urlhub.hash_length', 2);
         config()->set('urlhub.hash_char', 'ab');
 
-        $this->assertSame('0%', $this->url->keyword_remaining_percent());
+        $this->assertSame('0%', $this->url->keywordRemainingPercent());
 
         config()->set('urlhub.hash_length', 6);
         config()->set('urlhub.hash_char', 'abcdefghij');
 
-        $this->assertSame('99.99%', $this->url->keyword_remaining_percent());
+        $this->assertSame('99.99%', $this->url->keywordRemainingPercent());
 
         config()->set('urlhub.hash_length', 3);
         config()->set('urlhub.hash_char', 'abcdefg');
 
-        $this->assertSame('98%', $this->url->keyword_remaining_percent());
+        $this->assertSame('98%', $this->url->keywordRemainingPercent());
     }
 
     /**

@@ -196,7 +196,7 @@ class Url extends Model
     /**
      * @return string
      */
-    public function keyword_remaining_percent()
+    public function keywordRemainingPercent()
     {
         $capacity = $this->keywordCapacity();
         $remaining = $this->keyword_remaining();
