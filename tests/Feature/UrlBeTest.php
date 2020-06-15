@@ -63,8 +63,6 @@ class UrlBeTest extends TestCase
      */
     public function d_can_duplicate()
     {
-        $user_id = $this->admin()->id;
-
         $url = factory(Url::class)->create([
             'user_id' => $this->admin()->id,
         ]);
