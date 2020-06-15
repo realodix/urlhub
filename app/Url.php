@@ -211,7 +211,7 @@ class Url extends Model
 
     /**
      * This function returns a string: either the page title as defined in
-     * HTML, or the string "No Title" if not found.
+     * HTML, or "{domain_name} - No Title" if not found.
      *
      * @param string $url
      * @return string
