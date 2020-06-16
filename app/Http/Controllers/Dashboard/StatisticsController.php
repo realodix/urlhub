@@ -31,7 +31,7 @@ class StatisticsController extends Controller
             'shortUrlCountByGuest' => $url->shortUrlCountById(),
             'clickCount'          => $url->clickCount(),
             'clickCountByGuest'   => $url->clickCountById(),
-            'totalUser'            => $user->totalUser(),
+            'userCount'            => $user->userCount(),
             'totalGuest'           => $user->totalGuest(),
         ]);
     }

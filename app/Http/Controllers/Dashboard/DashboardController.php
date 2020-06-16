@@ -45,7 +45,7 @@ class DashboardController extends Controller
             'clickCount'           => $this->url->clickCount(),
             'clickCountByMe'       => $this->url->clickCountById(Auth::id()),
             'clickCountByGuest'    => $this->url->clickCountById(),
-            'totalUser'            => $user->totalUser(),
+            'userCount'            => $user->userCount(),
             'totalGuest'           => $user->totalGuest(),
             'capacity'             => $kwCapacity,
             'remaining'            => $kwRemaining,

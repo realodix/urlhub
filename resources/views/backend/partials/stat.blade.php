@@ -59,7 +59,7 @@
         <div class="row">
           <div class="col-6">
             <div class="right_now-text--primary">
-              <span title="{{number_format($totalUser)}}" data-toggle="tooltip">{{numberFormatShort($totalUser)}}</span>
+              <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{numberFormatShort($userCount)}}</span>
             </div>
             <div class="right_now-label">@lang('Registered Users')</div>
           </div>

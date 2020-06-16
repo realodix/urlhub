@@ -37,7 +37,7 @@
 <br>
 
   <b>Total User</b> <br>
-  Registered User   : <span title="{{number_format($totalUser)}}" data-toggle="tooltip">{{numberFormatShort($totalUser)}}</span> <br>
+  Registered User   : <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{numberFormatShort($userCount)}}</span> <br>
   Unregistered User : <span title="{{number_format($totalGuest)}}" data-toggle="tooltip">{{numberFormatShort($totalGuest)}}</span> <br>
 
 

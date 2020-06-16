@@ -90,7 +90,7 @@ class User extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
-    public function totalUser()
+    public function userCount()
     {
         return self::count();
     }
