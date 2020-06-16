@@ -65,7 +65,7 @@
           </div>
           <div class="col-6">
             <div class="right_now-text--primary">
-              <span title="{{number_format($totalGuest)}}" data-toggle="tooltip">{{numberFormatShort($totalGuest)}}</span>
+              <span title="{{number_format($guestCount)}}" data-toggle="tooltip">{{numberFormatShort($guestCount)}}</span>
             </div>
             <div class="right_now-label">@lang('Guest')</div>
           </div>

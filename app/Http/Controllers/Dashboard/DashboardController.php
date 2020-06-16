@@ -46,7 +46,7 @@ class DashboardController extends Controller
             'clickCountByMe'       => $this->url->clickCountById(Auth::id()),
             'clickCountByGuest'    => $this->url->clickCountById(),
             'userCount'            => $user->userCount(),
-            'totalGuest'           => $user->totalGuest(),
+            'guestCount'           => $user->guestCount(),
             'capacity'             => $kwCapacity,
             'remaining'            => $kwRemaining,
             'remaining_percent'    => remainingPercentage($kwRemaining, $kwCapacity),

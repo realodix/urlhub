@@ -32,7 +32,7 @@ class StatisticsController extends Controller
             'clickCount'          => $url->clickCount(),
             'clickCountByGuest'   => $url->clickCountById(),
             'userCount'            => $user->userCount(),
-            'totalGuest'           => $user->totalGuest(),
+            'guestCount'           => $user->guestCount(),
         ]);
     }
 }
