@@ -254,30 +254,6 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function keywordRemainingPercent()
-    {
-        factory(Url::class, 4)->create();
-
-        config()->set('urlhub.hash_length', 2);
-        config()->set('urlhub.hash_char', 'ab');
-
-        $this->assertSame('0%', $this->url->keywordRemainingPercent());
-
-        config()->set('urlhub.hash_length', 6);
-        config()->set('urlhub.hash_char', 'abcdefghij');
-
-        $this->assertSame('99.99%', $this->url->keywordRemainingPercent());
-
-        config()->set('urlhub.hash_length', 3);
-        config()->set('urlhub.hash_char', 'abcdefg');
-
-        $this->assertSame('98%', $this->url->keywordRemainingPercent());
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
     public function getRemoteTitle()
     {
         $longUrl = 'https://github123456789.com';

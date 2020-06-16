@@ -194,21 +194,6 @@ class Url extends Model
     }
 
     /**
-     * @return string
-     */
-    public function keywordRemainingPercent()
-    {
-        $capacity = $this->keywordCapacity();
-        $remaining = $this->keywordRemaining();
-
-        if ((round(($remaining * 100) / $capacity) == 100) && ($capacity != $remaining)) {
-            return '99.99%';
-        } else {
-            return round(($remaining * 100) / $capacity).'%';
-        }
-    }
-
-    /**
      * This function returns a string: either the page title as defined in
      * HTML, or the string "No Title" if not found.
      *

@@ -68,4 +68,18 @@ class NumHelper
     {
         return floor($number * pow(10, $precision)) / pow(10, $precision);
     }
+
+    /**
+     * @return string
+     */
+    public function remainingPercentage($remaining, $capacity)
+    {
+        $percent = round(($remaining/ $capacity) * 100);
+
+        if (($percent == 100) && ($capacity != $remaining)) {
+            return '99.99%';
+        } else {
+            return $percent . '%';
+        }
+    }
 }

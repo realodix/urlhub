@@ -48,7 +48,7 @@ return [
 
     'hash_char' => env(
         'HASH_CHAR',
-        '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        '012'
     ),
 
     /*
