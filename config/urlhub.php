@@ -32,29 +32,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Hash Alphabet
+    | Hash Character
     |--------------------------------------------------------------------------
     |
-    | Characters to be used in generating unique keyword. A URL is composed
-    | from a limited set of characters belonging to the US-ASCII character
-    | set. These characters include digits (0-9), letters(A-Z, a-z), and
-    | a few special characters ("-", ".", "_", "~").
+    | Characters to be used in generating unique keyword. For convenience,
+    | currently the allowed characters are only alphanumeric consisting of
+    | a limited set of characters belonging to the US-ASCII characters,
+    | including digits (0-9), letters (A-Z, a-z).
     |
-    | ASCII control characters (e.g. backspace, vertical tab, horizontal tab,
-    | line feed etc), unsafe characters like space, \, <, >, {, } etc, and
-    | any character outside the ASCII charset is not allowed to be placed
-    | directly within URLs.
-    |
-    | Moreover, there are some characters that have special meaning within
-    | URLs. These characters are called reserved characters. Some examples
-    | of reserved characters are ?, /, #, : etc. Any data transmitted as
-    | part of the URL, whether in query string or path segment, must not
-    | contain these characters.
+    | If you add non-alphanumeric characters, the method for calculating the
+    | remaining keywords (/App/Url::keywordRemaining()) will not be optimal
+    | or get worse.
     |
     */
 
-    'hash_alphabet' => env(
-        'HASH_ALPHABET',
+    'hash_char' => env(
+        'HASH_CHAR',
         '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     ),
 

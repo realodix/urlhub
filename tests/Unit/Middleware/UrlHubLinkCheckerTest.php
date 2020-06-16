@@ -9,7 +9,7 @@ class UrlHubLinkCheckerTest extends TestCase
     /**
      * @test
      */
-    public function keyword_remaining_zero()
+    public function keywordRemaining_zero()
     {
         config()->set('urlhub.hash_length', 0);
 

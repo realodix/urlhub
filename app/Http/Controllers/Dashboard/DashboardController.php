@@ -35,9 +35,11 @@ class DashboardController extends Controller
     public function view()
     {
         $user = new User;
+        $kwCapacity = $this->url->keywordCapacity();
+        $used = $this->url->totalShortUrl();
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => $this->url->totalShortUrl(),
+            'totalShortUrl'        => $used,
             'totalShortUrlByMe'    => $this->url->totalShortUrlById(Auth::id()),
             'totalShortUrlByGuest' => $this->url->totalShortUrlById(),
             'totalClicks'          => $this->url->totalClicks(),
@@ -45,9 +47,9 @@ class DashboardController extends Controller
             'totalClicksByGuest'   => $this->url->totalClicksById(),
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
-            'capacity'             => $this->url->keyword_capacity(),
-            'remaining'            => $this->url->keyword_remaining(),
-            'remaining_percent'    => $this->url->keyword_remaining_percent(),
+            'capacity'             => $kwCapacity,
+            'remaining'            => $this->url->keywordRemaining(),
+            'remaining_percent'    => remainingPercentage($used, $kwCapacity),
         ]);
     }
 
@@ -159,7 +161,7 @@ class DashboardController extends Controller
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),
-            'keyword'   => $this->url->key_generator(),
+            'keyword'   => $this->url->keyGenerator(),
             'is_custom' => 0,
             'clicks'    => 0,
         ]);

@@ -136,10 +136,10 @@ class Url extends Model
      *
      * @return string
      */
-    public function key_generator()
+    public function keyGenerator()
     {
         $generateId = new Client();
-        $alphabet = uHub('hash_alphabet');
+        $alphabet = uHub('hash_char');
         $hashLength = (int) uHub('hash_length');
 
         $keyword = $generateId->formatedId($alphabet, $hashLength);
@@ -159,9 +159,9 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keyword_capacity()
+    public function keywordCapacity()
     {
-        $alphabet = strlen(uHub('hash_alphabet'));
+        $alphabet = strlen(uHub('hash_char'));
         $hashLength = (int) uHub('hash_length');
 
         // If the value is smaller than 1, then change the value to 0.
@@ -177,7 +177,7 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keyword_remaining()
+    public function keywordRemaining()
     {
         $randomKeyword = self::whereIsCustom(false)->count();
         $customKeyword = self::whereIsCustom(true)
@@ -187,26 +187,11 @@ class Url extends Model
 
         $usedKeyword = $randomKeyword + $customKeyword;
 
-        if ($this->keyword_capacity() < $usedKeyword) {
+        if ($this->keywordCapacity() < $usedKeyword) {
             return 0;
         }
 
-        return $this->keyword_capacity() - $usedKeyword;
-    }
-
-    /**
-     * @return string
-     */
-    public function keyword_remaining_percent()
-    {
-        $capacity = $this->keyword_capacity();
-        $remaining = $this->keyword_remaining();
-
-        if ((round(($remaining * 100) / $capacity) == 100) && ($capacity != $remaining)) {
-            return '99.99%';
-        } else {
-            return round(($remaining * 100) / $capacity).'%';
-        }
+        return $this->keywordCapacity() - $usedKeyword;
     }
 
     /**

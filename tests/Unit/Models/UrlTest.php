@@ -26,7 +26,7 @@ class UrlTest extends TestCase
             'clicks'  => 10,
         ]);
 
-        config()->set('urlhub.hash_alphabet', 'abc');
+        config()->set('urlhub.hash_char', 'abc');
     }
 
     /**
@@ -211,11 +211,11 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider keywordCapacityProvider
      */
-    public function keyword_capacity($hashLength, $expected)
+    public function keywordCapacity($hashLength, $expected)
     {
         config()->set('urlhub.hash_length', $hashLength);
 
-        $this->assertSame($expected, $this->url->keyword_capacity());
+        $this->assertSame($expected, $this->url->keywordCapacity());
     }
 
     public function keywordCapacityProvider()
@@ -235,43 +235,19 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function keyword_remaining()
+    public function keywordRemaining()
     {
         factory(Url::class, 5)->create();
 
         config()->set('urlhub.hash_length', 1);
 
         // 3 - 5 = must be 0
-        $this->assertSame(0, $this->url->keyword_remaining());
+        $this->assertSame(0, $this->url->keywordRemaining());
 
         config()->set('urlhub.hash_length', 2);
 
         // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->keyword_remaining());
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function keyword_remaining_percent()
-    {
-        factory(Url::class, 4)->create();
-
-        config()->set('urlhub.hash_length', 2);
-        config()->set('urlhub.hash_alphabet', 'ab');
-
-        $this->assertSame('0%', $this->url->keyword_remaining_percent());
-
-        config()->set('urlhub.hash_length', 6);
-        config()->set('urlhub.hash_alphabet', 'abcdefghij');
-
-        $this->assertSame('99.99%', $this->url->keyword_remaining_percent());
-
-        config()->set('urlhub.hash_length', 3);
-        config()->set('urlhub.hash_alphabet', 'abcdefg');
-
-        $this->assertSame('98%', $this->url->keyword_remaining_percent());
+        $this->assertSame(1, $this->url->keywordRemaining());
     }
 
     /**
