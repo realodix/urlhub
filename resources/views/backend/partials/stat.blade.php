@@ -30,19 +30,19 @@
         <div class="row">
           <div class="col-4">
             <div class="right_now-text--primary">
-              <span title="{{number_format($countShortUrl)}}" data-toggle="tooltip">{{numberFormatShort($countShortUrl)}}</span>
+              <span title="{{number_format($shortUrlCount)}}" data-toggle="tooltip">{{numberFormatShort($shortUrlCount)}}</span>
             </div>
             <div class="right_now-label">@lang('Urls Shortened')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--secondary">
-              <span title="{{number_format($countShortUrlByMe)}}" data-toggle="tooltip">{{numberFormatShort($countShortUrlByMe)}}</span>
+              <span title="{{number_format($shortUrlCountByMe)}}" data-toggle="tooltip">{{numberFormatShort($shortUrlCountByMe)}}</span>
             </div>
             <div class="right_now-label">@lang('Urls Shortened')</div>
           </div>
           <div class="col-4">
             <div class="right_now-text--tertiary">
-              <span title="{{number_format($countShortUrlByGuest)}}" data-toggle="tooltip">{{numberFormatShort($countShortUrlByGuest)}}</span>
+              <span title="{{number_format($shortUrlCountByGuest)}}" data-toggle="tooltip">{{numberFormatShort($shortUrlCountByGuest)}}</span>
             </div>
             <div class="right_now-label">@lang('Urls Shortened')</div>
           </div>
@@ -108,7 +108,7 @@
       <div class="card border-left">
       <div class="card-body">
         <div class="right_now-text--primary">
-          <span title="{{number_format($countShortUrlByMe)}}" data-toggle="tooltip">{{numberFormatShort($countShortUrlByMe)}}</span>
+          <span title="{{number_format($shortUrlCountByMe)}}" data-toggle="tooltip">{{numberFormatShort($shortUrlCountByMe)}}</span>
         </div>
         <div class="right_now-label">@lang('Urls Shortened')</div>
       </div>
