@@ -36,7 +36,6 @@ class DashboardController extends Controller
     {
         $user = new User;
         $kwCapacity = $this->url->keywordCapacity();
-        $kwRemaining = $this->url->keywordRemaining();
 
         return view('backend.dashboard', [
             'shortUrlCount'        => $this->url->shortUrlCount(),
@@ -48,8 +47,8 @@ class DashboardController extends Controller
             'userCount'            => $user->userCount(),
             'guestCount'           => $user->guestCount(),
             'capacity'             => $kwCapacity,
-            'remaining'            => $kwRemaining,
-            'remaining_percent'    => remainingPercentage($kwRemaining, $kwCapacity),
+            'remaining'            => $this->url->keywordRemaining(),
+            'remaining_percent'    => remainingPercentage($this->url->shortUrlCount(), $kwCapacity),
         ]);
     }
 
