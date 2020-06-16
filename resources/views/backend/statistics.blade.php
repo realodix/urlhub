@@ -25,8 +25,8 @@
 <br>
 
   <b>Total Short Url</b> <br>
-  Value             : <span title="{{number_format($totalShortUrl)}}" data-toggle="tooltip">{{numberFormatShort($totalShortUrl)}}</span> <br>
-  Value By Guest    : <span title="{{number_format($totalShortUrlByGuest)}}" data-toggle="tooltip">{{numberFormatShort($totalShortUrlByGuest)}}</span> <br>
+  Value             : <span title="{{number_format($countShortUrl)}}" data-toggle="tooltip">{{numberFormatShort($countShortUrl)}}</span> <br>
+  Value By Guest    : <span title="{{number_format($countShortUrlByGuest)}}" data-toggle="tooltip">{{numberFormatShort($countShortUrlByGuest)}}</span> <br>
 
 <br>
 

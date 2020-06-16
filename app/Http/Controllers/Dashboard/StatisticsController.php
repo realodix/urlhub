@@ -27,8 +27,8 @@ class StatisticsController extends Controller
         return view('backend.statistics', [
             'capacity'             => $url->keywordCapacity(),
             'remaining'            => $url->keywordRemaining(),
-            'totalShortUrl'        => $url->totalShortUrl(),
-            'totalShortUrlByGuest' => $url->totalShortUrlById(),
+            'countShortUrl'        => $url->countShortUrl(),
+            'countShortUrlByGuest' => $url->countShortUrlById(),
             'totalClicks'          => $url->totalClicks(),
             'totalClicksByGuest'   => $url->totalClicksById(),
             'totalUser'            => $user->totalUser(),

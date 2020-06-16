@@ -140,7 +140,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             3,
-            $this->url->totalShortUrl()
+            $this->url->countShortUrl()
         );
     }
 
@@ -152,7 +152,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             1,
-            $this->url->totalShortUrlById($this->admin()->id)
+            $this->url->countShortUrlById($this->admin()->id)
         );
     }
 
@@ -164,7 +164,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             2,
-            $this->url->totalShortUrlById()
+            $this->url->countShortUrlById()
         );
     }
 

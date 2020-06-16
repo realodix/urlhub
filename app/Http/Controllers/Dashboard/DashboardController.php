@@ -39,9 +39,9 @@ class DashboardController extends Controller
         $kwRemaining = $this->url->keywordRemaining();
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => $this->url->totalShortUrl(),
-            'totalShortUrlByMe'    => $this->url->totalShortUrlById(Auth::id()),
-            'totalShortUrlByGuest' => $this->url->totalShortUrlById(),
+            'countShortUrl'        => $this->url->countShortUrl(),
+            'countShortUrlByMe'    => $this->url->countShortUrlById(Auth::id()),
+            'countShortUrlByGuest' => $this->url->countShortUrlById(),
             'totalClicks'          => $this->url->totalClicks(),
             'totalClicksByMe'      => $this->url->totalClicksById(Auth::id()),
             'totalClicksByGuest'   => $this->url->totalClicksById(),
