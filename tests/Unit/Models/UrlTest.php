@@ -176,7 +176,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             30,
-            $this->url->totalClicks()
+            $this->url->clickCount()
         );
     }
 
@@ -188,7 +188,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             10,
-            $this->url->totalClicksById($this->admin()->id)
+            $this->url->clickCountById($this->admin()->id)
         );
     }
 
@@ -202,7 +202,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             20,
-            $this->url->totalClicksById()
+            $this->url->clickCountById()
         );
     }
 

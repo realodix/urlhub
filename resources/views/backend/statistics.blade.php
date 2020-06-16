@@ -31,8 +31,8 @@
 <br>
 
   <b>Total Clicks</b> <br>
-  Value             : <span title="{{number_format($totalClicks)}}" data-toggle="tooltip">{{numberFormatShort($totalClicks)}}</span> <br>
-  Value By Guest    : <span title="{{number_format($totalClicksByGuest)}}" data-toggle="tooltip">{{numberFormatShort($totalClicksByGuest)}}</span> <br>
+  Value             : <span title="{{number_format($clickCount)}}" data-toggle="tooltip">{{numberFormatShort($clickCount)}}</span> <br>
+  Value By Guest    : <span title="{{number_format($clickCountByGuest)}}" data-toggle="tooltip">{{numberFormatShort($clickCountByGuest)}}</span> <br>
 
 <br>
 
