@@ -9,7 +9,7 @@ if (! function_exists('numberFormatShort')) {
     }
 }
 
-if (!function_exists('remainingPercentage')) {
+if (! function_exists('remainingPercentage')) {
     function remainingPercentage($remaining, $capacity)
     {
         return resolve(NumHelper::class)->remainingPercentage($remaining, $capacity);
