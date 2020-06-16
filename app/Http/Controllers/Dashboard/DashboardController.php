@@ -36,10 +36,10 @@ class DashboardController extends Controller
     {
         $user = new User;
         $kwCapacity = $this->url->keywordCapacity();
-        $kwRemaining = $this->url->keywordRemaining();
+        $used = $this->url->totalShortUrl();
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => $this->url->totalShortUrl(),
+            'totalShortUrl'        => $used,
             'totalShortUrlByMe'    => $this->url->totalShortUrlById(Auth::id()),
             'totalShortUrlByGuest' => $this->url->totalShortUrlById(),
             'totalClicks'          => $this->url->totalClicks(),
@@ -48,8 +48,8 @@ class DashboardController extends Controller
             'totalUser'            => $user->totalUser(),
             'totalGuest'           => $user->totalGuest(),
             'capacity'             => $kwCapacity,
-            'remaining'            => $kwRemaining,
-            'remaining_percent'    => remainingPercentage($kwRemaining, $kwCapacity),
+            'remaining'            => $this->url->keywordRemaining(),
+            'remaining_percent'    => remainingPercentage($used, $kwCapacity),
         ]);
     }
 
