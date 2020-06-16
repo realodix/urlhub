@@ -25,10 +25,9 @@ class NumHelperTest extends TestCase
     }
 
     /**
-     * @test
      * @group u-helper
      */
-    public function keywordRemainingPercent()
+    public function testRemainingPercentage()
     {
         $this->assertSame('0%', remainingPercentage(100, 100));
         $this->assertSame('0.01%', remainingPercentage(999, 1000));
