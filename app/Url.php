@@ -8,6 +8,7 @@ use GeoIp2\Database\Reader;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Spatie\Url\Url as SpatieUrl;
 
 class Url extends Model
 {
@@ -195,7 +196,7 @@ class Url extends Model
 
     /**
      * This function returns a string: either the page title as defined in
-     * HTML, or the string "No Title" if not found.
+     * HTML, or "{domain_name} - No Title" if not found.
      *
      * @param string $url
      * @return string
@@ -206,7 +207,7 @@ class Url extends Model
             $embed = Embed::create($url);
             $title = $embed->title;
         } catch (\Exception $e) {
-            $title = 'No Title';
+            $title = $this->getDomain($url).' - No Title';
         }
 
         return $title;
@@ -224,13 +225,9 @@ class Url extends Model
      */
     public function getDomain($url)
     {
-        // https://stackoverflow.com/a/399316
-        $pieces = parse_url($url);
-        $domain = isset($pieces['host']) ? $pieces['host'] : '';
+        $url = SpatieUrl::fromString($url);
 
-        preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs);
-
-        return $regs['domain'];
+        return urlRemoveScheme($url->getHost());
     }
 
     /**

@@ -28,6 +28,7 @@
         "laravel/ui": "^2.0",
         "laravolt/avatar": "^3.2",
         "spatie/laravel-permission": "^3.11",
+        "spatie/url": "^1.3",
         "vinkla/hashids": "^8.1",
         "yajra/laravel-datatables-oracle": "~9.0"
     },

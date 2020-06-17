@@ -258,7 +258,7 @@ class UrlTest extends TestCase
     {
         $longUrl = 'https://github123456789.com';
 
-        $this->assertSame('No Title', $this->url->getRemoteTitle($longUrl));
+        $this->assertSame('github123456789.com - No Title', $this->url->getRemoteTitle($longUrl));
     }
 
     /**
@@ -278,10 +278,10 @@ class UrlTest extends TestCase
             ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
             ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
             ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
         ];
     }
 
