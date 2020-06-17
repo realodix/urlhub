@@ -241,7 +241,7 @@ class UrlTest extends TestCase
 
         config()->set('urlhub.hash_length', 1);
 
-        // 3 - 5 = must be 0
+        // 3 - 5 - (2+1) = must be 0
         $this->assertSame(0, $this->url->keywordRemaining());
 
         config()->set('urlhub.hash_length', 2);
