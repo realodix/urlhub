@@ -17,7 +17,7 @@ return [
     /**
      * If disabled, everyone can't register.
      */
-    'public_register' => env('UH_PUBLICREGISTER', true),
+    'guest_register' => env('UH_GUEST_REGISTER', true),
 
     /**
      * Enable/Disable to show shorten links statstics to Guest.
