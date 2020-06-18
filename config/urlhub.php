@@ -4,19 +4,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable/Disable to guest access
+    | Guest Access
     |--------------------------------------------------------------------------
     */
 
-    'allow_guest' => env('UH_ALLOWGUEST', true),
+    /**
+     * If enabled, guests can use UrlHub to shorten their URL without having to
+     * register / login first.
+     */
+    'guest' => env('UH_GUEST', true),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Enable/Disable to register new users
-    |--------------------------------------------------------------------------
-    */
-
+    /**
+     * If disabled, everyone can't register.
+     */
     'public_register' => env('UH_PUBLICREGISTER', true),
+
+    /**
+     * Enable/Disable to show shorten links statstics to Guest
+     */
+    'show_stat_to_guests' => env('UH_SHOW_STAT_TO_GUESTS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -105,11 +111,5 @@ return [
         'svg',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Enable/Disable to show shorten links statstics to Guest
-    |--------------------------------------------------------------------------
-    */
 
-    'show_stat_to_guests' => env('UH_SHOW_STAT_TO_GUESTS', true),
 ];
