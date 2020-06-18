@@ -20,7 +20,7 @@ return [
     'public_register' => env('UH_PUBLICREGISTER', true),
 
     /**
-     * Enable/Disable to show shorten links statstics to Guest
+     * Enable/Disable to show shorten links statstics to Guest.
      */
     'show_stat_to_guests' => env('UH_SHOW_STAT_TO_GUESTS', true),
 
@@ -110,6 +110,5 @@ return [
         'js',
         'svg',
     ],
-
 
 ];
