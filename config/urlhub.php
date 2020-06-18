@@ -22,7 +22,7 @@ return [
     /**
      * Enable/Disable to show shorten links statstics to Guest.
      */
-    'show_stat_to_guests' => env('UH_SHOW_STAT_TO_GUESTS', true),
+    'guest_show_stat' => env('UH_GUEST_SHOW_STAT', true),
 
     /*
     |--------------------------------------------------------------------------
