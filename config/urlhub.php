@@ -4,23 +4,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Guest Access
+    | Unregistered Users Access
     |--------------------------------------------------------------------------
     */
 
     /**
-     * If enabled, guests can use UrlHub to shorten their URL without having to
-     * register / login first.
+     * If enabled, unregistered users can use UrlHub to shorten their URL
+     * without having to register / login first.
      */
     'guest' => env('UH_GUEST', true),
 
     /**
-     * If disabled, everyone can't register.
+     * If disabled, every unregistered users can't register.
      */
     'guest_register' => env('UH_GUEST_REGISTER', true),
 
     /**
-     * Enable/Disable to show shorten links statstics to Guest.
+     * Enable/Disable to allow unregistered users see shortened links
+     * statistics.
      */
     'guest_show_stat' => env('UH_GUEST_SHOW_STAT', true),
 
