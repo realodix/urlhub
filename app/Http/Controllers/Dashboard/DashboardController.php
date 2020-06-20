@@ -94,13 +94,13 @@ class DashboardController extends Controller
     /**
      * Fungsi untuk menampilkan halaman edit long url.
      *
-     * @param string $keyword
+     * @param string $key
      *
      * @return \Illuminate\View\View
      */
-    public function edit($keyword)
+    public function edit($key)
     {
-        $url = Url::whereKeyword($keyword)->firstOrFail();
+        $url = Url::whereKeyword($key)->firstOrFail();
 
         $this->authorize('updateUrl', $url);
 
@@ -150,13 +150,13 @@ class DashboardController extends Controller
      * link. You can duplicate it and it will produce a different ending
      * url.
      *
-     * @param string $keyword
+     * @param string $key
      *
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function duplicate($keyword)
+    public function duplicate($key)
     {
-        $url = Url::whereKeyword($keyword)->firstOrFail();
+        $url = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),

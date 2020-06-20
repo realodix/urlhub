@@ -40,18 +40,18 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $keyword = $request->custom_keyword ?? $this->url->randomKeyGenerator();
+        $key = $request->custom_keyword ?? $this->url->randomKeyGenerator();
 
         Url::create([
             'user_id'    => Auth::id(),
             'long_url'   => $request->long_url,
             'meta_title' => $request->long_url,
-            'keyword'    => $keyword,
+            'keyword'    => $key,
             'is_custom'  => $request->custom_keyword ? 1 : 0,
             'ip'         => $request->ip(),
         ]);
 
-        return redirect()->route('short_url.stats', $keyword);
+        return redirect()->route('short_url.stats', $key);
     }
 
     /**
@@ -85,12 +85,12 @@ class UrlController extends Controller
      * @codeCoverageIgnore
      * View the shortened URL details.
      *
-     * @param string $keyword
+     * @param string $key
      * @return \Illuminate\View\View
      */
-    public function view($keyword)
+    public function view($key)
     {
-        $url = Url::with('urlStat')->whereKeyword($keyword)->firstOrFail();
+        $url = Url::with('urlStat')->whereKeyword($key)->firstOrFail();
 
         $qrCode = qrCode($url->short_url);
 
@@ -111,24 +111,24 @@ class UrlController extends Controller
      * link. You can duplicate it and it will produce a different ending
      * url.
      *
-     * @param string $keyword
+     * @param string $key
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($keyword)
+    public function duplicate($key)
     {
-        $url = Url::whereKeyword($keyword)->firstOrFail();
+        $url = Url::whereKeyword($key)->firstOrFail();
 
-        $keyword = $this->url->randomKeyGenerator();
+        $randomKey = $this->url->randomKeyGenerator();
 
         $replicate = $url->replicate()->fill([
             'user_id'   => Auth::id(),
-            'keyword'   => $keyword,
+            'keyword'   => $randomKey,
             'is_custom' => 0,
             'clicks'    => 0,
         ]);
         $replicate->save();
 
-        return redirect()->route('short_url.stats', $keyword)
+        return redirect()->route('short_url.stats', $randomKey)
             ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }
