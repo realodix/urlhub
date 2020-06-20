@@ -125,7 +125,7 @@ class Url extends Model
     /**
      * @param int $id
      */
-    public function clickCountById($id = null): int
+    public function clickCountOwnedBy($id = null): int
     {
         return self::whereUserId($id)->sum('clicks');
     }
