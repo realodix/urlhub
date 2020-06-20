@@ -135,24 +135,24 @@ class Url extends Model
      *
      * @return string
      */
-    public function keyGenerator()
+    public function randomKeyGenerator()
     {
-        $generateId = new Client();
+        $client = new Client();
         $alphabet = uHub('hash_char');
         $hashLength = (int) uHub('hash_length');
 
-        $keyword = $generateId->formatedId($alphabet, $hashLength);
+        $randomKey = $client->formatedId($alphabet, $hashLength);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        $link = self::whereKeyword($keyword)->first();
-        while ($link) {
-            $keyword = $generateId->formatedId($alphabet, $hashLength);
-            $link = self::whereKeyword($keyword)->first();
+        $generatedRandomKey = self::whereKeyword($randomKey)->first();
+        while ($generatedRandomKey) {
+            $randomKey = $client->formatedId($alphabet, $hashLength);
+            $generatedRandomKey = self::whereKeyword($randomKey)->first();
         }
         // @codeCoverageIgnoreEnd
 
-        return $keyword;
+        return $randomKey;
     }
 
     /**

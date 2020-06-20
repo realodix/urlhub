@@ -36,7 +36,7 @@ class UrlController extends Controller
      */
     public function store(StoreUrl $request)
     {
-        $keyword = $request->custom_keyword ?? $this->url->keyGenerator();
+        $keyword = $request->custom_keyword ?? $this->url->randomKeyGenerator();
 
         $url = Url::create([
             'user_id'    => Auth::id(),
