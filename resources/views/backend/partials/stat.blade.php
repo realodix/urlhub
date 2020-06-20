@@ -86,7 +86,7 @@
           </div>
           <div class="col-4">
             <div class="right_now-text--secondary">
-              <span title="{{number_format($clickCountByMe)}}" data-toggle="tooltip">{{numberFormatShort($clickCountByMe)}}</span>
+              <span title="{{number_format($clickCountFromMe)}}" data-toggle="tooltip">{{numberFormatShort($clickCountFromMe)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>
@@ -118,7 +118,7 @@
       <div class="card border-left">
       <div class="card-body">
         <div class="right_now-text--primary">
-          <span title="{{number_format($clickCountByMe)}}" data-toggle="tooltip">{{numberFormatShort($clickCountByMe)}}</span>
+          <span title="{{number_format($clickCountFromMe)}}" data-toggle="tooltip">{{numberFormatShort($clickCountFromMe)}}</span>
         </div>
         <div class="right_now-label">@lang('Clicks & Redirects')</div>
       </div>
