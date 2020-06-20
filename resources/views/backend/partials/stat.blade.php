@@ -92,7 +92,7 @@
           </div>
           <div class="col-4">
             <div class="right_now-text--tertiary">
-              <span title="{{number_format($clickCountByGuest)}}" data-toggle="tooltip">{{numberFormatShort($clickCountByGuest)}}</span>
+              <span title="{{number_format($clickCountFromGuest)}}" data-toggle="tooltip">{{numberFormatShort($clickCountFromGuest)}}</span>
             </div>
             <div class="right_now-label">@lang('Clicks & Redirects')</div>
           </div>

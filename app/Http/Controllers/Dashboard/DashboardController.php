@@ -38,17 +38,17 @@ class DashboardController extends Controller
         $kwCapacity = $this->url->keywordCapacity();
 
         return view('backend.dashboard', [
-            'shortUrlCount'        => $this->url->shortUrlCount(),
-            'shortUrlCountByMe'    => $this->url->shortUrlCountOwnedBy(Auth::id()),
-            'shortUrlCountByGuest' => $this->url->shortUrlCountOwnedBy(),
-            'clickCount'           => $this->url->clickCount(),
-            'clickCountByMe'       => $this->url->clickCountOwnedBy(Auth::id()),
-            'clickCountByGuest'    => $this->url->clickCountOwnedBy(),
-            'userCount'            => $user->userCount(),
-            'guestCount'           => $user->guestCount(),
-            'capacity'             => $kwCapacity,
-            'remaining'            => $this->url->keywordRemaining(),
-            'remaining_percent'    => remainingPercentage($this->url->shortUrlCount(), $kwCapacity),
+            'shortUrlCount'          => $this->url->shortUrlCount(),
+            'shortUrlCountByMe'      => $this->url->shortUrlCountOwnedBy(Auth::id()),
+            'shortUrlCountByGuest'   => $this->url->shortUrlCountOwnedBy(),
+            'clickCount'             => $this->url->clickCount(),
+            'clickCountByMe'         => $this->url->clickCountOwnedBy(Auth::id()),
+            'clickCountFromGuest'    => $this->url->clickCountOwnedBy(),
+            'userCount'              => $user->userCount(),
+            'guestCount'             => $user->guestCount(),
+            'capacity'               => $kwCapacity,
+            'remaining'              => $this->url->keywordRemaining(),
+            'remaining_percent'      => remainingPercentage($this->url->shortUrlCount(), $kwCapacity),
         ]);
     }
 
