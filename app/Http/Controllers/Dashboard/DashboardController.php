@@ -39,8 +39,8 @@ class DashboardController extends Controller
 
         return view('backend.dashboard', [
             'shortUrlCount'        => $this->url->shortUrlCount(),
-            'shortUrlCountByMe'    => $this->url->shortUrlCountById(Auth::id()),
-            'shortUrlCountByGuest' => $this->url->shortUrlCountById(),
+            'shortUrlCountByMe'    => $this->url->shortUrlCountOwnedBy(Auth::id()),
+            'shortUrlCountByGuest' => $this->url->shortUrlCountOwnedBy(),
             'clickCount'           => $this->url->clickCount(),
             'clickCountByMe'       => $this->url->clickCountById(Auth::id()),
             'clickCountByGuest'    => $this->url->clickCountById(),

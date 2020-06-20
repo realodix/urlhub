@@ -28,7 +28,7 @@ class StatisticsController extends Controller
             'capacity'             => $url->keywordCapacity(),
             'remaining'            => $url->keywordRemaining(),
             'shortUrlCount'        => $url->shortUrlCount(),
-            'shortUrlCountByGuest' => $url->shortUrlCountById(),
+            'shortUrlCountByGuest' => $url->shortUrlCountOwnedBy(),
             'clickCount'           => $url->clickCount(),
             'clickCountByGuest'    => $url->clickCountById(),
             'userCount'            => $user->userCount(),

@@ -112,7 +112,7 @@ class Url extends Model
     /**
      * @param int $id
      */
-    public function shortUrlCountById($id = null)
+    public function shortUrlCountOwnedBy($id = null)
     {
         return self::whereUserId($id)->count('keyword');
     }
