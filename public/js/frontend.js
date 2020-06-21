@@ -117,10 +117,10 @@ $(function () {
   var twOptions = {
     callback: function callback(value) {
       $.ajax({
-        url: "/validate-custom-keyword",
+        url: "/validate-custom-key",
         type: 'POST',
         data: {
-          'keyword': $('#custom_keyword').val()
+          'keyword': $('#custom_key').val()
         },
         dataType: "json"
       }).done(function (data) {
@@ -142,7 +142,7 @@ $(function () {
     allowSubmit: false
   }; // Add TypeWatch to check when users type
 
-  $('#custom_keyword').typeWatch(twOptions);
+  $('#custom_key').typeWatch(twOptions);
 });
 /**
  * Social Share
