@@ -90,15 +90,15 @@ class UrlControllerTest extends TestCase
         config()->set('urlhub.hash_length', 6);
 
         $longUrl = 'https://laravel.com';
-        $customUrl = 'foo_bar';
+        $customKey = 'foo_bar';
 
         $this->post(route('createshortlink'), [
             'long_url'   => $longUrl,
-            'custom_key' => $customUrl,
+            'custom_key' => $customKey,
         ]);
 
         $url = Url::whereLongUrl($longUrl)->first();
-        $this->assertSame($customUrl, $url->keyword);
+        $this->assertSame($customKey, $url->keyword);
         $this->assertTrue($url->is_custom);
     }
 
