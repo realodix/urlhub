@@ -56,6 +56,13 @@ return [
      * The HTTP redirect code, redirect for short, is a way to forward visitors
      * and search engines from one URL to another.
      *
+     * Not all redirection is treated equally; the redirection instruction sent
+     * to a browser can contain in its header the HTTP status:
+     * - 301 (Moved Permanently)
+     * - 302 (Found)
+     * - 307 (Temporary Redirect)
+     * - 308 (Permanent Redirect)
+     *
      * You can read the references below to find out what code is good to use.
      * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
      * - https://redirectdetective.com/redirection-types.html
