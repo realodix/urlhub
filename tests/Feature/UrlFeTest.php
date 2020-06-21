@@ -37,8 +37,8 @@ class UrlFeTest extends TestCase
         $customKeyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $longUrl,
-            'custom_keyword' => $customKeyword,
+            'long_url'   => $longUrl,
+            'custom_key' => $customKeyword,
         ]);
         $response->assertRedirect(route('short_url.stats', $customKeyword));
     }
@@ -57,8 +57,8 @@ class UrlFeTest extends TestCase
         $customKeyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $longUrl,
-            'custom_keyword' => $customKeyword,
+            'long_url'   => $longUrl,
+            'custom_key' => $customKeyword,
         ]);
         $response->assertRedirect(route('short_url.stats', $customKeyword));
     }
@@ -231,8 +231,8 @@ class UrlFeTest extends TestCase
         $customKeyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $url->long_url,
-            'custom_keyword' => $customKeyword,
+            'long_url'   => $url->long_url,
+            'custom_key' => $customKeyword,
         ]);
         $response->assertRedirect(
             route('short_url.stats', $url->keyword)
@@ -254,8 +254,8 @@ class UrlFeTest extends TestCase
         $customKeyword = 'laravel';
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => $url->long_url,
-            'custom_keyword' => $customKeyword,
+            'long_url'   => $url->long_url,
+            'custom_key' => $customKeyword,
         ]);
 
         $response->assertRedirect(
@@ -274,13 +274,13 @@ class UrlFeTest extends TestCase
         $url = factory(Url::class)->create();
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => 'https://laravel-news.com',
-            'custom_keyword' => $url->keyword,
+            'long_url'   => 'https://laravel-news.com',
+            'custom_key' => $url->keyword,
         ]);
 
         $response
             ->assertRedirect(route('home'))
-            ->assertSessionHasErrors('custom_keyword');
+            ->assertSessionHasErrors('custom_key');
 
         $this->assertCount(1, Url::all());
     }
@@ -297,13 +297,13 @@ class UrlFeTest extends TestCase
         $this->loginAsUser();
 
         $response = $this->post(route('createshortlink'), [
-            'long_url'       => 'https://laravel-news.com',
-            'custom_keyword' => $url->keyword,
+            'long_url'   => 'https://laravel-news.com',
+            'custom_key' => $url->keyword,
         ]);
 
         $response
             ->assertRedirect(route('home'))
-            ->assertSessionHasErrors('custom_keyword');
+            ->assertSessionHasErrors('custom_key');
 
         $this->assertCount(1, Url::all());
     }

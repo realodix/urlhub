@@ -26,8 +26,8 @@ class StoreUrl extends FormRequest
     public function rules()
     {
         return [
-            'long_url'       => ['required', 'url', 'max:65535', new DomainBlacklist],
-            'custom_keyword' => ['nullable', 'max:20', new StrAlphaUnderscore, 'unique:urls,keyword'],
+            'long_url'   => ['required', 'url', 'max:65535', new DomainBlacklist],
+            'custom_key' => ['nullable', 'max:20', new StrAlphaUnderscore, 'unique:urls,keyword'],
         ];
     }
 
@@ -39,10 +39,10 @@ class StoreUrl extends FormRequest
     public function messages()
     {
         return [
-            'long_url.required'     => __('Must be filled, should not be empty.'),
-            'long_url.url'          => __('Incorrect link format. The link must begin "http://" or "https://".'),
-            'custom_keyword.max'    => __('The custom url may not be greater than :max characters.'),
-            'custom_keyword.unique' => __(':input has already been taken'),
+            'long_url.required' => __('Must be filled, should not be empty.'),
+            'long_url.url'      => __('Incorrect link format. The link must begin "http://" or "https://".'),
+            'custom_key.max'    => __('The custom url may not be greater than :max characters.'),
+            'custom_key.unique' => __(':input has already been taken'),
         ];
     }
 }

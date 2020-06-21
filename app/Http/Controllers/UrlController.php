@@ -34,14 +34,14 @@ class UrlController extends Controller
     public function create(StoreUrl $request)
     {
         $url = new Url;
-        $key = $request->custom_keyword ?? $url->randomKeyGenerator();
+        $key = $request->custom_key ?? $url->randomKeyGenerator();
 
         Url::create([
             'user_id'    => Auth::id(),
             'long_url'   => $request->long_url,
             'meta_title' => $request->long_url,
             'keyword'    => $key,
-            'is_custom'  => $request->custom_keyword ? 1 : 0,
+            'is_custom'  => $request->custom_key ? 1 : 0,
             'ip'         => $request->ip(),
         ]);
 

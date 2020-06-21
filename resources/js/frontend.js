@@ -35,7 +35,7 @@ $(function() {
                 url: "/validate-custom-keyword",
                 type: 'POST',
                 data: {
-                    'keyword': $('#custom_keyword').val()
+                    'keyword': $('#custom_key').val()
                 },
                 dataType: "json"
             })
@@ -64,7 +64,7 @@ $(function() {
     };
 
     // Add TypeWatch to check when users type
-    $('#custom_keyword').typeWatch(twOptions);
+    $('#custom_key').typeWatch(twOptions);
 });
 
 
