@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\DataTables\DashboardDataTables;
 use App\Http\Controllers\Controller;
+use App\Services\Dashboard\DashboardService;
 use App\Url;
 use App\User;
 use Illuminate\Http\Request;
@@ -40,9 +40,9 @@ class DashboardController extends Controller
     /**
      * @codeCoverageIgnore
      */
-    public function dataTable(DashboardDataTables $dataTables)
+    public function dataTable(DashboardService $dashboardService)
     {
-        return $dataTables->dataTable();
+        return $dashboardService->dataTable();
     }
 
     /**

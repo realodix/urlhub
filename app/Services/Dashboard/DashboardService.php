@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DataTables;
+namespace App\Services\Dashboard;
 
 use App\Url;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class DashboardDataTables
+class DashboardService
 {
     /**
      * @codeCoverageIgnore
