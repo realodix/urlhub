@@ -118,7 +118,7 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @dataProvider customKeywordValidation_fail
+     * @dataProvider customKeyValidation_fail
      */
     public function custom_key_validation_fail($data)
     {

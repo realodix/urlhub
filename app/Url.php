@@ -180,12 +180,12 @@ class Url extends Model
     public function keywordRemaining()
     {
         $randomKey = self::whereIsCustom(false)->count();
-        $customKeyword = self::whereIsCustom(true)
-                               ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])
-                               ->where('keyword', 'NOT LIKE', '[_]')
-                               ->count();
+        $customKey = self::whereIsCustom(true)
+                           ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])
+                           ->where('keyword', 'NOT LIKE', '[_]')
+                           ->count();
 
-        $usedKeyword = $randomKey + $customKeyword;
+        $usedKeyword = $randomKey + $customKey;
 
         if ($this->keywordCapacity() < $usedKeyword) {
             return 0;
