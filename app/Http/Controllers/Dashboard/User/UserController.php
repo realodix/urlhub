@@ -14,13 +14,13 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin')->only('index');
+        $this->middleware('role:admin')->only('view');
     }
 
     /**
      * Display a listing of the users.
      */
-    public function index()
+    public function view()
     {
         return view('backend.user.index');
     }

@@ -24,13 +24,13 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::get('/statistics', 'StatisticsController@view')->name('dashboard.stat');
 
         // All URLs
-        Route::get('/allurl', 'AllUrlController@index')->name('dashboard.allurl');
+        Route::get('/allurl', 'AllUrlController@view')->name('dashboard.allurl');
         Route::get('/allurl/getdata', 'AllUrlController@dataTable');
         Route::get('/allurl/delete/{url_hashId}', 'AllUrlController@delete')->name('dashboard.allurl.delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
-            Route::get('/', 'UserController@index')->name('user.index');
+            Route::get('/', 'UserController@view')->name('user.index');
             Route::get('/user/getdata', 'UserController@getData');
 
             Route::get('{user}/edit', 'UserController@edit')->name('user.edit');

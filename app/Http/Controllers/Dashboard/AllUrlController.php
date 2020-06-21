@@ -21,7 +21,7 @@ class AllUrlController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function view()
     {
         return view('backend.all-url');
     }
