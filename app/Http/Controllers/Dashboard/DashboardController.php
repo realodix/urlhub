@@ -8,7 +8,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Yajra\Datatables\Datatables;
 
 class DashboardController extends Controller
 {
@@ -43,9 +42,9 @@ class DashboardController extends Controller
      */
     public function getData()
     {
-        $model = Url::whereUserId(Auth::id());
+        $url = Url::whereUserId(Auth::id());
 
-        return DataTables::of($model)
+        return datatables($url)
             ->editColumn('keyword', function ($url) {
                 return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.urlRemoveScheme($url->short_url).'</span>';
             })

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Url;
 use Illuminate\Support\Str;
-use Yajra\Datatables\Datatables;
 
 class AllUrlController extends Controller
 {
@@ -32,9 +31,9 @@ class AllUrlController extends Controller
      */
     public function getData()
     {
-        $urlModel = Url::query();
+        $url = Url::query();
 
-        return DataTables::of($urlModel)
+        return datatables($url)
             ->editColumn('keyword', function ($url) {
                 return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.urlRemoveScheme($url->short_url).'</span>';
             })
