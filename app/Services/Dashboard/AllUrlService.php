@@ -12,9 +12,9 @@ class AllUrlService
      */
     public function dataTable()
     {
-        $modelUrl = Url::query();
+        $urlModel = Url::query();
 
-        return datatables($modelUrl)
+        return datatables($urlModel)
             ->editColumn('keyword', function (Url $url) {
                 return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.urlRemoveScheme($url->short_url).'</span>';
             })
