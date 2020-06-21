@@ -108,7 +108,7 @@ class UrlControllerTest extends TestCase
      */
     public function custom_key_validation_pass()
     {
-        $response = $this->post(route('home').'/validate-custom-keyword', [
+        $response = $this->post(route('home').'/validate-custom-key', [
             'keyword' => 'hello',
         ]);
 
@@ -138,7 +138,7 @@ class UrlControllerTest extends TestCase
             ],
         ]);
 
-        $response = $this->post(route('home').'/validate-custom-keyword', [
+        $response = $this->post(route('home').'/validate-custom-key', [
             'keyword' => $data,
         ]);
 
