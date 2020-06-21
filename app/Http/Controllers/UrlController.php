@@ -16,20 +16,13 @@ use Illuminate\Support\Facades\Validator;
 class UrlController extends Controller
 {
     /**
-     * @var url
-     */
-    protected $url;
-
-    /**
      * UrlController constructor.
      *
      * @param Url $url
      */
-    public function __construct(Url $url)
+    public function __construct()
     {
         $this->middleware('urlhublinkchecker')->only('create');
-
-        $this->url = $url;
     }
 
     /**
@@ -40,7 +33,8 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $key = $request->custom_keyword ?? $this->url->randomKeyGenerator();
+        $url = new Url;
+        $key = $request->custom_keyword ?? $url->randomKeyGenerator();
 
         Url::create([
             'user_id'    => Auth::id(),
@@ -116,9 +110,9 @@ class UrlController extends Controller
      */
     public function duplicate($key)
     {
+        $url = new Url;
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
-
-        $randomKey = $this->url->randomKeyGenerator();
+        $randomKey = $url->randomKeyGenerator();
 
         $replicate = $shortenedUrl->replicate()->fill([
             'user_id'   => Auth::id(),

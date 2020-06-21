@@ -32,9 +32,9 @@ class AllUrlController extends Controller
      */
     public function getData()
     {
-        $model = Url::query();
+        $urlModel = Url::query();
 
-        return DataTables::of($model)
+        return DataTables::of($urlModel)
             ->editColumn('keyword', function ($url) {
                 return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.urlRemoveScheme($url->short_url).'</span>';
             })

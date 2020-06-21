@@ -13,42 +13,28 @@ use Yajra\Datatables\Datatables;
 class DashboardController extends Controller
 {
     /**
-     * @var url
-     */
-    protected $url;
-
-    /**
-     * Url constructor.
-     *
-     * @param Url $url
-     */
-    public function __construct(Url $url)
-    {
-        $this->url = $url;
-    }
-
-    /**
      * Show users all their Short URLs.
      *
      * @return \Illuminate\View\View
      */
     public function view()
     {
+        $url = new Url;
         $user = new User;
-        $kwCapacity = $this->url->keywordCapacity();
+        $kwCapacity = $url->keywordCapacity();
 
         return view('backend.dashboard', [
-            'shortUrlCount'        => $this->url->shortUrlCount(),
-            'shortUrlCountByMe'    => $this->url->shortUrlCountOwnedBy(Auth::id()),
-            'shortUrlCountByGuest' => $this->url->shortUrlCountOwnedBy(),
-            'clickCount'           => $this->url->clickCount(),
-            'clickCountFromMe'     => $this->url->clickCountOwnedBy(Auth::id()),
-            'clickCountFromGuest'  => $this->url->clickCountOwnedBy(),
+            'shortUrlCount'        => $url->shortUrlCount(),
+            'shortUrlCountByMe'    => $url->shortUrlCountOwnedBy(Auth::id()),
+            'shortUrlCountByGuest' => $url->shortUrlCountOwnedBy(),
+            'clickCount'           => $url->clickCount(),
+            'clickCountFromMe'     => $url->clickCountOwnedBy(Auth::id()),
+            'clickCountFromGuest'  => $url->clickCountOwnedBy(),
             'userCount'            => $user->userCount(),
             'guestCount'           => $user->guestCount(),
             'capacity'             => $kwCapacity,
-            'remaining'            => $this->url->keywordRemaining(),
-            'remaining_percent'    => remainingPercentage($this->url->shortUrlCount(), $kwCapacity),
+            'remaining'            => $url->keywordRemaining(),
+            'remaining_percent'    => remainingPercentage($url->shortUrlCount(), $kwCapacity),
         ]);
     }
 
@@ -156,12 +142,12 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $urlModel = new Url;
+        $url = new Url;
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
             'user_id'   => Auth::id(),
-            'keyword'   => $urlModel->randomKeyGenerator(),
+            'keyword'   => $url->randomKeyGenerator(),
             'is_custom' => 0,
             'clicks'    => 0,
         ]);
