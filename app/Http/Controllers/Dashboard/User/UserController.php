@@ -30,9 +30,9 @@ class UserController extends Controller
      */
     public function getData()
     {
-        $users = User::query();
+        $userModel = User::query();
 
-        return Datatables::of($users)
+        return Datatables::of($userModel)
             ->editColumn('name', function ($user) {
                 return '<a href="'.route('user.edit', $user->name).'">'.$user->name.'</a>';
             })

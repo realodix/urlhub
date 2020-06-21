@@ -47,11 +47,11 @@ class UserTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalUser()
+    public function userCount()
     {
         $user = new User;
 
-        $this->assertSame(1, $user->totalUser());
+        $this->assertSame(1, $user->userCount());
     }
 
     /**
@@ -61,10 +61,10 @@ class UserTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalGuest()
+    public function guestCount()
     {
         $user = new User;
 
-        $this->assertSame(2, $user->totalGuest());
+        $this->assertSame(2, $user->guestCount());
     }
 }

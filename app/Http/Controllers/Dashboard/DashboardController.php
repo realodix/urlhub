@@ -13,43 +13,28 @@ use Yajra\Datatables\Datatables;
 class DashboardController extends Controller
 {
     /**
-     * @var url
-     */
-    protected $url;
-
-    /**
-     * Url constructor.
-     *
-     * @param Url $url
-     */
-    public function __construct(Url $url)
-    {
-        $this->url = $url;
-    }
-
-    /**
      * Show users all their Short URLs.
      *
      * @return \Illuminate\View\View
      */
     public function view()
     {
+        $url = new Url;
         $user = new User;
-        $kwCapacity = $this->url->keywordCapacity();
-        $used = $this->url->totalShortUrl();
+        $kwCapacity = $url->keywordCapacity();
 
         return view('backend.dashboard', [
-            'totalShortUrl'        => $used,
-            'totalShortUrlByMe'    => $this->url->totalShortUrlById(Auth::id()),
-            'totalShortUrlByGuest' => $this->url->totalShortUrlById(),
-            'totalClicks'          => $this->url->totalClicks(),
-            'totalClicksByMe'      => $this->url->totalClicksById(Auth::id()),
-            'totalClicksByGuest'   => $this->url->totalClicksById(),
-            'totalUser'            => $user->totalUser(),
-            'totalGuest'           => $user->totalGuest(),
+            'shortUrlCount'        => $url->shortUrlCount(),
+            'shortUrlCountByMe'    => $url->shortUrlCountOwnedBy(Auth::id()),
+            'shortUrlCountByGuest' => $url->shortUrlCountOwnedBy(),
+            'clickCount'           => $url->clickCount(),
+            'clickCountFromMe'     => $url->clickCountOwnedBy(Auth::id()),
+            'clickCountFromGuest'  => $url->clickCountOwnedBy(),
+            'userCount'            => $user->userCount(),
+            'guestCount'           => $user->guestCount(),
             'capacity'             => $kwCapacity,
-            'remaining'            => $this->url->keywordRemaining(),
-            'remaining_percent'    => remainingPercentage($used, $kwCapacity),
+            'remaining'            => $url->keywordRemaining(),
+            'remaining_percent'    => remainingPercentage($url->shortUrlCount(), $kwCapacity),
         ]);
     }
 
@@ -93,15 +78,15 @@ class DashboardController extends Controller
     }
 
     /**
-     * Fungsi untuk menampilkan halaman edit long url.
+     * Show the long url edit page.
      *
-     * @param string $keyword
+     * @param string $key
      *
      * @return \Illuminate\View\View
      */
-    public function edit($keyword)
+    public function edit($key)
     {
-        $url = Url::whereKeyword($keyword)->firstOrFail();
+        $url = Url::whereKeyword($key)->firstOrFail();
 
         $this->authorize('updateUrl', $url);
 
@@ -109,8 +94,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Fungsi untuk memperbarui long url yang telah ditetapkan sebelumnya ke
-     * long url yang baru.
+     * Update the long url that was previously set to the new long url.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Url                 $url
@@ -129,7 +113,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Delete a Short URL on user request.
+     * Delete a shortened URL on user request.
      *
      * @param \App\Url $url
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
@@ -148,20 +132,20 @@ class DashboardController extends Controller
 
     /**
      * UrlHub only allows users (registered & unregistered) to have a unique
-     * link. You can duplicate it and it will produce a different ending
-     * url.
+     * link. You can duplicate it and it will produce a new unique random key.
      *
-     * @param string $keyword
+     * @param string $key
      *
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function duplicate($keyword)
+    public function duplicate($key)
     {
-        $url = Url::whereKeyword($keyword)->firstOrFail();
+        $url = new Url;
+        $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
-        $replicate = $url->replicate()->fill([
+        $replicate = $shortenedUrl->replicate()->fill([
             'user_id'   => Auth::id(),
-            'keyword'   => $this->url->keyGenerator(),
+            'keyword'   => $url->randomKeyGenerator(),
             'is_custom' => 0,
             'clicks'    => 0,
         ]);

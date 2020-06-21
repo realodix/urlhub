@@ -90,7 +90,7 @@ class User extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
-    public function totalUser()
+    public function userCount()
     {
         return self::count();
     }
@@ -99,7 +99,7 @@ class User extends Authenticatable
      * Count the number of guests in the url column based on IP and grouped
      * by ip.
      */
-    public function totalGuest()
+    public function guestCount()
     {
         return Url::select('ip', DB::raw('count(*) as total'))
                     ->whereNull('user_id')

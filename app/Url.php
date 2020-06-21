@@ -105,7 +105,7 @@ class Url extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function totalShortUrl()
+    public function shortUrlCount()
     {
         return self::count('keyword');
     }
@@ -113,12 +113,12 @@ class Url extends Model
     /**
      * @param int $id
      */
-    public function totalShortUrlById($id = null)
+    public function shortUrlCountOwnedBy($id = null)
     {
         return self::whereUserId($id)->count('keyword');
     }
 
-    public function totalClicks(): int
+    public function clickCount(): int
     {
         return self::sum('clicks');
     }
@@ -126,7 +126,7 @@ class Url extends Model
     /**
      * @param int $id
      */
-    public function totalClicksById($id = null): int
+    public function clickCountOwnedBy($id = null): int
     {
         return self::whereUserId($id)->sum('clicks');
     }
@@ -136,24 +136,24 @@ class Url extends Model
      *
      * @return string
      */
-    public function keyGenerator()
+    public function randomKeyGenerator()
     {
-        $generateId = new Client();
+        $client = new Client();
         $alphabet = uHub('hash_char');
         $hashLength = (int) uHub('hash_length');
 
-        $keyword = $generateId->formatedId($alphabet, $hashLength);
+        $randomKey = $client->formatedId($alphabet, $hashLength);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
-        $link = self::whereKeyword($keyword)->first();
-        while ($link) {
-            $keyword = $generateId->formatedId($alphabet, $hashLength);
-            $link = self::whereKeyword($keyword)->first();
+        $generatedRandomKey = self::whereKeyword($randomKey)->first();
+        while ($generatedRandomKey) {
+            $randomKey = $client->formatedId($alphabet, $hashLength);
+            $generatedRandomKey = self::whereKeyword($randomKey)->first();
         }
         // @codeCoverageIgnoreEnd
 
-        return $keyword;
+        return $randomKey;
     }
 
     /**

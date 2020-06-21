@@ -27,12 +27,12 @@ class StatisticsController extends Controller
         return view('backend.statistics', [
             'capacity'             => $url->keywordCapacity(),
             'remaining'            => $url->keywordRemaining(),
-            'totalShortUrl'        => $url->totalShortUrl(),
-            'totalShortUrlByGuest' => $url->totalShortUrlById(),
-            'totalClicks'          => $url->totalClicks(),
-            'totalClicksByGuest'   => $url->totalClicksById(),
-            'totalUser'            => $user->totalUser(),
-            'totalGuest'           => $user->totalGuest(),
+            'shortUrlCount'        => $url->shortUrlCount(),
+            'shortUrlCountByGuest' => $url->shortUrlCountOwnedBy(),
+            'clickCount'           => $url->clickCount(),
+            'clickCountFromGuest'  => $url->clickCountOwnedBy(),
+            'userCount'            => $user->userCount(),
+            'guestCount'           => $user->guestCount(),
         ]);
     }
 }
