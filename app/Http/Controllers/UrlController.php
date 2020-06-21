@@ -102,8 +102,7 @@ class UrlController extends Controller
 
     /**
      * UrlHub only allows users (registered & unregistered) to have a unique
-     * link. You can duplicate it and it will produce a different ending
-     * url.
+     * link. You can duplicate it and it will produce a new unique random key.
      *
      * @param string $key
      * @return \Illuminate\Http\RedirectResponse

@@ -78,7 +78,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Fungsi untuk menampilkan halaman edit long url.
+     * Show the long url edit page.
      *
      * @param string $key
      *
@@ -94,8 +94,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Fungsi untuk memperbarui long url yang telah ditetapkan sebelumnya ke
-     * long url yang baru.
+     * Update the long url that was previously set to the new long url.
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Url                 $url
@@ -114,7 +113,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Delete a Short URL on user request.
+     * Delete a shortened URL on user request.
      *
      * @param \App\Url $url
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
@@ -133,8 +132,7 @@ class DashboardController extends Controller
 
     /**
      * UrlHub only allows users (registered & unregistered) to have a unique
-     * link. You can duplicate it and it will produce a different ending
-     * url.
+     * link. You can duplicate it and it will produce a new unique random key.
      *
      * @param string $key
      *
