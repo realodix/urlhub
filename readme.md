@@ -72,7 +72,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
     *You can watch assets with `npm run watch`*
 
-   Please note that this project uses Yarn as the package manager, so you will not find the package-lock.json file needed by NPM.
+   Please note that this project uses Yarn as the package manager, so you can't find the package-lock.json file that is needed by NPM.
 
 ## Contributing
 The people who contribute to UrlHub do so for the love of open source, our users and ecosystem, and most importantly, pushing the web forward together. Developers like you can help by contributing to rich and vibrant documentation, issuing pull requests to help us cover niche use cases, and to help sustain what you love about UrlHub. 
