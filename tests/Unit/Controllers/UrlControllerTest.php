@@ -90,15 +90,15 @@ class UrlControllerTest extends TestCase
         config()->set('urlhub.hash_length', 6);
 
         $longUrl = 'https://laravel.com';
-        $customUrl = 'foo_bar';
+        $customKey = 'foo_bar';
 
         $this->post(route('createshortlink'), [
-            'long_url'       => $longUrl,
-            'custom_keyword' => $customUrl,
+            'long_url'   => $longUrl,
+            'custom_key' => $customKey,
         ]);
 
         $url = Url::whereLongUrl($longUrl)->first();
-        $this->assertSame($customUrl, $url->keyword);
+        $this->assertSame($customKey, $url->keyword);
         $this->assertTrue($url->is_custom);
     }
 
@@ -106,9 +106,9 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function custom_keyword_validation_pass()
+    public function custom_key_validation_pass()
     {
-        $response = $this->post(route('home').'/validate-custom-keyword', [
+        $response = $this->post(route('home').'/validate-custom-key', [
             'keyword' => 'hello',
         ]);
 
@@ -118,9 +118,9 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @dataProvider customKeywordValidation_fail
+     * @dataProvider customKeyValidation_fail
      */
-    public function custom_keyword_validation_fail($data)
+    public function custom_key_validation_fail($data)
     {
         factory(Url::class)->create([
             'keyword' => 'laravel',
@@ -138,14 +138,14 @@ class UrlControllerTest extends TestCase
             ],
         ]);
 
-        $response = $this->post(route('home').'/validate-custom-keyword', [
+        $response = $this->post(route('home').'/validate-custom-key', [
             'keyword' => $data,
         ]);
 
         $response->assertJson(['errors' => $v->errors()->all()]);
     }
 
-    public function customKeywordValidation_fail()
+    public function customKeyValidation_fail()
     {
         return [
             [str_repeat('a', 50)],
