@@ -116,11 +116,11 @@ class UrlController extends Controller
      */
     public function duplicate($key)
     {
-        $url = Url::whereKeyword($key)->firstOrFail();
+        $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $randomKey = $this->url->randomKeyGenerator();
 
-        $replicate = $url->replicate()->fill([
+        $replicate = $shortenedUrl->replicate()->fill([
             'user_id'   => Auth::id(),
             'keyword'   => $randomKey,
             'is_custom' => 0,

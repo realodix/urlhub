@@ -156,11 +156,12 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $url = Url::whereKeyword($key)->firstOrFail();
+        $urlModel = new Url;
+        $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
-        $replicate = $url->replicate()->fill([
+        $replicate = $shortenedUrl->replicate()->fill([
             'user_id'   => Auth::id(),
-            'keyword'   => $this->url->randomKeyGenerator(),
+            'keyword'   => $urlModel->randomKeyGenerator(),
             'is_custom' => 0,
             'clicks'    => 0,
         ]);
