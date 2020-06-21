@@ -11,25 +11,25 @@ class UserService
      */
     public function dataTable()
     {
-        $user = User::query();
+        $modelUser = User::query();
 
-        return datatables($user)
-            ->editColumn('name', function ($user) {
+        return datatables($modelUser)
+            ->editColumn('name', function (User $user) {
                 return '<a href="'.route('user.edit', $user->name).'">'.$user->name.'</a>';
             })
-            ->editColumn('created_at', function ($user) {
+            ->editColumn('created_at', function (User $user) {
                 return [
                     'display'   => '<span title="'.$user->created_at->toDayDateTimeString().'" data-toggle="tooltip" style="cursor: default;">'.$user->created_at->diffForHumans().'</span>',
                     'timestamp' => $user->created_at->timestamp,
                 ];
             })
-            ->editColumn('updated_at', function ($user) {
+            ->editColumn('updated_at', function (User $user) {
                 return [
                     'display'   => '<span title="'.$user->updated_at->toDayDateTimeString().'" data-toggle="tooltip" style="cursor: default;">'.$user->updated_at->diffForHumans().'</span>',
                     'timestamp' => $user->updated_at->timestamp,
                 ];
             })
-            ->addColumn('action', function ($user) {
+            ->addColumn('action', function (User $user) {
                 return
                     '<div class="btn-group" role="group" aria-label="Basic example">
                         <div class="btn-group" role="group" aria-label="Basic example">
