@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\DataTables\AllUrlDataTables;
 use App\Http\Controllers\Controller;
+use App\Services\Dashboard\AllUrlService;
 use App\Url;
 
 class AllUrlController extends Controller
@@ -29,9 +29,9 @@ class AllUrlController extends Controller
     /**
      * @codeCoverageIgnore
      */
-    public function dataTable(AllUrlDataTables $dataTables)
+    public function dataTable(AllUrlService $allUrlService)
     {
-        return $dataTables->dataTable();
+        return $allUrlService->dataTable();
     }
 
     /**

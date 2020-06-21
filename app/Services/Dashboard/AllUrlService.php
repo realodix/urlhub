@@ -1,11 +1,11 @@
 <?php
 
-namespace App\DataTables;
+namespace App\Services\Dashboard;
 
 use App\Url;
 use Illuminate\Support\Str;
 
-class AllUrlDataTables
+class AllUrlService
 {
     /**
      * @codeCoverageIgnore
