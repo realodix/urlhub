@@ -10,6 +10,19 @@ class DashboardService
 {
     /**
      * @codeCoverageIgnore
+     *
+     * @param array     $request
+     * @param string    $url
+     */
+    public function update($data, $url)
+    {
+        $url->long_url = $data['long_url'];
+        $url->meta_title = $data['meta_title'];
+        $url->save();
+    }
+
+    /**
+     * @codeCoverageIgnore
      */
     public function dataTable()
     {

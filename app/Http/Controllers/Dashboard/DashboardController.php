@@ -64,17 +64,16 @@ class DashboardController extends Controller
     /**
      * Update the long url that was previously set to the new long url.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Url                 $url
+     * @param \Illuminate\Http\Request                  $request
+     * @param \App\Services\Dashboard\DashboardService  $dashboardService
+     * @param \App\Url                                  $url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $url)
+    public function update(Request $request, DashboardService $dashboardService, Url $url)
     {
-        $url->long_url = $request->input('long_url');
-        $url->meta_title = $request->input('meta_title');
-        $url->save();
+        $dashboardService->update($request->only('long_url', 'meta_title'), $url);
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));
