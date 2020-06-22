@@ -6,11 +6,12 @@ use App\Url;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
+/**
+ * @codeCoverageIgnore
+ */
 class DashboardService
 {
     /**
-     * @codeCoverageIgnore
-     *
      * @param array     $request
      * @param string    $url
      */
@@ -43,9 +44,6 @@ class DashboardService
         $replicate->save();
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function dataTable()
     {
         $urlModel = Url::whereUserId(Auth::id());

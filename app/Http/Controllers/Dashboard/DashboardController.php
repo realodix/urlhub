@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     /**
-     * Show users all their Short URLs.
-     *
-     * @return \Illuminate\View\View
+     * Show all user short URLs.
      */
     public function view()
     {
@@ -67,7 +65,6 @@ class DashboardController extends Controller
      * @param \Illuminate\Http\Request                  $request
      * @param \App\Services\Dashboard\DashboardService  $dashboardService
      * @param \App\Url                                  $url
-     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -83,7 +80,6 @@ class DashboardController extends Controller
      * Delete a shortened URL on user request.
      *
      * @param \App\Url $url
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
