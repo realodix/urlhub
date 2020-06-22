@@ -29,7 +29,6 @@ class UrlController extends Controller
      * Shorten long URLs.
      *
      * @param StoreUrl $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(StoreUrl $request)
     {
@@ -80,7 +79,6 @@ class UrlController extends Controller
      * View the shortened URL details.
      *
      * @param string $key
-     * @return \Illuminate\View\View
      */
     public function showShortenedUrlDetails($key)
     {
@@ -105,7 +103,6 @@ class UrlController extends Controller
      * link. You can duplicate it and it will produce a new unique random key.
      *
      * @param string $key
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($key)
     {
@@ -122,6 +119,6 @@ class UrlController extends Controller
         $replicate->save();
 
         return redirect()->route('short_url.stats', $randomKey)
-            ->withFlashSuccess(__('Link was successfully duplicated.'));
+                         ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }

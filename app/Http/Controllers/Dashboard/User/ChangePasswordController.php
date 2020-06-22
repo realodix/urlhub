@@ -29,7 +29,6 @@ class ChangePasswordController extends Controller
      *
      * @param \App\Http\Requests\UpdateUserPassword $request
      * @param \App\User                             $user
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
