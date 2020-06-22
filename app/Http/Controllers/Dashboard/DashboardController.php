@@ -102,21 +102,11 @@ class DashboardController extends Controller
      * link. You can duplicate it and it will produce a new unique random key.
      *
      * @param string $key
-     *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    public function duplicate($key)
+    public function duplicate($key, DashboardService $dashboardService)
     {
-        $url = new Url;
-        $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
-
-        $replicate = $shortenedUrl->replicate()->fill([
-            'user_id'   => Auth::id(),
-            'keyword'   => $url->randomKeyGenerator(),
-            'is_custom' => 0,
-            'clicks'    => 0,
-        ]);
-        $replicate->save();
+        $authId = Auth::id();
+        $dashboardService->duplicate($key, $authId);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
