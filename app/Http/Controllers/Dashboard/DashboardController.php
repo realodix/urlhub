@@ -12,6 +12,21 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     /**
+     * @var dashboardService
+     */
+    protected $dashboardService;
+
+    /**
+     * DashboardController constructor.
+     *
+     * @param Url $url
+     */
+    public function __construct(DashboardService $dashboardService)
+    {
+        $this->dashboardService = $dashboardService;
+    }
+
+    /**
      * Show all user short URLs.
      */
     public function view()
@@ -102,7 +117,7 @@ class DashboardController extends Controller
     public function duplicate($key, DashboardService $dashboardService)
     {
         $authId = Auth::id();
-        $dashboardService->duplicate($key, $authId);
+        $this->dashboardService->duplicate($key, $authId);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
