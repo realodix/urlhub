@@ -79,7 +79,7 @@ class UrlController extends Controller
      *
      * @param string $key
      */
-    public function view($key)
+    public function showShortenedUrlDetails($key)
     {
         $url = Url::with('urlStat')->whereKeyword($key)->firstOrFail();
 
