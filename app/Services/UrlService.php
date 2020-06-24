@@ -8,7 +8,6 @@ class UrlService
 {
     /**
      * @param string $key
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($key, $randomKey, $authId)
     {

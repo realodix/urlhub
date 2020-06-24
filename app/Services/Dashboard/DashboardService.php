@@ -24,8 +24,6 @@ class DashboardService
 
     /**
      * @param string $key
-     *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function duplicate($key, $authId)
     {
