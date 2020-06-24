@@ -6,8 +6,11 @@ use App\Url;
 
 class UrlService
 {
-    public function shortenUrl($request, $key, $authId)
+    public function shortenUrl($request, $authId)
     {
+        $url = new Url;
+        $key = $request['custom_key'] ?? $url->randomKeyGenerator();
+
         Url::create([
             'user_id'    => $authId,
             'long_url'   => $request['long_url'],
@@ -16,6 +19,8 @@ class UrlService
             'is_custom'  => $request['custom_key'] ? 1 : 0,
             'ip'         => \request()->ip(),
         ]);
+
+        return $key;
     }
 
     /**

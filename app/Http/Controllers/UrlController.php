@@ -39,10 +39,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = new Url;
-        $key = $url->getShortenedUrlKey($request->custom_key);
-
-        $this->urlService->shortenUrl($request, $key, Auth::id());
+        $key = $this->urlService->shortenUrl($request, Auth::id());
 
         return redirect()->route('short_url.stats', $key);
     }

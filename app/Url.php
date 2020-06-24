@@ -156,13 +156,6 @@ class Url extends Model
         return $randomKey;
     }
 
-    public function getShortenedUrlKey($value)
-    {
-        $key = $value ?? $this->randomKeyGenerator();
-
-        return $key;
-    }
-
     /**
      * @return int
      */
