@@ -10206,6 +10206,10 @@ img.jssocials-share-logo {
 .view_short .body .btn-clipboard {
   padding: 0 5px;
 }
+.view_short .body .embedcode img {
+  width: 100%;
+  height: auto;
+}
 
 .auth {
   background: #f5f7fb;
