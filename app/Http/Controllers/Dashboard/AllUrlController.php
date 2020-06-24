@@ -9,11 +9,17 @@ use App\Url;
 class AllUrlController extends Controller
 {
     /**
+     * @var allUrlService
+     */
+    protected $allUrlService;
+
+    /**
      * AllUrlController constructor.
      */
-    public function __construct()
+    public function __construct(AllUrlService $allUrlService)
     {
         $this->middleware('role:admin');
+        $this->allUrlService = $allUrlService;
     }
 
     /**
@@ -29,16 +35,15 @@ class AllUrlController extends Controller
     /**
      * @codeCoverageIgnore
      */
-    public function dataTable(AllUrlService $allUrlService)
+    public function dataTable()
     {
-        return $allUrlService->dataTable();
+        return $this->allUrlService->dataTable();
     }
 
     /**
      * Delete a Short URL on user (Admin) request.
      *
      * @param \App\Url $url
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function delete(Url $url)
     {
