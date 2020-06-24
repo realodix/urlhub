@@ -115,8 +115,7 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $authId = Auth::id();
-        $this->dashboardService->duplicate($key, $authId);
+        $this->dashboardService->duplicate($key, Auth::id());
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
