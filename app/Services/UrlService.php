@@ -26,8 +26,10 @@ class UrlService
     /**
      * @param string $key
      */
-    public function duplicate($key, $randomKey, $authId)
+    public function duplicate($key, $authId)
     {
+        $url = new Url;
+        $randomKey = $url->randomKeyGenerator();
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
@@ -37,5 +39,7 @@ class UrlService
             'clicks'    => 0,
         ]);
         $replicate->save();
+
+        return $randomKey;
     }
 }
