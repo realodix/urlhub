@@ -63,7 +63,6 @@ class DashboardController extends Controller
      *
      * @param string $key
      *
-     * @return \Illuminate\View\View
      */
     public function edit($key)
     {

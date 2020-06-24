@@ -13,7 +13,6 @@ class ChangePasswordController extends Controller
      * Show the form for editing password.
      *
      * @param \App\User $user
-     * @return \Illuminate\View\View
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -29,7 +28,6 @@ class ChangePasswordController extends Controller
      *
      * @param \App\Http\Requests\UpdateUserPassword $request
      * @param \App\User                             $user
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
