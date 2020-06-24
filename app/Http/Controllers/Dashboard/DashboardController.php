@@ -114,7 +114,7 @@ class DashboardController extends Controller
      *
      * @param string $key
      */
-    public function duplicate($key, DashboardService $dashboardService)
+    public function duplicate($key)
     {
         $authId = Auth::id();
         $this->dashboardService->duplicate($key, $authId);
