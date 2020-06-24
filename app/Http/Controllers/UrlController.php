@@ -6,24 +6,30 @@ use App\Http\Requests\StoreUrl;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
+use App\Services\UrlService;
 use App\Url;
 use Embed\Embed;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Services\UrlService;
 
 class UrlController extends Controller
 {
+    /**
+     * @var
+     */
+    protected $urlService;
+
     /**
      * UrlController constructor.
      *
      * @param Url $url
      */
-    public function __construct()
+    public function __construct(UrlService $urlService)
     {
         $this->middleware('urlhublinkchecker')->only('create');
+        $this->urlService = $urlService;
     }
 
     /**
@@ -108,13 +114,13 @@ class UrlController extends Controller
      * @param string $key
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($key, UrlService $urlService)
+    public function duplicate($key)
     {
         $authId = Auth::id();
         $url = new Url;
         $randomKey = $url->randomKeyGenerator();
 
-        $urlService->duplicate($key, $randomKey, $authId);
+        $this->urlService->duplicate($key, $randomKey, $authId);
 
         return redirect()->route('short_url.stats', $randomKey)
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
