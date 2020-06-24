@@ -10,11 +10,17 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * @var userService
+     */
+    protected $userService;
+
+    /**
      * UserController constructor.
      */
-    public function __construct()
+    public function __construct(UserService $userService)
     {
         $this->middleware('role:admin')->only('view');
+        $this->userService = $userService;
     }
 
     /**
@@ -28,9 +34,9 @@ class UserController extends Controller
     /**
      * @codeCoverageIgnore
      */
-    public function dataTable(UserService $userService)
+    public function dataTable()
     {
-        return $userService->dataTable();
+        return $this->userService->dataTable();
     }
 
     /**
@@ -52,7 +58,6 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\User                $user
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
