@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserEmail;
 use App\Services\Dashboard\UserService;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -57,25 +56,16 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\User                $user
+     * @param \App\Http\Requests\UpdateUserEmail $request
+     * @param \App\User                          $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserEmail $request, User $user)
     {
         $this->authorize('update', $user);
 
         $data = $request->only('email');
-
-        $v = Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ]);
-
-        if ($v->fails()) {
-            return redirect()->back()
-                             ->withFlashError($v->errors()->first());
-        }
 
         $this->userService->update($data, $user);
 
