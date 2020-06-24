@@ -67,7 +67,7 @@ class UserController extends Controller
 
         $data = $request->only('email');
 
-        $this->userService->update($data, $user);
+        $this->userService->updateUserEmail($data, $user);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Profile updated.'));

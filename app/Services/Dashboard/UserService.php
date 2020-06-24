@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    public function update($data, $user)
+    public function updateUserEmail($data, $user)
     {
         $user->email = $data['email'];
         $user->save();
