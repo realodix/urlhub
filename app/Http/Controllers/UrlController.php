@@ -42,14 +42,7 @@ class UrlController extends Controller
         $url = new Url;
         $key = $request->custom_key ?? $url->randomKeyGenerator();
 
-        Url::create([
-            'user_id'    => Auth::id(),
-            'long_url'   => $request->long_url,
-            'meta_title' => $request->long_url,
-            'keyword'    => $key,
-            'is_custom'  => $request->custom_key ? 1 : 0,
-            'ip'         => $request->ip(),
-        ]);
+        $this->urlService->shortenUrl($request, $key, Auth::id());
 
         return redirect()->route('short_url.stats', $key);
     }

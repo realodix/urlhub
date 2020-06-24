@@ -6,6 +6,18 @@ use App\Url;
 
 class UrlService
 {
+    public function shortenUrl($request, $key, $authId)
+    {
+        Url::create([
+            'user_id'    => $authId,
+            'long_url'   => $request['long_url'],
+            'meta_title' => $request['long_url'],
+            'keyword'    => $key,
+            'is_custom'  => $request['custom_key'] ? 1 : 0,
+            'ip'         => \request()->ip(),
+        ]);
+    }
+
     /**
      * @param string $key
      */
