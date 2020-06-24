@@ -53,9 +53,9 @@ class DashboardController extends Controller
     /**
      * @codeCoverageIgnore
      */
-    public function dataTable(DashboardService $dashboardService)
+    public function dataTable()
     {
-        return $dashboardService->dataTable();
+        return $this->dashboardService->dataTable();
     }
 
     /**
@@ -83,9 +83,9 @@ class DashboardController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, DashboardService $dashboardService, Url $url)
+    public function update(Request $request, Url $url)
     {
-        $dashboardService->update($request->only('long_url', 'meta_title'), $url);
+        $this->dashboardService->update($request->only('long_url', 'meta_title'), $url);
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));
