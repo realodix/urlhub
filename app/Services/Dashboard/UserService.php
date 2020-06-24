@@ -3,12 +3,19 @@
 namespace App\Services\Dashboard;
 
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
     public function update($data, $user)
     {
         $user->email = $data['email'];
+        $user->save();
+    }
+
+    public function updateUserPassword($data, $user)
+    {
+        $user->password = Hash::make($data['new-password']);
         $user->save();
     }
 
