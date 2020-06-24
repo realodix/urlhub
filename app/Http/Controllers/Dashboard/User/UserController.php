@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Dashboard\UserService;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -65,13 +66,18 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $user->email = $request->input('email');
+        $data = $request->only('email');
 
-        $request->validate([
+        $v = Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
 
-        $user->save();
+        if ($v->fails()) {
+            return redirect()->back()
+                             ->withFlashError($v->errors()->first());
+        }
+
+        $this->userService->update($data, $user);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Profile updated.'));

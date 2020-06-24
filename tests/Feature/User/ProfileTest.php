@@ -117,7 +117,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('email');
+            ->assertSessionHas('flash_error');
     }
 
     /**
@@ -139,7 +139,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('email');
+            ->assertSessionHas('flash_error');
     }
 
     /**
@@ -162,7 +162,7 @@ class ProfileTest extends TestCase
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('email');
+            ->assertSessionHas('flash_error');
     }
 
     /**
@@ -184,6 +184,6 @@ class ProfileTest extends TestCase
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('email');
+            ->assertSessionHas('flash_error');
     }
 }

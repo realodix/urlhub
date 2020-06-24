@@ -24,7 +24,6 @@ class AllUrlController extends Controller
 
     /**
      * Show all short URLs created by all users.
-     *
      */
     public function view()
     {

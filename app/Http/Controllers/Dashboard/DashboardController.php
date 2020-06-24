@@ -62,7 +62,6 @@ class DashboardController extends Controller
      * Show the long url edit page.
      *
      * @param string $key
-     *
      */
     public function edit($key)
     {

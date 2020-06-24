@@ -6,6 +6,12 @@ use App\User;
 
 class UserService
 {
+    public function update($data, $user)
+    {
+        $user->email = $data['email'];
+        $user->save();
+    }
+
     /**
      * @codeCoverageIgnore
      */
