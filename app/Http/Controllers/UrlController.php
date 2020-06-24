@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Services\UrlService;
 
 class UrlController extends Controller
 {
@@ -107,21 +108,15 @@ class UrlController extends Controller
      * @param string $key
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($key)
+    public function duplicate($key, UrlService $urlService)
     {
+        $authId = Auth::id();
         $url = new Url;
-        $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
         $randomKey = $url->randomKeyGenerator();
 
-        $replicate = $shortenedUrl->replicate()->fill([
-            'user_id'   => Auth::id(),
-            'keyword'   => $randomKey,
-            'is_custom' => 0,
-            'clicks'    => 0,
-        ]);
-        $replicate->save();
+        $urlService->duplicate($key, $randomKey, $authId);
 
         return redirect()->route('short_url.stats', $randomKey)
-            ->withFlashSuccess(__('Link was successfully duplicated.'));
+                         ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }
