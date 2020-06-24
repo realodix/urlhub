@@ -23,9 +23,6 @@ class DashboardService
     }
 
     /**
-     * UrlHub only allows users (registered & unregistered) to have a unique
-     * link. You can duplicate it and it will produce a new unique random key.
-     *
      * @param string $key
      *
      * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
