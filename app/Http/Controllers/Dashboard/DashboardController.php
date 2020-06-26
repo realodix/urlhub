@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Services\Dashboard\DashboardService;
+use App\Services\UrlService;
 use App\Url;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,13 +19,19 @@ class DashboardController extends Controller
     protected $dashboardService;
 
     /**
+     * @var urlService
+     */
+    protected $urlService;
+
+    /**
      * DashboardController constructor.
      *
      * @param Url $url
      */
-    public function __construct(DashboardService $dashboardService)
+    public function __construct(DashboardService $dashboardService, UrlService $urlService)
     {
         $this->dashboardService = $dashboardService;
+        $this->urlService = $urlService;
     }
 
     /**
@@ -75,7 +82,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, Url $url)
     {
-        $this->dashboardService->update($request->only('long_url', 'meta_title'), $url);
+        $this->urlService->update($request->only('long_url', 'meta_title'), $url);
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));

@@ -24,6 +24,17 @@ class UrlService
     }
 
     /**
+     * @param array  $request
+     * @param string $url
+     */
+    public function update($data, $url)
+    {
+        $url->long_url = $data['long_url'];
+        $url->meta_title = $data['meta_title'];
+        $url->save();
+    }
+
+    /**
      * @param string $key
      */
     public function duplicate($key, $authId)
