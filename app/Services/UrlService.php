@@ -6,10 +6,24 @@ use App\Url;
 
 class UrlService
 {
+    /**
+     * @var url
+     */
+    protected $url;
+
+    /**
+     * UrlService constructor.
+     *
+     * @param Url $url
+     */
+    public function __construct(Url $url)
+    {
+        $this->url = $url;
+    }
+
     public function shortenUrl($request, $authId)
     {
-        $url = new Url;
-        $key = $request['custom_key'] ?? $url->randomKeyGenerator();
+        $key = $request['custom_key'] ?? $this->url->randomKeyGenerator();
 
         Url::create([
             'user_id'    => $authId,
@@ -41,8 +55,7 @@ class UrlService
      */
     public function duplicate($key, $authId)
     {
-        $url = new Url;
-        $randomKey = $url->randomKeyGenerator();
+        $randomKey = $this->url->randomKeyGenerator();
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
