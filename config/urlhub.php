@@ -67,7 +67,7 @@ return [
      * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
      * - https://redirectdetective.com/redirection-types.html
      */
-    'redirect_code' => env('UH_REDIRECT_CODE', 301),
+    'redirect_code' => env('UH_REDIRECT_CODE', 302),
 
     /**
      * List of non allowed domain.
