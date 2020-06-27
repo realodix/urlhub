@@ -123,6 +123,13 @@
     .btn-clipboard {
       padding: 0 5px; // Bootstrap 4
     }
+
+    .embedcode {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }
 
