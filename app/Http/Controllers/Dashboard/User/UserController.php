@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserEmail;
-use App\Services\Dashboard\UserService;
+use App\Services\UserService;
 use App\User;
 
 class UserController extends Controller

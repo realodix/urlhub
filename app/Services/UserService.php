@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Dashboard;
+namespace App\Services;
 
 use Illuminate\Support\Facades\Hash;
 

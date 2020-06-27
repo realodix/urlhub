@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Services\Dashboard\DashboardService;
 use App\Services\UrlService;
 use App\Url;
 use App\User;
@@ -14,11 +13,6 @@ use Illuminate\Support\Str;
 class DashboardController extends Controller
 {
     /**
-     * @var dashboardService
-     */
-    protected $dashboardService;
-
-    /**
      * @var urlService
      */
     protected $urlService;
@@ -28,9 +22,8 @@ class DashboardController extends Controller
      *
      * @param Url $url
      */
-    public function __construct(DashboardService $dashboardService, UrlService $urlService)
+    public function __construct(UrlService $urlService)
     {
-        $this->dashboardService = $dashboardService;
         $this->urlService = $urlService;
     }
 
@@ -113,7 +106,7 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $this->dashboardService->duplicate($key, Auth::id());
+        $this->urlService->duplicate($key, Auth::id());
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
