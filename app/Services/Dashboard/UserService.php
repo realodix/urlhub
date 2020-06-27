@@ -10,11 +10,15 @@ class UserService
     {
         $user->email = $data['email'];
         $user->save();
+
+        return $user;
     }
 
     public function updateUserPassword($data, $user)
     {
         $user->password = Hash::make($data['new-password']);
         $user->save();
+
+        return $user;
     }
 }

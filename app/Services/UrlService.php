@@ -32,6 +32,8 @@ class UrlService
         $url->long_url = $data['long_url'];
         $url->meta_title = $data['meta_title'];
         $url->save();
+
+        return $url;
     }
 
     /**
