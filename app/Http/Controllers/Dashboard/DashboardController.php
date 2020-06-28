@@ -92,7 +92,7 @@ class DashboardController extends Controller
     {
         $this->authorize('forceDelete', $url);
 
-        $url->delete();
+        $this->urlService->delete($url);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));

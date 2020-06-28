@@ -51,6 +51,15 @@ class UrlService
     }
 
     /**
+     * @param array  $request
+     * @param string $url
+     */
+    public function delete($url)
+    {
+        return $url->delete();
+    }
+
+    /**
      * @param string $key
      */
     public function duplicate($key, $authId)

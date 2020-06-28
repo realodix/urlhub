@@ -3,17 +3,24 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Services\UrlService;
 use App\Url;
 use Illuminate\Support\Str;
 
 class AllUrlController extends Controller
 {
     /**
+     * @var urlService
+     */
+    protected $urlService;
+
+    /**
      * AllUrlController constructor.
      */
-    public function __construct()
+    public function __construct(UrlService $urlService)
     {
         $this->middleware('role:admin');
+        $this->urlService = $urlService;
     }
 
     /**
@@ -31,7 +38,7 @@ class AllUrlController extends Controller
      */
     public function delete(Url $url)
     {
-        $url->delete();
+        $this->urlService->delete($url);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));
