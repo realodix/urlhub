@@ -75,6 +75,6 @@ class UrlService
         ]);
         $replicate->save();
 
-        return $randomKey;
+        return $replicate;
     }
 }
