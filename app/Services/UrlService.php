@@ -25,7 +25,7 @@ class UrlService
     {
         $key = $request['custom_key'] ?? $this->url->randomKeyGenerator();
 
-        Url::create([
+        $url = Url::create([
             'user_id'    => $authId,
             'long_url'   => $request['long_url'],
             'meta_title' => $request['long_url'],
@@ -34,7 +34,7 @@ class UrlService
             'ip'         => request()->ip(),
         ]);
 
-        return $key;
+        return $url;
     }
 
     /**
