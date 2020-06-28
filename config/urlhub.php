@@ -57,7 +57,7 @@ return [
      * can either set:
      * - 301 (Default behavior. Visitors always hit the server)
      * - 302 (Better for SEO. Visitors hit the server the first time and then
-     *   cache the redirect)
+     *   cache the redirect).
      *
      * When selecting 301 redirects, you can also configure the time redirects
      * are cached, to mitigate deviations in stats.
