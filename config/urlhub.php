@@ -53,21 +53,22 @@ return [
     ),
 
     /**
-     * The HTTP redirect code, redirect for short, is a way to forward visitors
-     * and search engines from one URL to another.
+     * Configure the kind of redirect you want to use for your short URLs. You
+     * can either set:
+     * - 301 (Default behavior, visitors always hit the server).
+     * - 302 (Better for SEO, visitors hit the server the first time and then
+     *   cache the redirect).
      *
-     * Not all redirection is treated equally; the redirection instruction sent
-     * to a browser can contain in its header the HTTP status:
-     * - 301 (Moved Permanently)
-     * - 302 (Found)
-     * - 307 (Temporary Redirect)
-     * - 308 (Permanent Redirect)
-     *
-     * You can read the references below to find out what code is good to use.
-     * - https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
-     * - https://redirectdetective.com/redirection-types.html
+     * When selecting 301 redirects, you can also configure the time redirects
+     * are cached, to mitigate deviations in stats.
      */
-    'redirect_status_code' => env('UH_REDIRECT_STATUS_CODE', 302),
+    'redirect_status_code' => env('UH_REDIRECT_STATUS_CODE', 301),
+
+    /**
+     * Set the amount of seconds that redirects should be cached when redirect
+     * status is 301. Default values is 90.
+     */
+    'redirect_cache_lifetime' => env('UH_REDIRECT_CACHE_LIFETIME', 90),
 
     /**
      * List of non allowed domain.
