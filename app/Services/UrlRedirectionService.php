@@ -35,10 +35,14 @@ class UrlRedirectionService
      */
     public function handleHttpRedirect(Url $url)
     {
+        $headers = [
+            'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
+        ];
+
         $url->increment('clicks');
         $this->createUrlStat($url, $url->ipToCountry(request()->ip()));
 
-        return redirect()->away($url->long_url, uHub('redirect_status_code'));
+        return redirect()->away($url->long_url, uHub('redirect_status_code'), $headers);
     }
 
     /**
