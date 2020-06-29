@@ -139,16 +139,16 @@ class Url extends Model
     public function randomKeyGenerator()
     {
         $alphabet = uHub('hash_char');
-        $hashLength = (int) uHub('hash_length');
+        $length = (int) uHub('hash_length');
 
         $factory = new RandomLibFactory();
-        $randomKey = $factory->getMediumStrengthGenerator()->generateString($hashLength, $alphabet);
+        $randomKey = $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
         $generatedRandomKey = self::whereKeyword($randomKey)->first();
         while ($generatedRandomKey) {
-            $randomKey = $client->formatedId($alphabet, $hashLength);
+            $randomKey = $client->formatedId($alphabet, $length);
             $generatedRandomKey = self::whereKeyword($randomKey)->first();
         }
         // @codeCoverageIgnoreEnd
@@ -162,16 +162,13 @@ class Url extends Model
     public function keywordCapacity()
     {
         $alphabet = strlen(uHub('hash_char'));
-        $hashLength = (int) uHub('hash_length');
+        $length = max((int) uHub('hash_length'), 0);
 
-        // If the value is smaller than 1, then change the value to 0.
-        $hashLength = ! ($hashLength < 1) ? $hashLength : 0;
-
-        if ($hashLength == 0) {
+        if ($length == 0) {
             return 0;
         }
 
-        return pow($alphabet, $hashLength);
+        return pow($alphabet, $length);
     }
 
     /**
@@ -179,19 +176,16 @@ class Url extends Model
      */
     public function keywordRemaining()
     {
+        $keyCapacity = $this->keywordCapacity();
         $randomKey = self::whereIsCustom(false)->count();
         $customKey = self::whereIsCustom(true)
                            ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])
                            ->where('keyword', 'NOT LIKE', '[_]')
                            ->count();
 
-        $usedKeyword = $randomKey + $customKey;
+        $numberOfUsedKey = $randomKey + $customKey;
 
-        if ($this->keywordCapacity() < $usedKeyword) {
-            return 0;
-        }
-
-        return $this->keywordCapacity() - $usedKeyword;
+        return max(($keyCapacity - $numberOfUsedKey), 0);
     }
 
     /**
