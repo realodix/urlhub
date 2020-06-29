@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUrl;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
+use App\Services\UrlService;
 use App\Url;
 use Embed\Embed;
 use Exception;
@@ -16,13 +17,19 @@ use Illuminate\Support\Facades\Validator;
 class UrlController extends Controller
 {
     /**
+     * @var urlService
+     */
+    protected $urlService;
+
+    /**
      * UrlController constructor.
      *
      * @param Url $url
      */
-    public function __construct()
+    public function __construct(UrlService $urlService)
     {
         $this->middleware('urlhublinkchecker')->only('create');
+        $this->urlService = $urlService;
     }
 
     /**
@@ -32,19 +39,9 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = new Url;
-        $key = $request->custom_key ?? $url->randomKeyGenerator();
+        $url = $this->urlService->shortenUrl($request, Auth::id());
 
-        Url::create([
-            'user_id'    => Auth::id(),
-            'long_url'   => $request->long_url,
-            'meta_title' => $request->long_url,
-            'keyword'    => $key,
-            'is_custom'  => $request->custom_key ? 1 : 0,
-            'ip'         => $request->ip(),
-        ]);
-
-        return redirect()->route('short_url.stats', $key);
+        return redirect()->route('short_url.stats', $url->keyword);
     }
 
     /**
@@ -52,7 +49,6 @@ class UrlController extends Controller
      * short URL. Response to an AJAX request.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function customKeyValidation(Request $request)
     {
@@ -106,19 +102,9 @@ class UrlController extends Controller
      */
     public function duplicate($key)
     {
-        $url = new Url;
-        $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
-        $randomKey = $url->randomKeyGenerator();
+        $url = $this->urlService->duplicate($key, Auth::id());
 
-        $replicate = $shortenedUrl->replicate()->fill([
-            'user_id'   => Auth::id(),
-            'keyword'   => $randomKey,
-            'is_custom' => 0,
-            'clicks'    => 0,
-        ]);
-        $replicate->save();
-
-        return redirect()->route('short_url.stats', $randomKey)
+        return redirect()->route('short_url.stats', $url->keyword)
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }

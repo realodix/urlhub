@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\PwdCurrent;
 use Illuminate\Foundation\Http\FormRequest;
-use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
-class UpdateUserPassword extends FormRequest
+class UpdateUserEmail extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +24,7 @@ class UpdateUserPassword extends FormRequest
     public function rules()
     {
         return [
-            'current-password' => [new PwdCurrent],
-            'new-password'     => PasswordRules::changePassword('current-password'),
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ];
     }
 }
