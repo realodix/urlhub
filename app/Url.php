@@ -5,9 +5,9 @@ namespace App;
 use App\Http\Traits\Hashidable;
 use Embed\Embed;
 use GeoIp2\Database\Reader;
-use Hidehalo\Nanoid\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use RandomLib\Factory as RandomLibFactory;
 use Spatie\Url\Url as SpatieUrl;
 
 class Url extends Model
@@ -138,11 +138,11 @@ class Url extends Model
      */
     public function randomKeyGenerator()
     {
-        $client = new Client();
         $alphabet = uHub('hash_char');
         $hashLength = (int) uHub('hash_length');
 
-        $randomKey = $client->formatedId($alphabet, $hashLength);
+        $factory = new RandomLibFactory();
+        $randomKey = $factory->getMediumStrengthGenerator()->generateString($hashLength, $alphabet);
 
         // If it is already used (not available), find the next available ending.
         // @codeCoverageIgnoreStart
