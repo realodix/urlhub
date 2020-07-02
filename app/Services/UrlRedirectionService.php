@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Url;
+use App\Models\Url;
 use App\UrlStat;
 use Illuminate\Http\RedirectResponse;
 use Jenssegers\Agent\Agent;

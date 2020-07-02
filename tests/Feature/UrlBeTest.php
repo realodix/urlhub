@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Url;
+use App\Models\Url;
 use Tests\TestCase;
 
 /**

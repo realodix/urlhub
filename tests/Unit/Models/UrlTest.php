@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use App\Url;
+use App\Models\Url;
 use App\UrlStat;
 use Tests\TestCase;
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Url;
+use App\Models\Url;
 use App\User;
 
 class StatisticsController extends Controller

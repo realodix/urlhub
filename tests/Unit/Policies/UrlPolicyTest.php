@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Policies;
 
-use App\Url;
+use App\Models\Url;
 use App\User;
 use Tests\TestCase;
 
