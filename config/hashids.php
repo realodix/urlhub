@@ -44,8 +44,8 @@ return [
             'length' => 16,
         ],
 
-        \App\Url::class => [
-            'salt'   => \App\Url::class.env('APP_KEY'),
+        \App\Models\Url::class => [
+            'salt'   => \App\Models\Url::class.env('APP_KEY'),
             'length' => 16,
         ],
 

@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
 
         // Multiple with factory
         // factory(App\User::class, 200)->create();
-        // factory(App\Url::class, 100000)->create();
+        // factory(App\Models\Url::class, 100000)->create();
     }
 }

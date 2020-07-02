@@ -34,7 +34,7 @@ class UrlStat extends Model
 
     public function url()
     {
-        return $this->belongsTo('App\Url');
+        return $this->belongsTo('App\Models\Url');
     }
 
     /*

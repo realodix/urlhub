@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
-use App\UrlStat;
+use App\Models\UrlStat;
 use Illuminate\Http\RedirectResponse;
 use Jenssegers\Agent\Agent;
 

@@ -56,7 +56,7 @@ class Url extends Model
 
     public function urlStat()
     {
-        return $this->hasMany('App\UrlStat');
+        return $this->hasMany('App\Models\UrlStat');
     }
 
     /*

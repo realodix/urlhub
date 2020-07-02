@@ -3,7 +3,7 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
-use App\UrlStat;
+use App\Models\UrlStat;
 use Tests\TestCase;
 
 class UrlRedirectControllerTest extends TestCase

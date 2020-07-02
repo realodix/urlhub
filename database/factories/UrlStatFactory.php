@@ -14,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\UrlStat::class, function (Faker $faker) {
+$factory->define(App\Models\UrlStat::class, function (Faker $faker) {
     return [
         'url_id' => function () {
             return factory(Url::class)->create()->id;
