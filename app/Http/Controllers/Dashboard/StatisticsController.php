@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
-use App\User;
+use App\Models\User;
 
 class StatisticsController extends Controller
 {

@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Url;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +14,7 @@ class UrlPolicy
     /**
      * Determine whether the user can permanently delete the url.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @param \App\Models\Url  $url
      * @return bool
      */
@@ -26,7 +26,7 @@ class UrlPolicy
     /**
      * Determine whether the user can update the url.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @param \App\Models\Url  $url
      * @return bool
      */

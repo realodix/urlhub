@@ -3,7 +3,7 @@
 namespace Tests\Unit\Policies;
 
 use App\Models\Url;
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 
 class UrlPolicyTest extends TestCase

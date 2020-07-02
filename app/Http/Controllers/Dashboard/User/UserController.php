@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserEmail;
+use App\Models\User;
 use App\Services\UserService;
-use App\User;
 
 class UserController extends Controller
 {
@@ -34,7 +34,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -49,7 +49,7 @@ class UserController extends Controller
      * Update the specified user in storage.
      *
      * @param \App\Http\Requests\UpdateUserEmail $request
-     * @param \App\User                          $user
+     * @param \App\Models\User                   $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

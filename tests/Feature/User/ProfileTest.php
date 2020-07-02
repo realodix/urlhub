@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\User;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -14,7 +14,7 @@ class ProfileTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.update', \Hashids::connection(\App\User::class)->encode($value));
+        return route('user.update', \Hashids::connection(\App\Models\User::class)->encode($value));
     }
 
     /**

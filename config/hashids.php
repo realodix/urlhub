@@ -39,8 +39,8 @@ return [
 
     'connections' => [
 
-        \App\User::class => [
-            'salt'   => \App\User::class.env('APP_KEY'),
+        \App\Models\User::class => [
+            'salt'   => \App\Models\User::class.env('APP_KEY'),
             'length' => 16,
         ],
 
