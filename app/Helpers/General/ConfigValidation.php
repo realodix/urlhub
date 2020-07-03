@@ -23,6 +23,10 @@ class ConfigValidation
 
     public function gues()
     {
+        if (! is_bool(config('urlhub.guest'))) {
+            throw new \Exception('The "guest" config variable must be a boolean.');
+        }
+
         return true;
     }
 
