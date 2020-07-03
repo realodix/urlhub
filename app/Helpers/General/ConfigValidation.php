@@ -2,6 +2,9 @@
 
 namespace App\Helpers\General;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ConfigValidation
 {
     /**
