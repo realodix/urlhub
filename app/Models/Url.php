@@ -139,7 +139,7 @@ class Url extends Model
     public function randomKeyGenerator()
     {
         $alphabet = uHub('hash_char');
-        $length = (int) uHub('hash_length');
+        $length = uHub('hash_length');
 
         $factory = new RandomLibFactory();
         $randomKey = $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
