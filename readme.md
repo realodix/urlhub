@@ -85,7 +85,7 @@ Anybody can help by doing any of the following:
 
 From the projects root folder run `./vendor/bin/phpunit` (VSCode Task `Run test`) or [Artisan Test Runner](https://laravel.com/docs/testing#artisan-test-runner) `php artisan test`
 
-![screenshot](https://i.imgur.com/L0XYqS6.png)
+![screenshot](https://i.imgur.com/SPeeXjq.png)
 
 
 ## Bug Report
