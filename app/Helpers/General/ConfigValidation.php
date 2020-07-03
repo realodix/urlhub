@@ -32,11 +32,19 @@ class ConfigValidation
 
     public function gues_register()
     {
+        if (!is_bool(config('urlhub.gues_register'))) {
+            throw new \Exception('The "gues_register" config variable must be a boolean.');
+        }
+
         return true;
     }
 
     public function gues_show_stat()
     {
+        if (!is_bool(config('urlhub.gues_show_stat'))) {
+            throw new \Exception('The "gues_show_stat" config variable must be a boolean.');
+        }
+
         return true;
     }
 
