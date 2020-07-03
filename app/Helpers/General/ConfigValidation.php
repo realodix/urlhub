@@ -13,7 +13,8 @@ class ConfigValidation
     public function validateConfig(): bool
     {
         return $this->hashCharOption()
-               && $this->hashLengthOption();
+               && $this->hashLengthOption()
+               && $this->redirectStatusCode();
     }
 
     public function hashCharOption()
@@ -35,6 +36,17 @@ class ConfigValidation
 
         if ($hashLength < 1) {
             throw new \Exception('The config "hash_length" must be 1 or above.');
+        }
+
+        return true;
+    }
+
+    public function redirectStatusCode()
+    {
+        $rsc = config('urlhub.redirect_status_code');
+
+        if ($rsc < 300 || $rsc > 399) {
+            throw new \Exception('The config "redirect_status_code" is not valid.');
         }
 
         return true;
