@@ -12,10 +12,28 @@ class ConfigValidation
      */
     public function validateConfig(): bool
     {
-        return $this->hash_char()
+        return $this->gues()
+               && $this->gues_register()
+               && $this->gues_show_stat()
+               && $this->hash_char()
                && $this->hash_length()
                && $this->redirect_status_code()
                && $this->redirect_cache_lifetime();
+    }
+
+    public function gues()
+    {
+        return true;
+    }
+
+    public function gues_register()
+    {
+        return true;
+    }
+
+    public function gues_show_stat()
+    {
+        return true;
     }
 
     public function hash_char()
@@ -56,9 +74,8 @@ class ConfigValidation
     public function redirect_cache_lifetime()
     {
         $rcl = config('redirect_cache_lifetime');
-        $rsc = config('urlhub.redirect_status_code');
 
-        if ($rcl <= 0 ) {
+        if ($rcl < 0 ) {
             throw new \Exception('The config "redirect_cache_lifetime" is not valid.');
         }
 
