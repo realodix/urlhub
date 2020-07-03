@@ -19,14 +19,6 @@ class GeneralHelper
     {
         // Validation of character types allowed in the `urlhub.hash_char`
         // configuration option
-        $uHubConfig = config('urlhub.'.$value);
-
-        if ($value == 'hash_char') {
-            if (! ctype_alnum($uHubConfig)) {
-                throw new \Exception('"hash_char" (\config\urlhub.php) may only contain letters and numbers.');
-            }
-        }
-
-        return $uHubConfig;
+        return config('urlhub.'.$value);
     }
 }

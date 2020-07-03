@@ -139,7 +139,7 @@ class Url extends Model
     public function randomKeyGenerator()
     {
         $alphabet = uHub('hash_char');
-        $length = (int) uHub('hash_length');
+        $length = uHub('hash_length');
 
         $factory = new RandomLibFactory();
         $randomKey = $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
@@ -162,8 +162,10 @@ class Url extends Model
     public function keywordCapacity()
     {
         $alphabet = strlen(uHub('hash_char'));
-        $length = max((int) uHub('hash_length'), 0);
+        $length = uHub('hash_length');
 
+        // Untuk ngakalin test ketika kapasitas sudah habis
+        // Coba pakai mock
         if ($length == 0) {
             return 0;
         }

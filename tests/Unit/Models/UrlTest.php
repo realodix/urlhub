@@ -221,13 +221,8 @@ class UrlTest extends TestCase
     public function keywordCapacityProvider()
     {
         return [
-            [0, 0],
             [1, 3], // (3^1)
             [2, 9], // $alphabet_length^$hashLength or 3^2
-
-            [-1, 0],
-            [2.7, 9], // (3^2)
-            ['string', 0],
         ];
     }
 
