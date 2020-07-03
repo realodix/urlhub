@@ -12,13 +12,13 @@ class ConfigValidation
      */
     public function validateConfig(): bool
     {
-        return $this->hashCharOption()
-               && $this->hashLengthOption()
-               && $this->redirectStatusCode()
+        return $this->hash_char()
+               && $this->hash_length()
+               && $this->redirect_status_code()
                && $this->redirect_cache_lifetime();
     }
 
-    public function hashCharOption()
+    public function hash_char()
     {
         if (! ctype_alnum(config('urlhub.hash_char'))) {
             throw new \Exception('"hash_char" (\config\urlhub.php) may only contain letters and numbers.');
@@ -27,7 +27,7 @@ class ConfigValidation
         return true;
     }
 
-    public function hashLengthOption()
+    public function hash_length()
     {
         $hashLength = config('urlhub.hash_length');
 
@@ -42,7 +42,7 @@ class ConfigValidation
         return true;
     }
 
-    public function redirectStatusCode()
+    public function redirect_status_code()
     {
         $rsc = config('urlhub.redirect_status_code');
 
