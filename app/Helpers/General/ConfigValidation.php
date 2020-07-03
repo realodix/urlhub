@@ -12,16 +12,16 @@ class ConfigValidation
      */
     public function validateConfig(): bool
     {
-        return $this->gues()
-               && $this->gues_register()
-               && $this->gues_show_stat()
+        return $this->guest()
+               && $this->guest_register()
+               && $this->guest_show_stat()
                && $this->hash_char()
                && $this->hash_length()
                && $this->redirect_status_code()
                && $this->redirect_cache_lifetime();
     }
 
-    public function gues()
+    public function guest()
     {
         if (! is_bool(config('urlhub.guest'))) {
             throw new \Exception('The "guest" config variable must be a boolean.');
@@ -30,19 +30,19 @@ class ConfigValidation
         return true;
     }
 
-    public function gues_register()
+    public function guest_register()
     {
-        if (! is_bool(config('urlhub.gues_register'))) {
-            throw new \Exception('The "gues_register" config variable must be a boolean.');
+        if (! is_bool(config('urlhub.guest_register'))) {
+            throw new \Exception('The "guest_register" config variable must be a boolean.');
         }
 
         return true;
     }
 
-    public function gues_show_stat()
+    public function guest_show_stat()
     {
-        if (! is_bool(config('urlhub.gues_show_stat'))) {
-            throw new \Exception('The "gues_show_stat" config variable must be a boolean.');
+        if (! is_bool(config('urlhub.guest_show_stat'))) {
+            throw new \Exception('The "guest_show_stat" config variable must be a boolean.');
         }
 
         return true;
