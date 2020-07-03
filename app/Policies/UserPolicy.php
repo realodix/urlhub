@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,8 +11,8 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * @param \App\User $authenticatedUser
-     * @param \App\User $user
+     * @param \App\Models\User $authenticatedUser
+     * @param \App\Models\User $user
      * @return bool
      */
     public function view(User $authenticatedUser, User $user)
@@ -21,8 +21,8 @@ class UserPolicy
     }
 
     /**
-     * @param \App\User $authenticatedUser
-     * @param \App\User $user
+     * @param \App\Models\User $authenticatedUser
+     * @param \App\Models\User $user
      * @return bool
      */
     public function update(User $authenticatedUser, User $user)
@@ -31,8 +31,8 @@ class UserPolicy
     }
 
     /**
-     * @param \App\User $authenticatedUser
-     * @param \App\User $user
+     * @param \App\Models\User $authenticatedUser
+     * @param \App\Models\User $user
      * @return bool
      */
     public function updatePass(User $authenticatedUser, User $user)

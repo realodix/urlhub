@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
+use App\Models\Url;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
 use App\Services\UrlService;
-use App\Url;
 use Embed\Embed;
 use Exception;
 use Illuminate\Http\Request;

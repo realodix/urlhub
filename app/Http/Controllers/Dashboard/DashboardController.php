@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Url;
+use App\Models\User;
 use App\Services\UrlService;
-use App\Url;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -69,7 +69,7 @@ class DashboardController extends Controller
      * Update the long url that was previously set to the new long url.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Url                 $url
+     * @param \App\Models\Url                 $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -84,7 +84,7 @@ class DashboardController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param \App\Url $url
+     * @param \App\Models\Url $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

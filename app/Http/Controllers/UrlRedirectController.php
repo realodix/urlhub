@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Url;
 use App\Services\UrlRedirectionService;
-use App\Url;
 use Illuminate\Support\Facades\DB;
 
 class UrlRedirectController extends Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Http\Traits\Hashidable;
 use Embed\Embed;
@@ -49,14 +49,14 @@ class Url extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User')->withDefault([
+        return $this->belongsTo('App\Models\User')->withDefault([
             'name' => 'Guest',
         ]);
     }
 
     public function urlStat()
     {
-        return $this->hasMany('App\UrlStat');
+        return $this->hasMany('App\Models\UrlStat');
     }
 
     /*

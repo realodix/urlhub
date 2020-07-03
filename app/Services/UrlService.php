@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Url;
+use App\Models\Url;
 
 class UrlService
 {
