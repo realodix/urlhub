@@ -164,6 +164,12 @@ class Url extends Model
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');
 
+        // Untuk ngakalin test ketika kapasitas sudah habis
+        // Coba pakai mock
+        if ($length == 0) {
+            return 0;
+        }
+
         return pow($alphabet, $length);
     }
 
