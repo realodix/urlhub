@@ -162,11 +162,7 @@ class Url extends Model
     public function keywordCapacity()
     {
         $alphabet = strlen(uHub('hash_char'));
-        $length = max((int) uHub('hash_length'), 0);
-
-        if ($length == 0) {
-            return 0;
-        }
+        $length = uHub('hash_length');
 
         return pow($alphabet, $length);
     }
