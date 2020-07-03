@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Policies;
 
-use App\Url;
-use App\User;
+use App\Models\Url;
+use App\Models\User;
 use Tests\TestCase;
 
 class UrlPolicyTest extends TestCase

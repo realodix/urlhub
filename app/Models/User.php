@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Traits\Hashidable;
@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function url()
     {
-        return $this->hasMany('App\Url');
+        return $this->hasMany('App\Models\Url');
     }
 
     /*

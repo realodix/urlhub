@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserPassword;
+use App\Models\User;
 use App\Services\UserService;
-use App\User;
 
 class ChangePasswordController extends Controller
 {
@@ -25,7 +25,7 @@ class ChangePasswordController extends Controller
     /**
      * Show the form for editing password.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -40,7 +40,7 @@ class ChangePasswordController extends Controller
      * Change the password.
      *
      * @param \App\Http\Requests\UpdateUserPassword $request
-     * @param \App\User                             $user
+     * @param \App\Models\User                      $user
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Controllers;
 
+use App\Models\Url;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
-use App\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;

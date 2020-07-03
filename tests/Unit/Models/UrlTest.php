@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Models;
 
-use App\Url;
-use App\UrlStat;
+use App\Models\Url;
+use App\Models\UrlStat;
 use Tests\TestCase;
 
 class UrlTest extends TestCase

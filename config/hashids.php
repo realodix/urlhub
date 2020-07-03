@@ -39,13 +39,13 @@ return [
 
     'connections' => [
 
-        \App\User::class => [
-            'salt'   => \App\User::class.env('APP_KEY'),
+        \App\Models\User::class => [
+            'salt'   => \App\Models\User::class.env('APP_KEY'),
             'length' => 16,
         ],
 
-        \App\Url::class => [
-            'salt'   => \App\Url::class.env('APP_KEY'),
+        \App\Models\Url::class => [
+            'salt'   => \App\Models\Url::class.env('APP_KEY'),
             'length' => 16,
         ],
 
