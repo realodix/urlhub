@@ -32,7 +32,7 @@ class ConfigValidation
 
     public function gues_register()
     {
-        if (!is_bool(config('urlhub.gues_register'))) {
+        if (! is_bool(config('urlhub.gues_register'))) {
             throw new \Exception('The "gues_register" config variable must be a boolean.');
         }
 
@@ -41,7 +41,7 @@ class ConfigValidation
 
     public function gues_show_stat()
     {
-        if (!is_bool(config('urlhub.gues_show_stat'))) {
+        if (! is_bool(config('urlhub.gues_show_stat'))) {
             throw new \Exception('The "gues_show_stat" config variable must be a boolean.');
         }
 
@@ -87,7 +87,7 @@ class ConfigValidation
     {
         $rcl = config('redirect_cache_lifetime');
 
-        if ($rcl < 0 ) {
+        if ($rcl < 0) {
             throw new \Exception('The "redirect_cache_lifetime" config variable is not valid.');
         }
 
