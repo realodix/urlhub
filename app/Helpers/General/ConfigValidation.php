@@ -43,7 +43,7 @@ class ConfigValidation
     public function hash_char()
     {
         if (! ctype_alnum(config('urlhub.hash_char'))) {
-            throw new \Exception('The config "hash_char" may only contain letters and numbers.');
+            throw new \Exception('The "hash_char" config variable  may only contain letters and numbers.');
         }
 
         return true;
@@ -54,11 +54,11 @@ class ConfigValidation
         $hashLength = config('urlhub.hash_length');
 
         if (! is_int($hashLength)) {
-            throw new \Exception('The config "hash_length" is not a valid integer.');
+            throw new \Exception('The "hash_length" config variable is not a valid integer.');
         }
 
         if ($hashLength < 1) {
-            throw new \Exception('The config "hash_length" must be 1 or above.');
+            throw new \Exception('The "hash_length" config variable must be 1 or above.');
         }
 
         return true;
@@ -69,7 +69,7 @@ class ConfigValidation
         $rsc = config('urlhub.redirect_status_code');
 
         if ($rsc < 300 || $rsc > 399) {
-            throw new \Exception('The config "redirect_status_code" is not valid.');
+            throw new \Exception('The "redirect_status_code" config variable is not valid.');
         }
 
         return true;
@@ -80,7 +80,7 @@ class ConfigValidation
         $rcl = config('redirect_cache_lifetime');
 
         if ($rcl < 0 ) {
-            throw new \Exception('The config "redirect_cache_lifetime" is not valid.');
+            throw new \Exception('The "redirect_cache_lifetime" config variable is not valid.');
         }
 
         return true;
