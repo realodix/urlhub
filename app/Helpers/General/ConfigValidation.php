@@ -21,7 +21,7 @@ class ConfigValidation
     public function hash_char()
     {
         if (! ctype_alnum(config('urlhub.hash_char'))) {
-            throw new \Exception('"hash_char" (\config\urlhub.php) may only contain letters and numbers.');
+            throw new \Exception('The config "hash_char" may only contain letters and numbers.');
         }
 
         return true;
