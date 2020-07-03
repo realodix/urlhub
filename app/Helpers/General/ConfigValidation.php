@@ -14,7 +14,8 @@ class ConfigValidation
     {
         return $this->hashCharOption()
                && $this->hashLengthOption()
-               && $this->redirectStatusCode();
+               && $this->redirectStatusCode()
+               && $this->redirect_cache_lifetime();
     }
 
     public function hashCharOption()
@@ -47,6 +48,18 @@ class ConfigValidation
 
         if ($rsc < 300 || $rsc > 399) {
             throw new \Exception('The config "redirect_status_code" is not valid.');
+        }
+
+        return true;
+    }
+
+    public function redirect_cache_lifetime()
+    {
+        $rcl = config('redirect_cache_lifetime');
+        $rsc = config('urlhub.redirect_status_code');
+
+        if ($rcl <= 0 ) {
+            throw new \Exception('The config "redirect_cache_lifetime" is not valid.');
         }
 
         return true;
