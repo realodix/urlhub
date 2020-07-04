@@ -3,7 +3,7 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
-use App\Models\UrlStat;
+use App\Models\Visits;
 use Tests\TestCase;
 
 class UrlRedirectControllerTest extends TestCase
@@ -20,6 +20,6 @@ class UrlRedirectControllerTest extends TestCase
         $response->assertRedirect($url->long_url);
         $response->assertStatus(uHub('redirect_status_code'));
 
-        $this->assertCount(1, UrlStat::all());
+        $this->assertCount(1, Visits::all());
     }
 }

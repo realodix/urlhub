@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
-use App\Models\UrlStat;
+use App\Models\Visits;
 use Illuminate\Http\RedirectResponse;
 use Jenssegers\Agent\Agent;
 
@@ -46,14 +46,14 @@ class UrlRedirectionService
     }
 
     /**
-     * Create the UrlStat and store it in the database.
+     * Create visit statistics and store it in the database.
      *
      * @param Url   $url
      * @param array $countries
      */
     private function createUrlStat(Url $url, array $countries)
     {
-        UrlStat::create([
+        Visits::create([
             'url_id'           => $url->id,
             'referer'          => request()->server('HTTP_REFERER') ?? null,
             'ip'               => request()->ip(),

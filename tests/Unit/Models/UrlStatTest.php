@@ -3,7 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Url;
-use App\Models\UrlStat;
+use App\Models\Visits;
 use Tests\TestCase;
 
 class UrlStatTest extends TestCase
@@ -14,7 +14,7 @@ class UrlStatTest extends TestCase
      */
     public function belongs_to_url()
     {
-        $urlStat = factory(UrlStat::class)->create([
+        $urlStat = factory(Visits::class)->create([
             'url_id' => function () {
                 return factory(Url::class)->create()->id;
             },
