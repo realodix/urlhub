@@ -42,10 +42,6 @@ return [
      * currently the allowed characters are only alphanumeric consisting of
      * a limited set of characters belonging to the US-ASCII characters,
      * including digits (0-9), letters (A-Z, a-z).
-     *
-     * If you add non-alphanumeric characters, the method for calculating the
-     * remaining keywords (/App/Url::keywordRemaining()) will not be optimal
-     * or get worse.
      */
     'hash_char' => env(
         'HASH_CHAR',
