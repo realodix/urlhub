@@ -14,12 +14,12 @@ class VisitStatTest extends TestCase
      */
     public function belongs_to_url()
     {
-        $urlStat = factory(Visits::class)->create([
+        $visitStat = factory(Visits::class)->create([
             'url_id' => function () {
                 return factory(Url::class)->create()->id;
             },
         ]);
 
-        $this->assertTrue($urlStat->url()->exists());
+        $this->assertTrue($visitStat->url()->exists());
     }
 }
