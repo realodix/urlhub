@@ -54,7 +54,7 @@ class Url extends Model
         ]);
     }
 
-    public function visitStat()
+    public function visit()
     {
         return $this->hasMany('App\Models\Visits');
     }

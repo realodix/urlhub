@@ -78,7 +78,7 @@ class UrlController extends Controller
      */
     public function showShortenedUrlDetails($key)
     {
-        $url = Url::with('visitStat')->whereKeyword($key)->firstOrFail();
+        $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
 
         $qrCode = qrCode($url->short_url);
 

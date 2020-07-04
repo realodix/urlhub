@@ -67,7 +67,7 @@ class UrlTest extends TestCase
             'url_id' => $url->id,
         ]);
 
-        $this->assertTrue($url->visitStat()->exists());
+        $this->assertTrue($url->visit()->exists());
     }
 
     /**
