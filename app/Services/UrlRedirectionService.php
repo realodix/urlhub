@@ -36,7 +36,7 @@ class UrlRedirectionService
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->createUrlStat($url, $url->ipToCountry(request()->ip()));
+        $this->createVisitStat($url, $url->ipToCountry(request()->ip()));
 
         $headers = [
             'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
@@ -51,7 +51,7 @@ class UrlRedirectionService
      * @param Url   $url
      * @param array $countries
      */
-    private function createUrlStat(Url $url, array $countries)
+    private function createVisitStat(Url $url, array $countries)
     {
         Visits::create([
             'url_id'           => $url->id,
