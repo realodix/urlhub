@@ -56,7 +56,7 @@ class Url extends Model
 
     public function visit()
     {
-        return $this->hasMany('App\Models\Visits');
+        return $this->hasMany('App\Models\Visit');
     }
 
     /*

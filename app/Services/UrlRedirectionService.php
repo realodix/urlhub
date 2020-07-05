@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
-use App\Models\Visits;
+use App\Models\Visit;
 use Illuminate\Http\RedirectResponse;
 use Jenssegers\Agent\Agent;
 
@@ -53,7 +53,7 @@ class UrlRedirectionService
      */
     private function storeVisitStat(Url $url, array $countries)
     {
-        Visits::create([
+        Visit::create([
             'url_id'           => $url->id,
             'referer'          => request()->server('HTTP_REFERER') ?? null,
             'ip'               => request()->ip(),

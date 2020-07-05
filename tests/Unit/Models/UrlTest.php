@@ -3,7 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Url;
-use App\Models\Visits;
+use App\Models\Visit;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -63,7 +63,7 @@ class UrlTest extends TestCase
     {
         $url = factory(Url::class)->create();
 
-        factory(Visits::class)->create([
+        factory(Visit::class)->create([
             'url_id' => $url->id,
         ]);
 
