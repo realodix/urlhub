@@ -6,7 +6,7 @@ use App\Models\Url;
 use App\Models\Visit;
 use Tests\TestCase;
 
-class VisitsTest extends TestCase
+class VisitTest extends TestCase
 {
     /**
      * @test

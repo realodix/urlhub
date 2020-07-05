@@ -14,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\Visits::class, function (Faker $faker) {
+$factory->define(App\Models\Visit::class, function (Faker $faker) {
     return [
         'url_id' => function () {
             return factory(Url::class)->create()->id;
