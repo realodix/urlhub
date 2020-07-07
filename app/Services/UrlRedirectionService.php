@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
-use App\Models\UrlStat;
+use App\Models\Visit;
 use Illuminate\Http\RedirectResponse;
 use Jenssegers\Agent\Agent;
 
@@ -36,7 +36,7 @@ class UrlRedirectionService
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->createUrlStat($url, $url->ipToCountry(request()->ip()));
+        $this->storeVisitStat($url, $url->ipToCountry(request()->ip()));
 
         $headers = [
             'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
@@ -46,14 +46,14 @@ class UrlRedirectionService
     }
 
     /**
-     * Create the UrlStat and store it in the database.
+     * Create visit statistics and store it in the database.
      *
      * @param Url   $url
      * @param array $countries
      */
-    private function createUrlStat(Url $url, array $countries)
+    private function storeVisitStat(Url $url, array $countries)
     {
-        UrlStat::create([
+        Visit::create([
             'url_id'           => $url->id,
             'referer'          => request()->server('HTTP_REFERER') ?? null,
             'ip'               => request()->ip(),

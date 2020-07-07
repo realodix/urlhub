@@ -3,7 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Url;
-use App\Models\UrlStat;
+use App\Models\Visit;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -63,11 +63,11 @@ class UrlTest extends TestCase
     {
         $url = factory(Url::class)->create();
 
-        factory(UrlStat::class)->create([
+        factory(Visit::class)->create([
             'url_id' => $url->id,
         ]);
 
-        $this->assertTrue($url->urlStat()->exists());
+        $this->assertTrue($url->visit()->exists());
     }
 
     /**

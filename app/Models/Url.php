@@ -54,9 +54,9 @@ class Url extends Model
         ]);
     }
 
-    public function urlStat()
+    public function visit()
     {
-        return $this->hasMany('App\Models\UrlStat');
+        return $this->hasMany('App\Models\Visit');
     }
 
     /*
