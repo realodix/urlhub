@@ -148,7 +148,7 @@ class Url extends Model
         // @codeCoverageIgnoreStart
         $generatedRandomKey = self::whereKeyword($randomKey)->first();
         while ($generatedRandomKey) {
-            $randomKey = $client->formatedId($alphabet, $length);
+            $randomKey = $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
             $generatedRandomKey = self::whereKeyword($randomKey)->first();
         }
         // @codeCoverageIgnoreEnd
