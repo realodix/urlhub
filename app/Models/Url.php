@@ -176,8 +176,11 @@ class Url extends Model
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');
 
-        // Untuk kebutuhan di saat pengujian. Kedepannya mencoba untuk
-        // memanipulasi data yang dikeluarkan.
+        // Untuk kebutuhan di saat pengujian, dimana saat pengujian dibutuhkan
+        // nilai yang dikembalikan adalah 0. Dalam kehidupan nyata ini tidak
+        // diperlukan karena sudah dilakukan validasi untuk tidak mengembalikan
+        // angka 0, maka kedepannya Kami mencoba untuk memanipulasi data yang
+        // dikembalikan.
         if ($length == 0) {
             return 0;
         }
