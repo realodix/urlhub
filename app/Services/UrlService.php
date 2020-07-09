@@ -23,7 +23,7 @@ class UrlService
 
     public function shortenUrl($request, $authId)
     {
-        $key = $request['custom_key'] ?? $this->url->randomKeyGenerator();
+        $key = $request['custom_key'] ?? $this->url->randomKey();
 
         $url = Url::create([
             'user_id'    => $authId,
@@ -64,7 +64,7 @@ class UrlService
      */
     public function duplicate($key, $authId)
     {
-        $randomKey = $this->url->randomKeyGenerator();
+        $randomKey = $this->url->randomKey();
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
