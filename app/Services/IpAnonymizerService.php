@@ -40,6 +40,7 @@ class IpAnonymizerService
     public function anonymize($address)
     {
         $packedAddress = inet_pton($address);
+
         if (strlen($packedAddress) == 4) {
             return $this->anonymizeIPv4($address);
         } elseif (strlen($packedAddress) == 16) {
