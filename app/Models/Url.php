@@ -171,7 +171,7 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keywordCapacity()
+    public function keyCapacity()
     {
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');
@@ -191,9 +191,9 @@ class Url extends Model
     /**
      * @return int
      */
-    public function keywordRemaining()
+    public function keyRemaining()
     {
-        $keyCapacity = $this->keywordCapacity();
+        $keyCapacity = $this->keyCapacity();
         $randomKey = self::whereIsCustom(false)->count();
         $customKey = self::whereIsCustom(true)
                            ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])

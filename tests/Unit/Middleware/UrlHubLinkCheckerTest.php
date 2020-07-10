@@ -7,9 +7,12 @@ use Tests\TestCase;
 class UrlHubLinkCheckerTest extends TestCase
 {
     /**
+     * Shorten the url when the random string generator capacity is full.
+     * UrlHub must prevent URL shortening.
+     *
      * @test
      */
-    public function keywordRemaining_zero()
+    public function keyRemaining_zero()
     {
         config()->set('urlhub.hash_length', 0);
 

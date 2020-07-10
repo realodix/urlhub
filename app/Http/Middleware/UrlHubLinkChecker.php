@@ -32,7 +32,7 @@ class UrlHubLinkChecker
         |
         */
 
-        if ($url->keywordRemaining() == 0) {
+        if ($url->keyRemaining() == 0) {
             return redirect()
                    ->back()
                    ->withFlashError(

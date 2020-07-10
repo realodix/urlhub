@@ -12,13 +12,13 @@
 </div>
   <h3>UrlHub Statistics</h3>
 <br>
-  <b>Capacity</b>   : <span title="{{number_format($capacity)}}" data-toggle="tooltip">{{numberFormatShort($capacity)}}</span> <br>
-  <b>Remaining</b>  : <span title="{{number_format($remaining)}}" data-toggle="tooltip">
-                        {{numberFormatShort($remaining)}}
-                        @if ($capacity == 0)
+  <b>Capacity</b>   : <span title="{{number_format($keyCapacity)}}" data-toggle="tooltip">{{numberFormatShort($keyCapacity)}}</span> <br>
+  <b>Remaining</b>  : <span title="{{number_format($keyRemaining)}}" data-toggle="tooltip">
+                        {{numberFormatShort($keyRemaining)}}
+                        @if ($keyCapacity == 0)
                           (0%)
                         @else
-                          ({{round(100-((($capacity-$remaining)/$capacity)*100))}}%)
+                          ({{round(100-((($keyCapacity-$keyRemaining)/$keyCapacity)*100))}}%)
                         @endif
                       </span> <br>
 

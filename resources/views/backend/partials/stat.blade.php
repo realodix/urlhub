@@ -10,14 +10,14 @@
       <div class="card-body">
         <div class="row">
           <div class="col-6 col-sm-5"><b>@lang('Capacity')</b></div>
-          <div class="col col-sm"><span title="{{number_format($capacity)}}" data-toggle="tooltip">{{numberFormatShort($capacity)}}</span></div>
+          <div class="col col-sm"><span title="{{number_format($keyCapacity)}}" data-toggle="tooltip">{{numberFormatShort($keyCapacity)}}</span></div>
         </div>
         <div class="row">
           <div class="col-6 col-sm-5"><b>@lang('Remaining')</b></div>
           <div class="col col-sm">
-            <span title="{{number_format($remaining)}}" data-toggle="tooltip">
-              {{numberFormatShort($remaining)}}
-              ({{$remaining_percent}})
+            <span title="{{number_format($keyRemaining)}}" data-toggle="tooltip">
+              {{numberFormatShort($keyRemaining)}}
+              ({{$remainingPercentage}})
             </span>
           </div>
         </div>
