@@ -5,12 +5,16 @@ namespace App\Services;
 class IpAnonymizerService
 {
     /**
-     * @var string IPv4 netmask used to anonymize IPv4 address.
+     * IPv4 netmask used to anonymize IPv4 address.
+     *
+     * @var string
      */
     public $ipv4NetMask = '255.255.255.0';
 
     /**
-     * @var string IPv6 netmask used to anonymize IPv6 address.
+     * IPv6 netmask used to anonymize IPv6 address.
+     *
+     * @var string
      */
     public $ipv6NetMask = 'ffff:ffff:ffff:ffff:0000:0000:0000:0000';
 
@@ -24,9 +28,13 @@ class IpAnonymizerService
      */
     public static function anonymizeIp($address)
     {
+        if (uHub('anonymize_remote_addr') == false) {
+            return $address;
+        }
+
         $anonymizer = new self();
 
-        return $anonymizer->anonymize($address);
+        return $anonymizer->anonymize('$address');
     }
 
     /**

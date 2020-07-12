@@ -96,4 +96,13 @@ class ConfigValidation
 
         return true;
     }
+
+    public function anonymize_remote_addr()
+    {
+        if (! is_bool(config('urlhub.anonymize_remote_addr'))) {
+            throw new \Exception('The "anonymize_remote_addr" config variable must be a boolean.');
+        }
+
+        return true;
+    }
 }

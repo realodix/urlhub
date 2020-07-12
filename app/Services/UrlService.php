@@ -23,6 +23,7 @@ class UrlService
 
     public function shortenUrl($request, $authId)
     {
+        $service = new IpAnonymizerService;
         $key = $request['custom_key'] ?? $this->url->randomKey();
 
         $url = Url::create([
@@ -31,7 +32,7 @@ class UrlService
             'meta_title' => $request['long_url'],
             'keyword'    => $key,
             'is_custom'  => $request['custom_key'] ? 1 : 0,
-            'ip'         => request()->ip(),
+            'ip'         => $service->anonymizeIp(request()->ip()),
         ]);
 
         return $url;
