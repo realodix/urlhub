@@ -23,12 +23,11 @@ class UrlHubLinkChecker
 
         /*
         |----------------------------------------------------------------------
-        | Remaining Keyword
+        | Key Remaining
         |----------------------------------------------------------------------
         |
-        | Periksa apakah UrlHub masih memiliki keyword yang tersedia untuk
-        | membuat URL pendek. Jika tidak tersedia, cegah membuat URL
-        | pendek.
+        | Random Key Generator memiliki batas maksimum untuk menghasilkan kunci.
+        | Jika sudah mencapai batas maksimum, maka cegah pembuatan URL pendek.
         |
         */
 
@@ -45,8 +44,8 @@ class UrlHubLinkChecker
         | Long Url Exists
         |----------------------------------------------------------------------
         |
-        | Check if a long URL already exists in the database. If found,
-        | display a warning.
+        | Check if a long URL already exists in the database. If found, display
+        | a warning.
         |
         */
 
