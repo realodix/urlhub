@@ -23,6 +23,7 @@ class UrlRedirectionService
      * UrlRedirectionService constructor.
      *
      * @param Agent|null $agent
+     * @param UrlService $urlService
      */
     public function __construct(Agent $agent = null, UrlService $urlService)
     {
