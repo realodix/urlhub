@@ -42,7 +42,12 @@ class UrlRedirectionService
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->storeVisitStat($url, $url->ipToCountry(request()->ip()));
+        $this->storeVisitStat(
+            $url,
+            $url->ipToCountry(
+                $this->urlService->anonymizeIp(request()->ip())
+            )
+        );
 
         $headers = [
             'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
