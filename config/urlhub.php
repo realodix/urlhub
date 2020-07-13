@@ -96,6 +96,12 @@ return [
         'svg',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Visiting
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * Tells if IP addresses from visitors should be obfuscated before storing
      * them in the database. Default value is true.
