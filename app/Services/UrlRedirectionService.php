@@ -15,13 +15,19 @@ class UrlRedirectionService
     private $agent;
 
     /**
+     * @var urlService
+     */
+    protected $urlService;
+
+    /**
      * UrlRedirectionService constructor.
      *
      * @param Agent|null $agent
      */
-    public function __construct(Agent $agent = null)
+    public function __construct(Agent $agent = null, UrlService $urlService)
     {
         $this->agent = $agent ?? new Agent();
+        $this->urlService = $urlService;
     }
 
     /**
@@ -56,7 +62,7 @@ class UrlRedirectionService
         Visit::create([
             'url_id'           => $url->id,
             'referer'          => request()->server('HTTP_REFERER') ?? null,
-            'ip'               => request()->ip(),
+            'ip'               => $this->urlService->anonymizeIp(request()->ip()),
             'device'           => $this->agent->device(),
             'platform'         => $this->agent->platform(),
             'platform_version' => $this->agent->version($this->agent->platform()),

@@ -97,10 +97,10 @@ class ConfigValidation
         return true;
     }
 
-    public function anonymize_remote_addr()
+    public function anonymize_ip_addr()
     {
-        if (! is_bool(config('urlhub.anonymize_remote_addr'))) {
-            throw new \Exception('The "anonymize_remote_addr" config variable must be a boolean.');
+        if (! is_bool(config('urlhub.anonymize_ip_addr'))) {
+            throw new \Exception('The "urlhub.anonymize_ip_addr" config variable must be a boolean.');
         }
 
         return true;

@@ -101,8 +101,8 @@ return [
      * them in the database. Default value is true.
      *
      * Careful!
-     * Setting this to false will make your Shlink instance no longer be in
+     * Setting this to false will make your UrlHub instance no longer be in
      * compliance with the GDPR and other similar data protection regulations.
      */
-    'anonymize_remote_addr' => env('UH_ANONYMIZE_REMOTE_ADDR', true),
+    'anonymize_ip_addr' => env('UH_ANONYMIZE_IP_ADDR', true),
 ];
