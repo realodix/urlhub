@@ -17,9 +17,9 @@ class UrlService
      *
      * @param Url $url
      */
-    public function __construct(Url $url)
+    public function __construct()
     {
-        $this->url = $url;
+        $this->url = new Url;
     }
 
     public function shortenUrl($request, $authId)
