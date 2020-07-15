@@ -222,7 +222,7 @@ class Url extends Model
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->whereRaw("keyword REGEXP '[a-zA-Z0-9]{".$hashLength."}'")
             ->count();
-        $numberOfUsedKey = $randomKey+$customKey;
+        $numberOfUsedKey = $randomKey + $customKey;
 
         return $numberOfUsedKey;
     }
