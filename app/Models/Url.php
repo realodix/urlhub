@@ -193,11 +193,12 @@ class Url extends Model
      */
     public function keyRemaining()
     {
+        $hashLength = uHub('hash_length');
         $keyCapacity = $this->keyCapacity();
         $randomKey = self::whereIsCustom(false)->count();
         $customKey = self::whereIsCustom(true)
-                           ->whereRaw('LENGTH(keyword) = ?', [uHub('hash_length')])
-                           ->where('keyword', 'NOT LIKE', '[_]')
+                           ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
+                           ->whereRaw("keyword REGEXP '[a-zA-Z0-9]{".$hashLength."}'")
                            ->count();
 
         $numberOfUsedKey = $randomKey + $customKey;
