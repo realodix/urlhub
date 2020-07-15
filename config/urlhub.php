@@ -92,4 +92,20 @@ return [
         'js',
         'svg',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Visiting
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Tells if IP addresses from visitors should be obfuscated before storing
+     * them in the database. Default value is true.
+     *
+     * Careful!
+     * Setting this to false will make your UrlHub instance no longer be in
+     * compliance with the GDPR and other similar data protection regulations.
+     */
+    'anonymize_ip_addr' => env('UH_ANONYMIZE_IP_ADDR', true),
 ];

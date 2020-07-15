@@ -15,13 +15,20 @@ class UrlRedirectionService
     private $agent;
 
     /**
+     * @var urlService
+     */
+    protected $urlService;
+
+    /**
      * UrlRedirectionService constructor.
      *
      * @param Agent|null $agent
+     * @param UrlService $urlService
      */
-    public function __construct(Agent $agent = null)
+    public function __construct(Agent $agent = null, UrlService $urlService)
     {
         $this->agent = $agent ?? new Agent();
+        $this->urlService = $urlService;
     }
 
     /**
@@ -36,7 +43,12 @@ class UrlRedirectionService
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->storeVisitStat($url, $url->ipToCountry(request()->ip()));
+        $this->storeVisitStat(
+            $url,
+            $url->ipToCountry(
+                $this->urlService->anonymizeIp(request()->ip())
+            )
+        );
 
         $headers = [
             'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
@@ -56,7 +68,7 @@ class UrlRedirectionService
         Visit::create([
             'url_id'           => $url->id,
             'referer'          => request()->server('HTTP_REFERER') ?? null,
-            'ip'               => request()->ip(),
+            'ip'               => $this->urlService->anonymizeIp(request()->ip()),
             'device'           => $this->agent->device(),
             'platform'         => $this->agent->platform(),
             'platform_version' => $this->agent->version($this->agent->platform()),

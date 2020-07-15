@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class UrlService
 {
@@ -16,9 +17,9 @@ class UrlService
      *
      * @param Url $url
      */
-    public function __construct(Url $url)
+    public function __construct()
     {
-        $this->url = $url;
+        $this->url = new Url;
     }
 
     public function shortenUrl($request, $authId)
@@ -76,5 +77,20 @@ class UrlService
         $replicate->save();
 
         return $replicate;
+    }
+
+    /**
+     * Anonymize an IPv4 or IPv6 address.
+     *
+     * @param string $address
+     * @return string
+     */
+    public static function anonymizeIp($address)
+    {
+        if (uHub('anonymize_ip_addr') == false) {
+            return $address;
+        }
+
+        return IPUtils::anonymize($address);
     }
 }
