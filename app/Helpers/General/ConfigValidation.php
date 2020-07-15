@@ -96,4 +96,13 @@ class ConfigValidation
 
         return true;
     }
+
+    public function anonymize_ip_addr()
+    {
+        if (! is_bool(config('urlhub.anonymize_ip_addr'))) {
+            throw new \Exception('The "urlhub.anonymize_ip_addr" config variable must be a boolean.');
+        }
+
+        return true;
+    }
 }
