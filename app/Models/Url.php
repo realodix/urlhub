@@ -200,10 +200,7 @@ class Url extends Model
     public function keyRemaining()
     {
         $keyCapacity = $this->keyCapacity();
-        $randomKey = self::whereIsCustom(false)->count();
-        $customKey = $this->customKeyCount();
-
-        $numberOfUsedKey = $randomKey + $customKey;
+        $numberOfUsedKey = $this->numberOfUsedKey();
 
         return max(($keyCapacity - $numberOfUsedKey), 0);
     }
@@ -211,20 +208,23 @@ class Url extends Model
     public function keyRemainingInPercent()
     {
         $keyCapacity = $this->keyCapacity();
-        $numberOfCustomKey = $this->customKeyCount();
+        $numberOfCustomKey = $this->numberOfUsedKey();
 
         return remainingPercentage($numberOfCustomKey, $keyCapacity);
     }
 
-    public function customKeyCount()
+    public function numberOfUsedKey()
     {
         $hashLength = uHub('hash_length');
+
+        $randomKey = self::whereIsCustom(false)->count();
         $customKey = self::whereIsCustom(true)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->whereRaw("keyword REGEXP '[a-zA-Z0-9]{".$hashLength."}'")
             ->count();
+        $numberOfUsedKey = $randomKey+$customKey
 
-        return $customKey;
+        return $numberOfUsedKey;
     }
 
     /**
