@@ -177,7 +177,7 @@ class Url extends Model
         $length = uHub('hash_length');
 
         // Untuk kebutuhan di saat pengujian, dimana saat pengujian dibutuhkan
-        // nilai yang dikembalikan adalah 0. Dalam kehidupan nyata ini tidak
+        // nilai yang dikembalikan adalah 0. Dalam produksi, kondisi ini tidak
         // diperlukan karena sudah dilakukan validasi untuk tidak mengembalikan
         // angka 0, maka kedepannya Kami mencoba untuk memanipulasi data yang
         // dikembalikan.
