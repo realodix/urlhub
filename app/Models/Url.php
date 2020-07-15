@@ -206,7 +206,7 @@ class Url extends Model
     {
         $hashLength = uHub('hash_length');
         $customKey = self::whereIsCustom(true)
-            ->whereRaw("LENGTH(keyword) = ?", [$hashLength])
+            ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->whereRaw("keyword REGEXP '[a-zA-Z0-9]{".$hashLength."}'")
             ->count();
 
