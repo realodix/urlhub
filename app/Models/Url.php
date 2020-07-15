@@ -216,11 +216,12 @@ class Url extends Model
     public function numberOfUsedKey()
     {
         $hashLength = uHub('hash_length');
+        $regexPattern = '[a-zA-Z0-9]{'.$hashLength.'}';
 
         $randomKey = self::whereIsCustom(false)->count();
         $customKey = self::whereIsCustom(true)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
-            ->whereRaw("keyword REGEXP '[a-zA-Z0-9]{".$hashLength."}'")
+            ->whereRaw("keyword REGEXP '.$regexPattern.'")
             ->count();
         $numberOfUsedKey = $randomKey + $customKey;
 
