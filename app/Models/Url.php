@@ -243,7 +243,8 @@ class Url extends Model
 
     /**
      * IP Address to Identify Geolocation Information. If it fails, because
-     * GeoLite2 doesn't know the IP country, we will set it to Unknown.
+     * DB-IP Lite databases doesn't know the IP country, we will set it to
+     * Unknown.
      */
     public function ipToCountry($ip)
     {
