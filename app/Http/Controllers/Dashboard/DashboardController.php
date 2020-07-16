@@ -34,7 +34,6 @@ class DashboardController extends Controller
     {
         $url = new Url;
         $user = new User;
-        $keyCapacity = $url->keyCapacity();
 
         return view('backend.dashboard', [
             'shortUrlCount'        => $url->shortUrlCount(),
@@ -45,9 +44,9 @@ class DashboardController extends Controller
             'clickCountFromGuest'  => $url->clickCountOwnedBy(),
             'userCount'            => $user->userCount(),
             'guestCount'           => $user->guestCount(),
-            'keyCapacity'          => $keyCapacity,
+            'keyCapacity'          => $url->keyCapacity(),
             'keyRemaining'         => $url->keyRemaining(),
-            'remainingPercentage'  => remainingPercentage($url->shortUrlCount(), $keyCapacity),
+            'remainingPercentage'  => remainingPercentage($url->numberOfUsedKey(), $url->keyCapacity()),
         ]);
     }
 
