@@ -46,7 +46,7 @@ class DashboardController extends Controller
             'guestCount'           => $user->guestCount(),
             'keyCapacity'          => $url->keyCapacity(),
             'keyRemaining'         => $url->keyRemaining(),
-            'remainingPercentage'  => remainingPercentage($url->numberOfCustomKey(), $url->keyCapacity()),
+            'remainingPercentage'  => remainingPercentage($url->numberOfUsedKey(), $url->keyCapacity()),
         ]);
     }
 
