@@ -205,14 +205,6 @@ class Url extends Model
         return max(($keyCapacity - $numberOfUsedKey), 0);
     }
 
-    public function keyRemainingInPercent()
-    {
-        $keyCapacity = $this->keyCapacity();
-        $numberOfCustomKey = $this->numberOfUsedKey();
-
-        return remainingPercentage($numberOfCustomKey, $keyCapacity);
-    }
-
     public function numberOfUsedKey()
     {
         $hashLength = uHub('hash_length');
