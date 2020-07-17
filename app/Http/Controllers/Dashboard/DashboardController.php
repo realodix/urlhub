@@ -20,7 +20,7 @@ class DashboardController extends Controller
     /**
      * DashboardController constructor.
      *
-     * @param Url $url
+     * @param UrlService $urlService
      */
     public function __construct(UrlService $urlService)
     {
