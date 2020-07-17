@@ -12,19 +12,16 @@ use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
-    /**
-     * @var urlService
-     */
-    protected $urlService;
+    protected $urlSrvc;
 
     /**
      * DashboardController constructor.
      *
-     * @param UrlService $urlService
+     * @param UrlService $urlSrvc
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(UrlService $urlSrvc)
     {
-        $this->urlService = $urlService;
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
@@ -74,7 +71,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, Url $url)
     {
-        $this->urlService->update($request->only('long_url', 'meta_title'), $url);
+        $this->urlSrvc->update($request->only('long_url', 'meta_title'), $url);
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));
@@ -91,7 +88,7 @@ class DashboardController extends Controller
     {
         $this->authorize('forceDelete', $url);
 
-        $this->urlService->delete($url);
+        $this->urlSrvc->delete($url);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));
@@ -105,7 +102,7 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $this->urlService->duplicate($key, Auth::id());
+        $this->urlSrvc->duplicate($key, Auth::id());
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
