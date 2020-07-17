@@ -209,45 +209,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @dataProvider keyCapacityProvider
-     */
-    public function keyCapacity($hashLength, $expected)
-    {
-        config()->set('urlhub.hash_length', $hashLength);
-
-        $this->assertSame($expected, $this->url->keyCapacity());
-    }
-
-    public function keyCapacityProvider()
-    {
-        return [
-            [1, 3], // (3^1)
-            [2, 9], // $alphabet_length^$hashLength or 3^2
-        ];
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function keyRemaining()
-    {
-        factory(Url::class, 5)->create();
-
-        config()->set('urlhub.hash_length', 1);
-
-        // 3 - 5 - (2+1) = must be 0
-        $this->assertSame(0, $this->url->keyRemaining());
-
-        config()->set('urlhub.hash_length', 2);
-
-        // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->keyRemaining());
-    }
-
-    /**
-     * @test
-     * @group u-model
      */
     public function getRemoteTitle()
     {

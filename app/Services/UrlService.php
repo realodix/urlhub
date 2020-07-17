@@ -7,24 +7,25 @@ use Symfony\Component\HttpFoundation\IpUtils;
 
 class UrlService
 {
-    /**
-     * @var url
-     */
     protected $url;
 
     /**
+     * @var keySrvc
+     */
+    protected $keySrvc;
+
+    /**
      * UrlService constructor.
-     *
-     * @param Url $url
      */
     public function __construct()
     {
         $this->url = new Url;
+        $this->keySrvc = new KeyService;
     }
 
     public function shortenUrl($request, $authId)
     {
-        $key = $request['custom_key'] ?? $this->url->randomKey();
+        $key = $request['custom_key'] ?? $this->keySrvc->randomKey();
 
         $url = Url::create([
             'user_id'    => $authId,
@@ -65,7 +66,7 @@ class UrlService
      */
     public function duplicate($key, $authId)
     {
-        $randomKey = $this->url->randomKey();
+        $randomKey = $this->keySrvc->randomKey();
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
