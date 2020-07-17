@@ -1,19 +1,19 @@
 <?php
 
-namespace Tests\Unit\Rule;
+namespace Tests\Unit\Services;
 
 use App\Services\UrlService;
 use Tests\TestCase;
 
 class UrlServiceTest extends TestCase
 {
-    protected $urlService;
+    protected $urlSrvc;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->urlService = new UrlService();
+        $this->urlSrvc = new UrlService();
     }
 
     /**
@@ -24,7 +24,7 @@ class UrlServiceTest extends TestCase
         config()->set('urlhub.anonymize_ip_addr', false);
 
         $ip = '192.168.1.1';
-        $expected = $this->urlService->anonymizeIp($ip);
+        $expected = $this->urlSrvc->anonymizeIp($ip);
         $actual = $ip;
 
         $this->assertSame($expected, $actual);
