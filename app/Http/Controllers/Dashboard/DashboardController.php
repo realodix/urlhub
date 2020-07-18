@@ -13,8 +13,6 @@ use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
-    protected $urlSrvc;
-
     /**
      * DashboardController constructor.
      *
@@ -30,17 +28,16 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $url = new Url;
         $user = new User;
-        $keySrvc = new KeyService();
+        $keySrvc = new KeyService;
 
         return view('backend.dashboard', [
-            'shortUrlCount'        => $url->shortUrlCount(),
-            'shortUrlCountByMe'    => $url->shortUrlCountOwnedBy(Auth::id()),
-            'shortUrlCountByGuest' => $url->shortUrlCountOwnedBy(),
-            'clickCount'           => $url->clickCount(),
-            'clickCountFromMe'     => $url->clickCountOwnedBy(Auth::id()),
-            'clickCountFromGuest'  => $url->clickCountOwnedBy(),
+            'shortUrlCount'        => $this->urlSrvc->shortUrlCount(),
+            'shortUrlCountByMe'    => $this->urlSrvc->shortUrlCountOwnedBy(Auth::id()),
+            'shortUrlCountByGuest' => $this->urlSrvc->shortUrlCountOwnedBy(),
+            'clickCount'           => $this->urlSrvc->clickCount(),
+            'clickCountFromMe'     => $this->urlSrvc->clickCountOwnedBy(Auth::id()),
+            'clickCountFromGuest'  => $this->urlSrvc->clickCountOwnedBy(),
             'userCount'            => $user->userCount(),
             'guestCount'           => $user->guestCount(),
             'keyCapacity'          => $keySrvc->keyCapacity(),

@@ -80,6 +80,32 @@ class UrlService
         return $replicate;
     }
 
+    public function shortUrlCount()
+    {
+        return $this->url->count('keyword');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function shortUrlCountOwnedBy($id = null)
+    {
+        return $this->url->whereUserId($id)->count('keyword');
+    }
+
+    public function clickCount(): int
+    {
+        return $this->url->sum('clicks');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function clickCountOwnedBy($id = null): int
+    {
+        return $this->url->whereUserId($id)->sum('clicks');
+    }
+
     /**
      * IP Address to Identify Geolocation Information. If it fails, because
      * DB-IP Lite databases doesn't know the IP country, we will set it to

@@ -4,17 +4,16 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
+use App\Services\UrlService;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    protected $url;
-
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->url = new Url();
+        $this->urlSrvc = new UrlService;
 
         factory(Url::class)->create([
             'user_id' => $this->admin()->id,
@@ -140,7 +139,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             3,
-            $this->url->shortUrlCount()
+            $this->urlSrvc->shortUrlCount()
         );
     }
 
@@ -152,7 +151,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             1,
-            $this->url->shortUrlCountOwnedBy($this->admin()->id)
+            $this->urlSrvc->shortUrlCountOwnedBy($this->admin()->id)
         );
     }
 
@@ -164,7 +163,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             2,
-            $this->url->shortUrlCountOwnedBy()
+            $this->urlSrvc->shortUrlCountOwnedBy()
         );
     }
 
@@ -176,7 +175,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             30,
-            $this->url->clickCount()
+            $this->urlSrvc->clickCount()
         );
     }
 
@@ -188,7 +187,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             10,
-            $this->url->clickCountOwnedBy($this->admin()->id)
+            $this->urlSrvc->clickCountOwnedBy($this->admin()->id)
         );
     }
 
@@ -202,7 +201,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             20,
-            $this->url->clickCountOwnedBy()
+            $this->urlSrvc->clickCountOwnedBy()
         );
     }
 }

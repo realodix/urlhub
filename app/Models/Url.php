@@ -97,36 +97,4 @@ class Url extends Model
     {
         return url('/'.$this->attributes['keyword']);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | UrlHub Functions
-    |--------------------------------------------------------------------------
-    */
-
-    public function shortUrlCount()
-    {
-        return self::count('keyword');
-    }
-
-    /**
-     * @param int $id
-     */
-    public function shortUrlCountOwnedBy($id = null)
-    {
-        return self::whereUserId($id)->count('keyword');
-    }
-
-    public function clickCount(): int
-    {
-        return self::sum('clicks');
-    }
-
-    /**
-     * @param int $id
-     */
-    public function clickCountOwnedBy($id = null): int
-    {
-        return self::whereUserId($id)->sum('clicks');
-    }
 }

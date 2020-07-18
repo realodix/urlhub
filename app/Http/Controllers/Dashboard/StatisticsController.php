@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyService;
+use App\Services\UrlService;
 
 class StatisticsController extends Controller
 {
@@ -22,17 +22,17 @@ class StatisticsController extends Controller
      */
     public function view()
     {
-        $url = new Url;
         $user = new User;
-        $keySrvc = new KeyService();
+        $urlSrvc = new UrlService;
+        $keySrvc = new KeyService;
 
         return view('backend.statistics', [
             'keyCapacity'          => $keySrvc->keyCapacity(),
             'keyRemaining'         => $keySrvc->keyRemaining(),
-            'shortUrlCount'        => $url->shortUrlCount(),
-            'shortUrlCountByGuest' => $url->shortUrlCountOwnedBy(),
-            'clickCount'           => $url->clickCount(),
-            'clickCountFromGuest'  => $url->clickCountOwnedBy(),
+            'shortUrlCount'        => $urlSrvc->shortUrlCount(),
+            'shortUrlCountByGuest' => $urlSrvc->shortUrlCountOwnedBy(),
+            'clickCount'           => $urlSrvc->clickCount(),
+            'clickCountFromGuest'  => $urlSrvc->clickCountOwnedBy(),
             'userCount'            => $user->userCount(),
             'guestCount'           => $user->guestCount(),
         ]);
