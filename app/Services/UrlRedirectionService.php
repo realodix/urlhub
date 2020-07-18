@@ -45,7 +45,7 @@ class UrlRedirectionService
         $url->increment('clicks');
         $this->storeVisitStat(
             $url,
-            $url->ipToCountry(
+            $this->urlService->ipToCountry(
                 $this->urlService->anonymizeIp(request()->ip())
             )
         );
