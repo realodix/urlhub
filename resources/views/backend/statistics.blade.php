@@ -15,11 +15,7 @@
   <b>Capacity</b>   : <span title="{{number_format($keyCapacity)}}" data-toggle="tooltip">{{numberFormatShort($keyCapacity)}}</span> <br>
   <b>Remaining</b>  : <span title="{{number_format($keyRemaining)}}" data-toggle="tooltip">
                         {{numberFormatShort($keyRemaining)}}
-                        @if ($keyCapacity == 0)
-                          (0%)
-                        @else
-                          ({{round(100-((($keyCapacity-$keyRemaining)/$keyCapacity)*100))}}%)
-                        @endif
+                        ({{$remainingPercentage}})
                       </span> <br>
 
 <br>

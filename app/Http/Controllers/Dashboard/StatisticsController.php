@@ -29,6 +29,7 @@ class StatisticsController extends Controller
         return view('backend.statistics', [
             'keyCapacity'          => $keySrvc->keyCapacity(),
             'keyRemaining'         => $keySrvc->keyRemaining(),
+            'remainingPercentage'  => remainingPercentage($keySrvc->numberOfUsedKey(), $keySrvc->keyCapacity()),
             'shortUrlCount'        => $urlSrvc->shortUrlCount(),
             'shortUrlCountByGuest' => $urlSrvc->shortUrlCountOwnedBy(),
             'clickCount'           => $urlSrvc->clickCount(),
