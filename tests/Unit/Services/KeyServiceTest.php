@@ -45,15 +45,15 @@ class KeyServiceTest extends TestCase
     {
         factory(Url::class, 5)->create();
 
-        config()->set('urlhub.hash_char', '1234567');
+        config()->set('urlhub.hash_char', '1234');
         config()->set('urlhub.hash_length', 1);
 
-        // 7 - 5 - (2+1) = must be 0
+        // 4 - 5 = must be 0
         $this->assertSame(0, $this->keySrvc->keyRemaining());
 
         config()->set('urlhub.hash_length', 2);
 
-        // (7^2) - 5 - (2+1) = 41
-        $this->assertSame(41, $this->keySrvc->keyRemaining());
+        // (4^2) - 5 = 11
+        $this->assertSame(11, $this->keySrvc->keyRemaining());
     }
 }

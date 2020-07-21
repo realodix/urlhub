@@ -8,23 +8,6 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        factory(Url::class)->create([
-            'user_id' => null,
-            'clicks'  => 10,
-            'ip'      => '0.0.0.0',
-        ]);
-
-        factory(Url::class)->create([
-            'user_id' => null,
-            'clicks'  => 10,
-            'ip'      => '1.1.1.1',
-        ]);
-    }
-
     /**
      * @test
      * @group u-model
