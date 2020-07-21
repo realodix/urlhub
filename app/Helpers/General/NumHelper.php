@@ -75,14 +75,7 @@ class NumHelper
     public function remainingPercentage($used, $capacity)
     {
         $remaining = $capacity - $used;
-        $percent = round(($remaining / $capacity) * 100);
 
-        if (($percent == 0) && ($capacity != $used)) {
-            return '0.01%';
-        } elseif (($percent == 100) && ($capacity != $remaining)) {
-            return '99.99%';
-        } else {
-            return $percent.'%';
-        }
+        return round(($remaining / $capacity) * 100);
     }
 }
