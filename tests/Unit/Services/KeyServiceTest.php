@@ -20,21 +20,14 @@ class KeyServiceTest extends TestCase
     /**
      * @test
      * @group u-service
-     * @dataProvider keyCapacityProvider
      */
-    public function keyCapacity($hashLength, $expected)
+    public function keyCapacity()
     {
-        config()->set('urlhub.hash_length', $hashLength);
+        $hashLength = uHub('hash_length');
+        $hashCharLength = strlen(uHub('hash_char'));
+        $keyCapacity = pow($hashCharLength, $hashLength);
 
-        $this->assertSame($expected, $this->keySrvc->keyCapacity());
-    }
-
-    public function keyCapacityProvider()
-    {
-        return [
-            [1, 62], // (62^1)
-            [2, 3844], // $hash_char_length^$hash_length or 62^2
-        ];
+        $this->assertSame($keyCapacity, $this->keySrvc->keyCapacity());
     }
 
     /**
@@ -43,17 +36,17 @@ class KeyServiceTest extends TestCase
      */
     public function keyRemaining()
     {
-        factory(Url::class, 5)->create();
+        factory(Url::class, 2)->create();
 
-        config()->set('urlhub.hash_char', '1234');
+        config()->set('urlhub.hash_char', '1');
         config()->set('urlhub.hash_length', 1);
 
-        // 4 - 5 = must be 0
+        // 1 - 2 = must be 0
         $this->assertSame(0, $this->keySrvc->keyRemaining());
 
-        config()->set('urlhub.hash_length', 2);
+        config()->set('urlhub.hash_char', '123');
 
-        // (4^2) - 5 = 11
-        $this->assertSame(11, $this->keySrvc->keyRemaining());
+        // (3^1) - 2 = 1
+        $this->assertSame(1, $this->keySrvc->keyRemaining());
     }
 }
