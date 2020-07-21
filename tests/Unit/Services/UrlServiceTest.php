@@ -9,7 +9,7 @@ class UrlServiceTest extends TestCase
 {
     protected $urlSrvc;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -18,7 +18,7 @@ class UrlServiceTest extends TestCase
 
     /**
      * @test
-     * @group u-model
+     * @group u-service
      */
     public function ipToCountryWithKnownIp()
     {
@@ -29,7 +29,7 @@ class UrlServiceTest extends TestCase
 
     /**
      * @test
-     * @group u-model
+     * @group u-service
      */
     public function ipToCountryWithUnknownIp()
     {
@@ -55,7 +55,7 @@ class UrlServiceTest extends TestCase
 
     /**
      * @test
-     * @group u-model
+     * @group u-service
      * @dataProvider getDomainProvider
      */
     public function get_domain($expected, $actutal)
@@ -79,7 +79,7 @@ class UrlServiceTest extends TestCase
 
     /**
      * @test
-     * @group u-model
+     * @group u-service
      */
     public function getRemoteTitle()
     {

@@ -10,7 +10,7 @@ class KeyServiceTest extends TestCase
 {
     protected $keySrvc;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -19,7 +19,7 @@ class KeyServiceTest extends TestCase
 
     /**
      * @test
-     * @group u-model
+     * @group u-service
      * @dataProvider keyCapacityProvider
      */
     public function keyCapacity($hashLength, $expected)
@@ -39,7 +39,7 @@ class KeyServiceTest extends TestCase
 
     /**
      * @test
-     * @group u-model
+     * @group u-service
      */
     public function keyRemaining()
     {

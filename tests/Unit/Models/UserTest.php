@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -38,33 +38,5 @@ class UserTest extends TestCase
         ]);
 
         $this->assertTrue($user->url()->exists());
-    }
-
-    /**
-     * There are 2 authenticated users that have been created,
-     * see setUp() method on Tests\Support\Authentication class.
-     *
-     * @test
-     * @group u-model
-     */
-    public function userCount()
-    {
-        $user = new User;
-
-        $this->assertSame(1, $user->userCount());
-    }
-
-    /**
-     * The number of guests is calculated based on a unique IP,
-     * see setUp() method on this class.
-     *
-     * @test
-     * @group u-model
-     */
-    public function guestCount()
-    {
-        $user = new User;
-
-        $this->assertSame(2, $user->guestCount());
     }
 }

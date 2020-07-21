@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyService;
 use App\Services\UrlService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -28,7 +29,7 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $user = new User;
+        $userSrvc = new UserService;
         $keySrvc = new KeyService;
 
         return view('backend.dashboard', [
@@ -38,8 +39,8 @@ class DashboardController extends Controller
             'clickCount'           => $this->urlSrvc->clickCount(),
             'clickCountFromMe'     => $this->urlSrvc->clickCountOwnedBy(Auth::id()),
             'clickCountFromGuest'  => $this->urlSrvc->clickCountOwnedBy(),
-            'userCount'            => $user->userCount(),
-            'guestCount'           => $user->guestCount(),
+            'userCount'            => $userSrvc->userCount(),
+            'guestCount'           => $userSrvc->guestCount(),
             'keyCapacity'          => $keySrvc->keyCapacity(),
             'keyRemaining'         => $keySrvc->keyRemaining(),
             'remainingPercentage'  => remainingPercentage($keySrvc->numberOfUsedKey(), $keySrvc->keyCapacity()),
