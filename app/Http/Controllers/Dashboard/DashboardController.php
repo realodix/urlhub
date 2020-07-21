@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
-use App\Models\User;
 use App\Services\KeyService;
 use App\Services\UrlService;
 use App\Services\UserService;
@@ -65,11 +64,10 @@ class DashboardController extends Controller
      * Update the long url that was previously set to the new long url.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Url                 $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $url)
+    public function update(Request $request, $url)
     {
         $this->urlSrvc->update($request->only('long_url', 'meta_title'), $url);
 
@@ -80,11 +78,9 @@ class DashboardController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param \App\Models\Url $url
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $url)
+    public function delete($url)
     {
         $this->authorize('forceDelete', $url);
 
