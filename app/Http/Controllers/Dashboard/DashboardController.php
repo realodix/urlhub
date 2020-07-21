@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
-use App\Models\User;
+use App\Services\KeyService;
 use App\Services\UrlService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -13,18 +14,13 @@ use Illuminate\Support\Str;
 class DashboardController extends Controller
 {
     /**
-     * @var urlService
-     */
-    protected $urlService;
-
-    /**
      * DashboardController constructor.
      *
-     * @param Url $url
+     * @param UrlService $urlSrvc
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(UrlService $urlSrvc)
     {
-        $this->urlService = $urlService;
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
@@ -32,21 +28,21 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $url = new Url;
-        $user = new User;
+        $userSrvc = new UserService;
+        $keySrvc = new KeyService;
 
         return view('backend.dashboard', [
-            'shortUrlCount'        => $url->shortUrlCount(),
-            'shortUrlCountByMe'    => $url->shortUrlCountOwnedBy(Auth::id()),
-            'shortUrlCountByGuest' => $url->shortUrlCountOwnedBy(),
-            'clickCount'           => $url->clickCount(),
-            'clickCountFromMe'     => $url->clickCountOwnedBy(Auth::id()),
-            'clickCountFromGuest'  => $url->clickCountOwnedBy(),
-            'userCount'            => $user->userCount(),
-            'guestCount'           => $user->guestCount(),
-            'keyCapacity'          => $url->keyCapacity(),
-            'keyRemaining'         => $url->keyRemaining(),
-            'remainingPercentage'  => remainingPercentage($url->numberOfUsedKey(), $url->keyCapacity()),
+            'shortUrlCount'        => $this->urlSrvc->shortUrlCount(),
+            'shortUrlCountByMe'    => $this->urlSrvc->shortUrlCountOwnedBy(Auth::id()),
+            'shortUrlCountByGuest' => $this->urlSrvc->shortUrlCountOwnedBy(),
+            'clickCount'           => $this->urlSrvc->clickCount(),
+            'clickCountFromMe'     => $this->urlSrvc->clickCountOwnedBy(Auth::id()),
+            'clickCountFromGuest'  => $this->urlSrvc->clickCountOwnedBy(),
+            'userCount'            => $userSrvc->userCount(),
+            'guestCount'           => $userSrvc->guestCount(),
+            'keyCapacity'          => $keySrvc->keyCapacity(),
+            'keyRemaining'         => $keySrvc->keyRemaining(),
+            'remainingPercentage'  => remainingPercentage($keySrvc->numberOfUsedKey(), $keySrvc->keyCapacity()),
         ]);
     }
 
@@ -68,13 +64,12 @@ class DashboardController extends Controller
      * Update the long url that was previously set to the new long url.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Url                 $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $url)
+    public function update(Request $request, $url)
     {
-        $this->urlService->update($request->only('long_url', 'meta_title'), $url);
+        $this->urlSrvc->update($request->only('long_url', 'meta_title'), $url);
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));
@@ -83,15 +78,13 @@ class DashboardController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param \App\Models\Url $url
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $url)
+    public function delete($url)
     {
         $this->authorize('forceDelete', $url);
 
-        $this->urlService->delete($url);
+        $this->urlSrvc->delete($url);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));
@@ -105,7 +98,7 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $this->urlService->duplicate($key, Auth::id());
+        $this->urlSrvc->duplicate($key, Auth::id());
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));

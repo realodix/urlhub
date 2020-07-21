@@ -3,28 +3,29 @@
 namespace App\Services;
 
 use App\Models\Url;
+use Embed\Embed;
+use GeoIp2\Database\Reader;
+use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 class UrlService
 {
-    /**
-     * @var url
-     */
     protected $url;
+
+    protected $keySrvc;
 
     /**
      * UrlService constructor.
-     *
-     * @param Url $url
      */
     public function __construct()
     {
         $this->url = new Url;
+        $this->keySrvc = new KeyService;
     }
 
     public function shortenUrl($request, $authId)
     {
-        $key = $request['custom_key'] ?? $this->url->randomKey();
+        $key = $request['custom_key'] ?? $this->keySrvc->randomKey();
 
         $url = Url::create([
             'user_id'    => $authId,
@@ -65,7 +66,7 @@ class UrlService
      */
     public function duplicate($key, $authId)
     {
-        $randomKey = $this->url->randomKey();
+        $randomKey = $this->keySrvc->randomKey();
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
@@ -77,6 +78,56 @@ class UrlService
         $replicate->save();
 
         return $replicate;
+    }
+
+    public function shortUrlCount()
+    {
+        return $this->url->count('keyword');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function shortUrlCountOwnedBy($id = null)
+    {
+        return $this->url->whereUserId($id)->count('keyword');
+    }
+
+    public function clickCount(): int
+    {
+        return $this->url->sum('clicks');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function clickCountOwnedBy($id = null): int
+    {
+        return $this->url->whereUserId($id)->sum('clicks');
+    }
+
+    /**
+     * IP Address to Identify Geolocation Information. If it fails, because
+     * DB-IP Lite databases doesn't know the IP country, we will set it to
+     * Unknown.
+     */
+    public function ipToCountry($ip)
+    {
+        try {
+            // @codeCoverageIgnoreStart
+            $reader = new Reader(database_path().'/dbip-country-lite-2020-07.mmdb');
+            $record = $reader->country($ip);
+            $countryCode = $record->country->isoCode;
+            $countryName = $record->country->name;
+
+            return compact('countryCode', 'countryName');
+            // @codeCoverageIgnoreEnd
+        } catch (\Exception $e) {
+            $countryCode = 'N/A';
+            $countryName = 'Unknown';
+
+            return compact('countryCode', 'countryName');
+        }
     }
 
     /**
@@ -92,5 +143,41 @@ class UrlService
         }
 
         return IPUtils::anonymize($address);
+    }
+
+    /**
+     * Get Domain from external url.
+     *
+     * Extract the domain name using the classic parse_url() and then look
+     * for a valid domain without any subdomain (www being a subdomain).
+     * Won't work on things like 'localhost'.
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public function getDomain($url)
+    {
+        $url = SpatieUrl::fromString($url);
+
+        return urlRemoveScheme($url->getHost());
+    }
+
+    /**
+     * This function returns a string: either the page title as defined in
+     * HTML, or "{domain_name} - No Title" if not found.
+     *
+     * @param string $url
+     * @return string
+     */
+    public function getRemoteTitle($url)
+    {
+        try {
+            $embed = Embed::create($url);
+            $title = $embed->title;
+        } catch (\Exception $e) {
+            $title = $this->getDomain($url).' - No Title';
+        }
+
+        return $title;
     }
 }

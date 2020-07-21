@@ -33,10 +33,8 @@ class AllUrlController extends Controller
 
     /**
      * Delete a Short URL on user (Admin) request.
-     *
-     * @param \App\Models\Url $url
      */
-    public function delete(Url $url)
+    public function delete($url)
     {
         $this->urlService->delete($url);
 

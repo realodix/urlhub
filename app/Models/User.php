@@ -7,7 +7,6 @@ use App\Http\Traits\Hashidable;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Laravolt\Avatar\Facade as Avatar;
 use Spatie\Permission\Traits\HasRoles;
@@ -82,29 +81,5 @@ class User extends Authenticatable
 
         // Create unique avatar based on their email
         return Avatar::create(Str::title($this->email))->toBase64();
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | UrlHub Functions
-    |--------------------------------------------------------------------------
-    */
-
-    public function userCount()
-    {
-        return self::count();
-    }
-
-    /*
-     * Count the number of guests in the url column based on IP and grouped
-     * by ip.
-     */
-    public function guestCount()
-    {
-        return Url::select('ip', DB::raw('count(*) as total'))
-                    ->whereNull('user_id')
-                    ->groupBy('ip')
-                    ->get()
-                    ->count();
     }
 }

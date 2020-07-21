@@ -4,17 +4,16 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
+use App\Services\UrlService;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    protected $url;
-
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
-        $this->url = new Url();
+        $this->urlSrvc = new UrlService;
 
         factory(Url::class)->create([
             'user_id' => $this->admin()->id,
@@ -140,7 +139,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             3,
-            $this->url->shortUrlCount()
+            $this->urlSrvc->shortUrlCount()
         );
     }
 
@@ -152,7 +151,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             1,
-            $this->url->shortUrlCountOwnedBy($this->admin()->id)
+            $this->urlSrvc->shortUrlCountOwnedBy($this->admin()->id)
         );
     }
 
@@ -164,7 +163,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             2,
-            $this->url->shortUrlCountOwnedBy()
+            $this->urlSrvc->shortUrlCountOwnedBy()
         );
     }
 
@@ -176,7 +175,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             30,
-            $this->url->clickCount()
+            $this->urlSrvc->clickCount()
         );
     }
 
@@ -188,7 +187,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             10,
-            $this->url->clickCountOwnedBy($this->admin()->id)
+            $this->urlSrvc->clickCountOwnedBy($this->admin()->id)
         );
     }
 
@@ -202,104 +201,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             20,
-            $this->url->clickCountOwnedBy()
+            $this->urlSrvc->clickCountOwnedBy()
         );
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @dataProvider keyCapacityProvider
-     */
-    public function keyCapacity($hashLength, $expected)
-    {
-        config()->set('urlhub.hash_length', $hashLength);
-
-        $this->assertSame($expected, $this->url->keyCapacity());
-    }
-
-    public function keyCapacityProvider()
-    {
-        return [
-            [1, 3], // (3^1)
-            [2, 9], // $alphabet_length^$hashLength or 3^2
-        ];
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function keyRemaining()
-    {
-        factory(Url::class, 5)->create();
-
-        config()->set('urlhub.hash_length', 1);
-
-        // 3 - 5 - (2+1) = must be 0
-        $this->assertSame(0, $this->url->keyRemaining());
-
-        config()->set('urlhub.hash_length', 2);
-
-        // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->keyRemaining());
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function getRemoteTitle()
-    {
-        $longUrl = 'https://github123456789.com';
-
-        $this->assertSame('github123456789.com - No Title', $this->url->getRemoteTitle($longUrl));
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @dataProvider getDomainProvider
-     */
-    public function get_domain($expected, $actutal)
-    {
-        $this->assertEquals($expected, $this->url->getDomain($actutal));
-    }
-
-    public function getDomainProvider()
-    {
-        return [
-            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
-        ];
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function ipToCountryWithKnownIp()
-    {
-        $countries = $this->url->ipToCountry('8.8.8.8');
-
-        $this->assertEquals('US', $countries['countryCode']);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function ipToCountryWithUnknownIp()
-    {
-        $countries = $this->url->ipToCountry('127.0.0.1');
-
-        $this->assertEquals('N/A', $countries['countryCode']);
-        $this->assertEquals('Unknown', $countries['countryName']);
     }
 }

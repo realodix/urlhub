@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Url;
+use App\Services\KeyService;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class UrlHubLinkChecker
      */
     public function handle($request, Closure $next)
     {
-        $url = new Url();
+        $keySrvc = new KeyService();
         $longUrl = rtrim($request->long_url, '/');
 
         /*
@@ -31,7 +32,7 @@ class UrlHubLinkChecker
         |
         */
 
-        if ($url->keyRemaining() == 0) {
+        if ($keySrvc->keyRemaining() == 0) {
             return redirect()
                    ->back()
                    ->withFlashError(
