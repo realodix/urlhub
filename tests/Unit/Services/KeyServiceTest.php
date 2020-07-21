@@ -47,7 +47,7 @@ class KeyServiceTest extends TestCase
 
         config()->set('urlhub.hash_char', '1234567');
         config()->set('urlhub.hash_length', 1);
- 
+
         // 7 - 5 - (2+1) = must be 0
         $this->assertSame(0, $this->keySrvc->keyRemaining());
 
