@@ -53,7 +53,7 @@ class KeyServiceTest extends TestCase
 
     /**
      * @test
-     * @group u-servicezz
+     * @group u-service
      */
     public function keyRemainingInPercent()
     {
