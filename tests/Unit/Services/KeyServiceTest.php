@@ -4,8 +4,8 @@ namespace Tests\Unit\Services;
 
 use App\Models\Url;
 use App\Services\KeyService;
-use Tests\TestCase;
 use Mockery;
+use Tests\TestCase;
 
 class KeyServiceTest extends TestCase
 {
@@ -54,31 +54,26 @@ class KeyServiceTest extends TestCase
     /**
      * @test
      * @group u-service
+     * @dataProvider keyRemainingInPercentProvider
      */
-    public function keyRemainingInPercent()
+    public function keyRemainingInPercent($kc, $nouk, $result)
     {
         $krip = Mockery::mock(KeyService::class)->makePartial();
         $krip->shouldReceive([
-            'keyCapacity' => 10,
-            'numberOfUsedKey' => 11,
+            'keyCapacity'     => $kc,
+            'numberOfUsedKey' => $nouk,
         ]);
         $response = $krip->keyRemainingInPercent();
-        $this->assertSame('0%', $response);
 
-        $krip = Mockery::mock(KeyService::class)->makePartial();
-        $krip->shouldReceive([
-            'keyCapacity' => 1000,
-            'numberOfUsedKey' => 999,
-        ]);
-        $response = $krip->keyRemainingInPercent();
-        $this->assertSame('0.01%', $response);
+        $this->assertSame($result, $response);
+    }
 
-        $krip = Mockery::mock(KeyService::class)->makePartial();
-        $krip->shouldReceive([
-            'keyCapacity' => 1000,
-            'numberOfUsedKey' => 5,
-        ]);
-        $response = $krip->keyRemainingInPercent();
-        $this->assertSame('99.99%', $response);
+    public function keyRemainingInPercentProvider()
+    {
+        return [
+            [10, 11, '0%'],
+            [pow(10, 3), 999, '0.01%'],
+            [pow(10, 3), 5, '99.99%'],
+        ];
     }
 }
