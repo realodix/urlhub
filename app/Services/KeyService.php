@@ -96,9 +96,10 @@ class KeyService
         $capacity = $this->keyCapacity();
         $used = $this->numberOfUsedKey();
         $remaining = $this->keyRemaining();
-        $result = remainingPercentage($used, $capacity);
 
-        if ($result < 0) {
+        $result = remainingPercentage($remaining, $capacity);
+
+        if ($result <= 0) {
             return '0%';
         } elseif (($result == 0) && ($capacity != $used)) {
             return '0.01%';

@@ -70,12 +70,11 @@ class NumHelper
     }
 
     /**
+     * @codeCoverageIgnore
      * @return string
      */
-    public function remainingPercentage($used, $capacity)
+    public function remainingPercentage($remaining, $capacity)
     {
-        $remaining = $capacity - $used;
-
         return round(($remaining / $capacity) * 100);
     }
 }
