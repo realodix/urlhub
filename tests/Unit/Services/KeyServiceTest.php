@@ -58,29 +58,26 @@ class KeyServiceTest extends TestCase
     public function keyRemainingInPercent()
     {
         $krip = Mockery::mock(KeyService::class)->makePartial();
-        $krip
-            ->shouldReceive([
-                'keyCapacity' => 10,
-                'numberOfUsedKey' => 11,
-            ]);
+        $krip->shouldReceive([
+            'keyCapacity' => 10,
+            'numberOfUsedKey' => 11,
+        ]);
         $response = $krip->keyRemainingInPercent();
         $this->assertSame('0%', $response);
 
         $krip = Mockery::mock(KeyService::class)->makePartial();
-        $krip
-            ->shouldReceive([
-                'keyCapacity' => 1000,
-                'numberOfUsedKey' => 999,
-            ]);
+        $krip->shouldReceive([
+            'keyCapacity' => 1000,
+            'numberOfUsedKey' => 999,
+        ]);
         $response = $krip->keyRemainingInPercent();
         $this->assertSame('0.01%', $response);
 
         $krip = Mockery::mock(KeyService::class)->makePartial();
-        $krip
-            ->shouldReceive([
-                'keyCapacity' => 1000,
-                'numberOfUsedKey' => 5,
-            ]);
+        $krip->shouldReceive([
+            'keyCapacity' => 1000,
+            'numberOfUsedKey' => 5,
+        ]);
         $response = $krip->keyRemainingInPercent();
         $this->assertSame('99.99%', $response);
     }
