@@ -8,6 +8,8 @@ namespace App\Services;
 class ConfigService
 {
     private const DEFAULT_TRUE = true;
+
+    private const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     /**
      * Validate all of the config related to the library.
      *
@@ -60,15 +62,9 @@ class ConfigService
     {
         $hashLength = config('urlhub.hash_length');
 
-        if (! is_int($hashLength)) {
-            throw new \Exception('The "hash_length" config variable is not a valid integer.');
+        if (! is_int($hashLength) || $hashLength < 1) {
+            return config(['urlhub.hash_length' => self::DEFAULT_HASH_LENGTH]);
         }
-
-        if ($hashLength < 1) {
-            throw new \Exception('The "hash_length" config variable must be 1 or above.');
-        }
-
-        return true;
     }
 
     private function redirect_status_code()
