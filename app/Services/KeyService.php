@@ -65,15 +65,6 @@ class KeyService
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');
 
-        // Untuk kebutuhan di saat pengujian, dimana saat pengujian dibutuhkan
-        // nilai yang dikembalikan adalah 0. Dalam produksi, kondisi ini tidak
-        // diperlukan karena sudah dilakukan validasi untuk tidak mengembalikan
-        // angka 0, maka kedepannya Kami mencoba untuk memanipulasi data yang
-        // dikembalikan. Tests\Unit\Services\keyRemaining()
-        if ($length == 0) {
-            return 0;
-        }
-
         return pow($alphabet, $length);
     }
 
