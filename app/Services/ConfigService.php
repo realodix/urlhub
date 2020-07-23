@@ -14,6 +14,9 @@ class ConfigService
     private const DEFAULT_HASH_LENGTH = 6;
 
     private const DEFAULT_REDIRECT_STATUS_CODE = 301;
+
+    private const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
+
     /**
      * Validate all of the config related to the library.
      *
@@ -58,8 +61,6 @@ class ConfigService
         if (! ctype_alnum(config('urlhub.hash_char'))) {
             return config(['urlhub.hash_char' => self::DEFAULT_HASH_CHAR]);
         }
-
-        return true;
     }
 
     private function hash_length()
@@ -78,19 +79,15 @@ class ConfigService
         if (! is_int($rsc) || $rsc < 300 || $rsc > 399) {
             return config(['urlhub.redirect_status_code' => self::DEFAULT_REDIRECT_STATUS_CODE]);
         }
-
-        return true;
     }
 
     private function redirect_cache_lifetime()
     {
         $rcl = config('urlhub.redirect_cache_lifetime');
 
-        if ($rcl < 0) {
-            throw new \Exception('The "redirect_cache_lifetime" config variable is not valid.');
+        if (! is_int($rcl) || $rcl < 0) {
+            return config(['urlhub.redirect_cache_lifetime' => self::DEFAULT_REDIRECT_CACHE_LIFETIME]);
         }
-
-        return true;
     }
 
     private function anonymize_ip_addr()
@@ -98,7 +95,5 @@ class ConfigService
         if (! is_bool(config('urlhub.anonymize_ip_addr'))) {
             return config(['urlhub.anonymize_ip_addr' => self::DEFAULT_TRUE]);
         }
-
-        return true;
     }
 }
