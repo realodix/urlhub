@@ -12,6 +12,8 @@ class ConfigService
     private const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 
     private const DEFAULT_HASH_LENGTH = 6;
+
+    private const DEFAULT_REDIRECT_STATUS_CODE = 301;
     /**
      * Validate all of the config related to the library.
      *
@@ -73,8 +75,8 @@ class ConfigService
     {
         $rsc = config('urlhub.redirect_status_code');
 
-        if ($rsc < 300 || $rsc > 399) {
-            throw new \Exception('The "redirect_status_code" config variable is not valid.');
+        if (! is_int($rsc) || $rsc < 300 || $rsc > 399) {
+            return config(['urlhub.redirect_status_code' => self::DEFAULT_REDIRECT_STATUS_CODE]);
         }
 
         return true;
