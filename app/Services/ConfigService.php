@@ -54,7 +54,7 @@ class ConfigService
     private function hash_char()
     {
         if (! ctype_alnum(config('urlhub.hash_char'))) {
-            throw new \Exception('The "hash_char" config variable  may only contain letters and numbers.');
+            return config(['urlhub.hash_char' => self::DEFAULT_HASH_CHAR]);
         }
 
         return true;
