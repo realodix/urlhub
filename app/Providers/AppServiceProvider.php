@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
         (new ConfigValidation())->validateConfig();
 
+        // Make SQLite contain regular expression functions by default
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function ($pattern, $value) {
                 mb_regex_encoding('UTF-8');
