@@ -24,7 +24,7 @@ class ConfigService
             && $this->redirect_cache_lifetime();
     }
 
-    public function guest()
+    private function guest()
     {
         if (! is_bool(config('urlhub.guest'))) {
             throw new \Exception('The "guest" config variable must be a boolean.');
@@ -33,7 +33,7 @@ class ConfigService
         return true;
     }
 
-    public function guest_register()
+    private function guest_register()
     {
         if (! is_bool(config('urlhub.guest_register'))) {
             throw new \Exception('The "guest_register" config variable must be a boolean.');
@@ -42,7 +42,7 @@ class ConfigService
         return true;
     }
 
-    public function guest_show_stat()
+    private function guest_show_stat()
     {
         if (! is_bool(config('urlhub.guest_show_stat'))) {
             throw new \Exception('The "guest_show_stat" config variable must be a boolean.');
@@ -51,7 +51,7 @@ class ConfigService
         return true;
     }
 
-    public function hash_char()
+    private function hash_char()
     {
         if (! ctype_alnum(config('urlhub.hash_char'))) {
             throw new \Exception('The "hash_char" config variable  may only contain letters and numbers.');
@@ -60,7 +60,7 @@ class ConfigService
         return true;
     }
 
-    public function hash_length()
+    private function hash_length()
     {
         $hashLength = config('urlhub.hash_length');
 
@@ -75,7 +75,7 @@ class ConfigService
         return true;
     }
 
-    public function redirect_status_code()
+    private function redirect_status_code()
     {
         $rsc = config('urlhub.redirect_status_code');
 
@@ -86,7 +86,7 @@ class ConfigService
         return true;
     }
 
-    public function redirect_cache_lifetime()
+    private function redirect_cache_lifetime()
     {
         $rcl = config('urlhub.redirect_cache_lifetime');
 
@@ -97,7 +97,7 @@ class ConfigService
         return true;
     }
 
-    public function anonymize_ip_addr()
+    private function anonymize_ip_addr()
     {
         if (! is_bool(config('urlhub.anonymize_ip_addr'))) {
             throw new \Exception('The "urlhub.anonymize_ip_addr" config variable must be a boolean.');
