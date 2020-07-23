@@ -28,12 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! file_exists(public_path('/mix-manifest.json'))) {
-            return abort('503', 'The Mix manifest does not exist. See https://github.com/realodix/urlhub#compiling-assets-with-laravel-mix');
-        }
-
         (new ConfigValidation())->validateConfig();
 
+        // Make SQLite contain regular expression functions by default
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function ($pattern, $value) {
                 mb_regex_encoding('UTF-8');
