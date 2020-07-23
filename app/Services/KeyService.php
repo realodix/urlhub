@@ -99,7 +99,7 @@ class KeyService
 
         $result = round(($remaining / $capacity) * 100);
 
-        if (($result == 0) && ($capacity == $used)) {
+        if (($result == 0) && ($capacity <= $used)) {
             return '0%';
         } elseif (($result == 0) && ($capacity > $used)) {
             return '0.01%';
