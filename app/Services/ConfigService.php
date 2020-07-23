@@ -76,7 +76,7 @@ class ConfigService
     {
         $rsc = config('urlhub.redirect_status_code');
 
-        if (! is_int($rsc) || $rsc < 300 || $rsc > 399) {
+        if (! is_int($rsc) || $rsc < 300 || $rsc > 308) {
             return config(['urlhub.redirect_status_code' => self::DEFAULT_REDIRECT_STATUS_CODE]);
         }
     }
