@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Helpers\General;
+namespace App\Services;
 
 /**
  * @codeCoverageIgnore
  */
-class ConfigValidation
+class ConfigService
 {
     /**
      * Validate all of the config related to the library.
@@ -13,15 +13,15 @@ class ConfigValidation
      * @return bool
      * @throws ValidationException
      */
-    public function validateConfig(): bool
+    public function configProtection(): bool
     {
         return $this->guest()
-               && $this->guest_register()
-               && $this->guest_show_stat()
-               && $this->hash_char()
-               && $this->hash_length()
-               && $this->redirect_status_code()
-               && $this->redirect_cache_lifetime();
+            && $this->guest_register()
+            && $this->guest_show_stat()
+            && $this->hash_char()
+            && $this->hash_length()
+            && $this->redirect_status_code()
+            && $this->redirect_cache_lifetime();
     }
 
     public function guest()

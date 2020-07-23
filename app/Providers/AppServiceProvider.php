@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Helpers\General\ConfigValidation;
+use App\Services\ConfigService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
             return abort('503', 'The Mix manifest does not exist. See https://github.com/realodix/urlhub#compiling-assets-with-laravel-mix');
         }
 
-        (new ConfigValidation())->validateConfig();
+        // Keeping config option value of an invalid value.
+        (new ConfigService())->configProtection();
 
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function ($pattern, $value) {
