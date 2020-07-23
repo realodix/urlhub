@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Services;
 
-use App\Models\Url;
 use App\Services\KeyService;
+use Mockery;
 use Tests\TestCase;
 
 class KeyServiceTest extends TestCase
@@ -33,20 +33,54 @@ class KeyServiceTest extends TestCase
     /**
      * @test
      * @group u-service
+     * @dataProvider keyRemainingProvider
      */
-    public function keyRemaining()
+    public function keyRemaining($kc, $nouk, $expected)
     {
-        factory(Url::class, 2)->create();
+        $mock = Mockery::mock(KeyService::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity'     => $kc,
+            'numberOfUsedKey' => $nouk,
+        ]);
+        $actual = $mock->keyRemaining();
 
-        config()->set('urlhub.hash_char', '1');
-        config()->set('urlhub.hash_length', 1);
+        $this->assertSame($expected, $actual);
+    }
 
-        // 1 - 2 = must be 0
-        $this->assertSame(0, $this->keySrvc->keyRemaining());
+    public function keyRemainingProvider()
+    {
+        // keyCapacity(), numberOfUsedKey(), expected_result
+        return [
+            [1, 2, 0],
+            [3, 2, 1],
+        ];
+    }
 
-        config()->set('urlhub.hash_char', '123');
+    /**
+     * @test
+     * @group u-service
+     * @dataProvider keyRemainingInPercentProvider
+     */
+    public function keyRemainingInPercent($kc, $nouk, $expected)
+    {
+        $mock = Mockery::mock(KeyService::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity'     => $kc,
+            'numberOfUsedKey' => $nouk,
+        ]);
+        $actual = $mock->keyRemainingInPercent();
 
-        // (3^1) - 2 = 1
-        $this->assertSame(1, $this->keySrvc->keyRemaining());
+        $this->assertSame($expected, $actual);
+    }
+
+    public function keyRemainingInPercentProvider()
+    {
+        // keyCapacity(), numberOfUsedKey(), expected_result
+        return [
+            [10, 10, '0%'],
+            [10, 11, '0%'],
+            [pow(10, 3), 999, '0.01%'],
+            [pow(10, 3), 5, '99.99%'],
+        ];
     }
 }
