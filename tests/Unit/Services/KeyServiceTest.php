@@ -71,6 +71,7 @@ class KeyServiceTest extends TestCase
     public function keyRemainingInPercentProvider()
     {
         return [
+            [10, 10, '0%'],
             [10, 11, '0%'],
             [pow(10, 3), 999, '0.01%'],
             [pow(10, 3), 5, '99.99%'],
