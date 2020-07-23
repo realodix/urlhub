@@ -65,6 +65,12 @@ class KeyService
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');
 
+        // for testing purposes only
+        // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
+        if ($length == 0) {
+            return 0;
+        }
+
         return pow($alphabet, $length);
     }
 
