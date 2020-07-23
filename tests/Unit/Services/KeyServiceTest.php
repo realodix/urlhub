@@ -35,20 +35,21 @@ class KeyServiceTest extends TestCase
      * @group u-service
      * @dataProvider keyRemainingProvider
      */
-    public function keyRemaining($kc, $nouk, $result)
+    public function keyRemaining($kc, $nouk, $expected)
     {
-        $krip = Mockery::mock(KeyService::class)->makePartial();
-        $krip->shouldReceive([
+        $mock = Mockery::mock(KeyService::class)->makePartial();
+        $mock->shouldReceive([
             'keyCapacity'     => $kc,
             'numberOfUsedKey' => $nouk,
         ]);
-        $response = $krip->keyRemaining();
+        $actual = $mock->keyRemaining();
 
-        $this->assertSame($result, $response);
+        $this->assertSame($expected, $actual);
     }
 
     public function keyRemainingProvider()
     {
+        // keyCapacity(), numberOfUsedKey(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],
@@ -60,20 +61,21 @@ class KeyServiceTest extends TestCase
      * @group u-service
      * @dataProvider keyRemainingInPercentProvider
      */
-    public function keyRemainingInPercent($kc, $nouk, $result)
+    public function keyRemainingInPercent($kc, $nouk, $expected)
     {
-        $krip = Mockery::mock(KeyService::class)->makePartial();
-        $krip->shouldReceive([
+        $mock = Mockery::mock(KeyService::class)->makePartial();
+        $mock->shouldReceive([
             'keyCapacity'     => $kc,
             'numberOfUsedKey' => $nouk,
         ]);
-        $response = $krip->keyRemainingInPercent();
+        $actual = $mock->keyRemainingInPercent();
 
-        $this->assertSame($result, $response);
+        $this->assertSame($expected, $actual);
     }
 
     public function keyRemainingInPercentProvider()
     {
+        // keyCapacity(), numberOfUsedKey(), expected_result
         return [
             [10, 10, '0%'],
             [10, 11, '0%'],
