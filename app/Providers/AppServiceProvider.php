@@ -28,10 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! file_exists(public_path('/mix-manifest.json'))) {
-            return abort('503', 'The Mix manifest does not exist. See https://github.com/realodix/urlhub#compiling-assets-with-laravel-mix');
-        }
-
         (new ConfigValidation())->validateConfig();
 
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
