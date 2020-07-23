@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Keeping config option value of an invalid value.
-        (new ConfigService())->configProtection();
+        // Keeping configuration (config\urlhub.php) values of an invalid value.
+        (new ConfigService())->configGuard();
 
         // Make SQLite contain regular expression functions by default
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {

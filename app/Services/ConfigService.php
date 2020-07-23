@@ -13,7 +13,7 @@ class ConfigService
      * @return bool
      * @throws ValidationException
      */
-    public function configProtection(): bool
+    public function configGuard(): bool
     {
         return $this->guest()
             && $this->guest_register()
