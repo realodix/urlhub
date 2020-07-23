@@ -88,7 +88,7 @@ class ConfigValidation
 
     public function redirect_cache_lifetime()
     {
-        $rcl = config('redirect_cache_lifetime');
+        $rcl = config('urlhub.redirect_cache_lifetime');
 
         if ($rcl < 0) {
             throw new \Exception('The "redirect_cache_lifetime" config variable is not valid.');

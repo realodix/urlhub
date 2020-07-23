@@ -28,6 +28,20 @@ if (! function_exists('appName')) {
     }
 }
 
+if (! function_exists('strLimit')) {
+    function strLimit($string, $maxlength = 50)
+    {
+        return resolve(GeneralHelper::class)->strLimit($string, $maxlength);
+    }
+}
+
+if (! function_exists('urlRemoveScheme')) {
+    function urlRemoveScheme($value)
+    {
+        return resolve(GeneralHelper::class)->urlRemoveScheme($value);
+    }
+}
+
 if (! function_exists('qrCode')) {
     /**
      * @codeCoverageIgnore

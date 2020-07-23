@@ -9,7 +9,7 @@ class NumHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
-     * @dataProvider readableInt
+     * @dataProvider numberFormatShortProvider
      */
     public function numberFormatShort($expected, $actual)
     {
@@ -24,7 +24,18 @@ class NumHelperTest extends TestCase
         }
     }
 
-    public function readableInt()
+    /**
+     * @group u-helper
+     */
+    public function testRemainingPercentage()
+    {
+        $this->assertSame('0%', remainingPercentage(100, 100));
+        $this->assertSame('0.01%', remainingPercentage(999, 1000));
+        $this->assertSame('99.99%', remainingPercentage(1, 1000));
+        $this->assertSame('98%', remainingPercentage(2, 100));
+    }
+
+    public function numberFormatShortProvider()
     {
         return [
             ['12', 12],

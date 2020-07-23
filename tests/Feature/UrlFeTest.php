@@ -52,7 +52,6 @@ class UrlFeTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->admin();
         $longUrl = 'https://laravel.com';
         $customKey = 'laravel';
 
