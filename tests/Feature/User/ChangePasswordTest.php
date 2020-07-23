@@ -113,7 +113,7 @@ class ChangePasswordTest extends TestCase
     /**
      * @test
      * @group f-user
-     * @dataProvider newPasswordFail
+     * @dataProvider newPasswordFailProvider
      */
     public function new_password_validate_fail($data1, $data2)
     {
@@ -142,7 +142,7 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    public function newPasswordFail()
+    public function newPasswordFailProvider()
     {
         return [
             ['', ''], // required

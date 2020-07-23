@@ -118,7 +118,7 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @dataProvider customKeyValidation_fail
+     * @dataProvider customKeyValidationFailProvider
      */
     public function custom_key_validation_fail($data)
     {
@@ -145,7 +145,7 @@ class UrlControllerTest extends TestCase
         $response->assertJson(['errors' => $v->errors()->all()]);
     }
 
-    public function customKeyValidation_fail()
+    public function customKeyValidationFailProvider()
     {
         return [
             [str_repeat('a', 50)],
