@@ -10,6 +10,8 @@ class ConfigService
     private const DEFAULT_TRUE = true;
 
     private const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+
+    private const DEFAULT_HASH_LENGTH = 6;
     /**
      * Validate all of the config related to the library.
      *
