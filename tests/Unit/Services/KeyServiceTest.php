@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Services;
 
-use App\Models\Url;
 use App\Services\KeyService;
 use Mockery;
 use Tests\TestCase;
@@ -34,21 +33,26 @@ class KeyServiceTest extends TestCase
     /**
      * @test
      * @group u-service
+     * @dataProvider keyRemainingProvider
      */
-    public function keyRemaining()
+    public function keyRemaining($kc, $nouk, $result)
     {
-        factory(Url::class, 2)->create();
+        $krip = Mockery::mock(KeyService::class)->makePartial();
+        $krip->shouldReceive([
+            'keyCapacity'     => $kc,
+            'numberOfUsedKey' => $nouk,
+        ]);
+        $response = $krip->keyRemaining();
 
-        config()->set('urlhub.hash_char', '1');
-        config()->set('urlhub.hash_length', 1);
+        $this->assertSame($result, $response);
+    }
 
-        // 1 - 2 = must be 0
-        $this->assertSame(0, $this->keySrvc->keyRemaining());
-
-        config()->set('urlhub.hash_char', '123');
-
-        // (3^1) - 2 = 1
-        $this->assertSame(1, $this->keySrvc->keyRemaining());
+    public function keyRemainingProvider()
+    {
+        return [
+            [1, 2, 0],
+            [3, 2, 1],
+        ];
     }
 
     /**
