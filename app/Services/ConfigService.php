@@ -21,7 +21,8 @@ class ConfigService
             && $this->hash_char()
             && $this->hash_length()
             && $this->redirect_status_code()
-            && $this->redirect_cache_lifetime();
+            && $this->redirect_cache_lifetime()
+            && $this->anonymize_ip_addr();
     }
 
     private function guest()
