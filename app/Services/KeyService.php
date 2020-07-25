@@ -116,12 +116,13 @@ class KeyService
     public function numberOfUsedKey()
     {
         $hashLength = uHub('hash_length');
-        $regexPattern = '[a-zA-Z0-9]{'.$hashLength.'}';
 
-        $randomKey = $this->url->whereIsCustom(false)->count();
+        $randomKey = $this->url->whereIsCustom(false)
+            ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
+            ->count();
         $customKey = $this->url->whereIsCustom(true)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
-            ->whereRaw("keyword REGEXP '.$regexPattern.'")
+            ->whereRaw("keyword REGEXP '[".uHub('hash_char').']{'.$hashLength."}'")
             ->count();
         $numberOfUsedKey = $randomKey + $customKey;
 

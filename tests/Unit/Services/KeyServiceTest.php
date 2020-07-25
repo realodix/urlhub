@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services;
 
+use App\Models\Url;
 use App\Services\KeyService;
 use Mockery;
 use Tests\TestCase;
@@ -82,5 +83,66 @@ class KeyServiceTest extends TestCase
             [pow(10, 6), 999991, '0.01%'],
             [pow(10, 6), 50, '99.99%'],
         ];
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function numberOfUsedKey()
+    {
+        config(['urlhub.hash_char' => 'abc']);
+
+        factory(Url::class)->create([
+            'keyword' => $this->keySrvc->randomKey(),
+        ]);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        factory(Url::class)->create([
+            'keyword'   => str_repeat('a', uHub('hash_length')),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+
+        factory(Url::class)->create([
+            'keyword'   => str_repeat('b', uHub('hash_length') + 1),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_length' => uHub('hash_length') + 2]);
+        $this->assertSame(0, $this->keySrvc->numberOfUsedKey());
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function numberOfUsedKey2()
+    {
+        config(['urlhub.hash_length' => 3]);
+
+        config(['urlhub.hash_char' => 'foo']);
+        factory(Url::class)->create([
+            'keyword'   => 'foo',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'bar']);
+        factory(Url::class)->create([
+            'keyword'   => 'bar',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'foobar']);
+        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'fooBar']);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'FooBar']);
+        $this->assertSame(0, $this->keySrvc->numberOfUsedKey());
     }
 }

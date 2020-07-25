@@ -9,7 +9,7 @@ class ConfigService
 {
     private const DEFAULT_TRUE = true;
 
-    private const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    public const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 
     private const DEFAULT_HASH_LENGTH = 6;
 
@@ -28,13 +28,13 @@ class ConfigService
     public function configGuard(): bool
     {
         return $this->public_site()
-            && $this->registration()
-            && $this->guest_show_stat()
-            && $this->hash_char()
-            && $this->hash_length()
-            && $this->anonymize_ip_addr()
-            && $this->redirect_status_code()
-            && $this->redirect_cache_lifetime();
+            || $this->registration()
+            || $this->guest_show_stat()
+            || $this->hash_char()
+            || $this->hash_length()
+            || $this->anonymize_ip_addr()
+            || $this->redirect_status_code()
+            || $this->redirect_cache_lifetime();
     }
 
     private function public_site()
@@ -60,7 +60,10 @@ class ConfigService
 
     private function hash_char()
     {
-        if (! ctype_alnum(config('urlhub.hash_char'))) {
+        $str = config('urlhub.hash_char');
+        $length = strlen($str);
+
+        if (! preg_match('/[a-zA-Z0-9_]{'.$length.'}/', $str) || empty($str) || is_bool($str)) {
             return config(['urlhub.hash_char' => self::DEFAULT_HASH_CHAR]);
         }
     }
