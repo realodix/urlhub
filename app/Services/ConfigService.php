@@ -25,7 +25,7 @@ class ConfigService
      */
     public function configGuard(): bool
     {
-        return $this->guest()
+        return $this->public_site()
             && $this->guest_register()
             && $this->guest_show_stat()
             && $this->hash_char()
@@ -35,17 +35,17 @@ class ConfigService
             && $this->redirect_cache_lifetime();
     }
 
-    private function guest()
+    private function public_site()
     {
-        if (! is_bool(config('urlhub.guest'))) {
-            return config(['urlhub.guest' => self::DEFAULT_TRUE]);
+        if (! is_bool(config('urlhub.public_site'))) {
+            return config(['urlhub.public_site' => self::DEFAULT_TRUE]);
         }
     }
 
-    private function guest_register()
+    private function registration()
     {
-        if (! is_bool(config('urlhub.guest_register'))) {
-            return config(['urlhub.guest_register' => self::DEFAULT_TRUE]);
+        if (! is_bool(config('urlhub.registration'))) {
+            return config(['urlhub.registration' => self::DEFAULT_TRUE]);
         }
     }
 
