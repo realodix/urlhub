@@ -12,14 +12,14 @@ class ChangePasswordController extends Controller
     /**
      * @var \App\Services\UserService
      */
-    protected $userService;
+    protected $userSrvc;
 
     /**
      * ChangePasswordController constructor.
      */
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userSrvc)
     {
-        $this->userService = $userService;
+        $this->userSrvc = $userSrvc;
     }
 
     /**
@@ -50,7 +50,7 @@ class ChangePasswordController extends Controller
 
         $data = $request->only('new-password');
 
-        $this->userService->updateUserPassword($data, $user);
+        $this->userSrvc->updateUserPassword($data, $user);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Password changed successfully !'));

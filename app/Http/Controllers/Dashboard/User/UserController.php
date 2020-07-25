@@ -12,15 +12,15 @@ class UserController extends Controller
     /**
      * @var \App\Services\UserService
      */
-    protected $userService;
+    protected $userSrvc;
 
     /**
      * UserController constructor.
      */
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userSrvc)
     {
         $this->middleware('role:admin')->only('view');
-        $this->userService = $userService;
+        $this->userSrvc = $userSrvc;
     }
 
     /**
@@ -59,7 +59,7 @@ class UserController extends Controller
 
         $data = $request->only('email');
 
-        $this->userService->updateUserEmail($data, $user);
+        $this->userSrvc->updateUserEmail($data, $user);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Profile updated.'));

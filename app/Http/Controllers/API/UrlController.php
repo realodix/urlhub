@@ -14,18 +14,16 @@ class UrlController extends Controller
     /**
      * @var \App\Services\UrlService
      */
-    protected $urlService;
+    protected $urlSrvc;
 
     /**
      * UrlController constructor.
-     *
-     * @param UrlService $urlService
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(UrlService $urlSrvc)
     {
         $this->middleware('urlhublinkchecker')->only('create');
 
-        $this->urlService = $urlService;
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
@@ -36,7 +34,7 @@ class UrlController extends Controller
      */
     public function store(StoreUrl $request)
     {
-        $url = $this->urlService->shortenUrl($request, Auth::id());
+        $url = $this->urlSrvc->shortenUrl($request, Auth::id());
 
         return response([
             'id'        => $url->id,

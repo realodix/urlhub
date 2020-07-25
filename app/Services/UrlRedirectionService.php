@@ -17,18 +17,18 @@ class UrlRedirectionService
     /**
      * @var \App\Services\UrlService
      */
-    protected $urlService;
+    protected $urlSrvc;
 
     /**
      * UrlRedirectionService constructor.
      *
      * @param Agent|null $agent
-     * @param UrlService $urlService
+     * @param UrlService $urlSrvc
      */
-    public function __construct(Agent $agent = null, UrlService $urlService)
+    public function __construct(Agent $agent = null, UrlService $urlSrvc)
     {
         $this->agent = $agent ?? new Agent();
-        $this->urlService = $urlService;
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
@@ -45,8 +45,8 @@ class UrlRedirectionService
         $url->increment('clicks');
         $this->storeVisitStat(
             $url,
-            $this->urlService->ipToCountry(
-                $this->urlService->anonymizeIp(request()->ip())
+            $this->urlSrvc->ipToCountry(
+                $this->urlSrvc->anonymizeIp(request()->ip())
             )
         );
 
@@ -68,7 +68,7 @@ class UrlRedirectionService
         Visit::create([
             'url_id'           => $url->id,
             'referer'          => request()->server('HTTP_REFERER') ?? null,
-            'ip'               => $this->urlService->anonymizeIp(request()->ip()),
+            'ip'               => $this->urlSrvc->anonymizeIp(request()->ip()),
             'device'           => $this->agent->device(),
             'platform'         => $this->agent->platform(),
             'platform_version' => $this->agent->version($this->agent->platform()),

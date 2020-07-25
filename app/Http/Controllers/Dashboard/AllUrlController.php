@@ -12,15 +12,15 @@ class AllUrlController extends Controller
     /**
      * @var \App\Services\UrlService
      */
-    protected $urlService;
+    protected $urlSrvc;
 
     /**
      * AllUrlController constructor.
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(UrlService $urlSrvc)
     {
         $this->middleware('role:admin');
-        $this->urlService = $urlService;
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
@@ -36,7 +36,7 @@ class AllUrlController extends Controller
      */
     public function delete($url)
     {
-        $this->urlService->delete($url);
+        $this->urlSrvc->delete($url);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));

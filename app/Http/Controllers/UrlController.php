@@ -19,17 +19,15 @@ class UrlController extends Controller
     /**
      * @var \App\Services\UrlService
      */
-    protected $urlService;
+    protected $urlSrvc;
 
     /**
      * UrlController constructor.
-     *
-     * @param Url $url
      */
-    public function __construct(UrlService $urlService)
+    public function __construct(UrlService $urlSrvc)
     {
         $this->middleware('urlhublinkchecker')->only('create');
-        $this->urlService = $urlService;
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
@@ -39,7 +37,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = $this->urlService->shortenUrl($request, Auth::id());
+        $url = $this->urlSrvc->shortenUrl($request, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword);
     }
@@ -102,7 +100,7 @@ class UrlController extends Controller
      */
     public function duplicate($key)
     {
-        $url = $this->urlService->duplicate($key, Auth::id());
+        $url = $this->urlSrvc->duplicate($key, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword)
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
