@@ -18,7 +18,9 @@ class ConfigService
     private const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
 
     /**
-     * Validate all of the config related to the library.
+     * Validate all configuration values, if invalid values are found (or
+     * outside of the specified ones), then return them with the default
+     * values.
      *
      * @return bool
      * @throws ValidationException
