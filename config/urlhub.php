@@ -9,14 +9,15 @@ return [
     */
 
     /**
-     * If you disabled it, users must be registered to create Short URL.
+     * If enabled, unregistered users can use UrlHub to shorten their URL
+     * without having to register / login first.
      */
-    'public_site' => env('UH_PUBLIC_SITE', true),
+    'guest' => env('UH_GUEST', true),
 
     /**
-     * Enable users registration. If disabled it, no one can register.
+     * If disabled, every unregistered users can't register.
      */
-    'registration' => env('UH_REGISTRATION', true),
+    'guest_register' => env('UH_GUEST_REGISTER', true),
 
     /**
      * Enable/Disable to allow unregistered users see shortened links

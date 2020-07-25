@@ -42,7 +42,7 @@ class DashboardController extends Controller
             'guestCount'           => $userSrvc->guestCount(),
             'keyCapacity'          => $keySrvc->keyCapacity(),
             'keyRemaining'         => $keySrvc->keyRemaining(),
-            'remainingPercentage'  => $keySrvc->keyRemainingInPercent(),
+            'remainingPercentage'  => remainingPercentage($keySrvc->numberOfUsedKey(), $keySrvc->keyCapacity()),
         ]);
     }
 

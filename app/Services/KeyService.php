@@ -65,8 +65,11 @@ class KeyService
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');
 
-        // for testing purposes only
-        // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
+        // Untuk kebutuhan di saat pengujian, dimana saat pengujian dibutuhkan
+        // nilai yang dikembalikan adalah 0. Dalam produksi, kondisi ini tidak
+        // diperlukan karena sudah dilakukan validasi untuk tidak mengembalikan
+        // angka 0, maka kedepannya Kami mencoba untuk memanipulasi data yang
+        // dikembalikan. Tests\Unit\Services\keyRemaining()
         if ($length == 0) {
             return 0;
         }
@@ -86,25 +89,6 @@ class KeyService
         $numberOfUsedKey = $this->numberOfUsedKey();
 
         return max(($keyCapacity - $numberOfUsedKey), 0);
-    }
-
-    public function keyRemainingInPercent()
-    {
-        $capacity = $this->keyCapacity();
-        $used = $this->numberOfUsedKey();
-        $remaining = $this->keyRemaining();
-
-        $result = round(($remaining / $capacity) * 100, 2);
-
-        if (($result == 0) && ($capacity <= $used)) {
-            return '0%';
-        } elseif (($result == 0) && ($capacity > $used)) {
-            return '0.01%';
-        } elseif (($result == 100) && ($capacity != $remaining)) {
-            return '99.99%';
-        } else {
-            return $result.'%';
-        }
     }
 
     /**

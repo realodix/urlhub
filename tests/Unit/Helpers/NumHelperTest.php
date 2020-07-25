@@ -24,6 +24,17 @@ class NumHelperTest extends TestCase
         }
     }
 
+    /**
+     * @group u-helper
+     */
+    public function testRemainingPercentage()
+    {
+        $this->assertSame('0%', remainingPercentage(100, 100));
+        $this->assertSame('0.01%', remainingPercentage(999, 1000));
+        $this->assertSame('99.99%', remainingPercentage(1, 1000));
+        $this->assertSame('98%', remainingPercentage(2, 100));
+    }
+
     public function numberFormatShortProvider()
     {
         return [

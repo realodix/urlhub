@@ -11,7 +11,7 @@
 <div class="col-md-6">
 <div class="card mx-4">
   <div class="card-body p-4">
-  @if ( ! Config::get('urlhub.registration') )
+  @if ( ! Config::get('urlhub.guest_register') )
   <div class="card-body p-4">
     <h1>@lang('Not allowed to register')</h1>
     <p class="text-muted">@lang('Sorry, not allowed to register by administrator')</p>
