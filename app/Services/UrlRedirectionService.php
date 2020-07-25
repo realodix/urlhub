@@ -15,7 +15,7 @@ class UrlRedirectionService
     private $agent;
 
     /**
-     * @var urlService
+     * @var \App\Services\UrlService
      */
     protected $urlService;
 

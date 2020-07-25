@@ -7,6 +7,9 @@ use Tests\TestCase;
 
 class PwdCurrentTest extends TestCase
 {
+    /**
+     * @var \App\Rules\PwdCurrent
+     */
     protected $rule;
 
     protected function setUp(): void

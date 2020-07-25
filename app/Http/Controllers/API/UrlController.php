@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class UrlController extends Controller
 {
     /**
-     * @var urlService
+     * @var \App\Services\UrlService
      */
     protected $urlService;
 

@@ -10,8 +10,14 @@ use Symfony\Component\HttpFoundation\IpUtils;
 
 class UrlService
 {
+    /**
+     * @var \App\Models\Url
+     */
     protected $url;
 
+    /**
+     * @var \App\Services\KeyService
+     */
     protected $keySrvc;
 
     /**

@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class AllUrlController extends Controller
 {
     /**
-     * @var urlService
+     * @var \App\Services\UrlService
      */
     protected $urlService;
 

@@ -7,6 +7,9 @@ use RandomLib\Factory as RandomLibFactory;
 
 class KeyService
 {
+    /**
+     * @var \App\Models\Url
+     */
     protected $url;
 
     /**

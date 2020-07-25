@@ -7,6 +7,9 @@ use Tests\TestCase;
 
 class UrlServiceTest extends TestCase
 {
+    /**
+     * @var \App\Services\UrlService
+     */
     protected $urlSrvc;
 
     protected function setUp(): void

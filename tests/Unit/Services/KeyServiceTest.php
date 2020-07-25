@@ -9,6 +9,9 @@ use Tests\TestCase;
 
 class KeyServiceTest extends TestCase
 {
+    /**
+     * @var \App\Services\KeyService
+     */
     protected $keySrvc;
 
     protected function setUp(): void

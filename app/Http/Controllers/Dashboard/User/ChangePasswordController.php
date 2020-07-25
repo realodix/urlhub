@@ -10,7 +10,7 @@ use App\Services\UserService;
 class ChangePasswordController extends Controller
 {
     /**
-     * @var userService
+     * @var \App\Services\UserService
      */
     protected $userService;
 

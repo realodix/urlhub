@@ -7,6 +7,9 @@ use Tests\TestCase;
 
 class UserServiceTest extends TestCase
 {
+    /**
+     * @var \App\Services\UserService
+     */
     protected $userSrvc;
 
     protected function setUp(): void
