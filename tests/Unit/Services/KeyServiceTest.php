@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services;
 
+use App\Models\Url;
 use App\Services\KeyService;
 use Mockery;
 use Tests\TestCase;
@@ -82,5 +83,32 @@ class KeyServiceTest extends TestCase
             [pow(10, 6), 999991, '0.01%'],
             [pow(10, 6), 50, '99.99%'],
         ];
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function numberOfUsedKey()
+    {
+        factory(Url::class)->create([
+            'keyword' => $this->keySrvc->randomKey(),
+        ]);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        factory(Url::class)->create([
+            'keyword'   => str_repeat('a', uHub('hash_length')),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+
+        factory(Url::class)->create([
+            'keyword'   => str_repeat('b', uHub('hash_length') + 1),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_length' => uHub('hash_length') + 1]);
+        $this->assertSame(0, $this->keySrvc->numberOfUsedKey());
     }
 }
