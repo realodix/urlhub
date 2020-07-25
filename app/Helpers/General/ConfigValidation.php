@@ -15,8 +15,8 @@ class ConfigValidation
      */
     public function validateConfig(): bool
     {
-        return $this->guest()
-               && $this->guest_register()
+        return $this->public_site()
+               && $this->registration()
                && $this->guest_show_stat()
                && $this->hash_char()
                && $this->hash_length()
@@ -24,19 +24,19 @@ class ConfigValidation
                && $this->redirect_cache_lifetime();
     }
 
-    public function guest()
+    public function public_site()
     {
-        if (! is_bool(config('urlhub.guest'))) {
-            throw new \Exception('The "guest" config variable must be a boolean.');
+        if (! is_bool(config('urlhub.public_site'))) {
+            throw new \Exception('The "public_site" config variable must be a boolean.');
         }
 
         return true;
     }
 
-    public function guest_register()
+    public function registration()
     {
-        if (! is_bool(config('urlhub.guest_register'))) {
-            throw new \Exception('The "guest_register" config variable must be a boolean.');
+        if (! is_bool(config('urlhub.registration'))) {
+            throw new \Exception('The "registration" config variable must be a boolean.');
         }
 
         return true;
