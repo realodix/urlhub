@@ -14,7 +14,7 @@ class UrlHubLinkCheckerTest extends TestCase
      */
     public function keyRemaining_zero()
     {
-        config()->set('urlhub.hash_length', 0);
+        config(['urlhub.hash_length' => 0]);
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => 'https://laravel.com',

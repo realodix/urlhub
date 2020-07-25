@@ -12,10 +12,7 @@ class UrlTest extends TestCase
     {
         parent::setUp();
 
-        config()->set(
-            'urlhub.domain_blacklist',
-            ['github.com', 't.co']
-        );
+        config(['urlhub.domain_blacklist' => ['github.com', 't.co']]);
     }
 
     /**

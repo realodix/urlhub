@@ -87,7 +87,7 @@ class UrlControllerTest extends TestCase
      */
     public function shortenUrl_is_custom()
     {
-        config()->set('urlhub.hash_length', 6);
+        config(['urlhub.hash_length' => 6]);
 
         $longUrl = 'https://laravel.com';
         $customKey = 'foo_bar';

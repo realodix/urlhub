@@ -25,7 +25,7 @@ class UrlTest extends TestCase
             'clicks'  => 10,
         ]);
 
-        config()->set('urlhub.hash_char', 'abc');
+        config(['urlhub.hash_char' => 'abc']);
     }
 
     /**
