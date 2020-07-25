@@ -2,20 +2,17 @@
 
 namespace App\Services;
 
-/**
- * @codeCoverageIgnore
- */
 class ConfigService
 {
-    private const DEFAULT_TRUE = true;
+    const DEFAULT_TRUE = true;
 
-    public const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 
-    private const DEFAULT_HASH_LENGTH = 6;
+    const DEFAULT_HASH_LENGTH = 6;
 
-    private const DEFAULT_REDIRECT_STATUS_CODE = 301;
+    const DEFAULT_REDIRECT_STATUS_CODE = 301;
 
-    private const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
+    const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
 
     /**
      * Validate all configuration values, if invalid values are found (or
@@ -63,7 +60,7 @@ class ConfigService
         $str = config('urlhub.hash_char');
         $length = strlen($str);
 
-        if (! preg_match('/[a-zA-Z0-9_]{'.$length.'}/', $str) || empty($str) || is_bool($str)) {
+        if (! preg_match('/[a-zA-Z0-9_]{'.$length.'}/', $str) || ! is_string($str) || empty($str) || is_bool($str)) {
             return config(['urlhub.hash_char' => self::DEFAULT_HASH_CHAR]);
         }
     }
