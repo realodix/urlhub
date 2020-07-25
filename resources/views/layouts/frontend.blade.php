@@ -53,7 +53,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">@lang('Login')</a>
           </li>
-          @if (Route::has('register') and Config::get('urlhub.guest_register'))
+          @if (Route::has('register') and Config::get('urlhub.registration'))
           <li class="nav-item">
             <a class="nav-link" href="{{ route('register') }}">@lang('Register')</a>
           </li>
