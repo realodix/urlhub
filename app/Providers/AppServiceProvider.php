@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Helpers\General\ConfigValidation;
+use App\Services\ConfigService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        (new ConfigValidation())->validateConfig();
+        // Keeping configuration (config\urlhub.php) values of an invalid value.
+        (new ConfigService())->configGuard();
 
         // Make SQLite contain regular expression functions by default
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
