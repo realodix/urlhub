@@ -26,7 +26,7 @@ class ConfigService
     public function configGuard(): bool
     {
         return $this->public_site()
-            && $this->guest_register()
+            && $this->registration()
             && $this->guest_show_stat()
             && $this->hash_char()
             && $this->hash_length()
