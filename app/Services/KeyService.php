@@ -94,7 +94,7 @@ class KeyService
         $used = $this->numberOfUsedKey();
         $remaining = $this->keyRemaining();
 
-        $result = round(($remaining / $capacity) * 100);
+        $result = round(($remaining / $capacity) * 100, 2);
 
         if (($result == 0) && ($capacity <= $used)) {
             return '0%';
