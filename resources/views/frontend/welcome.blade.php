@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container home pt-5">
-  @if (! Auth::check() and ! Config::get('urlhub.guest'))
+  @if (! Auth::check() and ! Config::get('urlhub.public_site'))
    <div class="row justify-content-md-center">
     <div class="col-lg-8 text-center welcome-msg">@lang('Please login to shorten URLs')</div>
   </div>
