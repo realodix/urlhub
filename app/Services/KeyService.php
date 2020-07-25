@@ -122,7 +122,7 @@ class KeyService
             ->count();
         $customKey = $this->url->whereIsCustom(true)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
-            ->whereRaw("keyword REGEXP '[a-zA-Z0-9]'")
+            ->whereRaw("keyword REGEXP '[".uHub('hash_char').']{'.$hashLength."}'")
             ->count();
         $numberOfUsedKey = $randomKey + $customKey;
 

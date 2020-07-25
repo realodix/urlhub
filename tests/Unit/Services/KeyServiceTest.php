@@ -91,6 +91,8 @@ class KeyServiceTest extends TestCase
      */
     public function numberOfUsedKey()
     {
+        config(['urlhub.hash_char' => 'abc']);
+
         factory(Url::class)->create([
             'keyword' => $this->keySrvc->randomKey(),
         ]);
@@ -108,7 +110,39 @@ class KeyServiceTest extends TestCase
         ]);
         $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
 
-        config(['urlhub.hash_length' => uHub('hash_length') + 1]);
+        config(['urlhub.hash_length' => uHub('hash_length') + 2]);
+        $this->assertSame(0, $this->keySrvc->numberOfUsedKey());
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function numberOfUsedKey2()
+    {
+        config(['urlhub.hash_length' => 3]);
+
+        config(['urlhub.hash_char' => 'foo']);
+        factory(Url::class)->create([
+            'keyword'   => 'foo',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'bar']);
+        factory(Url::class)->create([
+            'keyword'   => 'bar',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'foobar']);
+        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'fooBar']);
+        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+
+        config(['urlhub.hash_char' => 'FooBar']);
         $this->assertSame(0, $this->keySrvc->numberOfUsedKey());
     }
 }
