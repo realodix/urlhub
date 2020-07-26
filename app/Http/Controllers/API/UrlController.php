@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
 use App\Services\UrlService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
@@ -29,11 +31,16 @@ class UrlController extends Controller
     /**
      * Store the data the user sent to create the Short URL.
      *
-     * @param StoreUrl $request
+     * @param Request $request
      * @return RedirectResponse
      */
-    public function store(StoreUrl $request)
+    public function store(Request $request)
     {
+        $v = Validator::make($request->all(), (new StoreUrl)->rules());
+        if ($v->fails()) {
+            return response()->json(['errors' => $v->errors()->all()]);
+        }
+
         $url = $this->urlSrvc->shortenUrl($request, Auth::id());
 
         return response([
