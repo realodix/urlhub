@@ -15,14 +15,19 @@
 UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
-- URL Shortener.
-- Customized short URL's(ex: example.com/laravel).
-- QR code generator for each short link.
-- Sortable list of shortened URLs.
-- Written in [PHP](https://www.php.net/) and [Laravel 7](https://laravel.com/docs/7.x).
-- [Datatables](https://datatables.net/) with server-side processing.
-- Modern and simple interface.
-- Made with :heart: &amp; :coffee:.
+- **Reliable link shortner:** Does the job really well and it is very consistent. UrlHub is definitely one of the most reliable self-hosted URL shortener out there. Would recommend easily.
+- **Custom URLs (ex: example.com/laravel):** Allows users to create more descriptive short URLs rather than a randomly generated mix of letters and numbers.
+- **QR code generator for each short link:** The fastest way to access to this data is most likely opening the link from a phone. Though short URLs are handy for typing, a more convenient approach to transfer a web link to a mobile phone is through QR codes scanning.
+- **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
+- **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
+- **Embed content:** If possible, UrlHub will automatically embedding the content when you shorten URLs. It's nice to preview the page.
+- **Configuration Guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
+- **Sortable list of shortened URLs.**
+- **[Datatables](https://datatables.net/) with server-side processing.**
+- **Written in [PHP](https://www.php.net/) and [Laravel 7](https://laravel.com/docs/7.x).**
+- **Modern and simple interface.**
+- **Made with :heart: &amp; :coffee:.**
+
 
 ### Screenshots
 | ![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
