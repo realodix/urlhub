@@ -15,14 +15,14 @@
 UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
-* URL Shortener.
-* Customized short URL's(ex: example.com/laravel).
-* QR code generator for each short link.
-* Sortable list of shortened URLs.
-* Written in [PHP](https://www.php.net/) and [Laravel 7](https://laravel.com/docs/7.x).
-* [Datatables](https://datatables.net/) with server-side processing.
-* Modern and simple interface.
-* Made with :heart: &amp; :coffee:.
+- URL Shortener.
+- Customized short URL's(ex: example.com/laravel).
+- QR code generator for each short link.
+- Sortable list of shortened URLs.
+- Written in [PHP](https://www.php.net/) and [Laravel 7](https://laravel.com/docs/7.x).
+- [Datatables](https://datatables.net/) with server-side processing.
+- Modern and simple interface.
+- Made with :heart: &amp; :coffee:.
 
 ### Screenshots
 | ![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
