@@ -4,8 +4,6 @@ namespace App\Services;
 
 class ConfigService
 {
-    const DEFAULT_TRUE = true;
-
     const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 
     const DEFAULT_HASH_LENGTH = 6;
@@ -15,6 +13,7 @@ class ConfigService
     const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
 
     /**
+     * @codeCoverageIgnore
      * Validate all configuration values, if invalid values are found (or
      * outside of the specified ones), then return them with the default
      * values.
@@ -34,25 +33,22 @@ class ConfigService
             || $this->redirect_cache_lifetime();
     }
 
+    /** @codeCoverageIgnore */
     private function public_site()
     {
-        if (! is_bool(config('urlhub.public_site'))) {
-            return config(['urlhub.public_site' => self::DEFAULT_TRUE]);
-        }
+        return $this->valueIsBool('urlhub.public_site');
     }
 
+    /** @codeCoverageIgnore */
     private function registration()
     {
-        if (! is_bool(config('urlhub.registration'))) {
-            return config(['urlhub.registration' => self::DEFAULT_TRUE]);
-        }
+        return $this->valueIsBool('urlhub.registration');
     }
 
+    /** @codeCoverageIgnore */
     private function guest_show_stat()
     {
-        if (! is_bool(config('urlhub.guest_show_stat'))) {
-            return config(['urlhub.guest_show_stat' => self::DEFAULT_TRUE]);
-        }
+        return $this->valueIsBool('urlhub.guest_show_stat');
     }
 
     private function hash_char()
@@ -92,10 +88,17 @@ class ConfigService
         }
     }
 
+    /** @codeCoverageIgnore */
     private function anonymize_ip_addr()
     {
-        if (! is_bool(config('urlhub.anonymize_ip_addr'))) {
-            return config(['urlhub.anonymize_ip_addr' => self::DEFAULT_TRUE]);
+        return $this->valueIsBool('urlhub.anonymize_ip_addr');
+    }
+
+    /** @codeCoverageIgnore */
+    private function valueIsBool($configOption, $defaultValue = true)
+    {
+        if (! is_bool(config(($configOption)))) {
+            return config([$configOption => $defaultValue]);
         }
     }
 }

@@ -10,48 +10,6 @@ class ConfigServiceTest extends TestCase
     /**
      * @test
      * @group u-service
-     * @dataProvider isBoolProvider
-     */
-    public function public_site($value, $expected)
-    {
-        config(['urlhub.public_site' => $value]);
-
-        (new ConfigService)->configGuard();
-
-        $this->assertSame($expected, uHub('public_site'));
-    }
-
-    /**
-     * @test
-     * @group u-service
-     * @dataProvider isBoolProvider
-     */
-    public function registration($value, $expected)
-    {
-        config(['urlhub.registration' => $value]);
-
-        (new ConfigService)->configGuard();
-
-        $this->assertSame($expected, uHub('registration'));
-    }
-
-    /**
-     * @test
-     * @group u-service
-     * @dataProvider isBoolProvider
-     */
-    public function guest_show_stat($value, $expected)
-    {
-        config(['urlhub.guest_show_stat' => $value]);
-
-        (new ConfigService)->configGuard();
-
-        $this->assertSame($expected, uHub('guest_show_stat'));
-    }
-
-    /**
-     * @test
-     * @group u-service
      * @dataProvider hashCharProvider
      */
     public function hash_char($value, $expected)
@@ -70,10 +28,6 @@ class ConfigServiceTest extends TestCase
         return [
             ['string', 'string'],
             ['string=+', $defaultValue], // non-alphanumeric
-            [1, $defaultValue],
-            [1.1, $defaultValue],
-            [true, $defaultValue],
-            [null, $defaultValue],
             ['', $defaultValue],
         ];
     }
@@ -98,10 +52,7 @@ class ConfigServiceTest extends TestCase
 
         return [
             [1, 1],
-            ['string', $defaultValue],
             [1.1, $defaultValue],
-            [true, $defaultValue],
-            [null, $defaultValue],
             ['', $defaultValue],
         ];
     }
@@ -128,10 +79,6 @@ class ConfigServiceTest extends TestCase
             [301, 301],
             [299, $defaultValue],
             [400, $defaultValue],
-            ['string', $defaultValue],
-            [1.1, $defaultValue],
-            [true, $defaultValue],
-            [null, $defaultValue],
             ['', $defaultValue],
         ];
     }
@@ -158,37 +105,7 @@ class ConfigServiceTest extends TestCase
             [1, 1],
             [0, 0],
             [-1, $defaultValue],
-            ['string', $defaultValue],
             [1.1, $defaultValue],
-            [true, $defaultValue],
-            [null, $defaultValue],
-            ['', $defaultValue],
-        ];
-    }
-
-    /**
-     * @test
-     * @group u-service
-     * @dataProvider isBoolProvider
-     */
-    public function anonymize_ip_addr($value, $expected)
-    {
-        config(['urlhub.anonymize_ip_addr' => $value]);
-
-        (new ConfigService)->configGuard();
-
-        $this->assertSame($expected, uHub('anonymize_ip_addr'));
-    }
-
-    public function isBoolProvider()
-    {
-        $defaultValue = ConfigService::DEFAULT_TRUE;
-
-        return [
-            [true, true],
-            ['string', $defaultValue],
-            [1, $defaultValue],
-            [null, $defaultValue],
             ['', $defaultValue],
         ];
     }
