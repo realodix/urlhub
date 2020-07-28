@@ -13,11 +13,13 @@ class ConfigService
     const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
 
     /**
-     * @codeCoverageIgnore
+     * Files affected: config\urlhub.php.
+     *
      * Validate all configuration values, if invalid values are found (or
      * outside of the specified ones), then return them with the default
      * values.
      *
+     * @codeCoverageIgnore
      * @return bool
      * @throws ValidationException
      */
@@ -94,7 +96,13 @@ class ConfigService
         return $this->valueIsBool('urlhub.anonymize_ip_addr');
     }
 
-    /** @codeCoverageIgnore */
+    /**
+     * @codeCoverageIgnore
+     *
+     * @param string $configOption configuration option
+     * @param bool $defaultValue configuration values
+     * @return string
+     */
     private function valueIsBool($configOption, $defaultValue = true)
     {
         if (! is_bool(config(($configOption)))) {
