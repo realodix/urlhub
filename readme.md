@@ -21,6 +21,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
 - **Embed content:** If possible, UrlHub will automatically embedding the content when you shorten URLs. It's nice to preview the page.
+- **IP Anonymization (or IP masking) [optional]:** Anonymizes visitor addresses as soon as technically feasible at the earliest possible stage of the collection network. The full IP address is never written to disk in this case. This feature is designed to help site owners comply with their own privacy policies, recommendations from local data protection authorities and legal regulations like the GDPR, which may prevent the storage of full IP address information.
 - **Configuration Guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
 - **Sortable list of shortened URLs.**
 - **[Datatables](https://datatables.net/) with server-side processing.**
