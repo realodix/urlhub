@@ -84,10 +84,10 @@ class UrlServiceTest extends TestCase
      * @test
      * @group u-service
      */
-    public function getRemoteTitle()
+    public function webTitle()
     {
         $longUrl = 'https://github123456789.com';
 
-        $this->assertSame('github123456789.com - No Title', $this->urlSrvc->getRemoteTitle($longUrl));
+        $this->assertSame('github123456789.com - No Title', $this->urlSrvc->webTitle($longUrl));
     }
 }

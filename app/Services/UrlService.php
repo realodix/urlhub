@@ -175,7 +175,7 @@ class UrlService
      * @param string $url
      * @return string
      */
-    public function getRemoteTitle($url)
+    public function webTitle($url)
     {
         try {
             $embed = Embed::create($url);

@@ -86,7 +86,7 @@ class Url extends Model
         $urlSrvc = new UrlService();
 
         if (Str::startsWith($value, 'http')) {
-            $this->attributes['meta_title'] = $urlSrvc->getRemoteTitle($value);
+            $this->attributes['meta_title'] = $urlSrvc->webTitle($value);
         } else {
             $this->attributes['meta_title'] = $value;
         }
