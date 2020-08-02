@@ -35,7 +35,6 @@ class DomainBlacklist implements Rule
      * Get the validation error message.
      *
      * @return string
-     *
      * @codeCoverageIgnore
      */
     public function message()

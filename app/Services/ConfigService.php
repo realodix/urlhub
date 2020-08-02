@@ -98,11 +98,10 @@ class ConfigService
     }
 
     /**
-     * @codeCoverageIgnore
-     *
      * @param string $configOption configuration option
      * @param bool $defaultValue configuration values
-     * @return string
+     *
+     * @codeCoverageIgnore
      */
     private function valueIsBool($configOption, $defaultValue = true)
     {

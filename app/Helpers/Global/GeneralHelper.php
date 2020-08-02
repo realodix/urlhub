@@ -47,7 +47,6 @@ if (! function_exists('qrCode')) {
      * Barcode & QrCode Generator.
      *
      * @return string
-     *
      * @codeCoverageIgnore
      */
     function qrCode($value)

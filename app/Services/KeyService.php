@@ -25,7 +25,6 @@ class KeyService
      * truly unique.
      *
      * @return string
-     *
      * @codeCoverageIgnore
      */
     public function randomKey()
@@ -47,7 +46,6 @@ class KeyService
      * Generate random strings using RandomLib.
      *
      * @return string
-     *
      * @codeCoverageIgnore
      */
     public function randomStringGenerator()

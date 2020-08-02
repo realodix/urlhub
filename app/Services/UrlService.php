@@ -69,6 +69,7 @@ class UrlService
 
     /**
      * @param string $key
+     * @param int $authId
      */
     public function duplicate($key, $authId)
     {
@@ -116,6 +117,8 @@ class UrlService
      * IP Address to Identify Geolocation Information. If it fails, because
      * DB-IP Lite databases doesn't know the IP country, we will set it to
      * Unknown.
+     *
+     * @param string $ip
      */
     public function ipToCountry($ip)
     {
@@ -159,7 +162,7 @@ class UrlService
      * Won't work on things like 'localhost'.
      *
      * @param string $url
-     * @return mixed
+     * @return string
      */
     public function getDomain($url)
     {
