@@ -46,13 +46,14 @@ if (! function_exists('qrCode')) {
     /**
      * Barcode & QrCode Generator.
      *
+     * @param string $string
      * @return string
      * @codeCoverageIgnore
      */
-    function qrCode($value)
+    function qrCode($string)
     {
         $qrCode = new QrCode();
-        $qrCode->setText($value)
+        $qrCode->setText($string)
                 ->setSize(150)
                 ->setPadding(10)
                 ->setErrorCorrection('high')
