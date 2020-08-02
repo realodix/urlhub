@@ -8,8 +8,6 @@ use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
 use App\Services\UrlService;
-use Embed\Embed;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -81,15 +79,9 @@ class UrlController extends Controller
 
         $qrCode = qrCode($url->short_url);
 
-        try {
-            $embed = Embed::create($url->long_url);
-        } catch (Exception $error) {
-            $embed = null;
-        }
-
         return view('frontend.short', compact(['qrCode']), [
-            'embedCode' => $embed->code ?? null,
-            'url'       => $url,
+            'webInfo' => $this->urlSrvc->webInfo($url->long_url),
+            'url'     => $url,
         ]);
     }
 

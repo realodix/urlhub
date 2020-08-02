@@ -181,12 +181,34 @@ class UrlService
     public function webTitle($url)
     {
         try {
-            $embed = Embed::create($url);
-            $title = $embed->title;
+            $title = Embed::create($url)->title;
         } catch (\Exception $e) {
             $title = $this->getDomain($url).' - No Title';
         }
 
         return $title;
+    }
+
+    /**
+     * Get information from any web page.
+     * @codeCoverageIgnore
+     *
+     * @param string $url
+     * @return string|null
+     */
+    public function webInfo($url)
+    {
+        try {
+            $embed = Embed::create($url);
+            $info = $embed->code;
+        } catch (\Exception $e) {
+            return;
+        }
+
+        if ($info == null) {
+            return '<div style="max-width:80%;">'.$embed->description.'</div>';
+        }
+
+        return $info;
     }
 }

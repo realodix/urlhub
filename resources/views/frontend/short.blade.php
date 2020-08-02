@@ -45,8 +45,8 @@
 
           <div class="mt-5" id="jssocials"></div>
 
-          <div class="embedcode mt-5">
-            {!! $embedCode !!}
+          <div class="webInfo mt-3">
+            {!! $webInfo !!}
           </div>
         </div>
       </div>
