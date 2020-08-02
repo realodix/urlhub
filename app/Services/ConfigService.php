@@ -19,9 +19,10 @@ class ConfigService
      * outside of the specified ones), then return them with the default
      * values.
      *
-     * @codeCoverageIgnore
      * @return bool
      * @throws ValidationException
+     *
+     * @codeCoverageIgnore
      */
     public function configGuard(): bool
     {

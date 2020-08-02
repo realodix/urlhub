@@ -68,8 +68,9 @@ class User extends Authenticatable
     */
 
     /**
+     * Accessors.
+     *
      * @codeCoverageIgnore
-     * Accessors
      */
     public function getAvatarAttribute()
     {

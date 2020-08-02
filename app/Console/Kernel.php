@@ -17,12 +17,13 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * @codeCoverageIgnore
      * Define the application's command schedule.
      *
      * @param \Illuminate\Console\Scheduling\Schedule $schedule
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     protected function schedule(Schedule $schedule)
     {

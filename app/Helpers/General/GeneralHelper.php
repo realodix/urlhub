@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 class GeneralHelper
 {
     /**
-     * @codeCoverageIgnore
      * Helper that makes the way to access the configuration value in
      * '/config/urlhub.php' becomes easier.
      *
@@ -16,6 +15,8 @@ class GeneralHelper
      *
      * @param string $value
      * @return mixed
+     *
+     * @codeCoverageIgnore
      */
     public function uHub($value)
     {

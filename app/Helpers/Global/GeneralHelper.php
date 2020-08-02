@@ -44,10 +44,11 @@ if (! function_exists('urlRemoveScheme')) {
 
 if (! function_exists('qrCode')) {
     /**
-     * @codeCoverageIgnore
-     * Barcode & QrCode Generator
+     * Barcode & QrCode Generator.
      *
      * @return string
+     *
+     * @codeCoverageIgnore
      */
     function qrCode($value)
     {

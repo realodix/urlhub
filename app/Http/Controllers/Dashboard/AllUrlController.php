@@ -43,6 +43,8 @@ class AllUrlController extends Controller
     }
 
     /**
+     * @return string JSON
+     *
      * @codeCoverageIgnore
      */
     public function dataTable()
