@@ -48,6 +48,7 @@ if (! function_exists('qrCode')) {
      *
      * @param string $string
      * @return string
+     *
      * @codeCoverageIgnore
      */
     function qrCode($string)
