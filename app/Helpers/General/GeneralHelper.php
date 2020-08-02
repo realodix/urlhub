@@ -9,14 +9,13 @@ class GeneralHelper
     /**
      * Helper that makes the way to access the configuration value in
      * '/config/urlhub.php' becomes easier.
+     * @codeCoverageIgnore
      *
      * Example:
      * - uHub('option') is equal to config('urlhub.option').
      *
      * @param string $value
      * @return mixed
-     *
-     * @codeCoverageIgnore
      */
     public function uHub($value)
     {

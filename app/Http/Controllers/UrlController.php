@@ -68,10 +68,9 @@ class UrlController extends Controller
 
     /**
      * View the shortened URL details.
+     * @codeCoverageIgnore
      *
      * @param string $key
-     *
-     * @codeCoverageIgnore
      */
     public function showShortenedUrlDetails($key)
     {

@@ -22,9 +22,9 @@ class PwdCurrent implements Rule
 
     /**
      * Get the validation error message.
+     * @codeCoverageIgnore
      *
      * @return string
-     * @codeCoverageIgnore
      */
     public function message()
     {
