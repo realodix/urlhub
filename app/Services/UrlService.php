@@ -183,9 +183,13 @@ class UrlService
         $domain = $this->getDomain($url);
 
         try {
-            $title = $domain.' | '.Embed::create($url)->title;
+            $title = Embed::create($url)->title;
         } catch (\Exception $e) {
             $title = $domain.' - No Title';
+        }
+
+        if (stripos($title, stristr($domain, '.', true)) === false) {
+            return $domain.' | '.$title;
         }
 
         return $title;
