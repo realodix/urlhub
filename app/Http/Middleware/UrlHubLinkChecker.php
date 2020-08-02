@@ -27,8 +27,8 @@ class UrlHubLinkChecker
         | Key Remaining
         |----------------------------------------------------------------------
         |
-        | Random Key Generator memiliki batas maksimum untuk menghasilkan kunci.
-        | Jika sudah mencapai batas maksimum, maka cegah pembuatan URL pendek.
+        | Prevent create short URLs when the Random Key Generator reaches the
+        | maximum limit and cannot generate more keys.
         |
         */
 
