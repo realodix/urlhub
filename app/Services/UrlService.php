@@ -180,7 +180,7 @@ class UrlService
      */
     public function webTitle($url)
     {
-        $domain = stristr($this->getDomain($url), '.', true);
+        $domain = $this->getDomain($url);
 
         try {
             $title = $domain.' | '.Embed::create($url)->title;
