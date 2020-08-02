@@ -45,9 +45,11 @@
 
           <div class="mt-5" id="jssocials"></div>
 
+          @if (uHub('embed') == true)
           <div class="webInfo mt-3">
             {!! $webInfo !!}
           </div>
+          @endif
         </div>
       </div>
     </div>

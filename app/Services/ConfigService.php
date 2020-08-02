@@ -33,7 +33,8 @@ class ConfigService
             || $this->hash_length()
             || $this->anonymize_ip_addr()
             || $this->redirect_status_code()
-            || $this->redirect_cache_lifetime();
+            || $this->redirect_cache_lifetime()
+            || $this->embed();
     }
 
     /** @codeCoverageIgnore */
@@ -73,6 +74,12 @@ class ConfigService
         }
     }
 
+    /** @codeCoverageIgnore */
+    private function anonymize_ip_addr()
+    {
+        return $this->valueIsBool('urlhub.anonymize_ip_addr');
+    }
+
     private function redirect_status_code()
     {
         $rsc = config('urlhub.redirect_status_code');
@@ -92,9 +99,9 @@ class ConfigService
     }
 
     /** @codeCoverageIgnore */
-    private function anonymize_ip_addr()
+    private function embed()
     {
-        return $this->valueIsBool('urlhub.anonymize_ip_addr');
+        return $this->valueIsBool('urlhub.embed');
     }
 
     /**
