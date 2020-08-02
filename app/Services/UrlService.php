@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Url;
 use Embed\Embed;
 use GeoIp2\Database\Reader;
-use Illuminate\Support\Str;
 use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
@@ -181,16 +180,12 @@ class UrlService
      */
     public function webTitle($url)
     {
-        $domain = $this->getDomain($url);
+        $domain = stristr($this->getDomain($url), '.', true);
 
         try {
-            $title = Embed::create($url)->title;
+            $title = $domain.' | '.Embed::create($url)->title;
         } catch (\Exception $e) {
             $title = $domain.' - No Title';
-        }
-
-        if (stripos($title, stristr($domain, '.', true)) === false ) {
-            return $domain.' - '.$title;
         }
 
         return $title;
