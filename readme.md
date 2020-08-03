@@ -38,7 +38,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 ## Requirements
 * All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & dependencies - PHP >= 7.3, [Composer](https://getcomposer.org/) and such.
-* If you install all dependencies (including dev dependencies) - PHP >= 7.4
+* PHP >= 7.4 - If you install all dependencies (including dev dependencies).
 * MySQL or MariaDB.
 
 
