@@ -32,6 +32,12 @@
             "type": "shell",
             "command": "./vendor/bin/phpinsights analyse --format=json > PHP_Insights.json --ansi",
             "problemMatcher": []
+        },
+        {
+            "label": "PHPStan",
+            "type": "shell",
+            "command": "./vendor/bin/phpstan analyse",
+            "problemMatcher": []
         }
     ]
 }
