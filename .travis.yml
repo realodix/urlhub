@@ -2,6 +2,10 @@ dist: bionic
 
 language: php
 
+php:
+  - 7.3
+  - 7.4
+
 services:
   - mysql
 
@@ -9,16 +13,9 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
-jobs:
-  include:
-  - php: 7.3
-    install:
-      - composer self-update
-      - composer install --no-interaction --no-dev
-  - php: 7.4
-    install:
-      - composer self-update
-      - composer install --no-interaction
+install:
+  - composer self-update
+  - composer install --no-interaction
 
 before_script:
   - mysql -e 'create database urlhub_test;'
