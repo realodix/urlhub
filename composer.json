@@ -22,7 +22,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "jenssegers/agent": "^2.6",
         "langleyfoxall/laravel-nist-password-rules": "^4.2",
-        "laravel/framework": "^7.0",
+        "laravel/framework": "^7.22.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravolt/avatar": "^3.2",
