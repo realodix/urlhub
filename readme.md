@@ -32,12 +32,13 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 
 ### Screenshots
-| ![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
+![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
 |-|-|-|-|
 
 
 ## Requirements
-* All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & [PHPUnit 9](https://phpunit.readthedocs.io/en/9.0/installation.html#requirements) - PHP >= 7.3, [Composer](https://getcomposer.org/) and such.
+* All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & dependencies - PHP >= 7.3, [Composer](https://getcomposer.org/) and such.
+* PHP >= 7.4 - If you installing packages listed in require-dev.
 * MySQL or MariaDB.
 
 
