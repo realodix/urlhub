@@ -20,6 +20,18 @@
             "type": "shell",
             "command": "./vendor/bin/php-cs-fixer fix",
             "problemMatcher": []
+        },
+        {
+            "label": "PHP Insights",
+            "type": "shell",
+            "command": "./vendor/bin/phpinsights",
+            "problemMatcher": []
+        },
+        {
+            "label": "PHP Insights (Saving output to file)",
+            "type": "shell",
+            "command": "./vendor/bin/phpinsights analyse --format=json > PHP_Insights.json --ansi",
+            "problemMatcher": []
         }
     ]
 }
