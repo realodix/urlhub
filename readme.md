@@ -2,7 +2,7 @@
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 [![LaravelVersion](https://img.shields.io/badge/Laravel-7-f56857.svg?style=flat-square)](https://laravel.com/docs/7.x)
-![PHPVersion](https://img.shields.io/badge/PHP-%5E7.3-777BB4.svg?style=flat-square)
+![PHPVersion](https://img.shields.io/badge/PHP-%5E7.4-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
 [![Build Status](https://travis-ci.org/realodix/urlhub.svg?branch=master)](https://travis-ci.org/realodix/urlhub)
@@ -37,7 +37,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 
 ## Requirements
-* All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & [PHPUnit 9](https://phpunit.readthedocs.io/en/9.0/installation.html#requirements) - PHP >= 7.3, [Composer](https://getcomposer.org/) and such.
+* All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & dependencies - PHP >= 7.4, [Composer](https://getcomposer.org/) and such.
 * MySQL or MariaDB.
 
 
