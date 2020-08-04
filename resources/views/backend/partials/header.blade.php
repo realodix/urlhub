@@ -17,9 +17,19 @@
         <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" title="{{appName()}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
     </li>
 
-    @if(Breadcrumbs::exists())
-      {!! Breadcrumbs::render() !!}
-    @endif
+    @foreach (Breadcrumbs::current() as $crumbs)
+      @if ($crumbs->url() && !$loop->last)
+        <li class="breadcrumb-item">
+          <a href="{{ $crumbs->url() }}">
+            {{ $crumbs->title() }}
+          </a>
+        </li>
+      @else
+        <li class="breadcrumb-item active">
+            {{ $crumbs->title() }}
+        </li>
+      @endif
+    @endforeach
   </ul>
 
   <ul class="nav navbar-nav ml-auto mr-5">
