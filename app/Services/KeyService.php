@@ -13,7 +13,7 @@ class KeyService
     protected $url;
 
     /**
-     * DashboardController constructor.
+     * KeyService constructor.
      */
     public function __construct()
     {
