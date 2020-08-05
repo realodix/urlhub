@@ -51,6 +51,43 @@ class GeneralHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
+     */
+    public function urlDisplay()
+    {
+        $this->assertSame(
+            'https://laravel.com/',
+            urlDisplay('https://laravel.com/')
+        );
+
+        $this->assertSame(
+            'laravel.com',
+            urlDisplay('https://laravel.com', false)
+        );
+
+        $this->assertSame(
+            'https://laravel.com/docs/5.7/h...ilable-assertions',
+            urlDisplay('https://laravel.com/docs/5.7/http-tests#available-assertions')
+        );
+
+        $this->assertEquals(
+            20,
+            strlen(urlDisplay('https://laravel.com/docs/5.7/http-tests#available-assertions', true, 20))
+        );
+
+        // $this->assertEquals(
+        //     'https://laravel-example-test-123.co.id/docs/5.7...',
+        //     urlDisplay('https://laravel-example-test-123.co.id/docs/5.7/http-tests#available-assertions')
+        // );
+
+        // $this->assertEquals(
+        //     'laravel-example-test-123.co.id/docs/5.7/http-te...',
+        //     urlDisplay('https://laravel-example-test-123.co.id/docs/5.7/http-tests#available-assertions', false)
+        // );
+    }
+
+    /**
+     * @test
+     * @group u-helper
      * @dataProvider urlRemoveSchemeProvider
      */
     public function urlRemoveScheme($expected, $actual)

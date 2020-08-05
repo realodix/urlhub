@@ -3,6 +3,7 @@
 namespace App\Helpers\General;
 
 use Illuminate\Support\Str;
+use Spatie\Url\Url;
 
 class GeneralHelper
 {
@@ -44,6 +45,46 @@ class GeneralHelper
     }
 
     /**
+     * Helper function to display links as needed.
+     *
+     * @param string $longUrl URL or Link
+     * @param int    $scheme  Show scheme or not
+     * @param int    $length  The maximum length of a url or link. Fill with
+     *                        0 if you want to display all of it.
+     * @return string
+     */
+    public function urlDisplay($longUrl, $scheme, $length)
+    {
+        $url = $longUrl;
+        $urlFS = Url::fromString($url);
+
+        $urlScheme = $urlFS->getScheme().'://';
+        $hostLength = strlen($urlFS->withHost($urlFS->getHost()));
+
+        if ($scheme == false) {
+            $url = $this->urlRemoveScheme($longUrl);
+            $hostLength = strlen($urlFS->getHost());
+        }
+
+        if ($length == 0) {
+            return $url;
+        }
+
+        $firstSide = $length * 0.6;
+        $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
+
+        if ($hostLength >= $firstSide){
+            return Str::limit($url, $length);
+        }
+
+        if (strlen($url) > $length) {
+            return Str::limit($url, $firstSide).substr($url, $lastSide);
+        }
+
+        return $url;
+    }
+
+    /**
      * @param string $value
      * @return string
      */
@@ -56,3 +97,8 @@ class GeneralHelper
         ], '', $value);
     }
 }
+// oploverznews.blogspot.com
+// caramenangtaruhanbola.com
+// downloadvideogratiss.blogspot.com
+// filmindonesia2020.blogspot.com
+// informations-library.blogspot.com

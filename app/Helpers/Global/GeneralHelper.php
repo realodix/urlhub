@@ -35,6 +35,13 @@ if (! function_exists('strLimit')) {
     }
 }
 
+if (! function_exists('urlDisplay')) {
+    function urlDisplay($longUrl, $scheme = true, $maxLength = 50)
+    {
+        return resolve(GeneralHelper::class)->urlDisplay($longUrl, $scheme, $maxLength);
+    }
+}
+
 if (! function_exists('urlRemoveScheme')) {
     function urlRemoveScheme($value)
     {
