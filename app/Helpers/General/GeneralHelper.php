@@ -73,7 +73,7 @@ class GeneralHelper
         $firstSide = $length * 0.6;
         $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
 
-        if ($hostLength >= $firstSide){
+        if ($hostLength >= $firstSide) {
             return Str::limit($url, $length);
         }
 
