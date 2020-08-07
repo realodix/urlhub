@@ -1,7 +1,6 @@
 <?php
 
 use App\Helpers\General\GeneralHelper;
-use App\Services\UrlService;
 use CodeItNow\BarcodeBundle\Utils\QrCode;
 
 if (! function_exists('uHub')) {
@@ -32,7 +31,7 @@ if (! function_exists('appName')) {
 if (! function_exists('urlDisplay')) {
     function urlDisplay($url, $scheme = true, $length = 70)
     {
-        return resolve(UrlService::class)->urlDisplay($url, $scheme, $length);
+        return resolve(GeneralHelper::class)->urlDisplay($url, $scheme, $length);
     }
 }
 
