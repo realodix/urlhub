@@ -3,6 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Services\UrlService;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class UrlServiceTest extends TestCase
@@ -89,5 +90,48 @@ class UrlServiceTest extends TestCase
         $longUrl = 'https://github123456789.com';
 
         $this->assertSame('github123456789.com - No Title', $this->urlSrvc->webTitle($longUrl));
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function urlDisplay()
+    {
+        $this->assertSame(
+            'https://example.com/',
+            urlDisplay('https://example.com/')
+        );
+
+        $this->assertSame(
+            'example.com/',
+            urlDisplay('https://example.com/', false)
+        );
+
+        $this->assertEquals(
+            20,
+            strlen(urlDisplay('https://example.com/abcde', true, 20))
+        );
+
+        $this->assertEquals(
+            'https://example.com/abcde',
+            urlDisplay('https://example.com/abcde', true, 0)
+        );
+
+        // By Host Length
+        $this->assertEquals(
+            true,
+            Str::endsWith(urlDisplay('https://example.com/abcdefghij', true, 29), '...')
+        );
+
+        $this->assertSame(
+            true,
+            Str::endsWith(urlDisplay('https://example-12345-test.com/abcdefghijklmnopqrstuvwxyz', true, 40), '...')
+        );
+
+        $this->assertSame(
+            'https://example.com/a...fghijklmnop',
+            urlDisplay('https://example.com/abcdefghijklmnop', true, 35)
+        );
     }
 }
