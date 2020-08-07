@@ -33,9 +33,9 @@
         <div class="col-sm-9">
           <b>@lang('Short URL')</b> <br>
           <span class="short-url"><a href="{{ $url->short_url }}" target="_blank"
-              id="copy">{{ urlRemoveScheme($url->short_url) }}</a></span>
+              id="copy">{{ urlDisplay($url->short_url, false) }}</a></span>
           <button class="btn btn-sm btn-outline-success btn-clipboard ml-3"
-            data-clipboard-text="{{ urlRemoveScheme($url->short_url) }}" title="@lang('Copy to clipboard')"
+            data-clipboard-text="{{ urlDisplay($url->short_url, false) }}" title="@lang('Copy to clipboard')"
             data-toggle="tooltip">@lang('Copy')</button>
 
           <br> <br>
