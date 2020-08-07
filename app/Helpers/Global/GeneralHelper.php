@@ -29,7 +29,7 @@ if (! function_exists('appName')) {
 }
 
 if (! function_exists('urlDisplay')) {
-    function urlDisplay($url, $scheme = true, $length = 70)
+    function urlDisplay($url, $scheme = true, $length = 0)
     {
         return resolve(GeneralHelper::class)->urlDisplay($url, $scheme, $length);
     }
