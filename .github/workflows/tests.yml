@@ -28,7 +28,9 @@ jobs:
       run: composer install --prefer-dist --no-interaction --ignore-platform-reqs
     - name: PHP Unit Tests with coverage
       run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-    - name: Send to coveralls
-      run: vendor/bin/coveralls build/logs/clover.xml
+    - name: Upload coverage results to Coveralls
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        composer global require twinh/php-coveralls
+        php-coveralls --coverage_clover=build/logs/clover.xml -v
