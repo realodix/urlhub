@@ -18,7 +18,9 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: xdebug
       - name: Install dependencies
-        run: composer install --no-interaction --ignore-platform-reqs
+        run: |
+          composer -V
+          composer install --no-interaction --ignore-platform-reqs
       - name: Execute tests
         run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
       - name: Upload coverage results to Coveralls
