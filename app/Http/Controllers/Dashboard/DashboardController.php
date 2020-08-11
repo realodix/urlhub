@@ -14,6 +14,11 @@ use Illuminate\Support\Str;
 class DashboardController extends Controller
 {
     /**
+     * @var \App\Services\UrlService
+     */
+    protected $urlSrvc;
+
+    /**
      * DashboardController constructor.
      *
      * @param UrlService $urlSrvc
