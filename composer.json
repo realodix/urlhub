@@ -41,7 +41,6 @@
         "nunomaduro/collision": "^4.1",
         "nunomaduro/larastan": "^0.6.2",
         "nunomaduro/phpinsights": "^1.14",
-        "php-coveralls/php-coveralls": "^2.1",
         "phpunit/phpunit": "^9"
     },
     "config": {
