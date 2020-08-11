@@ -107,5 +107,4 @@ Do not expect that the bug report will automatically see any activity or that ot
 
 
 ## License
-- UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).
-- IP to Country Lite database by [DB-IP](https://db-ip.com) is licensed under a [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) License.
+UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).
