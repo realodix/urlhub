@@ -48,7 +48,7 @@ if (! function_exists('qrCode')) {
      * @codeCoverageIgnore
      *
      * @param string $string
-     * @return string
+     * @return \CodeItNow\BarcodeBundle\Utils\QrCode
      */
     function qrCode($string)
     {
