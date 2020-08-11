@@ -29,6 +29,10 @@ class UrlService
         $this->keySrvc = new KeyService;
     }
 
+    /**
+     * @param array $request
+     * @param int   $authId
+     */
     public function shortenUrl($request, $authId)
     {
         $key = $request['custom_key'] ?? $this->keySrvc->randomKey();
@@ -46,21 +50,20 @@ class UrlService
     }
 
     /**
-     * @param array  $request
-     * @param string $url
+     * @param array           $request
+     * @param \App\Models\Url $url
      */
-    public function update($data, $url)
+    public function update($request, $url)
     {
-        $url->long_url = $data['long_url'];
-        $url->meta_title = $data['meta_title'];
+        $url->long_url = $request['long_url'];
+        $url->meta_title = $request['meta_title'];
         $url->save();
 
         return $url;
     }
 
     /**
-     * @param array  $request
-     * @param string $url
+     * @param \App\Models\Url $url
      */
     public function delete($url)
     {
@@ -69,7 +72,7 @@ class UrlService
 
     /**
      * @param string $key
-     * @param int $authId
+     * @param int    $authId
      */
     public function duplicate($key, $authId)
     {
@@ -200,7 +203,6 @@ class UrlService
      * @codeCoverageIgnore
      *
      * @param string $url
-     * @return string|null
      */
     public function webInfo($url)
     {
