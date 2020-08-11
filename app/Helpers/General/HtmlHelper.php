@@ -22,7 +22,7 @@ class HtmlHelper
     /**
      * HtmlHelper constructor.
      *
-     * @param UrlGenerator|null $url
+     * @param UrlGenerator $url
      */
     public function __construct(UrlGenerator $url = null)
     {
