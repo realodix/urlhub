@@ -21,8 +21,6 @@ class ConfigService
      * @codeCoverageIgnore
      *
      * @return bool
-     *
-     * @throws ValidationException
      */
     public function configGuard(): bool
     {
