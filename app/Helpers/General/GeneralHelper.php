@@ -34,7 +34,7 @@ class GeneralHelper
      *                       Set to 0 to display all of it.
      * @return string
      */
-    public function urlDisplay($url, $scheme, $length)
+    public function urlDisplay(string $url, bool $scheme, int $length)
     {
         $urlFS = SpatieUrl::fromString($url);
         $hostLen = strlen($urlFS->getScheme().'://'.$urlFS->getHost());
@@ -54,7 +54,7 @@ class GeneralHelper
             return Str::limit($url, $length);
         }
 
-        $firstSide = $length * 0.6;
+        $firstSide = intval($length * 0.6); // use intval to prevent float
         $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
 
         if (strlen($url) > $length) {

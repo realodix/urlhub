@@ -44,8 +44,8 @@ class GeneralHelperTest extends TestCase
         );
 
         $this->assertEquals(
-            20,
-            strlen(urlDisplay('https://example.com/abcde', true, 20))
+            21,
+            strlen(urlDisplay('https://example.com/abcde', true, 21))
         );
 
         $this->assertEquals(
