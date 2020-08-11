@@ -60,7 +60,7 @@ class ConfigService
         $str = config('urlhub.hash_char');
         $length = strlen($str);
 
-        if (! preg_match('/[a-zA-Z0-9_]{'.$length.'}/', $str) || ! is_string($str) || empty($str) || is_bool($str)) {
+        if (! preg_match('/[a-zA-Z0-9_]{'.$length.'}/', $str) || ! is_string($str) || empty($str)) {
             return config(['urlhub.hash_char' => self::DEFAULT_HASH_CHAR]);
         }
     }
