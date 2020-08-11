@@ -22,4 +22,4 @@ jobs:
           composer -V
           composer install --no-interaction --ignore-platform-reqs
       - name: Execute tests
-        run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+        run: ./vendor/bin/phpunit
