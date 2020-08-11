@@ -14,11 +14,10 @@ class NumHelper
      */
     public function numberFormatShort(int $n)
     {
-        if ($n >= 0 && $n < pow(10, 3)) {
-            // 1 - 999
-            $nFormat = floor($n);
-            $suffix = '';
-        } elseif ($n >= pow(10, 3) && $n < pow(10, 6)) {
+        $nFormat = floor($n);
+        $suffix = '';
+
+        if ($n >= pow(10, 3) && $n < pow(10, 6)) {
             // 1k-999k
             $nFormat = $this->numbPrec($n / pow(10, 3));
             $suffix = 'K+';
