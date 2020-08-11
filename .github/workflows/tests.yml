@@ -1,36 +1,31 @@
-name: UH
+name: tests
 
 on: ["push", "pull_request"]
 
 jobs:
   build:
 
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        operating-system: [ubuntu-latest]
-        php-versions: ['7.3', '7.4']
+        php: ['7.3', '7.4']
 
-    name: PHP ${{ matrix.php-versions }} - ${{ matrix.operating-system }}
+    name: PHP ${{ matrix.php }}
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Install PHP
-      uses: shivammathur/setup-php@master
-      with:
-        php-version: ${{ matrix.php-versions }}
-        coverage: xdebug
-    - name: Install dependencies
-      if: matrix.php-versions != '7.4'
-      run: composer install --prefer-dist --no-interaction
-    - name: Install dependencies
-      if: matrix.php-versions == '7.4'
-      run: composer install --prefer-dist --no-interaction --ignore-platform-reqs
-    - name: PHP Unit Tests with coverage
-      run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
-    - name: Upload coverage results to Coveralls
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        composer global require twinh/php-coveralls
-        php-coveralls --coverage_clover=build/logs/clover.xml -v
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: xdebug
+      - name: Install dependencies
+        run: composer install --no-interaction --ignore-platform-reqs
+      - name: Execute tests
+        run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+      - name: Upload coverage results to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          composer global require twinh/php-coveralls
+          php-coveralls --coverage_clover=build/logs/clover.xml -v
