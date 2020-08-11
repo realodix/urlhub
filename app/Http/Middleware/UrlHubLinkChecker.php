@@ -2,7 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Url;
+use App\Models\Url;
+use App\Services\KeyService;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,21 +19,20 @@ class UrlHubLinkChecker
      */
     public function handle($request, Closure $next)
     {
-        $url = new Url();
-        $long_url = rtrim($request->long_url, '/');
+        $keySrvc = new KeyService();
+        $longUrl = rtrim($request->long_url, '/');
 
         /*
         |----------------------------------------------------------------------
-        | Remaining Keyword
+        | Key Remaining
         |----------------------------------------------------------------------
         |
-        | Periksa apakah URLHub masih memiliki keyword yang tersedia untuk
-        | membuat URL pendek. Jika tidak tersedia, cegah membuat URL
-        | pendek.
+        | Prevent create short URLs when the Random Key Generator reaches the
+        | maximum limit and cannot generate more keys.
         |
         */
 
-        if ($url->keyword_remaining() == 0) {
+        if ($keySrvc->keyRemaining() == 0) {
             return redirect()
                    ->back()
                    ->withFlashError(
@@ -45,17 +45,17 @@ class UrlHubLinkChecker
         | Long Url Exists
         |----------------------------------------------------------------------
         |
-        | Check if a long URL already exists in the database. If found,
-        | display a warning.
+        | Check if a long URL already exists in the database. If found, display
+        | a warning.
         |
         */
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
-                          ->whereLongUrl($long_url)
+                          ->whereLongUrl($longUrl)
                           ->first();
         } else {
-            $s_url = Url::whereLongUrl($long_url)
+            $s_url = Url::whereLongUrl($longUrl)
                           ->whereNull('user_id')
                           ->first();
         }

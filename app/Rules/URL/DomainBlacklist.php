@@ -15,15 +15,15 @@ class DomainBlacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        $blacklist = remove_schemes(config('urlhub.domain_blacklist'));
-        $long_url = rtrim($value, '/');
+        $blacklist = urlRemoveScheme(uHub('domain_blacklist'));
+        $longUrl = rtrim($value, '/');
         $a = true;
 
         foreach ($blacklist as $black_list) {
             $url_segment = ('://'.$black_list.'/');
             $url_segment2 = ('://www.'.$black_list.'/');
 
-            if ((strstr($long_url, $url_segment) || strstr($long_url, $url_segment2))) {
+            if ((strstr($longUrl, $url_segment) || strstr($longUrl, $url_segment2))) {
                 $a = false;
             }
         }
@@ -32,8 +32,8 @@ class DomainBlacklist implements Rule
     }
 
     /**
-     * @codeCoverageIgnore
      * Get the validation error message.
+     * @codeCoverageIgnore
      *
      * @return string
      */

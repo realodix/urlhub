@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Url;
 use App\Services\UrlRedirectionService;
-use App\Url;
 use Illuminate\Support\Facades\DB;
 
 class UrlRedirectController extends Controller
@@ -13,14 +13,14 @@ class UrlRedirectController extends Controller
      * long URL.
      *
      * @param UrlRedirectionService $service
-     * @param string                $keyword
+     * @param string                $key
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(UrlRedirectionService $service, string $keyword)
+    public function __invoke(UrlRedirectionService $service, string $key)
     {
-        return DB::transaction(function () use ($service, $keyword) {
-            $url = Url::whereKeyword($keyword)->firstOrFail();
+        return DB::transaction(function () use ($service, $key) {
+            $url = Url::whereKeyword($key)->firstOrFail();
 
             return $service->handleHttpRedirect($url);
         });

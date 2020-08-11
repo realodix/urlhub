@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{config('app.name').' - '.config('app.description')}}</title>
+  <title>{{appName().' - '.config('app.description')}}</title>
 
   {!! style(mix('css/frontend.css')) !!}
 </head>
@@ -13,7 +13,7 @@
 <body class="@yield('css_class')">
 <nav class="navbar navbar-expand navbar-dark">
   <div class="container">
-    <a class="navbar-brand" href="{{ url('/') }}">{{config('app.name')}}</a>
+    <a class="navbar-brand" href="{{ url('/') }}">{{appName()}}</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto"></ul>
@@ -53,7 +53,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">@lang('Login')</a>
           </li>
-          @if (Route::has('register') and Config::get('urlhub.public_register'))
+          @if (Route::has('register') and Config::get('urlhub.registration'))
           <li class="nav-item">
             <a class="nav-link" href="{{ route('register') }}">@lang('Register')</a>
           </li>

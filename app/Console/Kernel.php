@@ -17,8 +17,8 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * @codeCoverageIgnore
      * Define the application's command schedule.
+     * @codeCoverageIgnore
      *
      * @param \Illuminate\Console\Scheduling\Schedule $schedule
      *

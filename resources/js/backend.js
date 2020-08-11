@@ -19,7 +19,7 @@ $(document).ready(function() {
         columns: [
             {data: 'keyword'},
             {data: 'long_url', name: 'meta_title'},
-            {data: 'clicks', searchable: false,},
+            {data: 'clicks', searchable: false},
             {data: 'created_by'},
             {
                 data: 'created_at',

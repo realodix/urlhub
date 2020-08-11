@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Url;
+use App\Models\Url;
 use Tests\TestCase;
 
 /**
@@ -10,9 +10,9 @@ use Tests\TestCase;
  */
 class UrlBeTest extends TestCase
 {
-    protected function hashIdRoute($rout_name, $url_id)
+    protected function hashIdRoute($routeName, $url_id)
     {
-        return route($rout_name, \Hashids::connection(\App\Url::class)->encode($url_id));
+        return route($routeName, \Hashids::connection(\App\Models\Url::class)->encode($url_id));
     }
 
     /*
@@ -63,8 +63,6 @@ class UrlBeTest extends TestCase
      */
     public function d_can_duplicate()
     {
-        $user_id = $this->admin()->id;
-
         $url = factory(Url::class)->create([
             'user_id' => $this->admin()->id,
         ]);
@@ -116,7 +114,7 @@ class UrlBeTest extends TestCase
         $response =
             $this
                 ->from(route('short_url.edit', $url->keyword))
-                ->post(route('short_url.edit.post', \Hashids::connection(\App\Url::class)->encode($url->id)), [
+                ->post(route('short_url.edit.post', \Hashids::connection(\App\Models\Url::class)->encode($url->id)), [
                     'meta_title' => $url->meta_title,
                     'long_url'   => $new_long_url,
                 ]);

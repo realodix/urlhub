@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Url;
-use App\UrlStat;
+use App\Models\Url;
+use App\Models\Visit;
 use Illuminate\Http\RedirectResponse;
 use Jenssegers\Agent\Agent;
 
@@ -15,13 +15,20 @@ class UrlRedirectionService
     private $agent;
 
     /**
+     * @var \App\Services\UrlService
+     */
+    protected $urlSrvc;
+
+    /**
      * UrlRedirectionService constructor.
      *
      * @param Agent|null $agent
+     * @param UrlService $urlSrvc
      */
-    public function __construct(Agent $agent = null)
+    public function __construct(Agent $agent = null, UrlService $urlSrvc)
     {
         $this->agent = $agent ?? new Agent();
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
@@ -36,23 +43,32 @@ class UrlRedirectionService
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->createUrlStat($url, $url->getCountries(request()->ip()));
+        $this->storeVisitStat(
+            $url,
+            $this->urlSrvc->ipToCountry(
+                $this->urlSrvc->anonymizeIp(request()->ip())
+            )
+        );
 
-        return redirect()->away($url->long_url, config('urlhub.redirect_code'));
+        $headers = [
+            'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
+        ];
+
+        return redirect()->away($url->long_url, uHub('redirect_status_code'), $headers);
     }
 
     /**
-     * Create the UrlStat and store it in the database.
+     * Create visit statistics and store it in the database.
      *
      * @param Url   $url
      * @param array $countries
      */
-    private function createUrlStat(Url $url, array $countries)
+    private function storeVisitStat(Url $url, array $countries)
     {
-        UrlStat::create([
+        Visit::create([
             'url_id'           => $url->id,
             'referer'          => request()->server('HTTP_REFERER') ?? null,
-            'ip'               => request()->ip(),
+            'ip'               => $this->urlSrvc->anonymizeIp(request()->ip()),
             'device'           => $this->agent->device(),
             'platform'         => $this->agent->platform(),
             'platform_version' => $this->agent->version($this->agent->platform()),

@@ -4,105 +4,67 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable/Disable to guest access
+    | Unregistered Users Access
     |--------------------------------------------------------------------------
     */
 
-    'allow_guest' => env('URLHUB_ALLOWGUEST', true),
+    /**
+     * If you disabled it, users must be registered to create Short URL.
+     */
+    'public_site' => env('UH_PUBLIC_SITE', true),
+
+    /**
+     * Enable users registration. If disabled it, no one can register.
+     */
+    'registration' => env('UH_REGISTRATION', true),
+
+    /**
+     * Enable/Disable to allow unregistered users see shortened links
+     * statistics.
+     */
+    'guest_show_stat' => env('UH_GUEST_SHOW_STAT', true),
 
     /*
     |--------------------------------------------------------------------------
-    | Enable/Disable to register new users
+    | Shorten URL
     |--------------------------------------------------------------------------
     */
 
-    'public_register' => env('URLHUB_PUBLICREGISTER', true),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Hash Length
-    |--------------------------------------------------------------------------
-    |
-    | The expected (and maximum) number of characters in generating unique
-    | keyword.
-    |
-    */
-
+    /**
+     * The expected (and maximum) number of characters in generating unique
+     * keyword.
+     */
     'hash_length' => env('HASH_LENGTH', 6), // >= 1
 
-    /*
-    |--------------------------------------------------------------------------
-    | Hash Alphabet
-    |--------------------------------------------------------------------------
-    |
-    | Characters to be used in generating unique keyword. A URL is composed
-    | from a limited set of characters belonging to the US-ASCII character
-    | set. These characters include digits (0-9), letters(A-Z, a-z), and
-    | a few special characters ("-", ".", "_", "~").
-    |
-    | ASCII control characters (e.g. backspace, vertical tab, horizontal tab,
-    | line feed etc), unsafe characters like space, \, <, >, {, } etc, and
-    | any character outside the ASCII charset is not allowed to be placed
-    | directly within URLs.
-
-    | Moreover, there are some characters that have special meaning within
-    | URLs. These characters are called reserved characters. Some examples
-    | of reserved characters are ?, /, #, : etc. Any data transmitted as
-    | part of the URL, whether in query string or path segment, must not
-    | contain these characters.
-    |
-    */
-
-    'hash_alphabet' => env(
-        'HASH_ALPHABET',
-        '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    /**
+     * Characters to be used in generating unique keyword. For convenience,
+     * currently the allowed characters are only alphanumeric consisting of
+     * a limited set of characters belonging to the US-ASCII characters,
+     * including digits (0-9), letters (A-Z, a-z).
+     */
+    'hash_char' => env(
+        'HASH_CHAR',
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
     ),
 
-    /*
-    |--------------------------------------------------------------------------
-    | URL Redirection Status Code
-    |--------------------------------------------------------------------------
-    |
-    | The HTTP redirect code, redirect for short, is a way to forward visitors
-    | and search engines from one URL to another.
-    |
-    | You can read the references below to find out what code is good to use.
-    | - https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
-    | - https://redirectdetective.com/redirection-types.html
-    |
-    */
-
-    'redirect_code' => env('URLHUB_REDIRECT_CODE', 301),
-
-    /*
-    |--------------------------------------------------------------------------
-    | List of non allowed domain
-    |--------------------------------------------------------------------------
-    |
-    | This list is used to prevent shortening of urls that contain one of the
-    | domains below.
-    |
-    */
-
+    /**
+     * List of non allowed domain.
+     *
+     * This list is used to prevent shortening of urls that contain one of the
+     * domains below.
+     */
     'domain_blacklist' => [
         config('app.url'),
         // 'bit.ly',
-        // 'adf.ly',
-        // 'goo.gl',
-        // 't.co',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | List of reserved URL ending
-    |--------------------------------------------------------------------------
-    |
-    | This keyword has a special meaning in UrlHub. Some of them represent
-    | things that look like folder names in public folders. You are free
-    | to add keywords that you want to prevent, for example rude words.
-    |
-    */
-
+    /**
+     * List of reserved URL ending.
+     *
+     * This keyword has a special meaning in UrlHub. Some of them represent
+     * things that look like folder names in public folders. You are free
+     * to add keywords that you want to prevent, for example rude words.
+     */
     'reserved_keyword' => [
         'css',
         'images',
@@ -114,9 +76,46 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable/Disable to show shorten links statstics to Guest
+    | Visiting
     |--------------------------------------------------------------------------
     */
 
-    'show_stat_to_guests' => env('URLHUB_SHOW_STAT_TO_GUESTS', true),
+    /**
+     * Tells if IP addresses from visitors should be obfuscated before storing
+     * them in the database. Default value is true.
+     *
+     * Careful!
+     * Setting this to false will make your UrlHub instance no longer be in
+     * compliance with the GDPR and other similar data protection regulations.
+     */
+    'anonymize_ip_addr' => env('UH_ANONYMIZE_IP_ADDR', true),
+
+    /**
+     * Configure the kind of redirect you want to use for your short URLs. You
+     * can either set:
+     * - 301 (Default behavior, visitors always hit the server).
+     * - 302 (Better for SEO, visitors hit the server the first time and then
+     *   cache the redirect).
+     *
+     * When selecting 301 redirects, you can also configure the time redirects
+     * are cached, to mitigate deviations in stats.
+     */
+    'redirect_status_code' => env('UH_REDIRECT_STATUS_CODE', 301),
+
+    /**
+     * Set the amount of seconds that redirects should be cached when redirect
+     * status is 301. Default values is 90.
+     */
+    'redirect_cache_lifetime' => env('UH_REDIRECT_CACHE_LIFETIME', 90),
+
+    /*
+    |--------------------------------------------------------------------------
+    | General Feature
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Turn on/off the embed external content element.
+     */
+    'embed' => env('UH_EMBED', true),
 ];

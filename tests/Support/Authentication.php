@@ -2,13 +2,13 @@
 
 namespace Tests\Support;
 
-use App\User;
+use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 trait Authentication
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

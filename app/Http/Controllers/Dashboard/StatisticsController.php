@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Url;
-use App\User;
+use App\Services\KeyService;
+use App\Services\UrlService;
+use App\Services\UserService;
 
 class StatisticsController extends Controller
 {
@@ -21,18 +22,20 @@ class StatisticsController extends Controller
      */
     public function view()
     {
-        $url = new Url;
-        $user = new User;
+        $userSrvc = new UserService;
+        $urlSrvc = new UrlService;
+        $keySrvc = new KeyService;
 
         return view('backend.statistics', [
-            'capacity'             => $url->keyword_capacity(),
-            'remaining'            => $url->keyword_remaining(),
-            'totalShortUrl'        => $url->totalShortUrl(),
-            'totalShortUrlByGuest' => $url->totalShortUrlById(),
-            'totalClicks'          => $url->totalClicks(),
-            'totalClicksByGuest'   => $url->totalClicksById(),
-            'totalUser'            => $user->totalUser(),
-            'totalGuest'           => $user->totalGuest(),
+            'keyCapacity'          => $keySrvc->keyCapacity(),
+            'keyRemaining'         => $keySrvc->keyRemaining(),
+            'remainingPercentage'  => $keySrvc->keyRemainingInPercent(),
+            'shortUrlCount'        => $urlSrvc->shortUrlCount(),
+            'shortUrlCountByGuest' => $urlSrvc->shortUrlCountOwnedBy(),
+            'clickCount'           => $urlSrvc->clickCount(),
+            'clickCountFromGuest'  => $urlSrvc->clickCountOwnedBy(),
+            'userCount'            => $userSrvc->userCount(),
+            'guestCount'           => $userSrvc->guestCount(),
         ]);
     }
 }

@@ -33,8 +33,8 @@ class StrAlphaUnderscore implements Rule
     }
 
     /**
-     * @codeCoverageIgnore
      * Get the validation error message.
+     * @codeCoverageIgnore
      *
      * @return string
      */

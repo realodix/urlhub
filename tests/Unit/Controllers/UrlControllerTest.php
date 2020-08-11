@@ -2,17 +2,14 @@
 
 namespace Tests\Unit\Controllers;
 
+use App\Models\Url;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
-use App\Url;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass App\Http\Controllers\UrlController
- */
 class UrlControllerTest extends TestCase
 {
     /**
@@ -20,17 +17,16 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_user_id()
     {
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertSame(null, $url->user_id);
     }
@@ -41,20 +37,19 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_user_id_2()
     {
         $user = $this->admin();
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
 
         $this->loginAsAdmin();
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertSame($user->id, $url->user_id);
     }
@@ -65,20 +60,19 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_not_custom()
     {
-        $long_url = 'https://laravel.com';
+        $longUrl = 'https://laravel.com';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertEquals(
-            config('urlhub.hash_length'),
+            uHub('hash_length'),
             strlen($url->keyword)
         );
         $this->assertFalse($url->is_custom);
@@ -90,33 +84,31 @@ class UrlControllerTest extends TestCase
      *
      * @test
      * @group u-controller
-     * @covers ::create
      */
     public function shortenUrl_is_custom()
     {
-        config()->set('urlhub.hash_length', 6);
+        config(['urlhub.hash_length' => 6]);
 
-        $long_url = 'https://laravel.com';
-        $custom_url = 'foo_bar';
+        $longUrl = 'https://laravel.com';
+        $customKey = 'foo_bar';
 
         $this->post(route('createshortlink'), [
-            'long_url'       => $long_url,
-            'custom_keyword' => $custom_url,
+            'long_url'   => $longUrl,
+            'custom_key' => $customKey,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
-        $this->assertSame($custom_url, $url->keyword);
+        $url = Url::whereLongUrl($longUrl)->first();
+        $this->assertSame($customKey, $url->keyword);
         $this->assertTrue($url->is_custom);
     }
 
     /**
      * @test
      * @group u-controller
-     * @covers ::checkExistingCustomUrl
      */
-    public function check_existing_custom_url_pass()
+    public function custom_key_validation_pass()
     {
-        $response = $this->post(route('home').'/custom-link-avail-check', [
+        $response = $this->post(route('home').'/validate-custom-key', [
             'keyword' => 'hello',
         ]);
 
@@ -126,10 +118,9 @@ class UrlControllerTest extends TestCase
     /**
      * @test
      * @group u-controller
-     * @covers ::checkExistingCustomUrl
-     * @dataProvider checkExistingCustomUrl_fail
+     * @dataProvider customKeyValidationFailProvider
      */
-    public function check_existing_custom_url_fail($data)
+    public function custom_key_validation_fail($data)
     {
         factory(Url::class)->create([
             'keyword' => 'laravel',
@@ -137,7 +128,7 @@ class UrlControllerTest extends TestCase
 
         $request = new Request;
 
-        $validator = Validator::make($request->all(), [
+        $v = Validator::make($request->all(), [
             'keyword' => [
                 'max:20',
                 'unique:urls',
@@ -147,14 +138,14 @@ class UrlControllerTest extends TestCase
             ],
         ]);
 
-        $response = $this->post(route('home').'/custom-link-avail-check', [
+        $response = $this->post(route('home').'/validate-custom-key', [
             'keyword' => $data,
         ]);
 
-        $response->assertJson(['errors' => $validator->errors()->all()]);
+        $response->assertJson(['errors' => $v->errors()->all()]);
     }
 
-    public function checkExistingCustomUrl_fail()
+    public function customKeyValidationFailProvider()
     {
         return [
             [str_repeat('a', 50)],

@@ -3,60 +3,81 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Url;
+use App\Models\Url;
+use App\Services\UrlService;
 use Illuminate\Support\Str;
-use Yajra\Datatables\Datatables;
 
 class AllUrlController extends Controller
 {
     /**
+     * @var \App\Services\UrlService
+     */
+    protected $urlSrvc;
+
+    /**
      * AllUrlController constructor.
      */
-    public function __construct()
+    public function __construct(UrlService $urlSrvc)
     {
         $this->middleware('role:admin');
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
      * Show all short URLs created by all users.
-     *
-     * @return \Illuminate\View\View
      */
-    public function index()
+    public function view()
     {
         return view('backend.all-url');
     }
 
     /**
+     * Delete a Short URL on user (Admin) request.
+     */
+    public function delete($url)
+    {
+        $this->urlSrvc->delete($url);
+
+        return redirect()->back()
+                         ->withFlashSuccess(__('Link was successfully deleted.'));
+    }
+
+    /**
+     * @return string JSON
+     *
      * @codeCoverageIgnore
      */
-    public function getData()
+    public function dataTable()
     {
-        $model = Url::query();
+        $urlModel = Url::query();
 
-        return DataTables::of($model)
-            ->editColumn('keyword', function ($url) {
-                return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.remove_schemes($url->short_url).'</span>';
+        return datatables($urlModel)
+            ->editColumn('keyword', function (Url $url) {
+                return '<span class="short_url" data-clipboard-text="'.$url->short_url.'" title="'.__('Copy to clipboard').'" data-toggle="tooltip">'.urlDisplay($url->short_url, false).'</span>';
             })
-            ->editColumn('long_url', function ($url) {
+            ->editColumn('long_url', function (Url $url) {
                 return '
-                    <span title="'.$url->meta_title.'" data-toggle="tooltip">'.Str::limit($url->meta_title, 90).'</span>
+                    <span title="'.$url->meta_title.'" data-toggle="tooltip">
+                        '.Str::limit($url->meta_title, 80).'
+                    </span>
                     <br>
-                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">'.url_limit($url->long_url, 70).'</a>';
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" data-toggle="tooltip" class="text-muted">
+                        '.urlDisplay($url->long_url, false, 70).'
+                    </a>';
             })
-            ->editColumn('clicks', function ($url) {
-                return '<span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.number_format_short($url->clicks).'</span>';
+            ->editColumn('clicks', function (Url $url) {
+                return '<span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.numberFormatShort($url->clicks).'</span>';
             })
-            ->editColumn('created_at', function ($url) {
+            ->editColumn('created_at', function (Url $url) {
                 return [
                     'display'   => '<span title="'.$url->created_at->toDayDateTimeString().'" data-toggle="tooltip">'.$url->created_at->diffForHumans().'</span>',
                     'timestamp' => $url->created_at->timestamp,
                 ];
             })
-            ->addColumn('created_by', function ($url) {
+            ->addColumn('created_by', function (Url $url) {
                 return '<span>'.$url->user->name.'</span>';
             })
-            ->addColumn('action', function ($url) {
+            ->addColumn('action', function (Url $url) {
                 return
                     '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                         <a role="button" class="btn" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
@@ -65,19 +86,5 @@ class AllUrlController extends Controller
             })
             ->rawColumns(['keyword', 'long_url', 'clicks', 'created_at.display', 'created_by', 'action'])
             ->toJson();
-    }
-
-    /**
-     * Delete a Short URL on user (Admin) request.
-     *
-     * @param \App\Url $url
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
-     */
-    public function delete(Url $url)
-    {
-        $url->delete();
-
-        return redirect()->back()
-                         ->withFlashSuccess(__('Link was successfully deleted.'));
     }
 }

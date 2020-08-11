@@ -4,48 +4,44 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
-use App\Url;
+use App\Services\UrlService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
     /**
-     * @var url
+     * @var \App\Services\UrlService
      */
-    protected $url;
+    protected $urlSrvc;
 
     /**
      * UrlController constructor.
-     *
-     * @param Url $url
      */
-    public function __construct(Url $url)
+    public function __construct(UrlService $urlSrvc)
     {
         $this->middleware('urlhublinkchecker')->only('create');
 
-        $this->url = $url;
+        $this->urlSrvc = $urlSrvc;
     }
 
     /**
      * Store the data the user sent to create the Short URL.
      *
-     * @param StoreUrl $request
+     * @param Request $request
      * @return RedirectResponse
      */
-    public function store(StoreUrl $request)
+    public function store(Request $request)
     {
-        $keyword = $request->custom_keyword ?? $this->url->key_generator();
+        $v = Validator::make($request->all(), (new StoreUrl)->rules());
+        if ($v->fails()) {
+            return response()->json(['errors' => $v->errors()->all()]);
+        }
 
-        $url = Url::create([
-            'user_id'    => Auth::id(),
-            'long_url'   => $request->long_url,
-            'meta_title' => $request->long_url,
-            'keyword'    => $keyword,
-            'is_custom'  => $request->custom_keyword ? 1 : 0,
-            'ip'         => $request->ip(),
-        ]);
+        $url = $this->urlSrvc->shortenUrl($request, Auth::id());
 
         return response([
             'id'        => $url->id,

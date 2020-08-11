@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Rules\PwdCurrent;
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 

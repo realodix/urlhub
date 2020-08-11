@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container home pt-5">
-  @if (!Auth::check() and !Config::get('urlhub.allow_guest'))
+  @if (! Auth::check() and ! Config::get('urlhub.public_site'))
    <div class="row justify-content-md-center">
     <div class="col-lg-8 text-center welcome-msg">@lang('Please login to shorten URLs')</div>
   </div>
@@ -34,7 +34,7 @@
           <div class="custom-url--title">@lang('Custom URL (optional)')</div>
           <span class="custom-url--description text-muted d-block">@lang('Replace clunky URLs with meaningful short links that get more clicks.')</span>
           <div class="site-url">{{$_SERVER['SERVER_NAME']}}/</div>
-          <input class="form-control form-control-sm url-field" id="custom_keyword" name="custom_keyword">
+          <input class="form-control form-control-sm url-field" id="custom_key" name="custom_key">
           <small class="ml-3" id="link-availability-status"></small>
         </div>
       </form>

@@ -26,7 +26,7 @@
 
               <div class="col">
                 <div class="input-group mb-3">
-                  <span class="short-url">{{remove_schemes($url->short_url)}}</span>
+                  <span class="short-url">{{urlDisplay($url->short_url, false)}}</span>
                 </div>
               </div>
             </div>

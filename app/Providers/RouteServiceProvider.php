@@ -36,15 +36,15 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::bind('user', function ($value, $route) {
-            return \App\User::where('name', $value)->firstOrFail();
+            return \App\Models\User::where('name', $value)->firstOrFail();
         });
 
         Route::bind('user_hashId', function ($value, $route) {
-            return $this->getModel(\App\User::class, $value);
+            return $this->getModel(\App\Models\User::class, $value);
         });
 
         Route::bind('url_hashId', function ($value, $route) {
-            return $this->getModel(\App\Url::class, $value);
+            return $this->getModel(\App\Models\Url::class, $value);
         });
     }
 

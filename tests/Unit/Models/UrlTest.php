@@ -2,22 +2,18 @@
 
 namespace Tests\Unit\Models;
 
-use App\Url;
-use App\UrlStat;
+use App\Models\Url;
+use App\Models\Visit;
+use App\Services\UrlService;
 use Tests\TestCase;
 
-/**
- * @coversDefaultClass App\Url
- */
 class UrlTest extends TestCase
 {
-    protected $url;
-
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
-        $this->url = new Url();
+        $this->urlSrvc = new UrlService;
 
         factory(Url::class)->create([
             'user_id' => $this->admin()->id,
@@ -29,13 +25,12 @@ class UrlTest extends TestCase
             'clicks'  => 10,
         ]);
 
-        config()->set('urlhub.hash_alphabet', 'abc');
+        config(['urlhub.hash_char' => 'abc']);
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::user
      */
     public function belongs_to_user()
     {
@@ -49,7 +44,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::user
      */
     public function default_guest_name()
     {
@@ -63,17 +57,16 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::urlStat
      */
     public function has_many_url_stat()
     {
         $url = factory(Url::class)->create();
 
-        factory(UrlStat::class)->create([
+        factory(Visit::class)->create([
             'url_id' => $url->id,
         ]);
 
-        $this->assertTrue($url->urlStat()->exists());
+        $this->assertTrue($url->visit()->exists());
     }
 
     /**
@@ -81,17 +74,16 @@ class UrlTest extends TestCase
      *
      * @test
      * @group u-model
-     * @covers ::setUserIdAttribute
      */
     public function default_guest_id()
     {
-        $long_url = 'https://example.com';
+        $longUrl = 'https://example.com';
 
         $this->post(route('createshortlink'), [
-            'long_url' => $long_url,
+            'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($long_url)->first();
+        $url = Url::whereLongUrl($longUrl)->first();
 
         $this->assertSame(null, $url->user_id);
     }
@@ -99,7 +91,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::setUserIdAttribute
      */
     public function setUserIdAttribute_must_be_null()
     {
@@ -113,7 +104,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::setLongUrlAttribute
      */
     public function setLongUrlAttribute()
     {
@@ -130,7 +120,6 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::getShortUrlAttribute
      */
     public function getShortUrlAttribute()
     {
@@ -145,65 +134,60 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @covers ::totalShortUrl
      */
     public function total_short_url()
     {
         $this->assertSame(
             3,
-            $this->url->totalShortUrl()
+            $this->urlSrvc->shortUrlCount()
         );
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::totalShortUrlById
      */
     public function total_short_url_by_me()
     {
         $this->assertSame(
             1,
-            $this->url->totalShortUrlById($this->admin()->id)
+            $this->urlSrvc->shortUrlCountOwnedBy($this->admin()->id)
         );
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::totalShortUrlById
      */
     public function total_short_url_by_guest()
     {
         $this->assertSame(
             2,
-            $this->url->totalShortUrlById()
+            $this->urlSrvc->shortUrlCountOwnedBy()
         );
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::totalClicks
      */
     public function total_clicks()
     {
         $this->assertSame(
             30,
-            $this->url->totalClicks()
+            $this->urlSrvc->clickCount()
         );
     }
 
     /**
      * @test
      * @group u-model
-     * @covers ::totalClicksById
      */
     public function total_clicks_by_me()
     {
         $this->assertSame(
             10,
-            $this->url->totalClicksById($this->admin()->id)
+            $this->urlSrvc->clickCountOwnedBy($this->admin()->id)
         );
     }
 
@@ -212,146 +196,12 @@ class UrlTest extends TestCase
      *
      * @test
      * @group u-model
-     * @covers ::totalClicksById
      */
     public function total_clicks_by_guest()
     {
         $this->assertSame(
             20,
-            $this->url->totalClicksById()
+            $this->urlSrvc->clickCountOwnedBy()
         );
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @covers ::keyword_capacity
-     * @dataProvider keywordCapacityProvider
-     */
-    public function keyword_capacity($hash_length, $expected)
-    {
-        config()->set('urlhub.hash_length', $hash_length);
-
-        $this->assertSame($expected, $this->url->keyword_capacity());
-    }
-
-    public function keywordCapacityProvider()
-    {
-        return [
-            [0, 0],
-            [1, 3], // (3^1)
-            [2, 9], // $alphabet_length^$hash_length or 3^2
-
-            [-1, 0],
-            [2.7, 9], // (3^2)
-            ['string', 0],
-        ];
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @covers ::keyword_remaining
-     */
-    public function keyword_remaining()
-    {
-        factory(Url::class, 5)->create();
-
-        config()->set('urlhub.hash_length', 1);
-
-        // 3 - 5 = must be 0
-        $this->assertSame(0, $this->url->keyword_remaining());
-
-        config()->set('urlhub.hash_length', 2);
-
-        // (3^2) - 5 - (2+1) = 1
-        $this->assertSame(1, $this->url->keyword_remaining());
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @covers ::keyword_remaining_percent
-     */
-    public function keyword_remaining_percent()
-    {
-        factory(Url::class, 4)->create();
-
-        config()->set('urlhub.hash_length', 2);
-        config()->set('urlhub.hash_alphabet', 'ab');
-
-        $this->assertSame('0%', $this->url->keyword_remaining_percent());
-
-        config()->set('urlhub.hash_length', 6);
-        config()->set('urlhub.hash_alphabet', 'abcdefghij');
-
-        $this->assertSame('99.99%', $this->url->keyword_remaining_percent());
-
-        config()->set('urlhub.hash_length', 3);
-        config()->set('urlhub.hash_alphabet', 'abcdefg');
-
-        $this->assertSame('98%', $this->url->keyword_remaining_percent());
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @covers ::get_remote_title
-     */
-    public function get_remote_title()
-    {
-        $long_url = 'https://github123456789.com';
-
-        $this->assertSame('No Title', $this->url->get_remote_title($long_url));
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @covers ::getDomain
-     * @dataProvider getDomainProvider
-     */
-    public function get_domain($expected, $actutal)
-    {
-        $this->assertEquals($expected, $this->url->getDomain($actutal));
-    }
-
-    public function getDomainProvider()
-    {
-        return [
-            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
-        ];
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @covers ::getCountries
-     */
-    public function getCountriesWithKnownIp()
-    {
-        $countries = $this->url->getCountries('8.8.8.8');
-
-        $this->assertEquals('US', $countries['countryCode']);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @covers ::getCountries
-     */
-    public function getCountriesWithUnknownIp()
-    {
-        $countries = $this->url->getCountries('127.0.0.1');
-
-        $this->assertEquals('N/A', $countries['countryCode']);
-        $this->assertEquals('Unknown', $countries['countryName']);
     }
 }

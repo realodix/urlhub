@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\Url;
-use App\UrlStat;
+use App\Models\Url;
+use App\Models\Visit;
 use Tests\TestCase;
 
 class UrlRedirectControllerTest extends TestCase
@@ -18,8 +18,8 @@ class UrlRedirectControllerTest extends TestCase
 
         $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->long_url);
-        $response->assertStatus(config('urlhub.redirect_code'));
+        $response->assertStatus(uHub('redirect_status_code'));
 
-        $this->assertCount(1, UrlStat::all());
+        $this->assertCount(1, Visit::all());
     }
 }

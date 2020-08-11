@@ -15,7 +15,7 @@ cache:
 
 install:
   - composer self-update
-  - composer install --no-interaction
+  - composer install --no-interaction --ignore-platform-reqs
 
 before_script:
   - mysql -e 'create database urlhub_test;'

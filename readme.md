@@ -15,22 +15,30 @@
 UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/realodix), and is an open-source, easy-to-use but powerful URL shortener. It allows you to host your own URL shortener, and gives you many useful features.
 
 ### Features
-* URL Shortener.
-* Customized short URL's(ex: example.com/laravel).
-* QR code generator for each short link.
-* Sortable list of shortened URLs.
-* Written in [PHP](https://www.php.net/) and [Laravel 7](https://laravel.com/docs/7.x).
-* [Datatables](https://datatables.net/) with server-side processing.
-* Modern and simple interface.
-* Made with :heart: &amp; :coffee:.
+- **Reliable link shortner:** Does the job really well and it is very consistent. UrlHub is definitely one of the most reliable self-hosted URL shortener out there. Would recommend easily.
+- **Custom URLs (ex: example.com/laravel):** Allows users to create more descriptive short URLs rather than a randomly generated mix of letters and numbers.
+- **QR code generator for each short link:** The fastest way to access to this data is most likely opening the link from a phone. Though short URLs are handy for typing, a more convenient approach to transfer a web link to a mobile phone is through QR codes scanning.
+- **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
+- **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
+- **Embed content:** If possible, UrlHub will automatically embedding the content when you shorten URLs. It's nice to preview the page.
+- **IP Anonymization (or IP masking) [optional]:** Anonymizes visitor addresses as soon as technically feasible at the earliest possible stage of the collection network. The full IP address is never written to disk in this case. This feature is designed to help site owners comply with their own privacy policies, recommendations from local data protection authorities and legal regulations like the GDPR, which may prevent the storage of full IP address information.
+- **Power of customisation:** Do you want your site to be just for your use, so no one can register? No problem. It's in the configuration. Users must be registered to create Short URL? That's okay. It's in the configuration. From configuration file, you can edit pretty everything of your website. The choice is yours.
+- **Configuration Guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
+- **Sortable list of shortened URLs.**
+- **[Datatables](https://datatables.net/) with server-side processing.**
+- **Written in [PHP](https://www.php.net/) and [Laravel 7](https://laravel.com/docs/7.x).**
+- **Modern and simple interface.**
+- **Made with :heart: &amp; :coffee:.**
+
 
 ### Screenshots
-| ![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
+![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
 |-|-|-|-|
 
 
 ## Requirements
-* All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & [PHPUnit 9](https://phpunit.readthedocs.io/en/9.0/installation.html#requirements) - PHP >= 7.3, [Composer](https://getcomposer.org/) and such.
+* All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & dependencies - PHP >= 7.3, [Composer](https://getcomposer.org/) and such.
+* PHP >= 7.4 - If you installing packages listed in require-dev.
 * MySQL or MariaDB.
 
 
@@ -72,24 +80,32 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
     *You can watch assets with `npm run watch`*
 
+   Please note that this project uses Yarn as the package manager, so you can't find the package-lock.json file that is needed by NPM.
 
 ## Contributing
-Thank you for considering contributing to UrlHub. Any useful suggestion and pull requests are welcomed.
+The people who contribute to UrlHub do so for the love of open source, our users and ecosystem, and most importantly, pushing the web forward together. Developers like you can help by contributing to rich and vibrant documentation, issuing pull requests to help us cover niche use cases, and to help sustain what you love about UrlHub. 
 
-Please do the following:
-
-1. Fork the repository.
-2. Hack on a separate topic branch created from the latest `master`.
-3. Commit and push the topic branch.
-4. Make a pull request.
-5. Welcome to the club :sunglasses: and thank you for helping out!
+Anybody can help by doing any of the following:
+- Ask your employer to use UrlHub in projects.
+- Contribute to the core repository.
 
 ### Running Tests
 
 From the projects root folder run `./vendor/bin/phpunit` (VSCode Task `Run test`) or [Artisan Test Runner](https://laravel.com/docs/testing#artisan-test-runner) `php artisan test`
 
-![screenshot](https://i.imgur.com/L0XYqS6.png)
+![screenshot](https://i.imgur.com/SPeeXjq.png)
+
+
+## Bug Report
+If you've found a problem in UrlHub which is not a security risk, do a search on [GitHub under Issues](https://github.com/realodix/urlhub/issues) in case it has already been reported. If you are unable to find any open GitHub issues addressing the problem you found, your next step will be to [open a new one](https://github.com/realodix/urlhub/issues/new/choose).
+
+Your issue should contain a title and a clear description of the issue. You should also include as much relevant information as possible and a code sample that demonstrates the issue.
+
+The goal of a bug report is to make it easy for yourself - and others - to replicate the bug and develop a fix. Remember, bug reports are created in the hope that others with the same problem will be able to collaborate with you on solving it.
+
+Do not expect that the bug report will automatically see any activity or that others will jump to fix it. Creating a bug report serves to help yourself and others start on the path of fixing the problem.
 
 
 ## License
-UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).
+- UrlHub is an open-source software licensed under the [MIT license](https://github.com/realodix/urlhub/blob/master/LICENSE).
+- IP to Country Lite database by [DB-IP](https://db-ip.com) is licensed under a [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) License.

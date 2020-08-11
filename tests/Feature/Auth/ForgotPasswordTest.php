@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +26,10 @@ class ForgotPasswordTest extends TestCase
         return route('password.email');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_can_view_an_email_password_form()
     {
         $response = $this->get($this->requestRoute());
@@ -36,7 +39,10 @@ class ForgotPasswordTest extends TestCase
             ->assertViewIs('frontend.auth.passwords.email');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_receives_an_email_with_a_password_reset_link()
     {
         Notification::fake();
@@ -55,7 +61,10 @@ class ForgotPasswordTest extends TestCase
         });
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function user_does_not_receive_email_when_not_registered()
     {
         Notification::fake();
@@ -70,7 +79,10 @@ class ForgotPasswordTest extends TestCase
         Notification::assertNotSentTo(factory(User::class)->make(['email' => 'nobody@example.com']), ResetPassword::class);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-auth
+     */
     public function email_is_required()
     {
         $response = $this->from($this->getRoute())->post($this->postRoute(), []);
@@ -80,7 +92,10 @@ class ForgotPasswordTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-api
+     */
     public function email_is_a_valid_email()
     {
         $response = $this->from($this->getRoute())->post($this->postRoute(), [

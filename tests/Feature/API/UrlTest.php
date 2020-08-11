@@ -7,7 +7,10 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     * @group f-api
+     */
     public function can_create_url()
     {
         $data = [
@@ -23,5 +26,30 @@ class UrlTest extends TestCase
             ]);
 
         $this->assertDatabaseHas('urls', $data);
+    }
+
+    /**
+     * @test
+     * @group f-api
+     * @dataProvider shortenUrlFailProvider
+     */
+    public function shortenUrlFail($value)
+    {
+        $data = [
+            'long_url' => $value,
+        ];
+
+        $this->json('POST', '/api/url', $data)
+             ->assertJsonStructure([
+                 'errors',
+             ]);
+    }
+
+    public function shortenUrlFailProvider()
+    {
+        return [
+            [''],
+            ['foobar.com'],
+        ];
     }
 }

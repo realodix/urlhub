@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\User;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -14,10 +14,13 @@ class ProfileTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.update', \Hashids::connection(\App\User::class)->encode($value));
+        return route('user.update', \Hashids::connection(\App\Models\User::class)->encode($value));
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function users_can_access_their_own_profile_page()
     {
         $this->loginAsAdmin();
@@ -26,7 +29,10 @@ class ProfileTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function admin_can_access_other_users_profile_pages()
     {
         $this->loginAsAdmin();
@@ -35,7 +41,10 @@ class ProfileTest extends TestCase
         $response->assertOk();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function non_admin_cant_access_other_users_profile_pages()
     {
         $this->loginAsUser();
@@ -44,7 +53,10 @@ class ProfileTest extends TestCase
         $response->assertForbidden();
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function admin_can_change_other_users_email()
     {
         $this->loginAsAdmin();
@@ -65,7 +77,10 @@ class ProfileTest extends TestCase
         $this->assertSame('new_user_email@urlhub.test', $user->fresh()->email);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function non_admin_cant_change_other_users_email()
     {
         $this->loginAsUser();
@@ -83,7 +98,10 @@ class ProfileTest extends TestCase
         $this->assertSame('user2@urlhub.test', $user->email);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function validation_email_required()
     {
         $this->loginAsAdmin();
@@ -102,7 +120,10 @@ class ProfileTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function validation_email_invalid_format()
     {
         $this->loginAsAdmin();
@@ -121,7 +142,10 @@ class ProfileTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function validation_email_max_length()
     {
         $this->loginAsAdmin();
@@ -141,7 +165,10 @@ class ProfileTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /** @test */
+    /**
+     * @test
+     * @group f-user
+     */
     public function validation_email_unique()
     {
         $this->loginAsAdmin();

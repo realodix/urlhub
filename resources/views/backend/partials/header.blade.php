@@ -4,8 +4,8 @@
   </button>
 
   <div class="navbar-brand">
-    <div class="navbar-brand-full">{{config('app.name')}}</div>
-    <div class="navbar-brand-minimized">{{config('app.name')}}</div>
+    <div class="navbar-brand-full">{{appName()}}</div>
+    <div class="navbar-brand-minimized">{{appName()}}</div>
   </div>
 
   <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -14,12 +14,22 @@
 
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
-        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" title="{{config('app.name')}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
+        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" title="{{appName()}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
     </li>
 
-    @if(Breadcrumbs::exists())
-      {!! Breadcrumbs::render() !!}
-    @endif
+    @foreach (Breadcrumbs::current() as $crumbs)
+      @if ($crumbs->url() && !$loop->last)
+        <li class="breadcrumb-item">
+          <a href="{{ $crumbs->url() }}">
+            {{ $crumbs->title() }}
+          </a>
+        </li>
+      @else
+        <li class="breadcrumb-item active">
+            {{ $crumbs->title() }}
+        </li>
+      @endif
+    @endforeach
   </ul>
 
   <ul class="nav navbar-nav ml-auto mr-5">

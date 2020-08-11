@@ -1,7 +1,8 @@
 <?php
 
-use App\Url;
-use App\User;
+use App\Models\Url;
+use App\Models\User;
+use App\Services\KeyService;
 use Faker\Generator as Faker;
 
 /*
@@ -16,7 +17,7 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Url::class, function (Faker $faker) {
-    $url = new Url();
+    $keySrvc = new KeyService();
 
     return [
         'user_id' => function () {
@@ -24,7 +25,7 @@ $factory->define(Url::class, function (Faker $faker) {
         },
         'long_url'   => 'https://github.com/realodix/urlhub',
         'meta_title' => 'No Title',
-        'keyword'    => $url->key_generator(),
+        'keyword'    => $keySrvc->randomKey(),
         'is_custom'  => 0,
         'clicks'     => mt_rand(10000, 999999999),
         'ip'         => $faker->ipv4,
