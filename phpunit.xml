@@ -3,7 +3,10 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true">
-    <coverage processUncoveredFiles="true">
+    <coverage includeUncoveredFiles="true"
+              processUncoveredFiles="true"
+              pathCoverage="false"
+              ignoreDeprecatedCodeUnits="true">
         <include>
             <directory suffix=".php">./app</directory>
         </include>
