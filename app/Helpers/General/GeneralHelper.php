@@ -39,6 +39,7 @@ class GeneralHelper
         $urlFS = SpatieUrl::fromString($url);
         $hostLen = strlen($urlFS->getScheme().'://'.$urlFS->getHost());
 
+        // Remove URL schemes
         if ($scheme == false) {
             $url = $this->urlRemoveScheme($url);
             $hostLen = strlen($urlFS->getHost());
@@ -48,7 +49,7 @@ class GeneralHelper
             return $url;
         }
 
-        if ($hostLen >= 30 || (($hostLen <= 27) && ($length <= 30))) {
+        if ($hostLen >= 30 || (($hostLen >= 11 && $hostLen <= 27) && ($length >= 14 && $length <= 30))) {
             $length = $length - 3;
 
             return Str::limit($url, $length);
