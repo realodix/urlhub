@@ -3,10 +3,19 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true">
-    <coverage processUncoveredFiles="true">
+    <coverage includeUncoveredFiles="true"
+              processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./app</directory>
         </include>
+        <report>
+            <clover outputFile="clover.xml"/>
+            <crap4j outputFile="crap4j.xml" threshold="50"/>
+            <html outputDirectory="html-coverage" lowUpperBound="50" highLowerBound="90"/>
+            <php outputFile="coverage.php"/>
+            <text outputFile="coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
+            <xml outputDirectory="xml-coverage"/>
+        </report>
     </coverage>
     <testsuites>
         <testsuite name="Unit">
