@@ -36,10 +36,10 @@ class UserService
      */
     public function guestCount()
     {
-        return Url::select('ip', DB::raw('count(*) as total'))
-        ->whereNull('user_id')
-        ->groupBy('ip')
-            ->get()
-            ->count();
+        $url = Url::select('ip', DB::raw('count(*) as total'))
+                    ->whereNull('user_id')->groupBy('ip')
+                    ->get();
+
+        return $url->count();
     }
 }

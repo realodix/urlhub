@@ -116,7 +116,7 @@ class HtmlHelper
     /**
      * Transform the string to an Html serializable object.
      *
-     * @param $html
+     * @param string $html
      * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString($html)
