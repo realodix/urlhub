@@ -30,8 +30,8 @@ class UrlService
     }
 
     /**
-     * @param array $request
-     * @param int   $authId
+     * @param array|string $request
+     * @param int          $authId
      */
     public function shortenUrl($request, $authId)
     {
