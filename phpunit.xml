@@ -16,25 +16,7 @@
         <include>
             <directory suffix=".php">./app</directory>
         </include>
-
-        <report>
-            <clover outputFile="clover.xml"/>
-            <crap4j outputFile="crap4j.xml" threshold="50"/>
-            <html outputDirectory="html-coverage" lowUpperBound="50" highLowerBound="90"/>
-            <php outputFile="coverage.php"/>
-            <text outputFile="coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
-            <xml outputDirectory="xml-coverage"/>
-        </report>
     </coverage>
-
-    <logging>
-        <junit outputFile="junit.xml"/>
-        <teamcity outputFile="teamcity.txt"/>
-        <testdoxHtml outputFile="testdox.html"/>
-        <testdoxText outputFile="testdox.txt"/>
-        <testdoxXml outputFile="testdox.xml"/>
-        <text outputFile="logfile.txt"/>
-    </logging>
 
     <php>
         <server name="APP_ENV" value="testing"/>
