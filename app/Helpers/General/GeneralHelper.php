@@ -78,3 +78,8 @@ class GeneralHelper
         ], '', $value);
     }
 }
+// t.co/abcd
+// t.co/a...
+
+// t.co/abcdefghi
+// t.co/abc...ghi
