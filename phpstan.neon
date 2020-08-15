@@ -1,0 +1,20 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+
+    # https://phpstan.org/user-guide/rule-levels
+    level: 8
+
+    # https://phpstan.org/user-guide/ignoring-errors
+    ignoreErrors:
+        - '#Unsafe usage of new static#'
+
+    # https://phpstan.org/user-guide/ignoring-errors#excluding-whole-files
+    excludes_analyse:
+        - ./*/*/FileToBeExcluded.php
+
+    # https://phpstan.org/config-reference#vague-typehints
+    checkMissingIterableValueType: false
