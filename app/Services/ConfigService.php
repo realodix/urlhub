@@ -4,13 +4,13 @@ namespace App\Services;
 
 class ConfigService
 {
-    const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    private const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 
-    const DEFAULT_HASH_LENGTH = 6;
+    private const DEFAULT_HASH_LENGTH = 6;
 
-    const DEFAULT_REDIRECT_STATUS_CODE = 301;
+    private const DEFAULT_REDIRECT_STATUS_CODE = 301;
 
-    const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
+    private const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
 
     /**
      * Files affected: config\urlhub.php.
