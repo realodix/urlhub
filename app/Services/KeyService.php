@@ -106,9 +106,9 @@ class KeyService
             return '0.01%';
         } elseif (($result == 100) && ($capacity != $remaining)) {
             return '99.99%';
-        } else {
-            return $result.'%';
         }
+
+        return $result.'%';
     }
 
     /**
