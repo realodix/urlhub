@@ -54,9 +54,8 @@ class KeyService
         $length = uHub('hash_length');
 
         $factory = new RandomLibFactory();
-        $randomString = $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
 
-        return $randomString;
+        return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
     }
 
     /**
@@ -126,12 +125,12 @@ class KeyService
         $randomKey = $this->url->whereIsCustom(false)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->count();
+
         $customKey = $this->url->whereIsCustom(true)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->whereRaw("keyword REGEXP '".$regexPattern."'")
             ->count();
-        $numberOfUsedKey = $randomKey + $customKey;
 
-        return $numberOfUsedKey;
+        return $randomKey + $customKey;
     }
 }
