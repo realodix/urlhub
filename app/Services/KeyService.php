@@ -89,7 +89,7 @@ class KeyService
         $keyCapacity = $this->keyCapacity();
         $numberOfUsedKey = $this->numberOfUsedKey();
 
-        return max(($keyCapacity - $numberOfUsedKey), 0);
+        return max($keyCapacity - $numberOfUsedKey, 0);
     }
 
     public function keyRemainingInPercent()

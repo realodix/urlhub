@@ -110,7 +110,7 @@ class ConfigService
      */
     private function valueIsBool($configOption, $defaultValue = true)
     {
-        if (! is_bool(config(($configOption)))) {
+        if (! is_bool(config($configOption))) {
             return config([$configOption => $defaultValue]);
         }
     }

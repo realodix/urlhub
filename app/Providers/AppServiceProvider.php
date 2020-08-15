@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function ($pattern, $value) {
                 mb_regex_encoding('UTF-8');
 
-                return (false !== mb_ereg($pattern, $value)) ? 1 : 0;
+                return false !== mb_ereg($pattern, $value) ? 1 : 0;
             });
         }
     }
