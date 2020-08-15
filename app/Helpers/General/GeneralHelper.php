@@ -49,7 +49,7 @@ class GeneralHelper
         }
 
         if ($hostLen >= 30 || (($hostLen <= 27) && ($length <= 30))) {
-            $length = $length - 3;
+            $length -= 3;
 
             return Str::limit($url, $length);
         }
