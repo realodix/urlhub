@@ -6,7 +6,7 @@ parameters:
         - app
 
     # https://phpstan.org/user-guide/rule-levels
-    level: 8
+    level: 5
 
     # https://phpstan.org/user-guide/ignoring-errors
     ignoreErrors:
