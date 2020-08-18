@@ -34,7 +34,7 @@ class GeneralHelper
      *                       Set to 0 to display all of it.
      * @return string
      */
-    public function urlDisplay(string $url, bool $scheme, int $length)
+    public function urlDisplay(string $url, bool $scheme = true, int $length = 0)
     {
         $urlFS = SpatieUrl::fromString($url);
         $hostLen = strlen($urlFS->getScheme().'://'.$urlFS->getHost());
