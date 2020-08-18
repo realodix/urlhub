@@ -64,6 +64,8 @@ class GeneralHelper
         if ($urlLen > $length) {
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
+
+        return $url;
     }
 
     /**
