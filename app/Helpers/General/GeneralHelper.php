@@ -56,7 +56,7 @@ class GeneralHelper
         //     return Str::limit($url, $length);
         // }
 
-        if ($length-$hostLen < 10) {
+        if ($length - $hostLen < 10) {
             $length -= 3;
 
             return Str::limit($url, $length);
