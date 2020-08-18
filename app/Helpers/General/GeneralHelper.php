@@ -46,7 +46,7 @@ class GeneralHelper
             $hostLen = strlen($urlFS->getHost());
         }
 
-        if ($length <= 0 && $scheme == true) {
+        if ($scheme == true && $length <= 0) {
             return $url;
         }
 
