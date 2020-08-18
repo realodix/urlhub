@@ -50,12 +50,6 @@ class GeneralHelper
             return $url;
         }
 
-        // if ($hostLen >= 30 || (($hostLen >= 11 && $hostLen <= 27) && ($length >= 14 && $length <= 30))) {
-        //     $length = $length - 3;
-
-        //     return Str::limit($url, $length);
-        // }
-
         if ($length - $hostLen < 10) {
             $length -= 3;
 
@@ -68,6 +62,8 @@ class GeneralHelper
         if ($urlLen > $length) {
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
+
+        return $url;
     }
 
     /**
@@ -83,11 +79,3 @@ class GeneralHelper
         ], '', $value);
     }
 }
-// t.co/abcde
-// t.co/a...
-
-// t.co/abcdefghi
-// t.co/abc...ghi
-
-// https://t.co/abcdefghi
-// https://t.co/abc...ghi
