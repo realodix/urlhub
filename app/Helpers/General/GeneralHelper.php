@@ -46,10 +46,6 @@ class GeneralHelper
             $hostLen = strlen($urlFS->getHost());
         }
 
-        if ($length == 0) {
-            return $url;
-        }
-
         $pathLen = $length - $hostLen;
 
         if ($pathLen <= 9 && $pathLen >= 1) {
@@ -61,7 +57,7 @@ class GeneralHelper
         $firstSide = intval($length * 0.6); // use intval to prevent float
         $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
 
-        if ($urlLen > $length) {
+        if ($urlLen > $length && $length > 0) {
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
 
