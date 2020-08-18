@@ -46,7 +46,7 @@ class GeneralHelper
             $hostLen = strlen($urlFS->getHost());
         }
 
-        if ($length <= 0) {
+        if ($length <= 0 && $scheme == true) {
             return $url;
         }
 
@@ -62,8 +62,6 @@ class GeneralHelper
         if ($urlLen > $length) {
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
-
-        return $url;
     }
 
     /**
