@@ -38,6 +38,7 @@ class GeneralHelper
     {
         $urlFS = SpatieUrl::fromString($url);
         $hostLen = strlen($urlFS->getScheme().'://'.$urlFS->getHost());
+        $urlLen = strlen($url);
 
         // Remove URL schemes
         if ($scheme == false) {
@@ -49,8 +50,14 @@ class GeneralHelper
             return $url;
         }
 
-        if ($hostLen >= 30 || (($hostLen >= 11 && $hostLen <= 27) && ($length >= 14 && $length <= 30))) {
-            $length = $length - 3;
+        // if ($hostLen >= 30 || (($hostLen >= 11 && $hostLen <= 27) && ($length >= 14 && $length <= 30))) {
+        //     $length = $length - 3;
+
+        //     return Str::limit($url, $length);
+        // }
+
+        if ($length-$hostLen < 10) {
+            $length -= 3;
 
             return Str::limit($url, $length);
         }
@@ -58,11 +65,9 @@ class GeneralHelper
         $firstSide = intval($length * 0.6); // use intval to prevent float
         $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
 
-        if (strlen($url) > $length) {
+        if ($urlLen > $length) {
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
-
-        return $url;
     }
 
     /**
@@ -78,8 +83,11 @@ class GeneralHelper
         ], '', $value);
     }
 }
-// t.co/abcd
+// t.co/abcde
 // t.co/a...
 
 // t.co/abcdefghi
 // t.co/abc...ghi
+
+// https://t.co/abcdefghi
+// https://t.co/abc...ghi
