@@ -34,8 +34,8 @@ class GeneralHelperTest extends TestCase
     public function urlDisplay()
     {
         $this->assertSame(
-            'https://example.com/',
-            urlDisplay('https://example.com/')
+            'https://example.com/abcde',
+            urlDisplay('https://example.com/abcde')
         );
 
         $this->assertEquals(
