@@ -41,12 +41,12 @@ class GeneralHelper
         $urlLen = strlen($url);
 
         // Remove URL schemes
-        if ($scheme == false) {
+        if (! $scheme) {
             $url = $this->urlRemoveScheme($url);
             $hostLen = strlen($urlFS->getHost());
         }
 
-        if ($scheme == true && $length <= 0) {
+        if ($length < 0) {
             return $url;
         }
 
@@ -62,6 +62,8 @@ class GeneralHelper
         if ($urlLen > $length) {
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
+
+        return $url;
     }
 
     /**
