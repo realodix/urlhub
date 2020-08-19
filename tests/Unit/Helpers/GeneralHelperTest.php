@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Helpers;
 
-use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class GeneralHelperTest extends TestCase
