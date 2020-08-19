@@ -4,13 +4,13 @@ namespace App\Services;
 
 class ConfigService
 {
-    const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    public const DEFAULT_HASH_CHAR = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 
-    const DEFAULT_HASH_LENGTH = 6;
+    public const DEFAULT_HASH_LENGTH = 6;
 
-    const DEFAULT_REDIRECT_STATUS_CODE = 301;
+    public const DEFAULT_REDIRECT_STATUS_CODE = 301;
 
-    const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
+    public const DEFAULT_REDIRECT_CACHE_LIFETIME = 90;
 
     /**
      * Files affected: config\urlhub.php.
@@ -110,7 +110,7 @@ class ConfigService
      */
     private function valueIsBool($configOption, $defaultValue = true)
     {
-        if (! is_bool(config(($configOption)))) {
+        if (! is_bool(config($configOption))) {
             return config([$configOption => $defaultValue]);
         }
     }

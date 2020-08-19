@@ -20,6 +20,12 @@
             "type": "shell",
             "command": "./vendor/bin/php-cs-fixer fix",
             "problemMatcher": []
+        },
+        {
+            "label": "Run Static Analysis",
+            "type": "shell",
+            "command": "./vendor/bin/phpstan analyse",
+            "problemMatcher": []
         }
     ]
 }

@@ -46,7 +46,9 @@ class GeneralHelper
             $hostLen = strlen($urlFS->getHost());
         }
 
-        if (($length - $hostLen) <= 9 && ($length - $hostLen) >= 1) {
+        $pathLen = $length - $hostLen;
+
+        if ((1 <= $pathLen) && ($pathLen <= 9)) {
             $length -= 3;
 
             return Str::limit($url, $length);

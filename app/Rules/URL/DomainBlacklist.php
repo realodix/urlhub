@@ -20,10 +20,10 @@ class DomainBlacklist implements Rule
         $a = true;
 
         foreach ($blacklist as $black_list) {
-            $url_segment = ('://'.$black_list.'/');
-            $url_segment2 = ('://www.'.$black_list.'/');
+            $segment1 = '://'.$black_list.'/';
+            $segment2 = '://www.'.$black_list.'/';
 
-            if ((strstr($longUrl, $url_segment) || strstr($longUrl, $url_segment2))) {
+            if ((strstr($longUrl, $segment1) || strstr($longUrl, $segment2))) {
                 $a = false;
             }
         }

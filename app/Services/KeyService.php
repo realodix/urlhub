@@ -54,9 +54,8 @@ class KeyService
         $length = uHub('hash_length');
 
         $factory = new RandomLibFactory();
-        $randomString = $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
 
-        return $randomString;
+        return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
     }
 
     /**
@@ -90,7 +89,7 @@ class KeyService
         $keyCapacity = $this->keyCapacity();
         $numberOfUsedKey = $this->numberOfUsedKey();
 
-        return max(($keyCapacity - $numberOfUsedKey), 0);
+        return max($keyCapacity - $numberOfUsedKey, 0);
     }
 
     public function keyRemainingInPercent()
@@ -107,9 +106,9 @@ class KeyService
             return '0.01%';
         } elseif (($result == 100) && ($capacity != $remaining)) {
             return '99.99%';
-        } else {
-            return $result.'%';
         }
+
+        return $result.'%';
     }
 
     /**
@@ -126,12 +125,12 @@ class KeyService
         $randomKey = $this->url->whereIsCustom(false)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->count();
+
         $customKey = $this->url->whereIsCustom(true)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->whereRaw("keyword REGEXP '".$regexPattern."'")
             ->count();
-        $numberOfUsedKey = $randomKey + $customKey;
 
-        return $numberOfUsedKey;
+        return $randomKey + $customKey;
     }
 }
