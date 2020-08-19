@@ -54,6 +54,8 @@ class GeneralHelper
         $trimPathLen = $length - $hostLen;
 
         if ((1 <= $trimPathLen) && ($trimPathLen <= 9)) {
+
+            // 3 dots from Str::limit()
             return Str::limit($url, $length - 3);
         }
 
