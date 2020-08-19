@@ -38,12 +38,18 @@ class GeneralHelperTest extends TestCase
             urlDisplay('https://example.com/abcde')
         );
 
+        // Remove URL scheme
+        $this->assertSame(
+            'example.com/abcde',
+            urlDisplay('https://example.com/abcde', false)
+        );
+
+        // Truncates the given string at the specified length
         $this->assertEquals(
             21,
             strlen(urlDisplay('https://example.com/abcde', true, 21))
         );
 
-        // By Host Length
         $this->assertEquals(
             true,
             Str::endsWith(urlDisplay('https://example.com/abcdefghij', true, 28), '...')
@@ -51,13 +57,7 @@ class GeneralHelperTest extends TestCase
 
         $this->assertSame(
             'https://example.com/a...fghijklmnop',
-            urlDisplay('https://example.com/abcdefghijklmnop', true, 35)
-        );
-
-        // Without URL scheme
-        $this->assertSame(
-            'example.com/abcde',
-            urlDisplay('https://example.com/abcde', false)
+            urlDisplay('https://example.com/abcdefghijklmnop', true, 32)
         );
 
         $this->assertSame(
