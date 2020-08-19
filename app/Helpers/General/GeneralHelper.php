@@ -63,6 +63,13 @@ class GeneralHelper
         $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
 
         if ($urlLen > $length && $length > 0) {
+            if ($trimmedPathLen == 10) {
+                $firstSide = $hostLen + 4;
+                $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
+
+                return Str::limit($url, $firstSide).substr($url, $lastSide);
+            }
+
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
 

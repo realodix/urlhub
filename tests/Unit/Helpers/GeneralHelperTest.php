@@ -60,6 +60,11 @@ class GeneralHelperTest extends TestCase
         );
 
         $this->assertSame(
+            'https://example.com/abc...hij',
+            urlDisplay('https://example.com/abcdefghij', true, 29)
+        );
+
+        $this->assertSame(
             'https://example.com/a...fghijklmnop',
             urlDisplay('https://example.com/abcdefghijklmnop', true, 35)
         );
