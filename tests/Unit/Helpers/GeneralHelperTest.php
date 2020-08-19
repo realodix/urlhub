@@ -83,8 +83,8 @@ class GeneralHelperTest extends TestCase
     public function urlRemoveSchemeProvider()
     {
         return [
-            ['laravel.com', 'laravel.com'],
-            ['laravel.com', 'www.laravel.com'],
+            ['laravel.com', 'laravel.com/'],
+            ['laravel.com/a/b', 'www.laravel.com/a/b/'],
             ['laravel.com', 'http://laravel.com'],
             ['laravel.com', 'http://www.laravel.com'],
             ['laravel.com', 'https://laravel.com'],
