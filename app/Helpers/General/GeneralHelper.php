@@ -46,11 +46,11 @@ class GeneralHelper
             $hostLen = strlen($sUrl->getHost());
         }
 
-        $pathLen = $length - $hostLen;
-
-        if ($pathLen == 1) {
+        if ($url - $hostLen === 1) {
             $url = rtrim($url, '/').'';
         }
+
+        $pathLen = $length - $hostLen;
 
         if ((1 <= $pathLen) && ($pathLen <= 9)) {
 
