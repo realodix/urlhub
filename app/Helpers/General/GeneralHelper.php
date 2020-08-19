@@ -36,14 +36,14 @@ class GeneralHelper
      */
     public function urlDisplay(string $url, bool $scheme = true, int $length = 0)
     {
-        $urlFS = SpatieUrl::fromString($url);
-        $hostLen = strlen($urlFS->getScheme().'://'.$urlFS->getHost());
+        $SUrl = SpatieUrl::fromString($url);
+        $hostLen = strlen($SUrl->getScheme().'://'.$SUrl->getHost());
         $urlLen = strlen($url);
 
         // Remove URL schemes
         if (! $scheme) {
             $url = $this->urlRemoveScheme($url);
-            $hostLen = strlen($urlFS->getHost());
+            $hostLen = strlen($SUrl->getHost());
         }
 
         $pathLen = $length - $hostLen;
