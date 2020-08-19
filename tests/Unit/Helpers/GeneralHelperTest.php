@@ -43,11 +43,6 @@ class GeneralHelperTest extends TestCase
             strlen(urlDisplay('https://example.com/abcde', true, 21))
         );
 
-        $this->assertEquals(
-            'https://example.com/abcde',
-            urlDisplay('https://example.com/abcde', true, 0)
-        );
-
         // By Host Length
         $this->assertEquals(
             true,
@@ -61,8 +56,8 @@ class GeneralHelperTest extends TestCase
 
         // Without URL scheme
         $this->assertSame(
-            'example.com/',
-            urlDisplay('https://example.com/', false)
+            'example.com/abcde',
+            urlDisplay('https://example.com/abcde', false)
         );
 
         $this->assertSame(
