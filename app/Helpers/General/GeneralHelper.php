@@ -58,12 +58,12 @@ class GeneralHelper
         }
 
         $firstSide = intval($length * 0.6); // use intval to prevent float
-        $lastSide = -abs($length - $firsts ide - 3); // 3 dots from Str::limit()
+        $lastSide = -abs($length - $firstSide - 3); // 3 dots from Str::limit()
 
         if ($urlLen > $length && $length > 0) {
             if ($trimPathLen == 10) {
                 $firstSide = $hostLen + 4;
-                $lastSide = -abs($length - $firsts ide - 3); // 3 dots from Str::limit()
+                $lastSide = -abs($length - $firstSide - 3); // 3 dots from Str::limit()
 
                 return Str::limit($url, $firstSide).substr($url, $lastSide);
             }
