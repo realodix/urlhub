@@ -50,9 +50,9 @@ class GeneralHelperTest extends TestCase
             strlen(urlDisplay('https://example.com/abcde', true, 21))
         );
 
-        $this->assertEquals(
-            true,
-            Str::endsWith(urlDisplay('https://example.com/abcdefghij', true, 28), '...')
+        $this->assertSame(
+            'https://example.com/abcde...',
+            urlDisplay('https://example.com/abcdefghij', true, 28)
         );
 
         $this->assertSame(
