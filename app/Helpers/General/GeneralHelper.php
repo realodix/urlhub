@@ -68,12 +68,8 @@ class GeneralHelper
      * @param string $value
      * @return string
      */
-    public function urlRemoveScheme($value)
+    public function urlRemoveScheme(string $value)
     {
-        return str_replace([
-            'http://',
-            'https://',
-            'www.',
-        ], '', $value);
+        return rtrim(str_replace(['http://', 'https://', 'www.'], '', $value), '/').'';
     }
 }
