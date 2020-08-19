@@ -36,10 +36,10 @@ class GeneralHelper
      */
     public function urlDisplay(string $url, bool $scheme = true, int $length = 0)
     {
-        $SUrl = SpatieUrl::fromString($url);
-        $hostLen = strlen($SUrl->getScheme().'://'.$SUrl->getHost());
+        $sUrl = SpatieUrl::fromString($url);
+        $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
         $urlLen = strlen($url);
-        $pathLen = strlen($SUrl->getPath());
+        $pathLen = strlen($sUrl->getPath());
 
         if ($pathLen == 1) {
             $url = rtrim($url, '/').'';
@@ -48,7 +48,7 @@ class GeneralHelper
         // Remove URL schemes
         if (! $scheme) {
             $url = $this->urlRemoveScheme($url);
-            $hostLen = strlen($SUrl->getHost());
+            $hostLen = strlen($sUrl->getHost());
         }
 
         $trimmedPathLen = $length - $hostLen;
