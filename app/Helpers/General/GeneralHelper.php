@@ -39,11 +39,6 @@ class GeneralHelper
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
         $urlLen = strlen($url);
-        $pathLen = strlen($sUrl->getPath());
-
-        if ($pathLen == 1) {
-            $url = rtrim($url, '/').'';
-        }
 
         // Remove URL schemes
         if (! $scheme) {
@@ -51,9 +46,13 @@ class GeneralHelper
             $hostLen = strlen($sUrl->getHost());
         }
 
-        $trimPathLen = $length - $hostLen;
+        $pathLen = $length - $hostLen;
 
-        if ((1 <= $trimPathLen) && ($trimPathLen <= 9)) {
+        if ($pathLen == 1) {
+            $url = rtrim($url, '/').'';
+        }
+
+        if ((1 <= $pathLen) && ($pathLen <= 9)) {
 
             // 3 dots from Str::limit()
             return Str::limit($url, $length - 3);
