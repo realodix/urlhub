@@ -51,9 +51,9 @@ class GeneralHelper
             $hostLen = strlen($sUrl->getHost());
         }
 
-        $trimmedPathLen = $length - $hostLen;
+        $trimPathLen = $length - $hostLen;
 
-        if ((1 <= $trimmedPathLen) && ($trimmedPathLen <= 9)) {
+        if ((1 >= $trimPathLen) && ($trimPathLen <= 9)) {
             $length -= 3;
 
             return Str::limit($url, $length);
@@ -63,7 +63,7 @@ class GeneralHelper
         $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
 
         if ($urlLen > $length && $length > 0) {
-            if ($trimmedPathLen == 10) {
+            if ($trimPathLen == 10) {
                 $firstSide = $hostLen + 4;
                 $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
 
