@@ -54,18 +54,16 @@ class GeneralHelper
         $trimPathLen = $length - $hostLen;
 
         if ((1 <= $trimPathLen) && ($trimPathLen <= 9)) {
-            $length -= 3;
-
-            return Str::limit($url, $length);
+            return Str::limit($url, $length - 3);
         }
 
         $firstSide = intval($length * 0.6); // use intval to prevent float
-        $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
+        $lastSide = -abs($length - $firsts ide - 3); // 3 dots from Str::limit()
 
         if ($urlLen > $length && $length > 0) {
             if ($trimPathLen == 10) {
                 $firstSide = $hostLen + 4;
-                $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
+                $lastSide = -abs($length - $firsts ide - 3); // 3 dots from Str::limit()
 
                 return Str::limit($url, $firstSide).substr($url, $lastSide);
             }
