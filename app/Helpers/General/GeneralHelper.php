@@ -40,6 +40,10 @@ class GeneralHelper
         $hostLen = strlen($SUrl->getScheme().'://'.$SUrl->getHost());
         $urlLen = strlen($url);
 
+        if (strlen($SUrl->getPath()) == 1) {
+            $url = rtrim($url, '/').'';
+        }
+
         // Remove URL schemes
         if (! $scheme) {
             $url = $this->urlRemoveScheme($url);

@@ -37,6 +37,11 @@ class GeneralHelperTest extends TestCase
             urlDisplay('https://example.com/abcde/')
         );
 
+        $this->assertSame(
+            'https://example.com',
+            urlDisplay('https://example.com/')
+        );
+
         // Remove URL scheme
         $this->assertSame(
             'example.com/abcde',
