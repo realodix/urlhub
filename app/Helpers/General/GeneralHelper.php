@@ -53,7 +53,7 @@ class GeneralHelper
 
         $trimPathLen = $length - $hostLen;
 
-        if ((1 >= $trimPathLen) && ($trimPathLen <= 9)) {
+        if ((1 <= $trimPathLen) && ($trimPathLen <= 9)) {
             $length -= 3;
 
             return Str::limit($url, $length);
