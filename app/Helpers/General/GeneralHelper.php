@@ -58,7 +58,6 @@ class GeneralHelper
         }
 
         if ($urlLen > $limit) {
-
             $firstSide = intval($limit * 0.6); // use intval to prevent float
             $lastSide = -abs($limit - $firstSide - 3); // 3 dots from Str::limit()
 
