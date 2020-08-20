@@ -46,20 +46,21 @@ class GeneralHelper
             $hostLen = strlen($sUrl->getHost());
         }
 
-        if ($urlLen - $hostLen === 1) {
-            $url = rtrim($url, '/').'';
-        }
-
         if ($length === 0) {
             $length = $urlLen;
         }
 
         $pathLen = $length - $hostLen;
 
+        // If the URL is domain only, then remove the last slash
+        if ($pathLen === 1) {
+            $url = rtrim($url, '/').'';
+        }
+
         $firstSide = intval($length * 0.6); // use intval to prevent float
         $lastSide = -abs($length - $firstSide - 3); // 3 dots from Str::limit()
 
-        if (($urlLen > $length) && ($length > 0)) {
+        if ($urlLen > $length) {
             if ((1 <= $pathLen) && ($pathLen <= 9)) {
 
                 // 3 dots from Str::limit()
