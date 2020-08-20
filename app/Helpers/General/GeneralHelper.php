@@ -59,18 +59,17 @@ class GeneralHelper
 
         if ($urlLen > $limit) {
 
+            $custLimit = $limit - (strlen(Str::limit($url, $limit)) - $limit);
             $firstSide = intval($limit * 0.6); // use intval to prevent float
-            $lastSide = -abs($limit - $firstSide - 3); // 3 dots from Str::limit()
+            $lastSide = -abs($custLimit - $firstSide);
 
             if ((1 <= $pathLen) && ($pathLen <= 9)) {
-
-                // 3 dots from Str::limit()
-                return Str::limit($url, $limit - 3);
+                return Str::limit($url, $custLimit);
             }
 
             if ($pathLen === 10) {
                 $firstSide = $hostLen + 4;
-                $lastSide = -abs($limit - $firstSide - 3); // 3 dots from Str::limit()
+                $lastSide = -abs($custLimit - $firstSide);
 
                 return Str::limit($url, $firstSide).substr($url, $lastSide);
             }
