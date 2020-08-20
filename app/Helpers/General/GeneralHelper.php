@@ -50,18 +50,22 @@ class GeneralHelper
             $url = rtrim($url, '/').'';
         }
 
-        $pathLen = $length - $hostLen;
-
-        if ((1 <= $pathLen) && ($pathLen <= 9)) {
-
-            // 3 dots from Str::limit()
-            return Str::limit($url, $length - 3);
+        if ($length === 0) {
+            $length = $urlLen;
         }
+
+        $pathLen = $length - $hostLen;
 
         $firstSide = intval($length * 0.6); // use intval to prevent float
         $lastSide = -abs($length - $firstSide - 3); // 3 dots from Str::limit()
 
         if (($urlLen > $length) && ($length > 0)) {
+            if ((1 <= $pathLen) && ($pathLen <= 9)) {
+
+                // 3 dots from Str::limit()
+                return Str::limit($url, $length - 3);
+            }
+
             if ($pathLen === 10) {
                 $firstSide = $hostLen + 4;
                 $lastSide = -abs($length - $firstSide - 3); // 3 dots from Str::limit()
