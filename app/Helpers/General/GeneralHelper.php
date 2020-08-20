@@ -58,7 +58,6 @@ class GeneralHelper
         }
 
         if ($urlLen > $limit) {
-
             $custLimit = $limit - (strlen(Str::limit($url, $limit)) - $limit);
             $firstSide = intval($limit * 0.6); // use intval to prevent float
             $lastSide = -abs($custLimit - $firstSide);
