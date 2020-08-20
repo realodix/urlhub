@@ -30,11 +30,11 @@ class GeneralHelper
      *
      * @param string $url    URL or Link
      * @param bool   $scheme Show scheme or not
-     * @param int    $length Truncates the given string at the specified length.
+     * @param int    $limit  Truncates the given string at the specified length.
      *                       Set to 0 to display all of it.
      * @return string
      */
-    public function urlDisplay(string $url, bool $scheme = true, int $length = 0)
+    public function urlDisplay(string $url, bool $scheme = true, int $limit = 0)
     {
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
@@ -46,30 +46,30 @@ class GeneralHelper
             $hostLen = strlen($sUrl->getHost());
         }
 
-        if ($length === 0) {
-            $length = $urlLen;
+        if ($limit === 0) {
+            $limit = $urlLen;
         }
 
-        $pathLen = $length - $hostLen;
+        $pathLen = $limit - $hostLen;
 
         // If the URL is domain only, then remove the last slash
         if ($pathLen === 1) {
             $url = rtrim($url, '/').'';
         }
 
-        $firstSide = intval($length * 0.6); // use intval to prevent float
-        $lastSide = -abs($length - $firstSide - 3); // 3 dots from Str::limit()
+        $firstSide = intval($limit * 0.6); // use intval to prevent float
+        $lastSide = -abs($limit - $firstSide - 3); // 3 dots from Str::limit()
 
-        if ($urlLen > $length) {
+        if ($urlLen > $limit) {
             if ((1 <= $pathLen) && ($pathLen <= 9)) {
 
                 // 3 dots from Str::limit()
-                return Str::limit($url, $length - 3);
+                return Str::limit($url, $limit - 3);
             }
 
             if ($pathLen === 10) {
                 $firstSide = $hostLen + 4;
-                $lastSide = -abs($length - $firstSide - 3); // 3 dots from Str::limit()
+                $lastSide = -abs($limit - $firstSide - 3); // 3 dots from Str::limit()
 
                 return Str::limit($url, $firstSide).substr($url, $lastSide);
             }
