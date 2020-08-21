@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    public function updateUserEmail($data, $user)
+    /**
+     * @param object $user \App\Models\User
+     * @param array  $data
+     */
+    public function updateUserEmail(array $data, object $user)
     {
         $user->email = $data['email'];
         $user->save();
@@ -17,7 +21,11 @@ class UserService
         return $user;
     }
 
-    public function updateUserPassword($data, $user)
+    /**
+     * @param object $user \App\Models\User
+     * @param array  $data
+     */
+    public function updateUserPassword(array $data, object $user)
     {
         $user->password = Hash::make($data['new-password']);
         $user->save();

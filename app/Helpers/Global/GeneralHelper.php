@@ -16,7 +16,7 @@ if (! function_exists('uHub')) {
      * @param string $value
      * @return mixed
      */
-    function uHub($value)
+    function uHub(string $value)
     {
         // Validation of character types allowed in the `urlhub.hash_char`
         // configuration option

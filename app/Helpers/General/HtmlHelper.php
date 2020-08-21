@@ -35,7 +35,7 @@ class HtmlHelper
      * @param null   $secure
      * @return mixed
      */
-    public function style($url, $attributes = [], $secure = null)
+    public function style(string $url, array $attributes = [], $secure = null)
     {
         $defaults = [
             'media' => 'all',
@@ -58,7 +58,7 @@ class HtmlHelper
      * @param bool   $secure
      * @return \Illuminate\Support\HtmlString
      */
-    public function script($url, $attributes = [], $secure = null)
+    public function script(string $url, array $attributes = [], $secure = null)
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
@@ -71,7 +71,7 @@ class HtmlHelper
      * @param array $attributes
      * @return string
      */
-    public function attributes($attributes)
+    public function attributes(array $attributes)
     {
         $html = [];
 
@@ -93,7 +93,7 @@ class HtmlHelper
      * @param string $value
      * @return string
      */
-    protected function attributeElement($key, $value)
+    protected function attributeElement(string $key, string $value)
     {
         // For numeric keys we will assume that the value is a boolean attribute where the
         // presence of the attribute represents a true value and the absence represents a
@@ -119,7 +119,7 @@ class HtmlHelper
      * @param string $html
      * @return \Illuminate\Support\HtmlString
      */
-    protected function toHtmlString($html)
+    protected function toHtmlString(string $html)
     {
         return new HtmlString($html);
     }

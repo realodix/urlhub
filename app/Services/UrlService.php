@@ -48,10 +48,10 @@ class UrlService
     }
 
     /**
-     * @param array           $request
-     * @param \App\Models\Url $url
+     * @param array   $request
+     * @param object  $url      \App\Models\Url
      */
-    public function update($request, $url)
+    public function update(array $request, object $url)
     {
         $url->long_url = $request['long_url'];
         $url->meta_title = $request['meta_title'];
@@ -61,9 +61,9 @@ class UrlService
     }
 
     /**
-     * @param \App\Models\Url $url
+     * @param object $url \App\Models\Url
      */
-    public function delete($url)
+    public function delete(object $url)
     {
         return $url->delete();
     }
@@ -165,7 +165,7 @@ class UrlService
      * @param string $url
      * @return string
      */
-    public function getDomain($url)
+    public function getDomain(string $url)
     {
         $url = SpatieUrl::fromString($url);
 
@@ -179,7 +179,7 @@ class UrlService
      * @param string $url
      * @return string
      */
-    public function webTitle($url)
+    public function webTitle(string $url)
     {
         $domain = $this->getDomain($url);
 
@@ -202,7 +202,7 @@ class UrlService
      *
      * @param string $url
      */
-    public function webInfo($url)
+    public function webInfo(string $url)
     {
         try {
             $embed = Embed::create($url);

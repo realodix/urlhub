@@ -59,11 +59,11 @@ class NumHelper
      *
      * Based on: ({@link https://stackoverflow.com/q/3833137}).
      *
-     * @param number $number
-     * @param int    $precision
-     * @return number
+     * @param float $number
+     * @param int   $precision
+     * @return float
      */
-    public function numbPrec($number, $precision = 2)
+    public function numbPrec(float $number, int $precision = 2)
     {
         return floor($number * pow(10, $precision)) / pow(10, $precision);
     }
