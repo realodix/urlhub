@@ -43,10 +43,7 @@ class GeneralHelperTest extends TestCase
         );
 
         // Remove URL scheme
-        $this->assertSame(
-            'example.com/abcde',
-            urlDisplay('https://www.example.com/abcde', false)
-        );
+        // Testing is done by urlSanitize()
 
         // Truncates the given string at the specified length
         $this->assertEquals(
