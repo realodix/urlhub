@@ -55,7 +55,7 @@ if (! function_exists('urlDisplay')) {
 
         // Remove URL schemes
         if (! $scheme) {
-            $url = urlRemoveScheme($url);
+            $url = urlSanitize($url);
             $hostLen = strlen($sUrl->getHost());
         }
 
@@ -87,12 +87,12 @@ if (! function_exists('urlDisplay')) {
     }
 }
 
-if (! function_exists('urlRemoveScheme')) {
+if (! function_exists('urlSanitize')) {
     /**
      * @param string $value
      * @return string
      */
-    function urlRemoveScheme($value)
+    function urlSanitize($value)
     {
         return str_replace([
             'http://',

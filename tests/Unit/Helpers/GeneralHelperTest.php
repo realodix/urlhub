@@ -73,14 +73,14 @@ class GeneralHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
-     * @dataProvider urlRemoveSchemeProvider
+     * @dataProvider urlSanitizeProvider
      */
-    public function urlRemoveScheme($expected, $actual)
+    public function urlSanitize($expected, $actual)
     {
-        $this->assertSame($expected, urlRemoveScheme($actual));
+        $this->assertSame($expected, urlSanitize($actual));
     }
 
-    public function urlRemoveSchemeProvider()
+    public function urlSanitizeProvider()
     {
         return [
             ['laravel.com', 'laravel.com'],
