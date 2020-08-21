@@ -96,11 +96,7 @@ if (! function_exists('urlSanitize')) {
      */
     function urlSanitize($value)
     {
-        return str_replace([
-            'http://',
-            'https://',
-            'www.',
-        ], '', $value);
+        return str_replace(['http://', 'https://', 'www.'], '', $value);
     }
 }
 
