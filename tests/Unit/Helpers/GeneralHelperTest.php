@@ -42,9 +42,6 @@ class GeneralHelperTest extends TestCase
             urlDisplay('https://example.com/')
         );
 
-        // Remove URL scheme
-        // Testing is done by urlSanitize()
-
         // Truncates the given string at the specified length
         $this->assertEquals(
             21,
@@ -64,6 +61,27 @@ class GeneralHelperTest extends TestCase
         $this->assertSame(
             'https://example...',
             urlDisplay('https://example.com/abc', true, 18)
+        );
+
+        // Remove scheme & truncates
+        $this->assertEquals(
+            17,
+            strlen(urlDisplay('https://example.com/abcde', false, 21))
+        );
+
+        $this->assertSame(
+            'example.com/abcde...',
+            urlDisplay('https://example.com/abcdefghij', false, 20)
+        );
+
+        $this->assertSame(
+            'example.com/abc...hij',
+            urlDisplay('https://example.com/abcdefghij', false, 21)
+        );
+
+        $this->assertSame(
+            'example...',
+            urlDisplay('https://example.com/abc', false, 10)
         );
     }
 

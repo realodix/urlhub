@@ -58,6 +58,7 @@ if (! function_exists('urlDisplay')) {
         if (! $scheme) {
             $url = urlSanitize($url);
             $hostLen = strlen($sUrl->getHost());
+            $urlLen = strlen($url);
         }
 
         $pathLen = $limit - $hostLen;
