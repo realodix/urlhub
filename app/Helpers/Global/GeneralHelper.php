@@ -89,6 +89,8 @@ if (! function_exists('urlDisplay')) {
 
 if (! function_exists('urlSanitize')) {
     /**
+     * Remove http://, www., and slashes from the URL.
+     *
      * @param string $value
      * @return string
      */
