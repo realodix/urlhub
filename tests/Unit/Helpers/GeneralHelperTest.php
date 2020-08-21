@@ -86,9 +86,6 @@ class GeneralHelperTest extends TestCase
             ['laravel.com', 'http://www.laravel.com'],
             ['laravel.com', 'https://laravel.com'],
             ['laravel.com', 'https://www.laravel.com'],
-            ['laravel.com', 'https://www.laravel.com/'],
-            ['laravel.com/abc', 'https://www.laravel.com/abc'],
-            ['laravel.com/abc', 'https://www.laravel.com/abc/'],
         ];
     }
 }
