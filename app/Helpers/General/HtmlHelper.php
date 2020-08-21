@@ -33,6 +33,7 @@ class HtmlHelper
      * @param string $url
      * @param array  $attributes
      * @param null   $secure
+     *
      * @return mixed
      */
     public function style(string $url, array $attributes = [], $secure = null)
@@ -56,6 +57,7 @@ class HtmlHelper
      * @param string $url
      * @param array  $attributes
      * @param bool   $secure
+     *
      * @return \Illuminate\Support\HtmlString
      */
     public function script(string $url, array $attributes = [], $secure = null)
@@ -91,6 +93,7 @@ class HtmlHelper
      *
      * @param string $key
      * @param string $value
+     *
      * @return string
      */
     protected function attributeElement(string $key, string $value)
