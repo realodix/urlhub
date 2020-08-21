@@ -11,6 +11,7 @@ class StrLowercase implements Rule
      *
      * @param string $attribute
      * @param mixed  $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
@@ -20,8 +21,8 @@ class StrLowercase implements Rule
 
     /**
      * Get the validation error message.
-     * @codeCoverageIgnore
      *
+     * @codeCoverageIgnore
      * @return string
      */
     public function message()

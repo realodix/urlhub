@@ -8,12 +8,13 @@ if (! function_exists('uHub')) {
     /**
      * Helper that makes the way to access the configuration value in
      * '/config/urlhub.php' becomes easier.
-     * @codeCoverageIgnore
      *
      * Example:
      * - uHub('option') is equal to config('urlhub.option').
      *
+     * @codeCoverageIgnore
      * @param string $value
+     *
      * @return mixed
      */
     function uHub(string $value)
@@ -105,9 +106,10 @@ if (! function_exists('urlRemoveScheme')) {
 if (! function_exists('qrCode')) {
     /**
      * Barcode & QrCode Generator.
-     * @codeCoverageIgnore
      *
+     * @codeCoverageIgnore
      * @param string $string
+     *
      * @return \CodeItNow\BarcodeBundle\Utils\QrCode
      */
     function qrCode($string)
