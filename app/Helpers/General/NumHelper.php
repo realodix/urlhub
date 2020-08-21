@@ -10,7 +10,7 @@ class NumHelper
      * Based on: ({@link https://gist.github.com/RadGH/84edff0cc81e6326029c}).
      *
      * @param int $n
-     * @return string
+     * @return int|string
      */
     public function numberFormatShort(int $n)
     {
