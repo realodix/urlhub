@@ -169,7 +169,7 @@ class UrlService
     {
         $url = SpatieUrl::fromString($url);
 
-        return urlRemoveScheme($url->getHost());
+        return urlSanitize($url->getHost());
     }
 
     /**

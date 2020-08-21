@@ -43,10 +43,7 @@ class GeneralHelperTest extends TestCase
         );
 
         // Remove URL scheme
-        $this->assertSame(
-            'example.com/abcde',
-            urlDisplay('https://www.example.com/abcde', false)
-        );
+        // Testing is done by urlSanitize()
 
         // Truncates the given string at the specified length
         $this->assertEquals(
@@ -73,14 +70,14 @@ class GeneralHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
-     * @dataProvider urlRemoveSchemeProvider
+     * @dataProvider urlSanitizeProvider
      */
-    public function urlRemoveScheme($expected, $actual)
+    public function urlSanitize($expected, $actual)
     {
-        $this->assertSame($expected, urlRemoveScheme($actual));
+        $this->assertSame($expected, urlSanitize($actual));
     }
 
-    public function urlRemoveSchemeProvider()
+    public function urlSanitizeProvider()
     {
         return [
             ['laravel.com', 'laravel.com'],
@@ -89,6 +86,9 @@ class GeneralHelperTest extends TestCase
             ['laravel.com', 'http://www.laravel.com'],
             ['laravel.com', 'https://laravel.com'],
             ['laravel.com', 'https://www.laravel.com'],
+            ['laravel.com', 'https://www.laravel.com/'],
+            ['laravel.com/abc', 'https://www.laravel.com/abc'],
+            ['laravel.com/abc', 'https://www.laravel.com/abc/'],
         ];
     }
 }
