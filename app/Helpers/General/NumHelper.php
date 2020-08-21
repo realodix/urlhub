@@ -61,6 +61,7 @@ class NumHelper
      *
      * @param float $number
      * @param int   $precision
+     *
      * @return float
      */
     public function numbPrec(float $number, int $precision = 2)

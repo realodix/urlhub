@@ -67,7 +67,6 @@ class UserController extends Controller
 
     /**
      * @return string JSON
-     *
      * @codeCoverageIgnore
      */
     public function dataTable()

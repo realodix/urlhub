@@ -13,6 +13,7 @@ class PwdCurrent implements Rule
      *
      * @param string $attribute
      * @param mixed  $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
@@ -22,9 +23,9 @@ class PwdCurrent implements Rule
 
     /**
      * Get the validation error message.
-     * @codeCoverageIgnore
      *
      * @return string
+     * @codeCoverageIgnore
      */
     public function message()
     {

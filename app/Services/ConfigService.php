@@ -18,8 +18,8 @@ class ConfigService
      * Validate all configuration values, if invalid values are found (or
      * outside of the specified ones), then return them with the default
      * values.
-     * @codeCoverageIgnore
      *
+     * @codeCoverageIgnore
      * @return bool
      */
     public function configGuard(): bool
