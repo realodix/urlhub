@@ -38,38 +38,48 @@ if (! function_exists('appName')) {
 
 if (! function_exists('urlDisplay')) {
     /**
-     * Display links or URLs as needed.
+     * Display the link according to what You need.
      *
-     * @param string $url    URL or Link
-     * @param bool   $scheme Show scheme or not
-     * @param int    $length Truncates the given string at the specified length.
-     *                       Set to 0 to display all of it.
+     * @param string $url    URL or Link.
+     * @param bool   $scheme Show or remove URL schema.
+     * @param int    $limit  Length string will be truncated to, including
+     *                       suffix.
      * @return string
      */
-    function urlDisplay(string $url, bool $scheme = true, int $length = 0)
+    function urlDisplay(string $url, bool $scheme = true, int $limit = null)
     {
-        $urlFS = SpatieUrl::fromString($url);
-        $hostLen = strlen($urlFS->getScheme().'://'.$urlFS->getHost());
+        $sUrl = SpatieUrl::fromString($url);
+        $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
+        $urlLen = strlen($url);
+        $limit = is_null($limit) ? $urlLen : $limit;
 
-        if ($scheme == false) {
+        // Remove URL schemes
+        if (! $scheme) {
             $url = urlRemoveScheme($url);
-            $hostLen = strlen($urlFS->getHost());
+            $hostLen = strlen($sUrl->getHost());
         }
 
-        if ($length <= 0) {
-            return $url;
+        $pathLen = $limit - $hostLen;
+
+        // If it's only the host and has the trailing slash at the end, then
+        // remove the trailing slash.
+        if ($pathLen === 1) {
+            $url = rtrim($url, '/\\');
         }
 
-        if ($hostLen >= 30 || (($hostLen <= 27) && ($length <= 30))) {
-            $length -= 3;
+        if ($urlLen > $limit) {
+            // The length of string truncated by Str::limit() does not include
+            // a suffix, so it needs to be adjusted so that the length of the
+            // truncated string matches the expected limit.
+            $adjLimit = $limit - (strlen(Str::limit($url, $limit)) - $limit);
 
-            return Str::limit($url, $length);
-        }
+            $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
+            $lastSide = -abs($adjLimit - $firstSide);
 
-        $firstSide = intval($length * 0.6); // use intval to prevent float
-        $lastSide = (($length - $firstSide) * -1) + 3; // + 3 dots from Str::limit()
+            if (((1 <= $pathLen) && ($pathLen <= 9)) || ($hostLen > $limit)) {
+                return Str::limit($url, $adjLimit);
+            }
 
-        if (strlen($url) > $length) {
             return Str::limit($url, $firstSide).substr($url, $lastSide);
         }
 

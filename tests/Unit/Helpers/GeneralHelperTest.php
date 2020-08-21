@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Helpers;
 
-use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class GeneralHelperTest extends TestCase
@@ -34,39 +33,40 @@ class GeneralHelperTest extends TestCase
     public function urlDisplay()
     {
         $this->assertSame(
-            'https://example.com/',
-            urlDisplay('https://example.com/')
+            'https://example.com/abcde/',
+            urlDisplay('https://example.com/abcde/')
         );
 
         $this->assertSame(
-            'example.com/',
-            urlDisplay('https://example.com/', false)
+            'https://example.com',
+            urlDisplay('https://example.com/')
         );
 
+        // Remove URL scheme
+        $this->assertSame(
+            'example.com/abcde',
+            urlDisplay('https://www.example.com/abcde', false)
+        );
+
+        // Truncates the given string at the specified length
         $this->assertEquals(
             21,
             strlen(urlDisplay('https://example.com/abcde', true, 21))
         );
 
-        $this->assertEquals(
-            'https://example.com/abcde',
-            urlDisplay('https://example.com/abcde', true, 0)
-        );
-
-        // By Host Length
-        $this->assertEquals(
-            true,
-            Str::endsWith(urlDisplay('https://example.com/abcdefghij', true, 29), '...')
+        $this->assertSame(
+            'https://example.com/abcde...',
+            urlDisplay('https://example.com/abcdefghij', true, 28)
         );
 
         $this->assertSame(
-            true,
-            Str::endsWith(urlDisplay('https://example-12345-test.com/abcdefghijklmnopqrstuvwxyz', true, 40), '...')
+            'https://example.com/abc...hij',
+            urlDisplay('https://example.com/abcdefghij', true, 29)
         );
 
         $this->assertSame(
-            'https://example.com/a...fghijklmnop',
-            urlDisplay('https://example.com/abcdefghijklmnop', true, 35)
+            'https://example...',
+            urlDisplay('https://example.com/abc', true, 18)
         );
     }
 
