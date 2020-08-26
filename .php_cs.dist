@@ -6,6 +6,7 @@ $rules = [
     '@Symfony' => true,
     'array_indentation' => true,
     'array_syntax' => ['syntax' => 'short'], // short_array_syntax
+    'binary_operator_spaces' => ['operators' => ['=>' => null]], // unalign_equals
     'compact_nullable_typehint' => true,
     'heredoc_to_nowdoc' => true,
     'increment_style' => ['style' => 'post'], // post_increment
@@ -47,17 +48,14 @@ $rules = [
     'yoda_style' => false,
 
     // Custom rules
-    'binary_operator_spaces' => ['operators' => ['=>' => 'align']], // unalign_equals (default)
     'no_empty_phpdoc' => false,
     'phpdoc_summary' => false,
 
     // Additional rules
-    // 'align_multiline_comment' => ['comment_type' => 'all_multiline'],
     'compact_nullable_typehint' => true,
     'fully_qualified_strict_types' => true,
     'no_useless_else' => true,
     'no_useless_return' => true,
-    // 'php_unit_method_casing' => true,
     'phpdoc_align' => [ // align_phpdoc
         'tags' => [
             // 'return',
