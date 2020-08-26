@@ -67,8 +67,18 @@ $rules = [
     'phpdoc_var_annotation_correct_order' => true,
 ];
 
+$excludes = [
+    'bootstrap/cache',
+    'config',
+    'node_modules',
+    'public',
+    'storage'
+]
+
 $finder = PhpCsFixer\Finder::create()
+    ->exclude($excludes)
     ->in(__DIR__)
+    ->notName('*.blade.php')
     ->notName('.phpstorm.meta.php')
     ->notName('_ide_*.php');
 
