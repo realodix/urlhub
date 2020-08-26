@@ -73,7 +73,7 @@ $excludes = [
     'node_modules',
     'public',
     'storage'
-]
+];
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude($excludes)
