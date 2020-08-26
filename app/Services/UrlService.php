@@ -48,8 +48,8 @@ class UrlService
     }
 
     /**
-     * @param array   $request
-     * @param object  $url      \App\Models\Url
+     * @param array  $request
+     * @param object $url     \App\Models\Url
      */
     public function update(array $request, object $url)
     {
