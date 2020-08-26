@@ -6,7 +6,6 @@ $rules = [
     '@Symfony' => true,
     'array_indentation' => true,
     'array_syntax' => ['syntax' => 'short'], // short_array_syntax
-    'binary_operator_spaces' => ['operators' => ['=>' => null]], // unalign_equals
     'compact_nullable_typehint' => true,
     'heredoc_to_nowdoc' => true,
     'increment_style' => ['style' => 'post'], // post_increment
@@ -30,7 +29,6 @@ $rules = [
     'psr4' => true, // @Symfony:risky, @PhpCsFixer:risky
     'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
     'simplified_null_return' => true,
-
     'new_with_braces' => false,
     'no_break_comment' => false,
     'no_empty_comment' => false,
@@ -49,6 +47,7 @@ $rules = [
     'yoda_style' => false,
 
     // Custom rules
+    'binary_operator_spaces' => ['operators' => ['=>' => 'align']], // unalign_equals
     'no_empty_phpdoc' => false,
     'phpdoc_summary' => false,
 
