@@ -31,7 +31,7 @@ class UrlController extends Controller
     /**
      * Shorten long URLs.
      *
-     * @param StoreUrl $request
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
      */
     public function create(StoreUrl $request)
     {
@@ -44,7 +44,7 @@ class UrlController extends Controller
      * Validate the eligibility of a custom keyword that you want to use as a
      * short URL. Response to an AJAX request.
      *
-     * @param Request $request
+     * @param Request $request Illuminate\Http\Request
      */
     public function customKeyValidation(Request $request)
     {
@@ -69,8 +69,8 @@ class UrlController extends Controller
     /**
      * View the shortened URL details.
      *
-     * @codeCoverageIgnore
      * @param string $key
+     * @codeCoverageIgnore
      */
     public function showShortenedUrlDetails($key)
     {

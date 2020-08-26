@@ -68,7 +68,7 @@ class DashboardController extends Controller
     /**
      * Update the long url that was previously set to the new long url.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request \Illuminate\Http\Request
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

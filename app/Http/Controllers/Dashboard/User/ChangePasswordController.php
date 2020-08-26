@@ -25,7 +25,7 @@ class ChangePasswordController extends Controller
     /**
      * Show the form for editing password.
      *
-     * @param \App\Models\User $user
+     * @param User $user \App\Models\User
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -39,8 +39,8 @@ class ChangePasswordController extends Controller
     /**
      * Change the password.
      *
-     * @param \App\Http\Requests\UpdateUserPassword $request
-     * @param \App\Models\User                      $user
+     * @param UpdateUserPassword $request \App\Http\Requests\UpdateUserPassword
+     * @param User               $user    \App\Models\User
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

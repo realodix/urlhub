@@ -199,8 +199,8 @@ class UrlService
     /**
      * Get information from any web page.
      *
-     * @codeCoverageIgnore
      * @param string $url
+     * @codeCoverageIgnore
      */
     public function webInfo(string $url)
     {
