@@ -99,7 +99,7 @@ class DashboardController extends Controller
      * UrlHub only allows users (registered & unregistered) to have a unique
      * link. You can duplicate it and it will produce a new unique random key.
      *
-     * @param string $key
+     * @param $key
      */
     public function duplicate($key)
     {
