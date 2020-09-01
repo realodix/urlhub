@@ -10,7 +10,7 @@ if (! function_exists('style')) {
      *
      * @return mixed
      */
-    function style($url, $attributes = [], $secure = null)
+    function style(string $url, array $attributes = [], $secure = null)
     {
         return resolve(HtmlHelper::class)->style($url, $attributes, $secure);
     }
@@ -24,7 +24,7 @@ if (! function_exists('script')) {
      *
      * @return mixed
      */
-    function script($url, $attributes = [], $secure = null)
+    function script(string $url, array $attributes = [], $secure = null)
     {
         return resolve(HtmlHelper::class)->script($url, $attributes, $secure);
     }

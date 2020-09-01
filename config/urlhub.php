@@ -8,17 +8,17 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    /**
+    /*
      * If you disabled it, users must be registered to create Short URL.
      */
     'public_site' => env('UH_PUBLIC_SITE', true),
 
-    /**
+    /*
      * Enable users registration. If disabled it, no one can register.
      */
     'registration' => env('UH_REGISTRATION', true),
 
-    /**
+    /*
      * Enable/Disable to allow unregistered users see shortened links
      * statistics.
      */
@@ -30,13 +30,13 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    /**
+    /*
      * The expected (and maximum) number of characters in generating unique
      * keyword.
      */
     'hash_length' => env('HASH_LENGTH', 6), // >= 1
 
-    /**
+    /*
      * Characters to be used in generating unique keyword. For convenience,
      * currently the allowed characters are only alphanumeric consisting of
      * a limited set of characters belonging to the US-ASCII characters,
@@ -47,7 +47,7 @@ return [
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
     ),
 
-    /**
+    /*
      * List of non allowed domain.
      *
      * This list is used to prevent shortening of urls that contain one of the
@@ -58,7 +58,7 @@ return [
         // 'bit.ly',
     ],
 
-    /**
+    /*
      * List of reserved URL ending.
      *
      * This keyword has a special meaning in UrlHub. Some of them represent
@@ -80,7 +80,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    /**
+    /*
      * Tells if IP addresses from visitors should be obfuscated before storing
      * them in the database. Default value is true.
      *
@@ -90,7 +90,7 @@ return [
      */
     'anonymize_ip_addr' => env('UH_ANONYMIZE_IP_ADDR', true),
 
-    /**
+    /*
      * Configure the kind of redirect you want to use for your short URLs. You
      * can either set:
      * - 301 (Default behavior, visitors always hit the server).
@@ -102,7 +102,7 @@ return [
      */
     'redirect_status_code' => env('UH_REDIRECT_STATUS_CODE', 301),
 
-    /**
+    /*
      * Set the amount of seconds that redirects should be cached when redirect
      * status is 301. Default values is 90.
      */
@@ -114,7 +114,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    /**
+    /*
      * Turn on/off the embed external content element.
      */
     'embed' => env('UH_EMBED', true),

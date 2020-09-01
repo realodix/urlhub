@@ -48,8 +48,8 @@ class UrlService
     }
 
     /**
-     * @param array   $request
-     * @param object  $url      \App\Models\Url
+     * @param array  $request
+     * @param object $url     \App\Models\Url
      */
     public function update(array $request, object $url)
     {
@@ -199,8 +199,8 @@ class UrlService
     /**
      * Get information from any web page.
      *
-     * @codeCoverageIgnore
      * @param string $url
+     * @codeCoverageIgnore
      */
     public function webInfo(string $url)
     {
