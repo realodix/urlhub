@@ -381,21 +381,21 @@
         },
         {
             "name": "divineomega/laravel-password-exposed-validation-rule",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DivineOmega/laravel-password-exposed-validation-rule.git",
-                "reference": "a8964d56caf9b502aea15dcee59703662226c3ca"
+                "reference": "d1e3326c2e04e70fcd8c1c43f60ffc105c336eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DivineOmega/laravel-password-exposed-validation-rule/zipball/a8964d56caf9b502aea15dcee59703662226c3ca",
-                "reference": "a8964d56caf9b502aea15dcee59703662226c3ca",
+                "url": "https://api.github.com/repos/DivineOmega/laravel-password-exposed-validation-rule/zipball/d1e3326c2e04e70fcd8c1c43f60ffc105c336eba",
+                "reference": "d1e3326c2e04e70fcd8c1c43f60ffc105c336eba",
                 "shasum": ""
             },
             "require": {
                 "divineomega/password_exposed": "^3.0.1",
-                "illuminate/contracts": "^5.1||^6.0||^7.0",
+                "illuminate/contracts": "^5.1||^6.0||^7.0||^8.0",
                 "php": "^7.1"
             },
             "require-dev": {
@@ -419,7 +419,13 @@
                 }
             ],
             "description": "Laravel validation rule that checks if a password has been exposed in a data breach",
-            "time": "2020-03-04T21:43:32+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/DivineOmega",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-02T07:39:46+00:00"
         },
         {
             "name": "divineomega/password_exposed",
@@ -1936,21 +1942,21 @@
         },
         {
             "name": "langleyfoxall/laravel-nist-password-rules",
-            "version": "v4.2.0",
+            "version": "v4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/langleyfoxall/laravel-nist-password-rules.git",
-                "reference": "c3531e0a2acddeb14cc1faf2ecf4ec1eadaf6602"
+                "reference": "c0a9bdfffb6b29a9e61443d5babcf3160fc85001"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/langleyfoxall/laravel-nist-password-rules/zipball/c3531e0a2acddeb14cc1faf2ecf4ec1eadaf6602",
-                "reference": "c3531e0a2acddeb14cc1faf2ecf4ec1eadaf6602",
+                "url": "https://api.github.com/repos/langleyfoxall/laravel-nist-password-rules/zipball/c0a9bdfffb6b29a9e61443d5babcf3160fc85001",
+                "reference": "c0a9bdfffb6b29a9e61443d5babcf3160fc85001",
                 "shasum": ""
             },
             "require": {
-                "divineomega/laravel-password-exposed-validation-rule": "^2.2.0",
-                "laravel/framework": "^5.4||^6.0||^7.0",
+                "divineomega/laravel-password-exposed-validation-rule": "^2.3.0",
+                "laravel/framework": "^5.4||^6.0||^7.0||^8.0",
                 "php": ">=7.1"
             },
             "require-dev": {
@@ -1982,7 +1988,7 @@
                 }
             ],
             "description": "🔒 Provides Laravel validation rules that follow the password related recommendations found in NIST Special Publication 800-63B.",
-            "time": "2020-03-11T16:22:04+00:00"
+            "time": "2020-09-02T08:01:11+00:00"
         },
         {
             "name": "laravel/framework",
