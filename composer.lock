@@ -4358,16 +4358,16 @@
         },
         {
             "name": "spatie/url",
-            "version": "1.3.2",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/url.git",
-                "reference": "1cfbd5736ca595e04c27f9f07ca51bbda28d754a"
+                "reference": "c08017e20589cfbb2d721b8d1c5c2879685d0a6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/url/zipball/1cfbd5736ca595e04c27f9f07ca51bbda28d754a",
-                "reference": "1cfbd5736ca595e04c27f9f07ca51bbda28d754a",
+                "url": "https://api.github.com/repos/spatie/url/zipball/c08017e20589cfbb2d721b8d1c5c2879685d0a6f",
+                "reference": "c08017e20589cfbb2d721b8d1c5c2879685d0a6f",
                 "shasum": ""
             },
             "require": {
@@ -4402,7 +4402,7 @@
                 "spatie",
                 "url"
             ],
-            "time": "2020-02-23T13:13:32+00:00"
+            "time": "2020-08-31T10:28:39+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
