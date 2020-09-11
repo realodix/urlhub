@@ -13,6 +13,7 @@
         "php": "^7.3",
         "codeitnowin/barcode": "^3.0",
         "creativeorange/gravatar": "~1.0",
+        "doctrine/dbal": "2.10.2",
         "embed/embed": "^3.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
