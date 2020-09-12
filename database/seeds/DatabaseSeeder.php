@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
 
         // Multiple with factory
-        // factory(App\Models\User::class, 200)->create();
-        // factory(App\Models\Url::class, 100000)->create();
+        // User::factory(200)->create();
+        // Url::factory(100000)->create();
     }
 }
