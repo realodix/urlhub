@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyService;
