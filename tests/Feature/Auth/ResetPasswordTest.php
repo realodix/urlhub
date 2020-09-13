@@ -42,7 +42,7 @@ class ResetPasswordTest extends TestCase
      */
     public function user_can_view_a_password_reset_form()
     {
-        $response = $this->get($this->getRoute($token = $this->getValidToken($this->user())));
+        $response = $this->get($this->getRoute($token = $this->getValidToken($this->nonAdmin())));
 
         $response
             ->assertSuccessful()
@@ -58,7 +58,7 @@ class ResetPasswordTest extends TestCase
     {
         Event::fake();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response = $this->post($this->postRoute(), [
             'token'                 => $this->getValidToken($user),

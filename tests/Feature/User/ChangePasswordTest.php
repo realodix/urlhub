@@ -56,7 +56,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response =
             $this
@@ -119,7 +119,7 @@ class ChangePasswordTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
 
         $response =
             $this

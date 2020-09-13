@@ -150,7 +150,7 @@ class UrlBeTest extends TestCase
      */
     public function au_non_admin_cant_access_this_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get(route('dashboard.allurl'));
         $response->assertForbidden();
@@ -184,7 +184,7 @@ class UrlBeTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response =
             $this
@@ -219,7 +219,7 @@ class UrlBeTest extends TestCase
      */
     public function aus_non_admin_cant_access_this_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get(route('user.index'));
         $response->assertForbidden();
@@ -249,7 +249,7 @@ class UrlBeTest extends TestCase
      */
     public function stat_non_admin_cant_access_this_page()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->get(route('dashboard.stat'));
         $response->assertForbidden();
