@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Url;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -10,6 +11,8 @@ use Tests\TestCase;
  */
 class UrlBeTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function hashIdRoute($routeName, $url_id)
     {
         return route($routeName, \Hashids::connection(\App\Models\Url::class)->encode($url_id));

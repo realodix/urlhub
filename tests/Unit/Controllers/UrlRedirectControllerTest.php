@@ -4,10 +4,13 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
 use App\Models\Visit;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UrlRedirectControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
      * @group u-controller

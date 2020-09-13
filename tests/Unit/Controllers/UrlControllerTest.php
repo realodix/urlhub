@@ -6,12 +6,15 @@ use App\Models\Url;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
 class UrlControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * The user_id column in the table of Url must be null.
      *

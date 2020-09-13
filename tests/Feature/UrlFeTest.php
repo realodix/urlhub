@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Url;
-use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -11,6 +11,8 @@ use Tests\TestCase;
  */
 class UrlFeTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
      */

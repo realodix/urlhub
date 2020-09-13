@@ -3,10 +3,13 @@
 namespace Tests\Feature\User;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function getRoute($value)
     {
         return route('user.edit', $value);

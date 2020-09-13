@@ -5,10 +5,13 @@ namespace Tests\Unit\Models;
 use App\Models\Url;
 use App\Models\Visit;
 use App\Services\UrlService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
