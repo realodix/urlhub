@@ -2,21 +2,23 @@
 
 namespace App\Providers;
 
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Vinkla\Hashids\Facades\Hashids;
 
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * This namespace is applied to your controller routes.
+     * The path to the "home" route for your application.
      *
-     * In addition, it is set as the URL generator's root namespace.
+     * This is used by Laravel authentication to redirect users after login.
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
-
-    protected $apiNamespace = 'App\Http\Controllers\API';
+    public const HOME = '/';
 
     /**
      * The path to the "admin" route for your application.
@@ -32,70 +34,54 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        parent::boot();
+        $this->configureRateLimiting();
 
+        $this->routes(function () {
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace('App\Http\Controllers\API')
+                ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->namespace('App\Http\Controllers')
+                ->group(base_path('routes/web.php'));
+        });
+
+        $this->routeModelBinding();
+    }
+
+    /**
+     * Configure the rate limiters for the application.
+     *
+     * @return void
+     */
+    protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60);
+        });
+    }
+
+    private function routeModelBinding()
+    {
         Route::bind('user', function ($value, $route) {
-            return \App\Models\User::where('name', $value)->firstOrFail();
+            return \App\Models\User::whereName($value)->firstOrFail();
         });
 
         Route::bind('user_hashId', function ($value, $route) {
-            return $this->getModel(\App\Models\User::class, $value);
+            return $this->hashidsDecoder(\App\Models\User::class, $value);
         });
 
         Route::bind('url_hashId', function ($value, $route) {
-            return $this->getModel(\App\Models\Url::class, $value);
+            return $this->hashidsDecoder(\App\Models\Url::class, $value);
         });
     }
 
-    private function getModel($model, $routeKey)
+    private function hashidsDecoder($model, $routeKey)
     {
-        $id = \Hashids::connection($model)->decode($routeKey)[0] ?? null;
+        $id = Hashids::connection($model)->decode($routeKey)[0] ?? null;
         $modelInstance = resolve($model);
 
         return $modelInstance->findOrFail($id);
-    }
-
-    /**
-     * Define the routes for the application.
-     *
-     * @return void
-     */
-    public function map()
-    {
-        $this->mapApiRoutes();
-
-        $this->mapWebRoutes();
-
-        //
-    }
-
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
-    {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/web.php'));
-    }
-
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapApiRoutes()
-    {
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($this->apiNamespace)
-            ->group(base_path('routes/api.php'));
     }
 }

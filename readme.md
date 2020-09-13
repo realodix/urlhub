@@ -1,7 +1,7 @@
 <h1>UrlHub</h1>
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
-[![LaravelVersion](https://img.shields.io/badge/Laravel-7-f56857.svg?style=flat-square)](https://laravel.com/docs/7.x)
+[![LaravelVersion](https://img.shields.io/badge/Laravel-8-f56857.svg?style=flat-square)](https://laravel.com/docs/8.x)
 ![PHPVersion](https://img.shields.io/badge/PHP-%5E7.3-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
@@ -26,7 +26,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Configuration Guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
 - **Sortable list of shortened URLs.**
 - **[Datatables](https://datatables.net/) with server-side processing.**
-- **Written in [PHP](https://www.php.net/) and [Laravel 7](https://laravel.com/docs/7.x).**
+- **Written in [PHP](https://www.php.net/) and [Laravel 8](https://laravel.com/docs/8.x).**
 - **Modern and simple interface.**
 - **Made with :heart: &amp; :coffee:.**
 
@@ -90,9 +90,17 @@ Anybody can help by doing any of the following:
 
 ### Running Tests
 
-From the projects root folder run `./vendor/bin/phpunit` (VSCode Task `Run test`) or [Artisan Test Runner](https://laravel.com/docs/testing#artisan-test-runner) `php artisan test`
+- **Command Line**
 
-![screenshot](https://i.imgur.com/SPeeXjq.png)
+  From the projects root folder run 
+  - `php artisan test`
+  - or `./vendor/bin/phpunit`
+
+- **VSCode Tasks**
+  - `Run tests`
+  - or `Run tests (PHPUnit)`
+
+![screenshot](https://i.imgur.com/BKNYzuY.jpg)
 
 
 ## Bug Report
