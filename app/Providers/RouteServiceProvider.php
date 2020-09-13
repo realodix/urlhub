@@ -19,6 +19,15 @@ class RouteServiceProvider extends ServiceProvider
     protected $apiNamespace = 'App\Http\Controllers\API';
 
     /**
+     * The path to the "home" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after login.
+     *
+     * @var string
+     */
+    public const HOME = '/';
+
+    /**
      * The path to the "admin" route for your application.
      *
      * @var string
@@ -32,9 +41,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        parent::boot();
-
         Route::bind('user', function ($value, $route) {
             return \App\Models\User::where('name', $value)->firstOrFail();
         });
