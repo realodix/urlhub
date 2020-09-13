@@ -39,7 +39,7 @@ class UrlBeTest extends TestCase
      */
     public function d_can_delete()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
@@ -63,7 +63,7 @@ class UrlBeTest extends TestCase
      */
     public function d_can_duplicate()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
@@ -87,7 +87,7 @@ class UrlBeTest extends TestCase
      */
     public function d_authorized_user_can_access_edit_url_page()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
@@ -103,7 +103,7 @@ class UrlBeTest extends TestCase
      */
     public function d_can_update_url()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
@@ -162,7 +162,7 @@ class UrlBeTest extends TestCase
      */
     public function au_admin_can_delete()
     {
-        $url = factory(Url::class)->create();
+        $url = Url::factory()->create();
 
         $this->loginAsAdmin();
 
@@ -182,7 +182,7 @@ class UrlBeTest extends TestCase
      */
     public function au_non_admin_cant_delete()
     {
-        $url = factory(Url::class)->create();
+        $url = Url::factory()->create();
 
         $this->loginAsUser();
 

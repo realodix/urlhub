@@ -69,7 +69,7 @@ class UrlFeTest extends TestCase
      */
     public function long_url_already_exist()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => null,
         ]);
 
@@ -91,7 +91,7 @@ class UrlFeTest extends TestCase
      */
     public function long_url_already_exist_2()
     {
-        $url = factory(Url::class)->create();
+        $url = Url::factory()->create();
 
         $response = $this->post(route('createshortlink'), [
             'long_url' => $url->long_url,
@@ -113,7 +113,7 @@ class UrlFeTest extends TestCase
     {
         $user = $this->admin();
 
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $user->id,
         ]);
 
@@ -140,7 +140,7 @@ class UrlFeTest extends TestCase
         $user = $this->admin();
         $user2 = $this->user();
 
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $user2->id,
         ]);
 
@@ -166,7 +166,7 @@ class UrlFeTest extends TestCase
     {
         $user = $this->admin();
 
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => null,
         ]);
 
@@ -188,7 +188,7 @@ class UrlFeTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
@@ -223,7 +223,7 @@ class UrlFeTest extends TestCase
     /** @test */
     public function cst_long_url_already_exist()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => null,
         ]);
 
@@ -244,7 +244,7 @@ class UrlFeTest extends TestCase
     /** @test */
     public function cst_long_url_already_exist_2()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => null,
         ]);
 
@@ -270,7 +270,7 @@ class UrlFeTest extends TestCase
     /** @test */
     public function cst_cst_keyword_already_exist()
     {
-        $url = factory(Url::class)->create();
+        $url = Url::factory()->create();
 
         $response = $this->post(route('createshortlink'), [
             'long_url'   => 'https://laravel-news.com',
@@ -291,7 +291,7 @@ class UrlFeTest extends TestCase
      */
     public function cst_cst_keyword_already_exist_2()
     {
-        $url = factory(Url::class)->create();
+        $url = Url::factory()->create();
 
         $this->loginAsUser();
 

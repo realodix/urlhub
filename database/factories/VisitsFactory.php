@@ -2,25 +2,15 @@
 
 use App\Models\Url;
 use Faker\Generator as Faker;
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 $factory->define(App\Models\Visit::class, function (Faker $faker) {
     return [
         'url_id' => function () {
-            return factory(Url::class)->create()->id;
+            return Url::factory()->create()->id;
         },
         'referer'          => 'https://github.com/realodix/urlhub',
-        'ip'               => $faker->ipv4,
+        'ip'               => $this->faker->ipv4,
         'device'           => 'WebKit',
         'platform'         => 'Windows',
         'platform_version' => '10',
@@ -28,3 +18,33 @@ $factory->define(App\Models\Visit::class, function (Faker $faker) {
         'browser_version'  => '75.0.3770.100',
     ];
 });
+class UserFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Url::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'url_id' => function () {
+                return Url::factory()->create()->id;
+            },
+            'referer'          => 'https://github.com/realodix/urlhub',
+            'ip'               => $this->faker->ipv4,
+            'device'           => 'WebKit',
+            'platform'         => 'Windows',
+            'platform_version' => '10',
+            'browser'          => 'Chrome',
+            'browser_version'  => '75.0.3770.100',
+        ];
+    }
+}

@@ -61,7 +61,7 @@ class ProfileTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $user = factory(User::class)->create(['email' => 'user_email@urlhub.test']);
+        $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
 
         $response =
             $this
@@ -85,7 +85,7 @@ class ProfileTest extends TestCase
     {
         $this->loginAsUser();
 
-        $user = factory(User::class)->create(['email' => 'user2@urlhub.test']);
+        $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
         $response =
             $this

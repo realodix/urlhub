@@ -14,9 +14,9 @@ class UserTest extends TestCase
      */
     public function has_many_url()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        factory(Url::class)->create([
+        Url::factory()->create([
             'user_id' => $user->id,
         ]);
 

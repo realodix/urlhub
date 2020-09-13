@@ -14,9 +14,9 @@ class VisitTest extends TestCase
      */
     public function belongs_to_url()
     {
-        $visit = factory(Visit::class)->create([
+        $visit = Visit::factory()->create([
             'url_id' => function () {
-                return factory(Url::class)->create()->id;
+                return Url::factory()->create()->id;
             },
         ]);
 

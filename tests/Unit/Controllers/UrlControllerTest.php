@@ -122,7 +122,7 @@ class UrlControllerTest extends TestCase
      */
     public function custom_key_validation_fail($data)
     {
-        factory(Url::class)->create([
+        Url::factory()->create([
             'keyword' => 'laravel',
         ]);
 

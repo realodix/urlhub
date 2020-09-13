@@ -14,7 +14,7 @@ class UrlRedirectControllerTest extends TestCase
      */
     public function url_redirection()
     {
-        $url = factory(Url::class)->create();
+        $url = Url::factory()->create();
 
         $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->long_url);

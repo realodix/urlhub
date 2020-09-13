@@ -96,18 +96,18 @@ class KeyServiceTest extends TestCase
     {
         config(['urlhub.hash_char' => 'abc']);
 
-        factory(Url::class)->create([
+        Url::factory()->create([
             'keyword' => $this->keySrvc->randomKey(),
         ]);
         $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
 
-        factory(Url::class)->create([
+        Url::factory()->create([
             'keyword'   => str_repeat('a', uHub('hash_length')),
             'is_custom' => 1,
         ]);
         $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
 
-        factory(Url::class)->create([
+        Url::factory()->create([
             'keyword'   => str_repeat('b', uHub('hash_length') + 1),
             'is_custom' => 1,
         ]);
@@ -126,14 +126,14 @@ class KeyServiceTest extends TestCase
         config(['urlhub.hash_length' => 3]);
 
         config(['urlhub.hash_char' => 'foo']);
-        factory(Url::class)->create([
+        Url::factory()->create([
             'keyword'   => 'foo',
             'is_custom' => 1,
         ]);
         $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
 
         config(['urlhub.hash_char' => 'bar']);
-        factory(Url::class)->create([
+        Url::factory()->create([
             'keyword'   => 'bar',
             'is_custom' => 1,
         ]);
