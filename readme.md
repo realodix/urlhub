@@ -97,8 +97,8 @@ Anybody can help by doing any of the following:
   - or `./vendor/bin/phpunit`
 
 - **VSCode Tasks**
-  - Run tests
-  - or Run tests (PHPUnit)
+  - `Run tests`
+  - or `Run tests (PHPUnit)`
 
 ![screenshot](https://i.imgur.com/SPeeXjq.png)
 
