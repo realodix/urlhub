@@ -2,22 +2,14 @@
 
 namespace App\Providers;
 
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    /**
-     * This namespace is applied to your controller routes.
-     *
-     * In addition, it is set as the URL generator's root namespace.
-     *
-     * @var string
-     */
-    protected $namespace = 'App\Http\Controllers';
-
-    protected $apiNamespace = 'App\Http\Controllers\API';
-
     /**
      * The path to the "home" route for your application.
      *
@@ -41,6 +33,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->configureRateLimiting();
+
         Route::bind('user', function ($value, $route) {
             return \App\Models\User::where('name', $value)->firstOrFail();
         });
@@ -51,6 +45,18 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('url_hashId', function ($value, $route) {
             return $this->getModel(\App\Models\Url::class, $value);
+        });
+    }
+
+    /**
+     * Configure the rate limiters for the application.
+     *
+     * @return void
+     */
+    protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60);
         });
     }
 
@@ -86,7 +92,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-            ->namespace($this->namespace)
+            ->namespace('App\Http\Controllers')
             ->group(base_path('routes/web.php'));
     }
 
@@ -101,7 +107,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
             ->middleware('api')
-            ->namespace($this->apiNamespace)
+            ->namespace('App\Http\Controllers\API')
             ->group(base_path('routes/api.php'));
     }
 }
