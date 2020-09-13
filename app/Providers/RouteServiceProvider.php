@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Vinkla\Hashids\Facades\Hashids;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -46,17 +47,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
-        Route::bind('user', function ($value, $route) {
-            return \App\Models\User::where('name', $value)->firstOrFail();
-        });
-
-        Route::bind('user_hashId', function ($value, $route) {
-            return $this->getModel(\App\Models\User::class, $value);
-        });
-
-        Route::bind('url_hashId', function ($value, $route) {
-            return $this->getModel(\App\Models\Url::class, $value);
-        });
+        $this->routeModelBinding();
     }
 
     /**
@@ -71,9 +62,24 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
-    private function getModel($model, $routeKey)
+    private function routeModelBinding()
     {
-        $id = \Hashids::connection($model)->decode($routeKey)[0] ?? null;
+        Route::bind('user', function ($value, $route) {
+            return \App\Models\User::whereName($value)->firstOrFail();
+        });
+
+        Route::bind('user_hashId', function ($value, $route) {
+            return $this->hashidsDecoder(\App\Models\User::class, $value);
+        });
+
+        Route::bind('url_hashId', function ($value, $route) {
+            return $this->hashidsDecoder(\App\Models\Url::class, $value);
+        });
+    }
+
+    private function hashidsDecoder($model, $routeKey)
+    {
+        $id = Hashids::connection($model)->decode($routeKey)[0] ?? null;
         $modelInstance = resolve($model);
 
         return $modelInstance->findOrFail($id);
