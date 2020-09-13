@@ -20,7 +20,7 @@ class UrlTest extends TestCase
             'clicks'  => 10,
         ]);
 
-        factory(Url::class, 2)->create([
+        Url::factory(2)->create([
             'user_id' => null,
             'clicks'  => 10,
         ]);
