@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Url;
+use App\Models\Visit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class VisitsFactory extends Factory
+class VisitFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
