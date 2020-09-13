@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Http\Traits\Hashidable;
 use App\Services\UrlService;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Url extends Model
 {
+    use HasFactory;
     use Hashidable;
 
     /**
