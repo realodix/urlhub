@@ -90,7 +90,15 @@ Anybody can help by doing any of the following:
 
 ### Running Tests
 
-From the projects root folder run `./vendor/bin/phpunit` (VSCode Task `Run test`) or [Artisan Test Runner](https://laravel.com/docs/testing#artisan-test-runner) `php artisan test`
+- **Command Line**
+
+  From the projects root folder run 
+  - `php artisan test`
+  - or `./vendor/bin/phpunit`
+
+- **VSCode Tasks**
+  - Run tests
+  - or Run tests (PHPUnit)
 
 ![screenshot](https://i.imgur.com/SPeeXjq.png)
 
