@@ -47,7 +47,7 @@ trait Authentication
         return $this->actingAs($this->nonAdmin());
     }
 
-    public function getAdminRole()
+    private function getAdminRole()
     {
         // create permissions
         Permission::create(['name' => 'admin']);
