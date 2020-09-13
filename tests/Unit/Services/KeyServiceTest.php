@@ -11,6 +11,7 @@ use Tests\TestCase;
 class KeyServiceTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * @var \App\Services\KeyService
      */
