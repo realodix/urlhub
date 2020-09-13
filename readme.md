@@ -100,7 +100,7 @@ Anybody can help by doing any of the following:
   - `Run tests`
   - or `Run tests (PHPUnit)`
 
-![screenshot](https://i.imgur.com/SPeeXjq.png)
+![screenshot](https://i.imgur.com/BKNYzuY.jpg)
 
 
 ## Bug Report
