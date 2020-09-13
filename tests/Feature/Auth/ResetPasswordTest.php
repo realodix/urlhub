@@ -82,7 +82,7 @@ class ResetPasswordTest extends TestCase
      */
     public function user_cannot_reset_password_with_invalid_token()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => Hash::make('old-password'),
         ]);
 
@@ -108,7 +108,7 @@ class ResetPasswordTest extends TestCase
      */
     public function user_cannot_reset_password_without_providing_a_new_password()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => Hash::make('old-password'),
         ]);
 
@@ -139,7 +139,7 @@ class ResetPasswordTest extends TestCase
      */
     public function user_cannot_reset_password_without_providing_an_email()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => Hash::make('old-password'),
         ]);
 

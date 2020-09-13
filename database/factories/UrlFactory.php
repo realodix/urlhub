@@ -1,33 +1,38 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyService;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+class UrlFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Url::class;
 
-$factory->define(Url::class, function (Faker $faker) {
-    $keySrvc = new KeyService();
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $keySrvc = new KeyService();
 
-    return [
-        'user_id' => function () {
-            return factory(User::class)->create()->id;
-        },
-        'long_url'   => 'https://github.com/realodix/urlhub',
-        'meta_title' => 'No Title',
-        'keyword'    => $keySrvc->randomKey(),
-        'is_custom'  => 0,
-        'clicks'     => mt_rand(10000, 999999999),
-        'ip'         => $faker->ipv4,
-    ];
-});
+        return [
+            'user_id'    => User::factory(),
+            'long_url'   => 'https://github.com/realodix/urlhub',
+            'meta_title' => 'No Title',
+            'keyword'    => $keySrvc->randomKey(),
+            'is_custom'  => 0,
+            'clicks'     => mt_rand(10000, 999999999),
+            'ip'         => $this->faker->ipv4,
+        ];
+    }
+}

@@ -15,12 +15,12 @@ class UrlTest extends TestCase
 
         $this->urlSrvc = new UrlService;
 
-        factory(Url::class)->create([
+        Url::factory()->create([
             'user_id' => $this->admin()->id,
             'clicks'  => 10,
         ]);
 
-        factory(Url::class, 2)->create([
+        Url::factory(2)->create([
             'user_id' => null,
             'clicks'  => 10,
         ]);
@@ -34,7 +34,7 @@ class UrlTest extends TestCase
      */
     public function belongs_to_user()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
@@ -47,7 +47,7 @@ class UrlTest extends TestCase
      */
     public function default_guest_name()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => null,
         ]);
 
@@ -60,9 +60,9 @@ class UrlTest extends TestCase
      */
     public function has_many_url_stat()
     {
-        $url = factory(Url::class)->create();
+        $url = Url::factory()->create();
 
-        factory(Visit::class)->create([
+        Visit::factory()->create([
             'url_id' => $url->id,
         ]);
 
@@ -94,7 +94,7 @@ class UrlTest extends TestCase
      */
     public function setUserIdAttribute_must_be_null()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id' => 0,
         ]);
 
@@ -107,7 +107,7 @@ class UrlTest extends TestCase
      */
     public function setLongUrlAttribute()
     {
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'long_url' => 'http://example.com/',
         ]);
 

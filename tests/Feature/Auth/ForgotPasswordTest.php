@@ -47,7 +47,7 @@ class ForgotPasswordTest extends TestCase
     {
         Notification::fake();
 
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'email' => 'john@example.com',
         ]);
 
@@ -76,7 +76,7 @@ class ForgotPasswordTest extends TestCase
         $response
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('email');
-        Notification::assertNotSentTo(factory(User::class)->make(['email' => 'nobody@example.com']), ResetPassword::class);
+        Notification::assertNotSentTo(User::factory()->make(['email' => 'nobody@example.com']), ResetPassword::class);
     }
 
     /**

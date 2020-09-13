@@ -12,7 +12,7 @@ trait Authentication
     {
         parent::setUp();
 
-        $admin = factory(User::class)->create([
+        $admin = User::factory()->create([
             'id'       => 1,
             'password' => bcrypt($this->adminPassword()),
         ]);
@@ -36,7 +36,7 @@ trait Authentication
 
     protected function user()
     {
-        return factory(User::class)->create();
+        return User::factory()->create();
     }
 
     protected function loginAsUser()

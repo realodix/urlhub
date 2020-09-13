@@ -19,7 +19,7 @@ class UrlPolicyTest extends TestCase
         $this->loginAsAdmin();
 
         $admin = $this->admin();
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id'  => $admin->id,
             'long_url' => 'https://laravel.com',
         ]);
@@ -39,7 +39,7 @@ class UrlPolicyTest extends TestCase
         $this->loginAsUser();
 
         $user = $this->user();
-        $url = factory(Url::class)->create([
+        $url = Url::factory()->create([
             'user_id'  => $user->id,
             'long_url' => 'https://laravel.com',
         ]);

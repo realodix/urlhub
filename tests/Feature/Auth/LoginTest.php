@@ -58,7 +58,7 @@ class LoginTest extends TestCase
      */
     public function user_can_login_with_correct_credentials()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => Hash::make($password = 'i-love-laravel'),
         ]);
 
@@ -77,7 +77,7 @@ class LoginTest extends TestCase
      */
     public function user_cannot_login_with_incorrect_password()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => Hash::make('i-love-laravel'),
         ]);
 
