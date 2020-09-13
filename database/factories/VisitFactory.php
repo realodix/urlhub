@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Url;
 use App\Models\Visit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
