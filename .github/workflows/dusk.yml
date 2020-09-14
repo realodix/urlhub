@@ -33,5 +33,7 @@ jobs:
           composer install --no-interaction --ignore-platform-reqs
           php artisan dusk:install
 
-      - name: Execute tests
+      - name: Run Dusk Tests
+        env:
+          APP_URL: "http://127.0.0.1:8000"
         run: php artisan dusk
