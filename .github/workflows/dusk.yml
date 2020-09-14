@@ -32,7 +32,7 @@ jobs:
           composer -V
           composer install --no-interaction --ignore-platform-reqs
 
-      - name: Database
+      - name: Create Database
         uses: mirromutth/mysql-action@v1.1
         with:
           collation server: 'utf8mb4_bin'
