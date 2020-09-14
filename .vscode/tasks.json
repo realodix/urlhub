@@ -16,6 +16,12 @@
             "problemMatcher": []
         },
         {
+            "label": "Run tests (Dusk)",
+            "type": "shell",
+            "command": "php artisan dusk",
+            "problemMatcher": []
+        },
+        {
             "label": "PHP CS Fixer",
             "type": "shell",
             "command": "./vendor/bin/php-cs-fixer fix",
