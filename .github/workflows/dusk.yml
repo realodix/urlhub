@@ -12,6 +12,7 @@ jobs:
       - name: Create Database
         uses: mirromutth/mysql-action@v1.1
         with:
+          host port: 8000
           collation server: utf8mb4_bin
           mysql database: urlhub
           mysql user: root
@@ -45,5 +46,6 @@ jobs:
         env:
           APP_URL: "http://127.0.0.1:8000"
           DB_DATABASE: urlhub
+          DB_USERNAME: root
           DB_PASSWORD: root
         run: php artisan dusk
