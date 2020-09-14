@@ -12,14 +12,6 @@ class ExampleTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Url::factory()->create();
-        User::factory()->create();
-    }
-
     /**
      * A basic browser test example.
      *
@@ -35,6 +27,9 @@ class ExampleTest extends DuskTestCase
 
     public function testDashboardAllurl()
     {
+        Url::factory()->create();
+        User::factory()->create();
+
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
                     ->type('identity', 'admin')
