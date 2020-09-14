@@ -1,4 +1,4 @@
-name: tests
+name: dusk
 
 on: [push]
 
@@ -34,7 +34,6 @@ jobs:
         run: |
           composer -V
           composer install --no-interaction --ignore-platform-reqs
-
       - name: Prepare running Dusk
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
@@ -45,7 +44,6 @@ jobs:
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           ./vendor/laravel/dusk/bin/chromedriver-linux &
           php artisan serve &
-
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
