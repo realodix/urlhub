@@ -23,8 +23,8 @@ class ExampleTest extends DuskTestCase
 
     public function testDashboardAllurl()
     {
-        \App\Models\User::factory(20)->create();
-        \App\Models\Url::factory(10)->create();
+        \App\Models\User::factory()->create();
+        \App\Models\Url::factory()->create();
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
