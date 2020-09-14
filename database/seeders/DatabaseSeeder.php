@@ -13,8 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        UserSeeder::factory()->make();
-        RolesAndPermissionsSeeder::factory()->make();
+        $this->call([
+            UserSeeder::class,
+            RolesAndPermissionsSeeder::class,
+        ]);
 
         // Multiple with factory
         // \App\Models\User::factory(200)->create();
