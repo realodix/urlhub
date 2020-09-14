@@ -40,9 +40,6 @@ jobs:
             sudo sed -i 's~APP_URL=http://localhost~APP_URL="http://127.0.0.1:8000"~g' .env
             php artisan storage:link
             php artisan dusk:chrome-driver
-            ./vendor/laravel/dusk/bin/chromedriver-linux &
-            # Serve your application so Dusk can access it
-            php artisan serve &
 
       - name: Run Dusk Tests
         env:
