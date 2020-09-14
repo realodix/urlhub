@@ -10,7 +10,7 @@ use Tests\DuskTestCase;
 class DataTablesTest extends DuskTestCase
 {
     /**
-     * Dashboard Page
+     * Dashboard Page.
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class DataTablesTest extends DuskTestCase
     }
 
     /**
-     * AllUrls Page
+     * AllUrls Page.
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class DataTablesTest extends DuskTestCase
     }
 
     /**
-     * All Users Page
+     * All Users Page.
      *
      * @return void
      */
