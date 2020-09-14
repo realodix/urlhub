@@ -6,13 +6,18 @@ jobs:
 
   dusk-php:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+          image: mysql:5.7
+          env:
+              MYSQL_ALLOW_EMPTY_PASSWORD: yes
+              MYSQL_DATABASE: urlhub
+          ports:
+              - 3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - uses: actions/checkout@v2
-
-      - name: Create Database
-        run: |
-          sudo systemctl start mysql
-          mysql --user="root" --password="${{ secrets.DatabasePassword }}" -e "CREATE DATABASE 'urlhub' character set UTF8mb4 collate utf8mb4_bin;"
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get composer cache directory
