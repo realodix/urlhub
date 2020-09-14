@@ -39,7 +39,7 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
-          php artisan migrate:fresh --seed
+          php artisan migrate --seed
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           ./vendor/laravel/dusk/bin/chromedriver-linux &
           php artisan serve &
