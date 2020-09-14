@@ -16,8 +16,6 @@ class ExampleTest extends DuskTestCase
 
         User::factory()->create();
         Url::factory()->create();
-
-        config(['urlhub.hash_char' => 'abc']);
     }
 
     /**

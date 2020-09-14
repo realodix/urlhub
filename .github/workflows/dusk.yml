@@ -7,29 +7,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
-      - name: Get composer cache directory
-        id: composercache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composercache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: Install dependencies
-        run: |
-          composer -V
-          composer install --no-interaction --ignore-platform-reqs
-
-      - name: Prepare Laravel
-        run: |
-          cp .env.example .env
-          php artisan key:generate
+      - name: Prepare The Environment
+        run: cp .env.example .env
 
       - name: Create Database
         uses: mirromutth/mysql-action@v1.1
@@ -39,14 +20,16 @@ jobs:
           mysql user: 'root'
           mysql password: 'root'
 
-      - name: Prepare running Dusk
-        run: |
-          # Upgrade Chrome Driver
-          php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
-          # Start Chrome Driver
-          ./vendor/laravel/dusk/bin/chromedriver-linux &
-          # Run Laravel Server
-          php artisan serve &
+      - name: Install Composer Dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+      - name: Generate Application Key
+        run: php artisan key:generate
+      - name: Upgrade Chrome Driver
+        run: php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
+      - name: Start Chrome Driver
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+      - name: Run Laravel Server
+        run: php artisan serve &
 
       - name: Run Dusk Tests
         env:
