@@ -6,6 +6,10 @@ jobs:
 
   dusk-php:
     runs-on: ubuntu-latest
+
+    env:
+      DB_PORT: 3306
+
     services:
       mysql:
           image: mysql:5.7
@@ -36,8 +40,6 @@ jobs:
           composer install --no-interaction --ignore-platform-reqs
 
       - name: Prepare running Dusk
-        env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
           cp .env.example .env
           php artisan key:generate
@@ -49,5 +51,4 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: php artisan dusk
