@@ -35,4 +35,5 @@ jobs:
         env:
           APP_URL: "http://127.0.0.1:8000"
           DB_DATABASE: urlhub
+          DB_HOST: localhost
         run: php artisan dusk

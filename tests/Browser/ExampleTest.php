@@ -23,10 +23,7 @@ class ExampleTest extends DuskTestCase
 
     public function testDashboardAllurl()
     {
-        Url::factory(2)->create([
-            'user_id' => null,
-            'clicks'  => 10,
-        ]);
+        Url::factory(2)->create();
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
