@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Create Database
         uses: mirromutth/mysql-action@v1.1
         with:
