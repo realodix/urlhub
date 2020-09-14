@@ -3,11 +3,23 @@
 namespace Tests\Browser;
 
 // use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Url;
+use App\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class ExampleTest extends DuskTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        User::factory()->create();
+        Url::factory()->create();
+
+        config(['urlhub.hash_char' => 'abc']);
+    }
+
     /**
      * A basic browser test example.
      *
@@ -23,9 +35,6 @@ class ExampleTest extends DuskTestCase
 
     public function testDashboardAllurl()
     {
-        \App\Models\User::factory()->create();
-        \App\Models\Url::factory()->create();
-
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
                     ->type('identity', 'admin')
