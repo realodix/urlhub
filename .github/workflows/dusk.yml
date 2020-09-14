@@ -37,6 +37,8 @@ jobs:
         with:
           collation server: 'utf8mb4_bin'
           mysql database: 'urlhub'
+          mysql user: 'root'
+          mysql password: 'root'
 
       - name: Prepare running Dusk
         run: |
