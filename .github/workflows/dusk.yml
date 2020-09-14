@@ -6,19 +6,15 @@ jobs:
 
   dusk-php:
     runs-on: ubuntu-latest
-
-    env:
-      DB_PORT: 3306
-
     services:
       mysql:
-          image: mysql:5.7
+          image: latest
           env:
             MYSQL_ALLOW_EMPTY_PASSWORD: yes
             MYSQL_DATABASE: urlhub
           ports:
             - 3306
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=1
 
     steps:
       - uses: actions/checkout@v2
@@ -40,6 +36,8 @@ jobs:
           composer install --no-interaction --ignore-platform-reqs
 
       - name: Prepare running Dusk
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
           cp .env.example .env
           php artisan key:generate
@@ -51,4 +49,5 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: php artisan dusk
