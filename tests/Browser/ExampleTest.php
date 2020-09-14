@@ -4,7 +4,6 @@ namespace Tests\Browser;
 
 // use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Models\Url;
-use App\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
