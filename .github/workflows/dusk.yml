@@ -32,6 +32,11 @@ jobs:
           composer -V
           composer install --no-interaction --ignore-platform-reqs
 
+      - name: Prepare Laravel
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
       - name: Create Database
         uses: mirromutth/mysql-action@v1.1
         with:
@@ -42,8 +47,6 @@ jobs:
 
       - name: Prepare running Dusk
         run: |
-          cp .env.example .env
-          php artisan key:generate
           # Upgrade Chrome Driver
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           # Start Chrome Driver
@@ -54,4 +57,5 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
+          DB_DATABASE: urlhub
         run: php artisan dusk
