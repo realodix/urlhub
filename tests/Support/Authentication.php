@@ -8,6 +8,8 @@ use Spatie\Permission\Models\Role;
 
 trait Authentication
 {
+    private $adminRole = 'admin';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -20,7 +22,7 @@ trait Authentication
 
     protected function admin()
     {
-        return User::role('admin')->first();
+        return User::role($this->adminRole)->first();
     }
 
     protected function adminPass()
@@ -46,10 +48,10 @@ trait Authentication
     private function getAdminRole()
     {
         // create permissions
-        Permission::create(['name' => 'admin']);
+        Permission::create(['name' => $this->adminRole]);
 
         // create roles and assign created permissions
-        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole = Role::create(['name' => $this->adminRole]);
         $adminRole->givePermissionTo(Permission::all());
 
         return $adminRole;
