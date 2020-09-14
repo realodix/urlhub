@@ -16,7 +16,6 @@ trait Authentication
         parent::setUp();
 
         $admin = User::factory()->create([
-            'id'       => 1,
             'password' => bcrypt($this->adminPass()),
         ]);
         $admin->assignRole($this->getAdminRole());
@@ -24,7 +23,7 @@ trait Authentication
 
     protected function admin()
     {
-        return User::whereId(1)->first();
+        return User::role('admin')->first();
     }
 
     protected function adminPass()
