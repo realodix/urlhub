@@ -6,6 +6,10 @@ jobs:
 
   dusk-php:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        port: 3306
+
     services:
       mysql:
           image: mysql:latest
@@ -13,7 +17,7 @@ jobs:
             MYSQL_ALLOW_EMPTY_PASSWORD: yes
             MYSQL_DATABASE: urlhub
           ports:
-            - 3306
+            - ${{ matrix.port }}
 
     steps:
       - uses: actions/checkout@v2
@@ -36,7 +40,7 @@ jobs:
 
       - name: Prepare running Dusk
         env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_PORT: ${{ matrix.port }}
         run: |
           cp .env.example .env
           php artisan key:generate
@@ -48,5 +52,5 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_PORT: ${{ matrix.port }}
         run: php artisan dusk
