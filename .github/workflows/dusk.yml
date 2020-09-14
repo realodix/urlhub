@@ -13,7 +13,6 @@ jobs:
         uses: mirromutth/mysql-action@v1.1
         with:
           collation server: utf8mb4_bin
-          mysql version: '5.7.31'
           mysql database: urlhub
           mysql user: root
           mysql password: root
