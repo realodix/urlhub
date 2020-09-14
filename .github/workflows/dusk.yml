@@ -1,0 +1,52 @@
+name: dusk
+
+on: [push]
+
+jobs:
+  dusk-php:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+          image: mysql:latest
+          env:
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_DATABASE: urlhub
+          ports:
+            - 3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: |
+          composer -V
+          composer install --no-interaction --ignore-platform-reqs
+      - name: Prepare running Dusk
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan migrate --seed
+          php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
+          ./vendor/laravel/dusk/bin/chromedriver-linux &
+          php artisan serve &
+      - name: Run Dusk Tests
+        env:
+          APP_URL: "http://127.0.0.1:8000"
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: php artisan dusk
