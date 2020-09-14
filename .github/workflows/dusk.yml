@@ -12,7 +12,6 @@ jobs:
           env:
             MYSQL_ALLOW_EMPTY_PASSWORD: yes
             MYSQL_DATABASE: urlhub
-            MYSQL_USER: root
           ports:
             - 3306
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -47,7 +46,4 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
-          DB_CONNECTION: mysql
-          DB_DATABASE: urlhub
-          DB_USERNAME: root
         run: php artisan dusk
