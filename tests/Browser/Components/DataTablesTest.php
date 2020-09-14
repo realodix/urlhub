@@ -1,12 +1,17 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Components;
 
 use App\Models\Url;
 use App\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
+/**
+ * Sometimes while changing some javascript files, the datatables fail to
+ * render the table. This test is written to make sure the datatables run
+ * as expected.
+ */
 class DataTablesTest extends DuskTestCase
 {
     protected function setUp(): void
@@ -18,11 +23,6 @@ class DataTablesTest extends DuskTestCase
         });
     }
 
-    /**
-     * Dashboard Page.
-     *
-     * @return void
-     */
     public function testDashboard()
     {
         $text = 'dashboard';
@@ -40,11 +40,6 @@ class DataTablesTest extends DuskTestCase
         });
     }
 
-    /**
-     * AllUrls Page.
-     *
-     * @return void
-     */
     public function testAllUrls()
     {
         $this->browse(function (Browser $browser) {
@@ -54,11 +49,6 @@ class DataTablesTest extends DuskTestCase
         });
     }
 
-    /**
-     * All Users Page.
-     *
-     * @return void
-     */
     public function testAllUsers()
     {
         $user = User::factory()->create([
