@@ -36,7 +36,7 @@ jobs:
 
       - name: Prepare running Dusk
         env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_PORT: ${{ job.services.mysql.ports }}
         run: |
           cp .env.example .env
           php artisan key:generate
@@ -48,5 +48,5 @@ jobs:
       - name: Run Dusk Tests
         env:
           APP_URL: "http://127.0.0.1:8000"
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_PORT: ${{ job.services.mysql.ports }}
         run: php artisan dusk
