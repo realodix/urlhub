@@ -36,6 +36,8 @@ jobs:
           composer install --no-interaction --ignore-platform-reqs
 
       - name: Prepare running Dusk
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
           cp .env.example .env
           php artisan key:generate
