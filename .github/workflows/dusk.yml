@@ -12,10 +12,10 @@ jobs:
       - name: Create Database
         uses: mirromutth/mysql-action@v1.1
         with:
-          collation server: 'utf8mb4_bin'
-          mysql database: 'urlhub'
-          mysql user: 'root'
-          mysql password: 'root'
+          collation server: utf8mb4_bin
+          mysql database: urlhub
+          mysql user: root
+          mysql password: root
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get composer cache directory
