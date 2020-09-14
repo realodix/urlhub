@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Url;
-use App\Models\User;
 use Tests\TestCase;
 
 /**
@@ -138,7 +137,7 @@ class UrlFeTest extends TestCase
     public function long_url_already_exist_4()
     {
         $user = $this->admin();
-        $user2 = $this->user();
+        $user2 = $this->nonAdmin();
 
         $url = Url::factory()->create([
             'user_id' => $user2->id,
@@ -248,7 +247,7 @@ class UrlFeTest extends TestCase
             'user_id' => null,
         ]);
 
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $customKey = 'laravel';
 
@@ -293,7 +292,7 @@ class UrlFeTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
         $response = $this->post(route('createshortlink'), [
             'long_url'   => 'https://laravel-news.com',

@@ -25,7 +25,7 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentPass()
     {
-        $this->assertTrue($this->rule->passes('test', $this->adminPassword()));
+        $this->assertTrue($this->rule->passes('test', $this->adminPass()));
     }
 
     /**

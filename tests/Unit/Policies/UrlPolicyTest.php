@@ -3,7 +3,6 @@
 namespace Tests\Unit\Policies;
 
 use App\Models\Url;
-use App\Models\User;
 use Tests\TestCase;
 
 class UrlPolicyTest extends TestCase
@@ -36,9 +35,9 @@ class UrlPolicyTest extends TestCase
      */
     public function force_delete_non_admin()
     {
-        $this->loginAsUser();
+        $this->loginAsNonAdmin();
 
-        $user = $this->user();
+        $user = $this->nonAdmin();
         $url = Url::factory()->create([
             'user_id'  => $user->id,
             'long_url' => 'https://laravel.com',

@@ -8,23 +8,24 @@ use Spatie\Permission\Models\Role;
 
 trait Authentication
 {
+    private $adminRole = 'admin';
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $admin = User::factory()->create([
-            'id'       => 1,
-            'password' => bcrypt($this->adminPassword()),
+            'password' => bcrypt($this->adminPass()),
         ]);
         $admin->assignRole($this->getAdminRole());
     }
 
     protected function admin()
     {
-        return User::whereId(1)->first();
+        return User::role($this->adminRole)->first();
     }
 
-    protected function adminPassword()
+    protected function adminPass()
     {
         return 'admin';
     }
@@ -34,23 +35,23 @@ trait Authentication
         return $this->actingAs($this->admin());
     }
 
-    protected function user()
+    protected function nonAdmin()
     {
         return User::factory()->create();
     }
 
-    protected function loginAsUser()
+    protected function loginAsNonAdmin()
     {
-        return $this->actingAs($this->user());
+        return $this->actingAs($this->nonAdmin());
     }
 
-    public function getAdminRole()
+    private function getAdminRole()
     {
         // create permissions
-        Permission::create(['name' => 'admin']);
+        Permission::create(['name' => $this->adminRole]);
 
         // create roles and assign created permissions
-        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole = Role::create(['name' => $this->adminRole]);
         $adminRole->givePermissionTo(Permission::all());
 
         return $adminRole;
