@@ -4,7 +4,6 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -12,8 +11,6 @@ use Tests\TestCase;
 
 class ForgotPasswordTest extends TestCase
 {
-    use RefreshDatabase;
-
     protected function requestRoute()
     {
         return route('password.request');

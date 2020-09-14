@@ -4,13 +4,10 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class VisitTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * @test
      * @group u-model

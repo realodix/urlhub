@@ -3,13 +3,10 @@
 namespace Tests\Unit\Policies;
 
 use App\Models\Url;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UrlPolicyTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Admin can delete their own data and other user data.
      *
