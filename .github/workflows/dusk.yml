@@ -43,8 +43,7 @@ jobs:
             cd -
             # Set the APP_URL in the .env.dusk file to the "artisan serve" url
             cp .env.example .env
-            rm .env.example
-            sudo sed -i 's~APP_URL=http://st.test~APP_URL="http://127.0.0.1:8000"~g' .env
+            sudo sed -i 's~APP_URL=http://localhost~APP_URL="http://127.0.0.1:8000"~g' .env
             php artisan storage:link
             php artisan dusk:chrome-driver
             ./vendor/laravel/dusk/bin/chromedriver-linux &
