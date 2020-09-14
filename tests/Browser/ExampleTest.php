@@ -14,7 +14,6 @@ class ExampleTest extends DuskTestCase
     {
         parent::setUp();
 
-        User::factory()->create();
         Url::factory()->create();
     }
 
