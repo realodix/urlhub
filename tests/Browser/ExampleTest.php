@@ -5,12 +5,9 @@ namespace Tests\Browser;
 // use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ExampleTest extends DuskTestCase
 {
-    use DatabaseMigrations;
-
     /**
      * A basic browser test example.
      *
@@ -24,14 +21,19 @@ class ExampleTest extends DuskTestCase
         });
     }
 
-    public function testLogin()
+    public function testDashboardAllurl()
     {
+        \App\Models\User::factory(20)->create();
+        \App\Models\Url::factory(10)->create();
+
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
                     ->type('identity', 'admin')
                     ->type('password', 'admin')
                     ->press('Login')
-                    ->assertPathIs('/dashboard');
+                    ->visitRoute('dashboard.allurl')
+                    ->waitForText('No Title')
+                    ->assertSee('No Title');
         });
     }
 }
