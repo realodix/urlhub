@@ -9,7 +9,7 @@ return [
     */
 
     /*
-     * If you disabled it, users must be registered to create Short URL.
+     * If you set false, users must be registered to create Short URL.
      */
     'public_site' => env('UH_PUBLIC_SITE', true),
 
@@ -59,11 +59,11 @@ return [
     ],
 
     /*
-     * List of reserved URL ending.
+     * List of reserved or not allowed URL ending.
      *
-     * This keyword has a special meaning in UrlHub. Some of them represent
-     * things that look like folder names in public folders. You are free
-     * to add keywords that you want to prevent, for example rude words.
+     * Some of them represent things that look like folder names in public
+     * folders. Feel free to add keywords that you want to prevent, for
+     * example rude words.
      */
     'reserved_keyword' => [
         'css',
@@ -84,7 +84,7 @@ return [
      * Tells if IP addresses from visitors should be obfuscated before storing
      * them in the database. Default value is true.
      *
-     * Careful!
+     * Be careful!
      * Setting this to false will make your UrlHub instance no longer be in
      * compliance with the GDPR and other similar data protection regulations.
      */
