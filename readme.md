@@ -8,7 +8,7 @@
 [![Build Status](https://travis-ci.org/realodix/urlhub.svg?branch=master)](https://travis-ci.org/realodix/urlhub)
 [![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub)
 
-> **Warning: UrlHub is still in development**, constantly being optimized and isn't still stable enough to be used in production environments. We could change and / or remove functions in any moment.
+> **Warning: UrlHub is still in development**, constantly being optimized and isn't still stable enough to be used in production environments.
 
 > **Whatever your idea, feel free to send a pull request** 😃
 
