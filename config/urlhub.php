@@ -82,7 +82,7 @@ return [
 
     /*
      * Tells if IP addresses from visitors should be obfuscated before storing
-     * them in the database. Default value is true.
+     * them in the database.
      *
      * Be careful!
      * Setting this to false will make your UrlHub instance no longer be in
