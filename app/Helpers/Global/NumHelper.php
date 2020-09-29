@@ -2,9 +2,9 @@
 
 use App\Helpers\General\NumHelper;
 
-if (! function_exists('numberFormatShort')) {
-    function numberFormatShort($value)
+if (! function_exists('numberToAmountShort')) {
+    function numberToAmountShort($value)
     {
-        return resolve(NumHelper::class)->numberFormatShort($value);
+        return resolve(NumHelper::class)->numberToAmountShort($value);
     }
 }

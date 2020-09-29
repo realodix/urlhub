@@ -9,13 +9,13 @@ class NumHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
-     * @dataProvider numberFormatShortProvider
+     * @dataProvider numberToAmountShortProvider
      */
-    public function numberFormatShort($expected, $actual)
+    public function numberToAmountShort($expected, $actual)
     {
-        $this->assertSame($expected, numberFormatShort($actual));
+        $this->assertSame($expected, numberToAmountShort($actual));
 
-        $intOrString = numberFormatShort($actual);
+        $intOrString = numberToAmountShort($actual);
 
         if (is_int($intOrString)) {
             $this->assertIsInt($intOrString);
@@ -24,7 +24,7 @@ class NumHelperTest extends TestCase
         }
     }
 
-    public function numberFormatShortProvider()
+    public function numberToAmountShortProvider()
     {
         return [
             ['12', 12],
