@@ -26,7 +26,7 @@
         "laravolt/avatar": "^4.0",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
-        "realodix/php-utility": "dev-master",
+        "realodix/php-utility": "dev-main",
         "spatie/laravel-permission": "^3.16",
         "spatie/url": "^1.3",
         "tabuna/breadcrumbs": "^2.0",
