@@ -25,29 +25,4 @@ class GeneralHelperTest extends TestCase
         $actual = appName();
         $this->assertSame($expected, $actual);
     }
-
-    /**
-     * @test
-     * @group u-helper
-     * @dataProvider urlSanitizeProvider
-     */
-    public function urlSanitize($expected, $actual)
-    {
-        $this->assertSame($expected, urlSanitize($actual));
-    }
-
-    public function urlSanitizeProvider()
-    {
-        return [
-            ['laravel.com', 'laravel.com'],
-            ['laravel.com', 'www.laravel.com'],
-            ['laravel.com', 'http://laravel.com'],
-            ['laravel.com', 'http://www.laravel.com'],
-            ['laravel.com', 'https://laravel.com'],
-            ['laravel.com', 'https://www.laravel.com'],
-            ['laravel.com', 'https://www.laravel.com/'],
-            ['laravel.com/abc', 'https://www.laravel.com/abc'],
-            ['laravel.com/abc', 'https://www.laravel.com/abc/'],
-        ];
-    }
 }

@@ -57,11 +57,11 @@ if (! function_exists('urlSanitize')) {
      * Remove http://, www., and slashes from the URL.
      *
      * @param $value
-     * @return string
+     * @return mixed
      */
     function urlSanitize($value)
     {
-        return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $value);
+        return Url::sanitize($value);
     }
 }
 
