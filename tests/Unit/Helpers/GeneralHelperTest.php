@@ -29,65 +29,6 @@ class GeneralHelperTest extends TestCase
     /**
      * @test
      * @group u-helper
-     */
-    public function urlDisplay()
-    {
-        $this->assertSame(
-            'https://example.com/abcde/',
-            urlDisplay('https://example.com/abcde/')
-        );
-
-        $this->assertSame(
-            'https://example.com',
-            urlDisplay('https://example.com/')
-        );
-
-        // Truncates the given string at the specified length
-        $this->assertEquals(
-            21,
-            strlen(urlDisplay('https://example.com/abcde', true, 21))
-        );
-
-        $this->assertSame(
-            'https://example.com/abcde...',
-            urlDisplay('https://example.com/abcdefghij', true, 28)
-        );
-
-        $this->assertSame(
-            'https://example.com/abc...hij',
-            urlDisplay('https://example.com/abcdefghij', true, 29)
-        );
-
-        $this->assertSame(
-            'https://example...',
-            urlDisplay('https://example.com/abc', true, 18)
-        );
-
-        // Remove scheme & truncates
-        $this->assertEquals(
-            17,
-            strlen(urlDisplay('https://example.com/abcde', false, 21))
-        );
-
-        $this->assertSame(
-            'example.com/abcde...',
-            urlDisplay('https://example.com/abcdefghij', false, 20)
-        );
-
-        $this->assertSame(
-            'example.com/abc...hij',
-            urlDisplay('https://example.com/abcdefghij', false, 21)
-        );
-
-        $this->assertSame(
-            'example...',
-            urlDisplay('https://example.com/abc', false, 10)
-        );
-    }
-
-    /**
-     * @test
-     * @group u-helper
      * @dataProvider urlSanitizeProvider
      */
     public function urlSanitize($expected, $actual)
