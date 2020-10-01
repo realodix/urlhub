@@ -3670,12 +3670,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/realodix/php-utility.git",
-                "reference": "16cebd69c369d547073dd0b361b234d9f6d93ae6"
+                "reference": "0d873bacac2aa00457d065031864651b224d7d2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realodix/php-utility/zipball/16cebd69c369d547073dd0b361b234d9f6d93ae6",
-                "reference": "16cebd69c369d547073dd0b361b234d9f6d93ae6",
+                "url": "https://api.github.com/repos/realodix/php-utility/zipball/0d873bacac2aa00457d065031864651b224d7d2e",
+                "reference": "0d873bacac2aa00457d065031864651b224d7d2e",
                 "shasum": ""
             },
             "require": {
@@ -3724,7 +3724,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2020-09-29T17:02:35+00:00"
+            "time": "2020-10-01T04:03:11+00:00"
         },
         {
             "name": "spatie/laravel-permission",
