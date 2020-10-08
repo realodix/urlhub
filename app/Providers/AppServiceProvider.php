@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         // Keeping configuration (config\urlhub.php) values of an invalid value.
         (new ConfigService())->configGuard();
 
-        // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL. 
+        // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL.
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function ($pattern, $value) {
                 mb_regex_encoding('UTF-8');
