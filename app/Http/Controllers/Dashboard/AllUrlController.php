@@ -65,7 +65,7 @@ class AllUrlController extends Controller
                     </a>';
             })
             ->editColumn('clicks', function (Url $url) {
-                return '<span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.numberFormatShort($url->clicks).'</span>';
+                return '<span title="'.number_format($url->clicks).' clicks" data-toggle="tooltip">'.numberToAmountShort($url->clicks).'</span>';
             })
             ->editColumn('created_at', function (Url $url) {
                 return [

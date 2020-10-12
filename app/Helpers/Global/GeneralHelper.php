@@ -1,8 +1,7 @@
 <?php
 
 use CodeItNow\BarcodeBundle\Utils\QrCode;
-use Illuminate\Support\Str;
-use Spatie\Url\Url as SpatieUrl;
+use Realodix\Utils\Url;
 
 if (! function_exists('uHub')) {
     /**
@@ -49,43 +48,7 @@ if (! function_exists('urlDisplay')) {
      */
     function urlDisplay(string $url, bool $scheme = true, int $limit = null)
     {
-        $sUrl = SpatieUrl::fromString($url);
-        $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
-        $urlLen = strlen($url);
-        $limit = is_null($limit) ? $urlLen : $limit;
-
-        // Remove URL schemes
-        if (! $scheme) {
-            $url = urlSanitize($url);
-            $hostLen = strlen($sUrl->getHost());
-            $urlLen = strlen($url);
-        }
-
-        $pathLen = $limit - $hostLen;
-
-        // If it's only the host and has the trailing slash at the end, then
-        // remove the trailing slash.
-        if ($pathLen === 1) {
-            $url = rtrim($url, '/\\');
-        }
-
-        if ($urlLen > $limit) {
-            // The length of string truncated by Str::limit() does not include
-            // a suffix, so it needs to be adjusted so that the length of the
-            // truncated string matches the expected limit.
-            $adjLimit = $limit - (strlen(Str::limit($url, $limit)) - $limit);
-
-            $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
-            $lastSide = -abs($adjLimit - $firstSide);
-
-            if (((1 <= $pathLen) && ($pathLen <= 9)) || ($hostLen > $limit)) {
-                return Str::limit($url, $adjLimit);
-            }
-
-            return Str::limit($url, $firstSide).substr($url, $lastSide);
-        }
-
-        return $url;
+        return Url::display($url, $scheme, $limit);
     }
 }
 
@@ -94,11 +57,11 @@ if (! function_exists('urlSanitize')) {
      * Remove http://, www., and slashes from the URL.
      *
      * @param $value
-     * @return string
+     * @return mixed
      */
     function urlSanitize($value)
     {
-        return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $value);
+        return Url::sanitize($value);
     }
 }
 

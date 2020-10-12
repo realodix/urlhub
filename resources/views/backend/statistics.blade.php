@@ -12,29 +12,29 @@
 </div>
   <h3>UrlHub Statistics</h3>
 <br>
-  <b>Capacity</b>   : <span title="{{number_format($keyCapacity)}}" data-toggle="tooltip">{{numberFormatShort($keyCapacity)}}</span> <br>
+  <b>Capacity</b>   : <span title="{{number_format($keyCapacity)}}" data-toggle="tooltip">{{numberToAmountShort($keyCapacity)}}</span> <br>
   <b>Remaining</b>  : <span title="{{number_format($keyRemaining)}}" data-toggle="tooltip">
-                        {{numberFormatShort($keyRemaining)}}
+                        {{numberToAmountShort($keyRemaining)}}
                         ({{$remainingPercentage}})
                       </span> <br>
 
 <br>
 
   <b>Total Short Url</b> <br>
-  Value             : <span title="{{number_format($shortUrlCount)}}" data-toggle="tooltip">{{numberFormatShort($shortUrlCount)}}</span> <br>
-  Value By Guest    : <span title="{{number_format($shortUrlCountByGuest)}}" data-toggle="tooltip">{{numberFormatShort($shortUrlCountByGuest)}}</span> <br>
+  Value             : <span title="{{number_format($shortUrlCount)}}" data-toggle="tooltip">{{numberToAmountShort($shortUrlCount)}}</span> <br>
+  Value By Guest    : <span title="{{number_format($shortUrlCountByGuest)}}" data-toggle="tooltip">{{numberToAmountShort($shortUrlCountByGuest)}}</span> <br>
 
 <br>
 
   <b>Total Clicks</b> <br>
-  Value             : <span title="{{number_format($clickCount)}}" data-toggle="tooltip">{{numberFormatShort($clickCount)}}</span> <br>
-  Value By Guest    : <span title="{{number_format($clickCountFromGuest)}}" data-toggle="tooltip">{{numberFormatShort($clickCountFromGuest)}}</span> <br>
+  Value             : <span title="{{number_format($clickCount)}}" data-toggle="tooltip">{{numberToAmountShort($clickCount)}}</span> <br>
+  Value By Guest    : <span title="{{number_format($clickCountFromGuest)}}" data-toggle="tooltip">{{numberToAmountShort($clickCountFromGuest)}}</span> <br>
 
 <br>
 
   <b>Total User</b> <br>
-  Registered User   : <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{numberFormatShort($userCount)}}</span> <br>
-  Unregistered User : <span title="{{number_format($guestCount)}}" data-toggle="tooltip">{{numberFormatShort($guestCount)}}</span> <br>
+  Registered User   : <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{numberToAmountShort($userCount)}}</span> <br>
+  Unregistered User : <span title="{{number_format($guestCount)}}" data-toggle="tooltip">{{numberToAmountShort($guestCount)}}</span> <br>
 
 
 </div>
