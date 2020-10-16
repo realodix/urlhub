@@ -23,7 +23,7 @@ return [
     'array'           => 'The :attribute must be an array.',
     'before'          => 'The :attribute must be a date before :date.',
     'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
-    'between'         => [
+    'between' => [
         'numeric' => 'The :attribute must be between :min and :max.',
         'file'    => 'The :attribute must be between :min and :max kilobytes.',
         'string'  => 'The :attribute must be between :min and :max characters.',
@@ -44,7 +44,7 @@ return [
     'exists'         => 'The selected :attribute is invalid.',
     'file'           => 'The :attribute must be a file.',
     'filled'         => 'The :attribute field must have a value.',
-    'gt'             => [
+    'gt' => [
         'numeric' => 'The :attribute must be greater than :value.',
         'file'    => 'The :attribute must be greater than :value kilobytes.',
         'string'  => 'The :attribute must be greater than :value characters.',
@@ -64,7 +64,7 @@ return [
     'ipv4'     => 'The :attribute must be a valid IPv4 address.',
     'ipv6'     => 'The :attribute must be a valid IPv6 address.',
     'json'     => 'The :attribute must be a valid JSON string.',
-    'lt'       => [
+    'lt' => [
         'numeric' => 'The :attribute must be less than :value.',
         'file'    => 'The :attribute must be less than :value kilobytes.',
         'string'  => 'The :attribute must be less than :value characters.',
@@ -84,12 +84,13 @@ return [
     ],
     'mimes'     => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
-    'min'       => [
+    'min' => [
         'numeric' => 'The :attribute must be at least :min.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
         'string'  => 'The :attribute must be at least :min characters.',
         'array'   => 'The :attribute must have at least :min items.',
     ],
+    'multiple_of'          => 'The :attribute must be a multiple of :value',
     'not_in'               => 'The selected :attribute is invalid.',
     'not_regex'            => 'The :attribute format is invalid.',
     'numeric'              => 'The :attribute must be a number.',
@@ -104,7 +105,7 @@ return [
     'required_without'     => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
     'same'                 => 'The :attribute and :other must match.',
-    'size'                 => [
+    'size' => [
         'numeric' => 'The :attribute must be :size.',
         'file'    => 'The :attribute must be :size kilobytes.',
         'string'  => 'The :attribute must be :size characters.',
