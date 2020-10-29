@@ -20,7 +20,7 @@
         "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^8.12",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravolt/avatar": "^4.0",
