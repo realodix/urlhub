@@ -42,5 +42,5 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          composer global require twinh/php-coveralls
-          php-coveralls --coverage_clover=build/logs/clover.xml -v
+          composer require --dev php-coveralls/php-coveralls
+          vendor/bin/php-coveralls --coverage_clover=build/logs/clover.xml -v
