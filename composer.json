@@ -36,7 +36,7 @@
     "require-dev": {
         "facade/ignition": "^2.3.6",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "fzaninotto/faker": "^1.9.1",
+        "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^6.6",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.0",
