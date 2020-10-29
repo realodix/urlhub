@@ -44,3 +44,4 @@ jobs:
         run: |
           composer global require php-coveralls/php-coveralls --ignore-platform-reqs
           php-coveralls --coverage_clover=build/logs/clover.xml --verbose
+#
