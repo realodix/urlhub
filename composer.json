@@ -38,6 +38,7 @@
         "fakerphp/faker": "^1.9.1",
         "friendsofphp/php-cs-fixer": "^2.16",
         "laravel/dusk": "^6.6",
+        "laravel/sail": "^0.0.5",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.6.4",
