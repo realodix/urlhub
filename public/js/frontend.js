@@ -1,11 +1,10 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/frontend"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["/js/frontend"],{
 
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -21,7 +20,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
@@ -39,9 +38,9 @@ try {
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["library"].add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_1__["fab"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__["far"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["fas"]); // Kicks off the process of finding <i> tags and replacing with <svg>
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_1__.fab, _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__.far, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.fas); // Kicks off the process of finding <i> tags and replacing with <svg>
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["dom"].watch();
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__.dom.watch();
 /**
  * Bootstrap tooltips
  * https://getbootstrap.com/docs/4.3/components/tooltips/
@@ -78,8 +77,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!**********************************!*\
   !*** ./resources/js/frontend.js ***!
   \**********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -180,10 +178,12 @@ $("#jssocials").jsSocials({
 /*!*************************************!*\
   !*** ./resources/sass/backend.scss ***!
   \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -191,26 +191,15 @@ $("#jssocials").jsSocials({
 /*!**************************************!*\
   !*** ./resources/sass/frontend.scss ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*****************************************************************************************************!*\
-  !*** multi ./resources/js/frontend.js ./resources/sass/backend.scss ./resources/sass/frontend.scss ***!
-  \*****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! D:\laragon\www\urlhub\resources\js\frontend.js */"./resources/js/frontend.js");
-__webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\backend.scss */"./resources/sass/backend.scss");
-module.exports = __webpack_require__(/*! D:\laragon\www\urlhub\resources\sass\frontend.scss */"./resources/sass/frontend.scss");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
 
 
 /***/ })
 
-},[[0,"/js/manifest","/js/vendor"]]]);
+},
+0,[["./resources/js/frontend.js","/js/manifest","/js/vendor"],["./resources/sass/backend.scss","/js/manifest","/js/vendor"],["./resources/sass/frontend.scss","/js/manifest","/js/vendor"]]]);
 //# sourceMappingURL=frontend.js.map

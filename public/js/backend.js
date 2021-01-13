@@ -1,11 +1,10 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/backend"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["/js/backend"],{
 
 /***/ "./resources/js/backend.js":
 /*!*********************************!*\
   !*** ./resources/js/backend.js ***!
   \*********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -123,7 +122,7 @@ $(document).ready(function () {
    * Initialise the password toggle fields.
    */
 
-  Object(_password_toggle__WEBPACK_IMPORTED_MODULE_1__["initPasswordFields"])();
+  (0,_password_toggle__WEBPACK_IMPORTED_MODULE_1__.initPasswordFields)();
 });
 /**
  * Copy short url to clipboard
@@ -143,8 +142,7 @@ new ClipboardJS('[data-clipboard-text]').on('success', function (e) {
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -160,7 +158,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
@@ -178,9 +176,9 @@ try {
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["library"].add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_1__["fab"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__["far"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["fas"]); // Kicks off the process of finding <i> tags and replacing with <svg>
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_1__.fab, _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__.far, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.fas); // Kicks off the process of finding <i> tags and replacing with <svg>
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["dom"].watch();
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__.dom.watch();
 /**
  * Bootstrap tooltips
  * https://getbootstrap.com/docs/4.3/components/tooltips/
@@ -217,12 +215,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*****************************************!*\
   !*** ./resources/js/password-toggle.js ***!
   \*****************************************/
-/*! exports provided: initPasswordFields */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initPasswordFields", function() { return initPasswordFields; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "initPasswordFields": () => /* binding */ initPasswordFields
+/* harmony export */ });
 /**
  * Export this field so that it can be called in other files.
  */
@@ -256,19 +255,8 @@ function togglePasswordField() {
   }
 }
 
-/***/ }),
-
-/***/ 1:
-/*!***************************************!*\
-  !*** multi ./resources/js/backend.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! D:\laragon\www\urlhub\resources\js\backend.js */"./resources/js/backend.js");
-
-
 /***/ })
 
-},[[1,"/js/manifest","/js/vendor"]]]);
+},
+0,[["./resources/js/backend.js","/js/manifest","/js/vendor"]]]);
 //# sourceMappingURL=backend.js.map

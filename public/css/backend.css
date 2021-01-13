@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);/*
+@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);
+/*
  * Table styles
  */
 table.dataTable {
@@ -457,6 +458,7 @@ table.dataTable td {
     margin-top: 0.5em;
   }
 }
+
 @charset "UTF-8";
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
@@ -923,7 +925,7 @@ mark,
   color: #6c757d;
 }
 .blockquote-footer::before {
-  content: "\2014\A0";
+  content: "— ";
 }
 
 .img-fluid {
@@ -16306,4 +16308,5 @@ body {
 .password-toggler:hover {
   background-color: #c5c7ca;
 }
+
 /*# sourceMappingURL=backend.css.map*/

@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:100);@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:100);
+@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900);
+@charset "UTF-8";
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -464,7 +466,7 @@ mark,
   color: #6c757d;
 }
 .blockquote-footer::before {
-  content: "\2014\A0";
+  content: "— ";
 }
 
 .img-fluid {
@@ -10277,4 +10279,5 @@ img.jssocials-share-logo {
 .jssocials-share-telegram a {
   color: #2ca5e0;
 }
+
 /*# sourceMappingURL=frontend.css.map*/
