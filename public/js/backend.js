@@ -220,7 +220,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "initPasswordFields": () => /* binding */ initPasswordFields
+/* harmony export */   "initPasswordFields": () => (/* binding */ initPasswordFields)
 /* harmony export */ });
 /**
  * Export this field so that it can be called in other files.
