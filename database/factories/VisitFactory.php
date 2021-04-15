@@ -25,7 +25,7 @@ class VisitFactory extends Factory
         return [
             'url_id'           => Url::factory(),
             'referer'          => 'https://github.com/realodix/urlhub',
-            'ip'               => $this->faker->ipv4,
+            'ip'               => $this->faker->ipv4(),
             'device'           => 'WebKit',
             'platform'         => 'Windows',
             'platform_version' => '10',

@@ -32,7 +32,7 @@ class UrlFactory extends Factory
             'keyword'    => $keySrvc->randomKey(),
             'is_custom'  => 0,
             'clicks'     => mt_rand(10000, 999999999),
-            'ip'         => $this->faker->ipv4,
+            'ip'         => $this->faker->ipv4(),
         ];
     }
 }
