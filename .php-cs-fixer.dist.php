@@ -20,13 +20,12 @@ $rules = [
             'use_trait' // no_blank_lines_between_traits
         ]
     ],
-    'no_extra_consecutive_blank_lines' => true,
     'no_spaces_around_offset' => ['positions' => ['inside']], // no_spaces_inside_offset
     'no_unreachable_default_argument_value' => true, // @PhpCsFixer:risky
     'no_useless_return' => true,
     'no_whitespace_in_blank_line' => true,
     'not_operator_with_successor_space' => true,
-    'psr4' => true, // @Symfony:risky, @PhpCsFixer:risky
+    'psr_autoloading' => true, // @Symfony:risky, @PhpCsFixer:risky
     'self_accessor' => true, // @Symfony:risky, @PhpCsFixer:risky
     'simplified_null_return' => true,
     'new_with_braces' => false,
