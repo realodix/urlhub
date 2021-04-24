@@ -80,7 +80,8 @@ $finder = PhpCsFixer\Finder::create()
     ->notName('.phpstorm.meta.php')
     ->notName('_ide_*.php');
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+return $config
     ->setRiskyAllowed(true)
     ->setRules($rules)
     ->setLineEnding("\r\n")
