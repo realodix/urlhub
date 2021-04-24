@@ -201,5 +201,12 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 },
-0,[["./resources/js/frontend.js","/js/manifest","/js/vendor"],["./resources/sass/backend.scss","/js/manifest","/js/vendor"],["./resources/sass/frontend.scss","/js/manifest","/js/vendor"]]]);
+/******/ __webpack_require__ => { // webpackRuntimeModules
+/******/ "use strict";
+/******/ 
+/******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+/******/ __webpack_require__.O(0, ["css/frontend","css/backend","/js/vendor"], () => (__webpack_exec__("./resources/js/frontend.js"), __webpack_exec__("./resources/sass/backend.scss"), __webpack_exec__("./resources/sass/frontend.scss")));
+/******/ var __webpack_exports__ = __webpack_require__.O();
+/******/ }
+]);
 //# sourceMappingURL=frontend.js.map
