@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31988438254bf8bcceb1830d7b4b3e64",
+    "content-hash": "d34cbc03dab53d3ea19607bd314e5419",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3928,26 +3928,26 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/realodix/php-utility.git",
-                "reference": "03c6b900ace4b8dd502edb266bdb1f2ee6699c79"
+                "reference": "e54d4aecf137084890c09c21831822144af2404b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realodix/php-utility/zipball/03c6b900ace4b8dd502edb266bdb1f2ee6699c79",
-                "reference": "03c6b900ace4b8dd502edb266bdb1f2ee6699c79",
+                "url": "https://api.github.com/repos/realodix/php-utility/zipball/e54d4aecf137084890c09c21831822144af2404b",
+                "reference": "e54d4aecf137084890c09c21831822144af2404b",
                 "shasum": ""
             },
             "require": {
                 "egulias/email-validator": "^2.1",
                 "nicebooks/isbn": "^0.2.67",
                 "ramsey/uuid": "^4.1",
-                "spatie/url": "^1.3",
+                "spatie/url": "^2.0",
                 "symfony/polyfill-php74": "^1.18",
                 "voku/portable-utf8": "^5.4"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "kubawerlos/php-cs-fixer-custom-fixers": "^2.3",
-                "nunomaduro/phpinsights": "^1.14",
+                "nunomaduro/phpinsights": "dev-master",
                 "phpstan/phpstan": "^0.12.42",
                 "phpunit/phpunit": "^8.4|^9"
             },
@@ -3987,7 +3987,7 @@
                 "issues": "https://github.com/realodix/php-utility/issues",
                 "source": "https://github.com/realodix/php-utility/tree/main"
             },
-            "time": "2020-10-12T19:59:11+00:00"
+            "time": "2021-04-24T19:53:54+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -4069,20 +4069,20 @@
         },
         {
             "name": "spatie/macroable",
-            "version": "1.0.1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/macroable.git",
-                "reference": "7a99549fc001c925714b329220dea680c04bfa48"
+                "reference": "ec2c320f932e730607aff8052c44183cf3ecb072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/macroable/zipball/7a99549fc001c925714b329220dea680c04bfa48",
-                "reference": "7a99549fc001c925714b329220dea680c04bfa48",
+                "url": "https://api.github.com/repos/spatie/macroable/zipball/ec2c320f932e730607aff8052c44183cf3ecb072",
+                "reference": "ec2c320f932e730607aff8052c44183cf3ecb072",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0|^9.3"
@@ -4113,31 +4113,31 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/macroable/issues",
-                "source": "https://github.com/spatie/macroable/tree/1.0.1"
+                "source": "https://github.com/spatie/macroable/tree/2.0.0"
             },
-            "time": "2020-11-03T10:15:05+00:00"
+            "time": "2021-03-26T22:39:02+00:00"
         },
         {
             "name": "spatie/url",
-            "version": "1.3.5",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/url.git",
-                "reference": "3633de58e0709ea98cecceff61ee51caf1fde7e3"
+                "reference": "8d996c2e69a02683908d12b439b96c60268ed085"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/url/zipball/3633de58e0709ea98cecceff61ee51caf1fde7e3",
-                "reference": "3633de58e0709ea98cecceff61ee51caf1fde7e3",
+                "url": "https://api.github.com/repos/spatie/url/zipball/8d996c2e69a02683908d12b439b96c60268ed085",
+                "reference": "8d996c2e69a02683908d12b439b96c60268ed085",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0",
+                "php": "^8.0",
                 "psr/http-message": "^1.0",
-                "spatie/macroable": "^1.0.1"
+                "spatie/macroable": "^2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.0|^9.3"
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -4165,9 +4165,19 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/url/issues",
-                "source": "https://github.com/spatie/url/tree/1.3.5"
+                "source": "https://github.com/spatie/url/tree/2.0.0"
             },
-            "time": "2020-11-03T10:36:20+00:00"
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-03-31T10:15:44+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
