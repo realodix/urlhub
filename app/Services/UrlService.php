@@ -182,9 +182,11 @@ class UrlService
     public function webTitle(string $url)
     {
         $domain = $this->getDomain($url);
+        $embed = new Embed();
 
         try {
-            $title = Embed::create($url)->title;
+            $info = $embed->get($url);
+            $title = $info->title;
         } catch (\Exception $e) {
             $title = $domain.' - No Title';
         }
