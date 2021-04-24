@@ -12,7 +12,7 @@ class UrlHubLinkCheckerTest extends TestCase
      *
      * @test
      */
-    public function keyRemaining_zero()
+    public function keyRemainingZero()
     {
         config(['urlhub.hash_length' => 0]);
 

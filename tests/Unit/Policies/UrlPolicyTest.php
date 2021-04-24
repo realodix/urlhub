@@ -13,7 +13,7 @@ class UrlPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function force_delete_admin()
+    public function forceDeleteAdmin()
     {
         $this->loginAsAdmin();
 
@@ -33,7 +33,7 @@ class UrlPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function force_delete_non_admin()
+    public function forceDeleteNonAdmin()
     {
         $this->loginAsNonAdmin();
 

@@ -32,7 +32,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function belongs_to_user()
+    public function belongsToUser()
     {
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -45,7 +45,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function default_guest_name()
+    public function defaultGuestName()
     {
         $url = Url::factory()->create([
             'user_id' => null,
@@ -58,7 +58,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function has_many_url_stat()
+    public function hasManyUrlStat()
     {
         $url = Url::factory()->create();
 
@@ -75,7 +75,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function default_guest_id()
+    public function defaultGuestId()
     {
         $longUrl = 'https://example.com';
 
@@ -92,7 +92,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function setUserIdAttribute_must_be_null()
+    public function setUserIdAttributeMustBeNull()
     {
         $url = Url::factory()->create([
             'user_id' => 0,
@@ -135,7 +135,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function total_short_url()
+    public function totalShortUrl()
     {
         $this->assertSame(
             3,
@@ -147,7 +147,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function total_short_url_by_me()
+    public function totalShortUrlByMe()
     {
         $this->assertSame(
             1,
@@ -159,7 +159,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function total_short_url_by_guest()
+    public function totalShortUrlByGuest()
     {
         $this->assertSame(
             2,
@@ -171,7 +171,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function total_clicks()
+    public function totalClicks()
     {
         $this->assertSame(
             30,
@@ -183,7 +183,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function total_clicks_by_me()
+    public function totalClicksByMe()
     {
         $this->assertSame(
             10,
@@ -197,7 +197,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function total_clicks_by_guest()
+    public function totalClicksByGuest()
     {
         $this->assertSame(
             20,

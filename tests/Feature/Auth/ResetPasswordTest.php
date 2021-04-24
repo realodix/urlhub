@@ -40,7 +40,7 @@ class ResetPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_can_view_a_password_reset_form()
+    public function userCanViewAPasswordResetForm()
     {
         $response = $this->get($this->getRoute($token = $this->getValidToken($this->nonAdmin())));
 
@@ -54,7 +54,7 @@ class ResetPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_can_reset_password_with_valid_token()
+    public function userCanResetPasswordWithValidToken()
     {
         Event::fake();
 
@@ -80,7 +80,7 @@ class ResetPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_reset_password_with_invalid_token()
+    public function userCannotResetPasswordWithInvalidToken()
     {
         $user = User::factory()->create([
             'password' => Hash::make('old-password'),
@@ -106,7 +106,7 @@ class ResetPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_reset_password_without_providing_a_new_password()
+    public function userCannotResetPasswordWithoutProvidingANewPassword()
     {
         $user = User::factory()->create([
             'password' => Hash::make('old-password'),
@@ -137,7 +137,7 @@ class ResetPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_reset_password_without_providing_an_email()
+    public function userCannotResetPasswordWithoutProvidingAnEmail()
     {
         $user = User::factory()->create([
             'password' => Hash::make('old-password'),

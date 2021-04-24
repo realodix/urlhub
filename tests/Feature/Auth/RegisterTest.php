@@ -34,7 +34,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_can_view_a_registration_form()
+    public function userCanViewARegistrationForm()
     {
         $response = $this->get($this->getRoute());
 
@@ -47,7 +47,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_view_a_registration_form_when_authenticated()
+    public function userCannotViewARegistrationFormWhenAuthenticated()
     {
         $response = $this->loginAsNonAdmin()->get($this->getRoute());
 
@@ -58,7 +58,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_can_register()
+    public function userCanRegister()
     {
         Event::fake();
 
@@ -84,7 +84,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function name_should_not_be_too_long()
+    public function nameShouldNotBeTooLong()
     {
         $response = $this->post('/register', [
             'name' => str_repeat('a', 51),
@@ -99,7 +99,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_register_without_name()
+    public function userCannotRegisterWithoutName()
     {
         $response =
             $this
@@ -125,7 +125,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_register_without_email()
+    public function userCannotRegisterWithoutEmail()
     {
         $response =
         $this
@@ -151,7 +151,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_register_with_invalid_email()
+    public function userCannotRegisterWithInvalidEmail()
     {
         $response =
             $this
@@ -178,7 +178,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function email_should_not_be_too_long()
+    public function emailShouldNotBeTooLong()
     {
         $response = $this->post('/register', [
             'email' => str_repeat('a', 247).'@test.com', // 256
@@ -192,7 +192,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_register_without_password()
+    public function userCannotRegisterWithoutPassword()
     {
         $response =
             $this
@@ -219,7 +219,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_register_without_password_confirmation()
+    public function userCannotRegisterWithoutPasswordConfirmation()
     {
         $response =
             $this
@@ -246,7 +246,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_cannot_register_with_passwords_not_matching()
+    public function userCannotRegisterWithPasswordsNotMatching()
     {
         $response =
             $this

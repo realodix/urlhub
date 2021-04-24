@@ -9,7 +9,7 @@ class GeneralHelperTest extends TestCase
     /**
      * @group u-helper
      */
-    public function test_uHub()
+    public function testUHub()
     {
         $expected = config('urlhub.hash_length');
         $actual = uHub('hash_length');

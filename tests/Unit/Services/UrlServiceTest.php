@@ -61,7 +61,7 @@ class UrlServiceTest extends TestCase
      * @group u-service
      * @dataProvider getDomainProvider
      */
-    public function get_domain($expected, $actutal)
+    public function getDomain($expected, $actutal)
     {
         $this->assertEquals($expected, $this->urlSrvc->getDomain($actutal));
     }

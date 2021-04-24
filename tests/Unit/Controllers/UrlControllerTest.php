@@ -18,7 +18,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function shortenUrl_user_id()
+    public function shortenUrlUserId()
     {
         $longUrl = 'https://laravel.com';
 
@@ -38,7 +38,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function shortenUrl_user_id_2()
+    public function shortenUrlUserId2()
     {
         $user = $this->admin();
         $longUrl = 'https://laravel.com';
@@ -61,7 +61,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function shortenUrl_not_custom()
+    public function shortenUrlNotCustom()
     {
         $longUrl = 'https://laravel.com';
 
@@ -85,7 +85,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function shortenUrl_is_custom()
+    public function shortenUrlIsCustom()
     {
         config(['urlhub.hash_length' => 6]);
 
@@ -106,7 +106,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function custom_key_validation_pass()
+    public function customKeyValidationPass()
     {
         $response = $this->post(route('home').'/validate-custom-key', [
             'keyword' => 'hello',
@@ -120,7 +120,7 @@ class UrlControllerTest extends TestCase
      * @group u-controller
      * @dataProvider customKeyValidationFailProvider
      */
-    public function custom_key_validation_fail($data)
+    public function customKeyValidationFail($data)
     {
         Url::factory()->create([
             'keyword' => 'laravel',

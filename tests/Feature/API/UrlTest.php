@@ -11,7 +11,7 @@ class UrlTest extends TestCase
      * @test
      * @group f-api
      */
-    public function can_create_url()
+    public function canCreateUrl()
     {
         $data = [
             'long_url' => 'http://example.com',
