@@ -13,7 +13,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function view_admin()
+    public function viewAdmin()
     {
         $this->loginAsAdmin();
 
@@ -29,7 +29,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function view_non_admin()
+    public function viewNonAdmin()
     {
         $this->loginAsNonAdmin();
 
@@ -45,7 +45,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function update_admin()
+    public function updateAdmin()
     {
         $this->loginAsAdmin();
 
@@ -61,7 +61,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function update_non_admin()
+    public function updateNonAdmin()
     {
         $this->loginAsNonAdmin();
 
@@ -77,7 +77,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function updatePass_admin()
+    public function updatePassAdmin()
     {
         $this->loginAsAdmin();
 
@@ -93,7 +93,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function updatePass_non_admin()
+    public function updatePassNonAdmin()
     {
         $this->loginAsNonAdmin();
 
@@ -115,7 +115,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function admin_can_access_change_password_page()
+    public function adminCanAccessChangePasswordPage()
     {
         $this->loginAsAdmin();
 
@@ -127,7 +127,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function non_admin_cant_access_change_password_page()
+    public function nonAdminCantAccessChangePasswordPage()
     {
         $this->loginAsNonAdmin();
 
@@ -136,7 +136,7 @@ class UserPolicyTest extends TestCase
     }
 
     /** @test */
-    public function users_can_access_their_own_change_password_page()
+    public function usersCanAccessTheirOwnChangePasswordPage()
     {
         $this->loginAsAdmin();
 
@@ -152,7 +152,7 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function admin_can_access_all_users_page()
+    public function adminCanAccessAllUsersPage()
     {
         $this->loginAsAdmin();
 
@@ -163,7 +163,7 @@ class UserPolicyTest extends TestCase
     /**
      * @test
      */
-    public function non_admin_cant_access_all_users_page()
+    public function nonAdminCantAccessAllUsersPage()
     {
         $this->loginAsNonAdmin();
 

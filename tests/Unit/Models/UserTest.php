@@ -12,7 +12,7 @@ class UserTest extends TestCase
      * @test
      * @group u-model
      */
-    public function has_many_url()
+    public function hasManyUrl()
     {
         $user = User::factory()->create();
 

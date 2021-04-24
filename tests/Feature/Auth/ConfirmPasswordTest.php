@@ -10,7 +10,7 @@ class ConfirmPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_can_view_password_confirm()
+    public function userCanViewPasswordConfirm()
     {
         $response = $this->loginAsNonAdmin()->get(route('password.confirm'));
 
@@ -23,7 +23,7 @@ class ConfirmPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function guest_cant_view_password_confirm()
+    public function guestCantViewPasswordConfirm()
     {
         $response = $this->get(route('password.confirm'));
 

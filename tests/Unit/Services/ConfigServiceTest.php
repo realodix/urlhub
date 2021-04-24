@@ -12,7 +12,7 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider hashCharProvider
      */
-    public function hash_char($value, $expected)
+    public function hashChar($value, $expected)
     {
         config(['urlhub.hash_char' => $value]);
 
@@ -37,7 +37,7 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider hashLengthProvider
      */
-    public function hash_length($value, $expected)
+    public function hashLength($value, $expected)
     {
         config(['urlhub.hash_length' => $value]);
 
@@ -62,7 +62,7 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider redirectStatusCodeProvider
      */
-    public function redirect_status_code($value, $expected)
+    public function redirectStatusCode($value, $expected)
     {
         config(['urlhub.redirect_status_code' => $value]);
 
@@ -88,7 +88,7 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider redirectCacheLifetimeProvider
      */
-    public function redirect_cache_lifetime($value, $expected)
+    public function redirectCacheLifetime($value, $expected)
     {
         config(['urlhub.redirect_cache_lifetime' => $value]);
 

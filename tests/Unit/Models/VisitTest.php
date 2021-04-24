@@ -12,7 +12,7 @@ class VisitTest extends TestCase
      * @test
      * @group u-model
      */
-    public function belongs_to_url()
+    public function belongsToUrl()
     {
         $visit = Visit::factory()->create([
             'url_id' => function () {

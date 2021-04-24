@@ -30,7 +30,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function create_cst()
+    public function createCst()
     {
         $longUrl = 'https://laravel.com';
         $customKey = 'laravel';
@@ -47,7 +47,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function create_cst_2()
+    public function createCst2()
     {
         $this->loginAsAdmin();
 
@@ -66,7 +66,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function long_url_already_exist()
+    public function longUrlAlreadyExist()
     {
         $url = Url::factory()->create([
             'user_id' => null,
@@ -88,7 +88,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function long_url_already_exist_2()
+    public function longUrlAlreadyExist2()
     {
         $url = Url::factory()->create();
 
@@ -108,7 +108,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function long_url_already_exist_3()
+    public function longUrlAlreadyExist3()
     {
         $user = $this->admin();
 
@@ -134,7 +134,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function long_url_already_exist_4()
+    public function longUrlAlreadyExist4()
     {
         $user = $this->admin();
         $user2 = $this->nonAdmin();
@@ -161,7 +161,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function long_url_already_exist_5()
+    public function longUrlAlreadyExist5()
     {
         $user = $this->admin();
 
@@ -202,7 +202,7 @@ class UrlFeTest extends TestCase
     }
 
     /** @test */
-    public function create_short_url_with_wrong_url_format()
+    public function createShortUrlWithWrongUrlFormat()
     {
         $response = $this->post(route('createshortlink'), [
             'long_url' => 'wrong-url-format',
@@ -220,7 +220,7 @@ class UrlFeTest extends TestCase
     */
 
     /** @test */
-    public function cst_long_url_already_exist()
+    public function cstLongUrlAlreadyExist()
     {
         $url = Url::factory()->create([
             'user_id' => null,
@@ -241,7 +241,7 @@ class UrlFeTest extends TestCase
     }
 
     /** @test */
-    public function cst_long_url_already_exist_2()
+    public function cstLongUrlAlreadyExist2()
     {
         $url = Url::factory()->create([
             'user_id' => null,
@@ -267,7 +267,7 @@ class UrlFeTest extends TestCase
     }
 
     /** @test */
-    public function cst_cst_keyword_already_exist()
+    public function cstCstKeywordAlreadyExist()
     {
         $url = Url::factory()->create();
 
@@ -288,7 +288,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function cst_cst_keyword_already_exist_2()
+    public function cstCstKeywordAlreadyExist2()
     {
         $url = Url::factory()->create();
 

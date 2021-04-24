@@ -25,7 +25,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function d_can_access_page()
+    public function dCanAccessPage()
     {
         $this->loginAsAdmin();
 
@@ -37,7 +37,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function d_can_delete()
+    public function dCanDelete()
     {
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -61,7 +61,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function d_can_duplicate()
+    public function dCanDuplicate()
     {
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -85,7 +85,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function d_authorized_user_can_access_edit_url_page()
+    public function dAuthorizedUserCanAccessEditUrlPage()
     {
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -101,7 +101,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function d_can_update_url()
+    public function dCanUpdateUrl()
     {
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -136,7 +136,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function au_admin_can_access_this_page()
+    public function auAdminCanAccessThisPage()
     {
         $this->loginAsAdmin();
 
@@ -148,7 +148,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function au_non_admin_cant_access_this_page()
+    public function auNonAdminCantAccessThisPage()
     {
         $this->loginAsNonAdmin();
 
@@ -160,7 +160,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function au_admin_can_delete()
+    public function auAdminCanDelete()
     {
         $url = Url::factory()->create();
 
@@ -180,7 +180,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function au_non_admin_cant_delete()
+    public function auNonAdminCantDelete()
     {
         $url = Url::factory()->create();
 
@@ -205,7 +205,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-alluser
      */
-    public function aus_admin_can_access_this_page()
+    public function ausAdminCanAccessThisPage()
     {
         $this->loginAsAdmin();
 
@@ -217,7 +217,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-alluser
      */
-    public function aus_non_admin_cant_access_this_page()
+    public function ausNonAdminCantAccessThisPage()
     {
         $this->loginAsNonAdmin();
 
@@ -235,7 +235,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-stat
      */
-    public function stat_admin_can_access_this_page()
+    public function statAdminCanAccessThisPage()
     {
         $this->loginAsAdmin();
 
@@ -247,7 +247,7 @@ class UrlBeTest extends TestCase
      * @test
      * @group f-stat
      */
-    public function stat_non_admin_cant_access_this_page()
+    public function statNonAdminCantAccessThisPage()
     {
         $this->loginAsNonAdmin();
 

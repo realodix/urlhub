@@ -17,7 +17,7 @@ class StringTest extends TestCase
      * @test
      * @group u-rule
      */
-    public function StrAlphaUnderscoret()
+    public function strAlphaUnderscoret()
     {
         $rule = new StrAlphaUnderscore();
 
@@ -29,7 +29,7 @@ class StringTest extends TestCase
      * @test
      * @group u-rule
      */
-    public function StrLowercase()
+    public function strLowercase()
     {
         $rule = new StrLowercase();
 

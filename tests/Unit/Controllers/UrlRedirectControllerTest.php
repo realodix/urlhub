@@ -12,7 +12,7 @@ class UrlRedirectControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function url_redirection()
+    public function urlRedirection()
     {
         $url = Url::factory()->create();
 

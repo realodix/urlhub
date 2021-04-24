@@ -21,7 +21,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function users_can_access_their_own_profile_page()
+    public function usersCanAccessTheirOwnProfilePage()
     {
         $this->loginAsAdmin();
 
@@ -33,7 +33,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function admin_can_access_other_users_profile_pages()
+    public function adminCanAccessOtherUsersProfilePages()
     {
         $this->loginAsAdmin();
 
@@ -45,7 +45,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function non_admin_cant_access_other_users_profile_pages()
+    public function nonAdminCantAccessOtherUsersProfilePages()
     {
         $this->loginAsNonAdmin();
 
@@ -57,7 +57,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function admin_can_change_other_users_email()
+    public function adminCanChangeOtherUsersEmail()
     {
         $this->loginAsAdmin();
 
@@ -81,7 +81,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function non_admin_cant_change_other_users_email()
+    public function nonAdminCantChangeOtherUsersEmail()
     {
         $this->loginAsNonAdmin();
 
@@ -102,7 +102,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validation_email_required()
+    public function validationEmailRequired()
     {
         $this->loginAsAdmin();
 
@@ -124,7 +124,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validation_email_invalid_format()
+    public function validationEmailInvalidFormat()
     {
         $this->loginAsAdmin();
 
@@ -146,7 +146,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validation_email_max_length()
+    public function validationEmailMaxLength()
     {
         $this->loginAsAdmin();
 
@@ -169,7 +169,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validation_email_unique()
+    public function validationEmailUnique()
     {
         $this->loginAsAdmin();
 

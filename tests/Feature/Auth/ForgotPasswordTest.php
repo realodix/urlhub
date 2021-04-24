@@ -30,7 +30,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_can_view_an_email_password_form()
+    public function userCanViewAnEmailPasswordForm()
     {
         $response = $this->get($this->requestRoute());
 
@@ -43,7 +43,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_receives_an_email_with_a_password_reset_link()
+    public function userReceivesAnEmailWithAPasswordResetLink()
     {
         Notification::fake();
 
@@ -65,7 +65,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function user_does_not_receive_email_when_not_registered()
+    public function userDoesNotReceiveEmailWhenNotRegistered()
     {
         Notification::fake();
 
@@ -83,7 +83,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function email_is_required()
+    public function emailIsRequired()
     {
         $response = $this->from($this->getRoute())->post($this->postRoute(), []);
 
@@ -96,7 +96,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-api
      */
-    public function email_is_a_valid_email()
+    public function emailIsAValidEmail()
     {
         $response = $this->from($this->getRoute())->post($this->postRoute(), [
             'email' => 'invalid-email',
