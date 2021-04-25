@@ -204,14 +204,16 @@ class UrlService
      */
     public function webInfo(string $url)
     {
+        $info = (new Embed())->get($url);
+
         try {
-            $webInfo = (new Embed())->get($url)->code;
+            $webInfo = $info->code->html;
         } catch (\Exception $e) {
             return;
         }
 
         if ($webInfo == null) {
-            return '<div style="max-width:80%;">'.$embed->description.'</div>';
+            return '<div style="max-width:80%;">'.$info->description.'</div>';
         }
 
         return $webInfo;

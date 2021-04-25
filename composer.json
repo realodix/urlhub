@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravolt/avatar": "^4.0",
+        "nyholm/psr7": "^1.4",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
         "realodix/php-utility": "dev-main",
