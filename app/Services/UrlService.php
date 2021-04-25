@@ -184,9 +184,7 @@ class UrlService
         $domain = $this->getDomain($url);
 
         try {
-            $embed = new Embed();
-            $info = $embed->get($url);
-            $webTitle = $info->title;
+            $webTitle = (new Embed())->get($url)->title;
         } catch (\Exception $e) {
             $webTitle = $domain.' - No Title';
         }
@@ -207,9 +205,7 @@ class UrlService
     public function webInfo(string $url)
     {
         try {
-            $embed = new Embed();
-            $info = $embed->get($url);
-            $webInfo = $info->code;
+            $webInfo = (new Embed())->get($url)->code;
         } catch (\Exception $e) {
             return;
         }
