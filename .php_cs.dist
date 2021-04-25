@@ -20,7 +20,6 @@ $rules = [
             'use_trait' // no_blank_lines_between_traits
         ]
     ],
-    'no_extra_consecutive_blank_lines' => true,
     'no_spaces_around_offset' => ['positions' => ['inside']], // no_spaces_inside_offset
     'no_unreachable_default_argument_value' => true, // @PhpCsFixer:risky
     'no_useless_return' => true,
