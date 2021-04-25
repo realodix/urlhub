@@ -4156,12 +4156,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/realodix/php-utility.git",
-                "reference": "03c6b900ace4b8dd502edb266bdb1f2ee6699c79"
+                "reference": "ff12dcf29e19edeb46b78345f48c4e9bc53df0eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realodix/php-utility/zipball/03c6b900ace4b8dd502edb266bdb1f2ee6699c79",
-                "reference": "03c6b900ace4b8dd502edb266bdb1f2ee6699c79",
+                "url": "https://api.github.com/repos/realodix/php-utility/zipball/ff12dcf29e19edeb46b78345f48c4e9bc53df0eb",
+                "reference": "ff12dcf29e19edeb46b78345f48c4e9bc53df0eb",
                 "shasum": ""
             },
             "require": {
@@ -4175,7 +4175,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "kubawerlos/php-cs-fixer-custom-fixers": "^2.3",
-                "nunomaduro/phpinsights": "^1.14",
+                "nunomaduro/phpinsights": "dev-master",
                 "phpstan/phpstan": "^0.12.42",
                 "phpunit/phpunit": "^8.4|^9"
             },
@@ -4215,7 +4215,7 @@
                 "issues": "https://github.com/realodix/php-utility/issues",
                 "source": "https://github.com/realodix/php-utility/tree/main"
             },
-            "time": "2020-10-12T19:59:11+00:00"
+            "time": "2021-04-25T13:15:11+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -8110,16 +8110,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.12.0",
+            "version": "2.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403"
+                "reference": "c13c0be93cff50f88bbd70827d993026821914dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
-                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/c13c0be93cff50f88bbd70827d993026821914dd",
+                "reference": "c13c0be93cff50f88bbd70827d993026821914dd",
                 "shasum": ""
             },
             "require": {
@@ -8169,7 +8169,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.12.0"
+                "source": "https://github.com/filp/whoops/tree/2.12.1"
             },
             "funding": [
                 {
@@ -8177,7 +8177,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-30T12:00:00+00:00"
+            "time": "2021-04-25T12:00:00+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
