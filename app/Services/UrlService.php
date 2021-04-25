@@ -182,20 +182,20 @@ class UrlService
     public function webTitle(string $url)
     {
         $domain = $this->getDomain($url);
-        $embed = new Embed();
 
         try {
+            $embed = new Embed();
             $info = $embed->get($url);
-            $title = $info->title;
+            $webTitle = $info->title;
         } catch (\Exception $e) {
-            $title = $domain.' - No Title';
+            $webTitle = $domain.' - No Title';
         }
 
-        if (stripos($title, stristr($domain, '.', true)) === false) {
-            return $domain.' | '.$title;
+        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
+            return $domain.' | '.$webTitle;
         }
 
-        return $title;
+        return $webTitle;
     }
 
     /**
@@ -207,16 +207,17 @@ class UrlService
     public function webInfo(string $url)
     {
         try {
-            $embed = Embed::create($url);
-            $info = $embed->code;
+            $embed = new Embed();
+            $info = $embed->get($url);
+            $webInfo = $info->code;
         } catch (\Exception $e) {
             return;
         }
 
-        if ($info == null) {
+        if ($webInfo == null) {
             return '<div style="max-width:80%;">'.$embed->description.'</div>';
         }
 
-        return $info;
+        return $webInfo;
     }
 }
