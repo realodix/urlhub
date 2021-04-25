@@ -204,9 +204,8 @@ class UrlService
      */
     public function webInfo(string $url)
     {
-        $info = (new Embed())->get($url);
-
         try {
+            $info = (new Embed())->get($url);
             $webInfo = $info->code->html;
         } catch (\Exception $e) {
             return;
