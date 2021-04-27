@@ -5,7 +5,7 @@
     "keywords": [ "laravel", "url-shortener", "shorten-urls", "shorturl"],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "codeitnowin/barcode": "^3.0",
         "creativeorange/gravatar": "~1.0",
         "doctrine/dbal": "^2.10",
