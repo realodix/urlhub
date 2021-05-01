@@ -15,17 +15,13 @@ use Illuminate\Support\Facades\Validator;
 class UrlController extends Controller
 {
     /**
-     * @var \App\Services\UrlService
-     */
-    protected $urlSrvc;
-
-    /**
      * UrlController constructor.
+     *
+     * @param UrlService $urlSrvc \App\Services\UrlService
      */
-    public function __construct(UrlService $urlSrvc)
+    public function __construct(protected UrlService $urlSrvc)
     {
         $this->middleware('urlhublinkchecker')->only('create');
-        $this->urlSrvc = $urlSrvc;
     }
 
     /**

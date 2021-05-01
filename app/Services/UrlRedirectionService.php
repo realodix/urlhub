@@ -15,20 +15,14 @@ class UrlRedirectionService
     private $agent;
 
     /**
-     * @var \App\Services\UrlService
-     */
-    protected $urlSrvc;
-
-    /**
      * UrlRedirectionService constructor.
      *
-     * @param Agent|null $agent
+     * @param Agent|null $agent   \Jenssegers\Agent\Agent
      * @param UrlService $urlSrvc \App\Services\UrlService
      */
-    public function __construct(Agent $agent = null, UrlService $urlSrvc)
+    public function __construct(Agent $agent = null, protected UrlService $urlSrvc)
     {
         $this->agent = $agent ?? new Agent();
-        $this->urlSrvc = $urlSrvc;
     }
 
     /**
