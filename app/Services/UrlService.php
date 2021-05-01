@@ -184,16 +184,16 @@ class UrlService
         $domain = $this->getDomain($url);
 
         try {
-            $title = Embed::create($url)->title;
+            $webTitle = (new Embed())->get($url)->title;
         } catch (\Exception $e) {
-            $title = $domain.' - No Title';
+            $webTitle = $domain.' - No Title';
         }
 
-        if (stripos($title, stristr($domain, '.', true)) === false) {
-            return $domain.' | '.$title;
+        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
+            return $domain.' | '.$webTitle;
         }
 
-        return $title;
+        return $webTitle;
     }
 
     /**
@@ -205,16 +205,16 @@ class UrlService
     public function webInfo(string $url)
     {
         try {
-            $embed = Embed::create($url);
-            $info = $embed->code;
+            $info = (new Embed())->get($url);
+            $webInfo = $info->code->html;
         } catch (\Exception $e) {
             return;
         }
 
-        if ($info == null) {
-            return '<div style="max-width:80%;">'.$embed->description.'</div>';
+        if ($webInfo == null) {
+            return '<div style="max-width:80%;">'.$info->description.'</div>';
         }
 
-        return $info;
+        return $webInfo;
     }
 }
