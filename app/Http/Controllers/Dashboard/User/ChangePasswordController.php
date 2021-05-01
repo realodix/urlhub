@@ -10,16 +10,11 @@ use App\Services\UserService;
 class ChangePasswordController extends Controller
 {
     /**
-     * @var \App\Services\UserService
-     */
-    protected $userSrvc;
-
-    /**
      * ChangePasswordController constructor.
      */
-    public function __construct(UserService $userSrvc)
+    public function __construct(protected UserService $userSrvc)
     {
-        $this->userSrvc = $userSrvc;
+        //
     }
 
     /**
