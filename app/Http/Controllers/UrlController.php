@@ -16,13 +16,11 @@ class UrlController extends Controller
 {
     /**
      * UrlController constructor.
+     *
+     * @property \App\Services\UserService $urlSrvc
      */
-    public function __construct(
-        /*
-         * @var \App\Services\UserService
-         */
-        protected UrlService $urlSrvc
-    ) {
+    public function __construct(protected UrlService $urlSrvc)
+    {
         $this->middleware('urlhublinkchecker')->only('create');
     }
 
