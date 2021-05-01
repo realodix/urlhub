@@ -16,6 +16,8 @@ class UrlController extends Controller
 {
     /**
      * UrlController constructor.
+     *
+     * @param UrlService $urlSrvc \App\Services\UrlService
      */
     public function __construct(protected UrlService $urlSrvc)
     {

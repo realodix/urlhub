@@ -11,6 +11,8 @@ class ChangePasswordController extends Controller
 {
     /**
      * ChangePasswordController constructor.
+     *
+     * @param UrlService $urlSrvc \App\Services\UrlService
      */
     public function __construct(protected UserService $userSrvc)
     {
