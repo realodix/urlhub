@@ -10,17 +10,13 @@ use Illuminate\Support\Str;
 class AllUrlController extends Controller
 {
     /**
-     * @var \App\Services\UrlService
-     */
-    protected $urlSrvc;
-
-    /**
      * AllUrlController constructor.
+     *
+     * @param UrlService $urlSrvc \App\Services\UrlService
      */
-    public function __construct(UrlService $urlSrvc)
+    public function __construct(protected UrlService $urlSrvc)
     {
         $this->middleware('role:admin');
-        $this->urlSrvc = $urlSrvc;
     }
 
     /**
