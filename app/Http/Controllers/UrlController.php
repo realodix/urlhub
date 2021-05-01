@@ -17,9 +17,7 @@ class UrlController extends Controller
     /**
      * UrlController constructor.
      */
-    public function __construct(
-        protected UrlService $urlSrvc
-    ) {
+    public function __construct(protected UrlService $urlSrvc) {
         $this->middleware('urlhublinkchecker')->only('create');
     }
 
