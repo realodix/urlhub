@@ -30,13 +30,13 @@
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.9.1",
+        "facade/ignition": "^2.8",
+        "fakerphp/faker": "^1.14",
         "friendsofphp/php-cs-fixer": "2.18.*",
-        "laravel/dusk": "^6.6",
+        "laravel/dusk": "^6.15",
         "mockery/mockery": "^1.4",
-        "nunomaduro/collision": "^5.0",
-        "nunomaduro/larastan": "^0.6.4",
+        "nunomaduro/collision": "^5.4",
+        "nunomaduro/larastan": "^0.7.5",
         "phpunit/phpunit": "^9"
     },
     "autoload": {
