@@ -4,13 +4,12 @@ on: [push]
 
 jobs:
   build:
+    name: PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
         php: ['8.0']
-
-    name: PHP ${{ matrix.php }}
 
     steps:
       - name: Checkout
