@@ -21,6 +21,10 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: xdebug
+      - name: Check PHP
+        run: |
+          php -v
+          php -m
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
