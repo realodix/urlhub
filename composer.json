@@ -37,7 +37,7 @@
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.4",
         "nunomaduro/larastan": "^0.7.5",
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "10.0.x-dev"
     },
     "autoload": {
         "psr-4": {
@@ -67,6 +67,9 @@
         "laravel": {
             "dont-discover": []
         }
+    },
+    "suggest": {
+        "phpunit/phpunit": "Required to use assertions and run tests (^10)."
     },
     "config": {
         "optimize-autoloader": true,
