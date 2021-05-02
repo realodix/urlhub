@@ -1,12 +1,11 @@
-name: dusk
+name: CI
 
 on: [push]
 
 jobs:
-  dusk-php:
-
+  build:
+    name: Browser test
     runs-on: ubuntu-latest
-
     services:
       mysql:
           image: mysql:latest
