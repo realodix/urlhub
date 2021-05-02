@@ -37,9 +37,11 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: |
-          composer -V
-          composer install --no-interaction
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --prefer-dist --no-interaction --no-progress ${{ matrix.flags }}
 
       - name: Execute tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
