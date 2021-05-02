@@ -59,6 +59,7 @@ jobs:
       - name: Prepare Environment
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_HOST: localhost
         run: |
           cp .env.example .env
           php artisan key:generate
