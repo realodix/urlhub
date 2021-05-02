@@ -68,6 +68,15 @@
             "dont-discover": []
         }
     },
+    "suggest": {
+        "doctrine/dbal": "Required to rename columns and drop SQLite columns.",
+        "fakerphp/faker": "Required to use the eloquent factory builder.",
+        "guzzlehttp/guzzle": "Required to use the HTTP Client, Mailgun mail driver and the ping methods on schedules.",
+        "laravel/tinker": "Required to use the tinker console command.",
+        "mockery/mockery": "Required to use mocking.",
+        "nyholm/psr7": "Required to use PSR-7 bridging features.",
+        "phpunit/phpunit": "Required to use assertions and run tests."
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
