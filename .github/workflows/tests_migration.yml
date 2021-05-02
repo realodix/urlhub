@@ -65,4 +65,7 @@ jobs:
           php artisan key:generate
 
       - name: Run Migrations
+        env:
+            DB_PORT: ${{ job.services.mysql.ports[3306] }}
+            DB_HOST: localhost
         run: php artisan migrate:refresh
