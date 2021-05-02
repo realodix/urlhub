@@ -1,11 +1,17 @@
-name: tests
+name: CI
 
 on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: PHP 8.0
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ['8.0']
+
+    name: PHP ${{ matrix.php }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -30,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer -V
-          composer install --no-interaction --ignore-platform-reqs
+          composer install --no-interaction
 
       - name: Execute tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
@@ -39,5 +45,5 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          composer global require php-coveralls/php-coveralls --ignore-platform-reqs
+          composer global require php-coveralls/php-coveralls
           php-coveralls --coverage_clover=build/logs/clover.xml --verbose
