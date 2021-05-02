@@ -24,7 +24,7 @@ jobs:
           coverage: xdebug
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
-      - name: Get composer cache directory
+      - name: Get Composer Cache Directory
         id: composercache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Cache dependencies
@@ -34,17 +34,17 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 5
           max_attempts: 3
           command: composer update --prefer-dist --no-interaction --no-progress
 
-      - name: Execute tests
+      - name: Execute Tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-      - name: Upload coverage results to Coveralls
+      - name: Upload Coverage Results To Coveralls
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
