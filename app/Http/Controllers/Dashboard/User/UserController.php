@@ -10,17 +10,13 @@ use App\Services\UserService;
 class UserController extends Controller
 {
     /**
-     * @var \App\Services\UserService
-     */
-    protected $userSrvc;
-
-    /**
      * UserController constructor.
+     *
+     * @param UrlService $urlSrvc \App\Services\UrlService
      */
-    public function __construct(UserService $userSrvc)
+    public function __construct(protected UserService $userSrvc)
     {
         $this->middleware('role:admin')->only('view');
-        $this->userSrvc = $userSrvc;
     }
 
     /**

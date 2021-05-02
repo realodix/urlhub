@@ -5,17 +5,17 @@
     "keywords": [ "laravel", "url-shortener", "shorten-urls", "shorturl"],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "codeitnowin/barcode": "^3.0",
         "creativeorange/gravatar": "~1.0",
-        "doctrine/dbal": "^2.10",
+        "doctrine/dbal": "^3.1",
         "embed/embed": "^4.3",
-        "fideloper/proxy": "^4.2",
+        "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "geoip2/geoip2": "~2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.3",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "^8.12",
+        "laravel/framework": "^8.40",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravolt/avatar": "^4.0",
@@ -24,19 +24,19 @@
         "paragonie/random_compat": "^2.0",
         "realodix/php-utility": "dev-main",
         "spatie/laravel-permission": "^4.0",
-        "spatie/url": "^1.3",
-        "tabuna/breadcrumbs": "^2.0",
+        "spatie/url": "^2.0",
+        "tabuna/breadcrumbs": "^2.3",
         "vinkla/hashids": "^9.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.9.1",
+        "facade/ignition": "^2.8",
+        "fakerphp/faker": "^1.14",
         "friendsofphp/php-cs-fixer": "3.0.x-dev",
-        "laravel/dusk": "^6.6",
+        "laravel/dusk": "^6.15",
         "mockery/mockery": "^1.4",
-        "nunomaduro/collision": "^5.0",
-        "nunomaduro/larastan": "^0.6.4",
+        "nunomaduro/collision": "^5.4",
+        "nunomaduro/larastan": "^0.7.5",
         "phpunit/phpunit": "^9"
     },
     "autoload": {
@@ -67,6 +67,18 @@
         "laravel": {
             "dont-discover": []
         }
+    },
+    "suggest": {
+        "doctrine/dbal": "Required to rename columns and drop SQLite columns.",
+        "fakerphp/faker": "Required to use the eloquent factory builder.",
+        "friendsofphp/php-cs-fixer": "Required to fixes code to follow standards (PSR-1, PSR-2, etc).",
+        "guzzlehttp/guzzle": "Required to use the HTTP Client, Mailgun mail driver and the ping methods on schedules.",
+        "laravel/dusk": "Required to use browser automation and testing API.",
+        "laravel/tinker": "Required to use the tinker console command.",
+        "mockery/mockery": "Required to use mocking.",
+        "nunomaduro/larastan": "Required to finding errors in code without actually running it.",
+        "nyholm/psr7": "Required to use PSR-7 bridging features.",
+        "phpunit/phpunit": "Required to use assertions and run tests."
     },
     "config": {
         "optimize-autoloader": true,
