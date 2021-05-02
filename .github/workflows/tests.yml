@@ -39,7 +39,7 @@ jobs:
         with:
           timeout_minutes: 5
           max_attempts: 3
-          command: composer update --prefer-dist --no-interaction --no-progress ${{ matrix.flags }}
+          command: composer update --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
