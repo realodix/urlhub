@@ -17,7 +17,14 @@ jobs:
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check Environment
+        run: |
+          php -v
+          mysql -V
+          php -m
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory

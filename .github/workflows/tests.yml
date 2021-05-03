@@ -12,7 +12,7 @@ jobs:
         php: ['8.0']
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Setup PHP ${{ matrix.php }}
@@ -21,12 +21,11 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: xdebug
-      - name: Check PHP
+      - name: Check Environment
         run: |
           php -v
+          mysql -V
           php -m
-      - name: Check Database
-        run: mysql -V
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
