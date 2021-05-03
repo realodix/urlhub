@@ -1,0 +1,62 @@
+# yamllint disable rule:line-length
+# yamllint disable rule:braces
+
+name: Mutation Testing
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+env:
+  MIN_MSI: 68.00
+  MIN_COVERED_MSI: 80.00
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: ['8.0']
+        dependencies: ['']
+        coverage-driver: [pcov]
+
+    name: Mutation testing (PHP ${{ matrix.php-version }})
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: xdebug
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          command: composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Collect coverage report
+        run: |
+          ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml --log-junit=build/logs/junit.xml
+
+      - name: Run Infection
+        run: |
+          php bin/infection -j2 --skip-initial-tests --min-msi=$MIN_MSI --min-covered-msi=$MIN_COVERED_MSI --coverage=build/logs --log-verbosity=none --no-interaction --no-progress
