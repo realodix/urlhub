@@ -26,6 +26,9 @@ jobs:
           mysql -V
           php -m
 
+      - name: Prepare The Environment
+        run: cp .env.example .env
+
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
         id: composercache
@@ -41,7 +44,7 @@ jobs:
         run: |
           composer -V
           composer install --no-interaction --ignore-platform-reqs
-      - name: Prepare Environment
+      - name: Prepare The Environment
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
@@ -51,6 +54,8 @@ jobs:
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           ./vendor/laravel/dusk/bin/chromedriver-linux &
           php artisan serve &
+      - name: Run Laravel Server
+        run: php artisan serve --no-reload &
       - name: Run Automated Browser Testing
         env:
           APP_URL: "http://127.0.0.1:8000"
