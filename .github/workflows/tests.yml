@@ -29,12 +29,12 @@ jobs:
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
-        id: composercache
+        id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: ${{ steps.composercache.outputs.dir }}
+          path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
