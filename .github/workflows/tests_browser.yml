@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    name: Browser test
+    name: Browser
     runs-on: ubuntu-latest
     services:
       mysql:
