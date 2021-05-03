@@ -26,9 +26,6 @@ jobs:
           mysql -V
           php -m
 
-      - name: Prepare The Environment
-        run: cp .env.example .env
-
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
         id: composercache
