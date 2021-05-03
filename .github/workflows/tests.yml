@@ -25,6 +25,8 @@ jobs:
         run: |
           php -v
           php -m
+      - name: Check Database
+        run: mysql -V
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
