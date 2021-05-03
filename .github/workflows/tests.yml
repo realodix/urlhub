@@ -1,43 +1,56 @@
-name: tests
+name: CI
 
 on: [push]
 
 jobs:
   build:
+    name: PHP ${{ matrix.php-version }}
     runs-on: ubuntu-latest
-    name: PHP 8.0
+    strategy:
+      fail-fast: true
+      matrix:
+        php-version: ['8.0']
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup PHP
+      - name: Setup PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: ${{ matrix.php-version }}
+          tools: composer:v2
           coverage: xdebug
+      - name: Check Environment
+        run: |
+          php -v
+          mysql -V
+          php -m
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
-      - name: Get composer cache directory
-        id: composercache
+      - name: Get Composer Cache Directory
+        id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: ${{ steps.composercache.outputs.dir }}
+          path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install dependencies
-        run: |
-          composer -V
-          composer install --no-interaction --ignore-platform-reqs
+      - name: Install Dependencies
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          command: composer update --prefer-dist --no-interaction --no-progress
 
-      - name: Execute tests
+      - name: Execute Tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-      - name: Upload coverage results to Coveralls
+      - name: Upload Coverage Results To Coveralls
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          composer global require php-coveralls/php-coveralls --ignore-platform-reqs
+          composer global require php-coveralls/php-coveralls
           php-coveralls --coverage_clover=build/logs/clover.xml --verbose
