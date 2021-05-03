@@ -51,8 +51,6 @@ jobs:
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           ./vendor/laravel/dusk/bin/chromedriver-linux &
           php artisan serve &
-      - name: Run Laravel Server
-        run: php artisan serve --no-reload &
       - name: Run Automated Browser Testing
         env:
           APP_URL: "http://127.0.0.1:8000"
