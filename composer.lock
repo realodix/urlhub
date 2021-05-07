@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9cc77cfb8492078a9977770c829fbe3",
+    "content-hash": "9a2ebfc62a7004a755ad7ad19ec12ae6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8314,16 +8314,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "3.0.x-dev",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "da218df4d2e50512c929df5a28097451363daa91"
+                "reference": "c15377bdfa8d1ecf186f1deadec39c89984e1167"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/da218df4d2e50512c929df5a28097451363daa91",
-                "reference": "da218df4d2e50512c929df5a28097451363daa91",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/c15377bdfa8d1ecf186f1deadec39c89984e1167",
+                "reference": "c15377bdfa8d1ecf186f1deadec39c89984e1167",
                 "shasum": ""
             },
             "require": {
@@ -8390,7 +8390,7 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues",
-                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/3.0"
+                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v3.0.0"
             },
             "funding": [
                 {
@@ -8398,7 +8398,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-19T19:49:20+00:00"
+            "time": "2021-05-03T21:51:58+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -11221,8 +11221,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "realodix/php-utility": 20,
-        "friendsofphp/php-cs-fixer": 20
+        "realodix/php-utility": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
