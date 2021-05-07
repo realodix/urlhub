@@ -15,4 +15,5 @@ yarn-error.log
 /.idea
 /public/*/*.map
 .php_cs.cache
+.php-cs-fixer.cache
 PHP_Insights.json
