@@ -1,12 +1,11 @@
-name: dusk
+name: CI
 
 on: [push]
 
 jobs:
-  dusk-php:
-
+  build:
+    name: Browser
     runs-on: ubuntu-latest
-
     services:
       mysql:
           image: mysql:latest
@@ -18,24 +17,31 @@ jobs:
           options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check Environment
+        run: |
+          php -v
+          mysql -V
+          php -m
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
-      - name: Get composer cache directory
+      - name: Get Composer Cache Directory
         id: composercache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
+      - name: Cache Dependencies
         uses: actions/cache@v2
         with:
           path: ${{ steps.composercache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           composer -V
           composer install --no-interaction --ignore-platform-reqs
-      - name: Prepare running Dusk
+      - name: Prepare The Environment
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
@@ -45,7 +51,7 @@ jobs:
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           ./vendor/laravel/dusk/bin/chromedriver-linux &
           php artisan serve &
-      - name: Run Dusk Tests
+      - name: Run Automated Browser Testing
         env:
           APP_URL: "http://127.0.0.1:8000"
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
