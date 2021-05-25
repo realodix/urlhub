@@ -16,7 +16,7 @@ class CreateUrlsTable extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable($value = true);
-            $table->string('url_key')->collation('utf8mb4_bin')->unique();
+            $table->string('url_key')->unique();
             $table->boolean('is_custom');
             $table->longText('long_url');
             $table->string('meta_title');
