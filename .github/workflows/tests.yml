@@ -1,10 +1,10 @@
-name: CI
+name: tests
 
 on: [push]
 
 jobs:
   build:
-    name: PHP ${{ matrix.php-version }}
+    name: PHP ${{ matrix.php-version }} (MySQL)
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
@@ -21,11 +21,6 @@ jobs:
           php-version: ${{ matrix.php-version }}
           tools: composer:v2
           coverage: xdebug
-      - name: Check Environment
-        run: |
-          php -v
-          mysql -V
-          php -m
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
@@ -44,6 +39,9 @@ jobs:
           timeout_minutes: 5
           max_attempts: 3
           command: composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Clear Config
+        run: php artisan config:clear
 
       - name: Execute Tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml

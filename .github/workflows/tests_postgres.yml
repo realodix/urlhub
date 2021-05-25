@@ -20,11 +20,6 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           coverage: xdebug
-      - name: Check Environment
-        run: |
-          psql --version
-          php -v
-          php -m
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory

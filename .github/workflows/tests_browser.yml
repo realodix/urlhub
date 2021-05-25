@@ -1,4 +1,4 @@
-name: CI
+name: tests
 
 on: [push]
 
@@ -8,23 +8,25 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-          image: mysql:latest
-          env:
-            MYSQL_ALLOW_EMPTY_PASSWORD: yes
-            MYSQL_DATABASE: urlhub
-          ports:
-            - 3306
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s
+        image: mysql
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: urlhub_test
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      matrix:
+        php-version: ['8.0']
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check Environment
-        run: |
-          php -v
-          mysql -V
-          php -m
+      - name: Setup PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: ${{ matrix.php-version }}
 
       # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
       - name: Get Composer Cache Directory
@@ -41,12 +43,12 @@ jobs:
         run: |
           composer -V
           composer install --no-interaction --ignore-platform-reqs
-      - name: Prepare The Environment
+      - name: Setup Laravel
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: |
-          cp .env.example .env
-          php artisan key:generate
+          cp .env.testing .env
+          php artisan config:clear
           php artisan migrate --seed
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           ./vendor/laravel/dusk/bin/chromedriver-linux &
