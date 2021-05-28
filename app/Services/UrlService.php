@@ -35,7 +35,7 @@ class UrlService
      */
     public function shortenUrl($request, $authId)
     {
-        $key = $request['custom_key'] ?? $this->keySrvc->randomKey();
+        $key = $request['custom_key'] ?? $this->keySrvc->urlKey($request['long_url']);
 
         return Url::create([
             'user_id'    => $authId,

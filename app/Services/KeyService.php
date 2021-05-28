@@ -32,7 +32,15 @@ class KeyService
     {
         $length = config('urlhub.hash_length') * -1;
 
-        return substr(preg_replace('/[^a-z0-9 ]/i', '', $string), $length);
+        $urlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
+
+        $generatedRandomKey = $this->url->whereKeyword($urlKey)->first();
+        while ($generatedRandomKey) {
+            $urlKey = $this->randomStringGenerator();
+            $generatedRandomKey = $this->url->whereKeyword($urlKey)->first();
+        }
+
+        return $urlKey;
     }
 
     /**
