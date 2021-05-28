@@ -25,6 +25,19 @@ class KeyServiceTest extends TestCase
      * @test
      * @group u-service
      */
+    public function urlKey()
+    {
+        config(['urlhub.hash_length' => 6]);
+
+        $actual = 'https://github.com/realodix/urlhub';
+        $expected = 'urlhub';
+        $this->assertSame($expected, $this->keySrvc->urlKey($actual));
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
     public function keyCapacity()
     {
         $hashLength = uHub('hash_length');
