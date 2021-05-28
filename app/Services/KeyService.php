@@ -36,7 +36,7 @@ class KeyService
 
         $generatedRandomKey = $this->url->whereKeyword($urlKey)->first();
         while ($generatedRandomKey) {
-            $urlKey = $this->randomStringGenerator();
+            $urlKey = $this->randomKey();
             $generatedRandomKey = $this->url->whereKeyword($urlKey)->first();
         }
 
@@ -51,27 +51,6 @@ class KeyService
      * @codeCoverageIgnore
      */
     public function randomKey()
-    {
-        $randomKey = $this->randomStringGenerator();
-
-        // If it is already used (not available), find the next available
-        // string.
-        $generatedRandomKey = $this->url->whereKeyword($randomKey)->first();
-        while ($generatedRandomKey) {
-            $randomKey = $this->randomStringGenerator();
-            $generatedRandomKey = $this->url->whereKeyword($randomKey)->first();
-        }
-
-        return $randomKey;
-    }
-
-    /**
-     * Generate random strings using RandomLib.
-     *
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function randomStringGenerator()
     {
         $alphabet = uHub('hash_char');
         $length = uHub('hash_length');
