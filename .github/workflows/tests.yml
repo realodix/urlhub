@@ -72,7 +72,6 @@ jobs:
           max_attempts: 3
           command: composer install --no-interaction --no-progress
       - name: Execute Tests
-        run: vendor/bin/phpunit
         env:
           DB_CONNECTION: pgsql
           DB_USERNAME: postgres
