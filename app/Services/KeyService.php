@@ -21,6 +21,10 @@ class KeyService
     }
 
     /**
+     * Step 1: Get the key directly from the given url
+     * Step 2: If the key in step 1 is already in the database, then generate a random
+     * string.
+     *
      * @param string $string
      * @return string
      */
