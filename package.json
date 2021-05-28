@@ -30,8 +30,6 @@
         "popper.js": "^1.14",
         "postcss": "^8.1.14",
         "sass": "^1.32.4",
-        "sass-loader": "^10.1.1",
-        "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.10"
+        "sass-loader": "^10.1.1"
     }
 }
