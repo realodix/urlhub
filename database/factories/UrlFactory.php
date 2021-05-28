@@ -29,7 +29,7 @@ class UrlFactory extends Factory
             'user_id'    => User::factory(),
             'long_url'   => 'https://github.com/realodix/urlhub',
             'meta_title' => 'No Title',
-            'keyword'    => $keySrvc->randomKey(),
+            'keyword'    => $keySrvc->randomString(),
             'is_custom'  => 0,
             'clicks'     => mt_rand(10000, 999999999),
             'ip'         => $this->faker->ipv4(),

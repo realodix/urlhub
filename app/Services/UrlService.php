@@ -74,7 +74,7 @@ class UrlService
      */
     public function duplicate($key, $authId)
     {
-        $randomKey = $this->keySrvc->randomKey();
+        $randomKey = $this->keySrvc->randomString();
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([

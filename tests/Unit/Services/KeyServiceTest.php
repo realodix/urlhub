@@ -110,7 +110,7 @@ class KeyServiceTest extends TestCase
         config(['urlhub.hash_char' => 'abc']);
 
         Url::factory()->create([
-            'keyword' => $this->keySrvc->randomKey(),
+            'keyword' => $this->keySrvc->randomString(),
         ]);
         $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
 
