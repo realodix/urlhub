@@ -13,12 +13,12 @@ use Tests\TestCase;
 class UrlControllerTest extends TestCase
 {
     /**
-     * The user_id column in the table of Url must be null.
+     * When the guest shortens the URL, the user_id column in the Url table must be null.
      *
      * @test
      * @group u-controller
      */
-    public function shortenUrlUserId()
+    public function guestShortensUrl()
     {
         $longUrl = 'https://laravel.com';
 
@@ -32,13 +32,13 @@ class UrlControllerTest extends TestCase
     }
 
     /**
-     * The user_id column in the table of Url must be filled in with the value
-     * of the authenticated user id.
+     * When the User shortens the URL, the user_id column in the Url table must be filled
+     * with the authenticated user id.
      *
      * @test
      * @group u-controller
      */
-    public function shortenUrlUserId2()
+    public function userShortensUrl()
     {
         $user = $this->admin();
         $longUrl = 'https://laravel.com';
