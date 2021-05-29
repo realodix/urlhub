@@ -28,10 +28,8 @@
         "lodash": "^4.17.15",
         "perfect-scrollbar": "^1.4.0",
         "popper.js": "^1.14",
-        "postcss": "^8.1.14",
+        "postcss": "^8.3.0",
         "sass": "^1.32.4",
-        "sass-loader": "^10.1.1",
-        "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.10"
+        "sass-loader": "^11.1.1"
     }
 }
