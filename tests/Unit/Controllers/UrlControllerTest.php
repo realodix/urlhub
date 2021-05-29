@@ -6,12 +6,48 @@ use App\Models\Url;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
+use App\Services\KeyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
 class UrlControllerTest extends TestCase
 {
+    /**
+     * @var \App\Services\KeyService
+     */
+    protected $keySrvc;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->keySrvc = new KeyService();
+    }
+
+    /**
+     * The user_id column in the table of Url must be null.
+     *
+     * @test
+     * @group u-controller
+     */
+    public function shortenUrlUrlKey()
+    {
+        config(['urlhub.hash_length' => 3]);
+
+        $longUrl = 'https://github.com/realodix';
+        $expectedKey = $this->keySrvc->urlKey($longUrl);
+        $this->post(route('createshortlink'), ['long_url' => $longUrl]);
+        $url = Url::whereLongUrl($longUrl)->first();
+        $this->assertSame($expectedKey, $url->keyword);
+
+        $longUrl = 'https://github.com/r3alodix';
+        $expectedKey = $this->keySrvc->urlKey($longUrl);
+        $this->post(route('createshortlink'), ['long_url' => $longUrl]);
+        $url = Url::whereLongUrl($longUrl)->first();
+        $this->assertNotSame($expectedKey, $url->keyword);
+    }
+
     /**
      * The user_id column in the table of Url must be null.
      *
