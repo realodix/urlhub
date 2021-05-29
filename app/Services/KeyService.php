@@ -51,7 +51,6 @@ class KeyService
     {
         $alphabet = uHub('hash_char');
         $length = uHub('hash_length');
-
         $factory = new RandomLibFactory();
 
         return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
