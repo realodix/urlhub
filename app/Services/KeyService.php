@@ -21,10 +21,6 @@ class KeyService
     }
 
     /**
-     * Step 1: Get the key directly from the given url
-     * Step 2: If the key in step 1 is already in the database, then generate a random
-     *         string.
-     *
      * @param string $string
      * @return string
      */
@@ -32,15 +28,20 @@ class KeyService
     {
         $length = config('urlhub.hash_length') * -1;
 
-        $urlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
+        // Step 1
+        // Generate unique key from truncated long URL.
+        $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
 
-        $generatedRandomKey = $this->url->whereKeyword($urlKey)->first();
+        // Step 2
+        // If the unique key is not available (already in the database) , then generate a
+        // random string.
+        $generatedRandomKey = $this->url->whereKeyword($uniqueUrlKey)->first();
         while ($generatedRandomKey) {
-            $urlKey = $this->randomString();
-            $generatedRandomKey = $this->url->whereKeyword($urlKey)->first();
+            $uniqueUrlKey = $this->randomString();
+            $generatedRandomKey = $this->url->whereKeyword($uniqueUrlKey)->first();
         }
 
-        return $urlKey;
+        return $uniqueUrlKey;
     }
 
     /**
