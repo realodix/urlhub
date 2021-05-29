@@ -15,7 +15,6 @@ class UrlServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->urlSrvc = new UrlService();
     }
 
