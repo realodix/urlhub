@@ -24,7 +24,7 @@
         {
             "label": "PHP CS Fixer",
             "type": "shell",
-            "command": "./vendor/bin/php-cs-fixer fix",
+            "command": "./vendor/bin/php-cs-fixer fix -v",
             "problemMatcher": []
         },
         {
