@@ -32,12 +32,12 @@
     "require-dev": {
         "facade/ignition": "^2.8",
         "fakerphp/faker": "^1.14",
-        "friendsofphp/php-cs-fixer": "^3.0",
         "laravel/dusk": "^6.15",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.4",
         "nunomaduro/larastan": "^0.7.5",
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9",
+        "realodix/php-cs-fixer-config": "dev-rules-RealodixStrict"
     },
     "autoload": {
         "psr-4": {
