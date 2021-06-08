@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a21b2b4aa08c86643ffe8b4e3bd1f89b",
+    "content-hash": "79d02fa24821ee77677c5f6ab3ff0426",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -10063,16 +10063,16 @@
         },
         {
             "name": "realodix/php-cs-fixer-config",
-            "version": "dev-v3-rules-Laravel-By-matt-allan",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/realodix/PHP-CS-Fixer-Config.git",
-                "reference": "3f0c8102770a26372386a9109f7f9200f6411202"
+                "reference": "30e85ecbae894597d51eaa5952eb5691eeaef47d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realodix/PHP-CS-Fixer-Config/zipball/3f0c8102770a26372386a9109f7f9200f6411202",
-                "reference": "3f0c8102770a26372386a9109f7f9200f6411202",
+                "url": "https://api.github.com/repos/realodix/PHP-CS-Fixer-Config/zipball/30e85ecbae894597d51eaa5952eb5691eeaef47d",
+                "reference": "30e85ecbae894597d51eaa5952eb5691eeaef47d",
                 "shasum": ""
             },
             "require": {
@@ -10081,6 +10081,7 @@
                 "matt-allan/laravel-code-style": "dev-main",
                 "php": "^7.3 || ^8.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -10108,7 +10109,7 @@
                 "issues": "https://github.com/realodix/php-cs-fixer-config/issues",
                 "source": "https://github.com/realodix/php-cs-fixer-config"
             },
-            "time": "2021-06-07T07:53:05+00:00"
+            "time": "2021-06-08T16:18:16+00:00"
         },
         {
             "name": "sebastian/cli-parser",
