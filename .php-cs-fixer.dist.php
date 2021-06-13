@@ -1,20 +1,14 @@
 <?php
 
-use Realodix\PhpCsFixerConfig\Factory;
-use Realodix\PhpCsFixerConfig\RuleSet;
+use Realodix\CsConfig\Factory;
+use Realodix\CsConfig\RuleSet;
 
-$config = Factory::fromRuleSet(new RuleSet\Realodix());
-
-$excludes = [
-    'bootstrap/cache',
-    'config',
-    'node_modules',
-    'public',
-    'storage'
+$overrideRules = [
+    // ..
 ];
 
-$config->getFinder()
-    ->in(__DIR__)
-    ->exclude($excludes);
+$options = [
+    // ..
+];
 
-return $config;
+return Factory::fromRuleSet(new RuleSet\Realodix(), $overrideRules, $options);
