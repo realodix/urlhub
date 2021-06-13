@@ -33,6 +33,7 @@
         "facade/ignition": "^2.8",
         "fakerphp/faker": "^1.14",
         "friendsofphp/php-cs-fixer": "^3.0",
+        "kubawerlos/composer-smaller-lock": "^0.1.1",
         "laravel/dusk": "^6.15",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.4",
