@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "mix --production"
     },
-    "devDependencies": {
+    "dependencies": {
         "@coreui/coreui": "^2.1.12",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-brands-svg-icons": "^5.15.1",
