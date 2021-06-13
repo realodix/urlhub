@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fed839e229ac78a4a9f049b7b4eaae0",
+    "content-hash": "bedb2e9db1ee48496b625c3ac883b4d3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3690,38 +3690,6 @@
                 "MIT"
             ],
             "description": "A library to validate a json schema."
-        },
-        {
-            "name": "kubawerlos/composer-smaller-lock",
-            "version": "0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kubawerlos/composer-smaller-lock.git",
-                "reference": "f698dfd2a5d167428e37ef72a169fd5346bb7299"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kubawerlos/composer-smaller-lock/zipball/f698dfd2a5d167428e37ef72a169fd5346bb7299",
-                "reference": "f698dfd2a5d167428e37ef72a169fd5346bb7299"
-            },
-            "require": {
-                "composer-plugin-api": "^2.0.0",
-                "ext-json": "*",
-                "php": "^7.4 || ^8.0"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "ComposerSmallerLock\\Plugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "ComposerSmallerLock\\": "./src"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Plugin to keep composer.lock smaller and readable"
         },
         {
             "name": "laravel/dusk",
