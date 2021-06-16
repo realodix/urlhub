@@ -151,6 +151,8 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      * @dataProvider customKeyValidationFailProvider
+     *
+     * @param mixed $data
      */
     public function customKeyValidationFail($data)
     {

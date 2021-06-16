@@ -12,7 +12,7 @@ class UserController extends Controller
     /**
      * UserController constructor.
      *
-     * @param UrlService $urlSrvc \App\Services\UrlService
+     * @param UserService $userSrvc \App\Services\UserService
      */
     public function __construct(protected UserService $userSrvc)
     {

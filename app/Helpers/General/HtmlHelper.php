@@ -71,6 +71,7 @@ class HtmlHelper
      * Build an HTML attribute string from an array.
      *
      * @param array $attributes
+     *
      * @return string
      */
     public function attributes(array $attributes)
@@ -120,6 +121,7 @@ class HtmlHelper
      * Transform the string to an Html serializable object.
      *
      * @param string $html
+     *
      * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString(string $html)
