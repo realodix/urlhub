@@ -5,7 +5,7 @@ use Realodix\CsConfig\Factory;
 use Realodix\CsConfig\RuleSet;
 
 $overrideRules = [
-    // ..
+    'phpdoc_add_missing_param_annotation' => false,
 ];
 
 $finder = Finder::create()
