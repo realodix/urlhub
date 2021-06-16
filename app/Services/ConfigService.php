@@ -20,6 +20,7 @@ class ConfigService
      * values.
      *
      * @codeCoverageIgnore
+     *
      * @return bool
      */
     public function configGuard(): bool

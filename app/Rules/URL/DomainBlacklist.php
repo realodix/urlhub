@@ -34,6 +34,7 @@ class DomainBlacklist implements Rule
 
     /**
      * Get the validation error message.
+     *
      * @codeCoverageIgnore
      *
      * @return string

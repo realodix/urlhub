@@ -5,7 +5,12 @@ use Realodix\CsConfig\Factory;
 use Realodix\CsConfig\RuleSet;
 
 $overrideRules = [
+    // Realodix
+    'phpdoc_separation' => true,
     'phpdoc_add_missing_param_annotation' => false,
+    'PhpCsFixerCustomFixers/phpdoc_no_superfluous_param' => false,
+    'binary_operator_spaces' => false,
+    'no_superfluous_elseif' => false,
 ];
 
 $finder = Finder::create()

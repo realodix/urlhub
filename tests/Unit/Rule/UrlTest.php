@@ -58,6 +58,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-rule
      * @dataProvider keywordBlacklistPassDataProvider
+     *
      * @param string $value
      */
     public function keywordBlacklistPass($value)
@@ -70,6 +71,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-rule
      * @dataProvider keywordBlacklistFailDataProvider
+     *
      * @param string $value
      */
     public function keywordBlacklistFail($value)
