@@ -49,7 +49,7 @@ class DashboardController extends Controller
     /**
      * Show the long url edit page.
      *
-     * @param $key
+     * @param mixed $key
      */
     public function edit($key)
     {
@@ -94,7 +94,7 @@ class DashboardController extends Controller
      * UrlHub only allows users (registered & unregistered) to have a unique
      * link. You can duplicate it and it will produce a new unique random key.
      *
-     * @param $key
+     * @param mixed $key
      */
     public function duplicate($key)
     {

@@ -58,7 +58,7 @@ if (! function_exists('urlSanitize')) {
     /**
      * Remove http://, www., and slashes from the URL.
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return mixed
      */
