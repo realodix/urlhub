@@ -6,26 +6,38 @@ use Realodix\CsConfig\RuleSet;
 
 $overrideRules = [
     // Realodix
-    'phpdoc_separation' => true,
     'phpdoc_add_missing_param_annotation' => false,
     'PhpCsFixerCustomFixers/phpdoc_no_superfluous_param' => false,
     'binary_operator_spaces' => false,
     'no_superfluous_elseif' => false,
+
+    // RelodixPlus
+    'PhpCsFixerCustomFixers/no_useless_comment' => false,
+    'general_phpdoc_annotation_remove' => false,
+
+    // Fixed
+    'align_multiline_comment' => [
+        'comment_type' => 'phpdocs_like',
+    ],
+];
+
+$excludes = [
+    'bootstrap/cache',
+    'config',
+    'node_modules',
+    'public',
+    'storage'
 ];
 
 $finder = Finder::create()
-    ->in([
-        __DIR__ . '/app',
-        __DIR__ . '/config',
-        __DIR__ . '/database',
-        __DIR__ . '/resources',
-        __DIR__ . '/routes',
-        __DIR__ . '/tests',
-    ])
+    ->exclude($excludes)
+    ->in(__DIR__)
     ->name('*.php')
     ->notName('*.blade.php')
+    ->notName('.phpstorm.meta.php')
+    ->notName('_ide_*.php')
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return Factory::fromRuleSet(new RuleSet\Realodix, $overrideRules)
+return Factory::fromRuleSet(new RuleSet\RealodixPlus, $overrideRules)
         ->setFinder($finder);
