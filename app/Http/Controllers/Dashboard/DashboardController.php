@@ -64,6 +64,7 @@ class DashboardController extends Controller
      * Update the long url that was previously set to the new long url.
      *
      * @param Request $request \Illuminate\Http\Request
+     * @param mixed   $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -77,6 +78,8 @@ class DashboardController extends Controller
 
     /**
      * Delete a shortened URL on user request.
+     *
+     * @param mixed $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
