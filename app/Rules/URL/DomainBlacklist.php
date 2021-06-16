@@ -24,7 +24,7 @@ class DomainBlacklist implements Rule
             $segment1 = '://'.$black_list.'/';
             $segment2 = '://www.'.$black_list.'/';
 
-            if ((strstr($longUrl, $segment1) || strstr($longUrl, $segment2))) {
+            if (strstr($longUrl, $segment1) || strstr($longUrl, $segment2)) {
                 $a = false;
             }
         }
