@@ -5,15 +5,11 @@ use Realodix\CsConfig\Factory;
 use Realodix\CsConfig\RuleSet;
 
 $overrideRules = [
-    // Realodix
-    'phpdoc_add_missing_param_annotation' => false,
-    'PhpCsFixerCustomFixers/phpdoc_no_superfluous_param' => false,
-    'binary_operator_spaces' => false,
-    'no_superfluous_elseif' => false,
-
     // RelodixPlus
     'PhpCsFixerCustomFixers/no_useless_comment' => false,
+    'binary_operator_spaces' => false,
     'general_phpdoc_annotation_remove' => false,
+    'no_superfluous_elseif' => false,
 
     // Fixed
     'align_multiline_comment' => [
