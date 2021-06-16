@@ -37,7 +37,7 @@
         "nunomaduro/collision": "^5.4",
         "nunomaduro/larastan": "^0.7.5",
         "phpunit/phpunit": "^9",
-        "realodix/php-cs-fixer-config": "3.x-dev"
+        "realodix/php-cs-fixer-config": "^3.0"
     },
     "autoload": {
         "psr-4": {
