@@ -4,8 +4,8 @@
 [![LaravelVersion](https://img.shields.io/badge/Laravel-8-f56857.svg?style=flat-square)](https://laravel.com/docs/8.x)
 ![PHPVersion](https://img.shields.io/badge/PHP-8-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
+![Build Status](https://github.com/realodix/urlhub/actions/workflows/tests.yml/badge.svg)
 [![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
-[![Build Status](https://travis-ci.org/realodix/urlhub.svg?branch=master)](https://travis-ci.org/realodix/urlhub)
 [![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub)
 
 > **Warning: UrlHub is still in development**, constantly being optimized and isn't still stable enough to be used in production environments.
