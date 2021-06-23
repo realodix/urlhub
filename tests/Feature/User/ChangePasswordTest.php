@@ -114,6 +114,9 @@ class ChangePasswordTest extends TestCase
      * @test
      * @group f-user
      * @dataProvider newPasswordFailProvider
+     *
+     * @param mixed $data1
+     * @param mixed $data2
      */
     public function newPasswordValidateFail($data1, $data2)
     {

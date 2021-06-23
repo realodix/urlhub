@@ -1,6 +1,6 @@
 name: tests
 
-on: [push]
+on: [pull_request, push]
 
 jobs:
   build:
@@ -52,3 +52,73 @@ jobs:
         run: |
           composer global require php-coveralls/php-coveralls
           php-coveralls --coverage_clover=build/logs/clover.xml --verbose
+
+
+
+  postgresql_tests:
+    name: PHP 8 (PostgreSQL)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: '8.0'
+      - name: Install Dependencies
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          command: composer install --no-interaction --no-progress
+      - name: Execute Tests
+        env:
+          DB_CONNECTION: pgsql
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_DATABASE: postgres
+          DB_PORT: 5432
+        run: |
+          php artisan config:clear
+          ./vendor/bin/phpunit
+
+
+
+  browser_tests:
+    name: Browser
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: urlhub_test
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+        with:
+          php-version: '8.0'
+      - name: Install Dependencies
+        run: |
+          composer -V
+          composer install --no-interaction --ignore-platform-reqs
+      - name: Setup Laravel
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: |
+          cp .env.testing .env
+          php artisan config:clear
+          php artisan migrate --seed
+          php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
+          ./vendor/laravel/dusk/bin/chromedriver-linux &
+          php artisan serve &
+      - name: Run Automated Browser Testing
+        env:
+          APP_URL: "http://127.0.0.1:8000"
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+        run: php artisan dusk

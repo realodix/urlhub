@@ -17,8 +17,20 @@ class KeyServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->keySrvc = new KeyService();
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function urlKey()
+    {
+        config(['urlhub.hash_length' => 6]);
+
+        $actual = 'https://github.com/realodix/urlhub';
+        $expected = 'urlhub';
+        $this->assertSame($expected, $this->keySrvc->urlKey($actual));
     }
 
     /**
@@ -38,6 +50,10 @@ class KeyServiceTest extends TestCase
      * @test
      * @group u-service
      * @dataProvider keyRemainingProvider
+     *
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
      */
     public function keyRemaining($kc, $nouk, $expected)
     {
@@ -64,6 +80,10 @@ class KeyServiceTest extends TestCase
      * @test
      * @group u-service
      * @dataProvider keyRemainingInPercentProvider
+     *
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
      */
     public function keyRemainingInPercent($kc, $nouk, $expected)
     {
@@ -97,7 +117,7 @@ class KeyServiceTest extends TestCase
         config(['urlhub.hash_char' => 'abc']);
 
         Url::factory()->create([
-            'keyword' => $this->keySrvc->randomKey(),
+            'keyword' => $this->keySrvc->randomString(),
         ]);
         $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
 

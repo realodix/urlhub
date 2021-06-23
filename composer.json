@@ -15,15 +15,15 @@
         "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.3",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "^8.40",
+        "laravel/framework": "^8.47",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
-        "laravolt/avatar": "^4.0",
+        "laravel/ui": "^3.3",
+        "laravolt/avatar": "^4.1",
         "nyholm/psr7": "^1.4",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
-        "realodix/php-utility": "dev-main",
-        "spatie/laravel-permission": "^4.0",
+        "realodix/php-utility": "^1.0",
+        "spatie/laravel-permission": "^4.2",
         "spatie/url": "^2.0",
         "tabuna/breadcrumbs": "^2.3",
         "vinkla/hashids": "^9.0",
@@ -32,12 +32,13 @@
     "require-dev": {
         "facade/ignition": "^2.8",
         "fakerphp/faker": "^1.14",
-        "friendsofphp/php-cs-fixer": "^3.0",
+        "kubawerlos/composer-smaller-lock": "^0.1.4",
         "laravel/dusk": "^6.15",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.4",
         "nunomaduro/larastan": "^0.7.5",
-        "phpunit/phpunit": "10.0.x-dev"
+        "phpunit/phpunit": "10.0.x-dev",
+        "realodix/php-cs-fixer-config": "^3.0"
     },
     "autoload": {
         "psr-4": {

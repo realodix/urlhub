@@ -11,7 +11,6 @@ class UrlTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         config(['urlhub.domain_blacklist' => ['github.com', 't.co']]);
     }
 
@@ -19,6 +18,8 @@ class UrlTest extends TestCase
      * @test
      * @group u-rule
      * @dataProvider domainBlacklistPassDataProvider
+     *
+     * @param mixed $value
      */
     public function domainBlacklistPass($value)
     {
@@ -30,6 +31,8 @@ class UrlTest extends TestCase
      * @test
      * @group u-rule
      * @dataProvider domainBlacklistFailDataProvider
+     *
+     * @param mixed $value
      */
     public function domainBlacklistFail($value)
     {
@@ -59,6 +62,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-rule
      * @dataProvider keywordBlacklistPassDataProvider
+     *
      * @param string $value
      */
     public function keywordBlacklistPass($value)
@@ -71,6 +75,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-rule
      * @dataProvider keywordBlacklistFailDataProvider
+     *
      * @param string $value
      */
     public function keywordBlacklistFail($value)

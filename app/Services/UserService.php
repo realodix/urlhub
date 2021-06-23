@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Hash;
 class UserService
 {
     /**
-     * @param object $user \App\Models\User
      * @param array  $data
+     * @param object $user \App\Models\User
      */
     public function updateUserEmail(array $data, object $user)
     {
@@ -22,8 +22,8 @@ class UserService
     }
 
     /**
-     * @param object $user \App\Models\User
      * @param array  $data
+     * @param object $user \App\Models\User
      */
     public function updateUserPassword(array $data, object $user)
     {

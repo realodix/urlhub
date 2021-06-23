@@ -65,11 +65,11 @@ class LoginController extends Controller
         return $fieldName;
     }
 
-    /**
-     * After login redirect back to previous page.
-     *
-     * @return string
-     */
+    // /**
+    //  * After login redirect back to previous page.
+    //  *
+    //  * @return string
+    //  */
     // public function redirectTo()
     // {
     //     if ($this->request->has('previous')) {
@@ -84,8 +84,9 @@ class LoginController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function sendFailedLoginResponse(Request $request)
     {

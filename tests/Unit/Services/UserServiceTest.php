@@ -15,7 +15,6 @@ class UserServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->userSrvc = new UserService();
     }
 

@@ -35,7 +35,7 @@ class UrlService
      */
     public function shortenUrl($request, $authId)
     {
-        $key = $request['custom_key'] ?? $this->keySrvc->randomKey();
+        $key = $request['custom_key'] ?? $this->keySrvc->urlKey($request['long_url']);
 
         return Url::create([
             'user_id'    => $authId,
@@ -74,7 +74,7 @@ class UrlService
      */
     public function duplicate($key, $authId)
     {
-        $randomKey = $this->keySrvc->randomKey();
+        $randomKey = $this->keySrvc->randomString();
         $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
@@ -144,6 +144,7 @@ class UrlService
      * Anonymize an IPv4 or IPv6 address.
      *
      * @param string $address
+     *
      * @return string
      */
     public static function anonymizeIp($address)
@@ -163,6 +164,7 @@ class UrlService
      * work on things like 'localhost'.
      *
      * @param string $url
+     *
      * @return string
      */
     public function getDomain(string $url)
@@ -177,6 +179,7 @@ class UrlService
      * HTML, or "{domain_name} - No Title" if not found.
      *
      * @param string $url
+     *
      * @return string
      */
     public function webTitle(string $url)

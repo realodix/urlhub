@@ -15,7 +15,6 @@ class UrlServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->urlSrvc = new UrlService();
     }
 
@@ -60,6 +59,9 @@ class UrlServiceTest extends TestCase
      * @test
      * @group u-service
      * @dataProvider getDomainProvider
+     *
+     * @param mixed $expected
+     * @param mixed $actutal
      */
     public function getDomain($expected, $actutal)
     {
