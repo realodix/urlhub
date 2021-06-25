@@ -1,19 +1,46 @@
-/node_modules
+/tests/coverage
+
+## IDE Local Workspace Folder
+/.idea
+/.vscode
+
+## Laravel
+.env
+.env.backup
+/public/*/*.map
 /public/hot
 /public/storage
 /storage/*.key
-/vendor
-.env
-.env.backup
-.phpunit.result.cache
-docker-compose.override.yml
 Homestead.json
 Homestead.yaml
+
+## Composer
+/vendor
+composer.phar
+
+## NPM
+/node_modules
 npm-debug.log
 yarn-error.log
-#
-/.idea
-/public/*/*.map
+
+## PHPUnit
+.phpunit.result.cache
+
+## CodeSniffer
+/CodeSniffer.conf
+/phpcs.xml
+
+# Infection
+/infection-cache
+/infection.json
+/infection.log
+
+## PHP-CS-Fixer
+.php_cs
 .php_cs.cache
+.php-cs-fixer.php
 .php-cs-fixer.cache
+
+#
+docker-compose.override.yml
 PHP_Insights.json
