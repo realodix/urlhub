@@ -39299,9 +39299,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 					// If enter key is pressed and not a TEXTAREA or DIV
 					if (typeof evt.keyCode != 'undefined' && evt.keyCode == 13
-						&& evtElementType !== 'TEXTAREA' && elementType !== 'DIV')
-					{
-						console.log('OVERRIDE');
+						&& evtElementType !== 'TEXTAREA' && elementType !== 'DIV') {
 						timerWait = 1;
 						overrideBool = true;
 					}
