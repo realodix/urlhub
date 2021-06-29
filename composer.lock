@@ -4,8 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d89ff4cb8a30c17da32fdc5142bb4e51",
+    "content-hash": "ef73a0229e08f365b6fe4c109a5df25e",
     "packages": [
+        {
+            "name": "aimeos/map",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aimeos/map.git",
+                "reference": "d43c425f139f0707b926a3f638d6e02d4ddf6004"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aimeos/map/zipball/d43c425f139f0707b926a3f638d6e02d4ddf6004",
+                "reference": "d43c425f139f0707b926a3f638d6e02d4ddf6004"
+            },
+            "require": {
+                "php": "^7.1||^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aimeos\\": "src/"
+                },
+                "files": [
+                    "src/function.php"
+                ],
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Easy and elegant handling of PHP arrays as array-like map objects similar to jQuery and Laravel Collections"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -2192,30 +2225,62 @@
             "description": "A PHP library for generating and working with universally unique identifiers (UUIDs)."
         },
         {
-            "name": "realodix/php-utility",
-            "version": "v1.0.4",
+            "name": "realodix/change-case",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/realodix/php-utility.git",
-                "reference": "8fb4b5ebc1d48aade5bd60ca18eda66e36fae72b"
+                "url": "https://github.com/realodix/change-case.git",
+                "reference": "fb8fed73723b60d6fed0a720d720431e31b36d03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realodix/php-utility/zipball/8fb4b5ebc1d48aade5bd60ca18eda66e36fae72b",
-                "reference": "8fb4b5ebc1d48aade5bd60ca18eda66e36fae72b"
+                "url": "https://api.github.com/repos/realodix/change-case/zipball/fb8fed73723b60d6fed0a720d720431e31b36d03",
+                "reference": "fb8fed73723b60d6fed0a720d720431e31b36d03"
             },
             "require": {
-                "nicebooks/isbn": "^0.2.91",
-                "php": "^7.2|^8.0",
-                "spatie/url": "^1.0|^2.0",
-                "symfony/polyfill-php74": "^1.23",
-                "symfony/polyfill-php80": "^1.23",
+                "php": "^7.4 || ^8.0",
                 "voku/portable-utf8": "^5.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.x-dev"
+                    "dev-main": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Realodix\\ChangeCase\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Convert strings between camelCase, PascalCase, Capital Case, snake_case and more."
+        },
+        {
+            "name": "realodix/php-utility",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/realodix/php-utility.git",
+                "reference": "e55b98250cd2ca894c351db000908bc191c40a5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/realodix/php-utility/zipball/e55b98250cd2ca894c351db000908bc191c40a5e",
+                "reference": "e55b98250cd2ca894c351db000908bc191c40a5e"
+            },
+            "require": {
+                "nicebooks/isbn": "^0.2.91",
+                "php": "^7.4|^8.0",
+                "realodix/change-case": "^3.0",
+                "realodix/readtime": "^1.0",
+                "spatie/url": "^1.0|^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.x-dev"
                 }
             },
             "autoload": {
@@ -2230,6 +2295,39 @@
                 "MIT"
             ],
             "description": "Collection of various PHP utility functions"
+        },
+        {
+            "name": "realodix/readtime",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/realodix/readtime.git",
+                "reference": "839bfeafbade7ccf6a766c4139de5f3f61e3bb2e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/realodix/readtime/zipball/839bfeafbade7ccf6a766c4139de5f3f61e3bb2e",
+                "reference": "839bfeafbade7ccf6a766c4139de5f3f61e3bb2e"
+            },
+            "require": {
+                "aimeos/map": "^2.3",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Realodix\\ReadTime\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Medium's like reading time estimation."
         },
         {
             "name": "spatie/laravel-permission",
@@ -3070,45 +3168,6 @@
                 "MIT"
             ],
             "description": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions"
-        },
-        {
-            "name": "symfony/polyfill-php74",
-            "version": "v1.23.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php74.git",
-                "reference": "a5d80cdf049bd3b0af6da91184a2cd37533c0fd8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php74/zipball/a5d80cdf049bd3b0af6da91184a2cd37533c0fd8",
-                "reference": "a5d80cdf049bd3b0af6da91184a2cd37533c0fd8"
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.23-dev"
-                },
-                "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php74\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Symfony polyfill backporting some PHP 7.4+ features to lower PHP versions"
         },
         {
             "name": "symfony/polyfill-php80",
