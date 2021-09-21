@@ -12,7 +12,7 @@ class AllUrlController extends Controller
     /**
      * AllUrlController constructor.
      *
-     * @param UrlService $urlSrvc \App\Services\UrlService
+     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
     public function __construct(protected UrlService $urlSrvc)
     {
@@ -30,7 +30,7 @@ class AllUrlController extends Controller
     /**
      * Delete a Short URL on user (Admin) request.
      *
-     * @param mixed $url
+     * @param  mixed  $url
      */
     public function delete($url)
     {
