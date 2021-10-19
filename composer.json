@@ -14,7 +14,7 @@
         "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.3",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "^8.54",
+        "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.3",
@@ -37,7 +37,7 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
         "nunomaduro/larastan": "^0.7.5",
-        "phpunit/phpunit": "^9.5.8",
+        "phpunit/phpunit": "^9.5.10",
         "realodix/php-cs-fixer-config": "^3.0"
     },
     "autoload": {
