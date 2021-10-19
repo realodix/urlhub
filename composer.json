@@ -35,7 +35,7 @@
         "kubawerlos/composer-smaller-lock": "^0.1.4",
         "laravel/dusk": "^6.15",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.4",
+        "nunomaduro/collision": "^5.10",
         "nunomaduro/larastan": "^0.7.5",
         "phpunit/phpunit": "^9.5.8",
         "realodix/php-cs-fixer-config": "^3.0"
