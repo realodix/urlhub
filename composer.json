@@ -14,7 +14,7 @@
         "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.3",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "^8.54",
+        "laravel/framework": "^8.62",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.3",
