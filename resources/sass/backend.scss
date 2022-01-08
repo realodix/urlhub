@@ -1,7 +1,7 @@
 @use "mixins" as mixin;
 @import "variables";
 @import "bootstrap";
-@import "@coreui/coreui/scss/coreui-standalone";
+@import "../modules/coreui/scss/coreui-standalone";
 @import "~datatables.net-dt/css/jquery.dataTables.css";
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
