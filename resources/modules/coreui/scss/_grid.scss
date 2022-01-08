@@ -1,12 +1,12 @@
 .row.row-equal {
-  padding-right: ($grid-gutter-width / 4);
-  padding-left: ($grid-gutter-width / 4);
-  margin-right: ($grid-gutter-width / -2);
-  margin-left: ($grid-gutter-width / -2);
+  padding-right: calc($grid-gutter-width / 4);
+  padding-left: calc($grid-gutter-width / 4);
+  margin-right: calc($grid-gutter-width / -2);
+  margin-left: calc($grid-gutter-width / -2);
 
   [class*="col-"] {
-    padding-right: ($grid-gutter-width / 4);
-    padding-left: ($grid-gutter-width / 4);
+    padding-right: calc($grid-gutter-width / 4);
+    padding-left: calc($grid-gutter-width / 4);
   }
 }
 

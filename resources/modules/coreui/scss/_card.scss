@@ -25,7 +25,7 @@
 
 .card-header {
   > i {
-    margin-right: $spacer / 2;
+    margin-right: calc($spacer / 2);
   }
 
   .nav-tabs {
@@ -38,7 +38,7 @@
     }
 
     .nav-link {
-      padding: $card-spacer-y ($card-spacer-x / 2);
+      padding: $card-spacer-y calc($card-spacer-x / 2);
       color: $text-muted;
       border-top: 0;
 
@@ -52,7 +52,7 @@
 
 *[dir="rtl"] .card-header > i {
   margin-right: 0;
-  margin-left: $spacer / 2;
+  margin-left: calc($spacer / 2);
 }
 
 .card-header-icon-bg {
@@ -70,19 +70,19 @@
 .card-header-actions {
   display: inline-block;
   float: right;
-  margin-right: - ($spacer / 4);
+  margin-right: - calc($spacer / 4);
 }
 
 *[dir="rtl"] {
   .card-header-actions {
     float: left;
     margin-right: auto;
-    margin-left: - ($spacer / 4);
+    margin-left: - calc($spacer / 4);
   }
 }
 
 .card-header-action {
-  padding: 0 ($spacer / 4);
+  padding: 0 calc($spacer / 4);
   color: $gray-600;
 
   &:hover {
@@ -101,8 +101,8 @@
 
 .card-full {
   margin-top: - $spacer;
-  margin-right: - $grid-gutter-width / 2;
-  margin-left: - $grid-gutter-width / 2;
+  margin-right: - calc($grid-gutter-width / 2);
+  margin-left: - calc($grid-gutter-width / 2);
   border: 0;
   border-bottom: $card-border-width solid $border-color;
 }

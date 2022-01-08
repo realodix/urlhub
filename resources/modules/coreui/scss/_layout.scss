@@ -473,7 +473,7 @@ html[dir="rtl"] {
       position: absolute;
       top: 0;
       left: 50%;
-      margin-left: - ($navbar-brand-width / 2);
+      margin-left: - calc($navbar-brand-width / 2);
     }
   }
 

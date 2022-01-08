@@ -22,7 +22,7 @@
 .avatars-stack {
 
   .avatar {
-    margin-right: - ($avatar-width / 2);
+    margin-right: - calc($avatar-width / 2);
     transition: margin-right $layout-transition-speed;
 
     &:hover {
@@ -31,14 +31,14 @@
   }
 
   .avatar-lg {
-    margin-right: - ($avatar-lg-width / 2);
+    margin-right: - calc($avatar-lg-width / 2);
   }
 
   .avatar-sm {
-    margin-right: - ($avatar-sm-width / 2);
+    margin-right: - calc($avatar-sm-width / 2);
   }
 
   .avatar-xs {
-    margin-right: - ($avatar-xs-width / 2);
+    margin-right: - calc($avatar-xs-width / 2);
   }
 }
