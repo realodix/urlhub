@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-version: ['8.0']
+        php-version: ['8.0', '8.1']
 
     steps:
       - name: Checkout code
@@ -64,7 +64,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - name: Install Dependencies
         uses: nick-invision/retry@v2
         with:
@@ -102,7 +102,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
         with:
-          php-version: '8.0'
+          php-version: '8.1'
       - name: Install Dependencies
         run: |
           composer -V
