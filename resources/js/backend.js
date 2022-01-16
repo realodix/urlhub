@@ -1,6 +1,6 @@
 import './bootstrap';
 import {initPasswordFields} from './password-toggle';
-import '../modules/coreui/js/coreui'
+import "@coreui/coreui";
 import 'datatables.net';
 
 $(document).ready(function() {
