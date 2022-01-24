@@ -10,13 +10,13 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "@coreui/coreui": "^2.1.16",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-brands-svg-icons": "^5.15.1",
         "@fortawesome/free-regular-svg-icons": "^5.15.1",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@popperjs/core": "^2.11.2",
         "axios": "^0.21",
-        "bootstrap": "^4.5.3",
+        "bootstrap": "^5.1.3",
         "browser-sync": "^2.26.13 ",
         "browser-sync-webpack-plugin": "^2.3.0",
         "clipboard": "^2.0.1",

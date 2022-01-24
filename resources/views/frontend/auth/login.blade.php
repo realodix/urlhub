@@ -31,25 +31,25 @@
             @else
               <input type="hidden" name="previous" value="{{ URL::previous() }}">
             @endif
-            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
             <input id="identity" type="text" class="form-control{{ $errors->has('identity') ? ' is-invalid' : '' }}" name="identity" value="{{ old('identity') }}" placeholder="@lang('E-Mail / Username')" required autofocus>
           </div>
           <div class="input-group mb-4">
-            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-lock"></i></span></div>
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
             <input class="form-control" type="password" placeholder="@lang('Password')" name="password"/></div>
           <div class="row">
-            <div class="col-6"><a href="{{ route('password.request') }}" class="px-0">@lang('Forgot password?')</a></div>
+            <div class="col-6"><a href="{{ route('password.request') }}" class="px-0 text-decoration-none">@lang('Forgot password?')</a></div>
             <div class="col-6 text-right"><button class="btn btn-success px-4" type="submit">@lang('Login')</button></div>
           </div>
         </form>
       </div>
     </div>
 	@if ( Config::get('urlhub.registration' ))
-    <div class="card bg-primary text-white py-5 d-none d-md-block" style="width:44%;">
+    <div class="card bg-success text-white py-5 d-none d-md-block" style="width:44%;">
       <div class="card-body text-center">
         <div>
           <h2>@lang("Don't have an account?")</h2>
-          <a class="btn btn-secondary active mt-3" href="{{ route('register') }}">@lang('Register Now!')</a>
+          <a class="btn btn-light active mt-3" href="{{ route('register') }}">@lang('Register Now!')</a>
         </div>
       </div>
     </div>

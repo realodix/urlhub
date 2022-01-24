@@ -34,7 +34,7 @@
           <b>@lang('Short URL')</b> <br>
           <span class="short-url"><a href="{{ $url->short_url }}" target="_blank"
               id="copy">{{ urlDisplay($url->short_url, false) }}</a></span>
-          <button class="btn btn-sm btn-outline-success btn-clipboard ml-3"
+          <button class="btn btn-sm btn-outline-success btn-clipboard ms-3"
             data-clipboard-text="{{ urlDisplay($url->short_url, false) }}" title="@lang('Copy to clipboard')"
             data-toggle="tooltip">@lang('Copy')</button>
 
