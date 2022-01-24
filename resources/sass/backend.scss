@@ -1,7 +1,6 @@
+@use "sass:color";
 @use "mixins" as mixin;
-@import "variables";
-@import "bootstrap";
-@import "@coreui/coreui/scss/coreui-standalone";
+@import "init";
 @import "~datatables.net-dt/css/jquery.dataTables.css";
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
@@ -10,110 +9,93 @@ body {
   background: $uh--bg-gray;
 }
 
-
 //
-// Navbar
+// Navigation
 //
 .navbar {
+  background-color: color.adjust($uh--primary, $lightness: -10%) !important;
+  box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
+  padding: 0;
+
   &-brand {
-    font-size: 1.5rem;
     font-family: Georgia, serif;
+    font-size: 2rem;
     font-weight: bold;
+    padding-left: 0.3125rem;
   }
 
-  .navbar-nav {
-    .nav-link {
-      color: $uh--black;
+  @include media-breakpoint-up(md) {
+    &-brand {
+      padding-left: 0;
     }
+  }
 
-    #homepage-icon:hover {
-      color: $uh--primary;
-    }
+  &-nav {
+    font-weight: 700;
 
     .dropdown-item {
       font-size: 14px;
       font-weight: 300;
 
       svg {
-        color: $uh--primary;
+        color: color.adjust($uh--primary, $lightness: -15%);
       }
+    }
+
+    .img-avatar {
+      height: 35px;
+      max-width: 100%;
+      border-radius: 50em;
+      margin: 0 10px;
     }
   }
 }
-
-
-//
-// Sidebar
-//
-.sidebar {
-  .nav-link {
-    &.active {
-      border-left: 4px solid $sidebar-nav-link-active-color;
-    }
-  }
-
-  .nav-dropdown {
-    &.open {
-      .nav-link {
-        border-left: 4px solid $sidebar-nav-link-active-color;
-      }
-    }
-
-    .nav-link {
-      &.active {
-        border-left: 4px solid $sidebar-nav-link-active-color;
-      }
-
-      &:hover {
-        color: $sidebar-nav-link-active-color;
-      }
-    }
-  }
-}
-
 
 //
 // Stat
 //
-.right_now {
-  .hint {
-    .all {
-      color: $uh--primary;
+.stat {
+  .right_now {
+    .hint {
+      .all {
+        color: $uh--primary;
+      }
+
+      .me {
+        color: $uh--secondary;
+      }
+
+      .guest {
+        color: $uh--tertiary;
+      }
     }
 
-    .me {
-      color: $uh--secondary;
+    &-label {
+      font-weight: 300;
     }
 
-    .guest {
-      color: $uh--tertiary;
-    }
-  }
+    &-text {
+      &--primary {
+        color: $uh--primary;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
 
-  &-label {
-    font-weight: 300;
-  }
+      &--secondary {
+        color: $uh--secondary;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
 
-  &-text {
-    &--primary {
-      color: $uh--primary;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    &--secondary {
-      color: $uh--secondary;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    &--tertiary {
-      color: $uh--tertiary;
-      font-size: 1.5rem;
-      font-weight: 600;
+      &--tertiary {
+        color: $uh--tertiary;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
     }
   }
 }
+
 
 
 //
@@ -138,6 +120,10 @@ body {
 // DataTables
 //
 .dataTables_wrapper {
+  label {
+    margin-bottom: 0.5rem;
+  }
+
   .dataTables_length {
     select {
       color: #5c5c5c;
@@ -239,50 +225,6 @@ body {
   }
 }
 
-
-//
-// Form
-//
-.form-control {
-  background: #f1f3f4;
-  border-color: #f1f3f4;
-
-  &:focus {
-    border-color: $uh--secondary;
-    box-shadow: none;
-  }
-
-  &#name:disabled {
-    color: $uh--primary;
-    font-weight: bold;
-    background: #fff;
-    border: none;
-  }
-}
-
-.form-error-feedback {
-  color: $uh--red;
-  font-size: 80%;
-}
-
-.app-footer {
-  font-size: 13px;
-}
-
-//
-// Edit Url
-//
-.short-url {
-  color: $uh--green;
-}
-
-
-//
-// Statistics Page
-//
-.statistics {
-
-}
 
 //
 // Password Toggler

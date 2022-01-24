@@ -7,21 +7,23 @@
 @include('messages')
 
 <div class="row">
+  <div class="col-xl-4">
+    <div class="px-4 sm:px-0">
+        <h3>@lang('Profile Information')</h3>
+
+        <p class="mt-1 fw-light">
+          @lang("Update your account's profile information and email address.")
+        </p>
+    </div>
+  </div>
   <div class="col-xl-6">
     <form method="post" action="{{route('user.update', $user->getRouteKey())}}">
     @csrf
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-0">
-            @lang('Account Settings')
-            <small class="text-muted">@lang('Profile')</small>
-          </h4>
-
-          <hr />
-
           <div class="row mt-4 mb-4">
           <div class="col">
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
+            <div class="input-group mb-3{{ $errors->has('name') ? ' has-error' : '' }} row">
               <label for="name" class="col-sm-3 col-form-label">@lang('Username')</label>
 
               <div class="col">
@@ -30,7 +32,7 @@
               </div>
             </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} row">
+            <div class="input-group mb-3{{ $errors->has('email') ? ' has-error' : '' }} row">
               <label for="email" class="col-sm-3 col-form-label">@lang('E-mail Address')</label>
 
               <div class="col">
@@ -45,8 +47,8 @@
             </div>
 
             <div class="row">
-              <div class="col text-right">
-                <button type="submit" class="btn btn-secondary">
+              <div class="col text-end">
+                <button type="submit" class="btn btn-primary">
                   @lang('Save')
                 </button>
               </div>

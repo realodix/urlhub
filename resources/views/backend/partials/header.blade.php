@@ -1,61 +1,79 @@
-<header class="app-header navbar">
-  <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="navbar-brand">
-    <div class="navbar-brand-full">{{appName()}}</div>
-    <div class="navbar-brand-minimized">{{appName()}}</div>
-  </div>
-
-  <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <ul class="nav navbar-nav d-md-down-none">
-    <li class="nav-item px-3">
-        <a class="nav-link" id="homepage-icon" href="{{ url('./') }}" title="{{appName()}} @lang('Home Page')" data-toggle="tooltip"><i class="fas fa-home"></i></a>
-    </li>
-
-    @foreach (Breadcrumbs::current() as $crumbs)
-      @if ($crumbs->url() && !$loop->last)
-        <li class="breadcrumb-item">
-          <a href="{{ $crumbs->url() }}">
-            {{ $crumbs->title() }}
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url('/') }}">{{appName()}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto"></ul>
+      <ul class="navbar-nav">
+      @auth
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="img-avatar" src="{{ Auth::user()->avatar }}" alt="Avatar">
           </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><span class="dropdown-item" href="{{ route('dashboard') }}">
+                @lang('Signed in as') {{ Str::title(Auth::user()->name) }}
+              </span></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ route('dashboard') }}">
+                @lang('Dashboard')
+              </a></li>
+            <li><a class="dropdown-item" href="{{ route('user.edit', Auth::user()->name) }}">
+                @lang('Your Profile')
+              </a></li>
+            <li><a class="dropdown-item" href="{{ route('user.change-password', Auth::user()->name) }}">
+                @lang('Change Password')
+              </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+                {{ __('Sign out') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+              </form>
+            </li>
+          </ul>
         </li>
       @else
-        <li class="breadcrumb-item active">
-            {{ $crumbs->title() }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('login') }}">@lang('Login')</a>
         </li>
-      @endif
-    @endforeach
-  </ul>
+        @if (Route::has('register') and Config::get('urlhub.registration'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">@lang('Register')</a>
+          </li>
+        @endif
+      @endauth
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <ul class="nav navbar-nav ml-auto mr-5">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <img class="img-avatar" src="{{ Auth::user()->avatar }}" alt="Avatar">
-      </a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <span class="dropdown-item" href="{{ route('dashboard') }}">
-          @lang('Signed in as') {{ Str::title(Auth::user()->name) }}
-        </span>
-        <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->name) }}">
-          @lang('Your Profile')
+<header class="bg-white py-1 px-4">
+  <div class="container">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link text-body" href="{{ route('dashboard') }}">
+          <i class="nav-icon fas fa-tachometer-alt"></i> @lang('Dashboard')
         </a>
-        <a class="dropdown-item" href="{{ route('user.change-password', Auth::user()->name) }}">
-          @lang('Change Password')
-        </a>
-        <a class="dropdown-item" href="{{ route('logout') }}"
-           onclick="event.preventDefault();
-           document.getElementById('logout-form').submit();">
-           @lang('Sign out')
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-        </form>
-      </div>
-    </li>
-  </ul>
+      </li>
+      @role('admin')
+        <li class="nav-item">
+          <a class="nav-link text-body" href="{{ route('dashboard.allurl') }}">
+            <i class="nav-icon fas fa-link"></i> @lang('All URLs')
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-body" href="{{ route('user.index') }}">
+            <i class="nav-icon fas fa-users"></i> @lang('All Users')
+          </a>
+        </li>
+      @endrole
+    </ul>
+  </div>
 </header>

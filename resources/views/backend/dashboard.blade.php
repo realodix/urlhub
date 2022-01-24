@@ -10,14 +10,14 @@
   <div class="card">
     <div class="card-body">
       <div class="row mb-3">
-      <div class="col-sm-6">
-        <h4 class="card-title mb-0">
-          @lang('My URLs')
-        </h4>
-      </div><!--col-->
-      <div class="col-sm-6">
-        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" data-toggle="tooltip"><i class="fas fa-plus"></i></a>
-      </div><!--col-->
+        <div class="col-sm-6">
+          <h4 class="card-title mb-0">
+            @lang('My URLs')
+          </h4>
+        </div><!--col-->
+        <div class="col-sm-6 text-end">
+          <a class="nav-link" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" data-toggle="tooltip"><i class="fas fa-plus"></i></a>
+        </div><!--col-->
       </div><!--row-->
 
       @include('messages')

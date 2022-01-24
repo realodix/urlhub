@@ -23,7 +23,7 @@
       <p class="text-muted">@lang('Create your account')</p>
 
       <div class="input-group mb-3">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="@lang('Username')" required autofocus>
 
         @if ($errors->has('name'))
@@ -33,7 +33,7 @@
         @endif
       </div>
       <div class="input-group mb-3">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-at"></i></span></div>
+        <span class="input-group-text"><i class="fas fa-at"></i></span>
         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="@lang('Email')" required>
 
         @if ($errors->has('email'))
@@ -43,7 +43,7 @@
         @endif
       </div>
       <div class="input-group mb-3">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-lock"></i></span></div>
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="@lang('Password')" required>
 
         @if ($errors->has('password'))
@@ -53,7 +53,7 @@
         @endif
       </div>
       <div class="input-group mb-4">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-lock"></i></span></div>
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="@lang('Repeat password')" required>
       </div>
 

@@ -11,18 +11,14 @@
   {!! style(mix('css/backend.css')) !!}
 </head>
 
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+<body class="backend">
 @include('backend.partials.header')
 
-<div class="app-body">
-  @include('backend.partials.sidebar')
-
-  <main class="main mt-4">
-    <div class="container-fluid">
-      @yield('content')
-    </div>
-  </main>
-</div>
+<main class="main mt-4">
+  <div class="container">
+    @yield('content')
+  </div>
+</main>
 
 @include('backend.partials.footer')
 

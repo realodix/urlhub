@@ -1,19 +1,16 @@
 window._ = require('lodash');
+window.$ = window.jQuery = require("jquery");
+import 'bootstrap';
 
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+window.axios = require("axios");
 
-    require('bootstrap');
-} catch (e) { }
-
-
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**
  * Font Awesome >=5.1
@@ -23,37 +20,23 @@ try {
  * Also you can import the icons separately on the frontend and backend
  */
 
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fab, far, fas);
 
 // Kicks off the process of finding <i> tags and replacing with <svg>
 dom.watch();
 
-
-
 /**
  * Bootstrap tooltips
  * https://getbootstrap.com/docs/4.3/components/tooltips/
  */
-$("body").tooltip({
-    selector: '[data-toggle="tooltip"]'
-});
-
-
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-window.axios = require('axios');
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// $("body").tooltip({
+//     selector: '[data-toggle="tooltip"]',
+// });
 
 
 
