@@ -30,7 +30,6 @@
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.8",
         "fakerphp/faker": "^1.14",
         "kubawerlos/composer-smaller-lock": "^0.1.4",
         "laravel/dusk": "^6.15",
@@ -38,7 +37,8 @@
         "nunomaduro/collision": "^5.10",
         "nunomaduro/larastan": "^0.7.5",
         "phpunit/phpunit": "^9.5.10",
-        "realodix/php-cs-fixer-config": "^3.0"
+        "realodix/php-cs-fixer-config": "^3.0",
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
