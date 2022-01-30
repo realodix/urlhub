@@ -7,17 +7,15 @@
 
   <title>@yield('title') | {{appName()}}</title>
 
-  {{-- Main styles for this application --}}
+  {!! style(mix('css/main.css')) !!}
   {!! style(mix('css/backend.css')) !!}
 </head>
 
 <body class="backend">
 @include('backend.partials.header')
 
-<main class="main mt-4">
-  <div class="container">
-    @yield('content')
-  </div>
+<main class="main max-w-7xl mx-auto py-4 sm:mt-0 sm:px-6 lg:px-8">
+  @yield('content')
 </main>
 
 @include('backend.partials.footer')

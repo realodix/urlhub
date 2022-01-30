@@ -1,102 +1,13 @@
 @use "sass:color";
 @use "mixins" as mixin;
-@import "init";
+@import "base";
 @import "~datatables.net-dt/css/jquery.dataTables.css";
 @import url('https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900');
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: $uh--bg-gray;
+  background: #f8f9fb;
 }
-
-//
-// Navigation
-//
-.navbar {
-  background-color: color.adjust($uh--primary, $lightness: -10%) !important;
-  box-shadow: 0 1px 2px rgba(190, 190, 190, 0.5);
-  padding: 0;
-
-  &-brand {
-    font-family: Georgia, serif;
-    font-size: 2rem;
-    font-weight: bold;
-    padding-left: 0.3125rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    &-brand {
-      padding-left: 0;
-    }
-  }
-
-  &-nav {
-    font-weight: 700;
-
-    .dropdown-item {
-      font-size: 14px;
-      font-weight: 300;
-
-      svg {
-        color: color.adjust($uh--primary, $lightness: -15%);
-      }
-    }
-
-    .img-avatar {
-      height: 35px;
-      max-width: 100%;
-      border-radius: 50em;
-      margin: 0 10px;
-    }
-  }
-}
-
-//
-// Stat
-//
-.stat {
-  .right_now {
-    .hint {
-      .all {
-        color: $uh--primary;
-      }
-
-      .me {
-        color: $uh--secondary;
-      }
-
-      .guest {
-        color: $uh--tertiary;
-      }
-    }
-
-    &-label {
-      font-weight: 300;
-    }
-
-    &-text {
-      &--primary {
-        color: $uh--primary;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-
-      &--secondary {
-        color: $uh--secondary;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-
-      &--tertiary {
-        color: $uh--tertiary;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-    }
-  }
-}
-
-
 
 //
 // Card
@@ -120,8 +31,8 @@ body {
 // DataTables
 //
 .dataTables_wrapper {
-  label {
-    margin-bottom: 0.5rem;
+  .dataTables_length, .dataTables_filter {
+    margin-bottom: 1rem;
   }
 
   .dataTables_length {

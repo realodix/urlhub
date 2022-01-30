@@ -1,6 +1,5 @@
 window._ = require('lodash');
 window.$ = window.jQuery = require("jquery");
-import 'bootstrap';
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -30,14 +29,11 @@ library.add(fab, far, fas);
 // Kicks off the process of finding <i> tags and replacing with <svg>
 dom.watch();
 
-/**
- * Bootstrap tooltips
- * https://getbootstrap.com/docs/4.3/components/tooltips/
- */
-// $("body").tooltip({
-//     selector: '[data-toggle="tooltip"]',
-// });
+import Alpine from 'alpinejs'
 
+window.Alpine = Alpine
+
+Alpine.start()
 
 
 /**

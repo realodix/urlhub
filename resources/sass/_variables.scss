@@ -4,48 +4,33 @@
 //----------------------------------------------------------------------------
 // Custom variables
 //----------------------------------------------------------------------------
+$nord0: #2e3440;
+$nord1: #3b4252;
+$nord2: #434c5e;
+$nord3: #4c566a;
+$nord4: #d8dee9;
+$nord5: #e5e9f0;
+$nord6: #eceff4;
+$nord7: #8fbcbb;
+$nord8: #88c0d0;
+$nord9: #81a1c1;
+$nord10: #5e81ac;
+$nord11: #bf616a;
+$nord12: #d08770;
+$nord13: #ebcb8b;
+$nord14: #a3be8c;
+$nord15: #b48ead;
 
-$uh--black:   #232d3b;
-$uh--blue:    #3D5B99;
-$uh--green:   #1c9963;
+$uh--black:   $nord0;
+$uh--blue:    $nord10;
+$uh--green:   $nord14;
 $uh--indigo:  #3958c8;
 $uh--purple:  #546de5;
-$uh--red:     #e04a4a;
-$uh--orange:  #ff813f;
+$uh--red:     $nord11;
+$uh--orange:  $nord12;
 
 $uh--bg-gray: #f3f4f6;
 
 $uh--primary:   $uh--blue;
 $uh--secondary: $uh--green;
 $uh--tertiary:  $uh--orange;
-
-
-
-//----------------------------------------------------------------------------
-// twbs/bootstrap
-//----------------------------------------------------------------------------
-
-// $black:  $uh--black;
-// $blue:   $uh--blue;
-// $green:  $uh--green;
-// $indigo: $uh--indigo;
-// $purple: $uh--purple;
-// $red:    $uh--red;
-// $orange: $uh--orange;
-
-// $primary:   $uh--primary;
-// $secondary: $uh--secondary;
-// $success:   $uh--green;
-
-// $theme-colors: ();
-// $theme-colors: map.merge(
-//   (
-//     "tertiary":  $uh--tertiary
-//   ),
-//   $theme-colors
-// );
-
-$card-cap-bg:        none;
-$card-border-radius: 0.25rem;
-
-$table-accent-bg: rgba($uh--bg-gray, .05);

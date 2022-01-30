@@ -1,3 +1,6 @@
+// 2. Include any default variable overrides here
+@import "variables";
+
 button {
   display: inline-block;
   font-weight: 400;
@@ -24,23 +27,13 @@ button {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
-}
-.card-body {
-  flex: 1 1 auto;
-  padding: 1rem 1rem;
-}
-.card-title {
-  font-weight: bold;
-}
 
-.navbar-brand {
-  font-family: Georgia, serif;
-  font-size: 2rem;
-  font-weight: bold;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  text-decoration: none;
-  white-space: nowrap;
-}
+  &-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+  }
 
-/*# sourceMappingURL=frontend.css.map*/
+  &-title {
+    font-weight: bold;
+  }
+}

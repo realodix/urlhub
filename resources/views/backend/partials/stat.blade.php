@@ -1,104 +1,47 @@
-<div class="stat mb-5">
+<div class="bg-white p-4 shadow sm:rounded-md mb-4">
 @role('admin')
-  <div class="row right_now mb-4">
-    <div class="col-12 hint">
-      <span class="all ml-2"><i class="fas fa-square"></i> @lang('All')</span>
-      <span class="me ml-5"><i class="fas fa-square"></i> @lang('Me')</span>
-      <span class="guest ml-5"><i class="fas fa-square"></i> @lang('Guest')</span>
+  <div class="flex flex-wrap">
+    <div class="w-full sm:w-1/4">
+      <span class="text-cyan-600"><i class="fas fa-square mr-2"></i>@lang('All')</span>
+      <span class="text-teal-600 ml-5"><i class="fas fa-square mr-2"></i>@lang('Me')</span>
+      <span class="text-orange-600 ml-5"><i class="fas fa-square mr-2"></i>@lang('Guest')</span>
     </div>
-    <div class="col-md-6 col-xl-4" style="font-size: 1.25rem; font-weight: 300;">
-      <div class="row">
-        <div class="col-6 col-sm-5"><b>@lang('Capacity')</b></div>
-        <div class="col col-sm"><span title="{{number_format($keyCapacity)}}" data-toggle="tooltip">{{numberToAmountShort($keyCapacity)}}</span></div>
-      </div>
-      <div class="row">
-        <div class="col-6 col-sm-5"><b>@lang('Remaining')</b></div>
-        <div class="col col-sm">
-          <span title="{{number_format($keyRemaining)}}" data-toggle="tooltip">
-            {{numberToAmountShort($keyRemaining)}}
-            ({{$remainingPercentage}})
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xl text-center">
-      <div class="row">
-        <div class="col-4">
-          <div class="right_now-text--primary">
-            <span title="{{number_format($shortUrlCount)}}" data-toggle="tooltip">{{numberToAmountShort($shortUrlCount)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Urls Shortened')</div>
-        </div>
-        <div class="col-4">
-          <div class="right_now-text--secondary">
-            <span title="{{number_format($shortUrlCountByMe)}}" data-toggle="tooltip">{{numberToAmountShort($shortUrlCountByMe)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Urls Shortened')</div>
-        </div>
-        <div class="col-4">
-          <div class="right_now-text--tertiary">
-            <span title="{{number_format($shortUrlCountByGuest)}}" data-toggle="tooltip">{{numberToAmountShort($shortUrlCountByGuest)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Urls Shortened')</div>
-        </div>
-      </div>
+    <div class=" mt-8 sm:mt-0">
+      <b>@lang('Free Space'):</b> <span class="font-light">{{numberToAmountShort($keyRemaining)}} of {{numberToAmountShort($keyCapacity)}} ({{$remainingPercentage}})</span>
     </div>
   </div>
 
-  <div class="row right_now">
-    <div class="col-md-6 col-xl-4 text-center">
-      <div class="row">
-        <div class="col-6">
-          <div class="right_now-text--primary">
-            <span title="{{number_format($userCount)}}" data-toggle="tooltip">{{numberToAmountShort($userCount)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Registered Users')</div>
-        </div>
-        <div class="col-6">
-          <div class="right_now-text--primary">
-            <span title="{{number_format($guestCount)}}" data-toggle="tooltip">{{numberToAmountShort($guestCount)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Guest')</div>
-        </div>
+  <div class="flex flex-wrap sm:mt-8">
+    <div class="w-full sm:w-1/4">
+      <div class="block">
+        <b>@lang('Urls Shortened'):</b>
+        <span class="text-cyan-600">{{numberToAmountShort($shortUrlCount)}}</span> -
+        <span class="text-teal-600">{{numberToAmountShort($shortUrlCountByMe)}}</span> -
+        <span class="text-orange-600">{{numberToAmountShort($shortUrlCountByGuest)}}</span>
+      </div>
+      <div class="block">
+        <b>@lang('Clicks & Redirects'):</b>
+        <span class="text-cyan-600">{{numberToAmountShort($clickCount)}}</span> -
+        <span class="text-teal-600">{{numberToAmountShort($clickCountFromMe)}}</span> -
+        <span class="text-orange-600">{{numberToAmountShort($clickCountFromGuest)}}</span>
       </div>
     </div>
-
-    <div class="col-md-6 col-xl text-center">
-      <div class="row">
-        <div class="col-4">
-          <div class="right_now-text--primary">
-            <span title="{{number_format($clickCount)}}" data-toggle="tooltip">{{numberToAmountShort($clickCount)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Clicks & Redirects')</div>
-        </div>
-        <div class="col-4">
-          <div class="right_now-text--secondary">
-            <span title="{{number_format($clickCountFromMe)}}" data-toggle="tooltip">{{numberToAmountShort($clickCountFromMe)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Clicks & Redirects')</div>
-        </div>
-        <div class="col-4">
-          <div class="right_now-text--tertiary">
-            <span title="{{number_format($clickCountFromGuest)}}" data-toggle="tooltip">{{numberToAmountShort($clickCountFromGuest)}}</span>
-          </div>
-          <div class="right_now-label">@lang('Clicks & Redirects')</div>
-        </div>
+    <div class="w-full sm:w-1/4 mt-4 sm:mt-0">
+      <div class="block">
+        <b>@lang('Registered Users'):</b> <span class="font-light">{{numberToAmountShort($guestCount)}}</span>
+      </div>
+      <div class="block">
+        <b cl>@lang('Guest'):</b> <span class="font-light">{{numberToAmountShort($shortUrlCountByGuest)}}</span>
       </div>
     </div>
   </div>
 @else
-  <div class="row right_now">
-    <div class="col-sm-6 col-lg-3 text-center">
-      <div class="right_now-text--primary">
-        <span title="{{number_format($shortUrlCountByMe)}}" data-toggle="tooltip">{{numberToAmountShort($shortUrlCountByMe)}}</span>
-      </div>
-      <div class="right_now-label">@lang('Urls Shortened')</div>
+  <div class="flex flex-wrap">
+    <div class="w-full sm:w-1/4">
+      <span class="text-lg sm:text-2xl font-light">@lang('Urls Shortened'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($shortUrlCountByMe)}}</span>
     </div>
-    <div class="col-sm-6 col-lg-3 text-center">
-      <div class="right_now-text--primary">
-        <span title="{{number_format($clickCountFromMe)}}" data-toggle="tooltip">{{numberToAmountShort($clickCountFromMe)}}</span>
-      </div>
-      <div class="right_now-label">@lang('Clicks & Redirects')</div>
+    <div class="w-full sm:w-1/4">
+      <span class="text-lg sm:text-2xl font-light">@lang('Clicks & Redirects'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($clickCountFromMe)}}</span>
     </div>
   </div>
 @endrole

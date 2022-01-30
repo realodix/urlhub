@@ -4,17 +4,13 @@
 
 @section('content')
 <div class="all-url">
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-      <div class="col-sm-6">
-        <h4 class="card-title mb-3">
-          @lang('All Users')
-        </h4>
-      </div><!--col-->
-      </div><!--row-->
+  <div class="bg-white p-4 shadow sm:rounded-md">
+    <div class="font-bold text-2xl text-[#73539f] mb-8">
+      <span>@lang('All Users')</span>
+    </div>
 
-      <table id="dt-Users" class="table table-responsive-sm table-striped">
+    <div class="overflow-x-auto sm:overflow-x-clip">
+      <table id="dt-Users" class="table border-collapse border border-slate-700">
         <thead>
           <tr>
             <th scope="col">@lang('Username')</th>
