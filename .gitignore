@@ -1,4 +1,6 @@
 /.logs
+public/css/*
+public/js/*
 
 ## IDE Local Workspace Folder
 /.idea

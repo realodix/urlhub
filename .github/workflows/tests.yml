@@ -107,6 +107,8 @@ jobs:
         run: |
           composer -V
           composer install --no-interaction --ignore-platform-reqs
+          npm install
+          npm run dev
       - name: Setup Laravel
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
