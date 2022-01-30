@@ -7,35 +7,34 @@
 
   @include('backend.partials.stat')
 
-  <div class="card">
-    <div class="card-body">
-      <div class="row mb-3">
-        <div class="col-sm-6">
-          <h4 class="card-title mb-0">
-            @lang('My URLs')
-          </h4>
-        </div><!--col-->
-        <div class="col-sm-6 text-end">
-          <a class="nav-link" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" data-toggle="tooltip"><i class="fas fa-plus"></i></a>
-        </div><!--col-->
-      </div><!--row-->
-
-      @include('messages')
-
-      <div class="table-responsive-md">
-        <table id="dt-myUrls" class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">@lang('Short URL')</th>
-              <th scope="col">@lang('Original URL')</th>
-              <th scope="col">@lang('Clicks')</th>
-              <th scope="col">@lang('Date')</th>
-              <th scope="col">@lang('Actions')</th>
-            </tr>
-          </thead>
-        </table>
+  <div class="bg-white p-4 shadow sm:rounded-md">
+    <div class="flex mb-8">
+      <div class="w-1/2">
+        <span class="font-bold text-2xl text-[#73539f]">
+          @lang('My URLs')
+        </span>
       </div>
+      <div class="w-1/2 text-right">
+        <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="font-bold text-2xl text-[#73539f]">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+    </div>
 
+    @include('messages')
+
+    <div class="overflow-x-auto sm:overflow-x-clip">
+      <table id="dt-myUrls" class="table border-collapse border border-slate-700">
+        <thead>
+          <tr>
+            <th scope="col">@lang('Short URL')</th>
+            <th scope="col">@lang('Original URL')</th>
+            <th scope="col">@lang('Clicks')</th>
+            <th scope="col">@lang('Date')</th>
+            <th scope="col">@lang('Actions')</th>
+          </tr>
+        </thead>
+      </table>
     </div>
   </div>
 </div>

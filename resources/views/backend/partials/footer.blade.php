@@ -1,13 +1,19 @@
-<footer class="mt-5 py-3">
-  <div class="container">
-    <div class="row">
-      <div class="col align-self-start">
-        <a class="text-decoration-none text-body" href="https://github.com/realodix/urlhub">{{appName()}}</a> <small>{{config('app.version')}}</small>
-        <span>&copy; 2018-present <a class="text-decoration-none text-body" href="https://github.com/realodix">Budi Hermawan</a></span>
+<footer class="mt-16 py-4 text-gray-700">
+  <hr class="mb-8">
+  <div class="main max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex flex-wrap-reverse">
+      <div class="w-full sm:w-1/2">
+        <a class="" href="https://github.com/realodix/urlhub">{{appName()}}</a> <small>{{config('app.version')}}</small>
+        <span>
+          &copy; 2018-present
+          <a href="https://github.com/realodix" class="text-decoration-none text-body">Budi Hermawan</a>
+        </span>
       </div>
-      <div class="col align-self-end text-end">
+      <div class="w-full sm:w-1/2 sm:text-right">
         <span>@lang('Powered by')</span>
-        <a class="text-decoration-none text-body" href="https://github.com/laravel/framework/releases/tag/v{{ App::VERSION() }}" target="_blank" title="@lang('Laravel v'.App::VERSION().' (release notes)')" data-toggle="tooltip">Laravel<small> v{{ App::VERSION() }}</small></a>
+        <a href="https://github.com/laravel/framework/releases/tag/v{{ App::VERSION() }}" target="_blank" title="@lang('Laravel v'.App::VERSION().' (release notes)')" class="text-decoration-none text-body" >
+          Laravel <small>v{{ App::VERSION() }}</small>
+        </a>
       </div>
     </div>
   </div>

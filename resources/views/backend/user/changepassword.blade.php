@@ -6,70 +6,42 @@
 
 @include('messages')
 
-<div class="row">
-  <div class="col-xl-4">
+<div class="md:grid md:grid-cols-3 md:gap-6">
+  <div class="md:col-span-1 flex justify-between">
     <div class="px-4 sm:px-0">
-        <h3>@lang('Change Password')</h3>
+      <h3 class="text-lg font-medium text-gray-900">@lang('Change Password')</h3>
 
-        <p class="mt-1 fw-light">
-          @lang('Ensure your account is using a long, random password to stay secure.')
-        </p>
+      <p class="mt-1 text-sm text-gray-600">
+        @lang('Ensure your account is using a long, random password to stay secure.')
+      </p>
     </div>
   </div>
-  <div class="col-xl-6">
+  <div class="mt-5 md:mt-0 md:col-span-2">
     <form method="post" action="{{route('user.change-password.post', $user->getRouteKey())}}">
     @csrf
-      <div class="card">
-        <div class="card-body">
-          <div class="row mt-4 mb-4">
-          <div class="col">
-            <div class="input-group mb-3{{ $errors->has('current-password') ? ' has-error' : '' }} row">
-              <label for="current-password" class="col-sm-3 col-form-label">@lang('Your Password')</label>
+      <div class="bg-white px-4 py-5  sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6 sm:col-span-4">
+            <label for="current-password" class="block font-medium text-sm text-gray-700">@lang('Your Password')</label>
+            <input id="current-password" type="password" name="current-password" placeholder="Enter your password" class="form-input mt-1" required>
+          </div>
 
-              <div class="col">
-                <input id="current-password" type="password" class="form-control" name="current-password" placeholder="Enter your password" required>
-              </div>
-            </div>
+          <div class="col-span-6 sm:col-span-4">
+            <label for="new-password" class="block font-medium text-sm text-gray-700">@lang('New Password')</label>
+            <input type="password" id="new-password" name="new-password" aria-label="Enter a new password" placeholder="Enter a new password" class="form-input mt-1" required>
+          </div>
 
-            <div class="input-group mb-3{{ $errors->has('new-password') ? ' has-error' : '' }} row">
-              <label for="new-password" class="col-sm-3 col-form-label">@lang('New Password')</label>
-
-              <div class="col">
-                <div class="input-group password-toggler-container">
-                  <input type="password" class="form-control" id="new-password" name="new-password" aria-label="Enter a new password" placeholder="Enter a new password" required>
-                  <span class="input-group-text password-toggler">
-                    <i class="fa fa-eye-slash"></i>
-                    <i class="fa fa-eye d-none"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div class="input-group mb-3 row">
-              <label for="new-password-confirm" class="col-sm-3 col-form-label">@lang('Confirmation')</label>
-
-              <div class="col">
-                <div class="input-group password-toggler-container">
-                  <input type="password" class="form-control" id="new-password-confirm" name="new-password_confirmation" aria-label="Retype the new password" placeholder="Retype the new password" required>
-                  <span class="input-group-text password-toggler">
-                    <i class="fa fa-eye-slash"></i>
-                    <i class="fa fa-eye d-none"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col text-end">
-                <button type="submit" class="btn btn-primary">
-                  @lang('Change Password')
-                </button>
-              </div>
-            </div>
-          </div><!--col-->
-          </div><!--row-->
-        </div><!--card-body-->
-      </div><!--card-->
+          <div class="col-span-6 sm:col-span-4">
+            <label for="new-password-confirm" class="block font-medium text-sm text-gray-700">@lang('Confirmation')</label>
+            <input type="password" id="new-password-confirm" name="new-password_confirmation" aria-label="Retype the new password" placeholder="Retype the new password" class="form-input mt-1" required>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
+        <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+          @lang('Change Password')
+        </button>
+      </div>
     </form>
   </div>
 </div>

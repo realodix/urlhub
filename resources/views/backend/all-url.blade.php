@@ -4,22 +4,22 @@
 
 @section('content')
 <div class="all-url">
-  <div class="card">
-    <div class="card-body">
-      <div class="row mb-3">
-      <div class="col-sm-6">
-        <h4 class="card-title mb-0">
-          @lang('All URLs')
-        </h4>
-      </div><!--col-->
-      <div class="col-sm-6">
-        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" data-toggle="tooltip"><i class="fas fa-plus"></i></a>
-      </div><!--col-->
-      </div><!--row-->
+  <div class="bg-white p-4 shadow sm:rounded-md">
+      <div class="flex mb-8">
+        <div class="w-1/2">
+          <span class="font-bold text-2xl text-[#73539f]">
+            @lang('All URLs')
+          </span>
+        </div>
+        <div class="w-1/2 text-right">
+          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="font-bold text-2xl text-[#73539f]">
+            <i class="fas fa-plus"></i>
+          </a>
+        </div>
+      </div>
 
       @include('messages')
-
-      <div class="table-responsive-md">
+      <div class="overflow-x-auto sm:overflow-x-clip">
         <table id="dt-allUrls" class="table table-striped">
           <thead>
             <tr>
@@ -33,8 +33,6 @@
           </thead>
         </table>
       </div>
-
-    </div>
   </div>
 </div>
 @endsection

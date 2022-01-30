@@ -2,8 +2,7 @@ import './bootstrap';
 import {initPasswordFields} from './password-toggle';
 import 'datatables.net';
 
-$(document).ready(function() {
-
+$(function() {
     /**
      * DataTables
      * https://datatables.net/
