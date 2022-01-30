@@ -14,7 +14,7 @@ mix.extract()
   .version()
   .setPublicPath('public')
   .options({
-    autoprefixer: false,
+    autoprefixer: true,
     processCssUrls: false,
   });
 
