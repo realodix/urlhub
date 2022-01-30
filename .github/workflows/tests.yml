@@ -107,6 +107,8 @@ jobs:
         run: |
           composer -V
           composer install --no-interaction --ignore-platform-reqs
+          npm install
+          npm run dev
       - name: Setup Laravel
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
@@ -116,7 +118,7 @@ jobs:
           php artisan migrate --seed
           php artisan dusk:chrome-driver `/opt/google/chrome/chrome --version | cut -d " " -f3 | cut -d "." -f1`
           ./vendor/laravel/dusk/bin/chromedriver-linux &
-          php artisan serve &
+          php artisan serve
       - name: Run Automated Browser Testing
         env:
           APP_URL: "http://127.0.0.1:8000"
