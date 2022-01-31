@@ -3,7 +3,7 @@
 @section('css_class', 'frontend home')
 
 @section('content')
-<div class="pt-12">
+<div class="pt-16 sm:pt-28">
   @if (! Auth::check() and ! Config::get('urlhub.public_site'))
    <div class="flex flex-wrap md:justify-center">
     <div class="lg:w-8/12 text-5xl font-thin text-gray-600 text-center welcome-msg">@lang('Please login to shorten URLs')</div>
@@ -15,7 +15,7 @@
   </div>
   @else
   <div class="flex flex-wrap md:justify-center">
-    <div class="lg:w-8/12 text-5xl font-thin text-gray-600 text-center welcome-msg">Shorten links to better spread your story on social media</div>
+    <div class="lg:w-8/12 text-3xl sm:text-5xl font-thin text-gray-600 text-center welcome-msg">Shorten links to better spread your story on social media</div>
   </div>
 
   <div class="flex flex-wrap md:justify-center px-4 sm:px-0 mt-12 ">
