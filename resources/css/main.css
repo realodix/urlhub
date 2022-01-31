@@ -15,6 +15,14 @@ main {
   @apply border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm
 }
 
+.button {
+  @apply text-xs uppercase tracking-widest;
+  @apply rounded-md px-4 py-2;
+
+  @apply text-white bg-gray-800 hover:bg-gray-700 active:bg-gray-900;
+  @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
+}
+
 .badge-rounded {
   @apply text-xs font-bold;
   @apply text-center align-baseline whitespace-nowrap;
