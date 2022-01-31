@@ -6,6 +6,10 @@
   @apply bg-gray-100 font-sans text-gray-900 antialiased;
 }
 
+main {
+  @apply sm:mt-10;
+}
+
 .form-input {
   @apply block w-full;
   @apply border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm

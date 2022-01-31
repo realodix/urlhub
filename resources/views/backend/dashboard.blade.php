@@ -3,8 +3,7 @@
 @section('title', __('Dashboard'))
 
 @section('content')
-<div class="my-url">
-
+<main>
   @include('backend.partials.stat')
 
   <div class="bg-white p-4 shadow sm:rounded-md">
@@ -37,5 +36,5 @@
       </table>
     </div>
   </div>
-</div>
+</main>
 @endsection

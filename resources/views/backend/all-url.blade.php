@@ -3,7 +3,7 @@
 @section('title', __('All URLs'))
 
 @section('content')
-<div class="all-url">
+<main>
   <div class="bg-white p-4 shadow sm:rounded-md">
       <div class="flex mb-8">
         <div class="w-1/2">
@@ -34,5 +34,5 @@
         </table>
       </div>
   </div>
-</div>
+</main>
 @endsection

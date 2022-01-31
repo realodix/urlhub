@@ -6,7 +6,7 @@
 
 @include('messages')
 
-<div class="md:grid md:grid-cols-3 md:gap-6">
+<main class="md:grid md:grid-cols-3 md:gap-6">
   <div class="md:col-span-1 flex justify-between">
     <div class="px-4 sm:px-0">
       <h3 class="text-lg font-medium text-gray-900">@lang('Change Password')</h3>
@@ -16,7 +16,7 @@
       </p>
     </div>
   </div>
-  <div class="mt-5 md:mt-0 md:col-span-2">
+  <div class="mt-5 sm:mt-0 md:col-span-2">
     <form method="post" action="{{route('user.change-password.post', $user->getRouteKey())}}">
     @csrf
       <div class="bg-white px-4 py-5  sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
@@ -44,5 +44,5 @@
       </div>
     </form>
   </div>
-</div>
+</main>
 @endsection

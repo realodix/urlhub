@@ -3,7 +3,7 @@
 @section('title', __('All Users'))
 
 @section('content')
-<div class="all-url">
+<main>
   <div class="bg-white p-4 shadow sm:rounded-md">
     <div class="font-bold text-2xl text-[#73539f] mb-8">
       <span>@lang('All Users')</span>
@@ -23,5 +23,5 @@
       </table>
     </div>
   </div>
-</div>
+</main>
 @endsection
