@@ -38,10 +38,14 @@ jobs:
         with:
           timeout_minutes: 5
           max_attempts: 3
-          command: composer update --prefer-dist --no-interaction --no-progress
+          command: |
+            composer update --prefer-dist --no-interaction --no-progress
+            npm install
 
-      - name: Clear Config
-        run: php artisan config:clear
+      - name: Prepare
+        run: |
+          php artisan config:clear
+          npm run dev
 
       - name: Execute Tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
@@ -70,7 +74,13 @@ jobs:
         with:
           timeout_minutes: 5
           max_attempts: 3
-          command: composer install --no-interaction --no-progress
+          command: |
+            composer update --prefer-dist --no-interaction --no-progress
+            npm install
+      - name: Prepare
+        run: |
+          php artisan config:clear
+          npm run dev
       - name: Execute Tests
         env:
           DB_CONNECTION: pgsql
