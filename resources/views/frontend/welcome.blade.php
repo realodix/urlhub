@@ -23,15 +23,15 @@
       <form method="post" action="{{route('createshortlink')}}" class="mt-12 mb-4" id="formUrl">
       @csrf
         <div class="mt-1 relative rounded-md shadow">
-          <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}" placeholder="@lang('Paste a link to be shortened')" class="text-xl border-none focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 border-gray-300 rounded-md">
+          <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}" placeholder="@lang('Paste a link to be shortened')" class="text-xl border-none focus:ring-teal-500 focus:border-teal-500 block w-full pl-7 pr-12 border-gray-300 rounded-md">
           <div class="absolute inset-y-0 right-0 flex items-center">
-            <button type="submit" id="actProcess" class="text-xl bg-indigo-800 hover:bg-indigo-700 focus:bg-indigo-900 text-white rounded-r-md rounded-l-none">@lang('Shorten')</button>
+            <button type="submit" id="actProcess" class="text-xl bg-teal-700 hover:bg-teal-600 focus:bg-teal-900 text-white rounded-r-md rounded-l-none">@lang('Shorten')</button>
           </div>
         </div>
 
         <br>
 
-        <div class="custom-url">
+        <div class="custom-url sm:mt-8">
           <b>@lang('Custom URL (optional)')</b>
           <span class="block font-light mb-4">@lang('Replace clunky URLs with meaningful short links that get more clicks.')</span>
           <div class="inline text-2xl">{{$_SERVER['SERVER_NAME']}}/</div>
