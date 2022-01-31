@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.logo {
+  @apply font-serif text-4xl font-bold;
+  @apply flex items-center;
+}
+
 .frontend, .backend, .auth {
   @apply bg-gray-100 font-sans text-gray-900 antialiased;
 }

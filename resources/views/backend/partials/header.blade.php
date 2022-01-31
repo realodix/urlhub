@@ -1,7 +1,7 @@
 <nav class="bg-white border-b border-gray-100" x-data="{ open: false }">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
-      <a href="{{ url('/') }}" class="flex shrink-0 items-center text-nord10 text-3xl font-bold">{{appName()}}</a>
+      <a href="{{ url('/') }}" class="logo">{{appName()}}</a>
       <div class="hidden sm:flex sm:items-center sm:ml-6">
         {{-- Settings Dropdown --}}
         <div class="ml-3 relative">
