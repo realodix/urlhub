@@ -1,0 +1,15 @@
+{
+    "/js/frontend.js": "/js/frontend.js?id=ac3c2f65518d38c7f46e",
+    "/js/backend.js": "/js/backend.js?id=27f8731bbcd8f4882a9a",
+    "/js/manifest.js": "/js/manifest.js?id=d1179e1dfca1908380b8",
+    "/css/backend.css": "/css/backend.css?id=e4130d47a041f236891d",
+    "/css/main.css": "/css/main.css?id=62a1f5299b756cccccc2",
+    "/css/frontend.css": "/css/frontend.css?id=a8377be2e94335552b28",
+    "/js/vendor.js": "/js/vendor.js?id=d72285a4a1495fe880ce",
+    "/images/favicon.ico": "/images/favicon.ico?id=084b59f3bdde96e98673",
+    "/images/sort_asc.png": "/images/sort_asc.png?id=9fed1fb817a1d6b8b921",
+    "/images/sort_asc_disabled.png": "/images/sort_asc_disabled.png?id=05e94135bbbe0f7028e7",
+    "/images/sort_both.png": "/images/sort_both.png?id=bc49bc0e8d14db8eea8c",
+    "/images/sort_desc.png": "/images/sort_desc.png?id=a908a277531a1db2fb2c",
+    "/images/sort_desc_disabled.png": "/images/sort_desc_disabled.png?id=dde02cb2db0bb7d0ea3d"
+}
