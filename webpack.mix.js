@@ -25,7 +25,7 @@ if (!mix.inProduction()) {
     .sourceMaps()
     .browserSync({
       open: 'external',
-      host: 'urlhub-next.test',
-      proxy: 'urlhub-next.test'
+      host: 'urlhub.test',
+      proxy: 'urlhub.test'
     })
 }
