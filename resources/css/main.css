@@ -2,13 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-.logo {
-  @apply font-serif text-4xl font-bold;
-  @apply flex items-center;
-}
-
 .frontend, .backend, .auth {
   @apply bg-gray-100 font-sans text-gray-900 antialiased;
+}
+
+.navbar {
+  @apply bg-white;
+
+  &-brand {
+    @apply font-serif text-4xl font-bold;
+    @apply flex items-center;
+  }
+
+  .nav-item {
+    @apply text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 leading-5;
+    @apply block px-4 py-2 focus:outline-none transition;
+  }
+
+  &-mobile {
+    .nav-item {
+      @apply text-gray-700;
+      @apply block pl-3 pr-4 py-2 font-medium transition;
+
+      &-username {
+        @apply font-semibold;
+      }
+
+      &-email {
+        @apply text-gray-500 font-medium text-sm;
+      }
+    }
+  }
+
+  .frontend & {
+    @apply bg-[#3d5b99] text-white;
+
+    .navbar {
+      &-mobile {
+        .nav-item {
+          @apply text-white;
+
+          &-email {
+            @apply text-gray-300;
+          }
+        }
+      }
+    }
+  }
 }
 
 main {
