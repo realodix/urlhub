@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.0",
         "codeitnowin/barcode": "^3.0",
-        "creativeorange/gravatar": "~1.0",
         "doctrine/dbal": "^3.1",
         "embed/embed": "^4.3",
         "fruitcake/laravel-cors": "^2.0",
@@ -18,7 +17,6 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.3",
-        "laravolt/avatar": "^4.1",
         "nyholm/psr7": "^1.4",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",

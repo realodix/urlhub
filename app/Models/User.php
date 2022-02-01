@@ -4,13 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Traits\Hashidable;
-use Creativeorange\Gravatar\Facades\Gravatar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
-use Laravolt\Avatar\Facade as Avatar;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -57,32 +55,5 @@ class User extends Authenticatable
     public function url()
     {
         return $this->hasMany('App\Models\Url');
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Eloquent: Mutators
-    |--------------------------------------------------------------------------
-    |
-    | Accessors and mutators allow you to format Eloquent attribute values when
-    | you retrieve or set them on model instances.
-    |
-    */
-
-    /**
-     * Accessors.
-     *
-     * @codeCoverageIgnore
-     */
-    public function getAvatarAttribute()
-    {
-        // Check if Gravatar has an avatar for the given email address
-        if (Gravatar::exists($this->email) == true) {
-            // Get the gravatar url
-            return Gravatar::get($this->email);
-        }
-
-        // Create unique avatar based on their email
-        return Avatar::create(Str::title($this->email))->toBase64();
     }
 }
