@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class RenameTableUrlStatsToVisits extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -27,4 +27,4 @@ class RenameTableUrlStatsToVisits extends Migration
     {
         Schema::dropIfExists('url_stats');
     }
-}
+};
