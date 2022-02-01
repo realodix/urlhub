@@ -39,8 +39,6 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
             Route::get('{user}/changepassword', 'ChangePasswordController@view')->name('user.change-password');
             Route::post('{user_hashId}/changepassword', 'ChangePasswordController@update')->name('user.change-password.post');
         });
-
-        require base_path('routes/breadcrumbs.php');
     });
 });
 
