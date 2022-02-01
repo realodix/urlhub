@@ -60,8 +60,8 @@ class UrlServiceTest extends TestCase
      * @group u-service
      * @dataProvider getDomainProvider
      *
-     * @param mixed $expected
-     * @param mixed $actutal
+     * @param  mixed  $expected
+     * @param  mixed  $actutal
      */
     public function getDomain($expected, $actutal)
     {
