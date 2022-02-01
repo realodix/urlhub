@@ -38,6 +38,10 @@
     @apply bg-[#3d5b99] text-white;
 
     .navbar {
+      &-toggler {
+        @apply text-white;
+      }
+
       &-mobile {
         .nav-item {
           @apply text-white;
