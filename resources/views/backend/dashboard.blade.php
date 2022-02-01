@@ -4,7 +4,7 @@
 
 @section('content')
 <main>
-  @include('backend.partials.stat')
+  @include('partials.b-stat')
 
   <div class="bg-white p-4 shadow sm:rounded-md">
     <div class="flex mb-8">
