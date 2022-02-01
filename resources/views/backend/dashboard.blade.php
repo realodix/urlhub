@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    @include('messages')
+    @include('partials/messages')
 
     <div class="overflow-x-auto sm:overflow-x-clip">
       <table id="dt-myUrls" class="table border-collapse border border-slate-700">

@@ -7,7 +7,7 @@
   <div class="flex flex-wrap px-4 sm:p-6 mt-6 sm:mt-12">
     <div class="md:w-9/12">
 
-      @include('messages')
+      @include('partials/messages')
 
       <ul>
         <li class="inline-block pr-4">

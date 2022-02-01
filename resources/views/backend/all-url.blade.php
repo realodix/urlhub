@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      @include('messages')
+      @include('partials/messages')
       <div class="overflow-x-auto sm:overflow-x-clip">
         <table id="dt-allUrls" class="table table-striped">
           <thead>

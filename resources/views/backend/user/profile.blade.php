@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('messages')
+@include('partials/messages')
 
 <main class="md:grid md:grid-cols-3 md:gap-6">
   <div class="md:col-span-1 flex justify-between">

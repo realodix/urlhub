@@ -10,7 +10,7 @@
   </div>
   <div class="flex flex-wrap md:justify-center mt-12">
     <div class="lg:w-7/12">
-      @include('messages')
+      @include('partials/messages')
     </div>
   </div>
   @else
@@ -42,7 +42,7 @@
         </div>
       </form>
 
-      @include('messages')
+      @include('partials/messages')
 
     </div>
   </div>
