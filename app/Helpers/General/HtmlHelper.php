@@ -22,7 +22,7 @@ class HtmlHelper
     /**
      * HtmlHelper constructor.
      *
-     * @param UrlGenerator $url
+     * @param  UrlGenerator  $url
      */
     public function __construct(UrlGenerator $url = null)
     {
@@ -30,10 +30,9 @@ class HtmlHelper
     }
 
     /**
-     * @param string $url
-     * @param array  $attributes
-     * @param null   $secure
-     *
+     * @param  string  $url
+     * @param  array  $attributes
+     * @param  null  $secure
      * @return mixed
      */
     public function style(string $url, array $attributes = [], $secure = null)
@@ -54,10 +53,9 @@ class HtmlHelper
     /**
      * Generate a link to a JavaScript file.
      *
-     * @param string $url
-     * @param array  $attributes
-     * @param bool   $secure
-     *
+     * @param  string  $url
+     * @param  array  $attributes
+     * @param  bool  $secure
      * @return \Illuminate\Support\HtmlString
      */
     public function script(string $url, array $attributes = [], $secure = null)
@@ -70,8 +68,7 @@ class HtmlHelper
     /**
      * Build an HTML attribute string from an array.
      *
-     * @param array $attributes
-     *
+     * @param  array  $attributes
      * @return string
      */
     public function attributes(array $attributes)
@@ -92,9 +89,8 @@ class HtmlHelper
     /**
      * Build a single attribute element.
      *
-     * @param string $key
-     * @param string $value
-     *
+     * @param  string  $key
+     * @param  string  $value
      * @return string
      */
     protected function attributeElement(string $key, string $value)
@@ -120,8 +116,7 @@ class HtmlHelper
     /**
      * Transform the string to an Html serializable object.
      *
-     * @param string $html
-     *
+     * @param  string  $html
      * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString(string $html)

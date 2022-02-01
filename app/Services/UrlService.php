@@ -30,8 +30,8 @@ class UrlService
     }
 
     /**
-     * @param array|string $request
-     * @param int          $authId
+     * @param  array|string  $request
+     * @param  int  $authId
      */
     public function shortenUrl($request, $authId)
     {
@@ -48,8 +48,8 @@ class UrlService
     }
 
     /**
-     * @param array  $request
-     * @param object $url     \App\Models\Url
+     * @param  array  $request
+     * @param  object  $url  \App\Models\Url
      */
     public function update(array $request, object $url)
     {
@@ -61,7 +61,7 @@ class UrlService
     }
 
     /**
-     * @param object $url \App\Models\Url
+     * @param  object  $url  \App\Models\Url
      */
     public function delete(object $url)
     {
@@ -69,8 +69,8 @@ class UrlService
     }
 
     /**
-     * @param string $key
-     * @param int    $authId
+     * @param  string  $key
+     * @param  int  $authId
      */
     public function duplicate($key, $authId)
     {
@@ -94,7 +94,7 @@ class UrlService
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      */
     public function shortUrlCountOwnedBy($id = null)
     {
@@ -107,7 +107,7 @@ class UrlService
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      */
     public function clickCountOwnedBy($id = null): int
     {
@@ -119,7 +119,7 @@ class UrlService
      * DB-IP Lite databases doesn't know the IP country, we will set it to
      * Unknown.
      *
-     * @param string $ip
+     * @param  string  $ip
      */
     public function ipToCountry($ip)
     {
@@ -143,8 +143,7 @@ class UrlService
     /**
      * Anonymize an IPv4 or IPv6 address.
      *
-     * @param string $address
-     *
+     * @param  string  $address
      * @return string
      */
     public static function anonymizeIp($address)
@@ -163,8 +162,7 @@ class UrlService
      * a valid domain without any subdomain (www being a subdomain). Won't
      * work on things like 'localhost'.
      *
-     * @param string $url
-     *
+     * @param  string  $url
      * @return string
      */
     public function getDomain(string $url)
@@ -178,8 +176,7 @@ class UrlService
      * This function returns a string: either the page title as defined in
      * HTML, or "{domain_name} - No Title" if not found.
      *
-     * @param string $url
-     *
+     * @param  string  $url
      * @return string
      */
     public function webTitle(string $url)
@@ -202,7 +199,7 @@ class UrlService
     /**
      * Get information from any web page.
      *
-     * @param string $url
+     * @param  string  $url
      * @codeCoverageIgnore
      */
     public function webInfo(string $url)
