@@ -12,7 +12,7 @@
 </head>
 
 <body class="@yield('css_class')"></body>
-@include('sections/nav')
+@include('partials/nav')
 
 @yield('content')
 

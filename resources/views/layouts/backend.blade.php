@@ -12,13 +12,13 @@
 </head>
 
 <body class="backend">
-@include('backend.partials.header')
+@include('partials.b-header')
 
 <main class="main max-w-7xl mx-auto py-4 sm:mt-0 sm:px-6 lg:px-8">
   @yield('content')
 </main>
 
-@include('backend.partials.footer')
+@include('partials.b-footer')
 
 {!! script(mix('js/manifest.js')) !!}
 {!! script(mix('js/vendor.js')) !!}
