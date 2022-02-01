@@ -17,8 +17,8 @@ class UrlRedirectionService
     /**
      * UrlRedirectionService constructor.
      *
-     * @param  Agent|null  $agent  \Jenssegers\Agent\Agent
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
+     * @param Agent|null $agent   \Jenssegers\Agent\Agent
+     * @param UrlService $urlSrvc \App\Services\UrlService
      */
     public function __construct(Agent $agent = null, protected UrlService $urlSrvc)
     {
@@ -31,7 +31,8 @@ class UrlRedirectionService
      * Redirect client to an existing short URL (no check performed) and
      * execute tasks update clicks for short URL.
      *
-     * @param  Url  $url  \App\Models\Url
+     * @param Url $url \App\Models\Url
+     *
      * @return RedirectResponse
      */
     public function handleHttpRedirect(Url $url)
@@ -54,8 +55,8 @@ class UrlRedirectionService
     /**
      * Create visit statistics and store it in the database.
      *
-     * @param  Url  $url  \App\Models\Url
-     * @param  array  $countries
+     * @param Url   $url       \App\Models\Url
+     * @param array $countries
      */
     private function storeVisitStat(Url $url, array $countries)
     {

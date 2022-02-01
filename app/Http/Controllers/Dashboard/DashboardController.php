@@ -16,7 +16,7 @@ class DashboardController extends Controller
     /**
      * DashboardController constructor.
      *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
+     * @param UrlService $urlSrvc \App\Services\UrlService
      */
     public function __construct(protected UrlService $urlSrvc)
     {
@@ -49,7 +49,7 @@ class DashboardController extends Controller
     /**
      * Show the long url edit page.
      *
-     * @param  mixed  $key
+     * @param mixed $key
      */
     public function edit($key)
     {
@@ -63,8 +63,8 @@ class DashboardController extends Controller
     /**
      * Update the long url that was previously set to the new long url.
      *
-     * @param  Request  $request  \Illuminate\Http\Request
-     * @param  mixed  $url
+     * @param Request $request \Illuminate\Http\Request
+     * @param mixed   $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -79,7 +79,7 @@ class DashboardController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param  mixed  $url
+     * @param mixed $url
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -97,7 +97,7 @@ class DashboardController extends Controller
      * UrlHub only allows users (registered & unregistered) to have a unique
      * link. You can duplicate it and it will produce a new unique random key.
      *
-     * @param  mixed  $key
+     * @param mixed $key
      */
     public function duplicate($key)
     {
