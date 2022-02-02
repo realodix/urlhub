@@ -38,7 +38,7 @@
       <br> <br>
 
       <b>@lang('Original URL')</b>
-      <div class="font-light">{{ $url->long_url }}</div>
+      <div class="font-light break-all">{{ $url->long_url }}</div>
     </div>
   </div>
 
