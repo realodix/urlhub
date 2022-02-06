@@ -148,8 +148,7 @@ final class MyUrlTable extends PowerGridComponent
             Column::add()
                 ->title('ACTIONS')
                 ->field('action')
-                ->searchable()
-                ->sortable(),
+                ->searchable(),
         ];
     }
 }

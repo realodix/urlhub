@@ -7,7 +7,7 @@
 }
 
 .navbar {
-  @apply bg-white;
+  @apply bg-white text-[#3d5b99];
 
   &-brand {
     @apply font-serif text-4xl font-bold;
