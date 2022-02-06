@@ -78,7 +78,8 @@ final class UserTable extends PowerGridComponent
                 return
                     '<span title="'.$user->created_at->toDayDateTimeString().'">
                         '.$user->created_at->diffForHumans().
-                    '</span>'; })
+                    '</span>';
+            })
             ->addColumn('action', function (User $user) {
                 return
                     '<a role="button" class="text-slate-400 hover:text-slate-600 active:text-slate-500" href="'.route('user.edit', $user->name).'" title="'.__('Details').'"><i class="fas fa-user-edit"></i></a>
