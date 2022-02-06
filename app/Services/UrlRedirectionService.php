@@ -32,7 +32,6 @@ class UrlRedirectionService
      * execute tasks update clicks for short URL.
      *
      * @param  Url  $url  \App\Models\Url
-     *
      * @return RedirectResponse
      */
     public function handleHttpRedirect(Url $url)

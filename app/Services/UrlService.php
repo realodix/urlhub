@@ -144,7 +144,6 @@ class UrlService
      * Anonymize an IPv4 or IPv6 address.
      *
      * @param  string  $address
-     *
      * @return string
      */
     public static function anonymizeIp($address)
@@ -164,7 +163,6 @@ class UrlService
      * work on things like 'localhost'.
      *
      * @param  string  $url
-     *
      * @return string
      */
     public function getDomain(string $url)
@@ -179,7 +177,6 @@ class UrlService
      * HTML, or "{domain_name} - No Title" if not found.
      *
      * @param  string  $url
-     *
      * @return string
      */
     public function webTitle(string $url)
