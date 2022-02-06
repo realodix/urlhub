@@ -16,7 +16,6 @@ class UrlPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Url  $url
-     *
      * @return bool
      */
     public function forceDelete(User $user, Url $url)
@@ -29,7 +28,6 @@ class UrlPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Url  $url
-     *
      * @return bool
      */
     public function updateUrl(User $user, Url $url)
