@@ -104,8 +104,8 @@ class ConfigService
     }
 
     /**
-     * @param string $configOption configuration option
-     * @param bool   $defaultValue configuration values
+     * @param  string  $configOption  configuration option
+     * @param  bool  $defaultValue  configuration values
      *
      * @codeCoverageIgnore
      */
