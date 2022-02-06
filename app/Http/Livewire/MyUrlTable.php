@@ -31,7 +31,8 @@ final class MyUrlTable extends PowerGridComponent
     */
     public function setUp(): void
     {
-        $this->showPerPage()
+        $this->showRecordCount('full')
+            ->showPerPage()
             ->showSearchInput();
     }
 

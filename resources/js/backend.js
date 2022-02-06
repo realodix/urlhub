@@ -4,40 +4,6 @@ import 'datatables.net';
 
 $(function() {
     /**
-     * DataTables
-     * https://datatables.net/
-     */
-
-    // All URLs Page
-    $('#dt-allUrls').DataTable( {
-        processing: true,
-        serverSide: true,
-        stateSave: true,
-        ajax: '/admin/allurl/getdata',
-        columns: [
-            {data: 'keyword'},
-            {data: 'long_url', name: 'meta_title'},
-            {data: 'clicks', searchable: false},
-            {data: 'created_by'},
-            {
-                data: 'created_at',
-                type: 'num',
-                render: {
-                    _: 'display',
-                    sort: 'timestamp'
-                },
-                searchable: false
-            },
-            {data: 'action'}
-        ],
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search..."
-        }
-    }).order([4, 'desc']).draw();
-
-
-    /**
      * Initialise the password toggle fields.
      */
     initPasswordFields();
