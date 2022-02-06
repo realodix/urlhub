@@ -4,14 +4,11 @@ namespace App\Http\Livewire;
 
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
-use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
-use PowerComponents\LivewirePowerGrid\Rules\Rule;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class AllUlrTable extends PowerGridComponent
@@ -96,10 +93,10 @@ final class AllUlrTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" class="text-indigo-400 hover:text-indigo-600 active:text-indigo-700" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
-                    <a role="button" class="text-indigo-400 hover:text-indigo-600 active:text-indigo-700" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"><i class="far fa-clone"></i></a>
-                    <a role="button" class="text-teal-400 hover:text-teal-600 active:text-teal-700" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"><i class="fas fa-edit"></i></a>
-                    <a role="button" class="text-red-400 hover:text-red-600 active:text-red-700" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'"><i class="fas fa-trash-alt"></i></a>';
+                    '<a role="button" class="text-slate-400 hover:text-indigo-600 active:text-indigo-700" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
+                    <a role="button" class="text-slate-400 hover:text-indigo-600 active:text-indigo-700" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"><i class="far fa-clone"></i></a>
+                    <a role="button" class="text-slate-400 hover:text-teal-600 active:text-teal-700" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"><i class="fas fa-edit"></i></a>
+                    <a role="button" class="text-slate-400 hover:text-red-600 active:text-red-700" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'"><i class="fas fa-trash-alt"></i></a>';
             });
     }
 
@@ -148,111 +145,4 @@ final class AllUlrTable extends PowerGridComponent
 
         ];
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Method
-    |--------------------------------------------------------------------------
-    | Enable the method below only if the Routes below are defined in your app.
-    |
-    */
-
-     /*
-      * PowerGrid Url Action Buttons.
-      *
-      * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
-      */
-
-    /*
-    public function actions(): array
-    {
-       return [
-           Button::add('edit')
-               ->caption('Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('url.edit', ['url' => 'id']),
-
-           Button::add('destroy')
-               ->caption('Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('url.destroy', ['url' => 'id'])
-               ->method('delete')
-        ];
-    }
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Rules
-    |--------------------------------------------------------------------------
-    | Enable the method below to configure Rules for your Table and Action Buttons.
-    |
-    */
-
-     /*
-      * PowerGrid Url Action Rules.
-      *
-      * @return array<int, \PowerComponents\LivewirePowerGrid\Rules\Rule>
-      */
-
-    /*
-    public function actionRules(): array
-    {
-       return [
-
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($url) => $url->id === 1)
-                ->hide(),
-        ];
-    }
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | Edit Method
-    |--------------------------------------------------------------------------
-    | Enable the method below to use editOnClick() or toggleable() methods.
-    | Data must be validated and treated (see "Update Data" in PowerGrid doc).
-    |
-    */
-
-     /*
-      * PowerGrid Url Update.
-      *
-      * @param array<string,string> $data
-      */
-
-    /*
-    public function update(array $data ): bool
-    {
-       try {
-           $updated = Url::query()->findOrFail($data['id'])
-                ->update([
-                    $data['field'] => $data['value'],
-                ]);
-       } catch (QueryException $exception) {
-           $updated = false;
-       }
-       return $updated;
-    }
-
-    public function updateMessages(string $status = 'error', string $field = '_default_message'): string
-    {
-        $updateMessages = [
-            'success'   => [
-                '_default_message' => __('Data has been updated successfully!'),
-                //'custom_field'   => __('Custom Field updated successfully!'),
-            ],
-            'error' => [
-                '_default_message' => __('Error updating the data.'),
-                //'custom_field'   => __('Error updating custom field.'),
-            ]
-        ];
-
-        $message = ($updateMessages[$status][$field] ?? $updateMessages[$status]['_default_message']);
-
-        return (is_string($message)) ? $message : 'Error!';
-    }
-    */
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Services\UrlService;
-use Illuminate\Support\Str;
 
 class AllUrlController extends Controller
 {
