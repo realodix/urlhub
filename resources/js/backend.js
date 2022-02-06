@@ -36,39 +36,6 @@ $(function() {
         }
     }).order([4, 'desc']).draw();
 
-    // All Users Page
-    $('#dt-Users').DataTable({
-        processing: true,
-        serverSide: true,
-        stateSave: true,
-        ajax: '/admin/user/user/getdata',
-        columns: [
-            {data: 'name'},
-            {data: 'email'},
-            {
-                data: 'created_at',
-                type: 'num',
-                render: {
-                    _: 'display',
-                    sort: 'timestamp'
-                }
-            },
-            {
-                data: 'updated_at',
-                type: 'num',
-                render: {
-                    _: 'display',
-                    sort: 'timestamp'
-                },
-                searchable: false,
-            },
-            {data: 'action'}
-        ],
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search..."
-        }
-    }).order([2, 'desc']).draw();
 
     /**
      * Initialise the password toggle fields.
