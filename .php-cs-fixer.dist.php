@@ -10,6 +10,7 @@ $overrideRules = [
     'phpdoc_order' => false,
     'phpdoc_separation' => false,
     // RelodixPlus
+    'PhpCsFixerCustomFixers/single_space_after_statement' => false,
     'PhpCsFixerCustomFixers/no_useless_comment' => false,
     'binary_operator_spaces' => false,
     'general_phpdoc_annotation_remove' => false,
