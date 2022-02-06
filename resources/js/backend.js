@@ -36,33 +36,6 @@ $(function() {
         }
     }).order([4, 'desc']).draw();
 
-    // My URLs Page
-    $('#dt-myUrls').DataTable({
-        processing: true,
-        serverSide: true,
-        stateSave: true,
-        ajax: '/admin/myurl/getdata',
-        columns: [
-            {data: 'keyword'},
-            {data: 'long_url', name: 'meta_title'},
-            {data: 'clicks', searchable: false},
-            {
-                data: 'created_at',
-                type: 'num',
-                render: {
-                    _: 'display',
-                    sort: 'timestamp'
-                },
-                searchable: false
-            },
-            {data: 'action'}
-        ],
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search..."
-        }
-    }).order([3, 'desc']).draw();
-
     // All Users Page
     $('#dt-Users').DataTable({
         processing: true,
