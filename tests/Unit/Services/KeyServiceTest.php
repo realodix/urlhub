@@ -51,9 +51,9 @@ class KeyServiceTest extends TestCase
      * @group u-service
      * @dataProvider keyRemainingProvider
      *
-     * @param  mixed  $kc
-     * @param  mixed  $nouk
-     * @param  mixed  $expected
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
      */
     public function keyRemaining($kc, $nouk, $expected)
     {
@@ -81,9 +81,9 @@ class KeyServiceTest extends TestCase
      * @group u-service
      * @dataProvider keyRemainingInPercentProvider
      *
-     * @param  mixed  $kc
-     * @param  mixed  $nouk
-     * @param  mixed  $expected
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
      */
     public function keyRemainingInPercent($kc, $nouk, $expected)
     {

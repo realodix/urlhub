@@ -12,8 +12,8 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider hashCharProvider
      *
-     * @param  mixed  $value
-     * @param  mixed  $expected
+     * @param mixed $value
+     * @param mixed $expected
      */
     public function hashChar($value, $expected)
     {
@@ -40,8 +40,8 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider hashLengthProvider
      *
-     * @param  mixed  $value
-     * @param  mixed  $expected
+     * @param mixed $value
+     * @param mixed $expected
      */
     public function hashLength($value, $expected)
     {
@@ -68,8 +68,8 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider redirectStatusCodeProvider
      *
-     * @param  mixed  $value
-     * @param  mixed  $expected
+     * @param mixed $value
+     * @param mixed $expected
      */
     public function redirectStatusCode($value, $expected)
     {
@@ -97,8 +97,8 @@ class ConfigServiceTest extends TestCase
      * @group u-service
      * @dataProvider redirectCacheLifetimeProvider
      *
-     * @param  mixed  $value
-     * @param  mixed  $expected
+     * @param mixed $value
+     * @param mixed $expected
      */
     public function redirectCacheLifetime($value, $expected)
     {

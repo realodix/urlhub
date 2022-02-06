@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -16,12 +15,11 @@ use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Rules\Rule;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
-
 final class MyUrlTable extends PowerGridComponent
 {
     use ActionButton;
 
-    //Messages informing success/error data is updated.
+    // Messages informing success/error data is updated.
     public bool $showUpdateMessages = true;
 
     /*
@@ -80,10 +78,10 @@ final class MyUrlTable extends PowerGridComponent
     public function addColumns(): ?PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('keyword', function(Url $url) {
+            ->addColumn('keyword', function (Url $url) {
                 return '<a href="'.$url->short_url.'" target="_blank" class="">'.$url->keyword.'</a>';
             })
-            ->addColumn('long_url', function(Url $url) {
+            ->addColumn('long_url', function (Url $url) {
                 return '
                     <span title="'.$url->meta_title.'">
                         '.Str::limit($url->meta_title, 80).'
@@ -94,9 +92,8 @@ final class MyUrlTable extends PowerGridComponent
                     </a>';
             })
             ->addColumn('clicks')
-            ->addColumn('created_at_formatted', function(Url $url) {
-                return
-                    '<span title="'.$url->created_at->toDayDateTimeString().'">
+            ->addColumn('created_at_formatted', function (Url $url) {
+                return '<span title="'.$url->created_at->toDayDateTimeString().'">
                         '.$url->created_at->diffForHumans().
                     '</span>';
             })
@@ -119,7 +116,7 @@ final class MyUrlTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -154,8 +151,7 @@ final class MyUrlTable extends PowerGridComponent
                 ->field('action')
                 ->searchable()
                 ->sortable(),
-        ]
-;
+        ];
     }
 
     /*
@@ -166,11 +162,11 @@ final class MyUrlTable extends PowerGridComponent
     |
     */
 
-     /**
-     * PowerGrid Url Action Buttons.
-     *
-     * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
-     */
+     /*
+      * PowerGrid Url Action Buttons.
+      *
+      * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
+      */
 
     /*
     public function actions(): array
@@ -198,11 +194,11 @@ final class MyUrlTable extends PowerGridComponent
     |
     */
 
-     /**
-     * PowerGrid Url Action Rules.
-     *
-     * @return array<int, \PowerComponents\LivewirePowerGrid\Rules\Rule>
-     */
+     /*
+      * PowerGrid Url Action Rules.
+      *
+      * @return array<int, \PowerComponents\LivewirePowerGrid\Rules\Rule>
+      */
 
     /*
     public function actionRules(): array
@@ -226,11 +222,11 @@ final class MyUrlTable extends PowerGridComponent
     |
     */
 
-     /**
-     * PowerGrid Url Update.
-     *
-     * @param array<string,string> $data
-     */
+     /*
+      * PowerGrid Url Update.
+      *
+      * @param array<string,string> $data
+      */
 
     /*
     public function update(array $data ): bool

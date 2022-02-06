@@ -33,7 +33,7 @@ class UrlTest extends TestCase
      * @group f-api
      * @dataProvider shortenUrlFailProvider
      *
-     * @param  mixed  $value
+     * @param mixed $value
      */
     public function shortenUrlFail($value)
     {

@@ -12,7 +12,7 @@ class ChangePasswordController extends Controller
     /**
      * ChangePasswordController constructor.
      *
-     * @param  UserService  $userSrvc  \App\Services\UserService
+     * @param UserService $userSrvc \App\Services\UserService
      */
     public function __construct(protected UserService $userSrvc)
     {
@@ -22,7 +22,7 @@ class ChangePasswordController extends Controller
     /**
      * Show the form for editing password.
      *
-     * @param  User  $user  \App\Models\User
+     * @param User $user \App\Models\User
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -36,8 +36,8 @@ class ChangePasswordController extends Controller
     /**
      * Change the password.
      *
-     * @param  UpdateUserPassword  $request  \App\Http\Requests\UpdateUserPassword
-     * @param  User  $user  \App\Models\User
+     * @param UpdateUserPassword $request \App\Http\Requests\UpdateUserPassword
+     * @param User               $user    \App\Models\User
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
