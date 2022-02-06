@@ -31,10 +31,8 @@ final class MyUrlTable extends PowerGridComponent
     */
     public function setUp(): void
     {
-        $this->showCheckBox()
-            ->showPerPage()
-            ->showSearchInput()
-            ->showExportOption('download', ['excel', 'csv']);
+        $this->showPerPage()
+            ->showSearchInput();
     }
 
     /*
@@ -100,12 +98,10 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <a role="button" class="text-indigo-800 hover:text-indigo-600 active:text-indigo-700" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
-                        <a role="button" class="text-indigo-800 hover:text-indigo-600 active:text-indigo-700" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"><i class="far fa-clone"></i></a>
-                        <a role="button" class="text-teal-800 hover:text-teal-600 active:text-teal-700" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"><i class="fas fa-edit"></i></a>
-                        <a role="button" class="text-red-400 hover:text-red-600 active:text-red-700" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'"><i class="fas fa-trash-alt"></i></a>
-                    </div>';
+                    '<a role="button" class="text-indigo-400 hover:text-indigo-600 active:text-indigo-700" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
+                    <a role="button" class="text-indigo-400 hover:text-indigo-600 active:text-indigo-700" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"><i class="far fa-clone"></i></a>
+                    <a role="button" class="text-teal-400 hover:text-teal-600 active:text-teal-700" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"><i class="fas fa-edit"></i></a>
+                    <a role="button" class="text-red-400 hover:text-red-600 active:text-red-700" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'"><i class="fas fa-trash-alt"></i></a>';
             });
     }
 
