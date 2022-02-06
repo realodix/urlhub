@@ -5,6 +5,10 @@ use Realodix\CsConfig\Factory;
 use Realodix\CsConfig\RuleSet;
 
 $overrideRules = [
+    // Realodix
+    'phpdoc_align' => false,
+    'phpdoc_order' => false,
+    'phpdoc_separation' => false,
     // RelodixPlus
     'PhpCsFixerCustomFixers/no_useless_comment' => false,
     'binary_operator_spaces' => false,
