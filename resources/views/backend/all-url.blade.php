@@ -19,20 +19,8 @@
       </div>
 
       @include('partials/messages')
-      <div class="overflow-x-auto sm:overflow-x-clip">
-        <table id="dt-allUrls" class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">@lang('Short URL')</th>
-              <th scope="col">@lang('Original URL')</th>
-              <th scope="col">@lang('Clicks')</th>
-              <th scope="col">@lang('Created By')</th>
-              <th scope="col">@lang('Date')</th>
-              <th scope="col">@lang('Actions')</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+
+      @livewire('all-ulr-table')
   </div>
 </main>
 @endsection

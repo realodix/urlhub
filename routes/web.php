@@ -14,7 +14,6 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', 'DashboardController@view')->name('dashboard');
-        Route::get('/myurl/getdata', 'DashboardController@dataTable');
         Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('dashboard.delete');
         Route::get('/duplicate/{keyword}', 'DashboardController@duplicate')->name('dashboard.duplicate');
         Route::get('/edit/{keyword}', 'DashboardController@edit')->name('short_url.edit');
@@ -25,13 +24,11 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
 
         // All URLs
         Route::get('/allurl', 'AllUrlController@view')->name('dashboard.allurl');
-        Route::get('/allurl/getdata', 'AllUrlController@dataTable');
         Route::get('/allurl/delete/{url_hashId}', 'AllUrlController@delete')->name('dashboard.allurl.delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
             Route::get('/', 'UserController@view')->name('user.index');
-            Route::get('/user/getdata', 'UserController@dataTable');
 
             Route::get('{user}/edit', 'UserController@edit')->name('user.edit');
             Route::post('{user_hashId}/edit', 'UserController@update')->name('user.update');
