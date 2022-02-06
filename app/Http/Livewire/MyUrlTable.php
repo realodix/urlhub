@@ -12,6 +12,9 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class MyUrlTable extends PowerGridComponent
 {
     use ActionButton;

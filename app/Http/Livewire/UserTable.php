@@ -10,6 +10,9 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class UserTable extends PowerGridComponent
 {
     use ActionButton;
