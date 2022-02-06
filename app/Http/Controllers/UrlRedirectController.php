@@ -14,6 +14,7 @@ class UrlRedirectController extends Controller
      *
      * @param  UrlRedirectionService  $service
      * @param  string  $key
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(UrlRedirectionService $service, string $key)

@@ -22,6 +22,7 @@ class KeyService
 
     /**
      * @param  string  $string
+     *
      * @return string
      */
     public function urlKey(string $string)
