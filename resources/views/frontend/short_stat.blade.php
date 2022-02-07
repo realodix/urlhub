@@ -36,23 +36,4 @@
     @endforeach
     </div>
   </div>
-
-  <div class="mt-8">
-    <div class="mb-4">
-      <b>@lang('Countries')</b>
-      <span class="badge-rounded bg-indigo-400/10 text-indigo-600">
-        {{$url->visit->pluck('country')->unique()->count()}}</span>
-    </div>
-
-    <div class="flex flex-wrap gap-2">
-    @foreach($url->visit->pluck('country')->unique() as $country)
-      <div class="basis-auto sm:basis-1/6 border border-gray-300 rounded-md p-2 sm:p-2">
-        <h5 class="card-title">{{$country}}</h5>
-        <h6 class="">
-          {{$url->visit->where('country', $country)->count()}}
-        </h6>
-      </div>
-    @endforeach
-    </div>
-  </div>
 </div>

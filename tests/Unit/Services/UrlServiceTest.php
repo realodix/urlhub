@@ -19,29 +19,6 @@ class UrlServiceTest extends TestCase
     }
 
     /**
-     * @test
-     * @group u-service
-     */
-    public function ipToCountryWithKnownIp()
-    {
-        $countries = $this->urlSrvc->ipToCountry('8.8.8.8');
-
-        $this->assertEquals('US', $countries['countryCode']);
-    }
-
-    /**
-     * @test
-     * @group u-service
-     */
-    public function ipToCountryWithUnknownIp()
-    {
-        $countries = $this->urlSrvc->ipToCountry('127.0.0.1');
-
-        $this->assertEquals('N/A', $countries['countryCode']);
-        $this->assertEquals('Unknown', $countries['countryName']);
-    }
-
-    /**
      * @group u-services
      */
     public function testAnonymizeIpWhenConfigSettedFalse()

@@ -23,8 +23,6 @@ class CreateUrlStatsTable extends Migration
             $table->string('platform_version')->nullable();
             $table->string('browser')->nullable();
             $table->string('browser_version')->nullable();
-            $table->char('country', 10)->nullable();
-            $table->string('country_full', 50)->nullable();
             $table->timestamps();
 
             $table->foreign('url_id')
