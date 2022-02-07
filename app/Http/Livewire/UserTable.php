@@ -17,8 +17,8 @@ final class UserTable extends PowerGridComponent
 {
     use ActionButton;
 
-    // Messages informing success/error data is updated.
     public bool $showUpdateMessages = true;
+    public string $sortDirection = 'desc';
 
     /*
     |--------------------------------------------------------------------------
