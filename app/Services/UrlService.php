@@ -87,7 +87,7 @@ class UrlService
         return $replicate;
     }
 
-    public function shortUrlCount()
+    public function totalShortLink()
     {
         return $this->url->count('keyword');
     }
@@ -95,7 +95,7 @@ class UrlService
     /**
      * @param  int  $id
      */
-    public function shortUrlCountOwnedBy($id = null)
+    public function totalShortLinkOwnedBy($id = null)
     {
         return $this->url->whereUserId($id)->count('keyword');
     }

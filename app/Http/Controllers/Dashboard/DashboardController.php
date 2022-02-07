@@ -31,17 +31,17 @@ class DashboardController extends Controller
         $keySrvc = new KeyService;
 
         return view('backend.dashboard', [
-            'shortUrlCount'        => $this->urlSrvc->shortUrlCount(),
-            'shortUrlCountByMe'    => $this->urlSrvc->shortUrlCountOwnedBy(Auth::id()),
-            'shortUrlCountByGuest' => $this->urlSrvc->shortUrlCountOwnedBy(),
-            'clickCount'           => $this->urlSrvc->clickCount(),
-            'clickCountFromMe'     => $this->urlSrvc->clickCountOwnedBy(Auth::id()),
-            'clickCountFromGuest'  => $this->urlSrvc->clickCountOwnedBy(),
-            'userCount'            => $userSrvc->userCount(),
-            'guestCount'           => $userSrvc->guestCount(),
-            'keyCapacity'          => $keySrvc->keyCapacity(),
-            'keyRemaining'         => $keySrvc->keyRemaining(),
-            'remainingPercentage'  => $keySrvc->keyRemainingInPercent(),
+            'tShortLink'          => $this->urlSrvc->totalShortLink(),
+            'tShortLinkByMe'      => $this->urlSrvc->totalShortLinkOwnedBy(Auth::id()),
+            'tShortLinkByGuest'   => $this->urlSrvc->totalShortLinkOwnedBy(),
+            'clickCount'          => $this->urlSrvc->clickCount(),
+            'clickCountFromMe'    => $this->urlSrvc->clickCountOwnedBy(Auth::id()),
+            'clickCountFromGuest' => $this->urlSrvc->clickCountOwnedBy(),
+            'userCount'           => $userSrvc->userCount(),
+            'guestCount'          => $userSrvc->guestCount(),
+            'keyCapacity'         => $keySrvc->keyCapacity(),
+            'keyRemaining'        => $keySrvc->keyRemaining(),
+            'remainingPercentage' => $keySrvc->keyRemainingInPercent(),
         ]);
     }
 

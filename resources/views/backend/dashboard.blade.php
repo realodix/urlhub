@@ -16,14 +16,14 @@
         <b>@lang('Free Space'):</b> <span class="font-light">{{numberToAmountShort($keyRemaining)}} of {{numberToAmountShort($keyCapacity)}} ({{$remainingPercentage}})</span>
       </div>
     </div>
-
+totalShortLink
     <div class="flex flex-wrap sm:mt-8">
       <div class="w-full sm:w-1/4">
         <div class="block">
           <b>@lang('Urls Shortened'):</b>
-          <span class="text-cyan-600">{{numberToAmountShort($shortUrlCount)}}</span> -
-          <span class="text-teal-600">{{numberToAmountShort($shortUrlCountByMe)}}</span> -
-          <span class="text-orange-600">{{numberToAmountShort($shortUrlCountByGuest)}}</span>
+          <span class="text-cyan-600">{{numberToAmountShort($tShortLink)}}</span> -
+          <span class="text-teal-600">{{numberToAmountShort($tShortLinkByMe)}}</span> -
+          <span class="text-orange-600">{{numberToAmountShort($tShortLinkByGuest)}}</span>
         </div>
         <div class="block">
           <b>@lang('Clicks & Redirects'):</b>
@@ -44,7 +44,7 @@
   @else
     <div class="flex flex-wrap">
       <div class="w-full sm:w-1/4">
-        <span class="text-lg sm:text-2xl font-light">@lang('Urls Shortened'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($shortUrlCountByMe)}}</span>
+        <span class="text-lg sm:text-2xl font-light">@lang('Urls Shortened'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($tShortLinkByMe)}}</span>
       </div>
       <div class="w-full sm:w-1/4">
         <span class="text-lg sm:text-2xl font-light">@lang('Clicks & Redirects'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($clickCountFromMe)}}</span>
