@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Url;
 use Embed\Embed;
-use GeoIp2\Database\Reader;
 use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
@@ -112,32 +111,6 @@ class UrlService
     public function clickCountOwnedBy($id = null): int
     {
         return $this->url->whereUserId($id)->sum('clicks');
-    }
-
-    /**
-     * IP Address to Identify Geolocation Information. If it fails, because
-     * DB-IP Lite databases doesn't know the IP country, we will set it to
-     * Unknown.
-     *
-     * @param  string  $ip
-     */
-    public function ipToCountry($ip)
-    {
-        try {
-            // @codeCoverageIgnoreStart
-            $reader = new Reader(database_path().'/dbip-country-lite-2020-07.mmdb');
-            $record = $reader->country($ip);
-            $countryCode = $record->country->isoCode;
-            $countryName = $record->country->name;
-
-            return compact('countryCode', 'countryName');
-            // @codeCoverageIgnoreEnd
-        } catch (\Exception $e) {
-            $countryCode = 'N/A';
-            $countryName = 'Unknown';
-
-            return compact('countryCode', 'countryName');
-        }
     }
 
     /**
