@@ -19,9 +19,6 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::get('/edit/{keyword}', 'DashboardController@edit')->name('short_url.edit');
         Route::post('/edit/{url_hashId}', 'DashboardController@update')->name('short_url.edit.post');
 
-        // Statistics
-        Route::get('/statistics', 'StatisticsController@view')->name('dashboard.stat');
-
         // All URLs
         Route::get('/allurl', 'AllUrlController@view')->name('dashboard.allurl');
         Route::get('/allurl/delete/{url_hashId}', 'AllUrlController@delete')->name('dashboard.allurl.delete');
