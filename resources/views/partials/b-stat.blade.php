@@ -28,10 +28,10 @@
     </div>
     <div class="w-full sm:w-1/4 mt-4 sm:mt-0">
       <div class="block">
-        <b>@lang('Registered Users'):</b> <span class="font-light">{{numberToAmountShort($guestCount)}}</span>
+        <b>@lang('Registered Users'):</b> <span class="font-light">{{numberToAmountShort($userCount)}}</span>
       </div>
       <div class="block">
-        <b cl>@lang('Guest'):</b> <span class="font-light">{{numberToAmountShort($shortUrlCountByGuest)}}</span>
+        <b cl>@lang('Guest'):</b> <span class="font-light">{{numberToAmountShort($guestCount)}}</span>
       </div>
     </div>
   </div>

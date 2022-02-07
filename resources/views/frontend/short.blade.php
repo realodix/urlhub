@@ -28,17 +28,24 @@
       <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
     </div>
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
-      <b>@lang('Short URL')</b> <br>
-      <span class="font-light"><a href="{{ $url->short_url }}" target="_blank"
-        id="copy">{{ urlDisplay($url->short_url, false) }}</a></span>
-      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{urlDisplay($url->short_url, false)}}" class="btn-clipboard text-xs text-indigo-500 border-indigo-500 hover:bg-indigo-500 hover:text-white focus:bg-indigo-600 ml-4">
+      <b>@lang('Short URL')</b>
+      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{urlDisplay($url->short_url, false)}}" class="btn-clipboard text-xs text-indigo-500 border-indigo-500 hover:bg-indigo-500 hover:text-white focus:bg-indigo-600 ml-4 py-0.5 px-1">
         @lang('Copy')
       </button>
+
+      <br>
+
+      <span class="font-light"><a href="{{ $url->short_url }}" target="_blank"
+        id="copy">{{ urlDisplay($url->short_url, false) }}</a></span>
 
       <br> <br>
 
       <b>@lang('Original URL')</b>
-      <div class="font-light">{{ $url->long_url }}</div>
+      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{ $url->long_url }}" class="btn-clipboard text-xs text-indigo-500 border-indigo-500 hover:bg-indigo-500 hover:text-white focus:bg-indigo-600 ml-4 py-0.5 px-1">
+        @lang('Copy')
+      </button>
+
+      <div class="font-light break-all">{{ $url->long_url }}</div>
     </div>
   </div>
 
