@@ -1,7 +1,7 @@
 <h1>UrlHub</h1>
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
-[![LaravelVersion](https://img.shields.io/badge/Laravel-9-f56857.svg?style=flat-square)](https://laravel.com/docs/8.x)
+[![LaravelVersion](https://img.shields.io/badge/Laravel-9-f56857.svg?style=flat-square)](https://laravel.com/docs/9.x)
 ![PHPVersion](https://img.shields.io/badge/PHP-8-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
 ![Build Status](https://github.com/realodix/urlhub/actions/workflows/tests.yml/badge.svg)
