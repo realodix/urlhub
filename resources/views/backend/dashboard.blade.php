@@ -26,7 +26,7 @@ totalShortLink
           <span class="text-orange-600">{{numberToAmountShort($tShortLinkByGuest)}}</span>
         </div>
         <div class="block">
-          <b>@lang('Clicks & Redirects'):</b>
+          <b>@lang('Clicks'):</b>
           <span class="text-cyan-600">{{numberToAmountShort($tClick)}}</span> -
           <span class="text-teal-600">{{numberToAmountShort($tClickFromMe)}}</span> -
           <span class="text-orange-600">{{numberToAmountShort($tClickFromGuest)}}</span>
