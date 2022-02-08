@@ -27,9 +27,9 @@ totalShortLink
         </div>
         <div class="block">
           <b>@lang('Clicks & Redirects'):</b>
-          <span class="text-cyan-600">{{numberToAmountShort($clickCount)}}</span> -
-          <span class="text-teal-600">{{numberToAmountShort($clickCountFromMe)}}</span> -
-          <span class="text-orange-600">{{numberToAmountShort($clickCountFromGuest)}}</span>
+          <span class="text-cyan-600">{{numberToAmountShort($tClick)}}</span> -
+          <span class="text-teal-600">{{numberToAmountShort($tClickFromMe)}}</span> -
+          <span class="text-orange-600">{{numberToAmountShort($tClickFromGuest)}}</span>
         </div>
       </div>
       <div class="w-full sm:w-1/4 mt-4 sm:mt-0">
@@ -47,7 +47,7 @@ totalShortLink
         <span class="text-lg sm:text-2xl font-light">@lang('Urls Shortened'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($tShortLinkByMe)}}</span>
       </div>
       <div class="w-full sm:w-1/4">
-        <span class="text-lg sm:text-2xl font-light">@lang('Clicks & Redirects'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($clickCountFromMe)}}</span>
+        <span class="text-lg sm:text-2xl font-light">@lang('Clicks & Redirects'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($tClickFromMe)}}</span>
       </div>
     </div>
   @endrole

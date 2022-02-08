@@ -100,7 +100,7 @@ class UrlService
         return $this->url->whereUserId($id)->count('keyword');
     }
 
-    public function clickCount(): int
+    public function totalClick(): int
     {
         return $this->url->sum('clicks');
     }
@@ -108,7 +108,7 @@ class UrlService
     /**
      * @param  int  $id
      */
-    public function clickCountOwnedBy($id = null): int
+    public function totalClickOwnedBy($id = null): int
     {
         return $this->url->whereUserId($id)->sum('clicks');
     }
