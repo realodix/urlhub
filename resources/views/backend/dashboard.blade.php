@@ -61,7 +61,7 @@
         </span>
       </div>
       <div class="w-1/2 text-right">
-        <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="font-bold text-2xl text-violet-800">
+        <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="font-bold text-2xl text-uh-blue">
           <i class="fas fa-plus"></i>
         </a>
       </div>

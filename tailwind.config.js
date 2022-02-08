@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'uh-blue': '#3d5b99',
         'nord0': '#2E3440',
         'nord0-bold': 'rgb(41, 46, 57)',
         'nord1': '#3B4252',
