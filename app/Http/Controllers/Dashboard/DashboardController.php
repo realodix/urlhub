@@ -22,17 +22,17 @@ class DashboardController extends Controller
         $urlSrvc = new UrlService;
 
         return view('backend.dashboard', [
-            'tShortLink'          => $urlSrvc->totalShortLink(),
-            'tShortLinkByMe'      => $urlSrvc->totalShortLinkOwnedBy(Auth::id()),
-            'tShortLinkByGuest'   => $urlSrvc->totalShortLinkOwnedBy(),
-            'tClick'              => $urlSrvc->totalClick(),
-            'tClickFromMe'        => $urlSrvc->totalClickOwnedBy(Auth::id()),
-            'tClickFromGuest'     => $urlSrvc->totalClickOwnedBy(),
-            'userCount'           => $userSrvc->userCount(),
-            'guestCount'          => $userSrvc->guestCount(),
-            'keyCapacity'         => $keySrvc->keyCapacity(),
-            'keyRemaining'        => $keySrvc->keyRemaining(),
-            'remainingPercentage' => $keySrvc->keyRemainingInPercent(),
+            'totalUrl'         => $urlSrvc->totalUrl(),
+            'urlCount_Me'      => $urlSrvc->urlCount(Auth::id()),
+            'urlCount_Guest'   => $urlSrvc->urlCount(),
+            'totalClick'       => $urlSrvc->totalClick(),
+            'clickCount_Me'    => $urlSrvc->clickCount(Auth::id()),
+            'clickCount_Guest' => $urlSrvc->clickCount(),
+            'userCount'        => $userSrvc->userCount(),
+            'guestCount'       => $userSrvc->guestCount(),
+            'keyCapacity'      => $keySrvc->keyCapacity(),
+            'keyRemaining'     => $keySrvc->keyRemaining(),
+            'keyRemaining_Percent' => $keySrvc->keyRemainingInPercent(),
         ]);
     }
 

@@ -139,7 +139,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             3,
-            $this->urlSrvc->totalShortLink()
+            $this->urlSrvc->totalUrl()
         );
     }
 
@@ -151,7 +151,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             1,
-            $this->urlSrvc->totalShortLinkOwnedBy($this->admin()->id)
+            $this->urlSrvc->urlCount($this->admin()->id)
         );
     }
 
@@ -163,7 +163,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             2,
-            $this->urlSrvc->totalShortLinkOwnedBy()
+            $this->urlSrvc->urlCount()
         );
     }
 
@@ -187,7 +187,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             10,
-            $this->urlSrvc->totalClickOwnedBy($this->admin()->id)
+            $this->urlSrvc->clickCount($this->admin()->id)
         );
     }
 
@@ -201,7 +201,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             20,
-            $this->urlSrvc->totalClickOwnedBy()
+            $this->urlSrvc->clickCount()
         );
     }
 }

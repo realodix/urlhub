@@ -87,7 +87,15 @@ class UrlService
         return $replicate;
     }
 
-    public function totalShortLink()
+    /**
+     * @param  int  $id
+     */
+    public function urlCount($id = null)
+    {
+        return $this->url->whereUserId($id)->count('keyword');
+    }
+
+    public function totalUrl()
     {
         return $this->url->count('keyword');
     }
@@ -95,22 +103,14 @@ class UrlService
     /**
      * @param  int  $id
      */
-    public function totalShortLinkOwnedBy($id = null)
+    public function clickCount($id = null): int
     {
-        return $this->url->whereUserId($id)->count('keyword');
+        return $this->url->whereUserId($id)->sum('clicks');
     }
 
     public function totalClick(): int
     {
         return $this->url->sum('clicks');
-    }
-
-    /**
-     * @param  int  $id
-     */
-    public function totalClickOwnedBy($id = null): int
-    {
-        return $this->url->whereUserId($id)->sum('clicks');
     }
 
     /**
