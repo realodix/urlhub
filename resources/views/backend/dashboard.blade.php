@@ -16,7 +16,7 @@
         <b>@lang('Free Space'):</b> <span class="font-light">{{numberToAmountShort($keyRemaining)}} of {{numberToAmountShort($keyCapacity)}} ({{$remainingPercentage}})</span>
       </div>
     </div>
-totalShortLink
+
     <div class="flex flex-wrap sm:mt-8">
       <div class="w-full sm:w-1/4">
         <div class="block">
