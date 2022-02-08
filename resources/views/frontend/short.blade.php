@@ -28,7 +28,7 @@
       <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
     </div>
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
-      <b>@lang('Short URL')</b>
+      <b>@lang('Shortened URL')</b>
       <button title="@lang('Copy to clipboard')" data-clipboard-text="{{urlDisplay($url->short_url, false)}}" class="btn-clipboard text-xs text-indigo-500 border-indigo-500 hover:bg-indigo-500 hover:text-white focus:bg-indigo-600 ml-4 py-0.5 px-1">
         @lang('Copy')
       </button>
@@ -36,7 +36,7 @@
       <br>
 
       <span class="font-light"><a href="{{ $url->short_url }}" target="_blank"
-        id="copy">{{ urlDisplay($url->short_url, false) }}</a></span>
+        id="copy">{{urlDisplay($url->short_url, false)}}</a></span>
 
       <br> <br>
 
