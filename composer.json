@@ -17,7 +17,6 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.10",
-        "nyholm/psr7": "^1.4",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
         "power-components/livewire-powergrid": "^2.2",
