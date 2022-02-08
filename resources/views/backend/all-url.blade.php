@@ -7,12 +7,12 @@
   <div class="bg-white p-4 shadow sm:rounded-md">
       <div class="flex mb-8">
         <div class="w-1/2">
-          <span class="font-bold text-2xl text-[#73539f]">
+          <span class="font-bold text-2xl">
             @lang('All URLs')
           </span>
         </div>
         <div class="w-1/2 text-right">
-          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="font-bold text-2xl text-[#73539f]">
+          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="font-bold text-2xl text-violet-800">
             <i class="fas fa-plus"></i>
           </a>
         </div>

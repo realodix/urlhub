@@ -37,12 +37,7 @@ class UrlRedirectionService
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->storeVisitStat(
-            $url,
-            $this->urlSrvc->ipToCountry(
-                $this->urlSrvc->anonymizeIp(request()->ip())
-            )
-        );
+        $this->storeVisitStat($url);
 
         $headers = [
             'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
@@ -55,9 +50,8 @@ class UrlRedirectionService
      * Create visit statistics and store it in the database.
      *
      * @param  Url  $url  \App\Models\Url
-     * @param  array  $countries
      */
-    private function storeVisitStat(Url $url, array $countries)
+    private function storeVisitStat(Url $url)
     {
         Visit::create([
             'url_id'           => $url->id,
@@ -68,8 +62,6 @@ class UrlRedirectionService
             'platform_version' => $this->agent->version($this->agent->platform()),
             'browser'          => $this->agent->browser(),
             'browser_version'  => $this->agent->version($this->agent->browser()),
-            'country'          => $countries['countryCode'],
-            'country_full'     => $countries['countryName'],
         ]);
     }
 }

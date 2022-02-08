@@ -224,34 +224,4 @@ class UrlBeTest extends TestCase
         $response = $this->get(route('user.index'));
         $response->assertForbidden();
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Statistics Page
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * @test
-     * @group f-stat
-     */
-    public function statAdminCanAccessThisPage()
-    {
-        $this->loginAsAdmin();
-
-        $response = $this->get(route('dashboard.stat'));
-        $response->assertOk();
-    }
-
-    /**
-     * @test
-     * @group f-stat
-     */
-    public function statNonAdminCantAccessThisPage()
-    {
-        $this->loginAsNonAdmin();
-
-        $response = $this->get(route('dashboard.stat'));
-        $response->assertForbidden();
-    }
 }
