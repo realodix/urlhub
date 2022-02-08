@@ -26,10 +26,9 @@
         "vinkla/hashids": "^10.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.14",
-        "kubawerlos/composer-smaller-lock": "^0.1.4",
-        "laravel/dusk": "^6.15",
-        "mockery/mockery": "^1.4.4",
+        "fakerphp/faker": "^1.19",
+        "laravel/dusk": "^6.22",
+        "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^6.1",
         "nunomaduro/larastan": "^2.0",
         "phpunit/phpunit": "^9.5.10",
