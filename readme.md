@@ -1,7 +1,7 @@
 <h1>UrlHub</h1>
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
-[![LaravelVersion](https://img.shields.io/badge/Laravel-8-f56857.svg?style=flat-square)](https://laravel.com/docs/8.x)
+[![LaravelVersion](https://img.shields.io/badge/Laravel-9-f56857.svg?style=flat-square)](https://laravel.com/docs/8.x)
 ![PHPVersion](https://img.shields.io/badge/PHP-8-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
 ![Build Status](https://github.com/realodix/urlhub/actions/workflows/tests.yml/badge.svg)
@@ -25,7 +25,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Configuration guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
 - **Sortable list of shortened URLs.**
 - **[Datatables](https://datatables.net/) with server-side processing.**
-- **Written in [PHP](https://www.php.net/) and [Laravel 8](https://laravel.com/docs/8.x).**
+- **Written in [PHP](https://www.php.net/) and [Laravel 9](https://laravel.com/docs/9.x).**
 - **Modern and simple interface.**
 - **Made with :heart: &amp; :coffee:.**
 

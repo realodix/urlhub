@@ -4,7 +4,7 @@ on: [pull_request, push]
 
 jobs:
   build:
-    name: PHP ${{ matrix.php-version }} (MySQL)
+    name: PHP ${{ matrix.php-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
@@ -56,41 +56,6 @@ jobs:
         run: |
           composer global require php-coveralls/php-coveralls
           php-coveralls --coverage_clover=build/logs/clover.xml --verbose
-
-
-
-  postgresql_tests:
-    name: PHP 8 (PostgreSQL)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
-        with:
-          php-version: '8.1'
-      - name: Install Dependencies
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 3
-          command: |
-            composer update --prefer-dist --no-interaction --no-progress
-            npm install
-      - name: Prepare
-        run: |
-          php artisan config:clear
-          npm run dev
-      - name: Execute Tests
-        env:
-          DB_CONNECTION: pgsql
-          DB_USERNAME: postgres
-          DB_PASSWORD: postgres
-          DB_DATABASE: postgres
-          DB_PORT: 5432
-        run: |
-          php artisan config:clear
-          ./vendor/bin/phpunit
 
 
 
