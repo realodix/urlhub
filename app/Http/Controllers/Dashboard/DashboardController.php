@@ -13,30 +13,21 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     /**
-     * DashboardController constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
-     */
-    public function __construct(protected UrlService $urlSrvc)
-    {
-        //
-    }
-
-    /**
      * Show all user short URLs.
      */
     public function view()
     {
         $userSrvc = new UserService;
         $keySrvc = new KeyService;
+        $urlSrvc = new UrlService;
 
         return view('backend.dashboard', [
-            'tShortLink'          => $this->urlSrvc->totalShortLink(),
-            'tShortLinkByMe'      => $this->urlSrvc->totalShortLinkOwnedBy(Auth::id()),
-            'tShortLinkByGuest'   => $this->urlSrvc->totalShortLinkOwnedBy(),
-            'tClick'              => $this->urlSrvc->totalClick(),
-            'tClickFromMe'        => $this->urlSrvc->totalClickOwnedBy(Auth::id()),
-            'tClickFromGuest'     => $this->urlSrvc->totalClickOwnedBy(),
+            'tShortLink'          => $urlSrvc->totalShortLink(),
+            'tShortLinkByMe'      => $urlSrvc->totalShortLinkOwnedBy(Auth::id()),
+            'tShortLinkByGuest'   => $urlSrvc->totalShortLinkOwnedBy(),
+            'tClick'              => $urlSrvc->totalClick(),
+            'tClickFromMe'        => $urlSrvc->totalClickOwnedBy(Auth::id()),
+            'tClickFromGuest'     => $urlSrvc->totalClickOwnedBy(),
             'userCount'           => $userSrvc->userCount(),
             'guestCount'          => $userSrvc->guestCount(),
             'keyCapacity'         => $keySrvc->keyCapacity(),
@@ -69,7 +60,9 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $url)
     {
-        $this->urlSrvc->update($request->only('long_url', 'meta_title'), $url);
+        $urlSrvc = new UrlService;
+
+        $urlSrvc->update($request->only('long_url', 'meta_title'), $url);
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));
@@ -84,9 +77,11 @@ class DashboardController extends Controller
      */
     public function delete($url)
     {
+        $urlSrvc = new UrlService;
+
         $this->authorize('forceDelete', $url);
 
-        $this->urlSrvc->delete($url);
+        $urlSrvc->delete($url);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));
@@ -100,7 +95,8 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $this->urlSrvc->duplicate($key, Auth::id());
+        $urlSrvc = new UrlService;
+        $urlSrvc->duplicate($key, Auth::id());
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
