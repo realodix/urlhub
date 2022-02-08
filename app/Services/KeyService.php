@@ -84,7 +84,7 @@ class KeyService
     public function keyRemaining()
     {
         $keyCapacity = $this->keyCapacity();
-        $keyUsed  = $this->keyUsed();
+        $keyUsed = $this->keyUsed();
 
         return max($keyCapacity - $keyUsed, 0);
     }
