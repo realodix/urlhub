@@ -23,7 +23,7 @@
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-4">
             <label for="name" class="block font-medium text-sm text-gray-700">@lang('Username')</label>
-            <input value="{{$user->name}}" id="name" type="text" name="name" class="form-input bg-nord-ss3 text-nord-pn3 mt-1" disabled>
+            <input value="{{$user->name}}" id="name" type="text" name="name" class="form-input bg-gray-200 text-gray-700 mt-1" disabled>
             <small class="block text-red-400"><i>@lang('Usernames cannot be changed.')</i></small>
           </div>
           <div class="col-span-6 sm:col-span-4">
