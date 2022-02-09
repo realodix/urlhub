@@ -36,7 +36,7 @@
           <span class="block font-light mb-4">@lang('Replace clunky URLs with meaningful short links that get more clicks.')</span>
           <div class="inline text-2xl">{{$_SERVER['SERVER_NAME']}}/</div>
           <input id="custom_key" name="custom_key"
-            class="text-2xl text-indigo-400 bg-transparent border-b-4 border-indigo-500 focus:outline-none px-2" >
+            class="text-2xl text-orange-400 bg-transparent border-b-4 border-orange-500 focus:outline-none px-2" >
           <small id="link-availability-status"
             class="block ml-4"></small>
         </div>
