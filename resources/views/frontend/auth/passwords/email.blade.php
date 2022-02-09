@@ -26,7 +26,7 @@
       <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-input mt-1" required>
 
       <div class="flex items-center justify-end mt-4">
-        <button type="submit" class="bg-nord0 hover:bg-nord0-bold text-xs uppercasepx-4 py-2 ml-4 rounded-md tracking-widest transition">
+        <button type="submit" class="bg-nord-pn1 hover:bg-nord-pn1-bold text-xs uppercasepx-4 py-2 ml-4 rounded-md tracking-widest transition">
           @lang('Send Password Reset Link')
         </button>
       </div>
