@@ -2511,21 +2511,6 @@ csso@^4.2.0:
   dependencies:
     css-tree "^1.1.2"
 
-datatables.net-dt@^1.10.23:
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/datatables.net-dt/-/datatables.net-dt-1.11.4.tgz#abdc672c2250f9486db16aa874fb060d80eab7a4"
-  integrity sha512-MKPAkehqxqZN1tMrqPH2t3jhv1VG69wq3JLFmsJn/Kd4Oez/WYP+q1XTeMopwhGM7pSVQLPo4pPVPmzw7cqY2g==
-  dependencies:
-    datatables.net ">=1.11.3"
-    jquery ">=1.7"
-
-datatables.net@>=1.11.3:
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.11.4.tgz#5f3e1ec134fa532e794fbd47c13f8333d7a5c455"
-  integrity sha512-z9LG4O0VYOYzp+rnArLExvnUWV8ikyWBcHYZEKDfVuz7BKxQdEq4a/tpO0Trbm+FL1+RY7UEIh+UcYNY/hwGxA==
-  dependencies:
-    jquery ">=1.7"
-
 debug@2.6.9, debug@^2.2.0:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -3749,7 +3734,7 @@ jquery.typewatch@^3.0.0:
   resolved "https://registry.yarnpkg.com/jquery.typewatch/-/jquery.typewatch-3.0.1.tgz#931fc87db04406da55bed3770b1058b6b01ce10e"
   integrity sha512-meKluf7/PjFyxqiY4UJfAHHzhW9MfwnWXhBXItB981ffUc3zDx80r6CRiu26xHrFQ4D6InKHqbcizJhb4lLdVA==
 
-jquery@>=1.7, jquery@^3.2:
+jquery@^3.2:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
