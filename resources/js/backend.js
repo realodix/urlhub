@@ -1,6 +1,5 @@
 import './bootstrap';
 import {initPasswordFields} from './password-toggle';
-import 'datatables.net';
 
 $(function() {
     /**
