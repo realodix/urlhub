@@ -168,26 +168,4 @@ class UrlService
 
         return $webTitle;
     }
-
-    /**
-     * Get information from any web page.
-     *
-     * @param  string  $url
-     * @codeCoverageIgnore
-     */
-    public function webInfo(string $url)
-    {
-        try {
-            $info = (new Embed())->get($url);
-            $webInfo = $info->code->html;
-        } catch (\Exception $e) {
-            return;
-        }
-
-        if ($webInfo == null) {
-            return '<div style="max-width:80%;">'.$info->description.'</div>';
-        }
-
-        return $webInfo;
-    }
 }

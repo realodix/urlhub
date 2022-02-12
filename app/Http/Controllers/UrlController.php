@@ -74,10 +74,7 @@ class UrlController extends Controller
 
         $qrCode = qrCode($url->short_url);
 
-        return view('frontend.short', compact(['qrCode']), [
-            'webInfo' => $this->urlSrvc->webInfo($url->long_url),
-            'url'     => $url,
-        ]);
+        return view('frontend.short', compact(['qrCode']), ['url' => $url]);
     }
 
     /**
