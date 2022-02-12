@@ -4,7 +4,7 @@
 
 @section('content')
 <main>
-  <div class="bg-white p-4 shadow sm:rounded-md mb-4">
+  <div class="bg-indigo-100 p-4 shadow sm:rounded-md mb-4">
   @role('admin')
     <div class="flex flex-wrap">
       <div class="w-full sm:w-1/4">
