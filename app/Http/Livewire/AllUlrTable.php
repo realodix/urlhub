@@ -76,7 +76,9 @@ final class AllUlrTable extends PowerGridComponent
     public function addColumns(): ?PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('keyword')
+            ->addColumn('keyword', function (Url $url) {
+                return '<a href="'.$url->short_url.'" target="_blank" class="">'.$url->keyword.'</a>';
+            })
             ->addColumn('long_url', function (Url $url) {
                 return '
                     <span title="'.$url->meta_title.'">
