@@ -10,7 +10,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'uh-blue': '#3d5b99'
+        'uh-blue': '#3d5b99',
+        uh: {
+          1: '#344767'
+        }
       }
     }
   },

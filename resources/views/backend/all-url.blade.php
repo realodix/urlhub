@@ -7,7 +7,7 @@
   <div class="bg-white p-4 shadow sm:rounded-md">
       <div class="flex mb-8">
         <div class="w-1/2">
-          <span class="text-2xl">
+          <span class="text-2xl text-uh-1">
             @lang('All URLs')
           </span>
         </div>

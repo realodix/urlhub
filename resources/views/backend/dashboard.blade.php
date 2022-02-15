@@ -12,7 +12,7 @@
         <span class="text-teal-600 ml-5"><i class="fas fa-square mr-2"></i>@lang('Me')</span>
         <span class="text-orange-600 ml-5"><i class="fas fa-square mr-2"></i>@lang('Guest')</span>
       </div>
-      <div class="text-[#3d2c87] mt-8 sm:mt-0">
+      <div class="text-uh-1 mt-8 sm:mt-0">
         <b>@lang('Free Space'):</b> <span class="font-light">{{numberToAmountShort($keyRemaining)}} of {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})</span>
       </div>
     </div>
@@ -20,19 +20,19 @@
     <div class="flex flex-wrap sm:mt-8">
       <div class="w-full sm:w-1/4">
         <div class="block">
-          <b class="text-[#3d2c87]">@lang('Urls Shortened'):</b>
+          <b class="text-uh-1">@lang('Urls Shortened'):</b>
           <span class="text-cyan-600">{{numberToAmountShort($totalUrl)}}</span> -
           <span class="text-teal-600">{{numberToAmountShort($urlCount_Me)}}</span> -
           <span class="text-orange-600">{{numberToAmountShort($urlCount_Guest)}}</span>
         </div>
         <div class="block">
-          <b class="text-[#3d2c87]">@lang('Clicks'):</b>
+          <b class="text-uh-1">@lang('Clicks'):</b>
           <span class="text-cyan-600">{{numberToAmountShort($totalClick)}}</span> -
           <span class="text-teal-600">{{numberToAmountShort($clickCount_Me)}}</span> -
           <span class="text-orange-600">{{numberToAmountShort($clickCount_Guest)}}</span>
         </div>
       </div>
-      <div class="text-[#3d2c87] w-full sm:w-1/4 mt-4 sm:mt-0">
+      <div class="text-uh-1 w-full sm:w-1/4 mt-4 sm:mt-0">
         <div class="block">
           <b>@lang('Registered Users'):</b> <span class="font-light">{{numberToAmountShort($userCount)}}</span>
         </div>
@@ -56,7 +56,7 @@
   <div class="bg-white p-4 shadow sm:rounded-md">
     <div class="flex mb-8">
       <div class="w-1/2">
-        <span class="text-2xl">
+        <span class="text-2xl text-uh-1">
           @lang('My URLs')
         </span>
       </div>

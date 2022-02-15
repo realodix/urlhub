@@ -77,3 +77,11 @@ main {
   @apply text-center align-baseline whitespace-nowrap;
   @apply rounded-full py-1 px-2;
 }
+
+.power-grid-table {
+  tbody {
+    tr {
+      @apply text-uh-1;
+    }
+  }
+}
