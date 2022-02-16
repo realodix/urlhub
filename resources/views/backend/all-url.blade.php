@@ -12,8 +12,8 @@
           </span>
         </div>
         <div class="w-1/2 text-right">
-          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="font-bold text-2xl text-uh-blue">
-            <i class="fas fa-plus"></i>
+          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="text-sm text-white bg-uh-2b hover:bg-uh-2c active:bg-uh-2b p-2 rounded-md">
+            @lang('Add URL')
           </a>
         </div>
       </div>
