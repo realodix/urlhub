@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .frontend, .backend, .auth {
-  @apply bg-gray-100 font-sans text-gray-900 antialiased;
+  @apply bg-[#eef1f4] font-sans text-gray-900 antialiased;
 }
 
 .navbar {
@@ -78,10 +78,32 @@ main {
   @apply rounded-full py-1 px-2;
 }
 
-.power-grid-table {
-  tbody {
-    tr {
-      @apply text-uh-1;
+.power-grid {
+  .table {
+    thead {
+      @apply bg-[#eef1f4];
+
+      th {
+        @apply text-uh-1;
+      }
+    }
+
+    tbody {
+      tr {
+        @apply text-uh-1 hover:bg-slate-50;
+      }
+    }
+  }
+
+  .footer {
+    select {
+      @apply bg-white;
+    }
+
+    nav {
+      a {
+        @apply bg-uh-2a hover:bg-uh-2c active:bg-uh-2b;
+      }
     }
   }
 }
