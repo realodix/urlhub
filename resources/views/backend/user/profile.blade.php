@@ -6,8 +6,8 @@
 
 @include('partials/messages')
 
-<main class="md:grid md:grid-cols-3 md:gap-6">
-  <div class="md:col-span-1 flex justify-between">
+<main class="flex flex-wrap">
+  <div class="md:w-3/12 flex justify-between">
     <div class="px-4 sm:px-0">
       <h3 class="text-lg font-medium text-gray-900">@lang('Profile Information')</h3>
 
@@ -16,14 +16,14 @@
       </p>
     </div>
   </div>
-  <div class="mt-5 sm:mt-0 md:col-span-2">
+  <div class="w-full md:w-6/12 mt-5 md:mt-0 md:ml-4 bg-white">
     <form method="post" action="{{route('user.update', $user->getRouteKey())}}">
     @csrf
-      <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+      <div class="px-4 py-5 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-4">
             <label for="name" class="block font-medium text-sm text-gray-700">@lang('Username')</label>
-            <input value="{{$user->name}}" id="name" type="text" name="name" class="form-input bg-gray-200 text-gray-700 mt-1" disabled>
+            <input value="{{$user->name}}" id="name" type="text" name="name" class="form-input bg-gray-100 text-gray-700 mt-1" disabled>
             <small class="block text-red-400"><i>@lang('Usernames cannot be changed.')</i></small>
           </div>
           <div class="col-span-6 sm:col-span-4">
@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
+      <div class="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md border-t">
         <button type="submit" class="button">
           @lang('Save')
         </button>
