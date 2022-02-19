@@ -79,25 +79,36 @@ main {
 }
 
 .power-grid {
-  .table {
-    thead {
-      @apply bg-[#eef1f4];
-
-      th {
-        @apply text-uh-1;
-      }
+  .pg-header {
+    input {
+      @apply bg-white focus:border-uh-2b;
     }
+  }
 
-    tbody {
-      tr {
-        @apply text-uh-1 hover:bg-slate-50;
+  .pg-table {
+    @apply overflow-hidden overflow-x-auto bg-white shadow overflow-y-auto relative;
+    @apply shadow-none;
+
+    .table {
+      thead {
+        @apply bg-[#eef1f4];
+
+        th {
+          @apply text-uh-1;
+        }
+      }
+
+      tbody {
+        tr {
+          @apply text-uh-1 hover:bg-slate-50;
+        }
       }
     }
   }
 
-  .footer {
+  .pg-footer {
     select {
-      @apply bg-white;
+      @apply bg-white focus:border-gray-300;
     }
 
     nav {

@@ -2,9 +2,11 @@
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full w-full sm:px-6 lg:px-8">
 
-            @include($theme->layout->header, [
-                'enabledFilters' => $enabledFilters
-            ])
+            <div class="pg-header">
+              @include($theme->layout->header, [
+                  'enabledFilters' => $enabledFilters
+              ])
+            </div>
 
             @if(config('livewire-powergrid.filter') === 'outside')
                 @if(count($makeFilters) > 0)
@@ -24,11 +26,13 @@
                 @include($theme->layout->message)
             </div>
 
-            <div class="overflow-hidden overflow-x-auto bg-white shadow overflow-y-auto relative">
+            <div class="pg-table">
                 @include($table)
             </div>
 
-            @include($theme->footer->view)
+            <div class="pg-footer">
+              @include($theme->footer->view)
+            </div>
         </div>
     </div>
 </div>
