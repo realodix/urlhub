@@ -13,7 +13,7 @@
         "guzzlehttp/guzzle": "^7.3",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^9.0",
-        "laravel/sanctum": "^2.14",
+        "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.10",
