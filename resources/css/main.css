@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .frontend, .backend, .auth {
-  @apply bg-[#eef1f4] font-sans text-gray-900 antialiased;
+  @apply bg-[#F1F5F9] font-sans text-gray-900 antialiased;
 }
 
 .navbar {
@@ -35,19 +35,19 @@
   }
 
   .frontend & {
-    @apply bg-[#3d5b99] text-white;
+    /* @apply bg-transparent text-transparent; */
 
     .navbar {
       &-toggler {
-        @apply text-white;
+        @apply text-[#5851d8];
       }
 
       &-mobile {
         .nav-item {
-          @apply text-white;
+          /* @apply text-white; */
 
           &-email {
-            @apply text-gray-300;
+            /* @apply text-gray-300; */
           }
         }
       }
