@@ -28,7 +28,7 @@
               w-full md:w-4/6 rounded-t-md md:rounded-l-md md:rounded-r-none outline-none focus:outline-1 focus:outline-[#9b97e8]">
 
           <button type="submit" id="actProcess"
-            class="text-lg bg-uh-3-600 hover:bg-uh-3-700 focus:bg-uh-3-600 text-white h-16 align-top
+            class="text-lg bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:bg-uh-indigo-600 text-white h-16 align-top
               w-full md:w-1/6 rounded-t-none md:rounded-l-none md:rounded-r-md">@lang('Shorten')</button>
         </div>
 
