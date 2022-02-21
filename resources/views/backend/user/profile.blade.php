@@ -16,23 +16,25 @@
       </p>
     </div>
   </div>
-  <div class="w-full md:w-6/12 mt-5 md:mt-0 md:ml-4 bg-white">
+  <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4 bg-white">
     <form method="post" action="{{route('user.update', $user->getRouteKey())}}">
     @csrf
       <div class="px-4 py-5 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
         <div class="grid grid-cols-6 gap-6">
-          <div class="col-span-6 sm:col-span-4">
+          <div class="col-span-6 lg:col-span-4">
             <label for="name" class="block font-medium text-sm text-slate-700">@lang('Username')</label>
             <input value="{{$user->name}}" id="name" type="text" name="name" class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
             <small class="block text-red-400"><i>@lang('Usernames cannot be changed.')</i></small>
           </div>
-          <div class="col-span-6 sm:col-span-4">
+          <div class="col-span-6 lg:col-span-4">
             <label for="email" class="block font-medium text-sm text-slate-700">@lang('E-mail Address')</label>
             <input value="{{$user->email}}" id="email" type="email" name="email" class="form-input mt-1">
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-end px-4 py-3 bg-slate-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md border-t">
+      <div class="flex items-center justify-end px-4 py-3 sm:px-6 border-t sm:rounded-bl-md sm:rounded-br-md shadow
+            text-right bg-slate-50"
+      >
         <button type="submit" class="button">
           @lang('Save')
         </button>
