@@ -12,7 +12,12 @@
           </span>
         </div>
         <div class="w-1/2 text-right">
-          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="text-sm text-white bg-uh-2b hover:bg-uh-2c active:bg-uh-2b p-2 rounded-md">
+          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')"
+            class="inline-flex ml-4 px-4 py-2 items-center whitespace-nowrap
+              focus:outline-none focus:ring-2 focus:ring-offset-2 leading-5 border border-transparent rounded-md shadow-sm
+              text-sm font-medium text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:ring-uh-indigo-500"
+          >
+            <i class="fa-solid fa-plus mr-2"></i>
             @lang('Add URL')
           </a>
         </div>

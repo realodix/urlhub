@@ -5,38 +5,51 @@
 @section('content')
 <div class="pt-16 sm:pt-28">
   @if (! Auth::check() and ! Config::get('urlhub.public_site'))
-   <div class="flex flex-wrap md:justify-center">
-    <div class="lg:w-8/12 text-5xl font-thin text-gray-600 text-center welcome-msg">@lang('Please login to shorten URLs')</div>
+  <div class="flex flex-wrap md:justify-center">
+    <div class="w-full md:w-8/12 font-thin text-5xl text-slate-600 text-center welcome-msg">
+      @lang('Please login to shorten URLs')</div>
   </div>
   <div class="flex flex-wrap md:justify-center mt-12">
-    <div class="lg:w-7/12">
-      @include('partials/messages')
-    </div>
+    <div class="w-full md:w-7/12">
+      @include('partials/messages')</div>
   </div>
   @else
   <div class="flex flex-wrap md:justify-center">
-    <div class="lg:w-8/12 text-3xl sm:text-5xl font-thin text-gray-600 text-center welcome-msg">Shorten links to better spread your story on social media</div>
+    <h1 class="mx-auto max-w-md md:max-w-3xl relative z-10
+      font-bold text-uh-indigo-600 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
+    >
+      Simple URL shortener <br>
+      <span class="font-thin">for individuals &amp; businesses.</span>
+    </h1>
   </div>
 
-  <div class="flex flex-wrap md:justify-center px-4 sm:px-0 mt-12 ">
-    <div class="lg:w-7/12">
-      <form method="post" action="{{route('createshortlink')}}" class="mt-12 mb-4" id="formUrl">
+  <div class="flex flex-wrap justify-center mt-12 px-4 lg:px-0">
+    <div class="w-full max-w-4xl">
+      <form method="post" action="{{route('createshortlink')}}" class="mb-4 mt-12" id="formUrl">
       @csrf
-        <div class="mt-1 relative shadow-md">
-          <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}" placeholder="@lang('Paste a link to be shortened')" class="text-xl block w-full py-1.5 pl-7 pr-12 rounded-md">
-          <div class="absolute inset-y-0 right-0 flex items-center">
-            <button type="submit" id="actProcess" class="text-xl bg-teal-700 hover:bg-teal-600 focus:bg-teal-900 text-white rounded-r-md rounded-l-none">@lang('Shorten')</button>
-          </div>
+        <div class="mt-1 text-center">
+          <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}" placeholder="@lang('Shorten your link')"
+            class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
+              rounded-t-md md:rounded-l-md md:rounded-r-none outline-none focus:outline-1 focus:outline-uh-indigo-300
+              text-xl">
+          <button type="submit" id="actProcess"
+            class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none md:rounded-l-none md:rounded-r-md
+              text-lg text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:bg-uh-indigo-600"
+          >
+            @lang('Shorten')
+          </button>
         </div>
 
         <br>
 
         <div class="custom-url sm:mt-8">
           <b>@lang('Custom URL (optional)')</b>
-          <span class="block font-light mb-4">@lang('Replace clunky URLs with meaningful short links that get more clicks.')</span>
-          <div class="inline text-2xl">{{$_SERVER['SERVER_NAME']}}/</div>
+          <span class="block mb-4 font-light">
+            @lang('Replace clunky URLs with meaningful short links that get more clicks.')</span>
+          <div class="inline text-2xl">
+            {{$_SERVER['SERVER_NAME']}}/</div>
           <input id="custom_key" name="custom_key"
-            class="text-2xl text-orange-400 bg-transparent border-b-4 border-orange-500 focus:outline-none px-2" >
+            class="px-2 text-2xl text-orange-400 bg-transparent border-b-4 border-orange-500 focus:outline-none">
           <small id="link-availability-status"
             class="block ml-4"></small>
         </div>

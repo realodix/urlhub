@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto mb-12">
-  <div class="flex flex-wrap px-4 sm:p-6 mt-6 sm:mt-12">
+  <div class="flex flex-wrap mt-6 sm:mt-12 px-4 sm:p-6">
     <div class="md:w-9/12">
 
       @include('partials/messages')
@@ -23,13 +23,16 @@
     </div>
   </div>
 
-  <div class="flex flex-wrap bg-white px-4 py-5 sm:p-6 shadow sm:rounded-md mt-6 sm:mt-0">
+  <div class="flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6 bg-white shadow sm:rounded-md">
     <div class="w-full md:w-1/4 flex justify-center">
       <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
     </div>
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
       <b>@lang('Shortened URL')</b>
-      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{urlDisplay($url->short_url, false)}}" class="btn-clipboard text-xs text-indigo-500 border-indigo-500 hover:bg-indigo-500 hover:text-white focus:bg-indigo-600 ml-4 py-0.5 px-1">
+      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
+        class="btn-clipboard ml-4 py-0.5 px-1
+          text-xs text-indigo-500 hover:text-white hover:bg-indigo-500 focus:bg-indigo-600 border-indigo-500"
+      >
         @lang('Copy')
       </button>
 
@@ -41,7 +44,10 @@
       <br> <br>
 
       <b>@lang('Original URL')</b>
-      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{ $url->long_url }}" class="btn-clipboard text-xs text-indigo-500 border-indigo-500 hover:bg-indigo-500 hover:text-white focus:bg-indigo-600 ml-4 py-0.5 px-1">
+      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{ $url->long_url }}"
+        class="btn-clipboard ml-4 py-0.5 px-1
+          text-xs text-indigo-500 hover:text-white hover:bg-indigo-500 focus:bg-indigo-600 border-indigo-500"
+      >
         @lang('Copy')
       </button>
 

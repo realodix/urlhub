@@ -20,7 +20,7 @@
     <form method="POST" action="{{ route('password.email') }}" aria-label="@lang('Reset Password')" class="mt-4">
     @csrf
 
-      <label class="block font-medium text-sm text-gray-700" for="email">
+      <label class="block font-medium text-sm text-slate-700" for="email">
         @lang('E-Mail')
       </label>
       <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-input mt-1" required>

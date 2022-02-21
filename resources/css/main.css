@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .frontend, .backend, .auth {
-  @apply bg-[#eef1f4] font-sans text-gray-900 antialiased;
+  @apply bg-[#F1F5F9] font-sans text-gray-900 antialiased;
 }
 
 .navbar {
@@ -14,8 +14,12 @@
     @apply flex items-center;
   }
 
+  &-toggler {
+    @apply text-uh-indigo-500;
+  }
+
   .nav-item {
-    @apply text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 leading-5;
+    @apply text-sm text-gray-700 hover:bg-slate-50 focus:bg-slate-100 leading-5;
     @apply block px-4 py-2 focus:outline-none transition;
   }
 
@@ -33,26 +37,6 @@
       }
     }
   }
-
-  .frontend & {
-    @apply bg-[#3d5b99] text-white;
-
-    .navbar {
-      &-toggler {
-        @apply text-white;
-      }
-
-      &-mobile {
-        .nav-item {
-          @apply text-white;
-
-          &-email {
-            @apply text-gray-300;
-          }
-        }
-      }
-    }
-  }
 }
 
 main {
@@ -61,14 +45,14 @@ main {
 
 .form-input {
   @apply block w-full;
-  @apply border-gray-300 focus:border-sky-300 focus:ring focus:ring-sky-200 focus:ring-opacity-50 rounded-md shadow-sm
+  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
 }
 
 .button {
   @apply text-xs uppercase tracking-widest;
   @apply rounded-md px-4 py-2;
 
-  @apply text-white bg-uh-2b hover:bg-uh-2c active:bg-uh-2b;
+  @apply text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
   @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
 }
 
@@ -81,7 +65,7 @@ main {
 .power-grid {
   .pg-header {
     input {
-      @apply bg-white focus:border-uh-2b;
+      @apply bg-white focus:ring-uh-indigo-400 focus:border-uh-indigo-400;
     }
   }
 
@@ -91,7 +75,7 @@ main {
 
     .table {
       thead {
-        @apply bg-[#eef1f4];
+        @apply bg-slate-50;
 
         th {
           @apply text-uh-1;
@@ -101,6 +85,14 @@ main {
       tbody {
         tr {
           @apply text-uh-1 hover:bg-slate-50;
+        }
+
+        .btn-action {
+          @apply text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700;
+        }
+
+        .btn-action-delete {
+          @apply text-slate-400 hover:text-red-500 active:text-red-700;
         }
       }
     }
@@ -113,7 +105,7 @@ main {
 
     nav {
       a {
-        @apply bg-uh-2a hover:bg-uh-2c active:bg-uh-2b;
+        @apply bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
       }
     }
   }
