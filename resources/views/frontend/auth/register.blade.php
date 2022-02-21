@@ -8,7 +8,8 @@
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
   <div class="text-uh-blue font-bold text-4xl sm:text-6xl">{{appName()}}</div>
 
-  <div class="w-full sm:max-w-md mt-6 px-12 py-8 bg-white shadow-md overflow-hidden sm:rounded-lg">
+  <div class="w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden sm:rounded-lg
+        bg-white shadow-md">
     @if ( ! Config::get('urlhub.registration') )
       <p class="text-muted">@lang('Sorry, not allowed to register by administrator')</p>
     @else

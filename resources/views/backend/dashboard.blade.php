@@ -4,7 +4,7 @@
 
 @section('content')
 <main>
-  <div class="bg-white p-4 shadow sm:rounded-md mb-4">
+  <div class="mb-4 bg-white p-4 shadow sm:rounded-md">
   @role('admin')
     <div class="flex flex-wrap">
       <div class="w-full sm:w-1/4">
@@ -12,8 +12,9 @@
         <span class="text-teal-600 ml-5"><i class="fas fa-square mr-2"></i>@lang('Me')</span>
         <span class="text-orange-600 ml-5"><i class="fas fa-square mr-2"></i>@lang('Guest')</span>
       </div>
-      <div class="text-uh-1 mt-8 sm:mt-0">
-        <b>@lang('Free Space'):</b> <span class="font-light">{{numberToAmountShort($keyRemaining)}} of {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})</span>
+      <div class="mt-8 sm:mt-0 text-uh-1 ">
+        <b>@lang('Free Space'):</b>
+        <span class="font-light">{{numberToAmountShort($keyRemaining)}} of {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})</span>
       </div>
     </div>
 
@@ -34,20 +35,24 @@
       </div>
       <div class="text-uh-1 w-full sm:w-1/4 mt-4 sm:mt-0">
         <div class="block">
-          <b>@lang('Registered Users'):</b> <span class="font-light">{{numberToAmountShort($userCount)}}</span>
+          <b>@lang('Registered Users'):</b>
+          <span class="font-light">{{numberToAmountShort($userCount)}}</span>
         </div>
         <div class="block">
-          <b cl>@lang('Guest'):</b> <span class="font-light">{{numberToAmountShort($guestCount)}}</span>
+          <b cl>@lang('Guest'):</b>
+          <span class="font-light">{{numberToAmountShort($guestCount)}}</span>
         </div>
       </div>
     </div>
   @else
     <div class="flex flex-wrap">
       <div class="w-full sm:w-1/4">
-        <span class="text-lg sm:text-2xl font-light">@lang('Urls Shortened'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($urlCount_Me)}}</span>
+        <span class="font-light text-lg sm:text-2xl">@lang('Urls Shortened'):</span>
+        <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($urlCount_Me)}}</span>
       </div>
       <div class="w-full sm:w-1/4">
-        <span class="text-lg sm:text-2xl font-light">@lang('Clicks & Redirects'):</span> <span class="text-lg sm:text-2xl font-light">{{numberToAmountShort($clickCount_Me)}}</span>
+        <span class="font-light text-lg sm:text-2xl">@lang('Clicks & Redirects'):</span>
+        <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($clickCount_Me)}}</span>
       </div>
     </div>
   @endrole
@@ -56,12 +61,14 @@
   <div class="bg-white p-4 shadow sm:rounded-md">
     <div class="flex mb-8">
       <div class="w-1/2">
-        <span class="text-2xl text-uh-1">
-          @lang('My URLs')
-        </span>
+        <span class="text-2xl text-uh-1">@lang('My URLs')</span>
       </div>
       <div class="w-1/2 text-right">
-        <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" class="inline-flex whitespace-nowrap items-center border font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 px-4 py-2 text-sm leading-5 rounded-md border-transparent shadow-sm text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:ring-uh-indigo-500 ml-4">
+        <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')"
+          class="inline-flex ml-4 px-4 py-2 items-center whitespace-nowrap
+            focus:outline-none focus:ring-2 focus:ring-offset-2 leading-5 border border-transparent rounded-md shadow-sm
+            text-sm font-medium text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:ring-uh-indigo-500"
+        >
           <i class="fa-solid fa-plus mr-2"></i>
           @lang('Add URL')
         </a>

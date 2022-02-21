@@ -86,6 +86,14 @@ main {
         tr {
           @apply text-uh-1 hover:bg-slate-50;
         }
+
+        .btn-action {
+          @apply text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700;
+        }
+
+        .btn-action-delete {
+          @apply text-slate-400 hover:text-red-500 active:text-red-700;
+        }
       }
     }
   }

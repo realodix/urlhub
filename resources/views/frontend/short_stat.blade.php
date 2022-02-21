@@ -1,8 +1,8 @@
-<div class="bg-white px-4 py-5 sm:p-6 shadow sm:rounded-md mt-6">
+<div class="bg-white mt-6 px-4 py-5 sm:p-6 shadow sm:rounded-md">
   <div>
     <div class="mb-4">
       <b>@lang('Platforms')</b>
-      <span class="badge-rounded bg-indigo-400/10 text-indigo-600">
+      <span class="badge-rounded text-indigo-600 bg-indigo-400/10">
         {{$url->visit->pluck('platform')->unique()->count()}}</span>
     </div>
 
@@ -21,7 +21,7 @@
   <div class="mt-8">
     <div class="mb-4">
       <b>@lang('Browsers')</b>
-      <span class="badge-rounded bg-indigo-400/10 text-indigo-600">
+      <span class="badge-rounded text-indigo-600 bg-indigo-400/10">
         {{$url->visit->pluck('browser')->unique()->count()}}</span>
     </div>
 
