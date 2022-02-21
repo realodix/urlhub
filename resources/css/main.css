@@ -14,8 +14,12 @@
     @apply flex items-center;
   }
 
+  &-toggler {
+    @apply text-uh-indigo-500;
+  }
+
   .nav-item {
-    @apply text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 leading-5;
+    @apply text-sm text-gray-700 hover:bg-slate-50 focus:bg-slate-100 leading-5;
     @apply block px-4 py-2 focus:outline-none transition;
   }
 
@@ -30,26 +34,6 @@
 
       &-email {
         @apply text-gray-500 font-medium text-sm;
-      }
-    }
-  }
-
-  .frontend & {
-    /* @apply bg-transparent text-transparent; */
-
-    .navbar {
-      &-toggler {
-        @apply text-[#5851d8];
-      }
-
-      &-mobile {
-        .nav-item {
-          /* @apply text-white; */
-
-          &-email {
-            /* @apply text-gray-300; */
-          }
-        }
       }
     }
   }
