@@ -8,7 +8,7 @@
 
     <div class="flex flex-wrap gap-2">
     @foreach($url->visit->pluck('platform')->unique() as $platform)
-      <div class="basis-auto sm:basis-1/6 border border-gray-300 rounded-md p-2 sm:p-2">
+      <div class="basis-auto sm:basis-1/6 border border-slate-300 rounded-md p-2 sm:p-2">
         <h5 class="card-title">{{ $platform }}</h5>
         <h6 class="">
           {{ $url->visit->where('platform', $platform)->count() }}
@@ -27,7 +27,7 @@
 
     <div class="flex flex-wrap gap-2">
     @foreach($url->visit->pluck('browser')->unique() as $browser)
-      <div class="basis-auto sm:basis-1/6 border border-gray-300 rounded-md p-2 sm:p-2">
+      <div class="basis-auto sm:basis-1/6 border border-slate-300 rounded-md p-2 sm:p-2">
         <h5 class="card-title">{{$browser}}</h5>
         <h6 class="">
           {{$url->visit->where('browser', $browser)->count()}}

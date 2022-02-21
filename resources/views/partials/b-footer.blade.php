@@ -1,4 +1,4 @@
-<footer class="mt-16 py-4 text-gray-700">
+<footer class="mt-4 sm:mt-16 py-4 text-slate-700">
   <hr class="mb-8">
   <div class="main max-w-7xl mx-auto px-6 lg:px-8">
     <div class="flex flex-wrap-reverse">

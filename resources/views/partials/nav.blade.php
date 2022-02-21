@@ -24,18 +24,18 @@
                   @if (Route::currentRouteName() != 'dashboard')
                     <a class="nav-item" href="{{route('dashboard')}}">@lang('Dashboard')</a>
 
-                    <div class="border-t border-gray-100"></div>
+                    <div class="border-t border-slate-100"></div>
                   @endif
 
                   <!-- Account Management -->
-                  <div class="block px-4 py-2 text-xs text-gray-400">
+                  <div class="block px-4 py-2 text-xs text-slate-400">
                     @lang('Manage Account')
                   </div>
 
                   <a href="{{route('user.edit', Auth::user()->name)}}" class="nav-item">@lang('Profile')</a>
                   <a href="{{route('user.change-password', Auth::user()->name)}}" class="nav-item" >@lang('Change Password')</a>
 
-                  <div class="border-t border-gray-100"></div>
+                  <div class="border-t border-slate-100"></div>
 
                   <!-- Authentication -->
                   <form method="POST" action="{{route('logout')}}">
@@ -58,7 +58,7 @@
       @endauth
         {{-- Hamburger --}}
         <div class="-mr-2 flex items-center sm:hidden">
-          <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
+          <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-slate-500 transition">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -85,7 +85,7 @@
       </div>
 
       <!-- Responsive Settings Options -->
-      <div class="pt-4 pb-1 border-t border-gray-200">
+      <div class="pt-4 pb-1 border-t border-slate-200">
         <div class="flex items-center px-4">
           <div>
             <div class="nav-item-username">{{Auth::user()->name}}</div>

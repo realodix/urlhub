@@ -61,14 +61,14 @@ main {
 
 .form-input {
   @apply block w-full;
-  @apply border-gray-300 focus:border-sky-300 focus:ring focus:ring-sky-200 focus:ring-opacity-50 rounded-md shadow-sm
+  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
 }
 
 .button {
   @apply text-xs uppercase tracking-widest;
   @apply rounded-md px-4 py-2;
 
-  @apply text-white bg-uh-2b hover:bg-uh-2c active:bg-uh-2b;
+  @apply text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
   @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
 }
 
@@ -81,7 +81,7 @@ main {
 .power-grid {
   .pg-header {
     input {
-      @apply bg-white focus:border-uh-2b;
+      @apply bg-white focus:ring-uh-indigo-400 focus:border-uh-indigo-400;
     }
   }
 
@@ -91,7 +91,7 @@ main {
 
     .table {
       thead {
-        @apply bg-[#eef1f4];
+        @apply bg-slate-50;
 
         th {
           @apply text-uh-1;
@@ -113,7 +113,7 @@ main {
 
     nav {
       a {
-        @apply bg-uh-2a hover:bg-uh-2c active:bg-uh-2b;
+        @apply bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
       }
     }
   }

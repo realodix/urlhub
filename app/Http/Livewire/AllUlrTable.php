@@ -77,7 +77,7 @@ final class AllUlrTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('keyword', function (Url $url) {
-                return '<a href="'.$url->short_url.'" target="_blank">'.$url->keyword.'</a>';
+                return '<a href="'.$url->short_url.'" target="_blank" class="text-uh-indigo-500">'.$url->keyword.'</a>';
             })
             ->addColumn('long_url', function (Url $url) {
                 return '
@@ -85,7 +85,7 @@ final class AllUlrTable extends PowerGridComponent
                         '.Str::limit($url->meta_title, 80).'
                     </span>
                     <br>
-                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" class="text-[#8392ab]">
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" class="text-slate-500">
                         '.urlDisplay($url->long_url, false, 70).'
                     </a>';
             })
@@ -98,9 +98,9 @@ final class AllUlrTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" class="text-slate-400 hover:text-indigo-500 active:text-indigo-700" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
-                    <a role="button" class="text-slate-400 hover:text-indigo-500 active:text-indigo-700" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"><i class="far fa-clone"></i></a>
-                    <a role="button" class="text-slate-400 hover:text-indigo-500 active:text-indigo-700" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"><i class="fas fa-edit"></i></a>
+                    '<a role="button" class="text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'"><i class="fa fa-eye"></i></a>
+                    <a role="button" class="text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"><i class="far fa-clone"></i></a>
+                    <a role="button" class="text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"><i class="fas fa-edit"></i></a>
                     <a role="button" class="text-slate-400 hover:text-red-500 active:text-red-700" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'"><i class="fas fa-trash-alt"></i></a>';
             });
     }
