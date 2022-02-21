@@ -5,7 +5,7 @@
 @section('content')
 <div class="pt-16 sm:pt-28">
   @if (! Auth::check() and ! Config::get('urlhub.public_site'))
-   <div class="flex flex-wrap md:justify-center">
+  <div class="flex flex-wrap md:justify-center">
     <div class="w-full md:w-8/12 text-5xl font-thin text-slate-600 text-center welcome-msg">@lang('Please login to shorten URLs')</div>
   </div>
   <div class="flex flex-wrap md:justify-center mt-12">
