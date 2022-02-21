@@ -15,7 +15,7 @@
   </div>
   @else
   <div class="flex flex-wrap md:justify-center">
-    <h1 class="relative z-10 max-w-md mx-auto md:max-w-3xl font-bold text-left text-uh-indigo-600 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight">
+    <h1 class="relative z-10 max-w-md mx-auto md:max-w-3xl font-bold text-uh-indigo-600 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight">
       Simple URL shortener <br>
       <span class="font-thin">for individuals &amp; businesses.</span>
     </h1>
@@ -27,11 +27,10 @@
       @csrf
         <div class="mt-1 text-center">
           <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}" placeholder="@lang('Shorten your link')"
-            class="text-xl h-12 sm:h-16 px-2 md:px-6
-              w-full md:w-4/6 rounded-t-md md:rounded-l-md md:rounded-r-none outline-none focus:outline-1 focus:outline-[#9b97e8]">
+            class="text-xl h-12 sm:h-14 px-2 md:px-4 w-full md:w-4/6 rounded-t-md md:rounded-l-md md:rounded-r-none outline-none focus:outline-1 focus:outline-[#9b97e8]">
 
           <button type="submit" id="actProcess"
-            class="text-lg bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:bg-uh-indigo-600 text-white h-12 sm:h-16 align-top
+            class="text-lg bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:bg-uh-indigo-600 text-white h-12 sm:h-14 align-top
               w-full md:w-1/6 rounded-t-none md:rounded-l-none md:rounded-r-md">@lang('Shorten')</button>
         </div>
 
