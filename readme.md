@@ -82,15 +82,10 @@ Anybody can help by doing any of the following:
 
 ### Running Tests
 
-- **Command Line**
-
-  From the projects root folder run 
-  - `php artisan test`
-  - or `./vendor/bin/phpunit`
-
-- **VSCode Tasks**
-  - `Run tests`
-  - or `Run tests (PHPUnit)`
+From the projects root folder run 
+- `php artisan test`
+- or `composer test`
+- or `./vendor/bin/phpunit`
 
 ![screenshot](https://i.imgur.com/MjEbKEG.png)
 
