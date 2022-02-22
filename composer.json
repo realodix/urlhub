@@ -2,7 +2,7 @@
     "name": "realodix/urlhub",
     "type": "project",
     "description": "URL shortener web application based on the Laravel PHP Framework.",
-    "keywords": [ "laravel", "url-shortener", "shorten-urls", "shorturl"],
+    "keywords": ["laravel", "url-shortener", "shorten-urls", "shorturl"],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
