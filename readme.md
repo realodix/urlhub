@@ -1,4 +1,4 @@
-<h1>UrlHub</h1>
+![screenshot](https://i.imgur.com/MeZvgiz.png)
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 [![LaravelVersion](https://img.shields.io/badge/Laravel-9-f56857.svg?style=flat-square)](https://laravel.com/docs/9.x)
@@ -27,11 +27,6 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Written in [PHP](https://www.php.net/) and [Laravel 9](https://laravel.com/docs/9.x).**
 - **Modern and simple interface.**
 - **Made with :heart: &amp; :coffee:.**
-
-
-### Screenshots
-![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
-|-|-|-|-|
 
 
 ## Requirements
@@ -97,7 +92,7 @@ Anybody can help by doing any of the following:
   - `Run tests`
   - or `Run tests (PHPUnit)`
 
-![screenshot](https://i.imgur.com/jQU2h17.jpg)
+![screenshot](https://i.imgur.com/MjEbKEG.png)
 
 
 ## Bug Report
