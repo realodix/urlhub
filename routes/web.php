@@ -1,39 +1,45 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AllUrlController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\User\ChangePasswordController;
+use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\UrlController;
+use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
 Route::view('/', 'frontend.welcome')->name('home');
-Route::post('/create', 'UrlController@create')->name('createshortlink');
-Route::post('/validate-custom-key', 'UrlController@customKeyValidation');
-Route::get('/+{keyword}', 'UrlController@showShortenedUrlDetails')->name('short_url.stats');
-Route::get('/duplicate/{keyword}', 'UrlController@duplicate')->middleware('auth')->name('duplicate');
+Route::post('/create', [UrlController::class, 'create'])->name('createshortlink');
+Route::post('/validate-custom-key', [UrlController::class, 'customKeyValidation']);
+Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('short_url.stats');
+Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('duplicate');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
-        Route::get('/', 'DashboardController@view')->name('dashboard');
-        Route::get('/delete/{url_hashId}', 'DashboardController@delete')->name('dashboard.delete');
-        Route::get('/duplicate/{keyword}', 'DashboardController@duplicate')->name('dashboard.duplicate');
-        Route::get('/edit/{keyword}', 'DashboardController@edit')->name('short_url.edit');
-        Route::post('/edit/{url_hashId}', 'DashboardController@update')->name('short_url.edit.post');
+        Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
+        Route::get('/delete/{url_hashId}', [DashboardController::class, 'delete'])->name('dashboard.delete');
+        Route::get('/duplicate/{keyword}', [DashboardController::class, 'duplicate'])->name('dashboard.duplicate');
+        Route::get('/edit/{keyword}', [DashboardController::class, 'edit'])->name('short_url.edit');
+        Route::post('/edit/{url_hashId}', [DashboardController::class, 'update'])->name('short_url.edit.post');
 
         // All URLs
-        Route::get('/allurl', 'AllUrlController@view')->name('dashboard.allurl');
-        Route::get('/allurl/delete/{url_hashId}', 'AllUrlController@delete')->name('dashboard.allurl.delete');
+        Route::get('/allurl', [AllUrlController::class, 'view'])->name('dashboard.allurl');
+        Route::get('/allurl/delete/{url_hashId}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
-            Route::get('/', 'UserController@view')->name('user.index');
+            Route::get('/', [UserController::class, 'view'])->name('user.index');
 
-            Route::get('{user}/edit', 'UserController@edit')->name('user.edit');
-            Route::post('{user_hashId}/edit', 'UserController@update')->name('user.update');
+            Route::get('{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+            Route::post('{user_hashId}/edit', [UserController::class, 'update'])->name('user.update');
 
-            Route::get('{user}/changepassword', 'ChangePasswordController@view')->name('user.change-password');
-            Route::post('{user_hashId}/changepassword', 'ChangePasswordController@update')->name('user.change-password.post');
+            Route::get('{user}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
+            Route::post('{user_hashId}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
         });
     });
 });
 
-Route::get('/{keyword}', 'UrlRedirectController');
+Route::get('/{keyword}', UrlRedirectController::class);
