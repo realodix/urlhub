@@ -138,7 +138,7 @@ final class MyUrlTable extends PowerGridComponent
                 ->searchable(),
 
             Column::add()
-                ->title('Original URL')
+                ->title('Destination URL')
                 ->field('long_url')
                 ->sortable()
                 ->searchable(),

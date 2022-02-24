@@ -26,13 +26,13 @@
             <span class="short-url">{{urlDisplay($url->short_url, false)}}</span>
           </div>
 
-          <div class="col-span-6 lg:col-span-4">
+          <div class="col-span-6">
             <label for="meta-title" class="block font-medium text-sm text-slate-700">@lang('Title')</label>
             <input id="meta-title" type="text" name="meta_title" placeholder="@lang('Title')" required value="{{$url->meta_title}}" class="form-input">
           </div>
 
-          <div class="col-span-6 lg:col-span-4">
-            <label for="long-url" class="block font-medium text-sm text-slate-700">@lang('Confirmation')</label>
+          <div class="col-span-6">
+            <label for="long-url" class="block font-medium text-sm text-slate-700">@lang('Destination URL')</label>
             <input id="long-url" type="text" name="long_url" placeholder="@lang('Enter your long url')" required value="{{$url->long_url}}" class="form-input">
           </div>
         </div>

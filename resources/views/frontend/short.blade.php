@@ -43,7 +43,7 @@
 
       <br> <br>
 
-      <b>@lang('Original URL')</b>
+      <b>@lang('Destination URL')</b>
       <button title="@lang('Copy to clipboard')" data-clipboard-text="{{ $url->long_url }}"
         class="btn-clipboard ml-4 py-0.5 px-1
           text-xs text-indigo-500 hover:text-white hover:bg-indigo-500 focus:bg-indigo-600 border-indigo-500"
