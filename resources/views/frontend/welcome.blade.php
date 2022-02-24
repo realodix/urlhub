@@ -49,7 +49,7 @@
           <div class="inline text-2xl">
             {{$_SERVER['SERVER_NAME']}}/</div>
           <input id="custom_key" name="custom_key"
-            class="px-2 text-2xl text-orange-400 bg-transparent border-b-4 border-orange-500 focus:outline-none">
+            class="px-2 text-2xl text-orange-400 bg-transparent border-b-4 border-emerald-500 focus:outline-none">
           <small id="link-availability-status"
             class="block ml-4"></small>
         </div>
