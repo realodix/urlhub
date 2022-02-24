@@ -55,7 +55,7 @@ class UrlRedirectionService
     {
         Visit::create([
             'url_id'           => $url->id,
-            'referer'          => request()->server('HTTP_REFERER') ?? null,
+            'referer'          => request()->headers->get('referer'),
             'ip'               => $this->urlSrvc->anonymizeIp(request()->ip()),
             'device'           => $this->agent->device(),
             'platform'         => $this->agent->platform(),
