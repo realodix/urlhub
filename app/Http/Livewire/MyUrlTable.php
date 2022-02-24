@@ -86,7 +86,7 @@ final class MyUrlTable extends PowerGridComponent
                         '.Str::limit($url->meta_title, 80).'
                     </span>
                     <br>
-                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" class="text-slate-500">
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">
                         '.urlDisplay($url->long_url, false, 70).'
                     </a>';
             })
