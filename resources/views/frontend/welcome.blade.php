@@ -30,7 +30,7 @@
         <div class="mt-1 text-center">
           <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}" placeholder="@lang('Shorten your link')"
             class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
-              rounded-t-md md:rounded-l-md md:rounded-r-none outline-none focus:outline-1 focus:outline-uh-indigo-300
+              rounded-t-md md:rounded-l-md md:rounded-r-none outline-none focus:border focus:border-uh-indigo-300
               text-xl">
           <button type="submit" id="actProcess"
             class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none md:rounded-l-none md:rounded-r-md
