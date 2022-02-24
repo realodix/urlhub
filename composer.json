@@ -2,43 +2,36 @@
     "name": "realodix/urlhub",
     "type": "project",
     "description": "URL shortener web application based on the Laravel PHP Framework.",
-    "keywords": [ "laravel", "url-shortener", "shorten-urls", "shorturl"],
+    "keywords": ["laravel", "url-shortener", "shorten-urls", "shorturl"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0.2",
         "codeitnowin/barcode": "^3.0",
-        "creativeorange/gravatar": "~1.0",
         "doctrine/dbal": "^3.1",
         "embed/embed": "^4.3",
-        "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
-        "geoip2/geoip2": "~2.0",
         "guzzlehttp/guzzle": "^7.3",
         "jenssegers/agent": "^2.6",
-        "laravel/framework": "^8.47",
-        "laravel/tinker": "^2.0",
+        "laravel/framework": "^9.2",
+        "laravel/sanctum": "^2.14.1",
+        "laravel/tinker": "^2.7",
         "laravel/ui": "^3.3",
-        "laravolt/avatar": "^4.1",
-        "nyholm/psr7": "^1.4",
+        "livewire/livewire": "^2.10",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
-        "realodix/php-utility": "^1.0",
-        "spatie/laravel-permission": "^4.2",
+        "power-components/livewire-powergrid": "^2.2",
+        "realodix/php-utility": "^2.0",
+        "spatie/laravel-permission": "^5.5",
         "spatie/url": "^2.0",
-        "tabuna/breadcrumbs": "^2.3",
-        "vinkla/hashids": "^9.0",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "vinkla/hashids": "^10.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.8",
-        "fakerphp/faker": "^1.14",
-        "kubawerlos/composer-smaller-lock": "^0.1.4",
-        "laravel/dusk": "^6.15",
-        "mockery/mockery": "^1.4",
-        "nunomaduro/collision": "^5.4",
-        "nunomaduro/larastan": "^0.7.5",
-        "phpunit/phpunit": "10.0.x-dev",
-        "realodix/php-cs-fixer-config": "^3.0"
+        "fakerphp/faker": "^1.19",
+        "mockery/mockery": "^1.5",
+        "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.0",
+        "phpunit/phpunit": "^9.5.10",
+        "realodix/php-cs-fixer-config": "^3.0",
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -57,11 +50,17 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "test": [
+            "./vendor/bin/phpunit"
         ]
     },
     "extra": {

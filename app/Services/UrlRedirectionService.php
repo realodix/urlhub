@@ -17,8 +17,8 @@ class UrlRedirectionService
     /**
      * UrlRedirectionService constructor.
      *
-     * @param Agent|null $agent   \Jenssegers\Agent\Agent
-     * @param UrlService $urlSrvc \App\Services\UrlService
+     * @param  Agent|null  $agent  \Jenssegers\Agent\Agent
+     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
     public function __construct(Agent $agent = null, protected UrlService $urlSrvc)
     {
@@ -31,19 +31,13 @@ class UrlRedirectionService
      * Redirect client to an existing short URL (no check performed) and
      * execute tasks update clicks for short URL.
      *
-     * @param Url $url \App\Models\Url
-     *
+     * @param  Url  $url  \App\Models\Url
      * @return RedirectResponse
      */
     public function handleHttpRedirect(Url $url)
     {
         $url->increment('clicks');
-        $this->storeVisitStat(
-            $url,
-            $this->urlSrvc->ipToCountry(
-                $this->urlSrvc->anonymizeIp(request()->ip())
-            )
-        );
+        $this->storeVisitStat($url);
 
         $headers = [
             'Cache-Control' => sprintf('private,max-age=%s', uHub('redirect_cache_lifetime')),
@@ -55,22 +49,19 @@ class UrlRedirectionService
     /**
      * Create visit statistics and store it in the database.
      *
-     * @param Url   $url       \App\Models\Url
-     * @param array $countries
+     * @param  Url  $url  \App\Models\Url
      */
-    private function storeVisitStat(Url $url, array $countries)
+    private function storeVisitStat(Url $url)
     {
         Visit::create([
             'url_id'           => $url->id,
-            'referer'          => request()->server('HTTP_REFERER') ?? null,
+            'referer'          => request()->headers->get('referer'),
             'ip'               => $this->urlSrvc->anonymizeIp(request()->ip()),
             'device'           => $this->agent->device(),
             'platform'         => $this->agent->platform(),
             'platform_version' => $this->agent->version($this->agent->platform()),
             'browser'          => $this->agent->browser(),
             'browser_version'  => $this->agent->version($this->agent->browser()),
-            'country'          => $countries['countryCode'],
-            'country_full'     => $countries['countryName'],
         ]);
     }
 }

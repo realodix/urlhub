@@ -7,27 +7,25 @@
 
   <title>@yield('title') | {{appName()}}</title>
 
-  {{-- Main styles for this application --}}
+  @livewireStyles
+  @powerGridStyles
+  {!! style(mix('css/main.css')) !!}
   {!! style(mix('css/backend.css')) !!}
 </head>
 
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-@include('backend.partials.header')
+<body class="backend">
+@include('partials.b-header')
 
-<div class="app-body">
-  @include('backend.partials.sidebar')
+<main class="main max-w-7xl mx-auto sm:mt-0 py-4 sm:px-6 lg:px-8">
+  @yield('content')
+</main>
 
-  <main class="main mt-4">
-    <div class="container-fluid">
-      @yield('content')
-    </div>
-  </main>
-</div>
-
-@include('backend.partials.footer')
+@include('partials.b-footer')
 
 {!! script(mix('js/manifest.js')) !!}
 {!! script(mix('js/vendor.js')) !!}
 {!! script(mix('js/backend.js')) !!}
+@livewireScripts
+@powerGridScripts
 </body>
 </html>

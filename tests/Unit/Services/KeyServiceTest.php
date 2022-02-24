@@ -51,16 +51,16 @@ class KeyServiceTest extends TestCase
      * @group u-service
      * @dataProvider keyRemainingProvider
      *
-     * @param mixed $kc
-     * @param mixed $nouk
-     * @param mixed $expected
+     * @param  mixed  $kc
+     * @param  mixed  $nouk
+     * @param  mixed  $expected
      */
     public function keyRemaining($kc, $nouk, $expected)
     {
         $mock = Mockery::mock(KeyService::class)->makePartial();
         $mock->shouldReceive([
-            'keyCapacity'     => $kc,
-            'numberOfUsedKey' => $nouk,
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
         ]);
         $actual = $mock->keyRemaining();
 
@@ -69,7 +69,7 @@ class KeyServiceTest extends TestCase
 
     public function keyRemainingProvider()
     {
-        // keyCapacity(), numberOfUsedKey(), expected_result
+        // keyCapacity(), keyUsed(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],
@@ -81,16 +81,16 @@ class KeyServiceTest extends TestCase
      * @group u-service
      * @dataProvider keyRemainingInPercentProvider
      *
-     * @param mixed $kc
-     * @param mixed $nouk
-     * @param mixed $expected
+     * @param  mixed  $kc
+     * @param  mixed  $nouk
+     * @param  mixed  $expected
      */
     public function keyRemainingInPercent($kc, $nouk, $expected)
     {
         $mock = Mockery::mock(KeyService::class)->makePartial();
         $mock->shouldReceive([
-            'keyCapacity'     => $kc,
-            'numberOfUsedKey' => $nouk,
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
         ]);
         $actual = $mock->keyRemainingInPercent();
 
@@ -99,7 +99,7 @@ class KeyServiceTest extends TestCase
 
     public function keyRemainingInPercentProvider()
     {
-        // keyCapacity(), numberOfUsedKey(), expected_result
+        // keyCapacity(), keyUsed(), expected_result
         return [
             [10, 10, '0%'],
             [10, 11, '0%'],
@@ -112,36 +112,36 @@ class KeyServiceTest extends TestCase
      * @test
      * @group u-service
      */
-    public function numberOfUsedKey()
+    public function keyUsed()
     {
         config(['urlhub.hash_char' => 'abc']);
 
         Url::factory()->create([
             'keyword' => $this->keySrvc->randomString(),
         ]);
-        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(1, $this->keySrvc->keyUsed());
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', uHub('hash_length')),
             'is_custom' => 1,
         ]);
-        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(2, $this->keySrvc->keyUsed());
 
         Url::factory()->create([
             'keyword'   => str_repeat('b', uHub('hash_length') + 1),
             'is_custom' => 1,
         ]);
-        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(2, $this->keySrvc->keyUsed());
 
         config(['urlhub.hash_length' => uHub('hash_length') + 2]);
-        $this->assertSame(0, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(0, $this->keySrvc->keyUsed());
     }
 
     /**
      * @test
      * @group u-service
      */
-    public function numberOfUsedKey2()
+    public function keyUsed2()
     {
         config(['urlhub.hash_length' => 3]);
 
@@ -150,22 +150,22 @@ class KeyServiceTest extends TestCase
             'keyword'   => 'foo',
             'is_custom' => 1,
         ]);
-        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(1, $this->keySrvc->keyUsed());
 
         config(['urlhub.hash_char' => 'bar']);
         Url::factory()->create([
             'keyword'   => 'bar',
             'is_custom' => 1,
         ]);
-        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(1, $this->keySrvc->keyUsed());
 
         config(['urlhub.hash_char' => 'foobar']);
-        $this->assertSame(2, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(2, $this->keySrvc->keyUsed());
 
         config(['urlhub.hash_char' => 'fooBar']);
-        $this->assertSame(1, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(1, $this->keySrvc->keyUsed());
 
         config(['urlhub.hash_char' => 'FooBar']);
-        $this->assertSame(0, $this->keySrvc->numberOfUsedKey());
+        $this->assertSame(0, $this->keySrvc->keyUsed());
     }
 }

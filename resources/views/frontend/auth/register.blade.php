@@ -5,65 +5,51 @@
 @section('css_class', 'auth')
 
 @section('content')
-<div class="container">
-<div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+<div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
+  <div class="text-uh-blue font-bold text-4xl sm:text-6xl">{{appName()}}</div>
 
-<div class="col-md-6">
-<div class="card mx-4">
-  <div class="card-body p-4">
-  @if ( ! Config::get('urlhub.registration') )
-  <div class="card-body p-4">
-    <h1>@lang('Not allowed to register')</h1>
-    <p class="text-muted">@lang('Sorry, not allowed to register by administrator')</p>
-  </div>
-  @else
-    <form method="post" action="{{ route('register') }}" aria-label="@lang('Register')">
-    @csrf
-      <h1>@lang('Register')</h1>
-      <p class="text-muted">@lang('Create your account')</p>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="@lang('Username')" required autofocus>
+  <div class="w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden sm:rounded-lg
+        bg-white shadow-md">
+    @if ( ! Config::get('urlhub.registration') )
+      <p class="text-muted">@lang('Sorry, not allowed to register by administrator')</p>
+    @else
+      <form method="post" action="{{ route('register') }}" aria-label="@lang('Register')">
+      @csrf
+        <label class="text-slate-700">@lang('Username')</label>
+        <input class="form-input mt-1" id="name" type="text" name="name" required autofocus>
 
         @if ($errors->has('name'))
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $errors->first('name') }}</strong>
-        </span>
+          <strong class="text-red-500">{{ $errors->first('name') }}hhhh</strong>
         @endif
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-at"></i></span></div>
-        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="@lang('Email')" required>
+
+        <div class="mt-4"></div>
+
+        <label class="text-slate-700">@lang('Email')</label>
+        <input class="form-input mt-1" id="email" type="email" name="email" required>
 
         @if ($errors->has('email'))
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $errors->first('email') }}</strong>
-        </span>
+          <strong class="text-red-500">{{ $errors->first('email') }}</strong>
         @endif
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-lock"></i></span></div>
-        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="@lang('Password')" required>
+
+        <div class="mt-4"></div>
+
+        <label class="text-slate-700">@lang('Password')</label>
+        <input class="form-input mt-1" id="password" type="password" name="password" required>
 
         @if ($errors->has('password'))
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $errors->first('password') }}</strong>
-        </span>
+          <strong class="text-red-500">{{ $errors->first('password') }}</strong>
         @endif
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-lock"></i></span></div>
-        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="@lang('Repeat password')" required>
-      </div>
 
-      <button class="btn btn-block btn-success" type="submit">@lang('Create Account')</button>
-    </form>
+        <div class="mt-4"></div>
+
+        <label class="text-slate-700">@lang('Password')</label>
+        <input class="form-input mt-1" id="password-confirm" type="password" name="password_confirmation" required>
+
+        <div class="flex items-center justify-end mt-8">
+          <button type="submit" class="button">@lang('Create Account')</button>
+        </div>
+      </form>
+    @endif
   </div>
-  @endif
-</div>
-</div>
-
-</div>
 </div>
 @endsection

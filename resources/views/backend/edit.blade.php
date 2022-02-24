@@ -4,61 +4,47 @@
 
 @section('content')
 
-@include('messages')
+@include('partials/messages')
 
-<div class="row">
-  <div class="col-xl-6">
+<main class="flex flex-wrap">
+  <div class="md:w-3/12 flex justify-between">
+    <div class="px-4 sm:px-0">
+      <h3 class="text-lg font-medium text-slate-900">@lang('My URLs')</h3>
+
+      <p class="mt-1 text-sm text-slate-600">
+        @lang('Edit URL')
+      </p>
+    </div>
+  </div>
+  <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4 bg-white">
     <form method="post" action="{{route('short_url.edit.post', $url->getRouteKey())}}">
     @csrf
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title mb-0">
-            @lang('My URLs')
-            <small class="text-muted">@lang('Edit URL')</small>
-          </h4>
+      <div class="bg-white px-4 py-5 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6 lg:col-span-4">
+            <label for="short-url" class="block font-medium text-sm text-slate-700">@lang('Short URL')</label>
+            <span class="short-url">{{urlDisplay($url->short_url, false)}}</span>
+          </div>
 
-          <hr />
+          <div class="col-span-6 lg:col-span-4">
+            <label for="meta-title" class="block font-medium text-sm text-slate-700">@lang('Title')</label>
+            <input id="meta-title" type="text" name="meta_title" placeholder="@lang('Title')" required value="{{$url->meta_title}}" class="form-input">
+          </div>
 
-          <div class="row mt-4 mb-4">
-          <div class="col">
-            <div class="form-group{{ $errors->has('short-url') ? ' has-error' : '' }} row">
-              <label for="short-url" class="col-sm-3 col-form-label">@lang('Short URL')</label>
-
-              <div class="col">
-                <div class="input-group mb-3">
-                  <span class="short-url">{{urlDisplay($url->short_url, false)}}</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('meta-title') ? ' has-error' : '' }} row">
-              <label for="meta-title" class="col-sm-3 col-form-label">@lang('Title')</label>
-
-              <div class="col">
-                <input id="meta-title" type="text" class="form-control" name="meta_title" placeholder="@lang('Title')" required value="{{$url->meta_title}}">
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('long-url') ? ' has-error' : '' }} row">
-              <label for="long-url" class="col-sm-3 col-form-label">@lang('Long URL')</label>
-
-              <div class="col">
-                <input id="long-url" type="text" class="form-control" name="long_url" placeholder="@lang('Enter your long url')" required value="{{$url->long_url}}">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col text-right">
-                <button type="submit" class="btn btn-secondary">
-                  @lang('Save Changes')
-                </button>
-              </div>
-            </div>
-          </div><!--col-->
-          </div><!--row-->
-        </div><!--card-body-->
-      </div><!--card-->
+          <div class="col-span-6 lg:col-span-4">
+            <label for="long-url" class="block font-medium text-sm text-slate-700">@lang('Confirmation')</label>
+            <input id="long-url" type="text" name="long_url" placeholder="@lang('Enter your long url')" required value="{{$url->long_url}}" class="form-input">
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-end px-4 py-3 sm:px-6 border-t sm:rounded-bl-md sm:rounded-br-md shadow
+            text-right bg-slate-50"
+      >
+        <button type="submit" class="button">
+          @lang('Save Changes')
+        </button>
+      </div>
     </form>
   </div>
-</div>
+</main>
 @endsection

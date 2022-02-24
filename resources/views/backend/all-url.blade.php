@@ -3,38 +3,29 @@
 @section('title', __('All URLs'))
 
 @section('content')
-<div class="all-url">
-  <div class="card">
-    <div class="card-body">
-      <div class="row mb-3">
-      <div class="col-sm-6">
-        <h4 class="card-title mb-0">
-          @lang('All URLs')
-        </h4>
-      </div><!--col-->
-      <div class="col-sm-6">
-        <a class="nav-link float-right" href="{{ url('./') }}" target="_blank" title="@lang('Add URL')" data-toggle="tooltip"><i class="fas fa-plus"></i></a>
-      </div><!--col-->
-      </div><!--row-->
-
-      @include('messages')
-
-      <div class="table-responsive-md">
-        <table id="dt-allUrls" class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">@lang('Short URL')</th>
-              <th scope="col">@lang('Original URL')</th>
-              <th scope="col">@lang('Clicks')</th>
-              <th scope="col">@lang('Created By')</th>
-              <th scope="col">@lang('Date')</th>
-              <th scope="col">@lang('Actions')</th>
-            </tr>
-          </thead>
-        </table>
+<main>
+  <div class="bg-white p-4 shadow sm:rounded-md">
+      <div class="flex mb-8">
+        <div class="w-1/2">
+          <span class="text-2xl text-uh-1">
+            @lang('All URLs')
+          </span>
+        </div>
+        <div class="w-1/2 text-right">
+          <a href="{{ url('./') }}" target="_blank" title="@lang('Add URL')"
+            class="inline-flex ml-4 px-4 py-2 items-center whitespace-nowrap
+              focus:outline-none focus:ring-2 focus:ring-offset-2 leading-5 border border-transparent rounded-md shadow-sm
+              text-sm font-medium text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:ring-uh-indigo-500"
+          >
+            <i class="fa-solid fa-plus mr-2"></i>
+            @lang('Add URL')
+          </a>
+        </div>
       </div>
 
-    </div>
+      @include('partials/messages')
+
+      @livewire('all-ulr-table')
   </div>
-</div>
+</main>
 @endsection

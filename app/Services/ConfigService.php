@@ -32,8 +32,7 @@ class ConfigService
             || $this->hash_length()
             || $this->anonymize_ip_addr()
             || $this->redirect_status_code()
-            || $this->redirect_cache_lifetime()
-            || $this->embed();
+            || $this->redirect_cache_lifetime();
     }
 
     /** @codeCoverageIgnore */
@@ -97,15 +96,9 @@ class ConfigService
         }
     }
 
-    /** @codeCoverageIgnore */
-    private function embed()
-    {
-        return $this->valueIsBool('urlhub.embed');
-    }
-
     /**
-     * @param string $configOption configuration option
-     * @param bool   $defaultValue configuration values
+     * @param  string  $configOption  configuration option
+     * @param  bool  $defaultValue  configuration values
      *
      * @codeCoverageIgnore
      */

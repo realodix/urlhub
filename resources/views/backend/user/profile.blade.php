@@ -4,58 +4,42 @@
 
 @section('content')
 
-@include('messages')
+@include('partials/messages')
 
-<div class="row">
-  <div class="col-xl-6">
+<main class="flex flex-wrap">
+  <div class="md:w-3/12 flex justify-between">
+    <div class="px-4 sm:px-0">
+      <h3 class="text-lg font-medium text-slate-900">@lang('Profile Information')</h3>
+
+      <p class="mt-1 text-sm text-slate-600">
+        @lang("Update your account's profile information and email address.")
+      </p>
+    </div>
+  </div>
+  <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4 bg-white">
     <form method="post" action="{{route('user.update', $user->getRouteKey())}}">
     @csrf
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title mb-0">
-            @lang('Account Settings')
-            <small class="text-muted">@lang('Profile')</small>
-          </h4>
-
-          <hr />
-
-          <div class="row mt-4 mb-4">
-          <div class="col">
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
-              <label for="name" class="col-sm-3 col-form-label">@lang('Username')</label>
-
-              <div class="col">
-                <input value="{{$user->name}}" id="name" type="text" class="form-control" name="name" disabled>
-                <small class="text-muted"><i>@lang('Usernames cannot be changed.')</i></small>
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} row">
-              <label for="email" class="col-sm-3 col-form-label">@lang('E-mail Address')</label>
-
-              <div class="col">
-                <input value="{{$user->email}}" id="email" type="email" class="form-control" name="email">
-
-                @if ($errors->has('email'))
-                <span class="help-block text-danger">
-                  {{ $errors->first('email') }}
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col text-right">
-                <button type="submit" class="btn btn-secondary">
-                  @lang('Save')
-                </button>
-              </div>
-            </div>
-          </div><!--col-->
-          </div><!--row-->
-        </div><!--card-body-->
-      </div><!--card-->
+      <div class="px-4 py-5 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6 lg:col-span-4">
+            <label for="name" class="block font-medium text-sm text-slate-700">@lang('Username')</label>
+            <input value="{{$user->name}}" id="name" type="text" name="name" class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
+            <small class="block text-red-400"><i>@lang('Usernames cannot be changed.')</i></small>
+          </div>
+          <div class="col-span-6 lg:col-span-4">
+            <label for="email" class="block font-medium text-sm text-slate-700">@lang('E-mail Address')</label>
+            <input value="{{$user->email}}" id="email" type="email" name="email" class="form-input mt-1">
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-end px-4 py-3 sm:px-6 border-t sm:rounded-bl-md sm:rounded-br-md shadow
+            text-right bg-slate-50"
+      >
+        <button type="submit" class="button">
+          @lang('Save')
+        </button>
+      </div>
     </form>
   </div>
-</div>
+</main>
 @endsection

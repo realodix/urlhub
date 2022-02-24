@@ -10,19 +10,9 @@ use App\Services\UserService;
 class ChangePasswordController extends Controller
 {
     /**
-     * ChangePasswordController constructor.
-     *
-     * @param UserService $userSrvc \App\Services\UserService
-     */
-    public function __construct(protected UserService $userSrvc)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing password.
      *
-     * @param User $user \App\Models\User
+     * @param  User  $user  \App\Models\User
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -36,18 +26,20 @@ class ChangePasswordController extends Controller
     /**
      * Change the password.
      *
-     * @param UpdateUserPassword $request \App\Http\Requests\UpdateUserPassword
-     * @param User               $user    \App\Models\User
+     * @param  UpdateUserPassword  $request  \App\Http\Requests\UpdateUserPassword
+     * @param  User  $user  \App\Models\User
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UpdateUserPassword $request, User $user)
     {
+        $userSrvc = new UserService;
+
         $this->authorize('updatePass', $user);
 
         $data = $request->only('new-password');
 
-        $this->userSrvc->updateUserPassword($data, $user);
+        $userSrvc->updateUserPassword($data, $user);
 
         return redirect()->back()
                          ->withFlashSuccess(__('Password changed successfully !'));

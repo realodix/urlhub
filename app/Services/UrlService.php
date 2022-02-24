@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Url;
 use Embed\Embed;
-use GeoIp2\Database\Reader;
 use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
@@ -30,8 +29,8 @@ class UrlService
     }
 
     /**
-     * @param array|string $request
-     * @param int          $authId
+     * @param  array|string  $request
+     * @param  int  $authId
      */
     public function shortenUrl($request, $authId)
     {
@@ -48,8 +47,8 @@ class UrlService
     }
 
     /**
-     * @param array  $request
-     * @param object $url     \App\Models\Url
+     * @param  array  $request
+     * @param  object  $url  \App\Models\Url
      */
     public function update(array $request, object $url)
     {
@@ -61,7 +60,7 @@ class UrlService
     }
 
     /**
-     * @param object $url \App\Models\Url
+     * @param  object  $url  \App\Models\Url
      */
     public function delete(object $url)
     {
@@ -69,8 +68,8 @@ class UrlService
     }
 
     /**
-     * @param string $key
-     * @param int    $authId
+     * @param  string  $key
+     * @param  int  $authId
      */
     public function duplicate($key, $authId)
     {
@@ -88,63 +87,36 @@ class UrlService
         return $replicate;
     }
 
-    public function shortUrlCount()
+    /**
+     * @param  int  $id
+     */
+    public function urlCount($id = null)
+    {
+        return $this->url->whereUserId($id)->count('keyword');
+    }
+
+    public function totalUrl()
     {
         return $this->url->count('keyword');
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      */
-    public function shortUrlCountOwnedBy($id = null)
+    public function clickCount($id = null): int
     {
-        return $this->url->whereUserId($id)->count('keyword');
+        return $this->url->whereUserId($id)->sum('clicks');
     }
 
-    public function clickCount(): int
+    public function totalClick(): int
     {
         return $this->url->sum('clicks');
     }
 
     /**
-     * @param int $id
-     */
-    public function clickCountOwnedBy($id = null): int
-    {
-        return $this->url->whereUserId($id)->sum('clicks');
-    }
-
-    /**
-     * IP Address to Identify Geolocation Information. If it fails, because
-     * DB-IP Lite databases doesn't know the IP country, we will set it to
-     * Unknown.
-     *
-     * @param string $ip
-     */
-    public function ipToCountry($ip)
-    {
-        try {
-            // @codeCoverageIgnoreStart
-            $reader = new Reader(database_path().'/dbip-country-lite-2020-07.mmdb');
-            $record = $reader->country($ip);
-            $countryCode = $record->country->isoCode;
-            $countryName = $record->country->name;
-
-            return compact('countryCode', 'countryName');
-            // @codeCoverageIgnoreEnd
-        } catch (\Exception $e) {
-            $countryCode = 'N/A';
-            $countryName = 'Unknown';
-
-            return compact('countryCode', 'countryName');
-        }
-    }
-
-    /**
      * Anonymize an IPv4 or IPv6 address.
      *
-     * @param string $address
-     *
+     * @param  string  $address
      * @return string
      */
     public static function anonymizeIp($address)
@@ -163,8 +135,7 @@ class UrlService
      * a valid domain without any subdomain (www being a subdomain). Won't
      * work on things like 'localhost'.
      *
-     * @param string $url
-     *
+     * @param  string  $url
      * @return string
      */
     public function getDomain(string $url)
@@ -178,8 +149,7 @@ class UrlService
      * This function returns a string: either the page title as defined in
      * HTML, or "{domain_name} - No Title" if not found.
      *
-     * @param string $url
-     *
+     * @param  string  $url
      * @return string
      */
     public function webTitle(string $url)
@@ -197,27 +167,5 @@ class UrlService
         }
 
         return $webTitle;
-    }
-
-    /**
-     * Get information from any web page.
-     *
-     * @param string $url
-     * @codeCoverageIgnore
-     */
-    public function webInfo(string $url)
-    {
-        try {
-            $info = (new Embed())->get($url);
-            $webInfo = $info->code->html;
-        } catch (\Exception $e) {
-            return;
-        }
-
-        if ($webInfo == null) {
-            return '<div style="max-width:80%;">'.$info->description.'</div>';
-        }
-
-        return $webInfo;
     }
 }

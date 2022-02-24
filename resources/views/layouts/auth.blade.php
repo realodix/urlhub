@@ -7,6 +7,7 @@
 
 <title>@yield('title') | {{appName()}}</title>
 
+{!! style(mix('css/main.css')) !!}
 {!! style(mix('css/frontend.css')) !!}
 </head>
 

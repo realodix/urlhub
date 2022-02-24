@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.frontend, .backend, .auth {
+  @apply bg-[#F1F5F9] font-sans text-gray-900 antialiased;
+}
+
+.navbar {
+  @apply bg-white text-uh-blue;
+
+  &-brand {
+    @apply font-serif text-4xl font-bold;
+    @apply flex items-center;
+  }
+
+  &-toggler {
+    @apply text-uh-indigo-500;
+  }
+
+  .nav-item {
+    @apply text-sm text-gray-700 hover:bg-slate-50 focus:bg-slate-100 leading-5;
+    @apply block px-4 py-2 focus:outline-none transition;
+  }
+
+  &-mobile {
+    .nav-item {
+      @apply text-gray-700;
+      @apply block pl-3 pr-4 py-2 font-medium transition;
+
+      &-username {
+        @apply font-semibold;
+      }
+
+      &-email {
+        @apply text-gray-500 font-medium text-sm;
+      }
+    }
+  }
+}
+
+main {
+  @apply sm:mt-10;
+}
+
+.form-input {
+  @apply block w-full;
+  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
+}
+
+.button {
+  @apply text-xs uppercase tracking-widest;
+  @apply rounded-md px-4 py-2;
+
+  @apply text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
+  @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
+}
+
+.badge-rounded {
+  @apply text-xs font-bold;
+  @apply text-center align-baseline whitespace-nowrap;
+  @apply rounded-full py-1 px-2;
+}
+
+.power-grid {
+  .pg-header {
+    input {
+      @apply bg-white focus:ring-uh-indigo-400 focus:border-uh-indigo-400;
+    }
+  }
+
+  .pg-table {
+    @apply overflow-hidden overflow-x-auto bg-white shadow overflow-y-auto relative;
+    @apply shadow-none;
+
+    .table {
+      thead {
+        @apply bg-slate-50;
+
+        th {
+          @apply text-uh-1;
+        }
+      }
+
+      tbody {
+        tr {
+          @apply text-uh-1 hover:bg-slate-50;
+        }
+
+        .btn-action {
+          @apply text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700;
+        }
+
+        .btn-action-delete {
+          @apply text-slate-400 hover:text-red-500 active:text-red-700;
+        }
+      }
+    }
+  }
+
+  .pg-footer {
+    select {
+      @apply bg-white focus:border-gray-300;
+    }
+
+    nav {
+      a {
+        @apply bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
+      }
+    }
+  }
+}

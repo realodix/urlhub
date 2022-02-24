@@ -1,7 +1,7 @@
-<h1>UrlHub</h1>
+![screenshot](https://i.imgur.com/MeZvgiz.png)
 
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
-[![LaravelVersion](https://img.shields.io/badge/Laravel-8-f56857.svg?style=flat-square)](https://laravel.com/docs/8.x)
+[![LaravelVersion](https://img.shields.io/badge/Laravel-9-f56857.svg?style=flat-square)](https://laravel.com/docs/9.x)
 ![PHPVersion](https://img.shields.io/badge/PHP-8-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
 ![Build Status](https://github.com/realodix/urlhub/actions/workflows/tests.yml/badge.svg)
@@ -20,25 +20,17 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **QR code generator for each short link:** The fastest way to access to this data is most likely opening the link from a phone. Though short URLs are handy for typing, a more convenient approach to transfer a web link to a mobile phone is through QR codes scanning.
 - **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
-- **Link preview:** If possible, UrlHub will automatically embedding the content when you shorten URLs. It's nice to preview the page.
 - **IP anonymization (or IP masking) [optional]:** Anonymizes visitor addresses as soon as technically feasible at the earliest possible stage of the collection network. The full IP address is never written to disk in this case. This feature is designed to help site owners comply with their own privacy policies, recommendations from local data protection authorities and legal regulations like the GDPR, which may prevent the storage of full IP address information.
 - **Power of customisation:** Do you want your site to be just for your use, so no one can register? No problem. It's in the configuration. Users must be registered to create Short URL? That's okay. It's in the configuration. From configuration file, you can edit pretty everything of your website. The choice is yours.
 - **Configuration guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
 - **Sortable list of shortened URLs.**
-- **[Datatables](https://datatables.net/) with server-side processing.**
-- **Written in [PHP](https://www.php.net/) and [Laravel 8](https://laravel.com/docs/8.x).**
+- **Written in [PHP](https://www.php.net/) and [Laravel 9](https://laravel.com/docs/9.x).**
 - **Modern and simple interface.**
 - **Made with :heart: &amp; :coffee:.**
 
 
-### Screenshots
-![screenshot](https://i.imgur.com/GFvIeBg.png) | ![screenshot](https://i.imgur.com/nJGVGHT.png) | ![screenshot](https://i.imgur.com/CpMAeaq.png) | ![screenshot](https://i.imgur.com/imRINvR.jpg) |
-|-|-|-|-|
-
-
 ## Requirements
 * All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & dependencies - PHP >= 8.0, [Composer](https://getcomposer.org/) and such.
-* MySQL or MariaDB or PostgreSQL.
 
 
 ## Quick Start
@@ -90,17 +82,12 @@ Anybody can help by doing any of the following:
 
 ### Running Tests
 
-- **Command Line**
+From the projects root folder run 
+- `php artisan test`
+- or `composer test`
+- or `./vendor/bin/phpunit`
 
-  From the projects root folder run 
-  - `php artisan test`
-  - or `./vendor/bin/phpunit`
-
-- **VSCode Tasks**
-  - `Run tests`
-  - or `Run tests (PHPUnit)`
-
-![screenshot](https://i.imgur.com/jQU2h17.jpg)
+![screenshot](https://i.imgur.com/MjEbKEG.png)
 
 
 ## Bug Report

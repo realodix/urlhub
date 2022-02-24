@@ -21,8 +21,7 @@ class KeyService
     }
 
     /**
-     * @param string $string
-     *
+     * @param  string  $string
      * @return string
      */
     public function urlKey(string $string)
@@ -85,15 +84,15 @@ class KeyService
     public function keyRemaining()
     {
         $keyCapacity = $this->keyCapacity();
-        $numberOfUsedKey = $this->numberOfUsedKey();
+        $keyUsed = $this->keyUsed();
 
-        return max($keyCapacity - $numberOfUsedKey, 0);
+        return max($keyCapacity - $keyUsed, 0);
     }
 
     public function keyRemainingInPercent()
     {
         $capacity = $this->keyCapacity();
-        $used = $this->numberOfUsedKey();
+        $used = $this->keyUsed();
         $remaining = $this->keyRemaining();
 
         $result = round(($remaining / $capacity) * 100, 2);
@@ -113,11 +112,11 @@ class KeyService
      * The number of unique random strings used as the short url key.
      *
      * Calculation formula:
-     * numberOfUsedKey = randomKey + customKey
+     * keyUsed = randomKey + customKey
      *
      * customKey must be similar to randomKey, such as having the same character length.
      */
-    public function numberOfUsedKey()
+    public function keyUsed()
     {
         $hashLength = uHub('hash_length');
         $regexPattern = '['.uHub('hash_char').']{'.$hashLength.'}';

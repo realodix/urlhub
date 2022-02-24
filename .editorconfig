@@ -12,14 +12,14 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-[*.{blade.php,scss,yml,yaml}]
+[*.{blade.php,css,scss,yml,yaml,neon,neon.dist}]
+indent_size = 2
+
+[{webpack.mix.js,tailwind.config.js}]
 indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
-
-[*.{yml,yaml}]
-indent_size = 2
 
 [docker-compose.yml]
 indent_size = 4
