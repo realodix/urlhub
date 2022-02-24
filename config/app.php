@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
-    'version'     => 'v1.0.0-alpha.7 (master)',
     'name'        => env('APP_NAME', 'UrlHub'),
+    'version'     => 'v1.0.0-alpha.7',
     'description' => env('APP_DESCRIPTION', 'Simplify your links'),
 
     /*
