@@ -10,7 +10,6 @@
         "doctrine/dbal": "^3.1",
         "embed/embed": "^4.3",
         "guzzlehttp/guzzle": "^7.3",
-        "jenssegers/agent": "^2.6",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",

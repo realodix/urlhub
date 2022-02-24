@@ -19,12 +19,6 @@ return [
     'registration' => env('UH_REGISTRATION', true),
 
     /*
-     * Enable/Disable to allow unregistered users see shortened links
-     * statistics.
-     */
-    'guest_show_stat' => env('UH_GUEST_SHOW_STAT', true),
-
-    /*
     |--------------------------------------------------------------------------
     | Shorten URL
     |--------------------------------------------------------------------------

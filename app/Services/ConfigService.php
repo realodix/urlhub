@@ -27,7 +27,6 @@ class ConfigService
     {
         return $this->public_site()
             || $this->registration()
-            || $this->guest_show_stat()
             || $this->hash_char()
             || $this->hash_length()
             || $this->anonymize_ip_addr()
@@ -45,12 +44,6 @@ class ConfigService
     private function registration()
     {
         return $this->valueIsBool('urlhub.registration');
-    }
-
-    /** @codeCoverageIgnore */
-    private function guest_show_stat()
-    {
-        return $this->valueIsBool('urlhub.guest_show_stat');
     }
 
     private function hash_char()

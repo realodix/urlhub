@@ -54,14 +54,5 @@
       <div class="font-light break-all">{{ $url->long_url }}</div>
     </div>
   </div>
-
-  @if (uHub('guest_show_stat') == true)
-    @include('frontend.short_stat')
-  @else
-    @auth
-      @include('frontend.short_stat')
-    @endauth
-  @endif
-
 </div>
 @endsection
