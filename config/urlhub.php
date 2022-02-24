@@ -107,15 +107,4 @@ return [
      * status is 301. Default values is 90.
      */
     'redirect_cache_lifetime' => env('UH_REDIRECT_CACHE_LIFETIME', 90),
-
-    /*
-    |--------------------------------------------------------------------------
-    | General Feature
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-     * Turn on/off the embed external content element.
-     */
-    'embed' => env('UH_EMBED', true),
 ];

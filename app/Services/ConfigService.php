@@ -32,8 +32,7 @@ class ConfigService
             || $this->hash_length()
             || $this->anonymize_ip_addr()
             || $this->redirect_status_code()
-            || $this->redirect_cache_lifetime()
-            || $this->embed();
+            || $this->redirect_cache_lifetime();
     }
 
     /** @codeCoverageIgnore */
@@ -95,12 +94,6 @@ class ConfigService
         if (! is_int($rcl) || $rcl < 0) {
             return config(['urlhub.redirect_cache_lifetime' => self::DEFAULT_REDIRECT_CACHE_LIFETIME]);
         }
-    }
-
-    /** @codeCoverageIgnore */
-    private function embed()
-    {
-        return $this->valueIsBool('urlhub.embed');
     }
 
     /**
