@@ -1,4 +1,4 @@
-<nav class="navbar" x-data="{ open: false }">
+<header class="navbar shadow" x-data="{ open: false }">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <a class="navbar-brand" href="{{ url('/') }}">{{appName()}}</a>
@@ -42,8 +42,12 @@
                     @lang('Manage Account')
                   </div>
 
-                  <a href="{{route('user.edit', Auth::user()->name)}}" class="nav-item">@lang('Profile')</a>
-                  <a href="{{route('user.change-password', Auth::user()->name)}}" class="nav-item">@lang('Change Password')</a>
+                  <a href="{{route('user.edit', Auth::user()->name)}}"
+                    class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
+                    @lang('Profile')</a>
+                  <a href="{{route('user.change-password', Auth::user()->name)}}"
+                    class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
+                    @lang('Change Password')</a>
 
                   <div class="border-t border-slate-100"></div>
 
@@ -85,16 +89,16 @@
     @auth
       <div class="pt-2 pb-3 space-y-1">
         @if (Route::currentRouteName() != 'dashboard')
-          <a class="nav-item" href="{{route('dashboard')}}">
-            <i class="fas fa-tachometer-alt"></i> @lang('Dashboard')
-          </a>
+          <a href="{{route('dashboard')}}"
+            class="nav-item {{(request()->route()->getName() == 'dashboard') ? 'border-l-2 border-uh-indigo-400':''}}">
+            <i class="fas fa-tachometer-alt"></i> @lang('Dashboard')</a>
         @endif
-        <a class="nav-item" href="{{route('dashboard.allurl')}}">
-          <i class="nav-icon fas fa-link"></i> @lang('All URLs')
-        </a>
-        <a class="nav-item" href="{{route('user.index')}}">
-          <i class="nav-icon fas fa-users"></i> @lang('All Users')
-        </a>
+        <a href="{{route('dashboard.allurl')}}"
+          class="nav-item {{(request()->route()->getName() == 'dashboard.allurl') ? 'border-l-2 border-uh-indigo-400':''}}">
+          <i class="nav-icon fas fa-link"></i> @lang('All URLs')</a>
+        <a href="{{route('user.index')}}"
+          class="nav-item {{(request()->route()->getName() == 'user.index') ? 'border-l-2 border-uh-indigo-400':''}}">
+          <i class="nav-icon fas fa-users"></i> @lang('All Users')</a>
       </div>
 
       <!-- Responsive Settings Options -->
@@ -108,21 +112,19 @@
 
         <div class="mt-3 space-y-1">
           <!-- Account Management -->
-          <a class="nav-item" href="{{route('user.edit', Auth::user()->name)}}">
-            @lang('Profile')
-          </a>
-          <a class="nav-item" href="{{route('user.change-password', Auth::user()->name)}}">
-            @lang('Change Password')
-          </a>
+          <a href="{{route('user.edit', Auth::user()->name)}}"
+            class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
+            @lang('Profile')</a>
+          <a href="{{route('user.change-password', Auth::user()->name)}}"
+            class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
+            @lang('Change Password')</a>
 
           <!-- Authentication -->
           <form method="POST" action="{{route('logout')}}">
           @csrf
             <a class="nav-item" href="{{route('logout')}}" onclick="event.preventDefault();
-              this.closest('form').submit();"
-            >
-              @lang('Log Out')
-            </a>
+              this.closest('form').submit();">
+              @lang('Log Out')</a>
           </form>
         </div>
       </div>
@@ -139,4 +141,36 @@
       </div>
     @endauth
   </div> {{-- End Responsive Navigation Menu --}}
-</nav>
+
+  {{-- It should only appear on the dashboard page only. --}}
+  @if (request()->is('admin*'))
+    <nav class="bg-white border-t border-slate-900/10 pt-1">
+      <div class="hidden sm:flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
+        <a href="{{route('dashboard')}}"
+          class="{{(request()->route()->getName() == 'dashboard') ?
+            'text-slate-800 border-b-2 border-uh-indigo-400' :
+            'text-slate-500 hover:border-b-2 hover:border-slate-300'}}
+            font-semibold hover:text-slate-700 transition duration-150 ease-in-out leading-tight mr-8 py-3">
+          <i class="fas fa-tachometer-alt mr-1"></i>
+          <span class="">@lang('Dashboard')</span></a>
+        @role('admin')
+          <a href="{{route('dashboard.allurl')}}"
+            class="{{(request()->route()->getName() == 'dashboard.allurl') ?
+              'text-slate-800 border-b-2 border-uh-indigo-400' :
+              'text-slate-500 hover:border-b-2 hover:border-slate-300'}}
+              font-semibold hover:text-slate-700 transition duration-150 ease-in-out leading-tight mr-8 py-3">
+            <i class="nav-icon fas fa-link mr-1"></i>
+            <span class="">@lang('All URLs')</span></a>
+          <a href="{{route('user.index')}}"
+            class="{{(request()->route()->getName() == 'user.index') ?
+              'text-slate-800 border-b-2 border-uh-indigo-400' :
+              'text-slate-500 hover:border-b-2 hover:border-slate-300'}}
+              font-semibold hover:text-slate-700 transition duration-150 ease-in-out leading-tight mr-8 py-3">
+            <i class="nav-icon fas fa-users mr-1"></i>
+            <span class="">@lang('All Users')</span>
+</a>
+        @endrole
+      </div>
+    </nav>
+  @endif
+</header>
