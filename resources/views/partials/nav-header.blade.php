@@ -130,11 +130,11 @@
       </div>
     @else
       <div class="pt-2 pb-3 space-y-1">
-        <a class="block pl-3 pr-4 py-2 font-medium transition" href="{{route('login')}}">
+        <a href="{{route('login')}}" class="block pl-3 pr-4 py-2 font-medium transition" >
           @lang('Login')
         </a>
         @if (Route::has('register') and Config::get('urlhub.registration'))
-          <a class="block pl-3 pr-4 py-2 font-medium transition" href="{{route('register')}}">
+          <a href="{{route('register')}}" class="block pl-3 pr-4 py-2 font-medium transition" >
             @lang('Register')
           </a>
         @endif
@@ -147,28 +147,27 @@
     <nav class="bg-white border-t border-slate-900/10 pt-1">
       <div class="hidden sm:flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
         <a href="{{route('dashboard')}}"
-          class="{{(request()->route()->getName() == 'dashboard') ?
-            'text-slate-800 border-b-2 border-uh-indigo-400' :
-            'text-slate-500 hover:border-b-2 hover:border-slate-300'}}
-            font-semibold hover:text-slate-700 transition duration-150 ease-in-out leading-tight mr-8 py-3">
+          class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
+            {{(request()->route()->getName() == 'dashboard') ?
+            'text-slate-800 border-uh-indigo-400' :
+            'text-slate-500 hover:border-slate-300'}}">
           <i class="fas fa-tachometer-alt mr-1"></i>
           <span class="">@lang('Dashboard')</span></a>
         @role('admin')
           <a href="{{route('dashboard.allurl')}}"
-            class="{{(request()->route()->getName() == 'dashboard.allurl') ?
-              'text-slate-800 border-b-2 border-uh-indigo-400' :
-              'text-slate-500 hover:border-b-2 hover:border-slate-300'}}
-              font-semibold hover:text-slate-700 transition duration-150 ease-in-out leading-tight mr-8 py-3">
+            class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
+              {{(request()->route()->getName() == 'dashboard.allurl') ?
+              'text-slate-800 border-uh-indigo-400' :
+              'text-slate-500 hover:border-slate-300'}}">
             <i class="nav-icon fas fa-link mr-1"></i>
             <span class="">@lang('All URLs')</span></a>
           <a href="{{route('user.index')}}"
-            class="{{(request()->route()->getName() == 'user.index') ?
-              'text-slate-800 border-b-2 border-uh-indigo-400' :
-              'text-slate-500 hover:border-b-2 hover:border-slate-300'}}
-              font-semibold hover:text-slate-700 transition duration-150 ease-in-out leading-tight mr-8 py-3">
+            class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
+              {{(request()->route()->getName() == 'user.index') ?
+              'text-slate-800 border-uh-indigo-400' :
+              'text-slate-500 hover:border-slate-300'}}">
             <i class="nav-icon fas fa-users mr-1"></i>
-            <span class="">@lang('All Users')</span>
-</a>
+            <span class="">@lang('All Users')</span></a>
         @endrole
       </div>
     </nav>
