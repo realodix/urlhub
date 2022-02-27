@@ -78,11 +78,11 @@ final class MyUrlTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('keyword', function (Url $url) {
-                return '<a href="'.$url->short_url.'" target="_blank" class="text-uh-indigo-500">'.$url->keyword.'</a>';
+                return '<a href="'.$url->short_url.'" target="_blank" class="font-semibold">'.$url->keyword.'</a>';
             })
             ->addColumn('long_url', function (Url $url) {
                 return '
-                    <span title="'.$url->meta_title.'">
+                    <span title="'.$url->meta_title.'" class="font-semibold">
                         '.Str::limit($url->meta_title, 80).'
                     </span>
                     <br>
