@@ -84,7 +84,7 @@ main {
 
       tbody {
         tr {
-          @apply text-uh-1 hover:bg-slate-50;
+          @apply text-uh-1 hover:bg-slate-50 even:bg-slate-50;
         }
 
         .btn-action {
