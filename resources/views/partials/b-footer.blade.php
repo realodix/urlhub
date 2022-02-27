@@ -12,9 +12,9 @@
       <div class="w-full sm:w-1/2 sm:text-right">
         <span>@lang('Powered by')</span>
         <a href="https://github.com/laravel/framework/releases/tag/v{{ App::VERSION() }}" target="_blank" title="@lang('Laravel v'.App::VERSION().' (release notes)')"
-          class="text-decoration-none text-body"
+          class="text-decoration-none text-body text-[#F9322C]"
         >
-          Laravel <small>v{{ App::VERSION() }}</small>
+          Laravel v{{App::VERSION()}}
         </a>
       </div>
     </div>
