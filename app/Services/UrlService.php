@@ -47,32 +47,6 @@ class UrlService
     }
 
     /**
-     * @param  int  $id
-     */
-    public function urlCount($id = null)
-    {
-        return $this->url->whereUserId($id)->count('keyword');
-    }
-
-    public function totalUrl()
-    {
-        return $this->url->count('keyword');
-    }
-
-    /**
-     * @param  int  $id
-     */
-    public function clickCount($id = null): int
-    {
-        return $this->url->whereUserId($id)->sum('clicks');
-    }
-
-    public function totalClick(): int
-    {
-        return $this->url->sum('clicks');
-    }
-
-    /**
      * Anonymize an IPv4 or IPv6 address.
      *
      * @param  string  $address

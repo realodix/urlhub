@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyService;
-use App\Services\UrlService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,17 +16,17 @@ class DashboardController extends Controller
      */
     public function view()
     {
+        $url = new Url;
         $user = new User;
         $keySrvc = new KeyService;
-        $urlSrvc = new UrlService;
 
         return view('backend.dashboard', [
-            'totalUrl'         => $urlSrvc->totalUrl(),
-            'urlCount_Me'      => $urlSrvc->urlCount(Auth::id()),
-            'urlCount_Guest'   => $urlSrvc->urlCount(),
-            'totalClick'       => $urlSrvc->totalClick(),
-            'clickCount_Me'    => $urlSrvc->clickCount(Auth::id()),
-            'clickCount_Guest' => $urlSrvc->clickCount(),
+            'totalUrl'         => $url->totalUrl(),
+            'urlCount_Me'      => $url->urlCount(Auth::id()),
+            'urlCount_Guest'   => $url->urlCount(),
+            'totalClick'       => $url->totalClick(),
+            'clickCount_Me'    => $url->clickCount(Auth::id()),
+            'clickCount_Guest' => $url->clickCount(),
             'userCount'        => User::count(),
             'guestCount'       => $user->guestCount(),
             'keyCapacity'      => $keySrvc->keyCapacity(),

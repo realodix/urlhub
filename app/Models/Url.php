@@ -127,4 +127,30 @@ class Url extends Model
 
         return $replicate;
     }
+
+    /**
+     * @param  int  $id
+     */
+    public function urlCount($id = null)
+    {
+        return self::whereUserId($id)->count('keyword');
+    }
+
+    public function totalUrl()
+    {
+        return self::count('keyword');
+    }
+
+    /**
+     * @param  int  $id
+     */
+    public function clickCount($id = null): int
+    {
+        return self::whereUserId($id)->sum('clicks');
+    }
+
+    public function totalClick(): int
+    {
+        return self::sum('clicks');
+    }
 }

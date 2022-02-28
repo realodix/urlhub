@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
-use App\Services\UrlService;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -13,7 +12,7 @@ class UrlTest extends TestCase
     {
         parent::setUp();
 
-        $this->urlSrvc = new UrlService;
+        $this->url = new Url;
 
         Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -139,7 +138,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             3,
-            $this->urlSrvc->totalUrl()
+            $this->url->totalUrl()
         );
     }
 
@@ -151,7 +150,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             1,
-            $this->urlSrvc->urlCount($this->admin()->id)
+            $this->url->urlCount($this->admin()->id)
         );
     }
 
@@ -163,7 +162,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             2,
-            $this->urlSrvc->urlCount()
+            $this->url->urlCount()
         );
     }
 
@@ -175,7 +174,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             30,
-            $this->urlSrvc->totalClick()
+            $this->url->totalClick()
         );
     }
 
@@ -187,7 +186,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             10,
-            $this->urlSrvc->clickCount($this->admin()->id)
+            $this->url->clickCount($this->admin()->id)
         );
     }
 
@@ -201,7 +200,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             20,
-            $this->urlSrvc->clickCount()
+            $this->url->clickCount()
         );
     }
 }
