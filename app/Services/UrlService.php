@@ -60,14 +60,6 @@ class UrlService
     }
 
     /**
-     * @param  object  $url  \App\Models\Url
-     */
-    public function delete(object $url)
-    {
-        return $url->delete();
-    }
-
-    /**
      * @param  string  $key
      * @param  int  $authId
      */

@@ -3,17 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Url;
-use App\Services\UrlService;
 
 class AllUrlController extends Controller
 {
     /**
      * AllUrlController constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
-    public function __construct(protected UrlService $urlSrvc)
+    public function __construct()
     {
         $this->middleware('role:admin');
     }
@@ -33,7 +29,7 @@ class AllUrlController extends Controller
      */
     public function delete($url)
     {
-        $this->urlSrvc->delete($url);
+        $url->delete();
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));
