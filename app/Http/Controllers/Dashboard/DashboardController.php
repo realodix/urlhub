@@ -60,9 +60,9 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $url)
     {
-        $urlSrvc = new UrlService;
-
-        $urlSrvc->update($request->only('long_url', 'meta_title'), $url);
+        $url->long_url = $request->long_url;
+        $url->meta_title = $request->meta_title;
+        $url->save();
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));

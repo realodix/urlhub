@@ -47,19 +47,6 @@ class UrlService
     }
 
     /**
-     * @param  array  $request
-     * @param  object  $url  \App\Models\Url
-     */
-    public function update(array $request, object $url)
-    {
-        $url->long_url = $request['long_url'];
-        $url->meta_title = $request['meta_title'];
-        $url->save();
-
-        return $url;
-    }
-
-    /**
      * @param  int  $id
      */
     public function urlCount($id = null)
