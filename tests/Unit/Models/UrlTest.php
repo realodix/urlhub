@@ -203,4 +203,18 @@ class UrlTest extends TestCase
             $this->url->clickCount()
         );
     }
+
+    /**
+     * @group u-model
+     */
+    public function testAnonymizeIpWhenConfigSettedFalse()
+    {
+        config()->set('urlhub.anonymize_ip_addr', false);
+
+        $ip = '192.168.1.1';
+        $expected = $this->url->anonymizeIp($ip);
+        $actual = $ip;
+
+        $this->assertSame($expected, $actual);
+    }
 }

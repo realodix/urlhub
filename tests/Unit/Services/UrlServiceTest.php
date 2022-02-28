@@ -19,20 +19,6 @@ class UrlServiceTest extends TestCase
     }
 
     /**
-     * @group u-services
-     */
-    public function testAnonymizeIpWhenConfigSettedFalse()
-    {
-        config()->set('urlhub.anonymize_ip_addr', false);
-
-        $ip = '192.168.1.1';
-        $expected = $this->urlSrvc->anonymizeIp($ip);
-        $actual = $ip;
-
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
      * @test
      * @group u-service
      * @dataProvider getDomainProvider

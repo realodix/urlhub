@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Url;
 use Embed\Embed;
 use Spatie\Url\Url as SpatieUrl;
-use Symfony\Component\HttpFoundation\IpUtils;
 
 class UrlService
 {
@@ -44,21 +43,6 @@ class UrlService
             'is_custom'  => $request['custom_key'] ? 1 : 0,
             'ip'         => request()->ip(),
         ]);
-    }
-
-    /**
-     * Anonymize an IPv4 or IPv6 address.
-     *
-     * @param  string  $address
-     * @return string
-     */
-    public static function anonymizeIp($address)
-    {
-        if (uHub('anonymize_ip_addr') == false) {
-            return $address;
-        }
-
-        return IPUtils::anonymize($address);
     }
 
     /**

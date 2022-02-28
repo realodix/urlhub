@@ -9,16 +9,6 @@ use Illuminate\Http\RedirectResponse;
 class UrlRedirectionService
 {
     /**
-     * UrlRedirectionService constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
-     */
-    public function __construct(protected UrlService $urlSrvc)
-    {
-        //
-    }
-
-    /**
      * Handle the HTTP redirect and return the redirect response.
      *
      * Redirect client to an existing short URL (no check performed) and
@@ -49,7 +39,7 @@ class UrlRedirectionService
         Visit::create([
             'url_id'  => $url->id,
             'referer' => request()->headers->get('referer'),
-            'ip'      => $this->urlSrvc->anonymizeIp(request()->ip()),
+            'ip'      => $url->anonymizeIp(request()->ip()),
         ]);
     }
 }

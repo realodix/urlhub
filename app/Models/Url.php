@@ -8,6 +8,7 @@ use App\Services\UrlService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class Url extends Model
 {
@@ -152,5 +153,20 @@ class Url extends Model
     public function totalClick(): int
     {
         return self::sum('clicks');
+    }
+
+    /**
+     * Anonymize an IPv4 or IPv6 address.
+     *
+     * @param  string  $address
+     * @return string
+     */
+    public static function anonymizeIp($address)
+    {
+        if (uHub('anonymize_ip_addr') == false) {
+            return $address;
+        }
+
+        return IPUtils::anonymize($address);
     }
 }
