@@ -60,26 +60,6 @@ class UrlService
     }
 
     /**
-     * @param  string  $key
-     * @param  int  $authId
-     */
-    public function duplicate($key, $authId)
-    {
-        $randomKey = $this->keySrvc->randomString();
-        $shortenedUrl = Url::whereKeyword($key)->firstOrFail();
-
-        $replicate = $shortenedUrl->replicate()->fill([
-            'user_id'   => $authId,
-            'keyword'   => $randomKey,
-            'is_custom' => 0,
-            'clicks'    => 0,
-        ]);
-        $replicate->save();
-
-        return $replicate;
-    }
-
-    /**
      * @param  int  $id
      */
     public function urlCount($id = null)

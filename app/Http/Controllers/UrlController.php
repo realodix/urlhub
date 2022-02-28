@@ -85,7 +85,7 @@ class UrlController extends Controller
      */
     public function duplicate($key)
     {
-        $url = $this->urlSrvc->duplicate($key, Auth::id());
+        $url = (new Url)->duplicate($key, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword)
                          ->withFlashSuccess(__('Link was successfully duplicated.'));

@@ -93,8 +93,8 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $urlSrvc = new UrlService;
-        $urlSrvc->duplicate($key, Auth::id());
+        $url = new Url;
+        $url->duplicate($key, Auth::id());
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));

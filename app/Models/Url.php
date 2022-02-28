@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Traits\Hashidable;
+use App\Services\KeyService;
 use App\Services\UrlService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -98,5 +99,32 @@ class Url extends Model
     public function getShortUrlAttribute()
     {
         return url('/'.$this->attributes['keyword']);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | General Functions
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * @param  string  $key
+     * @param  int  $authId
+     */
+    public function duplicate($key, $authId)
+    {
+        $keySrvc = new KeyService;
+        $randomKey = $keySrvc->randomString();
+        $shortenedUrl = self::whereKeyword($key)->firstOrFail();
+
+        $replicate = $shortenedUrl->replicate()->fill([
+            'user_id'   => $authId,
+            'keyword'   => $randomKey,
+            'is_custom' => 0,
+            'clicks'    => 0,
+        ]);
+        $replicate->save();
+
+        return $replicate;
     }
 }
