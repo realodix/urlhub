@@ -135,126 +135,13 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalShortUrl()
+    public function urlKey()
     {
-        $this->assertSame(
-            3,
-            $this->url->totalUrl()
-        );
-    }
+        config(['urlhub.hash_length' => 6]);
 
-    /**
-     * @test
-     * @group u-model
-     */
-    public function totalShortUrlByMe()
-    {
-        $this->assertSame(
-            1,
-            $this->url->urlCount($this->admin()->id)
-        );
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function totalShortUrlByGuest()
-    {
-        $this->assertSame(
-            2,
-            $this->url->urlCount()
-        );
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function totalClicks()
-    {
-        $this->assertSame(
-            30,
-            $this->url->totalClick()
-        );
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function totalClicksByMe()
-    {
-        $this->assertSame(
-            10,
-            $this->url->clickCount($this->admin()->id)
-        );
-    }
-
-    /**
-     * The number of guests is calculated based on a unique IP.
-     *
-     * @test
-     * @group u-model
-     */
-    public function totalClicksByGuest()
-    {
-        $this->assertSame(
-            20,
-            $this->url->clickCount()
-        );
-    }
-
-    /**
-     * @group u-model
-     */
-    public function testAnonymizeIpWhenConfigSettedFalse()
-    {
-        config()->set('urlhub.anonymize_ip_addr', false);
-
-        $ip = '192.168.1.1';
-        $expected = $this->url->anonymizeIp($ip);
-        $actual = $ip;
-
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     * @dataProvider getDomainProvider
-     *
-     * @param  mixed  $expected
-     * @param  mixed  $actutal
-     */
-    public function getDomain($expected, $actutal)
-    {
-        $this->assertEquals($expected, $this->url->getDomain($actutal));
-    }
-
-    public function getDomainProvider()
-    {
-        return [
-            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
-            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
-            ['bar.foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
-        ];
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function getWebTitle()
-    {
-        $longUrl = 'https://github123456789.com';
-
-        $this->assertSame('github123456789.com - No Title', $this->url->getWebTitle($longUrl));
+        $actual = 'https://github.com/realodix/urlhub';
+        $expected = 'urlhub';
+        $this->assertSame($expected, $this->url->urlKey($actual));
     }
 
     /**
@@ -320,7 +207,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
-     * @group u-service
+     * @group u-model
      */
     public function keyCapacity()
     {
@@ -395,14 +282,141 @@ class UrlTest extends TestCase
 
     /**
      * @test
-     * @group u-service
+     * @group u-model
      */
-    public function urlKey()
+    public function totalShortUrl()
     {
-        config(['urlhub.hash_length' => 6]);
+        $this->assertSame(
+            3,
+            $this->url->totalUrl()
+        );
+    }
 
-        $actual = 'https://github.com/realodix/urlhub';
-        $expected = 'urlhub';
-        $this->assertSame($expected, $this->url->urlKey($actual));
+    /**
+     * @test
+     * @group u-model
+     */
+    public function totalShortUrlByMe()
+    {
+        $this->assertSame(
+            1,
+            $this->url->urlCount($this->admin()->id)
+        );
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function totalShortUrlByGuest()
+    {
+        $this->assertSame(
+            2,
+            $this->url->urlCount()
+        );
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function totalClicks()
+    {
+        $this->assertSame(
+            30,
+            $this->url->totalClick()
+        );
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function totalClicksByMe()
+    {
+        $this->assertSame(
+            10,
+            $this->url->clickCount($this->admin()->id)
+        );
+    }
+
+    /**
+     * The number of guests is calculated based on a unique IP.
+     *
+     * @test
+     * @group u-model
+     */
+    public function totalClicksByGuest()
+    {
+        $this->assertSame(
+            20,
+            $this->url->clickCount()
+        );
+    }
+
+    /**
+     * @group u-model
+     */
+    public function testAnonymizeIpWhenConfigSettedTrue()
+    {
+        config()->set('urlhub.anonymize_ip_addr', true);
+
+        $ip = '192.168.1.1';
+        $expected = $this->url->anonymizeIp($ip);
+        $actual = '192.168.1.0';
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @group u-model
+     */
+    public function testAnonymizeIpWhenConfigSettedFalse()
+    {
+        config()->set('urlhub.anonymize_ip_addr', false);
+
+        $ip = '192.168.1.1';
+        $expected = $this->url->anonymizeIp($ip);
+        $actual = $ip;
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider getDomainProvider
+     *
+     * @param  mixed  $expected
+     * @param  mixed  $actutal
+     */
+    public function getDomain($expected, $actutal)
+    {
+        $this->assertEquals($expected, $this->url->getDomain($actutal));
+    }
+
+    public function getDomainProvider()
+    {
+        return [
+            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
+        ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function getWebTitle()
+    {
+        $longUrl = 'https://github123456789.com';
+
+        $this->assertSame('github123456789.com - No Title', $this->url->getWebTitle($longUrl));
     }
 }

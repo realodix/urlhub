@@ -146,85 +146,26 @@ class Url extends Model
     }
 
     /**
-     * @param  int  $id
+     * @param  string  $string
      */
-    public function urlCount($id = null)
+    public function urlKey(string $string)
     {
-        return self::whereUserId($id)->count('keyword');
-    }
+        $length = config('urlhub.hash_length') * -1;
 
-    public function totalUrl()
-    {
-        return self::count('keyword');
-    }
+        // Step 1
+        // Generate unique key from truncated long URL.
+        $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
 
-    /**
-     * @param  int  $id
-     */
-    public function clickCount($id = null): int
-    {
-        return self::whereUserId($id)->sum('clicks');
-    }
-
-    public function totalClick(): int
-    {
-        return self::sum('clicks');
-    }
-
-    /**
-     * Anonymize an IPv4 or IPv6 address.
-     *
-     * @param  string  $address
-     * @return string
-     */
-    public static function anonymizeIp($address)
-    {
-        if (uHub('anonymize_ip_addr') == false) {
-            return $address;
+        // Step 2
+        // If the unique key is not available (already in the database) , then generate a
+        // random string.
+        $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
+        while ($generatedRandomKey) {
+            $uniqueUrlKey = $this->randomString();
+            $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
         }
 
-        return IPUtils::anonymize($address);
-    }
-
-    /**
-     * Get Domain from external url.
-     *
-     * Extract the domain name using the classic parse_url() and then look for
-     * a valid domain without any subdomain (www being a subdomain). Won't
-     * work on things like 'localhost'.
-     *
-     * @param  string  $url
-     * @return string
-     */
-    public function getDomain(string $url)
-    {
-        $url = SpatieUrl::fromString($url);
-
-        return urlSanitize($url->getHost());
-    }
-
-    /**
-     * This function returns a string: either the page title as defined in
-     * HTML, or "{domain_name} - No Title" if not found.
-     *
-     * @param  string  $url
-     * @return string
-     */
-    public function getWebTitle(string $url)
-    {
-        $domain = $this->getDomain($url);
-
-        try {
-            $webTitle = (new Embed())->get($url)->title;
-        } catch (\Exception $e) {
-            $webTitle = $domain.' - No Title';
-        }
-
-        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
-            return $domain.' | '.$webTitle;
-        }
-
-        return $webTitle;
+        return $uniqueUrlKey;
     }
 
     /**
@@ -304,27 +245,85 @@ class Url extends Model
     }
 
     /**
-     * @param  string  $string
+     * @param  int  $id
+     */
+    public function urlCount($id = null)
+    {
+        return self::whereUserId($id)->count('keyword');
+    }
+
+    public function totalUrl()
+    {
+        return self::count('keyword');
+    }
+
+    /**
+     * @param  int  $id
+     */
+    public function clickCount($id = null): int
+    {
+        return self::whereUserId($id)->sum('clicks');
+    }
+
+    public function totalClick(): int
+    {
+        return self::sum('clicks');
+    }
+
+    /**
+     * Anonymize an IPv4 or IPv6 address.
+     *
+     * @param  string  $address
      * @return string
      */
-    public function urlKey(string $string)
+    public static function anonymizeIp($address)
     {
-        $length = config('urlhub.hash_length') * -1;
-
-        // Step 1
-        // Generate unique key from truncated long URL.
-        $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
-
-        // Step 2
-        // If the unique key is not available (already in the database) , then generate a
-        // random string.
-        $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
-        while ($generatedRandomKey) {
-            $uniqueUrlKey = $this->randomString();
-            $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
+        if (uHub('anonymize_ip_addr') == false) {
+            return $address;
         }
 
-        return $uniqueUrlKey;
+        return IPUtils::anonymize($address);
+    }
+
+    /**
+     * Get Domain from external url.
+     *
+     * Extract the domain name using the classic parse_url() and then look for
+     * a valid domain without any subdomain (www being a subdomain). Won't
+     * work on things like 'localhost'.
+     *
+     * @param  string  $url
+     * @return string
+     */
+    public function getDomain(string $url)
+    {
+        $url = SpatieUrl::fromString($url);
+
+        return urlSanitize($url->getHost());
+    }
+
+    /**
+     * This function returns a string: either the page title as defined in
+     * HTML, or "{domain_name} - No Title" if not found.
+     *
+     * @param  string  $url
+     * @return string
+     */
+    public function getWebTitle(string $url)
+    {
+        $domain = $this->getDomain($url);
+
+        try {
+            $webTitle = (new Embed())->get($url)->title;
+        } catch (\Exception $e) {
+            $webTitle = $domain.' - No Title';
+        }
+
+        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
+            return $domain.' | '.$webTitle;
+        }
+
+        return $webTitle;
     }
 
     /**
