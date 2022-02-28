@@ -5,22 +5,9 @@ namespace App\Services;
 use App\Models\Url;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    /**
-     * @param  array  $data
-     * @param  object  $user  \App\Models\User
-     */
-    public function updateUserPassword(array $data, object $user)
-    {
-        $user->password = Hash::make($data['new-password']);
-        $user->save();
-
-        return $user;
-    }
-
     public function userCount()
     {
         return User::count();
