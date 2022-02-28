@@ -108,6 +108,24 @@ class Url extends Model
     */
 
     /**
+     * @param  array|string  $request
+     * @param  int  $authId
+     */
+    public function shortenUrl($request, $authId)
+    {
+        $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
+
+        return Url::create([
+            'user_id'    => $authId,
+            'long_url'   => $request['long_url'],
+            'meta_title' => $request['long_url'],
+            'keyword'    => $key,
+            'is_custom'  => $request['custom_key'] ? 1 : 0,
+            'ip'         => request()->ip(),
+        ]);
+    }
+
+    /**
      * @param  string  $key
      * @param  int  $authId
      */
