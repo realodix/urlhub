@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Http\Traits\Hashidable;
 use App\Services\KeyService;
-use App\Services\UrlService;
+use Embed\Embed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 class Url extends Model
@@ -87,10 +88,8 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        $urlSrvc = new UrlService();
-
         if (Str::startsWith($value, 'http')) {
-            $this->attributes['meta_title'] = $urlSrvc->webTitle($value);
+            $this->attributes['meta_title'] = $this->getWebTitle($value);
         } else {
             $this->attributes['meta_title'] = $value;
         }
@@ -168,5 +167,46 @@ class Url extends Model
         }
 
         return IPUtils::anonymize($address);
+    }
+
+    /**
+     * Get Domain from external url.
+     *
+     * Extract the domain name using the classic parse_url() and then look for
+     * a valid domain without any subdomain (www being a subdomain). Won't
+     * work on things like 'localhost'.
+     *
+     * @param  string  $url
+     * @return string
+     */
+    public function getDomain(string $url)
+    {
+        $url = SpatieUrl::fromString($url);
+
+        return urlSanitize($url->getHost());
+    }
+
+    /**
+     * This function returns a string: either the page title as defined in
+     * HTML, or "{domain_name} - No Title" if not found.
+     *
+     * @param  string  $url
+     * @return string
+     */
+    public function getWebTitle(string $url)
+    {
+        $domain = $this->getDomain($url);
+
+        try {
+            $webTitle = (new Embed())->get($url)->title;
+        } catch (\Exception $e) {
+            $webTitle = $domain.' - No Title';
+        }
+
+        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
+            return $domain.' | '.$webTitle;
+        }
+
+        return $webTitle;
     }
 }

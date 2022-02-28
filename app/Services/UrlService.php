@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Models\Url;
-use Embed\Embed;
-use Spatie\Url\Url as SpatieUrl;
 
 class UrlService
 {
@@ -43,46 +41,5 @@ class UrlService
             'is_custom'  => $request['custom_key'] ? 1 : 0,
             'ip'         => request()->ip(),
         ]);
-    }
-
-    /**
-     * Get Domain from external url.
-     *
-     * Extract the domain name using the classic parse_url() and then look for
-     * a valid domain without any subdomain (www being a subdomain). Won't
-     * work on things like 'localhost'.
-     *
-     * @param  string  $url
-     * @return string
-     */
-    public function getDomain(string $url)
-    {
-        $url = SpatieUrl::fromString($url);
-
-        return urlSanitize($url->getHost());
-    }
-
-    /**
-     * This function returns a string: either the page title as defined in
-     * HTML, or "{domain_name} - No Title" if not found.
-     *
-     * @param  string  $url
-     * @return string
-     */
-    public function webTitle(string $url)
-    {
-        $domain = $this->getDomain($url);
-
-        try {
-            $webTitle = (new Embed())->get($url)->title;
-        } catch (\Exception $e) {
-            $webTitle = $domain.' - No Title';
-        }
-
-        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
-            return $domain.' | '.$webTitle;
-        }
-
-        return $webTitle;
     }
 }
