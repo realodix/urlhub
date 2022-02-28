@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
-use App\Services\KeyService;
 use Mockery;
 use Tests\TestCase;
 
@@ -267,7 +266,7 @@ class UrlTest extends TestCase
         config(['urlhub.hash_char' => 'abc']);
 
         Url::factory()->create([
-            'keyword' => (new KeyService)->randomString(),
+            'keyword' => $this->url->randomString(),
         ]);
         $this->assertSame(4, $this->url->keyUsed());
 
@@ -392,5 +391,18 @@ class UrlTest extends TestCase
             [pow(10, 6), 999991, '0.01%'],
             [pow(10, 6), 50, '99.99%'],
         ];
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function urlKey()
+    {
+        config(['urlhub.hash_length' => 6]);
+
+        $actual = 'https://github.com/realodix/urlhub';
+        $expected = 'urlhub';
+        $this->assertSame($expected, $this->url->urlKey($actual));
     }
 }

@@ -12,17 +12,11 @@ class UrlService
     protected $url;
 
     /**
-     * @var \App\Services\KeyService
-     */
-    protected $keySrvc;
-
-    /**
      * UrlService constructor.
      */
     public function __construct()
     {
         $this->url = new Url;
-        $this->keySrvc = new KeyService;
     }
 
     /**
@@ -31,7 +25,7 @@ class UrlService
      */
     public function shortenUrl($request, $authId)
     {
-        $key = $request['custom_key'] ?? $this->keySrvc->urlKey($request['long_url']);
+        $key = $request['custom_key'] ?? $this->url->urlKey($request['long_url']);
 
         return Url::create([
             'user_id'    => $authId,
