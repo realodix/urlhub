@@ -44,8 +44,8 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param  UpdateUserEmail  $request  \App\Http\Requests\UpdateUserEmail
-     * @param  User  $user  \App\Models\User
+     * @param  UpdateUserEmail $request \App\Http\Requests\UpdateUserEmail
+     * @param  User            $user    \App\Models\User
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -53,9 +53,8 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $data = $request->only('email');
-
-        $this->userSrvc->updateUserEmail($data, $user);
+        $user->email = $request->only('email');
+        $user->save();
 
         return redirect()->back()
                          ->withFlashSuccess(__('Profile updated.'));

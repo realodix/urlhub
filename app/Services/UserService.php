@@ -13,18 +13,6 @@ class UserService
      * @param  array  $data
      * @param  object  $user  \App\Models\User
      */
-    public function updateUserEmail(array $data, object $user)
-    {
-        $user->email = $data['email'];
-        $user->save();
-
-        return $user;
-    }
-
-    /**
-     * @param  array  $data
-     * @param  object  $user  \App\Models\User
-     */
     public function updateUserPassword(array $data, object $user)
     {
         $user->password = Hash::make($data['new-password']);
