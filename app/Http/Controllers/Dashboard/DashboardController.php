@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
+use App\Models\User;
 use App\Services\KeyService;
 use App\Services\UrlService;
-use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $userSrvc = new UserService;
+        $user = new User;
         $keySrvc = new KeyService;
         $urlSrvc = new UrlService;
 
@@ -28,8 +28,8 @@ class DashboardController extends Controller
             'totalClick'       => $urlSrvc->totalClick(),
             'clickCount_Me'    => $urlSrvc->clickCount(Auth::id()),
             'clickCount_Guest' => $urlSrvc->clickCount(),
-            'userCount'        => $userSrvc->userCount(),
-            'guestCount'       => $userSrvc->guestCount(),
+            'userCount'        => User::count(),
+            'guestCount'       => $user->guestCount(),
             'keyCapacity'      => $keySrvc->keyCapacity(),
             'keyRemaining'     => $keySrvc->keyRemaining(),
             'keyRemaining_Percent' => $keySrvc->keyRemainingInPercent(),
