@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Models\User;
-use App\Services\KeyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +17,6 @@ class DashboardController extends Controller
     {
         $url = new Url;
         $user = new User;
-        $keySrvc = new KeyService;
 
         return view('backend.dashboard', [
             'totalUrl'         => $url->totalUrl(),
@@ -29,9 +27,9 @@ class DashboardController extends Controller
             'clickCount_Guest' => $url->clickCount(),
             'userCount'        => User::count(),
             'guestCount'       => $user->guestCount(),
-            'keyCapacity'      => $keySrvc->keyCapacity(),
-            'keyRemaining'     => $keySrvc->keyRemaining(),
-            'keyRemaining_Percent' => $keySrvc->keyRemainingInPercent(),
+            'keyCapacity'      => $url->keyCapacity(),
+            'keyRemaining'     => $url->keyRemaining(),
+            'keyRemaining_Percent' => $url->keyRemainingInPercent(),
         ]);
     }
 

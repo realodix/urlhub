@@ -4,6 +4,8 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
+use App\Services\KeyService;
+use Mockery;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -254,5 +256,141 @@ class UrlTest extends TestCase
         $longUrl = 'https://github123456789.com';
 
         $this->assertSame('github123456789.com - No Title', $this->url->getWebTitle($longUrl));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function keyUsed()
+    {
+        config(['urlhub.hash_char' => 'abc']);
+
+        Url::factory()->create([
+            'keyword' => (new KeyService)->randomString(),
+        ]);
+        $this->assertSame(4, $this->url->keyUsed());
+
+        Url::factory()->create([
+            'keyword'   => str_repeat('a', uHub('hash_length')),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(5, $this->url->keyUsed());
+
+        Url::factory()->create([
+            'keyword'   => str_repeat('b', uHub('hash_length') + 1),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(5, $this->url->keyUsed());
+
+        config(['urlhub.hash_length' => uHub('hash_length') + 2]);
+        $this->assertSame(0, $this->url->keyUsed());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function keyUsed2()
+    {
+        config(['urlhub.hash_length' => 3]);
+
+        config(['urlhub.hash_char' => 'foo']);
+        Url::factory()->create([
+            'keyword'   => 'foo',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'bar']);
+        Url::factory()->create([
+            'keyword'   => 'bar',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'foobar']);
+        $this->assertSame(2, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'fooBar']);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'FooBar']);
+        $this->assertSame(0, $this->url->keyUsed());
+    }
+
+    /**
+     * @test
+     * @group u-service
+     */
+    public function keyCapacity()
+    {
+        $hashLength = uHub('hash_length');
+        $hashCharLength = strlen(uHub('hash_char'));
+        $keyCapacity = pow($hashCharLength, $hashLength);
+
+        $this->assertSame($keyCapacity, $this->url->keyCapacity());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider keyRemainingProvider
+     *
+     * @param  mixed  $kc
+     * @param  mixed  $nouk
+     * @param  mixed  $expected
+     */
+    public function keyRemaining($kc, $nouk, $expected)
+    {
+        $mock = Mockery::mock(Url::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
+        ]);
+        $actual = $mock->keyRemaining();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function keyRemainingProvider()
+    {
+        // keyCapacity(), keyUsed(), expected_result
+        return [
+            [1, 2, 0],
+            [3, 2, 1],
+        ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider keyRemainingInPercentProvider
+     *
+     * @param  mixed  $kc
+     * @param  mixed  $nouk
+     * @param  mixed  $expected
+     */
+    public function keyRemainingInPercent($kc, $nouk, $expected)
+    {
+        $mock = Mockery::mock(Url::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
+        ]);
+        $actual = $mock->keyRemainingInPercent();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function keyRemainingInPercentProvider()
+    {
+        // keyCapacity(), keyUsed(), expected_result
+        return [
+            [10, 10, '0%'],
+            [10, 11, '0%'],
+            [pow(10, 6), 999991, '0.01%'],
+            [pow(10, 6), 50, '99.99%'],
+        ];
     }
 }

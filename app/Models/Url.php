@@ -209,4 +209,80 @@ class Url extends Model
 
         return $webTitle;
     }
+
+    /**
+     * The number of unique random strings used as the short url key.
+     *
+     * Calculation formula:
+     * keyUsed = randomKey + customKey
+     *
+     * customKey must be similar to randomKey, such as having the same character length.
+     */
+    public function keyUsed()
+    {
+        $hashLength = uHub('hash_length');
+        $regexPattern = '['.uHub('hash_char').']{'.$hashLength.'}';
+
+        $randomKey = self::whereIsCustom(false)
+            ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
+            ->count();
+
+        $customKey = self::whereIsCustom(true)
+            ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
+            ->whereRaw("keyword REGEXP '".$regexPattern."'")
+            ->count();
+
+        return $randomKey + $customKey;
+    }
+
+    /**
+     * Calculates the maximum number of unique random strings that can be supplied.
+     *
+     * @return int
+     */
+    public function keyCapacity()
+    {
+        $alphabet = strlen(uHub('hash_char'));
+        $length = uHub('hash_length');
+
+        // for testing purposes only
+        // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
+        if ($length == 0) {
+            return 0;
+        }
+
+        return pow($alphabet, $length);
+    }
+
+    /**
+     * Counts unique random strings that can be supplied.
+     *
+     * @return int
+     */
+    public function keyRemaining()
+    {
+        $keyCapacity = $this->keyCapacity();
+        $keyUsed = $this->keyUsed();
+
+        return max($keyCapacity - $keyUsed, 0);
+    }
+
+    public function keyRemainingInPercent()
+    {
+        $capacity = $this->keyCapacity();
+        $used = $this->keyUsed();
+        $remaining = $this->keyRemaining();
+
+        $result = round(($remaining / $capacity) * 100, 2);
+
+        if (($result == 0) && ($capacity <= $used)) {
+            return '0%';
+        } elseif (($result == 0) && ($capacity > $used)) {
+            return '0.01%';
+        } elseif (($result == 100) && ($capacity != $remaining)) {
+            return '99.99%';
+        }
+
+        return $result.'%';
+    }
 }
