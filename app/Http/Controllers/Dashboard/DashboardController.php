@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
-use App\Services\KeyService;
-use App\Services\UrlService;
-use App\Services\UserService;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,22 +15,21 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $userSrvc = new UserService;
-        $keySrvc = new KeyService;
-        $urlSrvc = new UrlService;
+        $url = new Url;
+        $user = new User;
 
         return view('backend.dashboard', [
-            'totalUrl'         => $urlSrvc->totalUrl(),
-            'urlCount_Me'      => $urlSrvc->urlCount(Auth::id()),
-            'urlCount_Guest'   => $urlSrvc->urlCount(),
-            'totalClick'       => $urlSrvc->totalClick(),
-            'clickCount_Me'    => $urlSrvc->clickCount(Auth::id()),
-            'clickCount_Guest' => $urlSrvc->clickCount(),
-            'userCount'        => $userSrvc->userCount(),
-            'guestCount'       => $userSrvc->guestCount(),
-            'keyCapacity'      => $keySrvc->keyCapacity(),
-            'keyRemaining'     => $keySrvc->keyRemaining(),
-            'keyRemaining_Percent' => $keySrvc->keyRemainingInPercent(),
+            'totalUrl'         => $url->totalUrl(),
+            'urlCount_Me'      => $url->urlCount(Auth::id()),
+            'urlCount_Guest'   => $url->urlCount(),
+            'totalClick'       => $url->totalClick(),
+            'clickCount_Me'    => $url->clickCount(Auth::id()),
+            'clickCount_Guest' => $url->clickCount(),
+            'userCount'        => User::count(),
+            'guestCount'       => $user->guestCount(),
+            'keyCapacity'      => $url->keyCapacity(),
+            'keyRemaining'     => $url->keyRemaining(),
+            'keyRemaining_Percent' => $url->keyRemainingInPercent(),
         ]);
     }
 
@@ -60,9 +57,9 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $url)
     {
-        $urlSrvc = new UrlService;
-
-        $urlSrvc->update($request->only('long_url', 'meta_title'), $url);
+        $url->long_url = $request->long_url;
+        $url->meta_title = $request->meta_title;
+        $url->save();
 
         return redirect()->route('dashboard')
                          ->withFlashSuccess(__('Link changed successfully !'));
@@ -77,11 +74,9 @@ class DashboardController extends Controller
      */
     public function delete($url)
     {
-        $urlSrvc = new UrlService;
-
         $this->authorize('forceDelete', $url);
 
-        $urlSrvc->delete($url);
+        $url->delete();
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully deleted.'));
@@ -95,8 +90,8 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $urlSrvc = new UrlService;
-        $urlSrvc->duplicate($key, Auth::id());
+        $url = new Url;
+        $url->duplicate($key, Auth::id());
 
         return redirect()->back()
                          ->withFlashSuccess(__('Link was successfully duplicated.'));

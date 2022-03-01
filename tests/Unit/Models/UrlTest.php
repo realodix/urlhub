@@ -4,7 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
-use App\Services\UrlService;
+use Mockery;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -13,7 +13,7 @@ class UrlTest extends TestCase
     {
         parent::setUp();
 
-        $this->urlSrvc = new UrlService;
+        $this->url = new Url;
 
         Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -135,11 +135,160 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
+    public function urlKey()
+    {
+        config(['urlhub.hash_length' => 6]);
+
+        $actual = 'https://github.com/realodix/urlhub';
+        $expected = 'urlhub';
+        $this->assertSame($expected, $this->url->urlKey($actual));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function keyUsed()
+    {
+        config(['urlhub.hash_char' => 'abc']);
+
+        Url::factory()->create([
+            'keyword' => $this->url->randomString(),
+        ]);
+        $this->assertSame(4, $this->url->keyUsed());
+
+        Url::factory()->create([
+            'keyword'   => str_repeat('a', uHub('hash_length')),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(5, $this->url->keyUsed());
+
+        Url::factory()->create([
+            'keyword'   => str_repeat('b', uHub('hash_length') + 1),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(5, $this->url->keyUsed());
+
+        config(['urlhub.hash_length' => uHub('hash_length') + 2]);
+        $this->assertSame(0, $this->url->keyUsed());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function keyUsed2()
+    {
+        config(['urlhub.hash_length' => 3]);
+
+        config(['urlhub.hash_char' => 'foo']);
+        Url::factory()->create([
+            'keyword'   => 'foo',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'bar']);
+        Url::factory()->create([
+            'keyword'   => 'bar',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'foobar']);
+        $this->assertSame(2, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'fooBar']);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'FooBar']);
+        $this->assertSame(0, $this->url->keyUsed());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function keyCapacity()
+    {
+        $hashLength = uHub('hash_length');
+        $hashCharLength = strlen(uHub('hash_char'));
+        $keyCapacity = pow($hashCharLength, $hashLength);
+
+        $this->assertSame($keyCapacity, $this->url->keyCapacity());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider keyRemainingProvider
+     *
+     * @param  mixed  $kc
+     * @param  mixed  $nouk
+     * @param  mixed  $expected
+     */
+    public function keyRemaining($kc, $nouk, $expected)
+    {
+        $mock = Mockery::mock(Url::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
+        ]);
+        $actual = $mock->keyRemaining();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function keyRemainingProvider()
+    {
+        // keyCapacity(), keyUsed(), expected_result
+        return [
+            [1, 2, 0],
+            [3, 2, 1],
+        ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider keyRemainingInPercentProvider
+     *
+     * @param  mixed  $kc
+     * @param  mixed  $nouk
+     * @param  mixed  $expected
+     */
+    public function keyRemainingInPercent($kc, $nouk, $expected)
+    {
+        $mock = Mockery::mock(Url::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
+        ]);
+        $actual = $mock->keyRemainingInPercent();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function keyRemainingInPercentProvider()
+    {
+        // keyCapacity(), keyUsed(), expected_result
+        return [
+            [10, 10, '0%'],
+            [10, 11, '0%'],
+            [pow(10, 6), 999991, '0.01%'],
+            [pow(10, 6), 50, '99.99%'],
+        ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
     public function totalShortUrl()
     {
         $this->assertSame(
             3,
-            $this->urlSrvc->totalUrl()
+            $this->url->totalUrl()
         );
     }
 
@@ -151,7 +300,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             1,
-            $this->urlSrvc->urlCount($this->admin()->id)
+            $this->url->urlCount($this->admin()->id)
         );
     }
 
@@ -163,7 +312,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             2,
-            $this->urlSrvc->urlCount()
+            $this->url->urlCount()
         );
     }
 
@@ -175,7 +324,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             30,
-            $this->urlSrvc->totalClick()
+            $this->url->totalClick()
         );
     }
 
@@ -187,7 +336,7 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             10,
-            $this->urlSrvc->clickCount($this->admin()->id)
+            $this->url->clickCount($this->admin()->id)
         );
     }
 
@@ -201,7 +350,73 @@ class UrlTest extends TestCase
     {
         $this->assertSame(
             20,
-            $this->urlSrvc->clickCount()
+            $this->url->clickCount()
         );
+    }
+
+    /**
+     * @group u-model
+     */
+    public function testAnonymizeIpWhenConfigSettedTrue()
+    {
+        config()->set('urlhub.anonymize_ip_addr', true);
+
+        $ip = '192.168.1.1';
+        $expected = $this->url->anonymizeIp($ip);
+        $actual = '192.168.1.0';
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @group u-model
+     */
+    public function testAnonymizeIpWhenConfigSettedFalse()
+    {
+        config()->set('urlhub.anonymize_ip_addr', false);
+
+        $ip = '192.168.1.1';
+        $expected = $this->url->anonymizeIp($ip);
+        $actual = $ip;
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider getDomainProvider
+     *
+     * @param  mixed  $expected
+     * @param  mixed  $actutal
+     */
+    public function getDomain($expected, $actutal)
+    {
+        $this->assertEquals($expected, $this->url->getDomain($actutal));
+    }
+
+    public function getDomainProvider()
+    {
+        return [
+            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
+        ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function getWebTitle()
+    {
+        $longUrl = 'https://github123456789.com';
+
+        $this->assertSame('github123456789.com - No Title', $this->url->getWebTitle($longUrl));
     }
 }

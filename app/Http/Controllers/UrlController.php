@@ -7,7 +7,6 @@ use App\Models\Url;
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\StrLowercase;
 use App\Rules\URL\KeywordBlacklist;
-use App\Services\UrlService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -16,10 +15,8 @@ class UrlController extends Controller
 {
     /**
      * UrlController constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
-    public function __construct(protected UrlService $urlSrvc)
+    public function __construct()
     {
         $this->middleware('urlhublinkchecker')->only('create');
     }
@@ -31,7 +28,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = $this->urlSrvc->shortenUrl($request, Auth::id());
+        $url = (new Url)->shortenUrl($request, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword);
     }
@@ -85,7 +82,7 @@ class UrlController extends Controller
      */
     public function duplicate($key)
     {
-        $url = $this->urlSrvc->duplicate($key, Auth::id());
+        $url = (new Url)->duplicate($key, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword)
                          ->withFlashSuccess(__('Link was successfully duplicated.'));

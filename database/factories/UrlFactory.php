@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Url;
 use App\Models\User;
-use App\Services\KeyService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UrlFactory extends Factory
@@ -23,13 +22,11 @@ class UrlFactory extends Factory
      */
     public function definition()
     {
-        $keySrvc = new KeyService();
-
         return [
             'user_id'    => User::factory(),
             'long_url'   => 'https://github.com/realodix/urlhub',
             'meta_title' => 'No Title',
-            'keyword'    => $keySrvc->randomString(),
+            'keyword'    => (new Url)->randomString(),
             'is_custom'  => 0,
             'clicks'     => mt_rand(10000, 999999999),
             'ip'         => $this->faker->ipv4(),

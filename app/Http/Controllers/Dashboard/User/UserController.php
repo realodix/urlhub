@@ -5,16 +5,13 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserEmail;
 use App\Models\User;
-use App\Services\UserService;
 
 class UserController extends Controller
 {
     /**
      * UserController constructor.
-     *
-     * @param  UserService  $userSrvc  \App\Services\UserService
      */
-    public function __construct(protected UserService $userSrvc)
+    public function __construct()
     {
         $this->middleware('role:admin')->only('view');
     }
@@ -53,9 +50,8 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $data = $request->only('email');
-
-        $this->userSrvc->updateUserEmail($data, $user);
+        $user->email = $request->email;
+        $user->save();
 
         return redirect()->back()
                          ->withFlashSuccess(__('Profile updated.'));

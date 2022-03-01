@@ -22,4 +22,15 @@ class UserTest extends TestCase
 
         $this->assertTrue($user->url()->exists());
     }
+
+    /**
+     * The number of guests is calculated based on a unique IP.
+     *
+     * @test
+     * @group u-model
+     */
+    public function guestCount()
+    {
+        $this->assertSame(0, (new User)->guestCount());
+    }
 }

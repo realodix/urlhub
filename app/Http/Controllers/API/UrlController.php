@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
-use App\Services\UrlService;
+use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -14,10 +14,8 @@ class UrlController extends Controller
 {
     /**
      * UrlController constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
-    public function __construct(protected UrlService $urlSrvc)
+    public function __construct()
     {
         $this->middleware('urlhublinkchecker')->only('create');
     }
@@ -35,7 +33,7 @@ class UrlController extends Controller
             return response()->json(['errors' => $v->errors()->all()]);
         }
 
-        $url = $this->urlSrvc->shortenUrl($request, Auth::id());
+        $url = (new Url)->shortenUrl($request, Auth::id());
 
         return response([
             'id'        => $url->id,
