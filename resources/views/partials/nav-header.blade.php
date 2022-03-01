@@ -32,22 +32,22 @@
                 <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
                   @if (Route::currentRouteName() != 'dashboard')
-                    <a class="nav-item" href="{{route('dashboard')}}">@lang('Dashboard')</a>
+                    <a class="nav-item" href="{{route('dashboard')}}">{{__('Dashboard')}}</a>
 
                     <div class="border-t border-slate-100"></div>
                   @endif
 
                   <!-- Account Management -->
                   <div class="block px-4 py-2 text-xs text-slate-400">
-                    @lang('Manage Account')
+                    {{__('Manage Account')}}
                   </div>
 
                   <a href="{{route('user.edit', Auth::user()->name)}}"
                     class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
-                    @lang('Profile')</a>
+                    {{__('Profile')}}</a>
                   <a href="{{route('user.change-password', Auth::user()->name)}}"
                     class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
-                    @lang('Change Password')</a>
+                    {{__('Change Password')}}</a>
 
                   <div class="border-t border-slate-100"></div>
 
@@ -55,7 +55,7 @@
                   <form method="POST" action="{{route('logout')}}">
                   @csrf
                     <a href="{{route('logout')}}" onclick="event.preventDefault();
-                      this.closest('form').submit();" class="nav-item" >@lang('Log Out')</a>
+                      this.closest('form').submit();" class="nav-item" >{{__('Log Out')}}</a>
                   </form>
                 </div>
               </div>
@@ -64,9 +64,9 @@
         </div>
       @else
         <div class="hidden sm:flex sm:items-center sm:ml-6">
-          <a href="{{route('login')}}" class="text-xl font-light leading-tight mr-4">@lang('Login')</a>
+          <a href="{{route('login')}}" class="text-xl font-light leading-tight mr-4">{{__('Login')}}</a>
           @if (Route::has('register') and Config::get('urlhub.registration'))
-            <a href="{{route('register')}}" class="text-xl font-light leading-tight mr-4">@lang('Register')</a>
+            <a href="{{route('register')}}" class="text-xl font-light leading-tight mr-4">{{__('Register')}}</a>
           @endif
         </div>
       @endauth
@@ -91,14 +91,14 @@
         @if (Route::currentRouteName() != 'dashboard')
           <a href="{{route('dashboard')}}"
             class="nav-item {{(request()->route()->getName() == 'dashboard') ? 'border-l-2 border-uh-indigo-400':''}}">
-            <i class="fas fa-tachometer-alt"></i> @lang('Dashboard')</a>
+            <i class="fas fa-tachometer-alt"></i> {{__('Dashboard')}}</a>
         @endif
         <a href="{{route('dashboard.allurl')}}"
           class="nav-item {{(request()->route()->getName() == 'dashboard.allurl') ? 'border-l-2 border-uh-indigo-400':''}}">
-          <i class="nav-icon fas fa-link"></i> @lang('All URLs')</a>
+          <i class="nav-icon fas fa-link"></i> {{__('All URLs')}}</a>
         <a href="{{route('user.index')}}"
           class="nav-item {{(request()->route()->getName() == 'user.index') ? 'border-l-2 border-uh-indigo-400':''}}">
-          <i class="nav-icon fas fa-users"></i> @lang('All Users')</a>
+          <i class="nav-icon fas fa-users"></i> {{__('All Users')}}</a>
       </div>
 
       <!-- Responsive Settings Options -->
@@ -114,28 +114,28 @@
           <!-- Account Management -->
           <a href="{{route('user.edit', Auth::user()->name)}}"
             class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
-            @lang('Profile')</a>
+            {{__('Profile')}}</a>
           <a href="{{route('user.change-password', Auth::user()->name)}}"
             class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
-            @lang('Change Password')</a>
+            {{__('Change Password')}}</a>
 
           <!-- Authentication -->
           <form method="POST" action="{{route('logout')}}">
           @csrf
             <a class="nav-item" href="{{route('logout')}}" onclick="event.preventDefault();
               this.closest('form').submit();">
-              @lang('Log Out')</a>
+              {{__('Log Out')}}</a>
           </form>
         </div>
       </div>
     @else
       <div class="pt-2 pb-3 space-y-1">
         <a href="{{route('login')}}" class="block pl-3 pr-4 py-2 font-medium transition" >
-          @lang('Login')
+          {{__('Login')}}
         </a>
         @if (Route::has('register') and Config::get('urlhub.registration'))
           <a href="{{route('register')}}" class="block pl-3 pr-4 py-2 font-medium transition" >
-            @lang('Register')
+            {{__('Register')}}
           </a>
         @endif
       </div>
@@ -152,7 +152,7 @@
             'text-slate-800 border-uh-indigo-400' :
             'text-slate-500 hover:border-slate-300'}}">
           <i class="fas fa-tachometer-alt mr-1"></i>
-          <span class="">@lang('Dashboard')</span></a>
+          <span class="">{{__('Dashboard')}}</span></a>
         @role('admin')
           <a href="{{route('dashboard.allurl')}}"
             class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
@@ -160,14 +160,14 @@
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
             <i class="nav-icon fas fa-link mr-1"></i>
-            <span class="">@lang('All URLs')</span></a>
+            <span class="">{{__('All URLs')}}</span></a>
           <a href="{{route('user.index')}}"
             class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
               {{(request()->route()->getName() == 'user.index') ?
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
             <i class="nav-icon fas fa-users mr-1"></i>
-            <span class="">@lang('All Users')</span></a>
+            <span class="">{{__('All Users')}}</span></a>
         @endrole
       </div>
     </nav>

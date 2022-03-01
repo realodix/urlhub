@@ -28,12 +28,12 @@
       <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
     </div>
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
-      <b class="text-indigo-700">@lang('Shortened URL')</b>
-      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
+      <b class="text-indigo-700">{{__('Shortened URL')}}</b>
+      <button title="{{__('Copy to clipboard')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
         class="btn-clipboard ml-4 py-0.5 px-1
           text-xs text-white bg-[#b858a9] hover:bg-[#9c3d8a] focus:bg-[#b858a9]"
       >
-        @lang('Copy')
+        {{__('Copy')}}
       </button>
 
       <br>
@@ -43,12 +43,12 @@
 
       <br> <br>
 
-      <b class="text-indigo-700">@lang('Destination URL')</b>
-      <button title="@lang('Copy to clipboard')" data-clipboard-text="{{ $url->long_url }}"
+      <b class="text-indigo-700">{{__('Destination URL')}}</b>
+      <button title="{{__('Copy to clipboard')}}" data-clipboard-text="{{ $url->long_url }}"
         class="btn-clipboard ml-4 py-0.5 px-1
           text-xs text-white bg-[#b858a9] hover:bg-[#9c3d8a] focus:bg-[#b858a9]"
       >
-        @lang('Copy')
+        {{__('Copy')}}
       </button>
 
       <div class="font-light break-all">{{ $url->long_url }}</div>

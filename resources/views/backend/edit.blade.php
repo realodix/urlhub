@@ -9,10 +9,10 @@
 <main class="flex flex-wrap">
   <div class="md:w-3/12 flex justify-between">
     <div class="px-4 sm:px-0">
-      <h3 class="text-lg font-medium text-slate-900">@lang('My URLs')</h3>
+      <h3 class="text-lg font-medium text-slate-900">{{__('My URLs')}}</h3>
 
       <p class="mt-1 text-sm text-slate-600">
-        @lang('Edit URL')
+        {{__('Edit URL')}}
       </p>
     </div>
   </div>
@@ -22,18 +22,18 @@
       <div class="bg-white px-4 py-5 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 lg:col-span-4">
-            <label for="short-url" class="block font-medium text-sm text-slate-700">@lang('Short URL')</label>
+            <label for="short-url" class="block font-medium text-sm text-slate-700">{{__('Short URL')}}</label>
             <span class="short-url">{{urlDisplay($url->short_url, false)}}</span>
           </div>
 
           <div class="col-span-6">
-            <label for="meta-title" class="block font-medium text-sm text-slate-700">@lang('Title')</label>
-            <input id="meta-title" type="text" name="meta_title" placeholder="@lang('Title')" required value="{{$url->meta_title}}" class="form-input">
+            <label for="meta-title" class="block font-medium text-sm text-slate-700">{{__('Title')}}</label>
+            <input id="meta-title" type="text" name="meta_title" placeholder="{{__('Title')}}" required value="{{$url->meta_title}}" class="form-input">
           </div>
 
           <div class="col-span-6">
-            <label for="long-url" class="block font-medium text-sm text-slate-700">@lang('Destination URL')</label>
-            <input id="long-url" type="text" name="long_url" placeholder="@lang('Enter your long url')" required value="{{$url->long_url}}" class="form-input">
+            <label for="long-url" class="block font-medium text-sm text-slate-700">{{__('Destination URL')}}</label>
+            <input id="long-url" type="text" name="long_url" placeholder="{{__('Enter your long url')}}" required value="{{$url->long_url}}" class="form-input">
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
             text-right bg-slate-50"
       >
         <button type="submit" class="button">
-          @lang('Save Changes')
+          {{__('Save Changes')}}
         </button>
       </div>
     </form>

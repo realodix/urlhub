@@ -10,8 +10,8 @@
         </span>
       </div>
       <div class="w-full sm:w-1/2 sm:text-right">
-        <span>@lang('Powered by')</span>
-        <a href="https://github.com/laravel/framework/releases/tag/v{{App::VERSION()}}" target="_blank" title="@lang('Laravel v'.App::VERSION().' (release notes)')"
+        <span>{{__('Powered by')}}</span>
+        <a href="https://github.com/laravel/framework/releases/tag/v{{App::VERSION()}}" target="_blank" title="Laravel v{{App::VERSION()}} (release notes)"
           class="text-[#F9322C]"
         >
           Laravel v{{App::VERSION()}}
