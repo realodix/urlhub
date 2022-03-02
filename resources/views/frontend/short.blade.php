@@ -14,10 +14,28 @@
           <i class="far fa-clock"></i>
           <i>{{$url->created_at->toDayDateTimeString()}}</i>
         </li>
-        <li class="inline-block">
+        <li class="inline-block pr-4">
           <i class="far fa-eye"></i>
           <i><span title="{{number_format($url->clicks)}}">{{numberToAmountShort($url->clicks)}}</span></i>
         </li>
+        @auth
+          @if (Auth::user()->hasRole('admin') || (Auth::user()->id == $url->user_id))
+            <li class="inline-block pr-4">
+              <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
+                class="text-xs text-white bg-gray-500 hover:bg-uh-indigo-600 active:bg-uh-indigo-500 px-2 py-1 rounded-lg shadow-sm"
+              >
+                <i class="fas fa-edit"></i>
+              </a>
+            </li>
+            <li class="inline-block">
+              <a href="{{route('dashboard.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
+                class="text-xs text-white bg-gray-500 hover:bg-red-600 active:bg-uh-indigo-500 px-2 py-1 rounded-lg shadow-sm"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </li>
+          @endif
+        @endauth
       </ul>
       <div class="text-xl sm:text-2xl lg:text-3xl mt-2 font-light">{!! $url->meta_title !!}</div>
     </div>
