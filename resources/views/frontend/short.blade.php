@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto mb-12">
-  <div class="flex flex-wrap mt-6 sm:mt-12 px-4 sm:p-6">
+  <div class="flex flex-wrap mt-6 lg:mt-12 px-4 sm:p-6">
     <div class="md:w-9/12">
 
       @include('partials/messages')
@@ -19,7 +19,7 @@
           <i><span title="{{number_format($url->clicks)}}">{{numberToAmountShort($url->clicks)}}</span></i>
         </li>
       </ul>
-      <div class="text-4xl font-light">{!! $url->meta_title !!}</div>
+      <div class="text-xl sm:text-2xl lg:text-3xl mt-2 font-light">{!! $url->meta_title !!}</div>
     </div>
   </div>
 
