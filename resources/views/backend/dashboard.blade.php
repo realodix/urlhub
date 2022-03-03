@@ -47,11 +47,11 @@
   @else
     <div class="flex flex-wrap">
       <div class="w-full sm:w-1/4">
-        <span class="font-light text-lg sm:text-2xl">{{__('Urls Shortened')}}:</span>
+        <span class="font-semibold text-md sm:text-2xl">{{__('URLs')}}:</span>
         <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($urlCount_Me)}}</span>
       </div>
       <div class="w-full sm:w-1/4">
-        <span class="font-light text-lg sm:text-2xl">{{__('Clicks & Redirects')}}:</span>
+        <span class="font-semibold text-lg sm:text-2xl">{{__('Clicks')}}:</span>
         <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($clickCount_Me)}}</span>
       </div>
     </div>
