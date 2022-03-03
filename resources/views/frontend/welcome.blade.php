@@ -19,7 +19,7 @@
       font-bold text-uh-indigo-600 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
     >
       Simple URL shortener <br>
-      <span class="font-thin">for individuals &amp; businesses.</span>
+      <span class="font-thin text-black">for individuals &amp; businesses.</span>
     </h1>
   </div>
 
