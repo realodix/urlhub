@@ -44,7 +44,17 @@ final class AllUlrTable extends PowerGridComponent
     */
     public function datasource(): ?Builder
     {
-        return Url::query();
+        return Url::query()
+            ->join('users', function ($user) {
+                $user->on('urls.user_id', '=', 'users.id');
+            })
+            ->select([
+                'urls.id',
+                'urls.keyword',
+                'urls.long_url',
+                'urls.created_at',
+                'urls.user_id',
+            ]);
     }
 
     /*
@@ -135,7 +145,9 @@ final class AllUlrTable extends PowerGridComponent
         return [
             Column::add()
                 ->title('Owner')
-                ->field('user_name'),
+                ->field('user_name', 'users.name')
+                ->sortable()
+                ->searchable(),
 
             Column::add()
                 ->title('Short URL')
