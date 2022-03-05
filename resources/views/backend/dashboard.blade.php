@@ -14,7 +14,7 @@
       </div>
       <div class="mt-8 sm:mt-0 text-uh-1 ">
         <b>{{__('Free Space')}}:</b>
-        <span class="font-light">{{numberToAmountShort($keyRemaining)}} of {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})</span>
+        <span class="font-light">{{numberToAmountShort($keyRemaining)}} {{__('of')}} {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})</span>
       </div>
     </div>
 
