@@ -52,6 +52,7 @@ final class AllUlrTable extends PowerGridComponent
                 'urls.id',
                 'urls.keyword',
                 'urls.long_url',
+                'urls.clicks',
                 'urls.created_at',
                 'urls.user_id',
             ]);
