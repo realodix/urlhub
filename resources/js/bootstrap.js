@@ -27,6 +27,9 @@ library.add(far, fas);
 
 // Kicks off the process of finding <i> tags and replacing with <svg>
 dom.watch();
+/**
+ * Alpine.js
+ */
 
 import Alpine from 'alpinejs'
 
