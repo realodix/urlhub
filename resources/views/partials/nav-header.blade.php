@@ -100,7 +100,7 @@
           <i class="nav-icon fas fa-link"></i> {{__('URL List')}}</a>
         <a href="{{route('user.index')}}"
           class="nav-item {{(request()->route()->getName() == 'user.index') ? 'border-l-2 border-uh-indigo-400':''}}">
-          <i class="nav-icon fas fa-users"></i> {{__('All Users')}}</a>
+          <i class="nav-icon fas fa-users"></i> {{__('User List')}}</a>
       </div>
 
       <!-- Responsive Settings Options -->
@@ -169,7 +169,7 @@
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
             <i class="nav-icon fas fa-users mr-1"></i>
-            <span class="">{{__('All Users')}}</span></a>
+            <span class="">{{__('User List')}}</span></a>
         @endrole
       </div>
     </nav>
