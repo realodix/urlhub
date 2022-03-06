@@ -84,37 +84,37 @@ final class MyUrlTable extends PowerGridComponent
                     .Blade::render('<x-gmdi-open-in-new-o class="!h-[0.7em] ml-1"/>');
             })
             ->addColumn('long_url', function (Url $url) {
-                return '
-                    <span title="'.$url->meta_title.'" class="font-semibold">
-                        '.Str::limit($url->meta_title, 80).'
-                    </span>
+                return
+                    '<span title="'.$url->meta_title.'" class="font-semibold">'
+                        .Str::limit($url->meta_title, 80).
+                    '</span>
                     <br>
-                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">
-                        '.urlDisplay($url->long_url, false, 70)
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
+                        .urlDisplay($url->long_url, false, 70)
                         .Blade::render('<x-gmdi-open-in-new-o class="!h-[0.7em] ml-1"/>').
                     '</a>';
             })
             ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('<x-gmdi-bar-chart class="ml-2"/>'))
             ->addColumn('created_at_formatted', function (Url $url) {
                 return
-                    '<span title="'.$url->created_at->toDayDateTimeString().'">
-                        '.$url->created_at->diffForHumans().
+                    '<span title="'.$url->created_at->toDayDateTimeString().'">'
+                        .$url->created_at->diffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'" class="btn-action" >
-                        '.Blade::render('<x-carbon-data-view-alt />').'
-                    </a>
-                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-action" >
-                        '.Blade::render('<x-far-clone />').'
-                    </a>
-                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-action" >
-                        '.Blade::render('<x-far-edit />').'
-                    </a>
-                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-action-delete" >
-                        '.Blade::render('<x-far-trash-alt />').'
-                    </a>';
+                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'" class="btn-action" >'
+                        .Blade::render('<x-carbon-data-view-alt />').
+                    '</a>
+                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-action" >'
+                        .Blade::render('<x-far-clone />').
+                    '</a>
+                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-action" >'
+                        .Blade::render('<x-far-edit />').
+                    '</a>
+                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-action-delete" >'
+                        .Blade::render('<x-far-trash-alt />').
+                    '</a>';
             });
     }
 
