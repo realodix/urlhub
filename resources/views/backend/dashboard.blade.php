@@ -21,7 +21,7 @@
     <div class="flex flex-wrap sm:mt-8">
       <div class="w-full sm:w-1/4">
         <div class="block">
-          <b class="text-uh-1"><x-fas-link class="mr-1.5"/> {{__('URLs Shortened')}}:</b>
+          <b class="text-uh-1"><x-fas-link class="mr-1.5"/> {{__('URLs')}}:</b>
           <span class="text-cyan-600">{{numberToAmountShort($totalUrl)}}</span> -
           <span class="text-teal-600">{{numberToAmountShort($urlCount_Me)}}</span> -
           <span class="text-orange-600">{{numberToAmountShort($urlCount_Guest)}}</span>
