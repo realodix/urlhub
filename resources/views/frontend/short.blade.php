@@ -20,16 +20,16 @@
         </li>
         @auth
           @if (Auth::user()->hasRole('admin') || (Auth::user()->id == $url->user_id))
-            <li class="inline-block pr-4">
+            <li class="inline-block pr-2">
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
-                class="text-xs text-white bg-gray-500 hover:bg-uh-indigo-600 active:bg-uh-indigo-500 px-2 py-1 rounded-lg shadow-sm"
+                class="text-xs hover:text-white bg-white hover:bg-uh-indigo-600 active:bg-uh-indigo-500 px-2 py-1 border border-gray-300 rounded-md shadow-sm"
               >
                 <x-fas-edit />
               </a>
             </li>
             <li class="inline-block">
               <a href="{{route('dashboard.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
-                class="text-xs text-white bg-gray-500 hover:bg-red-600 active:bg-uh-indigo-500 px-2 py-1 rounded-lg shadow-sm"
+                class="text-xs hover:text-white bg-white hover:bg-red-600 active:bg-red-500 px-2 py-1 border border-gray-300 rounded-md shadow-sm"
               >
                 <x-fas-trash-alt />
               </a>

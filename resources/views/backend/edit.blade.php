@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', Str::title(Auth::user()->name) .' ‹ '. __('Change Password'))
+@section('title', Str::title(Auth::user()->name) .' ‹ '. __('Edit URL Details'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
 <main class="flex flex-wrap">
   <div class="md:w-3/12 flex justify-between">
     <div class="px-4 sm:px-0">
-      <h3 class="text-lg font-medium text-slate-900">{{__('Edit URL')}}</h3>
+      <h3 class="text-lg font-medium text-slate-900">{{__('Edit URL Details')}}</h3>
       <br>
       <div class="inline sm:block mr-2 text-sm text-slate-600">
         <x-fas-user class="mr-1"/>
@@ -21,10 +21,10 @@
       </div>
     </div>
   </div>
-  <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4 bg-white">
+  <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
     <form method="post" action="{{route('short_url.edit.post', $url->getRouteKey())}}">
     @csrf
-      <div class="bg-white px-4 py-5 sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+      <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 lg:col-span-4">
             <label for="short-url" class="block font-medium text-sm text-slate-700">{{__('Short URL')}}</label>
