@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Blade;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -79,18 +80,18 @@ final class UserTable extends PowerGridComponent
             ->addColumn('email')
             ->addColumn('created_at_formatted', function (User $user) {
                 return
-                    '<span title="'.$user->created_at->toDayDateTimeString().'">
-                        '.$user->created_at->diffForHumans().
+                    '<span title="'.$user->created_at->toDayDateTimeString().'">'
+                        .$user->created_at->diffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (User $user) {
                 return
-                    '<a role="button" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" class="btn-action">
-                        <i class="fas fa-user-edit"></i>
-                    </a>
-                    <a role="button" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" class="btn-action">
-                        <i class="fas fa-key"></i>
-                    </a>';
+                    '<a role="button" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" class="btn-action">'
+                        .Blade::render('<x-fas-user-edit />').
+                    '</a>
+                    <a role="button" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" class="btn-action">'
+                        .Blade::render('<x-fas-key />').
+                    '</a>';
             });
     }
 

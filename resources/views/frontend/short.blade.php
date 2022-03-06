@@ -11,11 +11,11 @@
 
       <ul>
         <li class="inline-block pr-4">
-          <i class="far fa-clock"></i>
+          <x-fas-calendar-alt />
           <i>{{$url->created_at->toDayDateTimeString()}}</i>
         </li>
         <li class="inline-block pr-4">
-          <i class="far fa-eye"></i>
+          <x-gmdi-bar-chart />
           <i><span title="{{number_format($url->clicks)}}">{{numberToAmountShort($url->clicks)}}</span></i>
         </li>
         @auth
@@ -24,14 +24,14 @@
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
                 class="text-xs text-white bg-gray-500 hover:bg-uh-indigo-600 active:bg-uh-indigo-500 px-2 py-1 rounded-lg shadow-sm"
               >
-                <i class="fas fa-edit"></i>
+                <x-fas-edit />
               </a>
             </li>
             <li class="inline-block">
               <a href="{{route('dashboard.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
                 class="text-xs text-white bg-gray-500 hover:bg-red-600 active:bg-uh-indigo-500 px-2 py-1 rounded-lg shadow-sm"
               >
-                <i class="fas fa-trash-alt"></i>
+                <x-fas-trash-alt />
               </a>
             </li>
           @endif
@@ -51,7 +51,7 @@
         class="btn-clipboard ml-4 py-0.5 px-1
           text-xs text-white bg-[#b858a9] hover:bg-[#9c3d8a] focus:bg-[#b858a9]"
       >
-        {{__('Copy')}}
+        <x-fas-clone /> {{__('Copy')}}
       </button>
 
       <br>
@@ -66,7 +66,7 @@
         class="btn-clipboard ml-4 py-0.5 px-1
           text-xs text-white bg-[#b858a9] hover:bg-[#9c3d8a] focus:bg-[#b858a9]"
       >
-        {{__('Copy')}}
+        <x-fas-clone /> {{__('Copy')}}
       </button>
 
       <div class="font-light break-all">{{ $url->long_url }}</div>

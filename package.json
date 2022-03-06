@@ -10,9 +10,6 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.32",
-        "@fortawesome/free-regular-svg-icons": "^5.15.1",
-        "@fortawesome/free-solid-svg-icons": "^5.15.1",
         "@tailwindcss/forms": "^0.4.0",
         "alpinejs": "^3.8.1",
         "autoprefixer": "^10.4.2",

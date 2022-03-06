@@ -17,7 +17,7 @@
               focus:outline-none focus:ring-2 focus:ring-offset-2 leading-5 border border-transparent rounded-md shadow-sm
               text-sm font-medium text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:ring-uh-indigo-500"
           >
-            <i class="fa-solid fa-plus mr-2"></i>
+            <x-gmdi-add-link class="!h-[1.5em] mr-1"/>
             {{__('Add URL')}}
           </a>
         </div>
