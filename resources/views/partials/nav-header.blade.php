@@ -32,7 +32,7 @@
                 <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
                   @if (Route::currentRouteName() != 'dashboard')
-                    <a class="nav-item" href="{{route('dashboard')}}">{{__('Dashboard')}}</a>
+                    <a class="nav-item" href="{{route('dashboard')}}"><x-majestic-dashboard-solid /> {{__('Dashboard')}}</a>
 
                     <div class="border-t border-slate-100"></div>
                   @endif
@@ -44,10 +44,10 @@
 
                   <a href="{{route('user.edit', Auth::user()->name)}}"
                     class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
-                    {{__('Profile')}}</a>
+                    <x-fas-user /> {{__('Profile')}}</a>
                   <a href="{{route('user.change-password', Auth::user()->name)}}"
                     class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
-                    {{__('Change Password')}}</a>
+                    <x-fas-key /> {{__('Change Password')}}</a>
 
                   <div class="border-t border-slate-100"></div>
 
@@ -55,7 +55,7 @@
                   <form method="POST" action="{{route('logout')}}">
                   @csrf
                     <a href="{{route('logout')}}" onclick="event.preventDefault();
-                      this.closest('form').submit();" class="nav-item" >{{__('Log Out')}}</a>
+                      this.closest('form').submit();" class="nav-item" ><x-fas-sign-out-alt /> {{__('Log Out')}}</a>
                   </form>
                 </div>
               </div>
@@ -93,14 +93,14 @@
         @if (Route::currentRouteName() != 'dashboard')
           <a href="{{route('dashboard')}}"
             class="nav-item {{(request()->route()->getName() == 'dashboard') ? 'border-l-2 border-uh-indigo-400':''}}">
-            <i class="fas fa-tachometer-alt"></i> {{__('Dashboard')}}</a>
+            <x-majestic-dashboard-solid /> {{__('Dashboard')}}</a>
         @endif
         <a href="{{route('dashboard.allurl')}}"
           class="nav-item {{(request()->route()->getName() == 'dashboard.allurl') ? 'border-l-2 border-uh-indigo-400':''}}">
-          <i class="nav-icon fas fa-link"></i> {{__('All URLs')}}</a>
+          <x-fas-link /> {{__('All URLs')}}</a>
         <a href="{{route('user.index')}}"
           class="nav-item {{(request()->route()->getName() == 'user.index') ? 'border-l-2 border-uh-indigo-400':''}}">
-          <i class="nav-icon fas fa-users"></i> {{__('All Users')}}</a>
+          <x-fas-users /> {{__('All Users')}}</a>
       </div>
 
       <!-- Responsive Settings Options -->
@@ -116,17 +116,17 @@
           <!-- Account Management -->
           <a href="{{route('user.edit', Auth::user()->name)}}"
             class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
-            {{__('Profile')}}</a>
+            <x-fas-user /> {{__('Profile')}}</a>
           <a href="{{route('user.change-password', Auth::user()->name)}}"
             class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
-            {{__('Change Password')}}</a>
+            <x-fas-key /> {{__('Change Password')}}</a>
 
           <!-- Authentication -->
           <form method="POST" action="{{route('logout')}}">
           @csrf
             <a class="nav-item" href="{{route('logout')}}" onclick="event.preventDefault();
               this.closest('form').submit();">
-              {{__('Log Out')}}</a>
+              <x-fas-sign-out-alt /> {{__('Log Out')}}</a>
           </form>
         </div>
       </div>
@@ -153,7 +153,7 @@
             {{(request()->route()->getName() == 'dashboard') ?
             'text-slate-800 border-uh-indigo-400' :
             'text-slate-500 hover:border-slate-300'}}">
-          <i class="fas fa-tachometer-alt mr-1"></i>
+          <x-gmdi-dashboard-r />
           <span class="">{{__('Dashboard')}}</span></a>
         @role('admin')
           <a href="{{route('dashboard.allurl')}}"
@@ -161,14 +161,14 @@
               {{(request()->route()->getName() == 'dashboard.allurl') ?
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
-            <i class="nav-icon fas fa-link mr-1"></i>
+            <x-fas-link />
             <span class="">{{__('All URLs')}}</span></a>
           <a href="{{route('user.index')}}"
             class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
               {{(request()->route()->getName() == 'user.index') ?
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
-            <i class="nav-icon fas fa-users mr-1"></i>
+            <x-fas-users />
             <span class="">{{__('All Users')}}</span></a>
         @endrole
       </div>

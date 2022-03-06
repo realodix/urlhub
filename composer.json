@@ -6,6 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "blade-ui-kit/blade-icons": "^1.2",
+        "codeat3/blade-carbon-icons": "^2.3",
+        "codeat3/blade-google-material-design-icons": "^1.8",
+        "codeat3/blade-majestic-icons": "^1.1",
         "codeitnowin/barcode": "^3.0",
         "doctrine/dbal": "^3.1",
         "embed/embed": "^4.3",
@@ -15,6 +19,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.10",
+        "owenvoke/blade-fontawesome": "^2.0",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
         "power-components/livewire-powergrid": "^2.2",

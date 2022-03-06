@@ -43,6 +43,14 @@ main {
   @apply sm:mt-10;
 }
 
+.blade-icon {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  box-sizing: content-box;
+  vertical-align: -0.125em;
+}
+
 .form-input {
   @apply block w-full;
   @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
