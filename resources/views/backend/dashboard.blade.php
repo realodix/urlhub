@@ -10,7 +10,7 @@
       <div class="w-full sm:w-1/4">
         <span class="text-cyan-600"><x-fas-square class="mr-2"/> {{__('All')}}</span>
         <span class="text-teal-600 ml-5"><x-fas-square class="mr-2"/> {{__('Me')}}</span>
-        <span class="text-orange-600 ml-5"><x-fas-square class="mr-2"/> {{__('Guest')}}</span>
+        <span class="text-orange-600 ml-5"><x-fas-square class="mr-2"/> {{__('Guests')}}</span>
       </div>
       <div class="mt-8 sm:mt-0 text-uh-1 ">
         <b><x-gmdi-storage class="mr-1.5"/> {{__('Free Space')}}:</b>
@@ -35,11 +35,11 @@
       </div>
       <div class="text-uh-1 w-full sm:w-1/4 mt-4 sm:mt-0">
         <div class="block">
-          <b><x-fas-user class="mr-1.5"/> {{__('Registered Users')}}:</b>
+          <b><x-fas-user class="mr-1.5"/> {{__('Users')}}:</b>
           <span class="font-light">{{numberToAmountShort($userCount)}}</span>
         </div>
         <div class="block">
-          <b><x-fas-user class="mr-1.5"/> {{__('Guest')}}:</b>
+          <b><x-fas-user class="mr-1.5"/> {{__('Guests')}}:</b>
           <span class="font-light">{{numberToAmountShort($guestCount)}}</span>
         </div>
       </div>
