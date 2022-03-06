@@ -97,7 +97,7 @@
         @endif
         <a href="{{route('dashboard.allurl')}}"
           class="nav-item {{(request()->route()->getName() == 'dashboard.allurl') ? 'border-l-2 border-uh-indigo-400':''}}">
-          <i class="nav-icon fas fa-link"></i> {{__('All URLs')}}</a>
+          <i class="nav-icon fas fa-link"></i> {{__('URL List')}}</a>
         <a href="{{route('user.index')}}"
           class="nav-item {{(request()->route()->getName() == 'user.index') ? 'border-l-2 border-uh-indigo-400':''}}">
           <i class="nav-icon fas fa-users"></i> {{__('All Users')}}</a>
@@ -162,7 +162,7 @@
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
             <i class="nav-icon fas fa-link mr-1"></i>
-            <span class="">{{__('All URLs')}}</span></a>
+            <span class="">{{__('URL List')}}</span></a>
           <a href="{{route('user.index')}}"
             class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
               {{(request()->route()->getName() == 'user.index') ?
