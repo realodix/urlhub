@@ -11,14 +11,14 @@
     <div class="px-4 sm:px-0">
       <h3 class="text-lg font-medium text-slate-900">{{__('Edit URL')}}</h3>
       <br>
-      <p class="mt-1 text-sm text-slate-600">
+      <div class="inline sm:block mr-2 text-sm text-slate-600">
         <x-fas-user class="mr-1"/>
         {{$url->user->name}}
-      </p>
-      <p class="mt-1 text-sm text-slate-600">
+      </div>
+      <div class="inline sm:block text-sm text-slate-600">
         <x-gmdi-calendar-month class="mr-1"/>
-        {{$url->created_at}}
-      </p>
+        <span title="{{$url->created_at->toDayDateTimeString()}}">{{$url->created_at->diffForHumans()}}</span>
+      </div>
     </div>
   </div>
   <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4 bg-white">
