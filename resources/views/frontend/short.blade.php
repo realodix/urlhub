@@ -49,7 +49,7 @@
       <b class="text-indigo-700">{{__('Shortened URL')}}</b>
       <button title="{{__('Copy to clipboard')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
         class="btn-clipboard ml-4 py-0.5 px-1
-          text-xs text-white bg-[#b858a9] hover:bg-[#9c3d8a] focus:bg-[#b858a9]"
+          text-xs text-white bg-green-600 hover:bg-green-700 focus:bg-green-600"
       >
         <x-fas-clone /> {{__('Copy')}}
       </button>
@@ -64,7 +64,7 @@
       <b class="text-indigo-700">{{__('Destination URL')}}</b>
       <button title="{{__('Copy to clipboard')}}" data-clipboard-text="{{ $url->long_url }}"
         class="btn-clipboard ml-4 py-0.5 px-1
-          text-xs text-white bg-[#b858a9] hover:bg-[#9c3d8a] focus:bg-[#b858a9]"
+          text-xs text-white bg-green-600 hover:bg-green-700 focus:bg-green-600"
       >
         <x-fas-clone /> {{__('Copy')}}
       </button>
