@@ -32,7 +32,7 @@
                 <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
                   @if (Route::currentRouteName() != 'dashboard')
-                    <a class="nav-item" href="{{route('dashboard')}}"><x-majestic-dashboard-solid /> {{__('Dashboard')}}</a>
+                    <a class="nav-item" href="{{route('dashboard')}}"><x-gmdi-dashboard-r /> {{__('Dashboard')}}</a>
 
                     <div class="border-t border-slate-100"></div>
                   @endif
@@ -93,7 +93,7 @@
         @if (Route::currentRouteName() != 'dashboard')
           <a href="{{route('dashboard')}}"
             class="nav-item {{(request()->route()->getName() == 'dashboard') ? 'border-l-2 border-uh-indigo-400':''}}">
-            <x-majestic-dashboard-solid /> {{__('Dashboard')}}</a>
+            <x-gmdi-dashboard-r {{__('Dashboard')}}</a>
         @endif
         <a href="{{route('dashboard.allurl')}}"
           class="nav-item {{(request()->route()->getName() == 'dashboard.allurl') ? 'border-l-2 border-uh-indigo-400':''}}">
