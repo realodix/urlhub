@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .frontend, .backend, .auth {
-  @apply bg-[#F1F5F9] font-sans text-gray-900 antialiased;
+  @apply bg-bg-primary font-sans text-gray-900 antialiased;
 }
 
 .navbar {
