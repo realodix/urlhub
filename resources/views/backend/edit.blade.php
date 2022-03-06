@@ -9,10 +9,15 @@
 <main class="flex flex-wrap">
   <div class="md:w-3/12 flex justify-between">
     <div class="px-4 sm:px-0">
-      <h3 class="text-lg font-medium text-slate-900">{{__('My URLs')}}</h3>
-
+      <h3 class="text-lg font-medium text-slate-900">{{__('Edit URL')}}</h3>
+      <br>
       <p class="mt-1 text-sm text-slate-600">
-        {{__('Edit URL')}}
+        <x-fas-user class="mr-1"/>
+        {{$url->user->name}}
+      </p>
+      <p class="mt-1 text-sm text-slate-600">
+        <x-gmdi-calendar-month class="mr-1"/>
+        {{$url->created_at}}
       </p>
     </div>
   </div>
