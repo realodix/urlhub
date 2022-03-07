@@ -103,16 +103,16 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'" class="btn-action" >'
+                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'" class="btn-card btn-action">'
                         .Blade::render('<x-carbon-data-view-alt />').
                     '</a>
-                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-action" >'
+                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-card btn-action" >'
                         .Blade::render('<x-far-clone />').
                     '</a>
-                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-action" >'
+                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-card btn-action" >'
                         .Blade::render('<x-far-edit />').
                     '</a>
-                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-action-delete" >'
+                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-card btn-action-delete" >'
                         .Blade::render('<x-far-trash-alt />').
                     '</a>';
             });

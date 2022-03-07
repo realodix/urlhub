@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+  @apply sm:mt-10;
+}
+
 .frontend, .backend, .auth {
   @apply bg-bg-primary font-sans text-gray-900 antialiased;
 }
@@ -39,37 +43,6 @@
   }
 }
 
-main {
-  @apply sm:mt-10;
-}
-
-.blade-icon {
-  display: inline-block;
-  height: 1em;
-  overflow: visible;
-  box-sizing: content-box;
-  vertical-align: -0.125em;
-}
-
-.form-input {
-  @apply block w-full;
-  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
-}
-
-.button {
-  @apply text-xs uppercase tracking-widest;
-  @apply rounded-md px-4 py-2;
-
-  @apply text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
-  @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
-}
-
-.badge-rounded {
-  @apply text-xs font-bold;
-  @apply text-center align-baseline whitespace-nowrap;
-  @apply rounded-full py-1 px-2;
-}
-
 .power-grid {
   .pg-header {
     input {
@@ -79,7 +52,7 @@ main {
 
   .pg-table {
     @apply overflow-hidden overflow-x-auto bg-white shadow overflow-y-auto relative;
-    @apply shadow-none;
+    @apply rounded-md shadow-none;
 
     .table {
       thead {
@@ -93,14 +66,18 @@ main {
       tbody {
         tr {
           @apply text-uh-1 hover:bg-slate-50 even:bg-slate-50;
+
+          td {
+            @apply py-2;
+          }
         }
 
         .btn-action {
-          @apply text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700;
+          @apply text-gray-400 hover:text-indigo-500 active:text-uh-indigo-400;
         }
 
         .btn-action-delete {
-          @apply text-slate-400 hover:text-red-500 active:text-red-700;
+          @apply text-gray-400 hover:text-red-600 active:text-red-700;
         }
       }
     }
@@ -117,4 +94,40 @@ main {
       }
     }
   }
+}
+
+/*
+ * Components
+ */
+
+ .blade-icon {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  box-sizing: content-box;
+  vertical-align: -0.125em;
+}
+
+.button {
+  @apply text-xs uppercase tracking-widest;
+  @apply rounded-md px-4 py-2;
+
+  @apply text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
+  @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
+}
+
+.btn-card {
+  @apply px-2 py-1 border border-gray-300 rounded-md;
+  box-shadow: 0 1px 0 rgba(27,31,36,0.04), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.badge-rounded {
+  @apply text-xs font-bold;
+  @apply text-center align-baseline whitespace-nowrap;
+  @apply rounded-full py-1 px-2;
+}
+
+.form-input {
+  @apply block w-full;
+  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
 }

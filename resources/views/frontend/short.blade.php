@@ -22,14 +22,14 @@
           @if (Auth::user()->hasRole('admin') || (Auth::user()->id == $url->user_id))
             <li class="inline-block pr-2">
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
-                class="text-xs hover:text-white bg-white hover:bg-uh-indigo-600 active:bg-uh-indigo-500 px-2 py-1 border border-gray-300 rounded-md shadow-sm"
+                class="btn-card text-xs bg-white hover:text-uh-indigo-500 active:text-uh-indigo-400"
               >
                 <x-fas-edit />
               </a>
             </li>
             <li class="inline-block">
               <a href="{{route('dashboard.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
-                class="text-xs hover:text-white bg-white hover:bg-red-600 active:bg-red-500 px-2 py-1 border border-gray-300 rounded-md shadow-sm"
+                class="btn-card text-xs bg-white hover:text-red-700 active:text-red-600"
               >
                 <x-fas-trash-alt />
               </a>
@@ -47,11 +47,10 @@
     </div>
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
       <b class="text-indigo-700">{{__('Shortened URL')}}</b>
-      <button title="{{__('Copy to clipboard')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
-        class="btn-clipboard ml-4 py-0.5 px-1
-          text-xs text-white bg-green-600 hover:bg-green-700 focus:bg-green-600"
+      <button title="{{__('Copy the full shortened URL')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
+        class="btn-clipboard btn-card ml-4 text-xs hover:text-indigo-500 active:text-uh-indigo-400"
       >
-        <x-fas-clone /> {{__('Copy')}}
+        <x-fas-clone />{{-- {{__('Copy')}} --}}
       </button>
 
       <br>
@@ -62,11 +61,10 @@
       <br> <br>
 
       <b class="text-indigo-700">{{__('Destination URL')}}</b>
-      <button title="{{__('Copy to clipboard')}}" data-clipboard-text="{{ $url->long_url }}"
-        class="btn-clipboard ml-4 py-0.5 px-1
-          text-xs text-white bg-green-600 hover:bg-green-700 focus:bg-green-600"
+      <button title="{{__('Copy the full destination URL')}}" data-clipboard-text="{{ $url->long_url }}"
+        class="btn-clipboard btn-card ml-4 text-xs hover:text-indigo-500 active:text-uh-indigo-400"
       >
-        <x-fas-clone /> {{__('Copy')}}
+        <x-fas-clone />
       </button>
 
       <div class="font-light break-all">{{ $url->long_url }}</div>
