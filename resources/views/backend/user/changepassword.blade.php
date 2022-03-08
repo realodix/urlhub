@@ -40,7 +40,7 @@
       <div class="flex items-center justify-end px-4 py-3 sm:px-6 border-t sm:rounded-bl-md sm:rounded-br-md
             text-right bg-bg-primary sm:bg-slate-50 sm:shadow"
       >
-        <button type="submit" class="button">
+        <button type="submit" class="btn">
           {{__('Change Password')}}
         </button>
       </div>

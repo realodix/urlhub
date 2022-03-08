@@ -108,7 +108,7 @@ main {
   vertical-align: -0.125em;
 }
 
-.button {
+.btn {
   @apply text-xs uppercase tracking-widest;
   @apply rounded-md px-4 py-2;
 
