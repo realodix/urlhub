@@ -26,7 +26,7 @@
       <input id="email" type="email" name="email" value="{{ old('email') }}" class="form-input mt-1" required>
 
       <div class="flex items-center justify-end mt-4">
-        <button type="submit" class="button">
+        <button type="submit" class="btn">
           {{__('Send Password Reset Link')}}
         </button>
       </div>

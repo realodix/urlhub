@@ -22,14 +22,14 @@
           @if (Auth::user()->hasRole('admin') || (Auth::user()->id == $url->user_id))
             <li class="inline-block pr-2">
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
-                class="btn-card text-xs bg-white hover:text-uh-indigo-500 active:text-uh-indigo-400"
+                class="btn-card text-xs hover:text-uh-indigo-500 active:text-uh-indigo-400"
               >
                 <x-fas-edit />
               </a>
             </li>
             <li class="inline-block">
               <a href="{{route('dashboard.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
-                class="btn-card text-xs bg-white hover:text-red-700 active:text-red-600"
+                class="btn-card text-xs hover:text-red-700 active:text-red-600"
               >
                 <x-fas-trash-alt />
               </a>

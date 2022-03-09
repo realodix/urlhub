@@ -46,7 +46,7 @@
         <input class="form-input mt-1" id="password-confirm" type="password" name="password_confirmation" required>
 
         <div class="flex items-center justify-end mt-8">
-          <button type="submit" class="button">{{__('Create Account')}}</button>
+          <button type="submit" class="btn">{{__('Create Account')}}</button>
         </div>
       </form>
     @endif

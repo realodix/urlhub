@@ -73,11 +73,11 @@ main {
         }
 
         .btn-action {
-          @apply text-gray-400 hover:text-indigo-500 active:text-uh-indigo-400;
+          @apply text-gray-400 hover:text-gray-600 active:text-gray-500;
         }
 
         .btn-action-delete {
-          @apply text-gray-400 hover:text-red-600 active:text-red-700;
+          @apply text-gray-400 hover:text-red-600 active:text-red-500;
         }
       }
     }
@@ -117,7 +117,7 @@ main {
 }
 
 .btn-card {
-  @apply px-2 py-1 border border-gray-300 rounded-md;
+  @apply px-2 py-1 bg-white border border-gray-300 rounded-md;
   box-shadow: 0 1px 0 rgba(27,31,36,0.04), inset 0 1px 0 rgba(255,255,255,0.25);
 }
 
@@ -129,5 +129,5 @@ main {
 
 .form-input {
   @apply block w-full;
-  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
+  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded
 }

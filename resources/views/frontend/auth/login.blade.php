@@ -46,7 +46,7 @@
           {{__('Forgot your password?')}}
         </a>
 
-        <button type="submit" class="button ml-4">
+        <button type="submit" class="btn ml-4">
           {{__('Log in')}}
         </button>
       </div>
