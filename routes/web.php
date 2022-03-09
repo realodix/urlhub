@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::view('/', 'frontend.welcome')->name('home');
+Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/create', [UrlController::class, 'create'])->name('createshortlink');
 Route::post('/validate-custom-key', [UrlController::class, 'customKeyValidation']);
 Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('short_url.stats');
