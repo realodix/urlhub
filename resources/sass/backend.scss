@@ -7,16 +7,3 @@ body {
   font-family: 'Nunito', sans-serif;
   background: #f8f9fb;
 }
-
-//
-// Password Toggler
-//
-.password-toggler {
-  border: none;
-  transition: 0.1s all ease-out;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #c5c7ca;
-  }
-}

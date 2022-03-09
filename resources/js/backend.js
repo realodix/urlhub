@@ -1,12 +1,6 @@
 import './bootstrap';
-import {initPasswordFields} from './password-toggle';
 
 $(function() {
-    /**
-     * Initialise the password toggle fields.
-     */
-    initPasswordFields();
-
     /**
      * Copy short url to clipboard
      *
