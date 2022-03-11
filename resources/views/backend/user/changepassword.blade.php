@@ -50,8 +50,9 @@
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-end px-4 py-3 sm:px-6 border-t sm:rounded-bl-md sm:rounded-br-md
-            text-right bg-bg-primary sm:bg-slate-50 sm:shadow"
+      <div class="flex items-center justify-end px-4 py-3 sm:px-6
+            text-right bg-bg-primary sm:bg-slate-50
+            border-t sm:rounded-bl-md sm:rounded-br-md sm:shadow"
       >
         <button type="submit" class="btn">
           {{__('Change Password')}}
