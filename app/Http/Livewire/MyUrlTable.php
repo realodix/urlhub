@@ -81,7 +81,7 @@ final class MyUrlTable extends PowerGridComponent
             ->addColumn('keyword', function (Url $url) {
                 return
                     '<a href="'.$url->short_url.'" target="_blank" class="font-semibold">'.$url->keyword.'</a>'
-                    .Blade::render('<x-gmdi-open-in-new-o class="!h-[0.7em] ml-1"/>');
+                    .Blade::render('@svg(\'gmdi-open-in-new-o\', \'!h-[0.7em] ml-1\')');
             })
             ->addColumn('long_url', function (Url $url) {
                 return
@@ -91,10 +91,10 @@ final class MyUrlTable extends PowerGridComponent
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
                         .urlDisplay($url->long_url, false, 70)
-                        .Blade::render('<x-gmdi-open-in-new-o class="!h-[0.7em] ml-1"/>').
+                        .Blade::render('@svg(\'gmdi-open-in-new-o\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })
-            ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('<x-gmdi-bar-chart class="ml-2"/>'))
+            ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('@svg(\'gmdi-bar-chart\', \'ml-2\')'))
             ->addColumn('created_at_formatted', function (Url $url) {
                 return
                     '<span title="'.$url->created_at->toDayDateTimeString().'">'
@@ -104,16 +104,16 @@ final class MyUrlTable extends PowerGridComponent
             ->addColumn('action', function (Url $url) {
                 return
                     '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'" class="btn-card btn-action">'
-                        .Blade::render('<x-carbon-data-view-alt />').
+                        .Blade::render('@svg(\'carbon-data-view-alt\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-card btn-action" >'
-                        .Blade::render('<x-far-clone />').
+                        .Blade::render('@svg(\'far-clone\')').
                     '</a>
                     <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-card btn-action" >'
-                        .Blade::render('<x-far-edit />').
+                        .Blade::render('@svg(\'far-edit\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-card btn-action-delete" >'
-                        .Blade::render('<x-far-trash-alt />').
+                        .Blade::render('@svg(\'far-trash-alt\')').
                     '</a>';
             });
     }

@@ -12,11 +12,11 @@
       <h3 class="text-lg font-medium text-slate-900">{{__('Edit URL Details')}}</h3>
       <br>
       <div class="inline sm:block mr-2 text-sm text-slate-600">
-        <x-fas-user class="mr-1"/>
+        @svg('fas-user', 'mr-1')
         {{$url->user->name}}
       </div>
       <div class="inline sm:block text-sm text-slate-600">
-        <x-gmdi-calendar-month class="mr-1"/>
+        @svg('gmdi-calendar-month', 'mr-1')
         <span title="{{$url->created_at->toDayDateTimeString()}}">{{$url->created_at->diffForHumans()}}</span>
       </div>
     </div>

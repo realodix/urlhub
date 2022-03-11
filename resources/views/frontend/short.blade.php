@@ -11,11 +11,11 @@
 
       <ul>
         <li class="inline-block pr-4">
-          <x-fas-calendar-alt />
+          @svg('fas-calendar-alt')
           <i>{{$url->created_at->toDayDateTimeString()}}</i>
         </li>
         <li class="inline-block pr-4">
-          <x-gmdi-bar-chart />
+          @svg('gmdi-bar-chart')
           <i><span title="{{number_format($url->clicks)}}">{{numberToAmountShort($url->clicks)}}</span></i>
         </li>
         @auth
@@ -24,14 +24,14 @@
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
                 class="btn-card text-xs hover:text-uh-indigo-500 active:text-uh-indigo-400"
               >
-                <x-fas-edit />
+                @svg('fas-edit')
               </a>
             </li>
             <li class="inline-block">
               <a href="{{route('dashboard.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
                 class="btn-card text-xs hover:text-red-700 active:text-red-600"
               >
-                <x-fas-trash-alt />
+                @svg('fas-trash-alt')
               </a>
             </li>
           @endif
@@ -47,10 +47,10 @@
     </div>
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
       <b class="text-indigo-700">{{__('Shortened URL')}}</b>
-      <button title="{{__('Copy the full shortened URL')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
+      <button title="{{__('Copy the shortened URL to clipboard')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
         class="btn-clipboard btn-card ml-4 text-xs hover:text-indigo-500 active:text-uh-indigo-400"
       >
-        <x-fas-clone />{{-- {{__('Copy')}} --}}
+        @svg('fas-clone')
       </button>
 
       <br>
@@ -61,10 +61,10 @@
       <br> <br>
 
       <b class="text-indigo-700">{{__('Destination URL')}}</b>
-      <button title="{{__('Copy the full destination URL')}}" data-clipboard-text="{{ $url->long_url }}"
+      <button title="{{__('Copy the destination URL to clipboard')}}" data-clipboard-text="{{ $url->long_url }}"
         class="btn-clipboard btn-card ml-4 text-xs hover:text-indigo-500 active:text-uh-indigo-400"
       >
-        <x-fas-clone />
+        @svg('fas-clone')
       </button>
 
       <div class="font-light break-all">{{ $url->long_url }}</div>
