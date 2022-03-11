@@ -6,8 +6,8 @@
         <div class="hidden sm:flex sm:items-center sm:ml-6">
           {{-- Settings Dropdown --}}
           <div class="ml-3 relative">
-            <div class="relative" x-data="{ open: false }" @click.away="open = false">
-              <div @click="open = ! open">
+            <div class="relative" x-data="{ open: false }" x-on:click.away="open = false">
+              <div x-on:click="open = ! open">
                 <span class="inline-flex rounded-md">
                   <button type="button" class="navbar-toggler inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 rounded-md focus:outline-none transition">
                     <div class="text-base font-semibold">{{Str::title(Auth::user()->name)}}</div>
@@ -19,7 +19,7 @@
                 </span>
               </div>
               <div
-                @click="open = false"
+                x-on:click="open = false"
                 x-show="open"
                 x-transition:enter="transition ease-out duration-200"
                 x-transition:enter-start="transform opacity-0 scale-95"
@@ -74,7 +74,7 @@
       @endauth
         {{-- Hamburger --}}
         <div class="-mr-2 flex items-center sm:hidden">
-          <button @click="open = ! open"
+          <button x-on:click="open = ! open"
             class="inline-flex items-center justify-center p-2 rounded-md
               text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-slate-500 transition"
           >
