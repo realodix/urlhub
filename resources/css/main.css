@@ -121,12 +121,6 @@ main {
   box-shadow: 0 1px 0 rgba(27,31,36,0.04), inset 0 1px 0 rgba(255,255,255,0.25);
 }
 
-.badge-rounded {
-  @apply text-xs font-bold;
-  @apply text-center align-baseline whitespace-nowrap;
-  @apply rounded-full py-1 px-2;
-}
-
 .form-input {
   @apply block w-full;
   @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded
