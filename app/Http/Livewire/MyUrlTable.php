@@ -104,7 +104,7 @@ final class MyUrlTable extends PowerGridComponent
             ->addColumn('action', function (Url $url) {
                 return
                     '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'" class="btn-card btn-action">'
-                        .Blade::render('@svg(\'carbon-data-view-alt\')').
+                        .Blade::render('@svg(\'gmdi-open-in-new\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-card btn-action" >'
                         .Blade::render('@svg(\'far-clone\')').
