@@ -51,7 +51,7 @@ main {
   }
 
   .pg-table {
-    @apply overflow-hidden overflow-x-auto bg-white shadow overflow-y-auto relative;
+    @apply bg-white shadow overflow-hidden overflow-x-auto overflow-y-auto relative;
     @apply rounded-md shadow-none;
 
     .table {
