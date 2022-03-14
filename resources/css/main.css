@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'base.css';
 
 main {
   @apply sm:mt-10;
@@ -94,34 +92,4 @@ main {
       }
     }
   }
-}
-
-/*
- * Components
- */
-
-.blade-icon {
-  display: inline-block;
-  height: 1em;
-  overflow: visible;
-  box-sizing: content-box;
-  vertical-align: -0.125em;
-}
-
-.btn {
-  @apply text-xs uppercase tracking-widest;
-  @apply rounded-md px-4 py-2;
-
-  @apply text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
-  @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
-}
-
-.btn-card {
-  @apply px-2 py-1 bg-white border border-gray-300 rounded-md;
-  box-shadow: 0 1px 0 rgba(27,31,36,0.04), inset 0 1px 0 rgba(255,255,255,0.25);
-}
-
-.form-input {
-  @apply block w-full;
-  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded
 }
