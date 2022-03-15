@@ -15,11 +15,12 @@
 }
 
 .btn {
-	@apply inline-block px-3 py-1.5;
+	@apply inline-flex items-center px-3 py-1.5;
+  @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 text-gray-500 hover:text-gray-600 active:text-gray-500;
 	@apply text-base font-normal leading-6 text-center no-underline align-middle tracking-wide;
-  @apply border border-solid border-slate-200 rounded disabled:opacity-25;
+  @apply rounded disabled:opacity-25;
 	@apply cursor-pointer select-none;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.1)!important;
+  box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
 	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
   &-sm {
@@ -39,8 +40,8 @@
 }
 
 .btn-icon {
-  @apply px-2 py-1 bg-white border border-gray-300 rounded-md;
-  box-shadow: 0 1px 0 rgba(27,31,36,0.04), inset 0 1px 0 rgba(255,255,255,0.25);
+  @apply px-2 py-1 rounded-md bg-stone-50 hover:bg-stone-200 active:bg-stone-50 text-gray-500 hover:text-gray-600 active:text-gray-500;
+  box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11);
 }
 
 .form-input {

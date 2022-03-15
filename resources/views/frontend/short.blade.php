@@ -22,7 +22,7 @@
           @if (Auth::user()->hasRole('admin') || (Auth::user()->id == $url->user_id))
             <li class="inline-block pr-2">
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
-                class="btn-icon text-xs hover:text-uh-indigo-500 active:text-uh-indigo-400"
+                class="btn-icon text-xs"
               >
                 @svg('fas-edit')
               </a>
@@ -48,7 +48,7 @@
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
       <b class="text-indigo-700">{{__('Shortened URL')}}</b>
       <button title="{{__('Copy the shortened URL to clipboard')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
-        class="btn-clipboard btn-icon ml-4 text-xs hover:text-indigo-500 active:text-uh-indigo-400"
+        class="btn-clipboard btn-icon text-xs ml-4"
       >
         @svg('fas-clone')
       </button>
@@ -62,7 +62,7 @@
 
       <b class="text-indigo-700">{{__('Destination URL')}}</b>
       <button title="{{__('Copy the destination URL to clipboard')}}" data-clipboard-text="{{ $url->long_url }}"
-        class="btn-clipboard btn-icon ml-4 text-xs hover:text-indigo-500 active:text-uh-indigo-400"
+        class="btn-clipboard btn-icon text-xs ml-4"
       >
         @svg('fas-clone')
       </button>
