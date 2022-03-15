@@ -54,7 +54,7 @@
             text-right bg-bg-primary sm:bg-slate-50
             border-t sm:rounded-bl-md sm:rounded-br-md sm:shadow"
       >
-        <button type="submit" class="btn">
+        <button type="submit" class="btn btn-primary btn-sm">
           {{__('Change Password')}}
         </button>
       </div>

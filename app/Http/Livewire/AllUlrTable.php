@@ -117,16 +117,16 @@ final class AllUlrTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Open front page').'" class="btn-card btn-action">'
+                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Open front page').'" class="btn-icon btn-action">'
                         .Blade::render('@svg(\'gmdi-open-in-new-o\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-card btn-action">'
+                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-icon btn-action">'
                         .Blade::render('@svg(\'far-clone\')').
                     '</a>
-                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-card btn-action">'
+                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-icon btn-action">'
                         .Blade::render('@svg(\'far-edit\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-card btn-action-delete">'
+                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-icon btn-action-delete">'
                         .Blade::render('@svg(\'far-trash-alt\')').
                     '</a>';
             });
