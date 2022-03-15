@@ -46,6 +46,7 @@ jobs:
         run: |
           php artisan config:clear
           npm run dev
+          php artisan icons:cache
 
       - name: Execute Tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
