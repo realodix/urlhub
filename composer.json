@@ -12,7 +12,7 @@
         "doctrine/dbal": "^3.1",
         "embed/embed": "^4.3",
         "guzzlehttp/guzzle": "^7.3",
-        "laravel/framework": "^9.2",
+        "laravel/framework": "^9.10",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.3",
