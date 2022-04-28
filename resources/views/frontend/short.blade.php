@@ -43,7 +43,7 @@
 
   <div class="flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6 bg-white shadow sm:rounded-md">
     <div class="w-full md:w-1/4 flex justify-center">
-      <img class="qrcode" src="data:{{$qrCode->getContentType()}};base64,{{$qrCode->generate()}}" alt="QR Code">
+      <img class="qrcode" src="{{$qrCode->getDataUri()}}" alt="QR Code">
     </div>
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
       <b class="text-indigo-700">{{__('Shortened URL')}}</b>
