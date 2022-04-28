@@ -1,6 +1,9 @@
 <?php
 
-use CodeItNow\BarcodeBundle\Utils\QrCode;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 use Realodix\Utils\Url;
 
 if (! function_exists('uHub')) {
@@ -67,26 +70,21 @@ if (! function_exists('urlSanitize')) {
 
 if (! function_exists('qrCode')) {
     /**
-     * Barcode & QrCode Generator.
+     * QrCode Generator.
      *
      * @codeCoverageIgnore
      *
      * @param  string  $string
-     * @return \CodeItNow\BarcodeBundle\Utils\QrCode
      */
     function qrCode($string)
     {
-        $qrCode = new QrCode();
-        $qrCode->setText($string)
-               ->setSize(150)
-               ->setPadding(10)
-               ->setErrorCorrection('high')
-               ->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0])
-               ->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0])
-               ->setLabel('Scan QR Code')
-               ->setLabelFontSize(12)
-               ->setImageType(QrCode::IMAGE_TYPE_PNG);
-
-        return $qrCode;
+        return Builder::create()
+            ->data($string)
+            ->size(170)
+            ->labelText('Scan QR Code')
+            ->encoding(new Encoding('UTF-8'))
+            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
+            ->build();
     }
 }
