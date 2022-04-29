@@ -1,9 +1,5 @@
 <?php
 
-use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Encoding\Encoding;
-use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
-use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 use Realodix\Utils\Url;
 
 if (! function_exists('uHub')) {
@@ -65,26 +61,5 @@ if (! function_exists('urlSanitize')) {
     function urlSanitize($value)
     {
         return Url::sanitize($value);
-    }
-}
-
-if (! function_exists('qrCode')) {
-    /**
-     * QrCode Generator.
-     *
-     * @codeCoverageIgnore
-     *
-     * @param  string  $string
-     */
-    function qrCode($string)
-    {
-        return Builder::create()
-            ->data($string)
-            ->size(170)
-            ->labelText('Scan QR Code')
-            ->encoding(new Encoding('UTF-8'))
-            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
-            ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
-            ->build();
     }
 }
