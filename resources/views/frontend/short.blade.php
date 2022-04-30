@@ -42,9 +42,11 @@
   </div>
 
   <div class="flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6 bg-white shadow sm:rounded-md">
+    @if (uHub('qrcode'))
     <div class="w-full md:w-1/4 flex justify-center">
       <img class="qrcode" src="{{$qrCode->getDataUri()}}" alt="QR Code">
     </div>
+    @endif
     <div class="w-full md:w-3/4 mt-8 sm:mt-0">
       <b class="text-indigo-700">{{__('Shortened URL')}}</b>
       <button title="{{__('Copy the shortened URL to clipboard')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"

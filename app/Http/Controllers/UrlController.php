@@ -69,16 +69,20 @@ class UrlController extends Controller
     {
         $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
 
-        $qrCode = \Endroid\QrCode\Builder\Builder::create()
-            ->data($url->short_url)
-            ->size(170)
-            ->labelText('Scan QR Code')
-            ->errorCorrectionLevel(
-                new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh()
-            )
-            ->build();
+        if (uHub('qrcode')) {
+            $qrCode = \Endroid\QrCode\Builder\Builder::create()
+                ->data($url->short_url)
+                ->size(170)
+                ->labelText('Scan QR Code')
+                ->errorCorrectionLevel(
+                    new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh()
+                )
+                ->build();
 
-        return view('frontend.short', compact(['qrCode']), ['url' => $url]);
+            return view('frontend.short', compact(['qrCode']), ['url' => $url]);
+        }
+
+        return view('frontend.short', ['url' => $url]);
     }
 
     /**
