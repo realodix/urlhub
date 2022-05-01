@@ -29,6 +29,7 @@ class ConfigService
             || $this->registration()
             || $this->hash_char()
             || $this->hash_length()
+            || $this->qrcode()
             || $this->anonymize_ip_addr()
             || $this->redirect_status_code()
             || $this->redirect_cache_lifetime();
@@ -63,6 +64,12 @@ class ConfigService
         if (! is_int($hashLength) || $hashLength < 1) {
             return config(['urlhub.hash_length' => self::DEFAULT_HASH_LENGTH]);
         }
+    }
+
+    /** @codeCoverageIgnore */
+    private function qrcode()
+    {
+        return $this->valueIsBool('urlhub.qrcode');
     }
 
     /** @codeCoverageIgnore */
