@@ -1,0 +1,25 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "[Tests] PHPUnit",
+            "type": "shell",
+            "command": "php artisan icons:cache && ./vendor/bin/phpunit && php artisan icons:clear",
+            "problemMatcher": []
+        },
+        {
+            "label": "[Tests] PHPUnit (coverage-html)",
+            "type": "shell",
+            "command": "php artisan icons:cache && ./vendor/bin/phpunit --coverage-html .logs/coverage-html && php artisan icons:clear",
+            "problemMatcher": []
+        },
+        {
+            "label": "[CS] PHP CS Fixer",
+            "type": "shell",
+            "command": "./vendor/bin/php-cs-fixer fix -v",
+            "problemMatcher": []
+        }
+    ]
+}
