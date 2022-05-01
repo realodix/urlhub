@@ -30,7 +30,6 @@
         "fakerphp/faker": "^1.19",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^6.1",
-        "nunomaduro/larastan": "^2.0",
         "phpunit/phpunit": "^9.5.10",
         "realodix/php-cs-fixer-config": "^3.0",
         "spatie/laravel-ignition": "^1.0"
