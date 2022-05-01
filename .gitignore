@@ -5,7 +5,6 @@ public/mix-manifest.json
 
 ## IDE Local Workspace Folder
 /.idea
-/.vscode
 
 ## Laravel
 .env
