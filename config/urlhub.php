@@ -68,6 +68,8 @@ return [
         'svg',
     ],
 
+    'web_title' => env('UH_WEB_TITLE', true),
+
     'qrcode' => env('UH_QRCODE', true),
 
     /*

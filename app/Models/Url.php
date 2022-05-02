@@ -88,10 +88,14 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        if (Str::startsWith($value, 'http')) {
-            $this->attributes['meta_title'] = $this->getWebTitle($value);
+        if (uHub('web_title')) {
+            if (Str::startsWith($value, 'http')) {
+                $this->attributes['meta_title'] = $this->getWebTitle($value);
+            } else {
+                $this->attributes['meta_title'] = $value;
+            }
         } else {
-            $this->attributes['meta_title'] = $value;
+            $this->attributes['meta_title'] = 'No Title';
         }
     }
 
