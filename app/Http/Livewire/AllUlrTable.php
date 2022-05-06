@@ -45,19 +45,7 @@ final class AllUlrTable extends PowerGridComponent
     */
     public function datasource(): ?Builder
     {
-        return Url::query()
-            ->join('users', function ($user) {
-                $user->on('urls.user_id', '=', 'users.id');
-            })
-            ->select([
-                'urls.id',
-                'urls.keyword',
-                'urls.long_url',
-                'urls.meta_title',
-                'urls.clicks',
-                'urls.created_at',
-                'urls.user_id',
-            ]);
+        return Url::query();
     }
 
     /*
