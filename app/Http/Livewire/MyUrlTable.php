@@ -25,7 +25,7 @@ final class MyUrlTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Features Setup
+    | Features Setup
     |--------------------------------------------------------------------------
     | Setup Table's general features
     |
@@ -39,7 +39,7 @@ final class MyUrlTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Datasource
+    | Datasource
     |--------------------------------------------------------------------------
     | Provides data to your Table using a Model or Collection
     |
@@ -51,7 +51,7 @@ final class MyUrlTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Relationship Search
+    | Relationship Search
     |--------------------------------------------------------------------------
     | Configure here relationships to be used by the Search and Table Filters.
     |
@@ -69,7 +69,7 @@ final class MyUrlTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Add Column
+    | Add Column
     |--------------------------------------------------------------------------
     | Make Datasource fields available to be used as columns.
     | You can pass a closure to transform/modify the data.
@@ -120,7 +120,7 @@ final class MyUrlTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Include Columns
+    | Include Columns
     |--------------------------------------------------------------------------
     | Include the columns added columns, making them visible on the Table.
     | Each column can be configured with properties, filters, actions...

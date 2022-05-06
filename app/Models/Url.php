@@ -157,7 +157,7 @@ class Url extends Model
         $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
 
         // Step 2
-        // If the unique key is not available (already in the database) , then generate a
+        // If the unique key in step 1 is not available (already used), then generate a
         // random string.
         $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
         while ($generatedRandomKey) {
