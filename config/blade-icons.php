@@ -32,19 +32,19 @@ return [
 
             'path' => 'resources/svg',
 
-        //     /*
-        //     |-----------------------------------------------------------------
-        //     | Filesystem Disk
-        //     |-----------------------------------------------------------------
-        //     |
-        //     | Optionally, provide a specific filesystem disk to read
-        //     | icons from. When defining a disk, the "path" option
-        //     | starts relatively from the disk root.
-        //     |
-        //     */
-        //
-        //     'disk' => '',
-        //
+            //     /*
+            //     |-----------------------------------------------------------------
+            //     | Filesystem Disk
+            //     |-----------------------------------------------------------------
+            //     |
+            //     | Optionally, provide a specific filesystem disk to read
+            //     | icons from. When defining a disk, the "path" option
+            //     | starts relatively from the disk root.
+            //     |
+            //     */
+            //
+            //     'disk' => '',
+            //
             /*
             |-----------------------------------------------------------------
             | Default Prefix
@@ -58,45 +58,45 @@ return [
 
             'prefix' => 'icon',
 
-        //     /*
-        //     |-----------------------------------------------------------------
-        //     | Fallback Icon
-        //     |-----------------------------------------------------------------
-        //     |
-        //     | This config option allows you to define a fallback
-        //     | icon when an icon in this set cannot be found.
-        //     |
-        //     */
-        //
-        //     'fallback' => '',
-        //
-        //     /*
-        //     |-----------------------------------------------------------------
-        //     | Default Set Classes
-        //     |-----------------------------------------------------------------
-        //     |
-        //     | This config option allows you to define some classes which
-        //     | will be applied by default to all icons within this set.
-        //     |
-        //     */
-        //
-        //     'class' => '',
-        //
-        //     /*
-        //     |-----------------------------------------------------------------
-        //     | Default Set Attributes
-        //     |-----------------------------------------------------------------
-        //     |
-        //     | This config option allows you to define some attributes which
-        //     | will be applied by default to all icons within this set.
-        //     |
-        //     */
-        //
-        //     'attributes' => [
-        //         // 'width' => 50,
-        //         // 'height' => 50,
-        //     ],
-        //
+            //     /*
+            //     |-----------------------------------------------------------------
+            //     | Fallback Icon
+            //     |-----------------------------------------------------------------
+            //     |
+            //     | This config option allows you to define a fallback
+            //     | icon when an icon in this set cannot be found.
+            //     |
+            //     */
+            //
+            //     'fallback' => '',
+            //
+            //     /*
+            //     |-----------------------------------------------------------------
+            //     | Default Set Classes
+            //     |-----------------------------------------------------------------
+            //     |
+            //     | This config option allows you to define some classes which
+            //     | will be applied by default to all icons within this set.
+            //     |
+            //     */
+            //
+            //     'class' => '',
+            //
+            //     /*
+            //     |-----------------------------------------------------------------
+            //     | Default Set Attributes
+            //     |-----------------------------------------------------------------
+            //     |
+            //     | This config option allows you to define some attributes which
+            //     | will be applied by default to all icons within this set.
+            //     |
+            //     */
+            //
+            //     'attributes' => [
+            //         // 'width' => 50,
+            //         // 'height' => 50,
+            //     ],
+            //
         ],
 
     ],
