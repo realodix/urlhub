@@ -55,7 +55,7 @@
                   <form method="POST" action="{{route('logout')}}">
                   @csrf
                     <a href="{{route('logout')}}" onclick="event.preventDefault();
-                      this.closest('form').submit();" class="nav-item" >@svg('icon-sign-out-alt', 'mr-1') {{__('Log Out')}}</a>
+                      this.closest('form').submit();" class="nav-item" >@svg('icon-sign-out', 'mr-1') {{__('Log Out')}}</a>
                   </form>
                 </div>
               </div>
@@ -126,7 +126,7 @@
           @csrf
             <a class="nav-item" href="{{route('logout')}}" onclick="event.preventDefault();
               this.closest('form').submit();">
-              @svg('icon-sign-out-alt', 'mr-1') {{__('Log Out')}}</a>
+              @svg('icon-sign-out', 'mr-1') {{__('Log Out')}}</a>
           </form>
         </div>
       </div>
