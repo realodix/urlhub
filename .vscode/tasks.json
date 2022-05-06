@@ -20,6 +20,18 @@
             "type": "shell",
             "command": "./vendor/bin/php-cs-fixer fix -v",
             "problemMatcher": []
+        },
+        {
+            "label": "[Icons] Cache",
+            "type": "shell",
+            "command": "php artisan icons:cache",
+            "problemMatcher": []
+        },
+        {
+            "label": "[Icons] Cache clear",
+            "type": "shell",
+            "command": "php artisan icons:clear",
+            "problemMatcher": []
         }
     ]
 }
