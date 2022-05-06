@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -76,7 +77,12 @@ final class UserTable extends PowerGridComponent
     public function addColumns(): ?PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('name')
+            ->addColumn('name', function (User $user) {
+                $urlCount = $user->url()->count();
+                $urlCountTitle = $urlCount.' '.Str::plural('url', $urlCount).' created';
+
+                return $user->name.' <span title="'.$urlCountTitle.'">('.$urlCount.')</span>';
+            })
             ->addColumn('email')
             ->addColumn('created_at_formatted', function (User $user) {
                 return
