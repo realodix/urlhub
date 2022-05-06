@@ -32,7 +32,7 @@
                 <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
                   @if (Route::currentRouteName() != 'dashboard')
-                    <a class="nav-item" href="{{route('dashboard')}}">@svg('gmdi-dashboard-r', 'mr-1') {{__('Dashboard')}}</a>
+                    <a class="nav-item" href="{{route('dashboard')}}">@svg('icon-dashboard', 'mr-1') {{__('Dashboard')}}</a>
 
                     <div class="border-t border-slate-100"></div>
                   @endif
@@ -44,10 +44,10 @@
 
                   <a href="{{route('user.edit', Auth::user()->name)}}"
                     class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
-                    @svg('fas-user', 'mr-1') {{__('Profile')}}</a>
+                    @svg('icon-user', 'mr-1') {{__('Profile')}}</a>
                   <a href="{{route('user.change-password', Auth::user()->name)}}"
                     class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
-                    @svg('fas-key', 'mr-1') {{__('Change Password')}}</a>
+                    @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
 
                   <div class="border-t border-slate-100"></div>
 
@@ -55,7 +55,7 @@
                   <form method="POST" action="{{route('logout')}}">
                   @csrf
                     <a href="{{route('logout')}}" onclick="event.preventDefault();
-                      this.closest('form').submit();" class="nav-item" >@svg('fas-sign-out-alt', 'mr-1') {{__('Log Out')}}</a>
+                      this.closest('form').submit();" class="nav-item" >@svg('icon-sign-out', 'mr-1') {{__('Log Out')}}</a>
                   </form>
                 </div>
               </div>
@@ -93,14 +93,14 @@
         @if (Route::currentRouteName() != 'dashboard')
           <a href="{{route('dashboard')}}"
             class="nav-item {{(request()->route()->getName() == 'dashboard') ? 'border-l-2 border-uh-indigo-400':''}}">
-            @svg('gmdi-dashboard-r', 'mr-1') {{__('Dashboard')}}</a>
+            @svg('icon-dashboard', 'mr-1') {{__('Dashboard')}}</a>
         @endif
         <a href="{{route('dashboard.allurl')}}"
           class="nav-item {{(request()->route()->getName() == 'dashboard.allurl') ? 'border-l-2 border-uh-indigo-400':''}}">
-          @svg('fas-link', 'mr-1') {{__('URL List')}}</a>
+          @svg('icon-link', 'mr-1') {{__('URL List')}}</a>
         <a href="{{route('user.index')}}"
           class="nav-item {{(request()->route()->getName() == 'user.index') ? 'border-l-2 border-uh-indigo-400':''}}">
-          @svg('fas-users', 'mr-1') {{__('User List')}}</a>
+          @svg('icon-users', 'mr-1') {{__('User List')}}</a>
       </div>
 
       <!-- Responsive Settings Options -->
@@ -116,17 +116,17 @@
           <!-- Account Management -->
           <a href="{{route('user.edit', Auth::user()->name)}}"
             class="nav-item {{(request()->route()->getName() == 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
-            @svg('fas-user', 'mr-1') {{__('Profile')}}</a>
+            @svg('icon-user', 'mr-1') {{__('Profile')}}</a>
           <a href="{{route('user.change-password', Auth::user()->name)}}"
             class="nav-item {{(request()->route()->getName() == 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
-            @svg('fas-key', 'mr-1') {{__('Change Password')}}</a>
+            @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
 
           <!-- Authentication -->
           <form method="POST" action="{{route('logout')}}">
           @csrf
             <a class="nav-item" href="{{route('logout')}}" onclick="event.preventDefault();
               this.closest('form').submit();">
-              @svg('fas-sign-out-alt', 'mr-1') {{__('Log Out')}}</a>
+              @svg('icon-sign-out', 'mr-1') {{__('Log Out')}}</a>
           </form>
         </div>
       </div>
@@ -153,7 +153,7 @@
             {{(request()->route()->getName() == 'dashboard') ?
             'text-slate-800 border-uh-indigo-400' :
             'text-slate-500 hover:border-slate-300'}}">
-          @svg('gmdi-dashboard-r', 'mr-1')
+          @svg('icon-dashboard', 'mr-1')
           <span class="">{{__('Dashboard')}}</span></a>
         @role('admin')
           <a href="{{route('dashboard.allurl')}}"
@@ -161,14 +161,14 @@
               {{(request()->route()->getName() == 'dashboard.allurl') ?
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
-            @svg('fas-link', 'mr-1')
+            @svg('icon-link', 'mr-1')
             <span class="">{{__('URL List')}}</span></a>
           <a href="{{route('user.index')}}"
             class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
               {{(request()->route()->getName() == 'user.index') ?
               'text-slate-800 border-uh-indigo-400' :
               'text-slate-500 hover:border-slate-300'}}">
-             @svg('fas-users', 'mr-1')
+             @svg('icon-users', 'mr-1')
             <span class="">{{__('User List')}}</span></a>
         @endrole
       </div>

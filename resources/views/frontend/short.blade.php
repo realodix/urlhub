@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.frontend')icon-calendar
 
 @section('css_class', 'frontend view_short')
 
@@ -11,11 +11,11 @@
 
       <ul>
         <li class="inline-block pr-4">
-          @svg('fas-calendar-alt')
+          @svg('icon-calendar')
           <i>{{$url->created_at->toDayDateTimeString()}}</i>
         </li>
         <li class="inline-block pr-4">
-          @svg('gmdi-bar-chart')
+          @svg('icon-bar-chart')
           <i><span title="{{number_format($url->clicks)}}">{{numberToAmountShort($url->clicks)}}</span></i>
         </li>
         @auth
@@ -24,14 +24,14 @@
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
                 class="btn-icon text-xs"
               >
-                @svg('fas-edit')
+                @svg('icon-edit')
               </a>
             </li>
             <li class="inline-block">
               <a href="{{route('dashboard.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
                 class="btn-icon text-xs hover:text-red-700 active:text-red-600"
               >
-                @svg('fas-trash-alt')
+                @svg('icon-trash')
               </a>
             </li>
           @endif
@@ -52,7 +52,7 @@
       <button title="{{__('Copy the shortened URL to clipboard')}}" data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
         class="btn-clipboard btn-icon text-xs ml-4"
       >
-        @svg('fas-clone')
+        @svg('icon-clone')
       </button>
 
       <br>
@@ -66,7 +66,7 @@
       <button title="{{__('Copy the destination URL to clipboard')}}" data-clipboard-text="{{ $url->long_url }}"
         class="btn-clipboard btn-icon text-xs ml-4"
       >
-        @svg('fas-clone')
+        @svg('icon-clone')
       </button>
 
       <div class="font-light break-all">{{ $url->long_url }}</div>
