@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.frontend')icon-calendar
 
 @section('css_class', 'frontend view_short')
 
@@ -11,11 +11,11 @@
 
       <ul>
         <li class="inline-block pr-4">
-          @svg('icon-calendar-alt')
+          @svg('icon-calendar')
           <i>{{$url->created_at->toDayDateTimeString()}}</i>
         </li>
         <li class="inline-block pr-4">
-          @svg('gmdi-bar-chart')
+          @svg('icon-bar-chart')
           <i><span title="{{number_format($url->clicks)}}">{{numberToAmountShort($url->clicks)}}</span></i>
         </li>
         @auth

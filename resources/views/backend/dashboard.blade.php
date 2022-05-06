@@ -13,7 +13,7 @@
         <span class="text-orange-600 ml-5"> @svg('icon-square', 'mr-2') {{__('Guests')}}</span>
       </div>
       <div class="mt-8 sm:mt-0 text-uh-1 ">
-        <b>@svg('gmdi-storage', 'mr-1.5') {{__('Free Space')}}:</b>
+        <b>@svg('icon-storage', 'mr-1.5') {{__('Free Space')}}:</b>
         <span class="font-light">{{numberToAmountShort($keyRemaining)}} {{__('of')}} {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})</span>
       </div>
     </div>
@@ -27,7 +27,7 @@
           <span class="text-orange-600">{{numberToAmountShort($urlCount_Guest)}}</span>
         </div>
         <div class="block">
-          <b class="text-uh-1">@svg('gmdi-bar-chart', 'mr-1.5') {{__('Clicks')}}:</b>
+          <b class="text-uh-1">@svg('icon-bar-chart', 'mr-1.5') {{__('Clicks')}}:</b>
           <span class="text-cyan-600">{{numberToAmountShort($totalClick)}}</span> -
           <span class="text-teal-600">{{numberToAmountShort($clickCount_Me)}}</span> -
           <span class="text-orange-600">{{numberToAmountShort($clickCount_Guest)}}</span>
@@ -67,7 +67,7 @@
         <a href="{{ url('./') }}" target="_blank" title="{{__('Add URL')}}"
           class="btn"
         >
-          @svg('gmdi-add-link', '!h-[1.5em] mr-1')
+          @svg('icon-add-link', '!h-[1.5em] mr-1')
           {{__('Add URL')}}
         </a>
       </div>

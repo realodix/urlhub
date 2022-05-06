@@ -16,7 +16,7 @@
         {{$url->user->name}}
       </div>
       <div class="inline sm:block text-sm text-slate-600">
-        @svg('gmdi-calendar-month', 'mr-1')
+        @svg('icon-calendar', 'mr-1')
         <span title="{{$url->created_at->toDayDateTimeString()}}">{{$url->created_at->diffForHumans()}}</span>
       </div>
     </div>

@@ -32,7 +32,7 @@
                 <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
                   @if (Route::currentRouteName() != 'dashboard')
-                    <a class="nav-item" href="{{route('dashboard')}}">@svg('gmdi-dashboard-r', 'mr-1') {{__('Dashboard')}}</a>
+                    <a class="nav-item" href="{{route('dashboard')}}">@svg('icon-dashboard', 'mr-1') {{__('Dashboard')}}</a>
 
                     <div class="border-t border-slate-100"></div>
                   @endif
@@ -93,7 +93,7 @@
         @if (Route::currentRouteName() != 'dashboard')
           <a href="{{route('dashboard')}}"
             class="nav-item {{(request()->route()->getName() == 'dashboard') ? 'border-l-2 border-uh-indigo-400':''}}">
-            @svg('gmdi-dashboard-r', 'mr-1') {{__('Dashboard')}}</a>
+            @svg('icon-dashboard', 'mr-1') {{__('Dashboard')}}</a>
         @endif
         <a href="{{route('dashboard.allurl')}}"
           class="nav-item {{(request()->route()->getName() == 'dashboard.allurl') ? 'border-l-2 border-uh-indigo-400':''}}">
@@ -153,7 +153,7 @@
             {{(request()->route()->getName() == 'dashboard') ?
             'text-slate-800 border-uh-indigo-400' :
             'text-slate-500 hover:border-slate-300'}}">
-          @svg('gmdi-dashboard-r', 'mr-1')
+          @svg('icon-dashboard', 'mr-1')
           <span class="">{{__('Dashboard')}}</span></a>
         @role('admin')
           <a href="{{route('dashboard.allurl')}}"
