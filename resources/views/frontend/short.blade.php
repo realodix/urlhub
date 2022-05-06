@@ -1,4 +1,4 @@
-@extends('layouts.frontend')icon-calendar
+@extends('layouts.frontend')
 
 @section('css_class', 'frontend view_short')
 
