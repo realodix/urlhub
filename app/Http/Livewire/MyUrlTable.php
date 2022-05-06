@@ -107,13 +107,13 @@ final class MyUrlTable extends PowerGridComponent
                         .Blade::render('@svg(\'gmdi-open-in-new\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-icon btn-action" >'
-                        .Blade::render('@svg(\'far-clone\')').
+                        .Blade::render('@svg(\'icon-clone-alt\')').
                     '</a>
                     <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-icon btn-action" >'
-                        .Blade::render('@svg(\'far-edit\')').
+                        .Blade::render('@svg(\'icon-edit-alt\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-icon btn-action-delete" >'
-                        .Blade::render('@svg(\'far-trash-alt\')').
+                        .Blade::render('@svg(\'icon-trash-alt\')').
                     '</a>';
             });
     }

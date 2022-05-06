@@ -15,23 +15,23 @@ return [
 
     'sets' => [
 
-        // 'default' => [
-        //
-        //     /*
-        //     |-----------------------------------------------------------------
-        //     | Icons Path
-        //     |-----------------------------------------------------------------
-        //     |
-        //     | Provide the relative path from your app root to your SVG icons
-        //     | directory. Icons are loaded recursively so there's no need to
-        //     | list every sub-directory.
-        //     |
-        //     | Relative to the disk root when the disk option is set.
-        //     |
-        //     */
-        //
-        //     'path' => 'resources/svg',
-        //
+        'default' => [
+
+            /*
+            |-----------------------------------------------------------------
+            | Icons Path
+            |-----------------------------------------------------------------
+            |
+            | Provide the relative path from your app root to your SVG icons
+            | directory. Icons are loaded recursively so there's no need to
+            | list every sub-directory.
+            |
+            | Relative to the disk root when the disk option is set.
+            |
+            */
+
+            'path' => 'resources/svg',
+
         //     /*
         //     |-----------------------------------------------------------------
         //     | Filesystem Disk
@@ -45,19 +45,19 @@ return [
         //
         //     'disk' => '',
         //
-        //     /*
-        //     |-----------------------------------------------------------------
-        //     | Default Prefix
-        //     |-----------------------------------------------------------------
-        //     |
-        //     | This config option allows you to define a default prefix for
-        //     | your icons. The dash separator will be applied automatically
-        //     | to every icon name. It's required and needs to be unique.
-        //     |
-        //     */
-        //
-        //     'prefix' => 'icon',
-        //
+            /*
+            |-----------------------------------------------------------------
+            | Default Prefix
+            |-----------------------------------------------------------------
+            |
+            | This config option allows you to define a default prefix for
+            | your icons. The dash separator will be applied automatically
+            | to every icon name. It's required and needs to be unique.
+            |
+            */
+
+            'prefix' => 'icon',
+
         //     /*
         //     |-----------------------------------------------------------------
         //     | Fallback Icon
@@ -97,7 +97,7 @@ return [
         //         // 'height' => 50,
         //     ],
         //
-        // ],
+        ],
 
     ],
 
