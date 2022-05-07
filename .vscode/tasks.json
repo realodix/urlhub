@@ -6,13 +6,13 @@
         {
             "label": "[Tests] PHPUnit",
             "type": "shell",
-            "command": "php artisan icons:cache && ./vendor/bin/phpunit && php artisan icons:clear",
+            "command": "./vendor/bin/phpunit",
             "problemMatcher": []
         },
         {
             "label": "[Tests] PHPUnit (coverage-html)",
             "type": "shell",
-            "command": "php artisan icons:cache && ./vendor/bin/phpunit --coverage-html .logs/coverage-html && php artisan icons:clear",
+            "command": "./vendor/bin/phpunit --coverage-html .logs/coverage-html",
             "problemMatcher": []
         },
         {
