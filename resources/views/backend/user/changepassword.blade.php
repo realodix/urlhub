@@ -31,8 +31,8 @@
             <div class="relative">
               <input :type="show ? 'password' : 'text'" id="new-password" name="new-password" aria-label="Enter a new password" placeholder="Enter a new password" class="form-input mt-1" required>
               <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                <x-fas-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
-                <x-fas-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
+                <x-icon-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
+                <x-icon-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
               </div>
             </div>
 
@@ -43,8 +43,8 @@
             <div class="relative">
               <input :type="show ? 'password' : 'text'" id="new-password-confirm" name="new-password_confirmation" aria-label="Retype the new password" placeholder="Retype the new password" class="form-input mt-1" required>
               <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                <x-fas-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
-                <x-fas-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
+                <x-icon-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
+                <x-icon-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
               </div>
             </div>
           </div>

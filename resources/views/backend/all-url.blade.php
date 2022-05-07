@@ -15,7 +15,7 @@
           <a href="{{ url('./') }}" target="_blank" title="{{__('Add URL')}}"
             class="btn"
           >
-            @svg('gmdi-add-link', '!h-[1.5em] mr-1')
+            @svg('icon-add-link', '!h-[1.5em] mr-1')
             {{__('Add URL')}}
           </a>
         </div>

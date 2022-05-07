@@ -6,19 +6,31 @@
         {
             "label": "[Tests] PHPUnit",
             "type": "shell",
-            "command": "php artisan icons:cache && ./vendor/bin/phpunit && php artisan icons:clear",
+            "command": "./vendor/bin/phpunit",
             "problemMatcher": []
         },
         {
             "label": "[Tests] PHPUnit (coverage-html)",
             "type": "shell",
-            "command": "php artisan icons:cache && ./vendor/bin/phpunit --coverage-html .logs/coverage-html && php artisan icons:clear",
+            "command": "./vendor/bin/phpunit --coverage-html .logs/coverage-html",
             "problemMatcher": []
         },
         {
             "label": "[CS] PHP CS Fixer",
             "type": "shell",
             "command": "./vendor/bin/php-cs-fixer fix -v",
+            "problemMatcher": []
+        },
+        {
+            "label": "[Icons] Cache",
+            "type": "shell",
+            "command": "php artisan icons:cache",
+            "problemMatcher": []
+        },
+        {
+            "label": "[Icons] Cache clear",
+            "type": "shell",
+            "command": "php artisan icons:clear",
             "problemMatcher": []
         }
     ]

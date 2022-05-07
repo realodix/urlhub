@@ -28,7 +28,7 @@ return [
      * The expected (and maximum) number of characters in generating unique
      * keyword.
      */
-    'hash_length' => env('HASH_LENGTH', 6), // >= 1
+    'hash_length' => env('UH_HASH_LENGTH', 6), // >= 1
 
     /*
      * Characters to be used in generating unique keyword. For convenience,
@@ -37,7 +37,7 @@ return [
      * including digits (0-9), letters (A-Z, a-z).
      */
     'hash_char' => env(
-        'HASH_CHAR',
+        'UH_HASH_CHAR',
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
     ),
 

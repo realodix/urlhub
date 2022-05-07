@@ -14,7 +14,7 @@
         <a href="https://github.com/laravel/framework/releases/tag/v{{App::VERSION()}}" target="_blank" title="Laravel v{{App::VERSION()}} (release notes)"
           class="text-[#F9322C]"
         >
-          @svg('fab-laravel') v{{App::VERSION()}}
+          @svg('icon-brand-laravel') v{{App::VERSION()}}
         </a>
       </div>
     </div>

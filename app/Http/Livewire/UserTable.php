@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -23,7 +24,7 @@ final class UserTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Features Setup
+    | Features Setup
     |--------------------------------------------------------------------------
     | Setup Table's general features
     |
@@ -37,7 +38,7 @@ final class UserTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Datasource
+    | Datasource
     |--------------------------------------------------------------------------
     | Provides data to your Table using a Model or Collection
     |
@@ -49,7 +50,7 @@ final class UserTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Relationship Search
+    | Relationship Search
     |--------------------------------------------------------------------------
     | Configure here relationships to be used by the Search and Table Filters.
     |
@@ -67,7 +68,7 @@ final class UserTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Add Column
+    | Add Column
     |--------------------------------------------------------------------------
     | Make Datasource fields available to be used as columns.
     | You can pass a closure to transform/modify the data.
@@ -76,7 +77,12 @@ final class UserTable extends PowerGridComponent
     public function addColumns(): ?PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('name')
+            ->addColumn('name', function (User $user) {
+                $urlCount = $user->url()->count();
+                $urlCountTitle = $urlCount.' '.Str::plural('url', $urlCount).' created';
+
+                return $user->name.' <span title="'.$urlCountTitle.'">('.$urlCount.')</span>';
+            })
             ->addColumn('email')
             ->addColumn('created_at_formatted', function (User $user) {
                 return
@@ -87,17 +93,17 @@ final class UserTable extends PowerGridComponent
             ->addColumn('action', function (User $user) {
                 return
                     '<a role="button" href="'.route('user.edit', $user->name).'" title="'.__('Details').'" class="btn-icon btn-action">'
-                        .Blade::render('@svg(\'fas-user-edit\')').
+                        .Blade::render('@svg(\'icon-user-edit\')').
                     '</a>
                     <a role="button" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'" class="btn-icon btn-action">'
-                        .Blade::render('@svg(\'fas-key\')').
+                        .Blade::render('@svg(\'icon-key\')').
                     '</a>';
             });
     }
 
     /*
     |--------------------------------------------------------------------------
-    |  Include Columns
+    | Include Columns
     |--------------------------------------------------------------------------
     | Include the columns added columns, making them visible on the Table.
     | Each column can be configured with properties, filters, actions...
