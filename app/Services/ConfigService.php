@@ -29,6 +29,7 @@ class ConfigService
             || $this->registration()
             || $this->hash_char()
             || $this->hash_length()
+            || $this->web_title()
             || $this->qrcode()
             || $this->anonymize_ip_addr()
             || $this->redirect_status_code()
@@ -64,6 +65,12 @@ class ConfigService
         if (! is_int($hashLength) || $hashLength < 1) {
             return config(['urlhub.hash_length' => self::DEFAULT_HASH_LENGTH]);
         }
+    }
+
+    /** @codeCoverageIgnore */
+    private function web_title()
+    {
+        return $this->valueIsBool('urlhub.web_title');
     }
 
     /** @codeCoverageIgnore */

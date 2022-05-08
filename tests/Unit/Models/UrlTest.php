@@ -135,6 +135,21 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
+    public function setMetaTitleAttributeWhenWebTitleSetToFalse()
+    {
+        config()->set('urlhub.web_title', false);
+
+        $url = Url::factory()->create([
+            'long_url' => 'http://example.com/',
+        ]);
+
+        $this->assertSame('No Title', $url->meta_title);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
     public function urlKey()
     {
         config(['urlhub.hash_length' => 6]);
