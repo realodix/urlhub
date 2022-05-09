@@ -182,7 +182,7 @@ class Url extends Model
      */
     public function keyUsed()
     {
-        $hashLength = uHub('hash_length');
+        $hashLength = (int) uHub('hash_length');
         $regexPattern = '['.uHub('hash_char').']{'.$hashLength.'}';
 
         $randomKey = self::whereIsCustom(false)
