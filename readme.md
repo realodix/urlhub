@@ -22,7 +22,6 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
 - **IP anonymization (or IP masking) [optional]:** Anonymizes visitor addresses as soon as technically feasible at the earliest possible stage of the collection network. The full IP address is never written to disk in this case. This feature is designed to help site owners comply with their own privacy policies, recommendations from local data protection authorities and legal regulations like the GDPR, which may prevent the storage of full IP address information.
 - **Power of customisation:** Do you want your site to be just for your use, so no one can register? No problem. It's in the configuration. Users must be registered to create Short URL? That's okay. It's in the configuration. From configuration file, you can edit pretty everything of your website. The choice is yours.
-- **Configuration guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
 - **Sortable list of shortened URLs.**
 - **Written in [PHP](https://www.php.net/) and [Laravel 9](https://laravel.com/docs/9.x).**
 - **Modern and simple interface.**
