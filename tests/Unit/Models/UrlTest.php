@@ -184,7 +184,7 @@ class UrlTest extends TestCase
         ]);
         $this->assertSame(2, $this->url->keyUsed());
 
-        config(['urlhub.hash_length' => (int)uHub('hash_length') + 2]);
+        config(['urlhub.hash_length' => (int) uHub('hash_length') + 2]);
         $this->assertSame(3, $this->url->keyUsed());
     }
 
