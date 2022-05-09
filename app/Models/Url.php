@@ -178,7 +178,7 @@ class Url extends Model
      * Calculation formula:
      * keyUsed = randomKey + customKey
      *
-     * customKey must be similar to randomKey, such as having the same character length.
+     * The generated character length for "customKey" should be similar to "randomKey".
      */
     public function keyUsed()
     {
@@ -198,7 +198,7 @@ class Url extends Model
     }
 
     /**
-     * Calculates the maximum number of unique random strings that can be supplied.
+     * Counts the maximum number of unique random strings that can be generated.
      *
      * @return int
      */
@@ -217,7 +217,7 @@ class Url extends Model
     }
 
     /**
-     * Counts unique random strings that can be supplied.
+     * Counts unique random strings that can be generated.
      *
      * @return int
      */
@@ -249,6 +249,8 @@ class Url extends Model
     }
 
     /**
+     * Count the number of URLs based on user id.
+     *
      * @param  int  $id
      */
     public function urlCount($id = null)
@@ -262,6 +264,8 @@ class Url extends Model
     }
 
     /**
+     * Count the number of clicks based on user id.
+     *
      * @param  int  $id
      */
     public function clickCount($id = null): int
@@ -290,11 +294,7 @@ class Url extends Model
     }
 
     /**
-     * Get Domain from external url.
-     *
-     * Extract the domain name using the classic parse_url() and then look for
-     * a valid domain without any subdomain (www being a subdomain). Won't
-     * work on things like 'localhost'.
+     * Get the domain from external url.
      *
      * @param  string  $url
      * @return string

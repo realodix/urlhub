@@ -64,7 +64,8 @@ class User extends Authenticatable
     */
 
     /*
-     * Count the number of guests in the url column based on IP and grouped by ip.
+     * Count the number of guests (URL without user id) by IP address, then grouped by
+     * IP address.
      */
     public function guestCount()
     {

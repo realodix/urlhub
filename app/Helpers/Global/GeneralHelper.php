@@ -4,8 +4,7 @@ use Realodix\Utils\Url;
 
 if (! function_exists('uHub')) {
     /**
-     * Helper that makes the way to access the configuration value in
-     * '/config/urlhub.php' becomes easier.
+     * Shortcut to access configuration values in '/config/urlhub.php'.
      *
      * Example:
      * - uHub('option') is equal to config('urlhub.option').
@@ -17,8 +16,6 @@ if (! function_exists('uHub')) {
      */
     function uHub(string $value)
     {
-        // Validation of character types allowed in the `urlhub.hash_char`
-        // configuration option
         return config('urlhub.'.$value);
     }
 }
