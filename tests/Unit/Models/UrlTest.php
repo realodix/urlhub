@@ -15,14 +15,24 @@ class UrlTest extends TestCase
 
         $this->url = new Url;
 
-        Url::factory()->create([
+        $this->urlWithUserId = 1;
+        $this->urlWithoutUserId = 2;
+        $this->totalUrl = $this->urlWithUserId + $this->urlWithoutUserId;
+
+        $cwui = 10;
+        $cwoui = 10;
+        $this->clickWithUserId = $cwui * $this->urlWithUserId;
+        $this->clickWithoutUserId = $cwoui * $this->urlWithoutUserId;
+        $this->totalClick = $this->clickWithUserId + $this->clickWithoutUserId;
+
+        Url::factory($this->urlWithUserId)->create([
             'user_id' => $this->admin()->id,
-            'clicks'  => 10,
+            'clicks'  => $cwui,
         ]);
 
-        Url::factory(2)->create([
+        Url::factory($this->urlWithoutUserId)->create([
             'user_id' => null,
-            'clicks'  => 10,
+            'clicks'  => $cwoui,
         ]);
 
         config(['urlhub.hash_char' => 'abc']);
@@ -165,27 +175,28 @@ class UrlTest extends TestCase
      */
     public function keyUsed()
     {
-        config(['urlhub.hash_char' => 'abc']);
+        config(['urlhub.hash_length' => uHub('hash_length') + 1]);
 
         Url::factory()->create([
             'keyword' => $this->url->randomString(),
         ]);
-        $this->assertSame(4, $this->url->keyUsed());
+        $this->assertSame(1, $this->url->keyUsed());
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', uHub('hash_length')),
             'is_custom' => 1,
         ]);
-        $this->assertSame(5, $this->url->keyUsed());
+        $this->assertSame(2, $this->url->keyUsed());
 
         Url::factory()->create([
-            'keyword'   => str_repeat('b', uHub('hash_length') + 1),
+            'keyword'   => str_repeat('b', uHub('hash_length') + 2),
             'is_custom' => 1,
         ]);
-        $this->assertSame(5, $this->url->keyUsed());
+        $this->assertSame(2, $this->url->keyUsed());
 
-        config(['urlhub.hash_length' => (int) uHub('hash_length') + 2]);
+        config(['urlhub.hash_length' => uHub('hash_length') + 3]);
         $this->assertSame(0, $this->url->keyUsed());
+        $this->assertSame($this->totalUrl + 3, $this->url->totalUrl());
     }
 
     /**
@@ -302,7 +313,7 @@ class UrlTest extends TestCase
     public function totalShortUrl()
     {
         $this->assertSame(
-            3,
+            $this->totalUrl,
             $this->url->totalUrl()
         );
     }
@@ -314,7 +325,7 @@ class UrlTest extends TestCase
     public function totalShortUrlByMe()
     {
         $this->assertSame(
-            1,
+            $this->urlWithUserId,
             $this->url->urlCount($this->admin()->id)
         );
     }
@@ -326,7 +337,7 @@ class UrlTest extends TestCase
     public function totalShortUrlByGuest()
     {
         $this->assertSame(
-            2,
+            $this->urlWithoutUserId,
             $this->url->urlCount()
         );
     }
@@ -338,7 +349,7 @@ class UrlTest extends TestCase
     public function totalClicks()
     {
         $this->assertSame(
-            30,
+            $this->totalClick,
             $this->url->totalClick()
         );
     }
@@ -350,7 +361,7 @@ class UrlTest extends TestCase
     public function totalClicksByMe()
     {
         $this->assertSame(
-            10,
+            $this->clickWithUserId,
             $this->url->clickCount($this->admin()->id)
         );
     }
@@ -364,7 +375,7 @@ class UrlTest extends TestCase
     public function totalClicksByGuest()
     {
         $this->assertSame(
-            20,
+            $this->clickWithoutUserId,
             $this->url->clickCount()
         );
     }
