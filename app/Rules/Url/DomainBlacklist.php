@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\URL;
+namespace App\Rules\Url;
 
 use Illuminate\Contracts\Validation\Rule;
 
