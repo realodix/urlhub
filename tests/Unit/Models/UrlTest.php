@@ -175,7 +175,7 @@ class UrlTest extends TestCase
      */
     public function keyUsed()
     {
-        config(['urlhub.hash_length' => (int) uHub('hash_length') + 1]);
+        config(['urlhub.hash_length' => uHub('hash_length') + 1]);
 
         Url::factory()->create([
             'keyword' => $this->url->randomString(),
@@ -194,7 +194,7 @@ class UrlTest extends TestCase
         ]);
         $this->assertSame(2, $this->url->keyUsed());
 
-        config(['urlhub.hash_length' => (int) uHub('hash_length') + 3]);
+        config(['urlhub.hash_length' => uHub('hash_length') + 3]);
         $this->assertSame(0, $this->url->keyUsed());
         $this->assertSame($this->totalUrl + 3, $this->url->totalUrl());
     }
