@@ -163,9 +163,18 @@ class UrlTest extends TestCase
     public function urlKey()
     {
         config(['urlhub.hash_length' => 6]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'alodix';
+        $this->assertSame($expected, $this->url->urlKey($actual));
 
-        $actual = 'https://github.com/realodix/urlhub';
-        $expected = 'urlhub';
+        config(['urlhub.hash_length' => 9]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'mrealodix';
+        $this->assertSame($expected, $this->url->urlKey($actual));
+
+        config(['urlhub.hash_length' => 12]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'bcomrealodix';
         $this->assertSame($expected, $this->url->urlKey($actual));
     }
 
