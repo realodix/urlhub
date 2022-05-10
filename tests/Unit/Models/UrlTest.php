@@ -15,12 +15,16 @@ class UrlTest extends TestCase
 
         $this->url = new Url;
 
-        Url::factory()->create([
+        $this->urlWithUserId = 1;
+        $this->urlWithoutUserId = 2;
+        $this->totalUrl = $this->urlWithUserId + $this->urlWithoutUserId;
+
+        Url::factory($this->urlWithUserId)->create([
             'user_id' => $this->admin()->id,
             'clicks'  => 10,
         ]);
 
-        Url::factory(2)->create([
+        Url::factory($this->urlWithoutUserId)->create([
             'user_id' => null,
             'clicks'  => 10,
         ]);
@@ -186,6 +190,7 @@ class UrlTest extends TestCase
 
         config(['urlhub.hash_length' => (int) uHub('hash_length') + 3]);
         $this->assertSame(0, $this->url->keyUsed());
+        $this->assertSame($this->totalUrl + 3, $this->url->totalUrl());
     }
 
     /**
@@ -302,7 +307,7 @@ class UrlTest extends TestCase
     public function totalShortUrl()
     {
         $this->assertSame(
-            3,
+            $this->totalUrl,
             $this->url->totalUrl()
         );
     }
@@ -314,7 +319,7 @@ class UrlTest extends TestCase
     public function totalShortUrlByMe()
     {
         $this->assertSame(
-            1,
+            $this->urlWithUserId,
             $this->url->urlCount($this->admin()->id)
         );
     }
@@ -326,7 +331,7 @@ class UrlTest extends TestCase
     public function totalShortUrlByGuest()
     {
         $this->assertSame(
-            2,
+            $this->urlWithoutUserId,
             $this->url->urlCount()
         );
     }
