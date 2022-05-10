@@ -19,14 +19,20 @@ class UrlTest extends TestCase
         $this->urlWithoutUserId = 2;
         $this->totalUrl = $this->urlWithUserId + $this->urlWithoutUserId;
 
+        $cwui = 10;
+        $cwoui = 10;
+        $this->clickWithUserId = $cwui * $this->urlWithUserId;
+        $this->clickWithoutUserId = $cwoui * $this->urlWithoutUserId;
+        $this->totalClick = $this->clickWithUserId + $this->clickWithoutUserId;
+
         Url::factory($this->urlWithUserId)->create([
             'user_id' => $this->admin()->id,
-            'clicks'  => 10,
+            'clicks'  => $cwui,
         ]);
 
         Url::factory($this->urlWithoutUserId)->create([
             'user_id' => null,
-            'clicks'  => 10,
+            'clicks'  => $cwoui,
         ]);
 
         config(['urlhub.hash_char' => 'abc']);
@@ -343,7 +349,7 @@ class UrlTest extends TestCase
     public function totalClicks()
     {
         $this->assertSame(
-            30,
+            $this->totalClick,
             $this->url->totalClick()
         );
     }
@@ -355,7 +361,7 @@ class UrlTest extends TestCase
     public function totalClicksByMe()
     {
         $this->assertSame(
-            10,
+            $this->clickWithUserId,
             $this->url->clickCount($this->admin()->id)
         );
     }
@@ -369,7 +375,7 @@ class UrlTest extends TestCase
     public function totalClicksByGuest()
     {
         $this->assertSame(
-            20,
+            $this->clickWithoutUserId,
             $this->url->clickCount()
         );
     }
