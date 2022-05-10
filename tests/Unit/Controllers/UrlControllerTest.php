@@ -33,8 +33,8 @@ class UrlControllerTest extends TestCase
     }
 
     /**
-     * When the User shortens the URL, the user_id column in the Url table must be filled
-     * with the authenticated user id.
+     * When the User shortens the URL, the user_id column (Urls table) must be filled with
+     * the authenticated user id.
      *
      * @test
      * @group u-controller
@@ -83,7 +83,7 @@ class UrlControllerTest extends TestCase
 
     /**
      * Users shorten the URLs, they don't fill in the custom keyword field. The is_custom
-     * column must be filled with 0 / false.
+     * column (Urls table) must be filled with 0 / false.
      *
      * @test
      * @group u-controller
@@ -100,8 +100,8 @@ class UrlControllerTest extends TestCase
 
     /**
      * The user shortens the URL and they fill in the custom keyword field. The keyword
-     * column in the URL table must be filled with the keywords requested by the user
-     * and the is_custom column must be filled with 1 / true.
+     * column (Urls table) must be filled with the keywords requested by the user the
+     * is_custom column must be filled with 1 / true.
      *
      * @test
      * @group u-controller
