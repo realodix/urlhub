@@ -119,10 +119,9 @@ class UrlTest extends TestCase
             'long_url' => 'http://example.com/',
         ]);
 
-        $this->assertSame(
-            $url->long_url,
-            'http://example.com'
-        );
+        $expected = $url->long_url;
+        $actual = 'http://example.com';
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -133,10 +132,9 @@ class UrlTest extends TestCase
     {
         $url = Url::whereUserId($this->admin()->id)->first();
 
-        $this->assertSame(
-            $url->short_url,
-            url('/'.$url->keyword)
-        );
+        $expected = $url->short_url;
+        $actual = url('/'.$url->keyword);
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -207,6 +205,8 @@ class UrlTest extends TestCase
     }
 
     /**
+     * Pengujian dilakukan berdasarkan panjang karakternya.
+     *
      * @test
      * @group u-model
      */
@@ -225,6 +225,8 @@ class UrlTest extends TestCase
         ]);
         $this->assertSame(2, $this->url->keyUsed());
 
+        // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.hash_length',
+        // maka ini tidak ikut terhitung.
         Url::factory()->create([
             'keyword'   => str_repeat('b', uHub('hash_length') + 2),
             'is_custom' => 1,
@@ -237,6 +239,10 @@ class UrlTest extends TestCase
     }
 
     /**
+     * Pengujian dilakukan berdasarkan karakter yang telah ditetapkan pada
+     * 'urlhub.hash_char'. Jika salah satu karakter 'keyword' tidak ada di
+     * 'urlhub.hash_char', maka seharusnya ini tidak dapat dihitung.
+     *
      * @test
      * @group u-model
      */
@@ -258,12 +264,19 @@ class UrlTest extends TestCase
         ]);
         $this->assertSame(1, $this->url->keyUsed());
 
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya ada 2 saja.
         config(['urlhub.hash_char' => 'foobar']);
         $this->assertSame(2, $this->url->keyUsed());
 
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya ada 1 saja karena 'bar' tidak bisa terhitung.
         config(['urlhub.hash_char' => 'fooBar']);
         $this->assertSame(1, $this->url->keyUsed());
 
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya tidak ada sama sekali karena 'foo' dan 'bar' tidak
+        // bisa terhitung.
         config(['urlhub.hash_char' => 'FooBar']);
         $this->assertSame(0, $this->url->keyUsed());
     }
@@ -349,10 +362,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrl()
     {
-        $this->assertSame(
-            $this->totalUrl,
-            $this->url->totalUrl()
-        );
+        $expected = $this->totalUrl;
+        $actual = $this->url->totalUrl();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -361,10 +374,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByMe()
     {
-        $this->assertSame(
-            $this->nUrlWithUserId,
-            $this->url->urlCount($this->admin()->id)
-        );
+        $expected = $this->nUrlWithUserId;
+        $actual = $this->url->urlCount($this->admin()->id);
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -373,10 +386,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByGuest()
     {
-        $this->assertSame(
-            $this->nUrlWithoutUserId,
-            $this->url->urlCount()
-        );
+        $expected = $this->nUrlWithoutUserId;
+        $actual = $this->url->urlCount();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -385,10 +398,10 @@ class UrlTest extends TestCase
      */
     public function totalClicks()
     {
-        $this->assertSame(
-            $this->tClick,
-            $this->url->totalClick()
-        );
+        $expected = $this->tClick;
+        $actual = $this->url->totalClick();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -397,10 +410,10 @@ class UrlTest extends TestCase
      */
     public function totalClicksByMe()
     {
-        $this->assertSame(
-            $this->nClickWithUserId,
-            $this->url->clickCount($this->admin()->id)
-        );
+        $expected = $this->nClickWithUserId;
+        $actual = $this->url->clickCount($this->admin()->id);
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -411,10 +424,10 @@ class UrlTest extends TestCase
      */
     public function totalClicksByGuest()
     {
-        $this->assertSame(
-            $this->nClickWithoutUserId,
-            $this->url->clickCount()
-        );
+        $expected = $this->nClickWithoutUserId;
+        $actual = $this->url->clickCount();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -478,8 +491,9 @@ class UrlTest extends TestCase
      */
     public function getWebTitle()
     {
-        $longUrl = 'https://github123456789.com';
+        $expected = 'github123456789.com - No Title';
+        $actual = $this->url->getWebTitle('https://github123456789.com');
 
-        $this->assertSame('github123456789.com - No Title', $this->url->getWebTitle($longUrl));
+        $this->assertSame($expected, $actual);
     }
 }
