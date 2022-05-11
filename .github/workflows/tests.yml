@@ -26,12 +26,12 @@ jobs:
       - name: Get Composer Cache Directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       - name: Install Dependencies (Composer)
         uses: nick-invision/retry@v2
