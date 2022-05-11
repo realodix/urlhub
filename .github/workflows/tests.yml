@@ -26,8 +26,7 @@ jobs:
       - name: Get Composer Cache Directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Get Composer Cache
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -38,8 +37,7 @@ jobs:
         id: npm-cache
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
-      - name: Get NPM Cache
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
