@@ -15,22 +15,22 @@ class UrlTest extends TestCase
 
         $this->url = new Url;
 
-        $this->urlWithUserId = 1;
-        $this->urlWithoutUserId = 2;
-        $this->totalUrl = $this->urlWithUserId + $this->urlWithoutUserId;
+        $this->nUrlWithUserId = 1;
+        $this->nUrlWithoutUserId = 2;
+        $this->totalUrl = $this->nUrlWithUserId + $this->nUrlWithoutUserId;
 
         $cwui = 10;
         $cwoui = 10;
-        $this->clickWithUserId = $cwui * $this->urlWithUserId;
-        $this->clickWithoutUserId = $cwoui * $this->urlWithoutUserId;
-        $this->totalClick = $this->clickWithUserId + $this->clickWithoutUserId;
+        $this->nClickWithUserId = $cwui * $this->nUrlWithUserId;
+        $this->nClickWithoutUserId = $cwoui * $this->nUrlWithoutUserId;
+        $this->tClick = $this->nClickWithUserId + $this->nClickWithoutUserId;
 
-        Url::factory($this->urlWithUserId)->create([
+        Url::factory($this->nUrlWithUserId)->create([
             'user_id' => $this->admin()->id,
             'clicks'  => $cwui,
         ]);
 
-        Url::factory($this->urlWithoutUserId)->create([
+        Url::factory($this->nUrlWithoutUserId)->create([
             'user_id' => null,
             'clicks'  => $cwoui,
         ]);
@@ -362,7 +362,7 @@ class UrlTest extends TestCase
     public function totalShortUrlByMe()
     {
         $this->assertSame(
-            $this->urlWithUserId,
+            $this->nUrlWithUserId,
             $this->url->urlCount($this->admin()->id)
         );
     }
@@ -374,7 +374,7 @@ class UrlTest extends TestCase
     public function totalShortUrlByGuest()
     {
         $this->assertSame(
-            $this->urlWithoutUserId,
+            $this->nUrlWithoutUserId,
             $this->url->urlCount()
         );
     }
@@ -386,7 +386,7 @@ class UrlTest extends TestCase
     public function totalClicks()
     {
         $this->assertSame(
-            $this->totalClick,
+            $this->tClick,
             $this->url->totalClick()
         );
     }
@@ -398,7 +398,7 @@ class UrlTest extends TestCase
     public function totalClicksByMe()
     {
         $this->assertSame(
-            $this->clickWithUserId,
+            $this->nClickWithUserId,
             $this->url->clickCount($this->admin()->id)
         );
     }
@@ -412,7 +412,7 @@ class UrlTest extends TestCase
     public function totalClicksByGuest()
     {
         $this->assertSame(
-            $this->clickWithoutUserId,
+            $this->nClickWithoutUserId,
             $this->url->clickCount()
         );
     }
