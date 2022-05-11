@@ -34,8 +34,6 @@ class UrlTest extends TestCase
             'user_id' => null,
             'clicks'  => $cwoui,
         ]);
-
-        config(['urlhub.hash_char' => 'abc']);
     }
 
     /**
@@ -176,6 +174,23 @@ class UrlTest extends TestCase
         $actual = 'https://github.com/realodix';
         $expected = 'bcomrealodix';
         $this->assertSame($expected, $this->url->urlKey($actual));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKeyWithGeneratedString()
+    {
+        $longUrl = 'https://github.com/realodix';
+        $length = 3;
+
+        config(['urlhub.hash_length' => $length]);
+        Url::factory()->create([
+            'keyword'  => $this->url->urlKey($longUrl),
+        ]);
+
+        $this->assertNotSame(substr($longUrl, -$length), $this->url->urlKey($longUrl));
     }
 
     /**
