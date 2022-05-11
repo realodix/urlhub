@@ -22,7 +22,7 @@ jobs:
           tools: composer:v2
           coverage: xdebug
 
-      # https://github.com/marketplace/actions/setup-php-action#cache-composer-dependencies
+      # https://github.com/actions/cache/blob/main/examples.md#php---composer
       - name: Get Composer Cache Directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
