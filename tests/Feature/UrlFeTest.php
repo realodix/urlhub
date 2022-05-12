@@ -43,25 +43,6 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Custom URL, with authenticated user.
-     *
-     * @test
-     */
-    public function createCst2()
-    {
-        $this->loginAsAdmin();
-
-        $longUrl = 'https://laravel.com';
-        $customKey = 'laravel';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url'   => $longUrl,
-            'custom_key' => $customKey,
-        ]);
-        $response->assertRedirect(route('short_url.stats', $customKey));
-    }
-
-    /**
      * Guest A and guest B.
      *
      * @test
