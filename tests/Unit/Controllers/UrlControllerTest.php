@@ -52,48 +52,6 @@ class UrlControllerTest extends TestCase
     }
 
     /**
-     * Users shorten the URLs, they don't fill in the custom keyword field. The is_custom
-     * column (Urls table) must be filled with 0 / false.
-     *
-     * @test
-     * @group u-controller
-     */
-    public function shortenUrlWithNonCustomKeyword()
-    {
-        $longUrl = 'https://laravel.com';
-
-        $this->post(route('createshortlink'), ['long_url' => $longUrl]);
-        $url = Url::whereLongUrl($longUrl)->first();
-
-        $this->assertFalse($url->is_custom);
-    }
-
-    /**
-     * The user shortens the URL and they fill in the custom keyword field. The keyword
-     * column (Urls table) must be filled with the keywords requested by the user the
-     * is_custom column must be filled with 1 / true.
-     *
-     * @test
-     * @group u-controller
-     */
-    public function shortenUrlWithCustomKeyword()
-    {
-        config(['urlhub.hash_length' => 6]);
-
-        $longUrl = 'https://laravel.com';
-        $customKey = 'foo_bar';
-
-        $this->post(route('createshortlink'), [
-            'long_url'   => $longUrl,
-            'custom_key' => $customKey,
-        ]);
-        $url = Url::whereLongUrl($longUrl)->first();
-
-        $this->assertSame($customKey, $url->keyword);
-        $this->assertTrue($url->is_custom);
-    }
-
-    /**
      * @test
      * @group u-controller
      */

@@ -11,9 +11,12 @@ use Tests\TestCase;
 class UrlFeTest extends TestCase
 {
     /**
+     * Users shorten the URLs, they don't fill in the custom keyword field. The
+     * is_custom column (Urls table) must be filled with 0 / false.
+     *
      * @test
      */
-    public function create()
+    public function shortenUrl()
     {
         $longUrl = 'https://laravel.com';
         $response = $this->post(route('createshortlink'), [
@@ -23,14 +26,17 @@ class UrlFeTest extends TestCase
         $url = Url::whereLongUrl($longUrl)->first();
 
         $response->assertRedirect(route('short_url.stats', $url->keyword));
+        $this->assertFalse($url->is_custom);
     }
 
     /**
-     * Custom URL.
+     * The user shortens the URL and they fill in the custom keyword field. The
+     * keyword column (Urls table) must be filled with the keywords requested
+     * by the user and the is_custom column must be filled with 1 / true.
      *
      * @test
      */
-    public function createCst()
+    public function shortenUrlWithCustomKeyword()
     {
         $longUrl = 'https://laravel.com';
         $customKey = 'laravel';
@@ -40,6 +46,9 @@ class UrlFeTest extends TestCase
             'custom_key' => $customKey,
         ]);
         $response->assertRedirect(route('short_url.stats', $customKey));
+
+        $url = Url::whereLongUrl($longUrl)->first();
+        $this->assertTrue($url->is_custom);
     }
 
     /**
