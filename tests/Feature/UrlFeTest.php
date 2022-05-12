@@ -74,31 +74,11 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Guest and authen user.
-     *
-     * @test
-     */
-    public function longUrlAlreadyExist2()
-    {
-        $url = Url::factory()->create();
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
-
-        $url = Url::whereUserId(null)->first();
-
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
-
-        $this->assertCount(2, Url::all());
-    }
-
-    /**
      * Authen user A and authen user A.
      *
      * @test
      */
-    public function longUrlAlreadyExist3()
+    public function longUrlAlreadyExist2()
     {
         $user = $this->admin();
 
@@ -120,11 +100,31 @@ class UrlFeTest extends TestCase
     }
 
     /**
+     * Guest and authen user.
+     *
+     * @test
+     */
+    public function longUrlAlreadyExistsButStillAccepted()
+    {
+        $url = Url::factory()->create();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $url = Url::whereUserId(null)->first();
+
+        $response->assertRedirect(route('short_url.stats', $url->keyword));
+
+        $this->assertCount(2, Url::all());
+    }
+
+    /**
      * Authen user A and authen user B.
      *
      * @test
      */
-    public function longUrlAlreadyExist4()
+    public function longUrlAlreadyExistsButStillAccepted2()
     {
         $user = $this->admin();
         $user2 = $this->nonAdmin();
@@ -151,7 +151,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function longUrlAlreadyExist5()
+    public function longUrlAlreadyExistsButStillAccepted3()
     {
         $user = $this->admin();
 
@@ -207,6 +207,8 @@ class UrlFeTest extends TestCase
     |--------------------------------------------------------------------------
     | Custom Short URLs
     |--------------------------------------------------------------------------
+    |
+    | Short URL with custom keyword and long url already in database.
     */
 
     /** @test */
