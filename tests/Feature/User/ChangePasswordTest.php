@@ -14,7 +14,10 @@ class ChangePasswordTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.change-password.post', \Hashids::connection(\App\Models\User::class)->encode($value));
+        return route(
+            'user.change-password.post',
+            \Hashids::connection(\App\Models\User::class)->encode($value)
+        );
     }
 
     /**

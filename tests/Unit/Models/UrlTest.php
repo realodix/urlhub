@@ -15,27 +15,25 @@ class UrlTest extends TestCase
 
         $this->url = new Url;
 
-        $this->urlWithUserId = 1;
-        $this->urlWithoutUserId = 2;
-        $this->totalUrl = $this->urlWithUserId + $this->urlWithoutUserId;
+        $this->nUrlWithUserId = 1;
+        $this->nUrlWithoutUserId = 2;
+        $this->totalUrl = $this->nUrlWithUserId + $this->nUrlWithoutUserId;
 
         $cwui = 10;
         $cwoui = 10;
-        $this->clickWithUserId = $cwui * $this->urlWithUserId;
-        $this->clickWithoutUserId = $cwoui * $this->urlWithoutUserId;
-        $this->totalClick = $this->clickWithUserId + $this->clickWithoutUserId;
+        $this->nClickWithUserId = $cwui * $this->nUrlWithUserId;
+        $this->nClickWithoutUserId = $cwoui * $this->nUrlWithoutUserId;
+        $this->tClick = $this->nClickWithUserId + $this->nClickWithoutUserId;
 
-        Url::factory($this->urlWithUserId)->create([
+        Url::factory($this->nUrlWithUserId)->create([
             'user_id' => $this->admin()->id,
             'clicks'  => $cwui,
         ]);
 
-        Url::factory($this->urlWithoutUserId)->create([
+        Url::factory($this->nUrlWithoutUserId)->create([
             'user_id' => null,
             'clicks'  => $cwoui,
         ]);
-
-        config(['urlhub.hash_char' => 'abc']);
     }
 
     /**
@@ -121,10 +119,9 @@ class UrlTest extends TestCase
             'long_url' => 'http://example.com/',
         ]);
 
-        $this->assertSame(
-            $url->long_url,
-            'http://example.com'
-        );
+        $expected = $url->long_url;
+        $actual = 'http://example.com';
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -135,10 +132,9 @@ class UrlTest extends TestCase
     {
         $url = Url::whereUserId($this->admin()->id)->first();
 
-        $this->assertSame(
-            $url->short_url,
-            url('/'.$url->keyword)
-        );
+        $expected = $url->short_url;
+        $actual = url('/'.$url->keyword);
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -163,13 +159,54 @@ class UrlTest extends TestCase
     public function urlKey()
     {
         config(['urlhub.hash_length' => 6]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'alodix';
+        $this->assertSame($expected, $this->url->urlKey($actual));
 
-        $actual = 'https://github.com/realodix/urlhub';
-        $expected = 'urlhub';
+        config(['urlhub.hash_length' => 9]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'mrealodix';
+        $this->assertSame($expected, $this->url->urlKey($actual));
+
+        config(['urlhub.hash_length' => 12]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'bcomrealodix';
         $this->assertSame($expected, $this->url->urlKey($actual));
     }
 
     /**
+     * @test
+     * @group u-model
+     */
+    public function urlKeyWithGeneratedString()
+    {
+        $longUrl = 'https://github.com/realodix';
+        $length = 3;
+
+        config(['urlhub.hash_length' => $length]);
+        Url::factory()->create([
+            'keyword'  => $this->url->urlKey($longUrl),
+        ]);
+
+        $this->assertNotSame(substr($longUrl, -$length), $this->url->urlKey($longUrl));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKeyLength()
+    {
+        $length = 3;
+        $url = 'https://github.com/realodix/urlhub';
+        config(['urlhub.hash_length' => $length]);
+
+        $this->assertSame($length, strlen($this->url->urlKey($url)));
+    }
+
+    /**
+     * Pengujian dilakukan berdasarkan panjang karakternya.
+     *
      * @test
      * @group u-model
      */
@@ -188,6 +225,8 @@ class UrlTest extends TestCase
         ]);
         $this->assertSame(2, $this->url->keyUsed());
 
+        // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.hash_length',
+        // maka ini tidak ikut terhitung.
         Url::factory()->create([
             'keyword'   => str_repeat('b', uHub('hash_length') + 2),
             'is_custom' => 1,
@@ -200,6 +239,10 @@ class UrlTest extends TestCase
     }
 
     /**
+     * Pengujian dilakukan berdasarkan karakter yang telah ditetapkan pada
+     * 'urlhub.hash_char'. Jika salah satu karakter 'keyword' tidak ada di
+     * 'urlhub.hash_char', maka seharusnya ini tidak dapat dihitung.
+     *
      * @test
      * @group u-model
      */
@@ -221,12 +264,19 @@ class UrlTest extends TestCase
         ]);
         $this->assertSame(1, $this->url->keyUsed());
 
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya ada 2 saja.
         config(['urlhub.hash_char' => 'foobar']);
         $this->assertSame(2, $this->url->keyUsed());
 
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya ada 1 saja karena 'bar' tidak bisa terhitung.
         config(['urlhub.hash_char' => 'fooBar']);
         $this->assertSame(1, $this->url->keyUsed());
 
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya tidak ada sama sekali karena 'foo' dan 'bar' tidak
+        // bisa terhitung.
         config(['urlhub.hash_char' => 'FooBar']);
         $this->assertSame(0, $this->url->keyUsed());
     }
@@ -312,10 +362,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrl()
     {
-        $this->assertSame(
-            $this->totalUrl,
-            $this->url->totalUrl()
-        );
+        $expected = $this->totalUrl;
+        $actual = $this->url->totalUrl();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -324,10 +374,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByMe()
     {
-        $this->assertSame(
-            $this->urlWithUserId,
-            $this->url->urlCount($this->admin()->id)
-        );
+        $expected = $this->nUrlWithUserId;
+        $actual = $this->url->urlCount($this->admin()->id);
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -336,10 +386,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByGuest()
     {
-        $this->assertSame(
-            $this->urlWithoutUserId,
-            $this->url->urlCount()
-        );
+        $expected = $this->nUrlWithoutUserId;
+        $actual = $this->url->urlCount();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -348,10 +398,10 @@ class UrlTest extends TestCase
      */
     public function totalClicks()
     {
-        $this->assertSame(
-            $this->totalClick,
-            $this->url->totalClick()
-        );
+        $expected = $this->tClick;
+        $actual = $this->url->totalClick();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -360,10 +410,10 @@ class UrlTest extends TestCase
      */
     public function totalClicksByMe()
     {
-        $this->assertSame(
-            $this->clickWithUserId,
-            $this->url->clickCount($this->admin()->id)
-        );
+        $expected = $this->nClickWithUserId;
+        $actual = $this->url->clickCount($this->admin()->id);
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -374,10 +424,10 @@ class UrlTest extends TestCase
      */
     public function totalClicksByGuest()
     {
-        $this->assertSame(
-            $this->clickWithoutUserId,
-            $this->url->clickCount()
-        );
+        $expected = $this->nClickWithoutUserId;
+        $actual = $this->url->clickCount();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -441,8 +491,11 @@ class UrlTest extends TestCase
      */
     public function getWebTitle()
     {
-        $longUrl = 'https://github123456789.com';
+        $expected = 'github123456789.com - No Title';
+        $actual = $this->url->getWebTitle('https://github123456789.com');
+        $this->assertSame($expected, $actual);
 
-        $this->assertSame('github123456789.com - No Title', $this->url->getWebTitle($longUrl));
+        $actual = $this->url->getWebTitle('https://github.com/realodix');
+        $this->assertTrue(str_contains($actual, '|'));
     }
 }

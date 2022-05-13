@@ -5,62 +5,8 @@ namespace Tests\Feature;
 use App\Models\Url;
 use Tests\TestCase;
 
-/**
- * Front-End Test.
- */
-class UrlFeTest extends TestCase
+class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function create()
-    {
-        $longUrl = 'https://laravel.com';
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $longUrl,
-        ]);
-
-        $url = Url::whereLongUrl($longUrl)->first();
-
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
-    }
-
-    /**
-     * Custom URL.
-     *
-     * @test
-     */
-    public function createCst()
-    {
-        $longUrl = 'https://laravel.com';
-        $customKey = 'laravel';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url'   => $longUrl,
-            'custom_key' => $customKey,
-        ]);
-        $response->assertRedirect(route('short_url.stats', $customKey));
-    }
-
-    /**
-     * Custom URL, with authenticated user.
-     *
-     * @test
-     */
-    public function createCst2()
-    {
-        $this->loginAsAdmin();
-
-        $longUrl = 'https://laravel.com';
-        $customKey = 'laravel';
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url'   => $longUrl,
-            'custom_key' => $customKey,
-        ]);
-        $response->assertRedirect(route('short_url.stats', $customKey));
-    }
-
     /**
      * Guest A and guest B.
      *
@@ -84,31 +30,11 @@ class UrlFeTest extends TestCase
     }
 
     /**
-     * Guest and authen user.
-     *
-     * @test
-     */
-    public function longUrlAlreadyExist2()
-    {
-        $url = Url::factory()->create();
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
-
-        $url = Url::whereUserId(null)->first();
-
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
-
-        $this->assertCount(2, Url::all());
-    }
-
-    /**
      * Authen user A and authen user A.
      *
      * @test
      */
-    public function longUrlAlreadyExist3()
+    public function longUrlAlreadyExist2()
     {
         $user = $this->admin();
 
@@ -130,11 +56,31 @@ class UrlFeTest extends TestCase
     }
 
     /**
+     * Guest and authen user.
+     *
+     * @test
+     */
+    public function longUrlAlreadyExistsButStillAccepted()
+    {
+        $url = Url::factory()->create();
+
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $url = Url::whereUserId(null)->first();
+
+        $response->assertRedirect(route('short_url.stats', $url->keyword));
+
+        $this->assertCount(2, Url::all());
+    }
+
+    /**
      * Authen user A and authen user B.
      *
      * @test
      */
-    public function longUrlAlreadyExist4()
+    public function longUrlAlreadyExistsButStillAccepted2()
     {
         $user = $this->admin();
         $user2 = $this->nonAdmin();
@@ -161,7 +107,7 @@ class UrlFeTest extends TestCase
      *
      * @test
      */
-    public function longUrlAlreadyExist5()
+    public function longUrlAlreadyExistsButStillAccepted3()
     {
         $user = $this->admin();
 
@@ -183,25 +129,6 @@ class UrlFeTest extends TestCase
     }
 
     /** @test */
-    public function duplicate()
-    {
-        $this->loginAsAdmin();
-
-        $url = Url::factory()->create([
-            'user_id' => $this->admin()->id,
-        ]);
-
-        $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
-
-        $this->from(route('short_url.stats', $url->keyword))
-             ->get(route('duplicate', $url->keyword));
-
-        $this->assertCount(2, Url::all());
-    }
-
-    /** @test */
     public function createShortUrlWithWrongUrlFormat()
     {
         $response = $this->post(route('createshortlink'), [
@@ -217,6 +144,8 @@ class UrlFeTest extends TestCase
     |--------------------------------------------------------------------------
     | Custom Short URLs
     |--------------------------------------------------------------------------
+    |
+    | Short URL with custom keyword and long url already in database.
     */
 
     /** @test */
