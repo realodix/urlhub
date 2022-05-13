@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\Url;
 use Tests\TestCase;
 
-class ShortenUrl extends TestCase
+class ShortenUrlTest extends TestCase
 {
     /**
      * Users shorten the URLs, they don't fill in the custom keyword field. The

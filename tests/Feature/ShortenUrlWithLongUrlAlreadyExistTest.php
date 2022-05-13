@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\Url;
 use Tests\TestCase;
 
-class ShortenUrlWithLongUrlAlreadyExist extends TestCase
+class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
 {
     /**
      * Guest A and guest B.
