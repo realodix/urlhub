@@ -13,7 +13,8 @@ class UrlBeTest extends TestCase
     protected function hashIdRoute($routeName, $url_id)
     {
         return route(
-            $routeName, \Hashids::connection(\App\Models\Url::class)->encode($url_id)
+            $routeName,
+            \Hashids::connection(\App\Models\Url::class)->encode($url_id)
         );
     }
 
