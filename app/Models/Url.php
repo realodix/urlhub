@@ -323,9 +323,13 @@ class Url extends Model
             $webTitle = $domain.' - No Title';
         }
 
+        // @codeCoverageIgnoreStart
+        // (new Embed())->get() datang dari module external dan membutuhkan koneksi
+        // internet, jadi tidak perlu ditest.
         if (stripos($webTitle, stristr($domain, '.', true)) === false) {
             return $domain.' | '.$webTitle;
         }
+        // @codeCoverageIgnoreEnd
 
         return $webTitle;
     }

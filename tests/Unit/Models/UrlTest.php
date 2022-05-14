@@ -494,8 +494,5 @@ class UrlTest extends TestCase
         $expected = 'github123456789.com - No Title';
         $actual = $this->url->getWebTitle('https://github123456789.com');
         $this->assertSame($expected, $actual);
-
-        $actual = $this->url->getWebTitle('https://github.com/realodix');
-        $this->assertTrue(str_contains($actual, '|'));
     }
 }
