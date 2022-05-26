@@ -32,11 +32,11 @@ class GeneralHelperTest extends TestCase
      * @test
      * @dataProvider toAmountShortProvider
      */
-    public function toAmountShort($expected, $actual)
+    public function numberToAmountShort($expected, $actual)
     {
-        $this->assertSame($expected, (new NumHelper)->toAmountShort($actual));
+        $this->assertSame($expected, (new NumHelper)->numberToAmountShort($actual));
 
-        $intOrString = (new NumHelper)->toAmountShort($actual);
+        $intOrString = (new NumHelper)->numberToAmountShort($actual);
 
         if (is_int($intOrString)) {
             $this->assertIsInt($intOrString);
