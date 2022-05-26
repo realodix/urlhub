@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Helpers;
 
-use Tests\TestCase;
 use App\Helpers\General\NumHelper;
+use Tests\TestCase;
 
 class GeneralHelperTest extends TestCase
 {
