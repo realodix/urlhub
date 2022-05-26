@@ -9,8 +9,7 @@ class NumHelper
      * 1B+ etc.
      * Based on: ({@link https://gist.github.com/RadGH/84edff0cc81e6326029c}).
      *
-     * @param int $number
-     *
+     * @param  int  $number
      * @return int|string
      */
     public function numberToAmountShort(int $number)
@@ -60,9 +59,8 @@ class NumHelper
      *
      * Based on: (@see https://stackoverflow.com/q/3833137).
      *
-     * @param float $number
-     * @param int   $precision
-     *
+     * @param  float  $number
+     * @param  int  $precision
      * @return float
      */
     public function numbPrec(float $number, int $precision = 2)
