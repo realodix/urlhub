@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\General\GeneralHelper;
 use Realodix\Utils\Url;
 
 if (! function_exists('uHub')) {
@@ -44,7 +45,7 @@ if (! function_exists('urlDisplay')) {
      */
     function urlDisplay(string $url, bool $scheme = true, int $limit = null)
     {
-        return Url::display($url, $scheme, $limit);
+        return resolve(GeneralHelper::class)->urlDisplay($url, $scheme, $limit);
     }
 }
 
@@ -57,6 +58,6 @@ if (! function_exists('urlSanitize')) {
      */
     function urlSanitize($value)
     {
-        return Url::sanitize($value);
+        return resolve(GeneralHelper::class)->urlSanitize($value);
     }
 }

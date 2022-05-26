@@ -19,9 +19,8 @@
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
         "power-components/livewire-powergrid": "^2.2",
-        "realodix/php-utility": "^2.0",
         "spatie/laravel-permission": "^5.5",
-        "spatie/url": "^2.0",
+        "spatie/url": "^2.1",
         "vinkla/hashids": "^10.0"
     },
     "require-dev": {
