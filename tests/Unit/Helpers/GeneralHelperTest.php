@@ -46,6 +46,11 @@ class GeneralHelperTest extends TestCase
             'https://example.com',
             urlDisplay('https://example.com/')
         );
+
+        $this->assertSame(
+            'https://github.com/real...e0be',
+            urlDisplay('https://github.com/realodix/urlhub/commit/33e6d649d2d18345ac2d53a2fe553ae5d174e0be', limit: 30)
+        );
     }
 
     /**
