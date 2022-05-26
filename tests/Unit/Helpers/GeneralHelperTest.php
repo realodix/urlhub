@@ -52,8 +52,8 @@ class GeneralHelperTest extends TestCase
      * @test
      * @dataProvider sanitizeProvider
      *
-     * @param mixed $expected
-     * @param mixed $actual
+     * @param  mixed  $expected
+     * @param  mixed  $actual
      */
     public function sanitize($expected, $actual)
     {
@@ -79,8 +79,9 @@ class GeneralHelperTest extends TestCase
      * @group u-helper
      * @test
      * @dataProvider toAmountShortProvider
-     * @param mixed $expected
-     * @param mixed $actual
+     *
+     * @param  mixed  $expected
+     * @param  mixed  $actual
      */
     public function numberToAmountShort($expected, $actual)
     {
