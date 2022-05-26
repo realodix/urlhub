@@ -28,9 +28,59 @@ class GeneralHelperTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function urlDisplay()
+    {
+        $this->assertSame(
+            'https://example.com/abcde/',
+            urlDisplay('https://example.com/abcde/')
+        );
+
+        $this->assertSame(
+            'example.com/abcde',
+            urlDisplay('https://example.com/abcde/', false)
+        );
+
+        $this->assertSame(
+            'https://example.com',
+            urlDisplay('https://example.com/')
+        );
+    }
+
+    /**
+     * @test
+     * @dataProvider sanitizeProvider
+     *
+     * @param mixed $expected
+     * @param mixed $actual
+     */
+    public function sanitize($expected, $actual)
+    {
+        $this->assertSame($expected, urlSanitize($actual));
+    }
+
+    public function sanitizeProvider()
+    {
+        return [
+            ['laravel.com', 'laravel.com'],
+            ['laravel.com', 'www.laravel.com'],
+            ['laravel.com', 'http://laravel.com'],
+            ['laravel.com', 'http://www.laravel.com'],
+            ['laravel.com', 'https://laravel.com'],
+            ['laravel.com', 'https://www.laravel.com'],
+            ['laravel.com', 'https://www.laravel.com/'],
+            ['laravel.com/abc', 'https://www.laravel.com/abc'],
+            ['laravel.com/abc', 'https://www.laravel.com/abc/'],
+        ];
+    }
+
+    /**
      * @group u-helper
      * @test
      * @dataProvider toAmountShortProvider
+     * @param mixed $expected
+     * @param mixed $actual
      */
     public function numberToAmountShort($expected, $actual)
     {
