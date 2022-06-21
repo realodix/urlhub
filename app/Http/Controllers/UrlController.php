@@ -75,7 +75,7 @@ class UrlController extends Controller
                 ->size(170)
                 ->labelText('Scan QR Code')
                 ->errorCorrectionLevel(
-                    new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh
+                    new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh()
                 )
                 ->build();
 
