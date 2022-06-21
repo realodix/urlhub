@@ -12,9 +12,9 @@ class GeneralHelper
      * Display the link according to what You need.
      *
      * @param  string  $url  URL or Link
-     * @param  bool  $scheme  show or remove URL schemes
-     * @param  int  $limit  length string will be truncated to, including
-     *                      suffix
+     * @param  bool  $scheme  Show or remove URL schemes.
+     * @param  int  $limit  Length string will be truncated to, including
+     *                      suffix.
      * @return string
      */
     public function urlDisplay(string $url, bool $scheme = true, int $limit = null)
