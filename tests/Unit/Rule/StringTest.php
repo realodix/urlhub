@@ -19,7 +19,7 @@ class StringTest extends TestCase
      */
     public function strAlphaUnderscoret()
     {
-        $rule = new StrAlphaUnderscore();
+        $rule = new StrAlphaUnderscore;
 
         $this->assertTrue($rule->passes('test', 'foo_BAR'));
         $this->assertFalse($rule->passes('test', 'fo0-BAR'));
@@ -31,7 +31,7 @@ class StringTest extends TestCase
      */
     public function strLowercase()
     {
-        $rule = new StrLowercase();
+        $rule = new StrLowercase;
 
         $this->assertTrue($rule->passes('test', 'foo'));
         $this->assertFalse($rule->passes('test', 'Foo'));

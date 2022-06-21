@@ -1,44 +1,25 @@
 <?php
 
-use PhpCsFixer\Finder;
-use Realodix\CsConfig\Factory;
-use Realodix\CsConfig\RuleSet;
+use Realodix\CsConfig\Config;
+use Realodix\CsConfig\Finder;
+use Realodix\CsConfig\Rules\Realodix;
 
-$overrideRules = [
-    // Realodix
-    'phpdoc_align' => false,
-    'phpdoc_order' => false,
-    'phpdoc_separation' => false,
-    // RelodixPlus
-    'PhpCsFixerCustomFixers/single_space_after_statement' => false,
-    'PhpCsFixerCustomFixers/no_useless_comment' => false,
-    'binary_operator_spaces' => false,
-    'general_phpdoc_annotation_remove' => false,
-    'no_superfluous_elseif' => false,
-
-    // Fixed
-    'align_multiline_comment' => [
-        'comment_type' => 'phpdocs_like',
-    ],
-];
-
-$excludes = [
-    'bootstrap/cache',
-    'config',
-    'node_modules',
-    'public',
-    'storage'
-];
-
-$finder = Finder::create()
-    ->exclude($excludes)
-    ->in(__DIR__)
-    ->name('*.php')
-    ->notName('*.blade.php')
+$finder = Finder::laravel(__DIR__)
     ->notName('.phpstorm.meta.php')
-    ->notName('_ide_*.php')
-    ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
+    ->notName('_ide_*.php');
 
-return Factory::fromRuleSet(new RuleSet\RealodixPlus, $overrideRules)
-        ->setFinder($finder);
+$addOrOverrideRules = [
+    // Base
+    'binary_operator_spaces' => false,
+    'phpdoc_order'      => false,
+    'phpdoc_separation' => false,
+    // Realodix
+    'class_definition' => false,
+    'new_with_braces'  => ['named_class' => false, 'anonymous_class' => false],
+    'no_empty_comment' => false,
+    'phpdoc_align'     => false,
+    'phpdoc_annotation_without_dot' => false,
+];
+
+return Config::create(new Realodix($addOrOverrideRules))
+    ->setFinder($finder);

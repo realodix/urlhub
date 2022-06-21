@@ -23,7 +23,7 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistPass($value)
     {
-        $rule = new DomainBlacklist();
+        $rule = new DomainBlacklist;
         $this->assertTrue($rule->passes('test', $value));
     }
 
@@ -36,7 +36,7 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistFail($value)
     {
-        $rule = new DomainBlacklist();
+        $rule = new DomainBlacklist;
         $this->assertFalse($rule->passes('test', $value));
     }
 
@@ -67,7 +67,7 @@ class UrlTest extends TestCase
      */
     public function keywordBlacklistPass($value)
     {
-        $rule = new KeywordBlacklist();
+        $rule = new KeywordBlacklist;
         $this->assertTrue($rule->passes('test', $value));
     }
 
@@ -80,7 +80,7 @@ class UrlTest extends TestCase
      */
     public function keywordBlacklistFail($value)
     {
-        $rule = new KeywordBlacklist();
+        $rule = new KeywordBlacklist;
         $this->assertFalse($rule->passes('test', $value));
     }
 
