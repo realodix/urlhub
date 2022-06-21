@@ -1,5 +1,8 @@
-window._ = require('lodash');
-window.$ = window.jQuery = require("jquery");
+import {$,jQuery} from 'jquery';
+import _ from 'lodash';
+
+window.$ = $;
+window.jQuery = jQuery;
 
 
 /**
@@ -32,7 +35,8 @@ Alpine.start()
 
 // import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+// import Pusher from 'pusher-js';
+// window.Pusher = Pusher;
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
