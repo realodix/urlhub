@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
-  <file src="app/Helpers/General/HtmlHelper.php">
+  <file src="app/Http/Controllers/API/UrlController.php">
+    <ImplicitToStringCast occurrences="1">
+      <code>$request</code>
+    </ImplicitToStringCast>
+    <InvalidReturnStatement occurrences="1">
+      <code>response()-&gt;json(['errors' =&gt; $v-&gt;errors()-&gt;all()])</code>
+    </InvalidReturnStatement>
     <InvalidReturnType occurrences="1">
-      <code>string</code>
+      <code>\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response</code>
     </InvalidReturnType>
+    <InvalidScalarArgument occurrences="1">
+      <code>Auth::id()</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="app/Http/Controllers/Auth/VerificationController.php">
+    <TooManyArguments occurrences="1">
+      <code>only</code>
+    </TooManyArguments>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/DashboardController.php">
+    <InvalidScalarArgument occurrences="3">
+      <code>Auth::id()</code>
+      <code>Auth::id()</code>
+      <code>Auth::id()</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="app/Http/Controllers/UrlController.php">
+    <ImplicitToStringCast occurrences="1">
+      <code>$request</code>
+    </ImplicitToStringCast>
+    <InvalidScalarArgument occurrences="2">
+      <code>Auth::id()</code>
+      <code>Auth::id()</code>
+    </InvalidScalarArgument>
   </file>
   <file src="app/Http/Livewire/AllUlrTable.php">
     <InvalidReturnStatement occurrences="2">
@@ -57,6 +87,11 @@
       <code>getPdo</code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="app/Rules/PwdCurrent.php">
+    <NoInterfaceProperties occurrences="1">
+      <code>Auth::user()-&gt;password</code>
+    </NoInterfaceProperties>
+  </file>
   <file src="app/Rules/Url/KeywordBlacklist.php">
     <UndefinedInterfaceMethod occurrences="1">
       <code>getIterator</code>
@@ -66,6 +101,13 @@
     <InvalidReturnType occurrences="1">
       <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
     </InvalidReturnType>
+  </file>
+  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
+    <MoreSpecificImplementedParamType occurrences="3">
+      <code>$request</code>
+      <code>$request</code>
+      <code>$response</code>
+    </MoreSpecificImplementedParamType>
   </file>
   <file src="vendor/laravel/ui/auth-backend/AuthenticatesUsers.php">
     <InvalidReturnType occurrences="2">
@@ -83,6 +125,9 @@
       <code>$user</code>
       <code>$user</code>
     </InvalidArgument>
+    <NoInterfaceProperties occurrences="1">
+      <code>$user-&gt;password</code>
+    </NoInterfaceProperties>
     <UndefinedInterfaceMethod occurrences="2">
       <code>save</code>
       <code>setRememberToken</code>
@@ -93,6 +138,11 @@
       <code>mixed</code>
     </InvalidReturnType>
   </file>
+  <file src="vendor/power-components/livewire-powergrid/src/Traits/ActionButton.php">
+    <RedundantCondition occurrences="1">
+      <code>isset($action-&gt;route)</code>
+    </RedundantCondition>
+  </file>
   <file src="vendor/spatie/laravel-permission/src/Traits/HasRoles.php">
     <InvalidPropertyAssignmentValue occurrences="1">
       <code>app(PermissionRegistrar::class)-&gt;getRoleClass()</code>
@@ -100,6 +150,14 @@
     <InvalidReturnType occurrences="1">
       <code>BelongsToMany</code>
     </InvalidReturnType>
+    <NoInterfaceProperties occurrences="3">
+      <code>$role-&gt;name</code>
+      <code>$role-&gt;name</code>
+      <code>$roles-&gt;name</code>
+    </NoInterfaceProperties>
+    <RedundantPropertyInitializationCheck occurrences="1">
+      <code>isset($this-&gt;roleClass)</code>
+    </RedundantPropertyInitializationCheck>
     <UndefinedInterfaceMethod occurrences="5">
       <code>getKey</code>
       <code>getKey</code>

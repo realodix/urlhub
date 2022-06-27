@@ -65,12 +65,10 @@ class HtmlHelper
     {
         $html = [];
 
-        foreach ((array) $attributes as $key => $value) {
+        foreach ($attributes as $key => $value) {
             $element = $this->attributeElement($key, $value);
 
-            if (! is_null($element)) {
-                $html[] = $element;
-            }
+            $html[] = $element;
         }
 
         return count($html) > 0 ? ' '.implode(' ', $html) : '';
@@ -81,22 +79,8 @@ class HtmlHelper
      */
     protected function attributeElement(string $key, string $value): string
     {
-        // For numeric keys we will assume that the value is a boolean attribute where the
-        // presence of the attribute represents a true value and the absence represents a
-        // false value. This will convert HTML attributes such as "required" to a correct
-        // form instead of using incorrect numerics.
-        if (is_numeric($key)) {
-            return $value;
-        }
+        return $key.'="'.e($value).'"';
 
-        // Treat boolean attributes as HTML properties
-        if (is_bool($value) && $key != 'value') {
-            return $value ? $key : '';
-        }
-
-        if (! is_null($value)) {
-            return $key.'="'.e($value).'"';
-        }
     }
 
     /**

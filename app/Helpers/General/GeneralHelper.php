@@ -43,7 +43,7 @@ class GeneralHelper
             // The length of string truncated by str()->limit() does not include a suffix,
             // so it needs to be adjusted so that the length of the truncated string
             // matches the expected limit.
-            $adjLimit = $limit - (strlen(Str::of($url)->limit($limit)) - $limit);
+            $adjLimit = $limit - (strlen((string) Str::of($url)->limit($limit)) - $limit);
 
             $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
             $lastSide = -abs($adjLimit - $firstSide);
