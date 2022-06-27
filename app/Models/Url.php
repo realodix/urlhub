@@ -196,10 +196,8 @@ class Url extends Model
 
     /**
      * Counts the maximum number of unique random strings that can be generated.
-     *
-     * @return int
      */
-    public function keyCapacity()
+    public function keyCapacity(): float|int
     {
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');

@@ -1,8 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
-  <file src="app/Rules/Url/KeywordBlacklist.php">
-    <UndefinedClass occurrences="1">
-      <code>\Route</code>
-    </UndefinedClass>
+  <file src="app/Http/Livewire/AllUlrTable.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>Url::query()</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="2">
+      <code>?Builder</code>
+      <code>?PowerGridEloquent</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Livewire/MyUrlTable.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>Url::whereUserId(Auth::id())</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>?PowerGridEloquent</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Livewire/UserTable.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>User::query()</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="2">
+      <code>?Builder</code>
+      <code>?PowerGridEloquent</code>
+    </InvalidReturnType>
+  </file>
+  <file src="vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/HasFactory.php">
+    <InvalidReturnType occurrences="1">
+      <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
+    </InvalidReturnType>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/AuthenticatesUsers.php">
+    <InvalidReturnType occurrences="2">
+      <code>mixed</code>
+      <code>mixed</code>
+    </InvalidReturnType>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/RegistersUsers.php">
+    <InvalidReturnType occurrences="1">
+      <code>mixed</code>
+    </InvalidReturnType>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/ResetsPasswords.php">
+    <InvalidArgument occurrences="2">
+      <code>$user</code>
+      <code>$user</code>
+    </InvalidArgument>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/VerifiesEmails.php">
+    <InvalidReturnType occurrences="1">
+      <code>mixed</code>
+    </InvalidReturnType>
+  </file>
+  <file src="vendor/spatie/laravel-permission/src/Traits/HasRoles.php">
+    <InvalidPropertyAssignmentValue occurrences="1">
+      <code>app(PermissionRegistrar::class)-&gt;getRoleClass()</code>
+    </InvalidPropertyAssignmentValue>
+    <InvalidReturnType occurrences="1">
+      <code>BelongsToMany</code>
+    </InvalidReturnType>
   </file>
 </files>
