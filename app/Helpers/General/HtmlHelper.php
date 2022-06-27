@@ -30,8 +30,6 @@ class HtmlHelper
     }
 
     /**
-     * @param  string  $url
-     * @param  array  $attributes
      * @param  null  $secure
      * @return mixed
      */
@@ -53,10 +51,7 @@ class HtmlHelper
     /**
      * Generate a link to a JavaScript file.
      *
-     * @param  string  $url
-     * @param  array  $attributes
      * @param  bool  $secure
-     * @return \Illuminate\Support\HtmlString
      */
     public function script(string $url, array $attributes = [], $secure = null): HtmlString
     {
@@ -68,7 +63,6 @@ class HtmlHelper
     /**
      * Build an HTML attribute string from an array.
      *
-     * @param  array  $attributes
      * @return string
      */
     public function attributes(array $attributes)
@@ -89,8 +83,6 @@ class HtmlHelper
     /**
      * Build a single attribute element.
      *
-     * @param  string  $key
-     * @param  string  $value
      * @return string
      */
     protected function attributeElement(string $key, string $value)
@@ -116,7 +108,6 @@ class HtmlHelper
     /**
      * Transform the string to an Html serializable object.
      *
-     * @param  string  $html
      * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString(string $html)
