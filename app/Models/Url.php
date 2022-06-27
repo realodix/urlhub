@@ -149,9 +149,6 @@ class Url extends Model
         return $replicate;
     }
 
-    /**
-     * @param  string  $string
-     */
     public function urlKey(string $string)
     {
         $length = config('urlhub.hash_length') * -1;
@@ -199,10 +196,8 @@ class Url extends Model
 
     /**
      * Counts the maximum number of unique random strings that can be generated.
-     *
-     * @return int
      */
-    public function keyCapacity()
+    public function keyCapacity(): float|int
     {
         $alphabet = strlen(uHub('hash_char'));
         $length = uHub('hash_length');
@@ -284,7 +279,7 @@ class Url extends Model
      * @param  string  $address
      * @return string
      */
-    public static function anonymizeIp($address)
+    public static function anonymizeIp($address): string
     {
         if (uHub('anonymize_ip_addr') == false) {
             return $address;
@@ -296,10 +291,9 @@ class Url extends Model
     /**
      * Get the domain from external url.
      *
-     * @param  string  $url
      * @return string
      */
-    public function getDomain(string $url)
+    public function getDomain(string $url): string
     {
         $url = SpatieUrl::fromString($url);
 
@@ -310,10 +304,9 @@ class Url extends Model
      * This function returns a string: either the page title as defined in
      * HTML, or "{domain_name} - No Title" if not found.
      *
-     * @param  string  $url
-     * @return string
+     * @throws \Exception
      */
-    public function getWebTitle(string $url)
+    public function getWebTitle(string $url): string
     {
         $domain = $this->getDomain($url);
 

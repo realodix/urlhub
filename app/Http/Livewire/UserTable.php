@@ -20,6 +20,7 @@ final class UserTable extends PowerGridComponent
     use ActionButton;
 
     public bool $showUpdateMessages = true;
+
     public string $sortDirection = 'desc';
 
     /*

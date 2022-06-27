@@ -28,8 +28,10 @@
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
+        "psalm/plugin-laravel": "^2.0",
         "realodix/cs-config": "1.x-dev",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^1.0",
+        "vimeo/psalm": "^4.23"
     },
     "autoload": {
         "psr-4": {

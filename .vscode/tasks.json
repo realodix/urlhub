@@ -32,6 +32,24 @@
             "type": "shell",
             "command": "php artisan icons:clear",
             "problemMatcher": []
+        },
+        {
+            "label": "[SA] Psalm",
+            "type": "shell",
+            "command": "./vendor/bin/psalm",
+            "problemMatcher": []
+        },
+        {
+            "label": "[SA] Psalm (baseline)",
+            "type": "shell",
+            "command": "./vendor/bin/psalm --set-baseline=psalm-baseline.xml",
+            "problemMatcher": []
+        },
+        {
+            "label": "Commit",
+            "type": "shell",
+            "command": "git add -A && git commit -m \"U-$(Get-Date -UFormat +'%y%m%d%H%M%S')\"",
+            "problemMatcher": []
         }
     ]
 }

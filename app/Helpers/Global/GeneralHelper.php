@@ -12,7 +12,6 @@ if (! function_exists('uHub')) {
      *
      * @codeCoverageIgnore
      *
-     * @param  string  $value
      * @return mixed
      */
     function uHub(string $value)
