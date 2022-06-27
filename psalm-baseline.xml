@@ -1,2 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88"/>
+<files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
+  <file src="app/Http/Controllers/UrlController.php">
+    <UndefinedFunction occurrences="1">
+      <code>uHub('qrcode')</code>
+    </UndefinedFunction>
+  </file>
+  <file src="app/Http/Livewire/AllUlrTable.php">
+    <UndefinedFunction occurrences="1">
+      <code>urlDisplay($url-&gt;long_url, false, 70)</code>
+    </UndefinedFunction>
+  </file>
+  <file src="app/Http/Livewire/MyUrlTable.php">
+    <UndefinedFunction occurrences="1">
+      <code>urlDisplay($url-&gt;long_url, false, 70)</code>
+    </UndefinedFunction>
+  </file>
+  <file src="app/Models/Url.php">
+    <UndefinedFunction occurrences="9">
+      <code>uHub('anonymize_ip_addr')</code>
+      <code>uHub('hash_char')</code>
+      <code>uHub('hash_char')</code>
+      <code>uHub('hash_char')</code>
+      <code>uHub('hash_length')</code>
+      <code>uHub('hash_length')</code>
+      <code>uHub('hash_length')</code>
+      <code>uHub('web_title')</code>
+      <code>urlSanitize($url-&gt;getHost())</code>
+    </UndefinedFunction>
+  </file>
+  <file src="app/Rules/Url/DomainBlacklist.php">
+    <UndefinedFunction occurrences="2">
+      <code>uHub('domain_blacklist')</code>
+      <code>urlSanitize(uHub('domain_blacklist'))</code>
+    </UndefinedFunction>
+  </file>
+  <file src="app/Rules/Url/KeywordBlacklist.php">
+    <UndefinedClass occurrences="1">
+      <code>\Route</code>
+    </UndefinedClass>
+    <UndefinedFunction occurrences="1">
+      <code>uHub('reserved_keyword')</code>
+    </UndefinedFunction>
+  </file>
+  <file src="app/Services/UrlRedirectionService.php">
+    <UndefinedFunction occurrences="2">
+      <code>uHub('redirect_cache_lifetime')</code>
+      <code>uHub('redirect_status_code')</code>
+    </UndefinedFunction>
+  </file>
+</files>
