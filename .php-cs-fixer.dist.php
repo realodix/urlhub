@@ -14,6 +14,7 @@ $addOrOverrideRules = [
     'phpdoc_order'      => false,
     'phpdoc_separation' => false,
     'braces'            => false,
+    'no_superfluous_phpdoc_tags' => ['allow_mixed' => true],
 
     // Realodix
     'class_definition' => false,

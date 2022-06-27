@@ -149,9 +149,6 @@ class Url extends Model
         return $replicate;
     }
 
-    /**
-     * @param  string  $string
-     */
     public function urlKey(string $string)
     {
         $length = config('urlhub.hash_length') * -1;
@@ -296,7 +293,6 @@ class Url extends Model
     /**
      * Get the domain from external url.
      *
-     * @param  string  $url
      * @return string
      */
     public function getDomain(string $url)
@@ -310,7 +306,6 @@ class Url extends Model
      * This function returns a string: either the page title as defined in
      * HTML, or "{domain_name} - No Title" if not found.
      *
-     * @param  string  $url
      * @return string
      */
     public function getWebTitle(string $url)

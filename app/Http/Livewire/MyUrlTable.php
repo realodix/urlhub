@@ -21,6 +21,7 @@ final class MyUrlTable extends PowerGridComponent
     use ActionButton;
 
     public bool $showUpdateMessages = true;
+
     public string $sortDirection = 'desc';
 
     /*

@@ -11,8 +11,6 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * @param  \App\Models\User  $authenticatedUser
-     * @param  \App\Models\User  $user
      * @return bool
      */
     public function view(User $authenticatedUser, User $user)
@@ -21,8 +19,6 @@ class UserPolicy
     }
 
     /**
-     * @param  \App\Models\User  $authenticatedUser
-     * @param  \App\Models\User  $user
      * @return bool
      */
     public function update(User $authenticatedUser, User $user)
@@ -31,8 +27,6 @@ class UserPolicy
     }
 
     /**
-     * @param  \App\Models\User  $authenticatedUser
-     * @param  \App\Models\User  $user
      * @return bool
      */
     public function updatePass(User $authenticatedUser, User $user)

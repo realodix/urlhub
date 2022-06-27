@@ -14,8 +14,6 @@ class UrlPolicy
     /**
      * Determine whether the user can permanently delete the url.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Url  $url
      * @return bool
      */
     public function forceDelete(User $user, Url $url)
@@ -26,8 +24,6 @@ class UrlPolicy
     /**
      * Determine whether the user can update the url.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Url  $url
      * @return bool
      */
     public function updateUrl(User $user, Url $url)
