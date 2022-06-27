@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
+  <file src="app/Helpers/General/GeneralHelper.php">
+    <ImplicitToStringCast occurrences="1">
+      <code>Str::of($url)-&gt;limit($limit)</code>
+    </ImplicitToStringCast>
+  </file>
   <file src="app/Helpers/General/HtmlHelper.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>$url</code>
@@ -84,6 +89,13 @@
       <code>showShortenedUrlDetails</code>
     </MissingReturnType>
   </file>
+  <file src="app/Http/Kernel.php">
+    <NonInvariantDocblockPropertyType occurrences="3">
+      <code>$middleware</code>
+      <code>$middlewareGroups</code>
+      <code>$routeMiddleware</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
   <file src="app/Http/Livewire/AllUlrTable.php">
     <InvalidReturnStatement occurrences="2">
       <code>Url::query()</code>
@@ -125,6 +137,31 @@
       <code>__('Change Password')</code>
       <code>__('Details')</code>
     </PossiblyInvalidOperand>
+  </file>
+  <file src="app/Http/Middleware/EncryptCookies.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/PreventRequestsDuringMaintenance.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/TrimStrings.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/TrustProxies.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$proxies</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/VerifyCsrfToken.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
   </file>
   <file src="app/Models/Url.php">
     <ArgumentTypeCoercion occurrences="2">
@@ -306,11 +343,6 @@
       <code>ip</code>
     </PossiblyNullReference>
   </file>
-  <file src="vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php">
-    <MissingConstructor occurrences="1">
-      <code>$encrypter</code>
-    </MissingConstructor>
-  </file>
   <file src="vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/HasFactory.php">
     <InvalidReturnType occurrences="1">
       <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
@@ -326,28 +358,12 @@
       <code>$table</code>
     </MissingConstructor>
   </file>
-  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php">
-    <MissingConstructor occurrences="2">
-      <code>$app</code>
-      <code>$events</code>
-    </MissingConstructor>
-  </file>
   <file src="vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
-    <MissingConstructor occurrences="2">
-      <code>$app</code>
-      <code>$router</code>
-    </MissingConstructor>
-  </file>
-  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php">
-    <MissingConstructor occurrences="1">
-      <code>$app</code>
-    </MissingConstructor>
-  </file>
-  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php">
-    <MissingConstructor occurrences="2">
-      <code>$app</code>
-      <code>$encrypter</code>
-    </MissingConstructor>
+    <MoreSpecificImplementedParamType occurrences="3">
+      <code>$request</code>
+      <code>$request</code>
+      <code>$response</code>
+    </MoreSpecificImplementedParamType>
   </file>
   <file src="vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php">
     <PossiblyInvalidMethodCall occurrences="1">
