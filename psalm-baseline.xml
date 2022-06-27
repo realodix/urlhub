@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
+  <file src="app/Helpers/General/HtmlHelper.php">
+    <PossiblyNullPropertyAssignmentValue occurrences="1">
+      <code>$url</code>
+    </PossiblyNullPropertyAssignmentValue>
+  </file>
   <file src="app/Http/Controllers/API/UrlController.php">
     <ImplicitToStringCast occurrences="1">
       <code>$request</code>
     </ImplicitToStringCast>
-    <InvalidReturnStatement occurrences="1">
-      <code>response()-&gt;json(['errors' =&gt; $v-&gt;errors()-&gt;all()])</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response</code>
-    </InvalidReturnType>
     <InvalidScalarArgument occurrences="1">
       <code>Auth::id()</code>
     </InvalidScalarArgument>
+  </file>
+  <file src="app/Http/Controllers/Auth/LoginController.php">
+    <PossiblyInvalidMethodCall occurrences="2">
+      <code>get</code>
+      <code>merge</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullReference occurrences="2">
+      <code>get</code>
+      <code>merge</code>
+    </PossiblyNullReference>
   </file>
   <file src="app/Http/Controllers/Auth/VerificationController.php">
     <TooManyArguments occurrences="1">
@@ -43,6 +52,12 @@
       <code>?Builder</code>
       <code>?PowerGridEloquent</code>
     </InvalidReturnType>
+    <PossiblyInvalidOperand occurrences="4">
+      <code>__('Delete')</code>
+      <code>__('Duplicate')</code>
+      <code>__('Edit')</code>
+      <code>__('Open front page')</code>
+    </PossiblyInvalidOperand>
   </file>
   <file src="app/Http/Livewire/MyUrlTable.php">
     <InvalidReturnStatement occurrences="2">
@@ -51,6 +66,12 @@
     <InvalidReturnType occurrences="1">
       <code>?PowerGridEloquent</code>
     </InvalidReturnType>
+    <PossiblyInvalidOperand occurrences="4">
+      <code>__('Delete')</code>
+      <code>__('Duplicate')</code>
+      <code>__('Edit')</code>
+      <code>__('Go to front page')</code>
+    </PossiblyInvalidOperand>
   </file>
   <file src="app/Http/Livewire/UserTable.php">
     <InvalidReturnStatement occurrences="2">
@@ -60,22 +81,76 @@
       <code>?Builder</code>
       <code>?PowerGridEloquent</code>
     </InvalidReturnType>
+    <PossiblyInvalidOperand occurrences="2">
+      <code>__('Change Password')</code>
+      <code>__('Details')</code>
+    </PossiblyInvalidOperand>
   </file>
   <file src="app/Models/Url.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>'App\Models\User'</code>
+      <code>'App\Models\Visit'</code>
+    </ArgumentTypeCoercion>
     <InvalidNullableReturnType occurrences="1">
       <code>string</code>
     </InvalidNullableReturnType>
+    <NonInvariantDocblockPropertyType occurrences="2">
+      <code>$casts</code>
+      <code>$fillable</code>
+    </NonInvariantDocblockPropertyType>
     <NullableReturnStatement occurrences="1">
       <code>$webTitle</code>
     </NullableReturnStatement>
+    <PossiblyInvalidArrayOffset occurrences="4">
+      <code>$request['custom_key']</code>
+      <code>$request['long_url']</code>
+      <code>$request['long_url']</code>
+      <code>$request['long_url']</code>
+    </PossiblyInvalidArrayOffset>
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>ip</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullArgument occurrences="1">
+      <code>$webTitle</code>
+    </PossiblyNullArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>ip</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="app/Models/User.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>'App\Models\Url'</code>
+    </ArgumentTypeCoercion>
+    <NonInvariantDocblockPropertyType occurrences="3">
+      <code>$casts</code>
+      <code>$fillable</code>
+      <code>$hidden</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Models/Visit.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>'App\Models\Url'</code>
+    </ArgumentTypeCoercion>
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$fillable</code>
+    </NonInvariantDocblockPropertyType>
   </file>
   <file src="app/Policies/UrlPolicy.php">
+    <PossiblyNullReference occurrences="2">
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </PossiblyNullReference>
     <UndefinedInterfaceMethod occurrences="2">
       <code>hasRole</code>
       <code>hasRole</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="app/Policies/UserPolicy.php">
+    <PossiblyNullReference occurrences="3">
+      <code>hasRole</code>
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </PossiblyNullReference>
     <UndefinedInterfaceMethod occurrences="3">
       <code>hasRole</code>
       <code>hasRole</code>
@@ -87,44 +162,95 @@
       <code>getPdo</code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="app/Providers/AuthServiceProvider.php">
+    <PropertyTypeCoercion occurrences="1"/>
+  </file>
+  <file src="app/Providers/EventServiceProvider.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$listen</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Providers/RouteServiceProvider.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$request-&gt;user()?-&gt;id ?: $request-&gt;ip()</code>
+    </PossiblyNullArgument>
+  </file>
   <file src="app/Rules/PwdCurrent.php">
     <NoInterfaceProperties occurrences="1">
       <code>Auth::user()-&gt;password</code>
     </NoInterfaceProperties>
+    <PossiblyNullPropertyFetch occurrences="1">
+      <code>Auth::user()-&gt;password</code>
+    </PossiblyNullPropertyFetch>
   </file>
   <file src="app/Rules/Url/KeywordBlacklist.php">
     <UndefinedInterfaceMethod occurrences="1">
       <code>getIterator</code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="app/Services/UrlRedirectionService.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>ip</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyInvalidPropertyFetch occurrences="1">
+      <code>request()-&gt;headers</code>
+    </PossiblyInvalidPropertyFetch>
+    <PossiblyNullArgument occurrences="1">
+      <code>request()-&gt;ip()</code>
+    </PossiblyNullArgument>
+    <PossiblyNullPropertyFetch occurrences="1">
+      <code>request()-&gt;headers</code>
+    </PossiblyNullPropertyFetch>
+    <PossiblyNullReference occurrences="2">
+      <code>get</code>
+      <code>ip</code>
+    </PossiblyNullReference>
+  </file>
   <file src="vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/HasFactory.php">
     <InvalidReturnType occurrences="1">
       <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
     </InvalidReturnType>
   </file>
-  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
-    <MoreSpecificImplementedParamType occurrences="3">
-      <code>$request</code>
-      <code>$request</code>
-      <code>$response</code>
-    </MoreSpecificImplementedParamType>
+  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>all</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullReference occurrences="1">
+      <code>all</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="vendor/laravel/sanctum/src/HasApiTokens.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$token</code>
+      <code>Sanctum::$personalAccessTokenModel</code>
+    </ArgumentTypeCoercion>
   </file>
   <file src="vendor/laravel/ui/auth-backend/AuthenticatesUsers.php">
     <InvalidReturnType occurrences="2">
       <code>mixed</code>
       <code>mixed</code>
     </InvalidReturnType>
+    <MoreSpecificReturnType occurrences="2">
+      <code>\Illuminate\Contracts\Auth\StatefulGuard</code>
+      <code>\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse</code>
+    </MoreSpecificReturnType>
   </file>
   <file src="vendor/laravel/ui/auth-backend/RegistersUsers.php">
     <InvalidReturnType occurrences="1">
       <code>mixed</code>
     </InvalidReturnType>
+    <MoreSpecificReturnType occurrences="1">
+      <code>\Illuminate\Contracts\Auth\StatefulGuard</code>
+    </MoreSpecificReturnType>
   </file>
   <file src="vendor/laravel/ui/auth-backend/ResetsPasswords.php">
     <InvalidArgument occurrences="2">
       <code>$user</code>
       <code>$user</code>
     </InvalidArgument>
+    <MoreSpecificReturnType occurrences="1">
+      <code>\Illuminate\Contracts\Auth\StatefulGuard</code>
+    </MoreSpecificReturnType>
     <NoInterfaceProperties occurrences="1">
       <code>$user-&gt;password</code>
     </NoInterfaceProperties>
@@ -137,6 +263,10 @@
     <InvalidReturnType occurrences="1">
       <code>mixed</code>
     </InvalidReturnType>
+    <PossiblyInvalidCast occurrences="2">
+      <code>$request-&gt;route('hash')</code>
+      <code>$request-&gt;route('id')</code>
+    </PossiblyInvalidCast>
   </file>
   <file src="vendor/power-components/livewire-powergrid/src/Traits/ActionButton.php">
     <RedundantCondition occurrences="1">
