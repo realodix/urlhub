@@ -11,17 +11,15 @@ $finder = Finder::laravel(__DIR__)
 $addOrOverrideRules = [
     // Base
     'binary_operator_spaces' => false,
-    'phpdoc_order'      => false,
-    'phpdoc_separation' => false,
     'braces'            => false,
-    'no_superfluous_phpdoc_tags' => ['allow_mixed' => true],
-    'phpdoc_add_missing_param_annotation' => true,
+    'class_definition'  => false,
 
     // Realodix
-    'class_definition' => false,
-    'new_with_braces'  => ['named_class' => false, 'anonymous_class' => false],
-    'no_empty_comment' => false,
-    'phpdoc_align'     => false,
+    'new_with_braces'   => ['named_class' => false, 'anonymous_class' => false],
+    'no_empty_comment'  => false,
+    'phpdoc_align'      => false,
+    'phpdoc_order'      => false,
+    'phpdoc_separation' => false,
 ];
 
 return Config::create(new Realodix($addOrOverrideRules))
