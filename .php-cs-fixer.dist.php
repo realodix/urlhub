@@ -13,6 +13,8 @@ $addOrOverrideRules = [
     'binary_operator_spaces' => false,
     'phpdoc_order'      => false,
     'phpdoc_separation' => false,
+    'braces'            => false,
+
     // Realodix
     'class_definition' => false,
     'new_with_braces'  => ['named_class' => false, 'anonymous_class' => false],

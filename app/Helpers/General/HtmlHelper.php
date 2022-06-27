@@ -35,7 +35,7 @@ class HtmlHelper
      * @param  null  $secure
      * @return mixed
      */
-    public function style(string $url, array $attributes = [], $secure = null)
+    public function style(string $url, array $attributes = [], $secure = null): HtmlString
     {
         $defaults = [
             'media' => 'all',
@@ -58,7 +58,7 @@ class HtmlHelper
      * @param  bool  $secure
      * @return \Illuminate\Support\HtmlString
      */
-    public function script(string $url, array $attributes = [], $secure = null)
+    public function script(string $url, array $attributes = [], $secure = null): HtmlString
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
