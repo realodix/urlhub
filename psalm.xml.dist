@@ -3,17 +3,20 @@
   errorLevel="6"
   errorBaseline="psalm-baseline.xml">
   <projectFiles>
-    <directory name="app" />
+    <directory name="app"/>
   </projectFiles>
 
   <issueHandlers>
-    <PropertyNotSetInConstructor errorLevel="info" />
+    <PropertyNotSetInConstructor errorLevel="info"/>
     <UndefinedFunction>
       <errorLevel type="suppress">
-          <referencedFunction name="uHub" />
-          <referencedFunction name="urlDisplay" />
-          <referencedFunction name="urlSanitize" />
+          <referencedFunction name="uHub"/>
+          <referencedFunction name="urlDisplay"/>
+          <referencedFunction name="urlSanitize"/>
       </errorLevel>
     </UndefinedFunction>
   </issueHandlers>
+  <plugins>
+    <pluginClass xmlns="https://getpsalm.org/schema/config" class="Psalm\LaravelPlugin\Plugin"/>
+  </plugins>
 </psalm>
