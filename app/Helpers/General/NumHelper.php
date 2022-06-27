@@ -8,10 +8,8 @@ class NumHelper
      * Convert large positive numbers in to short form like 1K+, 100K+, 199K+, 1M+, 10M+,
      * 1B+ etc.
      * Based on: ({@link https://gist.github.com/RadGH/84edff0cc81e6326029c}).
-     *
-     * @return int|string
      */
-    public function numberToAmountShort(int $number)
+    public function numberToAmountShort(int $number): int|string
     {
         $nFormat = floor($number);
         $suffix = '';
@@ -57,10 +55,8 @@ class NumHelper
      * Alternative to make number_format() not to round numbers up.
      *
      * Based on: (@see https://stackoverflow.com/q/3833137).
-     *
-     * @return float
      */
-    public function numbPrec(float $number, int $precision = 2)
+    public function numbPrec(float $number, int $precision = 2): float
     {
         return floor($number * pow(10, $precision)) / pow(10, $precision);
     }
