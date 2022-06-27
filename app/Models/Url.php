@@ -279,7 +279,7 @@ class Url extends Model
      * @param  string  $address
      * @return string
      */
-    public static function anonymizeIp($address)
+    public static function anonymizeIp($address): string
     {
         if (uHub('anonymize_ip_addr') == false) {
             return $address;
@@ -293,7 +293,7 @@ class Url extends Model
      *
      * @return string
      */
-    public function getDomain(string $url)
+    public function getDomain(string $url): string
     {
         $url = SpatieUrl::fromString($url);
 
