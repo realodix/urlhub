@@ -13,6 +13,10 @@ $addOrOverrideRules = [
     'binary_operator_spaces' => false,
     'phpdoc_order'      => false,
     'phpdoc_separation' => false,
+    'braces'            => false,
+    'no_superfluous_phpdoc_tags' => ['allow_mixed' => true],
+    'phpdoc_add_missing_param_annotation' => true,
+
     // Realodix
     'class_definition' => false,
     'new_with_braces'  => ['named_class' => false, 'anonymous_class' => false],
