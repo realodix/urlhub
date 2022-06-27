@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-  errorLevel="8"
+  errorLevel="6"
   errorBaseline="psalm-baseline.xml">
   <projectFiles>
     <directory name="app" />
@@ -8,5 +8,12 @@
 
   <issueHandlers>
     <PropertyNotSetInConstructor errorLevel="info" />
+    <UndefinedFunction>
+      <errorLevel type="suppress">
+          <referencedFunction name="uHub" />
+          <referencedFunction name="urlDisplay" />
+          <referencedFunction name="urlSanitize" />
+      </errorLevel>
+    </UndefinedFunction>
   </issueHandlers>
 </psalm>
