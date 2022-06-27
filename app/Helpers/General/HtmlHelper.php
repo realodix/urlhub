@@ -50,10 +50,8 @@ class HtmlHelper
 
     /**
      * Generate a link to a JavaScript file.
-     *
-     * @param  bool  $secure
      */
-    public function script(string $url, array $attributes = [], $secure = null): HtmlString
+    public function script(string $url, array $attributes = [], bool $secure = null): HtmlString
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
@@ -62,10 +60,8 @@ class HtmlHelper
 
     /**
      * Build an HTML attribute string from an array.
-     *
-     * @return string
      */
-    public function attributes(array $attributes)
+    public function attributes(array $attributes): string
     {
         $html = [];
 
@@ -82,10 +78,8 @@ class HtmlHelper
 
     /**
      * Build a single attribute element.
-     *
-     * @return string
      */
-    protected function attributeElement(string $key, string $value)
+    protected function attributeElement(string $key, string $value): string
     {
         // For numeric keys we will assume that the value is a boolean attribute where the
         // presence of the attribute represents a true value and the absence represents a

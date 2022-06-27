@@ -304,9 +304,9 @@ class Url extends Model
      * This function returns a string: either the page title as defined in
      * HTML, or "{domain_name} - No Title" if not found.
      *
-     * @return string
+     * @throws \Exception
      */
-    public function getWebTitle(string $url)
+    public function getWebTitle(string $url): string
     {
         $domain = $this->getDomain($url);
 

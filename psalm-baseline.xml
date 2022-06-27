@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
+  <file src="app/Helpers/General/HtmlHelper.php">
+    <InvalidReturnType occurrences="1">
+      <code>string</code>
+    </InvalidReturnType>
+  </file>
   <file src="app/Http/Livewire/AllUlrTable.php">
     <InvalidReturnStatement occurrences="2">
       <code>Url::query()</code>
@@ -26,6 +31,37 @@
       <code>?PowerGridEloquent</code>
     </InvalidReturnType>
   </file>
+  <file src="app/Models/Url.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>string</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$webTitle</code>
+    </NullableReturnStatement>
+  </file>
+  <file src="app/Policies/UrlPolicy.php">
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="app/Policies/UserPolicy.php">
+    <UndefinedInterfaceMethod occurrences="3">
+      <code>hasRole</code>
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="app/Providers/AppServiceProvider.php">
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getPdo</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="app/Rules/Url/KeywordBlacklist.php">
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getIterator</code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/HasFactory.php">
     <InvalidReturnType occurrences="1">
       <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
@@ -47,6 +83,10 @@
       <code>$user</code>
       <code>$user</code>
     </InvalidArgument>
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>save</code>
+      <code>setRememberToken</code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="vendor/laravel/ui/auth-backend/VerifiesEmails.php">
     <InvalidReturnType occurrences="1">
@@ -60,5 +100,12 @@
     <InvalidReturnType occurrences="1">
       <code>BelongsToMany</code>
     </InvalidReturnType>
+    <UndefinedInterfaceMethod occurrences="5">
+      <code>getKey</code>
+      <code>getKey</code>
+      <code>getKey</code>
+      <code>getKeyName</code>
+      <code>getKeyName</code>
+    </UndefinedInterfaceMethod>
   </file>
 </files>
