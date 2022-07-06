@@ -25,7 +25,7 @@ class AllUrlController extends Controller
     /**
      * Delete a Short URL on user (Admin) request.
      *
-     * @param  mixed  $url
+     * @param mixed $url
      */
     public function delete($url)
     {

@@ -82,9 +82,9 @@ class LoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function sendFailedLoginResponse(Request $request)
     {

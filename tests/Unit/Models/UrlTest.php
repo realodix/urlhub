@@ -299,9 +299,9 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider keyRemainingProvider
      *
-     * @param  mixed  $kc
-     * @param  mixed  $nouk
-     * @param  mixed  $expected
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
      */
     public function keyRemaining($kc, $nouk, $expected)
     {
@@ -329,9 +329,9 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider keyRemainingInPercentProvider
      *
-     * @param  mixed  $kc
-     * @param  mixed  $nouk
-     * @param  mixed  $expected
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
      */
     public function keyRemainingInPercent($kc, $nouk, $expected)
     {
@@ -463,8 +463,8 @@ class UrlTest extends TestCase
      * @group u-model
      * @dataProvider getDomainProvider
      *
-     * @param  mixed  $expected
-     * @param  mixed  $actutal
+     * @param mixed $expected
+     * @param mixed $actutal
      */
     public function getDomain($expected, $actutal)
     {

@@ -19,7 +19,7 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider domainBlacklistPassDataProvider
      *
-     * @param  mixed  $value
+     * @param mixed $value
      */
     public function domainBlacklistPass($value)
     {
@@ -32,7 +32,7 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider domainBlacklistFailDataProvider
      *
-     * @param  mixed  $value
+     * @param mixed $value
      */
     public function domainBlacklistFail($value)
     {
@@ -63,7 +63,7 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider keywordBlacklistPassDataProvider
      *
-     * @param  string  $value
+     * @param string $value
      */
     public function keywordBlacklistPass($value)
     {
@@ -76,7 +76,7 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider keywordBlacklistFailDataProvider
      *
-     * @param  string  $value
+     * @param string $value
      */
     public function keywordBlacklistFail($value)
     {
