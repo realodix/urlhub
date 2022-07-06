@@ -17,9 +17,6 @@ $addOrOverrideRules = [
     // Realodix
     'new_with_braces'   => ['named_class' => false, 'anonymous_class' => false],
     'no_empty_comment'  => false,
-    'phpdoc_align'      => false,
-    'phpdoc_order'      => false,
-    'phpdoc_separation' => false,
 ];
 
 return Config::create(new Realodix($addOrOverrideRules))
