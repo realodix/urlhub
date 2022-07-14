@@ -13,6 +13,7 @@ $addOrOverrideRules = [
     'binary_operator_spaces' => false,
     'braces'            => false,
     'class_definition'  => false,
+    'curly_braces_position'  => ['anonymous_classes_opening_brace' => 'next_line_unless_newline_at_signature_end'],
 
     // Realodix
     'new_with_braces'   => ['named_class' => false, 'anonymous_class' => false],
