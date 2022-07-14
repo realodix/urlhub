@@ -48,7 +48,7 @@ class NumHelper
             }
         }
 
-        return !empty($nFormat.$suffix) ? $nFormat.$suffix : 0;
+        return ! empty($nFormat.$suffix) ? $nFormat.$suffix : 0;
     }
 
     /**

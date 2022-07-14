@@ -25,7 +25,7 @@ class GeneralHelper
         $limit = is_null($limit) ? $urlLen : $limit;
 
         // Remove URL schemes
-        if (!$scheme) {
+        if (! $scheme) {
             $url = $this->urlSanitize($url);
             $hostLen = strlen($sUrl->getHost());
             $urlLen = strlen($url);
