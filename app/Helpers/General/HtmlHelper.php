@@ -22,7 +22,7 @@ class HtmlHelper
     /**
      * HtmlHelper constructor.
      *
-     * @param UrlGenerator $url
+     * @param  UrlGenerator  $url
      */
     public function __construct(UrlGenerator $url = null)
     {
@@ -30,8 +30,7 @@ class HtmlHelper
     }
 
     /**
-     * @param null $secure
-     *
+     * @param  null  $secure
      * @return mixed
      */
     public function style(string $url, array $attributes = [], $secure = null): HtmlString
@@ -81,7 +80,6 @@ class HtmlHelper
     protected function attributeElement(string $key, string $value): string
     {
         return $key.'="'.e($value).'"';
-
     }
 
     /**

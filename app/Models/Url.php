@@ -112,8 +112,8 @@ class Url extends Model
     */
 
     /**
-     * @param array|string $request
-     * @param int          $authId
+     * @param  array|string  $request
+     * @param  int  $authId
      */
     public function shortenUrl($request, $authId)
     {
@@ -130,8 +130,8 @@ class Url extends Model
     }
 
     /**
-     * @param string $key
-     * @param int    $authId
+     * @param  string  $key
+     * @param  int  $authId
      */
     public function duplicate($key, $authId)
     {
@@ -246,7 +246,7 @@ class Url extends Model
     /**
      * Count the number of URLs based on user id.
      *
-     * @param int $id
+     * @param  int  $id
      */
     public function urlCount($id = null)
     {
@@ -261,7 +261,7 @@ class Url extends Model
     /**
      * Count the number of clicks based on user id.
      *
-     * @param int $id
+     * @param  int  $id
      */
     public function clickCount($id = null): int
     {
@@ -276,7 +276,7 @@ class Url extends Model
     /**
      * Anonymize an IPv4 or IPv6 address.
      *
-     * @param string $address
+     * @param  string  $address
      */
     public static function anonymizeIp($address): string
     {

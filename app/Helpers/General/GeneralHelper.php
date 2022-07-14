@@ -11,11 +11,10 @@ class GeneralHelper
     /**
      * Display the link according to what You need.
      *
-     * @param string $url    URL or Link
-     * @param bool   $scheme Show or remove URL schemes.
-     * @param int    $limit  Length string will be truncated to, including
-     *                       suffix.
-     *
+     * @param  string  $url  URL or Link
+     * @param  bool  $scheme  Show or remove URL schemes.
+     * @param  int  $limit  Length string will be truncated to, including
+     *                      suffix.
      * @return string
      */
     public function urlDisplay(string $url, bool $scheme = true, int $limit = null)
@@ -62,8 +61,7 @@ class GeneralHelper
     /**
      * Remove http://, www., and slashes from the URL.
      *
-     * @param mixed $url
-     *
+     * @param  mixed  $url
      * @return mixed
      */
     public function urlSanitize($url)
