@@ -13,7 +13,7 @@ class UrlTest extends TestCase
     {
         parent::setUp();
 
-        $this->url = new Url;
+        $this->url = new Url();
 
         $this->nUrlWithUserId = 1;
         $this->nUrlWithoutUserId = 2;

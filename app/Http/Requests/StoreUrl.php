@@ -26,8 +26,8 @@ class StoreUrl extends FormRequest
     public function rules()
     {
         return [
-            'long_url'   => ['required', 'url', 'max:65535', new DomainBlacklist],
-            'custom_key' => ['nullable', 'max:20', new StrAlphaUnderscore, 'unique:urls,keyword'],
+            'long_url'   => ['required', 'url', 'max:65535', new DomainBlacklist()],
+            'custom_key' => ['nullable', 'max:20', new StrAlphaUnderscore(), 'unique:urls,keyword'],
         ];
     }
 

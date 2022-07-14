@@ -31,6 +31,6 @@ class UserTest extends TestCase
      */
     public function guestCount()
     {
-        $this->assertSame(0, (new User)->guestCount());
+        $this->assertSame(0, (new User())->guestCount());
     }
 }

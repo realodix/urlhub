@@ -308,7 +308,7 @@ class Url extends Model
         $domain = $this->getDomain($url);
 
         try {
-            $webTitle = (new Embed)->get($url)->title;
+            $webTitle = (new Embed())->get($url)->title;
         } catch (\Exception $e) {
             $webTitle = $domain.' - No Title';
         }
@@ -332,7 +332,7 @@ class Url extends Model
     {
         $alphabet = uHub('hash_char');
         $length = uHub('hash_length');
-        $factory = new RandomLibFactory;
+        $factory = new RandomLibFactory();
 
         return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
     }

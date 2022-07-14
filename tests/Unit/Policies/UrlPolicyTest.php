@@ -24,7 +24,7 @@ class UrlPolicyTest extends TestCase
         ]);
 
         $this->assertTrue($admin->can('forceDelete', $url));
-        $this->assertTrue($admin->can('forceDelete', new Url));
+        $this->assertTrue($admin->can('forceDelete', new Url()));
     }
 
     /**
@@ -44,6 +44,6 @@ class UrlPolicyTest extends TestCase
         ]);
 
         $this->assertTrue($user->can('forceDelete', $url));
-        $this->assertFalse($user->can('forceDelete', new Url));
+        $this->assertFalse($user->can('forceDelete', new Url()));
     }
 }

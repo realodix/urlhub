@@ -9,6 +9,7 @@ use Tests\Support\CreatesApplication;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, RefreshDatabase,
-        Authentication;
+    use CreatesApplication;
+    use RefreshDatabase;
+    use Authentication;
 }

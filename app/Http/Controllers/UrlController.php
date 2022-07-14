@@ -28,7 +28,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = (new Url)->shortenUrl($request, Auth::id());
+        $url = (new Url())->shortenUrl($request, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword);
     }
@@ -46,9 +46,9 @@ class UrlController extends Controller
                 'nullable',
                 'max:20',
                 'unique:urls',
-                new StrAlphaUnderscore,
-                new StrLowercase,
-                new KeywordBlacklist,
+                new StrAlphaUnderscore(),
+                new StrLowercase(),
+                new KeywordBlacklist(),
             ],
         ]);
 
@@ -75,7 +75,7 @@ class UrlController extends Controller
                 ->size(170)
                 ->labelText('Scan QR Code')
                 ->errorCorrectionLevel(
-                    new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh
+                    new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh()
                 )
                 ->build();
 
@@ -94,7 +94,7 @@ class UrlController extends Controller
      */
     public function duplicate($key)
     {
-        $url = (new Url)->duplicate($key, Auth::id());
+        $url = (new Url())->duplicate($key, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword)
                          ->withFlashSuccess(__('Link was successfully duplicated.'));
