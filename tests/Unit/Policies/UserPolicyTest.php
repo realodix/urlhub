@@ -20,7 +20,7 @@ class UserPolicyTest extends TestCase
         $admin = $this->admin();
 
         $this->assertTrue($admin->can('view', $admin));
-        $this->assertTrue($admin->can('view', new User));
+        $this->assertTrue($admin->can('view', new User()));
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicyTest extends TestCase
         $user = $this->nonAdmin();
 
         $this->assertTrue($user->can('view', $user));
-        $this->assertFalse($user->can('view', new User));
+        $this->assertFalse($user->can('view', new User()));
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicyTest extends TestCase
         $admin = $this->admin();
 
         $this->assertTrue($admin->can('update', $admin));
-        $this->assertTrue($admin->can('update', new User));
+        $this->assertTrue($admin->can('update', new User()));
     }
 
     /**
@@ -68,7 +68,7 @@ class UserPolicyTest extends TestCase
         $user = $this->nonAdmin();
 
         $this->assertTrue($user->can('update', $user));
-        $this->assertFalse($user->can('update', new User));
+        $this->assertFalse($user->can('update', new User()));
     }
 
     /**
@@ -84,7 +84,7 @@ class UserPolicyTest extends TestCase
         $admin = $this->admin();
 
         $this->assertTrue($admin->can('updatePass', $admin));
-        $this->assertTrue($admin->can('updatePass', new User));
+        $this->assertTrue($admin->can('updatePass', new User()));
     }
 
     /**
@@ -100,7 +100,7 @@ class UserPolicyTest extends TestCase
         $user = $this->nonAdmin();
 
         $this->assertTrue($user->can('updatePass', $user));
-        $this->assertFalse($user->can('updatePass', new User));
+        $this->assertFalse($user->can('updatePass', new User()));
     }
 
     //

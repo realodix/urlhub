@@ -17,7 +17,7 @@ class UrlHubLinkChecker
      */
     public function handle($request, Closure $next)
     {
-        $url = new Url;
+        $url = new Url();
         $longUrl = rtrim($request->long_url, '/');
 
         /*

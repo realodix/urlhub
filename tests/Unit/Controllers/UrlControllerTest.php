@@ -77,15 +77,15 @@ class UrlControllerTest extends TestCase
             'keyword' => 'laravel',
         ]);
 
-        $request = new Request;
+        $request = new Request();
 
         $v = Validator::make($request->all(), [
             'keyword' => [
                 'max:20',
                 'unique:urls',
-                new StrAlphaUnderscore,
-                new StrLowercase,
-                new KeywordBlacklist,
+                new StrAlphaUnderscore(),
+                new StrLowercase(),
+                new KeywordBlacklist(),
             ],
         ]);
 

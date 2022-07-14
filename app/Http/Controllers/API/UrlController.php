@@ -27,12 +27,12 @@ class UrlController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), (new StoreUrl)->rules());
+        $v = Validator::make($request->all(), (new StoreUrl())->rules());
         if ($v->fails()) {
             return response()->json(['errors' => $v->errors()->all()]);
         }
 
-        $url = (new Url)->shortenUrl($request, Auth::id());
+        $url = (new Url())->shortenUrl($request, Auth::id());
 
         return response([
             'id'        => $url->id,

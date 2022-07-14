@@ -81,7 +81,6 @@ class HtmlHelper
     protected function attributeElement(string $key, string $value): string
     {
         return $key.'="'.e($value).'"';
-
     }
 
     /**

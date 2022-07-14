@@ -3,7 +3,7 @@
 use App\Helpers\General\GeneralHelper;
 use Realodix\Utils\Url;
 
-if (! function_exists('uHub')) {
+if (!function_exists('uHub')) {
     /**
      * Shortcut to access configuration values in '/config/urlhub.php'.
      *
@@ -20,7 +20,7 @@ if (! function_exists('uHub')) {
     }
 }
 
-if (! function_exists('appName')) {
+if (!function_exists('appName')) {
     /**
      * Helper to grab the application name.
      *
@@ -32,7 +32,7 @@ if (! function_exists('appName')) {
     }
 }
 
-if (! function_exists('urlDisplay')) {
+if (!function_exists('urlDisplay')) {
     /**
      * Display the link according to what You need.
      *
@@ -49,7 +49,7 @@ if (! function_exists('urlDisplay')) {
     }
 }
 
-if (! function_exists('urlSanitize')) {
+if (!function_exists('urlSanitize')) {
     /**
      * Remove http://, www., and slashes from the URL.
      *
