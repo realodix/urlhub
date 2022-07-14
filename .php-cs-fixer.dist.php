@@ -11,11 +11,8 @@ $finder = Finder::laravel(__DIR__)
 $addOrOverrideRules = [
     // Base
     'binary_operator_spaces' => false,
-    'braces'            => false,
-    'class_definition'  => false,
 
     // Realodix
-    'new_with_braces'   => ['named_class' => false, 'anonymous_class' => false],
     'no_empty_comment'  => false,
 ];
 
