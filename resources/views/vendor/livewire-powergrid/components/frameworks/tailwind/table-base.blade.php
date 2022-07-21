@@ -1,12 +1,10 @@
-<div class="power-grid flex flex-col">
+<div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full w-full sm:px-6 lg:px-8">
 
-            <div class="pg-header">
-              @include($theme->layout->header, [
-                  'enabledFilters' => $enabledFilters
-              ])
-            </div>
+            @include($theme->layout->header, [
+                'enabledFilters' => $enabledFilters
+            ])
 
             @if(config('livewire-powergrid.filter') === 'outside')
                 @if(count($makeFilters) > 0)
@@ -22,17 +20,11 @@
                 @endif
             @endif
 
-            <div class="my-3">
-                @include($theme->layout->message)
-            </div>
-
-            <div class="pg-table">
+            <div class="{{ $theme->table->divClass }}" style="{{ $theme->table->divStyle }}">
                 @include($table)
             </div>
 
-            <div class="pg-footer">
-              @include($theme->footer->view)
-            </div>
+            @include($theme->footer->view)
         </div>
     </div>
 </div>
