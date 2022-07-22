@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Url;
-use App\Models\User;
+use App\Models\{Url, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

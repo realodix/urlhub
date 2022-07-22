@@ -2,8 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Url;
-use App\Models\User;
+use App\Models\{Url, User};
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
