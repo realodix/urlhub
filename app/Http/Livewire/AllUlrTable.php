@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
@@ -30,11 +32,16 @@ final class AllUlrTable extends PowerGridComponent
     | Setup Table's general features
     |
     */
-    public function setUp(): void
+    public function setUp(): array
     {
-        $this->showRecordCount('full')
-            ->showPerPage()
-            ->showSearchInput();
+        return [
+            Header::make()
+                ->showToggleColumns()
+                ->showSearchInput(),
+            Footer::make()
+                ->showPerPage()
+                ->showRecordCount('full'),
+        ];
     }
 
     /*
@@ -75,7 +82,7 @@ final class AllUlrTable extends PowerGridComponent
     | You can pass a closure to transform/modify the data.
     |
     */
-    public function addColumns(): ?PowerGridEloquent
+    public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
             ->addColumn('user_name', function (Url $url) {
