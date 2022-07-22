@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Url;
-use App\Models\Visit;
+use App\Models\{Url, Visit};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VisitFactory extends Factory

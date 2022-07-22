@@ -14,6 +14,8 @@ $addOrOverrideRules = [
 
     // Realodix
     'no_empty_comment'  => false,
+    'single_import_per_statement' => ['group_to_single_imports' => false],
+    // 'group_import' => true
 ];
 
 return Config::create(new Realodix($addOrOverrideRules))

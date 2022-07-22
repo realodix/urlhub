@@ -1,16 +1,10 @@
 <?php
 
-use Spatie\FlareClient\FlareMiddleware\AddGitInformation;
-use Spatie\FlareClient\FlareMiddleware\CensorRequestBodyFields;
-use Spatie\FlareClient\FlareMiddleware\CensorRequestHeaders;
-use Spatie\FlareClient\FlareMiddleware\RemoveRequestIp;
-use Spatie\LaravelIgnition\FlareMiddleware\AddDumps;
-use Spatie\LaravelIgnition\FlareMiddleware\AddEnvironmentInformation;
-use Spatie\LaravelIgnition\FlareMiddleware\AddExceptionInformation;
-use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
-use Spatie\LaravelIgnition\FlareMiddleware\AddLogs;
-use Spatie\LaravelIgnition\FlareMiddleware\AddNotifierName;
-use Spatie\LaravelIgnition\FlareMiddleware\AddQueries;
+use Spatie\FlareClient\FlareMiddleware\{
+    AddGitInformation, CensorRequestBodyFields, CensorRequestHeaders, RemoveRequestIp};
+use Spatie\LaravelIgnition\FlareMiddleware\{
+    AddDumps, AddEnvironmentInformation, AddExceptionInformation, AddJobs, AddLogs, AddNotifierName,
+    AddQueries};
 
 return [
     /*
