@@ -16,6 +16,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+    {{ session()->forget('login_error') }}
   @endif
 
   <div class="w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden sm:rounded-lg
