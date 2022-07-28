@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use App\Models\Url;
-use Closure;
 use Illuminate\Support\Facades\Auth;
 
 class UrlHubLinkChecker
@@ -15,7 +14,7 @@ class UrlHubLinkChecker
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, \Closure $next)
     {
         $url = new Url;
         $longUrl = rtrim($request->long_url, '/');

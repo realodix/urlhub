@@ -3,7 +3,6 @@
 namespace Tests\Unit\Models;
 
 use App\Models\{Url, Visit};
-use Mockery;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -304,7 +303,7 @@ class UrlTest extends TestCase
      */
     public function keyRemaining($kc, $nouk, $expected)
     {
-        $mock = Mockery::mock(Url::class)->makePartial();
+        $mock = \Mockery::mock(Url::class)->makePartial();
         $mock->shouldReceive([
             'keyCapacity' => $kc,
             'keyUsed'     => $nouk,
@@ -334,7 +333,7 @@ class UrlTest extends TestCase
      */
     public function keyRemainingInPercent($kc, $nouk, $expected)
     {
-        $mock = Mockery::mock(Url::class)->makePartial();
+        $mock = \Mockery::mock(Url::class)->makePartial();
         $mock->shouldReceive([
             'keyCapacity' => $kc,
             'keyUsed'     => $nouk,
