@@ -12,7 +12,7 @@
         "endroid/qr-code": "^4.4",
         "guzzlehttp/guzzle": "^7.3",
         "laravel/framework": "^9.19",
-        "laravel/sanctum": "^2.14.1",
+        "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.10",
