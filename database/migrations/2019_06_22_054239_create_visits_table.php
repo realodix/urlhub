@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('url_stats', function (Blueprint $table) {
+        Schema::create('visits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('url_id');
             $table->string('referer', 300)->nullable()->default(0);
