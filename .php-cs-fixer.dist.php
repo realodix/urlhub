@@ -1,8 +1,7 @@
 <?php
 
-use Realodix\CsConfig\Config;
-use Realodix\CsConfig\Finder;
-use Realodix\CsConfig\Rules\Realodix;
+use Realodix\Relax\Config;
+use Realodix\Relax\Finder;
 
 $localRules = [
     // Base
@@ -14,5 +13,5 @@ $localRules = [
     'no_empty_comment'  => false
 ];
 
-return Config::create(new Realodix($localRules))
+return Config::create('realodix', $localRules)
     ->setFinder(Finder::laravel());
