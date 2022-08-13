@@ -13,5 +13,5 @@ $localRules = [
     'no_empty_comment'  => false
 ];
 
-return Config::create('realodix', $localRules)
+return Config::create('@Realodix', $localRules)
     ->setFinder(Finder::laravel());
