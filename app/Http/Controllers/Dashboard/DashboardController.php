@@ -61,7 +61,7 @@ class DashboardController extends Controller
         $url->save();
 
         return redirect()->route('dashboard')
-                         ->withFlashSuccess(__('Link changed successfully !'));
+            ->withFlashSuccess(__('Link changed successfully !'));
     }
 
     /**
@@ -78,7 +78,7 @@ class DashboardController extends Controller
         $url->delete();
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Link was successfully deleted.'));
+            ->withFlashSuccess(__('Link was successfully deleted.'));
     }
 
     /**
@@ -94,6 +94,6 @@ class DashboardController extends Controller
         $url->duplicate($key, Auth::id());
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Link was successfully duplicated.'));
+            ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }

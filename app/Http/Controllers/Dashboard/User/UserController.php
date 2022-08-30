@@ -54,6 +54,6 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Profile updated.'));
+            ->withFlashSuccess(__('Profile updated.'));
     }
 }
