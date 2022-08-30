@@ -23,10 +23,10 @@ class UrlRedirectionService
         $this->storeVisitStat($url);
 
         $headers = [
-            'Cache-Control' => sprintf('private,max-age=%s', (int) uHub('redirect_cache_lifetime')),
+            'Cache-Control' => sprintf('private,max-age=%s', (int) config('urlhub.redirect_cache_lifetime')),
         ];
 
-        return redirect()->away($url->long_url, (int) uHub('redirect_status_code'), $headers);
+        return redirect()->away($url->long_url, (int) config('urlhub.redirect_status_code'), $headers);
     }
 
     /**

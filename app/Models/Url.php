@@ -74,11 +74,7 @@ class Url extends Model
     // Mutator
     public function setUserIdAttribute($value)
     {
-        if ($value === 0) {
-            $this->attributes['user_id'] = null;
-        } else {
-            $this->attributes['user_id'] = $value;
-        }
+        $this->attributes['user_id'] = $value === 0 ? null : $value;
     }
 
     public function setLongUrlAttribute($value)
@@ -88,14 +84,14 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        if (uHub('web_title')) {
+        $this->attributes['meta_title'] = 'No Title';
+
+        if (config('urlhub.web_title')) {
+            $this->attributes['meta_title'] = $value;
+
             if (Str::startsWith($value, 'http')) {
                 $this->attributes['meta_title'] = $this->getWebTitle($value);
-            } else {
-                $this->attributes['meta_title'] = $value;
             }
-        } else {
-            $this->attributes['meta_title'] = 'No Title';
         }
     }
 
@@ -144,9 +140,8 @@ class Url extends Model
             'is_custom' => 0,
             'clicks'    => 0,
         ]);
-        $replicate->save();
 
-        return $replicate;
+        return $replicate->save();
     }
 
     public function urlKey(string $string)
@@ -179,8 +174,8 @@ class Url extends Model
      */
     public function keyUsed()
     {
-        $hashLength = (int) uHub('hash_length');
-        $regexPattern = '['.uHub('hash_char').']{'.$hashLength.'}';
+        $hashLength = (int) config('urlhub.hash_length');
+        $regexPattern = '['.config('urlhub.hash_char').']{'.$hashLength.'}';
 
         $randomKey = self::whereIsCustom(false)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
@@ -199,8 +194,8 @@ class Url extends Model
      */
     public function keyCapacity(): float|int
     {
-        $alphabet = strlen(uHub('hash_char'));
-        $length = uHub('hash_length');
+        $alphabet = strlen(config('urlhub.hash_char'));
+        $length = config('urlhub.hash_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
@@ -280,7 +275,7 @@ class Url extends Model
      */
     public static function anonymizeIp($address): string
     {
-        if (uHub('anonymize_ip_addr') === false) {
+        if (config('urlhub.anonymize_ip_addr') === false) {
             return $address;
         }
 
@@ -330,8 +325,8 @@ class Url extends Model
      */
     public function randomString()
     {
-        $alphabet = uHub('hash_char');
-        $length = uHub('hash_length');
+        $alphabet = config('urlhub.hash_char');
+        $length = config('urlhub.hash_length');
         $factory = new RandomLibFactory;
 
         return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);

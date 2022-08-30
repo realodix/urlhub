@@ -2,23 +2,6 @@
 
 use App\Helpers\General\GeneralHelper;
 
-if (! function_exists('uHub')) {
-    /**
-     * Shortcut to access configuration values in '/config/urlhub.php'.
-     *
-     * Example:
-     * - uHub('option') is equal to config('urlhub.option').
-     *
-     * @codeCoverageIgnore
-     *
-     * @return mixed
-     */
-    function uHub(string $value)
-    {
-        return config('urlhub.'.$value);
-    }
-}
-
 if (! function_exists('appName')) {
     /**
      * Helper to grab the application name.
