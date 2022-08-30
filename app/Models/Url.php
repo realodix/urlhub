@@ -6,6 +6,7 @@ use App\Http\Traits\Hashidable;
 use Embed\Embed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use RandomLib\Factory as RandomLibFactory;
 use Spatie\Url\Url as SpatieUrl;
@@ -108,10 +109,9 @@ class Url extends Model
     */
 
     /**
-     * @param array|string $request
-     * @param int          $authId
+     * @param \Illuminate\Http\Request $request
      */
-    public function shortenUrl($request, $authId)
+    public function shortenUrl(Request $request, int|null $authId)
     {
         $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
 
