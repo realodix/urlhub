@@ -19,7 +19,7 @@
           <i><span title="{{number_format($url->clicks)}}">{{numberToAmountShort($url->clicks)}}</span></i>
         </li>
         @auth
-          @if (Auth::user()->hasRole('admin') || (Auth::user()->id == $url->user_id))
+          @if (Auth::user()->hasRole('admin') || (Auth::user()->id === $url->user_id))
             <li class="inline-block pr-2">
               <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
                 class="btn-icon text-xs"
