@@ -15,10 +15,8 @@ class GeneralHelper
      * @param bool   $scheme Show or remove URL schemes.
      * @param int    $limit  Length string will be truncated to, including
      *                       suffix.
-     *
-     * @return string
      */
-    public function urlDisplay(string $url, bool $scheme = true, int $limit = null)
+    public function urlDisplay(string $url, bool $scheme = true, int $limit = null): string
     {
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
@@ -62,11 +60,11 @@ class GeneralHelper
     /**
      * Remove http://, www., and slashes from the URL.
      *
-     * @param mixed $url
+     * https://www.php.net/manual/en/function.preg-replace.php
      *
-     * @return mixed
+     * @return string|array|null
      */
-    public function urlSanitize($url)
+    public function urlSanitize(mixed $url)
     {
         return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
     }
