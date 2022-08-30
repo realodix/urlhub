@@ -67,7 +67,7 @@ class UrlController extends Controller
     {
         $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
 
-        if (uHub('qrcode')) {
+        if (config('urlhub.qrcode')) {
             $qrCode = \Endroid\QrCode\Builder\Builder::create()
                 ->data($url->short_url)
                 ->size(170)
