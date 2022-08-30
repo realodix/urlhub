@@ -3,7 +3,6 @@
 namespace App\Helpers\General;
 
 use Illuminate\Support\Str;
-use Realodix\Utils\Url;
 use Spatie\Url\Url as SpatieUrl;
 
 class GeneralHelper
