@@ -88,7 +88,7 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
-        if (uHub('web_title')) {
+        if (config('urlhub.web_title')) {
             if (Str::startsWith($value, 'http')) {
                 $this->attributes['meta_title'] = $this->getWebTitle($value);
             } else {
@@ -179,8 +179,8 @@ class Url extends Model
      */
     public function keyUsed()
     {
-        $hashLength = (int) uHub('hash_length');
-        $regexPattern = '['.uHub('hash_char').']{'.$hashLength.'}';
+        $hashLength = (int) config('urlhub.hash_length');
+        $regexPattern = '['.config('urlhub.hash_char').']{'.$hashLength.'}';
 
         $randomKey = self::whereIsCustom(false)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
@@ -199,8 +199,8 @@ class Url extends Model
      */
     public function keyCapacity(): float|int
     {
-        $alphabet = strlen(uHub('hash_char'));
-        $length = uHub('hash_length');
+        $alphabet = strlen(config('urlhub.hash_char'));
+        $length = config('urlhub.hash_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
@@ -280,7 +280,7 @@ class Url extends Model
      */
     public static function anonymizeIp($address): string
     {
-        if (uHub('anonymize_ip_addr') === false) {
+        if (config('urlhub.anonymize_ip_addr') === false) {
             return $address;
         }
 
@@ -330,8 +330,8 @@ class Url extends Model
      */
     public function randomString()
     {
-        $alphabet = uHub('hash_char');
-        $length = uHub('hash_length');
+        $alphabet = config('urlhub.hash_char');
+        $length = config('urlhub.hash_length');
         $factory = new RandomLibFactory;
 
         return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
