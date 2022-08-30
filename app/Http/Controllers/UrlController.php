@@ -90,7 +90,7 @@ class UrlController extends Controller
      *
      * @param string $key
      */
-    public function duplicate($key)
+    public function duplicate(string $key)
     {
         $url = (new Url)->duplicate($key, Auth::id());
 
