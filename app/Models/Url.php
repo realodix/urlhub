@@ -74,11 +74,7 @@ class Url extends Model
     // Mutator
     public function setUserIdAttribute($value)
     {
-        if ($value === 0) {
-            $this->attributes['user_id'] = null;
-        } else {
-            $this->attributes['user_id'] = $value;
-        }
+        $this->attributes['user_id'] = $value === 0 ? null : $value;
     }
 
     public function setLongUrlAttribute($value)
@@ -88,14 +84,14 @@ class Url extends Model
 
     public function setMetaTitleAttribute($value)
     {
+        $this->attributes['meta_title'] = 'No Title';
+
         if (uHub('web_title')) {
+            $this->attributes['meta_title'] = $value;
+
             if (Str::startsWith($value, 'http')) {
                 $this->attributes['meta_title'] = $this->getWebTitle($value);
-            } else {
-                $this->attributes['meta_title'] = $value;
             }
-        } else {
-            $this->attributes['meta_title'] = 'No Title';
         }
     }
 
@@ -144,9 +140,8 @@ class Url extends Model
             'is_custom' => 0,
             'clicks'    => 0,
         ]);
-        $replicate->save();
 
-        return $replicate;
+        return $replicate->save();
     }
 
     public function urlKey(string $string)
