@@ -39,6 +39,6 @@ class ChangePasswordController extends Controller
         $user->save();
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Password changed successfully !'));
+            ->withFlashSuccess(__('Password changed successfully !'));
     }
 }

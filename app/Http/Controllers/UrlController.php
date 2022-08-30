@@ -35,7 +35,7 @@ class UrlController extends Controller
      * Validate the eligibility of a custom keyword that you want to use as a
      * short URL. Response to an AJAX request.
      *
-     * @param Request $request Illuminate\Http\Request
+     * @param Request $request \Illuminate\Http\Request
      */
     public function customKeyValidation(Request $request)
     {
@@ -95,6 +95,6 @@ class UrlController extends Controller
         $url = (new Url)->duplicate($key, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword)
-                         ->withFlashSuccess(__('Link was successfully duplicated.'));
+            ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }
