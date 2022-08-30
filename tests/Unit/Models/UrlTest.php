@@ -210,7 +210,7 @@ class UrlTest extends TestCase
      */
     public function keyUsed()
     {
-        config(['urlhub.hash_length' => uHub('hash_length') + 1]);
+        config(['urlhub.hash_length' => config('urlhub.hash_length') + 1]);
 
         Url::factory()->create([
             'keyword' => $this->url->randomString(),
@@ -218,7 +218,7 @@ class UrlTest extends TestCase
         $this->assertSame(1, $this->url->keyUsed());
 
         Url::factory()->create([
-            'keyword'   => str_repeat('a', uHub('hash_length')),
+            'keyword'   => str_repeat('a', config('urlhub.hash_length')),
             'is_custom' => 1,
         ]);
         $this->assertSame(2, $this->url->keyUsed());
@@ -226,12 +226,12 @@ class UrlTest extends TestCase
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.hash_length',
         // maka ini tidak ikut terhitung.
         Url::factory()->create([
-            'keyword'   => str_repeat('b', uHub('hash_length') + 2),
+            'keyword'   => str_repeat('b', config('urlhub.hash_length') + 2),
             'is_custom' => 1,
         ]);
         $this->assertSame(2, $this->url->keyUsed());
 
-        config(['urlhub.hash_length' => uHub('hash_length') + 3]);
+        config(['urlhub.hash_length' => config('urlhub.hash_length') + 3]);
         $this->assertSame(0, $this->url->keyUsed());
         $this->assertSame($this->totalUrl + 3, $this->url->totalUrl());
     }
@@ -285,8 +285,8 @@ class UrlTest extends TestCase
      */
     public function keyCapacity()
     {
-        $hashLength = uHub('hash_length');
-        $hashCharLength = strlen(uHub('hash_char'));
+        $hashLength = config('urlhub.hash_length');
+        $hashCharLength = strlen(config('urlhub.hash_char'));
         $keyCapacity = pow($hashCharLength, $hashLength);
 
         $this->assertSame($keyCapacity, $this->url->keyCapacity());
