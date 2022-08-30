@@ -1,7 +1,6 @@
 <?php
 
 use App\Helpers\General\GeneralHelper;
-use Realodix\Utils\Url;
 
 if (! function_exists('appName')) {
     /**
