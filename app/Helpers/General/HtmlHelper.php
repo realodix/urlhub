@@ -31,10 +31,8 @@ class HtmlHelper
 
     /**
      * @param null $secure
-     *
-     * @return mixed
      */
-    public function style(string $url, array $attributes = [], $secure = null): HtmlString
+    public function style(string $url, array $attributes = [], $secure = null)
     {
         $defaults = [
             'media' => 'all',
@@ -52,7 +50,7 @@ class HtmlHelper
     /**
      * Generate a link to a JavaScript file.
      */
-    public function script(string $url, array $attributes = [], bool $secure = null): HtmlString
+    public function script(string $url, array $attributes = [], bool $secure = null)
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
@@ -85,8 +83,6 @@ class HtmlHelper
 
     /**
      * Transform the string to an Html serializable object.
-     *
-     * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString(string $html)
     {
