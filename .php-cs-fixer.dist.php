@@ -10,7 +10,8 @@ $localRules = [
     'group_import' => true,
 
     // Realodix
-    'no_empty_comment'  => false
+    'no_empty_comment'  => false,
+    'no_superfluous_phpdoc_tags' => false,
 ];
 
 return Config::create('@Realodix', $localRules)
