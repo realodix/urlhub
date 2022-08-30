@@ -87,8 +87,6 @@ class UrlController extends Controller
      * UrlHub only allows users (registered & unregistered) to have a unique
      * link. You can duplicate it and it will generated a new unique random
      * key.
-     *
-     * @param string $key
      */
     public function duplicate(string $key)
     {
