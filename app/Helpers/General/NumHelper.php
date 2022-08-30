@@ -19,7 +19,7 @@ class NumHelper
             $nFormat = $this->numbPrec($number / pow(10, 3));
             $suffix = 'K+';
 
-            if (($number / pow(10, 3) == 1) || ($number / pow(10, 4) == 1) || ($number / pow(10, 5) == 1)) {
+            if (($number / pow(10, 3) === 1) || ($number / pow(10, 4) === 1) || ($number / pow(10, 5) === 1)) {
                 $suffix = 'K';
             }
         } elseif ($number >= pow(10, 6) && $number < pow(10, 9)) {
@@ -27,7 +27,7 @@ class NumHelper
             $nFormat = $this->numbPrec($number / pow(10, 6));
             $suffix = 'M+';
 
-            if (($number / pow(10, 6) == 1) || ($number / pow(10, 7) == 1) || ($number / pow(10, 8) == 1)) {
+            if (($number / pow(10, 6) === 1) || ($number / pow(10, 7) === 1) || ($number / pow(10, 8) === 1)) {
                 $suffix = 'M';
             }
         } elseif ($number >= pow(10, 9) && $number < pow(10, 12)) {
@@ -35,7 +35,7 @@ class NumHelper
             $nFormat = $this->numbPrec($number / pow(10, 9));
             $suffix = 'B+';
 
-            if (($number / pow(10, 9) == 1) || ($number / pow(10, 10) == 1) || ($number / pow(10, 11) == 1)) {
+            if (($number / pow(10, 9) === 1) || ($number / pow(10, 10) === 1) || ($number / pow(10, 11) === 1)) {
                 $suffix = 'B';
             }
         } elseif ($number >= pow(10, 12)) {
@@ -43,7 +43,7 @@ class NumHelper
             $nFormat = $this->numbPrec($number / pow(10, 12));
             $suffix = 'T+';
 
-            if (($number / pow(10, 12) == 1) || ($number / pow(10, 13) == 1) || ($number / pow(10, 14) == 1)) {
+            if (($number / pow(10, 12) === 1) || ($number / pow(10, 13) === 1) || ($number / pow(10, 14) === 1)) {
                 $suffix = 'T';
             }
         }

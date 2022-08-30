@@ -74,7 +74,7 @@ class Url extends Model
     // Mutator
     public function setUserIdAttribute($value)
     {
-        if ($value == 0) {
+        if ($value === 0) {
             $this->attributes['user_id'] = null;
         } else {
             $this->attributes['user_id'] = $value;
@@ -204,7 +204,7 @@ class Url extends Model
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
-        if ($length == 0) {
+        if ($length === 0) {
             return 0;
         }
 
@@ -230,7 +230,7 @@ class Url extends Model
         $used = $this->keyUsed();
         $remaining = $this->keyRemaining();
 
-        $result = round(($remaining / $capacity) * 100, 2);
+        $result = (float) round(($remaining / $capacity) * 100, 2);
 
         if (($result == 0) && ($capacity <= $used)) {
             return '0%';
@@ -280,7 +280,7 @@ class Url extends Model
      */
     public static function anonymizeIp($address): string
     {
-        if (uHub('anonymize_ip_addr') == false) {
+        if (uHub('anonymize_ip_addr') === false) {
             return $address;
         }
 
