@@ -10,7 +10,7 @@ jobs:
       fail-fast: true
       matrix:
         php-version: ['8.0', '8.1']
-        stability: [prefer-lowest, prefer-stable]
+        stability: [lowest, stable]
 
     steps:
       - name: Checkout code
@@ -50,7 +50,7 @@ jobs:
         with:
           timeout_minutes: 5
           max_attempts: 3
-          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+          command: composer update --prefer-${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
       - name: Install Dependencies (NPM)
         uses: nick-invision/retry@v2
