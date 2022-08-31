@@ -248,7 +248,7 @@ class Url extends Model
         return self::whereUserId($id)->count('keyword');
     }
 
-    public function totalUrl()
+    public function totalUrl(): int
     {
         return self::count('keyword');
     }
