@@ -289,8 +289,8 @@ class Url extends Model
     }
 
     /**
-     * This function returns a string: either the page title as defined in
-     * HTML, or "{domain_name} - No Title" if not found.
+     * This function returns a string: either the page title as defined in HTML,
+     * or "{domain_name} - No Title" if not found.
      *
      * @throws \Exception
      */
