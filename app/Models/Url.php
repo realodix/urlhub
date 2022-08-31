@@ -237,9 +237,10 @@ class Url extends Model
     /**
      * Count the number of URLs based on user id.
      *
-     * @param int $id
+     * @param int $id Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
+     *                guest yang membuat URL. Lihat setUserIdAttribute().
      */
-    public function urlCount($id = null)
+    public function urlCount(int $id = null)
     {
         return self::whereUserId($id)->count('keyword');
     }
