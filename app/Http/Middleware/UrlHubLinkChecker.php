@@ -30,11 +30,8 @@ class UrlHubLinkChecker
         */
 
         if ($url->keyRemaining() === 0) {
-            return redirect()
-                   ->back()
-                   ->withFlashError(
-                       __('Sorry, our service is currently under maintenance.')
-                   );
+            return redirect()->back()
+                ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
 
         /*
@@ -49,17 +46,17 @@ class UrlHubLinkChecker
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
-                          ->whereLongUrl($longUrl)
-                          ->first();
+                        ->whereLongUrl($longUrl)
+                        ->first();
         } else {
             $s_url = Url::whereLongUrl($longUrl)
-                          ->whereNull('user_id')
-                          ->first();
+                        ->whereNull('user_id')
+                        ->first();
         }
 
         if ($s_url) {
             return redirect()->route('short_url.stats', $s_url->keyword)
-                             ->with('msgLinkAlreadyExists', __('Link already exists.'));
+                    ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 
         return $next($request);
