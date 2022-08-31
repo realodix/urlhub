@@ -27,9 +27,6 @@
     <MissingParamType occurrences="1">
       <code>$value</code>
     </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>numberToAmountShort</code>
-    </MissingReturnType>
   </file>
   <file src="app/Http/Controllers/API/UrlController.php">
     <InvalidScalarArgument occurrences="1">
@@ -52,8 +49,7 @@
     </TooManyArguments>
   </file>
   <file src="app/Http/Controllers/Dashboard/AllUrlController.php">
-    <MissingReturnType occurrences="2">
-      <code>delete</code>
+    <MissingReturnType occurrences="1">
       <code>view</code>
     </MissingReturnType>
   </file>
@@ -63,24 +59,19 @@
       <code>Auth::id()</code>
       <code>Auth::id()</code>
     </InvalidScalarArgument>
-    <MissingReturnType occurrences="5">
-      <code>delete</code>
-      <code>duplicate</code>
+    <MissingReturnType occurrences="2">
       <code>edit</code>
-      <code>update</code>
       <code>view</code>
     </MissingReturnType>
   </file>
   <file src="app/Http/Controllers/Dashboard/User/ChangePasswordController.php">
-    <MissingReturnType occurrences="2">
-      <code>update</code>
+    <MissingReturnType occurrences="1">
       <code>view</code>
     </MissingReturnType>
   </file>
   <file src="app/Http/Controllers/Dashboard/User/UserController.php">
-    <MissingReturnType occurrences="3">
+    <MissingReturnType occurrences="2">
       <code>edit</code>
-      <code>update</code>
       <code>view</code>
     </MissingReturnType>
   </file>
@@ -89,10 +80,7 @@
       <code>Auth::id()</code>
       <code>Auth::id()</code>
     </InvalidScalarArgument>
-    <MissingReturnType occurrences="4">
-      <code>create</code>
-      <code>customKeyValidation</code>
-      <code>duplicate</code>
+    <MissingReturnType occurrences="1">
       <code>showShortenedUrlDetails</code>
     </MissingReturnType>
   </file>
@@ -312,9 +300,6 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="app/Services/UrlRedirectionService.php">
-    <MissingReturnType occurrences="1">
-      <code>storeVisitStat</code>
-    </MissingReturnType>
     <PossiblyInvalidMethodCall occurrences="1">
       <code>ip</code>
     </PossiblyInvalidMethodCall>

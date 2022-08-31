@@ -52,6 +52,8 @@ class DashboardController extends Controller
      * @param Request $request \Illuminate\Http\Request
      * @param mixed   $url
      *
+     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, $url)
@@ -68,6 +70,8 @@ class DashboardController extends Controller
      * Delete a shortened URL on user request.
      *
      * @param mixed $url
+     *
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -87,6 +91,8 @@ class DashboardController extends Controller
      * key.
      *
      * @param mixed $key
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($key)
     {

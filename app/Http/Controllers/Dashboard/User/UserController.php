@@ -44,6 +44,8 @@ class UserController extends Controller
      * @param UpdateUserEmail $request \App\Http\Requests\UpdateUserEmail
      * @param User            $user    \App\Models\User
      *
+     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UpdateUserEmail $request, User $user)

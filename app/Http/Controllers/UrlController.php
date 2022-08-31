@@ -23,6 +23,8 @@ class UrlController extends Controller
      * Shorten long URLs.
      *
      * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(StoreUrl $request)
     {
@@ -36,6 +38,8 @@ class UrlController extends Controller
      * short URL. Response to an AJAX request.
      *
      * @param Request $request \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function customKeyValidation(Request $request)
     {
@@ -87,6 +91,8 @@ class UrlController extends Controller
      * UrlHub only allows users (registered & unregistered) to have a unique
      * link. You can duplicate it and it will generated a new unique random
      * key.
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate(string $key)
     {
