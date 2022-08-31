@@ -174,7 +174,7 @@ class Url extends Model
      *
      * The generated character length for "customKey" should be similar to "randomKey".
      */
-    public function keyUsed()
+    public function keyUsed(): int
     {
         $hashLength = (int) config('urlhub.hash_length');
         $regexPattern = '['.config('urlhub.hash_char').']{'.$hashLength.'}';
