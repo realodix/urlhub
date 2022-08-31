@@ -4,15 +4,13 @@ on: [pull_request, push]
 
 jobs:
   build:
-    name: PHP ${{ matrix.php-version }}
+    name: PHP ${{ matrix.php-version }} - ${{ matrix.stability }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       matrix:
         php-version: ['8.0', '8.1']
-        include:
-          - php-version: '8.2'
-            flags: "--ignore-platform-req=php"
+        stability: [prefer-lowest, prefer-stable]
 
     steps:
       - name: Checkout code
@@ -52,16 +50,14 @@ jobs:
         with:
           timeout_minutes: 5
           max_attempts: 3
-          command: |
-            composer update --prefer-dist --no-interaction --no-progress ${{ matrix.flags }}
+          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
       - name: Install Dependencies (NPM)
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 5
           max_attempts: 3
-          command: |
-            npm install
+          command: npm install
 
       - name: Prepare
         run: |
