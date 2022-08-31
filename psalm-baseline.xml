@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.23.0@f1fe6ff483bf325c803df9f510d09a03fd796f88">
+<files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac">
   <file src="app/Helpers/General/GeneralHelper.php">
     <ImplicitToStringCast occurrences="1">
       <code>Str::of($url)-&gt;limit($limit)</code>
     </ImplicitToStringCast>
+    <InvalidReturnStatement occurrences="1">
+      <code>$url</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>string</code>
+    </InvalidReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$url</code>
+    </NullableReturnStatement>
+    <PossiblyInvalidArgument occurrences="6">
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+    </PossiblyInvalidArgument>
   </file>
   <file src="app/Helpers/General/HtmlHelper.php">
+    <MissingReturnType occurrences="3">
+      <code>script</code>
+      <code>style</code>
+      <code>toHtmlString</code>
+    </MissingReturnType>
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>$url</code>
     </PossiblyNullPropertyAssignmentValue>
@@ -19,9 +41,6 @@
     </MissingReturnType>
   </file>
   <file src="app/Http/Controllers/API/UrlController.php">
-    <ImplicitToStringCast occurrences="1">
-      <code>$request</code>
-    </ImplicitToStringCast>
     <InvalidScalarArgument occurrences="1">
       <code>Auth::id()</code>
     </InvalidScalarArgument>
@@ -75,9 +94,6 @@
     </MissingReturnType>
   </file>
   <file src="app/Http/Controllers/UrlController.php">
-    <ImplicitToStringCast occurrences="1">
-      <code>$request</code>
-    </ImplicitToStringCast>
     <InvalidScalarArgument occurrences="2">
       <code>Auth::id()</code>
       <code>Auth::id()</code>
@@ -97,12 +113,11 @@
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="app/Http/Livewire/AllUlrTable.php">
-    <InvalidReturnStatement occurrences="2">
+    <InvalidReturnStatement occurrences="1">
       <code>Url::query()</code>
     </InvalidReturnStatement>
-    <InvalidReturnType occurrences="2">
+    <InvalidReturnType occurrences="1">
       <code>?Builder</code>
-      <code>?PowerGridEloquent</code>
     </InvalidReturnType>
     <PossiblyInvalidOperand occurrences="4">
       <code>__('Delete')</code>
@@ -112,12 +127,9 @@
     </PossiblyInvalidOperand>
   </file>
   <file src="app/Http/Livewire/MyUrlTable.php">
-    <InvalidReturnStatement occurrences="2">
+    <InvalidReturnStatement occurrences="1">
       <code>Url::whereUserId(Auth::id())</code>
     </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>?PowerGridEloquent</code>
-    </InvalidReturnType>
     <PossiblyInvalidOperand occurrences="4">
       <code>__('Delete')</code>
       <code>__('Duplicate')</code>
@@ -126,12 +138,11 @@
     </PossiblyInvalidOperand>
   </file>
   <file src="app/Http/Livewire/UserTable.php">
-    <InvalidReturnStatement occurrences="2">
+    <InvalidReturnStatement occurrences="1">
       <code>User::query()</code>
     </InvalidReturnStatement>
-    <InvalidReturnType occurrences="2">
+    <InvalidReturnType occurrences="1">
       <code>?Builder</code>
-      <code>?PowerGridEloquent</code>
     </InvalidReturnType>
     <PossiblyInvalidOperand occurrences="2">
       <code>__('Change Password')</code>
@@ -171,23 +182,24 @@
     <InvalidNullableReturnType occurrences="1">
       <code>string</code>
     </InvalidNullableReturnType>
+    <InvalidReturnStatement occurrences="1">
+      <code>max($keyCapacity - $keyUsed, 0)</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>int</code>
+    </InvalidReturnType>
     <MissingParamType occurrences="3">
       <code>$value</code>
       <code>$value</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingReturnType occurrences="13">
+    <MissingReturnType occurrences="8">
       <code>duplicate</code>
       <code>getShortUrlAttribute</code>
-      <code>keyRemainingInPercent</code>
-      <code>keyUsed</code>
       <code>setLongUrlAttribute</code>
       <code>setMetaTitleAttribute</code>
       <code>setUserIdAttribute</code>
       <code>shortenUrl</code>
-      <code>totalUrl</code>
-      <code>urlCount</code>
-      <code>urlKey</code>
       <code>user</code>
       <code>visit</code>
     </MissingReturnType>
@@ -198,12 +210,6 @@
     <NullableReturnStatement occurrences="1">
       <code>$webTitle</code>
     </NullableReturnStatement>
-    <PossiblyInvalidArrayOffset occurrences="4">
-      <code>$request['custom_key']</code>
-      <code>$request['long_url']</code>
-      <code>$request['long_url']</code>
-      <code>$request['long_url']</code>
-    </PossiblyInvalidArrayOffset>
     <PossiblyInvalidMethodCall occurrences="1">
       <code>ip</code>
     </PossiblyInvalidMethodCall>
@@ -213,6 +219,9 @@
     <PossiblyNullReference occurrences="1">
       <code>ip</code>
     </PossiblyNullReference>
+    <RedundantCast occurrences="1">
+      <code>(float) round(($remaining / $capacity) * 100, 2)</code>
+    </RedundantCast>
   </file>
   <file src="app/Models/User.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -347,6 +356,9 @@
     <InvalidReturnType occurrences="1">
       <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
     </InvalidReturnType>
+    <MoreSpecificReturnType occurrences="1">
+      <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
+    </MoreSpecificReturnType>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>static::newFactory()</code>
     </RedundantConditionGivenDocblockType>
