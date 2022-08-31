@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac">
   <file src="app/Helpers/General/GeneralHelper.php">
-    <ImplicitToStringCast occurrences="1">
-      <code>Str::of($url)-&gt;limit($limit)</code>
-    </ImplicitToStringCast>
-    <InvalidReturnStatement occurrences="1">
-      <code>$url</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>string</code>
-    </InvalidReturnType>
-    <NullableReturnStatement occurrences="1">
-      <code>$url</code>
-    </NullableReturnStatement>
+    <MissingReturnType occurrences="1">
+      <code>urlDisplay</code>
+    </MissingReturnType>
     <PossiblyInvalidArgument occurrences="6">
       <code>$url</code>
       <code>$url</code>

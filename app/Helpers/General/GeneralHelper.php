@@ -15,7 +15,7 @@ class GeneralHelper
      * @param int    $limit  Length string will be truncated to, including
      *                       suffix.
      */
-    public function urlDisplay(string $url, bool $scheme = true, int $limit = null): string
+    public function urlDisplay(string $url, bool $scheme = true, int $limit = null)
     {
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
@@ -41,7 +41,7 @@ class GeneralHelper
             // The length of string truncated by str()->limit() does not include a suffix,
             // so it needs to be adjusted so that the length of the truncated string
             // matches the expected limit.
-            $adjLimit = $limit - (strlen(Str::of($url)->limit($limit)) - $limit);
+            $adjLimit = $limit - (strlen((string) Str::of($url)->limit($limit)) - $limit);
 
             $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
             $lastSide = -abs($adjLimit - $firstSide);
