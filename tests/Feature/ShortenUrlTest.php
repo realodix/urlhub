@@ -66,4 +66,23 @@ class ShortenUrlTest extends TestCase
 
         $this->assertCount(2, Url::all());
     }
+
+    /** @test */
+    public function duplicateUrlCreatedByGuest()
+    {
+        $this->loginAsAdmin();
+
+        $url = Url::factory()->create([
+            'user_id' => Url::GUEST_ID,
+        ]);
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $this->from(route('short_url.stats', $url->keyword))
+             ->get(route('duplicate', $url->keyword));
+
+        $this->assertCount(3, Url::all());
+    }
 }

@@ -131,7 +131,7 @@ class Url extends Model
      * @param string $key
      * @param int    $authId
      */
-    public function duplicate($key, $authId)
+    public function duplicate(string $key, int $authId)
     {
         $randomKey = $this->randomString();
         $shortenedUrl = self::whereKeyword($key)->firstOrFail();
