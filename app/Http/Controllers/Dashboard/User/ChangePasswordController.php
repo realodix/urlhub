@@ -14,6 +14,8 @@ class ChangePasswordController extends Controller
      *
      * @param User $user \App\Models\User
      *
+     * @return \Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function view(User $user)

@@ -65,6 +65,8 @@ class UrlController extends Controller
      * View the shortened URL details.
      *
      * @param string $key
+     *
+     * @return \Illuminate\View\View
      * @codeCoverageIgnore
      */
     public function showShortenedUrlDetails($key)

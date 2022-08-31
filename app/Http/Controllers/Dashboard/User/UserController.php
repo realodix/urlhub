@@ -18,6 +18,8 @@ class UserController extends Controller
 
     /**
      * Display a listing of the users.
+     *
+     * @return \Illuminate\View\View
      */
     public function view()
     {
@@ -28,6 +30,8 @@ class UserController extends Controller
      * Show the form for editing the specified user.
      *
      * @param User $user \App\Models\User
+     *
+     * @return \Illuminate\View\View
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

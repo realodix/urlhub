@@ -11,6 +11,8 @@ class DashboardController extends Controller
 {
     /**
      * Show all user short URLs.
+     *
+     * @return \Illuminate\View\View
      */
     public function view()
     {
@@ -36,6 +38,8 @@ class DashboardController extends Controller
      * Show the long url edit page.
      *
      * @param mixed $key
+     *
+     * @return \Illuminate\View\View
      */
     public function edit($key)
     {

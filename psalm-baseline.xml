@@ -48,41 +48,18 @@
       <code>only</code>
     </TooManyArguments>
   </file>
-  <file src="app/Http/Controllers/Dashboard/AllUrlController.php">
-    <MissingReturnType occurrences="1">
-      <code>view</code>
-    </MissingReturnType>
-  </file>
   <file src="app/Http/Controllers/Dashboard/DashboardController.php">
     <InvalidScalarArgument occurrences="3">
       <code>Auth::id()</code>
       <code>Auth::id()</code>
       <code>Auth::id()</code>
     </InvalidScalarArgument>
-    <MissingReturnType occurrences="2">
-      <code>edit</code>
-      <code>view</code>
-    </MissingReturnType>
-  </file>
-  <file src="app/Http/Controllers/Dashboard/User/ChangePasswordController.php">
-    <MissingReturnType occurrences="1">
-      <code>view</code>
-    </MissingReturnType>
-  </file>
-  <file src="app/Http/Controllers/Dashboard/User/UserController.php">
-    <MissingReturnType occurrences="2">
-      <code>edit</code>
-      <code>view</code>
-    </MissingReturnType>
   </file>
   <file src="app/Http/Controllers/UrlController.php">
     <InvalidScalarArgument occurrences="2">
       <code>Auth::id()</code>
       <code>Auth::id()</code>
     </InvalidScalarArgument>
-    <MissingReturnType occurrences="1">
-      <code>showShortenedUrlDetails</code>
-    </MissingReturnType>
   </file>
   <file src="app/Http/Kernel.php">
     <NonInvariantDocblockPropertyType occurrences="3">
