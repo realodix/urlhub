@@ -21,7 +21,7 @@ class UrlController extends Controller
     /**
      * Store the data the user sent to create the Short URL.
      *
-     * @param \App\Http\Requests\StoreUrl $request
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */

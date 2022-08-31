@@ -22,7 +22,7 @@ class UrlController extends Controller
     /**
      * Shorten long URLs.
      *
-     * @param \App\Http\Requests\StoreUrl $request
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
      */
     public function create(StoreUrl $request)
     {

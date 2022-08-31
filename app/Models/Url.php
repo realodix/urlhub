@@ -111,7 +111,7 @@ class Url extends Model
     */
 
     /**
-     * @param \App\Http\Requests\StoreUrl $request
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
      */
     public function shortenUrl(StoreUrl $request, int|null $authId)
     {
