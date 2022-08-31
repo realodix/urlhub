@@ -219,7 +219,7 @@ class Url extends Model
         return max($keyCapacity - $keyUsed, 0);
     }
 
-    public function keyRemainingInPercent()
+    public function keyRemainingInPercent(): string
     {
         $capacity = $this->keyCapacity();
         $used = $this->keyUsed();
