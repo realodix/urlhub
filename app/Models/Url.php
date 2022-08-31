@@ -240,7 +240,7 @@ class Url extends Model
      * @param int $id Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
      *                guest yang membuat URL. Lihat setUserIdAttribute().
      */
-    public function urlCount(int $id = null)
+    public function urlCount(int $id = null): int
     {
         return self::whereUserId($id)->count('keyword');
     }
