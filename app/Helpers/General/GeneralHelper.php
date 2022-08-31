@@ -63,7 +63,7 @@ class GeneralHelper
      *
      * @return string|array|null
      */
-    public function urlSanitize(mixed $url)
+    public function urlSanitize(string|array $url)
     {
         return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
     }
