@@ -210,10 +210,8 @@ class Url extends Model
 
     /**
      * Counts unique random strings that can be generated.
-     *
-     * @return int
      */
-    public function keyRemaining()
+    public function keyRemaining(): int
     {
         $keyCapacity = $this->keyCapacity();
         $keyUsed = $this->keyUsed();
