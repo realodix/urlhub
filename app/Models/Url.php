@@ -142,7 +142,7 @@ class Url extends Model
         return $replicate->save();
     }
 
-    public function urlKey(string $string)
+    public function urlKey(string $string): string
     {
         $length = config('urlhub.hash_length') * -1;
 
