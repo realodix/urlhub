@@ -127,10 +127,6 @@ class Url extends Model
         ]);
     }
 
-    /**
-     * @param string $key
-     * @param int    $authId
-     */
     public function duplicate(string $key, int $authId)
     {
         $randomKey = $this->randomString();
