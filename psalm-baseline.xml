@@ -173,20 +173,13 @@
     <InvalidNullableReturnType occurrences="1">
       <code>string</code>
     </InvalidNullableReturnType>
-    <InvalidReturnStatement occurrences="1">
-      <code>max($keyCapacity - $keyUsed, 0)</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>int</code>
-    </InvalidReturnType>
     <MissingParamType occurrences="3">
       <code>$value</code>
       <code>$value</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingReturnType occurrences="8">
+    <MissingReturnType occurrences="7">
       <code>duplicate</code>
-      <code>getShortUrlAttribute</code>
       <code>setLongUrlAttribute</code>
       <code>setMetaTitleAttribute</code>
       <code>setUserIdAttribute</code>
@@ -194,10 +187,6 @@
       <code>user</code>
       <code>visit</code>
     </MissingReturnType>
-    <NonInvariantDocblockPropertyType occurrences="2">
-      <code>$casts</code>
-      <code>$fillable</code>
-    </NonInvariantDocblockPropertyType>
     <NullableReturnStatement occurrences="1">
       <code>$webTitle</code>
     </NullableReturnStatement>

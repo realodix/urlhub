@@ -22,7 +22,7 @@ class Url extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<string>
      */
     protected $fillable = [
         'user_id',
@@ -37,7 +37,7 @@ class Url extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     *@var array<string, string>
+     *@var array
      */
     protected $casts = [
         'user_id'   => 'int',
@@ -99,7 +99,7 @@ class Url extends Model
     }
 
     // Accessor
-    public function getShortUrlAttribute()
+    public function getShortUrlAttribute(): string
     {
         return url('/'.$this->attributes['keyword']);
     }
@@ -206,13 +206,15 @@ class Url extends Model
 
     /**
      * Counts unique random strings that can be generated.
+     *
+     * https://www.php.net/manual/en/function.max.php
      */
     public function keyRemaining(): int
     {
         $keyCapacity = $this->keyCapacity();
         $keyUsed = $this->keyUsed();
 
-        return max($keyCapacity - $keyUsed, 0);
+        return (int) max($keyCapacity - $keyUsed, 0);
     }
 
     public function keyRemainingInPercent(): string
