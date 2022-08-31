@@ -172,8 +172,7 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>'App\Models\Url'</code>
     </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="2">
-      <code>guestCount</code>
+    <MissingReturnType occurrences="1">
       <code>url</code>
     </MissingReturnType>
     <NonInvariantDocblockPropertyType occurrences="3">
