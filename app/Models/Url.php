@@ -17,6 +17,8 @@ class Url extends Model
     use HasFactory;
     use Hashidable;
 
+    const GUEST_ID = null;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -75,7 +77,7 @@ class Url extends Model
     // Mutator
     public function setUserIdAttribute($value)
     {
-        $this->attributes['user_id'] = $value === 0 ? null : $value;
+        $this->attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
     }
 
     public function setLongUrlAttribute($value)
