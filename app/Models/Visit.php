@@ -38,6 +38,6 @@ class Visit extends Model
      */
     public function url()
     {
-        return $this->belongsTo('App\Models\Url');
+        return $this->belongsTo(Url::class);
     }
 }

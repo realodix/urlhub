@@ -57,7 +57,7 @@ class Url extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User')->withDefault([
+        return $this->belongsTo(User::class)->withDefault([
             'name' => 'Guest',
         ]);
     }
@@ -67,7 +67,7 @@ class Url extends Model
      */
     public function visit()
     {
-        return $this->hasMany('App\Models\Visit');
+        return $this->hasMany(Visit::class);
     }
 
     /*
