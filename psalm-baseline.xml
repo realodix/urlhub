@@ -131,10 +131,6 @@
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="app/Models/Url.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'App\Models\User'</code>
-      <code>'App\Models\Visit'</code>
-    </ArgumentTypeCoercion>
     <InvalidNullableReturnType occurrences="1">
       <code>string</code>
     </InvalidNullableReturnType>
@@ -169,9 +165,6 @@
     </RedundantCast>
   </file>
   <file src="app/Models/User.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'App\Models\Url'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="1">
       <code>url</code>
     </MissingReturnType>
@@ -182,9 +175,6 @@
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="app/Models/Visit.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'App\Models\Url'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="1">
       <code>url</code>
     </MissingReturnType>
