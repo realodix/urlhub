@@ -81,16 +81,26 @@ class Url extends Model
     */
 
     // Mutator
+
+    /**
+     * @return void
+     */
     public function setUserIdAttribute($value)
     {
         $this->attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
     }
 
+    /**
+     * @return void
+     */
     public function setLongUrlAttribute($value)
     {
         $this->attributes['long_url'] = rtrim($value, '/');
     }
 
+    /**
+     * @return void
+     */
     public function setMetaTitleAttribute($value)
     {
         $this->attributes['meta_title'] = 'No Title';
