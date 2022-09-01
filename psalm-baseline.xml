@@ -139,14 +139,12 @@
       <code>$value</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingReturnType occurrences="7">
+    <MissingReturnType occurrences="5">
       <code>duplicate</code>
       <code>setLongUrlAttribute</code>
       <code>setMetaTitleAttribute</code>
       <code>setUserIdAttribute</code>
       <code>shortenUrl</code>
-      <code>user</code>
-      <code>visit</code>
     </MissingReturnType>
     <NullableReturnStatement occurrences="1">
       <code>$webTitle</code>

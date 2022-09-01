@@ -52,6 +52,9 @@ class Url extends Model
     | are defined as methods on Eloquent model classes.
     */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function user()
     {
         return $this->belongsTo(User::class)->withDefault([
@@ -59,6 +62,9 @@ class Url extends Model
         ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function visit()
     {
         return $this->hasMany(Visit::class);
