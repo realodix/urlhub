@@ -52,6 +52,9 @@ class User extends Authenticatable
     | are defined as methods on Eloquent model classes.
     */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function url()
     {
         return $this->hasMany('App\Models\Url');

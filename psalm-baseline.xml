@@ -143,14 +143,12 @@
       <code>$value</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingReturnType occurrences="7">
+    <MissingReturnType occurrences="5">
       <code>duplicate</code>
       <code>setLongUrlAttribute</code>
       <code>setMetaTitleAttribute</code>
       <code>setUserIdAttribute</code>
       <code>shortenUrl</code>
-      <code>user</code>
-      <code>visit</code>
     </MissingReturnType>
     <NullableReturnStatement occurrences="1">
       <code>$webTitle</code>
@@ -172,9 +170,6 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>'App\Models\Url'</code>
     </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="1">
-      <code>url</code>
-    </MissingReturnType>
     <NonInvariantDocblockPropertyType occurrences="3">
       <code>$casts</code>
       <code>$fillable</code>
@@ -185,9 +180,6 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>'App\Models\Url'</code>
     </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="1">
-      <code>url</code>
-    </MissingReturnType>
     <NonInvariantDocblockPropertyType occurrences="1">
       <code>$fillable</code>
     </NonInvariantDocblockPropertyType>
