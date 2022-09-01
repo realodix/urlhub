@@ -208,7 +208,7 @@ class Url extends Model
     /**
      * Counts the maximum number of unique random strings that can be generated.
      */
-    public function keyCapacity(): float|int
+    public function keyCapacity(): int
     {
         $alphabet = strlen(config('urlhub.hash_char'));
         $length = config('urlhub.hash_length');
