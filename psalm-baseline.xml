@@ -160,9 +160,6 @@
     </RedundantCast>
   </file>
   <file src="app/Models/User.php">
-    <MissingReturnType occurrences="1">
-      <code>url</code>
-    </MissingReturnType>
     <NonInvariantDocblockPropertyType occurrences="3">
       <code>$casts</code>
       <code>$fillable</code>
@@ -170,9 +167,6 @@
     </NonInvariantDocblockPropertyType>
   </file>
   <file src="app/Models/Visit.php">
-    <MissingReturnType occurrences="1">
-      <code>url</code>
-    </MissingReturnType>
     <NonInvariantDocblockPropertyType occurrences="1">
       <code>$fillable</code>
     </NonInvariantDocblockPropertyType>
