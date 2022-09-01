@@ -23,6 +23,8 @@ class UrlController extends Controller
      * Shorten long URLs.
      *
      * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(StoreUrl $request)
     {
@@ -36,6 +38,8 @@ class UrlController extends Controller
      * short URL. Response to an AJAX request.
      *
      * @param Request $request \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function customKeyValidation(Request $request)
     {
@@ -61,6 +65,8 @@ class UrlController extends Controller
      * View the shortened URL details.
      *
      * @param string $key
+     *
+     * @return \Illuminate\View\View
      * @codeCoverageIgnore
      */
     public function showShortenedUrlDetails($key)
@@ -88,9 +94,9 @@ class UrlController extends Controller
      * link. You can duplicate it and it will generated a new unique random
      * key.
      *
-     * @param string $key
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($key)
+    public function duplicate(string $key)
     {
         $url = (new Url)->duplicate($key, Auth::id());
 

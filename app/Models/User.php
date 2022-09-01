@@ -52,6 +52,9 @@ class User extends Authenticatable
     | are defined as methods on Eloquent model classes.
     */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function url()
     {
         return $this->hasMany('App\Models\Url');
@@ -64,10 +67,10 @@ class User extends Authenticatable
     */
 
     /*
-     * Count the number of guests (URL without user id) by IP address, then grouped by
-     * IP address.
+     * Count the number of guests (URL without user id) by IP address, then
+     * grouped by IP address.
      */
-    public function guestCount()
+    public function guestCount(): int
     {
         $url = Url::select('ip', DB::raw('count(*) as total'))
             ->whereNull('user_id')->groupBy('ip')

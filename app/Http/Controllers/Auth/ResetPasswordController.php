@@ -36,7 +36,7 @@ class ResetPasswordController extends Controller
      *
      * @param string|null $token
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\View\View
      */
     public function showResetForm(Request $request, $token = null)
     {

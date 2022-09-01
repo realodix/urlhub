@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\{Url, Visit};
-use Illuminate\Http\RedirectResponse;
 
 class UrlRedirectionService
 {
@@ -15,7 +14,7 @@ class UrlRedirectionService
      *
      * @param Url $url \App\Models\Url
      *
-     * @return RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleHttpRedirect(Url $url)
     {
@@ -33,6 +32,8 @@ class UrlRedirectionService
      * Create visit statistics and store it in the database.
      *
      * @param Url $url \App\Models\Url
+     *
+     * @return void
      */
     private function storeVisitStat(Url $url)
     {

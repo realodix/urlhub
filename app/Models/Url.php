@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\StoreUrl;
 use App\Http\Traits\Hashidable;
 use Embed\Embed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,10 +17,12 @@ class Url extends Model
     use HasFactory;
     use Hashidable;
 
+    const GUEST_ID = null;
+
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<string>
      */
     protected $fillable = [
         'user_id',
@@ -34,7 +37,7 @@ class Url extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     *@var array<string, string>
+     *@var array
      */
     protected $casts = [
         'user_id'   => 'int',
@@ -49,6 +52,9 @@ class Url extends Model
     | are defined as methods on Eloquent model classes.
     */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function user()
     {
         return $this->belongsTo('App\Models\User')->withDefault([
@@ -56,6 +62,9 @@ class Url extends Model
         ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function visit()
     {
         return $this->hasMany('App\Models\Visit');
@@ -72,16 +81,26 @@ class Url extends Model
     */
 
     // Mutator
+
+    /**
+     * @return void
+     */
     public function setUserIdAttribute($value)
     {
-        $this->attributes['user_id'] = $value === 0 ? null : $value;
+        $this->attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
     }
 
+    /**
+     * @return void
+     */
     public function setLongUrlAttribute($value)
     {
         $this->attributes['long_url'] = rtrim($value, '/');
     }
 
+    /**
+     * @return void
+     */
     public function setMetaTitleAttribute($value)
     {
         $this->attributes['meta_title'] = 'No Title';
@@ -96,7 +115,7 @@ class Url extends Model
     }
 
     // Accessor
-    public function getShortUrlAttribute()
+    public function getShortUrlAttribute(): string
     {
         return url('/'.$this->attributes['keyword']);
     }
@@ -108,10 +127,11 @@ class Url extends Model
     */
 
     /**
-     * @param array|string $request
-     * @param int          $authId
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     *
+     * @return self
      */
-    public function shortenUrl($request, $authId)
+    public function shortenUrl(StoreUrl $request, int|null $authId)
     {
         $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
 
@@ -125,11 +145,7 @@ class Url extends Model
         ]);
     }
 
-    /**
-     * @param string $key
-     * @param int    $authId
-     */
-    public function duplicate($key, $authId)
+    public function duplicate(string $key, int $authId)
     {
         $randomKey = $this->randomString();
         $shortenedUrl = self::whereKeyword($key)->firstOrFail();
@@ -144,7 +160,7 @@ class Url extends Model
         return $replicate->save();
     }
 
-    public function urlKey(string $string)
+    public function urlKey(string $string): string
     {
         $length = config('urlhub.hash_length') * -1;
 
@@ -172,7 +188,7 @@ class Url extends Model
      *
      * The generated character length for "customKey" should be similar to "randomKey".
      */
-    public function keyUsed()
+    public function keyUsed(): int
     {
         $hashLength = (int) config('urlhub.hash_length');
         $regexPattern = '['.config('urlhub.hash_char').']{'.$hashLength.'}';
@@ -209,17 +225,17 @@ class Url extends Model
     /**
      * Counts unique random strings that can be generated.
      *
-     * @return int
+     * https://www.php.net/manual/en/function.max.php
      */
-    public function keyRemaining()
+    public function keyRemaining(): int
     {
         $keyCapacity = $this->keyCapacity();
         $keyUsed = $this->keyUsed();
 
-        return max($keyCapacity - $keyUsed, 0);
+        return (int) max($keyCapacity - $keyUsed, 0);
     }
 
-    public function keyRemainingInPercent()
+    public function keyRemainingInPercent(): string
     {
         $capacity = $this->keyCapacity();
         $used = $this->keyUsed();
@@ -241,14 +257,15 @@ class Url extends Model
     /**
      * Count the number of URLs based on user id.
      *
-     * @param int $id
+     * @param int $id Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
+     *                guest yang membuat URL. Lihat setUserIdAttribute().
      */
-    public function urlCount($id = null)
+    public function urlCount(int $id = null): int
     {
         return self::whereUserId($id)->count('keyword');
     }
 
-    public function totalUrl()
+    public function totalUrl(): int
     {
         return self::count('keyword');
     }
@@ -293,8 +310,8 @@ class Url extends Model
     }
 
     /**
-     * This function returns a string: either the page title as defined in
-     * HTML, or "{domain_name} - No Title" if not found.
+     * This function returns a string: either the page title as defined in HTML,
+     * or "{domain_name} - No Title" if not found.
      *
      * @throws \Exception
      */

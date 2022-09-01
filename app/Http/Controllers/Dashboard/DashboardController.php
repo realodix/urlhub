@@ -11,6 +11,8 @@ class DashboardController extends Controller
 {
     /**
      * Show all user short URLs.
+     *
+     * @return \Illuminate\View\View
      */
     public function view()
     {
@@ -36,6 +38,8 @@ class DashboardController extends Controller
      * Show the long url edit page.
      *
      * @param mixed $key
+     *
+     * @return \Illuminate\View\View
      */
     public function edit($key)
     {
@@ -51,6 +55,8 @@ class DashboardController extends Controller
      *
      * @param Request $request \Illuminate\Http\Request
      * @param mixed   $url
+     *
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -68,6 +74,8 @@ class DashboardController extends Controller
      * Delete a shortened URL on user request.
      *
      * @param mixed $url
+     *
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -87,6 +95,8 @@ class DashboardController extends Controller
      * key.
      *
      * @param mixed $key
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($key)
     {

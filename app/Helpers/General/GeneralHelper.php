@@ -14,8 +14,6 @@ class GeneralHelper
      * @param bool   $scheme Show or remove URL schemes.
      * @param int    $limit  Length string will be truncated to, including
      *                       suffix.
-     *
-     * @return string
      */
     public function urlDisplay(string $url, bool $scheme = true, int $limit = null)
     {
@@ -43,7 +41,7 @@ class GeneralHelper
             // The length of string truncated by str()->limit() does not include a suffix,
             // so it needs to be adjusted so that the length of the truncated string
             // matches the expected limit.
-            $adjLimit = $limit - (strlen(Str::of($url)->limit($limit)) - $limit);
+            $adjLimit = $limit - (strlen((string) Str::of($url)->limit($limit)) - $limit);
 
             $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
             $lastSide = -abs($adjLimit - $firstSide);
@@ -61,11 +59,11 @@ class GeneralHelper
     /**
      * Remove http://, www., and slashes from the URL.
      *
-     * @param mixed $url
+     * https://www.php.net/manual/en/function.preg-replace.php
      *
-     * @return mixed
+     * @return string|array|null
      */
-    public function urlSanitize($url)
+    public function urlSanitize(string|array $url)
     {
         return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
     }
