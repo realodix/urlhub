@@ -4,22 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
-use App\Rules\StrAlphaUnderscore;
-use App\Rules\StrLowercase;
-use App\Rules\URL\KeywordBlacklist;
-use App\Services\UrlService;
+use App\Rules\Url\KeywordBlacklist;
+use App\Rules\{StrAlphaUnderscore, StrLowercase};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Auth, Validator};
 
 class UrlController extends Controller
 {
     /**
      * UrlController constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
-    public function __construct(protected UrlService $urlSrvc)
+    public function __construct()
     {
         $this->middleware('urlhublinkchecker')->only('create');
     }
@@ -27,11 +22,13 @@ class UrlController extends Controller
     /**
      * Shorten long URLs.
      *
-     * @param  StoreUrl  $request  \App\Http\Requests\StoreUrl
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(StoreUrl $request)
     {
-        $url = $this->urlSrvc->shortenUrl($request, Auth::id());
+        $url = (new Url)->shortenUrl($request, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword);
     }
@@ -40,7 +37,9 @@ class UrlController extends Controller
      * Validate the eligibility of a custom keyword that you want to use as a
      * short URL. Response to an AJAX request.
      *
-     * @param  Request  $request  Illuminate\Http\Request
+     * @param Request $request \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function customKeyValidation(Request $request)
     {
@@ -65,29 +64,43 @@ class UrlController extends Controller
     /**
      * View the shortened URL details.
      *
-     * @param  string  $key
+     * @param string $key
+     *
+     * @return \Illuminate\View\View
      * @codeCoverageIgnore
      */
     public function showShortenedUrlDetails($key)
     {
         $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
 
-        $qrCode = qrCode($url->short_url);
+        if (config('urlhub.qrcode')) {
+            $qrCode = \Endroid\QrCode\Builder\Builder::create()
+                ->data($url->short_url)
+                ->size(170)
+                ->labelText('Scan QR Code')
+                ->errorCorrectionLevel(
+                    new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh
+                )
+                ->build();
 
-        return view('frontend.short', compact(['qrCode']), ['url' => $url]);
+            return view('frontend.short', compact(['qrCode']), ['url' => $url]);
+        }
+
+        return view('frontend.short', ['url' => $url]);
     }
 
     /**
      * UrlHub only allows users (registered & unregistered) to have a unique
-     * link. You can duplicate it and it will produce a new unique random key.
+     * link. You can duplicate it and it will generated a new unique random
+     * key.
      *
-     * @param  string  $key
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($key)
+    public function duplicate(string $key)
     {
-        $url = $this->urlSrvc->duplicate($key, Auth::id());
+        $url = (new Url)->duplicate($key, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword)
-                         ->withFlashSuccess(__('Link was successfully duplicated.'));
+            ->withFlashSuccess(__('Link was successfully duplicated.'));
     }
 }

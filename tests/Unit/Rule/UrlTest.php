@@ -2,8 +2,7 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\URL\DomainBlacklist;
-use App\Rules\URL\KeywordBlacklist;
+use App\Rules\Url\{DomainBlacklist, KeywordBlacklist};
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -19,11 +18,11 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider domainBlacklistPassDataProvider
      *
-     * @param  mixed  $value
+     * @param mixed $value
      */
     public function domainBlacklistPass($value)
     {
-        $rule = new DomainBlacklist();
+        $rule = new DomainBlacklist;
         $this->assertTrue($rule->passes('test', $value));
     }
 
@@ -32,11 +31,11 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider domainBlacklistFailDataProvider
      *
-     * @param  mixed  $value
+     * @param mixed $value
      */
     public function domainBlacklistFail($value)
     {
-        $rule = new DomainBlacklist();
+        $rule = new DomainBlacklist;
         $this->assertFalse($rule->passes('test', $value));
     }
 
@@ -63,11 +62,11 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider keywordBlacklistPassDataProvider
      *
-     * @param  string  $value
+     * @param string $value
      */
     public function keywordBlacklistPass($value)
     {
-        $rule = new KeywordBlacklist();
+        $rule = new KeywordBlacklist;
         $this->assertTrue($rule->passes('test', $value));
     }
 
@@ -76,11 +75,11 @@ class UrlTest extends TestCase
      * @group u-rule
      * @dataProvider keywordBlacklistFailDataProvider
      *
-     * @param  string  $value
+     * @param string $value
      */
     public function keywordBlacklistFail($value)
     {
-        $rule = new KeywordBlacklist();
+        $rule = new KeywordBlacklist;
         $this->assertFalse($rule->passes('test', $value));
     }
 

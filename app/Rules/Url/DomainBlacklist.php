@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\URL;
+namespace App\Rules\Url;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -9,13 +9,14 @@ class DomainBlacklist implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed  $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        $blacklist = urlSanitize(uHub('domain_blacklist'));
+        $blacklist = urlSanitize(config('urlhub.domain_blacklist'));
         $longUrl = rtrim($value, '/');
         $a = true;
 

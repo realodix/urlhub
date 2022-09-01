@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Components
+ */
+
+.blade-icon {
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  box-sizing: content-box;
+  vertical-align: -0.125em;
+}
+
+.btn {
+	@apply inline-flex items-center px-3 py-1.5;
+  @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 text-gray-500 hover:text-gray-600 active:text-gray-500;
+	@apply text-base font-normal leading-6 text-center no-underline align-middle tracking-wide;
+  @apply rounded disabled:opacity-25;
+	@apply cursor-pointer select-none;
+  box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  &-sm {
+    @apply text-sm leading-6;
+    @apply px-2 py-1;
+  }
+
+  &-primary {
+    @apply text-base font-normal text-white bg-[#0078d4] border-[#0078d4];
+    @apply hover:text-[#0078d4] hover:bg-white active:bg-[#0078d4] hover:border-white;
+  }
+
+  &-secondary {
+    @apply text-base font-normal text-[#0078d4] bg-white;
+    @apply hover:text-white hover:bg-[#0078d4] active:bg-white hover:border-[#0078d4];
+  }
+}
+
+.btn-icon {
+  @apply px-2 py-1 rounded-md bg-stone-50 hover:bg-stone-200 active:bg-stone-50 text-gray-500 hover:text-gray-600 active:text-gray-500;
+  box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11);
+}
+
+.form-input {
+  @apply block w-full;
+  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded
+}

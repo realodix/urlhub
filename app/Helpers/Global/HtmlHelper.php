@@ -4,9 +4,8 @@ use App\Helpers\General\HtmlHelper;
 
 if (! function_exists('style')) {
     /**
-     * @param  string  $url
-     * @param  array  $attributes
-     * @param  null  $secure
+     * @param null $secure
+     *
      * @return mixed
      */
     function style(string $url, array $attributes = [], $secure = null)
@@ -17,9 +16,8 @@ if (! function_exists('style')) {
 
 if (! function_exists('script')) {
     /**
-     * @param  string  $url
-     * @param  array  $attributes
-     * @param  null  $secure
+     * @param null $secure
+     *
      * @return mixed
      */
     function script(string $url, array $attributes = [], $secure = null)

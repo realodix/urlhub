@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserPassword;
 use App\Models\User;
-use App\Services\UserService;
+use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
     /**
      * Show the form for editing password.
      *
-     * @param  User  $user  \App\Models\User
+     * @param User $user \App\Models\User
+     *
+     * @return \Illuminate\View\View
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -26,22 +28,21 @@ class ChangePasswordController extends Controller
     /**
      * Change the password.
      *
-     * @param  UpdateUserPassword  $request  \App\Http\Requests\UpdateUserPassword
-     * @param  User  $user  \App\Models\User
+     * @param UpdateUserPassword $request \App\Http\Requests\UpdateUserPassword
+     * @param User               $user    \App\Models\User
+     *
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UpdateUserPassword $request, User $user)
     {
-        $userSrvc = new UserService;
-
         $this->authorize('updatePass', $user);
 
-        $data = $request->only('new-password');
-
-        $userSrvc->updateUserPassword($data, $user);
+        $user->password = Hash::make($request['new-password']);
+        $user->save();
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Password changed successfully !'));
+            ->withFlashSuccess(__('Password changed successfully !'));
     }
 }

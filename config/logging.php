@@ -1,8 +1,6 @@
 <?php
 
-use Monolog\Handler\NullHandler;
-use Monolog\Handler\StreamHandler;
-use Monolog\Handler\SyslogUdpHandler;
+use Monolog\Handler\{NullHandler, StreamHandler, SyslogUdpHandler};
 
 return [
 
@@ -30,7 +28,10 @@ return [
     |
     */
 
-    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
+    'deprecations' => [
+        'channel' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
+        'trace'   => false,
+    ],
 
     /*
     |--------------------------------------------------------------------------

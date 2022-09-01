@@ -1,12 +1,11 @@
 ![screenshot](https://i.imgur.com/MeZvgiz.png)
 
-[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 [![LaravelVersion](https://img.shields.io/badge/Laravel-9-f56857.svg?style=flat-square)](https://laravel.com/docs/9.x)
 ![PHPVersion](https://img.shields.io/badge/PHP-8-777BB4.svg?style=flat-square)
-[![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE) <br>
+[![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE)
 ![Build Status](https://github.com/realodix/urlhub/actions/workflows/tests.yml/badge.svg)
-[![StyleCI shield](https://github.styleci.io/repos/146186200/shield)](https://github.styleci.io/repos/146186200)
-[![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub)
+[![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub) <br>
+[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 
 > **Warning: UrlHub is still in development**, constantly being optimized and isn't still stable enough to be used in production environments.
 
@@ -22,7 +21,6 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
 - **IP anonymization (or IP masking) [optional]:** Anonymizes visitor addresses as soon as technically feasible at the earliest possible stage of the collection network. The full IP address is never written to disk in this case. This feature is designed to help site owners comply with their own privacy policies, recommendations from local data protection authorities and legal regulations like the GDPR, which may prevent the storage of full IP address information.
 - **Power of customisation:** Do you want your site to be just for your use, so no one can register? No problem. It's in the configuration. Users must be registered to create Short URL? That's okay. It's in the configuration. From configuration file, you can edit pretty everything of your website. The choice is yours.
-- **Configuration guard:** No need to worry if you fill in the configuration values with the wrong data type or values that is not allowed, UrlHub will automatically correct it for you.
 - **Sortable list of shortened URLs.**
 - **Written in [PHP](https://www.php.net/) and [Laravel 9](https://laravel.com/docs/9.x).**
 - **Modern and simple interface.**
@@ -74,7 +72,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
    Please note that this project uses Yarn as the package manager, so you can't find the package-lock.json file that is needed by NPM.
 
 ## Contributing
-The people who contribute to UrlHub do so for the love of open source, our users and ecosystem, and most importantly, pushing the web forward together. Developers like you can help by contributing to rich and vibrant documentation, issuing pull requests to help us cover niche use cases, and to help sustain what you love about UrlHub. 
+The people who contribute to UrlHub do so for the love of open source, our users and ecosystem, and most importantly, pushing the web forward together. Developers like you can help by contributing to rich and vibrant documentation, issuing pull requests to help us cover niche use cases, and to help sustain what you love about UrlHub.
 
 Anybody can help by doing any of the following:
 - Ask your employer to use UrlHub in projects.
@@ -82,7 +80,7 @@ Anybody can help by doing any of the following:
 
 ### Running Tests
 
-From the projects root folder run 
+From the projects root folder run
 - `php artisan test`
 - or `composer test`
 - or `./vendor/bin/phpunit`

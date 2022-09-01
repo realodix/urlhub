@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\StrAlphaUnderscore;
-use App\Rules\URL\DomainBlacklist;
+use App\Rules\Url\DomainBlacklist;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrl extends FormRequest

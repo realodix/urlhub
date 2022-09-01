@@ -5,15 +5,16 @@ public/mix-manifest.json
 
 ## IDE Local Workspace Folder
 /.idea
-/.vscode
 
 ## Laravel
 .env
 .env.backup
 /public/*/*.map
+/public/build
 /public/hot
 /public/storage
 /storage/*.key
+auth.json
 Homestead.json
 Homestead.yaml
 
@@ -53,6 +54,3 @@ phpcs.xml
 phpstan.neon
 # Psalm
 psalm.xml
-
-#
-docker-compose.override.yml

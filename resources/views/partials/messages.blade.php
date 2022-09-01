@@ -18,6 +18,6 @@
 @elseif (session('msgLinkAlreadyExists'))
   <div class="block mb-4 pl-3 pr-4 py-2 font-medium text-base text-emerald-700 bg-emerald-50 border-l-4 border-emerald-400">
     {{ session('msgLinkAlreadyExists') }}
-    @auth<a href="{{route('duplicate', $url->keyword)}}">@lang('Duplicate this')<a>@endauth
+    @auth<a href="{{route('duplicate', $url->keyword)}}">{{__('Duplicate this')}}<a>@endauth
   </div>
 @endif

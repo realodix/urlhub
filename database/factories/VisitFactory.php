@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Url;
-use App\Models\Visit;
+use App\Models\{Url, Visit};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VisitFactory extends Factory
@@ -26,11 +25,6 @@ class VisitFactory extends Factory
             'url_id'           => Url::factory(),
             'referer'          => 'https://github.com/realodix/urlhub',
             'ip'               => $this->faker->ipv4(),
-            'device'           => 'WebKit',
-            'platform'         => 'Windows',
-            'platform_version' => '10',
-            'browser'          => 'Chrome',
-            'browser_version'  => '75.0.3770.100',
         ];
     }
 }

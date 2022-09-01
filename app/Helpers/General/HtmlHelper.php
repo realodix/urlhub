@@ -22,7 +22,7 @@ class HtmlHelper
     /**
      * HtmlHelper constructor.
      *
-     * @param  UrlGenerator  $url
+     * @param UrlGenerator $url
      */
     public function __construct(UrlGenerator $url = null)
     {
@@ -30,10 +30,7 @@ class HtmlHelper
     }
 
     /**
-     * @param  string  $url
-     * @param  array  $attributes
-     * @param  null  $secure
-     * @return mixed
+     * @param null $secure
      */
     public function style(string $url, array $attributes = [], $secure = null)
     {
@@ -52,13 +49,8 @@ class HtmlHelper
 
     /**
      * Generate a link to a JavaScript file.
-     *
-     * @param  string  $url
-     * @param  array  $attributes
-     * @param  bool  $secure
-     * @return \Illuminate\Support\HtmlString
      */
-    public function script(string $url, array $attributes = [], $secure = null)
+    public function script(string $url, array $attributes = [], bool $secure = null)
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
@@ -67,20 +59,15 @@ class HtmlHelper
 
     /**
      * Build an HTML attribute string from an array.
-     *
-     * @param  array  $attributes
-     * @return string
      */
-    public function attributes(array $attributes)
+    public function attributes(array $attributes): string
     {
         $html = [];
 
-        foreach ((array) $attributes as $key => $value) {
+        foreach ($attributes as $key => $value) {
             $element = $this->attributeElement($key, $value);
 
-            if (! is_null($element)) {
-                $html[] = $element;
-            }
+            $html[] = $element;
         }
 
         return count($html) > 0 ? ' '.implode(' ', $html) : '';
@@ -88,36 +75,14 @@ class HtmlHelper
 
     /**
      * Build a single attribute element.
-     *
-     * @param  string  $key
-     * @param  string  $value
-     * @return string
      */
-    protected function attributeElement(string $key, string $value)
+    protected function attributeElement(string $key, string $value): string
     {
-        // For numeric keys we will assume that the value is a boolean attribute where the
-        // presence of the attribute represents a true value and the absence represents a
-        // false value. This will convert HTML attributes such as "required" to a correct
-        // form instead of using incorrect numerics.
-        if (is_numeric($key)) {
-            return $value;
-        }
-
-        // Treat boolean attributes as HTML properties
-        if (is_bool($value) && $key != 'value') {
-            return $value ? $key : '';
-        }
-
-        if (! is_null($value)) {
-            return $key.'="'.e($value).'"';
-        }
+        return $key.'="'.e($value).'"';
     }
 
     /**
      * Transform the string to an Html serializable object.
-     *
-     * @param  string  $html
-     * @return \Illuminate\Support\HtmlString
      */
     protected function toHtmlString(string $html)
     {

@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserEmail;
 use App\Models\User;
-use App\Services\UserService;
 
 class UserController extends Controller
 {
     /**
      * UserController constructor.
-     *
-     * @param  UserService  $userSrvc  \App\Services\UserService
      */
-    public function __construct(protected UserService $userSrvc)
+    public function __construct()
     {
         $this->middleware('role:admin')->only('view');
     }
 
     /**
      * Display a listing of the users.
+     *
+     * @return \Illuminate\View\View
      */
     public function view()
     {
@@ -30,7 +29,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user.
      *
-     * @param  User  $user  \App\Models\User
+     * @param User $user \App\Models\User
+     *
+     * @return \Illuminate\View\View
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -44,8 +45,10 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param  UpdateUserEmail  $request  \App\Http\Requests\UpdateUserEmail
-     * @param  User  $user  \App\Models\User
+     * @param UpdateUserEmail $request \App\Http\Requests\UpdateUserEmail
+     * @param User            $user    \App\Models\User
+     *
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -53,11 +56,10 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $data = $request->only('email');
-
-        $this->userSrvc->updateUserEmail($data, $user);
+        $user->email = $request->email;
+        $user->save();
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Profile updated.'));
+            ->withFlashSuccess(__('Profile updated.'));
     }
 }

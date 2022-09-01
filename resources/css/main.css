@@ -1,9 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'base.css';
+
+main {
+  @apply sm:mt-10;
+}
 
 .frontend, .backend, .auth {
-  @apply bg-[#F1F5F9] font-sans text-gray-900 antialiased;
+  @apply bg-bg-primary font-sans text-gray-900 antialiased;
 }
 
 .navbar {
@@ -39,62 +41,10 @@
   }
 }
 
-main {
-  @apply sm:mt-10;
-}
-
-.form-input {
-  @apply block w-full;
-  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded-md
-}
-
-.button {
-  @apply text-xs uppercase tracking-widest;
-  @apply rounded-md px-4 py-2;
-
-  @apply text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600;
-  @apply border border-transparent focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition;
-}
-
-.badge-rounded {
-  @apply text-xs font-bold;
-  @apply text-center align-baseline whitespace-nowrap;
-  @apply rounded-full py-1 px-2;
-}
-
 .power-grid {
   .pg-header {
     input {
       @apply bg-white focus:ring-uh-indigo-400 focus:border-uh-indigo-400;
-    }
-  }
-
-  .pg-table {
-    @apply overflow-hidden overflow-x-auto bg-white shadow overflow-y-auto relative;
-    @apply shadow-none;
-
-    .table {
-      thead {
-        @apply bg-slate-50;
-
-        th {
-          @apply text-uh-1;
-        }
-      }
-
-      tbody {
-        tr {
-          @apply text-uh-1 hover:bg-slate-50;
-        }
-
-        .btn-action {
-          @apply text-slate-400 hover:text-uh-indigo-500 active:text-uh-indigo-700;
-        }
-
-        .btn-action-delete {
-          @apply text-slate-400 hover:text-red-500 active:text-red-700;
-        }
-      }
     }
   }
 

@@ -19,12 +19,6 @@ return [
     'registration' => env('UH_REGISTRATION', true),
 
     /*
-     * Enable/Disable to allow unregistered users see shortened links
-     * statistics.
-     */
-    'guest_show_stat' => env('UH_GUEST_SHOW_STAT', true),
-
-    /*
     |--------------------------------------------------------------------------
     | Shorten URL
     |--------------------------------------------------------------------------
@@ -34,7 +28,7 @@ return [
      * The expected (and maximum) number of characters in generating unique
      * keyword.
      */
-    'hash_length' => env('HASH_LENGTH', 6), // >= 1
+    'hash_length' => env('UH_HASH_LENGTH', 6), // >= 1
 
     /*
      * Characters to be used in generating unique keyword. For convenience,
@@ -43,7 +37,7 @@ return [
      * including digits (0-9), letters (A-Z, a-z).
      */
     'hash_char' => env(
-        'HASH_CHAR',
+        'UH_HASH_CHAR',
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
     ),
 
@@ -73,6 +67,10 @@ return [
         'js',
         'svg',
     ],
+
+    'web_title' => env('UH_WEB_TITLE', true),
+
+    'qrcode' => env('UH_QRCODE', true),
 
     /*
     |--------------------------------------------------------------------------

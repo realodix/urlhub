@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\URL;
+namespace App\Rules\Url;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -13,13 +13,14 @@ class KeywordBlacklist implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed  $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        if (in_array($value, uHub('reserved_keyword'), true)) {
+        if (in_array($value, config('urlhub.reserved_keyword'), true)) {
             return false;
         }
 

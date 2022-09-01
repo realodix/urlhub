@@ -14,7 +14,7 @@
 </head>
 
 <body class="backend">
-@include('partials.b-header')
+@include('partials.nav-header')
 
 <main class="main max-w-7xl mx-auto sm:mt-0 py-4 sm:px-6 lg:px-8">
   @yield('content')

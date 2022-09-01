@@ -33,8 +33,11 @@ class Visit extends Model
     | are defined as methods on Eloquent model classes.
     */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function url()
     {
-        return $this->belongsTo('App\Models\Url');
+        return $this->belongsTo(Url::class);
     }
 }

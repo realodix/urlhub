@@ -1,44 +1,17 @@
 <?php
 
-use PhpCsFixer\Finder;
-use Realodix\CsConfig\Factory;
-use Realodix\CsConfig\RuleSet;
+use Realodix\Relax\Config;
+use Realodix\Relax\Finder;
 
-$overrideRules = [
-    // Realodix
-    'phpdoc_align' => false,
-    'phpdoc_order' => false,
-    'phpdoc_separation' => false,
-    // RelodixPlus
-    'PhpCsFixerCustomFixers/single_space_after_statement' => false,
-    'PhpCsFixerCustomFixers/no_useless_comment' => false,
+$localRules = [
+    // Base
     'binary_operator_spaces' => false,
-    'general_phpdoc_annotation_remove' => false,
-    'no_superfluous_elseif' => false,
+    'single_import_per_statement' => false,
+    'group_import' => true,
 
-    // Fixed
-    'align_multiline_comment' => [
-        'comment_type' => 'phpdocs_like',
-    ],
+    // Realodix
+    'no_empty_comment'  => false
 ];
 
-$excludes = [
-    'bootstrap/cache',
-    'config',
-    'node_modules',
-    'public',
-    'storage'
-];
-
-$finder = Finder::create()
-    ->exclude($excludes)
-    ->in(__DIR__)
-    ->name('*.php')
-    ->notName('*.blade.php')
-    ->notName('.phpstorm.meta.php')
-    ->notName('_ide_*.php')
-    ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
-
-return Factory::fromRuleSet(new RuleSet\RealodixPlus, $overrideRules)
-        ->setFinder($finder);
+return Config::create('@Realodix', $localRules)
+    ->setFinder(Finder::laravel());

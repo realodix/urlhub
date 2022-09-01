@@ -7,6 +7,7 @@ use App\Http\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -51,8 +52,30 @@ class User extends Authenticatable
     | are defined as methods on Eloquent model classes.
     */
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
     public function url()
     {
-        return $this->hasMany('App\Models\Url');
+        return $this->hasMany(Url::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | General Functions
+    |--------------------------------------------------------------------------
+    */
+
+    /*
+     * Count the number of guests (URL without user id) by IP address, then
+     * grouped by IP address.
+     */
+    public function guestCount(): int
+    {
+        $url = Url::select('ip', DB::raw('count(*) as total'))
+            ->whereNull('user_id')->groupBy('ip')
+            ->get();
+
+        return $url->count();
     }
 }

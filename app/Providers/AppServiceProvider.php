@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Services\ConfigService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,9 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Keeping configuration (config\urlhub.php) values of an invalid value.
-        (new ConfigService())->configGuard();
-
         // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL.
         if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function ($pattern, $value) {

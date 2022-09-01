@@ -4,20 +4,16 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
-use App\Services\UrlService;
-use Illuminate\Http\Request;
+use App\Models\Url;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Auth, Validator};
 
 class UrlController extends Controller
 {
     /**
      * UrlController constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
-    public function __construct(protected UrlService $urlSrvc)
+    public function __construct()
     {
         $this->middleware('urlhublinkchecker')->only('create');
     }
@@ -25,17 +21,18 @@ class UrlController extends Controller
     /**
      * Store the data the user sent to create the Short URL.
      *
-     * @param  Request  $request
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUrl $request)
     {
         $v = Validator::make($request->all(), (new StoreUrl)->rules());
         if ($v->fails()) {
             return response()->json(['errors' => $v->errors()->all()]);
         }
 
-        $url = $this->urlSrvc->shortenUrl($request, Auth::id());
+        $url = (new Url)->shortenUrl($request, Auth::id());
 
         return response([
             'id'        => $url->id,

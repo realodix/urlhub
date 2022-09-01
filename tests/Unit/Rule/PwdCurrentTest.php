@@ -16,7 +16,7 @@ class PwdCurrentTest extends TestCase
     {
         parent::setUp();
 
-        $this->rule = new PwdCurrent();
+        $this->rule = new PwdCurrent;
         $this->loginAsAdmin();
     }
 

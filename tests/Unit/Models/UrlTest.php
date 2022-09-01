@@ -2,9 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Url;
-use App\Models\Visit;
-use App\Services\UrlService;
+use App\Models\{Url, Visit};
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -13,19 +11,27 @@ class UrlTest extends TestCase
     {
         parent::setUp();
 
-        $this->urlSrvc = new UrlService;
+        $this->url = new Url;
 
-        Url::factory()->create([
+        $this->nUrlWithUserId = 1;
+        $this->nUrlWithoutUserId = 2;
+        $this->totalUrl = $this->nUrlWithUserId + $this->nUrlWithoutUserId;
+
+        $cwui = 10;
+        $cwoui = 10;
+        $this->nClickWithUserId = $cwui * $this->nUrlWithUserId;
+        $this->nClickWithoutUserId = $cwoui * $this->nUrlWithoutUserId;
+        $this->tClick = $this->nClickWithUserId + $this->nClickWithoutUserId;
+
+        Url::factory($this->nUrlWithUserId)->create([
             'user_id' => $this->admin()->id,
-            'clicks'  => 10,
+            'clicks'  => $cwui,
         ]);
 
-        Url::factory(2)->create([
+        Url::factory($this->nUrlWithoutUserId)->create([
             'user_id' => null,
-            'clicks'  => 10,
+            'clicks'  => $cwoui,
         ]);
-
-        config(['urlhub.hash_char' => 'abc']);
     }
 
     /**
@@ -111,10 +117,9 @@ class UrlTest extends TestCase
             'long_url' => 'http://example.com/',
         ]);
 
-        $this->assertSame(
-            $url->long_url,
-            'http://example.com'
-        );
+        $expected = $url->long_url;
+        $actual = 'http://example.com';
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -125,10 +130,228 @@ class UrlTest extends TestCase
     {
         $url = Url::whereUserId($this->admin()->id)->first();
 
-        $this->assertSame(
-            $url->short_url,
-            url('/'.$url->keyword)
-        );
+        $expected = $url->short_url;
+        $actual = url('/'.$url->keyword);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function setMetaTitleAttributeWhenWebTitleSetToFalse()
+    {
+        config()->set('urlhub.web_title', false);
+
+        $url = Url::factory()->create([
+            'long_url' => 'http://example.com/',
+        ]);
+
+        $this->assertSame('No Title', $url->meta_title);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKey()
+    {
+        config(['urlhub.hash_length' => 6]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'alodix';
+        $this->assertSame($expected, $this->url->urlKey($actual));
+
+        config(['urlhub.hash_length' => 9]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'mrealodix';
+        $this->assertSame($expected, $this->url->urlKey($actual));
+
+        config(['urlhub.hash_length' => 12]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'bcomrealodix';
+        $this->assertSame($expected, $this->url->urlKey($actual));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKeyWithGeneratedString()
+    {
+        $longUrl = 'https://github.com/realodix';
+        $length = 3;
+
+        config(['urlhub.hash_length' => $length]);
+        Url::factory()->create([
+            'keyword'  => $this->url->urlKey($longUrl),
+        ]);
+
+        $this->assertNotSame(substr($longUrl, -$length), $this->url->urlKey($longUrl));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKeyLength()
+    {
+        $length = 3;
+        $url = 'https://github.com/realodix/urlhub';
+        config(['urlhub.hash_length' => $length]);
+
+        $this->assertSame($length, strlen($this->url->urlKey($url)));
+    }
+
+    /**
+     * Pengujian dilakukan berdasarkan panjang karakternya.
+     *
+     * @test
+     * @group u-model
+     */
+    public function keyUsed()
+    {
+        config(['urlhub.hash_length' => config('urlhub.hash_length') + 1]);
+
+        Url::factory()->create([
+            'keyword' => $this->url->randomString(),
+        ]);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        Url::factory()->create([
+            'keyword'   => str_repeat('a', config('urlhub.hash_length')),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(2, $this->url->keyUsed());
+
+        // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.hash_length',
+        // maka ini tidak ikut terhitung.
+        Url::factory()->create([
+            'keyword'   => str_repeat('b', config('urlhub.hash_length') + 2),
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(2, $this->url->keyUsed());
+
+        config(['urlhub.hash_length' => config('urlhub.hash_length') + 3]);
+        $this->assertSame(0, $this->url->keyUsed());
+        $this->assertSame($this->totalUrl + 3, $this->url->totalUrl());
+    }
+
+    /**
+     * Pengujian dilakukan berdasarkan karakter yang telah ditetapkan pada
+     * 'urlhub.hash_char'. Jika salah satu karakter 'keyword' tidak ada di
+     * 'urlhub.hash_char', maka seharusnya ini tidak dapat dihitung.
+     *
+     * @test
+     * @group u-model
+     */
+    public function keyUsed2()
+    {
+        config(['urlhub.hash_length' => 3]);
+
+        config(['urlhub.hash_char' => 'foo']);
+        Url::factory()->create([
+            'keyword'   => 'foo',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        config(['urlhub.hash_char' => 'bar']);
+        Url::factory()->create([
+            'keyword'   => 'bar',
+            'is_custom' => 1,
+        ]);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya ada 2 saja.
+        config(['urlhub.hash_char' => 'foobar']);
+        $this->assertSame(2, $this->url->keyUsed());
+
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya ada 1 saja karena 'bar' tidak bisa terhitung.
+        config(['urlhub.hash_char' => 'fooBar']);
+        $this->assertSame(1, $this->url->keyUsed());
+
+        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
+        // seharusnya tidak ada sama sekali karena 'foo' dan 'bar' tidak
+        // bisa terhitung.
+        config(['urlhub.hash_char' => 'FooBar']);
+        $this->assertSame(0, $this->url->keyUsed());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function keyCapacity()
+    {
+        $hashLength = config('urlhub.hash_length');
+        $hashCharLength = strlen(config('urlhub.hash_char'));
+        $keyCapacity = pow($hashCharLength, $hashLength);
+
+        $this->assertSame($keyCapacity, $this->url->keyCapacity());
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider keyRemainingProvider
+     *
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
+     */
+    public function keyRemaining($kc, $nouk, $expected)
+    {
+        $mock = \Mockery::mock(Url::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
+        ]);
+        $actual = $mock->keyRemaining();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function keyRemainingProvider()
+    {
+        // keyCapacity(), keyUsed(), expected_result
+        return [
+            [1, 2, 0],
+            [3, 2, 1],
+        ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider keyRemainingInPercentProvider
+     *
+     * @param mixed $kc
+     * @param mixed $nouk
+     * @param mixed $expected
+     */
+    public function keyRemainingInPercent($kc, $nouk, $expected)
+    {
+        $mock = \Mockery::mock(Url::class)->makePartial();
+        $mock->shouldReceive([
+            'keyCapacity' => $kc,
+            'keyUsed'     => $nouk,
+        ]);
+        $actual = $mock->keyRemainingInPercent();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function keyRemainingInPercentProvider()
+    {
+        // keyCapacity(), keyUsed(), expected_result
+        return [
+            [10, 10, '0%'],
+            [10, 11, '0%'],
+            [pow(10, 6), 999991, '0.01%'],
+            [pow(10, 6), 50, '99.99%'],
+        ];
     }
 
     /**
@@ -137,10 +360,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrl()
     {
-        $this->assertSame(
-            3,
-            $this->urlSrvc->totalUrl()
-        );
+        $expected = $this->totalUrl;
+        $actual = $this->url->totalUrl();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -149,10 +372,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByMe()
     {
-        $this->assertSame(
-            1,
-            $this->urlSrvc->urlCount($this->admin()->id)
-        );
+        $expected = $this->nUrlWithUserId;
+        $actual = $this->url->urlCount($this->admin()->id);
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -161,10 +384,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByGuest()
     {
-        $this->assertSame(
-            2,
-            $this->urlSrvc->urlCount()
-        );
+        $expected = $this->nUrlWithoutUserId;
+        $actual = $this->url->urlCount();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -173,10 +396,10 @@ class UrlTest extends TestCase
      */
     public function totalClicks()
     {
-        $this->assertSame(
-            30,
-            $this->urlSrvc->totalClick()
-        );
+        $expected = $this->tClick;
+        $actual = $this->url->totalClick();
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -185,10 +408,10 @@ class UrlTest extends TestCase
      */
     public function totalClicksByMe()
     {
-        $this->assertSame(
-            10,
-            $this->urlSrvc->clickCount($this->admin()->id)
-        );
+        $expected = $this->nClickWithUserId;
+        $actual = $this->url->clickCount($this->admin()->id);
+
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -199,9 +422,75 @@ class UrlTest extends TestCase
      */
     public function totalClicksByGuest()
     {
-        $this->assertSame(
-            20,
-            $this->urlSrvc->clickCount()
-        );
+        $expected = $this->nClickWithoutUserId;
+        $actual = $this->url->clickCount();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @group u-model
+     */
+    public function testAnonymizeIpWhenConfigSettedTrue()
+    {
+        config()->set('urlhub.anonymize_ip_addr', true);
+
+        $ip = '192.168.1.1';
+        $expected = $this->url->anonymizeIp($ip);
+        $actual = '192.168.1.0';
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @group u-model
+     */
+    public function testAnonymizeIpWhenConfigSettedFalse()
+    {
+        config()->set('urlhub.anonymize_ip_addr', false);
+
+        $ip = '192.168.1.1';
+        $expected = $this->url->anonymizeIp($ip);
+        $actual = $ip;
+
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @test
+     * @group u-model
+     * @dataProvider getDomainProvider
+     *
+     * @param mixed $expected
+     * @param mixed $actutal
+     */
+    public function getDomain($expected, $actutal)
+    {
+        $this->assertEquals($expected, $this->url->getDomain($actutal));
+    }
+
+    public function getDomainProvider()
+    {
+        return [
+            ['foo.com', 'http://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'http://www.foo.com/foo/bar?name=taylor'],
+            ['foo.com', 'https://www.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'http://www.bar.foo.com/foo/bar?name=taylor'],
+            ['bar.foo.com', 'https://www.bar.foo.com/foo/bar?name=taylor'],
+        ];
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function getWebTitle()
+    {
+        $expected = 'github123456789.com - No Title';
+        $actual = $this->url->getWebTitle('https://github123456789.com');
+        $this->assertSame($expected, $actual);
     }
 }

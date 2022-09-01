@@ -4,12 +4,11 @@ namespace App\Http\Livewire;
 
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use PowerComponents\LivewirePowerGrid\{
+    Column, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
 /**
  * @codeCoverageIgnore
@@ -19,25 +18,31 @@ final class AllUlrTable extends PowerGridComponent
     use ActionButton;
 
     public bool $showUpdateMessages = true;
+
     public string $sortDirection = 'desc';
 
     /*
     |--------------------------------------------------------------------------
-    |  Features Setup
+    | Features Setup
     |--------------------------------------------------------------------------
     | Setup Table's general features
     |
     */
-    public function setUp(): void
+    public function setUp(): array
     {
-        $this->showRecordCount('full')
-            ->showPerPage()
-            ->showSearchInput();
+        return [
+            Header::make()
+                ->showToggleColumns()
+                ->showSearchInput(),
+            Footer::make()
+                ->showPerPage()
+                ->showRecordCount('full'),
+        ];
     }
 
     /*
     |--------------------------------------------------------------------------
-    |  Datasource
+    | Datasource
     |--------------------------------------------------------------------------
     | Provides data to your Table using a Model or Collection
     |
@@ -49,7 +54,7 @@ final class AllUlrTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Relationship Search
+    | Relationship Search
     |--------------------------------------------------------------------------
     | Configure here relationships to be used by the Search and Table Filters.
     |
@@ -67,55 +72,61 @@ final class AllUlrTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    |  Add Column
+    | Add Column
     |--------------------------------------------------------------------------
     | Make Datasource fields available to be used as columns.
     | You can pass a closure to transform/modify the data.
     |
     */
-    public function addColumns(): ?PowerGridEloquent
+    public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
+            ->addColumn('user_name', function (Url $url) {
+                return '<span class="font-semibold">'.$url->user->name.'</span>';
+            })
             ->addColumn('keyword', function (Url $url) {
-                return '<a href="'.$url->short_url.'" target="_blank" class="text-uh-indigo-500">'.$url->keyword.'</a>';
+                return
+                    '<a href="'.$url->short_url.'" target="_blank" class="font-semibold">'.$url->keyword.'</a>'
+                    .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')');
             })
             ->addColumn('long_url', function (Url $url) {
-                return '
-                    <span title="'.$url->meta_title.'">
-                        '.Str::limit($url->meta_title, 80).'
-                    </span>
+                return
+                    '<span title="'.$url->meta_title.'" class="font-semibold">'
+                        .Str::limit($url->meta_title, 80).
+                    '</span>
                     <br>
-                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" class="text-slate-500">
-                        '.urlDisplay($url->long_url, false, 70).'
-                    </a>';
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
+                        .urlDisplay($url->long_url, false, 70)
+                        .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
+                    '</a>';
             })
-            ->addColumn('clicks')
+            ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('@svg(\'icon-bar-chart\', \'ml-2\')'))
             ->addColumn('created_at_formatted', function (Url $url) {
                 return
-                    '<span title="'.$url->created_at->toDayDateTimeString().'">
-                        '.$url->created_at->diffForHumans().
+                    '<span title="'.$url->created_at->toDayDateTimeString().'">'
+                        .$url->created_at->diffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Details').'" class="btn-action">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-action">
-                        <i class="far fa-clone"></i>
-                    </a>
-                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-action">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-action-delete">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>';
+                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Open front page').'" class="btn-icon btn-action">'
+                        .Blade::render('@svg(\'icon-open-in-new\')').
+                    '</a>
+                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'" class="btn-icon btn-action">'
+                        .Blade::render('@svg(\'icon-clone-alt\')').
+                    '</a>
+                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'" class="btn-icon btn-action">'
+                        .Blade::render('@svg(\'icon-edit-alt\')').
+                    '</a>
+                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'" class="btn-icon btn-action-delete">'
+                        .Blade::render('@svg(\'icon-trash-alt\')').
+                    '</a>';
             });
     }
 
     /*
     |--------------------------------------------------------------------------
-    |  Include Columns
+    | Include Columns
     |--------------------------------------------------------------------------
     | Include the columns added columns, making them visible on the Table.
     | Each column can be configured with properties, filters, actions...
@@ -131,13 +142,19 @@ final class AllUlrTable extends PowerGridComponent
     {
         return [
             Column::add()
+                ->title('Owner')
+                ->field('user_name', 'users.name')
+                ->sortable()
+                ->searchable(),
+
+            Column::add()
                 ->title('Short URL')
                 ->field('keyword')
                 ->sortable()
                 ->searchable(),
 
             Column::add()
-                ->title('Original URL')
+                ->title('Destination URL')
                 ->field('long_url')
                 ->sortable()
                 ->searchable(),

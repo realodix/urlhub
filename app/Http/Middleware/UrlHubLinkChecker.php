@@ -3,8 +3,6 @@
 namespace App\Http\Middleware;
 
 use App\Models\Url;
-use App\Services\KeyService;
-use Closure;
 use Illuminate\Support\Facades\Auth;
 
 class UrlHubLinkChecker
@@ -12,13 +10,13 @@ class UrlHubLinkChecker
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, \Closure $next)
     {
-        $keySrvc = new KeyService();
+        $url = new Url;
         $longUrl = rtrim($request->long_url, '/');
 
         /*
@@ -31,12 +29,9 @@ class UrlHubLinkChecker
         |
         */
 
-        if ($keySrvc->keyRemaining() == 0) {
-            return redirect()
-                   ->back()
-                   ->withFlashError(
-                       __('Sorry, our service is currently under maintenance.')
-                   );
+        if ($url->keyRemaining() === 0) {
+            return redirect()->back()
+                ->withFlashError(__('Sorry, our service is currently under maintenance.'));
         }
 
         /*
@@ -51,17 +46,17 @@ class UrlHubLinkChecker
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
-                          ->whereLongUrl($longUrl)
-                          ->first();
+                        ->whereLongUrl($longUrl)
+                        ->first();
         } else {
             $s_url = Url::whereLongUrl($longUrl)
-                          ->whereNull('user_id')
-                          ->first();
+                        ->whereNull('user_id')
+                        ->first();
         }
 
         if ($s_url) {
             return redirect()->route('short_url.stats', $s_url->keyword)
-                             ->with('msgLinkAlreadyExists', __('Link already exists.'));
+                    ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 
         return $next($request);

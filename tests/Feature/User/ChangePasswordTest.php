@@ -14,7 +14,10 @@ class ChangePasswordTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.change-password.post', \Hashids::connection(\App\Models\User::class)->encode($value));
+        return route(
+            'user.change-password.post',
+            \Hashids::connection(\App\Models\User::class)->encode($value)
+        );
     }
 
     /**
@@ -115,8 +118,8 @@ class ChangePasswordTest extends TestCase
      * @group f-user
      * @dataProvider newPasswordFailProvider
      *
-     * @param  mixed  $data1
-     * @param  mixed  $data2
+     * @param mixed $data1
+     * @param mixed $data2
      */
     public function newPasswordValidateFail($data1, $data2)
     {

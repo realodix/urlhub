@@ -1,16 +1,13 @@
 <?php
 
-use App\Http\Controllers\Dashboard\AllUrlController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\User\ChangePasswordController;
-use App\Http\Controllers\Dashboard\User\UserController;
-use App\Http\Controllers\UrlController;
-use App\Http\Controllers\UrlRedirectController;
+use App\Http\Controllers\Dashboard\User\{ChangePasswordController, UserController};
+use App\Http\Controllers\Dashboard\{AllUrlController, DashboardController};
+use App\Http\Controllers\{UrlController, UrlRedirectController};
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::view('/', 'frontend.welcome')->name('home');
+Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/create', [UrlController::class, 'create'])->name('createshortlink');
 Route::post('/validate-custom-key', [UrlController::class, 'customKeyValidation']);
 Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('short_url.stats');

@@ -3,23 +3,21 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Url;
-use App\Services\UrlService;
 
 class AllUrlController extends Controller
 {
     /**
      * AllUrlController constructor.
-     *
-     * @param  UrlService  $urlSrvc  \App\Services\UrlService
      */
-    public function __construct(protected UrlService $urlSrvc)
+    public function __construct()
     {
         $this->middleware('role:admin');
     }
 
     /**
      * Show all short URLs created by all users.
+     *
+     * @return \Illuminate\View\View
      */
     public function view()
     {
@@ -29,13 +27,15 @@ class AllUrlController extends Controller
     /**
      * Delete a Short URL on user (Admin) request.
      *
-     * @param  mixed  $url
+     * @param mixed $url
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($url)
     {
-        $this->urlSrvc->delete($url);
+        $url->delete();
 
         return redirect()->back()
-                         ->withFlashSuccess(__('Link was successfully deleted.'));
+            ->withFlashSuccess(__('Link was successfully deleted.'));
     }
 }

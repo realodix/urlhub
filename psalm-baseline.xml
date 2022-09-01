@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac">
+  <file src="app/Helpers/General/GeneralHelper.php">
+    <MissingReturnType occurrences="1">
+      <code>urlDisplay</code>
+    </MissingReturnType>
+    <PossiblyInvalidArgument occurrences="6">
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+      <code>$url</code>
+    </PossiblyInvalidArgument>
+  </file>
+  <file src="app/Helpers/General/HtmlHelper.php">
+    <MissingReturnType occurrences="3">
+      <code>script</code>
+      <code>style</code>
+      <code>toHtmlString</code>
+    </MissingReturnType>
+    <PossiblyNullPropertyAssignmentValue occurrences="1">
+      <code>$url</code>
+    </PossiblyNullPropertyAssignmentValue>
+  </file>
+  <file src="app/Helpers/Global/NumHelper.php">
+    <MissingParamType occurrences="1">
+      <code>$value</code>
+    </MissingParamType>
+  </file>
+  <file src="app/Http/Controllers/API/UrlController.php">
+    <InvalidScalarArgument occurrences="1">
+      <code>Auth::id()</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="app/Http/Controllers/Auth/LoginController.php">
+    <PossiblyInvalidMethodCall occurrences="2">
+      <code>get</code>
+      <code>merge</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullReference occurrences="2">
+      <code>get</code>
+      <code>merge</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="app/Http/Controllers/Auth/VerificationController.php">
+    <TooManyArguments occurrences="1">
+      <code>only</code>
+    </TooManyArguments>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/DashboardController.php">
+    <InvalidScalarArgument occurrences="3">
+      <code>Auth::id()</code>
+      <code>Auth::id()</code>
+      <code>Auth::id()</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="app/Http/Controllers/UrlController.php">
+    <InvalidScalarArgument occurrences="2">
+      <code>Auth::id()</code>
+      <code>Auth::id()</code>
+    </InvalidScalarArgument>
+  </file>
+  <file src="app/Http/Kernel.php">
+    <NonInvariantDocblockPropertyType occurrences="3">
+      <code>$middleware</code>
+      <code>$middlewareGroups</code>
+      <code>$routeMiddleware</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Livewire/AllUlrTable.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>Url::query()</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>?Builder</code>
+    </InvalidReturnType>
+    <PossiblyInvalidOperand occurrences="4">
+      <code>__('Delete')</code>
+      <code>__('Duplicate')</code>
+      <code>__('Edit')</code>
+      <code>__('Open front page')</code>
+    </PossiblyInvalidOperand>
+  </file>
+  <file src="app/Http/Livewire/MyUrlTable.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>Url::whereUserId(Auth::id())</code>
+    </InvalidReturnStatement>
+    <PossiblyInvalidOperand occurrences="4">
+      <code>__('Delete')</code>
+      <code>__('Duplicate')</code>
+      <code>__('Edit')</code>
+      <code>__('Go to front page')</code>
+    </PossiblyInvalidOperand>
+  </file>
+  <file src="app/Http/Livewire/UserTable.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>User::query()</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>?Builder</code>
+    </InvalidReturnType>
+    <PossiblyInvalidOperand occurrences="2">
+      <code>__('Change Password')</code>
+      <code>__('Details')</code>
+    </PossiblyInvalidOperand>
+  </file>
+  <file src="app/Http/Middleware/EncryptCookies.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/PreventRequestsDuringMaintenance.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/TrimStrings.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/TrustProxies.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$proxies</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Http/Middleware/VerifyCsrfToken.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$except</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Models/Url.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>string</code>
+    </InvalidNullableReturnType>
+    <MissingParamType occurrences="3">
+      <code>$value</code>
+      <code>$value</code>
+      <code>$value</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="1">
+      <code>duplicate</code>
+    </MissingReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>$webTitle</code>
+    </NullableReturnStatement>
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>ip</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullArgument occurrences="1">
+      <code>$webTitle</code>
+    </PossiblyNullArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>ip</code>
+    </PossiblyNullReference>
+    <RedundantCast occurrences="1">
+      <code>(float) round(($remaining / $capacity) * 100, 2)</code>
+    </RedundantCast>
+  </file>
+  <file src="app/Models/User.php">
+    <NonInvariantDocblockPropertyType occurrences="3">
+      <code>$casts</code>
+      <code>$fillable</code>
+      <code>$hidden</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Models/Visit.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$fillable</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Policies/UrlPolicy.php">
+    <PossiblyNullReference occurrences="2">
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </PossiblyNullReference>
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="app/Policies/UserPolicy.php">
+    <PossiblyNullReference occurrences="3">
+      <code>hasRole</code>
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </PossiblyNullReference>
+    <UndefinedInterfaceMethod occurrences="3">
+      <code>hasRole</code>
+      <code>hasRole</code>
+      <code>hasRole</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="app/Providers/AppServiceProvider.php">
+    <MissingClosureParamType occurrences="2">
+      <code>$pattern</code>
+      <code>$value</code>
+    </MissingClosureParamType>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getPdo</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="app/Providers/AuthServiceProvider.php">
+    <PropertyTypeCoercion occurrences="1"/>
+  </file>
+  <file src="app/Providers/EventServiceProvider.php">
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$listen</code>
+    </NonInvariantDocblockPropertyType>
+  </file>
+  <file src="app/Providers/HelperServiceProvider.php">
+    <UnresolvableInclude occurrences="1">
+      <code>require $it-&gt;key()</code>
+    </UnresolvableInclude>
+  </file>
+  <file src="app/Providers/RouteServiceProvider.php">
+    <MissingClosureParamType occurrences="6">
+      <code>$route</code>
+      <code>$route</code>
+      <code>$route</code>
+      <code>$value</code>
+      <code>$value</code>
+      <code>$value</code>
+    </MissingClosureParamType>
+    <MissingClosureReturnType occurrences="3">
+      <code>function ($value, $route) {</code>
+      <code>function ($value, $route) {</code>
+      <code>function ($value, $route) {</code>
+    </MissingClosureReturnType>
+    <MissingParamType occurrences="2">
+      <code>$model</code>
+      <code>$routeKey</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="2">
+      <code>hashidsDecoder</code>
+      <code>routeModelBinding</code>
+    </MissingReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$request-&gt;user()?-&gt;id ?: $request-&gt;ip()</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="app/Rules/PwdCurrent.php">
+    <NoInterfaceProperties occurrences="1">
+      <code>Auth::user()-&gt;password</code>
+    </NoInterfaceProperties>
+    <PossiblyNullPropertyFetch occurrences="1">
+      <code>Auth::user()-&gt;password</code>
+    </PossiblyNullPropertyFetch>
+  </file>
+  <file src="app/Rules/Url/KeywordBlacklist.php">
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getIterator</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="app/Services/UrlRedirectionService.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>ip</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyInvalidPropertyFetch occurrences="1">
+      <code>request()-&gt;headers</code>
+    </PossiblyInvalidPropertyFetch>
+    <PossiblyNullArgument occurrences="1">
+      <code>request()-&gt;ip()</code>
+    </PossiblyNullArgument>
+    <PossiblyNullPropertyFetch occurrences="1">
+      <code>request()-&gt;headers</code>
+    </PossiblyNullPropertyFetch>
+    <PossiblyNullReference occurrences="2">
+      <code>get</code>
+      <code>ip</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/HasFactory.php">
+    <InvalidReturnType occurrences="1">
+      <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
+    </InvalidReturnType>
+    <MoreSpecificReturnType occurrences="1">
+      <code>\Illuminate\Database\Eloquent\Factories\Factory&lt;static&gt;</code>
+    </MoreSpecificReturnType>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>static::newFactory()</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
+    <MissingConstructor occurrences="3">
+      <code>$table</code>
+      <code>$table</code>
+      <code>$table</code>
+    </MissingConstructor>
+  </file>
+  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
+    <MoreSpecificImplementedParamType occurrences="3">
+      <code>$request</code>
+      <code>$request</code>
+      <code>$response</code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>all</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullReference occurrences="1">
+      <code>all</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="vendor/laravel/sanctum/src/HasApiTokens.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$token</code>
+      <code>Sanctum::$personalAccessTokenModel</code>
+    </ArgumentTypeCoercion>
+    <MissingConstructor occurrences="1">
+      <code>$accessToken</code>
+    </MissingConstructor>
+    <RedundantConditionGivenDocblockType occurrences="2">
+      <code>$this-&gt;accessToken</code>
+      <code>$this-&gt;accessToken</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/AuthenticatesUsers.php">
+    <InvalidReturnType occurrences="2">
+      <code>mixed</code>
+      <code>mixed</code>
+    </InvalidReturnType>
+    <MoreSpecificReturnType occurrences="2">
+      <code>\Illuminate\Contracts\Auth\StatefulGuard</code>
+      <code>\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse</code>
+    </MoreSpecificReturnType>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/RegistersUsers.php">
+    <InvalidReturnType occurrences="1">
+      <code>mixed</code>
+    </InvalidReturnType>
+    <MoreSpecificReturnType occurrences="1">
+      <code>\Illuminate\Contracts\Auth\StatefulGuard</code>
+    </MoreSpecificReturnType>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/ResetsPasswords.php">
+    <InvalidArgument occurrences="2">
+      <code>$user</code>
+      <code>$user</code>
+    </InvalidArgument>
+    <MissingClosureParamType occurrences="2">
+      <code>$password</code>
+      <code>$user</code>
+    </MissingClosureParamType>
+    <MoreSpecificReturnType occurrences="1">
+      <code>\Illuminate\Contracts\Auth\StatefulGuard</code>
+    </MoreSpecificReturnType>
+    <NoInterfaceProperties occurrences="1">
+      <code>$user-&gt;password</code>
+    </NoInterfaceProperties>
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>save</code>
+      <code>setRememberToken</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="vendor/laravel/ui/auth-backend/VerifiesEmails.php">
+    <InvalidReturnType occurrences="1">
+      <code>mixed</code>
+    </InvalidReturnType>
+    <PossiblyInvalidCast occurrences="2">
+      <code>$request-&gt;route('hash')</code>
+      <code>$request-&gt;route('id')</code>
+    </PossiblyInvalidCast>
+  </file>
+  <file src="vendor/power-components/livewire-powergrid/src/Traits/ActionButton.php">
+    <MissingReturnType occurrences="1">
+      <code>initActions</code>
+    </MissingReturnType>
+    <RedundantCondition occurrences="1">
+      <code>isset($action-&gt;route)</code>
+    </RedundantCondition>
+  </file>
+  <file src="vendor/spatie/laravel-permission/src/Traits/HasRoles.php">
+    <InvalidPropertyAssignmentValue occurrences="1">
+      <code>app(PermissionRegistrar::class)-&gt;getRoleClass()</code>
+    </InvalidPropertyAssignmentValue>
+    <InvalidReturnType occurrences="1">
+      <code>BelongsToMany</code>
+    </InvalidReturnType>
+    <MissingClosureParamType occurrences="3">
+      <code>$model</code>
+      <code>$object</code>
+      <code>$q</code>
+    </MissingClosureParamType>
+    <MissingClosureReturnType occurrences="2">
+      <code>function ($role) {</code>
+      <code>function ($role) {</code>
+    </MissingClosureReturnType>
+    <MissingConstructor occurrences="1">
+      <code>$roleClass</code>
+    </MissingConstructor>
+    <MissingParamType occurrences="1">
+      <code>$role</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="4">
+      <code>bootHasRoles</code>
+      <code>convertPipeToArray</code>
+      <code>getRoleClass</code>
+      <code>removeRole</code>
+    </MissingReturnType>
+    <NoInterfaceProperties occurrences="3">
+      <code>$role-&gt;name</code>
+      <code>$role-&gt;name</code>
+      <code>$roles-&gt;name</code>
+    </NoInterfaceProperties>
+    <RedundantPropertyInitializationCheck occurrences="1">
+      <code>isset($this-&gt;roleClass)</code>
+    </RedundantPropertyInitializationCheck>
+    <UndefinedInterfaceMethod occurrences="5">
+      <code>getKey</code>
+      <code>getKey</code>
+      <code>getKey</code>
+      <code>getKeyName</code>
+      <code>getKeyName</code>
+    </UndefinedInterfaceMethod>
+  </file>
+</files>

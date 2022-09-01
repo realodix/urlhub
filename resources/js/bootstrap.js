@@ -1,5 +1,9 @@
-window._ = require('lodash');
-window.$ = window.jQuery = require("jquery");
+import {$,jQuery} from 'jquery';
+import _ from 'lodash';
+
+window.$ = $;
+window.jQuery = jQuery;
+
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -11,23 +15,10 @@ window.axios = require("axios");
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
+
 /**
- * Font Awesome >=5.1
- *
- * Is recommended import just the icons that you use, for decrease considerably the file size.
- * You can see at next link, how it works: https://github.com/FortAwesome/Font-Awesome/blob/master/UPGRADING.md#no-more-default-imports
- * Also you can import the icons separately on the frontend and backend
+ * Alpine.js
  */
-
-import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-
-library.add(fab, far, fas);
-
-// Kicks off the process of finding <i> tags and replacing with <svg>
-dom.watch();
 
 import Alpine from 'alpinejs'
 
@@ -44,7 +35,8 @@ Alpine.start()
 
 // import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+// import Pusher from 'pusher-js';
+// window.Pusher = Pusher;
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
