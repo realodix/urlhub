@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function url()
     {
-        return $this->hasMany('App\Models\Url');
+        return $this->hasMany(Url::class);
     }
 
     /*
