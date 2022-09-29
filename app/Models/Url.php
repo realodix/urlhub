@@ -235,20 +235,21 @@ class Url extends Model
         return (int) max($keyCapacity - $keyUsed, 0);
     }
 
-    public function keyRemainingInPercent(): string
+    public function keyRemainingInPercent(int $precision = 2): string
     {
         $capacity = $this->keyCapacity();
-        $used = $this->keyUsed();
         $remaining = $this->keyRemaining();
+        $result = round(($remaining / $capacity) * 100, $precision);
 
-        $result = (float) round(($remaining / $capacity) * 100, 2);
+        $lowerBoundInPercent = 1 / (10 ** $precision);
+        $upperBoundInPercent = 100 - $lowerBoundInPercent;
+        $lowerBound = $lowerBoundInPercent / 100;
+        $upperBound = 1 - $lowerBound;
 
-        if (($result == 0) && ($capacity <= $used)) {
-            return '0%';
-        } elseif (($result == 0) && ($capacity > $used)) {
-            return '0.01%';
-        } elseif (($result == 100) && ($capacity != $remaining)) {
-            return '99.99%';
+        if ($remaining > 0 && $remaining < ($capacity * $lowerBound)) {
+            $result = $lowerBoundInPercent;
+        } elseif ($remaining > ($capacity * $upperBound)) {
+            $result = $upperBoundInPercent;
         }
 
         return $result.'%';
