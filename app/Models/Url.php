@@ -240,10 +240,11 @@ class Url extends Model
         $capacity = $this->keyCapacity();
         $remaining = $this->keyRemaining();
 
-        $lowerBound = (1 / 100) / (10 ** $precision);
-        $upperBound = 1 - $lowerBound;
         $lowerBoundInPercent = 1 / (10 ** $precision);
         $upperBoundInPercent = 100 - $lowerBoundInPercent;
+        $lowerBound = $lowerBoundInPercent / 100;
+        $upperBound = 1 - $lowerBound;
+        $result = round(($remaining / $capacity) * 100, $precision);
 
         $result = round(($remaining / $capacity) * 100, $precision);
 
