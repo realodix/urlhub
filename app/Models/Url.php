@@ -127,8 +127,7 @@ class Url extends Model
     */
 
     /**
-     * @param StoreUrl $request \App\Http\Requests\StoreUrl
-     *
+     * @param  StoreUrl $request \App\Http\Requests\StoreUrl
      * @return self
      */
     public function shortenUrl(StoreUrl $request, int|null $authId)
@@ -338,8 +337,9 @@ class Url extends Model
     }
 
     /**
-     * @return string
      * @codeCoverageIgnore
+     *
+     * @return string
      */
     public function randomString()
     {

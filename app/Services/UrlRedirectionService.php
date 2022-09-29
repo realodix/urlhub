@@ -12,8 +12,7 @@ class UrlRedirectionService
      * Redirect client to an existing short URL (no check performed) and
      * execute tasks update clicks for short URL.
      *
-     * @param Url $url \App\Models\Url
-     *
+     * @param  Url                               $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handleHttpRedirect(Url $url)
@@ -31,8 +30,7 @@ class UrlRedirectionService
     /**
      * Create visit statistics and store it in the database.
      *
-     * @param Url $url \App\Models\Url
-     *
+     * @param  Url  $url \App\Models\Url
      * @return void
      */
     private function storeVisitStat(Url $url)

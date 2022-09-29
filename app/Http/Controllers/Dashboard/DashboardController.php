@@ -37,8 +37,7 @@ class DashboardController extends Controller
     /**
      * Show the long url edit page.
      *
-     * @param mixed $key
-     *
+     * @param  mixed                 $key
      * @return \Illuminate\View\View
      */
     public function edit($key)
@@ -53,9 +52,8 @@ class DashboardController extends Controller
     /**
      * Update the long url that was previously set to the new long url.
      *
-     * @param Request $request \Illuminate\Http\Request
-     * @param mixed   $url
-     *
+     * @param  Request                           $request \Illuminate\Http\Request
+     * @param  mixed                             $url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -73,8 +71,7 @@ class DashboardController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param mixed $url
-     *
+     * @param  mixed                             $url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -94,8 +91,7 @@ class DashboardController extends Controller
      * link. You can duplicate it and it will generated a new unique random
      * key.
      *
-     * @param mixed $key
-     *
+     * @param  mixed                             $key
      * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate($key)

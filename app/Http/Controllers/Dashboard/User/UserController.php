@@ -29,8 +29,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user.
      *
-     * @param User $user \App\Models\User
-     *
+     * @param  User                  $user \App\Models\User
      * @return \Illuminate\View\View
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -45,9 +44,8 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param UpdateUserEmail $request \App\Http\Requests\UpdateUserEmail
-     * @param User            $user    \App\Models\User
-     *
+     * @param  UpdateUserEmail                   $request \App\Http\Requests\UpdateUserEmail
+     * @param  User                              $user    \App\Models\User
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException

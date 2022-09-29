@@ -10,9 +10,8 @@ class PwdCurrent implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed  $value
-     *
+     * @param  string $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value)
@@ -21,10 +20,10 @@ class PwdCurrent implements Rule
     }
 
     /**
+     * @codeCoverageIgnore
      * Get the validation error message.
      *
      * @return string
-     * @codeCoverageIgnore
      */
     public function message()
     {
