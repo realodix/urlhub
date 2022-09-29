@@ -34,9 +34,8 @@ class KeywordBlacklist implements Rule
     }
 
     /**
-     * Get the validation error message.
-     *
      * @codeCoverageIgnore
+     * Get the validation error message.
      *
      * @return string
      */

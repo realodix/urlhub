@@ -7,11 +7,10 @@ use Illuminate\Http\Middleware\TrustHosts as Middleware;
 class TrustHosts extends Middleware
 {
     /**
+     * @codeCoverageIgnore
      * Get the host patterns that should be trusted.
      *
      * @return array<int, string|null>
-     *
-     * @codeCoverageIgnore
      */
     public function hosts()
     {

@@ -337,9 +337,9 @@ class Url extends Model
     }
 
     /**
-     * @return string
-     *
      * @codeCoverageIgnore
+     *
+     * @return string
      */
     public function randomString()
     {
