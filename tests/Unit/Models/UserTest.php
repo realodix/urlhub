@@ -9,7 +9,6 @@ class UserTest extends TestCase
 {
     /**
      * @test
-     *
      * @group u-model
      */
     public function hasManyUrl()
@@ -27,7 +26,6 @@ class UserTest extends TestCase
      * The number of guests is calculated based on a unique IP.
      *
      * @test
-     *
      * @group u-model
      */
     public function guestCount()

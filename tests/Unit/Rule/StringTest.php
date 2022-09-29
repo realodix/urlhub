@@ -14,7 +14,6 @@ class StringTest extends TestCase
 
     /**
      * @test
-     *
      * @group u-rule
      */
     public function strAlphaUnderscoret()
@@ -27,7 +26,6 @@ class StringTest extends TestCase
 
     /**
      * @test
-     *
      * @group u-rule
      */
     public function strLowercase()

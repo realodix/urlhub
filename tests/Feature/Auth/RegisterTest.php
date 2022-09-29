@@ -31,7 +31,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCanViewARegistrationForm()
@@ -45,7 +44,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotViewARegistrationFormWhenAuthenticated()
@@ -57,7 +55,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCanRegister()
@@ -84,7 +81,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function nameShouldNotBeTooLong()
@@ -100,7 +96,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotRegisterWithoutName()
@@ -127,7 +122,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotRegisterWithoutEmail()
@@ -154,7 +148,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotRegisterWithInvalidEmail()
@@ -182,7 +175,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function emailShouldNotBeTooLong()
@@ -197,7 +189,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotRegisterWithoutPassword()
@@ -225,7 +216,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotRegisterWithoutPasswordConfirmation()
@@ -253,7 +243,6 @@ class RegisterTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotRegisterWithPasswordsNotMatching()

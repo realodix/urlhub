@@ -36,7 +36,6 @@ class ResetPasswordTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCanViewAPasswordResetForm()
@@ -51,7 +50,6 @@ class ResetPasswordTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCanResetPasswordWithValidToken()
@@ -78,7 +76,6 @@ class ResetPasswordTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotResetPasswordWithInvalidToken()
@@ -105,7 +102,6 @@ class ResetPasswordTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotResetPasswordWithoutProvidingANewPassword()
@@ -137,7 +133,6 @@ class ResetPasswordTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotResetPasswordWithoutProvidingAnEmail()

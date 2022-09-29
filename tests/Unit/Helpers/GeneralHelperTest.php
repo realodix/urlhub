@@ -71,9 +71,8 @@ class GeneralHelperTest extends TestCase
     }
 
     /**
-     * @group u-helper
-     *
      * @test
+     * @group u-helper
      * @dataProvider toAmountShortProvider
      *
      * @param mixed $expected
@@ -93,9 +92,8 @@ class GeneralHelperTest extends TestCase
     }
 
     /**
-     * @group u-helper
-     *
      * @test
+     * @group u-helper
      */
     public function numbPrec()
     {

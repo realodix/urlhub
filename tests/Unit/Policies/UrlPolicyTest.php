@@ -11,7 +11,6 @@ class UrlPolicyTest extends TestCase
      * Admin can delete their own data and other user data.
      *
      * @test
-     *
      * @group u-policy
      */
     public function forceDeleteAdmin()
@@ -32,7 +31,6 @@ class UrlPolicyTest extends TestCase
      * Non-admin can only delete their own data.
      *
      * @test
-     *
      * @group u-policy
      */
     public function forceDeleteNonAdmin()

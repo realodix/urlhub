@@ -30,7 +30,6 @@ class LoginTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCanViewALoginForm()
@@ -44,7 +43,6 @@ class LoginTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotViewALoginFormWhenAuthenticated()
@@ -56,7 +54,6 @@ class LoginTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCanLoginWithCorrectCredentials()
@@ -76,7 +73,6 @@ class LoginTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotLoginWithIncorrectPassword()
@@ -101,7 +97,6 @@ class LoginTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function unauthenticatedUsersCantAccessTheDashboard()
@@ -111,7 +106,6 @@ class LoginTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCannotLoginWithEmailThatDoesNotExist()

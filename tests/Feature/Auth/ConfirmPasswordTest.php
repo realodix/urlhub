@@ -8,7 +8,6 @@ class ConfirmPasswordTest extends TestCase
 {
     /**
      * @test
-     *
      * @group f-auth
      */
     public function userCanViewPasswordConfirm()
@@ -22,7 +21,6 @@ class ConfirmPasswordTest extends TestCase
 
     /**
      * @test
-     *
      * @group f-auth
      */
     public function guestCantViewPasswordConfirm()
