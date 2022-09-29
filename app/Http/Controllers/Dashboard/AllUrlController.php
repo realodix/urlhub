@@ -27,8 +27,7 @@ class AllUrlController extends Controller
     /**
      * Delete a Short URL on user (Admin) request.
      *
-     * @param mixed $url
-     *
+     * @param  mixed                             $url
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($url)

@@ -16,6 +16,7 @@ class UrlControllerTest extends TestCase
      * (Urls table) must be filled with a null value.
      *
      * @test
+     *
      * @group u-controller
      */
     public function guestShortenURL()
@@ -36,6 +37,7 @@ class UrlControllerTest extends TestCase
      * the authenticated user id.
      *
      * @test
+     *
      * @group u-controller
      */
     public function userShortenURL()
@@ -52,6 +54,7 @@ class UrlControllerTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-controller
      */
     public function customKeyValidationPass()
@@ -65,7 +68,9 @@ class UrlControllerTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-controller
+     *
      * @dataProvider customKeyValidationFailProvider
      *
      * @param mixed $data

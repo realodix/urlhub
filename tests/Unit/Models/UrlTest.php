@@ -36,6 +36,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function belongsToUser()
@@ -49,6 +50,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function defaultGuestName()
@@ -62,6 +64,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function hasManyUrlStat()
@@ -79,6 +82,7 @@ class UrlTest extends TestCase
      * The default guest id must be null.
      *
      * @test
+     *
      * @group u-model
      */
     public function defaultGuestId()
@@ -96,6 +100,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function setUserIdAttributeMustBeNull()
@@ -109,6 +114,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function setLongUrlAttribute()
@@ -124,6 +130,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function getShortUrlAttribute()
@@ -137,6 +144,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function setMetaTitleAttributeWhenWebTitleSetToFalse()
@@ -152,6 +160,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function urlKey()
@@ -174,6 +183,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function urlKeyWithGeneratedString()
@@ -191,6 +201,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function urlKeyLength()
@@ -206,6 +217,7 @@ class UrlTest extends TestCase
      * Pengujian dilakukan berdasarkan panjang karakternya.
      *
      * @test
+     *
      * @group u-model
      */
     public function keyUsed()
@@ -242,6 +254,7 @@ class UrlTest extends TestCase
      * 'urlhub.hash_char', maka seharusnya ini tidak dapat dihitung.
      *
      * @test
+     *
      * @group u-model
      */
     public function keyUsed2()
@@ -281,6 +294,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function keyCapacity()
@@ -294,7 +308,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
+     *
      * @dataProvider keyRemainingProvider
      *
      * @param mixed $kc
@@ -324,7 +340,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
+     *
      * @dataProvider keyRemainingInPercentProvider
      *
      * @param mixed $kc
@@ -356,6 +374,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function totalShortUrl()
@@ -368,6 +387,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function totalShortUrlByMe()
@@ -380,6 +400,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function totalShortUrlByGuest()
@@ -392,6 +413,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function totalClicks()
@@ -404,6 +426,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function totalClicksByMe()
@@ -418,6 +441,7 @@ class UrlTest extends TestCase
      * The number of guests is calculated based on a unique IP.
      *
      * @test
+     *
      * @group u-model
      */
     public function totalClicksByGuest()
@@ -458,7 +482,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
+     *
      * @dataProvider getDomainProvider
      *
      * @param mixed $expected
@@ -485,6 +511,7 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-model
      */
     public function getWebTitle()

@@ -72,6 +72,7 @@ class GeneralHelperTest extends TestCase
 
     /**
      * @group u-helper
+     *
      * @test
      * @dataProvider toAmountShortProvider
      *
@@ -93,6 +94,7 @@ class GeneralHelperTest extends TestCase
 
     /**
      * @group u-helper
+     *
      * @test
      */
     public function numbPrec()

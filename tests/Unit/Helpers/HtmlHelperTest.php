@@ -9,6 +9,7 @@ class HtmlHelperTest extends TestCase
 {
     /**
      * @test
+     *
      * @group u-helper
      */
     public function script()
@@ -21,6 +22,7 @@ class HtmlHelperTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-helper
      */
     public function style()

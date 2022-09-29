@@ -26,6 +26,7 @@ class ForgotPasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-auth
      */
     public function userCanViewAnEmailPasswordForm()
@@ -39,6 +40,7 @@ class ForgotPasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-auth
      */
     public function userReceivesAnEmailWithAPasswordResetLink()
@@ -61,6 +63,7 @@ class ForgotPasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-auth
      */
     public function userDoesNotReceiveEmailWhenNotRegistered()
@@ -79,6 +82,7 @@ class ForgotPasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-auth
      */
     public function emailIsRequired()
@@ -92,6 +96,7 @@ class ForgotPasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-api
      */
     public function emailIsAValidEmail()

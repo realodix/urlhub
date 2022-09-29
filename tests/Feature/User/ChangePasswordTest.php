@@ -22,6 +22,7 @@ class ChangePasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function changePasswordWithCorrectCredentials()
@@ -53,6 +54,7 @@ class ChangePasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function adminCanChangeThePasswordOfAllUsers()
@@ -84,6 +86,7 @@ class ChangePasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function currentPasswordDoesNotMatch()
@@ -115,7 +118,9 @@ class ChangePasswordTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
+     *
      * @dataProvider newPasswordFailProvider
      *
      * @param mixed $data1

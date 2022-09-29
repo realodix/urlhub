@@ -26,6 +26,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-dashboard
      */
     public function dCanAccessPage()
@@ -38,6 +39,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-dashboard
      */
     public function dCanDelete()
@@ -62,6 +64,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-dashboard
      */
     public function dCanDuplicate()
@@ -86,6 +89,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-dashboard
      */
     public function dAuthorizedUserCanAccessEditUrlPage()
@@ -102,6 +106,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-dashboard
      */
     public function dCanUpdateUrl()
@@ -137,6 +142,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-allurl
      */
     public function auAdminCanAccessThisPage()
@@ -149,6 +155,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-allurl
      */
     public function auNonAdminCantAccessThisPage()
@@ -161,6 +168,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-allurl
      */
     public function auAdminCanDelete()
@@ -181,6 +189,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-allurl
      */
     public function auNonAdminCantDelete()
@@ -206,6 +215,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-alluser
      */
     public function ausAdminCanAccessThisPage()
@@ -218,6 +228,7 @@ class UrlBeTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-alluser
      */
     public function ausNonAdminCantAccessThisPage()

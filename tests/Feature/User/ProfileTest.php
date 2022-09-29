@@ -19,6 +19,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function usersCanAccessTheirOwnProfilePage()
@@ -31,6 +32,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function adminCanAccessOtherUsersProfilePages()
@@ -43,6 +45,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function nonAdminCantAccessOtherUsersProfilePages()
@@ -55,6 +58,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function adminCanChangeOtherUsersEmail()
@@ -79,6 +83,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function nonAdminCantChangeOtherUsersEmail()
@@ -100,6 +105,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function validationEmailRequired()
@@ -122,6 +128,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function validationEmailInvalidFormat()
@@ -144,6 +151,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function validationEmailMaxLength()
@@ -167,6 +175,7 @@ class ProfileTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-user
      */
     public function validationEmailUnique()

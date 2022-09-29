@@ -9,6 +9,7 @@ class UrlTest extends TestCase
 {
     /**
      * @test
+     *
      * @group f-api
      */
     public function canCreateUrl()
@@ -30,7 +31,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group f-api
+     *
      * @dataProvider shortenUrlFailProvider
      *
      * @param mixed $value

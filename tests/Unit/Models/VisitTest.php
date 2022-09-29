@@ -9,6 +9,7 @@ class VisitTest extends TestCase
 {
     /**
      * @test
+     *
      * @group u-model
      */
     public function belongsToUrl()

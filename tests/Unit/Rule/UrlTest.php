@@ -15,7 +15,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-rule
+     *
      * @dataProvider domainBlacklistPassDataProvider
      *
      * @param mixed $value
@@ -28,7 +30,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-rule
+     *
      * @dataProvider domainBlacklistFailDataProvider
      *
      * @param mixed $value
@@ -59,7 +63,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-rule
+     *
      * @dataProvider keywordBlacklistPassDataProvider
      *
      * @param string $value
@@ -72,7 +78,9 @@ class UrlTest extends TestCase
 
     /**
      * @test
+     *
      * @group u-rule
+     *
      * @dataProvider keywordBlacklistFailDataProvider
      *
      * @param string $value
