@@ -1,20 +1,28 @@
 <?xml version="1.0"?>
 <psalm
-  errorBaseline="psalm-baseline.xml">
+  xmlns="https://getpsalm.org/schema/config"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://getpsalm.org/schema/config config.xsd"
+  errorBaseline="psalm-baseline.xml"
+  findUnusedPsalmSuppress="true"
+>
   <projectFiles>
     <directory name="app"/>
+    <ignoreFiles>
+      <directory name="vendor" />
+    </ignoreFiles>
   </projectFiles>
 
   <issueHandlers>
     <PropertyNotSetInConstructor errorLevel="info"/>
     <UndefinedFunction>
       <errorLevel type="suppress">
-          <referencedFunction name="uHub"/>
-          <referencedFunction name="urlDisplay"/>
-          <referencedFunction name="urlSanitize"/>
+        <referencedFunction name="urlDisplay"/>
+        <referencedFunction name="urlSanitize"/>
       </errorLevel>
     </UndefinedFunction>
   </issueHandlers>
+
   <plugins>
     <pluginClass xmlns="https://getpsalm.org/schema/config" class="Psalm\LaravelPlugin\Plugin"/>
   </plugins>
