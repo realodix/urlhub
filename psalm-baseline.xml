@@ -229,17 +229,10 @@
       <code>$value</code>
       <code>$value</code>
     </MissingClosureParamType>
-    <MissingClosureReturnType occurrences="3">
-      <code>function ($value, $route) {</code>
-      <code>function ($value, $route) {</code>
+    <MissingClosureReturnType occurrences="1">
       <code>function ($value, $route) {</code>
     </MissingClosureReturnType>
-    <MissingParamType occurrences="2">
-      <code>$model</code>
-      <code>$routeKey</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="2">
-      <code>hashidsDecoder</code>
+    <MissingReturnType occurrences="1">
       <code>routeModelBinding</code>
     </MissingReturnType>
   </file>

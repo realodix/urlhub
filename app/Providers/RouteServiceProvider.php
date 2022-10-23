@@ -72,7 +72,10 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
-    private function hashidsDecoder($model, $routeKey)
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
+     */
+    private function hashidsDecoder(string $model, string $routeKey)
     {
         $id = Hashids::connection($model)->decode($routeKey)[0] ?? null;
         $modelInstance = resolve($model);
