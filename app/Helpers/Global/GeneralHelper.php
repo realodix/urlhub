@@ -6,7 +6,7 @@ if (! function_exists('appName')) {
     /**
      * Helper to grab the application name.
      *
-     * @return mixed
+     * @return string
      */
     function appName()
     {
