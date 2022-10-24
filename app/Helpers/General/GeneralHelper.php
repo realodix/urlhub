@@ -15,7 +15,7 @@ class GeneralHelper
      * @param int    $limit  Length string will be truncated to, including
      *                       suffix.
      */
-    public function urlDisplay(string $url, bool $scheme = true, int $limit = null)
+    public function urlDisplay(string $url, bool $scheme = true, int $limit = null): string
     {
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
@@ -61,9 +61,8 @@ class GeneralHelper
      *
      * https://www.php.net/manual/en/function.preg-replace.php
      *
-     * @return string|array|null
      */
-    public function urlSanitize(string|array $url)
+    public function urlSanitize(string $url): string
     {
         return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
     }
