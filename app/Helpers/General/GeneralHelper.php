@@ -60,7 +60,6 @@ class GeneralHelper
      * Remove http://, www., and slashes from the URL.
      *
      * https://www.php.net/manual/en/function.preg-replace.php
-     *
      */
     public function urlSanitize(string|array $url): string|array
     {
