@@ -18,9 +18,9 @@ if (! function_exists('urlDisplay')) {
     /**
      * Display the link according to what You need.
      *
-     * @param  string $url    URL or Link.
-     * @param  bool   $scheme Show or remove URL schemes.
-     * @param  int    $limit  Length string will be truncated to, including suffix.
+     * @param string $url    URL or Link.
+     * @param bool   $scheme Show or remove URL schemes.
+     * @param int    $limit  Length string will be truncated to, including suffix.
      * @return string
      */
     function urlDisplay($url, $scheme = true, $limit = null)
@@ -33,7 +33,7 @@ if (! function_exists('urlSanitize')) {
     /**
      * Remove http://, www., and slashes from the URL.
      *
-     * @param  string|array $value
+     * @param string|array $value
      * @return string|array
      */
     function urlSanitize($value)
