@@ -7,22 +7,16 @@ use Illuminate\Support\HtmlString;
 
 /**
  * Class HtmlHelper.
- *
- * @codeCoverageIgnore
  */
 class HtmlHelper
 {
     /**
      * The URL generator instance.
-     *
-     * @var \Illuminate\Contracts\Routing\UrlGenerator
      */
-    protected $url;
+    protected UrlGenerator $url;
 
     /**
      * HtmlHelper constructor.
-     *
-     * @param UrlGenerator $url
      */
     public function __construct(UrlGenerator $url = null)
     {
@@ -30,9 +24,9 @@ class HtmlHelper
     }
 
     /**
-     * @param null $secure
+     * @return \Illuminate\Support\HtmlString
      */
-    public function style(string $url, array $attributes = [], $secure = null)
+    public function style(string $url, array $attributes = [], bool $secure = null)
     {
         $defaults = [
             'media' => 'all',
@@ -49,6 +43,8 @@ class HtmlHelper
 
     /**
      * Generate a link to a JavaScript file.
+     *
+     * @return \Illuminate\Support\HtmlString
      */
     public function script(string $url, array $attributes = [], bool $secure = null)
     {
@@ -84,7 +80,7 @@ class HtmlHelper
     /**
      * Transform the string to an Html serializable object.
      */
-    protected function toHtmlString(string $html)
+    protected function toHtmlString(string $html): HtmlString
     {
         return new HtmlString($html);
     }
