@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
   <file src="app/Helpers/General/GeneralHelper.php">
-    <MissingReturnType occurrences="1">
-      <code>urlDisplay</code>
-    </MissingReturnType>
     <PossiblyInvalidArgument occurrences="6">
       <code>$url</code>
       <code>$url</code>
@@ -14,19 +11,9 @@
     </PossiblyInvalidArgument>
   </file>
   <file src="app/Helpers/General/HtmlHelper.php">
-    <MissingReturnType occurrences="3">
-      <code>script</code>
-      <code>style</code>
-      <code>toHtmlString</code>
-    </MissingReturnType>
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>$url</code>
     </PossiblyNullPropertyAssignmentValue>
-  </file>
-  <file src="app/Helpers/Global/NumHelper.php">
-    <MissingParamType occurrences="1">
-      <code>$value</code>
-    </MissingParamType>
   </file>
   <file src="app/Http/Controllers/API/UrlController.php">
     <InvalidScalarArgument occurrences="1">
@@ -140,14 +127,6 @@
     <InvalidReturnType occurrences="1">
       <code>int</code>
     </InvalidReturnType>
-    <MissingParamType occurrences="3">
-      <code>$value</code>
-      <code>$value</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>duplicate</code>
-    </MissingReturnType>
     <NullableReturnStatement occurrences="1">
       <code>$webTitle</code>
     </NullableReturnStatement>
@@ -199,10 +178,6 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="app/Providers/AppServiceProvider.php">
-    <MissingClosureParamType occurrences="2">
-      <code>$pattern</code>
-      <code>$value</code>
-    </MissingClosureParamType>
     <UndefinedInterfaceMethod occurrences="1">
       <code>getPdo</code>
     </UndefinedInterfaceMethod>
@@ -214,27 +189,6 @@
     <NonInvariantDocblockPropertyType occurrences="1">
       <code>$listen</code>
     </NonInvariantDocblockPropertyType>
-  </file>
-  <file src="app/Providers/HelperServiceProvider.php">
-    <UnresolvableInclude occurrences="1">
-      <code>require $it-&gt;key()</code>
-    </UnresolvableInclude>
-  </file>
-  <file src="app/Providers/RouteServiceProvider.php">
-    <MissingClosureParamType occurrences="6">
-      <code>$route</code>
-      <code>$route</code>
-      <code>$route</code>
-      <code>$value</code>
-      <code>$value</code>
-      <code>$value</code>
-    </MissingClosureParamType>
-    <MissingClosureReturnType occurrences="1">
-      <code>function ($value, $route) {</code>
-    </MissingClosureReturnType>
-    <MissingReturnType occurrences="1">
-      <code>routeModelBinding</code>
-    </MissingReturnType>
   </file>
   <file src="app/Rules/PwdCurrent.php">
     <NoInterfaceProperties occurrences="1">
