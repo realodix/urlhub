@@ -62,7 +62,7 @@ class GeneralHelper
      * https://www.php.net/manual/en/function.preg-replace.php
      *
      */
-    public function urlSanitize(string $url): string
+    public function urlSanitize(string|array $url): string|array
     {
         return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
     }

@@ -20,11 +20,10 @@ if (! function_exists('urlDisplay')) {
      *
      * @param  string $url    URL or Link.
      * @param  bool   $scheme Show or remove URL schemes.
-     * @param  int    $limit  Length string will be truncated to, including
-     *                        suffix.
+     * @param  int    $limit  Length string will be truncated to, including suffix.
      * @return string
      */
-    function urlDisplay(string $url, bool $scheme = true, int $limit = null)
+    function urlDisplay($url, $scheme = true, $limit = null)
     {
         return resolve(GeneralHelper::class)->urlDisplay($url, $scheme, $limit);
     }
@@ -34,8 +33,8 @@ if (! function_exists('urlSanitize')) {
     /**
      * Remove http://, www., and slashes from the URL.
      *
-     * @param  mixed $value
-     * @return mixed
+     * @param  string|array $value
+     * @return string|array
      */
     function urlSanitize($value)
     {
