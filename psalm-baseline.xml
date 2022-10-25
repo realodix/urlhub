@@ -25,11 +25,6 @@
       <code>merge</code>
     </PossiblyNullReference>
   </file>
-  <file src="app/Http/Controllers/Auth/VerificationController.php">
-    <TooManyArguments occurrences="1">
-      <code>only</code>
-    </TooManyArguments>
-  </file>
   <file src="app/Http/Controllers/Dashboard/DashboardController.php">
     <InvalidScalarArgument occurrences="3">
       <code>Auth::id()</code>

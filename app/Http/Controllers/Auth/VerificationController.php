@@ -40,6 +40,11 @@ class VerificationController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
+
+        /**
+         * @psalm-suppress TooManyArguments
+         * https://github.com/laravel/ui/blob/4.x/stubs/Auth/VerificationController.stub
+         */
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 }
