@@ -2,7 +2,7 @@
 
 namespace App\Helpers\General;
 
-use Illuminate\Support\Str;
+use Illuminate\Support\{Str, Stringable};
 use Spatie\Url\Url as SpatieUrl;
 
 class GeneralHelper
@@ -10,17 +10,11 @@ class GeneralHelper
     /**
      * Display the link according to what You need.
      *
-     * @psalm-suppress PossiblyInvalidArgument Karena `$url` adalah string, walaupun
-     *                 `urlSanitize(): string|array` maka  yang keluar akan tetap
-     *                 string
-     * @psalm-suppress InvalidReturnType
-     * @psalm-suppress InvalidReturnStatement
-     *
      * @param string $url    URL or Link
      * @param bool   $scheme Show or remove URL schemes.
      * @param int    $limit  Length string will be truncated to, including suffix.
      */
-    public function urlDisplay(string $url, bool $scheme = true, int $limit = null): string
+    public function urlDisplay(string $url, bool $scheme = true, int $limit = null): string|Stringable
     {
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
@@ -65,6 +59,9 @@ class GeneralHelper
      * Remove http://, www., and slashes from the URL.
      *
      * https://www.php.net/manual/en/function.preg-replace.php
+     *
+     * @psalm-param string|list<string> $url
+     * @psalm-return ($url is string ? string : list<string>)
      */
     public function urlSanitize(string|array $url): string|array
     {

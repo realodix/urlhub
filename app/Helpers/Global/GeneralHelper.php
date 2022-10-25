@@ -21,7 +21,7 @@ if (! function_exists('urlDisplay')) {
      * @param string $url    URL or Link.
      * @param bool   $scheme Show or remove URL schemes.
      * @param int    $limit  Length string will be truncated to, including suffix.
-     * @return string
+     * @return string|\Illuminate\Support\Stringable
      */
     function urlDisplay($url, $scheme = true, $limit = null)
     {
