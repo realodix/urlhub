@@ -10,10 +10,15 @@ class GeneralHelper
     /**
      * Display the link according to what You need.
      *
+     * @psalm-suppress PossiblyInvalidArgument Karena `$url` adalah string, walaupun
+     *                 `urlSanitize(): string|array` maka  yang keluar akan tetap
+     *                 string
+     * @psalm-suppress InvalidReturnType
+     * @psalm-suppress InvalidReturnStatement
+     *
      * @param string $url    URL or Link
      * @param bool   $scheme Show or remove URL schemes.
-     * @param int    $limit  Length string will be truncated to, including
-     *                       suffix.
+     * @param int    $limit  Length string will be truncated to, including suffix.
      */
     public function urlDisplay(string $url, bool $scheme = true, int $limit = null): string
     {

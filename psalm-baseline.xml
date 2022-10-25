@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
-  <file src="app/Helpers/General/GeneralHelper.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>$url</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>string</code>
-    </InvalidReturnType>
-    <PossiblyInvalidArgument occurrences="6">
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-    </PossiblyInvalidArgument>
-  </file>
   <file src="app/Helpers/General/HtmlHelper.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>$url</code>
