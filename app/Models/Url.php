@@ -218,7 +218,7 @@ class Url extends Model
             return 0;
         }
 
-        return pow($alphabet, $length);
+        return (int) pow($alphabet, $length);
     }
 
     /**
