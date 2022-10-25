@@ -10,11 +10,6 @@
       <code>$value</code>
     </MissingParamType>
   </file>
-  <file src="app/Http/Controllers/API/UrlController.php">
-    <InvalidScalarArgument occurrences="1">
-      <code>Auth::id()</code>
-    </InvalidScalarArgument>
-  </file>
   <file src="app/Http/Controllers/Auth/LoginController.php">
     <PossiblyInvalidMethodCall occurrences="2">
       <code>get</code>
@@ -24,19 +19,6 @@
       <code>get</code>
       <code>merge</code>
     </PossiblyNullReference>
-  </file>
-  <file src="app/Http/Controllers/Dashboard/DashboardController.php">
-    <InvalidScalarArgument occurrences="3">
-      <code>Auth::id()</code>
-      <code>Auth::id()</code>
-      <code>Auth::id()</code>
-    </InvalidScalarArgument>
-  </file>
-  <file src="app/Http/Controllers/UrlController.php">
-    <InvalidScalarArgument occurrences="2">
-      <code>Auth::id()</code>
-      <code>Auth::id()</code>
-    </InvalidScalarArgument>
   </file>
   <file src="app/Http/Livewire/AllUlrTable.php">
     <InvalidReturnStatement occurrences="1">

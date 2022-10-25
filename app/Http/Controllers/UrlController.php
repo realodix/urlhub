@@ -27,7 +27,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = (new Url)->shortenUrl($request, Auth::id());
+        $url = (new Url)->shortenUrl($request, (int) Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword);
     }
@@ -96,7 +96,7 @@ class UrlController extends Controller
      */
     public function duplicate(string $key)
     {
-        $url = (new Url)->duplicate($key, Auth::id());
+        $url = (new Url)->duplicate($key, (int) Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword)
             ->withFlashSuccess(__('Link was successfully duplicated.'));

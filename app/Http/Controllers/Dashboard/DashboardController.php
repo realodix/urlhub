@@ -21,10 +21,10 @@ class DashboardController extends Controller
 
         return view('backend.dashboard', [
             'totalUrl'         => $url->totalUrl(),
-            'urlCount_Me'      => $url->urlCount(Auth::id()),
+            'urlCount_Me'      => $url->urlCount((int) Auth::id()),
             'urlCount_Guest'   => $url->urlCount(),
             'totalClick'       => $url->totalClick(),
-            'clickCount_Me'    => $url->clickCount(Auth::id()),
+            'clickCount_Me'    => $url->clickCount((int) Auth::id()),
             'clickCount_Guest' => $url->clickCount(),
             'userCount'        => User::count(),
             'guestCount'       => $user->guestCount(),
@@ -97,7 +97,7 @@ class DashboardController extends Controller
     public function duplicate($key)
     {
         $url = new Url;
-        $url->duplicate($key, Auth::id());
+        $url->duplicate($key, (int) Auth::id());
 
         return redirect()->back()
             ->withFlashSuccess(__('Link was successfully duplicated.'));
