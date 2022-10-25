@@ -37,10 +37,10 @@ class Url extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     *@var array
+     * @var array
      */
     protected $casts = [
-        'user_id'   => 'int',
+        'user_id'   => 'integer',
         'is_custom' => 'boolean',
     ];
 
