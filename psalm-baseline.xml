@@ -109,28 +109,6 @@
       <code>(int) max($keyCapacity - $keyUsed, 0)</code>
     </RedundantCast>
   </file>
-  <file src="app/Policies/UrlPolicy.php">
-    <PossiblyNullReference occurrences="2">
-      <code>hasRole</code>
-      <code>hasRole</code>
-    </PossiblyNullReference>
-    <UndefinedInterfaceMethod occurrences="2">
-      <code>hasRole</code>
-      <code>hasRole</code>
-    </UndefinedInterfaceMethod>
-  </file>
-  <file src="app/Policies/UserPolicy.php">
-    <PossiblyNullReference occurrences="3">
-      <code>hasRole</code>
-      <code>hasRole</code>
-      <code>hasRole</code>
-    </PossiblyNullReference>
-    <UndefinedInterfaceMethod occurrences="3">
-      <code>hasRole</code>
-      <code>hasRole</code>
-      <code>hasRole</code>
-    </UndefinedInterfaceMethod>
-  </file>
   <file src="app/Providers/AppServiceProvider.php">
     <MissingClosureParamType occurrences="2">
       <code>$pattern</code>

@@ -4,33 +4,23 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * @return bool
-     */
-    public function view(User $authenticatedUser, User $user)
+    public function view(User $authUser, User $user): bool
     {
-        return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
+        return $authUser->hasRole('admin') || $authUser->id === $user->id;
     }
 
-    /**
-     * @return bool
-     */
-    public function update(User $authenticatedUser, User $user)
+    public function update(User $authUser, User $user): bool
     {
-        return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
+        return $authUser->hasRole('admin') || $authUser->id === $user->id;
     }
 
-    /**
-     * @return bool
-     */
-    public function updatePass(User $authenticatedUser, User $user)
+    public function updatePass(User $authUser, User $user): bool
     {
-        return Auth::user()->hasRole('admin') || $authenticatedUser->id === $user->id;
+        return $authUser->hasRole('admin') || $authUser->id === $user->id;
     }
 }
