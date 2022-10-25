@@ -27,6 +27,7 @@
         "fakerphp/faker": "^1.19",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.2",
         "phpunit/phpunit": "^9.5.10",
         "psalm/plugin-laravel": "^2.0",
         "realodix/relax": "dev-main",

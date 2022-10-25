@@ -22,7 +22,7 @@ class Url extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<string>
+     * @var string[]
      */
     protected $fillable = [
         'user_id',

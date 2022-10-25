@@ -1,0 +1,8 @@
+includes:
+  - vendor/nunomaduro/larastan/extension.neon
+  - phpstan-baseline.neon
+
+parameters:
+	level: 6
+	paths:
+		- app/

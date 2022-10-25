@@ -43,13 +43,6 @@
       <code>Auth::id()</code>
     </InvalidScalarArgument>
   </file>
-  <file src="app/Http/Kernel.php">
-    <NonInvariantDocblockPropertyType occurrences="3">
-      <code>$middleware</code>
-      <code>$middlewareGroups</code>
-      <code>$routeMiddleware</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
   <file src="app/Http/Livewire/AllUlrTable.php">
     <InvalidReturnStatement occurrences="1">
       <code>Url::query()</code>
@@ -87,31 +80,6 @@
       <code>__('Details')</code>
     </PossiblyInvalidOperand>
   </file>
-  <file src="app/Http/Middleware/EncryptCookies.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
-      <code>$except</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
-  <file src="app/Http/Middleware/PreventRequestsDuringMaintenance.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
-      <code>$except</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
-  <file src="app/Http/Middleware/TrimStrings.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
-      <code>$except</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
-  <file src="app/Http/Middleware/TrustProxies.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
-      <code>$proxies</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
-  <file src="app/Http/Middleware/VerifyCsrfToken.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
-      <code>$except</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
   <file src="app/Models/Url.php">
     <InvalidNullableReturnType occurrences="1">
       <code>string</code>
@@ -146,18 +114,6 @@
       <code>(int) max($keyCapacity - $keyUsed, 0)</code>
     </RedundantCast>
   </file>
-  <file src="app/Models/User.php">
-    <NonInvariantDocblockPropertyType occurrences="3">
-      <code>$casts</code>
-      <code>$fillable</code>
-      <code>$hidden</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
-  <file src="app/Models/Visit.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
-      <code>$fillable</code>
-    </NonInvariantDocblockPropertyType>
-  </file>
   <file src="app/Policies/UrlPolicy.php">
     <PossiblyNullReference occurrences="2">
       <code>hasRole</code>
@@ -191,11 +147,6 @@
   </file>
   <file src="app/Providers/AuthServiceProvider.php">
     <PropertyTypeCoercion occurrences="1"/>
-  </file>
-  <file src="app/Providers/EventServiceProvider.php">
-    <NonInvariantDocblockPropertyType occurrences="1">
-      <code>$listen</code>
-    </NonInvariantDocblockPropertyType>
   </file>
   <file src="app/Providers/HelperServiceProvider.php">
     <UnresolvableInclude occurrences="1">
