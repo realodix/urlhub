@@ -110,10 +110,6 @@
     </RedundantCast>
   </file>
   <file src="app/Providers/AppServiceProvider.php">
-    <MissingClosureParamType occurrences="2">
-      <code>$pattern</code>
-      <code>$value</code>
-    </MissingClosureParamType>
     <UndefinedInterfaceMethod occurrences="1">
       <code>getPdo</code>
     </UndefinedInterfaceMethod>
@@ -127,16 +123,8 @@
     </UnresolvableInclude>
   </file>
   <file src="app/Providers/RouteServiceProvider.php">
-    <MissingClosureParamType occurrences="6">
-      <code>$route</code>
-      <code>$route</code>
-      <code>$route</code>
-      <code>$value</code>
-      <code>$value</code>
-      <code>$value</code>
-    </MissingClosureParamType>
     <MissingClosureReturnType occurrences="1">
-      <code>function ($value, $route) {</code>
+      <code>function (string $value) {</code>
     </MissingClosureReturnType>
     <MissingReturnType occurrences="1">
       <code>routeModelBinding</code>

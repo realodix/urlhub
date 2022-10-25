@@ -59,15 +59,15 @@ class RouteServiceProvider extends ServiceProvider
 
     private function routeModelBinding()
     {
-        Route::bind('user', function ($value, $route) {
+        Route::bind('user', function (string $value) {
             return \App\Models\User::whereName($value)->firstOrFail();
         });
 
-        Route::bind('user_hashId', function ($value, $route) {
+        Route::bind('user_hashId', function (string $value) {
             return $this->hashidsDecoder(\App\Models\User::class, $value);
         });
 
-        Route::bind('url_hashId', function ($value, $route) {
+        Route::bind('url_hashId', function (string $value) {
             return $this->hashidsDecoder(\App\Models\Url::class, $value);
         });
     }
