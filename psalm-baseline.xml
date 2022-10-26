@@ -10,43 +10,6 @@
       <code>merge</code>
     </PossiblyNullReference>
   </file>
-  <file src="app/Http/Livewire/AllUlrTable.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>Url::query()</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>?Builder</code>
-    </InvalidReturnType>
-    <PossiblyInvalidOperand occurrences="4">
-      <code>__('Delete')</code>
-      <code>__('Duplicate')</code>
-      <code>__('Edit')</code>
-      <code>__('Open front page')</code>
-    </PossiblyInvalidOperand>
-  </file>
-  <file src="app/Http/Livewire/MyUrlTable.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>Url::whereUserId(Auth::id())</code>
-    </InvalidReturnStatement>
-    <PossiblyInvalidOperand occurrences="4">
-      <code>__('Delete')</code>
-      <code>__('Duplicate')</code>
-      <code>__('Edit')</code>
-      <code>__('Go to front page')</code>
-    </PossiblyInvalidOperand>
-  </file>
-  <file src="app/Http/Livewire/UserTable.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>User::query()</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>?Builder</code>
-    </InvalidReturnType>
-    <PossiblyInvalidOperand occurrences="2">
-      <code>__('Change Password')</code>
-      <code>__('Details')</code>
-    </PossiblyInvalidOperand>
-  </file>
   <file src="app/Models/Url.php">
     <InvalidNullableReturnType occurrences="1">
       <code>string</code>

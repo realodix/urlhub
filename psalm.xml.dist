@@ -21,6 +21,24 @@
         <referencedFunction name="urlSanitize"/>
       </errorLevel>
     </UndefinedFunction>
+    <!-- PSalm doesn't understand PowerGrid very well
+    The code is according to the documentation https://livewire-powergrid.com/#/table/datasource-->
+    <InvalidReturnStatement>
+      <errorLevel type="suppress">
+        <directory name="app/Http/Livewire" />
+      </errorLevel>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <errorLevel type="suppress">
+        <directory name="app/Http/Livewire" />
+      </errorLevel>
+    </InvalidReturnType>
+    <!-- This is probably a bug from PSalm -->
+    <PossiblyInvalidOperand>
+      <errorLevel type="suppress">
+        <directory name="app/Http/Livewire" />
+      </errorLevel>
+    </PossiblyInvalidOperand>
   </issueHandlers>
 
   <plugins>
