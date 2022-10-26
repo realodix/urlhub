@@ -4,14 +4,6 @@
     <MissingReturnType occurrences="1">
       <code>urlDisplay</code>
     </MissingReturnType>
-    <PossiblyInvalidArgument occurrences="6">
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-      <code>$url</code>
-    </PossiblyInvalidArgument>
   </file>
   <file src="app/Helpers/General/HtmlHelper.php">
     <MissingReturnType occurrences="3">
