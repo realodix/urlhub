@@ -18,7 +18,7 @@ class HtmlHelper
     /**
      * HtmlHelper constructor.
      */
-    public function __construct(UrlGenerator $url = null)
+    public function __construct(UrlGenerator $url)
     {
         $this->url = $url;
     }
@@ -28,13 +28,11 @@ class HtmlHelper
      */
     public function style(string $url, array $attributes = [], bool $secure = null)
     {
-        $defaults = [
+        $attributes += [
             'media' => 'all',
             'type'  => 'text/css',
             'rel'   => 'stylesheet',
         ];
-
-        $attributes += $defaults;
 
         $attributes['href'] = $this->url->asset($url, $secure);
 
