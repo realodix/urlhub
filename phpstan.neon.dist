@@ -3,6 +3,8 @@ includes:
   - phpstan-baseline.neon
 
 parameters:
-	level: 6
-	paths:
-		- app/
+  level: 6
+  paths:
+    - app/
+  editorUrl: 'vscode://file/%%file%%:%%line%%'
+  checkMissingIterableValueType: false
