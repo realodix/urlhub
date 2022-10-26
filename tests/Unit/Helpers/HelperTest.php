@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Helpers;
 
-use App\Helpers\General\NumHelper;
+use App\Helpers\General\{Helper, NumHelper};
 use Tests\TestCase;
 
-class GeneralHelperTest extends TestCase
+class HelperTest extends TestCase
 {
     /**
      * @group u-helper
@@ -24,22 +24,22 @@ class GeneralHelperTest extends TestCase
     {
         $this->assertSame(
             'https://example.com/abcde/',
-            urlDisplay('https://example.com/abcde/')
+            Helper::urlDisplay('https://example.com/abcde/')
         );
 
         $this->assertSame(
             'example.com/abcde',
-            urlDisplay('https://example.com/abcde/', false)
+            Helper::urlDisplay('https://example.com/abcde/', false)
         );
 
         $this->assertSame(
             'https://example.com',
-            urlDisplay('https://example.com/')
+            Helper::urlDisplay('https://example.com/')
         );
 
         $this->assertSame(
             'https://github.com/real...e0be',
-            urlDisplay('https://github.com/realodix/urlhub/commit/33e6d649d2d18345ac2d53a2fe553ae5d174e0be', limit: 30)
+            Helper::urlDisplay('https://github.com/realodix/urlhub/commit/33e6d649d2d18345ac2d53a2fe553ae5d174e0be', limit: 30)
         );
     }
 
@@ -52,7 +52,7 @@ class GeneralHelperTest extends TestCase
      */
     public function sanitize($expected, $actual)
     {
-        $this->assertSame($expected, urlSanitize($actual));
+        $this->assertSame($expected, Helper::urlSanitize($actual));
     }
 
     public function sanitizeProvider()

@@ -5,7 +5,7 @@ namespace App\Helpers\General;
 use Illuminate\Support\Str;
 use Spatie\Url\Url as SpatieUrl;
 
-class GeneralHelper
+class Helper
 {
     /**
      * Display the link according to what You need.
@@ -15,7 +15,7 @@ class GeneralHelper
      * @param int    $limit  Length string will be truncated to, including
      *                       suffix.
      */
-    public function urlDisplay(string $url, bool $scheme = true, int $limit = null)
+    public static function urlDisplay(string $url, bool $scheme = true, int $limit = null)
     {
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
@@ -24,7 +24,7 @@ class GeneralHelper
 
         // Remove URL schemes
         if (! $scheme) {
-            $url = $this->urlSanitize($url);
+            $url = self::urlSanitize($url);
             $hostLen = strlen($sUrl->getHost());
             $urlLen = strlen($url);
         }
@@ -63,7 +63,7 @@ class GeneralHelper
      *
      * @return string|array|null
      */
-    public function urlSanitize(string|array $url)
+    public static function urlSanitize(string|array $url)
     {
         return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
     }
