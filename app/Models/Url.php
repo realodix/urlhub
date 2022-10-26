@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\General\Helper;
 use App\Http\Requests\StoreUrl;
 use App\Http\Traits\Hashidable;
 use Embed\Embed;
@@ -306,7 +307,7 @@ class Url extends Model
     {
         $url = SpatieUrl::fromString($url);
 
-        return urlSanitize($url->getHost());
+        return Helper::urlSanitize($url->getHost());
     }
 
     /**

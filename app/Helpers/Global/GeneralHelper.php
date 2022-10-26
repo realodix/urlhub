@@ -29,16 +29,3 @@ if (! function_exists('urlDisplay')) {
         return Helper::urlDisplay($url, $scheme, $limit);
     }
 }
-
-if (! function_exists('urlSanitize')) {
-    /**
-     * Remove http://, www., and slashes from the URL.
-     *
-     * @param mixed $value
-     * @return mixed
-     */
-    function urlSanitize($value)
-    {
-        return Helper::urlSanitize($value);
-    }
-}
