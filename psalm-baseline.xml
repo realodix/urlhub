@@ -14,11 +14,6 @@
     <InvalidNullableReturnType occurrences="1">
       <code>string</code>
     </InvalidNullableReturnType>
-    <MissingParamType occurrences="3">
-      <code>$value</code>
-      <code>$value</code>
-      <code>$value</code>
-    </MissingParamType>
     <MissingReturnType occurrences="1">
       <code>duplicate</code>
     </MissingReturnType>
@@ -34,9 +29,6 @@
     <PossiblyNullReference occurrences="1">
       <code>ip</code>
     </PossiblyNullReference>
-    <RedundantCast occurrences="1">
-      <code>(int) max($keyCapacity - $keyUsed, 0)</code>
-    </RedundantCast>
   </file>
   <file src="app/Providers/AppServiceProvider.php">
     <UndefinedInterfaceMethod occurrences="1">

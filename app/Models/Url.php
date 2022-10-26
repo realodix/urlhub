@@ -86,7 +86,7 @@ class Url extends Model
     /**
      * @return void
      */
-    public function setUserIdAttribute($value)
+    public function setUserIdAttribute(int|null $value)
     {
         $this->attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
     }
@@ -94,7 +94,7 @@ class Url extends Model
     /**
      * @return void
      */
-    public function setLongUrlAttribute($value)
+    public function setLongUrlAttribute(string $value)
     {
         $this->attributes['long_url'] = rtrim($value, '/');
     }
@@ -102,7 +102,7 @@ class Url extends Model
     /**
      * @return void
      */
-    public function setMetaTitleAttribute($value)
+    public function setMetaTitleAttribute(string $value)
     {
         $this->attributes['meta_title'] = 'No Title';
 
@@ -232,7 +232,7 @@ class Url extends Model
         $keyCapacity = $this->keyCapacity();
         $keyUsed = $this->keyUsed();
 
-        return (int) max($keyCapacity - $keyUsed, 0);
+        return max($keyCapacity - $keyUsed, 0);
     }
 
     public function keyRemainingInPercent(int $precision = 2): string
