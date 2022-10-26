@@ -5,16 +5,6 @@
       <code>$url</code>
     </PossiblyNullPropertyAssignmentValue>
   </file>
-  <file src="app/Helpers/Global/GeneralHelper.php">
-    <PossiblyInvalidArgument occurrences="1">
-      <code>$value</code>
-    </PossiblyInvalidArgument>
-  </file>
-  <file src="app/Helpers/Global/NumHelper.php">
-    <MissingParamType occurrences="1">
-      <code>$value</code>
-    </MissingParamType>
-  </file>
   <file src="app/Http/Controllers/Auth/LoginController.php">
     <PossiblyInvalidMethodCall occurrences="2">
       <code>get</code>

@@ -80,9 +80,9 @@ class HelperTest extends TestCase
      */
     public function numberToAmountShort($expected, $actual)
     {
-        $this->assertSame($expected, (new NumHelper)->numberToAmountShort($actual));
+        $this->assertSame($expected, NumHelper::numberToAmountShort($actual));
 
-        $intOrString = (new NumHelper)->numberToAmountShort($actual);
+        $intOrString = NumHelper::numberToAmountShort($actual);
 
         if (is_int($intOrString)) {
             $this->assertIsInt($intOrString);
@@ -97,8 +97,8 @@ class HelperTest extends TestCase
      */
     public function numbPrec()
     {
-        $this->assertSame(19.12, (new NumHelper)->numbPrec(19.123456));
-        $this->assertSame(19.123, (new NumHelper)->numbPrec(19.123456, 3));
+        $this->assertSame(19.12, NumHelper::numbPrec(19.123456));
+        $this->assertSame(19.123, NumHelper::numbPrec(19.123456, 3));
     }
 
     public function toAmountShortProvider()
