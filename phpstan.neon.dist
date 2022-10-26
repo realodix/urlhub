@@ -8,3 +8,4 @@ parameters:
     - app/
   editorUrl: 'vscode://file/%%file%%:%%line%%'
   checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
