@@ -15,11 +15,6 @@
       <code>$url</code>
     </PossiblyNullPropertyAssignmentValue>
   </file>
-  <file src="app/Helpers/Global/NumHelper.php">
-    <MissingParamType occurrences="1">
-      <code>$value</code>
-    </MissingParamType>
-  </file>
   <file src="app/Http/Controllers/API/UrlController.php">
     <InvalidScalarArgument occurrences="1">
       <code>Auth::id()</code>
