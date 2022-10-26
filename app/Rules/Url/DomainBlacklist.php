@@ -2,6 +2,7 @@
 
 namespace App\Rules\Url;
 
+use App\Helpers\General\Helper;
 use Illuminate\Contracts\Validation\Rule;
 
 class DomainBlacklist implements Rule
@@ -20,7 +21,7 @@ class DomainBlacklist implements Rule
         $a = true;
 
         foreach ($blackLists as $blackList) {
-            $blackList = urlSanitize($blackList);
+            $blackList = Helper::urlSanitize($blackList);
             $segment1 = '://'.$blackList.'/';
             $segment2 = '://www.'.$blackList.'/';
 
