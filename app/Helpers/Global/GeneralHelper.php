@@ -1,6 +1,6 @@
 <?php
 
-use App\Helpers\General\GeneralHelper;
+use App\Helpers\General\Helper;
 
 if (! function_exists('appName')) {
     /**
@@ -25,7 +25,7 @@ if (! function_exists('urlDisplay')) {
      */
     function urlDisplay($url, $scheme = true, $limit = null)
     {
-        return resolve(GeneralHelper::class)->urlDisplay($url, $scheme, $limit);
+        return Helper::urlDisplay($url, $scheme, $limit);
     }
 }
 
@@ -38,6 +38,6 @@ if (! function_exists('urlSanitize')) {
      */
     function urlSanitize($value)
     {
-        return resolve(GeneralHelper::class)->urlSanitize($value);
+        return Helper::urlSanitize($value);
     }
 }
