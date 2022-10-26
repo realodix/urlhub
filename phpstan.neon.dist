@@ -3,7 +3,7 @@ includes:
   - phpstan-baseline.neon
 
 parameters:
-  level: 7
+  level: 8
   paths:
     - app/
   tmpDir: .logs/
