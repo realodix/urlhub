@@ -15,13 +15,14 @@ class DomainBlacklist implements Rule
      */
     public function passes($attribute, $value)
     {
-        $blacklist = urlSanitize(config('urlhub.domain_blacklist'));
+        $blackLists = config('urlhub.domain_blacklist');
         $longUrl = rtrim($value, '/');
         $a = true;
 
-        foreach ($blacklist as $black_list) {
-            $segment1 = '://'.$black_list.'/';
-            $segment2 = '://www.'.$black_list.'/';
+        foreach ($blackLists as $blackList) {
+            $blackList = urlSanitize($blackList);
+            $segment1 = '://'.$blackList.'/';
+            $segment2 = '://www.'.$blackList.'/';
 
             if (strstr($longUrl, $segment1) || strstr($longUrl, $segment2)) {
                 $a = false;

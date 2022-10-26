@@ -57,13 +57,8 @@ class Helper
 
     /**
      * Remove http://, www., and slashes from the URL.
-     *
-     * https://www.php.net/manual/en/function.preg-replace.php
-     *
-     * @psalm-param string|list<string> $url
-     * @psalm-return ($url is string ? string : list<string>)
      */
-    public static function urlSanitize(string|array $url): string|array
+    public static function urlSanitize(string $url): string
     {
         return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
     }

@@ -5,6 +5,11 @@
       <code>$url</code>
     </PossiblyNullPropertyAssignmentValue>
   </file>
+  <file src="app/Helpers/Global/GeneralHelper.php">
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$value</code>
+    </PossiblyInvalidArgument>
+  </file>
   <file src="app/Helpers/Global/NumHelper.php">
     <MissingParamType occurrences="1">
       <code>$value</code>
