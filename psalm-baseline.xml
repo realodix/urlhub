@@ -11,9 +11,6 @@
       <code>style</code>
       <code>toHtmlString</code>
     </MissingReturnType>
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>$url</code>
-    </PossiblyNullPropertyAssignmentValue>
   </file>
   <file src="app/Http/Controllers/API/UrlController.php">
     <InvalidScalarArgument occurrences="1">
