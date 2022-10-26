@@ -1,0 +1,46 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Function numberToAmountShort\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: app/Helpers/Global/NumHelper.php
+
+		-
+			message: "#^Method App\\\\Models\\\\Url\\:\\:duplicate\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Models/Url.php
+
+		-
+			message: "#^Method App\\\\Models\\\\Url\\:\\:setLongUrlAttribute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: app/Models/Url.php
+
+		-
+			message: "#^Method App\\\\Models\\\\Url\\:\\:setMetaTitleAttribute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: app/Models/Url.php
+
+		-
+			message: "#^Method App\\\\Models\\\\Url\\:\\:setUserIdAttribute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: app/Models/Url.php
+
+		-
+			message: "#^PHPDoc type array of property App\\\\Models\\\\User\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Models\\\\User\\:\\:\\$hidden is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$hidden\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Method App\\\\Providers\\\\RouteServiceProvider\\:\\:routeModelBinding\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Routing\\\\RouteCollectionInterface\\:\\:getIterator\\(\\)\\.$#"
+			count: 1
+			path: app/Rules/Url/KeywordBlacklist.php
