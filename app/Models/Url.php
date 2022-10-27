@@ -145,9 +145,9 @@ class Url extends Model
         ]);
     }
 
-    public function duplicate(string $key, int|null $authId)
+    public function duplicate(string $key, int|null $authId, string $randomKey = null)
     {
-        $randomKey = $this->randomString();
+        $randomKey = is_null($randomKey) ? $this->randomString() : $randomKey;
         $shortenedUrl = self::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
