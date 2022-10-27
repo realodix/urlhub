@@ -41,11 +41,6 @@ parameters:
 			path: app/Http/Livewire/UserTable.php
 
 		-
-			message: "#^Method App\\\\Models\\\\Url\\:\\:duplicate\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: app/Models/Url.php
-
-		-
 			message: "#^PHPDoc type array of property App\\\\Models\\\\Url\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
 			count: 1
 			path: app/Models/Url.php

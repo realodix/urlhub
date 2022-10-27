@@ -145,6 +145,9 @@ class Url extends Model
         ]);
     }
 
+    /**
+     * @return bool \Illuminate\Database\Eloquent\Model::save()
+     */
     public function duplicate(string $key, int|null $authId, string $randomKey = null)
     {
         $randomKey = is_null($randomKey) ? $this->randomString() : $randomKey;

@@ -11,9 +11,6 @@
     </PossiblyNullReference>
   </file>
   <file src="app/Models/Url.php">
-    <MissingReturnType occurrences="1">
-      <code>duplicate</code>
-    </MissingReturnType>
     <PossiblyInvalidMethodCall occurrences="1">
       <code>ip</code>
     </PossiblyInvalidMethodCall>
