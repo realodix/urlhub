@@ -322,11 +322,8 @@ class Url extends Model
         $defaultWebTitle = $domain.' - No Title';
 
         try {
-            $webTitle = (new Embed)->get($url)->title;
-
-            if (is_null($webTitle)) {
-                $webTitle = $defaultWebTitle;
-            }
+            $embeddedTitle = (new Embed)->get($url)->title;
+            $webTitle = ! is_null($embeddedTitle) ? $embeddedTitle : $defaultWebTitle;
         } catch (\Exception $e) {
             $webTitle = $defaultWebTitle;
         }
