@@ -27,6 +27,7 @@ class HelperServiceProvider extends ServiceProvider
                 $it->current()->getExtension() === 'php' &&
                 strpos($it->current()->getFilename(), 'Helper')
             ) {
+                /** @psalm-suppress UnresolvableInclude */
                 require $it->key();
             }
 

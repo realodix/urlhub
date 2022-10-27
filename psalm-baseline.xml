@@ -26,11 +26,6 @@
   <file src="app/Providers/AuthServiceProvider.php">
     <PropertyTypeCoercion occurrences="1"/>
   </file>
-  <file src="app/Providers/HelperServiceProvider.php">
-    <UnresolvableInclude occurrences="1">
-      <code>require $it-&gt;key()</code>
-    </UnresolvableInclude>
-  </file>
   <file src="app/Providers/RouteServiceProvider.php">
     <MissingClosureReturnType occurrences="1">
       <code>function (string $value) {</code>
