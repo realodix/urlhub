@@ -59,11 +59,6 @@
       <code>Auth::user()-&gt;password</code>
     </PossiblyNullPropertyFetch>
   </file>
-  <file src="app/Rules/Url/KeywordBlacklist.php">
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>getIterator</code>
-    </UndefinedInterfaceMethod>
-  </file>
   <file src="app/Services/UrlRedirectionService.php">
     <PossiblyInvalidMethodCall occurrences="1">
       <code>ip</code>
