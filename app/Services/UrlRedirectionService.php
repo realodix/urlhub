@@ -30,6 +30,11 @@ class UrlRedirectionService
     /**
      * Create visit statistics and store it in the database.
      *
+     * @psalm-suppress PossiblyNullReference get(), ip()
+     * @psalm-suppress PossiblyInvalidMethodCall request()->ip()
+     * @psalm-suppress PossiblyNullPropertyFetch request()->headers
+     * @psalm-suppress PossiblyInvalidPropertyFetch request()->headers
+     *
      * @param Url $url \App\Models\Url
      * @return void
      */

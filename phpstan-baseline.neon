@@ -39,8 +39,3 @@ parameters:
 			message: "#^Cannot access property \\$password on App\\\\Models\\\\User\\|null\\.$#"
 			count: 1
 			path: app/Rules/PwdCurrent.php
-
-		-
-			message: "#^Parameter \\#1 \\$address of method App\\\\Models\\\\Url\\:\\:anonymizeIp\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: app/Services/UrlRedirectionService.php

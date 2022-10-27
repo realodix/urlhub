@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      *
+     * @psalm-suppress UndefinedInterfaceMethod getPdo()
+     *
      * @return void
      */
     public function boot()

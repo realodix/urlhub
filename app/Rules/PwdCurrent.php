@@ -10,6 +10,9 @@ class PwdCurrent implements Rule
     /**
      * Determine if the validation rule passes.
      *
+     * @psalm-suppress PossiblyNullPropertyFetch
+     * @psalm-suppress NoInterfaceProperties
+     *
      * @param string $attribute
      * @param mixed  $value
      * @return bool

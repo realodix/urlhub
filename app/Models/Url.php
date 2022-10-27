@@ -141,7 +141,7 @@ class Url extends Model
             'meta_title' => $request['long_url'],
             'keyword'    => $key,
             'is_custom'  => $request['custom_key'] ? 1 : 0,
-            'ip'         => request()->ip(),
+            'ip'         => $request->ip(),
         ]);
     }
 
@@ -292,10 +292,12 @@ class Url extends Model
     /**
      * Anonymize an IPv4 or IPv6 address.
      *
-     * @param string $address
+     * @param string|null $address
      */
     public static function anonymizeIp($address): string
     {
+        $address = ! is_null($address) ? $address : (string) null;
+
         if (config('urlhub.anonymize_ip_addr') === false) {
             return $address;
         }
