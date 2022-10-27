@@ -66,11 +66,6 @@ parameters:
 			path: app/Models/User.php
 
 		-
-			message: "#^Method App\\\\Providers\\\\RouteServiceProvider\\:\\:routeModelBinding\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: app/Providers/RouteServiceProvider.php
-
-		-
 			message: "#^Cannot access property \\$password on App\\\\Models\\\\User\\|null\\.$#"
 			count: 1
 			path: app/Rules/PwdCurrent.php

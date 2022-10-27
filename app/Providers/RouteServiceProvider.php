@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -57,14 +58,17 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * @return void
+     */
     private function routeModelBinding()
     {
-        Route::bind('user', function (string $value) {
-            return \App\Models\User::whereName($value)->firstOrFail();
+        Route::bind('user', function (string $value): User {
+            return User::whereName($value)->firstOrFail();
         });
 
         Route::bind('user_hashId', function (string $value) {
-            return $this->hashidsDecoder(\App\Models\User::class, $value);
+            return $this->hashidsDecoder(User::class, $value);
         });
 
         Route::bind('url_hashId', function (string $value) {
