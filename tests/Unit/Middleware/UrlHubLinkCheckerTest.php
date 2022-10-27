@@ -7,6 +7,24 @@ use Tests\TestCase;
 class UrlHubLinkCheckerTest extends TestCase
 {
     /**
+     * @test
+     * @dataProvider keywordBlacklistFailDataProvider
+     *
+     * @param array $value
+     */
+    public function keywordBlacklistFail($value)
+    {
+        $response = $this->post(route('createshortlink'), [
+            'long_url' => 'https://laravel.com',
+            'custom_key' => $value,
+        ]);
+
+        $response
+            ->assertRedirect(route('home'))
+            ->assertSessionHas('flash_error');
+    }
+
+    /**
      * Shorten the url when the random string generator capacity is full.
      * UrlHub must prevent URL shortening.
      *
@@ -23,5 +41,14 @@ class UrlHubLinkCheckerTest extends TestCase
         $response
             ->assertRedirect(route('home'))
             ->assertSessionHas('flash_error');
+    }
+
+    public function keywordBlacklistFailDataProvider()
+    {
+        return [
+            ['login'],
+            ['register'],
+            ['css'], // urlhub.reserved_keyword
+        ];
     }
 }

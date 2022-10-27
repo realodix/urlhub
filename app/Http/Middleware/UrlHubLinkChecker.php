@@ -20,6 +20,29 @@ class UrlHubLinkChecker
 
         /*
         |----------------------------------------------------------------------
+        | Custom Keyword
+        |----------------------------------------------------------------------
+        |
+        | - Prevent registered routes from being used as custom keywords.
+        | - Prevent blacklist from being used as a custom keyword.
+        |
+        */
+
+        $value = $request->custom_key;
+        $routes = array_map(
+            function (\Illuminate\Routing\Route $route) {
+                return $route->uri;
+            },
+            \Route::getRoutes()->get()
+        );
+
+        if (in_array($value, $routes) || in_array($value, config('urlhub.reserved_keyword'))) {
+            return redirect()->back()
+                ->withFlashError(__('Custom keyword not available.'));
+        }
+
+        /*
+        |----------------------------------------------------------------------
         | Key Remaining
         |----------------------------------------------------------------------
         |
