@@ -319,11 +319,16 @@ class Url extends Model
     public function getWebTitle(string $url): string
     {
         $domain = $this->getDomain($url);
+        $defaultWebTitle = $domain.' - No Title';
 
         try {
             $webTitle = (new Embed)->get($url)->title;
+
+            if (is_null($webTitle)) {
+                $webTitle = $defaultWebTitle;
+            }
         } catch (\Exception $e) {
-            $webTitle = $domain.' - No Title';
+            $webTitle = $defaultWebTitle;
         }
 
         // @codeCoverageIgnoreStart
