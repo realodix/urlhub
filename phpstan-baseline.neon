@@ -14,3 +14,17 @@ parameters:
 			message: "#^PHPDoc type array of property App\\\\Models\\\\Url\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
 			count: 1
 			path: app/Models/Url.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
+			count: 1
+			path: app/Models/Url.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:decode\\(\\)\\.$#"
+			path: app/Providers/RouteServiceProvider.php
