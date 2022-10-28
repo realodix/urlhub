@@ -7,7 +7,6 @@ parameters:
   paths:
     - app/
   tmpDir: .logs/
-  editorUrl: 'vscode://file/%%file%%:%%line%%'
   checkMissingIterableValueType: false
   checkGenericClassInNonGenericObjectType: false
   ignoreErrors:
