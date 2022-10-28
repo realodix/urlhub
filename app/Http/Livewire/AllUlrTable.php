@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Helpers\General\Helper;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
@@ -96,7 +97,7 @@ final class AllUlrTable extends PowerGridComponent
                     '</span>
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
-                        .urlDisplay($url->long_url, false, 70)
+                        .Helper::urlDisplay($url->long_url, false, 70)
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })

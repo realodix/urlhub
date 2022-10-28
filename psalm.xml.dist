@@ -15,12 +15,6 @@
 
   <issueHandlers>
     <PropertyNotSetInConstructor errorLevel="info"/>
-    <UndefinedFunction>
-      <errorLevel type="suppress">
-        <referencedFunction name="urlDisplay"/>
-        <referencedFunction name="urlSanitize"/>
-      </errorLevel>
-    </UndefinedFunction>
     <!-- PSalm doesn't understand PowerGrid very well
     The code is according to the documentation https://livewire-powergrid.com/#/table/datasource-->
     <InvalidReturnStatement>
