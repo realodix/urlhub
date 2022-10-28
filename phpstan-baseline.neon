@@ -11,12 +11,12 @@ parameters:
 			path: app/Http/Livewire/UserTable.php
 
 		-
-			message: "#^PHPDoc type array of property App\\\\Models\\\\Url\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
+			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
 			count: 1
 			path: app/Models/Url.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
+			message: "#^PHPDoc type array of property App\\\\Models\\\\Url\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
 			count: 1
 			path: app/Models/Url.php
 
@@ -26,5 +26,16 @@ parameters:
 			path: app/Models/User.php
 
 		-
+			message: "#^PHPDoc type array of property App\\\\Models\\\\User\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Models\\\\User\\:\\:\\$hidden is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$hidden\\.$#"
+			count: 1
+			path: app/Models/User.php
+
+		-
 			message: "#^Call to an undefined method object\\:\\:decode\\(\\)\\.$#"
+			count: 1
 			path: app/Providers/RouteServiceProvider.php
