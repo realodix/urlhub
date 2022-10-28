@@ -10,16 +10,16 @@ class PwdCurrent implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @psalm-suppress PossiblyNullPropertyFetch
-     * @psalm-suppress NoInterfaceProperties
-     *
      * @param string $attribute
      * @param mixed  $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        return Hash::check($value, Auth::user()->password);
+        /** @var \App\Models\User */
+        $user = Auth::user();
+
+        return Hash::check($value, $user->password);
     }
 
     /**
