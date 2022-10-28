@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method App\\\\Helpers\\\\Helper\\:\\:urlSanitize\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: app/Helpers/Helper.php
-
-		-
 			message: "#^Cannot access property \\$name on App\\\\Models\\\\User\\|null\\.$#"
 			count: 1
 			path: app/Http/Livewire/AllUlrTable.php
@@ -16,46 +11,6 @@ parameters:
 			path: app/Http/Livewire/UserTable.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
-			count: 1
-			path: app/Models/Url.php
-
-		-
 			message: "#^PHPDoc type array of property App\\\\Models\\\\Url\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
 			count: 1
 			path: app/Models/Url.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|null given\\.$#"
-			count: 1
-			path: app/Models/Url.php
-
-		-
-			message: "#^Parameter \\#2 \\$needle of function stripos expects string, string\\|false given\\.$#"
-			count: 1
-			path: app/Models/Url.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
-			count: 1
-			path: app/Models/User.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Models\\\\User\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
-			count: 1
-			path: app/Models/User.php
-
-		-
-			message: "#^PHPDoc type array\\<string\\> of property App\\\\Models\\\\User\\:\\:\\$hidden is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$hidden\\.$#"
-			count: 1
-			path: app/Models/User.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:decode\\(\\)\\.$#"
-			count: 1
-			path: app/Providers/RouteServiceProvider.php
-
-		-
-			message: "#^Cannot access property \\$password on App\\\\Models\\\\User\\|null\\.$#"
-			count: 1
-			path: app/Rules/PwdCurrent.php
