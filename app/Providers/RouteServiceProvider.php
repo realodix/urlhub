@@ -81,6 +81,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     private function hashidsDecoder(string $model, string $routeKey)
     {
+        // Ini karena connection() tidak menuliskan @return $this
+        // https://phpstan.org/writing-php-code/phpdoc-types#static-and-%24this
+        // https://github.com/phpstan/phpstan/issues/5904
+        // @phpstan-ignore-next-line
         $id = Hashids::connection($model)->decode($routeKey)[0] ?? null;
         $modelInstance = resolve($model);
 
