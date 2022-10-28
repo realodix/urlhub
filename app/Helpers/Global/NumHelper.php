@@ -1,10 +1,10 @@
 <?php
 
-use App\Helpers\General\NumHelper;
+use App\Helpers\NumHelper;
 
 if (! function_exists('numberToAmountShort')) {
     /**
-     * \App\Helpers\General\NumHelper::numberToAmountShort()
+     * \App\Helpers\NumHelper::numberToAmountShort()
      *
      * @param int $value
      * @return int|string

@@ -1,6 +1,6 @@
 <?php
 
-use App\Helpers\General\HtmlHelper;
+use App\Helpers\HtmlHelper;
 
 if (! function_exists('style')) {
     /**

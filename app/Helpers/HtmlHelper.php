@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\General;
+namespace App\Helpers;
 
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\HtmlString;

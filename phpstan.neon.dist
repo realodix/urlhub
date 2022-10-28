@@ -11,5 +11,4 @@ parameters:
   checkMissingIterableValueType: false
   checkGenericClassInNonGenericObjectType: false
   ignoreErrors:
-    - "#Call to an undefined method#"
     - "#Cannot call method [a-zA-Z0-9\\(\\)]+ on Carbon\\\\Carbon\\|null\\.#"

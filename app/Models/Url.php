@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Helpers\General\Helper;
+use App\Helpers\Helper;
 use App\Http\Requests\StoreUrl;
 use App\Http\Traits\Hashidable;
 use Embed\Embed;

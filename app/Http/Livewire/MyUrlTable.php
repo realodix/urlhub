@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Helpers\General\Helper;
+use App\Helpers\Helper;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\{Auth, Blade};

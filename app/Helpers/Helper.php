@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\General;
+namespace App\Helpers;
 
 use Illuminate\Support\{Str, Stringable};
 use Spatie\Url\Url as SpatieUrl;

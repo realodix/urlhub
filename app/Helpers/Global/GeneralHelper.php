@@ -1,6 +1,6 @@
 <?php
 
-use App\Helpers\General\Helper;
+use App\Helpers\Helper;
 
 if (! function_exists('appName')) {
     /**

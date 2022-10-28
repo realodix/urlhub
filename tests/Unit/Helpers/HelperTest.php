@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Helpers;
 
-use App\Helpers\General\{Helper, NumHelper};
+use App\Helpers\{Helper, NumHelper};
 use Tests\TestCase;
 
 class HelperTest extends TestCase
