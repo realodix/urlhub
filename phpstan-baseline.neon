@@ -6,11 +6,6 @@ parameters:
 			path: app/Models/Url.php
 
 		-
-			message: "#^PHPDoc type array of property App\\\\Models\\\\Url\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
-			count: 1
-			path: app/Models/Url.php
-
-		-
 			message: "#^Parameter \\#1 \\$string of function substr expects string, string\\|null given\\.$#"
 			count: 1
 			path: app/Models/Url.php
@@ -22,11 +17,6 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
-			count: 1
-			path: app/Models/User.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Models\\\\User\\:\\:\\$casts is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$casts\\.$#"
 			count: 1
 			path: app/Models/User.php
 

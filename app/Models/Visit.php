@@ -12,7 +12,7 @@ class Visit extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var list<string>
      */
     protected $fillable = [
         'url_id',
