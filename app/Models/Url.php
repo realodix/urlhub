@@ -128,15 +128,18 @@ class Url extends Model
     */
 
     /**
-     * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     * @param StoreUrl        $request \App\Http\Requests\StoreUrl
+     * @param int|string|null $userId  Jika user_id tidak diisi, maka akan diisi
+     *                                 null. Ini terjadi karena guest yang membuat
+     *                                 URL. Lihat setUserIdAttribute().
      * @return self
      */
-    public function shortenUrl(StoreUrl $request, int|string|null $authId)
+    public function shortenUrl(StoreUrl $request, $userId)
     {
         $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
 
         return Url::create([
-            'user_id'    => $authId,
+            'user_id'    => $userId,
             'long_url'   => $request['long_url'],
             'meta_title' => $request['long_url'],
             'keyword'    => $key,
@@ -262,8 +265,7 @@ class Url extends Model
     /**
      * Count the number of URLs based on user id.
      *
-     * @param int|string|null $userId Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
-     *                                guest yang membuat URL. Lihat setUserIdAttribute().
+     * @param int|string|null $userId
      */
     public function urlCount($userId = null): int
     {
