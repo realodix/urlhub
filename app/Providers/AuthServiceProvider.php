@@ -10,8 +10,6 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * The model to policy mappings for the application.
      *
-     * @psalm-suppress PropertyTypeCoercion
-     *
      * @var array<class-string, class-string>
      */
     protected $policies = [

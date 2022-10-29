@@ -100,9 +100,11 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('@svg(\'icon-bar-chart\', \'ml-2\')'))
             ->addColumn('created_at_formatted', function (Url $url) {
+                /** @var \Carbon\Carbon */
+                $urlCreatedAt = $url->created_at;
                 return
-                    '<span title="'.$url->created_at->toDayDateTimeString().'">'
-                        .$url->created_at->diffForHumans().
+                    '<span title="'.$urlCreatedAt->toDayDateTimeString().'">'
+                        .$urlCreatedAt->diffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (Url $url) {

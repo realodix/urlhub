@@ -53,9 +53,6 @@ class LoginController extends Controller
     /**
      * Check either username or email.
      *
-     * @psalm-suppress PossiblyNullReference get(), merge()
-     * @psalm-suppress PossiblyInvalidMethodCall get(), merge()
-     *
      * @return string
      */
     public function username()

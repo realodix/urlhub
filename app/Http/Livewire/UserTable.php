@@ -82,16 +82,19 @@ final class UserTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('name', function (User $user) {
-                $urlCount = $user->url()->count();
-                $urlCountTitle = $urlCount.' '.Str::plural('url', $urlCount).' created';
+                /** @var \App\Models\Url */
+                $url = $user->url();
+                $urlCountTitle = $url->count().' '.Str::plural('url', $url->count()).' created';
 
-                return $user->name.' <span title="'.$urlCountTitle.'">('.$urlCount.')</span>';
+                return $user->name.' <span title="'.$urlCountTitle.'">('.$url->count().')</span>';
             })
             ->addColumn('email')
             ->addColumn('created_at_formatted', function (User $user) {
+                /** @var \Carbon\Carbon */
+                $userCreatedAt = $user->created_at;
                 return
-                    '<span title="'.$user->created_at->toDayDateTimeString().'">'
-                        .$user->created_at->diffForHumans().
+                    '<span title="'.$userCreatedAt->toDayDateTimeString().'">'
+                        .$userCreatedAt->diffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (User $user) {
