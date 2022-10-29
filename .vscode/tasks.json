@@ -34,18 +34,6 @@
             "problemMatcher": []
         },
         {
-            "label": "[SA] Psalm",
-            "type": "shell",
-            "command": "./vendor/bin/psalm",
-            "problemMatcher": []
-        },
-        {
-            "label": "[SA] Psalm (baseline)",
-            "type": "shell",
-            "command": "./vendor/bin/psalm --set-baseline=psalm-baseline.xml",
-            "problemMatcher": []
-        },
-        {
             "label": "[SA] PHPStan",
             "type": "shell",
             "command": "./vendor/bin/phpstan analyse",
