@@ -146,9 +146,10 @@ class Url extends Model
     }
 
     /**
+     * @param int|string|null $authId \Illuminate\Contracts\Auth\Guard::id()
      * @return bool \Illuminate\Database\Eloquent\Model::save()
      */
-    public function duplicate(string $key, int|null $authId, string $randomKey = null)
+    public function duplicate(string $key, $authId, string $randomKey = null)
     {
         $randomKey = is_null($randomKey) ? $this->randomString() : $randomKey;
         $shortenedUrl = self::whereKeyword($key)->firstOrFail();
@@ -261,10 +262,10 @@ class Url extends Model
     /**
      * Count the number of URLs based on user id.
      *
-     * @param int $id Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
-     *                guest yang membuat URL. Lihat setUserIdAttribute().
+     * @param int|string|null $id Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
+     *                            guest yang membuat URL. Lihat setUserIdAttribute().
      */
-    public function urlCount(int $id = null): int
+    public function urlCount($id = null): int
     {
         return self::whereUserId($id)->count('keyword');
     }
@@ -277,7 +278,7 @@ class Url extends Model
     /**
      * Count the number of clicks based on user id.
      *
-     * @param int $id
+     * @param int|string|null $id
      */
     public function clickCount($id = null): int
     {
