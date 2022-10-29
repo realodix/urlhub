@@ -31,7 +31,7 @@ class UrlController extends Controller
             return response()->json(['errors' => $v->errors()->all()]);
         }
 
-        $url = (new Url)->shortenUrl($request, (int) Auth::id());
+        $url = (new Url)->shortenUrl($request, Auth::id());
 
         return response([
             'id'        => $url->id,

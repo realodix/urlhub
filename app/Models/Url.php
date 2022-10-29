@@ -131,7 +131,7 @@ class Url extends Model
      * @param StoreUrl $request \App\Http\Requests\StoreUrl
      * @return self
      */
-    public function shortenUrl(StoreUrl $request, int|null $authId)
+    public function shortenUrl(StoreUrl $request, int|string|null $authId)
     {
         $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
 

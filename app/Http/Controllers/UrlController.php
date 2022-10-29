@@ -27,7 +27,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = (new Url)->shortenUrl($request, (int) Auth::id());
+        $url = (new Url)->shortenUrl($request, Auth::id());
 
         return redirect()->route('short_url.stats', $url->keyword);
     }
