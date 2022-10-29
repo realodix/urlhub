@@ -146,16 +146,16 @@ class Url extends Model
     }
 
     /**
-     * @param int|string|null $authId \Illuminate\Contracts\Auth\Guard::id()
+     * @param int|string|null $userId \Illuminate\Contracts\Auth\Guard::id()
      * @return bool \Illuminate\Database\Eloquent\Model::save()
      */
-    public function duplicate(string $key, $authId, string $randomKey = null)
+    public function duplicate(string $key, $userId, string $randomKey = null)
     {
         $randomKey = is_null($randomKey) ? $this->randomString() : $randomKey;
         $shortenedUrl = self::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
-            'user_id'   => $authId,
+            'user_id'   => $userId,
             'keyword'   => $randomKey,
             'is_custom' => 0,
             'clicks'    => 0,
@@ -262,12 +262,12 @@ class Url extends Model
     /**
      * Count the number of URLs based on user id.
      *
-     * @param int|string|null $id Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
-     *                            guest yang membuat URL. Lihat setUserIdAttribute().
+     * @param int|string|null $userId Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
+     *                                guest yang membuat URL. Lihat setUserIdAttribute().
      */
-    public function urlCount($id = null): int
+    public function urlCount($userId = null): int
     {
-        return self::whereUserId($id)->count('keyword');
+        return self::whereUserId($userId)->count('keyword');
     }
 
     public function totalUrl(): int
@@ -278,11 +278,11 @@ class Url extends Model
     /**
      * Count the number of clicks based on user id.
      *
-     * @param int|string|null $id
+     * @param int|string|null $userId
      */
-    public function clickCount($id = null): int
+    public function clickCount($userId = null): int
     {
-        return self::whereUserId($id)->sum('clicks');
+        return self::whereUserId($userId)->sum('clicks');
     }
 
     public function totalClick(): int
