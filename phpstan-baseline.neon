@@ -1,6 +1,2 @@
 parameters:
 	ignoreErrors:
-		-
-			message: "#^Parameter \\#2 \\$needle of function stripos expects string, string\\|false given\\.$#"
-			count: 1
-			path: app/Models/Url.php
