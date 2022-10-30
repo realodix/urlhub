@@ -339,7 +339,8 @@ class Url extends Model
         // @codeCoverageIgnoreStart
         // (new Embed())->get() datang dari module external dan membutuhkan koneksi
         // internet, jadi tidak perlu ditest.
-        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
+        $stristr = stristr($domain, '.', true) === false ? $domain : stristr($domain, '.', true);
+        if (stripos($webTitle, $stristr) === false) {
             return $domain.' | '.$webTitle;
         }
         // @codeCoverageIgnoreEnd
