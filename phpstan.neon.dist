@@ -1,6 +1,6 @@
 includes:
-  - vendor/nunomaduro/larastan/extension.neon
   - phpstan-baseline.neon
+  - vendor/nunomaduro/larastan/extension.neon
 
 parameters:
   level: 7
