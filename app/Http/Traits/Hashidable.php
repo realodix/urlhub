@@ -8,6 +8,9 @@ trait Hashidable
 {
     public function getRouteKey()
     {
-        return Hashids::connection(get_called_class())->encode($this->getKey());
+        /** @var \Vinkla\Hashids\Facades\Hashids */
+        $hashids = Hashids::connection(get_called_class());
+
+        return $hashids->encode($this->getKey());
     }
 }

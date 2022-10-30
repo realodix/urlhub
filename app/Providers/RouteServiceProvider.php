@@ -81,9 +81,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     private function hashidsDecoder(string $model, string $routeKey)
     {
-        $id = Hashids::connection($model)->decode($routeKey)[0] ?? null;
-        $modelInstance = resolve($model);
+        /** @var \Vinkla\Hashids\Facades\Hashids */
+        $hashids = Hashids::connection($model);
+        $id = $hashids->decode($routeKey)[0] ?? null;
 
-        return $modelInstance->findOrFail($id);
+        return resolve($model)->findOrFail($id);
     }
 }

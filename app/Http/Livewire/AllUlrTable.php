@@ -108,6 +108,7 @@ final class AllUlrTable extends PowerGridComponent
             ->addColumn('created_at_formatted', function (Url $url) {
                 /** @var \Carbon\Carbon */
                 $urlCreatedAt = $url->created_at;
+
                 return
                     '<span title="'.$urlCreatedAt->toDayDateTimeString().'">'
                         .$urlCreatedAt->diffForHumans().
