@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Helpers\General\Helper;
+use App\Helpers\Helper;
 use App\Http\Requests\StoreUrl;
 use App\Http\Traits\Hashidable;
 use Embed\Embed;
@@ -23,7 +23,7 @@ class Url extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<string>
+     * @var list<string>
      */
     protected $fillable = [
         'user_id',
@@ -38,7 +38,7 @@ class Url extends Model
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'user_id'   => 'integer',
@@ -86,7 +86,7 @@ class Url extends Model
     /**
      * @return void
      */
-    public function setUserIdAttribute($value)
+    public function setUserIdAttribute(int|null $value)
     {
         $this->attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
     }
@@ -94,7 +94,7 @@ class Url extends Model
     /**
      * @return void
      */
-    public function setLongUrlAttribute($value)
+    public function setLongUrlAttribute(string $value)
     {
         $this->attributes['long_url'] = rtrim($value, '/');
     }
@@ -102,7 +102,7 @@ class Url extends Model
     /**
      * @return void
      */
-    public function setMetaTitleAttribute($value)
+    public function setMetaTitleAttribute(string $value)
     {
         $this->attributes['meta_title'] = 'No Title';
 
@@ -128,30 +128,37 @@ class Url extends Model
     */
 
     /**
-     * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     * @param StoreUrl        $request \App\Http\Requests\StoreUrl
+     * @param int|string|null $userId  Jika user_id tidak diisi, maka akan diisi
+     *                                 null. Ini terjadi karena guest yang membuat
+     *                                 URL. Lihat setUserIdAttribute().
      * @return self
      */
-    public function shortenUrl(StoreUrl $request, int|null $authId)
+    public function shortenUrl(StoreUrl $request, $userId)
     {
         $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
 
         return Url::create([
-            'user_id'    => $authId,
+            'user_id'    => $userId,
             'long_url'   => $request['long_url'],
             'meta_title' => $request['long_url'],
             'keyword'    => $key,
             'is_custom'  => $request['custom_key'] ? 1 : 0,
-            'ip'         => request()->ip(),
+            'ip'         => $request->ip(),
         ]);
     }
 
-    public function duplicate(string $key, int $authId, string $randomKey = null)
+    /**
+     * @param int|string|null $userId \Illuminate\Contracts\Auth\Guard::id()
+     * @return bool \Illuminate\Database\Eloquent\Model::save()
+     */
+    public function duplicate(string $key, $userId, string $randomKey = null)
     {
         $randomKey = is_null($randomKey) ? $this->randomString() : $randomKey;
         $shortenedUrl = self::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
-            'user_id'   => $authId,
+            'user_id'   => $userId,
             'keyword'   => $randomKey,
             'is_custom' => 0,
             'clicks'    => 0,
@@ -219,7 +226,7 @@ class Url extends Model
             return 0;
         }
 
-        return pow($alphabet, $length);
+        return (int) pow($alphabet, $length);
     }
 
     /**
@@ -232,7 +239,7 @@ class Url extends Model
         $keyCapacity = $this->keyCapacity();
         $keyUsed = $this->keyUsed();
 
-        return (int) max($keyCapacity - $keyUsed, 0);
+        return max($keyCapacity - $keyUsed, 0);
     }
 
     public function keyRemainingInPercent(int $precision = 2): string
@@ -258,12 +265,11 @@ class Url extends Model
     /**
      * Count the number of URLs based on user id.
      *
-     * @param int $id Jika user_id tidak diisi, maka akan diisi null. Ini terjadi karena
-     *                guest yang membuat URL. Lihat setUserIdAttribute().
+     * @param int|string|null $userId
      */
-    public function urlCount(int $id = null): int
+    public function urlCount($userId = null): int
     {
-        return self::whereUserId($id)->count('keyword');
+        return self::whereUserId($userId)->count('keyword');
     }
 
     public function totalUrl(): int
@@ -274,11 +280,11 @@ class Url extends Model
     /**
      * Count the number of clicks based on user id.
      *
-     * @param int $id
+     * @param int|string|null $userId
      */
-    public function clickCount($id = null): int
+    public function clickCount($userId = null): int
     {
-        return self::whereUserId($id)->sum('clicks');
+        return self::whereUserId($userId)->sum('clicks');
     }
 
     public function totalClick(): int
@@ -289,10 +295,12 @@ class Url extends Model
     /**
      * Anonymize an IPv4 or IPv6 address.
      *
-     * @param string $address
+     * @param string|null $address
      */
     public static function anonymizeIp($address): string
     {
+        $address = ! is_null($address) ? $address : (string) null;
+
         if (config('urlhub.anonymize_ip_addr') === false) {
             return $address;
         }
@@ -319,17 +327,20 @@ class Url extends Model
     public function getWebTitle(string $url): string
     {
         $domain = $this->getDomain($url);
+        $defaultWebTitle = $domain.' - No Title';
 
         try {
-            $webTitle = (new Embed)->get($url)->title;
+            $embeddedTitle = (new Embed)->get($url)->title;
+            $webTitle = ! is_null($embeddedTitle) ? $embeddedTitle : $defaultWebTitle;
         } catch (\Exception $e) {
-            $webTitle = $domain.' - No Title';
+            $webTitle = $defaultWebTitle;
         }
 
         // @codeCoverageIgnoreStart
         // (new Embed())->get() datang dari module external dan membutuhkan koneksi
         // internet, jadi tidak perlu ditest.
-        if (stripos($webTitle, stristr($domain, '.', true)) === false) {
+        $stristr = stristr($domain, '.', true) === false ? $domain : stristr($domain, '.', true);
+        if (stripos($webTitle, $stristr) === false) {
             return $domain.' | '.$webTitle;
         }
         // @codeCoverageIgnoreEnd

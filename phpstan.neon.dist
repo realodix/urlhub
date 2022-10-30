@@ -1,0 +1,11 @@
+includes:
+  - phpstan-baseline.neon
+  - vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+  level: 7
+  paths:
+    - app/
+  tmpDir: .logs/
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false

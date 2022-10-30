@@ -1,12 +1,12 @@
 <?php
 
-use App\Helpers\General\Helper;
+use App\Helpers\Helper;
 
 if (! function_exists('appName')) {
     /**
      * Helper to grab the application name.
      *
-     * @return mixed
+     * @return string
      */
     function appName()
     {
@@ -20,11 +20,10 @@ if (! function_exists('urlDisplay')) {
      *
      * @param string $url    URL or Link.
      * @param bool   $scheme Show or remove URL schemes.
-     * @param int    $limit  Length string will be truncated to, including
-     *                       suffix.
-     * @return string
+     * @param int    $limit  Length string will be truncated to, including suffix.
+     * @return string|\Illuminate\Support\Stringable
      */
-    function urlDisplay(string $url, bool $scheme = true, int $limit = null)
+    function urlDisplay($url, $scheme = true, $limit = null)
     {
         return Helper::urlDisplay($url, $scheme, $limit);
     }

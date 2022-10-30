@@ -2,7 +2,7 @@
 
 namespace App\Rules\Url;
 
-use App\Helpers\General\Helper;
+use App\Helpers\Helper;
 use Illuminate\Contracts\Validation\Rule;
 
 class DomainBlacklist implements Rule

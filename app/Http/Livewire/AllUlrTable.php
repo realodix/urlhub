@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Helpers\Helper;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
@@ -82,7 +83,10 @@ final class AllUlrTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('user_name', function (Url $url) {
-                return '<span class="font-semibold">'.$url->user->name.'</span>';
+                /** @var \App\Models\User */
+                $user = $url->user;
+
+                return '<span class="font-semibold">'.$user->name.'</span>';
             })
             ->addColumn('keyword', function (Url $url) {
                 return
@@ -96,15 +100,18 @@ final class AllUlrTable extends PowerGridComponent
                     '</span>
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
-                        .urlDisplay($url->long_url, false, 70)
+                        .Helper::urlDisplay($url->long_url, false, 70)
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })
             ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('@svg(\'icon-bar-chart\', \'ml-2\')'))
             ->addColumn('created_at_formatted', function (Url $url) {
+                /** @var \Carbon\Carbon */
+                $urlCreatedAt = $url->created_at;
+
                 return
-                    '<span title="'.$url->created_at->toDayDateTimeString().'">'
-                        .$url->created_at->diffForHumans().
+                    '<span title="'.$urlCreatedAt->toDayDateTimeString().'">'
+                        .$urlCreatedAt->diffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (Url $url) {

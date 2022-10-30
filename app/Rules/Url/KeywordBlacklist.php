@@ -27,7 +27,7 @@ class KeywordBlacklist implements Rule
             function (\Illuminate\Routing\Route $route) {
                 return $route->uri;
             },
-            (array) \Route::getRoutes()->getIterator()
+            \Route::getRoutes()->get()
         );
 
         return $value != in_array($value, $routes);

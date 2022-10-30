@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers\General;
+namespace App\Helpers;
 
-use Illuminate\Support\Str;
+use Illuminate\Support\{Str, Stringable};
 use Spatie\Url\Url as SpatieUrl;
 
 class Helper
@@ -12,10 +12,9 @@ class Helper
      *
      * @param string $url    URL or Link
      * @param bool   $scheme Show or remove URL schemes.
-     * @param int    $limit  Length string will be truncated to, including
-     *                       suffix.
+     * @param int    $limit  Length string will be truncated to, including suffix.
      */
-    public static function urlDisplay(string $url, bool $scheme = true, int $limit = null)
+    public static function urlDisplay(string $url, bool $scheme = true, int $limit = null): string|Stringable
     {
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
@@ -61,6 +60,6 @@ class Helper
      */
     public static function urlSanitize(string $url): string
     {
-        return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url);
+        return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url) ?: $url;
     }
 }

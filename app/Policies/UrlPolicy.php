@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\{Url, User};
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class UrlPolicy
 {
@@ -12,21 +11,17 @@ class UrlPolicy
 
     /**
      * Determine whether the user can permanently delete the url.
-     *
-     * @return bool
      */
-    public function forceDelete(User $user, Url $url)
+    public function forceDelete(User $user, Url $url): bool
     {
-        return Auth::user()->hasRole('admin') || $user->id === $url->user_id;
+        return $user->hasRole('admin') || $user->id === $url->user_id;
     }
 
     /**
      * Determine whether the user can update the url.
-     *
-     * @return bool
      */
-    public function updateUrl(User $user, Url $url)
+    public function updateUrl(User $user, Url $url): bool
     {
-        return Auth::user()->hasRole('admin') || $user->id === $url->user_id;
+        return $user->hasRole('admin') || $user->id === $url->user_id;
     }
 }

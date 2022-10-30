@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\General;
+namespace App\Helpers;
 
 class NumHelper
 {

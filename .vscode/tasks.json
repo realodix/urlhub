@@ -34,15 +34,15 @@
             "problemMatcher": []
         },
         {
-            "label": "[SA] Psalm",
+            "label": "[SA] PHPStan",
             "type": "shell",
-            "command": "./vendor/bin/psalm",
+            "command": "./vendor/bin/phpstan analyse",
             "problemMatcher": []
         },
         {
-            "label": "[SA] Psalm (baseline)",
+            "label": "[SA] PHPStan (baseline)",
             "type": "shell",
-            "command": "./vendor/bin/psalm --set-baseline=psalm-baseline.xml",
+            "command": "./vendor/bin/phpstan analyse --generate-baseline",
             "problemMatcher": []
         },
         {
