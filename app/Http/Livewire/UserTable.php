@@ -92,6 +92,7 @@ final class UserTable extends PowerGridComponent
             ->addColumn('created_at_formatted', function (User $user) {
                 /** @var \Carbon\Carbon */
                 $userCreatedAt = $user->created_at;
+
                 return
                     '<span title="'.$userCreatedAt->toDayDateTimeString().'">'
                         .$userCreatedAt->diffForHumans().
