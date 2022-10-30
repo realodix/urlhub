@@ -6,6 +6,6 @@ parameters:
   level: 7
   paths:
     - app/
-  tmpDir: .logs/
+  tmpDir: .tmp/PHPStan
   checkMissingIterableValueType: false
   checkGenericClassInNonGenericObjectType: false
