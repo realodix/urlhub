@@ -17,7 +17,7 @@ class UserFactory extends Factory
      * Laravel by default doesn't include it
      * https://github.com/laravel/laravel/commit/9915831d22c150d68e562f443aca303151d70a4d
      *
-     * @var string
+     * @var class-string<User>
      */
     protected $model = User::class;
 

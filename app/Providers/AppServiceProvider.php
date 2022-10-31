@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL.
-        if (DB::Connection() instanceof \Illuminate\Database\SQLiteConnection) {
+        if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function (string $pattern, string $value) {
                 mb_regex_encoding('UTF-8');
 

@@ -10,7 +10,7 @@ class UrlFactory extends Factory
     /**
      * The name of the factory's corresponding model.
      *
-     * @var string
+     * @var class-string<Url>
      */
     protected $model = Url::class;
 
