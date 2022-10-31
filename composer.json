@@ -30,7 +30,6 @@
         "nunomaduro/larastan": "^2.2",
         "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5.10",
-        "psalm/plugin-laravel": "^2.0",
         "realodix/relax": "dev-main",
         "spatie/laravel-ignition": "^1.0"
     },
