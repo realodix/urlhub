@@ -8,6 +8,7 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Hash, RateLimiter};
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -68,7 +69,6 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.reset-password', ['request' => $request]);
         });
 
-
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
@@ -89,7 +89,12 @@ class FortifyServiceProvider extends ServiceProvider
             if ($user && Hash::check($request->password, $user->password)) {
                 return $user;
             }
-        });
 
+            $request->session()->put('login_error', trans('auth.failed'));
+
+            throw ValidationException::withMessages([
+                'error' => [trans('auth.failed')],
+            ]);
+        });
     }
 }
