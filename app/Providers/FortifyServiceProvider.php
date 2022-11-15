@@ -29,19 +29,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Fortify::loginView(function () {
-            return view('frontend.auth.login');
-        });
-
-        Fortify::authenticateUsing(function (Request $request) {
-            $user = User::where('email', $request->identity)
-                ->orWhere('name', $request->identity)
-                ->first();
-
-            if ($user && Hash::check($request->password, $user->password)) {
-                return $user;
-            }
-        });
+        $this->authenticate();
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
@@ -57,5 +45,35 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
+    }
+
+    /**
+     * @return void
+     */
+    private function authenticate()
+    {
+        Fortify::loginView(function () {
+            return view('frontend.auth.login');
+        });
+
+        Fortify::requestPasswordResetLinkView(function (Request $request, $token = null) {
+            return view('frontend.auth.passwords.reset')->with(
+                [
+                    'token' => $token,
+                    'email' => $request->email,
+                ]
+            );
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('email', $request->identity)
+                ->orWhere('name', $request->identity)
+                ->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
+            }
+        });
+
     }
 }
