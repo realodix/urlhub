@@ -32,7 +32,7 @@
 
         <div>
             <label>{{ __('Email') }}</label>
-            <input type="email" name="email" value="{{ old('email') }}" required autofocus />
+            <input type="email" id="identity" name="identity" value="{{ old('identity') }}" required autofocus />
         </div>
 
         <div>
