@@ -5,8 +5,6 @@ use App\Http\Controllers\Dashboard\{AllUrlController, DashboardController};
 use App\Http\Controllers\{UrlController, UrlRedirectController};
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
-
 Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/create', [UrlController::class, 'create'])->name('createshortlink');
 Route::post('/validate-custom-key', [UrlController::class, 'customKeyValidation']);
