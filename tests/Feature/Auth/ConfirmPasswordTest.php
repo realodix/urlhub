@@ -16,7 +16,7 @@ class ConfirmPasswordTest extends TestCase
 
         $response
             ->assertSuccessful()
-            ->assertViewIs('frontend.auth.passwords.confirm');
+            ->assertViewIs('auth.confirm-password');
     }
 
     /**

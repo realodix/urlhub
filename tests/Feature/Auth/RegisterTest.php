@@ -11,7 +11,7 @@ class RegisterTest extends TestCase
 {
     protected function successfulRegistrationRoute()
     {
-        return route('dashboard');
+        return route('home');
     }
 
     protected function getRoute()
@@ -39,7 +39,7 @@ class RegisterTest extends TestCase
 
         $response
             ->assertSuccessful()
-            ->assertViewIs('frontend.auth.register');
+            ->assertViewIs('auth.register');
     }
 
     /**

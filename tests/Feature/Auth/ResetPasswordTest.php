@@ -44,7 +44,7 @@ class ResetPasswordTest extends TestCase
 
         $response
             ->assertSuccessful()
-            ->assertViewIs('frontend.auth.passwords.reset')
+            ->assertViewIs('auth.reset-password')
             ->assertViewHas('token', $token);
     }
 

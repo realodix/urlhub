@@ -53,24 +53,36 @@ class FortifyServiceProvider extends ServiceProvider
     private function authenticate()
     {
         Fortify::loginView(function () {
-            return view('frontend.auth.login');
+            return view('auth.login');
         });
 
         Fortify::registerView(function () {
-            return view('frontend.auth.register');
+            return view('auth.register');
         });
 
-        Fortify::confirmPasswordView(function () {
-            return view('frontend.auth.passwords.confirm');
+        Fortify::requestPasswordResetLinkView(function () {
+            return view('auth.forgot-password');
         });
 
         Fortify::resetPasswordView(function (Request $request, $token = null) {
-            return view('frontend.auth.passwords.reset')->with(
+            return view('auth.reset-password')->with(
                 [
                     'token' => $token,
                     'email' => $request->email,
                 ]
             );
+        });
+
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
+
+        Fortify::confirmPasswordView(function () {
+            return view('auth.confirm-password');
+        });
+
+        Fortify::twoFactorChallengeView(function () {
+            return view('auth.two-factor-challenge');
         });
 
         Fortify::authenticateUsing(function (Request $request) {
