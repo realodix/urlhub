@@ -28,8 +28,7 @@
                         <small class="block text-red-400"><i>{{__('Usernames cannot be changed.')}}</i></small>
                     </div>
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="email" class="block font-medium text-sm text-slate-700">{{__('E-mail
-                            Address')}}</label>
+                        <label for="email" class="block font-medium text-sm text-slate-700">{{__('E-mail Address')}}</label>
                         <input value="{{$user->email}}" id="email" type="email" name="email" class="form-input mt-1">
                     </div>
                 </div>

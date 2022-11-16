@@ -15,7 +15,8 @@
                 <div class="mt-8 sm:mt-0 text-uh-1 ">
                     <b>@svg('icon-storage', 'mr-1.5') {{__('Free Space')}}:</b>
                     <span class="font-light">{{numberToAmountShort($keyRemaining)}} {{__('of')}}
-                        {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})</span>
+                        {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})
+                    </span>
                 </div>
             </div>
 

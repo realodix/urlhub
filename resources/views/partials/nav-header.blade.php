@@ -35,8 +35,10 @@
                                 <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
                                     @if (Route::currentRouteName() != 'dashboard')
-                                        <a class="nav-item" href="{{route('dashboard')}}">@svg('icon-dashboard', 'mr-1')
-                                            {{__('Dashboard')}}</a>
+                                        <a class="nav-item" href="{{route('dashboard')}}">
+                                            @svg('icon-dashboard', 'mr-1')
+                                            {{__('Dashboard')}}
+                                        </a>
 
                                         <div class="border-t border-slate-100"></div>
                                     @endif
@@ -88,7 +90,8 @@
             <div class="-mr-2 flex items-center sm:hidden">
                 <button x-on:click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md
-              text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-slate-500 transition">
+                        text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-slate-500 transition"
+                >
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
