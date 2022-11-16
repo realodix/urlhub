@@ -40,9 +40,11 @@ class FortifyServiceProvider extends ServiceProvider
         // Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         // Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        // @codeCoverageIgnoreStart
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
+        // @codeCoverageIgnoreEnd
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->identity;
@@ -50,9 +52,11 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($email.$request->ip());
         });
 
+        // @codeCoverageIgnoreStart
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
+        // @codeCoverageIgnoreEnd
     }
 
     /**
