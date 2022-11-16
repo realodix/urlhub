@@ -19,7 +19,7 @@
                 <input class="form-input mt-1" id="name" type="text" name="name" required autofocus>
 
                 @if ($errors->has('name'))
-                    <strong class="text-red-500">{{ $errors->first('name') }}hhhh</strong>
+                    <strong class="text-red-500">{{ $errors->first('name') }}</strong>
                 @endif
 
                 <div class="mt-4"></div>

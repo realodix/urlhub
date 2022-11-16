@@ -30,11 +30,10 @@
                         <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}"
                             placeholder="{{__('Shorten your link')}}"
                             class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
-                                text-xl outline-none border border-gray-200 focus:border-uh-indigo-300 rounded-t-md md:rounded-l-md md:rounded-r-none"
-                        >
-                        <button type="submit" id="actProcess" class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none md:rounded-l-none md:rounded-r-md
-                            text-lg text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:bg-uh-indigo-600"
-                        >
+                                text-xl outline-none border border-gray-200 focus:border-uh-indigo-300 rounded-t-md md:rounded-l-md md:rounded-r-none">
+                        <button type="submit" id="actProcess"
+                            class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none md:rounded-l-none md:rounded-r-md
+                                text-lg text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 focus:bg-uh-indigo-600">
                             {{__('Shorten')}}
                         </button>
                     </div>
