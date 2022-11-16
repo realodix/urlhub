@@ -11,6 +11,9 @@ jobs:
       matrix:
         php-version: ['8.0', '8.1']
         stability: [lowest, stable]
+        include:
+          - php-version: '8.2'
+            stability: stable
 
     steps:
       - name: Checkout code
