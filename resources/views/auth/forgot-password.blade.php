@@ -5,8 +5,10 @@
 @section('css_class', 'auth')
 
 @section('content')
-    <div>
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
+    <div class="text-center mb-4">
+        {{ __('Forgot your password? No problem.') }} <br>
+        {{ __('Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
     @if (session('status'))
@@ -29,16 +31,16 @@
 
     <form method="POST" action="{{ route('password.email') }}">
     @csrf
-
         <div>
-            <label>{{ __('Email') }}</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus />
+            <label class="block font-medium text-sm text-slate-700">{{ __('Email') }}</label>
+            <input class="form-input" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus />
         </div>
 
-        <div>
-            <button type="submit">
+        <div class="flex items-center justify-center mt-4">
+            <button type="submit" class="btn btn-primary ml-4">
                 {{ __('Email Password Reset Link') }}
             </button>
         </div>
     </form>
+</div>
 @endsection
