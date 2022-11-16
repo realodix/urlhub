@@ -1,7 +1,7 @@
 @if($errors->any())
     <div class="block mb-4 pl-3 pr-4 py-2 font-medium text-base text-orange-700 bg-orange-50 border-l-4 border-orange-400" role="alert">
         @foreach($errors->all() as $error)
-        {{ $error }}<br />
+            {{ $error }} <br>
         @endforeach
     </div>
 @elseif (session('flash_success'))
