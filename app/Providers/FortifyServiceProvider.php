@@ -30,12 +30,18 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->authenticate();
+        $this->loginAndRegister();
+        $this->register();
+        $this->password();
+        $this->twoFactor();
 
-        Fortify::createUsersUsing(CreateNewUser::class);
         // Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         // Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         // Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->identity;
@@ -51,37 +57,10 @@ class FortifyServiceProvider extends ServiceProvider
     /**
      * @return void
      */
-    private function authenticate()
+    private function loginAndRegister()
     {
         Fortify::loginView(function () {
             return view('auth.login');
-        });
-
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
-
-        Fortify::requestPasswordResetLinkView(function () {
-            return view('auth.forgot-password');
-        });
-
-        Fortify::resetPasswordView(function (Request $request) {
-            return view('auth.reset-password', [
-                'token' => $request->route('token'),
-                'email' => $request->email,
-            ]);
-        });
-
-        Fortify::verifyEmailView(function () {
-            return view('auth.verify-email');
-        });
-
-        Fortify::confirmPasswordView(function () {
-            return view('auth.confirm-password');
-        });
-
-        Fortify::twoFactorChallengeView(function () {
-            return view('auth.two-factor-challenge');
         });
 
         Fortify::authenticateUsing(function (Request $request) {
@@ -98,6 +77,43 @@ class FortifyServiceProvider extends ServiceProvider
             throw ValidationException::withMessages([
                 'error' => [trans('auth.failed')],
             ]);
+        });
+
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
+
+        Fortify::createUsersUsing(CreateNewUser::class);
+    }
+
+    /**
+     * @return void
+     */
+    private function password()
+    {
+        Fortify::requestPasswordResetLinkView(function () {
+            return view('auth.forgot-password');
+        });
+
+        Fortify::resetPasswordView(function (Request $request) {
+            return view('auth.reset-password', [
+                'token' => $request->route('token'),
+                'email' => $request->email,
+            ]);
+        });
+
+        Fortify::confirmPasswordView(function () {
+            return view('auth.confirm-password');
+        });
+    }
+
+    /**
+     * @return void
+     */
+    private function twoFactor()
+    {
+        Fortify::twoFactorChallengeView(function () {
+            return view('auth.two-factor-challenge');
         });
     }
 }
