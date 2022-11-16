@@ -1,9 +1,14 @@
-import {$,jQuery} from 'jquery';
 import _ from 'lodash';
+import {$, jQuery} from 'jquery';
+import Alpine from 'alpinejs';
+import axios from 'axios';
+
+/**
+ * jQuery
+ */
 
 window.$ = $;
 window.jQuery = jQuery;
-
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -11,20 +16,18 @@ window.jQuery = jQuery;
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require("axios");
+window.axios = axios;
 
-window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 /**
  * Alpine.js
  */
 
-import Alpine from 'alpinejs'
+window.Alpine = Alpine;
 
-window.Alpine = Alpine
-
-Alpine.start()
+Alpine.start();
 
 
 /**
