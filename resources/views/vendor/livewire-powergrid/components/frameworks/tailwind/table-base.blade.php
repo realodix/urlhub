@@ -3,9 +3,7 @@
         <div class="py-2 align-middle inline-block min-w-full w-full sm:px-6 lg:px-8">
 
             <div class="pg-header">
-                @include($theme->layout->header, [
-                'enabledFilters' => $enabledFilters
-                ])
+                @include($theme->layout->header, ['enabledFilters' => $enabledFilters])
             </div>
 
             @if(config('livewire-powergrid.filter') === 'outside')

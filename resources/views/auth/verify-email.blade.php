@@ -16,7 +16,7 @@
     @endif
 
     <form method="POST" action="{{ route('verification.send') }}">
-        @csrf
+    @csrf
 
         <button type="submit">
             {{ __('Resend Verification Email') }}
@@ -24,7 +24,7 @@
     </form>
 
     <form method="POST" action="{{ route('logout') }}">
-        @csrf
+    @csrf
 
         <button type="submit">
             {{ __('Logout') }}

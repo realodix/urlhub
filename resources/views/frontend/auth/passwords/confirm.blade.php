@@ -12,11 +12,10 @@
                     {{ __('We won\'t ask for your password again for a few hours.') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
-                        @csrf
+                    @csrf
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password')
-                                }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password')}}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password"

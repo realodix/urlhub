@@ -14,7 +14,7 @@
             <p class="text-muted">{{__('Sorry, not allowed to register by administrator')}}</p>
         @else
             <form method="post" action="{{ route('register') }}" aria-label="{{__('Register')}}">
-                @csrf
+            @csrf
                 <label class="text-slate-700">{{__('Username')}}</label>
                 <input class="form-input mt-1" id="name" type="text" name="name" required autofocus>
 

@@ -18,7 +18,7 @@
     </div>
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{route('user.update', $user->getRouteKey())}}">
-            @csrf
+        @csrf
             <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">

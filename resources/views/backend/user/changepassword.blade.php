@@ -18,19 +18,17 @@
     </div>
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{route('user.change-password.post', $user->getRouteKey())}}">
-            @csrf
+        @csrf
             <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
                 <div class="grid grid-cols-6 gap-6" x-data="{show: true}">
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="current-password" class="block font-medium text-sm text-slate-700">{{__('Your
-                            Password')}}</label>
+                        <label for="current-password" class="block font-medium text-sm text-slate-700">{{__('Your Password')}}</label>
                         <input id="current-password" type="password" name="current-password"
                             placeholder="Enter your password" class="form-input mt-1" required>
                     </div>
 
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="new-password" class="block font-medium text-sm text-slate-700">{{__('New
-                            Password')}}</label>
+                        <label for="new-password" class="block font-medium text-sm text-slate-700">{{__('New Password')}}</label>
                         <div class="relative">
                             <input :type="show ? 'password' : 'text'" id="new-password" name="new-password"
                                 aria-label="Enter a new password" placeholder="Enter a new password"

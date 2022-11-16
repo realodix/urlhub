@@ -8,7 +8,7 @@
     <div>You are logged in!</div>
 
     <form method="POST" action="{{ route('logout') }}">
-        @csrf
+    @csrf
 
         <button type="submit">
             {{ __('Logout') }}

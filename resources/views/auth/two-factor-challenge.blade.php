@@ -11,7 +11,7 @@
 @endif
 
 <form method="POST" action="{{ route('two-factor.login') }}">
-    @csrf
+@csrf
 
     {{--
         Do not show both of these fields, together. It's recommended

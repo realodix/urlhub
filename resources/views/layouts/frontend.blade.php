@@ -13,13 +13,13 @@
 </head>
 
 <body class="@yield('css_class')"></body>
-@include('partials.nav-header')
+    @include('partials.nav-header')
 
-@yield('content')
+    @yield('content')
 
-{!! script(mix('js/manifest.js')) !!}
-{!! script(mix('js/vendor.js')) !!}
-{!! script(mix('js/frontend.js')) !!}
+    {!! script(mix('js/manifest.js')) !!}
+    {!! script(mix('js/vendor.js')) !!}
+    {!! script(mix('js/frontend.js')) !!}
 </body>
 
 </html>

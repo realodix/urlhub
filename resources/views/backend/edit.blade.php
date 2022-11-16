@@ -23,7 +23,7 @@
     </div>
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{route('short_url.edit.post', $url->getRouteKey())}}">
-            @csrf
+        @csrf
             <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
@@ -39,8 +39,7 @@
                     </div>
 
                     <div class="col-span-6">
-                        <label for="long-url" class="block font-medium text-sm text-slate-700">{{__('Destination
-                            URL')}}</label>
+                        <label for="long-url" class="block font-medium text-sm text-slate-700">{{__('DestinationURL')}}</label>
                         <input id="long-url" type="text" name="long_url" placeholder="{{__('Enter your long url')}}"
                             required value="{{$url->long_url}}" class="form-input">
                     </div>

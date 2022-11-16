@@ -18,7 +18,7 @@
     @endif
 
     <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
+    @csrf
 
         <div>
             <label>{{ __('Password') }}</label>

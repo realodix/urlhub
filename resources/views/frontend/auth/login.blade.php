@@ -22,7 +22,7 @@
     <div class="w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden sm:rounded-lg
         bg-white sm:shadow-md">
         <form method="POST" action="{{ route('login') }}" aria-label="{{__('Login')}}">
-            @csrf
+        @csrf
             <div>
                 @if (Request::has('previous'))
                     <input type="hidden" name="previous" value="{{ Request::get('previous') }}">

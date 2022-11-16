@@ -28,7 +28,7 @@
     @endif
 
     <form method="POST" action="{{ route('password.email') }}">
-        @csrf
+    @csrf
 
         <div>
             <label>{{ __('Email') }}</label>

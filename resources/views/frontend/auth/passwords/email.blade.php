@@ -18,7 +18,7 @@
         @endif
 
         <form method="POST" action="{{ route('password.email') }}" aria-label="{{__('Reset Password')}}" class="mt-4">
-            @csrf
+        @csrf
 
             <label class="block font-medium text-sm text-slate-700" for="email">
                 {{__('E-Mail')}}
