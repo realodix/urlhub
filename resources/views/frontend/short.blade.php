@@ -55,8 +55,11 @@
 
             <br>
 
-            <span class="font-light"><a href="{{ $url->short_url }}" target="_blank"
-                    id="copy">{{urlDisplay($url->short_url, false)}}</a></span>
+            <span class="font-light">
+                <a href="{{ $url->short_url }}" target="_blank" id="copy">
+                    {{urlDisplay($url->short_url, false)}}
+                </a>
+            </span>
 
             <br> <br>
 

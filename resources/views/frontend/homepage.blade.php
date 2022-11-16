@@ -16,7 +16,8 @@
     @else
         <div class="flex flex-wrap md:justify-center">
             <h1 class="mx-auto max-w-md md:max-w-3xl relative z-10
-        font-bold text-uh-indigo-600 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight">
+                font-bold text-uh-indigo-600 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
+            >
                 Simple URL shortener <br>
                 <span class="font-thin text-black">for individuals &amp; businesses.</span>
             </h1>
