@@ -100,12 +100,14 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.forgot-password');
         });
 
+        // @codeCoverageIgnoreStart
         Fortify::resetPasswordView(function (Request $request) {
             return view('auth.reset-password', [
                 'token' => $request->route('token'),
                 'email' => $request->email,
             ]);
         });
+        // @codeCoverageIgnoreEnd
 
         Fortify::confirmPasswordView(function () {
             return view('auth.confirm-password');
@@ -113,6 +115,7 @@ class FortifyServiceProvider extends ServiceProvider
     }
 
     /**
+     * @codeCoverageIgnore
      * @return void
      */
     private function twoFactor()
