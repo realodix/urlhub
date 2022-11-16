@@ -10,7 +10,7 @@ class LoginTest extends TestCase
 {
     protected function successfulLoginRoute()
     {
-        return route('dashboard');
+        return route('home');
     }
 
     protected function getRoute()
@@ -38,7 +38,7 @@ class LoginTest extends TestCase
 
         $response
             ->assertSuccessful()
-            ->assertViewIs('frontend.auth.login');
+            ->assertViewIs('auth.login');
     }
 
     /**

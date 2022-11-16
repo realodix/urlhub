@@ -34,7 +34,7 @@ class ForgotPasswordTest extends TestCase
 
         $response
             ->assertSuccessful()
-            ->assertViewIs('frontend.auth.passwords.email');
+            ->assertViewIs('auth.forgot-password');
     }
 
     /**
