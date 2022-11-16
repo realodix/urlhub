@@ -12,7 +12,7 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-[*.{blade.php,css,scss,yml,yaml,neon,neon.dist}]
+[*.{css,scss,yml,yaml,neon,neon.dist}]
 indent_size = 2
 
 [{webpack.mix.js,tailwind.config.js}]
