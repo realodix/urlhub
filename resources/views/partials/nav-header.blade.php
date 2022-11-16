@@ -90,7 +90,8 @@
             <div class="-mr-2 flex items-center sm:hidden">
                 <button x-on:click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md
-                        text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-slate-500 transition"
+                        text-slate-400 hover:text-slate-500 focus:text-slate-500
+                        hover:bg-slate-100 focus:bg-slate-100 focus:outline-none transition"
                 >
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
