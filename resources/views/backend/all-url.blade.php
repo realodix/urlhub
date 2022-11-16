@@ -4,26 +4,24 @@
 
 @section('content')
 <main>
-  <div class="bg-white p-4 shadow sm:rounded-md">
-      <div class="flex mb-8">
-        <div class="w-1/2">
-          <span class="text-2xl text-uh-1">
-            {{__('All URLs')}}
-          </span>
+    <div class="bg-white p-4 shadow sm:rounded-md">
+        <div class="flex mb-8">
+            <div class="w-1/2">
+                <span class="text-2xl text-uh-1">
+                    {{__('All URLs')}}
+                </span>
+            </div>
+            <div class="w-1/2 text-right">
+                <a href="{{ url('./') }}" target="_blank" title="{{__('Add URL')}}" class="btn">
+                    @svg('icon-add-link', '!h-[1.5em] mr-1')
+                    {{__('Add URL')}}
+                </a>
+            </div>
         </div>
-        <div class="w-1/2 text-right">
-          <a href="{{ url('./') }}" target="_blank" title="{{__('Add URL')}}"
-            class="btn"
-          >
-            @svg('icon-add-link', '!h-[1.5em] mr-1')
-            {{__('Add URL')}}
-          </a>
-        </div>
-      </div>
 
-      @include('partials/messages')
+        @include('partials/messages')
 
-      @livewire('all-ulr-table')
-  </div>
+        @livewire('all-ulr-table')
+    </div>
 </main>
 @endsection
