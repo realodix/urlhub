@@ -10,20 +10,20 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "@tailwindcss/forms": "^0.5.2",
-        "alpinejs": "^3.10.2",
-        "autoprefixer": "^10.4.7",
-        "axios": "^0.27",
+        "@tailwindcss/forms": "^0.5.3",
+        "alpinejs": "^3.10.5",
+        "autoprefixer": "^10.4.13",
+        "axios": "^1.1.3",
         "browser-sync": "^2.27.10",
         "browser-sync-webpack-plugin": "^2.3.0",
         "clipboard": "^2.0.11",
-        "jquery": "^3.2",
-        "jquery.typewatch": "^3.0.0",
+        "jquery": "^3.6.1",
+        "jquery.typewatch": "^3.0.2",
         "laravel-mix": "^6.0.49",
-        "lodash": "^4.17.15",
-        "postcss": "^8.4.14",
-        "sass": "^1.53.0",
-        "sass-loader": "^13.0.2",
-        "tailwindcss": "^3.1.6"
+        "lodash": "^4.17.21",
+        "postcss": "^8.4.19",
+        "sass": "^1.56.1",
+        "sass-loader": "^13.2.0",
+        "tailwindcss": "^3.2.4"
     }
 }
