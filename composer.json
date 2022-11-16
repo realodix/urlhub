@@ -15,7 +15,6 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.3",
         "livewire/livewire": "^2.10",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
