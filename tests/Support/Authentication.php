@@ -3,7 +3,8 @@
 namespace Tests\Support;
 
 use App\Models\User;
-use Spatie\Permission\Models\{Permission, Role};
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 trait Authentication
 {

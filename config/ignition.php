@@ -1,13 +1,22 @@
 <?php
 
-use Spatie\Ignition\Solutions\SolutionProviders\{
-    BadMethodCallSolutionProvider, MergeConflictSolutionProvider, UndefinedPropertySolutionProvider};
-use Spatie\LaravelIgnition\Solutions\SolutionProviders\{
-    DefaultDbNameSolutionProvider, GenericLaravelExceptionSolutionProvider, IncorrectValetDbCredentialsSolutionProvider,
-    InvalidRouteActionSolutionProvider, MissingAppKeySolutionProvider, MissingColumnSolutionProvider,
-    MissingImportSolutionProvider, MissingLivewireComponentSolutionProvider, MissingMixManifestSolutionProvider,
-    RunningLaravelDuskInProductionProvider, TableNotFoundSolutionProvider, UndefinedViewVariableSolutionProvider,
-    UnknownValidationSolutionProvider, ViewNotFoundSolutionProvider};
+use Spatie\Ignition\Solutions\SolutionProviders\BadMethodCallSolutionProvider;
+use Spatie\Ignition\Solutions\SolutionProviders\MergeConflictSolutionProvider;
+use Spatie\Ignition\Solutions\SolutionProviders\UndefinedPropertySolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\DefaultDbNameSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\GenericLaravelExceptionSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\IncorrectValetDbCredentialsSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\InvalidRouteActionSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingAppKeySolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingColumnSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingImportSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingLivewireComponentSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingMixManifestSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\RunningLaravelDuskInProductionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\TableNotFoundSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\UndefinedViewVariableSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\UnknownValidationSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\ViewNotFoundSolutionProvider;
 
 return [
 

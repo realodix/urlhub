@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
+use App\Rules\StrAlphaUnderscore;
+use App\Rules\StrLowercase;
 use App\Rules\Url\KeywordBlacklist;
-use App\Rules\{StrAlphaUnderscore, StrLowercase};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Auth, Validator};
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
