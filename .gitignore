@@ -6,10 +6,12 @@ public/mix-manifest.json
 
 ## IDE Local Workspace Folder
 /.idea
+/.fleet
 
 ## Laravel
 .env
 .env.backup
+.env.production
 /public/*/*.map
 /public/build
 /public/hot

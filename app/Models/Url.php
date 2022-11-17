@@ -332,7 +332,7 @@ class Url extends Model
         try {
             $embeddedTitle = (new Embed)->get($url)->title;
             $webTitle = ! is_null($embeddedTitle) ? $embeddedTitle : $defaultWebTitle;
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $webTitle = $defaultWebTitle;
         }
 
