@@ -3,9 +3,9 @@ includes:
   - vendor/nunomaduro/larastan/extension.neon
 
 parameters:
-  level: 7
+  level: 6
   paths:
-    - app/
+    - app
   tmpDir: .tmp/PHPStan
   checkMissingIterableValueType: false
   checkGenericClassInNonGenericObjectType: false
