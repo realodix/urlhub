@@ -10,6 +10,7 @@ public/mix-manifest.json
 ## Laravel
 .env
 .env.backup
+.env.production
 /public/*/*.map
 /public/build
 /public/hot
