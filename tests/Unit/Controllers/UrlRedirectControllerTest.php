@@ -2,7 +2,8 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\Models\{Url, Visit};
+use App\Models\Url;
+use App\Models\Visit;
 use Tests\TestCase;
 
 class UrlRedirectControllerTest extends TestCase

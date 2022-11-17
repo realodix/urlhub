@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\{Url, Visit};
+use App\Models\Url;
+use App\Models\Visit;
 
 class UrlRedirectionService
 {

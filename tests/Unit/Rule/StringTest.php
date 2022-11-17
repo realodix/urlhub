@@ -2,7 +2,8 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\{StrAlphaUnderscore, StrLowercase};
+use App\Rules\StrAlphaUnderscore;
+use App\Rules\StrLowercase;
 use Tests\TestCase;
 
 class StringTest extends TestCase

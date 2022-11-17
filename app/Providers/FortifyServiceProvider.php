@@ -116,6 +116,7 @@ class FortifyServiceProvider extends ServiceProvider
 
     /**
      * @codeCoverageIgnore
+     *
      * @return void
      */
     private function twoFactor()

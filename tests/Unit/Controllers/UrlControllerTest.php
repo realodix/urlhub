@@ -3,8 +3,9 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
+use App\Rules\StrAlphaUnderscore;
+use App\Rules\StrLowercase;
 use App\Rules\Url\KeywordBlacklist;
-use App\Rules\{StrAlphaUnderscore, StrLowercase};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;

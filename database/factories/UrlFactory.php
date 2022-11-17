@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\{Url, User};
+use App\Models\Url;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UrlFactory extends Factory

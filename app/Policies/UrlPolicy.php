@@ -2,7 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\{Url, User};
+use App\Models\Url;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UrlPolicy

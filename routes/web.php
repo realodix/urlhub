@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\Dashboard\User\{ChangePasswordController, UserController};
-use App\Http\Controllers\Dashboard\{AllUrlController, DashboardController};
-use App\Http\Controllers\{UrlController, UrlRedirectController};
+use App\Http\Controllers\Dashboard\AllUrlController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\User\ChangePasswordController;
+use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\UrlController;
+use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');

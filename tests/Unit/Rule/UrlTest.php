@@ -2,7 +2,8 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Url\{DomainBlacklist, KeywordBlacklist};
+use App\Rules\Url\DomainBlacklist;
+use App\Rules\Url\KeywordBlacklist;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
