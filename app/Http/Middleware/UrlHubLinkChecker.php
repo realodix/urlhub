@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Url;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
 class UrlHubLinkChecker
@@ -30,9 +31,7 @@ class UrlHubLinkChecker
 
         $value = $request->custom_key;
         $routes = array_map(
-            function (\Illuminate\Routing\Route $route) {
-                return $route->uri;
-            },
+            fn (Route $route) => $route->uri,
             \Route::getRoutes()->get()
         );
 

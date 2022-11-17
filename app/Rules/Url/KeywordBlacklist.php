@@ -3,6 +3,7 @@
 namespace App\Rules\Url;
 
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Routing\Route;
 
 /**
  * Check if keyword id is free (ie not already taken, not a URL path, and not
@@ -24,9 +25,7 @@ class KeywordBlacklist implements Rule
         }
 
         $routes = array_map(
-            function (\Illuminate\Routing\Route $route) {
-                return $route->uri;
-            },
+            fn (Route $route) => $route->uri,
             \Route::getRoutes()->get()
         );
 
