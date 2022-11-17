@@ -4,7 +4,7 @@
 
 @section('content')
 <main>
-    <div class="bg-white p-4 sm:rounded-md shadow">
+    <div class="common-card-style p-4">
         <div class="text-2xl text-uh-1 mb-8">
             <span>{{__('All Users')}}</span>
         </div>

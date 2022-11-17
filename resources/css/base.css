@@ -48,3 +48,8 @@
   @apply block w-full;
   @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded
 }
+
+.common-card-style {
+  @apply bg-white sm:rounded-md;
+  @apply sm:shadow-[0px_1px_2px_rgba(25,39,52,0.05),0px_0px_4px_rgba(25,39,52,0.1)];
+}

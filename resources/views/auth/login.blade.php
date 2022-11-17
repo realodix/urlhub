@@ -19,8 +19,7 @@
         {{ session()->forget('login_error') }}
     @endif
 
-    <div class="w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden sm:rounded-lg
-        bg-white sm:shadow-md">
+    <div class="common-card-style w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden">
         <form method="POST" action="{{ route('login') }}" aria-label="{{__('Login')}}">
         @csrf
             <div>
