@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Rules\StrAlphaUnderscore;
+use Livewire\Component;
+
 class UrlCheck extends Component
 {
     /**
@@ -20,8 +21,8 @@ class UrlCheck extends Component
     {
         return [
             'keyword' => [
-                'alpha_num', 'min:2', 'max:20', 'unique:App\Models\Url', 'lowercase:field', new StrAlphaUnderscore
-            ]
+                'alpha_num', 'min:2', 'max:20', 'unique:App\Models\Url', 'lowercase:field', new StrAlphaUnderscore,
+            ],
         ];
     }
 
