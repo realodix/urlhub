@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Helpers\Helper;
 use App\Http\Requests\StoreUrl;
-use App\Http\Traits\Hashidable;
+use App\Models\Traits\Hashidable;
 use Embed\Embed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

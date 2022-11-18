@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Traits;
+namespace App\Models\Traits;
 
 use Vinkla\Hashids\Facades\Hashids;
 
