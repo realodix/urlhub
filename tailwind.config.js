@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       colors: {
         "uh-blue": "#3d5b99",
-        "bg-primary": "#f4f5f6",
+        "bg-primary": "#f8fafc",
         uh: {
           1: "#344767",
           "2a": "rgb(63 152 222)",
