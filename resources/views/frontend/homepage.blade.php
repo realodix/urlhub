@@ -55,6 +55,7 @@
 
                 @include('partials/messages')
 
+                @livewire('url-check')
             </div>
         </div>
     @endif
