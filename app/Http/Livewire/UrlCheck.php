@@ -13,7 +13,7 @@ class UrlCheck extends Component
     public $keyword;
 
     /**
-     * https://github.com/livewire/livewire/blob/6aaa3ec8567e607a25281a85ec9d3404d146f20f/src/ComponentConcerns/ValidatesInput.php#L80
+     * https://github.com/livewire/livewire/blob/6aaa3ec856/src/ComponentConcerns/ValidatesInput.php#L80
      *
      * @return array
      */
