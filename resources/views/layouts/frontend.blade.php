@@ -8,6 +8,7 @@
 
     <title>{{appName().' - '.config('app.description')}}</title>
 
+    @livewireStyles
     {!! style(mix('css/main.css')) !!}
     {!! style(mix('css/frontend.css')) !!}
 </head>
@@ -20,6 +21,7 @@
     {!! script(mix('js/manifest.js')) !!}
     {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/frontend.js')) !!}
+    @livewireScripts
 </body>
 
 </html>
