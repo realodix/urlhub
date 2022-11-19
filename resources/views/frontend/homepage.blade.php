@@ -46,8 +46,8 @@
                         <span class="block mb-4 font-light">
                             {{__('Replace clunky URLs with meaningful short links that get more clicks.')}}</span>
                         <div class="inline text-2xl">
-                            {{$_SERVER['SERVER_NAME']}}/</div>
-                            @livewire('url-check')
+                            {{request()->getHttpHost()}}/ @livewire('url-check')
+                        </div>
                     </div>
                 </form>
 
