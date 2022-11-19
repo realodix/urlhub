@@ -90,7 +90,7 @@ final class AllUlrTable extends PowerGridComponent
             })
             ->addColumn('keyword', function (Url $url) {
                 return
-                    '<a href="'.$url->short_url.'" target="_blank" class="font-semibold">'.$url->keyword.'</a>'
+                    '<a href="'.$url->short_url.'" target="_blank" class="font-light text-indigo-600">'.$url->keyword.'</a>'
                     .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')');
             })
             ->addColumn('long_url', function (Url $url) {
@@ -104,7 +104,7 @@ final class AllUlrTable extends PowerGridComponent
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })
-            ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('@svg(\'icon-bar-chart\', \'ml-2\')'))
+            ->addColumn('clicks', fn (Url $url) => $url->clicks.Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-indigo-600\')'))
             ->addColumn('created_at_formatted', function (Url $url) {
                 /** @var \Carbon\Carbon */
                 $urlCreatedAt = $url->created_at;
