@@ -3621,11 +3621,6 @@ jest-worker@^27.4.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-jquery.typewatch@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/jquery.typewatch/-/jquery.typewatch-3.0.2.tgz#3fd730dfc639be0114d5e59079921edb428cc66e"
-  integrity sha512-BwUkY2yieQQvCiEmWhBspskMc/oiYl1okshRUqSthaBiA8uZqIJTmsRjkLd72JXL85Pjwq9bS3kLS2r/X4B5og==
-
 jquery@^3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.1.tgz#fab0408f8b45fc19f956205773b62b292c147a16"
