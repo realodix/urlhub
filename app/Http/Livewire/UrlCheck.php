@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Rules\StrAlphaUnderscore;
+use App\Rules\Url\KeywordBlacklist;
 use Livewire\Component;
 
 class UrlCheck extends Component
@@ -21,7 +22,8 @@ class UrlCheck extends Component
     {
         return [
             'keyword' => [
-                'alpha_num', 'min:2', 'max:20', 'unique:App\Models\Url', 'lowercase:field', new StrAlphaUnderscore,
+                'min:2', 'max:20', 'unique:App\Models\Url', 'lowercase:field',
+                new StrAlphaUnderscore, new KeywordBlacklist,
             ],
         ];
     }

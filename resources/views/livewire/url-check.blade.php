@@ -4,6 +4,6 @@
 
     @error('keyword')
         <br>
-        <span class="error">{{ $message }}</span>
+        <span class="font-light text-base text-red-500">{{ $message }}</span>
     @enderror
 </span>

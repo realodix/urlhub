@@ -95,9 +95,9 @@ class ShortenUrlTest extends TestCase
             ->assertHasErrors('keyword')
             ->set('keyword', 'FOO')
             ->assertHasErrors('keyword')
-            ->set('keyword', 'foo_aa')
-            ->assertHasNoErrors([
-                'keyword' => new \App\Rules\StrAlphaUnderscore,
-            ]);
+            ->set('keyword', 'admin')
+            ->assertHasErrors('keyword')
+            ->set('keyword', 'foo_bar')
+            ->assertHasNoErrors('keyword');
     }
 }
