@@ -85,4 +85,23 @@ class ShortenUrlTest extends TestCase
 
         $this->assertCount(3, Url::all());
     }
+
+    /** @test */
+    public function customKeyValidation()
+    {
+        $component = \Livewire\Livewire::test(\App\Http\Livewire\UrlCheck::class);
+        $component->assertStatus(200)
+            ->set('keyword', '!')
+            ->assertHasErrors([
+                'keyword' => 'alpha_num',
+            ])
+            ->set('keyword', 'FOO')
+            ->assertHasErrors([
+                'keyword' => 'lowercase:field',
+            ])
+            ->set('keyword', 'foo_aa')
+            ->assertHasNoErrors([
+                'keyword' => new \App\Rules\StrAlphaUnderscore,
+            ]);
+    }
 }
