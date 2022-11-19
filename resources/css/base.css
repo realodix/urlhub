@@ -41,11 +41,13 @@
 
 .btn-icon {
   @apply px-2 py-1 rounded-md;
-  @apply text-gray-500 hover:text-gray-600 active:text-gray-500 bg-stone-50 hover:bg-stone-200 active:bg-stone-50 ;
+  @apply text-gray-500 hover:text-gray-600 active:text-gray-500 ;
+  @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 ;
   box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11);
 
   &-table {
-    @apply text-indigo-600 hover:text-indigo-700 active:text-indigo-600;
+    @apply bg-indigo-600 text-white active:bg-indigo-600;
+    @apply hover:text-indigo-700 ;
   }
 
   &-table-delete {
