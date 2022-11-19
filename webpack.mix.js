@@ -28,3 +28,5 @@ if (!mix.inProduction()) {
       proxy: 'urlhub.test'
     })
 }
+
+mix.disableSuccessNotifications();
