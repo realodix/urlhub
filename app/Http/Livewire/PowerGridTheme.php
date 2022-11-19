@@ -3,9 +3,8 @@
 namespace App\Http\Livewire;
 
 use PowerComponents\LivewirePowerGrid\Themes\Components\{
-    Actions, Checkbox, ClickToCopy, Cols, Editable, FilterBoolean, FilterDatePicker,FilterInputText,
-    FilterMultiSelect, FilterNumber, FilterSelect, Footer, Table
-};
+    Actions, Checkbox, ClickToCopy, Cols, Editable, FilterBoolean, FilterDatePicker,
+    FilterInputText, FilterMultiSelect, FilterNumber, FilterSelect, Footer, Table};
 use PowerComponents\LivewirePowerGrid\Themes\{Theme, ThemeBase};
 
 class PowerGridTheme extends ThemeBase
@@ -15,7 +14,7 @@ class PowerGridTheme extends ThemeBase
     public function table(): Table
     {
         return Theme::table('rounded-lg min-w-full border border-slate-200 dark:bg-slate-600 dark:border-slate-500')
-            ->div('my-3 bg-white rounded-lg relative overflow-x-auto')
+            ->div('my-3 overflow-x-auto bg-white shadow-lg rounded-lg overflow-y-auto relative')
             ->thead('shadow-sm bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-500')
             ->tr('')
             ->trFilters('bg-white shadow-sm dark:bg-slate-700')
@@ -52,7 +51,7 @@ class PowerGridTheme extends ThemeBase
         return Theme::editable()
             ->view($this->root().'.editable')
             ->span('flex justify-between')
-            ->input('dark:bg-slate-700 bg-slate-50 text-black-700 border border-slate-400 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-slate-500 dark:bg-slate-600 dark:text-slate-200 dark:placeholder-slate-200 dark:border-slate-500 p-2');
+            ->input('dark:bg-slate-700 bg-slate-50 text-black-700 border border-slate-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-slate-200 dark:bg-slate-500 dark:text-slate-200 dark:placeholder-slate-200 dark:border-slate-500 shadow-md');
     }
 
     public function clickToCopy(): ClickToCopy
