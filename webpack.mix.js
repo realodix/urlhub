@@ -15,7 +15,8 @@ mix.extract()
   .options({
     autoprefixer: true,
     processCssUrls: false,
-  });
+  })
+  .disableSuccessNotifications();
 
 if (!mix.inProduction()) {
   mix.webpackConfig({
