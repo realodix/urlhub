@@ -27,8 +27,7 @@
             <div class="common-card-style sm:rounded-b-none px-4 py-5 sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="short-url" class="block font-medium text-sm text-slate-700">{{__('Short
-                            URL')}}</label>
+                        <label for="short-url" class="block font-medium text-sm text-slate-700">{{__('Short URL')}}</label>
                         <span class="short-url">{{urlDisplay($url->short_url, false)}}</span>
                     </div>
 
