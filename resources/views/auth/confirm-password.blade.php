@@ -19,10 +19,9 @@
 
     <form method="POST" action="{{ route('password.confirm') }}">
     @csrf
-
         <div>
             <label>{{ __('Password') }}</label>
-            <input type="password" name="password" required autocomplete="current-password" />
+            <input type="password" name="password" autocomplete="current-password" required>
         </div>
 
         <div>

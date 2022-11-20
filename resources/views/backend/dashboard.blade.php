@@ -4,7 +4,7 @@
 
 @section('content')
 <main>
-    <div class="mb-4 bg-white p-4 shadow sm:rounded-md">
+    <div class="common-card-style mb-4 p-4">
         @role('admin')
             <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/4">
@@ -60,7 +60,7 @@
         @endrole
     </div>
 
-    <div class="bg-white p-4 shadow sm:rounded-md">
+    <div class="common-card-style p-4">
         <div class="flex mb-8">
             <div class="w-1/2">
                 <span class="text-2xl text-uh-1">{{__('My URLs')}}</span>
@@ -75,7 +75,7 @@
 
         @include('partials/messages')
 
-        @livewire('my-url-table')
+        @livewire('table.my-url-table')
     </div>
 </main>
 @endsection

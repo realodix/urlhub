@@ -19,20 +19,17 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{route('user.change-password.post', $user->getRouteKey())}}">
         @csrf
-            <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
+            <div class="common-card-style sm:rounded-b-none px-4 py-5 sm:p-6">
                 <div class="grid grid-cols-6 gap-6" x-data="{show: true}">
                     <div class="col-span-6 lg:col-span-4">
                         <label for="current-password" class="block font-medium text-sm text-slate-700">{{__('Your Password')}}</label>
-                        <input id="current-password" type="password" name="current-password"
-                            placeholder="Enter your password" class="form-input mt-1" required>
+                        <input type="password" name="current-password" placeholder="{{__('Enter your password')}}" class="form-input mt-1" required>
                     </div>
 
                     <div class="col-span-6 lg:col-span-4">
                         <label for="new-password" class="block font-medium text-sm text-slate-700">{{__('New Password')}}</label>
                         <div class="relative">
-                            <input :type="show ? 'password' : 'text'" id="new-password" name="new-password"
-                                aria-label="Enter a new password" placeholder="Enter a new password"
-                                class="form-input mt-1" required>
+                            <input name="new-password" :type="show ? 'password' : 'text'" placeholder="{{__('Enter a new password')}}" class="form-input mt-1" required>
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
                                 <x-icon-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
                                 <x-icon-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
@@ -56,9 +53,9 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center justify-end px-4 py-3 sm:px-6
-                text-right bg-bg-primary sm:bg-slate-50
-                border-t sm:rounded-bl-md sm:rounded-br-md sm:shadow"
+            <div class="common-card-style bg-bg-primary sm:bg-slate-50 sm:rounded-t-none
+                flex items-center justify-end px-4 py-3 sm:px-6
+                text-right border-t"
             >
                 <button type="submit" class="btn btn-primary btn-sm">
                     {{__('Change Password')}}

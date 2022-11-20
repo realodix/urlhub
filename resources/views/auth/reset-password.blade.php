@@ -24,17 +24,17 @@
 
         <div>
         	<label>{{ __('Email') }}</label>
-        	<input type="email" name="email" value="{{ old('email', $email) }}" required autofocus />
+        	<input type="email" name="email" value="{{ old('email', $email) }}" required autofocus/>
         </div>
 
         <div>
             <label>{{ __('Password') }}</label>
-            <input type="password" name="password" required autocomplete="new-password" />
+            <input type="password" name="password" autocomplete="new-password" required/>
         </div>
 
         <div>
             <label>{{ __('Confirm Password') }}</label>
-            <input type="password" name="password_confirmation" required autocomplete="new-password" />
+            <input type="password" name="password_confirmation" autocomplete="new-password" required/>
         </div>
 
         <div>

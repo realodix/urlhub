@@ -19,23 +19,22 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{route('user.update', $user->getRouteKey())}}">
         @csrf
-            <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-tl-md sm:rounded-tr-md">
+            <div class="common-card-style sm:rounded-b-none px-4 py-5 sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="name" class="block font-medium text-sm text-slate-700">{{__('Username')}}</label>
-                        <input value="{{$user->name}}" id="name" type="text" name="name"
-                            class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
+                        <label class="block font-medium text-sm text-slate-700">{{__('Username')}}</label>
+                        <input type="text" name="name" value="{{$user->name}}" class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
                         <small class="block text-red-400"><i>{{__('Usernames cannot be changed.')}}</i></small>
                     </div>
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="email" class="block font-medium text-sm text-slate-700">{{__('E-mail Address')}}</label>
-                        <input value="{{$user->email}}" id="email" type="email" name="email" class="form-input mt-1">
+                        <label class="block font-medium text-sm text-slate-700">{{__('E-mail Address')}}</label>
+                        <input type="email" name="email" value="{{$user->email}}" class="form-input mt-1">
                     </div>
                 </div>
             </div>
-            <div class="flex items-center justify-end px-4 py-3 sm:px-6
-                text-right bg-bg-primary sm:bg-slate-50
-                border-t sm:rounded-bl-md sm:rounded-br-md sm:shadow"
+            <div class="common-card-style bg-bg-primary sm:bg-slate-50 sm:rounded-t-none
+                flex items-center justify-end px-4 py-3 sm:px-6
+                text-right border-t"
             >
                 <button type="submit" class="btn btn-primary btn-sm">
                     {{__('Save')}}
