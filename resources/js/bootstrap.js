@@ -1,14 +1,7 @@
 import _ from 'lodash';
-import {$, jQuery} from 'jquery';
 import Alpine from 'alpinejs';
 import axios from 'axios';
 
-/**
- * jQuery
- */
-
-window.$ = $;
-window.jQuery = jQuery;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
