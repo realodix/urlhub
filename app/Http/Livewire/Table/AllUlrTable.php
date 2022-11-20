@@ -90,12 +90,12 @@ final class AllUlrTable extends PowerGridComponent
             })
             ->addColumn('keyword', function (Url $url) {
                 return
-                    '<a href="'.$url->short_url.'" target="_blank" class="font-light text-indigo-600">'.$url->keyword.'</a>'
+                    '<a href="'.$url->short_url.'" target="_blank" class="font-light text-indigo-700">'.$url->keyword.'</a>'
                     .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')');
             })
             ->addColumn('long_url', function (Url $url) {
                 return
-                    '<span title="'.$url->meta_title.'" class="font-semibold">'
+                    '<span title="'.$url->meta_title.'">'
                         .Str::limit($url->meta_title, 80).
                     '</span>
                     <br>
