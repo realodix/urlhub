@@ -33,7 +33,7 @@
     @csrf
         <div>
             <label class="block font-medium text-sm text-slate-700">{{ __('Email') }}</label>
-            <input class="form-input" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus />
+            <input type="email" name="email" class="form-input" id="email" value="{{ old('email') }}" required autofocus>
         </div>
 
         <div class="flex items-center justify-center mt-4">

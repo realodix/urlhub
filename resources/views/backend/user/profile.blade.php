@@ -23,13 +23,13 @@
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
                         <label for="name" class="block font-medium text-sm text-slate-700">{{__('Username')}}</label>
-                        <input value="{{$user->name}}" id="name" type="text" name="name"
+                        <input type="text" name="name" value="{{$user->name}}" id="name"
                             class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
                         <small class="block text-red-400"><i>{{__('Usernames cannot be changed.')}}</i></small>
                     </div>
                     <div class="col-span-6 lg:col-span-4">
                         <label for="email" class="block font-medium text-sm text-slate-700">{{__('E-mail Address')}}</label>
-                        <input value="{{$user->email}}" id="email" type="email" name="email" class="form-input mt-1">
+                        <input type="email" name="email" value="{{$user->email}}" id="email" class="form-input mt-1">
                     </div>
                 </div>
             </div>

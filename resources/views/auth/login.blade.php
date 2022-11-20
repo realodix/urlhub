@@ -31,7 +31,7 @@
                 <label for="email" class="block font-medium text-sm text-slate-700">
                     {{__('E-Mail / Username')}}
                 </label>
-                <input class="form-input mt-1" id="identity" name="identity" type="text" value="{{ old('identity') }}"
+                <input type="text" name="identity" class="form-input mt-1" id="identity" value="{{ old('identity') }}"
                     required autofocus>
             </div>
 
@@ -39,7 +39,7 @@
                 <label for="password" class="block font-medium text-sm text-slate-700">
                     {{__('Password')}}
                 </label>
-                <input class="form-input mt-1" id="password" type="password" name="password" required="required"
+                <input type="password" name="password" class="form-input mt-1" id="password" required="required"
                     autocomplete="current-password">
             </div>
 
