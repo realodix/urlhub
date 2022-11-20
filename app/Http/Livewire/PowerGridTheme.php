@@ -14,7 +14,7 @@ class PowerGridTheme extends ThemeBase
     public function table(): Table
     {
         return Theme::table('rounded-lg min-w-full border border-slate-200 dark:bg-slate-600 dark:border-slate-500')
-            ->div('my-3 overflow-x-auto bg-white shadow-lg rounded-lg overflow-y-auto relative')
+            ->div('my-3 overflow-x-auto bg-white rounded-lg overflow-y-auto relative')
             ->thead('shadow-sm bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-500')
             ->tr('')
             ->trFilters('bg-white shadow-sm dark:bg-slate-700')
