@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Table;
 
 use App\Helpers\Helper;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridComponent,PowerGridEloquent};
+    Column, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
 /**
  * @codeCoverageIgnore
  */
-final class MyUrlTable extends PowerGridComponent
+final class AllUlrTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -51,7 +50,7 @@ final class MyUrlTable extends PowerGridComponent
     */
     public function datasource(): ?Builder
     {
-        return Url::whereUserId(Auth::id());
+        return Url::query();
     }
 
     /*
@@ -83,9 +82,15 @@ final class MyUrlTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
+            ->addColumn('user_name', function (Url $url) {
+                /** @var \App\Models\User */
+                $user = $url->user;
+
+                return '<span class="font-semibold">'.$user->name.'</span>';
+            })
             ->addColumn('keyword', function (Url $url) {
                 return
-                    '<a href="'.$url->short_url.'" target="_blank" class="font-semibold">'.$url->keyword.'</a>'
+                    '<a href="'.$url->short_url.'" target="_blank" class="font-light text-indigo-700">'.$url->keyword.'</a>'
                     .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')');
             })
             ->addColumn('long_url', function (Url $url) {
@@ -94,7 +99,9 @@ final class MyUrlTable extends PowerGridComponent
                         .Str::limit($url->meta_title, 80).
                     '</span>
                     <br>
-                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
+                    <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer"
+                        class="text-slate-500"
+                    >'
                         .Helper::urlDisplay($url->long_url, false, 70)
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
@@ -111,7 +118,7 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'"
+                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Open front page').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').
@@ -152,6 +159,12 @@ final class MyUrlTable extends PowerGridComponent
     {
         return [
             Column::add()
+                ->title('Owner')
+                ->field('user_name', 'users.name')
+                ->sortable()
+                ->searchable(),
+
+            Column::add()
                 ->title('Short URL')
                 ->field('keyword')
                 ->sortable()
@@ -175,8 +188,8 @@ final class MyUrlTable extends PowerGridComponent
 
             Column::add()
                 ->title('ACTIONS')
-                ->field('action')
-                ->searchable(),
+                ->field('action'),
+
         ];
     }
 }

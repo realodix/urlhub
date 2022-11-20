@@ -9,7 +9,7 @@
             <span>{{__('All Users')}}</span>
         </div>
 
-        @livewire('user-table')
+        @livewire('table.user-table')
     </div>
 </main>
 @endsection

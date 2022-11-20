@@ -75,7 +75,7 @@
 
         @include('partials/messages')
 
-        @livewire('my-url-table')
+        @livewire('table.my-url-table')
     </div>
 </main>
 @endsection
