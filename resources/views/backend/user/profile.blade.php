@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-span-6 lg:col-span-4">
                         <label for="email" class="block font-medium text-sm text-slate-700">{{__('E-mail Address')}}</label>
-                        <input type="email" name="email" value="{{$user->email}}" id="email" class="form-input mt-1">
+                        <input type="email" name="email" value="{{$user->email}}" class="form-input mt-1">
                     </div>
                 </div>
             </div>

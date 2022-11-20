@@ -28,8 +28,7 @@
                 <form method="post" action="{{route('createshortlink')}}" class="mb-4 mt-12" id="formUrl">
                 @csrf
                     <div class="mt-1 text-center">
-                        <input type="text" name="long_url" id="inputSourceLink" value="{{ old('long_url') }}"
-                            placeholder="{{__('Shorten your link')}}"
+                        <input type="text" name="long_url" value="{{ old('long_url') }}" placeholder="{{__('Shorten your link')}}"
                             class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
                                 text-xl outline-none border border-gray-200 focus:border-uh-indigo-300 rounded-t-md md:rounded-l-md md:rounded-r-none">
                         <button type="submit" id="actProcess"

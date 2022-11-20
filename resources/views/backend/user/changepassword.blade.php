@@ -23,16 +23,13 @@
                 <div class="grid grid-cols-6 gap-6" x-data="{show: true}">
                     <div class="col-span-6 lg:col-span-4">
                         <label for="current-password" class="block font-medium text-sm text-slate-700">{{__('Your Password')}}</label>
-                        <input type="password" name="current-password" id="current-password"
-                            placeholder="Enter your password" class="form-input mt-1" required>
+                        <input type="password" name="current-password" placeholder="{{__('Enter your password')}}" class="form-input mt-1" required>
                     </div>
 
                     <div class="col-span-6 lg:col-span-4">
                         <label for="new-password" class="block font-medium text-sm text-slate-700">{{__('New Password')}}</label>
                         <div class="relative">
-                            <input name="new-password" :type="show ? 'password' : 'text'" id="new-password"
-                                aria-label="Enter a new password" placeholder="Enter a new password"
-                                class="form-input mt-1" required>
+                            <input name="new-password" :type="show ? 'password' : 'text'" placeholder="{{__('Enter a new password')}}" class="form-input mt-1" required>
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
                                 <x-icon-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
                                 <x-icon-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
