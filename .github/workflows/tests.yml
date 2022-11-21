@@ -4,7 +4,7 @@ on: [pull_request, push]
 
 jobs:
   build:
-    name: PHP ${{ matrix.php-version }} - ${{ matrix.stability }}
+    name: PHP ${{ matrix.php-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
