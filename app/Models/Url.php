@@ -80,7 +80,7 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Accessors & Mutators
+    | Eloquent: Accessors & Mutators
     |--------------------------------------------------------------------------
     |
     | Accessors and mutators allow you to format Eloquent attribute values when
