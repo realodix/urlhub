@@ -82,14 +82,13 @@ class Url extends Model
     |
     */
 
-    // Mutator
-
-    /**
-     * @return void
-     */
-    public function setUserIdAttribute(int|null $value)
+    protected function userId(): Attribute
     {
-        $this->attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
+        return Attribute::make(
+            set: function ($value, $attributes) {
+                return $attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
+            },
+        );
     }
 
     /**
