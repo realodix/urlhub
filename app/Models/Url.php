@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Requests\StoreUrl;
 use App\Models\Traits\Hashidable;
 use Embed\Embed;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -13,6 +14,12 @@ use RandomLib\Factory as RandomLibFactory;
 use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
+/**
+ * @property int|null $user_id
+ * @property string   $short_url
+ * @property string   $long_url
+ * @property string   $meta_title
+ */
 class Url extends Model
 {
     use HasFactory;
@@ -71,48 +78,48 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Eloquent: Mutators
+    | Eloquent: Accessors & Mutators
     |--------------------------------------------------------------------------
     */
 
-    // Mutator
-
-    /**
-     * @return void
-     */
-    public function setUserIdAttribute(int|null $value)
+    protected function userId(): Attribute
     {
-        $this->attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
+        return Attribute::make(
+            set: function ($value) {
+                return $value === 0 ? self::GUEST_ID : $value;
+            },
+        );
     }
 
-    /**
-     * @return void
-     */
-    public function setLongUrlAttribute(string $value)
+    protected function longUrl(): Attribute
     {
-        $this->attributes['long_url'] = rtrim($value, '/');
+        return Attribute::make(
+            set: fn ($value) => rtrim($value, '/'),
+        );
     }
 
-    /**
-     * @return void
-     */
-    public function setMetaTitleAttribute(string $value)
+    protected function metaTitle(): Attribute
     {
-        $this->attributes['meta_title'] = 'No Title';
+        return Attribute::make(
+            set: function ($value) {
+                if (config('urlhub.web_title')) {
+                    if (Str::startsWith($value, 'http')) {
+                        return $this->getWebTitle($value);
+                    }
 
-        if (config('urlhub.web_title')) {
-            $this->attributes['meta_title'] = $value;
+                    return $value;
+                }
 
-            if (Str::startsWith($value, 'http')) {
-                $this->attributes['meta_title'] = $this->getWebTitle($value);
-            }
-        }
+                return 'No Title';
+            },
+        );
     }
 
-    // Accessor
-    public function getShortUrlAttribute(): string
+    protected function shortUrl(): Attribute
     {
-        return url('/'.$this->attributes['keyword']);
+        return Attribute::make(
+            get: fn ($value, $attributes) => url('/'.$attributes['keyword']),
+        );
     }
 
     /*
