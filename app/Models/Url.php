@@ -74,7 +74,7 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Eloquent: Mutators
+    | Accessors & Mutators
     |--------------------------------------------------------------------------
     |
     | Accessors and mutators allow you to format Eloquent attribute values when
