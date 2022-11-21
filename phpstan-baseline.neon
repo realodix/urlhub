@@ -1,14 +1,29 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$long_url\\.$#"
+			count: 1
+			path: app/Http/Controllers/API/UrlController.php
+
+		-
 			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
 			count: 1
 			path: app/Http/Controllers/UrlController.php
 
 		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$long_url\\.$#"
+			count: 3
+			path: app/Http/Livewire/Table/AllUlrTable.php
+
+		-
 			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
 			count: 1
 			path: app/Http/Livewire/Table/AllUlrTable.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$long_url\\.$#"
+			count: 3
+			path: app/Http/Livewire/Table/MyUrlTable.php
 
 		-
 			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
@@ -21,6 +36,16 @@ parameters:
 			path: app/Models/Url.php
 
 		-
+			message: "#^Parameter \\$set of static method Illuminate\\\\Database\\\\Eloquent\\\\Casts\\\\Attribute\\<mixed,mixed\\>\\:\\:make\\(\\) expects \\(callable\\(mixed, mixed\\=\\)\\: mixed\\)\\|null, Closure\\(mixed, mixed\\)\\: string given\\.$#"
+			count: 1
+			path: app/Models/Url.php
+
+		-
 			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$user_id\\.$#"
 			count: 2
 			path: app/Policies/UrlPolicy.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$long_url\\.$#"
+			count: 1
+			path: app/Services/UrlRedirectionService.php

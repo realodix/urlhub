@@ -91,12 +91,11 @@ class Url extends Model
         );
     }
 
-    /**
-     * @return void
-     */
-    public function setLongUrlAttribute(string $value)
+    protected function longUrl(): Attribute
     {
-        $this->attributes['long_url'] = rtrim($value, '/');
+        return Attribute::make(
+            set: fn ($value, $attributes) => $attributes['long_url'] = rtrim($value, '/'),
+        );
     }
 
     /**
