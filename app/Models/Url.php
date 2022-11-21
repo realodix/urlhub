@@ -91,8 +91,8 @@ class Url extends Model
     protected function userId(): Attribute
     {
         return Attribute::make(
-            set: function ($value, $attributes) {
-                return $attributes['user_id'] = $value === 0 ? self::GUEST_ID : $value;
+            set: function ($value) {
+                return $value === 0 ? self::GUEST_ID : $value;
             },
         );
     }
@@ -100,23 +100,23 @@ class Url extends Model
     protected function longUrl(): Attribute
     {
         return Attribute::make(
-            set: fn ($value, $attributes) => $attributes['long_url'] = rtrim($value, '/'),
+            set: fn ($value) => rtrim($value, '/'),
         );
     }
 
     protected function metaTitle(): Attribute
     {
         return Attribute::make(
-            set: function ($value, $attributes) {
+            set: function ($value) {
                 if (config('urlhub.web_title')) {
                     if (Str::startsWith($value, 'http')) {
-                        return $this->attributes['meta_title'] = $this->getWebTitle($value);
+                        return $this->getWebTitle($value);
                     }
 
-                    return $this->attributes['meta_title'] = $value;
+                    return $value;
                 }
 
-                return $this->attributes['meta_title'] = 'No Title';
+                return 'No Title';
             },
         );
     }
