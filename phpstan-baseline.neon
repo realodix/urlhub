@@ -16,6 +16,11 @@ parameters:
 			path: app/Http/Livewire/Table/AllUlrTable.php
 
 		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$meta_title\\.$#"
+			count: 2
+			path: app/Http/Livewire/Table/AllUlrTable.php
+
+		-
 			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
 			count: 1
 			path: app/Http/Livewire/Table/AllUlrTable.php
@@ -26,17 +31,27 @@ parameters:
 			path: app/Http/Livewire/Table/MyUrlTable.php
 
 		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$meta_title\\.$#"
+			count: 2
+			path: app/Http/Livewire/Table/MyUrlTable.php
+
+		-
 			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
 			count: 1
 			path: app/Http/Livewire/Table/MyUrlTable.php
 
 		-
 			message: "#^Parameter \\$set of static method Illuminate\\\\Database\\\\Eloquent\\\\Casts\\\\Attribute\\<mixed,mixed\\>\\:\\:make\\(\\) expects \\(callable\\(mixed, mixed\\=\\)\\: mixed\\)\\|null, Closure\\(mixed, mixed\\)\\: mixed given\\.$#"
-			count: 1
+			count: 2
 			path: app/Models/Url.php
 
 		-
 			message: "#^Parameter \\$set of static method Illuminate\\\\Database\\\\Eloquent\\\\Casts\\\\Attribute\\<mixed,mixed\\>\\:\\:make\\(\\) expects \\(callable\\(mixed, mixed\\=\\)\\: mixed\\)\\|null, Closure\\(mixed, mixed\\)\\: string given\\.$#"
+			count: 1
+			path: app/Models/Url.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: app/Models/Url.php
 

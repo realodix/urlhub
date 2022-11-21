@@ -98,20 +98,21 @@ class Url extends Model
         );
     }
 
-    /**
-     * @return void
-     */
-    public function setMetaTitleAttribute(string $value)
+    protected function metaTitle(): Attribute
     {
-        $this->attributes['meta_title'] = 'No Title';
+        return Attribute::make(
+            set: function ($value, $attributes) {
+                if (config('urlhub.web_title')) {
+                    return $this->attributes['meta_title'] = $value;
 
-        if (config('urlhub.web_title')) {
-            $this->attributes['meta_title'] = $value;
+                    if (Str::startsWith($value, 'http')) {
+                        return $this->attributes['meta_title'] = $this->getWebTitle($value);
+                    }
+                }
 
-            if (Str::startsWith($value, 'http')) {
-                $this->attributes['meta_title'] = $this->getWebTitle($value);
-            }
-        }
+                return $this->attributes['meta_title'] = 'No Title';
+            },
+        );
     }
 
     public function shortUrl(): Attribute
