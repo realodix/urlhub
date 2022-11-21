@@ -23,13 +23,20 @@ jobs:
           coverage: xdebug
 
       # https://github.com/actions/cache/blob/main/examples.md#php---composer
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_STATE
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-      # https://github.com/actions/cache/blob/main/examples.md#node---npm
+      # https://github.com/actions/cache/blob/main/examples.md#windows-3
+      - name: Get NPM Cache Directory
+        id: npm-cache
+        run: |
+          echo "dir=$(npm config get cache)" >> $GITHUB_STATE
       - uses: actions/cache@v3
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
@@ -44,17 +51,9 @@ jobs:
           max_attempts: 3
           command: composer update --no-interaction --no-progress
 
-      - name: Install Dependencies (NPM)
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 3
-          command: npm install
-
       - name: Prepare
         run: |
           php artisan config:clear
-          npm run dev
 
       - name: Execute Tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
