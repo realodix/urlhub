@@ -109,11 +109,11 @@ class Url extends Model
         return Attribute::make(
             set: function ($value, $attributes) {
                 if (config('urlhub.web_title')) {
-                    return $this->attributes['meta_title'] = $value;
-
                     if (Str::startsWith($value, 'http')) {
                         return $this->attributes['meta_title'] = $this->getWebTitle($value);
                     }
+
+                    return $this->attributes['meta_title'] = $value;
                 }
 
                 return $this->attributes['meta_title'] = 'No Title';
