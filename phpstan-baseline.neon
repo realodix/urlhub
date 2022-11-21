@@ -1,2 +1,16 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
+			count: 1
+			path: app/Http/Controllers/UrlController.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
+			count: 1
+			path: app/Http/Livewire/Table/AllUlrTable.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$short_url\\.$#"
+			count: 1
+			path: app/Http/Livewire/Table/MyUrlTable.php

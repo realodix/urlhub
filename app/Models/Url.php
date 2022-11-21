@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Requests\StoreUrl;
 use App\Models\Traits\Hashidable;
 use Embed\Embed;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -115,10 +116,11 @@ class Url extends Model
         }
     }
 
-    // Accessor
-    public function getShortUrlAttribute(): string
+    public function shortUrl(): Attribute
     {
-        return url('/'.$this->attributes['keyword']);
+        return Attribute::make(
+            get: fn ($value, $attributes) => url('/'.$attributes['keyword']),
+        );
     }
 
     /*
