@@ -56,8 +56,6 @@ class Url extends Model
     |--------------------------------------------------------------------------
     | Eloquent: Relationships
     |--------------------------------------------------------------------------
-    | Database tables are often related to one another. Eloquent relationships
-    | are defined as methods on Eloquent model classes.
     */
 
     /**
@@ -82,10 +80,6 @@ class Url extends Model
     |--------------------------------------------------------------------------
     | Eloquent: Accessors & Mutators
     |--------------------------------------------------------------------------
-    |
-    | Accessors and mutators allow you to format Eloquent attribute values when
-    | you retrieve or set them on model instances.
-    |
     */
 
     protected function userId(): Attribute
@@ -130,7 +124,7 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | General Functions
+    | Other Functions
     |--------------------------------------------------------------------------
     */
 
