@@ -14,6 +14,12 @@ use RandomLib\Factory as RandomLibFactory;
 use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
+/**
+ * @property int|null $user_id
+ * @property string   $short_url
+ * @property string   $long_url
+ * @property string   $meta_title
+ */
 class Url extends Model
 {
     use HasFactory;
