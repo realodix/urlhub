@@ -25,7 +25,7 @@ jobs:
       # https://github.com/actions/cache/blob/main/examples.md#php---composer
       - name: Get Composer Cache Directory
         id: composer-cache
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_STATE
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -36,7 +36,7 @@ jobs:
       - name: Get NPM Cache Directory
         id: npm-cache
         run: |
-          echo "dir=$(npm config get cache)" >> $GITHUB_STATE
+          echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
       - uses: actions/cache@v3
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
