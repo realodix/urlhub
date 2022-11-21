@@ -29,8 +29,6 @@ class Visit extends Model
     |--------------------------------------------------------------------------
     | Eloquent: Relationships
     |--------------------------------------------------------------------------
-    | Database tables are often related to one another. Eloquent relationships
-    | are defined as methods on Eloquent model classes.
     */
 
     /**

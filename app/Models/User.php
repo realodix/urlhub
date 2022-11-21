@@ -48,8 +48,6 @@ class User extends Authenticatable
     |--------------------------------------------------------------------------
     | Eloquent: Relationships
     |--------------------------------------------------------------------------
-    | Database tables are often related to one another. Eloquent relationships
-    | are defined as methods on Eloquent model classes.
     */
 
     /**
@@ -62,7 +60,7 @@ class User extends Authenticatable
 
     /*
     |--------------------------------------------------------------------------
-    | General Functions
+    | Other Functions
     |--------------------------------------------------------------------------
     */
 
