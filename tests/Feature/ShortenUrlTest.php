@@ -79,7 +79,7 @@ class ShortenUrlTest extends TestCase
     }
 
     /** @test */
-    public function guestConnotDelete()
+    public function guestCannotDelete()
     {
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
