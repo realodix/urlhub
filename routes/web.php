@@ -29,7 +29,6 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         // User
         Route::namespace('User')->prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'view'])->name('user.index');
-
             Route::get('{user}/edit', [UserController::class, 'edit'])->name('user.edit');
             Route::post('{user_hashId}/edit', [UserController::class, 'update'])->name('user.update');
 
