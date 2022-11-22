@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/create', [UrlController::class, 'create'])->name('createshortlink');
 Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('short_url.stats');
+Route::get('/delete/{url_hashId}', [UrlController::class, 'delete'])->name('short_url.delete');
 Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('duplicate');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
