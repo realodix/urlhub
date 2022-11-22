@@ -58,6 +58,23 @@ class UrlController extends Controller
     }
 
     /**
+     * Delete a shortened URL on user request.
+     *
+     * @param mixed $url
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function delete($url)
+    {
+        $this->authorize('forceDelete', $url);
+
+        $url->delete();
+
+        return redirect()->route('home');
+    }
+
+    /**
      * UrlHub only allows users (registered & unregistered) to have a unique
      * link. You can duplicate it and it will generated a new unique random
      * key.

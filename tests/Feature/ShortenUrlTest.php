@@ -7,6 +7,14 @@ use Tests\TestCase;
 
 class ShortenUrlTest extends TestCase
 {
+    protected function hashIdRoute($routeName, $url_id)
+    {
+        return route(
+            $routeName,
+            \Hashids::connection(Url::class)->encode($url_id)
+        );
+    }
+
     /**
      * Users shorten the URLs, they don't fill in the custom keyword field. The
      * is_custom column (Urls table) must be filled with 0 / false.
@@ -46,6 +54,48 @@ class ShortenUrlTest extends TestCase
 
         $url = Url::whereLongUrl($longUrl)->first();
         $this->assertTrue($url->is_custom);
+    }
+
+    /** @test */
+    public function userCanDelete()
+    {
+        $this->loginAsAdmin();
+
+        $url = Url::factory()->create([
+            'user_id' => $this->admin()->id,
+        ]);
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $response = $this->from(route('short_url.stats', $url->keyword))
+             ->get($this->hashIdRoute('short_url.delete', $url->id));
+
+        $response
+            ->assertRedirect(route('home'));
+
+        $this->assertCount(0, Url::all());
+    }
+
+    /** @test */
+    public function guestCannotDelete()
+    {
+        $url = Url::factory()->create([
+            'user_id' => $this->admin()->id,
+        ]);
+
+        $this->post(route('createshortlink'), [
+            'long_url' => $url->long_url,
+        ]);
+
+        $response = $this->from(route('short_url.stats', $url->keyword))
+             ->get($this->hashIdRoute('short_url.delete', $url->id));
+
+        $response
+            ->assertForbidden();
+
+        $this->assertCount(2, Url::all());
     }
 
     /** @test */
