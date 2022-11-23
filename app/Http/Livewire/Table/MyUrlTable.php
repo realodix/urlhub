@@ -19,6 +19,8 @@ final class MyUrlTable extends PowerGridComponent
 {
     use ActionButton;
 
+    const STR_LIMIT = 70;
+
     public bool $showUpdateMessages = true;
 
     public string $sortDirection = 'desc';
@@ -91,11 +93,11 @@ final class MyUrlTable extends PowerGridComponent
             ->addColumn('long_url', function (Url $url) {
                 return
                     '<span title="'.$url->meta_title.'">'
-                        .Str::limit($url->meta_title, 80).
+                        .Str::limit($url->meta_title, self::STR_LIMIT).
                     '</span>
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
-                        .Helper::urlDisplay($url->long_url, false, 70)
+                        .Helper::urlDisplay($url->long_url, false, self::STR_LIMIT)
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })
