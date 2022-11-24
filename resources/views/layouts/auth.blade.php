@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>@yield('title') | {{appName()}}</title>
+    <title>@yield('title') | {{config('app.name')}}</title>
 
     {!! style(mix('css/main.css')) !!}
     {!! style(mix('css/frontend.css')) !!}
