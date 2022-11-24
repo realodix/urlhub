@@ -2,18 +2,6 @@
 
 use App\Helpers\Helper;
 
-if (! function_exists('appName')) {
-    /**
-     * Helper to grab the application name.
-     *
-     * @return string
-     */
-    function appName()
-    {
-        return config('app.name');
-    }
-}
-
 if (! function_exists('urlDisplay')) {
     /**
      * Display the link according to what You need.

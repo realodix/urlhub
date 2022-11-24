@@ -1,7 +1,7 @@
 <header class="navbar shadow" x-data="{ open: false }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <a class="navbar-brand" href="{{ url('/') }}">{{appName()}}</a>
+            <a class="navbar-brand" href="{{ url('/') }}">{{config('app.name')}}</a>
             @auth
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     {{-- Settings Dropdown --}}
