@@ -20,7 +20,7 @@ class Helper
         $sUrl = SpatieUrl::fromString($url);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
         $urlLen = strlen($url);
-        $limit = is_null($limit) ? $urlLen : $limit;
+        $limit = $limit ?? $urlLen;
 
         // Remove URL schemes
         if (! $scheme) {

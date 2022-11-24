@@ -155,7 +155,7 @@ class Url extends Model
      */
     public function duplicate(string $key, $userId, string $randomKey = null)
     {
-        $randomKey = is_null($randomKey) ? $this->randomString() : $randomKey;
+        $randomKey = $randomKey ?? $this->randomString();
         $shortenedUrl = self::whereKeyword($key)->firstOrFail();
 
         $replicate = $shortenedUrl->replicate()->fill([
@@ -300,8 +300,6 @@ class Url extends Model
      */
     public static function anonymizeIp($address): string
     {
-        $address = ! is_null($address) ? $address : (string) null;
-
         if (config('urlhub.anonymize_ip_addr') === false) {
             return $address;
         }
@@ -328,13 +326,11 @@ class Url extends Model
     public function getWebTitle(string $url): string
     {
         $domain = $this->getDomain($url);
-        $defaultWebTitle = $domain.' - No Title';
 
         try {
-            $embeddedTitle = (new Embed)->get($url)->title;
-            $webTitle = ! is_null($embeddedTitle) ? $embeddedTitle : $defaultWebTitle;
+            $webTitle = (new Embed)->get($url)->title;
         } catch (\Exception) {
-            $webTitle = $defaultWebTitle;
+            $webTitle = $domain.' - No Title';
         }
 
         // @codeCoverageIgnoreStart
