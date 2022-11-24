@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
-    <div class="text-uh-blue font-bold text-4xl sm:text-6xl">{{appName()}}</div>
+    <div class="text-uh-blue font-bold text-4xl sm:text-6xl">{{config('app.name')}}</div>
 
     <div class="common-card-style w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden">
         @if ( ! Config::get('urlhub.registration') )

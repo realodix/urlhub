@@ -9,16 +9,6 @@ use Tests\TestCase;
 class HelperTest extends TestCase
 {
     /**
-     * @group u-helper
-     */
-    public function testAppName()
-    {
-        $expected = config('app.name');
-        $actual = appName();
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
      * @test
      */
     public function urlDisplay()
