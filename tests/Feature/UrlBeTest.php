@@ -48,10 +48,8 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response =
-            $this
-                ->from(route('dashboard'))
-                ->get($this->hashIdRoute('dashboard.delete', $url->id));
+        $response = $this->from(route('dashboard'))
+            ->get($this->hashIdRoute('dashboard.delete', $url->id));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -72,10 +70,8 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response =
-            $this
-                ->from(route('dashboard'))
-                ->get(route('dashboard.duplicate', $url->keyword));
+        $response = $this->from(route('dashboard'))
+            ->get(route('dashboard.duplicate', $url->keyword));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -114,13 +110,11 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response =
-            $this
-                ->from(route('short_url.edit', $url->keyword))
-                ->post(route('short_url.edit.post', \Hashids::connection(\App\Models\Url::class)->encode($url->id)), [
-                    'meta_title' => $url->meta_title,
-                    'long_url'   => $new_long_url,
-                ]);
+        $response = $this->from(route('short_url.edit', $url->keyword))
+            ->post(route('short_url.edit.post', \Hashids::connection(\App\Models\Url::class)->encode($url->id)), [
+                'meta_title' => $url->meta_title,
+                'long_url'   => $new_long_url,
+            ]);
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -170,10 +164,9 @@ class UrlBeTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->from(route('dashboard.allurl'))
-                         ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+            ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
 
-        $response
-            ->assertRedirect(route('dashboard.allurl'))
+        $response->assertRedirect(route('dashboard.allurl'))
             ->assertSessionHas('flash_success');
 
         $this->assertCount(0, Url::all());
@@ -189,10 +182,9 @@ class UrlBeTest extends TestCase
 
         $this->loginAsNonAdmin();
 
-        $response =
-            $this
-                ->from(route('dashboard.allurl'))
-                ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+        $response = $this->from(route('dashboard.allurl'))
+            ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+
         $response->assertForbidden();
 
         $this->assertCount(1, Url::all());
