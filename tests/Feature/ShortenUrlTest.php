@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Url;
+use App\Models\User;
 use Tests\TestCase;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -59,15 +60,11 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function userCanDelete()
     {
-        $this->actingAs($this->admin());
-
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
+        $this->actingAs($this->admin());
 
         $response = $this->from(route('short_url.stats', $url->keyword))
             ->get($this->hashIdRoute('short_url.delete', $url->id));
@@ -76,6 +73,29 @@ class ShortenUrlTest extends TestCase
             ->assertRedirect(route('home'));
 
         $this->assertCount(0, Url::all());
+    }
+
+    /** @test */
+    public function userCanDeleteUrlsCreatedByOtherUsers()
+    {
+        $url = Url::factory()->create([
+            'user_id' => $this->admin()->id,
+        ]);
+
+        $user = User::factory()->create();
+        $user->assignRole('admin');
+
+        $this->actingAs($user);
+
+        $response = $this->from(route('short_url.stats', $url->keyword))
+            ->get($this->hashIdRoute('short_url.delete', $url->id));
+
+        $response
+            ->assertRedirect(route('home'));
+
+        $this->assertCount(0, Url::all());
+        $this->assertSame(2, $user->id);
+        $this->assertSame(1, $url->user->id);
     }
 
     /** @test */

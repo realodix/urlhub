@@ -32,7 +32,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass(),
+                'current-password'          => $this->adminPass,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
@@ -61,7 +61,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass(),
+                'current-password'          => $this->adminPass,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
@@ -123,7 +123,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass(),
+                'current-password'          => $this->adminPass,
                 'new-password'              => $data1,
                 'new-password_confirmation' => $data2,
             ]);
@@ -144,7 +144,7 @@ class ChangePasswordTest extends TestCase
     {
         return [
             ['', ''], // required
-            [$this->adminPass(), $this->adminPass()], // different
+            [$this->adminPass, $this->adminPass], // different
             [null, null], // string
             ['new-password', 'new-pass-word'], // confirmed
 
