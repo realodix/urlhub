@@ -4,6 +4,7 @@ namespace Tests\Feature\User;
 
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ChangePasswordTest extends TestCase
 {
@@ -14,10 +15,9 @@ class ChangePasswordTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route(
-            'user.change-password.post',
-            \Hashids::connection(\App\Models\User::class)->encode($value)
-        );
+        $hashids = Hashids::connection(\App\Models\User::class);
+
+        return route('user.change-password.post', $hashids->encode($value));
     }
 
     /**
@@ -30,14 +30,12 @@ class ChangePasswordTest extends TestCase
 
         $user = $this->admin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'current-password'          => $this->adminPass(),
-                    'new-password'              => 'new-awesome-password',
-                    'new-password_confirmation' => 'new-awesome-password',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'current-password'          => $this->adminPass(),
+                'new-password'              => 'new-awesome-password',
+                'new-password_confirmation' => 'new-awesome-password',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -61,14 +59,12 @@ class ChangePasswordTest extends TestCase
 
         $user = $this->nonAdmin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'current-password'          => $this->adminPass(),
-                    'new-password'              => 'new-awesome-password',
-                    'new-password_confirmation' => 'new-awesome-password',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'current-password'          => $this->adminPass(),
+                'new-password'              => 'new-awesome-password',
+                'new-password_confirmation' => 'new-awesome-password',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -92,14 +88,12 @@ class ChangePasswordTest extends TestCase
 
         $user = $this->admin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'current-password'          => 'laravel',
-                    'new-password'              => 'new-awesome-password',
-                    'new-password_confirmation' => 'new-awesome-password',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'current-password'          => 'laravel',
+                'new-password'              => 'new-awesome-password',
+                'new-password_confirmation' => 'new-awesome-password',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -127,14 +121,12 @@ class ChangePasswordTest extends TestCase
 
         $user = $this->nonAdmin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'current-password'          => $this->adminPass(),
-                    'new-password'              => $data1,
-                    'new-password_confirmation' => $data2,
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'current-password'          => $this->adminPass(),
+                'new-password'              => $data1,
+                'new-password_confirmation' => $data2,
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))

@@ -38,9 +38,9 @@ return new class extends Migration
             $table->index([$columnNames['model_morph_key'], 'model_type']);
 
             $table->foreign('permission_id')
-                  ->references('id')
-                  ->on($tableNames['permissions'])
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on($tableNames['permissions'])
+                ->onDelete('cascade');
 
             $table->primary(
                 [
@@ -59,9 +59,9 @@ return new class extends Migration
             $table->index([$columnNames['model_morph_key'], 'model_type']);
 
             $table->foreign('role_id')
-                  ->references('id')
-                  ->on($tableNames['roles'])
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on($tableNames['roles'])
+                ->onDelete('cascade');
 
             $table->primary(
                 [
@@ -77,14 +77,14 @@ return new class extends Migration
             $table->unsignedInteger('role_id');
 
             $table->foreign('permission_id')
-                  ->references('id')
-                  ->on($tableNames['permissions'])
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on($tableNames['permissions'])
+                ->onDelete('cascade');
 
             $table->foreign('role_id')
-                  ->references('id')
-                  ->on($tableNames['roles'])
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on($tableNames['roles'])
+                ->onDelete('cascade');
 
             $table->primary(['permission_id', 'role_id']);
 

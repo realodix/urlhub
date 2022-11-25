@@ -101,15 +101,13 @@ class RegisterTest extends TestCase
      */
     public function userCannotRegisterWithoutName()
     {
-        $response =
-            $this
-                ->from($this->getRoute())
-                ->post($this->postRoute(), [
-                    'name'                  => '',
-                    'email'                 => 'john@example.com',
-                    'password'              => 'i-love-laravel',
-                    'password_confirmation' => 'i-love-laravel',
-                ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'name'                  => '',
+                'email'                 => 'john@example.com',
+                'password'              => 'i-love-laravel',
+                'password_confirmation' => 'i-love-laravel',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())
@@ -127,9 +125,7 @@ class RegisterTest extends TestCase
      */
     public function userCannotRegisterWithoutEmail()
     {
-        $response =
-        $this
-            ->from($this->getRoute())
+        $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
                 'name'                  => 'John Doe',
                 'email'                 => '',
@@ -153,15 +149,13 @@ class RegisterTest extends TestCase
      */
     public function userCannotRegisterWithInvalidEmail()
     {
-        $response =
-            $this
-                ->from($this->getRoute())
-                ->post($this->postRoute(), [
-                    'name'                  => 'John Doe',
-                    'email'                 => 'invalid-email',
-                    'password'              => 'i-love-laravel',
-                    'password_confirmation' => 'i-love-laravel',
-                ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'name'                  => 'John Doe',
+                'email'                 => 'invalid-email',
+                'password'              => 'i-love-laravel',
+                'password_confirmation' => 'i-love-laravel',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())
@@ -194,15 +188,13 @@ class RegisterTest extends TestCase
      */
     public function userCannotRegisterWithoutPassword()
     {
-        $response =
-            $this
-                ->from($this->getRoute())
-                ->post($this->postRoute(), [
-                    'name'                  => 'John Doe',
-                    'email'                 => 'john@example.com',
-                    'password'              => '',
-                    'password_confirmation' => '',
-                ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'name'                  => 'John Doe',
+                'email'                 => 'john@example.com',
+                'password'              => '',
+                'password_confirmation' => '',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())
@@ -221,15 +213,13 @@ class RegisterTest extends TestCase
      */
     public function userCannotRegisterWithoutPasswordConfirmation()
     {
-        $response =
-            $this
-                ->from($this->getRoute())
-                ->post($this->postRoute(), [
-                    'name'                  => 'John Doe',
-                    'email'                 => 'john@example.com',
-                    'password'              => 'i-love-laravel',
-                    'password_confirmation' => '',
-                ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'name'                  => 'John Doe',
+                'email'                 => 'john@example.com',
+                'password'              => 'i-love-laravel',
+                'password_confirmation' => '',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())
@@ -248,15 +238,13 @@ class RegisterTest extends TestCase
      */
     public function userCannotRegisterWithPasswordsNotMatching()
     {
-        $response =
-            $this
-                ->from($this->getRoute())
-                ->post($this->postRoute(), [
-                    'name'                  => 'John Doe',
-                    'email'                 => 'john@example.com',
-                    'password'              => 'i-love-laravel',
-                    'password_confirmation' => 'i-love-symfony',
-                ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'name'                  => 'John Doe',
+                'email'                 => 'john@example.com',
+                'password'              => 'i-love-laravel',
+                'password_confirmation' => 'i-love-symfony',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())

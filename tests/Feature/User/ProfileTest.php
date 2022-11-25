@@ -4,6 +4,7 @@ namespace Tests\Feature\User;
 
 use App\Models\User;
 use Tests\TestCase;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ProfileTest extends TestCase
 {
@@ -14,7 +15,9 @@ class ProfileTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.update', \Hashids::connection(\App\Models\User::class)->encode($value));
+        $hashids = Hashids::connection(\App\Models\User::class);
+
+        return route('user.update', $hashids->encode($value));
     }
 
     /**
@@ -63,12 +66,10 @@ class ProfileTest extends TestCase
 
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'email' => 'new_user_email@urlhub.test',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'email' => 'new_user_email@urlhub.test',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -87,12 +88,10 @@ class ProfileTest extends TestCase
 
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'email' => 'new_email_user2@urlhub.test',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'email' => 'new_email_user2@urlhub.test',
+            ]);
 
         $response->assertForbidden();
         $this->assertSame('user2@urlhub.test', $user->email);
@@ -108,12 +107,10 @@ class ProfileTest extends TestCase
 
         $user = $this->admin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'email' => '',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'email' => '',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -130,12 +127,10 @@ class ProfileTest extends TestCase
 
         $user = $this->admin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'email' => 'invalid_format',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'email' => 'invalid_format',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -152,13 +147,11 @@ class ProfileTest extends TestCase
 
         $user = $this->admin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    // 255 + 9
-                    'email' => str_repeat('a', 255).'@mail.com',
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                // 255 + 9
+                'email' => str_repeat('a', 255).'@mail.com',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
@@ -175,12 +168,10 @@ class ProfileTest extends TestCase
 
         $user = $this->admin();
 
-        $response =
-            $this
-                ->from($this->getRoute($user->name))
-                ->post($this->postRoute($user->id), [
-                    'email' => $this->nonAdmin()->email,
-                ]);
+        $response = $this->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'email' => $this->nonAdmin()->email,
+            ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
