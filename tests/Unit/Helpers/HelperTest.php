@@ -72,14 +72,6 @@ class HelperTest extends TestCase
     public function numberToAmountShort($expected, $actual)
     {
         $this->assertSame($expected, NumHelper::numberToAmountShort($actual));
-
-        $intOrString = NumHelper::numberToAmountShort($actual);
-
-        if (is_int($intOrString)) {
-            $this->assertIsInt($intOrString);
-        } else {
-            $this->assertIsString($intOrString);
-        }
     }
 
     /**

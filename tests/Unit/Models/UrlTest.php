@@ -8,33 +8,41 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    /** @var \App\Models\Url */
-    private $url;
+    private const N_URL_WITH_USER_ID = 1;
+
+    private const N_URL_WITHOUT_USER_ID = 2;
+
+    private const CLICKS = 0;
+
+    private Url $url;
+
+    private int $totalUrl;
+
+    private int $tClick;
+
+    private int $tClickWithUserId;
+
+    private int $tClickWithoutUserId;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->url = new Url;
+        $this->totalUrl = self::N_URL_WITH_USER_ID + self::N_URL_WITHOUT_USER_ID;
 
-        $this->nUrlWithUserId = 1;
-        $this->nUrlWithoutUserId = 2;
-        $this->totalUrl = $this->nUrlWithUserId + $this->nUrlWithoutUserId;
+        $this->tClickWithUserId = self::CLICKS * self::N_URL_WITH_USER_ID;
+        $this->tClickWithoutUserId = self::CLICKS * self::N_URL_WITHOUT_USER_ID;
+        $this->tClick = $this->tClickWithUserId + $this->tClickWithoutUserId;
 
-        $cwui = 10;
-        $cwoui = 10;
-        $this->nClickWithUserId = $cwui * $this->nUrlWithUserId;
-        $this->nClickWithoutUserId = $cwoui * $this->nUrlWithoutUserId;
-        $this->tClick = $this->nClickWithUserId + $this->nClickWithoutUserId;
-
-        Url::factory($this->nUrlWithUserId)->create([
+        Url::factory(self::N_URL_WITH_USER_ID)->create([
             'user_id' => $this->admin()->id,
-            'clicks'  => $cwui,
+            'clicks'  => self::CLICKS,
         ]);
 
-        Url::factory($this->nUrlWithoutUserId)->create([
+        Url::factory(self::N_URL_WITHOUT_USER_ID)->create([
             'user_id' => null,
-            'clicks'  => $cwoui,
+            'clicks'  => self::CLICKS,
         ]);
     }
 
@@ -376,7 +384,7 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByMe()
     {
-        $expected = $this->nUrlWithUserId;
+        $expected = self::N_URL_WITH_USER_ID;
         $actual = $this->url->urlCount($this->admin()->id);
 
         $this->assertSame($expected, $actual);
@@ -388,7 +396,7 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByGuest()
     {
-        $expected = $this->nUrlWithoutUserId;
+        $expected = self::N_URL_WITHOUT_USER_ID;
         $actual = $this->url->urlCount();
 
         $this->assertSame($expected, $actual);
@@ -412,7 +420,7 @@ class UrlTest extends TestCase
      */
     public function totalClicksByMe()
     {
-        $expected = $this->nClickWithUserId;
+        $expected = $this->tClickWithUserId;
         $actual = $this->url->clickCount($this->admin()->id);
 
         $this->assertSame($expected, $actual);
@@ -426,7 +434,7 @@ class UrlTest extends TestCase
      */
     public function totalClicksByGuest()
     {
-        $expected = $this->nClickWithoutUserId;
+        $expected = $this->tClickWithoutUserId;
         $actual = $this->url->clickCount();
 
         $this->assertSame($expected, $actual);
