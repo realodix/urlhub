@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$token\\.$#"
-			count: 1
-			path: tests/Feature/Auth/ForgotPasswordTest.php
-
-		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsInt\\(\\) with int will always evaluate to true\\.$#"
 			count: 1
 			path: tests/Unit/Helpers/HelperTest.php
@@ -44,8 +39,3 @@ parameters:
 			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$totalUrl\\.$#"
 			count: 3
 			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\Relation\\<App\\\\Models\\\\Url\\>\\:\\:exists\\(\\)\\.$#"
-			count: 1
-			path: tests/Unit/Models/UserTest.php

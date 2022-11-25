@@ -29,7 +29,6 @@
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^6.3",
         "nunomaduro/larastan": "^2.2",
-        "phpstan/phpstan-mockery": "^1.1",
         "phpunit/phpunit": "^9.5",
         "realodix/relax": "dev-main",
         "spatie/laravel-ignition": "^1.6"
