@@ -1,2 +1,1041 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Method Tests\\\\Feature\\\\API\\\\UrlTest\\:\\:canCreateUrl\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/API/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\API\\\\UrlTest\\:\\:shortenUrlFail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/API/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\API\\\\UrlTest\\:\\:shortenUrlFailProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/API/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ConfirmPasswordTest\\:\\:guestCantViewPasswordConfirm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ConfirmPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ConfirmPasswordTest\\:\\:userCanViewPasswordConfirm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ConfirmPasswordTest.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$token\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:emailIsAValidEmail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:emailIsRequired\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:getRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:postRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:requestRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:userCanViewAnEmailPasswordForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:userDoesNotReceiveEmailWhenNotRegistered\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\ForgotPasswordTest\\:\\:userReceivesAnEmailWithAPasswordResetLink\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/ForgotPasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:getRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:guestMiddlewareRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:postRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:successfulLoginRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:unauthenticatedUsersCantAccessTheDashboard\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:userCanLoginWithCorrectCredentials\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:userCanViewALoginForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:userCannotLoginWithEmailThatDoesNotExist\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:userCannotLoginWithIncorrectPassword\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\LoginTest\\:\\:userCannotViewALoginFormWhenAuthenticated\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/LoginTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:emailShouldNotBeTooLong\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:getRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:guestMiddlewareRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:nameShouldNotBeTooLong\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:postRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:successfulRegistrationRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCanRegister\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCanViewARegistrationForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCannotRegisterWithInvalidEmail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCannotRegisterWithPasswordsNotMatching\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCannotRegisterWithoutEmail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCannotRegisterWithoutName\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCannotRegisterWithoutPassword\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCannotRegisterWithoutPasswordConfirmation\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\Auth\\\\RegisterTest\\:\\:userCannotViewARegistrationFormWhenAuthenticated\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/Auth/RegisterTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
+			count: 2
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
+			count: 6
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
+			count: 4
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:customKeyValidation\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:duplicate\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:duplicateUrlCreatedByGuest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:guestCannotDelete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:hashIdRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:hashIdRoute\\(\\) has parameter \\$routeName with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:hashIdRoute\\(\\) has parameter \\$url_id with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:shortenUrl\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:shortenUrlWithCustomKeyword\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:userCanDelete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
+			count: 5
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
+			count: 8
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:createShortUrlWithWrongUrlFormat\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:cstCstKeywordAlreadyExist\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:cstCstKeywordAlreadyExist2\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:cstLongUrlAlreadyExist\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:cstLongUrlAlreadyExist2\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:longUrlAlreadyExist\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:longUrlAlreadyExist2\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:longUrlAlreadyExistsButStillAccepted\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:longUrlAlreadyExistsButStillAccepted2\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\ShortenUrlWithLongUrlAlreadyExistTest\\:\\:longUrlAlreadyExistsButStillAccepted3\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
+			count: 4
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
+			count: 3
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$meta_title\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
+			count: 2
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:auAdminCanAccessThisPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:auAdminCanDelete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:auNonAdminCantAccessThisPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:auNonAdminCantDelete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:ausAdminCanAccessThisPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:ausNonAdminCantAccessThisPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:dAuthorizedUserCanAccessEditUrlPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:dCanAccessPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:dCanDelete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:dCanDuplicate\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:dCanUpdateUrl\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:hashIdRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:hashIdRoute\\(\\) has parameter \\$routeName with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:hashIdRoute\\(\\) has parameter \\$url_id with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/UrlBeTest.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:adminCanChangeThePasswordOfAllUsers\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:changePasswordWithCorrectCredentials\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:currentPasswordDoesNotMatch\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:getRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:getRoute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:newPasswordFailProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:newPasswordValidateFail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:postRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:postRoute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ChangePasswordTest.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:adminCanAccessOtherUsersProfilePages\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:adminCanChangeOtherUsersEmail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:getRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:getRoute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:nonAdminCantAccessOtherUsersProfilePages\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:nonAdminCantChangeOtherUsersEmail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:postRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:postRoute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:usersCanAccessTheirOwnProfilePage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:validationEmailInvalidFormat\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:validationEmailMaxLength\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:validationEmailRequired\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:validationEmailUnique\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Feature/User/ProfileTest.php
+
+		-
+			message: "#^Method Tests\\\\TestCase\\:\\:admin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: "#^Method Tests\\\\TestCase\\:\\:adminPass\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: "#^Method Tests\\\\TestCase\\:\\:getAdminRole\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: "#^Method Tests\\\\TestCase\\:\\:loginAsNonAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: "#^Method Tests\\\\TestCase\\:\\:nonAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: "#^Property Tests\\\\TestCase\\:\\:\\$adminRole has no type specified\\.$#"
+			count: 1
+			path: tests/TestCase.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Controllers\\\\UrlControllerTest\\:\\:guestShortenURL\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Controllers/UrlControllerTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Controllers\\\\UrlControllerTest\\:\\:userShortenURL\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Controllers/UrlControllerTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
+			count: 1
+			path: tests/Unit/Controllers/UrlRedirectControllerTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
+			count: 1
+			path: tests/Unit/Controllers/UrlRedirectControllerTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Controllers\\\\UrlRedirectControllerTest\\:\\:urlRedirection\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Controllers/UrlRedirectControllerTest.php
+
+		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsInt\\(\\) with int will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsString\\(\\) with string will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Helpers\\\\HelperTest\\:\\:numbPrec\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Helpers\\\\HelperTest\\:\\:numberToAmountShort\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Helpers\\\\HelperTest\\:\\:sanitize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Helpers\\\\HelperTest\\:\\:sanitizeProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Helpers\\\\HelperTest\\:\\:toAmountShortProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Helpers\\\\HelperTest\\:\\:urlDisplay\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Helpers/HelperTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Middleware\\\\UrlHubLinkCheckerTest\\:\\:keyRemainingZero\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Middleware/UrlHubLinkCheckerTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Middleware\\\\UrlHubLinkCheckerTest\\:\\:keywordBlacklistFail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Middleware/UrlHubLinkCheckerTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Middleware\\\\UrlHubLinkCheckerTest\\:\\:keywordBlacklistFailDataProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Middleware/UrlHubLinkCheckerTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$meta_title\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$user\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$user_id\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$nClickWithUserId\\.$#"
+			count: 2
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$nClickWithoutUserId\\.$#"
+			count: 2
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$nUrlWithUserId\\.$#"
+			count: 2
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$nUrlWithoutUserId\\.$#"
+			count: 2
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$tClick\\.$#"
+			count: 2
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$totalUrl\\.$#"
+			count: 3
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$url\\.$#"
+			count: 29
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:user\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:visit\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Call to an undefined method Mockery\\\\Mock\\:\\:keyRemaining\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Call to an undefined method Mockery\\\\Mock\\:\\:keyRemainingInPercent\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:belongsToUser\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:defaultGuestId\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:defaultGuestName\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:getDomain\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:getDomainProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:getShortUrlAttribute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:getWebTitle\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:hasManyUrlStat\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:keyCapacity\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:keyRemaining\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:keyRemainingInPercent\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:keyRemainingInPercentProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:keyRemainingProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:keyUsed\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:keyUsed2\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:setLongUrlAttribute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:setMetaTitleAttributeWhenWebTitleSetToFalse\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:setUserIdAttributeMustBeNull\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:testAnonymizeIpWhenConfigSettedFalse\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:testAnonymizeIpWhenConfigSettedTrue\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:totalClicks\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:totalClicksByGuest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:totalClicksByMe\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:totalShortUrl\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:totalShortUrlByGuest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:totalShortUrlByMe\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:urlKey\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:urlKeyLength\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:urlKeyWithGeneratedString\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Parameter \\#1 \\.\\.\\.\\$methodNames of method Mockery\\\\Mock\\:\\:shouldReceive\\(\\) expects string, array\\<string, mixed\\> given\\.$#"
+			count: 2
+			path: tests/Unit/Models/UrlTest.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\Relation\\<App\\\\Models\\\\Url\\>\\:\\:exists\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/Models/UserTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UserTest\\:\\:guestCount\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UserTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\UserTest\\:\\:hasManyUrl\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/UserTest.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
+			count: 1
+			path: tests/Unit/Models/VisitTest.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:url\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/Models/VisitTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Models\\\\VisitTest\\:\\:belongsToUrl\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Models/VisitTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UrlPolicyTest\\:\\:forceDeleteAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UrlPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UrlPolicyTest\\:\\:forceDeleteNonAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UrlPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:adminCanAccessAllUsersPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:adminCanAccessChangePasswordPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:getCPRoute\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:getCPRoute\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:nonAdminCantAccessAllUsersPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:nonAdminCantAccessChangePasswordPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:updateAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:updateNonAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:updatePassAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:updatePassNonAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:usersCanAccessTheirOwnChangePasswordPage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:viewAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:viewNonAdmin\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Policies/UserPolicyTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\PwdCurrentTest\\:\\:testPwdCurrentFail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/PwdCurrentTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\PwdCurrentTest\\:\\:testPwdCurrentPass\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/PwdCurrentTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\StringTest\\:\\:strAlphaUnderscoret\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/StringTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:domainBlacklistFail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:domainBlacklistFailDataProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:domainBlacklistPass\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:domainBlacklistPassDataProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:keywordBlacklistFail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:keywordBlacklistFailDataProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:keywordBlacklistPass\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
+
+		-
+			message: "#^Method Tests\\\\Unit\\\\Rule\\\\UrlTest\\:\\:keywordBlacklistPassDataProvider\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Unit/Rule/UrlTest.php
