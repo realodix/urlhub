@@ -26,7 +26,7 @@ class ChangePasswordTest extends TestCase
      */
     public function changePasswordWithCorrectCredentials()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $user = $this->admin();
 
@@ -55,7 +55,7 @@ class ChangePasswordTest extends TestCase
      */
     public function adminCanChangeThePasswordOfAllUsers()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $user = $this->nonAdmin();
 
@@ -84,7 +84,7 @@ class ChangePasswordTest extends TestCase
      */
     public function currentPasswordDoesNotMatch()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $user = $this->admin();
 
@@ -117,7 +117,7 @@ class ChangePasswordTest extends TestCase
      */
     public function newPasswordValidateFail($data1, $data2)
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $user = $this->nonAdmin();
 

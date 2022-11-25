@@ -15,7 +15,7 @@ class UserPolicyTest extends TestCase
      */
     public function viewAdmin()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $admin = $this->admin();
 
@@ -47,7 +47,7 @@ class UserPolicyTest extends TestCase
      */
     public function updateAdmin()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $admin = $this->admin();
 
@@ -79,7 +79,7 @@ class UserPolicyTest extends TestCase
      */
     public function updatePassAdmin()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $admin = $this->admin();
 
@@ -117,7 +117,7 @@ class UserPolicyTest extends TestCase
      */
     public function adminCanAccessChangePasswordPage()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->get($this->getCPRoute($this->nonAdmin()->name));
         $response->assertOk();
@@ -138,7 +138,7 @@ class UserPolicyTest extends TestCase
     /** @test */
     public function usersCanAccessTheirOwnChangePasswordPage()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->get($this->getCPRoute($this->admin()->name));
         $response->assertOk();
@@ -154,7 +154,7 @@ class UserPolicyTest extends TestCase
      */
     public function adminCanAccessAllUsersPage()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->get(route('user.index'));
         $response->assertOk();

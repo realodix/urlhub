@@ -59,7 +59,7 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function userCanDelete()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -101,7 +101,7 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function duplicate()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
@@ -120,7 +120,7 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function duplicateUrlCreatedByGuest()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,

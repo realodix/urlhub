@@ -30,11 +30,6 @@ trait Authentication
         return 'admin';
     }
 
-    protected function loginAsAdmin()
-    {
-        return $this->actingAs($this->admin());
-    }
-
     protected function nonAdmin()
     {
         return User::factory()->create();

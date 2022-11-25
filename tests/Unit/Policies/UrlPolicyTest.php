@@ -15,7 +15,7 @@ class UrlPolicyTest extends TestCase
      */
     public function forceDeleteAdmin()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $admin = $this->admin();
         $url = Url::factory()->create([
