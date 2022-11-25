@@ -21,16 +21,6 @@ parameters:
 			path: tests/Feature/ShortenUrlTest.php
 
 		-
-			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:hashIdRoute\\(\\) has parameter \\$routeName with no type specified\\.$#"
-			count: 1
-			path: tests/Feature/ShortenUrlTest.php
-
-		-
-			message: "#^Method Tests\\\\Feature\\\\ShortenUrlTest\\:\\:hashIdRoute\\(\\) has parameter \\$url_id with no type specified\\.$#"
-			count: 1
-			path: tests/Feature/ShortenUrlTest.php
-
-		-
 			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
 			count: 5
 			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
@@ -66,27 +56,7 @@ parameters:
 			path: tests/Feature/UrlBeTest.php
 
 		-
-			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:hashIdRoute\\(\\) has parameter \\$routeName with no type specified\\.$#"
-			count: 1
-			path: tests/Feature/UrlBeTest.php
-
-		-
-			message: "#^Method Tests\\\\Feature\\\\UrlBeTest\\:\\:hashIdRoute\\(\\) has parameter \\$url_id with no type specified\\.$#"
-			count: 1
-			path: tests/Feature/UrlBeTest.php
-
-		-
 			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
-			count: 1
-			path: tests/Feature/User/ChangePasswordTest.php
-
-		-
-			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:getRoute\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: tests/Feature/User/ChangePasswordTest.php
-
-		-
-			message: "#^Method Tests\\\\Feature\\\\User\\\\ChangePasswordTest\\:\\:postRoute\\(\\) has parameter \\$value with no type specified\\.$#"
 			count: 1
 			path: tests/Feature/User/ChangePasswordTest.php
 
@@ -94,21 +64,6 @@ parameters:
 			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
 			count: 1
 			path: tests/Feature/User/ProfileTest.php
-
-		-
-			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:getRoute\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: tests/Feature/User/ProfileTest.php
-
-		-
-			message: "#^Method Tests\\\\Feature\\\\User\\\\ProfileTest\\:\\:postRoute\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: tests/Feature/User/ProfileTest.php
-
-		-
-			message: "#^Property Tests\\\\TestCase\\:\\:\\$adminRole has no type specified\\.$#"
-			count: 1
-			path: tests/TestCase.php
 
 		-
 			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
@@ -224,8 +179,3 @@ parameters:
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:url\\(\\)\\.$#"
 			count: 1
 			path: tests/Unit/Models/VisitTest.php
-
-		-
-			message: "#^Method Tests\\\\Unit\\\\Policies\\\\UserPolicyTest\\:\\:getCPRoute\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: tests/Unit/Policies/UserPolicyTest.php
