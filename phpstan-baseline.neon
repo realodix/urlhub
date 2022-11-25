@@ -6,21 +6,6 @@ parameters:
 			path: tests/Feature/Auth/ForgotPasswordTest.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
-			count: 2
-			path: tests/Feature/UrlBeTest.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
-			count: 1
-			path: tests/Feature/User/ChangePasswordTest.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
-			count: 1
-			path: tests/Feature/User/ProfileTest.php
-
-		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsInt\\(\\) with int will always evaluate to true\\.$#"
 			count: 1
 			path: tests/Unit/Helpers/HelperTest.php

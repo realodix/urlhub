@@ -4,6 +4,7 @@ namespace Tests\Feature\User;
 
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ChangePasswordTest extends TestCase
 {
@@ -14,10 +15,9 @@ class ChangePasswordTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route(
-            'user.change-password.post',
-            \Hashids::connection(\App\Models\User::class)->encode($value)
-        );
+        $hashids = Hashids::connection(\App\Models\User::class);
+
+        return route('user.change-password.post', $hashids->encode($value));
     }
 
     /**

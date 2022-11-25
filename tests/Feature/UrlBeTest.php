@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Url;
 use Tests\TestCase;
+use Vinkla\Hashids\Facades\Hashids;
 
 /**
  * Back-End Test.
@@ -12,10 +13,9 @@ class UrlBeTest extends TestCase
 {
     protected function hashIdRoute($routeName, $url_id)
     {
-        return route(
-            $routeName,
-            \Hashids::connection(\App\Models\Url::class)->encode($url_id)
-        );
+        $hashids = Hashids::connection(\App\Models\Url::class);
+
+        return route($routeName, $hashids->encode($url_id));
     }
 
     /*
@@ -102,6 +102,7 @@ class UrlBeTest extends TestCase
      */
     public function dCanUpdateUrl()
     {
+        $hashids = Hashids::connection(\App\Models\Url::class);
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
@@ -111,7 +112,7 @@ class UrlBeTest extends TestCase
         $this->actingAs($this->admin());
 
         $response = $this->from(route('short_url.edit', $url->keyword))
-            ->post(route('short_url.edit.post', \Hashids::connection(\App\Models\Url::class)->encode($url->id)), [
+            ->post(route('short_url.edit.post', $hashids->encode($url->id)), [
                 'meta_title' => $url->meta_title,
                 'long_url'   => $new_long_url,
             ]);
