@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('url_id')
-                  ->references('id')->on('urls')
-                  ->onDelete('cascade');
+                ->references('id')->on('urls')
+                ->onDelete('cascade');
         });
     }
 

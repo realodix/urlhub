@@ -67,12 +67,12 @@ class UrlHubLinkChecker
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
-                        ->whereLongUrl($longUrl)
-                        ->first();
+                ->whereLongUrl($longUrl)
+                ->first();
         } else {
             $s_url = Url::whereLongUrl($longUrl)
-                        ->whereNull('user_id')
-                        ->first();
+                ->whereNull('user_id')
+                ->first();
         }
 
         if ($s_url) {
