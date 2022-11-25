@@ -9,8 +9,8 @@
     <title>{{config('app.name').' - '.config('app.description')}}</title>
 
     @livewireStyles
-    {!! style(mix('css/main.css')) !!}
-    {!! style(mix('css/frontend.css')) !!}
+    <link rel="stylesheet" media="all" href="{!! mix('css/main.css') !!}" />
+    <link rel="stylesheet" media="all" href="{!! mix('css/frontend.css') !!}" />
 </head>
 
 <body class="@yield('css_class')"></body>
@@ -18,9 +18,9 @@
 
     @yield('content')
 
-    {!! script(mix('js/manifest.js')) !!}
-    {!! script(mix('js/vendor.js')) !!}
-    {!! script(mix('js/frontend.js')) !!}
+    <script src="{!! mix('js/manifest.js') !!}"></script>
+    <script src="{!! mix('js/vendor.js') !!}"></script>
+    <script src="{!! mix('js/frontend.js') !!}"></script>
     @livewireScripts
 </body>
 
