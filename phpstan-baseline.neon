@@ -6,51 +6,6 @@ parameters:
 			path: tests/Feature/Auth/ForgotPasswordTest.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
-			count: 2
-			path: tests/Feature/ShortenUrlTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
-			count: 6
-			path: tests/Feature/ShortenUrlTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
-			count: 4
-			path: tests/Feature/ShortenUrlTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
-			count: 5
-			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
-			count: 8
-			path: tests/Feature/ShortenUrlWithLongUrlAlreadyExistTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
-			count: 4
-			path: tests/Feature/UrlBeTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
-			count: 3
-			path: tests/Feature/UrlBeTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
-			count: 1
-			path: tests/Feature/UrlBeTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$meta_title\\.$#"
-			count: 1
-			path: tests/Feature/UrlBeTest.php
-
-		-
 			message: "#^Call to an undefined method object\\:\\:encode\\(\\)\\.$#"
 			count: 2
 			path: tests/Feature/UrlBeTest.php
@@ -66,16 +21,6 @@ parameters:
 			path: tests/Feature/User/ProfileTest.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$keyword\\.$#"
-			count: 1
-			path: tests/Unit/Controllers/UrlRedirectControllerTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
-			count: 1
-			path: tests/Unit/Controllers/UrlRedirectControllerTest.php
-
-		-
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsInt\\(\\) with int will always evaluate to true\\.$#"
 			count: 1
 			path: tests/Unit/Helpers/HelperTest.php
@@ -84,31 +29,6 @@ parameters:
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsString\\(\\) with string will always evaluate to true\\.$#"
 			count: 1
 			path: tests/Unit/Helpers/HelperTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$long_url\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$meta_title\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$user\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
 
 		-
 			message: "#^Access to an undefined property Tests\\\\Unit\\\\Models\\\\UrlTest\\:\\:\\$nClickWithUserId\\.$#"
@@ -169,11 +89,6 @@ parameters:
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\Relation\\<App\\\\Models\\\\Url\\>\\:\\:exists\\(\\)\\.$#"
 			count: 1
 			path: tests/Unit/Models/UserTest.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
-			count: 1
-			path: tests/Unit/Models/VisitTest.php
 
 		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:url\\(\\)\\.$#"
