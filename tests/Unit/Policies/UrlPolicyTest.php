@@ -35,7 +35,7 @@ class UrlPolicyTest extends TestCase
      */
     public function forceDeleteNonAdmin()
     {
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $user = $this->nonAdmin();
         $url = Url::factory()->create([

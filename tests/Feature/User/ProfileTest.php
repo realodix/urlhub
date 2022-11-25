@@ -47,7 +47,7 @@ class ProfileTest extends TestCase
      */
     public function nonAdminCantAccessOtherUsersProfilePages()
     {
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $response = $this->get($this->getRoute($this->admin()->name));
         $response->assertForbidden();
@@ -81,7 +81,7 @@ class ProfileTest extends TestCase
      */
     public function nonAdminCantChangeOtherUsersEmail()
     {
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 

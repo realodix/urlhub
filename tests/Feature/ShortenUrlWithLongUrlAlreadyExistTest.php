@@ -176,7 +176,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
             'user_id' => null,
         ]);
 
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $customKey = 'laravel';
 
@@ -221,7 +221,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $response = $this->post(route('createshortlink'), [
             'long_url'   => 'https://laravel-news.com',
