@@ -10,8 +10,8 @@
 
     @livewireStyles
     @powerGridStyles
-    {!! style(mix('css/main.css')) !!}
-    {!! style(mix('css/backend.css')) !!}
+    <link rel="stylesheet" media="all" href="{!! mix('css/main.css') !!}"/>
+    <link rel="stylesheet" media="all" href="{!! mix('css/backend.css') !!}"/>
 </head>
 
 <body class="backend">
@@ -23,9 +23,9 @@
 
     @include('partials.b-footer')
 
-    {!! script(mix('js/manifest.js')) !!}
-    {!! script(mix('js/vendor.js')) !!}
-    {!! script(mix('js/backend.js')) !!}
+    <script src="{!! mix('js/manifest.js') !!}"></script>
+    <script src="{!! mix('js/vendor.js') !!}"></script>
+    <script src="{!! mix('js/backend.js') !!}"></script>
     @livewireScripts
     @powerGridScripts
 </body>
