@@ -56,6 +56,6 @@ class Helper
      */
     public static function urlSanitize(string $url): string
     {
-        return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url) ?: $url;
+        return preg_replace(['{^http(s)?://}', '{www.}', '{/$}'], '', $url) ?? $url;
     }
 }
