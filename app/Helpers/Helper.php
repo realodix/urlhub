@@ -38,17 +38,12 @@ class Helper
         }
 
         if ($urlLen > $limit) {
-            // The length of string truncated by str()->limit() does not include a suffix,
-            // so it needs to be adjusted so that the length of the truncated string
-            // matches the expected limit.
+            // The length of the string returned by str()->limit() does not include the suffix, so
+            // it needs to be adjusted so that the length of the string matches the expected limit.
             $adjLimit = $limit - (strlen((string) Str::of($url)->limit($limit)) - $limit);
 
             $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
             $lastSide = -abs($adjLimit - $firstSide);
-
-            if (((1 <= $pathLen) && ($pathLen <= 9)) || ($hostLen > $limit)) {
-                return Str::of($url)->limit($adjLimit);
-            }
 
             return Str::of($url)->limit($firstSide).substr($url, $lastSide);
         }

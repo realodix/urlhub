@@ -32,6 +32,11 @@ class HelperTest extends TestCase
             'https://github.com/real...e0be',
             Helper::urlDisplay('https://github.com/realodix/urlhub/commit/33e6d649d2d18345ac2d53a2fe553ae5d174e0be', limit: 30)
         );
+
+        $this->assertSame(
+            'github.com/realodix...d174e0be',
+            Helper::urlDisplay('https://github.com/realodix/urlhub/commit/33e6d649d2d18345ac2d53a2fe553ae5d174e0be', scheme: false, limit: 30)
+        );
     }
 
     /**
