@@ -42,9 +42,9 @@ class UrlTest extends TestCase
         ];
 
         $this->json('POST', '/api/url', $data)
-             ->assertJsonStructure([
-                 'errors',
-             ]);
+            ->assertJsonStructure([
+                'errors',
+            ]);
     }
 
     public function shortenUrlFailProvider()

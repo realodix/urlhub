@@ -51,11 +51,11 @@ class ForgotPasswordTest extends TestCase
             'email' => 'john@example.com',
         ]);
 
-        $response = $this->post($this->postRoute(), [
+        $this->post($this->postRoute(), [
             'email' => 'john@example.com',
         ]);
-
         $this->assertNotNull($token = DB::table('password_resets')->first());
+
         Notification::assertSentTo($user, ResetPassword::class, function ($notification, $channels) use ($token) {
             return Hash::check($notification->token, $token->token) === true;
         });

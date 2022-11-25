@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Url;
 use Tests\TestCase;
+use Vinkla\Hashids\Facades\Hashids;
 
 /**
  * Back-End Test.
@@ -12,10 +13,9 @@ class UrlBeTest extends TestCase
 {
     protected function hashIdRoute($routeName, $url_id)
     {
-        return route(
-            $routeName,
-            \Hashids::connection(\App\Models\Url::class)->encode($url_id)
-        );
+        $hashids = Hashids::connection(\App\Models\Url::class);
+
+        return route($routeName, $hashids->encode($url_id));
     }
 
     /*
@@ -48,10 +48,8 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response =
-            $this
-                ->from(route('dashboard'))
-                ->get($this->hashIdRoute('dashboard.delete', $url->id));
+        $response = $this->from(route('dashboard'))
+            ->get($this->hashIdRoute('dashboard.delete', $url->id));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -72,10 +70,8 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response =
-            $this
-                ->from(route('dashboard'))
-                ->get(route('dashboard.duplicate', $url->keyword));
+        $response = $this->from(route('dashboard'))
+            ->get(route('dashboard.duplicate', $url->keyword));
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -106,6 +102,7 @@ class UrlBeTest extends TestCase
      */
     public function dCanUpdateUrl()
     {
+        $hashids = Hashids::connection(\App\Models\Url::class);
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
@@ -114,13 +111,11 @@ class UrlBeTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $response =
-            $this
-                ->from(route('short_url.edit', $url->keyword))
-                ->post(route('short_url.edit.post', \Hashids::connection(\App\Models\Url::class)->encode($url->id)), [
-                    'meta_title' => $url->meta_title,
-                    'long_url'   => $new_long_url,
-                ]);
+        $response = $this->from(route('short_url.edit', $url->keyword))
+            ->post(route('short_url.edit.post', $hashids->encode($url->id)), [
+                'meta_title' => $url->meta_title,
+                'long_url'   => $new_long_url,
+            ]);
 
         $response
             ->assertRedirect(route('dashboard'))
@@ -170,10 +165,9 @@ class UrlBeTest extends TestCase
         $this->loginAsAdmin();
 
         $response = $this->from(route('dashboard.allurl'))
-                         ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+            ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
 
-        $response
-            ->assertRedirect(route('dashboard.allurl'))
+        $response->assertRedirect(route('dashboard.allurl'))
             ->assertSessionHas('flash_success');
 
         $this->assertCount(0, Url::all());
@@ -189,10 +183,9 @@ class UrlBeTest extends TestCase
 
         $this->loginAsNonAdmin();
 
-        $response =
-            $this
-                ->from(route('dashboard.allurl'))
-                ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+        $response = $this->from(route('dashboard.allurl'))
+            ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+
         $response->assertForbidden();
 
         $this->assertCount(1, Url::all());

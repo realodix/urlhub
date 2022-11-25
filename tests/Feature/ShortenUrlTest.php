@@ -4,15 +4,15 @@ namespace Tests\Feature;
 
 use App\Models\Url;
 use Tests\TestCase;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ShortenUrlTest extends TestCase
 {
     protected function hashIdRoute($routeName, $url_id)
     {
-        return route(
-            $routeName,
-            \Hashids::connection(Url::class)->encode($url_id)
-        );
+        $hashids = Hashids::connection(Url::class);
+
+        return route($routeName, $hashids->encode($url_id));
     }
 
     /**
@@ -70,7 +70,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $response = $this->from(route('short_url.stats', $url->keyword))
-             ->get($this->hashIdRoute('short_url.delete', $url->id));
+            ->get($this->hashIdRoute('short_url.delete', $url->id));
 
         $response
             ->assertRedirect(route('home'));
@@ -90,7 +90,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $response = $this->from(route('short_url.stats', $url->keyword))
-             ->get($this->hashIdRoute('short_url.delete', $url->id));
+            ->get($this->hashIdRoute('short_url.delete', $url->id));
 
         $response
             ->assertForbidden();
@@ -112,7 +112,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->from(route('short_url.stats', $url->keyword))
-             ->get(route('duplicate', $url->keyword));
+            ->get(route('duplicate', $url->keyword));
 
         $this->assertCount(2, Url::all());
     }
@@ -131,7 +131,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->from(route('short_url.stats', $url->keyword))
-             ->get(route('duplicate', $url->keyword));
+            ->get(route('duplicate', $url->keyword));
 
         $this->assertCount(3, Url::all());
     }
