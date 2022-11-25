@@ -10,7 +10,6 @@ class ShortenUrlTest extends TestCase
 {
     protected function hashIdRoute($routeName, $url_id)
     {
-        /** @var \Vinkla\Hashids\Facades\Hashids */
         $hashids = Hashids::connection(Url::class);
 
         return route($routeName, $hashids->encode($url_id));
