@@ -12,7 +12,7 @@ class ConfirmPasswordTest extends TestCase
      */
     public function userCanViewPasswordConfirm()
     {
-        $response = $this->loginAsNonAdmin()->get(route('password.confirm'));
+        $response = $this->actingAs($this->nonAdmin())->get(route('password.confirm'));
 
         $response
             ->assertSuccessful()

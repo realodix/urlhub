@@ -30,7 +30,7 @@ class UrlBeTest extends TestCase
      */
     public function dCanAccessPage()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->get(route('dashboard'));
         $response->assertOk();
@@ -46,7 +46,7 @@ class UrlBeTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->from(route('dashboard'))
             ->get($this->hashIdRoute('dashboard.delete', $url->id));
@@ -68,7 +68,7 @@ class UrlBeTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->from(route('dashboard'))
             ->get(route('dashboard.duplicate', $url->keyword));
@@ -90,7 +90,7 @@ class UrlBeTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->get(route('short_url.edit', $url->keyword));
         $response->assertOk();
@@ -109,7 +109,7 @@ class UrlBeTest extends TestCase
 
         $new_long_url = 'https://phpunit.readthedocs.io/en/9.1';
 
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->from(route('short_url.edit', $url->keyword))
             ->post(route('short_url.edit.post', $hashids->encode($url->id)), [
@@ -136,7 +136,7 @@ class UrlBeTest extends TestCase
      */
     public function auAdminCanAccessThisPage()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->get(route('dashboard.allurl'));
         $response->assertOk();
@@ -148,7 +148,7 @@ class UrlBeTest extends TestCase
      */
     public function auNonAdminCantAccessThisPage()
     {
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $response = $this->get(route('dashboard.allurl'));
         $response->assertForbidden();
@@ -162,7 +162,7 @@ class UrlBeTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->from(route('dashboard.allurl'))
             ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
@@ -181,7 +181,7 @@ class UrlBeTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $response = $this->from(route('dashboard.allurl'))
             ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
@@ -203,7 +203,7 @@ class UrlBeTest extends TestCase
      */
     public function ausAdminCanAccessThisPage()
     {
-        $this->loginAsAdmin();
+        $this->actingAs($this->admin());
 
         $response = $this->get(route('user.index'));
         $response->assertOk();
@@ -215,7 +215,7 @@ class UrlBeTest extends TestCase
      */
     public function ausNonAdminCantAccessThisPage()
     {
-        $this->loginAsNonAdmin();
+        $this->actingAs($this->nonAdmin());
 
         $response = $this->get(route('user.index'));
         $response->assertForbidden();
