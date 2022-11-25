@@ -46,36 +46,6 @@ parameters:
 			path: tests/Unit/Models/UrlTest.php
 
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:user\\(\\)\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:visit\\(\\)\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Call to an undefined method Mockery\\\\Mock\\:\\:keyRemaining\\(\\)\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Call to an undefined method Mockery\\\\Mock\\:\\:keyRemainingInPercent\\(\\)\\.$#"
-			count: 1
-			path: tests/Unit/Models/UrlTest.php
-
-		-
-			message: "#^Parameter \\#1 \\.\\.\\.\\$methodNames of method Mockery\\\\Mock\\:\\:shouldReceive\\(\\) expects string, array\\<string, mixed\\> given\\.$#"
-			count: 2
-			path: tests/Unit/Models/UrlTest.php
-
-		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\Relation\\<App\\\\Models\\\\Url\\>\\:\\:exists\\(\\)\\.$#"
 			count: 1
 			path: tests/Unit/Models/UserTest.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:url\\(\\)\\.$#"
-			count: 1
-			path: tests/Unit/Models/VisitTest.php
