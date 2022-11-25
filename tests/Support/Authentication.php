@@ -35,11 +35,6 @@ trait Authentication
         return User::factory()->create();
     }
 
-    protected function loginAsNonAdmin()
-    {
-        return $this->actingAs($this->nonAdmin());
-    }
-
     private function getAdminRole()
     {
         // create permissions
