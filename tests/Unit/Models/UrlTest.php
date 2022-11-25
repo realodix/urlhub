@@ -8,6 +8,9 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
+    /** @var \App\Models\Url */
+    private $url;
+
     protected function setUp(): void
     {
         parent::setUp();

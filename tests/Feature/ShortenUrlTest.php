@@ -4,15 +4,16 @@ namespace Tests\Feature;
 
 use App\Models\Url;
 use Tests\TestCase;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ShortenUrlTest extends TestCase
 {
     protected function hashIdRoute($routeName, $url_id)
     {
-        return route(
-            $routeName,
-            \Hashids::connection(Url::class)->encode($url_id)
-        );
+        /** @var \Vinkla\Hashids\Facades\Hashids */
+        $hashids = Hashids::connection(Url::class);
+
+        return route($routeName, $hashids->encode($url_id));
     }
 
     /**
