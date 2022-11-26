@@ -26,9 +26,8 @@ class ProfileTest extends TestCase
      */
     public function usersCanAccessTheirOwnProfilePage()
     {
-        $this->actingAs($this->admin());
-
-        $response = $this->get($this->getRoute($this->admin()->name));
+        $response = $this->actingAs($this->admin())
+            ->get($this->getRoute($this->admin()->name));
         $response->assertOk();
     }
 
@@ -38,9 +37,8 @@ class ProfileTest extends TestCase
      */
     public function adminCanAccessOtherUsersProfilePages()
     {
-        $this->actingAs($this->admin());
-
-        $response = $this->get($this->getRoute($this->nonAdmin()->name));
+        $response = $this->actingAs($this->admin())
+            ->get($this->getRoute($this->nonAdmin()->name));
         $response->assertOk();
     }
 
@@ -50,9 +48,8 @@ class ProfileTest extends TestCase
      */
     public function nonAdminCantAccessOtherUsersProfilePages()
     {
-        $this->actingAs($this->nonAdmin());
-
-        $response = $this->get($this->getRoute($this->admin()->name));
+        $response = $this->actingAs($this->nonAdmin())
+            ->get($this->getRoute($this->admin()->name));
         $response->assertForbidden();
     }
 
@@ -62,11 +59,10 @@ class ProfileTest extends TestCase
      */
     public function adminCanChangeOtherUsersEmail()
     {
-        $this->actingAs($this->admin());
-
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($this->admin())
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'email' => 'new_user_email@urlhub.test',
             ]);
@@ -84,11 +80,10 @@ class ProfileTest extends TestCase
      */
     public function nonAdminCantChangeOtherUsersEmail()
     {
-        $this->actingAs($this->nonAdmin());
-
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($this->nonAdmin())
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'email' => 'new_email_user2@urlhub.test',
             ]);
@@ -103,11 +98,10 @@ class ProfileTest extends TestCase
      */
     public function validationEmailRequired()
     {
-        $this->actingAs($this->admin());
-
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'email' => '',
             ]);
@@ -123,11 +117,10 @@ class ProfileTest extends TestCase
      */
     public function validationEmailInvalidFormat()
     {
-        $this->actingAs($this->admin());
-
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'email' => 'invalid_format',
             ]);
@@ -143,11 +136,10 @@ class ProfileTest extends TestCase
      */
     public function validationEmailMaxLength()
     {
-        $this->actingAs($this->admin());
-
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 // 255 + 9
                 'email' => str_repeat('a', 255).'@mail.com',
@@ -164,11 +156,10 @@ class ProfileTest extends TestCase
      */
     public function validationEmailUnique()
     {
-        $this->actingAs($this->admin());
-
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'email' => $this->nonAdmin()->email,
             ]);

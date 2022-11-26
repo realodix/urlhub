@@ -64,9 +64,8 @@ class ShortenUrlTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->actingAs($this->admin());
-
-        $response = $this->from(route('short_url.stats', $url->keyword))
+        $response = $this->actingAs($this->admin())
+            ->from(route('short_url.stats', $url->keyword))
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
         $response
@@ -85,13 +84,11 @@ class ShortenUrlTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole($this->adminRole);
 
-        $this->actingAs($user);
-
-        $response = $this->from(route('short_url.stats', $url->keyword))
+        $response = $this->actingAs($user)
+            ->from(route('short_url.stats', $url->keyword))
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
-        $response
-            ->assertRedirectToRoute('home');
+        $response->assertRedirectToRoute('home');
 
         $this->assertCount(0, Url::all());
         $this->assertSame(2, $user->id);
@@ -121,8 +118,6 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function duplicate()
     {
-        $this->actingAs($this->admin());
-
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
@@ -140,12 +135,11 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function duplicateUrlCreatedByGuest()
     {
-        $this->actingAs($this->admin());
-
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
         ]);
 
+        $this->actingAs($this->admin());
         $this->post(route('createshortlink'), [
             'long_url' => $url->long_url,
         ]);

@@ -15,8 +15,6 @@ class UrlPolicyTest extends TestCase
      */
     public function forceDeleteAdmin()
     {
-        $this->actingAs($this->admin());
-
         $admin = $this->admin();
         $url = Url::factory()->create([
             'user_id'  => $admin->id,
@@ -35,8 +33,6 @@ class UrlPolicyTest extends TestCase
      */
     public function forceDeleteNonAdmin()
     {
-        $this->actingAs($this->nonAdmin());
-
         $user = $this->nonAdmin();
         $url = Url::factory()->create([
             'user_id'  => $user->id,

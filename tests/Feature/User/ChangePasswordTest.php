@@ -26,11 +26,10 @@ class ChangePasswordTest extends TestCase
      */
     public function changePasswordWithCorrectCredentials()
     {
-        $this->actingAs($this->admin());
-
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'current-password'          => $this->adminPass,
                 'new-password'              => 'new-awesome-password',
@@ -55,11 +54,10 @@ class ChangePasswordTest extends TestCase
      */
     public function adminCanChangeThePasswordOfAllUsers()
     {
-        $this->actingAs($this->admin());
-
         $user = $this->nonAdmin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($this->admin())
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'current-password'          => $this->adminPass,
                 'new-password'              => 'new-awesome-password',
@@ -84,11 +82,10 @@ class ChangePasswordTest extends TestCase
      */
     public function currentPasswordDoesNotMatch()
     {
-        $this->actingAs($this->admin());
-
         $user = $this->admin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'current-password'          => 'laravel',
                 'new-password'              => 'new-awesome-password',
@@ -117,11 +114,10 @@ class ChangePasswordTest extends TestCase
      */
     public function newPasswordValidateFail($data1, $data2)
     {
-        $this->actingAs($this->admin());
-
         $user = $this->nonAdmin();
 
-        $response = $this->from($this->getRoute($user->name))
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'current-password'          => $this->adminPass,
                 'new-password'              => $data1,
