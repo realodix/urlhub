@@ -52,7 +52,7 @@ class UrlBeTest extends TestCase
             ->get($this->hashIdRoute('dashboard.delete', $url->id));
 
         $response
-            ->assertRedirect(route('dashboard'))
+            ->assertRedirectToRoute('dashboard')
             ->assertSessionHas('flash_success');
 
         $this->assertCount(0, Url::all());
@@ -74,7 +74,7 @@ class UrlBeTest extends TestCase
             ->get(route('dashboard.duplicate', $url->keyword));
 
         $response
-            ->assertRedirect(route('dashboard'))
+            ->assertRedirectToRoute('dashboard')
             ->assertSessionHas('flash_success');
 
         $this->assertCount(2, Url::all());
@@ -118,7 +118,7 @@ class UrlBeTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect(route('dashboard'))
+            ->assertRedirectToRoute('dashboard')
             ->assertSessionHas('flash_success');
 
         $this->assertSame($new_long_url, $url->fresh()->long_url);
@@ -167,7 +167,7 @@ class UrlBeTest extends TestCase
         $response = $this->from(route('dashboard.allurl'))
             ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
 
-        $response->assertRedirect(route('dashboard.allurl'))
+        $response->assertRedirectToRoute('dashboard.allurl')
             ->assertSessionHas('flash_success');
 
         $this->assertCount(0, Url::all());

@@ -20,7 +20,7 @@ class UrlHubLinkCheckerTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('home'))
+            ->assertRedirectToRoute('home')
             ->assertSessionHas('flash_error');
     }
 
@@ -39,7 +39,7 @@ class UrlHubLinkCheckerTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('home'))
+            ->assertRedirectToRoute('home')
             ->assertSessionHas('flash_error');
     }
 

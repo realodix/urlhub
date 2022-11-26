@@ -27,6 +27,6 @@ class ConfirmPasswordTest extends TestCase
     {
         $response = $this->get(route('password.confirm'));
 
-        $response->assertRedirect(route('login'));
+        $response->assertRedirectToRoute('login');
     }
 }

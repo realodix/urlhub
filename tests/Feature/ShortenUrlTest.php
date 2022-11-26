@@ -31,7 +31,7 @@ class ShortenUrlTest extends TestCase
 
         $url = Url::whereLongUrl($longUrl)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
+        $response->assertRedirectToRoute('short_url.stats', $url->keyword);
         $this->assertFalse($url->is_custom);
     }
 
@@ -51,7 +51,7 @@ class ShortenUrlTest extends TestCase
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
-        $response->assertRedirect(route('short_url.stats', $customKey));
+        $response->assertRedirectToRoute('short_url.stats', $customKey);
 
         $url = Url::whereLongUrl($longUrl)->first();
         $this->assertTrue($url->is_custom);
@@ -70,7 +70,7 @@ class ShortenUrlTest extends TestCase
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
         $response
-            ->assertRedirect(route('home'));
+            ->assertRedirectToRoute('home');
 
         $this->assertCount(0, Url::all());
     }
@@ -91,7 +91,7 @@ class ShortenUrlTest extends TestCase
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
         $response
-            ->assertRedirect(route('home'));
+            ->assertRedirectToRoute('home');
 
         $this->assertCount(0, Url::all());
         $this->assertSame(2, $user->id);
