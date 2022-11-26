@@ -6,9 +6,9 @@ use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-trait Authentication
+trait Auth
 {
-    private $adminRole = 'admin';
+    protected $adminRole = 'admin';
 
     protected $adminPass = 'admin';
 

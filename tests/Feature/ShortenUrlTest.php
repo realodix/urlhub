@@ -83,7 +83,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $user = User::factory()->create();
-        $user->assignRole('admin');
+        $user->assignRole($this->adminRole);
 
         $this->actingAs($user);
 
