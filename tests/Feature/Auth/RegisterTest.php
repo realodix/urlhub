@@ -49,7 +49,8 @@ class RegisterTest extends TestCase
      */
     public function userCannotViewARegistrationFormWhenAuthenticated()
     {
-        $response = $this->actingAs($this->nonAdmin())->get($this->getRoute());
+        $response = $this->actingAs($this->nonAdmin())
+            ->get($this->getRoute());
 
         $response->assertRedirect($this->guestMiddlewareRoute());
     }
@@ -75,6 +76,7 @@ class RegisterTest extends TestCase
         $this->assertEquals('John Doe', $user->name);
         $this->assertEquals('john@example.com', $user->email);
         $this->assertTrue(Hash::check('i-love-laravel', $user->password));
+
         Event::assertDispatched(Registered::class, function ($e) use ($user) {
             return $e->user->id === $user->id;
         });

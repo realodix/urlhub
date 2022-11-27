@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Url;
+use App\Models\User;
 use Tests\TestCase;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -30,7 +31,7 @@ class ShortenUrlTest extends TestCase
 
         $url = Url::whereLongUrl($longUrl)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
+        $response->assertRedirectToRoute('short_url.stats', $url->keyword);
         $this->assertFalse($url->is_custom);
     }
 
@@ -50,7 +51,7 @@ class ShortenUrlTest extends TestCase
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
-        $response->assertRedirect(route('short_url.stats', $customKey));
+        $response->assertRedirectToRoute('short_url.stats', $customKey);
 
         $url = Url::whereLongUrl($longUrl)->first();
         $this->assertTrue($url->is_custom);
@@ -59,23 +60,36 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function userCanDelete()
     {
-        $this->actingAs($this->admin());
-
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
-
-        $response = $this->from(route('short_url.stats', $url->keyword))
+        $response = $this->actingAs($this->admin())
+            ->from(route('short_url.stats', $url->keyword))
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
-        $response
-            ->assertRedirect(route('home'));
-
+        $response->assertRedirectToRoute('home');
         $this->assertCount(0, Url::all());
+    }
+
+    /** @test */
+    public function userCanDeleteUrlsCreatedByOtherUsers()
+    {
+        $url = Url::factory()->create([
+            'user_id' => $this->admin()->id,
+        ]);
+
+        $user = User::factory()->create();
+        $user->assignRole($this->adminRole);
+
+        $response = $this->actingAs($user)
+            ->from(route('short_url.stats', $url->keyword))
+            ->get($this->hashIdRoute('short_url.delete', $url->id));
+
+        $response->assertRedirectToRoute('home');
+        $this->assertCount(0, Url::all());
+        $this->assertSame(2, $user->id);
+        $this->assertSame(1, $url->user->id);
     }
 
     /** @test */
@@ -92,17 +106,13 @@ class ShortenUrlTest extends TestCase
         $response = $this->from(route('short_url.stats', $url->keyword))
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
-        $response
-            ->assertForbidden();
-
+        $response->assertForbidden();
         $this->assertCount(2, Url::all());
     }
 
     /** @test */
     public function duplicate()
     {
-        $this->actingAs($this->admin());
-
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
@@ -120,12 +130,11 @@ class ShortenUrlTest extends TestCase
     /** @test */
     public function duplicateUrlCreatedByGuest()
     {
-        $this->actingAs($this->admin());
-
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
         ]);
 
+        $this->actingAs($this->admin());
         $this->post(route('createshortlink'), [
             'long_url' => $url->long_url,
         ]);
@@ -140,6 +149,7 @@ class ShortenUrlTest extends TestCase
     public function customKeyValidation()
     {
         $component = \Livewire\Livewire::test(\App\Http\Livewire\UrlCheck::class);
+
         $component->assertStatus(200)
             ->set('keyword', '!')
             ->assertHasErrors('keyword')

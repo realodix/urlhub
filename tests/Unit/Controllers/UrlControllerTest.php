@@ -23,7 +23,6 @@ class UrlControllerTest extends TestCase
         ]);
 
         $url = Url::whereLongUrl($longUrl)->first();
-
         $this->assertSame(null, $url->user_id);
     }
 
@@ -39,10 +38,10 @@ class UrlControllerTest extends TestCase
         $user = $this->admin();
         $longUrl = 'https://laravel.com';
 
-        $this->actingAs($this->admin());
+        $this->actingAs($user);
         $this->post(route('createshortlink'), ['long_url' => $longUrl]);
-        $url = Url::whereLongUrl($longUrl)->first();
 
+        $url = Url::whereLongUrl($longUrl)->first();
         $this->assertSame($user->id, $url->user_id);
     }
 }

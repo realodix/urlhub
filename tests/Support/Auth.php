@@ -6,16 +6,18 @@ use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-trait Authentication
+trait Auth
 {
-    private $adminRole = 'admin';
+    protected $adminRole = 'admin';
+
+    protected $adminPass = 'admin';
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $admin = User::factory()->create([
-            'password' => bcrypt($this->adminPass()),
+            'password' => bcrypt($this->adminPass),
         ]);
         $admin->assignRole($this->getAdminRole());
     }
@@ -23,11 +25,6 @@ trait Authentication
     protected function admin()
     {
         return User::role($this->adminRole)->first();
-    }
-
-    protected function adminPass()
-    {
-        return 'admin';
     }
 
     protected function nonAdmin()

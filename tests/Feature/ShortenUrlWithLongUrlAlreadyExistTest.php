@@ -23,7 +23,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('short_url.stats', $url->keyword))
+            ->assertRedirectToRoute('short_url.stats', $url->keyword)
             ->assertSessionHas('msgLinkAlreadyExists');
 
         $this->assertCount(1, Url::all());
@@ -42,14 +42,13 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $this->actingAs($this->admin());
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
+        $response = $this->actingAs($this->admin())
+            ->post(route('createshortlink'), [
+                'long_url' => $url->long_url,
+            ]);
 
         $response
-            ->assertRedirect(route('short_url.stats', $url->keyword))
+            ->assertRedirectToRoute('short_url.stats', $url->keyword)
             ->assertSessionHas('msgLinkAlreadyExists');
 
         $this->assertCount(1, Url::all());
@@ -70,8 +69,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
 
         $url = Url::whereUserId(null)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
-
+        $response->assertRedirectToRoute('short_url.stats', $url->keyword);
         $this->assertCount(2, Url::all());
     }
 
@@ -89,16 +87,14 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
             'user_id' => $user2->id,
         ]);
 
-        $this->actingAs($this->admin());
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
+        $response = $this->actingAs($this->admin())
+            ->post(route('createshortlink'), [
+                'long_url' => $url->long_url,
+            ]);
 
         $url = Url::whereUserId($user->id)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
-
+        $response->assertRedirectToRoute('short_url.stats', $url->keyword);
         $this->assertCount(2, Url::all());
     }
 
@@ -115,16 +111,14 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
             'user_id' => null,
         ]);
 
-        $this->actingAs($this->admin());
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url' => $url->long_url,
-        ]);
+        $response = $this->actingAs($this->admin())
+            ->post(route('createshortlink'), [
+                'long_url' => $url->long_url,
+            ]);
 
         $url = Url::whereUserId($user->id)->first();
 
-        $response->assertRedirect(route('short_url.stats', $url->keyword));
-
+        $response->assertRedirectToRoute('short_url.stats', $url->keyword);
         $this->assertCount(2, Url::all());
     }
 
@@ -136,7 +130,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('home'))
+            ->assertRedirectToRoute('home')
             ->assertSessionHasErrors('long_url');
     }
 
@@ -161,9 +155,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
             'long_url'   => $url->long_url,
             'custom_key' => $customKey,
         ]);
-        $response->assertRedirect(
-            route('short_url.stats', $url->keyword)
-        );
+        $response->assertRedirectToRoute('short_url.stats', $url->keyword);
 
         $response2 = $this->get(route('home').'/'.$customKey);
         $response2->assertNotFound();
@@ -176,18 +168,15 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
             'user_id' => null,
         ]);
 
-        $this->actingAs($this->nonAdmin());
-
         $customKey = 'laravel';
 
-        $response = $this->post(route('createshortlink'), [
-            'long_url'   => $url->long_url,
-            'custom_key' => $customKey,
-        ]);
+        $response = $this->actingAs($this->nonAdmin())
+            ->post(route('createshortlink'), [
+                'long_url'   => $url->long_url,
+                'custom_key' => $customKey,
+            ]);
 
-        $response->assertRedirect(
-            route('short_url.stats', $customKey)
-        );
+        $response->assertRedirectToRoute('short_url.stats', $customKey);
 
         $response2 = $this->get(route('home').'/'.$customKey);
         $response2->assertRedirect($url->long_url);
@@ -206,7 +195,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('home'))
+            ->assertRedirectToRoute('home')
             ->assertSessionHasErrors('custom_key');
 
         $this->assertCount(1, Url::all());
@@ -221,15 +210,14 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $this->actingAs($this->nonAdmin());
-
-        $response = $this->post(route('createshortlink'), [
-            'long_url'   => 'https://laravel-news.com',
-            'custom_key' => $url->keyword,
-        ]);
+        $response = $this->actingAs($this->nonAdmin())
+            ->post(route('createshortlink'), [
+                'long_url'   => 'https://laravel-news.com',
+                'custom_key' => $url->keyword,
+            ]);
 
         $response
-            ->assertRedirect(route('home'))
+            ->assertRedirectToRoute('home')
             ->assertSessionHasErrors('custom_key');
 
         $this->assertCount(1, Url::all());
