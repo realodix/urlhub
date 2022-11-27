@@ -501,8 +501,9 @@ class UrlTest extends TestCase
      */
     public function getWebTitle()
     {
-        $expected = 'github123456789.com - No Title';
+        $expected = 'github123456789.com - Untitled';
         $actual = $this->url->getWebTitle('https://github123456789.com');
+
         $this->assertSame($expected, $actual);
     }
 }

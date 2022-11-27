@@ -319,7 +319,7 @@ class Url extends Model
 
     /**
      * This function returns a string: either the page title as defined in HTML,
-     * or "{domain_name} - No Title" if not found.
+     * or "{domain_name} - Untitled" if not found.
      *
      * @throws \Exception
      */
@@ -330,17 +330,8 @@ class Url extends Model
         try {
             $webTitle = (new Embed)->get($url)->title;
         } catch (\Exception) {
-            $webTitle = $domain.' - No Title';
+            $webTitle = $domain.' - Untitled';
         }
-
-        // @codeCoverageIgnoreStart
-        // (new Embed())->get() datang dari module external dan membutuhkan koneksi
-        // internet, jadi tidak perlu ditest.
-        $stristr = stristr($domain, '.', true) === false ? $domain : stristr($domain, '.', true);
-        if (stripos($webTitle, $stristr) === false) {
-            return $domain.' | '.$webTitle;
-        }
-        // @codeCoverageIgnoreEnd
 
         return $webTitle;
     }
