@@ -107,6 +107,7 @@ class UserPolicyTest extends TestCase
     {
         $response = $this->actingAs($this->admin())
             ->get($this->getCPRoute($this->nonAdmin()->name));
+
         $response->assertOk();
     }
 
@@ -118,6 +119,7 @@ class UserPolicyTest extends TestCase
     {
         $response = $this->actingAs($this->nonAdmin())
             ->get($this->getCPRoute($this->admin()->name));
+
         $response->assertForbidden();
     }
 
@@ -126,6 +128,7 @@ class UserPolicyTest extends TestCase
     {
         $response =$this->actingAs($this->admin())
             ->get($this->getCPRoute($this->admin()->name));
+
         $response->assertOk();
     }
 
@@ -141,6 +144,7 @@ class UserPolicyTest extends TestCase
     {
         $response = $this->actingAs($this->admin())
             ->get(route('user.index'));
+
         $response->assertOk();
     }
 
@@ -151,6 +155,7 @@ class UserPolicyTest extends TestCase
     {
         $response = $this->actingAs($this->nonAdmin())
             ->get(route('user.index'));
+
         $response->assertForbidden();
     }
 }

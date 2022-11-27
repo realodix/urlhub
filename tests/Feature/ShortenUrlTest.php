@@ -68,9 +68,7 @@ class ShortenUrlTest extends TestCase
             ->from(route('short_url.stats', $url->keyword))
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
-        $response
-            ->assertRedirectToRoute('home');
-
+        $response->assertRedirectToRoute('home');
         $this->assertCount(0, Url::all());
     }
 
@@ -89,7 +87,6 @@ class ShortenUrlTest extends TestCase
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
         $response->assertRedirectToRoute('home');
-
         $this->assertCount(0, Url::all());
         $this->assertSame(2, $user->id);
         $this->assertSame(1, $url->user->id);
@@ -109,9 +106,7 @@ class ShortenUrlTest extends TestCase
         $response = $this->from(route('short_url.stats', $url->keyword))
             ->get($this->hashIdRoute('short_url.delete', $url->id));
 
-        $response
-            ->assertForbidden();
-
+        $response->assertForbidden();
         $this->assertCount(2, Url::all());
     }
 
@@ -154,6 +149,7 @@ class ShortenUrlTest extends TestCase
     public function customKeyValidation()
     {
         $component = \Livewire\Livewire::test(\App\Http\Livewire\UrlCheck::class);
+
         $component->assertStatus(200)
             ->set('keyword', '!')
             ->assertHasErrors('keyword')

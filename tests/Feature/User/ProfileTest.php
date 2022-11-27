@@ -28,6 +28,7 @@ class ProfileTest extends TestCase
     {
         $response = $this->actingAs($this->admin())
             ->get($this->getRoute($this->admin()->name));
+
         $response->assertOk();
     }
 
@@ -39,6 +40,7 @@ class ProfileTest extends TestCase
     {
         $response = $this->actingAs($this->admin())
             ->get($this->getRoute($this->nonAdmin()->name));
+
         $response->assertOk();
     }
 
@@ -50,6 +52,7 @@ class ProfileTest extends TestCase
     {
         $response = $this->actingAs($this->nonAdmin())
             ->get($this->getRoute($this->admin()->name));
+
         $response->assertForbidden();
     }
 

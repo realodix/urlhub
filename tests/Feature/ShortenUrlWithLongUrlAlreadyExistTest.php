@@ -70,7 +70,6 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         $url = Url::whereUserId(null)->first();
 
         $response->assertRedirectToRoute('short_url.stats', $url->keyword);
-
         $this->assertCount(2, Url::all());
     }
 
@@ -96,7 +95,6 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         $url = Url::whereUserId($user->id)->first();
 
         $response->assertRedirectToRoute('short_url.stats', $url->keyword);
-
         $this->assertCount(2, Url::all());
     }
 
@@ -121,7 +119,6 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         $url = Url::whereUserId($user->id)->first();
 
         $response->assertRedirectToRoute('short_url.stats', $url->keyword);
-
         $this->assertCount(2, Url::all());
     }
 

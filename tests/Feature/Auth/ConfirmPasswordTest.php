@@ -27,7 +27,6 @@ class ConfirmPasswordTest extends TestCase
     public function guestCantViewPasswordConfirm()
     {
         $response = $this->get(route('password.confirm'));
-
         $response->assertRedirectToRoute('login');
     }
 }

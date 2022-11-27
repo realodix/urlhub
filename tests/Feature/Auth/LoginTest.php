@@ -82,10 +82,11 @@ class LoginTest extends TestCase
             'password' => Hash::make('i-love-laravel'),
         ]);
 
-        $response = $this->from($this->getRoute())->post($this->postRoute(), [
-            'identity' => $user->email,
-            'password' => 'invalid-password',
-        ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'identity' => $user->email,
+                'password' => 'invalid-password',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())
@@ -111,10 +112,11 @@ class LoginTest extends TestCase
      */
     public function userCannotLoginWithEmailThatDoesNotExist()
     {
-        $response = $this->from($this->getRoute())->post($this->postRoute(), [
-            'identity' => 'nobody@example.com',
-            'password' => 'invalid-password',
-        ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'identity' => 'nobody@example.com',
+                'password' => 'invalid-password',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())

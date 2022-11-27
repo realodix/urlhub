@@ -69,13 +69,15 @@ class ForgotPasswordTest extends TestCase
     {
         Notification::fake();
 
-        $response = $this->from($this->getRoute())->post($this->postRoute(), [
-            'email' => 'nobody@example.com',
-        ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'email' => 'nobody@example.com',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('email');
+
         Notification::assertNotSentTo(User::factory()->make(['email' => 'nobody@example.com']), ResetPassword::class);
     }
 
@@ -85,7 +87,8 @@ class ForgotPasswordTest extends TestCase
      */
     public function emailIsRequired()
     {
-        $response = $this->from($this->getRoute())->post($this->postRoute(), []);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), []);
 
         $response
             ->assertRedirect($this->getRoute())
@@ -98,9 +101,10 @@ class ForgotPasswordTest extends TestCase
      */
     public function emailIsAValidEmail()
     {
-        $response = $this->from($this->getRoute())->post($this->postRoute(), [
-            'email' => 'invalid-email',
-        ]);
+        $response = $this->from($this->getRoute())
+            ->post($this->postRoute(), [
+                'email' => 'invalid-email',
+            ]);
 
         $response
             ->assertRedirect($this->getRoute())
