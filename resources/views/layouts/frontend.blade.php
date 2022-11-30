@@ -13,7 +13,7 @@
     <link rel="stylesheet" media="all" href="{!! mix('css/frontend.css') !!}" />
 </head>
 
-<body class="@yield('css_class')"></body>
+<body class="@yield('css_class')">
     @include('partials.nav-header')
 
     @yield('content')
