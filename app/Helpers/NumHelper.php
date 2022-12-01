@@ -9,7 +9,7 @@ class NumHelper
      * 1B+ etc.
      * Based on: ({@link https://gist.github.com/RadGH/84edff0cc81e6326029c}).
      */
-    public static function numberToAmountShort(int $number): int|string
+    public static function number_shorten(int $number): int|string
     {
         $nFormat = floor($number);
         $suffix = '';
