@@ -144,7 +144,7 @@ class Url extends Model
             'long_url'   => $request['long_url'],
             'meta_title' => $request['long_url'],
             'keyword'    => $key,
-            'is_custom'  => $request['custom_key'] ? 1 : 0,
+            'is_custom'  => $request['custom_key'] ? true : false,
             'ip'         => $request->ip(),
         ]);
     }
