@@ -175,12 +175,26 @@ class Url extends Model
         // Step 1
         // Generate unique key from truncated long URL.
         $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
+        // $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), -5);
 
         // Step 2
         // If the unique key in step 1 is not available (already used), then generate a
         // random string.
+        $reservedKeyword = in_array($uniqueUrlKey, config('urlhub.reserved_keyword'));
+        $reservedRoutes = in_array(
+            $uniqueUrlKey,
+            array_map(
+                fn (\Illuminate\Routing\Route $route) => $route->uri,
+                \Route::getRoutes()->get()
+            )
+        );
         $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
-        while ($generatedRandomKey) {
+
+        while (
+            $generatedRandomKey
+            || $reservedKeyword
+            // || $reservedRoutes
+        ) {
             $uniqueUrlKey = $this->randomString();
             $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
         }
