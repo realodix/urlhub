@@ -2,15 +2,15 @@
 
 use App\Helpers\NumHelper;
 
-if (! function_exists('numberToAmountShort')) {
+if (! function_exists('numberShorten')) {
     /**
-     * \App\Helpers\NumHelper::numberToAmountShort()
+     * \App\Helpers\NumHelper::numberShorten()
      *
      * @param int $value
      * @return int|string
      */
-    function numberToAmountShort($value)
+    function numberShorten($value)
     {
-        return NumHelper::numberToAmountShort($value);
+        return NumHelper::number_shorten($value);
     }
 }
