@@ -14,8 +14,8 @@
                 </div>
                 <div class="mt-8 sm:mt-0 text-uh-1 ">
                     <b>@svg('icon-storage', 'mr-1.5') {{__('Free Space')}}:</b>
-                    <span class="font-light">{{numberToAmountShort($keyRemaining)}} {{__('of')}}
-                        {{numberToAmountShort($keyCapacity)}} ({{$keyRemaining_Percent}})
+                    <span class="font-light">{{numberToAmountShort($url->keyRemaining())}} {{__('of')}}
+                        {{numberToAmountShort($url->keyCapacity())}} ({{$url->keyRemainingInPercent()}})
                     </span>
                 </div>
             </div>
@@ -24,25 +24,25 @@
                 <div class="w-full sm:w-1/4">
                     <div class="block">
                         <b class="text-uh-1">@svg('icon-link', 'mr-1.5') {{__('URLs')}}:</b>
-                        <span class="text-cyan-600">{{numberToAmountShort($totalUrl)}}</span> -
-                        <span class="text-teal-600">{{numberToAmountShort($urlCount_Me)}}</span> -
-                        <span class="text-orange-600">{{numberToAmountShort($urlCount_Guest)}}</span>
+                        <span class="text-cyan-600">{{numberToAmountShort($url->totalUrl())}}</span> -
+                        <span class="text-teal-600">{{numberToAmountShort($url->urlCount(auth()->id()))}}</span> -
+                        <span class="text-orange-600">{{numberToAmountShort($url->urlCount())}}</span>
                     </div>
                     <div class="block">
                         <b class="text-uh-1">@svg('icon-bar-chart', 'mr-1.5') {{__('Clicks')}}:</b>
-                        <span class="text-cyan-600">{{numberToAmountShort($totalClick)}}</span> -
-                        <span class="text-teal-600">{{numberToAmountShort($clickCount_Me)}}</span> -
-                        <span class="text-orange-600">{{numberToAmountShort($clickCount_Guest)}}</span>
+                        <span class="text-cyan-600">{{numberToAmountShort($url->totalClick())}}</span> -
+                        <span class="text-teal-600">{{numberToAmountShort($url->clickCount(auth()->id()))}}</span> -
+                        <span class="text-orange-600">{{numberToAmountShort($url->clickCount())}}</span>
                     </div>
                 </div>
                 <div class="text-uh-1 w-full sm:w-1/4 mt-4 sm:mt-0">
                     <div class="block">
                         <b>@svg('icon-user', 'mr-1.5') {{__('Users')}}:</b>
-                        <span class="font-light">{{numberToAmountShort($userCount)}}</span>
+                        <span class="font-light">{{numberToAmountShort($user->count())}}ddd</span>
                     </div>
                     <div class="block">
                         <b>@svg('icon-user', 'mr-1.5') {{__('Guests')}}:</b>
-                        <span class="font-light">{{numberToAmountShort($guestCount)}}</span>
+                        <span class="font-light">{{numberToAmountShort($user->guestCount())}}</span>
                     </div>
                 </div>
             </div>
@@ -50,11 +50,11 @@
             <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/4">
                     <span class="font-semibold text-md sm:text-2xl">@svg('icon-link', 'mr-1.5') {{__('URLs')}}:</span>
-                    <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($urlCount_Me)}}</span>
+                    <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($url->urlCount(auth()->id()))}}</span>
                 </div>
                 <div class="w-full sm:w-1/4">
                     <span class="font-semibold text-lg sm:text-2xl">@svg('icon-eye', 'mr-1.5') {{__('Clicks')}}:</span>
-                    <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($clickCount_Me)}}</span>
+                    <span class="font-light text-lg sm:text-2xl">{{numberToAmountShort($url->clickCount(auth()->id()))}}</span>
                 </div>
             </div>
         @endrole
