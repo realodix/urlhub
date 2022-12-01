@@ -17,21 +17,9 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $url = new Url;
-        $user = new User;
-
         return view('backend.dashboard', [
-            'totalUrl'         => $url->totalUrl(),
-            'urlCount_Me'      => $url->urlCount(Auth::id()),
-            'urlCount_Guest'   => $url->urlCount(),
-            'totalClick'       => $url->totalClick(),
-            'clickCount_Me'    => $url->clickCount(Auth::id()),
-            'clickCount_Guest' => $url->clickCount(),
-            'userCount'        => User::count(),
-            'guestCount'       => $user->guestCount(),
-            'keyCapacity'      => $url->keyCapacity(),
-            'keyRemaining'     => $url->keyRemaining(),
-            'keyRemaining_Percent' => $url->keyRemainingInPercent(),
+            'url'  => new Url,
+            'user' => new User,
         ]);
     }
 
