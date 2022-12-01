@@ -506,4 +506,33 @@ class UrlTest extends TestCase
 
         $this->assertSame($expected, $actual);
     }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKey_prevent_reserved_keyword()
+    {
+        $actual = 'https://example.com/css';
+        $expected = 'css';
+
+        config(['reserved_keyword' => [$expected]]);
+        config(['urlhub.hash_length' => strlen($expected)]);
+
+        $this->assertNotSame($expected, $this->url->urlKey($actual));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKey_prevent_reserved_route()
+    {
+        $actual = 'https://example.com/admin';
+        $expected = 'admin';
+
+        config(['urlhub.hash_length' => strlen($expected)]);
+
+        $this->assertNotSame($expected, $this->url->urlKey($actual));
+    }
 }

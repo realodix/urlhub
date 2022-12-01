@@ -180,26 +180,33 @@ class Url extends Model
         // Step 2
         // If the unique key in step 1 is not available (already used), then generate a
         // random string.
-        $reservedKeyword = in_array($uniqueUrlKey, config('urlhub.reserved_keyword'));
+        $generatedRandomKey = $this->urlKeyIsUnique($uniqueUrlKey);
+
+        while ($generatedRandomKey) {
+            $uniqueUrlKey = $this->randomString();
+            $generatedRandomKey = $this->urlKeyIsUnique($uniqueUrlKey);
+        }
+
+        return $uniqueUrlKey;
+    }
+
+    private function urlKeyIsUnique(string $url): bool
+    {
+        $generatedRandomKey = self::whereKeyword($url)->first();
+        $reservedKeyword = in_array($url, config('urlhub.reserved_keyword'));
         $reservedRoutes = in_array(
-            $uniqueUrlKey,
+            $url,
             array_map(
                 fn (\Illuminate\Routing\Route $route) => $route->uri,
                 \Route::getRoutes()->get()
             )
         );
-        $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
 
-        while (
-            $generatedRandomKey
-            || $reservedKeyword
-            // || $reservedRoutes
-        ) {
-            $uniqueUrlKey = $this->randomString();
-            $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
+        if ($generatedRandomKey || $reservedKeyword || $reservedRoutes) {
+            return true;
         }
 
-        return $uniqueUrlKey;
+        return false;
     }
 
     /**
