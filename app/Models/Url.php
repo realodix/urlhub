@@ -144,7 +144,7 @@ class Url extends Model
             'long_url'   => $request['long_url'],
             'meta_title' => $request['long_url'],
             'keyword'    => $key,
-            'is_custom'  => $request['custom_key'] ? 1 : 0,
+            'is_custom'  => $request['custom_key'] ? true : false,
             'ip'         => $request->ip(),
         ]);
     }
@@ -168,13 +168,13 @@ class Url extends Model
         return $replicate->save();
     }
 
-    public function urlKey(string $string): string
+    public function urlKey(string $url): string
     {
         $length = config('urlhub.hash_length') * -1;
 
         // Step 1
         // Generate unique key from truncated long URL.
-        $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $string), $length);
+        $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
 
         // Step 2
         // If the unique key in step 1 is not available (already used), then generate a
