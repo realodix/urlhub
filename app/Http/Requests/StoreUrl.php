@@ -39,7 +39,7 @@ class StoreUrl extends FormRequest
     public function messages()
     {
         return [
-            'long_url.required' => __('Must be filled, should not be empty.'),
+            'long_url.required' => __('The URL field must be filled, should not be empty.'),
             'custom_key.max'    => __('The custom url may not be greater than :max characters.'),
             'custom_key.unique' => __(':input has already been taken'),
         ];
