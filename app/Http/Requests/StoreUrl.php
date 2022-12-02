@@ -40,7 +40,6 @@ class StoreUrl extends FormRequest
     {
         return [
             'long_url.required' => __('Must be filled, should not be empty.'),
-            'long_url.url'      => __('Incorrect link format. The link must begin "http://" or "https://".'),
             'custom_key.max'    => __('The custom url may not be greater than :max characters.'),
             'custom_key.unique' => __(':input has already been taken'),
         ];
