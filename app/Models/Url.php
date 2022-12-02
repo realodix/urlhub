@@ -173,36 +173,35 @@ class Url extends Model
         $length = config('urlhub.hash_length') * -1;
 
         // Step 1
-        // Generate unique key from truncated long URL.
-        $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
-        // $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), -5);
+        // Truncate the string at the end of the URL to serve as a unique key.
+        $urlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
 
         // Step 2
         // If the unique key in step 1 is not available (already used), then generate a
         // random string.
-        $generatedRandomKey = $this->urlKeyIsUnique($uniqueUrlKey);
+        $generatedRandomKey = $this->urlKeyIsUnique($urlKey);
 
         while ($generatedRandomKey) {
-            $uniqueUrlKey = $this->randomString();
-            $generatedRandomKey = $this->urlKeyIsUnique($uniqueUrlKey);
+            $urlKey = $this->randomString();
+            $generatedRandomKey = $this->urlKeyIsUnique($urlKey);
         }
 
-        return $uniqueUrlKey;
+        return $urlKey;
     }
 
     private function urlKeyIsUnique(string $url): bool
     {
-        $generatedRandomKey = self::whereKeyword($url)->first();
+        $keyInTheDb = self::whereKeyword($url)->first();
         $reservedKeyword = in_array($url, config('urlhub.reserved_keyword'));
-        $reservedRoutes = in_array(
+        $reservedRoute = in_array(
             $url,
             array_map(
                 fn (\Illuminate\Routing\Route $route) => $route->uri,
-                \Route::getRoutes()->get()
+                \Illuminate\Support\Facades\Route::getRoutes()->get()
             )
         );
 
-        if ($generatedRandomKey || $reservedKeyword || $reservedRoutes) {
+        if ($keyInTheDb || $reservedKeyword || $reservedRoute) {
             return true;
         }
 
