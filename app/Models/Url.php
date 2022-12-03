@@ -179,18 +179,17 @@ class Url extends Model
         // Step 2
         // If step 1 fails (the key is not available or cannot be used), then the
         // generator must generate a random string to be used as a unique key
+        $keyExists = $this->keyExists($urlKey);
 
-        $uniqueKeyAvailability = $this->assertUrlKeyIsUnique($urlKey);
-
-        while ($uniqueKeyAvailability) {
+        while ($keyExists === false) {
             $urlKey = $this->randomString();
-            $uniqueKeyAvailability = $this->assertUrlKeyIsUnique($urlKey);
+            $keyExists = $this->keyExists($urlKey);
         }
 
         return $urlKey;
     }
 
-    private function assertUrlKeyIsUnique(string $url): bool
+    private function keyExists(string $url): bool
     {
         $keyInTheDb = self::whereKeyword($url)->first();
         $reservedKey = in_array($url, config('urlhub.reserved_keyword'));
@@ -203,10 +202,10 @@ class Url extends Model
         );
 
         if ($keyInTheDb || $reservedKey || $reservedRoute) {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**
