@@ -189,12 +189,14 @@ class Url extends Model
     }
 
     /**
-     * The number of unique random strings used as the short url key.
+     * The number of unique random strings that have been used as the key for
+     * the long url that has been shortened
      *
      * Calculation formula:
      * keyUsed = randomKey + customKey
      *
-     * The generated character length for "customKey" should be similar to "randomKey".
+     * The character length of the generated for `customKey` should be similar
+     * to `randomKey`
      */
     public function keyUsed(): int
     {
@@ -214,7 +216,8 @@ class Url extends Model
     }
 
     /**
-     * Counts the maximum number of unique random strings that can be generated.
+     * Calculate the maximum number of unique random strings that can be
+     * generated
      */
     public function keyCapacity(): int
     {
@@ -231,7 +234,7 @@ class Url extends Model
     }
 
     /**
-     * Counts unique random strings that can be generated.
+     * Count unique random strings that can be generated
      *
      * https://www.php.net/manual/en/function.max.php
      */
