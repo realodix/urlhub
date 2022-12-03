@@ -161,7 +161,7 @@ class Url extends Model
         $replicate = $shortenedUrl->replicate()->fill([
             'user_id'   => $userId,
             'keyword'   => $randomKey,
-            'is_custom' => 0,
+            'is_custom' => false,
             'clicks'    => 0,
         ]);
 

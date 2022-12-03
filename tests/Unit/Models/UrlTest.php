@@ -231,19 +231,6 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @test
-     * @group u-model
-     */
-    public function urlKeyLength()
-    {
-        $length = 3;
-        $url = 'https://github.com/realodix/urlhub';
-        config(['urlhub.hash_length' => $length]);
-
-        $this->assertSame($length, strlen($this->url->urlKey($url)));
-    }
-
-    /**
      * Pengujian dilakukan berdasarkan panjang karakternya.
      *
      * @test
