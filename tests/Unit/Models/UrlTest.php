@@ -166,7 +166,24 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKey()
+    public function urlKeyWithGeneratedString()
+    {
+        $longUrl = 'https://github.com/realodix';
+        $length = 3;
+
+        config(['urlhub.hash_length' => $length]);
+        Url::factory()->create([
+            'keyword'  => $this->url->urlKey($longUrl),
+        ]);
+
+        $this->assertNotSame(substr($longUrl, -$length), $this->url->urlKey($longUrl));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKey_specified_hash_length()
     {
         config(['urlhub.hash_length' => 6]);
         $actual = 'https://github.com/realodix';
@@ -188,17 +205,29 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKeyWithGeneratedString()
+    public function urlKey_prevent_reserved_keyword()
     {
-        $longUrl = 'https://github.com/realodix';
-        $length = 3;
+        $actual = 'https://example.com/css';
+        $expected = 'css';
 
-        config(['urlhub.hash_length' => $length]);
-        Url::factory()->create([
-            'keyword'  => $this->url->urlKey($longUrl),
-        ]);
+        config(['reserved_keyword' => [$expected]]);
+        config(['urlhub.hash_length' => strlen($expected)]);
 
-        $this->assertNotSame(substr($longUrl, -$length), $this->url->urlKey($longUrl));
+        $this->assertNotSame($expected, $this->url->urlKey($actual));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKey_prevent_reserved_route()
+    {
+        $actual = 'https://example.com/admin';
+        $expected = 'admin';
+
+        config(['urlhub.hash_length' => strlen($expected)]);
+
+        $this->assertNotSame($expected, $this->url->urlKey($actual));
     }
 
     /**
@@ -505,34 +534,5 @@ class UrlTest extends TestCase
         $actual = $this->url->getWebTitle('https://github123456789.com');
 
         $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function urlKey_prevent_reserved_keyword()
-    {
-        $actual = 'https://example.com/css';
-        $expected = 'css';
-
-        config(['reserved_keyword' => [$expected]]);
-        config(['urlhub.hash_length' => strlen($expected)]);
-
-        $this->assertNotSame($expected, $this->url->urlKey($actual));
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function urlKey_prevent_reserved_route()
-    {
-        $actual = 'https://example.com/admin';
-        $expected = 'admin';
-
-        config(['urlhub.hash_length' => strlen($expected)]);
-
-        $this->assertNotSame($expected, $this->url->urlKey($actual));
     }
 }
