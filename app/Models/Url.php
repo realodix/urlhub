@@ -178,7 +178,7 @@ class Url extends Model
         $urlKey = substr(preg_replace($pattern, '', $url), $length);
 
         // Step 2
-        // If step 1 fails (the key is not available or cannot be used), then the
+        // If step 1 fails (the already used or cannot be used), then the
         // generator must generate a random string to be used as a unique key
         $keyExists = $this->keyExists($urlKey);
 
