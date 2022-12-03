@@ -163,10 +163,51 @@ class UrlTest extends TestCase
     }
 
     /**
+     * String yang dihasilkan dengan memotong string url dari belakang sepanjang
+     * panjang karakter yang telah ditentukan.
+     *
      * @test
      * @group u-model
      */
-    public function urlKey()
+    public function urlKey_default_value()
+    {
+        $length = 3;
+        config(['urlhub.hash_length' => $length]);
+
+        $longUrl = 'https://github.com/realodix';
+        $urlKey = $this->url->urlKey($longUrl);
+
+        $this->assertSame(substr($longUrl, -$length), $urlKey);
+    }
+
+    /**
+     * Karena kunci sudah ada, maka generator akan terus diulangi hingga
+     * menghasilkan kunci yang unik atau tidak ada yang sama.
+     *
+     * @test
+     * @group u-model
+     */
+    public function urlKey_generated_string()
+    {
+        $length = 3;
+        config(['urlhub.hash_length' => $length]);
+
+        $longUrl = 'https://github.com/realodix';
+        Url::factory()->create([
+            'keyword'  => $this->url->urlKey($longUrl),
+        ]);
+
+        $this->assertNotSame(substr($longUrl, -$length), $this->url->urlKey($longUrl));
+    }
+
+    /**
+     * Panjang dari karakter kunci yang dihasilkan harus sama dengan panjang
+     * karakter yang telah ditentukan.
+     *
+     * @test
+     * @group u-model
+     */
+    public function urlKey_specified_hash_length()
     {
         config(['urlhub.hash_length' => 6]);
         $actual = 'https://github.com/realodix';
@@ -188,17 +229,29 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKeyWithGeneratedString()
+    public function urlKey_prevent_reserved_keyword()
     {
-        $longUrl = 'https://github.com/realodix';
-        $length = 3;
+        $actual = 'https://example.com/css';
+        $expected = 'css';
 
-        config(['urlhub.hash_length' => $length]);
-        Url::factory()->create([
-            'keyword'  => $this->url->urlKey($longUrl),
-        ]);
+        config(['reserved_keyword' => [$expected]]);
+        config(['urlhub.hash_length' => strlen($expected)]);
 
-        $this->assertNotSame(substr($longUrl, -$length), $this->url->urlKey($longUrl));
+        $this->assertNotSame($expected, $this->url->urlKey($actual));
+    }
+
+    /**
+     * @test
+     * @group u-model
+     */
+    public function urlKey_prevent_reserved_route()
+    {
+        $actual = 'https://example.com/admin';
+        $expected = 'admin';
+
+        config(['urlhub.hash_length' => strlen($expected)]);
+
+        $this->assertNotSame($expected, $this->url->urlKey($actual));
     }
 
     /**
