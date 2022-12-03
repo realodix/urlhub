@@ -226,6 +226,9 @@ class UrlTest extends TestCase
     }
 
     /**
+     * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
+     * config('urlhub.reserved_keyword')
+     *
      * @test
      * @group u-model
      */
@@ -234,17 +237,21 @@ class UrlTest extends TestCase
         $actual = 'https://example.com/css';
         $expected = 'css';
 
-        config(['reserved_keyword' => [$expected]]);
+        config(['urlhub.reserved_keyword' => [$expected]]);
         config(['urlhub.hash_length' => strlen($expected)]);
 
         $this->assertNotSame($expected, $this->url->urlKey($actual));
     }
 
     /**
+     * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
+     * registered route path. Di sini, key yang dihasilkan adalah 'admin',
+     * dimana 'admin' sudah diguanakan sebagai route path.
+     *
      * @test
      * @group u-model
      */
-    public function urlKey_prevent_reserved_route()
+    public function urlKey_prevent_generating_strings_that_are_in_registered_route_path()
     {
         $actual = 'https://example.com/admin';
         $expected = 'admin';
