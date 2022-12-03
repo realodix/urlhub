@@ -163,15 +163,36 @@ class UrlTest extends TestCase
     }
 
     /**
+     * String yang dihasilkan dengan memotong string url dari belakang sepanjang
+     * panjang karakter yang telah ditentukan.
+     *
      * @test
      * @group u-model
      */
-    public function urlKeyWithGeneratedString()
+    public function urlKey_default_value()
     {
-        $longUrl = 'https://github.com/realodix';
         $length = 3;
-
         config(['urlhub.hash_length' => $length]);
+
+        $longUrl = 'https://github.com/realodix';
+        $urlKey = $this->url->urlKey($longUrl);
+
+        $this->assertSame(substr($longUrl, -$length), $urlKey);
+    }
+
+    /**
+     * Karena kunci sudah ada, maka generator akan terus diulangi hingga
+     * menghasilkan kunci yang unik atau tidak ada yang sama.
+     *
+     * @test
+     * @group u-model
+     */
+    public function urlKey_generated_string()
+    {
+        $length = 3;
+        config(['urlhub.hash_length' => $length]);
+
+        $longUrl = 'https://github.com/realodix';
         Url::factory()->create([
             'keyword'  => $this->url->urlKey($longUrl),
         ]);
@@ -180,6 +201,9 @@ class UrlTest extends TestCase
     }
 
     /**
+     * Panjang dari karakter kunci yang dihasilkan harus sama dengan panjang
+     * karakter yang telah ditentukan.
+     *
      * @test
      * @group u-model
      */

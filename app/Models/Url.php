@@ -189,6 +189,14 @@ class Url extends Model
         return $urlKey;
     }
 
+    /**
+     * Periksa apakah keyword tersedia atau tidak?
+     *
+     * Syarat keyword tersedia:
+     * - Tidak ada di database
+     * - Tidak ada di daftar config('urlhub.reserved_keyword')
+     * - Tidak digunakan oleh sistem sebagai rute
+     */
     private function keyExists(string $url): bool
     {
         $keyInTheDb = self::whereKeyword($url)->first();
