@@ -61,11 +61,11 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @dataProvider keywordBlacklistPassDataProvider
+     * @dataProvider customKeywordBlacklistPassDataProvider
      *
      * @param string $value
      */
-    public function keywordBlacklistPass($value)
+    public function customKeywordBlacklistPass($value)
     {
         $rule = new KeywordBlacklist;
         $this->assertTrue($rule->passes('test', $value));
@@ -74,17 +74,17 @@ class UrlTest extends TestCase
     /**
      * @test
      * @group u-rule
-     * @dataProvider keywordBlacklistFailDataProvider
+     * @dataProvider customKeywordBlacklistFailDataProvider
      *
      * @param array $value
      */
-    public function keywordBlacklistFail($value)
+    public function customKeywordBlacklistFail($value)
     {
         $rule = new KeywordBlacklist;
         $this->assertFalse($rule->passes('test', $value));
     }
 
-    public function keywordBlacklistPassDataProvider()
+    public function customKeywordBlacklistPassDataProvider()
     {
         return [
             ['hello'],
@@ -92,7 +92,7 @@ class UrlTest extends TestCase
         ];
     }
 
-    public function keywordBlacklistFailDataProvider()
+    public function customKeywordBlacklistFailDataProvider()
     {
         return [
             ['login'],

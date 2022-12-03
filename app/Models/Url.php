@@ -173,19 +173,47 @@ class Url extends Model
         $length = config('urlhub.hash_length') * -1;
 
         // Step 1
-        // Generate unique key from truncated long URL.
-        $uniqueUrlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
+        // Truncate the string at the end of the URL to serve as a unique key
+        $urlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
 
         // Step 2
-        // If the unique key in step 1 is not available (already used), then generate a
-        // random string.
-        $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
-        while ($generatedRandomKey) {
-            $uniqueUrlKey = $this->randomString();
-            $generatedRandomKey = self::whereKeyword($uniqueUrlKey)->first();
+        // If step 1 fails (the key is not available or cannot be used), then the
+        // generator must generate a random string to be used as a unique key
+        $keyExists = $this->keyExists($urlKey);
+
+        while ($keyExists === false) {
+            $urlKey = $this->randomString();
+            $keyExists = $this->keyExists($urlKey);
         }
 
-        return $uniqueUrlKey;
+        return $urlKey;
+    }
+
+    /**
+     * Periksa apakah keyword tersedia atau tidak?
+     *
+     * Syarat keyword tersedia:
+     * - Tidak ada di database
+     * - Tidak ada di daftar config('urlhub.reserved_keyword')
+     * - Tidak digunakan oleh sistem sebagai rute
+     */
+    private function keyExists(string $url): bool
+    {
+        $keyInTheDb = self::whereKeyword($url)->first();
+        $reservedKey = in_array($url, config('urlhub.reserved_keyword'));
+        $reservedRoute = in_array(
+            $url,
+            array_map(
+                fn (\Illuminate\Routing\Route $route) => $route->uri,
+                \Illuminate\Support\Facades\Route::getRoutes()->get()
+            )
+        );
+
+        if ($keyInTheDb || $reservedKey || $reservedRoute) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
