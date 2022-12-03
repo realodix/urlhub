@@ -173,26 +173,27 @@ class Url extends Model
         $length = config('urlhub.hash_length') * -1;
 
         // Step 1
-        // Truncate the string at the end of the URL to serve as a unique key.
+        // Truncate the string at the end of the URL to serve as a unique key
         $urlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
 
         // Step 2
-        // If the unique key in step 1 is not available (already used), then generate a
-        // random string.
-        $generatedRandomKey = $this->urlKeyIsUnique($urlKey);
+        // If step 1 fails (the key is not available or cannot be used), then the
+        // generator must generate a random string to be used as a unique key
 
-        while ($generatedRandomKey) {
+        $uniqueKeyAvailability = $this->assertUrlKeyIsUnique($urlKey);
+
+        while ($uniqueKeyAvailability) {
             $urlKey = $this->randomString();
-            $generatedRandomKey = $this->urlKeyIsUnique($urlKey);
+            $uniqueKeyAvailability = $this->assertUrlKeyIsUnique($urlKey);
         }
 
         return $urlKey;
     }
 
-    private function urlKeyIsUnique(string $url): bool
+    private function assertUrlKeyIsUnique(string $url): bool
     {
         $keyInTheDb = self::whereKeyword($url)->first();
-        $reservedKeyword = in_array($url, config('urlhub.reserved_keyword'));
+        $reservedKey = in_array($url, config('urlhub.reserved_keyword'));
         $reservedRoute = in_array(
             $url,
             array_map(
@@ -201,7 +202,7 @@ class Url extends Model
             )
         );
 
-        if ($keyInTheDb || $reservedKeyword || $reservedRoute) {
+        if ($keyInTheDb || $reservedKey || $reservedRoute) {
             return true;
         }
 
