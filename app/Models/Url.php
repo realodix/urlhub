@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use RandomLib\Factory as RandomLibFactory;
 use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
@@ -173,18 +172,16 @@ class Url extends Model
         $length = config('urlhub.hash_length') * -1;
 
         // Step 1
-        // Truncate the string at the end of the URL to serve as a unique key
+        // Take a few characters at the end of the string to use as a unique key
         $urlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
 
         // Step 2
-        // If step 1 fails (the key is not available or cannot be used), then the
-        // generator must generate a random string to be used as a unique key
-        $keyExists = $this->keyExists($urlKey);
-
-        while ($keyExists === false) {
+        // If step 1 fails (the already used or cannot be used), then the generator
+        // must generate a unique random string
+        if ($this->keyExists($urlKey)) {
             $urlKey = $this->randomString();
-            $keyExists = $this->keyExists($urlKey);
         }
+
 
         return $urlKey;
     }
@@ -199,21 +196,19 @@ class Url extends Model
      */
     private function keyExists(string $url): bool
     {
-        $keyInTheDb = self::whereKeyword($url)->first();
-        $reservedKey = in_array($url, config('urlhub.reserved_keyword'));
-        $reservedRoute = in_array(
-            $url,
-            array_map(
-                fn (\Illuminate\Routing\Route $route) => $route->uri,
-                \Illuminate\Support\Facades\Route::getRoutes()->get()
-            )
-        );
+        $route = \Illuminate\Routing\Route::class;
+        $routeCollection = \Illuminate\Support\Facades\Route::getRoutes()->get();
+        $routePath = array_map(fn ($route) => $route->uri, $routeCollection);
 
-        if ($keyInTheDb || $reservedKey || $reservedRoute) {
-            return false;
+        $keyExistsInDb = self::whereKeyword($url)->first();
+        $isReservedKeyword = in_array($url, config('urlhub.reserved_keyword'));
+        $isRegisteredRoutePath = in_array($url, $routePath);
+
+        if ($keyExistsInDb || $isReservedKeyword || $isRegisteredRoutePath) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -349,8 +344,7 @@ class Url extends Model
     }
 
     /**
-     * This function returns a string: either the page title as defined in HTML,
-     * or "{domain_name} - Untitled" if not found.
+     * Fetch the page title from the web page URL
      *
      * @throws \Exception
      */
@@ -361,6 +355,7 @@ class Url extends Model
         try {
             $webTitle = (new Embed)->get($url)->title;
         } catch (\Exception) {
+            // If failed or not found, then return "{domain_name} - Untitled"
             $webTitle = $domain.' - Untitled';
         }
 
@@ -368,16 +363,20 @@ class Url extends Model
     }
 
     /**
-     * @codeCoverageIgnore
-     *
      * @return string
      */
     public function randomString()
     {
-        $alphabet = config('urlhub.hash_char');
-        $length = config('urlhub.hash_length');
-        $factory = new RandomLibFactory;
+        $factory = new \RandomLib\Factory;
+        $generator = $factory->getMediumStrengthGenerator();
 
-        return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
+        $character = config('urlhub.hash_char');
+        $length = config('urlhub.hash_length');
+
+        do {
+            $urlKey = $generator->generateString($length, $character);
+        } while ($this->keyExists($urlKey));
+
+        return $urlKey;
     }
 }
