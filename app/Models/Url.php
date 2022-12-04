@@ -183,6 +183,7 @@ class Url extends Model
             $urlKey = $this->randomString();
         }
 
+
         return $urlKey;
     }
 
