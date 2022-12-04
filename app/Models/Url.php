@@ -197,17 +197,15 @@ class Url extends Model
      */
     private function keyExists(string $url): bool
     {
-        $keyExistsInDb = self::whereKeyword($url)->first();
-        $reservedKey = in_array($url, config('urlhub.reserved_keyword'));
-        $reservedAsRoute = in_array(
-            $url,
-            array_map(
-                fn (\Illuminate\Routing\Route $route) => $route->uri,
-                \Illuminate\Support\Facades\Route::getRoutes()->get()
-            )
-        );
+        $route = \Illuminate\Routing\Route::class;
+        $routeCollection = \Illuminate\Support\Facades\Route::getRoutes()->get();
+        $routePath = array_map(fn ($route) => $route->uri, $routeCollection);
 
-        if ($keyExistsInDb || $reservedKey || $reservedAsRoute) {
+        $keyExistsInDb = self::whereKeyword($url)->first();
+        $isReservedKeyword = in_array($url, config('urlhub.reserved_keyword'));
+        $isRegisteredRoutePath = in_array($url, $routePath);
+
+        if ($keyExistsInDb || $isReservedKeyword || $isRegisteredRoutePath) {
             return true;
         }
 
@@ -375,9 +373,8 @@ class Url extends Model
         $generator = new RandomLibFactory;
 
         do {
-            $urlKey = $generator
-                ->getMediumStrengthGenerator()
-                ->generateString($length, $alphabet);
+            $urlKey = $generator->getMediumStrengthGenerator()
+                        ->generateString($length, $alphabet);
         } while ($this->keyExists($urlKey));
 
         return $urlKey;
