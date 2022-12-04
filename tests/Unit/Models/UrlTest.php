@@ -226,6 +226,29 @@ class UrlTest extends TestCase
     }
 
     /**
+     * Karakter yang dihasilkan harus benar-benar mengikuti karakter yang telah
+     * ditentukan.
+     *
+     * @test
+     * @group u-model
+     */
+    public function urlKey_specified_character()
+    {
+        $url = 'https://example.com/abc';
+        config(['urlhub.hash_length' => 3]);
+
+        $this->assertSame('abc', $this->url->urlKey($url));
+
+        config(['urlhub.hash_char' => 'xyz']);
+        $this->assertMatchesRegularExpression('/[xyz]/', $this->url->urlKey($url));
+        $this->assertDoesNotMatchRegularExpression('/[abc]/', $this->url->urlKey($url));
+
+        config(['urlhub.hash_length' => 4]);
+        config(['urlhub.hash_char' => 'abcm']);
+        $this->assertSame('mabc', $this->url->urlKey($url));
+    }
+
+    /**
      * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
      * config('urlhub.reserved_keyword')
      *
