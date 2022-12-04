@@ -226,29 +226,6 @@ class UrlTest extends TestCase
     }
 
     /**
-     * Karakter yang dihasilkan harus benar-benar mengikuti karakter yang telah
-     * ditentukan.
-     *
-     * @test
-     * @group u-model
-     */
-    public function urlKey_specified_char()
-    {
-        config(['urlhub.hash_length' => 3]);
-
-        $actual = 'https://github.com/realodix';
-        $expected = 'dix';
-        config(['urlhub.hash_char' => $expected]);
-        $this->assertSame($expected, $this->url->urlKey($actual));
-
-        $actual = 'https://github.com/realodix';
-        $expected = 'abc';
-        config(['urlhub.hash_char' => $expected = 'abc']);
-        $this->assertMatchesRegularExpression('/['.$expected.']/', $this->url->urlKey($actual));
-        $this->assertDoesNotMatchRegularExpression('/[dix]/', $this->url->urlKey($actual));
-    }
-
-    /**
      * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
      * config('urlhub.reserved_keyword')
      *
