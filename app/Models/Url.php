@@ -180,7 +180,7 @@ class Url extends Model
         // Step 2
         // If step 1 fails (the already used or cannot be used), then the
         // generator must generate a random string to be used as a unique key
-        if ($this->keyExists($urlKey) === false) {
+        if ($this->keyExists($urlKey)) {
             $urlKey = $this->randomString();
         }
 
@@ -197,9 +197,9 @@ class Url extends Model
      */
     private function keyExists(string $url): bool
     {
-        $keyInTheDb = self::whereKeyword($url)->first();
+        $keyExistsInDb = self::whereKeyword($url)->first();
         $reservedKey = in_array($url, config('urlhub.reserved_keyword'));
-        $reservedRoute = in_array(
+        $reservedAsRoute = in_array(
             $url,
             array_map(
                 fn (\Illuminate\Routing\Route $route) => $route->uri,
@@ -207,11 +207,11 @@ class Url extends Model
             )
         );
 
-        if ($keyInTheDb || $reservedKey || $reservedRoute) {
-            return false;
+        if ($keyExistsInDb || $reservedKey || $reservedAsRoute) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -378,7 +378,7 @@ class Url extends Model
             $urlKey = $generator
                 ->getMediumStrengthGenerator()
                 ->generateString($length, $alphabet);
-        } while ($this->keyExists($urlKey) === false);
+        } while ($this->keyExists($urlKey));
 
         return $urlKey;
     }
