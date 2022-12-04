@@ -344,8 +344,7 @@ class Url extends Model
     }
 
     /**
-     * This function returns a string: either the page title as defined in HTML,
-     * or "{domain_name} - Untitled" if not found.
+     * Fetch the page title from the web page URL
      *
      * @throws \Exception
      */
@@ -356,6 +355,7 @@ class Url extends Model
         try {
             $webTitle = (new Embed)->get($url)->title;
         } catch (\Exception) {
+            // If failed or not found, then return "{domain_name} - Untitled"
             $webTitle = $domain.' - Untitled';
         }
 
@@ -370,11 +370,11 @@ class Url extends Model
         $factory = new \RandomLib\Factory;
         $generator = $factory->getMediumStrengthGenerator();
 
-        $alphabet = config('urlhub.hash_char');
+        $character = config('urlhub.hash_char');
         $length = config('urlhub.hash_length');
 
         do {
-            $urlKey = $generator->generateString($length, $alphabet);
+            $urlKey = $generator->generateString($length, $character);
         } while ($this->keyExists($urlKey));
 
         return $urlKey;
