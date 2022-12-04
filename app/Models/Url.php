@@ -173,7 +173,8 @@ class Url extends Model
 
         // Step 1
         // Take a few characters at the end of the string to use as a unique key
-        $urlKey = substr(preg_replace('/[^a-z0-9]/i', '', $url), $length);
+        $pattern = '/[^'.config('urlhub.hash_char').']/i';
+        $urlKey = substr(preg_replace($pattern, '', $url), $length);
 
         // Step 2
         // If step 1 fails (the already used or cannot be used), then the generator
