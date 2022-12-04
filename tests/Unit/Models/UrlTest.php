@@ -268,8 +268,8 @@ class UrlTest extends TestCase
 
     /**
      * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
-     * registered route path. Di sini, key yang dihasilkan adalah 'admin',
-     * dimana 'admin' sudah diguanakan sebagai route path.
+     * registered route path. Di sini, string yang dihasilkan sebagai keyword
+     * adalah 'admin', dimana 'admin' sudah digunakan sebagai route path.
      *
      * @test
      * @group u-model
