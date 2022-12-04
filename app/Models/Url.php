@@ -180,11 +180,8 @@ class Url extends Model
         // Step 2
         // If step 1 fails (the already used or cannot be used), then the
         // generator must generate a random string to be used as a unique key
-        $keyExists = $this->keyExists($urlKey);
-
-        while ($keyExists === false) {
+        if ($this->keyExists($urlKey) === false) {
             $urlKey = $this->randomString();
-            $keyExists = $this->keyExists($urlKey);
         }
 
         return $urlKey;
@@ -369,16 +366,20 @@ class Url extends Model
     }
 
     /**
-     * @codeCoverageIgnore
-     *
      * @return string
      */
     public function randomString()
     {
         $alphabet = config('urlhub.hash_char');
         $length = config('urlhub.hash_length');
-        $factory = new RandomLibFactory;
+        $generator = new RandomLibFactory;
 
-        return $factory->getMediumStrengthGenerator()->generateString($length, $alphabet);
+        do {
+            $urlKey = $generator
+                ->getMediumStrengthGenerator()
+                ->generateString($length, $alphabet);
+        } while ($this->keyExists($urlKey) === false);
+
+        return $urlKey;
     }
 }
