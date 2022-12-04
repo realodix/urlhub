@@ -200,11 +200,11 @@ class Url extends Model
         $routeCollection = \Illuminate\Support\Facades\Route::getRoutes()->get();
         $routePath = array_map(fn ($route) => $route->uri, $routeCollection);
 
-        $keyExistsInDb = self::whereKeyword($url)->first();
+        $isExistsInDb = self::whereKeyword($url)->first();
         $isReservedKeyword = in_array($url, config('urlhub.reserved_keyword'));
         $isRegisteredRoutePath = in_array($url, $routePath);
 
-        if ($keyExistsInDb || $isReservedKeyword || $isRegisteredRoutePath) {
+        if ($isExistsInDb || $isReservedKeyword || $isRegisteredRoutePath) {
             return true;
         }
 
