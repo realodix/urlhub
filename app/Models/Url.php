@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use RandomLib\Factory as RandomLibFactory;
 use Spatie\Url\Url as SpatieUrl;
 use Symfony\Component\HttpFoundation\IpUtils;
 
@@ -173,13 +172,13 @@ class Url extends Model
         $length = config('urlhub.hash_length') * -1;
 
         // Step 1
-        // Truncate the string at the end of the URL to serve as a unique key
+        // Take a few characters at the end of the string to use as a unique key
         $pattern = '/[^'.config('urlhub.hash_char').']/i';
         $urlKey = substr(preg_replace($pattern, '', $url), $length);
 
         // Step 2
-        // If step 1 fails (the already used or cannot be used), then the
-        // generator must generate a random string to be used as a unique key
+        // If step 1 fails (the already used or cannot be used), then the generator
+        // must generate a unique random string
         if ($this->keyExists($urlKey)) {
             $urlKey = $this->randomString();
         }
@@ -368,13 +367,14 @@ class Url extends Model
      */
     public function randomString()
     {
+        $factory = new \RandomLib\Factory;
+        $generator = $factory->getMediumStrengthGenerator();
+
         $alphabet = config('urlhub.hash_char');
         $length = config('urlhub.hash_length');
-        $generator = new RandomLibFactory;
 
         do {
-            $urlKey = $generator->getMediumStrengthGenerator()
-                        ->generateString($length, $alphabet);
+            $urlKey = $generator->generateString($length, $alphabet);
         } while ($this->keyExists($urlKey));
 
         return $urlKey;
