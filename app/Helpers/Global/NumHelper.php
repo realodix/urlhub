@@ -2,14 +2,14 @@
 
 use App\Helpers\NumHelper;
 
-if (! function_exists('numberShorten')) {
+if (! function_exists('compactNumber')) {
     /**
-     * \App\Helpers\NumHelper::numberShorten()
+     * \App\Helpers\NumHelper::compactNumber()
      *
      * @param int $value
      * @return int|string
      */
-    function numberShorten($value)
+    function compactNumber($value)
     {
         return NumHelper::number_shorten($value);
     }

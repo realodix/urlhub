@@ -69,7 +69,7 @@ class HelperTest extends TestCase
      * @param mixed $expected
      * @param mixed $actual
      */
-    public function numberShorten($expected, $actual)
+    public function compactNumber($expected, $actual)
     {
         $this->assertSame($expected, NumHelper::number_shorten($actual));
     }
