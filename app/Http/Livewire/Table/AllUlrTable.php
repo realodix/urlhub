@@ -115,7 +115,7 @@ final class AllUlrTable extends PowerGridComponent
 
                 return
                     '<span title="'.$urlCreatedAt->toDayDateTimeString().'">'
-                        .$urlCreatedAt->diffForHumans().
+                        .$urlCreatedAt->shortRelativeDiffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (Url $url) {

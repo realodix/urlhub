@@ -95,7 +95,7 @@ final class UserTable extends PowerGridComponent
 
                 return
                     '<span title="'.$userCreatedAt->toDayDateTimeString().'">'
-                        .$userCreatedAt->diffForHumans().
+                        .$userCreatedAt->shortRelativeDiffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (User $user) {
