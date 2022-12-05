@@ -282,7 +282,7 @@ class Url extends Model
 
         if ($remaining > 0 && $remaining < ($capacity * $lowerBound)) {
             $result = $lowerBoundInPercent;
-        } elseif ($remaining > ($capacity * $upperBound)) {
+        } elseif (($remaining > ($capacity * $upperBound)) && ($remaining < $capacity)) {
             $result = $upperBoundInPercent;
         }
 
