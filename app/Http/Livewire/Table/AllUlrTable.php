@@ -18,7 +18,7 @@ final class AllUlrTable extends PowerGridComponent
 {
     use ActionButton;
 
-    const STR_LIMIT = 70;
+    const STR_LIMIT = 60;
 
     public bool $showUpdateMessages = true;
 
