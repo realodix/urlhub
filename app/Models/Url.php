@@ -97,7 +97,7 @@ class Url extends Model
         );
     }
 
-    protected function metaTitle(): Attribute
+    protected function title(): Attribute
     {
         return Attribute::make(
             set: function ($value) {
