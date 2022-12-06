@@ -35,7 +35,7 @@
                         @endif
                     @endauth
                 </ul>
-                <div class="text-xl sm:text-2xl lg:text-3xl mt-2 font-light">{!! $url->meta_title !!}</div>
+                <div class="text-xl sm:text-2xl lg:text-3xl mt-2 font-light">{!! $url->title !!}</div>
             </div>
         </div>
 

@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\IpUtils;
  * @property int|null $user_id
  * @property string   $short_url
  * @property string   $long_url
- * @property string   $meta_title
+ * @property string   $title
  */
 class Url extends Model
 {
@@ -36,7 +36,7 @@ class Url extends Model
         'keyword',
         'is_custom',
         'long_url',
-        'meta_title',
+        'title',
         'clicks',
         'ip',
     ];
@@ -139,12 +139,12 @@ class Url extends Model
         $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
 
         return Url::create([
-            'user_id'    => $userId,
-            'long_url'   => $request['long_url'],
-            'meta_title' => $request['long_url'],
-            'keyword'    => $key,
-            'is_custom'  => $request['custom_key'] ? true : false,
-            'ip'         => $request->ip(),
+            'user_id'   => $userId,
+            'long_url'  => $request['long_url'],
+            'title'     => $request['long_url'],
+            'keyword'   => $key,
+            'is_custom' => $request['custom_key'] ? true : false,
+            'ip'        => $request->ip(),
         ]);
     }
 
