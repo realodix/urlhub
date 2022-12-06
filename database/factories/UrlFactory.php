@@ -28,7 +28,7 @@ class UrlFactory extends Factory
             'title'     => 'No Title',
             'keyword'   => (new Url)->randomString(),
             'is_custom' => false,
-            'click '    => mt_rand(10000, 999999999),
+            'click'     => mt_rand(10000, 999999999),
             'ip'        => $this->faker->ipv4(),
         ];
     }
