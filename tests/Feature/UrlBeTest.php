@@ -108,8 +108,8 @@ class UrlBeTest extends TestCase
         $new_long_url = 'https://phpunit.readthedocs.io/en/9.1';
 
         $response = $this->actingAs($this->admin())
-            ->from(route('short_url.edit', $url->keyword))
-            ->post(route('short_url.edit.post', $hashids->encode($url->id)), [
+            ->from(route('dashboard.su_edit', $url->keyword))
+            ->post(route('dashboard.su_edit.post', $hashids->encode($url->id)), [
                 'title'    => $url->title,
                 'long_url' => $new_long_url,
             ]);
