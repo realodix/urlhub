@@ -25,7 +25,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
 
         // All URLs
         Route::get('/allurl', [AllUrlController::class, 'view'])->name('dashboard.allurl');
-        Route::get('/allurl/delete/{url_hashId}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.delete');
+        Route::get('/allurl/delete/{url_hashId}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.url_delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
