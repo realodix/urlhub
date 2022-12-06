@@ -20,7 +20,7 @@
         {{ session('msgLinkAlreadyExists') }}
 
         @auth
-            <a href="{{route('short_url.duplicate', $url->keyword)}}">
+            <a href="{{route('su_duplicate', $url->keyword)}}">
                 {{__('Duplicate this')}}
             <a>
         @endauth

@@ -9,10 +9,10 @@ use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
-Route::post('/shorten', [UrlController::class, 'create'])->name('short_url.create');
-Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('short_url.stats');
-Route::get('/delete/{url_hashId}', [UrlController::class, 'delete'])->name('short_url.delete');
-Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('short_url.duplicate');
+Route::post('/shorten', [UrlController::class, 'create'])->name('su_create');
+Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('su_stat');
+Route::get('/delete/{url_hashId}', [UrlController::class, 'delete'])->name('su_delete');
+Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('su_duplicate');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {

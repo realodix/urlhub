@@ -27,7 +27,7 @@
                                 </a>
                             </li>
                             <li class="inline-block">
-                                <a href="{{route('short_url.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
+                                <a href="{{route('su_delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
                                     class="btn-icon text-xs hover:text-red-700 active:text-red-600">
                                     @svg('icon-trash')
                                 </a>

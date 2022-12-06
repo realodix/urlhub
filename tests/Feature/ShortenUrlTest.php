@@ -25,13 +25,13 @@ class ShortenUrlTest extends TestCase
     public function shortenUrl()
     {
         $longUrl = 'https://laravel.com';
-        $response = $this->post(route('short_url.create'), [
+        $response = $this->post(route('su_create'), [
             'long_url' => $longUrl,
         ]);
 
         $url = Url::whereLongUrl($longUrl)->first();
 
-        $response->assertRedirectToRoute('short_url.stats', $url->keyword);
+        $response->assertRedirectToRoute('su_stat', $url->keyword);
         $this->assertFalse($url->is_custom);
     }
 
@@ -47,11 +47,11 @@ class ShortenUrlTest extends TestCase
         $longUrl = 'https://laravel.com';
         $customKey = 'laravel';
 
-        $response = $this->post(route('short_url.create'), [
+        $response = $this->post(route('su_create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
-        $response->assertRedirectToRoute('short_url.stats', $customKey);
+        $response->assertRedirectToRoute('su_stat', $customKey);
 
         $url = Url::whereLongUrl($longUrl)->first();
         $this->assertTrue($url->is_custom);
@@ -65,8 +65,8 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->admin())
-            ->from(route('short_url.stats', $url->keyword))
-            ->get($this->hashIdRoute('short_url.delete', $url->id));
+            ->from(route('su_stat', $url->keyword))
+            ->get($this->hashIdRoute('su_delete', $url->id));
 
         $response->assertRedirectToRoute('home');
         $this->assertCount(0, Url::all());
@@ -83,8 +83,8 @@ class ShortenUrlTest extends TestCase
         $user->assignRole($this->adminRole);
 
         $response = $this->actingAs($user)
-            ->from(route('short_url.stats', $url->keyword))
-            ->get($this->hashIdRoute('short_url.delete', $url->id));
+            ->from(route('su_stat', $url->keyword))
+            ->get($this->hashIdRoute('su_delete', $url->id));
 
         $response->assertRedirectToRoute('home');
         $this->assertCount(0, Url::all());
@@ -99,12 +99,12 @@ class ShortenUrlTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->post(route('short_url.create'), [
+        $this->post(route('su_create'), [
             'long_url' => $url->long_url,
         ]);
 
-        $response = $this->from(route('short_url.stats', $url->keyword))
-            ->get($this->hashIdRoute('short_url.delete', $url->id));
+        $response = $this->from(route('su_stat', $url->keyword))
+            ->get($this->hashIdRoute('su_delete', $url->id));
 
         $response->assertForbidden();
         $this->assertCount(2, Url::all());
@@ -117,12 +117,12 @@ class ShortenUrlTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->post(route('short_url.create'), [
+        $this->post(route('su_create'), [
             'long_url' => $url->long_url,
         ]);
 
-        $this->from(route('short_url.stats', $url->keyword))
-            ->get(route('short_url.duplicate', $url->keyword));
+        $this->from(route('su_stat', $url->keyword))
+            ->get(route('su_duplicate', $url->keyword));
 
         $this->assertCount(2, Url::all());
     }
@@ -135,12 +135,12 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->actingAs($this->admin());
-        $this->post(route('short_url.create'), [
+        $this->post(route('su_create'), [
             'long_url' => $url->long_url,
         ]);
 
-        $this->from(route('short_url.stats', $url->keyword))
-            ->get(route('short_url.duplicate', $url->keyword));
+        $this->from(route('su_stat', $url->keyword))
+            ->get(route('su_duplicate', $url->keyword));
 
         $this->assertCount(3, Url::all());
     }
