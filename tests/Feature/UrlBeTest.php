@@ -48,7 +48,7 @@ class UrlBeTest extends TestCase
 
         $response = $this->actingAs($this->admin())
             ->from(route('dashboard'))
-            ->get($this->hashIdRoute('dashboard.delete', $url->id));
+            ->get($this->hashIdRoute('dashboard.url_delete', $url->id));
 
         $response
             ->assertRedirectToRoute('dashboard')

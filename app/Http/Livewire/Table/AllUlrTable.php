@@ -135,7 +135,7 @@ final class AllUlrTable extends PowerGridComponent
                     >'
                         .Blade::render('@svg(\'icon-edit-alt\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'"
+                    <a role="button" href="'.route('dashboard.url_delete', $url->getRouteKey()).'" title="'.__('Delete').'"
                         class="btn-icon btn-icon-table-delete"
                     >'
                         .Blade::render('@svg(\'icon-trash-alt\')').

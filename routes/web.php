@@ -18,7 +18,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('/delete/{url_hashId}', [DashboardController::class, 'delete'])->name('dashboard.delete');
+        Route::get('/delete/{url_hashId}', [DashboardController::class, 'delete'])->name('dashboard.url_delete');
         Route::get('/duplicate/{keyword}', [DashboardController::class, 'duplicate'])->name('dashboard.duplicate');
         Route::get('/edit/{keyword}', [DashboardController::class, 'edit'])->name('dashboard.short_url.edit');
         Route::post('/edit/{url_hashId}', [DashboardController::class, 'update'])->name('dashboard.short_url.edit.post');
