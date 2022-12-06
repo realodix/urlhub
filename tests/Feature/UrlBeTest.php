@@ -48,7 +48,7 @@ class UrlBeTest extends TestCase
 
         $response = $this->actingAs($this->admin())
             ->from(route('dashboard'))
-            ->get($this->hashIdRoute('dashboard.delete', $url->id));
+            ->get($this->hashIdRoute('dashboard.su_delete', $url->id));
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -69,7 +69,7 @@ class UrlBeTest extends TestCase
 
         $response = $this->actingAs($this->admin())
             ->from(route('dashboard'))
-            ->get(route('dashboard.duplicate', $url->keyword));
+            ->get(route('dashboard.su_duplicate', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -89,7 +89,7 @@ class UrlBeTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->admin())
-            ->get(route('short_url.edit', $url->keyword));
+            ->get(route('dashboard.su_edit', $url->keyword));
 
         $response->assertOk();
     }
@@ -108,8 +108,8 @@ class UrlBeTest extends TestCase
         $new_long_url = 'https://phpunit.readthedocs.io/en/9.1';
 
         $response = $this->actingAs($this->admin())
-            ->from(route('short_url.edit', $url->keyword))
-            ->post(route('short_url.edit.post', $hashids->encode($url->id)), [
+            ->from(route('dashboard.su_edit', $url->keyword))
+            ->post(route('dashboard.su_edit.post', $hashids->encode($url->id)), [
                 'title'    => $url->title,
                 'long_url' => $new_long_url,
             ]);
@@ -161,7 +161,7 @@ class UrlBeTest extends TestCase
 
         $response = $this->actingAs($this->admin())
             ->from(route('dashboard.allurl'))
-            ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+            ->get($this->hashIdRoute('dashboard.allurl.su_delete', $url->id));
 
         $response->assertRedirectToRoute('dashboard.allurl')
             ->assertSessionHas('flash_success');
@@ -179,7 +179,7 @@ class UrlBeTest extends TestCase
 
         $response = $this->actingAs($this->nonAdmin())
             ->from(route('dashboard.allurl'))
-            ->get($this->hashIdRoute('dashboard.allurl.delete', $url->id));
+            ->get($this->hashIdRoute('dashboard.allurl.su_delete', $url->id));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());

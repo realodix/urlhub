@@ -97,7 +97,7 @@ class UrlTest extends TestCase
     {
         $longUrl = 'https://example.com';
 
-        $this->post(route('createshortlink'), [
+        $this->post(route('su_create'), [
             'long_url' => $longUrl,
         ]);
 
