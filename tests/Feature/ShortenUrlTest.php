@@ -122,7 +122,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->from(route('short_url.stats', $url->keyword))
-            ->get(route('duplicate', $url->keyword));
+            ->get(route('short_url.duplicate', $url->keyword));
 
         $this->assertCount(2, Url::all());
     }
@@ -140,7 +140,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->from(route('short_url.stats', $url->keyword))
-            ->get(route('duplicate', $url->keyword));
+            ->get(route('short_url.duplicate', $url->keyword));
 
         $this->assertCount(3, Url::all());
     }

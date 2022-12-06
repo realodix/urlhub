@@ -12,7 +12,7 @@ Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/shorten', [UrlController::class, 'create'])->name('short_url.create');
 Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('short_url.stats');
 Route::get('/delete/{url_hashId}', [UrlController::class, 'delete'])->name('short_url.delete');
-Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('duplicate');
+Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('short_url.duplicate');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
