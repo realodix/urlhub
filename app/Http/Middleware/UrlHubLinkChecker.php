@@ -76,7 +76,7 @@ class UrlHubLinkChecker
         }
 
         if ($s_url) {
-            return redirect()->route('short_url.stats', $s_url->keyword)
+            return redirect()->route('su_stat', $s_url->keyword)
                     ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 

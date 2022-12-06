@@ -9,23 +9,23 @@ use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
-Route::post('/shorten', [UrlController::class, 'create'])->name('createshortlink');
-Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('short_url.stats');
-Route::get('/delete/{url_hashId}', [UrlController::class, 'delete'])->name('short_url.delete');
-Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('duplicate');
+Route::post('/shorten', [UrlController::class, 'create'])->name('su_create');
+Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('su_stat');
+Route::get('/delete/{su_hashId}', [UrlController::class, 'delete'])->name('su_delete');
+Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('su_duplicate');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('/delete/{url_hashId}', [DashboardController::class, 'delete'])->name('dashboard.delete');
-        Route::get('/duplicate/{keyword}', [DashboardController::class, 'duplicate'])->name('dashboard.duplicate');
-        Route::get('/edit/{keyword}', [DashboardController::class, 'edit'])->name('short_url.edit');
-        Route::post('/edit/{url_hashId}', [DashboardController::class, 'update'])->name('short_url.edit.post');
+        Route::get('/delete/{su_hashId}', [DashboardController::class, 'delete'])->name('dashboard.su_delete');
+        Route::get('/duplicate/{keyword}', [DashboardController::class, 'duplicate'])->name('dashboard.su_duplicate');
+        Route::get('/edit/{keyword}', [DashboardController::class, 'edit'])->name('dashboard.su_edit');
+        Route::post('/edit/{su_hashId}', [DashboardController::class, 'update'])->name('dashboard.su_edit.post');
 
         // All URLs
         Route::get('/allurl', [AllUrlController::class, 'view'])->name('dashboard.allurl');
-        Route::get('/allurl/delete/{url_hashId}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.delete');
+        Route::get('/allurl/delete/{su_hashId}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.su_delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {

@@ -92,8 +92,8 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('long_url', function (Url $url) {
                 return
-                    '<span title="'.$url->meta_title.'">'
-                        .Str::limit($url->meta_title, self::STR_LIMIT).
+                    '<span title="'.$url->title.'">'
+                        .Str::limit($url->title, self::STR_LIMIT).
                     '</span>
                     <br>
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer" class="text-slate-500">'
@@ -113,22 +113,22 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('short_url.stats', $url->keyword).'" target="_blank" title="'.__('Go to front page').'"
+                    '<a role="button" href="'.route('su_stat', $url->keyword).'" target="_blank" title="'.__('Go to front page').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"
+                    <a role="button" href="'.route('dashboard.su_duplicate', $url->keyword).'" title="'.__('Duplicate').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-clone-alt\')').
                     '</a>
-                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"
+                    <a role="button" href="'.route('dashboard.su_edit', $url->keyword).'" title="'.__('Edit').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-edit-alt\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.delete', $url->getRouteKey()).'" title="'.__('Delete').'"
+                    <a role="button" href="'.route('dashboard.su_delete', $url->getRouteKey()).'" title="'.__('Delete').'"
                         class="btn-icon btn-icon-table-delete"
                     >'
                         .Blade::render('@svg(\'icon-trash-alt\')').

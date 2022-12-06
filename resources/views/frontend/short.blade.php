@@ -21,13 +21,13 @@
                     @auth
                         @if (Auth::user()->hasRole('admin') || (Auth::user()->id === $url->user_id))
                             <li class="inline-block pr-2">
-                                <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
+                                <a href="{{route('dashboard.su_edit', $url->keyword)}}" title="{{__('Edit')}}"
                                     class="btn-icon text-xs">
                                     @svg('icon-edit')
                                 </a>
                             </li>
                             <li class="inline-block">
-                                <a href="{{route('short_url.delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
+                                <a href="{{route('su_delete', $url->getRouteKey())}}" title="{{__('Delete')}}"
                                     class="btn-icon text-xs hover:text-red-700 active:text-red-600">
                                     @svg('icon-trash')
                                 </a>
@@ -35,7 +35,7 @@
                         @endif
                     @endauth
                 </ul>
-                <div class="text-xl sm:text-2xl lg:text-3xl mt-2 font-light">{!! $url->meta_title !!}</div>
+                <div class="text-xl sm:text-2xl lg:text-3xl mt-2 font-light">{!! $url->title !!}</div>
             </div>
         </div>
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('keyword')->unique();
             $table->boolean('is_custom');
             $table->longText('long_url');
-            $table->string('meta_title');
+            $table->string('title');
             $table->unsignedInteger('click')->default(0);
             $table->ipAddress('ip');
             $table->timestamps();
