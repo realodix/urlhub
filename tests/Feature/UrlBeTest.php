@@ -89,7 +89,7 @@ class UrlBeTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->admin())
-            ->get(route('dashboard.short_url.edit', $url->keyword));
+            ->get(route('dashboard.url_edit', $url->keyword));
 
         $response->assertOk();
     }
@@ -108,8 +108,8 @@ class UrlBeTest extends TestCase
         $new_long_url = 'https://phpunit.readthedocs.io/en/9.1';
 
         $response = $this->actingAs($this->admin())
-            ->from(route('dashboard.short_url.edit', $url->keyword))
-            ->post(route('dashboard.short_url.edit.post', $hashids->encode($url->id)), [
+            ->from(route('dashboard.url_edit', $url->keyword))
+            ->post(route('dashboard.url_edit.post', $hashids->encode($url->id)), [
                 'meta_title' => $url->meta_title,
                 'long_url'   => $new_long_url,
             ]);
