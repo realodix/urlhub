@@ -125,17 +125,17 @@ final class AllUlrTable extends PowerGridComponent
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.url_duplicate', $url->keyword).'" title="'.__('Duplicate').'"
+                    <a role="button" href="'.route('dashboard.su_duplicate', $url->keyword).'" title="'.__('Duplicate').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-clone-alt\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.url_edit', $url->keyword).'" title="'.__('Edit').'"
+                    <a role="button" href="'.route('dashboard.su_edit', $url->keyword).'" title="'.__('Edit').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-edit-alt\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.url_delete', $url->getRouteKey()).'" title="'.__('Delete').'"
+                    <a role="button" href="'.route('dashboard.su_delete', $url->getRouteKey()).'" title="'.__('Delete').'"
                         class="btn-icon btn-icon-table-delete"
                     >'
                         .Blade::render('@svg(\'icon-trash-alt\')').
