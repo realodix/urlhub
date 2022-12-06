@@ -21,7 +21,7 @@
                     @auth
                         @if (Auth::user()->hasRole('admin') || (Auth::user()->id === $url->user_id))
                             <li class="inline-block pr-2">
-                                <a href="{{route('short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
+                                <a href="{{route('dashboard.short_url.edit', $url->keyword)}}" title="{{__('Edit')}}"
                                     class="btn-icon text-xs">
                                     @svg('icon-edit')
                                 </a>

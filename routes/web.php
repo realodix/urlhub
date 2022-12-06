@@ -20,8 +20,8 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
         Route::get('/delete/{url_hashId}', [DashboardController::class, 'delete'])->name('dashboard.delete');
         Route::get('/duplicate/{keyword}', [DashboardController::class, 'duplicate'])->name('dashboard.duplicate');
-        Route::get('/edit/{keyword}', [DashboardController::class, 'edit'])->name('short_url.edit');
-        Route::post('/edit/{url_hashId}', [DashboardController::class, 'update'])->name('short_url.edit.post');
+        Route::get('/edit/{keyword}', [DashboardController::class, 'edit'])->name('dashboard.short_url.edit');
+        Route::post('/edit/{url_hashId}', [DashboardController::class, 'update'])->name('dashboard.short_url.edit.post');
 
         // All URLs
         Route::get('/allurl', [AllUrlController::class, 'view'])->name('dashboard.allurl');

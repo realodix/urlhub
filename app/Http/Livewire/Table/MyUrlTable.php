@@ -123,7 +123,7 @@ final class MyUrlTable extends PowerGridComponent
                     >'
                         .Blade::render('@svg(\'icon-clone-alt\')').
                     '</a>
-                    <a role="button" href="'.route('short_url.edit', $url->keyword).'" title="'.__('Edit').'"
+                    <a role="button" href="'.route('dashboard.short_url.edit', $url->keyword).'" title="'.__('Edit').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-edit-alt\')').
