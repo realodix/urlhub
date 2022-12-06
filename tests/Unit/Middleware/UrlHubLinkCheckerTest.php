@@ -14,7 +14,7 @@ class UrlHubLinkCheckerTest extends TestCase
      */
     public function keywordBlacklistFail($value)
     {
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url' => 'https://laravel.com',
             'custom_key' => $value,
         ]);
@@ -34,7 +34,7 @@ class UrlHubLinkCheckerTest extends TestCase
     {
         config(['urlhub.hash_length' => 0]);
 
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url' => 'https://laravel.com',
         ]);
 

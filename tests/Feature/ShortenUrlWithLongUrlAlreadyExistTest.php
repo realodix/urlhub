@@ -18,7 +18,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
             'user_id' => null,
         ]);
 
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url' => $url->long_url,
         ]);
 
@@ -43,7 +43,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->admin())
-            ->post(route('createshortlink'), [
+            ->post(route('short_url.create'), [
                 'long_url' => $url->long_url,
             ]);
 
@@ -63,7 +63,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url' => $url->long_url,
         ]);
 
@@ -88,7 +88,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->admin())
-            ->post(route('createshortlink'), [
+            ->post(route('short_url.create'), [
                 'long_url' => $url->long_url,
             ]);
 
@@ -112,7 +112,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->admin())
-            ->post(route('createshortlink'), [
+            ->post(route('short_url.create'), [
                 'long_url' => $url->long_url,
             ]);
 
@@ -125,7 +125,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     /** @test */
     public function createShortUrlWithWrongUrlFormat()
     {
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url' => 'wrong-url-format',
         ]);
 
@@ -151,7 +151,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
 
         $customKey = 'laravel';
 
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url'   => $url->long_url,
             'custom_key' => $customKey,
         ]);
@@ -171,7 +171,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         $customKey = 'laravel';
 
         $response = $this->actingAs($this->nonAdmin())
-            ->post(route('createshortlink'), [
+            ->post(route('short_url.create'), [
                 'long_url'   => $url->long_url,
                 'custom_key' => $customKey,
             ]);
@@ -189,7 +189,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url'   => 'https://laravel-news.com',
             'custom_key' => $url->keyword,
         ]);
@@ -211,7 +211,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         $url = Url::factory()->create();
 
         $response = $this->actingAs($this->nonAdmin())
-            ->post(route('createshortlink'), [
+            ->post(route('short_url.create'), [
                 'long_url'   => 'https://laravel-news.com',
                 'custom_key' => $url->keyword,
             ]);

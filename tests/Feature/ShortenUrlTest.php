@@ -25,7 +25,7 @@ class ShortenUrlTest extends TestCase
     public function shortenUrl()
     {
         $longUrl = 'https://laravel.com';
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url' => $longUrl,
         ]);
 
@@ -47,7 +47,7 @@ class ShortenUrlTest extends TestCase
         $longUrl = 'https://laravel.com';
         $customKey = 'laravel';
 
-        $response = $this->post(route('createshortlink'), [
+        $response = $this->post(route('short_url.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
@@ -99,7 +99,7 @@ class ShortenUrlTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->post(route('createshortlink'), [
+        $this->post(route('short_url.create'), [
             'long_url' => $url->long_url,
         ]);
 
@@ -117,7 +117,7 @@ class ShortenUrlTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->post(route('createshortlink'), [
+        $this->post(route('short_url.create'), [
             'long_url' => $url->long_url,
         ]);
 
@@ -135,7 +135,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->actingAs($this->admin());
-        $this->post(route('createshortlink'), [
+        $this->post(route('short_url.create'), [
             'long_url' => $url->long_url,
         ]);
 
