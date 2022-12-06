@@ -27,7 +27,7 @@ class UrlFactory extends Factory
             'long_url'   => 'https://github.com/realodix/urlhub',
             'meta_title' => 'No Title',
             'keyword'    => (new Url)->randomString(),
-            'is_custom'  => 0,
+            'is_custom'  => false,
             'clicks'     => mt_rand(10000, 999999999),
             'ip'         => $this->faker->ipv4(),
         ];

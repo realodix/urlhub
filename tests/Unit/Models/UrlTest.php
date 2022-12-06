@@ -301,7 +301,7 @@ class UrlTest extends TestCase
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', config('urlhub.hash_length')),
-            'is_custom' => 1,
+            'is_custom' => true,
         ]);
         $this->assertSame(2, $this->url->keyUsed());
 
@@ -309,7 +309,7 @@ class UrlTest extends TestCase
         // maka ini tidak ikut terhitung.
         Url::factory()->create([
             'keyword'   => str_repeat('b', config('urlhub.hash_length') + 2),
-            'is_custom' => 1,
+            'is_custom' => true,
         ]);
         $this->assertSame(2, $this->url->keyUsed());
 
@@ -333,14 +333,14 @@ class UrlTest extends TestCase
         config(['urlhub.hash_char' => 'foo']);
         Url::factory()->create([
             'keyword'   => 'foo',
-            'is_custom' => 1,
+            'is_custom' => true,
         ]);
         $this->assertSame(1, $this->url->keyUsed());
 
         config(['urlhub.hash_char' => 'bar']);
         Url::factory()->create([
             'keyword'   => 'bar',
-            'is_custom' => 1,
+            'is_custom' => true,
         ]);
         $this->assertSame(1, $this->url->keyUsed());
 
