@@ -110,8 +110,8 @@ class UrlBeTest extends TestCase
         $response = $this->actingAs($this->admin())
             ->from(route('short_url.edit', $url->keyword))
             ->post(route('short_url.edit.post', $hashids->encode($url->id)), [
-                'meta_title' => $url->meta_title,
-                'long_url'   => $new_long_url,
+                'title'    => $url->title,
+                'long_url' => $new_long_url,
             ]);
 
         $response

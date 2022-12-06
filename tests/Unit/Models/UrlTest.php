@@ -159,7 +159,7 @@ class UrlTest extends TestCase
             'long_url' => 'http://example.com/',
         ]);
 
-        $this->assertSame('No Title', $url->meta_title);
+        $this->assertSame('No Title', $url->title);
     }
 
     /**
