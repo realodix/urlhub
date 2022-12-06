@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('is_custom');
             $table->longText('long_url');
             $table->string('meta_title');
-            $table->unsignedInteger('clicks')->default(0);
+            $table->unsignedInteger('click')->default(0);
             $table->ipAddress('ip');
             $table->timestamps();
 
