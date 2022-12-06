@@ -69,7 +69,7 @@ class UrlBeTest extends TestCase
 
         $response = $this->actingAs($this->admin())
             ->from(route('dashboard'))
-            ->get(route('dashboard.duplicate', $url->keyword));
+            ->get(route('dashboard.url_duplicate', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')

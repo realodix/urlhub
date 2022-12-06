@@ -125,7 +125,7 @@ final class AllUlrTable extends PowerGridComponent
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.duplicate', $url->keyword).'" title="'.__('Duplicate').'"
+                    <a role="button" href="'.route('dashboard.url_duplicate', $url->keyword).'" title="'.__('Duplicate').'"
                         class="btn-icon btn-icon-table"
                     >'
                         .Blade::render('@svg(\'icon-clone-alt\')').
