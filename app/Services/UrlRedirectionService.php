@@ -18,7 +18,7 @@ class UrlRedirectionService
      */
     public function handleHttpRedirect(Url $url)
     {
-        $url->increment('clicks');
+        $url->increment('click');
         $this->storeVisitStat($url);
 
         $headers = [

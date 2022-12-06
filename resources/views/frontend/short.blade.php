@@ -16,7 +16,7 @@
                     </li>
                     <li class="inline-block pr-4">
                         @svg('icon-bar-chart')
-                        <i><span title="{{number_format($url->clicks)}}">{{compactNumber($url->clicks)}}</span></i>
+                        <i><span title="{{number_format($url->click)}}">{{compactNumber($url->click)}}</span></i>
                     </li>
                     @auth
                         @if (Auth::user()->hasRole('admin') || (Auth::user()->id === $url->user_id))
