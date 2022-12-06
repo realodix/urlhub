@@ -37,7 +37,7 @@ class Url extends Model
         'is_custom',
         'long_url',
         'meta_title',
-        'clicks',
+        'click',
         'ip',
     ];
 
@@ -161,7 +161,7 @@ class Url extends Model
             'user_id'   => $userId,
             'keyword'   => $randomKey,
             'is_custom' => false,
-            'clicks'    => 0,
+            'click'    => 0,
         ]);
 
         return $replicate->save();
@@ -311,12 +311,12 @@ class Url extends Model
      */
     public function clickCount($userId = null): int
     {
-        return self::whereUserId($userId)->sum('clicks');
+        return self::whereUserId($userId)->sum('click');
     }
 
     public function totalClick(): int
     {
-        return self::sum('clicks');
+        return self::sum('click');
     }
 
     /**
