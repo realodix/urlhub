@@ -50,7 +50,7 @@ class DashboardController extends Controller
     public function update(Request $request, $url)
     {
         $url->long_url = $request->long_url;
-        $url->meta_title = $request->meta_title;
+        $url->title = $request->title;
         $url->save();
 
         return redirect()->route('dashboard')

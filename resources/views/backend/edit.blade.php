@@ -31,9 +31,9 @@
                         </div>
 
                         <div class="col-span-6">
-                            <label for="meta-title" class="block font-medium text-sm text-slate-700">{{__('Title')}}</label>
-                            <input id="meta-title" type="text" name="meta_title" placeholder="{{__('Title')}}" required
-                                value="{{$url->meta_title}}" class="form-input">
+                            <label class="block font-medium text-sm text-slate-700">{{__('Title')}}</label>
+                            <input type="text" name="title" placeholder="{{__('Title')}}" required
+                                value="{{$url->title}}" class="form-input">
                         </div>
 
                         <div class="col-span-6">
