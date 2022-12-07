@@ -69,7 +69,9 @@
                     @svg('icon-clone')
                 </button>
 
-                <div class="font-light break-all">{{ $url->long_url }}</div>
+                <div class="font-light break-all max-w-2xl">
+                    {{ $url->long_url }}
+                </div>
             </div>
         </div>
     </div>
