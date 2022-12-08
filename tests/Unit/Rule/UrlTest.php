@@ -4,6 +4,7 @@ namespace Tests\Unit\Rule;
 
 use App\Rules\Url\DomainBlacklist;
 use App\Rules\Url\KeywordBlacklist;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -11,6 +12,7 @@ class UrlTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         config(['urlhub.domain_blacklist' => ['github.com', 't.co']]);
     }
 
@@ -23,8 +25,10 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistPass($value)
     {
-        $rule = new DomainBlacklist;
-        $this->assertTrue($rule->passes('test', $value));
+        $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
+
+        $this->assertTrue($val->passes());
+        $this->assertSame([], $val->messages()->messages());
     }
 
     /**
@@ -36,8 +40,15 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistFail($value)
     {
-        $rule = new DomainBlacklist;
-        $this->assertFalse($rule->passes('test', $value));
+        $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
+
+        $this->assertTrue($val->fails());
+        $this->assertSame([
+            'foo' => [
+                'Sorry, the URL you entered is on our internal blacklist. '.
+                'It may have been used abusively in the past, or it may link to another URL redirection service.',
+            ],
+        ], $val->messages()->messages());
     }
 
     public function domainBlacklistPassDataProvider()
@@ -67,21 +78,36 @@ class UrlTest extends TestCase
      */
     public function customKeywordBlacklistPass($value)
     {
-        $rule = new KeywordBlacklist;
-        $this->assertTrue($rule->passes('test', $value));
+        $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
+
+        $this->assertTrue($val->passes());
+        $this->assertSame([], $val->messages()->messages());
     }
 
     /**
      * @test
      * @group u-rule
-     * @dataProvider customKeywordBlacklistFailDataProvider
+     * @dataProvider customKeywordContainsRegisteredRouteWillFailDataProvider
      *
      * @param array $value
      */
-    public function customKeywordBlacklistFail($value)
+    public function customKeywordContainsRegisteredRouteWillFail($value)
     {
-        $rule = new KeywordBlacklist;
-        $this->assertFalse($rule->passes('test', $value));
+        $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
+
+        $this->assertTrue($val->fails());
+        $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
+    }
+
+    public function customKeywordContainsReservedKeywordWillFail()
+    {
+        $value = 'css';
+        config(['urlhub.reserved_keyword' => $value]);
+
+        $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
+
+        $this->assertTrue($val->fails());
+        $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
     }
 
     public function customKeywordBlacklistPassDataProvider()
@@ -92,12 +118,11 @@ class UrlTest extends TestCase
         ];
     }
 
-    public function customKeywordBlacklistFailDataProvider()
+    public function customKeywordContainsRegisteredRouteWillFailDataProvider()
     {
         return [
             ['login'],
             ['register'],
-            ['css'], // urlhub.reserved_keyword
         ];
     }
 }

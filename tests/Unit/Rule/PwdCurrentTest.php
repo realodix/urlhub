@@ -3,20 +3,15 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\PwdCurrent;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 class PwdCurrentTest extends TestCase
 {
-    /**
-     * @var \App\Rules\PwdCurrent
-     */
-    protected $rule;
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->rule = new PwdCurrent;
         $this->actingAs($this->admin());
     }
 
@@ -25,7 +20,10 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentPass()
     {
-        $this->assertTrue($this->rule->passes('test', $this->adminPass));
+        $val = Helper::validator(['foo' => $this->adminPass], ['foo' => new PwdCurrent]);
+
+        $this->assertTrue($val->passes());
+        $this->assertSame([], $val->messages()->messages());
     }
 
     /**
@@ -33,6 +31,13 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentFail()
     {
-        $this->assertFalse($this->rule->passes('test', 'wrong_password'));
+        $val = Helper::validator(['foo' => 'bar'], ['foo' => new PwdCurrent]);
+
+        $this->assertTrue($val->fails());
+        $this->assertSame([
+            'foo' => [
+                'The password you entered does not match your password. Please try again.',
+            ],
+        ], $val->messages()->messages());
     }
 }
