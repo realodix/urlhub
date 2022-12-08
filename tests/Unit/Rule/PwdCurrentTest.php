@@ -3,12 +3,11 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\PwdCurrent;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 class PwdCurrentTest extends TestCase
 {
-    use Helper;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -21,7 +20,7 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentPass()
     {
-        $val = $this->validator(['foo' => $this->adminPass], ['foo' => new PwdCurrent]);
+        $val = Helper::validator(['foo' => $this->adminPass], ['foo' => new PwdCurrent]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());
@@ -32,7 +31,7 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentFail()
     {
-        $val = $this->validator(['foo' => 'bar'], ['foo' => new PwdCurrent]);
+        $val = Helper::validator(['foo' => 'bar'], ['foo' => new PwdCurrent]);
 
         $this->assertTrue($val->fails());
         $this->assertSame([
