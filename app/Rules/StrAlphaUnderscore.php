@@ -2,45 +2,28 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\InvokableRule;
 
 /**
  * The field under validation may have alpha-numeric characters, as well as
  * underscores.
  */
-class StrAlphaUnderscore implements Rule
+class StrAlphaUnderscore implements InvokableRule
 {
     /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Determine if the validation rule passes.
+     * Run the validation rule.
      *
      * @param string $attribute
      * @param mixed  $value
-     * @return bool
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function passes($attribute, $value)
+    public function __invoke($attribute, $value, $fail)
     {
-        return preg_match('/^[\pL\pM\pN_]+$/u', $value) > 0;
-    }
+        $rule = preg_match('/^[\pL\pM\pN_]+$/u', $value);
 
-    /**
-     * Get the validation error message.
-     *
-     * @codeCoverageIgnore
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'The :attribute may only contain letters, numbers and underscores.';
+        if ($rule === false || $rule === 0) {
+            $fail('The :attribute may only contain letters, numbers and underscores.');
+        }
     }
 }
