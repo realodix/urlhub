@@ -80,8 +80,11 @@ class UrlTest extends TestCase
      */
     public function customKeywordBlacklistPass($value)
     {
-        $rule = new KeywordBlacklist;
-        $this->assertTrue($rule->passes('test', $value));
+        $trans = $this->getIlluminateArrayTranslator();
+        $validator = new Validator($trans, ['foo' => $value], ['foo' => new KeywordBlacklist]);
+
+        $this->assertTrue($validator->passes());
+        $this->assertSame([], $validator->messages()->messages());
     }
 
     /**
@@ -93,8 +96,17 @@ class UrlTest extends TestCase
      */
     public function customKeywordBlacklistFail($value)
     {
-        $rule = new KeywordBlacklist;
-        $this->assertFalse($rule->passes('test', $value));
+        config(['urlhub.reserved_keyword' => ['css']]);
+
+        $trans = $this->getIlluminateArrayTranslator();
+        $validator = new Validator($trans, ['foo' => $value], ['foo' => new KeywordBlacklist]);
+
+        $this->assertTrue($validator->fails());
+        $this->assertSame([
+            'foo' => [
+                'Not available.',
+            ],
+        ], $validator->messages()->messages());
     }
 
     public function customKeywordBlacklistPassDataProvider()

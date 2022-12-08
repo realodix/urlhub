@@ -2,23 +2,34 @@
 
 namespace App\Rules\Url;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\InvokableRule;
 use Illuminate\Routing\Route;
 
 /**
  * Check if keyword id is free (ie not already taken, not a URL path, and not
  * reserved).
  */
-class KeywordBlacklist implements Rule
+class KeywordBlacklist implements InvokableRule
 {
     /**
-     * Determine if the validation rule passes.
+     * Run the validation rule.
      *
      * @param string $attribute
      * @param mixed  $value
-     * @return bool
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function passes($attribute, $value)
+    public function __invoke($attribute, $value, $fail)
+    {
+        if ($this->isProbihitedKeyword($value) === false) {
+            $fail('Not available.');
+        }
+    }
+
+    /**
+     * @param mixed $value
+     */
+    protected function isProbihitedKeyword($value): bool
     {
         if (in_array($value, config('urlhub.reserved_keyword'), true)) {
             return false;
@@ -29,18 +40,10 @@ class KeywordBlacklist implements Rule
             \Route::getRoutes()->get()
         );
 
-        return $value != in_array($value, $routes);
-    }
+        if ($value == in_array($value, $routes)) {
+            return false;
+        }
 
-    /**
-     * Get the validation error message.
-     *
-     * @codeCoverageIgnore
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'Not available.';
+        return true;
     }
 }
