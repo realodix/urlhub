@@ -4,6 +4,7 @@ namespace Tests\Unit\Rule;
 
 use App\Rules\Url\DomainBlacklist;
 use App\Rules\Url\KeywordBlacklist;
+use Illuminate\Validation\Validator;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -23,8 +24,11 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistPass($value)
     {
-        $rule = new DomainBlacklist;
-        $this->assertTrue($rule->passes('test', $value));
+        $trans = $this->getIlluminateArrayTranslator();
+        $validator = new Validator($trans, ['foo' => $value], ['foo' => new DomainBlacklist]);
+
+        $this->assertTrue($validator->passes());
+        $this->assertSame([], $validator->messages()->messages());
     }
 
     /**
@@ -36,8 +40,16 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistFail($value)
     {
-        $rule = new DomainBlacklist;
-        $this->assertFalse($rule->passes('test', $value));
+        $trans = $this->getIlluminateArrayTranslator();
+        $validator = new Validator($trans, ['foo' => $value], ['foo' => new DomainBlacklist]);
+
+        $this->assertTrue($validator->fails());
+        $this->assertSame([
+            'foo' => [
+                'Sorry, the URL you entered is on our internal blacklist. '.
+                'It may have been used abusively in the past, or it may link to another URL redirection service.',
+            ],
+        ], $validator->messages()->messages());
     }
 
     public function domainBlacklistPassDataProvider()

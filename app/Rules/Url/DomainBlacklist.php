@@ -3,22 +3,23 @@
 namespace App\Rules\Url;
 
 use App\Helpers\Helper;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\InvokableRule;
 
-class DomainBlacklist implements Rule
+class DomainBlacklist implements InvokableRule
 {
     /**
-     * Determine if the validation rule passes.
+     * Run the validation rule.
      *
      * @param string $attribute
      * @param mixed  $value
-     * @return bool
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function passes($attribute, $value)
+    public function __invoke($attribute, $value, $fail)
     {
         $blackLists = config('urlhub.domain_blacklist');
         $longUrl = rtrim($value, '/');
-        $a = true;
+        $bool = true;
 
         foreach ($blackLists as $blackList) {
             $blackList = Helper::urlSanitize($blackList);
@@ -26,22 +27,13 @@ class DomainBlacklist implements Rule
             $segment2 = '://www.'.$blackList.'/';
 
             if (strstr($longUrl, $segment1) || strstr($longUrl, $segment2)) {
-                $a = false;
+                $bool = false;
             }
         }
 
-        return $a;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @codeCoverageIgnore
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'Sorry, the URL you entered is on our internal blacklist. It may have been used abusively in the past, or it may link to another URL redirection service.';
+        if ($bool === false) {
+            $fail('Sorry, the URL you entered is on our internal blacklist. '.
+            'It may have been used abusively in the past, or it may link to another URL redirection service.');
+        }
     }
 }
