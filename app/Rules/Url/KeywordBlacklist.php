@@ -21,7 +21,7 @@ class KeywordBlacklist implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        if ($this->isProbihitedKeyword($value) === false) {
+        if (! $this->isProbihitedKeyword($value)) {
             $fail('Not available.');
         }
     }
@@ -31,16 +31,15 @@ class KeywordBlacklist implements InvokableRule
      */
     protected function isProbihitedKeyword($value): bool
     {
-        if (in_array($value, config('urlhub.reserved_keyword'), true)) {
-            return false;
-        }
-
         $routes = array_map(
             fn (Route $route) => $route->uri,
             \Route::getRoutes()->get()
         );
 
-        if ($value == in_array($value, $routes)) {
+        $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'), true);
+        $isRegisteredRoute = in_array($value, $routes);
+
+        if ($isRegisteredRoute || $isReservedKeyword) {
             return false;
         }
 
