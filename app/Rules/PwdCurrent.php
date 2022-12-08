@@ -2,36 +2,27 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\InvokableRule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class PwdCurrent implements Rule
+class PwdCurrent implements InvokableRule
 {
     /**
-     * Determine if the validation rule passes.
+     * Run the validation rule.
      *
      * @param string $attribute
      * @param mixed  $value
-     * @return bool
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function passes($attribute, $value)
+    public function __invoke($attribute, $value, $fail)
     {
         /** @var \App\Models\User */
         $user = Auth::user();
 
-        return Hash::check($value, $user->password);
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @codeCoverageIgnore
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'The password you entered does not match your password. Please try again.';
+        if (! Hash::check($value, $user->password)) {
+            $fail('The password you entered does not match your password. Please try again.');
+        }
     }
 }
