@@ -23,9 +23,9 @@ class VisitFactory extends Factory
     public function definition()
     {
         return [
-            'url_id'           => Url::factory(),
-            'referer'          => 'https://github.com/realodix/urlhub',
-            'ip'               => $this->faker->ipv4(),
+            'url_id'  => Url::factory(),
+            'referer' => 'https://github.com/realodix/urlhub',
+            'ip'      => $this->faker->ipv4(),
         ];
     }
 }

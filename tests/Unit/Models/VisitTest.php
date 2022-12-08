@@ -15,9 +15,7 @@ class VisitTest extends TestCase
     public function belongsToUrl()
     {
         $visit = Visit::factory()->create([
-            'url_id' => function () {
-                return Url::factory()->create()->id;
-            },
+            'url_id' => fn () => Url::factory()->create()->id,
         ]);
 
         $this->assertTrue($visit->url()->exists());

@@ -195,6 +195,3 @@ final class AllUlrTable extends PowerGridComponent
         ];
     }
 }
-
-// Memahami While dan Do While Pada PHP Dengan Contoh ...
-// Belajar WordPress dengan Mudah Bagi Pemula [Terlengkap] -
