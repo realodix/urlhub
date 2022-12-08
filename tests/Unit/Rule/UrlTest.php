@@ -4,11 +4,12 @@ namespace Tests\Unit\Rule;
 
 use App\Rules\Url\DomainBlacklist;
 use App\Rules\Url\KeywordBlacklist;
-use Illuminate\Validation\Validator;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
+    use Helper;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -25,11 +26,10 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistPass($value)
     {
-        $trans = $this->getIlluminateArrayTranslator();
-        $validator = new Validator($trans, ['foo' => $value], ['foo' => new DomainBlacklist]);
+        $val = $this->validator(['foo' => $value], ['foo' => new DomainBlacklist]);
 
-        $this->assertTrue($validator->passes());
-        $this->assertSame([], $validator->messages()->messages());
+        $this->assertTrue($val->passes());
+        $this->assertSame([], $val->messages()->messages());
     }
 
     /**
@@ -41,16 +41,15 @@ class UrlTest extends TestCase
      */
     public function domainBlacklistFail($value)
     {
-        $trans = $this->getIlluminateArrayTranslator();
-        $validator = new Validator($trans, ['foo' => $value], ['foo' => new DomainBlacklist]);
+        $val = $this->validator(['foo' => $value], ['foo' => new DomainBlacklist]);
 
-        $this->assertTrue($validator->fails());
+        $this->assertTrue($val->fails());
         $this->assertSame([
             'foo' => [
                 'Sorry, the URL you entered is on our internal blacklist. '.
                 'It may have been used abusively in the past, or it may link to another URL redirection service.',
             ],
-        ], $validator->messages()->messages());
+        ], $val->messages()->messages());
     }
 
     public function domainBlacklistPassDataProvider()
@@ -80,11 +79,10 @@ class UrlTest extends TestCase
      */
     public function customKeywordBlacklistPass($value)
     {
-        $trans = $this->getIlluminateArrayTranslator();
-        $validator = new Validator($trans, ['foo' => $value], ['foo' => new KeywordBlacklist]);
+        $val = $this->validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
 
-        $this->assertTrue($validator->passes());
-        $this->assertSame([], $validator->messages()->messages());
+        $this->assertTrue($val->passes());
+        $this->assertSame([], $val->messages()->messages());
     }
 
     /**
@@ -98,15 +96,14 @@ class UrlTest extends TestCase
     {
         config(['urlhub.reserved_keyword' => ['css']]);
 
-        $trans = $this->getIlluminateArrayTranslator();
-        $validator = new Validator($trans, ['foo' => $value], ['foo' => new KeywordBlacklist]);
+        $val = $this->validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
 
-        $this->assertTrue($validator->fails());
+        $this->assertTrue($val->fails());
         $this->assertSame([
             'foo' => [
                 'Not available.',
             ],
-        ], $validator->messages()->messages());
+        ], $val->messages()->messages());
     }
 
     public function customKeywordBlacklistPassDataProvider()

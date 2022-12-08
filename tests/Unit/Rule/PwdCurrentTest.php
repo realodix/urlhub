@@ -3,11 +3,12 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\PwdCurrent;
-use Illuminate\Validation\Validator;
 use Tests\TestCase;
 
 class PwdCurrentTest extends TestCase
 {
+    use Helper;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -20,11 +21,10 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentPass()
     {
-        $trans = $this->getIlluminateArrayTranslator();
-        $validator = new Validator($trans, ['foo' => $this->adminPass], ['foo' => new PwdCurrent]);
+        $val = $this->validator(['foo' => $this->adminPass], ['foo' => new PwdCurrent]);
 
-        $this->assertTrue($validator->passes());
-        $this->assertSame([], $validator->messages()->messages());
+        $this->assertTrue($val->passes());
+        $this->assertSame([], $val->messages()->messages());
     }
 
     /**
@@ -32,14 +32,13 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentFail()
     {
-        $trans = $this->getIlluminateArrayTranslator();
-        $validator = new Validator($trans, ['foo' => 'bar'], ['foo' => new PwdCurrent]);
+        $val = $this->validator(['foo' => 'bar'], ['foo' => new PwdCurrent]);
 
-        $this->assertTrue($validator->fails());
+        $this->assertTrue($val->fails());
         $this->assertSame([
             'foo' => [
                 'The password you entered does not match your password. Please try again.',
             ],
-        ], $validator->messages()->messages());
+        ], $val->messages()->messages());
     }
 }
