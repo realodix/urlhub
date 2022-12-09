@@ -18,10 +18,7 @@ class PwdCurrent implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        /** @var \App\Models\User */
-        $user = Auth::user();
-
-        if (! Hash::check($value, $user->password)) {
+        if (! Hash::check($value, Auth::user()->password)) {
             $fail('The password you entered does not match your password. Please try again.');
         }
     }
