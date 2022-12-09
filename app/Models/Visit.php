@@ -32,7 +32,7 @@ class Visit extends Model
     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function url()
     {

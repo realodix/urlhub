@@ -58,7 +58,7 @@ class Url extends Model
     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
@@ -68,7 +68,7 @@ class Url extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function visit()
     {
