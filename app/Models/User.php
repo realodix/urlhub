@@ -51,7 +51,7 @@ class User extends Authenticatable
     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function url()
     {
