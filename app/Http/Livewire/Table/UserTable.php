@@ -82,6 +82,7 @@ final class UserTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('name', function (User $user) {
+                /** @var \App\Models\Url */
                 $url = $user->url();
                 $urlCountTitle = $url->count().' '.Str::plural('url', $url->count()).' created';
 
