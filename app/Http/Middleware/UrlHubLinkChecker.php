@@ -16,8 +16,6 @@ class UrlHubLinkChecker
      */
     public function handle($request, \Closure $next)
     {
-        $longUrl = rtrim($request->long_url, '/');
-
         if (! $this->cutomKeywordIsValid($request)) {
             return redirect()->back()
                 ->withFlashError(__('Custom keyword not available.'));
@@ -30,15 +28,10 @@ class UrlHubLinkChecker
                 );
         }
 
-        /*
-        |----------------------------------------------------------------------
-        | Long Url Exists
-        |----------------------------------------------------------------------
-        |
-        | Check if a long URL already exists in the database. If found, display
-        | a warning.
-        |
-        */
+        // Check if a long URL already exists in the database.
+        // If found, display a warning.
+
+        $longUrl = rtrim($request->long_url, '/');
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
