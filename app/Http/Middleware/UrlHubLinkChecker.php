@@ -19,23 +19,7 @@ class UrlHubLinkChecker
         $url = new Url;
         $longUrl = rtrim($request->long_url, '/');
 
-        /*
-        |----------------------------------------------------------------------
-        | Custom Keyword
-        |----------------------------------------------------------------------
-        |
-        | - Prevent registered routes from being used as custom keywords.
-        | - Prevent blacklist from being used as a custom keyword.
-        |
-        */
-
-        $value = $request->custom_key;
-        $routes = array_map(
-            fn (Route $route) => $route->uri,
-            \Route::getRoutes()->get()
-        );
-
-        if (in_array($value, $routes) || in_array($value, config('urlhub.reserved_keyword'))) {
+        if (! $this->cutomKeywordIsValid($request)) {
             return redirect()->back()
                 ->withFlashError(__('Custom keyword not available.'));
         }
@@ -81,5 +65,27 @@ class UrlHubLinkChecker
         }
 
         return $next($request);
+    }
+
+    /**
+     * Check if custom keyword is valid.
+     * - Prevent registered routes from being used as custom keywords.
+     * - Prevent using blacklisted words or reserved keywords as custom keywords.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    private function cutomKeywordIsValid($request): bool
+    {
+        $value = $request->custom_key;
+        $routes = array_map(
+            fn (Route $route) => $route->uri,
+            \Route::getRoutes()->get()
+        );
+
+        if (in_array($value, $routes) || in_array($value, config('urlhub.reserved_keyword'))) {
+            return false;
+        }
+
+        return true;
     }
 }
