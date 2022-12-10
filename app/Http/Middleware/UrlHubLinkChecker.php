@@ -16,7 +16,6 @@ class UrlHubLinkChecker
      */
     public function handle($request, \Closure $next)
     {
-        $url = new Url;
         $longUrl = rtrim($request->long_url, '/');
 
         if (! $this->cutomKeywordIsValid($request)) {
@@ -24,19 +23,11 @@ class UrlHubLinkChecker
                 ->withFlashError(__('Custom keyword not available.'));
         }
 
-        /*
-        |----------------------------------------------------------------------
-        | Key Remaining
-        |----------------------------------------------------------------------
-        |
-        | Prevent create short URLs when the Random Key Generator reaches the
-        | maximum limit and cannot generate more keys.
-        |
-        */
-
-        if ($url->keyRemaining() === 0) {
+        if (! $this->canGeneratingUniqueRandomKey()) {
             return redirect()->back()
-                ->withFlashError(__('Sorry, our service is currently under maintenance.'));
+                ->withFlashError(
+                    __('Sorry, our service is currently under maintenance.')
+                );
         }
 
         /*
@@ -83,6 +74,24 @@ class UrlHubLinkChecker
         );
 
         if (in_array($value, $routes) || in_array($value, config('urlhub.reserved_keyword'))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Ensures that unique random keys can be generated.
+     *
+     * Karena kunci yang dihasilkan haruslah unik, maka kita perlu memastikan bahwa
+     * kunci unik yang dihasilkan telah mencapai batas maksimum atau tidak. Ketika
+     * sudah mencapai batas maksimum, ini perlu dihentikan.
+     */
+    private function canGeneratingUniqueRandomKey(): bool
+    {
+        $url = new Url;
+
+        if ($url->keyRemaining() === 0) {
             return false;
         }
 
