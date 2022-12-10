@@ -51,7 +51,6 @@ class ForgotPasswordTest extends TestCase
             'email' => 'john@example.com',
         ]);
 
-
         $this->post($this->postRoute(), [
             'email' => 'john@example.com',
         ]);
