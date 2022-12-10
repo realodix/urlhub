@@ -28,22 +28,9 @@ class UrlHubLinkChecker
                 );
         }
 
-        // Check if a long URL already exists in the database.
-        // If found, display a warning.
+        if ($this->longUrlIsAlreadyExists($request)) {
+            $s_url = $this->longUrlIsAlreadyExists($request);
 
-        $longUrl = rtrim($request->long_url, '/');
-
-        if (Auth::check()) {
-            $s_url = Url::whereUserId(Auth::id())
-                ->whereLongUrl($longUrl)
-                ->first();
-        } else {
-            $s_url = Url::whereLongUrl($longUrl)
-                ->whereNull('user_id')
-                ->first();
-        }
-
-        if ($s_url) {
             return redirect()->route('su_stat', $s_url->keyword)
                     ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
@@ -89,5 +76,27 @@ class UrlHubLinkChecker
         }
 
         return true;
+    }
+
+    /**
+     * Check if a long URL already exists in the database.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    private function longUrlIsAlreadyExists($request): Url|null
+    {
+        $longUrl = rtrim($request->long_url, '/');
+
+        if (Auth::check()) {
+            $s_url = Url::whereUserId(Auth::id())
+                ->whereLongUrl($longUrl)
+                ->first();
+        } else {
+            $s_url = Url::whereLongUrl($longUrl)
+                ->whereNull('user_id')
+                ->first();
+        }
+
+        return $s_url;
     }
 }
