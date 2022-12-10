@@ -12,7 +12,7 @@
         {
             "label": "[Tests] PHPUnit (coverage-html)",
             "type": "shell",
-            "command": "./vendor/bin/phpunit --coverage-html .logs/coverage-html",
+            "command": "./vendor/bin/phpunit --coverage-html .tmp/logs/coverage-html",
             "problemMatcher": []
         },
         {
