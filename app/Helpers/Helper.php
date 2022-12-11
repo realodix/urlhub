@@ -5,6 +5,7 @@ namespace App\Helpers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Spatie\Url\Url as SpatieUrl;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class Helper
 {
