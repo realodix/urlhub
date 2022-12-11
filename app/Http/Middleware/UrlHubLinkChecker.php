@@ -28,20 +28,21 @@ class UrlHubLinkChecker
                 );
         }
 
-        $destUrlExisting = $this->destinationUrlExists($request);
+        $destUrlExisting = $this->destinationUrlAlreadyExists($request);
 
         if ($destUrlExisting) {
             $s_url = $destUrlExisting;
 
             return redirect()->route('su_stat', $s_url->keyword)
-                    ->with('msgLinkAlreadyExists', __('Link already exists.'));
+                ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 
         return $next($request);
     }
 
     /**
-     * Check if custom keyword is valid.
+     * Check if custom keyword is valid
+     *
      * - Prevent registered routes from being used as custom keywords.
      * - Prevent using blacklisted words or reserved keywords as custom keywords.
      *
@@ -85,7 +86,7 @@ class UrlHubLinkChecker
      *
      * @param \Illuminate\Http\Request $request
      */
-    private function destinationUrlExists($request): Url|null
+    private function destinationUrlAlreadyExists($request): Url|null
     {
         $longUrl = rtrim($request->long_url, '/');
 
