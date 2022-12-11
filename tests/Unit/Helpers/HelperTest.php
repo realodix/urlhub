@@ -8,6 +8,28 @@ use Tests\TestCase;
 
 class HelperTest extends TestCase
 {
+    public function testAnonymizeIpWhenConfigSettedTrue()
+    {
+        config()->set('urlhub.anonymize_ip_addr', true);
+
+        $ip = '192.168.1.1';
+        $expected = Helper::anonymizeIp($ip);
+        $actual = '192.168.1.0';
+
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testAnonymizeIpWhenConfigSettedFalse()
+    {
+        config()->set('urlhub.anonymize_ip_addr', false);
+
+        $ip = '192.168.1.1';
+        $expected = Helper::anonymizeIp($ip);
+        $actual = $ip;
+
+        $this->assertSame($expected, $actual);
+    }
+
     /**
      * @test
      */

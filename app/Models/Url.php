@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Spatie\Url\Url as SpatieUrl;
-use Symfony\Component\HttpFoundation\IpUtils;
 
 /**
  * @property int|null $user_id
@@ -317,20 +316,6 @@ class Url extends Model
     public function totalClick(): int
     {
         return self::sum('click');
-    }
-
-    /**
-     * Anonymize an IPv4 or IPv6 address.
-     *
-     * @param string|null $address
-     */
-    public static function anonymizeIp($address): string
-    {
-        if (config('urlhub.anonymize_ip_addr') === false) {
-            return $address;
-        }
-
-        return IPUtils::anonymize($address);
     }
 
     /**
