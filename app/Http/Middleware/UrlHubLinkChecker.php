@@ -28,8 +28,10 @@ class UrlHubLinkChecker
                 );
         }
 
-        if ($this->longUrlIsAlreadyExists($request)) {
-            $s_url = $this->longUrlIsAlreadyExists($request);
+        $destUrlExisting = $this->destinationUrlExists($request);
+
+        if ($destUrlExisting) {
+            $s_url = $destUrlExisting;
 
             return redirect()->route('su_stat', $s_url->keyword)
                     ->with('msgLinkAlreadyExists', __('Link already exists.'));
@@ -63,9 +65,9 @@ class UrlHubLinkChecker
     /**
      * Ensures that unique random keys can be generated.
      *
-     * Karena kunci yang dihasilkan haruslah unik, maka kita perlu memastikan bahwa
-     * kunci unik yang dihasilkan telah mencapai batas maksimum atau tidak. Ketika
-     * sudah mencapai batas maksimum, ini perlu dihentikan.
+     * Karena kata kunci yang dihasilkan harus unik, maka kita perlu memastikan
+     * bahwa kata kunci unik yang ada apakah telah mencapai batas maksimum atau
+     * tidak. Ketika sudah mencapai batas maksimum, ini perlu dihentikan.
      */
     private function canGeneratingUniqueRandomKey(): bool
     {
@@ -83,7 +85,7 @@ class UrlHubLinkChecker
      *
      * @param \Illuminate\Http\Request $request
      */
-    private function longUrlIsAlreadyExists($request): Url|null
+    private function destinationUrlExists($request): Url|null
     {
         $longUrl = rtrim($request->long_url, '/');
 
