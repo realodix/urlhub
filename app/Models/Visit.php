@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 class Visit extends Model
 {
@@ -37,5 +39,27 @@ class Visit extends Model
     public function url()
     {
         return $this->belongsTo(Url::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Other Functions
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * @return string
+     */
+    public function getIp()
+    {
+        if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = Request::ip();
+        }
+
+        return Helper::anonymizeIp($ip);
     }
 }

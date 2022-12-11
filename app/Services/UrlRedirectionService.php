@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\Visit;
 
@@ -40,7 +39,7 @@ class UrlRedirectionService
         Visit::create([
             'url_id'  => $url->id,
             'referer' => request()->headers->get('referer'),
-            'ip'      => Helper::anonymizeIp(request()->ip()),
+            'ip'      => (new Visit)->getIp(),
         ]);
     }
 }
