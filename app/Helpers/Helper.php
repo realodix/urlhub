@@ -9,6 +9,20 @@ use Spatie\Url\Url as SpatieUrl;
 class Helper
 {
     /**
+     * Anonymize an IPv4 or IPv6 address.
+     *
+     * @param string|null $address
+     */
+    public static function anonymizeIp($address): string
+    {
+        if (config('urlhub.anonymize_ip_addr') === false) {
+            return $address;
+        }
+
+        return IPUtils::anonymize($address);
+    }
+
+    /**
      * Display the link according to what You need.
      *
      * @param string $url    URL or Link
