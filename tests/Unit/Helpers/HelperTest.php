@@ -13,7 +13,7 @@ class HelperTest extends TestCase
         config()->set('urlhub.anonymize_ip_addr', true);
 
         $ip = '192.168.1.1';
-        $expected = $this->url->anonymizeIp($ip);
+        $expected = Helper::anonymizeIp($ip);
         $actual = '192.168.1.0';
 
         $this->assertSame($expected, $actual);
@@ -24,7 +24,7 @@ class HelperTest extends TestCase
         config()->set('urlhub.anonymize_ip_addr', false);
 
         $ip = '192.168.1.1';
-        $expected = $this->url->anonymizeIp($ip);
+        $expected = Helper::anonymizeIp($ip);
         $actual = $ip;
 
         $this->assertSame($expected, $actual);
