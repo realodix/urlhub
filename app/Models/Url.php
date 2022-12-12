@@ -143,7 +143,7 @@ class Url extends Model
             'title'     => $request['long_url'],
             'keyword'   => $key,
             'is_custom' => $request['custom_key'] ? true : false,
-            'ip'        => $request->ip(),
+            'ip'        => Helper::anonymizeIp($request->ip()),
         ]);
     }
 
