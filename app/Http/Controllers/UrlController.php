@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\QrCode;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use Illuminate\Support\Facades\Auth;
@@ -42,14 +43,7 @@ class UrlController extends Controller
         $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
 
         if (config('urlhub.qrcode')) {
-            $qrCode = \Endroid\QrCode\Builder\Builder::create()
-                ->data($url->short_url)
-                ->size(170)
-                ->labelText('Scan QR Code')
-                ->errorCorrectionLevel(
-                    new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh
-                )
-                ->build();
+            $qrCode = (new QrCode)->process($url->short_url);
 
             return view('frontend.short', compact(['qrCode']), ['url' => $url]);
         }
