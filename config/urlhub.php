@@ -70,8 +70,6 @@ return [
 
     'web_title' => env('UH_WEB_TITLE', true),
 
-    'qrcode' => env('UH_QRCODE', true),
-
     /*
     |--------------------------------------------------------------------------
     | Visiting
@@ -105,4 +103,57 @@ return [
      * status is 301. Default values is 90.
      */
     'redirect_cache_lifetime' => env('UH_REDIRECT_CACHE_LIFETIME', 90),
+
+    /*
+    |--------------------------------------------------------------------------
+    | QR codes
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Type: bool
+     * Accepted values: true or false
+     */
+    'qrcode' => env('QRCODE', true),
+
+    /**
+     * Determines the width/height in pixels.
+     *
+     * Type: int
+     * Accepted values: 50 to 1000
+     */
+    'qrcode_size' => env('QRCODE_SIZE', 170),
+
+    /**
+     * The space in pixels between the QR code itself and the border of the image.
+     *
+     * Type: int (positive)
+     */
+    'qrcode_margin' => env('QRCODE_MARGIN', 0),
+
+    /**
+     * Type: string
+     * Accepted values: png or svg
+     */
+    'qrcode_format' => env('QRCODE_FORMAT', 'png'),
+
+    /**
+     * Determine error correction levels to restore data if the code is dirty or
+     * damaged.
+     *
+     * Type: string
+     * Accepted values: l, m, q, h
+     *
+     * See https://www.qrcode.com/en/about/error_correction.html for more information.
+     */
+    'qrcode_error_correction' => env('QRCODE_ERROR_CORRECTION', 'm'),
+
+    /**
+     * Tells if the block size should be rounded, making the QR code more readable,
+     * but potentially adding some extra margin as a side effect.
+     *
+     * Type: bool
+     * Accepted values: true or false
+     */
+    'qrcode_round_block_size' => env('QRCODE_ROUND_BLOCK_SIZE', true),
 ];
