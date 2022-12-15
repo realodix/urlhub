@@ -50,6 +50,12 @@
   }
 }
 
+.btn-icon-detail {
+  @apply px-2 py-1 rounded mr-4;
+  @apply text-[#273144];
+  @apply bg-[#e8ebf2] hover:bg-[#dbe0eb] active:bg-[#e8ebf2];
+}
+
 .form-input {
   @apply block w-full;
   @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded
