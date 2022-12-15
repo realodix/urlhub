@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/shorten', [UrlController::class, 'create'])->name('su_create');
-Route::get('/+{keyword}', [UrlController::class, 'showShortenedUrlDetails'])->name('su_stat');
+Route::get('/+{keyword}', [UrlController::class, 'showDetail'])->name('su_stat');
 Route::get('/delete/{su_hashId}', [UrlController::class, 'delete'])->name('su_delete');
 Route::get('/duplicate/{keyword}', [UrlController::class, 'duplicate'])->middleware('auth')->name('su_duplicate');
 

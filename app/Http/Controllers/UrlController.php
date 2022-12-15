@@ -38,7 +38,7 @@ class UrlController extends Controller
      * @param string $key
      * @return \Illuminate\View\View
      */
-    public function showShortenedUrlDetails($key)
+    public function showDetail($key)
     {
         $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
 
