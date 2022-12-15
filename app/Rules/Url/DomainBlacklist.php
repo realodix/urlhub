@@ -22,7 +22,7 @@ class DomainBlacklist implements InvokableRule
         $bool = true;
 
         foreach ($blackLists as $blackList) {
-            $blackList = Helper::urlSanitize($blackList);
+            $blackList = Helper::urlDisplay($blackList, scheme: false);
             $segment1 = '://'.$blackList.'/';
             $segment2 = '://www.'.$blackList.'/';
 

@@ -27,7 +27,7 @@
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
                             <label for="short-url" class="block font-medium text-sm text-slate-700">{{__('Short URL')}}</label>
-                            <span class="short-url">{{urlDisplay($url->short_url, false)}}</span>
+                            <span class="short-url">{{urlDisplay($url->short_url, scheme: false)}}</span>
                         </div>
 
                         <div class="col-span-6">

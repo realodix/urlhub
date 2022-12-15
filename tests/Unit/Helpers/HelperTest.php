@@ -41,13 +41,8 @@ class HelperTest extends TestCase
         );
 
         $this->assertSame(
-            'example.com/abcde',
-            Helper::urlDisplay('https://example.com/abcde/', false)
-        );
-
-        $this->assertSame(
             'https://example.com',
-            Helper::urlDisplay('https://example.com/')
+            Helper::urlDisplay('https://example.com/', trailingSlash: false)
         );
 
         $this->assertSame(
@@ -58,28 +53,26 @@ class HelperTest extends TestCase
 
     /**
      * @test
-     * @dataProvider sanitizeProvider
+     * @dataProvider urlDisplayWithoutSchemeProvider
      *
      * @param mixed $expected
      * @param mixed $actual
      */
-    public function sanitize($expected, $actual)
+    public function urlDisplayWithoutScheme($expected, $actual)
     {
-        $this->assertSame($expected, Helper::urlSanitize($actual));
+        $this->assertSame($expected, Helper::urlDisplay($actual, scheme: false));
     }
 
-    public function sanitizeProvider()
+    public function urlDisplayWithoutSchemeProvider()
     {
         return [
-            ['laravel.com', 'laravel.com'],
-            ['laravel.com', 'www.laravel.com'],
-            ['laravel.com', 'http://laravel.com'],
-            ['laravel.com', 'http://www.laravel.com'],
-            ['laravel.com', 'https://laravel.com'],
-            ['laravel.com', 'https://www.laravel.com'],
-            ['laravel.com', 'https://www.laravel.com/'],
-            ['laravel.com/abc', 'https://www.laravel.com/abc'],
-            ['laravel.com/abc', 'https://www.laravel.com/abc/'],
+            ['example.com', 'example.com'],
+            ['www.example.com', 'www.example.com'],
+            ['example.com', 'http://example.com'],
+            ['www.example.com', 'http://www.example.com'],
+            ['example.com', 'https://example.com'],
+            ['www.example.com', 'https://www.example.com'],
+            ['www.example.com/abc', 'https://www.example.com/abc'],
         ];
     }
 

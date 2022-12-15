@@ -88,7 +88,7 @@ class UrlHubLinkChecker
      */
     private function destinationUrlAlreadyExists($request): Url|null
     {
-        $longUrl = rtrim($request->long_url, '/');
+        $longUrl = rtrim($request->long_url, '/'); // Remove trailing slash
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())

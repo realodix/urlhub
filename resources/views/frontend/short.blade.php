@@ -48,7 +48,7 @@
             <div class="w-full md:w-3/4 mt-8 sm:mt-0">
                 <b class="text-indigo-700">{{__('Shortened URL')}}</b>
                 <button title="{{__('Copy the shortened URL to clipboard')}}"
-                    data-clipboard-text="{{urlDisplay($url->short_url, false)}}"
+                    data-clipboard-text="{{$url->short_url}}"
                     class="btn-clipboard btn-icon text-xs ml-4">
                     @svg('icon-clone')
                 </button>
@@ -57,7 +57,7 @@
 
                 <span class="font-light">
                     <a href="{{ $url->short_url }}" target="_blank" id="copy">
-                        {{urlDisplay($url->short_url, false)}}
+                        {{urlDisplay($url->short_url, scheme: false)}}
                     </a>
                 </span>
 

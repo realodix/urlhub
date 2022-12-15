@@ -101,7 +101,7 @@ final class AllUlrTable extends PowerGridComponent
                     <a href="'.$url->long_url.'" target="_blank" title="'.$url->long_url.'" rel="noopener noreferrer"
                         class="text-slate-500"
                     >'
-                        .Helper::urlDisplay($url->long_url, false, self::STR_LIMIT)
+                        .Helper::urlDisplay($url->long_url, self::STR_LIMIT)
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })

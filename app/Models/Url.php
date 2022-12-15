@@ -319,24 +319,14 @@ class Url extends Model
     }
 
     /**
-     * Get the domain from external url.
-     */
-    public function getDomain(string $url): string
-    {
-        $url = SpatieUrl::fromString($url);
-
-        return Helper::urlSanitize($url->getHost());
-    }
-
-    /**
      * Fetch the page title from the web page URL
      *
      * @throws \Exception
      */
     public function getWebTitle(string $url): string
     {
-        $domain = $this->getDomain($url);
-        $defaultTitle = $domain.' - Untitled';
+        $spatieUrl = SpatieUrl::fromString($url);
+        $defaultTitle = $spatieUrl->getHost($url).' - Untitled';
 
         try {
             $webTitle = (new Embed)->get($url)->title ?? $defaultTitle;

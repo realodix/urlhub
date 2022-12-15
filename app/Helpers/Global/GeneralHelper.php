@@ -6,13 +6,13 @@ if (! function_exists('urlDisplay')) {
     /**
      * Display the link according to what You need.
      *
-     * @param string $url    URL or Link.
-     * @param bool   $scheme Show or remove URL schemes.
-     * @param int    $limit  Length string will be truncated to, including suffix.
+     * @param string $url
+     * @param int    $limit
+     * @param bool   $scheme
      * @return string|\Illuminate\Support\Stringable
      */
-    function urlDisplay($url, $scheme = true, $limit = null)
+    function urlDisplay($url, $limit = null, $scheme = true)
     {
-        return Helper::urlDisplay($url, $scheme, $limit);
+        return Helper::urlDisplay($url, $limit, $scheme);
     }
 }

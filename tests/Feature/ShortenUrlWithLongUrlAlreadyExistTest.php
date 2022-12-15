@@ -30,6 +30,32 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     }
 
     /**
+     * Memastikan long url dengan atau tanpa trailing slashes adalah sama.
+     *
+     * @test
+     */
+    public function ensuresLongUrlsWithOrWithoutSlashesAreTheSameUrl()
+    {
+        $longUrl_1 = 'https://example.com/';
+        $longUrl_2 = 'https://example.com';
+
+        $url = Url::factory()->create([
+            'user_id' => null,
+            'long_url' => $longUrl_1,
+        ]);
+
+        $response = $this->post(route('su_create'), [
+            'long_url' => $longUrl_2,
+        ]);
+
+        $response
+            ->assertRedirectToRoute('su_stat', $url->keyword)
+            ->assertSessionHas('msgLinkAlreadyExists');
+
+        $this->assertCount(1, Url::all());
+    }
+
+    /**
      * Authen user A and authen user A.
      *
      * @test
