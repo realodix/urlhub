@@ -326,7 +326,7 @@ class Url extends Model
     public function getWebTitle(string $url): string
     {
         $spatieUrl = SpatieUrl::fromString($url);
-        $defaultTitle = $spatieUrl->getHost($url).' - Untitled';
+        $defaultTitle = $spatieUrl->getHost().' - Untitled';
 
         try {
             $webTitle = (new Embed)->get($url)->title ?? $defaultTitle;
