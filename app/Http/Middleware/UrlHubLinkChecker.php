@@ -33,7 +33,7 @@ class UrlHubLinkChecker
         if ($destUrlExisting) {
             $s_url = $destUrlExisting;
 
-            return redirect()->route('su_stat', $s_url->keyword)
+            return redirect()->route('su_detail', $s_url->keyword)
                 ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 
