@@ -89,14 +89,13 @@ return [
     /*
      * Configure the kind of redirect you want to use for your short URLs. You
      * can either set:
-     * - 301 (Default behavior, visitors always hit the server).
-     * - 302 (Better for SEO, visitors hit the server the first time and then
-     *   cache the redirect).
+     * - 301
+     * - 302
      *
      * When selecting 301 redirects, you can also configure the time redirects
      * are cached, to mitigate deviations in stats.
      */
-    'redirect_status_code' => env('UH_REDIRECT_STATUS_CODE', 301),
+    'redirect_status_code' => env('UH_REDIRECT_STATUS_CODE', 302),
 
     /*
      * Set the amount of seconds that redirects should be cached when redirect
