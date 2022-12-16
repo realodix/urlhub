@@ -99,9 +99,9 @@ return [
 
     /*
      * Set the amount of seconds that redirects should be cached when redirect
-     * status is 301. Default values is 90.
+     * status is 301. Default values is 30.
      */
-    'redirect_cache_max_age' => env('UH_REDIRECT_CACHE_MAX_AGE', 90),
+    'redirect_cache_max_age' => env('UH_REDIRECT_CACHE_MAX_AGE', 30),
 
     /*
     |--------------------------------------------------------------------------
