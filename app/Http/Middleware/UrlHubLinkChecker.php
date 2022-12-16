@@ -82,7 +82,7 @@ class UrlHubLinkChecker
     }
 
     /**
-     * Check if a long URL already exists in the database.
+     * Check if a destination URL already exists in the database.
      *
      * @param \Illuminate\Http\Request $request
      */
@@ -92,10 +92,10 @@ class UrlHubLinkChecker
 
         if (Auth::check()) {
             $s_url = Url::whereUserId(Auth::id())
-                ->whereLongUrl($longUrl)
+                ->whereDestination($longUrl)
                 ->first();
         } else {
-            $s_url = Url::whereLongUrl($longUrl)
+            $s_url = Url::whereDestination($longUrl)
                 ->whereNull('user_id')
                 ->first();
         }

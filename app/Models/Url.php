@@ -15,7 +15,7 @@ use Spatie\Url\Url as SpatieUrl;
 /**
  * @property int|null $user_id
  * @property string   $short_url
- * @property string   $long_url
+ * @property string   $destination
  * @property string   $title
  */
 class Url extends Model
@@ -34,7 +34,7 @@ class Url extends Model
         'user_id',
         'keyword',
         'is_custom',
-        'long_url',
+        'destination',
         'title',
         'click',
         'ip',
@@ -89,7 +89,7 @@ class Url extends Model
         );
     }
 
-    protected function longUrl(): Attribute
+    protected function destination(): Attribute
     {
         return Attribute::make(
             set: fn ($value) => rtrim($value, '/'),
@@ -135,15 +135,15 @@ class Url extends Model
      */
     public function shortenUrl(StoreUrl $request, $userId)
     {
-        $key = $request['custom_key'] ?? $this->urlKey($request['long_url']);
+        $key = $request->custom_key ?? $this->urlKey($request->long_url);
 
         return Url::create([
-            'user_id'   => $userId,
-            'long_url'  => $request['long_url'],
-            'title'     => $request['long_url'],
-            'keyword'   => $key,
-            'is_custom' => $request['custom_key'] ? true : false,
-            'ip'        => Helper::anonymizeIp($request->ip()),
+            'user_id'     => $userId,
+            'destination' => $request->long_url,
+            'title'       => $request->long_url,
+            'keyword'     => $key,
+            'is_custom'   => $request->custom_key ? true : false,
+            'ip'          => Helper::anonymizeIp($request->ip()),
         ]);
     }
 

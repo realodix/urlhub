@@ -25,7 +25,9 @@ class UrlTest extends TestCase
                 'short_url',
             ]);
 
-        $this->assertDatabaseHas('urls', $data);
+        $this->assertDatabaseHas('urls', [
+            'destination' => 'http://example.com',
+        ]);
     }
 
     /**

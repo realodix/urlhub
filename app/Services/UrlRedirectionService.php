@@ -26,7 +26,7 @@ class UrlRedirectionService
             'Cache-Control' => sprintf('private,max-age=%s', (int) config('urlhub.redirect_cache_lifetime')),
         ];
 
-        return redirect()->away($url->long_url, (int) config('urlhub.redirect_status_code'), $headers);
+        return redirect()->away($url->destination, (int) config('urlhub.redirect_status_code'), $headers);
     }
 
     /**

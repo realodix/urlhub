@@ -29,7 +29,7 @@ class ShortenUrlTest extends TestCase
             'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereLongUrl($longUrl)->first();
+        $url = Url::whereDestination($longUrl)->first();
 
         $response->assertRedirectToRoute('su_detail', $url->keyword);
         $this->assertFalse($url->is_custom);
@@ -53,7 +53,7 @@ class ShortenUrlTest extends TestCase
         ]);
         $response->assertRedirectToRoute('su_detail', $customKey);
 
-        $url = Url::whereLongUrl($longUrl)->first();
+        $url = Url::whereDestination($longUrl)->first();
         $this->assertTrue($url->is_custom);
     }
 
@@ -100,7 +100,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->post(route('su_create'), [
-            'long_url' => $url->long_url,
+            'long_url' => $url->destination,
         ]);
 
         $response = $this->from(route('su_detail', $url->keyword))
@@ -118,7 +118,7 @@ class ShortenUrlTest extends TestCase
         ]);
 
         $this->post(route('su_create'), [
-            'long_url' => $url->long_url,
+            'long_url' => $url->destination,
         ]);
 
         $this->from(route('su_detail', $url->keyword))
@@ -136,7 +136,7 @@ class ShortenUrlTest extends TestCase
 
         $this->actingAs($this->admin());
         $this->post(route('su_create'), [
-            'long_url' => $url->long_url,
+            'long_url' => $url->destination,
         ]);
 
         $this->from(route('su_detail', $url->keyword))

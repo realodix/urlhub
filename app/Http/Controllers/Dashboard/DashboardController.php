@@ -24,7 +24,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show the long url edit page.
+     * Show shortened url details page
      *
      * @param mixed $key
      * @return \Illuminate\View\View
@@ -39,7 +39,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Update the long url that was previously set to the new long url.
+     * Update the destination URL
      *
      * @param Request $request \Illuminate\Http\Request
      * @param mixed   $url
@@ -49,7 +49,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $url)
     {
-        $url->long_url = $request->long_url;
+        $url->destination = $request->long_url;
         $url->title = $request->title;
         $url->save();
 
@@ -58,7 +58,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Delete a shortened URL on user request.
+     * Delete shortened URLs
      *
      * @param mixed $url
      * @return \Illuminate\Http\RedirectResponse
@@ -76,10 +76,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * UrlHub only allows users (registered & unregistered) to have a unique
-     * link. You can duplicate it and it will generated a new unique random
-     * key.
-     *
      * @param mixed $key
      * @return \Illuminate\Http\RedirectResponse
      */

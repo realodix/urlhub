@@ -18,7 +18,7 @@ class UrlPolicyTest extends TestCase
         $admin = $this->admin();
         $url = Url::factory()->create([
             'user_id'  => $admin->id,
-            'long_url' => 'https://laravel.com',
+            'destination' => 'https://laravel.com',
         ]);
 
         $this->assertTrue($admin->can('forceDelete', $url));
@@ -36,7 +36,7 @@ class UrlPolicyTest extends TestCase
         $user = $this->nonAdmin();
         $url = Url::factory()->create([
             'user_id'  => $user->id,
-            'long_url' => 'https://laravel.com',
+            'destination' => 'https://laravel.com',
         ]);
 
         $this->assertTrue($user->can('forceDelete', $url));

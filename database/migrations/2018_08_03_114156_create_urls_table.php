@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable($value = true);
             $table->string('keyword')->unique();
             $table->boolean('is_custom');
-            $table->longText('long_url');
+            $table->longText('destination');
             $table->string('title');
             $table->unsignedInteger('click')->default(0);
             $table->ipAddress('ip');

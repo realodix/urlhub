@@ -36,7 +36,7 @@ class UrlController extends Controller
 
         return response([
             'id'        => $url->id,
-            'long_url'  => $url->long_url,
+            'long_url'  => $url->destination,
             'short_url' => url($url->keyword),
         ], Response::HTTP_CREATED);
     }
