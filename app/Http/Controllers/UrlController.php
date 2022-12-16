@@ -82,6 +82,6 @@ class UrlController extends Controller
         $url->duplicate($key, Auth::id(), $randomKey);
 
         return redirect()->route('su_detail', $randomKey)
-            ->withFlashSuccess(__('Link was successfully duplicated.'));
+            ->withFlashSuccess(__('The link has successfully duplicated.'));
     }
 }

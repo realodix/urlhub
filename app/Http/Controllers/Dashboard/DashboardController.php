@@ -85,6 +85,6 @@ class DashboardController extends Controller
         $url->duplicate($key, Auth::id());
 
         return redirect()->back()
-            ->withFlashSuccess(__('Link was successfully duplicated.'));
+            ->withFlashSuccess(__('The link has successfully duplicated.'));
     }
 }
