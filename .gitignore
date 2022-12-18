@@ -7,6 +7,9 @@ public/mix-manifest.json
 /.idea
 /.fleet
 
+## Docker
+infrastructure/docker-volumes/
+
 ## Laravel
 .env
 .env.backup
@@ -56,3 +59,4 @@ phpcs.xml
 phpstan.neon
 # Psalm
 psalm.xml
+

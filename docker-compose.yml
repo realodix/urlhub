@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+     internal: {}
+
+services:
+  urlhub:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    env_file: .env
+    networks:
+         - internal
+
+  db:
+    image: mysql:8.0
+    environment:
+        MYSQL_DATABASE: ${DB_DATABASE}
+        MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        MYSQL_PASSWORD: ${DB_PASSWORD}
+        MYSQL_USER: ${DB_USERNAME}
+    networks:
+         - internal
