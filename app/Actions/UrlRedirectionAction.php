@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions;
 
 use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\Visit;
 
-class UrlRedirectionService
+class UrlRedirectionAction
 {
     /**
      * Handle the HTTP redirect and return the redirect response.
