@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\QrCode;
+use App\Actions\QrCodeAction;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +44,7 @@ class UrlController extends Controller
         $data = ['url' => $url];
 
         if (config('urlhub.qrcode')) {
-            $qrCode = (new QrCode)->process($url->short_url);
+            $qrCode = (new QrCodeAction)->process($url->short_url);
 
             $data = array_merge($data, compact(['qrCode']));
         }
