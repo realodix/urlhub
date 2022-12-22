@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\UrlRedirectionAction;
+use App\Actions\UrlRedirectAction;
 use App\Models\Url;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +14,7 @@ class UrlRedirectController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(UrlRedirectionAction $action, string $key)
+    public function __invoke(UrlRedirectAction $action, string $key)
     {
         return DB::transaction(function () use ($action, $key) {
             $url = Url::whereKeyword($key)->firstOrFail();
