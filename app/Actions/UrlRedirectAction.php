@@ -6,7 +6,7 @@ use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\Visit;
 
-class UrlRedirectionAction
+class UrlRedirectAction
 {
     /**
      * Handle the HTTP redirect and return the redirect response.
