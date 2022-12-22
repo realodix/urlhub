@@ -5,7 +5,7 @@ namespace App\Actions;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\Result\ResultInterface;
 
-class QrCode
+class QrCodeAction
 {
     const MIN_SIZE = 50;
 
