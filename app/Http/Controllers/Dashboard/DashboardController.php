@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Models\User;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,7 @@ class DashboardController extends Controller
         return view('backend.dashboard', [
             'url'  => new Url,
             'user' => new User,
+            'visit' => new Visit,
         ]);
     }
 

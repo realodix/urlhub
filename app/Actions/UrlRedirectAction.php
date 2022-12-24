@@ -5,6 +5,7 @@ namespace App\Actions;
 use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\Visit;
+use Illuminate\Support\Facades\Request;
 
 class UrlRedirectAction
 {
@@ -19,7 +20,6 @@ class UrlRedirectAction
      */
     public function handleHttpRedirect(Url $url)
     {
-        $url->increment('click');
         $this->storeVisitStat($url);
 
         $statusCode = (int) config('urlhub.redirect_status_code');
@@ -39,10 +39,26 @@ class UrlRedirectAction
      */
     private function storeVisitStat(Url $url)
     {
+        $logBotVisit = config('urlhub.log_bot_visit');
+        if ($logBotVisit === false && \Browser::isBot() === true) {
+            return;
+        }
+
+        $visitorId = (new Visit)->visitorId($url->id);
+        $hasVisitorId = Visit::whereVisitorId($visitorId)->first();
+
         Visit::create([
-            'url_id'  => $url->id,
-            'referer' => request()->headers->get('referer'),
-            'ip'      => Helper::anonymizeIp(request()->ip()),
+            'url_id'     => $url->id,
+            'user_id'    => $url->user->id,
+            'visitor_id' => $visitorId,
+            'is_first_click' => $hasVisitorId ? false : true,
+            'referer' => Request::header('referer'),
+            'ip'      => Helper::anonymizeIp(Request::ip()),
+            'browser' => \Browser::browserFamily(),
+            'browser_version' => \Browser::browserVersion(),
+            'device'     => \Browser::deviceType(),
+            'os'         => \Browser::platformFamily(),
+            'os_version' => \Browser::platformVersion(),
         ]);
     }
 }
