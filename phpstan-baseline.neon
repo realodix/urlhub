@@ -1,2 +1,11 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsString\\(\\) with string will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Unit/Actions/QrCodeTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$image of function imagesx expects GdImage, GdImage\\|false given\\.$#"
+			count: 4
+			path: tests/Unit/Actions/QrCodeTest.php
