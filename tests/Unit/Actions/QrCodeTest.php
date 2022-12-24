@@ -17,7 +17,6 @@ class QrCodeTest extends TestCase
         $QrCode = (new QrCodeAction)->process('foo');
 
         $this->assertInstanceOf(ResultInterface::class, $QrCode);
-        $this->assertIsString($QrCode->getDataUri());
     }
 
     /**
