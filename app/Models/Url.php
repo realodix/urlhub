@@ -36,7 +36,6 @@ class Url extends Model
         'is_custom',
         'destination',
         'title',
-        'click',
         'ip',
     ];
 
@@ -83,9 +82,7 @@ class Url extends Model
     protected function userId(): Attribute
     {
         return Attribute::make(
-            set: function ($value) {
-                return $value === 0 ? self::GUEST_ID : $value;
-            },
+            set: fn ($value) => $value === 0 ? self::GUEST_ID : $value,
         );
     }
 
@@ -301,21 +298,6 @@ class Url extends Model
     public function totalUrl(): int
     {
         return self::count('keyword');
-    }
-
-    /**
-     * Count the number of clicks based on user id.
-     *
-     * @param int|string|null $userId
-     */
-    public function clickCount($userId = null): int
-    {
-        return self::whereUserId($userId)->sum('click');
-    }
-
-    public function totalClick(): int
-    {
-        return self::sum('click');
     }
 
     /**
