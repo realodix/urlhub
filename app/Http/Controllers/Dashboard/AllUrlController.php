@@ -17,7 +17,7 @@ class AllUrlController extends Controller
     /**
      * Show all short URLs created by all users.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function view()
     {

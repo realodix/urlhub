@@ -13,7 +13,7 @@ class ChangePasswordController extends Controller
      * Show the form for editing password.
      *
      * @param User $user \App\Models\User
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

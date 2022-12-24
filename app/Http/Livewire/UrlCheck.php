@@ -38,7 +38,7 @@ class UrlCheck extends Component
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function render()
     {
