@@ -30,9 +30,9 @@
                         </div>
                         <div class="block">
                             <b class="text-uh-1">@svg('icon-bar-chart', 'mr-1.5') {{__('Clicks')}}:</b>
-                            <span class="text-cyan-600">{{compactNumber($url->totalClick())}}</span> -
-                            <span class="text-teal-600">{{compactNumber($url->clickCount(auth()->id()))}}</span> -
-                            <span class="text-orange-600">{{compactNumber($url->clickCount())}}</span>
+                            <span class="text-cyan-600">{{compactNumber($visit->totalClick())}}</span> -
+                            <span class="text-teal-600">{{compactNumber($visit->totalClickPerUser(auth()->id()))}}</span> -
+                            <span class="text-orange-600">{{compactNumber($visit->totalClickPerUser())}}</span>
                         </div>
                     </div>
                     <div class="text-uh-1 w-full sm:w-1/4 mt-4 sm:mt-0">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="w-full sm:w-1/4">
                         <span class="font-semibold text-lg sm:text-2xl">@svg('icon-eye', 'mr-1.5') {{__('Clicks')}}:</span>
-                        <span class="font-light text-lg sm:text-2xl">{{compactNumber($url->clickCount(auth()->id()))}}</span>
+                        <span class="font-light text-lg sm:text-2xl">{{compactNumber($visit->totalClickPerUser(auth()->id()))}}</span>
                     </div>
                 </div>
             @endrole

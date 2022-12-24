@@ -103,6 +103,14 @@ return [
      */
     'redirect_cache_max_age' => env('UH_REDIRECT_CACHE_MAX_AGE', 30),
 
+    /**
+     * Determine whether bot visits are logged or not
+     *
+     * - TRUE: Logs bot visits in the visitor log
+     * - FALSE: Doesn't log bot visits in visitor logs
+     */
+    'log_bot_visit' => env('UH_LOG_BOT_VISIT', false),
+
     /*
     |--------------------------------------------------------------------------
     | QR codes

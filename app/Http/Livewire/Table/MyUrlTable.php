@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Table;
 
 use App\Helpers\Helper;
 use App\Models\Url;
+use App\Models\Visit;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -101,7 +102,15 @@ final class MyUrlTable extends PowerGridComponent
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })
-            ->addColumn('clicks', fn (Url $url) => compactNumber($url->click).Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-indigo-600\')'))
+            ->addColumn('click', function (Url $url) {
+                $visit = new Visit;
+                $uClick = $visit->totalClickPerUrl($url->id, unique: true);
+                $tClick = $visit->totalClickPerUrl($url->id);
+                $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-indigo-600\')');
+                $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
+
+                return '<div title="'.$title.'">'.$uClick.' / '.$tClick.$icon.'</div>';
+            })
             ->addColumn('created_at_formatted', function (Url $url) {
                 /** @var \Carbon\Carbon */
                 $urlCreatedAt = $url->created_at;
