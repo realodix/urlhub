@@ -14,8 +14,9 @@ class UrlController extends Controller
     /**
      * UrlController constructor.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public Url $url
+    ) {
         $this->middleware('urlhublinkchecker')->only('create');
     }
 
@@ -32,7 +33,7 @@ class UrlController extends Controller
             return response()->json(['errors' => $v->errors()->all()]);
         }
 
-        $url = (new Url)->shortenUrl($request, Auth::id());
+        $url = $this->url->shortenUrl($request, Auth::id());
 
         return response([
             'id'        => $url->id,

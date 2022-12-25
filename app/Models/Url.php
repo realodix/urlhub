@@ -119,7 +119,7 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Other Functions
+    | General Functions
     |--------------------------------------------------------------------------
     */
 
@@ -157,7 +157,6 @@ class Url extends Model
             'user_id'   => $userId,
             'keyword'   => $randomKey,
             'is_custom' => false,
-            'click'    => 0,
         ]);
 
         return $replicate->save();
@@ -254,8 +253,6 @@ class Url extends Model
 
     /**
      * Count unique random strings that can be generated
-     *
-     * https://www.php.net/manual/en/function.max.php
      */
     public function keyRemaining(): int
     {
