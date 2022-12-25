@@ -109,7 +109,7 @@ return [
      * - TRUE: Logs bot visits in the visitor log
      * - FALSE: Doesn't log bot visits in visitor logs
      */
-    'log_bot_visit' => env('UH_LOG_BOT_VISIT', false),
+    'track_bot_visits' => env('UH_TRACK_BOT_VISITS', false),
 
     /*
     |--------------------------------------------------------------------------

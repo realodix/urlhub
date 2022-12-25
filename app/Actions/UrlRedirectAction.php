@@ -44,7 +44,7 @@ class UrlRedirectAction
      */
     private function storeVisitStat(Url $url)
     {
-        $logBotVisit = config('urlhub.log_bot_visit');
+        $logBotVisit = config('urlhub.track_bot_visits');
         if ($logBotVisit === false && \Browser::isBot() === true) {
             return;
         }
