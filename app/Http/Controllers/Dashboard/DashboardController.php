@@ -62,7 +62,7 @@ class DashboardController extends Controller
         $url->title = $request->title;
         $url->save();
 
-        return redirect()->route('dashboard')
+        return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));
     }
 
