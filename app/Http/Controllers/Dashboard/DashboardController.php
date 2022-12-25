@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    public function __construct(
+        public Url $url,
+        public User $user,
+        public Visit $visit
+    ) {
+    }
+
     /**
      * Show all user short URLs.
      *
@@ -19,9 +26,9 @@ class DashboardController extends Controller
     public function view()
     {
         return view('backend.dashboard', [
-            'url'  => new Url,
-            'user' => new User,
-            'visit' => new Visit,
+            'url'  => $this->url,
+            'user' => $this->user,
+            'visit' => $this->visit,
         ]);
     }
 
@@ -83,8 +90,7 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $url = new Url;
-        $url->duplicate($key, Auth::id());
+        $this->url->duplicate($key, Auth::id());
 
         return redirect()->back()
             ->withFlashSuccess(__('The link has successfully duplicated.'));

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Request;
 
 class UrlRedirectAction
 {
+    public function __construct(
+        public Visit $visit,
+    ) {
+    }
+
     /**
      * Handle the HTTP redirect and return the redirect response.
      *
@@ -44,7 +49,7 @@ class UrlRedirectAction
             return;
         }
 
-        $visitorId = (new Visit)->visitorId($url->id);
+        $visitorId = $this->visit->visitorId($url->id);
         $hasVisitorId = Visit::whereVisitorId($visitorId)->first();
 
         Visit::create([

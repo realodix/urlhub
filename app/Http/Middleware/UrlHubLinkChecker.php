@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UrlHubLinkChecker
 {
+    public function __construct(
+        public Url $url
+    ) {
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -72,9 +77,7 @@ class UrlHubLinkChecker
      */
     private function canGeneratingUniqueRandomKey(): bool
     {
-        $url = new Url;
-
-        if ($url->keyRemaining() === 0) {
+        if ($this->url->keyRemaining() === 0) {
             return false;
         }
 
