@@ -28,7 +28,7 @@ class UrlController extends Controller
     {
         $url = $this->url->shortenUrl($request, Auth::id());
 
-        return redirect()->route('su_detail', $url->keyword);
+        return to_route('su_detail', $url->keyword);
     }
 
     /**
@@ -67,7 +67,7 @@ class UrlController extends Controller
 
         $url->delete();
 
-        return redirect()->route('home');
+        return to_route('home');
     }
 
     /**
@@ -82,7 +82,7 @@ class UrlController extends Controller
         $randomKey = $this->url->randomString();
         $this->url->duplicate($key, Auth::id(), $randomKey);
 
-        return redirect()->route('su_detail', $randomKey)
+        return to_route('su_detail', $randomKey)
             ->withFlashSuccess(__('The link has successfully duplicated.'));
     }
 }
