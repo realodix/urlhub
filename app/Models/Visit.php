@@ -18,7 +18,7 @@ class Visit extends Model
      */
     protected $fillable = [
         'url_id',
-        'user_id',
+        'url_author_id',
         'visitor_id',
         'is_first_click',
         'referer',
@@ -84,9 +84,9 @@ class Visit extends Model
     /**
      * Total visit by user id
      */
-    public function totalClickPerUser(int $userId = null): int
+    public function totalClickPerUser(int $authorId = null): int
     {
-        return self::whereUserId($userId)->count();
+        return self::whereUrlAuthorId($authorId)->count();
     }
 
     /**

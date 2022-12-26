@@ -53,7 +53,7 @@ class VisitTest extends TestCase
     public function totalClicksForUrlCreatedByMe()
     {
         Visit::factory()->create([
-            'user_id' => $this->admin()->id,
+            'url_author_id' => $this->admin()->id,
         ]);
 
         $expected = 1;
@@ -71,7 +71,7 @@ class VisitTest extends TestCase
     public function totalClicksForUrlCreatedByGuest()
     {
         Visit::factory()->create([
-            'user_id' => null,
+            'url_author_id' => null,
         ]);
 
         $expected = 1;

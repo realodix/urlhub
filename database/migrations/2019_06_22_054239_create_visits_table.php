@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('url_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->foreignId('user_id')
+            $table->foreignId('url_author_id')
                 ->nullable()
-                ->constrained()
+                ->constrained('users')
                 ->cascadeOnDelete();
             $table->string('visitor_id');
             $table->boolean('is_first_click');
