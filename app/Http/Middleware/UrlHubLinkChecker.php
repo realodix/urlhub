@@ -21,7 +21,7 @@ class UrlHubLinkChecker
      */
     public function handle($request, \Closure $next)
     {
-        if (! $this->cutomKeywordIsValid($request)) {
+        if (! $this->customKeywordIsValid($request)) {
             return redirect()->back()
                 ->withFlashError(__('Custom keyword not available.'));
         }
@@ -53,7 +53,7 @@ class UrlHubLinkChecker
      *
      * @param \Illuminate\Http\Request $request
      */
-    private function cutomKeywordIsValid($request): bool
+    private function customKeywordIsValid($request): bool
     {
         $value = $request->custom_key;
         $routes = array_map(
