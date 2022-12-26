@@ -62,15 +62,24 @@ class Visit extends Model
     /**
      * Generate unique Visitor Id
      */
-    public function visitorId(int $urlId): string
+    public function visitorId(Url $url): string
     {
-        $visitorId = hash('sha3-256', $urlId.'-'.Request::ip().'-'.Request::userAgent());
+        $visitorId = hash('sha3-256', $url->id.'-'.Request::ip().'-'.Request::userAgent());
 
         if (Auth::check() === true) {
             $visitorId = (string) Auth::id();
         }
 
         return $visitorId;
+    }
+
+    public function isFirstClick(Url $url): bool
+    {
+        $hasVisited = Visit::whereVisitorId($this->visitorId($url))
+            ->whereUrlId($url->id)
+            ->first();
+
+        return $hasVisited ? false : true;
     }
 
     /**
