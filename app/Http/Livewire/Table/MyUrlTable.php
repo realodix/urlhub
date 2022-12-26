@@ -93,7 +93,7 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('destination', function (Url $url) {
                 return
-                    '<span title="'.$url->title.'">'
+                    '<span title="'.htmlspecialchars($url->title).'">'
                         .Str::limit($url->title, self::STR_LIMIT).
                     '</span>
                     <br>
