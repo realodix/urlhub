@@ -50,13 +50,15 @@ class UrlRedirectAction
         }
 
         $visitorId = $this->visit->visitorId($url->id);
-        $hasVisitorId = Visit::whereVisitorId($visitorId)->first();
+        $hasVisited = Visit::whereVisitorId($visitorId)
+            ->whereUrlId($url->id)
+            ->first();
 
         Visit::create([
             'url_id'     => $url->id,
             'user_id'    => $url->user->id,
             'visitor_id' => $visitorId,
-            'is_first_click' => $hasVisitorId ? false : true,
+            'is_first_click' => $hasVisited ? false : true,
             'referer' => Request::header('referer'),
             'ip'      => Helper::anonymizeIp(Request::ip()),
             'browser' => \Browser::browserFamily(),
