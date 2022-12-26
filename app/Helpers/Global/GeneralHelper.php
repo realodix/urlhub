@@ -16,3 +16,16 @@ if (! function_exists('urlDisplay')) {
         return Helper::urlDisplay($url, $limit, $scheme);
     }
 }
+
+if (! function_exists('compactNumber')) {
+    /**
+     * \App\Helpers\Helper::compactNumber()
+     *
+     * @param int $value
+     * @return int|string
+     */
+    function compactNumber($value)
+    {
+        return Helper::compactNumber($value);
+    }
+}
