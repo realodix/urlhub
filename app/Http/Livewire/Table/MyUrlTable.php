@@ -6,7 +6,6 @@ use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\Visit;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
@@ -54,7 +53,7 @@ final class MyUrlTable extends PowerGridComponent
     */
     public function datasource(): ?Builder
     {
-        return Url::whereUserId(Auth::id());
+        return Url::whereUserId(auth()->id());
     }
 
     /*

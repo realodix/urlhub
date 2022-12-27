@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
@@ -33,7 +32,7 @@ class UrlController extends Controller
             return response()->json(['errors' => $v->errors()->all()]);
         }
 
-        $url = $this->url->shortenUrl($request, Auth::id());
+        $url = $this->url->shortenUrl($request, auth()->id());
 
         return response([
             'id'        => $url->id,

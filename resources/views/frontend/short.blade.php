@@ -45,7 +45,7 @@
                 </button>
 
                 @auth
-                    @if (Auth::user()->hasRole('admin') || (Auth::user()->id === $url->user_id))
+                    @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
                         <button class="btn-clipboard btn-icon-detail">
                             <a href="{{route('dashboard.su_edit', $url->keyword)}}" title="{{__('Edit')}}">
                                 @svg('icon-edit') {{__('Edit')}}

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Actions\QrCodeAction;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
-use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
 {
@@ -26,7 +25,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = $this->url->shortenUrl($request, Auth::id());
+        $url = $this->url->shortenUrl($request, auth()->id());
 
         return to_route('su_detail', $url->keyword);
     }
@@ -80,7 +79,7 @@ class UrlController extends Controller
     public function duplicate(string $key)
     {
         $randomKey = $this->url->randomString();
-        $this->url->duplicate($key, Auth::id(), $randomKey);
+        $this->url->duplicate($key, auth()->id(), $randomKey);
 
         return to_route('su_detail', $randomKey)
             ->withFlashSuccess(__('The link has successfully duplicated.'));
