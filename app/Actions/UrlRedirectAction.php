@@ -5,7 +5,6 @@ namespace App\Actions;
 use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\Visit;
-use Illuminate\Support\Facades\Request;
 
 class UrlRedirectAction
 {
@@ -54,8 +53,8 @@ class UrlRedirectAction
             'url_author_id'   => $url->user->id,
             'visitor_id'      => $this->visit->visitorId(),
             'is_first_click'  => $this->visit->isFirstClick($url),
-            'referer'         => Request::header('referer'),
-            'ip'              => Helper::anonymizeIp(Request::ip()),
+            'referer'         => request()->header('referer'),
+            'ip'              => Helper::anonymizeIp(request()->ip()),
             'browser'         => \Browser::browserFamily(),
             'browser_version' => \Browser::browserVersion(),
             'device'          => \Browser::deviceType(),

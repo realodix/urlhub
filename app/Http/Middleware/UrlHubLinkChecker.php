@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Models\Url;
 use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Auth;
 
 class UrlHubLinkChecker
 {
@@ -91,8 +90,8 @@ class UrlHubLinkChecker
     {
         $longUrl = rtrim($request->long_url, '/'); // Remove trailing slash
 
-        if (Auth::check()) {
-            $s_url = Url::whereUserId(Auth::id())
+        if (auth()->check()) {
+            $s_url = Url::whereUserId(auth()->id())
                 ->whereDestination($longUrl)
                 ->first();
         } else {

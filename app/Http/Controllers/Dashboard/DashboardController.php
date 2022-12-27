@@ -7,7 +7,6 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -90,7 +89,7 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $this->url->duplicate($key, Auth::id());
+        $this->url->duplicate($key, auth()->id());
 
         return redirect()->back()
             ->withFlashSuccess(__('The link has successfully duplicated.'));
