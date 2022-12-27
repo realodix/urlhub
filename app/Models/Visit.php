@@ -62,9 +62,14 @@ class Visit extends Model
     /**
      * Generate unique Visitor Id
      */
-    public function visitorId(Url $url): string
+    public function visitorId(): string
     {
-        $visitorId = hash('sha3-256', $url->id.'-'.Request::ip().'-'.Request::userAgent());
+        $neighborVisitor = [
+            'ip'      => Request::ip(),
+            'browser' => \Browser::browserFamily(),
+            'os'      => \Browser::platformFamily(),
+        ];
+        $visitorId = hash('sha3-256', implode($neighborVisitor));
 
         if (Auth::check() === true) {
             $visitorId = (string) Auth::id();
@@ -75,7 +80,7 @@ class Visit extends Model
 
     public function isFirstClick(Url $url): bool
     {
-        $hasVisited = Visit::whereVisitorId($this->visitorId($url))
+        $hasVisited = Visit::whereVisitorId($this->visitorId())
             ->whereUrlId($url->id)
             ->first();
 
