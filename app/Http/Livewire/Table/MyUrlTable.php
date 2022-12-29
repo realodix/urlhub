@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Table;
 
 use App\Helpers\Helper;
 use App\Models\Url;
+use App\Models\Visit;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
@@ -53,7 +53,7 @@ final class MyUrlTable extends PowerGridComponent
     */
     public function datasource(): ?Builder
     {
-        return Url::whereUserId(Auth::id());
+        return Url::whereUserId(auth()->id());
     }
 
     /*
@@ -92,7 +92,7 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('destination', function (Url $url) {
                 return
-                    '<span title="'.$url->title.'">'
+                    '<span title="'.htmlspecialchars($url->title).'">'
                         .Str::limit($url->title, self::STR_LIMIT).
                     '</span>
                     <br>
@@ -101,7 +101,15 @@ final class MyUrlTable extends PowerGridComponent
                         .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
                     '</a>';
             })
-            ->addColumn('clicks', fn (Url $url) => compactNumber($url->click).Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-indigo-600\')'))
+            ->addColumn('click', function (Url $url) {
+                $visit = new Visit;
+                $uClick = Helper::compactNumber($visit->totalClickPerUrl($url->id, unique: true));
+                $tClick = Helper::compactNumber($visit->totalClickPerUrl($url->id));
+                $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-indigo-600\')');
+                $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
+
+                return '<div title="'.$title.'">'.$uClick.' / '.$tClick.$icon.'</div>';
+            })
             ->addColumn('created_at_formatted', function (Url $url) {
                 /** @var \Carbon\Carbon */
                 $urlCreatedAt = $url->created_at;

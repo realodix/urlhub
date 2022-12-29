@@ -15,7 +15,11 @@
                     </li>
                     <li class="inline-block pr-4 mt-4 lg:mt-0">
                         @svg('icon-bar-chart')
-                        <i><span title="{{number_format($url->click)}}" class="font-bold">{{compactNumber($url->click)}}</span></i>
+                        <i>
+                            <span title="{{number_format($visit->totalClickPerUrl($url->id))}}" class="font-bold">
+                                {{compactNumber($visit->totalClickPerUrl($url->id))}}
+                            </span>
+                        </i>
                         {{__('Total engagements')}}
                     </li>
                 </ul>
@@ -41,7 +45,7 @@
                 </button>
 
                 @auth
-                    @if (Auth::user()->hasRole('admin') || (Auth::user()->id === $url->user_id))
+                    @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
                         <button class="btn-clipboard btn-icon-detail">
                             <a href="{{route('dashboard.su_edit', $url->keyword)}}" title="{{__('Edit')}}">
                                 @svg('icon-edit') {{__('Edit')}}

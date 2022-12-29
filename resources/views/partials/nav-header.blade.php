@@ -11,7 +11,7 @@
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="navbar-toggler inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 rounded-md focus:outline-none transition">
-                                        <div class="text-base font-semibold">{{Str::title(Auth::user()->name)}}</div>
+                                        <div class="text-base font-semibold">{{Str::title(auth()->user()->name)}}</div>
 
                                         <svg class="navbar-toggler-icon ml-2 -mr-0.5 h-4 w-4"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -48,10 +48,10 @@
                                         {{__('Manage Account')}}
                                     </div>
 
-                                    <a href="{{route('user.edit', Auth::user()->name)}}"
+                                    <a href="{{route('user.edit', auth()->user()->name)}}"
                                         class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
                                         @svg('icon-user', 'mr-1') {{__('Profile')}}</a>
-                                    <a href="{{route('user.change-password', Auth::user()->name)}}"
+                                    <a href="{{route('user.change-password', auth()->user()->name)}}"
                                         class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
                                         @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
 
@@ -125,17 +125,17 @@
             <div class="pt-4 pb-1 border-t border-slate-200">
                 <div class="flex items-center px-4">
                     <div>
-                        <div class="nav-item-username">{{Auth::user()->name}}</div>
-                        <div class="nav-item-email">{{Auth::user()->email}}</div>
+                        <div class="nav-item-username">{{auth()->user()->name}}</div>
+                        <div class="nav-item-email">{{auth()->user()->email}}</div>
                     </div>
                 </div>
 
                 <div class="mt-3 space-y-1">
                     <!-- Account Management -->
-                    <a href="{{route('user.edit', Auth::user()->name)}}"
+                    <a href="{{route('user.edit', auth()->user()->name)}}"
                         class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-uh-indigo-400':''}}">
                         @svg('icon-user', 'mr-1') {{__('Profile')}}</a>
-                    <a href="{{route('user.change-password', Auth::user()->name)}}"
+                    <a href="{{route('user.change-password', auth()->user()->name)}}"
                         class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-uh-indigo-400':''}}">
                         @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
 

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\QrCode;
+use App\Actions\QrCodeAction;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
-use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
 {
     /**
      * UrlController constructor.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public Url $url
+    ) {
         $this->middleware('urlhublinkchecker')->only('create');
     }
 
@@ -25,9 +25,9 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = (new Url)->shortenUrl($request, Auth::id());
+        $url = $this->url->shortenUrl($request, auth()->id());
 
-        return redirect()->route('su_detail', $url->keyword);
+        return to_route('su_detail', $url->keyword);
     }
 
     /**
@@ -36,19 +36,20 @@ class UrlController extends Controller
      * @codeCoverageIgnore
      *
      * @param string $key
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function showDetail($key)
     {
         $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
+        $data = ['url' => $url, 'visit' => new \App\Models\Visit];
 
         if (config('urlhub.qrcode')) {
-            $qrCode = (new QrCode)->process($url->short_url);
+            $qrCode = (new QrCodeAction)->process($url->short_url);
 
-            return view('frontend.short', compact(['qrCode']), ['url' => $url]);
+            $data = array_merge($data, compact(['qrCode']));
         }
 
-        return view('frontend.short', ['url' => $url]);
+        return view('frontend.short', $data);
     }
 
     /**
@@ -65,7 +66,7 @@ class UrlController extends Controller
 
         $url->delete();
 
-        return redirect()->route('home');
+        return to_route('home');
     }
 
     /**
@@ -77,11 +78,10 @@ class UrlController extends Controller
      */
     public function duplicate(string $key)
     {
-        $url = new Url;
-        $randomKey = $url->randomString();
-        $url->duplicate($key, Auth::id(), $randomKey);
+        $randomKey = $this->url->randomString();
+        $this->url->duplicate($key, auth()->id(), $randomKey);
 
-        return redirect()->route('su_detail', $randomKey)
+        return to_route('su_detail', $randomKey)
             ->withFlashSuccess(__('The link has successfully duplicated.'));
     }
 }

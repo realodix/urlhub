@@ -36,7 +36,6 @@ class Url extends Model
         'is_custom',
         'destination',
         'title',
-        'click',
         'ip',
     ];
 
@@ -83,9 +82,14 @@ class Url extends Model
     protected function userId(): Attribute
     {
         return Attribute::make(
-            set: function ($value) {
-                return $value === 0 ? self::GUEST_ID : $value;
-            },
+            set: fn ($value) => $value === 0 ? self::GUEST_ID : $value,
+        );
+    }
+
+    protected function shortUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes) => url('/'.$attributes['keyword']),
         );
     }
 
@@ -122,7 +126,7 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Other Functions
+    | General Functions
     |--------------------------------------------------------------------------
     */
 
@@ -160,7 +164,6 @@ class Url extends Model
             'user_id'   => $userId,
             'keyword'   => $randomKey,
             'is_custom' => false,
-            'click'    => 0,
         ]);
 
         return $replicate->save();
@@ -257,8 +260,6 @@ class Url extends Model
 
     /**
      * Count unique random strings that can be generated
-     *
-     * https://www.php.net/manual/en/function.max.php
      */
     public function keyRemaining(): int
     {
@@ -301,21 +302,6 @@ class Url extends Model
     public function totalUrl(): int
     {
         return self::count('keyword');
-    }
-
-    /**
-     * Count the number of clicks based on user id.
-     *
-     * @param int|string|null $userId
-     */
-    public function clickCount($userId = null): int
-    {
-        return self::whereUserId($userId)->sum('click');
-    }
-
-    public function totalClick(): int
-    {
-        return self::sum('click');
     }
 
     /**

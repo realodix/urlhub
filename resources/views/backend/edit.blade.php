@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', Str::title(Auth::user()->name) .' ‹ '. __('Edit URL Details'))
+@section('title', Str::title(auth()->user()->name) .' ‹ '. __('Edit URL Details'))
 
 @section('content')
     @include('partials/messages')

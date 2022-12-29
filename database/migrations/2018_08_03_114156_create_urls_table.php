@@ -15,18 +15,16 @@ return new class extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable($value = true);
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('keyword')->unique();
             $table->boolean('is_custom');
             $table->longText('destination');
             $table->string('title');
-            $table->unsignedInteger('click')->default(0);
             $table->ipAddress('ip');
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
         });
     }
 

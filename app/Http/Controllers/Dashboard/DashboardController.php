@@ -5,21 +5,29 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Models\User;
+use App\Models\Visit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    public function __construct(
+        public Url $url,
+        public User $user,
+        public Visit $visit
+    ) {
+    }
+
     /**
      * Show all user short URLs.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function view()
     {
         return view('backend.dashboard', [
-            'url'  => new Url,
-            'user' => new User,
+            'url'  => $this->url,
+            'user' => $this->user,
+            'visit' => $this->visit,
         ]);
     }
 
@@ -27,7 +35,7 @@ class DashboardController extends Controller
      * Show shortened url details page
      *
      * @param mixed $key
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($key)
     {
@@ -53,7 +61,7 @@ class DashboardController extends Controller
         $url->title = $request->title;
         $url->save();
 
-        return redirect()->route('dashboard')
+        return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));
     }
 
@@ -81,8 +89,7 @@ class DashboardController extends Controller
      */
     public function duplicate($key)
     {
-        $url = new Url;
-        $url->duplicate($key, Auth::id());
+        $this->url->duplicate($key, auth()->id());
 
         return redirect()->back()
             ->withFlashSuccess(__('The link has successfully duplicated.'));

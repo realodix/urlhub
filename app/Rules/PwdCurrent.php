@@ -3,7 +3,6 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\InvokableRule;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class PwdCurrent implements InvokableRule
@@ -18,7 +17,7 @@ class PwdCurrent implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        if (! Hash::check($value, Auth::user()->password)) {
+        if (! Hash::check($value, auth()->user()->password)) {
             $fail('The password you entered does not match your password. Please try again.');
         }
     }

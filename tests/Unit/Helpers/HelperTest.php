@@ -3,7 +3,6 @@
 namespace Tests\Unit\Helpers;
 
 use App\Helpers\Helper;
-use App\Helpers\NumHelper;
 use Tests\TestCase;
 
 class HelperTest extends TestCase
@@ -86,17 +85,17 @@ class HelperTest extends TestCase
      */
     public function compactNumber($expected, $actual)
     {
-        $this->assertSame($expected, NumHelper::number_shorten($actual));
+        $this->assertSame($expected, Helper::compactNumber($actual));
     }
 
     /**
      * @test
      * @group u-helper
      */
-    public function numbPrec()
+    public function numberFormatPrecision()
     {
-        $this->assertSame(19.12, NumHelper::numbPrec(19.123456));
-        $this->assertSame(19.123, NumHelper::numbPrec(19.123456, 3));
+        $this->assertSame(19.12, Helper::numberFormatPrecision(19.123456));
+        $this->assertSame(19.123, Helper::numberFormatPrecision(19.123456, 3));
     }
 
     public function toAmountShortProvider()
