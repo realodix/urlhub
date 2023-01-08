@@ -39,7 +39,6 @@ class UrlController extends Controller
             'title'       => $request->long_url,
             'keyword'     => $keyword,
             'is_custom'   => $isCustom,
-            'ip'          => Helper::anonymizeIp($request->ip()),
         ];
 
         $url = app(CreateShortenedUrl::class)->execute($data);

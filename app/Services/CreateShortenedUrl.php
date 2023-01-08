@@ -17,7 +17,6 @@ class CreateShortenedUrl
             'title'       => $data['title'],
             'keyword'     => $data['keyword'],
             'is_custom'   => $data['is_custom'],
-            'ip'          => $data['ip'],
         ]);
     }
 }

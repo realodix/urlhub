@@ -36,7 +36,6 @@ class Url extends Model
         'is_custom',
         'destination',
         'title',
-        'ip',
     ];
 
     /**

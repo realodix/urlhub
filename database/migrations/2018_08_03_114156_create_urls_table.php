@@ -23,7 +23,6 @@ return new class extends Migration
             $table->boolean('is_custom');
             $table->longText('destination');
             $table->string('title');
-            $table->ipAddress('ip');
             $table->timestamps();
         });
     }
