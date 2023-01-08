@@ -21,7 +21,7 @@ class ChangePasswordController extends Controller
     {
         $this->authorize('view', $user);
 
-        return view('backend.user.changepassword', compact('user'));
+        return view('backend.user.changepassword', ['user' => $user]);
     }
 
     /**

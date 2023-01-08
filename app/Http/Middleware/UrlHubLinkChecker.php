@@ -3,15 +3,11 @@
 namespace App\Http\Middleware;
 
 use App\Models\Url;
+use App\Services\KeyGeneratorService;
 use Illuminate\Routing\Route;
 
 class UrlHubLinkChecker
 {
-    public function __construct(
-        public Url $url
-    ) {
-    }
-
     /**
      * Handle an incoming request.
      *
@@ -74,7 +70,7 @@ class UrlHubLinkChecker
      */
     private function canGenerateUniqueRandomKeys(): bool
     {
-        if ($this->url->keyRemaining() === 0) {
+        if (app(KeyGeneratorService::class)->idleCapacity() === 0) {
             return false;
         }
 

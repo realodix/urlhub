@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\QrCodeAction;
+use App\Helpers\Helper;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
+use App\Services\CreateShortenedUrl;
+use App\Services\DuplicateUrl;
+use App\Services\KeyGeneratorService;
+use App\Services\QrCodeService;
 
 class UrlController extends Controller
 {
@@ -12,7 +16,8 @@ class UrlController extends Controller
      * UrlController constructor.
      */
     public function __construct(
-        public Url $url
+        public Url $url,
+        public KeyGeneratorService $keyGeneratorService,
     ) {
         $this->middleware('urlhublinkchecker')->only('create');
     }
@@ -25,7 +30,19 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = $this->url->shortenUrl($request, auth()->id());
+        $keyword = $request->custom_key ?? $this->keyGeneratorService->urlKey($request->long_url);
+        $isCustom = $request->custom_key ? true : false;
+
+        $data = [
+            'user_id'     => auth()->id(),
+            'destination' => $request->long_url,
+            'title'       => $request->long_url,
+            'keyword'     => $keyword,
+            'is_custom'   => $isCustom,
+            'ip'          => Helper::anonymizeIp($request->ip()),
+        ];
+
+        $url = app(CreateShortenedUrl::class)->execute($data);
 
         return to_route('su_detail', $url->keyword);
     }
@@ -44,9 +61,9 @@ class UrlController extends Controller
         $data = ['url' => $url, 'visit' => new \App\Models\Visit];
 
         if (config('urlhub.qrcode')) {
-            $qrCode = (new QrCodeAction)->process($url->short_url);
+            $qrCode = app(QrCodeService::class)->execute($url->short_url);
 
-            $data = array_merge($data, compact(['qrCode']));
+            $data = array_merge($data, ['qrCode' => $qrCode]);
         }
 
         return view('frontend.short', $data);
@@ -78,8 +95,8 @@ class UrlController extends Controller
      */
     public function duplicate(string $key)
     {
-        $randomKey = $this->url->randomString();
-        $this->url->duplicate($key, auth()->id(), $randomKey);
+        $randomKey = $this->keyGeneratorService->generateRandomString();
+        app(DuplicateUrl::class)->execute($key, auth()->id(), $randomKey);
 
         return to_route('su_detail', $randomKey)
             ->withFlashSuccess(__('The link has successfully duplicated.'));
