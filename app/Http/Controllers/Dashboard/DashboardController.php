@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Services\DuplicateUrl;
 use App\Services\KeyGeneratorService;
+use App\Services\UpdateShortenedUrl;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -34,12 +35,11 @@ class DashboardController extends Controller
     /**
      * Show shortened url details page
      *
-     * @param mixed $key
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit($key)
+    public function edit(string $urlKey)
     {
-        $url = Url::whereKeyword($key)->first();
+        $url = Url::whereKeyword($urlKey)->first();
 
         $this->authorize('updateUrl', $url);
 
@@ -50,16 +50,14 @@ class DashboardController extends Controller
      * Update the destination URL
      *
      * @param Request $request \Illuminate\Http\Request
-     * @param mixed   $url
+     * @param Url     $url     \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, $url)
+    public function update(Request $request, Url $url)
     {
-        $url->destination = $request->long_url;
-        $url->title = $request->title;
-        $url->save();
+        app(UpdateShortenedUrl::class)->execute($request, $url);
 
         return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));

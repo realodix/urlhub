@@ -77,7 +77,7 @@ class KeyGeneratorService
         $routeCollection = \Illuminate\Support\Facades\Route::getRoutes()->get();
         $routePath = array_map(fn ($route) => $route->uri, $routeCollection);
 
-        $isExistsInDb = Url::whereKeyword($value)->first();
+        $isExistsInDb = Url::whereKeyword($value)->exists();
         $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'));
         $isRegisteredRoutePath = in_array($value, $routePath);
 

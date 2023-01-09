@@ -32,6 +32,7 @@ class UrlFactory extends Factory
             'title'       => 'No Title',
             'keyword'     => app(KeyGeneratorService::class)->generateRandomString(),
             'is_custom'   => false,
+            'ip'          => fake()->ipv4(),
         ];
     }
 }
