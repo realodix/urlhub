@@ -11,15 +11,22 @@ services:
     volumes:
       - .:/var/www/html
     env_file: .env
+    links:
+        - mysql
     networks:
          - internal
 
-  db:
+  mysql:
     image: mysql:8.0
+    env_file: .env
     environment:
         MYSQL_DATABASE: ${DB_DATABASE}
         MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-        MYSQL_PASSWORD: ${DB_PASSWORD}
         MYSQL_USER: ${DB_USERNAME}
+        MYSQL_PASSWORD: ${DB_PASSWORD}
+        MYSQL_VERSION: latest
+        MYSQL_PORT: ${DB_PORT}
+        MYSQL_ENTRYPOINT_INITDB: ./mysql/docker-entrypoint-initdb.d
+
     networks:
          - internal

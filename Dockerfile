@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     git \
     libzip-dev \
     zip  \
-    && docker-php-ext-install zip \
+    && docker-php-ext-install zip mysqli pdo pdo_mysql \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install zip gd
 
@@ -25,12 +25,14 @@ WORKDIR /var/www/html
 
 # Copiar el código de la aplicación al contenedor
 COPY . .
-
+COPY ".env" ".env"
 # Instalar las dependencias de composer
 RUN composer install --no-dev
 
 # Generar una clave de encriptación para Laravel
 RUN php artisan key:generate
+
+#RUN php artisan migrate --seed
 
 # Ejecutar la aplicación con PHP Artisan Serve
 CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "8000"]
