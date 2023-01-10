@@ -3,18 +3,14 @@
 namespace App\Models;
 
 use App\Models\Traits\Hashidable;
-use Embed\Embed;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Spatie\Url\Url as SpatieUrl;
 
 /**
  * @property int|null $user_id
  * @property string   $short_url
  * @property string   $destination
- * @property string   $title
  * @property int      $clicks
  * @property int      $uniqueClicks
  */
@@ -97,23 +93,6 @@ class Url extends Model
     {
         return Attribute::make(
             set: fn ($value) => rtrim($value, '/'),
-        );
-    }
-
-    protected function title(): Attribute
-    {
-        return Attribute::make(
-            set: function ($value) {
-                if (config('urlhub.web_title')) {
-                    if (Str::startsWith($value, 'http')) {
-                        return $this->getWebTitle($value);
-                    }
-
-                    return $value;
-                }
-
-                return 'No Title';
-            },
         );
     }
 
@@ -203,25 +182,5 @@ class Url extends Model
     public function totalClick(): int
     {
         return Visit::count();
-    }
-
-    /**
-     * Fetch the page title from the web page URL
-     *
-     * @throws \Exception
-     */
-    public function getWebTitle(string $webAddress): string
-    {
-        $spatieUrl = SpatieUrl::fromString($webAddress);
-        $defaultTitle = $spatieUrl->getHost().' - Untitled';
-
-        try {
-            $webTitle = app(Embed::class)->get($webAddress)->title ?? $defaultTitle;
-        } catch (\Exception) {
-            // If failed or not found, then return "{domain_name} - Untitled"
-            $webTitle = $defaultTitle;
-        }
-
-        return $webTitle;
     }
 }

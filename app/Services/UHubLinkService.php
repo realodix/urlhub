@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
+use Embed\Embed;
 use Illuminate\Http\Request;
+use Spatie\Url\Url as SpatieUrl;
 
 class UHubLinkService
 {
@@ -27,7 +29,7 @@ class UHubLinkService
         return Url::create([
             'user_id'     => auth()->id(),
             'destination' => $request->long_url,
-            'title'       => $request->long_url,
+            'title'       => $this->title($request->long_url),
             'keyword'     => $this->urlKey($request),
             'is_custom'   => $this->isCustom($request),
             'ip'          => $request->ip(),
@@ -65,6 +67,30 @@ class UHubLinkService
         ]);
 
         return $replicate->save();
+    }
+
+    /**
+     * Fetch the page title from the web page URL
+     *
+     * @throws \Exception
+     */
+    public function title(string $webAddress): string
+    {
+        $spatieUrl = SpatieUrl::fromString($webAddress);
+        $defaultTitle = $spatieUrl->getHost().' - Untitled';
+
+        if (config('urlhub.web_title')) {
+            try {
+                $title = app(Embed::class)->get($webAddress)->title ?? $defaultTitle;
+            } catch (\Exception) {
+                // If failed or not found, then return "{domain_name} - Untitled"
+                $title = $defaultTitle;
+            }
+
+            return $title;
+        }
+
+        return 'No Title';
     }
 
     private function urlKey(StoreUrl $request): string

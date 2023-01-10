@@ -189,21 +189,6 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function getWebTitle()
-    {
-        $expected = 'example123456789.com - Untitled';
-        $actual = $this->url->getWebTitle('https://example123456789.com');
-        $this->assertSame($expected, $actual);
-
-        $expected = 'www.example123456789.com - Untitled';
-        $actual = $this->url->getWebTitle('https://www.example123456789.com');
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
     public function totalClicks()
     {
         Visit::factory()->create();
