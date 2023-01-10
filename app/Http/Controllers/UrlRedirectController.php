@@ -19,6 +19,7 @@ class UrlRedirectController extends Controller
      * Redirect the client to the intended long URL (no checks are performed)
      * and executes the create visitor data task.
      *
+     * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\App\Models\Url>

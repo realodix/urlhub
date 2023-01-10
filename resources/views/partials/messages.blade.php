@@ -19,9 +19,8 @@
     <div class="block pl-3 pr-4 py-4 font-medium text-base text-orange-700 bg-orange-50 border-l-4 border-orange-400">
         {{ session('msgLinkAlreadyExists') }}
 
-        {{__('Do you want to duplicate this link?')}}
-
         @auth
+            {{__('Do you want to duplicate this link?')}}
             <div class="mt-4 ">
                 <a href="{{route('su_duplicate', $url->keyword)}}"
                     class="btn-icon-detail !bg-[#007c8c] hover:!bg-[#00525f] !text-white"

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
-use App\Services\CreateShortenedUrl;
-use App\Services\DuplicateUrl;
-use App\Services\KeyGeneratorService;
 use App\Services\QrCodeService;
+use App\Services\UHubLinkService;
 
 class UrlController extends Controller
 {
@@ -16,6 +14,7 @@ class UrlController extends Controller
      */
     public function __construct(
         public Url $url,
+        public UHubLinkService $uHubLinkService,
     ) {
         $this->middleware('urlhublinkchecker')->only('create');
     }
@@ -28,7 +27,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = app(CreateShortenedUrl::class)->execute($request);
+        $url = $this->uHubLinkService->create($request);
 
         return to_route('su_detail', $url->keyword);
     }
@@ -38,12 +37,16 @@ class UrlController extends Controller
      *
      * @codeCoverageIgnore
      *
+     * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Contracts\View\View
      */
     public function showDetail(string $urlKey)
     {
         $url = Url::with('visit')->whereKeyword($urlKey)->firstOrFail();
-        $data = ['url' => $url, 'visit' => new \App\Models\Visit];
+        $data = [
+            'url' => $url,
+            'visit' => new \App\Models\Visit,
+        ];
 
         if (config('urlhub.qrcode')) {
             $qrCode = app(QrCodeService::class)->execute($url->short_url);
@@ -57,12 +60,12 @@ class UrlController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param mixed $url
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete($url)
+    public function delete(Url $url)
     {
         $this->authorize('forceDelete', $url);
 
@@ -76,14 +79,14 @@ class UrlController extends Controller
      * link. You can duplicate it and it will generated a new unique random
      * key.
      *
+     * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate(string $key)
+    public function duplicate(string $urlKey)
     {
-        $randomKey = app(KeyGeneratorService::class)->generateRandomString();
-        app(DuplicateUrl::class)->execute($key, auth()->id(), $randomKey);
+        $this->uHubLinkService->duplicate($urlKey);
 
-        return to_route('su_detail', $randomKey)
+        return to_route('su_detail', $this->uHubLinkService->new_keyword)
             ->withFlashSuccess(__('The link has successfully duplicated.'));
     }
 }

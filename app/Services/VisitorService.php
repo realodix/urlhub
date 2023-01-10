@@ -10,6 +10,7 @@ class VisitorService
     /**
      * Store the visitor data.
      *
+     * @param Url $url \App\Models\Url
      * @return void
      */
     public function create(Url $url)
@@ -74,6 +75,8 @@ class VisitorService
     /**
      * Check if the visitor has clicked the link before. If the visitor has not
      * clicked the link before, return true.
+     *
+     * @param Url $url \App\Models\Url
      */
     public function isFirstClick(Url $url): bool
     {

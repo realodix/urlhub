@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Models\User;
-use App\Services\DuplicateUrl;
 use App\Services\KeyGeneratorService;
-use App\Services\UpdateShortenedUrl;
+use App\Services\UHubLinkService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,6 +14,7 @@ class DashboardController extends Controller
     public function __construct(
         public Url $url,
         public User $user,
+        public UHubLinkService $uHubLinkService,
     ) {
     }
 
@@ -35,11 +35,12 @@ class DashboardController extends Controller
     /**
      * Show shortened url details page
      *
+     * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Contracts\View\View
      */
     public function edit(string $urlKey)
     {
-        $url = Url::whereKeyword($urlKey)->first();
+        $url = Url::whereKeyword($urlKey)->firstOrFail();
 
         $this->authorize('updateUrl', $url);
 
@@ -57,7 +58,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, Url $url)
     {
-        app(UpdateShortenedUrl::class)->execute($request, $url);
+        $this->uHubLinkService->update($request, $url);
 
         return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));
@@ -66,12 +67,12 @@ class DashboardController extends Controller
     /**
      * Delete shortened URLs
      *
-     * @param mixed $url
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete($url)
+    public function delete(Url $url)
     {
         $this->authorize('forceDelete', $url);
 
@@ -82,12 +83,12 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param mixed $key
+     * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($key)
+    public function duplicate($urlKey)
     {
-        app(DuplicateUrl::class)->execute($key, auth()->id());
+        $this->uHubLinkService->duplicate($urlKey);
 
         return redirect()->back()
             ->withFlashSuccess(__('The link has successfully duplicated.'));

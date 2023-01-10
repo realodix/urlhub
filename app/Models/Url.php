@@ -210,13 +210,13 @@ class Url extends Model
      *
      * @throws \Exception
      */
-    public function getWebTitle(string $url): string
+    public function getWebTitle(string $webAddress): string
     {
-        $spatieUrl = SpatieUrl::fromString($url);
+        $spatieUrl = SpatieUrl::fromString($webAddress);
         $defaultTitle = $spatieUrl->getHost().' - Untitled';
 
         try {
-            $webTitle = (new Embed)->get($url)->title ?? $defaultTitle;
+            $webTitle = app(Embed::class)->get($webAddress)->title ?? $defaultTitle;
         } catch (\Exception) {
             // If failed or not found, then return "{domain_name} - Untitled"
             $webTitle = $defaultTitle;

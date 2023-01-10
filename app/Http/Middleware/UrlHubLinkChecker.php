@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
 class UrlHubLinkChecker
@@ -11,10 +12,9 @@ class UrlHubLinkChecker
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return mixed
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, \Closure $next)
+    public function handle(Request $request, \Closure $next)
     {
         if ($this->customKeywordIsAcceptable($request) === false) {
             return redirect()->back()
@@ -43,10 +43,8 @@ class UrlHubLinkChecker
      *
      * - Prevent registered routes from being used as custom keywords.
      * - Prevent using blacklisted words or reserved keywords as custom keywords.
-     *
-     * @param \Illuminate\Http\Request $request
      */
-    private function customKeywordIsAcceptable($request): bool
+    private function customKeywordIsAcceptable(Request $request): bool
     {
         $value = $request->custom_key;
         $routes = array_map(
@@ -79,10 +77,8 @@ class UrlHubLinkChecker
 
     /**
      * Check if a destination URL already exists in the database.
-     *
-     * @param \Illuminate\Http\Request $request
      */
-    private function destinationUrlAlreadyExists($request): Url|null
+    private function destinationUrlAlreadyExists(Request $request): Url|null
     {
         $longUrl = rtrim($request->long_url, '/'); // Remove trailing slash
 

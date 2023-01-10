@@ -10,7 +10,7 @@ class KeyGeneratorService
      * Generate a short string that can be used as a unique key for shortened long
      * urls.
      *
-     * @return string The generated unique string
+     * @return string A unique string to use as the short url key
      */
     public function urlKey(string $value): string
     {
