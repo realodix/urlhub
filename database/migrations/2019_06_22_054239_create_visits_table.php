@@ -18,14 +18,10 @@ return new class extends Migration
             $table->foreignId('url_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->foreignId('url_author_id')
-                ->nullable()
-                ->constrained('users')
-                ->cascadeOnDelete();
             $table->string('visitor_id');
             $table->boolean('is_first_click');
-            $table->string('referer', 300)->nullable()->default(0);
-            $table->ipAddress('ip');
+            $table->string('referer', 300)->nullable();
+            $table->ipAddress('ip')->nullable();
             $table->string('browser')->nullable();
             $table->string('browser_version')->nullable();
             $table->string('device')->nullable();

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\QrCodeAction;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
+use App\Services\QrCodeService;
+use App\Services\UHubLinkService;
 
 class UrlController extends Controller
 {
@@ -12,7 +13,8 @@ class UrlController extends Controller
      * UrlController constructor.
      */
     public function __construct(
-        public Url $url
+        public Url $url,
+        public UHubLinkService $uHubLinkService,
     ) {
         $this->middleware('urlhublinkchecker')->only('create');
     }
@@ -25,7 +27,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = $this->url->shortenUrl($request, auth()->id());
+        $url = $this->uHubLinkService->create($request);
 
         return to_route('su_detail', $url->keyword);
     }
@@ -35,18 +37,21 @@ class UrlController extends Controller
      *
      * @codeCoverageIgnore
      *
-     * @param string $key
+     * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Contracts\View\View
      */
-    public function showDetail($key)
+    public function showDetail(string $urlKey)
     {
-        $url = Url::with('visit')->whereKeyword($key)->firstOrFail();
-        $data = ['url' => $url, 'visit' => new \App\Models\Visit];
+        $url = Url::with('visit')->whereKeyword($urlKey)->firstOrFail();
+        $data = [
+            'url' => $url,
+            'visit' => new \App\Models\Visit,
+        ];
 
         if (config('urlhub.qrcode')) {
-            $qrCode = (new QrCodeAction)->process($url->short_url);
+            $qrCode = app(QrCodeService::class)->execute($url->short_url);
 
-            $data = array_merge($data, compact(['qrCode']));
+            $data = array_merge($data, ['qrCode' => $qrCode]);
         }
 
         return view('frontend.short', $data);
@@ -55,12 +60,12 @@ class UrlController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param mixed $url
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete($url)
+    public function delete(Url $url)
     {
         $this->authorize('forceDelete', $url);
 
@@ -74,14 +79,14 @@ class UrlController extends Controller
      * link. You can duplicate it and it will generated a new unique random
      * key.
      *
+     * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate(string $key)
+    public function duplicate(string $urlKey)
     {
-        $randomKey = $this->url->randomString();
-        $this->url->duplicate($key, auth()->id(), $randomKey);
+        $this->uHubLinkService->duplicate($urlKey);
 
-        return to_route('su_detail', $randomKey)
+        return to_route('su_detail', $this->uHubLinkService->new_keyword)
             ->withFlashSuccess(__('The link has successfully duplicated.'));
     }
 }

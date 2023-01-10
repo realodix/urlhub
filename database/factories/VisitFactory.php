@@ -30,7 +30,7 @@ class VisitFactory extends Factory
             'visitor_id' => 'foo_bar',
             'is_first_click' => true,
             'referer'    => 'https://github.com/realodix/urlhub',
-            'ip'         => $this->faker->ipv4(),
+            'ip'         => fake()->ipv4(),
             'browser'    => 'Firefox',
             'browser_version' => '108',
             'device'     => 'Desktop',

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions;
+namespace App\Services;
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\Result\ResultInterface;
 
-class QrCodeAction
+class QrCodeService
 {
     const MIN_SIZE = 50;
 
@@ -15,7 +15,7 @@ class QrCodeAction
 
     const SUPPORTED_FORMAT = ['png', 'svg'];
 
-    public function process(string $data): ResultInterface
+    public function execute(string $data): ResultInterface
     {
         return Builder::create()
             ->data($data)

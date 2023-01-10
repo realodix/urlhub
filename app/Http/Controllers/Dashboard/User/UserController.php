@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $this->authorize('view', $user);
 
-        return view('backend.user.profile', compact('user'));
+        return view('backend.user.profile', ['user' => $user]);
     }
 
     /**

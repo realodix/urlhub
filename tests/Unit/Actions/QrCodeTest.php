@@ -2,19 +2,24 @@
 
 namespace Tests\Unit\Actions;
 
-use App\Actions\QrCodeAction;
+use App\Services\QrCodeService;
 use Endroid\QrCode\Writer\Result\ResultInterface;
 use Tests\TestCase;
 
 class QrCodeTest extends TestCase
 {
+    private function getQrCode(): QrCodeService
+    {
+        return app(QrCodeService::class);
+    }
+
     /**
      * @test
      * @group u-actions
      */
-    public function QrCodeAction()
+    public function QrCodeService()
     {
-        $QrCode = (new QrCodeAction)->process('foo');
+        $QrCode = $this->getQrCode()->execute('foo');
 
         $this->assertInstanceOf(ResultInterface::class, $QrCode);
     }
@@ -25,13 +30,13 @@ class QrCodeTest extends TestCase
      */
     public function sizeMin()
     {
-        $size = QrCodeAction::MIN_SIZE - 1;
+        $size = QrCodeService::MIN_SIZE - 1;
         config(['urlhub.qrcode_size' => $size]);
 
-        $image = imagecreatefromstring((new QrCodeAction)->process('foo')->getString());
+        $image = imagecreatefromstring($this->getQrCode()->execute('foo')->getString());
 
         $this->assertNotSame($size, (int) imagesx($image));
-        $this->assertSame(QrCodeAction::MIN_SIZE, imagesx($image));
+        $this->assertSame(QrCodeService::MIN_SIZE, imagesx($image));
     }
 
     /**
@@ -40,12 +45,12 @@ class QrCodeTest extends TestCase
      */
     public function sizeMax()
     {
-        $size = QrCodeAction::MAX_SIZE + 1;
+        $size = QrCodeService::MAX_SIZE + 1;
         config(['urlhub.qrcode_size' => $size]);
 
-        $image = imagecreatefromstring((new QrCodeAction)->process('foo')->getString());
+        $image = imagecreatefromstring($this->getQrCode()->execute('foo')->getString());
 
         $this->assertNotSame($size, imagesx($image));
-        $this->assertSame(QrCodeAction::MAX_SIZE, imagesx($image));
+        $this->assertSame(QrCodeService::MAX_SIZE, imagesx($image));
     }
 }
