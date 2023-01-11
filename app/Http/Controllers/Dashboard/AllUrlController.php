@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Url;
 
 class AllUrlController extends Controller
 {
@@ -27,10 +28,10 @@ class AllUrlController extends Controller
     /**
      * Delete a Short URL on user (Admin) request.
      *
-     * @param mixed $url
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete($url)
+    public function delete(Url $url)
     {
         $url->delete();
 

@@ -25,12 +25,12 @@ class UrlHubLinkCheckerTest extends TestCase
     }
 
     /**
-     * Shorten the url when the random string generator capacity is full.
+     * Shorten the url when the random string generator maxCapacity is full.
      * UrlHub must prevent URL shortening.
      *
      * @test
      */
-    public function keyRemainingZero()
+    public function idleCapacityZero()
     {
         config(['urlhub.hash_length' => 0]);
 

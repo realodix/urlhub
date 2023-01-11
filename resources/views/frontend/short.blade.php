@@ -16,8 +16,8 @@
                     <li class="inline-block pr-4 mt-4 lg:mt-0">
                         @svg('icon-bar-chart')
                         <i>
-                            <span title="{{number_format($visit->totalClickPerUrl($url->id))}}" class="font-bold">
-                                {{compactNumber($visit->totalClickPerUrl($url->id))}}
+                            <span title="{{number_format($url->clicks)}}" class="font-bold">
+                                {{compactNumber($url->clicks)}}
                             </span>
                         </i>
                         {{__('Total engagements')}}

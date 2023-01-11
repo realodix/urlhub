@@ -2,24 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\UrlRedirectAction;
 use App\Models\Url;
+use App\Services\UrlRedirection;
+use App\Services\VisitorService;
 use Illuminate\Support\Facades\DB;
 
 class UrlRedirectController extends Controller
 {
-    /**
-     * Handle the logging of the URL and redirect the user to the intended
-     * long URL.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(UrlRedirectAction $action, string $key)
-    {
-        return DB::transaction(function () use ($action, $key) {
-            $url = Url::whereKeyword($key)->firstOrFail();
+    public function __construct(
+        public UrlRedirection $urlRedirection,
+        public VisitorService $visitorService,
+    ) {
+    }
 
-            return $action->handleHttpRedirect($url);
+    /**
+     * Redirect the client to the intended long URL (no checks are performed)
+     * and executes the create visitor data task.
+     *
+     * @param string $urlKey A unique key for the shortened URL
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\App\Models\Url>
+     */
+    public function __invoke(string $urlKey)
+    {
+        return DB::transaction(function () use ($urlKey) {
+            // firstOrFail() will throw a ModelNotFoundException if the URL is not
+            // found and 404 will be returned to the client.
+            $url = Url::whereKeyword($urlKey)->firstOrFail();
+
+            $this->visitorService->create($url);
+
+            return $this->urlRedirection->execute($url);
         });
     }
 }
