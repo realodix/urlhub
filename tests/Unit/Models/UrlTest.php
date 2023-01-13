@@ -29,7 +29,7 @@ class UrlTest extends TestCase
         ]);
 
         Url::factory(self::N_URL_WITHOUT_USER_ID)->create([
-            'user_id' => null,
+            'user_id' => Url::GUEST_ID,
         ]);
     }
 
@@ -53,7 +53,7 @@ class UrlTest extends TestCase
     public function defaultGuestName()
     {
         $url = Url::factory()->create([
-            'user_id' => null,
+            'user_id' => Url::GUEST_ID,
         ]);
 
         $this->assertSame('Guest', $url->user->name);

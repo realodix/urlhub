@@ -223,7 +223,7 @@ class KeyGeneratorServiceTest extends TestCase
     /**
      * Pengujian dilakukan berdasarkan karakter yang telah ditetapkan pada
      * 'urlhub.hash_char'. Jika salah satu karakter 'keyword' tidak ada di
-     * 'urlhub.hash_char', maka seharusnya ini tidak dapat dihitung.
+     * 'urlhub.hash_char', maka seharusnya itu tidak masuk dalam perhitungan.
      *
      * @test
      * @group u-model

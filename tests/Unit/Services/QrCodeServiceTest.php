@@ -6,7 +6,7 @@ use App\Services\QrCodeService;
 use Endroid\QrCode\Writer\Result\ResultInterface;
 use Tests\TestCase;
 
-class QrCodeTest extends TestCase
+class QrCodeServiceTest extends TestCase
 {
     private function getQrCode(): QrCodeService
     {

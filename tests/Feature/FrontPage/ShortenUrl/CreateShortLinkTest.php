@@ -1,40 +1,65 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Models\Url;
 use Tests\TestCase;
 
-class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
+class CreateShortLinkTest extends TestCase
 {
     /**
-     * Guest A and guest B.
+     * Users shorten the URLs, they don't fill in the custom keyword field. The
+     * is_custom column (Urls table) must be filled with 0 / false.
      *
      * @test
      */
-    public function longUrlAlreadyExist()
+    public function shortenUrl()
     {
-        $url = Url::factory()->create([
-            'user_id' => null,
-        ]);
-
+        $longUrl = 'https://laravel.com';
         $response = $this->post(route('su_create'), [
-            'long_url' => $url->destination,
+            'long_url' => $longUrl,
         ]);
 
-        $response
-            ->assertRedirectToRoute('su_detail', $url->keyword)
-            ->assertSessionHas('msgLinkAlreadyExists');
+        $url = Url::whereDestination($longUrl)->first();
 
-        $this->assertCount(1, Url::all());
+        $response->assertRedirectToRoute('su_detail', $url->keyword);
+        $this->assertFalse($url->is_custom);
     }
 
     /**
-     * Memastikan long URL dengan atau tanpa trailing slashes adalah sama.
+     * The user shortens the URL and they fill in the custom keyword field. The
+     * keyword column (Urls table) must be filled with the keywords requested
+     * by the user and the is_custom column must be filled with 1 / true.
      *
      * @test
      */
-    public function ensuresLongUrlsWithOrWithoutSlashesAreTheSameUrl()
+    public function shortenUrlWithCustomKeyword()
+    {
+        $longUrl = 'https://laravel.com';
+        $customKey = 'laravel';
+
+        $response = $this->post(route('su_create'), [
+            'long_url'   => $longUrl,
+            'custom_key' => $customKey,
+        ]);
+        $response->assertRedirectToRoute('su_detail', $customKey);
+
+        $url = Url::whereDestination($longUrl)->first();
+        $this->assertTrue($url->is_custom);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | URL already exist
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Memastikan URL dengan atau tanpa trailing slash akan dianggap sama.
+     *
+     * @test
+     */
+    public function urlsWithOrWithoutSlashesWillBeConsideredTheSame()
     {
         $longUrl_1 = 'https://example.com/';
         $longUrl_2 = 'https://example.com';
@@ -56,11 +81,13 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     }
 
     /**
-     * Authen user A and authen user A.
+     * User A and User A
+     * Tampilkan peringatan bahwa URL sudah ada, dimana ketika dia sudah memiliki
+     * URL tersebut.
      *
      * @test
      */
-    public function longUrlAlreadyExist2()
+    public function longUrlAlreadyExist()
     {
         $user = $this->admin();
 
@@ -81,30 +108,37 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     }
 
     /**
-     * Guest and authen user.
+     * Guest A and guest B
+     * Tampilkan peringatan bahwa URL sudah ada, dimana ketika user guest lainnya sudah
+     * memiliki url tersebut.
      *
      * @test
      */
-    public function longUrlAlreadyExistsButStillAccepted()
+    public function urlAlreadyExist_guestWithAnotherGuest()
     {
-        $url = Url::factory()->create();
+        $url = Url::factory()->create([
+            'user_id' => Url::GUEST_ID,
+        ]);
 
         $response = $this->post(route('su_create'), [
             'long_url' => $url->destination,
         ]);
 
-        $url = Url::whereUserId(null)->first();
+        $response
+            ->assertRedirectToRoute('su_detail', $url->keyword)
+            ->assertSessionHas('msgLinkAlreadyExists');
 
-        $response->assertRedirectToRoute('su_detail', $url->keyword);
-        $this->assertCount(2, Url::all());
+        $this->assertCount(1, Url::all());
     }
 
     /**
-     * Authen user A and authen user B.
+     * User A and User B
+     * Ketika User A sudah memiliki URL dan User B membuat URL yang sama, maka
+     * peringatan tidak perlu ditampilkan.
      *
      * @test
      */
-    public function longUrlAlreadyExistsButStillAccepted2()
+    public function longUrlAlreadyExistsButStillAccepted1()
     {
         $user = $this->admin();
         $user2 = $this->nonAdmin();
@@ -125,7 +159,30 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
     }
 
     /**
+     * Guest and authen user.
+     * Ketika url sudah dimiliki oleh Guest dan User A membuat URL yang sama, maka
+     * peringatan tidak perlu ditampilkan.
+     *
+     * @test
+     */
+    public function longUrlAlreadyExistsButStillAccepted2()
+    {
+        $url = Url::factory()->create();
+
+        $response = $this->post(route('su_create'), [
+            'long_url' => $url->destination,
+        ]);
+
+        $url = Url::whereUserId(null)->first();
+
+        $response->assertRedirectToRoute('su_detail', $url->keyword);
+        $this->assertCount(2, Url::all());
+    }
+
+    /**
      * Authen user and guest.
+     * Ketika url sudah dimiliki oleh salah satu User dan Guest membuat URL yang
+     * sama, maka peringatan tidak perlu ditampilkan.
      *
      * @test
      */
@@ -134,7 +191,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         $user = $this->admin();
 
         $url = Url::factory()->create([
-            'user_id' => null,
+            'user_id' => Url::GUEST_ID,
         ]);
 
         $response = $this->actingAs($this->admin())
@@ -148,31 +205,17 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
         $this->assertCount(2, Url::all());
     }
 
-    /** @test */
-    public function createShortUrlWithWrongUrlFormat()
-    {
-        $response = $this->post(route('su_create'), [
-            'long_url' => 'wrong-url-format',
-        ]);
-
-        $response
-            ->assertRedirectToRoute('home')
-            ->assertSessionHasErrors('long_url');
-    }
-
     /*
     |--------------------------------------------------------------------------
-    | Custom Short URLs
+    | Custom key already exist
     |--------------------------------------------------------------------------
-    |
-    | Short URL with custom keyword and long url already in database.
     */
 
     /** @test */
-    public function cstLongUrlAlreadyExist()
+    public function customKeyAlreadyExist()
     {
         $url = Url::factory()->create([
-            'user_id' => null,
+            'user_id' => Url::GUEST_ID,
         ]);
 
         $customKey = 'laravel';
@@ -185,33 +228,11 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
 
         $response2 = $this->get(route('home').'/'.$customKey);
         $response2->assertNotFound();
+        $this->assertCount(1, Url::all());
     }
 
     /** @test */
-    public function cstLongUrlAlreadyExist2()
-    {
-        $url = Url::factory()->create([
-            'user_id' => null,
-        ]);
-
-        $customKey = 'laravel';
-
-        $response = $this->actingAs($this->nonAdmin())
-            ->post(route('su_create'), [
-                'long_url'   => $url->destination,
-                'custom_key' => $customKey,
-            ]);
-
-        $response->assertRedirectToRoute('su_detail', $customKey);
-
-        $response2 = $this->get(route('home').'/'.$customKey);
-        $response2->assertRedirect($url->destination);
-
-        $this->assertCount(2, Url::all());
-    }
-
-    /** @test */
-    public function cstCstKeywordAlreadyExist()
+    public function customKeyAlreadyExist2()
     {
         $url = Url::factory()->create();
 
@@ -232,7 +253,7 @@ class ShortenUrlWithLongUrlAlreadyExistTest extends TestCase
      *
      * @test
      */
-    public function cstCstKeywordAlreadyExist2()
+    public function customKeyAlreadyExist3()
     {
         $url = Url::factory()->create();
 
