@@ -89,13 +89,6 @@ class Url extends Model
         );
     }
 
-    protected function shortUrl(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value, $attributes) => url('/'.$attributes['keyword']),
-        );
-    }
-
     protected function destination(): Attribute
     {
         return Attribute::make(

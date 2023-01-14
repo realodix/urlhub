@@ -2,6 +2,7 @@
 public/css/*
 public/js/*
 public/mix-manifest.json
+infrastructure/volumes
 
 ## IDE Local Workspace Folder
 /.idea

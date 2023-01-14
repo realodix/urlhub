@@ -1,0 +1,33 @@
+version: '3'
+
+networks:
+     internal: {}
+
+services:
+  urlhub:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    env_file: .env
+    links:
+        - mysql
+    networks:
+         - internal
+
+  mysql:
+    image: mysql:8.0
+    env_file: .env
+    volumes:
+    - ./infrastructure/volumes/mysql:/var/lib/mysql
+    environment:
+        MYSQL_DATABASE: ${DB_DATABASE}
+        MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+        MYSQL_USER: ${DB_USERNAME}
+        MYSQL_PASSWORD: ${DB_PASSWORD}
+        MYSQL_VERSION: latest
+        MYSQL_PORT: ${DB_PORT}
+        MYSQL_ENTRYPOINT_INITDB: ./mysql/docker-entrypoint-initdb.d
+    networks:
+         - internal
