@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\FrontPage;
 
 use App\Models\Url;
 use App\Models\Visit;
