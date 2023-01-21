@@ -64,7 +64,7 @@ class Url extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function visit()
+    public function visits()
     {
         return $this->hasMany(Visit::class);
     }
@@ -145,10 +145,10 @@ class Url extends Model
      */
     public function numberOfClicks(int $urlId, bool $unique = false): int
     {
-        $total = self::find($urlId)->visit()->count();
+        $total = self::find($urlId)->visits()->count();
 
         if ($unique) {
-            $total = self::find($urlId)->visit()
+            $total = self::find($urlId)->visits()
                 ->whereIsFirstClick(true)
                 ->count();
         }

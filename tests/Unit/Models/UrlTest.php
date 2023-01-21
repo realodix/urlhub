@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Url;
+use App\Models\User;
 use App\Models\Visit;
 use Tests\TestCase;
 
@@ -43,7 +44,8 @@ class UrlTest extends TestCase
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->assertTrue($url->user()->exists());
+        $this->assertEquals(1, $url->user->count());
+        $this->assertInstanceOf(User::class, $url->user);
     }
 
     /**
@@ -71,7 +73,7 @@ class UrlTest extends TestCase
             'url_id' => $url->id,
         ]);
 
-        $this->assertTrue($url->visit()->exists());
+        $this->assertTrue($url->visits()->exists());
     }
 
     /**

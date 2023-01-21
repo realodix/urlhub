@@ -19,10 +19,11 @@ class VisitTest extends TestCase
      */
     public function belongsToUrl()
     {
-        $visit = Visit::factory()->create([
-            'url_id' => fn () => Url::factory()->create()->id,
-        ]);
+        $visit = Visit::factory()
+            ->for(Url::factory()->create())
+            ->create();
 
-        $this->assertTrue($visit->url()->exists());
+        $this->assertEquals(1, $visit->url->count());
+        $this->assertInstanceOf(Url::class, $visit->url);
     }
 }

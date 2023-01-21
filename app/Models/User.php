@@ -53,7 +53,7 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function url()
+    public function urls()
     {
         return $this->hasMany(Url::class);
     }

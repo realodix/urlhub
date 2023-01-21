@@ -20,7 +20,7 @@ class UserTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $this->assertTrue($user->url()->exists());
+        $this->assertTrue($user->urls()->exists());
     }
 
     /**

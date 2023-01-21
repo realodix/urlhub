@@ -42,7 +42,7 @@ class UrlController extends Controller
      */
     public function showDetail(string $urlKey)
     {
-        $url = Url::with('visit')->whereKeyword($urlKey)->firstOrFail();
+        $url = Url::with('visits')->whereKeyword($urlKey)->firstOrFail();
         $data = [
             'url' => $url,
             'visit' => new \App\Models\Visit,
