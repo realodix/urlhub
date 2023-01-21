@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -15,22 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $now = now();
-
-        DB::table('users')->insert([
+        User::factory()->create([
             'name'       => 'admin',
             'email'      => 'admin@urlhub.test',
             'password'   => Hash::make('admin'),
-            'created_at' => $now,
-            'updated_at' => $now,
         ]);
 
-        DB::table('users')->insert([
+        User::factory()->create([
             'name'       => 'user',
             'email'      => 'user@urlhub.test',
             'password'   => Hash::make('user'),
-            'created_at' => $now,
-            'updated_at' => $now,
         ]);
     }
 }
