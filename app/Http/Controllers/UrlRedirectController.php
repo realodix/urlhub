@@ -22,7 +22,7 @@ class UrlRedirectController extends Controller
      * @param string $urlKey A unique key for the shortened URL
      * @return \Illuminate\Http\RedirectResponse
      *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException<\App\Models\Url>
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function __invoke(string $urlKey)
     {
