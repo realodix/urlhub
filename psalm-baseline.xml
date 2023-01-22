@@ -1,48 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="5.4.0@62db5d4f6a7ae0a20f7cc5a4952d730272fc0863">
-  <file src="app/Http/Controllers/Dashboard/AllUrlController.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>view('backend.all-url')</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>\Illuminate\Contracts\View\View</code>
-    </InvalidReturnType>
-  </file>
-  <file src="app/Http/Controllers/Dashboard/DashboardController.php">
-    <InvalidReturnStatement occurrences="2">
-      <code>view('backend.edit', ['url' =&gt; $url])</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="2">
-      <code>\Illuminate\Contracts\View\View</code>
-      <code>\Illuminate\Contracts\View\View</code>
-    </InvalidReturnType>
-  </file>
-  <file src="app/Http/Controllers/Dashboard/User/ChangePasswordController.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>view('backend.user.changepassword', ['user' =&gt; $user])</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>\Illuminate\Contracts\View\View</code>
-    </InvalidReturnType>
-  </file>
-  <file src="app/Http/Controllers/Dashboard/User/UserController.php">
-    <InvalidReturnStatement occurrences="2">
-      <code>view('backend.user.index')</code>
-      <code>view('backend.user.profile', ['user' =&gt; $user])</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="2">
-      <code>\Illuminate\Contracts\View\View</code>
-      <code>\Illuminate\Contracts\View\View</code>
-    </InvalidReturnType>
-  </file>
-  <file src="app/Http/Controllers/UrlController.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>view('frontend.short', $data)</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>\Illuminate\Contracts\View\View</code>
-    </InvalidReturnType>
-  </file>
   <file src="app/Http/Middleware/UrlHubLinkChecker.php">
     <UndefinedMagicMethod occurrences="2">
       <code>whereDestination</code>
