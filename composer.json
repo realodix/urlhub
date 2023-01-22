@@ -87,7 +87,7 @@
             "@php artisan key:generate --ansi"
         ],
         "psalm": [
-            "@php psalm --find-unused-psalm-suppress"
+            "@php psalm --find-unused-psalm-suppress --output-format=phpstorm"
         ],
         "test": [
             "./vendor/bin/phpunit"

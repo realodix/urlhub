@@ -1,2 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.4.0@62db5d4f6a7ae0a20f7cc5a4952d730272fc0863"/>
+<files psalm-version="5.4.0@62db5d4f6a7ae0a20f7cc5a4952d730272fc0863">
+  <file src="app/Http/Controllers/Dashboard/AllUrlController.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>view('backend.all-url')</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/DashboardController.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>view('backend.edit', ['url' =&gt; $url])</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="2">
+      <code>\Illuminate\Contracts\View\View</code>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/User/ChangePasswordController.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>view('backend.user.changepassword', ['user' =&gt; $user])</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/User/UserController.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>view('backend.user.index')</code>
+      <code>view('backend.user.profile', ['user' =&gt; $user])</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="2">
+      <code>\Illuminate\Contracts\View\View</code>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/UrlController.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>view('frontend.short', $data)</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Middleware/UrlHubLinkChecker.php">
+    <UndefinedMagicMethod occurrences="2">
+      <code>whereDestination</code>
+      <code>whereNull</code>
+    </UndefinedMagicMethod>
+  </file>
+  <file src="app/Models/Traits/Hashidable.php">
+    <UndefinedMethod occurrences="1">
+      <code>encode</code>
+    </UndefinedMethod>
+  </file>
+  <file src="app/Policies/UrlPolicy.php">
+    <UndefinedMagicPropertyFetch occurrences="2">
+      <code>$user-&gt;id</code>
+      <code>$user-&gt;id</code>
+    </UndefinedMagicPropertyFetch>
+  </file>
+  <file src="app/Policies/UserPolicy.php">
+    <UndefinedMagicPropertyFetch occurrences="6">
+      <code>$authUser-&gt;id</code>
+      <code>$authUser-&gt;id</code>
+      <code>$authUser-&gt;id</code>
+      <code>$user-&gt;id</code>
+      <code>$user-&gt;id</code>
+      <code>$user-&gt;id</code>
+    </UndefinedMagicPropertyFetch>
+  </file>
+  <file src="app/Providers/RouteServiceProvider.php">
+    <UndefinedMethod occurrences="1">
+      <code>decode</code>
+    </UndefinedMethod>
+  </file>
+  <file src="app/Services/KeyGeneratorService.php">
+    <UndefinedMagicMethod occurrences="3">
+      <code>exists</code>
+      <code>whereRaw</code>
+      <code>whereRaw</code>
+    </UndefinedMagicMethod>
+  </file>
+  <file src="app/Services/VisitorService.php">
+    <UndefinedMagicMethod occurrences="1">
+      <code>whereVisitorId</code>
+    </UndefinedMagicMethod>
+  </file>
+  <file src="database/factories/UrlFactory.php">
+    <LessSpecificImplementedReturnType occurrences="1">
+      <code>array</code>
+    </LessSpecificImplementedReturnType>
+  </file>
+  <file src="database/factories/VisitFactory.php">
+    <LessSpecificImplementedReturnType occurrences="1">
+      <code>array</code>
+    </LessSpecificImplementedReturnType>
+  </file>
+  <file src="database/seeders/UserSeeder.php">
+    <InvalidTemplateParam occurrences="2"/>
+    <TooManyTemplateParams occurrences="2"/>
+  </file>
+</files>

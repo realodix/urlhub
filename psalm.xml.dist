@@ -3,11 +3,15 @@
     xmlns="https://getpsalm.org/schema/config"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://getpsalm.org/schema/config config.xsd"
+    errorLevel="4"
     errorBaseline="psalm-baseline.xml"
     findUnusedPsalmSuppress="true"
+    reportMixedIssues="false"
 >
     <projectFiles>
         <directory name="app"/>
+        <directory name="database/factories"/>
+        <directory name="database/seeders"/>
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
@@ -31,12 +35,6 @@
                 <directory name="app/Http/Livewire" />
             </errorLevel>
         </InvalidReturnType>
-        <!-- This is probably a bug from Psalm -->
-        <PossiblyInvalidOperand>
-            <errorLevel type="suppress">
-                <directory name="app/Http/Livewire" />
-            </errorLevel>
-        </PossiblyInvalidOperand>
     </issueHandlers>
 
     <plugins>
