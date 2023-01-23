@@ -54,9 +54,9 @@ class Url extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class)->withDefault([
+        return $this->belongsTo(User::class, 'user_id')->withDefault([
             'name' => 'Guest',
         ]);
     }
@@ -159,7 +159,7 @@ class Url extends Model
     /**
      * Total clicks on all short URLs on each user
      */
-    public function numberOfClicksPerUser(int $userId = null): int
+    public function numberOfClicksPerAuthor(int $userId = null): int
     {
         $url = self::whereUserId($userId)->get();
 

@@ -38,14 +38,14 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function belongsToUser()
+    public function belongsToAuthor()
     {
         $url = Url::factory()->create([
             'user_id' => $this->admin()->id,
         ]);
 
-        $this->assertEquals(1, $url->user->count());
-        $this->assertInstanceOf(User::class, $url->user);
+        $this->assertEquals(1, $url->author->count());
+        $this->assertInstanceOf(User::class, $url->author);
     }
 
     /**
@@ -58,7 +58,7 @@ class UrlTest extends TestCase
             'user_id' => Url::GUEST_ID,
         ]);
 
-        $this->assertSame('Guest', $url->user->name);
+        $this->assertSame('Guest', $url->author->name);
     }
 
     /**
@@ -253,7 +253,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function numberOfClicksPerUser()
+    public function numberOfClicksPerAuthor()
     {
         $userId = $this->admin()->id;
         $url = Url::factory()->create([
@@ -264,7 +264,7 @@ class UrlTest extends TestCase
         ]);
 
         $expected = Visit::whereUrlId($url->id)->count();
-        $actual = $this->url->numberOfClicksPerUser(userId: $url->user_id);
+        $actual = $this->url->numberOfClicksPerAuthor(userId: $url->user_id);
 
         $this->assertSame($userId, $url->user_id);
         $this->assertSame($expected, $actual);
