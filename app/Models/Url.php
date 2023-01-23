@@ -161,9 +161,11 @@ class Url extends Model
     /**
      * Total clicks on all short URLs on each user
      */
-    public function numberOfClicksPerAuthor(int $userId = null): int
+    public function numberOfClicksPerAuthor(): int
     {
-        $url = self::whereUserId($userId)->get();
+        // If the user is logged in, get the total clicks on all short URLs from the user
+        $authorId = auth()->check() ? auth()->id() : $this->author->id;
+        $url = self::whereUserId($authorId)->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
     }

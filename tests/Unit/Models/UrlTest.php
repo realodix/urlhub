@@ -241,12 +241,15 @@ class UrlTest extends TestCase
      */
     public function numberOfClicksPerAuthor()
     {
-        $visit = Visit::factory()->create();
+        $visit = Visit::factory()
+            ->for(Url::factory())
+            ->create();
 
         $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $this->url->numberOfClicksPerAuthor(userId: $visit->url->user_id);
+        $actual = $visit->url->numberOfClicksPerAuthor();
 
         $this->assertSame($expected, $actual);
+        $this->assertSame(1, $actual);
     }
 
     /**
