@@ -32,6 +32,11 @@
       <code>decode</code>
     </UndefinedMethod>
   </file>
+  <file src="app/Rules/PwdCurrent.php">
+    <NoInterfaceProperties occurrences="1">
+      <code>auth()-&gt;user()-&gt;password</code>
+    </NoInterfaceProperties>
+  </file>
   <file src="app/Services/KeyGeneratorService.php">
     <UndefinedMagicMethod occurrences="3">
       <code>exists</code>
