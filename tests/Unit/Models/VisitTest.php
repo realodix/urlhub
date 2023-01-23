@@ -17,10 +17,9 @@ class VisitTest extends TestCase
      * @test
      * @group u-model
      */
-    public function belongsToUrl()
+    public function belongsToUrlModel()
     {
         $visit = Visit::factory()
-            ->for(Url::factory()->create())
             ->create();
 
         $this->assertEquals(1, $visit->url->count());

@@ -13,9 +13,9 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function viewAdmin()
+    public function viewAsAdmin()
     {
-        $admin = $this->admin();
+        $admin = $this->adminUser();
 
         $this->assertTrue($admin->can('view', $admin));
         $this->assertTrue($admin->can('view', new User));
@@ -27,9 +27,9 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function viewNonAdmin()
+    public function viewAsNormalUser()
     {
-        $user = $this->nonAdmin();
+        $user = $this->normalUser();
 
         $this->assertTrue($user->can('view', $user));
         $this->assertFalse($user->can('view', new User));
@@ -41,9 +41,9 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function updateAdmin()
+    public function updateAsAdmin()
     {
-        $admin = $this->admin();
+        $admin = $this->adminUser();
 
         $this->assertTrue($admin->can('update', $admin));
         $this->assertTrue($admin->can('update', new User));
@@ -55,9 +55,9 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function updateNonAdmin()
+    public function updateAsNormalUser()
     {
-        $user = $this->nonAdmin();
+        $user = $this->normalUser();
 
         $this->assertTrue($user->can('update', $user));
         $this->assertFalse($user->can('update', new User));
@@ -69,9 +69,9 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function updatePassAdmin()
+    public function updatePassAsAdmin()
     {
-        $admin = $this->admin();
+        $admin = $this->adminUser();
 
         $this->assertTrue($admin->can('updatePass', $admin));
         $this->assertTrue($admin->can('updatePass', new User));
@@ -83,9 +83,9 @@ class UserPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function updatePassNonAdmin()
+    public function updatePassAsNormalUser()
     {
-        $user = $this->nonAdmin();
+        $user = $this->normalUser();
 
         $this->assertTrue($user->can('updatePass', $user));
         $this->assertFalse($user->can('updatePass', new User));
@@ -105,29 +105,31 @@ class UserPolicyTest extends TestCase
      */
     public function adminCanAccessChangePasswordPage()
     {
-        $response = $this->actingAs($this->admin())
-            ->get($this->getCPRoute($this->nonAdmin()->name));
+        $response = $this->actingAs($this->adminUser())
+            ->get($this->getCPRoute($this->normalUser()->name));
 
         $response->assertOk();
     }
 
     /**
+     * Normal user cant access other users change password page.
+     *
      * @test
      * @group u-policy
      */
-    public function nonAdminCantAccessChangePasswordPage()
+    public function normalUserCantAccessOtherUsersChangePasswordPage()
     {
-        $response = $this->actingAs($this->nonAdmin())
-            ->get($this->getCPRoute($this->admin()->name));
+        $response = $this->actingAs($this->normalUser())
+            ->get($this->getCPRoute($this->adminUser()->name));
 
         $response->assertForbidden();
     }
 
     /** @test */
-    public function usersCanAccessTheirOwnChangePasswordPage()
+    public function normalUserCanAccessTheirOwnChangePasswordPage()
     {
-        $response =$this->actingAs($this->admin())
-            ->get($this->getCPRoute($this->admin()->name));
+        $response =$this->actingAs($this->adminUser())
+            ->get($this->getCPRoute($this->adminUser()->name));
 
         $response->assertOk();
     }
@@ -142,7 +144,7 @@ class UserPolicyTest extends TestCase
      */
     public function adminCanAccessAllUsersPage()
     {
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($this->adminUser())
             ->get(route('user.index'));
 
         $response->assertOk();
@@ -151,9 +153,9 @@ class UserPolicyTest extends TestCase
     /**
      * @test
      */
-    public function nonAdminCantAccessAllUsersPage()
+    public function normalUserCantAccessAllUsersPage()
     {
-        $response = $this->actingAs($this->nonAdmin())
+        $response = $this->actingAs($this->normalUser())
             ->get(route('user.index'));
 
         $response->assertForbidden();

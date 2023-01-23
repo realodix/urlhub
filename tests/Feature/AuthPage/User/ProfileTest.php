@@ -26,8 +26,9 @@ class ProfileTest extends TestCase
      */
     public function usersCanAccessTheirOwnProfilePage()
     {
-        $response = $this->actingAs($this->admin())
-            ->get($this->getRoute($this->admin()->name));
+        $user = $this->normalUser();
+        $response = $this->actingAs($user)
+            ->get($this->getRoute($user->name));
 
         $response->assertOk();
     }
@@ -38,8 +39,8 @@ class ProfileTest extends TestCase
      */
     public function adminCanAccessOtherUsersProfilePages()
     {
-        $response = $this->actingAs($this->admin())
-            ->get($this->getRoute($this->nonAdmin()->name));
+        $response = $this->actingAs($this->adminUser())
+            ->get($this->getRoute($this->normalUser()->name));
 
         $response->assertOk();
     }
@@ -48,10 +49,10 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function nonAdminCantAccessOtherUsersProfilePages()
+    public function adminUserCantAccessOtherUsersProfilePages()
     {
-        $response = $this->actingAs($this->nonAdmin())
-            ->get($this->getRoute($this->admin()->name));
+        $response = $this->actingAs($this->normalUser())
+            ->get($this->getRoute($this->adminUser()->name));
 
         $response->assertForbidden();
     }
@@ -64,7 +65,7 @@ class ProfileTest extends TestCase
     {
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
 
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'email' => 'new_user_email@urlhub.test',
@@ -81,11 +82,11 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function nonAdminCantChangeOtherUsersEmail()
+    public function normalUserCantChangeOtherUsersEmail()
     {
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
-        $response = $this->actingAs($this->nonAdmin())
+        $response = $this->actingAs($this->normalUser())
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'email' => 'new_email_user2@urlhub.test',
@@ -101,7 +102,7 @@ class ProfileTest extends TestCase
      */
     public function validationEmailRequired()
     {
-        $user = $this->admin();
+        $user = $this->normalUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -120,7 +121,7 @@ class ProfileTest extends TestCase
      */
     public function validationEmailInvalidFormat()
     {
-        $user = $this->admin();
+        $user = $this->normalUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -139,7 +140,7 @@ class ProfileTest extends TestCase
      */
     public function validationEmailMaxLength()
     {
-        $user = $this->admin();
+        $user = $this->normalUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -159,12 +160,12 @@ class ProfileTest extends TestCase
      */
     public function validationEmailUnique()
     {
-        $user = $this->admin();
+        $user = $this->normalUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'email' => $this->nonAdmin()->email,
+                'email' => $this->normalUser()->email,
             ]);
 
         $response

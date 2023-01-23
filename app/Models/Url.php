@@ -21,6 +21,8 @@ class Url extends Model
 
     const GUEST_ID = null;
 
+    const GUEST_NAME = 'Guest';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -57,7 +59,7 @@ class Url extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id')->withDefault([
-            'name' => 'Guest',
+            'name' => self::GUEST_NAME,
         ]);
     }
 

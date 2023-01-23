@@ -12,7 +12,7 @@ class PwdCurrentTest extends TestCase
     {
         parent::setUp();
 
-        $this->actingAs($this->admin());
+        $this->actingAs($this->adminUser());
     }
 
     /**

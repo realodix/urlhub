@@ -11,7 +11,7 @@ class DuplicateShortLinkTest extends TestCase
     public function duplicate()
     {
         $url = Url::factory()->create([
-            'user_id' => $this->admin()->id,
+            'user_id' => $this->adminUser()->id,
         ]);
 
         $this->post(route('su_create'), [
@@ -31,7 +31,7 @@ class DuplicateShortLinkTest extends TestCase
             'user_id' => Url::GUEST_ID,
         ]);
 
-        $this->actingAs($this->admin())
+        $this->actingAs($this->adminUser())
             ->post(route('su_create'), [
                 'long_url' => $url->destination,
             ]);

@@ -16,31 +16,26 @@ trait Auth
     {
         parent::setUp();
 
-        $admin = User::factory()->create([
-            'password' => bcrypt($this->adminPass),
-        ]);
-        $admin->assignRole($this->getAdminRole());
-    }
-
-    protected function admin()
-    {
-        return User::role($this->adminRole)->first();
-    }
-
-    protected function nonAdmin()
-    {
-        return User::factory()->create();
-    }
-
-    private function getAdminRole()
-    {
         // create permissions
         Permission::create(['name' => $this->adminRole]);
 
         // create roles and assign created permissions
         $adminRole = Role::create(['name' => $this->adminRole]);
         $adminRole->givePermissionTo(Permission::all());
+    }
 
-        return $adminRole;
+    protected function adminUser()
+    {
+        $admin = User::factory()->create([
+            'password' => bcrypt($this->adminPass),
+        ]);
+        $admin->assignRole($this->adminRole);
+
+        return $admin;
+    }
+
+    protected function normalUser()
+    {
+        return User::factory()->create();
     }
 }
