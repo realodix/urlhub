@@ -31,8 +31,10 @@
         "nunomaduro/collision": "^6.3",
         "nunomaduro/larastan": "^2.3",
         "phpunit/phpunit": "^9.5",
+        "psalm/plugin-laravel": "^2.4",
         "realodix/relax": "dev-main",
-        "spatie/laravel-ignition": "^1.6"
+        "spatie/laravel-ignition": "^1.6",
+        "vimeo/psalm": "^5.4"
     },
     "suggest": {
         "doctrine/dbal": "Required to rename columns and drop SQLite columns.",

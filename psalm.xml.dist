@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<psalm
+    xmlns="https://getpsalm.org/schema/config"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://getpsalm.org/schema/config config.xsd"
+    errorLevel="4"
+    errorBaseline="psalm-baseline.xml"
+    findUnusedPsalmSuppress="true"
+    reportMixedIssues="false"
+    cacheDirectory="./.tmp/psalm"
+>
+    <projectFiles>
+        <directory name="app"/>
+        <directory name="database/factories"/>
+        <directory name="database/seeders"/>
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <!-- Psalm doesn't understand PowerGrid very well
+        The code is according to the documentation https://livewire-powergrid.com/#/table/datasource-->
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="app/Http/Livewire" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+        <InvalidReturnStatement>
+            <errorLevel type="suppress">
+                <directory name="app/Http/Livewire" />
+            </errorLevel>
+        </InvalidReturnStatement>
+        <InvalidReturnType>
+            <errorLevel type="suppress">
+                <directory name="app/Http/Livewire" />
+            </errorLevel>
+        </InvalidReturnType>
+    </issueHandlers>
+
+    <plugins>
+        <pluginClass class="Psalm\LaravelPlugin\Plugin"/>
+    </plugins>
+</psalm>
