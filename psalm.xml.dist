@@ -7,6 +7,7 @@
     errorBaseline="psalm-baseline.xml"
     findUnusedPsalmSuppress="true"
     reportMixedIssues="false"
+    cacheDirectory="./.tmp/psalm"
 >
     <projectFiles>
         <directory name="app"/>
