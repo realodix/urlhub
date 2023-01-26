@@ -26,7 +26,7 @@ class ChangePasswordTest extends TestCase
      */
     public function changePasswordWithCorrectCredentials()
     {
-        $user = $this->admin();
+        $user = $this->adminUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -51,9 +51,9 @@ class ChangePasswordTest extends TestCase
      */
     public function adminCanChangeThePasswordOfAllUsers()
     {
-        $user = $this->nonAdmin();
+        $user = $this->normalUser();
 
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
                 'current-password'          => $this->adminPass,
@@ -76,7 +76,7 @@ class ChangePasswordTest extends TestCase
      */
     public function currentPasswordDoesNotMatch()
     {
-        $user = $this->admin();
+        $user = $this->adminUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -105,7 +105,7 @@ class ChangePasswordTest extends TestCase
      */
     public function newPasswordValidateFail($data1, $data2)
     {
-        $user = $this->nonAdmin();
+        $user = $this->normalUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))

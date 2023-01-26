@@ -89,13 +89,9 @@ class CreateShortLinkTest extends TestCase
      */
     public function longUrlAlreadyExist()
     {
-        $user = $this->admin();
+        $url = Url::factory()->create();
 
-        $url = Url::factory()->create([
-            'user_id' => $user->id,
-        ]);
-
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($url->author)
             ->post(route('su_create'), [
                 'long_url' => $url->destination,
             ]);
@@ -140,28 +136,25 @@ class CreateShortLinkTest extends TestCase
      */
     public function longUrlAlreadyExistsButStillAccepted1()
     {
-        $user = $this->admin();
-        $user2 = $this->nonAdmin();
+        $user = $this->normalUser();
+        $urlFromOtherUsers = Url::factory()->create();
 
-        $url = Url::factory()->create([
-            'user_id' => $user2->id,
-        ]);
-
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($user)
             ->post(route('su_create'), [
-                'long_url' => $url->destination,
+                'long_url' => $urlFromOtherUsers->destination,
             ]);
 
-        $url = Url::whereUserId($user->id)->first();
+        $url = $user->urls()->first();
 
         $response->assertRedirectToRoute('su_detail', $url->keyword);
         $this->assertCount(2, Url::all());
     }
 
     /**
-     * Guest and authen user.
-     * Ketika url sudah dimiliki oleh Guest dan User A membuat URL yang sama, maka
-     * peringatan tidak perlu ditampilkan.
+     * Authen User and Guest
+     *
+     * Ketika URL sudah ada (dibuat oleh authen user), lalu guest membuat shorlink
+     * dengan URL yang sama, maka peringatan tidak perlu ditampilkan.
      *
      * @test
      */
@@ -180,26 +173,27 @@ class CreateShortLinkTest extends TestCase
     }
 
     /**
-     * Authen user and guest.
-     * Ketika url sudah dimiliki oleh salah satu User dan Guest membuat URL yang
-     * sama, maka peringatan tidak perlu ditampilkan.
+     * Guest user and authen user
+     *
+     * Ketika URL sudah ada (dibuat oleh Guest), lalu salah satu User membuat shorlink
+     * dengan URL yang sama, maka peringatan tidak perlu ditampilkan.
      *
      * @test
      */
     public function longUrlAlreadyExistsButStillAccepted3()
     {
-        $user = $this->admin();
+        $user = $this->normalUser();
 
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
         ]);
 
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($user)
             ->post(route('su_create'), [
                 'long_url' => $url->destination,
             ]);
 
-        $url = Url::whereUserId($user->id)->first();
+        $url = $user->urls()->first();
 
         $response->assertRedirectToRoute('su_detail', $url->keyword);
         $this->assertCount(2, Url::all());
@@ -211,7 +205,11 @@ class CreateShortLinkTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    /** @test */
+    /**
+     * This test is to make sure that the custom key is not used by other users.
+     *
+     * @test
+     */
     public function customKeyAlreadyExist()
     {
         $url = Url::factory()->create([
@@ -231,7 +229,11 @@ class CreateShortLinkTest extends TestCase
         $this->assertCount(1, Url::all());
     }
 
-    /** @test */
+    /**
+     * This test is to make sure that the custom key is not used by other users.
+     *
+     * @test
+     */
     public function customKeyAlreadyExist2()
     {
         $url = Url::factory()->create();
@@ -250,6 +252,7 @@ class CreateShortLinkTest extends TestCase
 
     /**
      * With authenticated user.
+     * This test is to make sure that the custom key is not used by other users.
      *
      * @test
      */
@@ -257,7 +260,7 @@ class CreateShortLinkTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->actingAs($this->nonAdmin())
+        $response = $this->actingAs($this->normalUser())
             ->post(route('su_create'), [
                 'long_url'   => 'https://laravel-news.com',
                 'custom_key' => $url->keyword,

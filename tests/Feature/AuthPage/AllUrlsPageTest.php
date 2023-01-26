@@ -21,7 +21,7 @@ class AllUrlsPageTest extends TestCase
      */
     public function auAdminCanAccessThisPage()
     {
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($this->adminUser())
             ->get(route('dashboard.allurl'));
 
         $response->assertOk();
@@ -31,9 +31,9 @@ class AllUrlsPageTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function auNonAdminCantAccessThisPage()
+    public function auNormalUserCantAccessThisPage()
     {
-        $response = $this->actingAs($this->nonAdmin())
+        $response = $this->actingAs($this->normalUser())
             ->get(route('dashboard.allurl'));
 
         $response->assertForbidden();
@@ -47,7 +47,7 @@ class AllUrlsPageTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->actingAs($this->admin())
+        $response = $this->actingAs($this->adminUser())
             ->from(route('dashboard.allurl'))
             ->get($this->hashIdRoute('dashboard.allurl.su_delete', $url->id));
 
@@ -61,11 +61,11 @@ class AllUrlsPageTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function auNonAdminCantDelete()
+    public function auNormalUserCantDelete()
     {
         $url = Url::factory()->create();
 
-        $response = $this->actingAs($this->nonAdmin())
+        $response = $this->actingAs($this->normalUser())
             ->from(route('dashboard.allurl'))
             ->get($this->hashIdRoute('dashboard.allurl.su_delete', $url->id));
 

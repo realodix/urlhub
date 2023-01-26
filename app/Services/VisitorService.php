@@ -80,7 +80,7 @@ class VisitorService
      */
     public function isFirstClick(Url $url): bool
     {
-        $hasVisited = Visit::whereUrlId($url->id)
+        $hasVisited = $url->visits()
             ->whereVisitorId($this->visitorId())
             ->exists();
 

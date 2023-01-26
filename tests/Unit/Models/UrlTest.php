@@ -9,46 +9,48 @@ use Tests\TestCase;
 
 class UrlTest extends TestCase
 {
-    private const N_URL_WITH_USER_ID = 1;
-
-    private const N_URL_WITHOUT_USER_ID = 2;
-
     private Url $url;
-
-    private int $totalUrl;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->url = new Url;
-
-        $this->totalUrl = self::N_URL_WITH_USER_ID + self::N_URL_WITHOUT_USER_ID;
-
-        Url::factory(self::N_URL_WITH_USER_ID)->create([
-            'user_id' => $this->admin()->id,
-        ]);
-
-        Url::factory(self::N_URL_WITHOUT_USER_ID)->create([
-            'user_id' => Url::GUEST_ID,
-        ]);
     }
 
     /**
+     * Url model must have a relationship with User model as one to many.
+     * This test will check if the relationship exists.
+     *
      * @test
      * @group u-model
      */
-    public function belongsToUser()
+    public function belongsToUserModel()
     {
-        $url = Url::factory()->create([
-            'user_id' => $this->admin()->id,
-        ]);
+        $url = Url::factory()->create();
 
-        $this->assertEquals(1, $url->user->count());
-        $this->assertInstanceOf(User::class, $url->user);
+        $this->assertEquals(1, $url->author->count());
+        $this->assertInstanceOf(User::class, $url->author);
     }
 
     /**
+     * Url model must have a relationship with Visit model as one to many.
+     * This test will check if the relationship exists.
+     *
+     * @test
+     * @group u-model
+     */
+    public function hasManyUrlModel()
+    {
+        $v = Visit::factory()->create();
+
+        $this->assertTrue($v->url()->exists());
+        $this->assertInstanceOf(Url::class, $v->url);
+    }
+
+    /**
+     * The default guest name must be Guest.
+     *
      * @test
      * @group u-model
      */
@@ -58,22 +60,7 @@ class UrlTest extends TestCase
             'user_id' => Url::GUEST_ID,
         ]);
 
-        $this->assertSame('Guest', $url->user->name);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function hasManyUrlStat()
-    {
-        $url = Url::factory()->create();
-
-        Visit::factory()->create([
-            'url_id' => $url->id,
-        ]);
-
-        $this->assertTrue($url->visits()->exists());
+        $this->assertSame(Url::GUEST_NAME, $url->author->name);
     }
 
     /**
@@ -92,7 +79,7 @@ class UrlTest extends TestCase
 
         $url = Url::whereDestination($longUrl)->first();
 
-        $this->assertSame(null, $url->user_id);
+        $this->assertSame(Url::GUEST_ID, $url->user_id);
     }
 
     /**
@@ -129,7 +116,8 @@ class UrlTest extends TestCase
      */
     public function getShortUrlAttribute()
     {
-        $url = Url::whereUserId($this->admin()->id)->first();
+        $url = Url::factory()->create();
+        $url->whereUserId($url->author->id)->first();
 
         $expected = $url->short_url;
         $actual = url('/'.$url->keyword);
@@ -157,10 +145,13 @@ class UrlTest extends TestCase
      */
     public function totalShortUrl()
     {
-        $expected = $this->totalUrl;
+        Url::factory()->create();
+        Url::factory()->create([
+            'user_id' => Url::GUEST_ID,
+        ]);
         $actual = $this->url->totalUrl();
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(2, $actual);
     }
 
     /**
@@ -169,10 +160,10 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByMe()
     {
-        $expected = self::N_URL_WITH_USER_ID;
-        $actual = $this->url->numberOfUrls($this->admin()->id);
+        $urlModel = Url::factory()->create();
+        $actual = $this->url->numberOfUrls($urlModel->author->id);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(1, $actual);
     }
 
     /**
@@ -181,10 +172,12 @@ class UrlTest extends TestCase
      */
     public function totalShortUrlByGuest()
     {
-        $expected = self::N_URL_WITHOUT_USER_ID;
+        Url::factory()->create([
+            'user_id' => Url::GUEST_ID,
+        ]);
         $actual = $this->url->numberOfUrlsByGuests();
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(1, $actual);
     }
 
     /**
@@ -195,12 +188,9 @@ class UrlTest extends TestCase
     {
         Visit::factory()->create();
 
-        $url = new Url;
+        $actual = $this->url->totalClick();
 
-        $expected = 1;
-        $actual = $url->totalClick();
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(1, $actual);
     }
 
     /**
@@ -209,20 +199,18 @@ class UrlTest extends TestCase
      */
     public function numberOfClicks()
     {
-        Visit::factory()->create([
-            'url_id' => 1,
+        $v = Visit::factory()->create([
             'is_first_click' => true,
         ]);
 
         Visit::factory()->create([
-            'url_id' => 1,
+            'url_id' => $v->url->id,
             'is_first_click' => false,
         ]);
 
-        $expected = 2;
-        $actual = $this->url->numberOfClicks(1);
+        $actual = $this->url->numberOfClicks($v->url->id);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(2, $actual);
     }
 
     /**
@@ -231,20 +219,18 @@ class UrlTest extends TestCase
      */
     public function numberOfClicksAndUnique()
     {
-        Visit::factory()->create([
-            'url_id' => 1,
+        $v = Visit::factory()->create([
             'is_first_click' => true,
         ]);
 
         Visit::factory()->create([
-            'url_id' => 1,
+            'url_id' => $v->url->id,
             'is_first_click' => false,
         ]);
 
-        $expected = 1;
-        $actual = $this->url->numberOfClicks(1, unique: true);
+        $actual = $this->url->numberOfClicks($v->url->id, unique: true);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(1, $actual);
     }
 
     /**
@@ -253,21 +239,17 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function numberOfClicksPerUser()
+    public function numberOfClicksPerAuthor()
     {
-        $userId = $this->admin()->id;
-        $url = Url::factory()->create([
-            'user_id' => $userId,
-        ]);
-        Visit::factory()->create([
-            'url_id' => $url->id,
-        ]);
+        $visit = Visit::factory()
+            ->for(Url::factory())
+            ->create();
 
-        $expected = Visit::whereUrlId($url->id)->count();
-        $actual = $this->url->numberOfClicksPerUser(userId: $url->user_id);
+        $expected = Visit::whereUrlId($visit->url->id)->count();
+        $actual = $visit->url->numberOfClicksPerAuthor();
 
-        $this->assertSame($userId, $url->user_id);
         $this->assertSame($expected, $actual);
+        $this->assertSame(1, $actual);
     }
 
     /**
@@ -278,18 +260,18 @@ class UrlTest extends TestCase
      */
     public function numberOfClicksFromGuests()
     {
-        $userId = null;
-        $url = Url::factory()->create([
-            'user_id' => $userId,
-        ]);
-        Visit::factory()->create([
-            'url_id' => $url->id,
-        ]);
+        $visit = Visit::factory()
+            ->for(
+                Url::factory()->create([
+                    'user_id' => Url::GUEST_ID,
+                ])
+            )
+            ->create();
 
-        $expected = Visit::whereUrlId($url->id)->count();
+        $expected = Visit::whereUrlId($visit->url->id)->count();
         $actual = $this->url->numberOfClicksFromGuests();
 
-        $this->assertSame($userId, $url->user_id);
+        $this->assertSame(Url::GUEST_ID, $visit->url->user_id);
         $this->assertSame($expected, $actual);
     }
 }

@@ -15,7 +15,7 @@ class UrlPolicyTest extends TestCase
      */
     public function forceDeleteAdmin()
     {
-        $admin = $this->admin();
+        $admin = $this->adminUser();
         $url = Url::factory()->create([
             'user_id'  => $admin->id,
             'destination' => 'https://laravel.com',
@@ -26,20 +26,16 @@ class UrlPolicyTest extends TestCase
     }
 
     /**
-     * Non-admin can only delete their own data.
+     * Normal users can only delete their own data.
      *
      * @test
      * @group u-policy
      */
-    public function forceDeleteNonAdmin()
+    public function forceDeleteNormalUser()
     {
-        $user = $this->nonAdmin();
-        $url = Url::factory()->create([
-            'user_id'  => $user->id,
-            'destination' => 'https://laravel.com',
-        ]);
+        $url = Url::factory()->create();
 
-        $this->assertTrue($user->can('forceDelete', $url));
-        $this->assertFalse($user->can('forceDelete', new Url));
+        $this->assertTrue($url->author->can('forceDelete', $url));
+        $this->assertFalse($url->author->can('forceDelete', new Url));
     }
 }

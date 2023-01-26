@@ -85,7 +85,7 @@ final class AllUlrTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('user_name', function (Url $url) {
-                return '<span class="font-semibold">'.$url->user->name.'</span>';
+                return '<span class="font-semibold">'.$url->author->name.'</span>';
             })
             ->addColumn('keyword', function (Url $url) {
                 return

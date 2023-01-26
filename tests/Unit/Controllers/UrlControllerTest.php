@@ -35,11 +35,11 @@ class UrlControllerTest extends TestCase
      */
     public function userShortenURL()
     {
-        $user = $this->admin();
+        $user = $this->normalUser();
         $longUrl = 'https://laravel.com';
 
-        $this->actingAs($user);
-        $this->post(route('su_create'), ['long_url' => $longUrl]);
+        $this->actingAs($user)
+            ->post(route('su_create'), ['long_url' => $longUrl]);
 
         $url = Url::whereDestination($longUrl)->first();
         $this->assertSame($user->id, $url->user_id);

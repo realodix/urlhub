@@ -12,15 +12,14 @@ class UserTest extends TestCase
      * @test
      * @group u-model
      */
-    public function hasManyUrl()
+    public function hasManyUrlModel()
     {
-        $user = User::factory()->create();
+        $user = User::factory()
+            ->has(Url::factory())
+            ->create();
 
-        Url::factory()->create([
-            'user_id' => $user->id,
-        ]);
-
-        $this->assertTrue($user->urls()->exists());
+        $this->assertEquals(1, $user->urls->count());
+        $this->assertInstanceOf(Url::class, $user->urls->first());
     }
 
     /**
