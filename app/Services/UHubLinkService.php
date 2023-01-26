@@ -53,7 +53,7 @@ class UHubLinkService
     /**
      * Duplicate the existing URL and create a new shortened URL.
      *
-     * @param string $urlKey A unique key for the shortened URL
+     * @param string $urlKey A unique key to identify the shortened URL
      * @return bool \Illuminate\Database\Eloquent\Model::save()
      */
     public function duplicate(string $urlKey)
