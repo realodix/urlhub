@@ -37,7 +37,7 @@ class UrlController extends Controller
      *
      * @codeCoverageIgnore
      *
-     * @param string $urlKey A unique key for the shortened URL
+     * @param string $urlKey A unique key to identify the shortened URL
      * @return \Illuminate\Contracts\View\View
      */
     public function showDetail(string $urlKey)
@@ -79,7 +79,7 @@ class UrlController extends Controller
      * link. You can duplicate it and it will generated a new unique random
      * key.
      *
-     * @param string $urlKey A unique key for the shortened URL
+     * @param string $urlKey A unique key to identify the shortened URL
      * @return \Illuminate\Http\RedirectResponse
      */
     public function duplicate(string $urlKey)
