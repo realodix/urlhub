@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Hashidable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -114,6 +115,20 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
+    | SCOPES
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Scope a query to only include guest users.
+     */
+    public function scopeByGuests(Builder $query): Builder
+    {
+        return $query->whereNull('user_id');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
     | General Functions
     |--------------------------------------------------------------------------
     */
@@ -131,7 +146,7 @@ class Url extends Model
      */
     public function numberOfUrlsByGuests(): int
     {
-        return self::whereNull('user_id')->count();
+        return self::byGuests()->count();
     }
 
     /**
@@ -175,7 +190,7 @@ class Url extends Model
      */
     public function numberOfClicksFromGuests(): int
     {
-        $url = self::whereNull('user_id')->get();
+        $url = self::byGuests()->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
     }

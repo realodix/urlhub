@@ -88,7 +88,7 @@ class UrlHubLinkChecker
                 ->first();
         } else {
             $s_url = Url::whereDestination($longUrl)
-                ->whereNull('user_id')
+                ->byGuests()
                 ->first();
         }
 
