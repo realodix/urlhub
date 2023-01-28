@@ -24,8 +24,8 @@
                     <div class="w-full sm:w-1/4">
                         <div class="block">
                             <b class="text-uh-1">@svg('icon-link', 'mr-1.5') {{__('URLs')}}:</b>
-                            <span class="text-cyan-600">{{compactNumber($url->totalUrl())}}</span> -
-                            <span class="text-teal-600">{{compactNumber($url->numberOfUrls(auth()->id()))}}</span> -
+                            <span class="text-cyan-600">{{compactNumber($url->count())}}</span> -
+                            <span class="text-teal-600">{{compactNumber($url->whereUserId(auth()->id())->count())}}</span> -
                             <span class="text-orange-600">{{compactNumber($url->numberOfUrlsByGuests())}}</span>
                         </div>
                         <div class="block">
@@ -38,7 +38,7 @@
                     <div class="text-uh-1 w-full sm:w-1/4 mt-4 sm:mt-0">
                         <div class="block">
                             <b>@svg('icon-user', 'mr-1.5') {{__('Users')}}:</b>
-                            <span class="font-light">{{compactNumber($user->totalUsers())}}</span>
+                            <span class="font-light">{{compactNumber($user->count())}}</span>
                         </div>
                         <div class="block">
                             <b>@svg('icon-user', 'mr-1.5') {{__('Guests')}}:</b>
@@ -50,7 +50,7 @@
                 <div class="flex flex-wrap">
                     <div class="w-full sm:w-1/4">
                         <span class="font-semibold text-md sm:text-2xl">@svg('icon-link', 'mr-1.5') {{__('URLs')}}:</span>
-                        <span class="font-light text-lg sm:text-2xl">{{compactNumber($url->numberOfUrls(auth()->id()))}}</span>
+                        <span class="font-light text-lg sm:text-2xl">{{compactNumber($url->whereUserId(auth()->id())->count())}}</span>
                     </div>
                     <div class="w-full sm:w-1/4">
                         <span class="font-semibold text-lg sm:text-2xl">@svg('icon-eye', 'mr-1.5') {{__('Clicks')}}:</span>

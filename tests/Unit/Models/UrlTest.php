@@ -143,33 +143,6 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalShortUrl()
-    {
-        Url::factory()->create();
-        Url::factory()->create([
-            'user_id' => Url::GUEST_ID,
-        ]);
-        $actual = $this->url->totalUrl();
-
-        $this->assertSame(2, $actual);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function totalShortUrlByMe()
-    {
-        $urlModel = Url::factory()->create();
-        $actual = $this->url->numberOfUrls($urlModel->author->id);
-
-        $this->assertSame(1, $actual);
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
     public function totalShortUrlByGuest()
     {
         Url::factory()->create([

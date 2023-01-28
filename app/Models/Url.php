@@ -151,21 +151,13 @@ class Url extends Model
     }
 
     /**
-     * Total shortened URLs created
-     */
-    public function totalUrl(): int
-    {
-        return self::count();
-    }
-
-    /**
      * Total clicks on each shortened URLs
      */
     public function numberOfClicks(int $urlId, bool $unique = false): int
     {
         $total = self::find($urlId)->visits()->count();
 
-        if ($unique) {
+        if ($unique === true) {
             $total = self::find($urlId)->visits()
                 ->whereIsFirstClick(true)
                 ->count();

@@ -217,7 +217,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 3]);
         $this->assertSame(0, $this->keyGeneratorService->usedCapacity());
-        $this->assertSame($this->totalUrl, $this->url->totalUrl());
+        $this->assertSame($this->totalUrl, $this->url->count());
     }
 
     /**
