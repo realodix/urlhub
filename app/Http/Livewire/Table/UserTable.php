@@ -88,12 +88,9 @@ final class UserTable extends PowerGridComponent
             })
             ->addColumn('email')
             ->addColumn('created_at_formatted', function (User $user) {
-                /** @var \Carbon\Carbon */
-                $userCreatedAt = $user->created_at;
-
                 return
-                    '<span title="'.$userCreatedAt->toDayDateTimeString().'">'
-                        .$userCreatedAt->shortRelativeDiffForHumans().
+                    '<span title="'.$user->created_at->toDayDateTimeString().'">'
+                        .$user->created_at->shortRelativeDiffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (User $user) {

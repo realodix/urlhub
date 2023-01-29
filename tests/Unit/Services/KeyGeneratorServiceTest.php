@@ -276,8 +276,8 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
-            'maxCapacity' => $kc,
-            'usedCapacity'     => $ku,
+            'maxCapacity'  => $kc,
+            'usedCapacity' => $ku,
         ]);
         $actual = $mock->idleCapacity();
 
@@ -310,8 +310,8 @@ class KeyGeneratorServiceTest extends TestCase
         // https://ralphjsmit.com/laravel-mock-dependencies
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
-            'maxCapacity' => $kc,
-            'usedCapacity'     => $ku,
+            'maxCapacity'  => $kc,
+            'usedCapacity' => $ku,
         ]);
 
         $actual = $mock->idleCapacityInPercent();

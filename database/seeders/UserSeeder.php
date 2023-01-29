@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'name'       => 'admin',
             'email'      => 'admin@urlhub.test',
             'password'   => Hash::make('admin'),
-        ]);
+        ])->assignRole('admin');
 
         User::factory()->create([
             'name'       => 'user',

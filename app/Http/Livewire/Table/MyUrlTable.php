@@ -109,12 +109,9 @@ final class MyUrlTable extends PowerGridComponent
                 return '<div title="'.$title.'">'.$uClick.' / '.$tClick.$icon.'</div>';
             })
             ->addColumn('created_at_formatted', function (Url $url) {
-                /** @var \Carbon\Carbon */
-                $urlCreatedAt = $url->created_at;
-
                 return
-                    '<span title="'.$urlCreatedAt->toDayDateTimeString().'">'
-                        .$urlCreatedAt->shortRelativeDiffForHumans().
+                    '<span title="'.$url->created_at->toDayDateTimeString().'">'
+                        .$url->created_at->shortRelativeDiffForHumans().
                     '</span>';
             })
             ->addColumn('action', function (Url $url) {

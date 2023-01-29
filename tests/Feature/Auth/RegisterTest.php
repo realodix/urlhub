@@ -70,9 +70,11 @@ class RegisterTest extends TestCase
             'password_confirmation' => 'i-love-laravel',
         ]);
 
+        $user = User::whereName('John Doe')->first();
+
         $response->assertRedirect($this->successfulRegistrationRoute());
         $this->assertCount(1, User::all());
-        $this->assertAuthenticatedAs($user = User::whereName('John Doe')->first());
+        $this->assertAuthenticatedAs($user);
         $this->assertEquals('John Doe', $user->name);
         $this->assertEquals('john@example.com', $user->email);
         $this->assertTrue(Hash::check('i-love-laravel', $user->password));

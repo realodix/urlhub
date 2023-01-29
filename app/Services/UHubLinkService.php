@@ -58,6 +58,7 @@ class UHubLinkService
      */
     public function duplicate(string $urlKey)
     {
+        /** @var \App\Models\Url */
         $shortenedUrl = Url::whereKeyword($urlKey)->first();
 
         $replicate = $shortenedUrl->replicate()->fill([

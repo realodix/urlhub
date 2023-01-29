@@ -9,11 +9,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int|null $user_id
- * @property string   $short_url
- * @property string   $destination
- * @property int      $clicks
- * @property int      $uniqueClicks
+ * @property User           $author
+ * @property Visit          $visits
+ * @property int|null       $user_id
+ * @property string         $short_url
+ * @property string         $destination
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property int            $clicks
+ * @property int            $uniqueClicks
  */
 class Url extends Model
 {
@@ -155,10 +159,12 @@ class Url extends Model
      */
     public function numberOfClicks(int $urlId, bool $unique = false): int
     {
-        $total = self::find($urlId)->visits()->count();
+        /** @var self */
+        $self = self::find($urlId);
+        $total = $self->visits()->count();
 
         if ($unique === true) {
-            $total = self::find($urlId)->visits()
+            $total = $self->visits()
                 ->whereIsFirstClick(true)
                 ->count();
         }

@@ -16,12 +16,12 @@ class UrlHubLinkChecker
      */
     public function handle(Request $request, \Closure $next)
     {
-        if ($this->customKeywordIsAcceptable($request) === false) {
+        if ($this->customKeywordIsAcceptable($request) == false) {
             return redirect()->back()
                 ->withFlashError(__('Custom keyword not available.'));
         }
 
-        if ($this->canGenerateUniqueRandomKeys() === false) {
+        if ($this->canGenerateUniqueRandomKeys() == false) {
             return redirect()->back()
                 ->withFlashError(
                     __('Sorry, our service is currently under maintenance.')
@@ -30,7 +30,7 @@ class UrlHubLinkChecker
 
         $destUrlExists = $this->destinationUrlAlreadyExists($request);
 
-        if ((bool) $destUrlExists === true) {
+        if ($destUrlExists == true) {
             return to_route('su_detail', $destUrlExists->keyword)
                 ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
