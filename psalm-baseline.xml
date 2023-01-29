@@ -1,66 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.4.0@62db5d4f6a7ae0a20f7cc5a4952d730272fc0863">
+<files psalm-version="5.6.0@e784128902dfe01d489c4123d69918a9f3c1eac5">
   <file src="app/Http/Middleware/UrlHubLinkChecker.php">
-    <UndefinedMagicMethod occurrences="2">
+    <UndefinedMagicMethod>
+      <code>byGuests</code>
       <code>whereDestination</code>
-      <code>whereNull</code>
     </UndefinedMagicMethod>
   </file>
   <file src="app/Models/Traits/Hashidable.php">
-    <UndefinedMethod occurrences="1">
+    <UndefinedMethod>
       <code>encode</code>
     </UndefinedMethod>
   </file>
-  <file src="app/Policies/UrlPolicy.php">
-    <UndefinedMagicPropertyFetch occurrences="2">
-      <code>$user-&gt;id</code>
-      <code>$user-&gt;id</code>
-    </UndefinedMagicPropertyFetch>
-  </file>
-  <file src="app/Policies/UserPolicy.php">
-    <UndefinedMagicPropertyFetch occurrences="6">
-      <code>$authUser-&gt;id</code>
-      <code>$authUser-&gt;id</code>
-      <code>$authUser-&gt;id</code>
-      <code>$user-&gt;id</code>
-      <code>$user-&gt;id</code>
-      <code>$user-&gt;id</code>
-    </UndefinedMagicPropertyFetch>
-  </file>
   <file src="app/Providers/RouteServiceProvider.php">
-    <UndefinedMethod occurrences="1">
+    <UndefinedMethod>
       <code>decode</code>
     </UndefinedMethod>
   </file>
-  <file src="app/Rules/PwdCurrent.php">
-    <NoInterfaceProperties occurrences="1">
-      <code>auth()-&gt;user()-&gt;password</code>
-    </NoInterfaceProperties>
-  </file>
   <file src="app/Services/KeyGeneratorService.php">
-    <UndefinedMagicMethod occurrences="3">
+    <UndefinedMagicMethod>
       <code>exists</code>
       <code>whereRaw</code>
       <code>whereRaw</code>
     </UndefinedMagicMethod>
-  </file>
-  <file src="app/Services/VisitorService.php">
-    <UndefinedMagicMethod occurrences="1">
-      <code>whereVisitorId</code>
-    </UndefinedMagicMethod>
-  </file>
-  <file src="database/factories/UrlFactory.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="database/factories/VisitFactory.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="database/seeders/UserSeeder.php">
-    <InvalidTemplateParam occurrences="2"/>
-    <TooManyTemplateParams occurrences="2"/>
   </file>
 </files>
