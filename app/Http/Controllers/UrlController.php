@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
+use App\Models\Visit;
 use App\Services\QrCodeService;
 use App\Services\UHubLinkService;
 
@@ -44,8 +45,8 @@ class UrlController extends Controller
     {
         $url = Url::with('visits')->whereKeyword($urlKey)->firstOrFail();
         $data = [
-            'url' => $url,
-            'visit' => new \App\Models\Visit,
+            'url'   => $url,
+            'visit' => app(Visit::class),
         ];
 
         if (config('urlhub.qrcode')) {
