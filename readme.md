@@ -1,7 +1,7 @@
 ![screenshot](https://i.imgur.com/MeZvgiz.png)
 
 [![LaravelVersion](https://img.shields.io/badge/Laravel-10-f56857.svg?style=flat-square)](https://laravel.com/docs/10.x)
-![PHPVersion](https://img.shields.io/badge/PHP-8-777BB4.svg?style=flat-square)
+![PHPVersion](https://img.shields.io/badge/PHP-8.1-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/newt.svg?style=flat-square)](https://github.com/realodix/newt/blob/master/LICENSE)
 ![Build Status](https://github.com/realodix/urlhub/actions/workflows/tests.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub) <br>
