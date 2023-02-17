@@ -46,8 +46,7 @@
         "nyholm/psr7": "Required to use PSR-7 bridging features.",
         "phpunit/phpunit": "Required to use assertions and run tests."
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "App\\": "app/",
