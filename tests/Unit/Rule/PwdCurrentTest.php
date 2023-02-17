@@ -20,7 +20,7 @@ class PwdCurrentTest extends TestCase
      */
     public function testPwdCurrentPass()
     {
-        $val = Helper::validator(['foo' => $this->adminPass], ['foo' => new PwdCurrent]);
+        $val = Helper::validator(['foo' => self::$adminPass], ['foo' => new PwdCurrent]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());

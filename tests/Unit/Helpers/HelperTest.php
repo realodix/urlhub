@@ -40,7 +40,7 @@ class HelperTest extends TestCase
         $this->assertSame($expected, Helper::urlDisplay($actual, scheme: false));
     }
 
-    public function urlDisplayWithoutSchemeProvider()
+    public static function urlDisplayWithoutSchemeProvider(): array
     {
         return [
             ['example.com', 'example.com'],
@@ -76,7 +76,7 @@ class HelperTest extends TestCase
         $this->assertSame(19.123, Helper::numberFormatPrecision(19.123456, 3));
     }
 
-    public function toAmountShortProvider()
+    public static function toAmountShortProvider(): array
     {
         return [
             ['12', 12],

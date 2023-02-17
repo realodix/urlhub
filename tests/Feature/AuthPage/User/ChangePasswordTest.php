@@ -28,7 +28,7 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass,
+                'current-password'          => self::$adminPass,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
@@ -53,7 +53,7 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass,
+                'current-password'          => self::$adminPass,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
@@ -107,7 +107,7 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass,
+                'current-password'          => self::$adminPass,
                 'new-password'              => $data1,
                 'new-password_confirmation' => $data2,
             ]);
@@ -121,11 +121,11 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    public function newPasswordFailProvider()
+    public static function newPasswordFailProvider(): array
     {
         return [
             ['', ''], // required
-            [$this->adminPass, $this->adminPass], // different
+            [self::$adminPass, self::$adminPass], // different
             [null, null], // string
             ['new-password', 'new-pass-word'], // confirmed
 

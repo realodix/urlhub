@@ -51,7 +51,7 @@ class UrlTest extends TestCase
         ], $val->messages()->messages());
     }
 
-    public function domainBlacklistPassDataProvider()
+    public static function domainBlacklistPassDataProvider(): array
     {
         return [
             ['http://t.com/about'],
@@ -61,7 +61,7 @@ class UrlTest extends TestCase
         ];
     }
 
-    public function domainBlacklistFailDataProvider()
+    public static function domainBlacklistFailDataProvider(): array
     {
         return [
             ['https://github.com/laravel/laravel'],
@@ -110,7 +110,7 @@ class UrlTest extends TestCase
         $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
     }
 
-    public function customKeywordBlacklistPassDataProvider()
+    public static function customKeywordBlacklistPassDataProvider(): array
     {
         return [
             ['hello'],
@@ -118,7 +118,7 @@ class UrlTest extends TestCase
         ];
     }
 
-    public function customKeywordContainsRegisteredRouteWillFailDataProvider()
+    public static function customKeywordContainsRegisteredRouteWillFailDataProvider(): array
     {
         return [
             ['login'],

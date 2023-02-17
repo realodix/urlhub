@@ -43,7 +43,7 @@ class UrlHubLinkCheckerTest extends TestCase
             ->assertSessionHas('flash_error');
     }
 
-    public function keywordBlacklistFailDataProvider()
+    public static function keywordBlacklistFailDataProvider(): array
     {
         return [
             ['login'],

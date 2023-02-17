@@ -284,7 +284,7 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    public function idleCapacityProvider()
+    public static function idleCapacityProvider(): array
     {
         // maxCapacity(), usedCapacity(), expected_result
         return [
@@ -318,7 +318,7 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    public function idleCapacityInPercentProvider()
+    public static function idleCapacityInPercentProvider(): array
     {
         // maxCapacity(), usedCapacity(), expected_result
         return [
