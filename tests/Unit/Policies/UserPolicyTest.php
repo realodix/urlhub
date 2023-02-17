@@ -151,9 +151,7 @@ class UserPolicyTest extends TestCase
         $response->assertOk();
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function normalUserCantAccessAllUsersPage(): void
     {
         $response = $this->actingAs($this->normalUser())

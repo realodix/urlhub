@@ -7,9 +7,7 @@ use Tests\TestCase;
 
 class HelperTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function urlDisplay(): void
     {
         $this->assertSame(
