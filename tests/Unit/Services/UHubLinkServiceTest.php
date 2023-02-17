@@ -16,10 +16,8 @@ class UHubLinkServiceTest extends TestCase
         $this->uHubLinkService = app(UHubLinkService::class);
     }
 
-    /**
-     * @test
-     */
-    public function title()
+    /** @test */
+    public function title(): void
     {
         $expected = 'example123456789.com - Untitled';
         $actual = $this->uHubLinkService->title('https://example123456789.com');

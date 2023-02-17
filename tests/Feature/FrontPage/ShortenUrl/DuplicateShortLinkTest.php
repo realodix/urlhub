@@ -8,7 +8,7 @@ use Tests\TestCase;
 class DuplicateShortLinkTest extends TestCase
 {
     /** @test */
-    public function duplicate()
+    public function duplicate(): void
     {
         $url = Url::factory()->create([
             'user_id' => $this->adminUser()->id,
@@ -25,7 +25,7 @@ class DuplicateShortLinkTest extends TestCase
     }
 
     /** @test */
-    public function duplicateUrlCreatedByGuest()
+    public function duplicateUrlCreatedByGuest(): void
     {
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
@@ -43,7 +43,7 @@ class DuplicateShortLinkTest extends TestCase
     }
 
     /** @test */
-    public function guestCannotDuplicateUrl()
+    public function guestCannotDuplicateUrl(): void
     {
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,

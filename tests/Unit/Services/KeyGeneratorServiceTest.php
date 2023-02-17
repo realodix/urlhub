@@ -36,7 +36,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKey_default_value()
+    public function urlKey_default_value(): void
     {
         $length = 3;
         config(['urlhub.hash_length' => $length]);
@@ -54,7 +54,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKey_generated_string()
+    public function urlKey_generated_string(): void
     {
         $length = 3;
         config(['urlhub.hash_length' => $length]);
@@ -74,7 +74,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKey_specified_hash_length()
+    public function urlKey_specified_hash_length(): void
     {
         config(['urlhub.hash_length' => 6]);
         $actual = 'https://github.com/realodix';
@@ -99,7 +99,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKey_specified_character()
+    public function urlKey_specified_character(): void
     {
         $url = 'https://example.com/abc';
         config(['urlhub.hash_length' => 3]);
@@ -122,7 +122,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKey_prevent_reserved_keyword()
+    public function urlKey_prevent_reserved_keyword(): void
     {
         $actual = 'https://example.com/css';
         $expected = 'css';
@@ -141,7 +141,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function urlKey_prevent_generating_strings_that_are_in_registered_route_path()
+    public function urlKey_prevent_generating_strings_that_are_in_registered_route_path(): void
     {
         $actual = 'https://example.com/admin';
         $expected = 'admin';
@@ -155,7 +155,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function generateSimpleString()
+    public function generateSimpleString(): void
     {
         config(['urlhub.hash_length' => 3]);
 
@@ -167,7 +167,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function assertStringCanBeUsedAsKey()
+    public function assertStringCanBeUsedAsKey(): void
     {
         $this->assertTrue($this->keyGeneratorService->assertStringCanBeUsedAsKey('foo'));
         $this->assertFalse($this->keyGeneratorService->assertStringCanBeUsedAsKey('login'));
@@ -177,7 +177,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function maxCapacity()
+    public function maxCapacity(): void
     {
         $hashLength = config('urlhub.hash_length');
         $hashCharLength = strlen(config('urlhub.hash_char'));
@@ -192,7 +192,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function usedCapacity()
+    public function usedCapacity(): void
     {
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 1]);
 
@@ -228,7 +228,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function usedCapacity2()
+    public function usedCapacity2(): void
     {
         config(['urlhub.hash_length' => 3]);
 
@@ -272,7 +272,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @param mixed $ku
      * @param mixed $expected
      */
-    public function idleCapacity($kc, $ku, $expected)
+    public function idleCapacity($kc, $ku, $expected): void
     {
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
@@ -305,7 +305,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @param mixed $ku
      * @param mixed $expected
      */
-    public function idleCapacityInPercent($kc, $ku, $expected)
+    public function idleCapacityInPercent($kc, $ku, $expected): void
     {
         // https://ralphjsmit.com/laravel-mock-dependencies
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();

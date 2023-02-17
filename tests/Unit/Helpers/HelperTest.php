@@ -10,7 +10,7 @@ class HelperTest extends TestCase
     /**
      * @test
      */
-    public function urlDisplay()
+    public function urlDisplay(): void
     {
         $this->assertSame(
             'https://example.com/abcde/',
@@ -35,7 +35,7 @@ class HelperTest extends TestCase
      * @param mixed $expected
      * @param mixed $actual
      */
-    public function urlDisplayWithoutScheme($expected, $actual)
+    public function urlDisplayWithoutScheme($expected, $actual): void
     {
         $this->assertSame($expected, Helper::urlDisplay($actual, scheme: false));
     }
@@ -61,7 +61,7 @@ class HelperTest extends TestCase
      * @param mixed $expected
      * @param mixed $actual
      */
-    public function compactNumber($expected, $actual)
+    public function compactNumber($expected, $actual): void
     {
         $this->assertSame($expected, Helper::compactNumber($actual));
     }
@@ -70,7 +70,7 @@ class HelperTest extends TestCase
      * @test
      * @group u-helper
      */
-    public function numberFormatPrecision()
+    public function numberFormatPrecision(): void
     {
         $this->assertSame(19.12, Helper::numberFormatPrecision(19.123456));
         $this->assertSame(19.123, Helper::numberFormatPrecision(19.123456, 3));

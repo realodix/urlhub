@@ -17,7 +17,7 @@ class VisitTest extends TestCase
      * @test
      * @group u-model
      */
-    public function belongsToUrlModel()
+    public function belongsToUrlModel(): void
     {
         $visit = Visit::factory()
             ->create();

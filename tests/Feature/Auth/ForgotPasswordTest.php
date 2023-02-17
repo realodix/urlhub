@@ -11,16 +11,19 @@ use Tests\TestCase;
 
 class ForgotPasswordTest extends TestCase
 {
-    protected function requestRoute()
+    protected function requestRoute(): string
     {
         return route('password.request');
     }
 
-    protected function getRoute()
+    protected function getRoute(): string
     {
         return route('password.email');
     }
 
+    /**
+     * @return string
+     */
     protected function postRoute()
     {
         return route('password.email');
@@ -30,7 +33,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewAnEmailPasswordForm()
+    public function userCanViewAnEmailPasswordForm(): void
     {
         $response = $this->get($this->requestRoute());
 
@@ -43,7 +46,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userReceivesAnEmailWithAPasswordResetLink()
+    public function userReceivesAnEmailWithAPasswordResetLink(): void
     {
         Notification::fake();
 
@@ -67,7 +70,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userDoesNotReceiveEmailWhenNotRegistered()
+    public function userDoesNotReceiveEmailWhenNotRegistered(): void
     {
         Notification::fake();
 
@@ -87,7 +90,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function emailIsRequired()
+    public function emailIsRequired(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), []);
@@ -101,7 +104,7 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-api
      */
-    public function emailIsAValidEmail()
+    public function emailIsAValidEmail(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [

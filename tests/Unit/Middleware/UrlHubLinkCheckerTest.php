@@ -12,7 +12,7 @@ class UrlHubLinkCheckerTest extends TestCase
      *
      * @param array $value
      */
-    public function keywordBlacklistFail($value)
+    public function keywordBlacklistFail($value): void
     {
         $response = $this->post(route('su_create'), [
             'long_url' => 'https://laravel.com',
@@ -30,7 +30,7 @@ class UrlHubLinkCheckerTest extends TestCase
      *
      * @test
      */
-    public function idleCapacityZero()
+    public function idleCapacityZero(): void
     {
         config(['urlhub.hash_length' => 0]);
 

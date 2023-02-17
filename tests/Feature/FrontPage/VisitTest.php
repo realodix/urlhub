@@ -11,7 +11,7 @@ class VisitTest extends TestCase
     const BOT_UA = 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)';
 
     /** @test */
-    public function logBotVisits()
+    public function logBotVisits(): void
     {
         config(['urlhub.track_bot_visits' => true]);
 
@@ -23,7 +23,7 @@ class VisitTest extends TestCase
     }
 
     /** @test */
-    public function dontLogBotVisits()
+    public function dontLogBotVisits(): void
     {
         config(['urlhub.track_bot_visits' => false]);
 

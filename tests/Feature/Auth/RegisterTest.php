@@ -10,21 +10,27 @@ use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
-    protected function successfulRegistrationRoute()
+    protected function successfulRegistrationRoute(): string
     {
         return route('home');
     }
 
-    protected function getRoute()
+    protected function getRoute(): string
     {
         return route('register');
     }
 
+    /**
+     * @return string
+     */
     protected function postRoute()
     {
         return route('register');
     }
 
+    /**
+     * @return string
+     */
     protected function guestMiddlewareRoute()
     {
         return route('home');
@@ -34,7 +40,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewARegistrationForm()
+    public function userCanViewARegistrationForm(): void
     {
         $response = $this->get($this->getRoute());
 
@@ -47,7 +53,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotViewARegistrationFormWhenAuthenticated()
+    public function userCannotViewARegistrationFormWhenAuthenticated(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get($this->getRoute());
@@ -59,7 +65,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanRegister()
+    public function userCanRegister(): void
     {
         Event::fake();
 
@@ -88,7 +94,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function nameShouldNotBeTooLong()
+    public function nameShouldNotBeTooLong(): void
     {
         $response = $this->post('/register', [
             'name' => str_repeat('a', 51),
@@ -103,7 +109,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotRegisterWithoutName()
+    public function userCannotRegisterWithoutName(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
@@ -127,7 +133,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotRegisterWithoutEmail()
+    public function userCannotRegisterWithoutEmail(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
@@ -151,7 +157,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotRegisterWithInvalidEmail()
+    public function userCannotRegisterWithInvalidEmail(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
@@ -176,7 +182,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function emailShouldNotBeTooLong()
+    public function emailShouldNotBeTooLong(): void
     {
         $response = $this->post('/register', [
             'email' => str_repeat('a', 247).'@test.com', // 256
@@ -190,7 +196,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotRegisterWithoutPassword()
+    public function userCannotRegisterWithoutPassword(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
@@ -215,7 +221,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotRegisterWithoutPasswordConfirmation()
+    public function userCannotRegisterWithoutPasswordConfirmation(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
@@ -240,7 +246,7 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotRegisterWithPasswordsNotMatching()
+    public function userCannotRegisterWithPasswordsNotMatching(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [

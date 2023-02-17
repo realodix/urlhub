@@ -8,22 +8,22 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
-    protected function successfulLoginRoute()
+    protected function successfulLoginRoute(): string
     {
         return route('home');
     }
 
-    protected function getRoute()
+    protected function getRoute(): string
     {
         return route('login');
     }
 
-    protected function postRoute()
+    protected function postRoute(): string
     {
         return route('login');
     }
 
-    protected function guestMiddlewareRoute()
+    protected function guestMiddlewareRoute(): string
     {
         return route('home');
     }
@@ -32,7 +32,7 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewALoginForm()
+    public function userCanViewALoginForm(): void
     {
         $response = $this->get($this->getRoute());
 
@@ -45,7 +45,7 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotViewALoginFormWhenAuthenticated()
+    public function userCannotViewALoginFormWhenAuthenticated(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get($this->getRoute());
@@ -57,7 +57,7 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanLoginWithCorrectCredentials()
+    public function userCanLoginWithCorrectCredentials(): void
     {
         $user = User::factory()->create([
             'password' => Hash::make($password = 'i-love-laravel'),
@@ -76,7 +76,7 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotLoginWithIncorrectPassword()
+    public function userCannotLoginWithIncorrectPassword(): void
     {
         $user = User::factory()->create([
             'password' => Hash::make('i-love-laravel'),
@@ -101,7 +101,7 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function unauthenticatedUsersCantAccessTheDashboard()
+    public function unauthenticatedUsersCantAccessTheDashboard(): void
     {
         $this->get('/admin')->assertRedirect('/login');
     }
@@ -110,7 +110,7 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCannotLoginWithEmailThatDoesNotExist()
+    public function userCannotLoginWithEmailThatDoesNotExist(): void
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [

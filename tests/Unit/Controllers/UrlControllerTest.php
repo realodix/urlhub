@@ -14,7 +14,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function guestShortenURL()
+    public function guestShortenURL(): void
     {
         $longUrl = 'https://laravel.com';
 
@@ -33,7 +33,7 @@ class UrlControllerTest extends TestCase
      * @test
      * @group u-controller
      */
-    public function userShortenURL()
+    public function userShortenURL(): void
     {
         $user = $this->normalUser();
         $longUrl = 'https://laravel.com';

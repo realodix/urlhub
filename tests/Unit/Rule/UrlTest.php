@@ -23,7 +23,7 @@ class UrlTest extends TestCase
      *
      * @param mixed $value
      */
-    public function domainBlacklistPass($value)
+    public function domainBlacklistPass($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
 
@@ -38,7 +38,7 @@ class UrlTest extends TestCase
      *
      * @param mixed $value
      */
-    public function domainBlacklistFail($value)
+    public function domainBlacklistFail($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
 
@@ -76,7 +76,7 @@ class UrlTest extends TestCase
      *
      * @param string $value
      */
-    public function customKeywordBlacklistPass($value)
+    public function customKeywordBlacklistPass($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
 
@@ -91,7 +91,7 @@ class UrlTest extends TestCase
      *
      * @param array $value
      */
-    public function customKeywordContainsRegisteredRouteWillFail($value)
+    public function customKeywordContainsRegisteredRouteWillFail($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
 
@@ -99,7 +99,7 @@ class UrlTest extends TestCase
         $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
     }
 
-    public function customKeywordContainsReservedKeywordWillFail()
+    public function customKeywordContainsReservedKeywordWillFail(): void
     {
         $value = 'css';
         config(['urlhub.reserved_keyword' => $value]);

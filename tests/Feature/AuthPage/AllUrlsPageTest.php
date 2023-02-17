@@ -11,7 +11,7 @@ class AllUrlsPageTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function auAdminCanAccessThisPage()
+    public function auAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('dashboard.allurl'));
@@ -23,7 +23,7 @@ class AllUrlsPageTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function auNormalUserCantAccessThisPage()
+    public function auNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get(route('dashboard.allurl'));
@@ -35,7 +35,7 @@ class AllUrlsPageTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function auAdminCanDelete()
+    public function auAdminCanDelete(): void
     {
         $url = Url::factory()->create();
 
@@ -53,7 +53,7 @@ class AllUrlsPageTest extends TestCase
      * @test
      * @group f-allurl
      */
-    public function auNormalUserCantDelete()
+    public function auNormalUserCantDelete(): void
     {
         $url = Url::factory()->create();
 

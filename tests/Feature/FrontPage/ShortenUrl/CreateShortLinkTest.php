@@ -13,7 +13,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function shortenUrl()
+    public function shortenUrl(): void
     {
         $longUrl = 'https://laravel.com';
         $response = $this->post(route('su_create'), [
@@ -33,7 +33,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function shortenUrlWithCustomKeyword()
+    public function shortenUrlWithCustomKeyword(): void
     {
         $longUrl = 'https://laravel.com';
         $customKey = 'laravel';
@@ -59,7 +59,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function urlsWithOrWithoutSlashesWillBeConsideredTheSame()
+    public function urlsWithOrWithoutSlashesWillBeConsideredTheSame(): void
     {
         $longUrl_1 = 'https://example.com/';
         $longUrl_2 = 'https://example.com';
@@ -87,7 +87,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function longUrlAlreadyExist()
+    public function longUrlAlreadyExist(): void
     {
         $url = Url::factory()->create();
 
@@ -110,7 +110,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function urlAlreadyExist_guestWithAnotherGuest()
+    public function urlAlreadyExist_guestWithAnotherGuest(): void
     {
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
@@ -134,7 +134,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function longUrlAlreadyExistsButStillAccepted1()
+    public function longUrlAlreadyExistsButStillAccepted1(): void
     {
         $user = $this->normalUser();
         $urlFromOtherUsers = Url::factory()->create();
@@ -158,7 +158,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function longUrlAlreadyExistsButStillAccepted2()
+    public function longUrlAlreadyExistsButStillAccepted2(): void
     {
         $url = Url::factory()->create();
 
@@ -180,7 +180,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function longUrlAlreadyExistsButStillAccepted3()
+    public function longUrlAlreadyExistsButStillAccepted3(): void
     {
         $user = $this->normalUser();
 
@@ -210,7 +210,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function customKeyAlreadyExist()
+    public function customKeyAlreadyExist(): void
     {
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
@@ -234,7 +234,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function customKeyAlreadyExist2()
+    public function customKeyAlreadyExist2(): void
     {
         $url = Url::factory()->create();
 
@@ -256,7 +256,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function customKeyAlreadyExist3()
+    public function customKeyAlreadyExist3(): void
     {
         $url = Url::factory()->create();
 

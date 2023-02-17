@@ -7,12 +7,12 @@ use Tests\TestCase;
 
 class ChangePasswordTest extends TestCase
 {
-    protected function getRoute($value)
+    protected function getRoute($value): string
     {
         return route('user.change-password', $value);
     }
 
-    protected function postRoute($value)
+    protected function postRoute($value): string
     {
         return $this->secureRoute('user.change-password.post', $value);
     }
@@ -21,7 +21,7 @@ class ChangePasswordTest extends TestCase
      * @test
      * @group f-user
      */
-    public function changePasswordWithCorrectCredentials()
+    public function changePasswordWithCorrectCredentials(): void
     {
         $user = $this->adminUser();
 
@@ -46,7 +46,7 @@ class ChangePasswordTest extends TestCase
      * @test
      * @group f-user
      */
-    public function adminCanChangeThePasswordOfAllUsers()
+    public function adminCanChangeThePasswordOfAllUsers(): void
     {
         $user = $this->normalUser();
 
@@ -71,7 +71,7 @@ class ChangePasswordTest extends TestCase
      * @test
      * @group f-user
      */
-    public function currentPasswordDoesNotMatch()
+    public function currentPasswordDoesNotMatch(): void
     {
         $user = $this->adminUser();
 
@@ -100,7 +100,7 @@ class ChangePasswordTest extends TestCase
      * @param mixed $data1
      * @param mixed $data2
      */
-    public function newPasswordValidateFail($data1, $data2)
+    public function newPasswordValidateFail($data1, $data2): void
     {
         $user = $this->normalUser();
 

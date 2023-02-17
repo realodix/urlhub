@@ -18,7 +18,7 @@ class PwdCurrentTest extends TestCase
     /**
      * @group u-rule
      */
-    public function testPwdCurrentPass()
+    public function testPwdCurrentPass(): void
     {
         $val = Helper::validator(['foo' => self::$adminPass], ['foo' => new PwdCurrent]);
 
@@ -29,7 +29,7 @@ class PwdCurrentTest extends TestCase
     /**
      * @group u-rule
      */
-    public function testPwdCurrentFail()
+    public function testPwdCurrentFail(): void
     {
         $val = Helper::validator(['foo' => 'bar'], ['foo' => new PwdCurrent]);
 

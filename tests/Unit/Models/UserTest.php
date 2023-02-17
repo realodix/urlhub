@@ -12,7 +12,7 @@ class UserTest extends TestCase
      * @test
      * @group u-model
      */
-    public function hasManyUrlModel()
+    public function hasManyUrlModel(): void
     {
         $user = User::factory()
             ->has(Url::factory())
@@ -28,7 +28,7 @@ class UserTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalGuestUsers()
+    public function totalGuestUsers(): void
     {
         $this->assertSame(0, (new User)->totalGuestUsers());
     }

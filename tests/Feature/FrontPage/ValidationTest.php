@@ -7,7 +7,7 @@ use Tests\TestCase;
 class ValidationTest extends TestCase
 {
     /** @test */
-    public function createShortUrlWithWrongUrlFormat()
+    public function createShortUrlWithWrongUrlFormat(): void
     {
         $response = $this->post(route('su_create'), [
             'long_url' => 'wrong-url-format',
@@ -19,7 +19,7 @@ class ValidationTest extends TestCase
     }
 
     /** @test */
-    public function customKeyValidation()
+    public function customKeyValidation(): void
     {
         $component = \Livewire\Livewire::test(\App\Http\Livewire\UrlCheck::class);
 
