@@ -11,7 +11,7 @@ class DashboardPageTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function dCanAccessPage()
+    public function dCanAccessPage(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get(route('dashboard'));
@@ -23,7 +23,7 @@ class DashboardPageTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function dCanDelete()
+    public function dCanDelete(): void
     {
         $url = Url::factory()->create();
 
@@ -42,7 +42,7 @@ class DashboardPageTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function dCanDuplicate()
+    public function dCanDuplicate(): void
     {
         $url = Url::factory()->create();
 
@@ -61,7 +61,7 @@ class DashboardPageTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function dAuthorizedUserCanAccessEditUrlPage()
+    public function dAuthorizedUserCanAccessEditUrlPage(): void
     {
         $url = Url::factory()->create();
 
@@ -75,7 +75,7 @@ class DashboardPageTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function dCanUpdateUrl()
+    public function dCanUpdateUrl(): void
     {
         $url = Url::factory()->create();
 

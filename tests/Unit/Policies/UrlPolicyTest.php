@@ -13,7 +13,7 @@ class UrlPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function forceDeleteAdmin()
+    public function forceDeleteAdmin(): void
     {
         $admin = $this->adminUser();
         $url = Url::factory()->create([
@@ -31,7 +31,7 @@ class UrlPolicyTest extends TestCase
      * @test
      * @group u-policy
      */
-    public function forceDeleteNormalUser()
+    public function forceDeleteNormalUser(): void
     {
         $url = Url::factory()->create();
 

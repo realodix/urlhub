@@ -10,7 +10,7 @@ class ConfirmPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewPasswordConfirm()
+    public function userCanViewPasswordConfirm(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get(route('password.confirm'));
@@ -24,7 +24,7 @@ class ConfirmPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function guestCantViewPasswordConfirm()
+    public function guestCantViewPasswordConfirm(): void
     {
         $response = $this->get(route('password.confirm'));
         $response->assertRedirectToRoute('login');

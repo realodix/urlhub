@@ -10,7 +10,7 @@ class UserListPageTest extends TestCase
      * @test
      * @group f-userlist
      */
-    public function ulpAdminCanAccessThisPage()
+    public function ulpAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('user.index'));
@@ -22,7 +22,7 @@ class UserListPageTest extends TestCase
      * @test
      * @group f-userlist
      */
-    public function ulpNormalUserCantAccessThisPage()
+    public function ulpNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get(route('user.index'));

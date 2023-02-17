@@ -12,7 +12,7 @@ class StrAlphaUnderscoreTest extends TestCase
      * @test
      * @group u-rule
      */
-    public function strAlphaUnderscorePass()
+    public function strAlphaUnderscorePass(): void
     {
         $val = Helper::validator(['foo' => 'foo_bar'], ['foo' => new StrAlphaUnderscore]);
 
@@ -24,7 +24,7 @@ class StrAlphaUnderscoreTest extends TestCase
      * @test
      * @group u-rule
      */
-    public function strAlphaUnderscoreFail()
+    public function strAlphaUnderscoreFail(): void
     {
         $val = Helper::validator(['foo' => 'foo-bar'], ['foo' => new StrAlphaUnderscore]);
         $this->assertTrue($val->fails());

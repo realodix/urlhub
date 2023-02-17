@@ -17,7 +17,7 @@ class QrCodeServiceTest extends TestCase
      * @test
      * @group u-actions
      */
-    public function QrCodeService()
+    public function QrCodeService(): void
     {
         $QrCode = $this->getQrCode()->execute('foo');
 
@@ -28,7 +28,7 @@ class QrCodeServiceTest extends TestCase
      * @test
      * @group u-actions
      */
-    public function sizeMin()
+    public function sizeMin(): void
     {
         $size = QrCodeService::MIN_SIZE - 1;
         config(['urlhub.qrcode_size' => $size]);
@@ -43,7 +43,7 @@ class QrCodeServiceTest extends TestCase
      * @test
      * @group u-actions
      */
-    public function sizeMax()
+    public function sizeMax(): void
     {
         $size = QrCodeService::MAX_SIZE + 1;
         config(['urlhub.qrcode_size' => $size]);

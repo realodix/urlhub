@@ -7,12 +7,12 @@ use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
-    protected function getRoute($value)
+    protected function getRoute(mixed $value): string
     {
         return route('user.edit', $value);
     }
 
-    protected function postRoute($value)
+    protected function postRoute(mixed $value): string
     {
         return $this->secureRoute('user.update', $value);
     }
@@ -21,7 +21,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function usersCanAccessTheirOwnProfilePage()
+    public function usersCanAccessTheirOwnProfilePage(): void
     {
         $user = $this->normalUser();
         $response = $this->actingAs($user)
@@ -34,7 +34,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function adminCanAccessOtherUsersProfilePages()
+    public function adminCanAccessOtherUsersProfilePages(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get($this->getRoute($this->normalUser()->name));
@@ -46,7 +46,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function adminUserCantAccessOtherUsersProfilePages()
+    public function adminUserCantAccessOtherUsersProfilePages(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get($this->getRoute($this->adminUser()->name));
@@ -58,7 +58,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function adminCanChangeOtherUsersEmail()
+    public function adminCanChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
 
@@ -79,7 +79,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function normalUserCantChangeOtherUsersEmail()
+    public function normalUserCantChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
@@ -97,7 +97,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validationEmailRequired()
+    public function validationEmailRequired(): void
     {
         $user = $this->normalUser();
 
@@ -116,7 +116,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validationEmailInvalidFormat()
+    public function validationEmailInvalidFormat(): void
     {
         $user = $this->normalUser();
 
@@ -135,7 +135,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validationEmailMaxLength()
+    public function validationEmailMaxLength(): void
     {
         $user = $this->normalUser();
 
@@ -155,7 +155,7 @@ class ProfileTest extends TestCase
      * @test
      * @group f-user
      */
-    public function validationEmailUnique()
+    public function validationEmailUnique(): void
     {
         $user = $this->normalUser();
 

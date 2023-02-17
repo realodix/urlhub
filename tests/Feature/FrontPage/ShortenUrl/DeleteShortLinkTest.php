@@ -8,7 +8,7 @@ use Tests\TestCase;
 class DeleteShortLinkTest extends TestCase
 {
     /** @test */
-    public function userCanDelete()
+    public function userCanDelete(): void
     {
         $url = Url::factory()->create();
 
@@ -21,7 +21,7 @@ class DeleteShortLinkTest extends TestCase
     }
 
     /** @test */
-    public function adminCanDeleteUrlsCreatedByOtherUsers()
+    public function adminCanDeleteUrlsCreatedByOtherUsers(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
@@ -33,7 +33,7 @@ class DeleteShortLinkTest extends TestCase
     }
 
     /** @test */
-    public function adminCanDeleteUrlsCreatedByGuest()
+    public function adminCanDeleteUrlsCreatedByGuest(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->adminUser())
@@ -45,7 +45,7 @@ class DeleteShortLinkTest extends TestCase
     }
 
     /** @test */
-    public function userCannotDeleteUrlsCreatedByOtherUsers()
+    public function userCannotDeleteUrlsCreatedByOtherUsers(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->normalUser())
@@ -57,7 +57,7 @@ class DeleteShortLinkTest extends TestCase
     }
 
     /** @test */
-    public function userCannotDeleteUrlsCreatedByGuest()
+    public function userCannotDeleteUrlsCreatedByGuest(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->normalUser())
@@ -69,7 +69,7 @@ class DeleteShortLinkTest extends TestCase
     }
 
     /** @test */
-    public function guestCannotDelete()
+    public function guestCannotDelete(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->from(route('su_detail', $url->keyword))

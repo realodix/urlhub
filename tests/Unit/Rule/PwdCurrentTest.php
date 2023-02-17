@@ -18,9 +18,9 @@ class PwdCurrentTest extends TestCase
     /**
      * @group u-rule
      */
-    public function testPwdCurrentPass()
+    public function testPwdCurrentPass(): void
     {
-        $val = Helper::validator(['foo' => $this->adminPass], ['foo' => new PwdCurrent]);
+        $val = Helper::validator(['foo' => self::$adminPass], ['foo' => new PwdCurrent]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());
@@ -29,7 +29,7 @@ class PwdCurrentTest extends TestCase
     /**
      * @group u-rule
      */
-    public function testPwdCurrentFail()
+    public function testPwdCurrentFail(): void
     {
         $val = Helper::validator(['foo' => 'bar'], ['foo' => new PwdCurrent]);
 

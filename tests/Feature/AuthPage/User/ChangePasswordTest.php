@@ -7,12 +7,12 @@ use Tests\TestCase;
 
 class ChangePasswordTest extends TestCase
 {
-    protected function getRoute($value)
+    protected function getRoute(mixed $value): string
     {
         return route('user.change-password', $value);
     }
 
-    protected function postRoute($value)
+    protected function postRoute(mixed $value): string
     {
         return $this->secureRoute('user.change-password.post', $value);
     }
@@ -21,14 +21,14 @@ class ChangePasswordTest extends TestCase
      * @test
      * @group f-user
      */
-    public function changePasswordWithCorrectCredentials()
+    public function changePasswordWithCorrectCredentials(): void
     {
         $user = $this->adminUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass,
+                'current-password'          => self::$adminPass,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
@@ -46,14 +46,14 @@ class ChangePasswordTest extends TestCase
      * @test
      * @group f-user
      */
-    public function adminCanChangeThePasswordOfAllUsers()
+    public function adminCanChangeThePasswordOfAllUsers(): void
     {
         $user = $this->normalUser();
 
         $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass,
+                'current-password'          => self::$adminPass,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
@@ -71,7 +71,7 @@ class ChangePasswordTest extends TestCase
      * @test
      * @group f-user
      */
-    public function currentPasswordDoesNotMatch()
+    public function currentPasswordDoesNotMatch(): void
     {
         $user = $this->adminUser();
 
@@ -100,14 +100,14 @@ class ChangePasswordTest extends TestCase
      * @param mixed $data1
      * @param mixed $data2
      */
-    public function newPasswordValidateFail($data1, $data2)
+    public function newPasswordValidateFail($data1, $data2): void
     {
         $user = $this->normalUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => $this->adminPass,
+                'current-password'          => self::$adminPass,
                 'new-password'              => $data1,
                 'new-password_confirmation' => $data2,
             ]);
@@ -121,11 +121,11 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    public function newPasswordFailProvider()
+    public static function newPasswordFailProvider(): array
     {
         return [
             ['', ''], // required
-            [$this->adminPass, $this->adminPass], // different
+            [self::$adminPass, self::$adminPass], // different
             [null, null], // string
             ['new-password', 'new-pass-word'], // confirmed
 

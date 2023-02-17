@@ -25,7 +25,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function belongsToUserModel()
+    public function belongsToUserModel(): void
     {
         $url = Url::factory()->create();
 
@@ -40,7 +40,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function hasManyUrlModel()
+    public function hasManyUrlModel(): void
     {
         $v = Visit::factory()->create();
 
@@ -54,7 +54,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function defaultGuestName()
+    public function defaultGuestName(): void
     {
         $url = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
@@ -69,7 +69,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function defaultGuestId()
+    public function defaultGuestId(): void
     {
         $longUrl = 'https://example.com';
 
@@ -86,7 +86,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function setUserIdAttributeMustBeNull()
+    public function setUserIdAttributeMustBeNull(): void
     {
         $url = Url::factory()->create([
             'user_id' => 0,
@@ -99,7 +99,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function setLongUrlAttribute()
+    public function setLongUrlAttribute(): void
     {
         $url = Url::factory()->create([
             'destination' => 'http://example.com/',
@@ -114,7 +114,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function getShortUrlAttribute()
+    public function getShortUrlAttribute(): void
     {
         $url = Url::factory()->create();
         $url->whereUserId($url->author->id)->first();
@@ -128,7 +128,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function setMetaTitleAttributeWhenWebTitleSetToFalse()
+    public function setMetaTitleAttributeWhenWebTitleSetToFalse(): void
     {
         config()->set('urlhub.web_title', false);
 
@@ -143,7 +143,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalShortUrlByGuest()
+    public function totalShortUrlByGuest(): void
     {
         Url::factory()->create([
             'user_id' => Url::GUEST_ID,
@@ -157,7 +157,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalClicks()
+    public function totalClicks(): void
     {
         Visit::factory()->create();
 
@@ -170,7 +170,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function numberOfClicks()
+    public function numberOfClicks(): void
     {
         $v = Visit::factory()->create([
             'is_first_click' => true,
@@ -190,7 +190,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function numberOfClicksAndUnique()
+    public function numberOfClicksAndUnique(): void
     {
         $v = Visit::factory()->create([
             'is_first_click' => true,
@@ -212,7 +212,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function numberOfClicksPerAuthor()
+    public function numberOfClicksPerAuthor(): void
     {
         $visit = Visit::factory()
             ->for(Url::factory())
@@ -231,7 +231,7 @@ class UrlTest extends TestCase
      * @test
      * @group u-model
      */
-    public function numberOfClicksFromGuests()
+    public function numberOfClicksFromGuests(): void
     {
         $visit = Visit::factory()
             ->for(
