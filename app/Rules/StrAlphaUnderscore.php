@@ -2,23 +2,20 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\InvokableRule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * The field under validation may have alpha-numeric characters, as well as
  * underscores.
  */
-class StrAlphaUnderscore implements InvokableRule
+class StrAlphaUnderscore implements ValidationRule
 {
     /**
      * Run the validation rule.
      *
-     * @param string   $attribute
-     * @param mixed    $value
-     * @param \Closure $fail
-     * @return void
+     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
      */
-    public function __invoke($attribute, $value, $fail)
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
         $rule = preg_match('/^[\pL\pM\pN_]+$/u', $value);
 

@@ -11,9 +11,10 @@ class Helper
     /**
      * Display the link according to what You need.
      *
-     * @param string $url    URL or Link
-     * @param int    $limit  Length string will be truncated to, including suffix
-     * @param bool   $scheme Show or remove URL schemes
+     * @param string $url           URL or Link
+     * @param int    $limit         Length string will be truncated to, including suffix
+     * @param bool   $scheme        Show or remove URL schemes
+     * @param bool   $trailingSlash Show or remove trailing slash
      */
     public static function urlDisplay(
         string $url,
@@ -57,6 +58,8 @@ class Helper
      * 1B+ etc.
      *
      * Based on https://gist.github.com/RadGH/84edff0cc81e6326029c
+     *
+     * @param int $number Number to be converted
      */
     public static function compactNumber(int $number): int|string
     {
@@ -104,6 +107,9 @@ class Helper
      * Alternative to make number_format() not to round numbers up.
      *
      * Based on https://stackoverflow.com/q/3833137
+     *
+     * @param float $number    Number to be formatted
+     * @param int   $precision Number of decimal points to round to
      */
     public static function numberFormatPrecision(float $number, int $precision = 2): float
     {

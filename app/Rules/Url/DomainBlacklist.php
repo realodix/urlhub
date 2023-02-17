@@ -3,19 +3,16 @@
 namespace App\Rules\Url;
 
 use App\Helpers\Helper;
-use Illuminate\Contracts\Validation\InvokableRule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class DomainBlacklist implements InvokableRule
+class DomainBlacklist implements ValidationRule
 {
     /**
      * Run the validation rule.
      *
-     * @param string   $attribute
-     * @param mixed    $value
-     * @param \Closure $fail
-     * @return void
+     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
      */
-    public function __invoke($attribute, $value, $fail)
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
         $blackLists = config('urlhub.domain_blacklist');
         $longUrl = rtrim($value, '/');

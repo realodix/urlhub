@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
+use Illuminate\Http\RedirectResponse;
 
 class UrlRedirection
 {
@@ -10,9 +11,8 @@ class UrlRedirection
      * Execute the HTTP redirect and return the redirect response.
      *
      * @param Url $url \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function execute(Url $url)
+    public function execute(Url $url): RedirectResponse
     {
         $statusCode = (int) config('urlhub.redirect_status_code');
         $maxAge = (int) config('urlhub.redirect_cache_max_age');
