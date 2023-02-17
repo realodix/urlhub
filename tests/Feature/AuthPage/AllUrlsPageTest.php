@@ -3,16 +3,14 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
+use Illuminate\Support\Facades\Crypt;
 use Tests\TestCase;
-use Vinkla\Hashids\Facades\Hashids;
 
 class AllUrlsPageTest extends TestCase
 {
     protected function secureRoute($routeName, $url_id)
     {
-        $hashids = Hashids::connection(Url::class);
-
-        return route($routeName, $hashids->encode($url_id));
+        return route($routeName, Crypt::encryptString($url_id));
     }
 
     /**

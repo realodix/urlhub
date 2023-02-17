@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use Vinkla\Hashids\Facades\Hashids;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -82,9 +82,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     private function hashidsDecoder(string $model, string $routeKey)
     {
-        /** @var \Vinkla\Hashids\Facades\Hashids */
-        $hashids = Hashids::connection($model);
-        $id = $hashids->decode($routeKey)[0] ?? null;
+        $id = Crypt::decryptString($routeKey);
 
         return resolve($model)->findOrFail($id);
     }

@@ -2,15 +2,12 @@
 
 namespace App\Models\Traits;
 
-use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Crypt;
 
 trait Hashidable
 {
-    public function getRouteKey()
+    public function getRouteKey(): string
     {
-        /** @var \Vinkla\Hashids\Facades\Hashids */
-        $hashids = Hashids::connection(get_called_class());
-
-        return $hashids->encode($this->getKey());
+        return Crypt::encryptString($this->getKey());
     }
 }
