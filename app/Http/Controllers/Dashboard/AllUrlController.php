@@ -28,12 +28,12 @@ class AllUrlController extends Controller
     /**
      * Delete a Short URL on user (Admin) request.
      *
-     * @param Url $url \App\Models\Url
+     * @param Url $hash_id \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(Url $url)
+    public function delete(Url $hash_id)
     {
-        $url->delete();
+        $hash_id->delete();
 
         return redirect()->back()
             ->withFlashSuccess(__('Link was successfully deleted.'));

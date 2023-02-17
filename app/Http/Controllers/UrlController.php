@@ -61,16 +61,16 @@ class UrlController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param Url $url \App\Models\Url
+     * @param Url $hash_id \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $url)
+    public function delete(Url $hash_id)
     {
-        $this->authorize('forceDelete', $url);
+        $this->authorize('forceDelete', $hash_id);
 
-        $url->delete();
+        $hash_id->delete();
 
         return to_route('home');
     }
