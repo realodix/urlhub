@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Url;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -69,21 +70,15 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::bind('user_hashId', function (string $value) {
-            return $this->hashidsDecoder(User::class, $value);
+            $id = Crypt::decryptString($value);
+
+            return User::findOrFail($id);
         });
 
         Route::bind('su_hashId', function (string $value) {
-            return $this->hashidsDecoder(\App\Models\Url::class, $value);
+            $id = Crypt::decryptString($value);
+
+            return Url::findOrFail($id);
         });
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
-     */
-    private function hashidsDecoder(string $model, string $routeKey)
-    {
-        $id = Crypt::decryptString($routeKey);
-
-        return resolve($model)->findOrFail($id);
     }
 }
