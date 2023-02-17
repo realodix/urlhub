@@ -6,16 +6,6 @@
       <code>whereDestination</code>
     </UndefinedMagicMethod>
   </file>
-  <file src="app/Models/Traits/Hashidable.php">
-    <UndefinedMethod>
-      <code>encode</code>
-    </UndefinedMethod>
-  </file>
-  <file src="app/Providers/RouteServiceProvider.php">
-    <UndefinedMethod>
-      <code>decode</code>
-    </UndefinedMethod>
-  </file>
   <file src="app/Services/KeyGeneratorService.php">
     <UndefinedMagicMethod>
       <code>exists</code>

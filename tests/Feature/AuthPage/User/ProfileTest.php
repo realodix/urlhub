@@ -4,7 +4,6 @@ namespace Tests\Feature\AuthPage\User;
 
 use App\Models\User;
 use Tests\TestCase;
-use Vinkla\Hashids\Facades\Hashids;
 
 class ProfileTest extends TestCase
 {
@@ -15,9 +14,7 @@ class ProfileTest extends TestCase
 
     protected function postRoute($value)
     {
-        $hashids = Hashids::connection(\App\Models\User::class);
-
-        return route('user.update', $hashids->encode($value));
+        return $this->secureRoute('user.update', $value);
     }
 
     /**

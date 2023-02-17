@@ -11,4 +11,9 @@ abstract class TestCase extends BaseTestCase
 {
     use RefreshDatabase;
     use Auth, CreatesApplication;
+
+    protected function secureRoute($routeName, $url_id)
+    {
+        return route($routeName, encrypt($url_id));
+    }
 }
