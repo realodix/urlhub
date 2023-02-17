@@ -21,10 +21,7 @@ class ForgotPasswordTest extends TestCase
         return route('password.email');
     }
 
-    /**
-     * @return string
-     */
-    protected function postRoute()
+    protected function postRoute(): string
     {
         return route('password.email');
     }
