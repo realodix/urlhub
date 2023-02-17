@@ -55,7 +55,7 @@ class ForgotPasswordTest extends TestCase
             'email' => 'john@example.com',
         ]);
 
-        $token = DB::table('password_resets')->first();
+        $token = DB::table('password_reset_tokens')->first();
         $this->assertNotNull($token);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification, $channels) use ($token) {
