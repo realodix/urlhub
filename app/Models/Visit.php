@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property Url            $url
@@ -48,9 +49,9 @@ class Visit extends Model
     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Get the url that owns the visit.
      */
-    public function url()
+    public function url(): BelongsTo
     {
         return $this->belongsTo(Url::class);
     }

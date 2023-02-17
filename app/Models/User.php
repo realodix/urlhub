@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
@@ -55,9 +56,9 @@ class User extends Authenticatable
     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Get the urls associated with the user.
      */
-    public function urls()
+    public function urls(): HasMany
     {
         return $this->hasMany(Url::class);
     }
