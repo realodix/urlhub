@@ -14,7 +14,7 @@ class ChangePasswordTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.change-password.post', encrypt($value));
+        return $this->secureRoute('user.change-password.post', $value);
     }
 
     /**

@@ -7,11 +7,6 @@ use Tests\TestCase;
 
 class DashboardPageTest extends TestCase
 {
-    protected function secureRoute($routeName, $url_id)
-    {
-        return route($routeName, encrypt($url_id));
-    }
-
     /**
      * @test
      * @group f-dashboard

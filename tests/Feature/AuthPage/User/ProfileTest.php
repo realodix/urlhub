@@ -14,7 +14,7 @@ class ProfileTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.update', encrypt($value));
+        return $this->secureRoute('user.update', $value);
     }
 
     /**
