@@ -75,7 +75,7 @@ class RouteServiceProvider extends ServiceProvider
             return User::findOrFail($id);
         });
 
-        Route::bind('su_hashId', function (string $value) {
+        Route::bind('url_hashId', function (string $value) {
             $id = Crypt::decryptString($value);
 
             return Url::findOrFail($id);
