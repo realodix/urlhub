@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserEmail;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -46,11 +47,10 @@ class UserController extends Controller
      *
      * @param UpdateUserEmail $request \App\Http\Requests\UpdateUserEmail
      * @param User            $hash_id \App\Models\User
-     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateUserEmail $request, User $hash_id)
+    public function update(UpdateUserEmail $request, User $hash_id): RedirectResponse
     {
         $this->authorize('update', $hash_id);
 

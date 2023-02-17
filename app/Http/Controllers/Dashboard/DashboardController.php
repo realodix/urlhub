@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyGeneratorService;
 use App\Services\UHubLinkService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -52,11 +53,10 @@ class DashboardController extends Controller
      *
      * @param Request $request \Illuminate\Http\Request
      * @param Url     $hash_id \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $hash_id)
+    public function update(Request $request, Url $hash_id): RedirectResponse
     {
         $this->uHubLinkService->update($request, $hash_id);
 
@@ -68,11 +68,10 @@ class DashboardController extends Controller
      * Delete shortened URLs
      *
      * @param Url $hash_id \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $hash_id)
+    public function delete(Url $hash_id): RedirectResponse
     {
         $this->authorize('forceDelete', $hash_id);
 
@@ -84,9 +83,8 @@ class DashboardController extends Controller
 
     /**
      * @param string $urlKey A unique key to identify the shortened URL
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function duplicate($urlKey)
+    public function duplicate($urlKey): RedirectResponse
     {
         $this->uHubLinkService->duplicate($urlKey);
 
