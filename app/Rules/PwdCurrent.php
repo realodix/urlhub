@@ -2,20 +2,17 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\InvokableRule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Hash;
 
-class PwdCurrent implements InvokableRule
+class PwdCurrent implements ValidationRule
 {
     /**
      * Run the validation rule.
      *
-     * @param string   $attribute
-     * @param mixed    $value
-     * @param \Closure $fail
-     * @return void
+     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
      */
-    public function __invoke($attribute, $value, $fail)
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
         /** @var \App\Models\User */
         $user = auth()->user();

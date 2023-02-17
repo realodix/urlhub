@@ -3,23 +3,20 @@
 namespace App\Rules\Url;
 
 use App\Services\KeyGeneratorService;
-use Illuminate\Contracts\Validation\InvokableRule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * Check if keyword id is free (ie not already taken, not a URL path, and not
  * reserved).
  */
-class KeywordBlacklist implements InvokableRule
+class KeywordBlacklist implements ValidationRule
 {
     /**
      * Run the validation rule.
      *
-     * @param string   $attribute
-     * @param mixed    $value
-     * @param \Closure $fail
-     * @return void
+     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
      */
-    public function __invoke($attribute, $value, $fail)
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
         $stringCanBeUsedAsKey = app(KeyGeneratorService::class)->assertStringCanBeUsedAsKey($value);
 
