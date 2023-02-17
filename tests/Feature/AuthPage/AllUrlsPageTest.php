@@ -8,7 +8,7 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class AllUrlsPageTest extends TestCase
 {
-    protected function hashIdRoute($routeName, $url_id)
+    protected function secureRoute($routeName, $url_id)
     {
         $hashids = Hashids::connection(Url::class);
 
@@ -49,7 +49,7 @@ class AllUrlsPageTest extends TestCase
 
         $response = $this->actingAs($this->adminUser())
             ->from(route('dashboard.allurl'))
-            ->get($this->hashIdRoute('dashboard.allurl.su_delete', $url->id));
+            ->get($this->secureRoute('dashboard.allurl.su_delete', $url->id));
 
         $response->assertRedirectToRoute('dashboard.allurl')
             ->assertSessionHas('flash_success');
@@ -67,7 +67,7 @@ class AllUrlsPageTest extends TestCase
 
         $response = $this->actingAs($this->normalUser())
             ->from(route('dashboard.allurl'))
-            ->get($this->hashIdRoute('dashboard.allurl.su_delete', $url->id));
+            ->get($this->secureRoute('dashboard.allurl.su_delete', $url->id));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());

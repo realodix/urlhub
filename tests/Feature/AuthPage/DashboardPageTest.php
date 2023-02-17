@@ -8,7 +8,7 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class DashboardPageTest extends TestCase
 {
-    protected function hashIdRoute($routeName, $url_id)
+    protected function secureRoute($routeName, $url_id)
     {
         $hashids = Hashids::connection(Url::class);
 
@@ -37,7 +37,7 @@ class DashboardPageTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('dashboard'))
-            ->get($this->hashIdRoute('dashboard.su_delete', $url->id));
+            ->get($this->secureRoute('dashboard.su_delete', $url->id));
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -91,7 +91,7 @@ class DashboardPageTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('dashboard.su_edit', $url->keyword))
-            ->post($this->hashIdRoute('dashboard.su_edit.post', $url->id), [
+            ->post($this->secureRoute('dashboard.su_edit.post', $url->id), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);
