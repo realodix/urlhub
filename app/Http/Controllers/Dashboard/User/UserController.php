@@ -45,17 +45,17 @@ class UserController extends Controller
      * Update the specified user in storage.
      *
      * @param UpdateUserEmail $request \App\Http\Requests\UpdateUserEmail
-     * @param User            $user    \App\Models\User
+     * @param User            $hash_id \App\Models\User
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateUserEmail $request, User $user)
+    public function update(UpdateUserEmail $request, User $hash_id)
     {
-        $this->authorize('update', $user);
+        $this->authorize('update', $hash_id);
 
-        $user->email = $request->email;
-        $user->save();
+        $hash_id->email = $request->email;
+        $hash_id->save();
 
         return redirect()->back()
             ->withFlashSuccess(__('Profile updated.'));

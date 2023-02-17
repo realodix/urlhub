@@ -51,14 +51,14 @@ class DashboardController extends Controller
      * Update the destination URL
      *
      * @param Request $request \Illuminate\Http\Request
-     * @param Url     $url     \App\Models\Url
+     * @param Url     $hash_id \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $url)
+    public function update(Request $request, Url $hash_id)
     {
-        $this->uHubLinkService->update($request, $url);
+        $this->uHubLinkService->update($request, $hash_id);
 
         return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));
@@ -67,16 +67,16 @@ class DashboardController extends Controller
     /**
      * Delete shortened URLs
      *
-     * @param Url $url \App\Models\Url
+     * @param Url $hash_id \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $url)
+    public function delete(Url $hash_id)
     {
-        $this->authorize('forceDelete', $url);
+        $this->authorize('forceDelete', $hash_id);
 
-        $url->delete();
+        $hash_id->delete();
 
         return redirect()->back()
             ->withFlashSuccess(__('Link was successfully deleted.'));
