@@ -20,18 +20,12 @@ class RegisterTest extends TestCase
         return route('register');
     }
 
-    /**
-     * @return string
-     */
-    protected function postRoute()
+    protected function postRoute(): string
     {
         return route('register');
     }
 
-    /**
-     * @return string
-     */
-    protected function guestMiddlewareRoute()
+    protected function guestMiddlewareRoute(): string
     {
         return route('home');
     }
