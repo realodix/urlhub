@@ -8,9 +8,9 @@ use Spatie\Permission\Models\Role;
 
 trait Auth
 {
-    protected static $adminRole = 'admin';
+    protected static string $adminRole = 'admin';
 
-    protected static $adminPass = 'admin';
+    protected static string $adminPass = 'admin';
 
     protected function setUp(): void
     {

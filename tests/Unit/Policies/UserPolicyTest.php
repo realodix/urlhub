@@ -95,7 +95,7 @@ class UserPolicyTest extends TestCase
     // Change Password.
     //
 
-    protected function getCPRoute($value): string
+    protected function getCPRoute(mixed $value): string
     {
         return route('user.change-password', $value);
     }

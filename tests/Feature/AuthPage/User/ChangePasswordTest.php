@@ -7,12 +7,12 @@ use Tests\TestCase;
 
 class ChangePasswordTest extends TestCase
 {
-    protected function getRoute($value): string
+    protected function getRoute(mixed $value): string
     {
         return route('user.change-password', $value);
     }
 
-    protected function postRoute($value): string
+    protected function postRoute(mixed $value): string
     {
         return $this->secureRoute('user.change-password.post', $value);
     }

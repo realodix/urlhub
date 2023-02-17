@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
     use RefreshDatabase;
     use Auth, CreatesApplication;
 
-    protected function secureRoute($routeName, $url_id): string
+    protected function secureRoute(array|string $routeName, mixed $url_id): string
     {
         return route($routeName, encrypt($url_id));
     }
