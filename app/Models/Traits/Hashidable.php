@@ -2,12 +2,12 @@
 
 namespace App\Models\Traits;
 
-use App\Services\EncrypterService;
+use Illuminate\Support\Facades\Crypt;
 
 trait Hashidable
 {
     public function getRouteKey(): string
     {
-        return app(EncrypterService::class)->encrypt($this->getKey());
+        return Crypt::encryptString($this->getKey());
     }
 }
