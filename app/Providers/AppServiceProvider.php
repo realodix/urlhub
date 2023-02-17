@@ -12,20 +12,16 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL.
         if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
