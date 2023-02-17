@@ -3,14 +3,13 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
-use Illuminate\Support\Facades\Crypt;
 use Tests\TestCase;
 
 class AllUrlsPageTest extends TestCase
 {
     protected function secureRoute($routeName, $url_id)
     {
-        return route($routeName, Crypt::encryptString($url_id));
+        return route($routeName, encrypt($url_id));
     }
 
     /**

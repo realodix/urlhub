@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\AuthPage\User;
 
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -15,7 +14,7 @@ class ChangePasswordTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.change-password.post', Crypt::encryptString($value));
+        return route('user.change-password.post', encrypt($value));
     }
 
     /**

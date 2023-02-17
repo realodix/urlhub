@@ -3,7 +3,6 @@
 namespace Tests\Feature\AuthPage\User;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Crypt;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -15,7 +14,7 @@ class ProfileTest extends TestCase
 
     protected function postRoute($value)
     {
-        return route('user.update', Crypt::encryptString($value));
+        return route('user.update', encrypt($value));
     }
 
     /**
