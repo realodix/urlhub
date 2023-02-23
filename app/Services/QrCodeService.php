@@ -42,13 +42,10 @@ class QrCodeService
     protected function resolveMargin(): int
     {
         $margin = config('urlhub.qrcode_margin');
-        $intMargin = (int) $margin;
 
-        if ($margin !== (string) $intMargin) {
-            return 0;
-        }
-
-        return $intMargin < 0 ? 0 : $intMargin;
+        // if the margin is less than 0, set it to 0.
+        // if the margin is greater than 0, set it to the margin.
+        return $margin < 0 ? 0 : $margin;
     }
 
     /**
