@@ -36,8 +36,6 @@ class UrlController extends Controller
     /**
      * View the shortened URL details.
      *
-     * @codeCoverageIgnore
-     *
      * @param string $urlKey A unique key to identify the shortened URL
      * @return \Illuminate\Contracts\View\View
      */
