@@ -133,7 +133,6 @@ class ChangePasswordTest extends TestCase
     {
         return [
             ['', ''], // required
-            // [self::$password, self::$password], // new password same as old password
             [null, null], // string
             ['new-password', 'new-pass-word'], // confirmed
 
@@ -142,5 +141,33 @@ class ChangePasswordTest extends TestCase
             // [str_repeat('a', 9), str_repeat('a', 9)], // repetitive
             // ['12345678', '12345678'], // sequential
         ];
+    }
+
+    /**
+     * The new password must be different from the current password.
+     *
+     * @test
+     * @group f-user
+     * @dataProvider newPasswordFailProvider
+     */
+    public function newPasswordmustBeDifferent(): void
+    {
+        $user = $this->user;
+
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->id), [
+                'current-password'          => self::$password,
+                'new-password'              => self::$password,
+                'new-password_confirmation' => self::$password,
+            ]);
+
+        $response
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHasErrors('new-password');
+
+        $this->assertTrue(
+            Hash::check(self::$password, $user->fresh()->password)
+        );
     }
 }
