@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
-use Illuminate\Http\RedirectResponse;
 
 class AllUrlController extends Controller
 {
@@ -30,8 +29,9 @@ class AllUrlController extends Controller
      * Delete a Short URL on user (Admin) request.
      *
      * @param Url $hash_id \App\Models\Url
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(Url $hash_id): RedirectResponse
+    public function delete(Url $hash_id)
     {
         $hash_id->delete();
 
