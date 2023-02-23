@@ -112,9 +112,7 @@ class CreateShortLinkTest extends TestCase
      */
     public function urlAlreadyExist_guestWithAnotherGuest(): void
     {
-        $url = Url::factory()->create([
-            'user_id' => Url::GUEST_ID,
-        ]);
+        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
 
         $response = $this->post(route('su_create'), [
             'long_url' => $url->destination,
@@ -183,10 +181,7 @@ class CreateShortLinkTest extends TestCase
     public function longUrlAlreadyExistsButStillAccepted3(): void
     {
         $user = $this->normalUser();
-
-        $url = Url::factory()->create([
-            'user_id' => Url::GUEST_ID,
-        ]);
+        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
 
         $response = $this->actingAs($user)
             ->post(route('su_create'), [
@@ -212,10 +207,7 @@ class CreateShortLinkTest extends TestCase
      */
     public function customKeyAlreadyExist(): void
     {
-        $url = Url::factory()->create([
-            'user_id' => Url::GUEST_ID,
-        ]);
-
+        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $customKey = 'laravel';
 
         $response = $this->post(route('su_create'), [

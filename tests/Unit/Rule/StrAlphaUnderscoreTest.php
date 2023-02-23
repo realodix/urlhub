@@ -33,9 +33,7 @@ class StrAlphaUnderscoreTest extends TestCase
         $this->assertTrue($val->fails());
 
         $this->assertSame([
-            'foo' => [
-                'The foo may only contain letters, numbers and underscores.',
-            ],
+            'foo' => ['The foo may only contain letters, numbers and underscores.'],
         ], $val->messages()->messages());
     }
 }

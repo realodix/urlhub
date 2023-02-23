@@ -17,7 +17,7 @@ class UrlPolicyTest extends TestCase
     {
         $admin = $this->adminUser();
         $url = Url::factory()->create([
-            'user_id'  => $admin->id,
+            'user_id' => $admin->id,
             'destination' => 'https://laravel.com',
         ]);
 

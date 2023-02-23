@@ -10,9 +10,7 @@ class DuplicateShortLinkTest extends TestCase
     /** @test */
     public function duplicate(): void
     {
-        $url = Url::factory()->create([
-            'user_id' => $this->adminUser()->id,
-        ]);
+        $url = Url::factory()->create();
 
         $this->post(route('su_create'), [
             'long_url' => $url->destination,
@@ -24,14 +22,16 @@ class DuplicateShortLinkTest extends TestCase
         $this->assertCount(2, Url::all());
     }
 
-    /** @test */
+    /**
+     * Users can duplicate short links created by guests.
+     *
+     * @test
+     */
     public function duplicateUrlCreatedByGuest(): void
     {
-        $url = Url::factory()->create([
-            'user_id' => Url::GUEST_ID,
-        ]);
+        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
 
-        $this->actingAs($this->adminUser())
+        $this->actingAs($this->normalUser())
             ->post(route('su_create'), [
                 'long_url' => $url->destination,
             ]);
@@ -42,12 +42,14 @@ class DuplicateShortLinkTest extends TestCase
         $this->assertCount(3, Url::all());
     }
 
-    /** @test */
+    /**
+     * Guest cannot duplicate short links
+     *
+     * @test
+     */
     public function guestCannotDuplicateUrl(): void
     {
-        $url = Url::factory()->create([
-            'user_id' => Url::GUEST_ID,
-        ]);
+        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
 
         $this->post(route('su_create'), [
             'long_url' => $url->destination,

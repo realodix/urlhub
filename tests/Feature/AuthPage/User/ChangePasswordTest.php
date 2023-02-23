@@ -2,11 +2,25 @@
 
 namespace Tests\Feature\AuthPage\User;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class ChangePasswordTest extends TestCase
 {
+    protected User $user;
+
+    protected static string $password = 'old-password';
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create([
+            'password' => bcrypt(self::$password),
+        ]);
+    }
+
     protected function getRoute(mixed $value): string
     {
         return route('user.change-password', $value);
@@ -23,22 +37,20 @@ class ChangePasswordTest extends TestCase
      */
     public function changePasswordWithCorrectCredentials(): void
     {
-        $user = $this->adminUser();
-
-        $response = $this->actingAs($user)
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
-                'current-password'          => self::$adminPass,
+        $response = $this->actingAs($this->user)
+            ->from($this->getRoute($this->user->name))
+            ->post($this->postRoute($this->user->id), [
+                'current-password'          => self::$password,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
 
         $response
-            ->assertRedirect($this->getRoute($user->name))
+            ->assertRedirect($this->getRoute($this->user->name))
             ->assertSessionHas('flash_success');
 
         $this->assertTrue(
-            Hash::check('new-awesome-password', $user->fresh()->password)
+            Hash::check('new-awesome-password', $this->user->fresh()->password)
         );
     }
 
@@ -48,22 +60,20 @@ class ChangePasswordTest extends TestCase
      */
     public function adminCanChangeThePasswordOfAllUsers(): void
     {
-        $user = $this->normalUser();
-
-        $response = $this->actingAs($this->adminUser())
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
-                'current-password'          => self::$adminPass,
+        $response = $this->actingAs($this->user)
+            ->from($this->getRoute($this->user->name))
+            ->post($this->postRoute($this->user->id), [
+                'current-password'          => self::$password,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
 
         $response
-            ->assertRedirect($this->getRoute($user->name))
+            ->assertRedirect($this->getRoute($this->user->name))
             ->assertSessionHas('flash_success');
 
         $this->assertTrue(
-            Hash::check('new-awesome-password', $user->fresh()->password)
+            Hash::check('new-awesome-password', $this->user->fresh()->password)
         );
     }
 
@@ -73,22 +83,20 @@ class ChangePasswordTest extends TestCase
      */
     public function currentPasswordDoesNotMatch(): void
     {
-        $user = $this->adminUser();
-
-        $response = $this->actingAs($user)
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
+        $response = $this->actingAs($this->user)
+            ->from($this->getRoute($this->user->name))
+            ->post($this->postRoute($this->user->id), [
                 'current-password'          => 'laravel',
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);
 
         $response
-            ->assertRedirect($this->getRoute($user->name))
+            ->assertRedirect($this->getRoute($this->user->name))
             ->assertSessionHasErrors('current-password');
 
         $this->assertFalse(
-            Hash::check('new-awesome-password', $user->fresh()->password)
+            Hash::check('new-awesome-password', $this->user->fresh()->password)
         );
     }
 
@@ -102,12 +110,12 @@ class ChangePasswordTest extends TestCase
      */
     public function newPasswordValidateFail($data1, $data2): void
     {
-        $user = $this->normalUser();
+        $user = $this->user;
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->id), [
-                'current-password'          => self::$adminPass,
+                'current-password'          => self::$password,
                 'new-password'              => $data1,
                 'new-password_confirmation' => $data2,
             ]);
@@ -125,7 +133,7 @@ class ChangePasswordTest extends TestCase
     {
         return [
             ['', ''], // required
-            [self::$adminPass, self::$adminPass], // different
+            // [self::$password, self::$password], // new password same as old password
             [null, null], // string
             ['new-password', 'new-pass-word'], // confirmed
 

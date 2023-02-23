@@ -10,8 +10,6 @@ trait Auth
 {
     protected static string $adminRole = 'admin';
 
-    protected static string $adminPass = 'admin';
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -26,9 +24,7 @@ trait Auth
 
     protected function adminUser(): User
     {
-        $admin = User::factory()->create([
-            'password' => bcrypt(self::$adminPass),
-        ]);
+        $admin = User::factory()->create();
         $admin->assignRole(self::$adminRole);
 
         return $admin;

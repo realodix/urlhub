@@ -10,7 +10,7 @@ class KeyGeneratorServiceTest extends TestCase
 {
     private Url $url;
 
-    private KeyGeneratorService $keyGeneratorService;
+    private KeyGeneratorService $keyGenerator;
 
     private const N_URL_WITH_USER_ID = 1;
 
@@ -24,7 +24,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         $this->url = new Url;
 
-        $this->keyGeneratorService = app(KeyGeneratorService::class);
+        $this->keyGenerator = app(KeyGeneratorService::class);
 
         $this->totalUrl = self::N_URL_WITH_USER_ID + self::N_URL_WITHOUT_USER_ID;
     }
@@ -42,7 +42,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => $length]);
 
         $longUrl = 'https://github.com/realodix';
-        $urlKey = $this->keyGeneratorService->urlKey($longUrl);
+        $urlKey = $this->keyGenerator->urlKey($longUrl);
 
         $this->assertSame(substr($longUrl, -$length), $urlKey);
     }
@@ -60,11 +60,9 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => $length]);
 
         $longUrl = 'https://github.com/realodix';
-        Url::factory()->create([
-            'keyword'  => $this->keyGeneratorService->urlKey($longUrl),
-        ]);
+        Url::factory()->create(['keyword'  => $this->keyGenerator->urlKey($longUrl)]);
 
-        $this->assertNotSame(substr($longUrl, -$length), $this->keyGeneratorService->urlKey($longUrl));
+        $this->assertNotSame(substr($longUrl, -$length), $this->keyGenerator->urlKey($longUrl));
     }
 
     /**
@@ -79,17 +77,17 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => 6]);
         $actual = 'https://github.com/realodix';
         $expected = 'alodix';
-        $this->assertSame($expected, $this->keyGeneratorService->urlKey($actual));
+        $this->assertSame($expected, $this->keyGenerator->urlKey($actual));
 
         config(['urlhub.hash_length' => 9]);
         $actual = 'https://github.com/realodix';
         $expected = 'mrealodix';
-        $this->assertSame($expected, $this->keyGeneratorService->urlKey($actual));
+        $this->assertSame($expected, $this->keyGenerator->urlKey($actual));
 
         config(['urlhub.hash_length' => 12]);
         $actual = 'https://github.com/realodix';
         $expected = 'bcomrealodix';
-        $this->assertSame($expected, $this->keyGeneratorService->urlKey($actual));
+        $this->assertSame($expected, $this->keyGenerator->urlKey($actual));
     }
 
     /**
@@ -104,15 +102,15 @@ class KeyGeneratorServiceTest extends TestCase
         $url = 'https://example.com/abc';
         config(['urlhub.hash_length' => 3]);
 
-        $this->assertSame('abc', $this->keyGeneratorService->urlKey($url));
+        $this->assertSame('abc', $this->keyGenerator->urlKey($url));
 
         config(['urlhub.hash_char' => 'xyz']);
-        $this->assertMatchesRegularExpression('/[xyz]/', $this->keyGeneratorService->urlKey($url));
-        $this->assertDoesNotMatchRegularExpression('/[abc]/', $this->keyGeneratorService->urlKey($url));
+        $this->assertMatchesRegularExpression('/[xyz]/', $this->keyGenerator->urlKey($url));
+        $this->assertDoesNotMatchRegularExpression('/[abc]/', $this->keyGenerator->urlKey($url));
 
         config(['urlhub.hash_length' => 4]);
         config(['urlhub.hash_char' => 'abcm']);
-        $this->assertSame('mabc', $this->keyGeneratorService->urlKey($url));
+        $this->assertSame('mabc', $this->keyGenerator->urlKey($url));
     }
 
     /**
@@ -130,7 +128,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.reserved_keyword' => [$expected]]);
         config(['urlhub.hash_length' => strlen($expected)]);
 
-        $this->assertNotSame($expected, $this->keyGeneratorService->urlKey($actual));
+        $this->assertNotSame($expected, $this->keyGenerator->urlKey($actual));
     }
 
     /**
@@ -148,7 +146,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         config(['urlhub.hash_length' => strlen($expected)]);
 
-        $this->assertNotSame($expected, $this->keyGeneratorService->urlKey($actual));
+        $this->assertNotSame($expected, $this->keyGenerator->urlKey($actual));
     }
 
     /**
@@ -159,8 +157,8 @@ class KeyGeneratorServiceTest extends TestCase
     {
         config(['urlhub.hash_length' => 3]);
 
-        $this->assertSame('bar', $this->keyGeneratorService->generateSimpleString('foobar'));
-        $this->assertSame('bar', $this->keyGeneratorService->generateSimpleString('foob/ar'));
+        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foobar'));
+        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foob/ar'));
     }
 
     /**
@@ -169,8 +167,8 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function assertStringCanBeUsedAsKey(): void
     {
-        $this->assertTrue($this->keyGeneratorService->assertStringCanBeUsedAsKey('foo'));
-        $this->assertFalse($this->keyGeneratorService->assertStringCanBeUsedAsKey('login'));
+        $this->assertTrue($this->keyGenerator->assertStringCanBeUsedAsKey('foo'));
+        $this->assertFalse($this->keyGenerator->assertStringCanBeUsedAsKey('login'));
     }
 
     /**
@@ -183,7 +181,7 @@ class KeyGeneratorServiceTest extends TestCase
         $hashCharLength = strlen(config('urlhub.hash_char'));
         $maxCapacity = pow($hashCharLength, $hashLength);
 
-        $this->assertSame($maxCapacity, $this->keyGeneratorService->maxCapacity());
+        $this->assertSame($maxCapacity, $this->keyGenerator->maxCapacity());
     }
 
     /**
@@ -197,15 +195,15 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 1]);
 
         Url::factory()->create([
-            'keyword' => $this->keyGeneratorService->generateRandomString(),
+            'keyword' => $this->keyGenerator->generateRandomString(),
         ]);
-        $this->assertSame(1, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(1, $this->keyGenerator->usedCapacity());
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', config('urlhub.hash_length')),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(2, $this->keyGenerator->usedCapacity());
 
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.hash_length',
         // maka ini tidak ikut terhitung.
@@ -213,10 +211,10 @@ class KeyGeneratorServiceTest extends TestCase
             'keyword'   => str_repeat('b', config('urlhub.hash_length') + 2),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(2, $this->keyGenerator->usedCapacity());
 
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 3]);
-        $this->assertSame(0, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(0, $this->keyGenerator->usedCapacity());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
 
@@ -237,30 +235,30 @@ class KeyGeneratorServiceTest extends TestCase
             'keyword'   => 'foo',
             'is_custom' => true,
         ]);
-        $this->assertSame(1, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(1, $this->keyGenerator->usedCapacity());
 
         config(['urlhub.hash_char' => 'bar']);
         Url::factory()->create([
             'keyword'   => 'bar',
             'is_custom' => true,
         ]);
-        $this->assertSame(1, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(1, $this->keyGenerator->usedCapacity());
 
         // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
         // seharusnya ada 2 saja.
         config(['urlhub.hash_char' => 'foobar']);
-        $this->assertSame(2, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(2, $this->keyGenerator->usedCapacity());
 
         // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
         // seharusnya ada 1 saja karena 'bar' tidak bisa terhitung.
         config(['urlhub.hash_char' => 'fooBar']);
-        $this->assertSame(1, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(1, $this->keyGenerator->usedCapacity());
 
         // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
         // seharusnya tidak ada sama sekali karena 'foo' dan 'bar' tidak
         // bisa terhitung.
         config(['urlhub.hash_char' => 'FooBar']);
-        $this->assertSame(0, $this->keyGeneratorService->usedCapacity());
+        $this->assertSame(0, $this->keyGenerator->usedCapacity());
     }
 
     /**

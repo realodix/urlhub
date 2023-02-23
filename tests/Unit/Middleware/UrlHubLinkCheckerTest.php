@@ -34,9 +34,7 @@ class UrlHubLinkCheckerTest extends TestCase
     {
         config(['urlhub.hash_length' => 0]);
 
-        $response = $this->post(route('su_create'), [
-            'long_url' => 'https://laravel.com',
-        ]);
+        $response = $this->post(route('su_create'), ['long_url' => 'https://laravel.com']);
 
         $response
             ->assertRedirectToRoute('home')

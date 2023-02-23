@@ -19,8 +19,7 @@ class VisitTest extends TestCase
      */
     public function belongsToUrlModel(): void
     {
-        $visit = Visit::factory()
-            ->create();
+        $visit = Visit::factory()->create();
 
         $this->assertEquals(1, $visit->url->count());
         $this->assertInstanceOf(Url::class, $visit->url);
