@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Actions;
+namespace Tests\Unit\Services;
 
 use App\Services\QrCodeService;
 use Endroid\QrCode\Writer\Result\ResultInterface;
