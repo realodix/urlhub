@@ -6,13 +6,13 @@
         {
             "label": "[Tests] PHPUnit",
             "type": "shell",
-            "command": "./vendor/bin/phpunit",
+            "command": "php artisan test --parallel",
             "problemMatcher": []
         },
         {
             "label": "[Tests] PHPUnit (coverage-html)",
             "type": "shell",
-            "command": "./vendor/bin/phpunit --coverage-html .tmp/logs/coverage-html",
+            "command": "php artisan test --parallel --coverage-html .tmp/logs/coverage-html",
             "problemMatcher": []
         },
         {
