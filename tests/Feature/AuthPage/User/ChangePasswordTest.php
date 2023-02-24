@@ -60,10 +60,11 @@ class ChangePasswordTest extends TestCase
      */
     public function adminCanChangeThePasswordOfAllUsers(): void
     {
-        $response = $this->actingAs($this->user)
+        $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($this->user->name))
             ->post($this->postRoute($this->user->id), [
-                'current-password'          => self::$password,
+                // An Admin will enter their own password, not the password of a User
+                'current-password'          => self::$adminPass,
                 'new-password'              => 'new-awesome-password',
                 'new-password_confirmation' => 'new-awesome-password',
             ]);

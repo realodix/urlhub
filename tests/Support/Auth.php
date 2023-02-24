@@ -8,6 +8,8 @@ use Spatie\Permission\Models\Role;
 
 trait Auth
 {
+    protected static string $adminPass = 'admin';
+
     protected static string $adminRole = 'admin';
 
     protected function setUp(): void
@@ -24,7 +26,9 @@ trait Auth
 
     protected function adminUser(): User
     {
-        $admin = User::factory()->create();
+        $admin = User::factory()->create([
+            'password' => bcrypt(self::$adminPass),
+        ]);
         $admin->assignRole(self::$adminRole);
 
         return $admin;
