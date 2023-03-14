@@ -118,6 +118,7 @@ class UserPolicyTest extends TestCase
 
     /**
      * Admin can access another user's change password page.
+     *
      * @test
      * @group u-policy
      */
