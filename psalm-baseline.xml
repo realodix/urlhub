@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.6.0@e784128902dfe01d489c4123d69918a9f3c1eac5">
+<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
+  <file src="app/Http/Controllers/Dashboard/AllUrlController.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[view('backend.all-url')]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/DashboardController.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[view('backend.dashboard', [
+            'url'  => $this->url,
+            'user' => $this->user,
+            'keyGeneratorService' => app(KeyGeneratorService::class),
+        ])]]></code>
+      <code><![CDATA[view('backend.edit', ['url' => $url])]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>\Illuminate\Contracts\View\View</code>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/User/ChangePasswordController.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[view('backend.user.changepassword', ['user' => $user])]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/Dashboard/User/UserController.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[view('backend.user.index')]]></code>
+      <code><![CDATA[view('backend.user.profile', ['user' => $user])]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>\Illuminate\Contracts\View\View</code>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
+  <file src="app/Http/Controllers/UrlController.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[view('frontend.short', $data)]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
   <file src="app/Http/Middleware/UrlHubLinkChecker.php">
     <UndefinedMagicMethod>
       <code>byGuests</code>
