@@ -34,7 +34,7 @@ class PowerGridTheme extends Tailwind
             ->tbody('text-pg-primary-800')
             ->tdBodyEmpty('px-3 py-2 text-center')
             ->trBody('border border-pg-primary-100 dark:border-pg-primary-400 hover:bg-pg-primary-50 dark:bg-pg-primary-700 dark:odd:bg-pg-primary-800 dark:odd:hover:bg-pg-primary-900 dark:hover:bg-pg-primary-700')
-            ->tdBody('px-3 py-2 whitespace-nowrap dark:text-pg-primary-200', 'padding-left: 19px')
+            ->tdBody('px-3 py-2 whitespace-nowrap dark:text-pg-primary-200', 'padding-left: 22px')
             ->tdBodyTotalColumns('px-3 py-2 whitespace-nowrap dark:text-pg-primary-200 text-sm text-pg-primary-600 text-right space-y-2');
     }
 
