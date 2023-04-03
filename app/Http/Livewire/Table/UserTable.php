@@ -54,24 +54,6 @@ final class UserTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    | Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
-    public function relationSearch(): array
-    {
-        return [];
-    }
-
-    /*
-    |--------------------------------------------------------------------------
     | Add Column
     |--------------------------------------------------------------------------
     | Make Datasource fields available to be used as columns.
@@ -125,27 +107,20 @@ final class UserTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::add()
-                ->title('USERNAME')
-                ->field('name')
+            Column::make('USERNAME','name')
                 ->sortable()
                 ->searchable(),
 
-            Column::add()
-                ->title('EMAIL')
-                ->field('email')
+            Column::make('EMAIL','email')
                 ->sortable()
                 ->searchable(),
 
-            Column::add()
-                ->title('CREATED AT')
-                ->field('created_at_formatted', 'created_at')
+            Column::make('CREATED AT','created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
 
-            Column::add()
-                ->title('ACTIONS')
-                ->field('action'),
+            Column::make('ACTIONS','action')
+                ->bodyAttribute(styleAttr: ';padding-left: 8px'),
         ];
     }
 }
