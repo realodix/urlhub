@@ -9,7 +9,6 @@
     <title>@yield('title') | {{config('app.name')}}</title>
 
     @livewireStyles
-    @powerGridStyles
     <link rel="stylesheet" media="all" href="{!! mix('css/main.css') !!}"/>
     <link rel="stylesheet" media="all" href="{!! mix('css/backend.css') !!}"/>
 </head>
@@ -27,7 +26,6 @@
     <script src="{!! mix('js/vendor.js') !!}"></script>
     <script src="{!! mix('js/backend.js') !!}"></script>
     @livewireScripts
-    @powerGridScripts
 </body>
 
 </html>

@@ -7,6 +7,9 @@ module.exports = {
     "./vendor/power-components/livewire-powergrid/resources/views/**/*.php",
     "./vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php",
   ],
+  presets: [
+    require('./vendor/power-components/livewire-powergrid/tailwind.config.js'),
+  ],
   theme: {
     extend: {
       colors: {

@@ -57,24 +57,6 @@ final class MyUrlTable extends PowerGridComponent
 
     /*
     |--------------------------------------------------------------------------
-    | Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
-    public function relationSearch(): array
-    {
-        return [];
-    }
-
-    /*
-    |--------------------------------------------------------------------------
     | Add Column
     |--------------------------------------------------------------------------
     | Make Datasource fields available to be used as columns.
@@ -156,32 +138,22 @@ final class MyUrlTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::add()
-                ->title('Short URL')
-                ->field('keyword')
+            Column::make('Short URL','keyword')
                 ->sortable()
                 ->searchable(),
 
-            Column::add()
-                ->title('Destination URL')
-                ->field('destination')
+            Column::make('Destination URL','destination')
                 ->sortable()
                 ->searchable(),
 
-            Column::add()
-                ->title('CLICKS')
-                ->field('t_clicks'),
+            Column::make('CLICKS','t_clicks'),
 
-            Column::add()
-                ->title('CREATED AT')
-                ->field('created_at_formatted', 'created_at')
+            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
 
-            Column::add()
-                ->title('ACTIONS')
-                ->field('action')
-                ->searchable(),
+            Column::make('ACTIONS','action')
+                ->bodyAttribute(styleAttr: ';padding-left: 8px')
         ];
     }
 }
