@@ -3,23 +3,12 @@
 namespace App\Http\Livewire;
 
 use PowerComponents\LivewirePowerGrid\Themes\Components\Table;
+use PowerComponents\LivewirePowerGrid\Themes\Components\{
+    Actions, Checkbox, ClickToCopy, Cols, Editable, FilterBoolean, FilterDatePicker,
+    FilterInputText, FilterMultiSelect, FilterNumber, FilterSelect, Footer, SearchBox,
+};
 use PowerComponents\LivewirePowerGrid\Themes\Tailwind;
 use PowerComponents\LivewirePowerGrid\Themes\Theme;
-use PowerComponents\LivewirePowerGrid\Themes\Components\{
-    Actions,
-    Checkbox,
-    ClickToCopy,
-    Cols,
-    Editable,
-    FilterBoolean,
-    FilterDatePicker,
-    FilterInputText,
-    FilterMultiSelect,
-    FilterNumber,
-    FilterSelect,
-    Footer,
-    SearchBox,
-};
 
 class PowerGridTheme extends Tailwind
 {

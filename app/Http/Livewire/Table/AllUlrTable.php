@@ -169,14 +169,14 @@ final class AllUlrTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Destination URL','destination')
+            Column::make('Destination URL', 'destination')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('CLICKS','t_clicks')
+            Column::make('CLICKS', 't_clicks')
                 ->bodyAttribute(styleAttr: ';padding-left: 8px'),
 
-            Column::make('CREATED AT','created_at_formatted', 'created_at')
+            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
 
