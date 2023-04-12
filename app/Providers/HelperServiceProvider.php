@@ -21,11 +21,11 @@ class HelperServiceProvider extends ServiceProvider
 
         while ($it->valid()) {
             if (
-                ! $it->isDot() &&
-                $it->isFile() &&
-                $it->isReadable() &&
-                $it->current()->getExtension() === 'php' &&
-                strpos($it->current()->getFilename(), 'Helper')
+                ! $it->isDot()
+                && $it->isFile()
+                && $it->isReadable()
+                && $it->current()->getExtension() === 'php'
+                && strpos($it->current()->getFilename(), 'Helper')
             ) {
                 require $it->key();
             }
