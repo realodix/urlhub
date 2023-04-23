@@ -29,7 +29,7 @@
         "laravel/dusk": "^7.6",
         "mockery/mockery": "^1.5",
         "nunomaduro/collision": "^7.0",
-        "nunomaduro/larastan": "^2.4",
+        "nunomaduro/larastan": "^2.6",
         "phpunit/phpunit": "^10.0",
         "psalm/plugin-laravel": "^2.7",
         "realodix/relax": "dev-main",
