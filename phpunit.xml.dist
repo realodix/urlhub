@@ -8,16 +8,16 @@
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory>./tests/Unit</directory>
+            <directory>tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory>./tests/Feature</directory>
+            <directory>tests/Feature</directory>
         </testsuite>
     </testsuites>
 
     <coverage cacheDirectory=".tmp/PHPUnit">
         <include>
-            <directory>./app</directory>
+            <directory>app</directory>
         </include>
     </coverage>
 
