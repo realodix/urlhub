@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
+<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+  <file src="app/Helpers/Helper.php">
+    <TypeDoesNotContainType>
+      <code>$number / pow(10, 10) === 1</code>
+      <code>$number / pow(10, 11) === 1</code>
+      <code>$number / pow(10, 12) === 1</code>
+      <code>$number / pow(10, 13) === 1</code>
+      <code>$number / pow(10, 14) === 1</code>
+      <code>$number / pow(10, 3) === 1</code>
+      <code>$number / pow(10, 4) === 1</code>
+      <code>$number / pow(10, 5) === 1</code>
+      <code>$number / pow(10, 6) === 1</code>
+      <code>$number / pow(10, 7) === 1</code>
+      <code>$number / pow(10, 8) === 1</code>
+      <code>$number / pow(10, 9) === 1</code>
+    </TypeDoesNotContainType>
+  </file>
   <file src="app/Http/Controllers/Dashboard/AllUrlController.php">
     <InvalidReturnStatement>
       <code><![CDATA[view('backend.all-url')]]></code>
