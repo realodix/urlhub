@@ -9,8 +9,8 @@ use Tests\Support\CreatesApplication;
 
 abstract class TestCase extends BaseTestCase
 {
-    use RefreshDatabase;
     use Auth, CreatesApplication;
+    use RefreshDatabase;
 
     protected function secureRoute(string $routeName, mixed $url_id): string
     {

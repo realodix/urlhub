@@ -18,8 +18,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use \App\Models\Traits\Hashidable;
-    use \Spatie\Permission\Traits\HasRoles;
     use HasApiTokens, HasFactory, Notifiable;
+    use \Spatie\Permission\Traits\HasRoles;
 
     /**
      * The attributes that are mass assignable.
