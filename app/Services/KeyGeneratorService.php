@@ -34,10 +34,10 @@ class KeyGeneratorService
      */
     public function generateSimpleString(string $value): string
     {
-        $length = config('urlhub.hash_length') * -1;
-        $pattern = '/[^'.config('urlhub.hash_char').']/i';
+        // Retrieve only characters that match the predefined specifications
+        $cleanedChar = (string) preg_replace('/[^'.config('urlhub.hash_char').']/i', '', $value);
 
-        return substr((string) preg_replace($pattern, '', $value), $length);
+        return substr($cleanedChar, config('urlhub.hash_length') * -1);
     }
 
     /**
