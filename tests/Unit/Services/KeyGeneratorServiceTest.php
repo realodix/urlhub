@@ -48,6 +48,24 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
+     * String yang dihasilkan dari URL harus berupa huruf kecil.
+     *
+     * @test
+     * @group u-model
+     */
+    public function urlKey_default_value_mus_be_lowercase(): void
+    {
+        $length = 4;
+        config(['urlhub.hash_length' => $length]);
+
+        $longUrl = 'https://github.com/realoDIX';
+        $urlKey = $this->keyGenerator->urlKey($longUrl);
+
+        $this->assertSame(mb_strtolower(substr($longUrl, -$length)), $urlKey);
+        $this->assertNotSame(substr($longUrl, -$length), $urlKey);
+    }
+
+    /**
      * Karena kunci sudah ada, maka generator akan terus diulangi hingga
      * menghasilkan kunci yang unik atau tidak ada yang sama.
      *

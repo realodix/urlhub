@@ -30,14 +30,15 @@ class KeyGeneratorService
 
     /**
      * Take some characters at the end of the string and remove all characters that
-     * are not in the specified character set.
+     * are not in the specified character set. If the string contains uppercase
+     * letters, it must be converted to lowercase letters.
      */
     public function generateSimpleString(string $value): string
     {
         // Retrieve only characters that match the predefined specifications
         $cleanedChar = (string) preg_replace('/[^'.config('urlhub.hash_char').']/i', '', $value);
 
-        return substr($cleanedChar, config('urlhub.hash_length') * -1);
+        return mb_strtolower(substr($cleanedChar, config('urlhub.hash_length') * -1));
     }
 
     /**
