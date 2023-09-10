@@ -21,7 +21,7 @@ class KeyGeneratorService
         // If step 1 fail (the string is used or cannot be used), then the generator
         // must generate a unique random string until it finds a string that can
         // be used as a key
-        if ($this->assertStringCanBeUsedAsKey($key)  == false) {
+        if ($this->assertStringCanBeUsedAsKey($key) === false) {
             $key = $this->generateRandomString();
         }
 
