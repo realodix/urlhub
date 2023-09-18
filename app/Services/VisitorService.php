@@ -61,7 +61,7 @@ class VisitorService
             'os'      => \Browser::platformFamily(),
         ];
 
-        return sha1(implode($data));
+        return hash('sha3-224', implode($data));
     }
 
     /**
