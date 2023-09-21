@@ -7,7 +7,6 @@ use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{
     Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent
 };
@@ -17,8 +16,6 @@ use PowerComponents\LivewirePowerGrid\{
  */
 final class MyUrlTable extends PowerGridComponent
 {
-    use ActionButton;
-
     const STR_LIMIT = 60;
 
     public bool $showUpdateMessages = true;

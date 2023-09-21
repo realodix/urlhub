@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{
     Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent
 };
@@ -16,8 +15,6 @@ use PowerComponents\LivewirePowerGrid\{
  */
 final class UserTable extends PowerGridComponent
 {
-    use ActionButton;
-
     public bool $showUpdateMessages = true;
 
     public string $sortDirection = 'desc';
