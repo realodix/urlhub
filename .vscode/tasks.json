@@ -6,7 +6,7 @@
         {
             "label": "[Tests] PHPUnit",
             "type": "shell",
-            "command": "php artisan test --parallel",
+            "command": "php artisan test",
             "problemMatcher": []
         },
         {
