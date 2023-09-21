@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Table;
+namespace App\Livewire\Table;
 
 use App\Helpers\Helper;
 use App\Models\Url;

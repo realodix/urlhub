@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Rules\StrAlphaUnderscore;
 use App\Rules\Url\KeywordBlacklist;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use PowerComponents\LivewirePowerGrid\Themes\Components\Table;
 use PowerComponents\LivewirePowerGrid\Themes\Components\{
