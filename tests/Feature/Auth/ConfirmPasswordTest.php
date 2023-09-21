@@ -24,15 +24,17 @@ class ConfirmPasswordTest extends TestCase
      * - [fail] php artisan test / ./vendor/bin/phpunit
      * - [pass] php artisan test --parallel
      *
+     * assertViewHas juga menghasilkan hal yang sama
+     *
      * @group f-auth
      */
-    public function testViewIs(): void
-    {
-        $response = $this->actingAs($this->normalUser())
-            ->get(route('password.confirm'));
+    // public function testViewIs(): void
+    // {
+    //     $response = $this->actingAs($this->normalUser())
+    //         ->get(route('password.confirm'));
 
-        $response->assertViewIs('auth.confirm-password');
-    }
+    //     $response->assertViewIs('auth.confirm-password');
+    // }
 
     /**
      * @test

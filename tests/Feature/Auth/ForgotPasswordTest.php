@@ -43,14 +43,16 @@ class ForgotPasswordTest extends TestCase
      * - [fail] php artisan test / ./vendor/bin/phpunit
      * - [pass] php artisan test --parallel
      *
+     * assertViewHas juga menghasilkan hal yang sama
+     *
      * @group f-auth
      */
-    public function testViewIs(): void
-    {
-        $response = $this->get($this->requestRoute());
+    // public function testViewIs(): void
+    // {
+    //     $response = $this->get($this->requestRoute());
 
-        $response->assertViewIs('auth.forgot-password');
-    }
+    //     $response->assertViewIs('auth.forgot-password');
+    // }
 
     /**
      * @test

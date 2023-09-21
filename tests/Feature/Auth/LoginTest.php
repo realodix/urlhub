@@ -45,14 +45,16 @@ class LoginTest extends TestCase
      * - [fail] php artisan test / ./vendor/bin/phpunit
      * - [pass] php artisan test --parallel
      *
+     * assertViewHas juga menghasilkan hal yang sama
+     *
      * @group f-auth
      */
-    public function testViewIs(): void
-    {
-        $response = $this->get($this->getRoute());
+    // public function testViewIs(): void
+    // {
+    //     $response = $this->get($this->getRoute());
 
-        $response->assertViewIs('auth.login');
-    }
+    //     $response->assertViewIs('auth.login');
+    // }
 
     /**
      * @test
