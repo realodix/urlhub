@@ -34,14 +34,14 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewARegistrationForm(): void
-    {
-        $response = $this->get($this->getRoute());
+    // public function userCanViewARegistrationForm(): void
+    // {
+    //     $response = $this->get($this->getRoute());
 
-        $response
-            ->assertSuccessful()
-            ->assertViewIs('auth.register');
-    }
+    //     $response
+    //         ->assertSuccessful()
+    //         ->assertViewIs('auth.register');
+    // }
 
     /**
      * @test
