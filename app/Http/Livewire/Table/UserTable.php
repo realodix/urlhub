@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridComponent,PowerGridEloquent};
+    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent
+};
 
 /**
  * @codeCoverageIgnore
@@ -60,9 +61,9 @@ final class UserTable extends PowerGridComponent
     | You can pass a closure to transform/modify the data.
     |
     */
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('name', function (User $user) {
                 $urlCountTitle = $user->urls()->count().' '.Str::plural('url', $user->urls()->count()).' created';
 

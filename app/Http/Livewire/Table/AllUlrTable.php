@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
+    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent
+};
 
 /**
  * @codeCoverageIgnore
@@ -81,9 +82,9 @@ final class AllUlrTable extends PowerGridComponent
     | You can pass a closure to transform/modify the data.
     |
     */
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('user_name', function (Url $url) {
                 return '<span class="font-semibold">'.$url->author->name.'</span>';
             })
