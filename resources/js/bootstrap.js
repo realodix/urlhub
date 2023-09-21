@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import Alpine from 'alpinejs';
+import { Livewire } from '../../vendor/livewire/livewire/dist/livewire.esm';
 import axios from 'axios';
 
 
@@ -18,9 +18,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * Alpine.js
  */
 
-window.Alpine = Alpine;
-
-Alpine.start();
+Livewire.start()
 
 
 /**
