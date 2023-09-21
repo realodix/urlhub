@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use PowerComponents\LivewirePowerGrid\Themes\Components\Table;
 use PowerComponents\LivewirePowerGrid\Themes\Components\{
-    Actions, Checkbox, ClickToCopy, Cols, Editable, FilterBoolean, FilterDatePicker,
+    Actions, Checkbox, Cols, Editable, FilterBoolean, FilterDatePicker,
     FilterInputText, FilterMultiSelect, FilterNumber, FilterSelect, Footer, SearchBox,
 };
 use PowerComponents\LivewirePowerGrid\Themes\Tailwind;
@@ -54,12 +54,6 @@ class PowerGridTheme extends Tailwind
             ->view($this->root().'.editable')
             ->span('flex justify-between')
             ->input('dark:bg-pg-primary-700 bg-pg-primary-50 text-black-700 border border-pg-primary-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-pg-primary-200 dark:bg-pg-primary-500 dark:text-pg-primary-200 dark:placeholder-pg-primary-200 dark:border-pg-primary-500 shadow-md');
-    }
-
-    public function clickToCopy(): ClickToCopy
-    {
-        return Theme::clickToCopy()
-            ->span('flex justify-between');
     }
 
     public function checkbox(): Checkbox

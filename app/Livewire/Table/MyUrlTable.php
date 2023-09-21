@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Livewire\Table;
+namespace App\Livewire\Table;
 
 use App\Helpers\Helper;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridComponent,PowerGridEloquent};
+    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent
+};
 
 /**
  * @codeCoverageIgnore
  */
 final class MyUrlTable extends PowerGridComponent
 {
-    use ActionButton;
-
     const STR_LIMIT = 60;
 
     public bool $showUpdateMessages = true;
@@ -63,9 +61,9 @@ final class MyUrlTable extends PowerGridComponent
     | You can pass a closure to transform/modify the data.
     |
     */
-    public function addColumns(): PowerGridEloquent
+    public function addColumns(): PowerGridColumns
     {
-        return PowerGrid::eloquent()
+        return PowerGrid::columns()
             ->addColumn('keyword', function (Url $url) {
                 return
                     '<a href="'.$url->short_url.'" target="_blank" class="font-light text-indigo-700">'.$url->keyword.'</a>'

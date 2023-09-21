@@ -21,7 +21,7 @@ class ValidationTest extends TestCase
     /** @test */
     public function customKeyValidation(): void
     {
-        $component = \Livewire\Livewire::test(\App\Http\Livewire\UrlCheck::class);
+        $component = \Livewire\Livewire::test(\App\Livewire\UrlCheck::class);
 
         $component->assertStatus(200)
             ->set('keyword', '!')

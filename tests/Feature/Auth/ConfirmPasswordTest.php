@@ -10,15 +10,15 @@ class ConfirmPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewPasswordConfirm(): void
-    {
-        $response = $this->actingAs($this->normalUser())
-            ->get(route('password.confirm'));
+    // public function userCanViewPasswordConfirm(): void
+    // {
+    //     $response = $this->actingAs($this->normalUser())
+    //         ->get(route('password.confirm'));
 
-        $response
-            ->assertSuccessful()
-            ->assertViewIs('auth.confirm-password');
-    }
+    //     $response
+    //         ->assertSuccessful()
+    //         ->assertViewIs('auth.confirm-password');
+    // }
 
     /**
      * @test

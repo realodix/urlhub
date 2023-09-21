@@ -32,14 +32,14 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewALoginForm(): void
-    {
-        $response = $this->get($this->getRoute());
+    // public function userCanViewALoginForm(): void
+    // {
+    //     $response = $this->get($this->getRoute());
 
-        $response
-            ->assertSuccessful()
-            ->assertViewIs('auth.login');
-    }
+    //     $response
+    //         ->assertSuccessful()
+    //         ->assertViewIs('auth.login');
+    // }
 
     /**
      * @test

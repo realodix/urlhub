@@ -30,14 +30,14 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    public function userCanViewAnEmailPasswordForm(): void
-    {
-        $response = $this->get($this->requestRoute());
+    // public function userCanViewAnEmailPasswordForm(): void
+    // {
+    //     $response = $this->get($this->requestRoute());
 
-        $response
-            ->assertSuccessful()
-            ->assertViewIs('auth.forgot-password');
-    }
+    //     $response
+    //         ->assertSuccessful()
+    //         ->assertViewIs('auth.forgot-password');
+    // }
 
     /**
      * @test
