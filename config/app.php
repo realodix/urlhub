@@ -5,7 +5,7 @@ use Illuminate\Support\ServiceProvider;
 
 return [
     'name'        => env('APP_NAME', 'UrlHub'),
-    'version'     => 'v1.0.0-alpha.8-dev',
+    'version'     => 'v1.0.0-alpha.9-dev',
     'description' => env('APP_DESCRIPTION', 'Simplify your links'),
 
     /*
