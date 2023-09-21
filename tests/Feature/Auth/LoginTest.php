@@ -36,8 +36,7 @@ class LoginTest extends TestCase
     {
         $response = $this->get($this->getRoute());
 
-        $response
-            ->assertSuccessful();
+        $response->assertSuccessful();
     }
 
     /**
@@ -45,14 +44,15 @@ class LoginTest extends TestCase
      * mengembalikan pesan "The response is not a view".
      * - [fail] php artisan test / ./vendor/bin/phpunit
      * - [pass] php artisan test --parallel
+     *
+     * @group f-auth
      */
-    // public function testViewIs(): void
-    // {
-    //     $response = $this->get($this->getRoute());
+    public function testViewIs(): void
+    {
+        $response = $this->get($this->getRoute());
 
-    //     $response
-    //         ->assertViewIs('auth.login');
-    // }
+        $response->assertViewIs('auth.login');
+    }
 
     /**
      * @test

@@ -34,14 +34,27 @@ class RegisterTest extends TestCase
      * @test
      * @group f-auth
      */
-    // public function userCanViewARegistrationForm(): void
-    // {
-    //     $response = $this->get($this->getRoute());
+    public function userCanViewARegistrationForm(): void
+    {
+        $response = $this->get($this->getRoute());
 
-    //     $response
-    //         ->assertSuccessful()
-    //         ->assertViewIs('auth.register');
-    // }
+        $response->assertSuccessful();
+    }
+
+    /**
+     * Sejak https://github.com/realodix/urlhub/pull/895, test mengalami kegagalan dengan
+     * mengembalikan pesan "The response is not a view".
+     * - [fail] php artisan test / ./vendor/bin/phpunit
+     * - [pass] php artisan test --parallel
+     *
+     * @group f-auth
+     */
+    public function testViewIs(): void
+    {
+        $response = $this->get($this->getRoute());
+
+        $response->assertViewIs('auth.register');
+    }
 
     /**
      * @test
