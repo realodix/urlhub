@@ -32,13 +32,28 @@ class LoginTest extends TestCase
      * @test
      * @group f-auth
      */
-    // public function userCanViewALoginForm(): void
+    public function userCanViewALoginForm(): void
+    {
+        $response = $this->get($this->getRoute());
+
+        $response->assertSuccessful();
+    }
+
+    /**
+     * Sejak https://github.com/realodix/urlhub/pull/895, test mengalami kegagalan dengan
+     * mengembalikan pesan "The response is not a view".
+     * - [fail] php artisan test / ./vendor/bin/phpunit
+     * - [pass] php artisan test --parallel
+     *
+     * assertViewHas juga menghasilkan hal yang sama
+     *
+     * @group f-auth
+     */
+    // public function testViewIs(): void
     // {
     //     $response = $this->get($this->getRoute());
 
-    //     $response
-    //         ->assertSuccessful()
-    //         ->assertViewIs('auth.login');
+    //     $response->assertViewIs('auth.login');
     // }
 
     /**

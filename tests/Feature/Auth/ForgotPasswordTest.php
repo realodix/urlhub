@@ -30,13 +30,28 @@ class ForgotPasswordTest extends TestCase
      * @test
      * @group f-auth
      */
-    // public function userCanViewAnEmailPasswordForm(): void
+    public function userCanViewAnEmailPasswordForm(): void
+    {
+        $response = $this->get($this->requestRoute());
+
+        $response->assertSuccessful();
+    }
+
+    /**
+     * Sejak https://github.com/realodix/urlhub/pull/895, test mengalami kegagalan dengan
+     * mengembalikan pesan "The response is not a view".
+     * - [fail] php artisan test / ./vendor/bin/phpunit
+     * - [pass] php artisan test --parallel
+     *
+     * assertViewHas juga menghasilkan hal yang sama
+     *
+     * @group f-auth
+     */
+    // public function testViewIs(): void
     // {
     //     $response = $this->get($this->requestRoute());
 
-    //     $response
-    //         ->assertSuccessful()
-    //         ->assertViewIs('auth.forgot-password');
+    //     $response->assertViewIs('auth.forgot-password');
     // }
 
     /**
