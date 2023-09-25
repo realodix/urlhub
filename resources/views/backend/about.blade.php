@@ -25,7 +25,7 @@
                         <td>{{config('urlhub.hash_length')}}</td>
                     </tr>
                     <tr>
-                        <td>Possible Produces</td>
+                        <td>Possible Output</td>
                         <td>{{$keyGeneratorService->maxCapacity()}}</td>
                     </tr>
                     <tr>
