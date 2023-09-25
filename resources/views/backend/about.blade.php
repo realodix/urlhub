@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <h3>Short URLs</h3>
+            <h3>Random Characters</h3>
             <table>
                 <tbody>
                     <tr>
@@ -31,6 +31,26 @@
                     <tr>
                         <td>Generated</td>
                         <td>{{$keyGeneratorService->usedCapacity()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <h3>Short Links</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="w-60">Total</td>
+                        <td>{{$user->count()}}</td>
+                    </tr>
+                    <tr>
+                        <td>From Registered Users</td>
+                        <td>{{$user->count()}}</td>
+                    </tr>
+                    <tr>
+                        <td>From Unregistered Users</td>
+                        <td>{{$user->totalGuestUsers()}}</td>
                     </tr>
                 </tbody>
             </table>
