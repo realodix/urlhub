@@ -42,15 +42,15 @@
                 <tbody>
                     <tr>
                         <td class="w-60">Total</td>
-                        <td>{{$user->count()}}</td>
+                        <td>{{$url->count()}}</td>
                     </tr>
                     <tr>
                         <td>From Registered Users</td>
-                        <td>{{$user->count()}}</td>
+                        <td>{{$url->whereUserId(auth()->id())->count()}}</td>
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{$user->totalGuestUsers()}}</td>
+                        <td>{{$url->numberOfUrlsByGuests()}}</td>
                     </tr>
                 </tbody>
             </table>
