@@ -119,6 +119,9 @@
                 <a href="{{route('user.index')}}"
                     class="nav-item {{(request()->route()->getName() === 'user.index') ? 'border-l-2 border-uh-indigo-400':''}}">
                     @svg('icon-users', 'mr-1') {{__('User List')}}</a>
+                <a href="{{route('dashboard.about')}}"
+                    class="nav-item {{(request()->route()->getName() === 'dashboard.about') ? 'border-l-2 border-uh-indigo-400':''}}">
+                    @svg('icon-about-system', 'mr-1') {{__('About')}}</a>
             </div>
 
             <!-- Responsive Settings Options -->
@@ -194,6 +197,15 @@
                     >
                         @svg('icon-users', 'mr-1')
                         <span class="">{{__('User List')}}</span>
+                    </a>
+                    <a href="{{route('dashboard.about')}}"
+                        class="mr-8 py-3 font-semibold hover:text-slate-700 transition duration-100 ease-in-out border-b-2 border-transparent
+                            {{(request()->route()->getName() === 'dashboard.about') ?
+                            'text-slate-800 border-uh-indigo-400' :
+                            'text-slate-500 hover:border-slate-300'}}"
+                    >
+                        @svg('icon-about-system', 'mr-1')
+                        <span class="">{{__('About')}}</span>
                     </a>
                 @endrole
             </div>
