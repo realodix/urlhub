@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/realodix/urlhub/badge.svg?branch=master)](https://coveralls.io/github/realodix/urlhub) <br>
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 
-> **Warning: UrlHub is still in development**, constantly being optimized and isn't still stable enough to be used in production environments.
+> **Warning: UrlHub is still in development**, constantly being optimized and sometimes make changes to the database schema.
 
 > **Whatever your idea, feel free to send a pull request** 😃
 
