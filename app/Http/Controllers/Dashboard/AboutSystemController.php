@@ -9,9 +9,6 @@ use App\Services\KeyGeneratorService;
 
 class AboutSystemController extends Controller
 {
-    /**
-     * AllUrlController constructor.
-     */
     public function __construct(
         public Url $url,
         public User $user,
@@ -20,8 +17,6 @@ class AboutSystemController extends Controller
     }
 
     /**
-     * Show all short URLs created by all users.
-     *
      * @return \Illuminate\Contracts\View\View
      */
     public function view()
