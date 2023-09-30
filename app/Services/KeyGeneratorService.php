@@ -151,30 +151,4 @@ class KeyGeneratorService
         // prevent negative values
         return max($maxCapacity - $usedCapacity, 0);
     }
-
-    /**
-     * Calculate the percentage of the remaining unique random strings that can
-     * be generated from the total number of unique random strings that can be
-     * generated (in percent) with the specified precision (in decimal places)
-     * and return the result as a string.
-     */
-    public function idleCapacityInPercent(int $precision = 2): string
-    {
-        $maxCapacity = $this->maxCapacity();
-        $remaining = $this->idleCapacity();
-        $result = round(($remaining / $maxCapacity) * 100, $precision);
-
-        $lowerBoundInPercent = 1 / (10 ** $precision);
-        $upperBoundInPercent = 100 - $lowerBoundInPercent;
-        $lowerBound = $lowerBoundInPercent / 100;
-        $upperBound = 1 - $lowerBound;
-
-        if ($remaining > 0 && $remaining < ($maxCapacity * $lowerBound)) {
-            $result = $lowerBoundInPercent;
-        } elseif (($remaining > ($maxCapacity * $upperBound)) && ($remaining < $maxCapacity)) {
-            $result = $upperBoundInPercent;
-        }
-
-        return $result.'%';
-    }
 }

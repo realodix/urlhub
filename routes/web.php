@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AboutSystemController;
 use App\Http\Controllers\Dashboard\AllUrlController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\User\ChangePasswordController;
@@ -36,6 +37,9 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
             Route::get('{user}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
             Route::post('{hash_id}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
         });
+
+        // About Page
+        Route::get('/about', [AboutSystemController::class, 'view'])->name('dashboard.about');
     });
 });
 
