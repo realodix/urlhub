@@ -16,6 +16,18 @@
       <code>$number / pow(10, 9) === 1</code>
     </TypeDoesNotContainType>
   </file>
+  <file src="app/Http/Controllers/Dashboard/AboutSystemController.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[view('backend.about', [
+            'url'  => $this->url,
+            'user' => $this->user,
+            'keyGeneratorService' => app(KeyGeneratorService::class),
+        ])]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code>\Illuminate\Contracts\View\View</code>
+    </InvalidReturnType>
+  </file>
   <file src="app/Http/Controllers/Dashboard/AllUrlController.php">
     <InvalidReturnStatement>
       <code><![CDATA[view('backend.all-url')]]></code>
