@@ -6,7 +6,7 @@
     <main>
         <div class="common-card-style mb-4 p-4">
             @role('admin')
-                <div class="flex flex-wrap">
+                {{-- <div class="flex flex-wrap">
                     <div class="w-full sm:w-1/4">
                         <span class="text-cyan-600"> @svg('icon-square', 'mr-2') {{__('All')}}</span>
                         <span class="text-teal-600 ml-5"> @svg('icon-square', 'mr-2') {{__('Me')}}</span>
@@ -45,9 +45,7 @@
                             <span class="font-light">{{compactNumber($user->totalGuestUsers())}}</span>
                         </div>
                     </div>
-                </div>
-
-                <br>
+                </div> --}}
 
                 <div class="flex flex-wrap">
                     <div class="w-full sm:w-1/4">

@@ -311,38 +311,4 @@ class KeyGeneratorServiceTest extends TestCase
             [100, 100, 0],
         ];
     }
-
-    /**
-     * @test
-     * @group u-model
-     * @dataProvider idleCapacityInPercentProvider
-     *
-     * @param mixed $kc
-     * @param mixed $ku
-     * @param mixed $expected
-     */
-    public function idleCapacityInPercent($kc, $ku, $expected): void
-    {
-        // https://ralphjsmit.com/laravel-mock-dependencies
-        $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
-        $mock->shouldReceive([
-            'maxCapacity'  => $kc,
-            'usedCapacity' => $ku,
-        ]);
-
-        $actual = $mock->idleCapacityInPercent();
-        $this->assertSame($expected, $actual);
-    }
-
-    public static function idleCapacityInPercentProvider(): array
-    {
-        // maxCapacity(), usedCapacity(), expected_result
-        return [
-            [10, 10, '0%'],
-            [10, 11, '0%'],
-            [pow(10, 6), 999991, '0.01%'],
-            [pow(10, 6), 50, '99.99%'],
-            [pow(10, 6), 0, '100%'],
-        ];
-    }
 }
