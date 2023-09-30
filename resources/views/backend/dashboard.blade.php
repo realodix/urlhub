@@ -46,10 +46,23 @@
                         </div>
                     </div>
                 </div>
+
+                <br>
+
+                <div class="flex flex-wrap">
+                    <div class="w-full sm:w-1/4">
+                        <span class="font-semibold sm:text-2xl">@svg('icon-link', 'mr-1.5') {{__('Short links')}}:</span>
+                        <span class="font-light sm:text-2xl">{{compactNumber($url->whereUserId(auth()->id())->count())}}</span>
+                    </div>
+                    <div class="w-full sm:w-1/4">
+                        <span class="font-semibold sm:text-2xl">@svg('icon-bar-chart', 'mr-1.5') {{__('Clicks')}}:</span>
+                        <span class="font-light sm:text-2xl">{{compactNumber($url->numberOfClicksPerAuthor())}}</span>
+                    </div>
+                </div>
             @else
                 <div class="flex flex-wrap">
                     <div class="w-full sm:w-1/4">
-                        <span class="font-semibold text-md sm:text-2xl">@svg('icon-link', 'mr-1.5') {{__('URLs')}}:</span>
+                        <span class="font-semibold text-md sm:text-2xl">@svg('icon-link', 'mr-1.5') {{__('Short links')}}:</span>
                         <span class="font-light text-lg sm:text-2xl">{{compactNumber($url->whereUserId(auth()->id())->count())}}</span>
                     </div>
                     <div class="w-full sm:w-1/4">
