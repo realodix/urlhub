@@ -19,7 +19,7 @@
         "livewire/livewire": "^3.0",
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
-        "power-components/livewire-powergrid": "^5.0",
+        "power-components/livewire-powergrid": "^5.1",
         "spatie/laravel-permission": "^5.9",
         "spatie/url": "^2.2"
     },
