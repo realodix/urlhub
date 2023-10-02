@@ -1,0 +1,29 @@
+name: SA
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          coverage: none
+
+      - name: Install composer dependencies
+        run: "composer install --no-interaction --no-progress --no-scripts"
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse --error-format=github
