@@ -14,7 +14,7 @@
         "hisorange/browser-detect": "^4.5",
         "laravel/fortify": "^1.18",
         "laravel/framework": "^10.25",
-        "laravel/sanctum": "^3.2",
+        "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "paragonie/random-lib": "^2.0",
