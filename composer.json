@@ -20,7 +20,7 @@
         "paragonie/random-lib": "^2.0",
         "paragonie/random_compat": "^2.0",
         "power-components/livewire-powergrid": "^5.1",
-        "spatie/laravel-permission": "^5.9",
+        "spatie/laravel-permission": "^5.11",
         "spatie/url": "^2.2"
     },
     "require-dev": {
