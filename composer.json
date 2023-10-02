@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.1",
         "blade-ui-kit/blade-icons": "^1.5",
-        "doctrine/dbal": "^3.5",
+        "doctrine/dbal": "^3.7",
         "embed/embed": "^4.4",
         "endroid/qr-code": "^4.8",
         "guzzlehttp/guzzle": "^7.8",
