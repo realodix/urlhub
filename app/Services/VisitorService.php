@@ -25,6 +25,12 @@ class VisitorService
             'visitor_id'      => $this->visitorId(),
             'is_first_click'  => $this->isFirstClick($url),
             'referer'         => request()->header('referer'),
+            'ip'              => request()->ip(),
+            'browser'         => \Browser::browserFamily(),
+            'browser_version' => \Browser::browserVersion(),
+            'device'          => \Browser::deviceType(),
+            'os'              => \Browser::platformFamily(),
+            'os_version'      => \Browser::platformVersion(),
         ]);
     }
 

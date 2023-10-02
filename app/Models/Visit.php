@@ -25,6 +25,12 @@ class Visit extends Model
         'visitor_id',
         'is_first_click',
         'referer',
+        'ip',
+        'browser',
+        'browser_version',
+        'device',
+        'os',
+        'os_version',
     ];
 
     /**
