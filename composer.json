@@ -32,7 +32,7 @@
         "nunomaduro/larastan": "^2.6",
         "phpunit/phpunit": "^10.1",
         "realodix/relax": "^1.0",
-        "spatie/laravel-ignition": "^2.0"
+        "spatie/laravel-ignition": "^2.3"
     },
     "minimum-stability": "stable",
     "autoload": {
