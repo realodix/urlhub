@@ -12,7 +12,7 @@
         "endroid/qr-code": "^4.7",
         "guzzlehttp/guzzle": "^7.3",
         "hisorange/browser-detect": "^4.5",
-        "laravel/fortify": "^1.16",
+        "laravel/fortify": "^1.18",
         "laravel/framework": "^10.25",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
