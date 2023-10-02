@@ -11,7 +11,7 @@
         "embed/embed": "^4.4",
         "endroid/qr-code": "^4.7",
         "guzzlehttp/guzzle": "^7.3",
-        "hisorange/browser-detect": "^4.5",
+        "hisorange/browser-detect": "^5.0",
         "laravel/fortify": "^1.16",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
