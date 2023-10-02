@@ -31,7 +31,7 @@
         "nunomaduro/collision": "^7.9",
         "nunomaduro/larastan": "^2.6",
         "phpunit/phpunit": "^10.3",
-        "realodix/relax": "^1.0",
+        "realodix/relax": "^1.6",
         "spatie/laravel-ignition": "^2.3"
     },
     "minimum-stability": "stable",
