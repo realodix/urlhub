@@ -1,25 +1,20 @@
 name: SA
 
 on:
-  workflow_dispatch:
   push:
-    paths:
-      - '**.php'
-      - 'composer.lock'
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  psalm:
-    name: Psalm
+  phpstan:
+    name: PHPStan
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
-
-      # mtime needs to be restored for Psalm cache to work correctly
-      - name: Restore mtimes
-        uses: chetan/git-restore-mtime-action@v1
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
