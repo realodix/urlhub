@@ -28,7 +28,7 @@
         "fakerphp/faker": "^1.23",
         "laravel/dusk": "^7.6",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^7.0",
+        "nunomaduro/collision": "^7.9",
         "nunomaduro/larastan": "^2.6",
         "phpunit/phpunit": "^10.3",
         "realodix/relax": "^1.0",
