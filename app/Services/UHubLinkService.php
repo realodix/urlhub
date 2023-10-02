@@ -32,7 +32,6 @@ class UHubLinkService
             'title'       => $this->title($request->long_url),
             'keyword'     => $this->urlKey($request),
             'is_custom'   => $this->isCustom($request),
-            'ip'          => $request->ip(),
         ]);
     }
 
