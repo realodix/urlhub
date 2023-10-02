@@ -9,7 +9,7 @@
         "blade-ui-kit/blade-icons": "^1.5",
         "doctrine/dbal": "^3.5",
         "embed/embed": "^4.4",
-        "endroid/qr-code": "^4.7",
+        "endroid/qr-code": "^4.8",
         "guzzlehttp/guzzle": "^7.3",
         "hisorange/browser-detect": "^4.5",
         "laravel/fortify": "^1.18",
