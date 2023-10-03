@@ -37,7 +37,7 @@ class VisitorService
         $visitorId = $this->authVisitorId();
 
         if ($this->isAnonymousVisitor()) {
-            $visitorId = $this->anonymousVisitorId();
+            $visitorId = app(User::class)->signature();
         }
 
         return $visitorId;
@@ -46,13 +46,6 @@ class VisitorService
     public function authVisitorId(): string
     {
         return (string) auth()->id();
-    }
-
-    public function anonymousVisitorId(): string
-    {
-        $user = app(User::class);
-
-        return $user->signature();
     }
 
     /**
