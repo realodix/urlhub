@@ -37,10 +37,13 @@ class KeyGeneratorService
      */
     public function generateSimpleString(string $value): string
     {
-        // Retrieve only characters that match the predefined specifications
-        $cleanedChar = (string) preg_replace('/[^'.config('urlhub.hash_char').']/i', '', $value);
-
-        return mb_strtolower(substr($cleanedChar, config('urlhub.hash_length') * -1));
+        return strtolower(
+            substr(
+                // Remove all characters other than `0-9a-z-AZ`
+                (string) preg_replace('/[^'.self::HASH_CHAR.']/i', '', $value),
+                config('urlhub.hash_length') * -1
+            )
+        );
     }
 
     /**
@@ -54,7 +57,7 @@ class KeyGeneratorService
         $factory = new \RandomLib\Factory;
         $generator = $factory->getMediumStrengthGenerator();
 
-        $characters = config('urlhub.hash_char');
+        $characters = self::HASH_CHAR;
         $length = config('urlhub.hash_length');
 
         do {
