@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
+use App\Models\User;
 use App\Models\Visit;
 
 class VisitorService
@@ -36,7 +37,7 @@ class VisitorService
         $visitorId = $this->authVisitorId();
 
         if ($this->isAnonymousVisitor()) {
-            $visitorId = $this->anonymousVisitorId();
+            $visitorId = app(User::class)->signature();
         }
 
         return $visitorId;
@@ -45,17 +46,6 @@ class VisitorService
     public function authVisitorId(): string
     {
         return (string) auth()->id();
-    }
-
-    public function anonymousVisitorId(): string
-    {
-        $data = [
-            'ip'      => request()->ip(),
-            'browser' => \Browser::browserFamily(),
-            'os'      => \Browser::platformFamily(),
-        ];
-
-        return hash('sha3-224', implode($data));
     }
 
     /**
