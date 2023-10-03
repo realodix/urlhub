@@ -106,7 +106,7 @@ class KeyGeneratorService
      */
     public function maxCapacity(): int
     {
-        $characters = strlen(config('urlhub.hash_char'));
+        $characters = strlen(self::HASH_CHAR);
         $length = config('urlhub.hash_length');
 
         // for testing purposes only
@@ -131,7 +131,7 @@ class KeyGeneratorService
     public function usedCapacity(): int
     {
         $hashLength = (int) config('urlhub.hash_length');
-        $regexPattern = '['.config('urlhub.hash_char').']{'.$hashLength.'}';
+        $regexPattern = '['.self::HASH_CHAR.']{'.$hashLength.'}';
 
         $randomKey = Url::whereIsCustom(false)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])

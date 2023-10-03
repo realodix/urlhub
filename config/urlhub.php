@@ -31,17 +31,6 @@ return [
     'hash_length' => env('UH_HASH_LENGTH', 6), // >= 1
 
     /*
-     * Characters to be used in generating unique keyword. For convenience,
-     * currently the allowed characters are only alphanumeric consisting of
-     * a limited set of characters belonging to the US-ASCII characters,
-     * including digits (0-9), letters (A-Z, a-z).
-     */
-    'hash_char' => env(
-        'UH_HASH_CHAR',
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-    ),
-
-    /*
      * List of non allowed domain.
      *
      * This list is used to prevent shortening of urls that contain one of the

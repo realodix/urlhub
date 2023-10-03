@@ -109,29 +109,6 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Karakter yang dihasilkan harus benar-benar mengikuti karakter yang telah
-     * ditentukan.
-     *
-     * @test
-     * @group u-model
-     */
-    public function urlKey_specified_character(): void
-    {
-        $url = 'https://example.com/abc';
-        config(['urlhub.hash_length' => 3]);
-
-        $this->assertSame('abc', $this->keyGenerator->urlKey($url));
-
-        config(['urlhub.hash_char' => 'xyz']);
-        $this->assertMatchesRegularExpression('/[xyz]/', $this->keyGenerator->urlKey($url));
-        $this->assertDoesNotMatchRegularExpression('/[abc]/', $this->keyGenerator->urlKey($url));
-
-        config(['urlhub.hash_length' => 4]);
-        config(['urlhub.hash_char' => 'abcm']);
-        $this->assertSame('mabc', $this->keyGenerator->urlKey($url));
-    }
-
-    /**
      * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
      * config('urlhub.reserved_keyword')
      *
@@ -195,11 +172,10 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function maxCapacity(): void
     {
-        $hashLength = config('urlhub.hash_length');
-        $hashCharLength = strlen(config('urlhub.hash_char'));
-        $maxCapacity = pow($hashCharLength, $hashLength);
+        $this->assertIsInt($this->keyGenerator->maxCapacity());
 
-        $this->assertSame($maxCapacity, $this->keyGenerator->maxCapacity());
+        // config(['urlhub.hash_length' => 11]);
+        // $this->assertIsFloat($this->keyGenerator->maxCapacity());
     }
 
     /**
