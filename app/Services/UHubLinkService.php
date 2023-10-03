@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
+use App\Models\User;
 use Embed\Embed;
 use Illuminate\Http\Request;
 use Spatie\Url\Url as SpatieUrl;
@@ -32,7 +33,7 @@ class UHubLinkService
             'title'       => $this->title($request->long_url),
             'keyword'     => $this->urlKey($request),
             'is_custom'   => $this->isCustom($request),
-            'ip'          => $request->ip(),
+            'user_sign'   => app(User::class)->identity(),
         ]);
     }
 

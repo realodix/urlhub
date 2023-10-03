@@ -75,8 +75,8 @@ class User extends Authenticatable
      */
     public function totalGuestUsers(): int
     {
-        $url = Url::select('ip', DB::raw('count(*) as total'))
-            ->byGuests()->groupBy('ip')
+        $url = Url::select('user_sign', DB::raw('count(*) as total'))
+            ->byGuests()->groupBy('user_sign')
             ->get();
 
         return $url->count();
