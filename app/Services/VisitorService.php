@@ -21,10 +21,10 @@ class VisitorService
         }
 
         Visit::create([
-            'url_id'          => $url->id,
-            'visitor_id'      => $this->visitorId(),
-            'is_first_click'  => $this->isFirstClick($url),
-            'referer'         => request()->header('referer'),
+            'url_id'         => $url->id,
+            'visitor_id'     => $this->visitorId(),
+            'is_first_click' => $this->isFirstClick($url),
+            'referer'        => request()->header('referer'),
         ]);
     }
 
