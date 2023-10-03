@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
+use App\Models\User;
 use App\Models\Visit;
 
 class VisitorService
@@ -49,13 +50,9 @@ class VisitorService
 
     public function anonymousVisitorId(): string
     {
-        $data = [
-            'ip'      => request()->ip(),
-            'browser' => \Browser::browserFamily(),
-            'os'      => \Browser::platformFamily(),
-        ];
+        $user = app(User::class);
 
-        return hash('sha3-224', implode($data));
+        return $user->identity();
     }
 
     /**
