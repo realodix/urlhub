@@ -81,4 +81,15 @@ class User extends Authenticatable
 
         return $url->count();
     }
+
+    public function identity(): string
+    {
+        $data = [
+            'ip'      => request()->ip(),
+            'browser' => \Browser::browserFamily(),
+            'os'      => \Browser::platformFamily(),
+        ];
+
+        return hash('sha3-224', implode($data));
+    }
 }
