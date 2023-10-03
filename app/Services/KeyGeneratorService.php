@@ -6,6 +6,8 @@ use App\Models\Url;
 
 class KeyGeneratorService
 {
+    private const HASH_CHAR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
     /**
      * Generate a short string that can be used as a unique key for shortened long
      * urls.
