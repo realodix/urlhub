@@ -30,6 +30,11 @@ class UserTest extends TestCase
      */
     public function totalGuestUsers(): void
     {
-        $this->assertSame(0, (new User)->totalGuestUsers());
+        Url::factory(2)->create(['user_id' => Url::GUEST_ID]);
+        $this->assertSame(2, (new User)->totalGuestUsers());
+
+        // 2+1
+        Url::factory(5)->create(['user_id' => Url::GUEST_ID, 'user_sign' => 'foo']);
+        $this->assertSame(3, (new User)->totalGuestUsers());
     }
 }

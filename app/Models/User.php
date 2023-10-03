@@ -88,8 +88,9 @@ class User extends Authenticatable
             'ip'      => request()->ip(),
             'browser' => \Browser::browserFamily(),
             'os'      => \Browser::platformFamily(),
+            'device'  => \Browser::deviceFamily().\Browser::deviceModel(),
         ];
 
-        return hash('sha3-224', implode($data));
+        return hash('sha3-256', implode($data));
     }
 }
