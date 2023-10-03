@@ -23,7 +23,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * The number of guests is calculated based on a unique IP.
+     * The number of guests is calculated based on the user sign.
      *
      * @test
      * @group u-model
