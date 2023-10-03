@@ -17,10 +17,6 @@
             <table>
                 <tbody>
                     <tr>
-                        <td class="w-60">Characters</td>
-                        <td>{{config('urlhub.hash_char')}}</td>
-                    </tr>
-                    <tr>
                         <td>Length</td>
                         <td>{{config('urlhub.hash_length')}}</td>
                     </tr>
