@@ -52,7 +52,7 @@ class VisitorService
     {
         $user = app(User::class);
 
-        return $user->identity();
+        return $user->signature();
     }
 
     /**

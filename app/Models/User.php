@@ -82,7 +82,7 @@ class User extends Authenticatable
         return $url->count();
     }
 
-    public function identity(): string
+    public function signature(): string
     {
         $data = [
             'ip'      => request()->ip(),

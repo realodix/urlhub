@@ -33,7 +33,7 @@ class UHubLinkService
             'title'       => $this->title($request->long_url),
             'keyword'     => $this->urlKey($request),
             'is_custom'   => $this->isCustom($request),
-            'user_sign'   => app(User::class)->identity(),
+            'user_sign'   => app(User::class)->signature(),
         ]);
     }
 
