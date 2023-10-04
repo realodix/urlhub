@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
+use Illuminate\Support\Str;
 
 class KeyGeneratorService
 {
@@ -37,13 +38,11 @@ class KeyGeneratorService
      */
     public function generateSimpleString(string $value): string
     {
-        return strtolower(
-            substr(
-                // Remove all characters other than `0-9a-z-AZ`
-                (string) preg_replace('/[^'.self::HASH_CHAR.']/i', '', $value),
-                config('urlhub.hash_length') * -1
-            )
-        );
+        return Str::of($value)
+            // Remove all characters other than `0-9a-z-AZ`
+            ->replaceMatches('/[^'.self::HASH_CHAR.']/i', '')
+            ->substr(config('urlhub.hash_length') * -1)
+            ->lower();
     }
 
     /**
