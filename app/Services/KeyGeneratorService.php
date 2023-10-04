@@ -6,7 +6,7 @@ use App\Models\Url;
 
 class KeyGeneratorService
 {
-    private const HASH_CHAR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private const HASH_CHAR = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
      * Generate a short string that can be used as a unique key for shortened long
@@ -57,11 +57,8 @@ class KeyGeneratorService
         $factory = new \RandomLib\Factory;
         $generator = $factory->getMediumStrengthGenerator();
 
-        $characters = self::HASH_CHAR;
-        $length = config('urlhub.hash_length');
-
         do {
-            $urlKey = $generator->generateString($length, $characters);
+            $urlKey = $generator->generateString(config('urlhub.hash_length'), self::HASH_CHAR);
         } while ($this->assertStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
