@@ -172,10 +172,8 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function maxCapacity(): void
     {
-        $this->assertIsInt($this->keyGenerator->maxCapacity());
-
-        // config(['urlhub.hash_length' => 11]);
-        // $this->assertIsFloat($this->keyGenerator->maxCapacity());
+        config(['urlhub.hash_length' => 2]);
+        $this->assertSame(pow(62, 2), $this->keyGenerator->maxCapacity());
     }
 
     /**
