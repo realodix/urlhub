@@ -6,6 +6,8 @@ use App\Models\Url;
 
 class KeyGeneratorService
 {
+    private const HASH_CHAR = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
     /**
      * Generate a short string that can be used as a unique key for shortened long
      * urls.
@@ -35,10 +37,13 @@ class KeyGeneratorService
      */
     public function generateSimpleString(string $value): string
     {
-        // Retrieve only characters that match the predefined specifications
-        $cleanedChar = (string) preg_replace('/[^'.config('urlhub.hash_char').']/i', '', $value);
-
-        return mb_strtolower(substr($cleanedChar, config('urlhub.hash_length') * -1));
+        return strtolower(
+            substr(
+                // Remove all characters other than `0-9a-z-AZ`
+                (string) preg_replace('/[^'.self::HASH_CHAR.']/i', '', $value),
+                config('urlhub.hash_length') * -1
+            )
+        );
     }
 
     /**
@@ -52,11 +57,8 @@ class KeyGeneratorService
         $factory = new \RandomLib\Factory;
         $generator = $factory->getMediumStrengthGenerator();
 
-        $characters = config('urlhub.hash_char');
-        $length = config('urlhub.hash_length');
-
         do {
-            $urlKey = $generator->generateString($length, $characters);
+            $urlKey = $generator->generateString(config('urlhub.hash_length'), self::HASH_CHAR);
         } while ($this->assertStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
@@ -101,7 +103,7 @@ class KeyGeneratorService
      */
     public function maxCapacity(): int
     {
-        $characters = strlen(config('urlhub.hash_char'));
+        $characters = strlen(self::HASH_CHAR);
         $length = config('urlhub.hash_length');
 
         // for testing purposes only
@@ -126,7 +128,7 @@ class KeyGeneratorService
     public function usedCapacity(): int
     {
         $hashLength = (int) config('urlhub.hash_length');
-        $regexPattern = '['.config('urlhub.hash_char').']{'.$hashLength.'}';
+        $regexPattern = '['.self::HASH_CHAR.']{'.$hashLength.'}';
 
         $randomKey = Url::whereIsCustom(false)
             ->whereRaw('LENGTH(keyword) = ?', [$hashLength])
@@ -145,10 +147,7 @@ class KeyGeneratorService
      */
     public function idleCapacity(): int
     {
-        $maxCapacity = $this->maxCapacity();
-        $usedCapacity = $this->usedCapacity();
-
         // prevent negative values
-        return max($maxCapacity - $usedCapacity, 0);
+        return max($this->maxCapacity() - $this->usedCapacity(), 0);
     }
 }

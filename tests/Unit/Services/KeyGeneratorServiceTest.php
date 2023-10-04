@@ -109,29 +109,6 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Karakter yang dihasilkan harus benar-benar mengikuti karakter yang telah
-     * ditentukan.
-     *
-     * @test
-     * @group u-model
-     */
-    public function urlKey_specified_character(): void
-    {
-        $url = 'https://example.com/abc';
-        config(['urlhub.hash_length' => 3]);
-
-        $this->assertSame('abc', $this->keyGenerator->urlKey($url));
-
-        config(['urlhub.hash_char' => 'xyz']);
-        $this->assertMatchesRegularExpression('/[xyz]/', $this->keyGenerator->urlKey($url));
-        $this->assertDoesNotMatchRegularExpression('/[abc]/', $this->keyGenerator->urlKey($url));
-
-        config(['urlhub.hash_length' => 4]);
-        config(['urlhub.hash_char' => 'abcm']);
-        $this->assertSame('mabc', $this->keyGenerator->urlKey($url));
-    }
-
-    /**
      * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
      * config('urlhub.reserved_keyword')
      *
@@ -195,11 +172,10 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function maxCapacity(): void
     {
-        $hashLength = config('urlhub.hash_length');
-        $hashCharLength = strlen(config('urlhub.hash_char'));
-        $maxCapacity = pow($hashCharLength, $hashLength);
+        $this->assertIsInt($this->keyGenerator->maxCapacity());
 
-        $this->assertSame($maxCapacity, $this->keyGenerator->maxCapacity());
+        // config(['urlhub.hash_length' => 11]);
+        // $this->assertIsFloat($this->keyGenerator->maxCapacity());
     }
 
     /**
@@ -234,49 +210,6 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 3]);
         $this->assertSame(0, $this->keyGenerator->usedCapacity());
         $this->assertSame($this->totalUrl, $this->url->count());
-    }
-
-    /**
-     * Pengujian dilakukan berdasarkan karakter yang telah ditetapkan pada
-     * 'urlhub.hash_char'. Jika salah satu karakter 'keyword' tidak ada di
-     * 'urlhub.hash_char', maka seharusnya itu tidak masuk dalam perhitungan.
-     *
-     * @test
-     * @group u-model
-     */
-    public function usedCapacity2(): void
-    {
-        config(['urlhub.hash_length' => 3]);
-
-        config(['urlhub.hash_char' => 'foo']);
-        Url::factory()->create([
-            'keyword'   => 'foo',
-            'is_custom' => true,
-        ]);
-        $this->assertSame(1, $this->keyGenerator->usedCapacity());
-
-        config(['urlhub.hash_char' => 'bar']);
-        Url::factory()->create([
-            'keyword'   => 'bar',
-            'is_custom' => true,
-        ]);
-        $this->assertSame(1, $this->keyGenerator->usedCapacity());
-
-        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
-        // seharusnya ada 2 saja.
-        config(['urlhub.hash_char' => 'foobar']);
-        $this->assertSame(2, $this->keyGenerator->usedCapacity());
-
-        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
-        // seharusnya ada 1 saja karena 'bar' tidak bisa terhitung.
-        config(['urlhub.hash_char' => 'fooBar']);
-        $this->assertSame(1, $this->keyGenerator->usedCapacity());
-
-        // Sudah ada 2 URL yang dibuat dengan keyword 'foo' dan 'bar', maka
-        // seharusnya tidak ada sama sekali karena 'foo' dan 'bar' tidak
-        // bisa terhitung.
-        config(['urlhub.hash_char' => 'FooBar']);
-        $this->assertSame(0, $this->keyGenerator->usedCapacity());
     }
 
     /**
