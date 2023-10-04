@@ -5,11 +5,11 @@
 @section('content')
     <main>
         <div class="common-card-style p-4">
-            <h3>Short Links</h3>
+            <h4>Links</h4>
             <table>
                 <tbody>
                     <tr>
-                        <td class="w-60">Total</td>
+                        <td class="w-72">Total</td>
                         <td>{{$url->count()}}</td>
                     </tr>
                     <tr>
@@ -25,16 +25,32 @@
 
             <br>
 
-            <h3>Users</h3>
+            <h4>Users</h4>
             <table>
                 <tbody>
                     <tr>
-                        <td class="w-60">Registered</td>
+                        <td class="w-72">Registered</td>
                         <td>{{$user->count()}}</td>
                     </tr>
                     <tr>
                         <td>Unregistered</td>
                         <td>{{$user->totalGuestUsers()}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <h4>Random String</h4>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="w-72">Possible Output</td>
+                        <td>{{$keyGeneratorService->maxCapacity()}}</td>
+                    </tr>
+                    <tr>
+                        <td>Generated</td>
+                        <td>{{$keyGeneratorService->usedCapacity()}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -46,36 +62,48 @@
             <div class="flex mb-8">
                 <div class="w-1/2">
                     <span class="text-2xl text-uh-1">
-                        {{__('Config')}}
+                        {{__('Configuration')}}
                     </span>
                 </div>
             </div>
 
-            <h4>Random String</h4>
+            <h4>Shortened Links</h4>
             <table>
                 <tbody>
+                    @php
+                        $hashLength = config('urlhub.hash_length');
+                        $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
+                    @endphp
                     <tr>
-                        <td class="w-60">Length</td>
-                        <td>{{config('urlhub.hash_length')}}</td>
+                        <td class="w-72">Random string length</td>
+                        <td>{{$hashLength.' '.str('character')->plural($hashLength)}}</td>
                     </tr>
                     <tr>
-                        <td>Possible Output</td>
-                        <td>{{$keyGeneratorService->maxCapacity()}}</td>
+                        <td>web_title</td>
+                        <td>{{var_export(config('urlhub.web_title'))}}</td>
                     </tr>
                     <tr>
-                        <td>Generated</td>
-                        <td>{{$keyGeneratorService->usedCapacity()}}</td>
+                        <td>redirect_status_code</td>
+                        <td>{{config('urlhub.redirect_status_code')}}</td>
+                    </tr>
+                    <tr>
+                        <td>redirect_cache_max_age</td>
+                        <td>{{$redirectCacheMaxAge.' '.str('second')->plural($redirectCacheMaxAge)}}</td>
+                    </tr>
+                    <tr>
+                        <td>track_bot_visits</td>
+                        <td>{{var_export(config('urlhub.track_bot_visits'))}}</td>
                     </tr>
                 </tbody>
             </table>
 
             <br>
 
-            <h4>Unregistered Users Access</h4>
+            <h4>Guest / Unregistered Users</h4>
             <table>
                 <tbody>
                     <tr>
-                        <td class="w-60">Anyone can shorten the link</td>
+                        <td class="w-72">Anyone can shorten the link</td>
                         <td>{{var_export(config('urlhub.public_site'))}}</td>
                     </tr>
                     <tr>
@@ -91,16 +119,16 @@
             <table>
                 <tbody>
                     <tr>
-                        <td class="w-60">Enable</td>
+                        <td class="w-72">Enable</td>
                         <td>{{var_export(config('urlhub.qrcode'))}}</td>
                     </tr>
                     <tr>
                         <td>Size</td>
-                        <td>{{config('urlhub.qrcode_size')}} PX</td>
+                        <td>{{config('urlhub.qrcode_size')}} px</td>
                     </tr>
                     <tr>
                         <td>Margin</td>
-                        <td>{{config('urlhub.qrcode_margin')}}</td>
+                        <td>{{config('urlhub.qrcode_margin')}} px</td>
                     </tr>
                     <tr>
                         <td>Format</td>
