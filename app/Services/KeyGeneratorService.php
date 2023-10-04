@@ -147,10 +147,7 @@ class KeyGeneratorService
      */
     public function idleCapacity(): int
     {
-        $maxCapacity = $this->maxCapacity();
-        $usedCapacity = $this->usedCapacity();
-
         // prevent negative values
-        return max($maxCapacity - $usedCapacity, 0);
+        return max($this->maxCapacity() - $this->usedCapacity(), 0);
     }
 }
