@@ -112,7 +112,7 @@ class KeyGeneratorService
             return 0;
         }
 
-        return (int) pow($characters, $length);
+        return (int) gmp_pow($characters, $length);
     }
 
     /**
