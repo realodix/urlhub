@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Url;
+use Illuminate\Support\Str;
 
 class KeyGeneratorService
 {
@@ -20,9 +21,8 @@ class KeyGeneratorService
         $key = $this->generateSimpleString($value);
 
         // Step 2
-        // If step 1 fail (the string is used or cannot be used), then the generator
-        // must generate a unique random string until it finds a string that can
-        // be used as a key
+        // If step 1 fails (the string has been used or cannot be used), then the
+        // string generator must generate a unique random string
         if ($this->assertStringCanBeUsedAsKey($key) === false) {
             $key = $this->generateRandomString();
         }
@@ -30,20 +30,14 @@ class KeyGeneratorService
         return $key;
     }
 
-    /**
-     * Take some characters at the end of the string and remove all characters that
-     * are not in the specified character set. If the string contains uppercase
-     * letters, it must be converted to lowercase letters.
-     */
     public function generateSimpleString(string $value): string
     {
-        return strtolower(
-            substr(
-                // Remove all characters other than `0-9a-z-AZ`
-                (string) preg_replace('/[^'.self::HASH_CHAR.']/i', '', $value),
-                config('urlhub.hash_length') * -1
-            )
-        );
+        return Str::of($value)
+            // Remove all characters except `0-9a-z-AZ`
+            ->replaceMatches('/[^'.self::HASH_CHAR.']/i', '')
+            // Take the specified number of characters from the end of the string.
+            ->substr(config('urlhub.hash_length') * -1)
+            ->lower();
     }
 
     /**
@@ -68,11 +62,12 @@ class KeyGeneratorService
      * Check if string can be used as a keyword.
      *
      * This function will check under several conditions:
-     * 1. If the string is already used in the database
-     * 2. If the string is used as a reserved keyword
-     * 3. If the string is used as a route path
+     * 1. If the string is already used as a key
+     * 2. If the string has been used as a reserved keyword
+     * 3. If the string is already registered on the route path
      *
-     * If any or all of the conditions are true, then the keyword cannot be used.
+     * If any or all of the above conditions are true, then the string cannot be
+     * used as a keyword.
      */
     public function assertStringCanBeUsedAsKey(string $value): bool
     {
