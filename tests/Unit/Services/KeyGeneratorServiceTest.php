@@ -172,10 +172,10 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function maxCapacity(): void
+    public function possibleOutput(): void
     {
         config(['urlhub.hash_length' => 2]);
-        $this->assertSame(pow(62, 2), $this->keyGenerator->maxCapacity());
+        $this->assertSame(pow(62, 2), $this->keyGenerator->possibleOutput());
     }
 
     /**
@@ -225,8 +225,8 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
-            'maxCapacity'  => $kc,
-            'usedCapacity' => $ku,
+            'possibleOutput' => $kc,
+            'usedCapacity'   => $ku,
         ]);
         $actual = $mock->idleCapacity();
 
@@ -235,7 +235,7 @@ class KeyGeneratorServiceTest extends TestCase
 
     public static function idleCapacityProvider(): array
     {
-        // maxCapacity(), usedCapacity(), expected_result
+        // possibleOutput(), usedCapacity(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],

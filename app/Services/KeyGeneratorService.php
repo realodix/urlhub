@@ -93,12 +93,11 @@ class KeyGeneratorService
     */
 
     /**
-     * Calculate the maximum number of unique random strings that can be
-     * generated
+     * The maximum number of unique strings that can be generated.
      */
-    public function maxCapacity(): int
+    public function possibleOutput(): int
     {
-        $characters = strlen(self::HASH_CHAR);
+        $nChar = strlen(self::HASH_CHAR);
         $length = config('urlhub.hash_length');
 
         // for testing purposes only
@@ -107,7 +106,7 @@ class KeyGeneratorService
             return 0;
         }
 
-        return gmp_intval(gmp_pow($characters, $length));
+        return gmp_intval(gmp_pow($nChar, $length));
     }
 
     /**
@@ -143,6 +142,6 @@ class KeyGeneratorService
     public function idleCapacity(): int
     {
         // prevent negative values
-        return max($this->maxCapacity() - $this->usedCapacity(), 0);
+        return max($this->possibleOutput() - $this->usedCapacity(), 0);
     }
 }

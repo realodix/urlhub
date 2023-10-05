@@ -46,7 +46,7 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Possible Output</td>
-                        <td>{{number_format($keyGeneratorService->maxCapacity())}}</td>
+                        <td>{{number_format($keyGeneratorService->possibleOutput())}}</td>
                     </tr>
                     <tr>
                         <td>Generated</td>

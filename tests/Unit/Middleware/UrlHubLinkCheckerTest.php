@@ -25,12 +25,13 @@ class UrlHubLinkCheckerTest extends TestCase
     }
 
     /**
-     * Shorten the url when the random string generator maxCapacity is full.
-     * UrlHub must prevent URL shortening.
+     * Persingkat URL ketika generator string sudah tidak dapat menghasilkan keyword
+     * unik (semua keyword sudah terpakai). UrlHub harus mencegah user untuk melakukan
+     * penyingkatan URL.
      *
      * @test
      */
-    public function idleCapacityZero(): void
+    public function idleCapacityIsZero(): void
     {
         config(['urlhub.hash_length' => 0]);
 
