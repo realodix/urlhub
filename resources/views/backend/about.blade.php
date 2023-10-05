@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>Generated</td>
-                        <td>{{number_format($keyGeneratorService->usedCapacity())}}</td>
+                        <td>{{number_format($keyGeneratorService->totalKey())}}</td>
                     </tr>
                 </tbody>
             </table>

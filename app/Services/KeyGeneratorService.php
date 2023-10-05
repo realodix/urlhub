@@ -110,16 +110,15 @@ class KeyGeneratorService
     }
 
     /**
-     * The number of unique random strings that have been used as the key for
-     * the long url that has been shortened
+     * Number of unique keywords that have been used.
      *
      * Formula:
-     * usedCapacity = randomKey + customKey
+     * totalKey = randomKey + customKey
      *
-     * The character length and set of characters of `customKey` must be the same
-     * as `randomKey`.
+     * The length of the generated string (randomKey) and the length of the
+     * `customKey` string must be identical.
      */
-    public function usedCapacity(): int
+    public function totalKey(): int
     {
         $hashLength = (int) config('urlhub.hash_length');
         $regexPattern = '['.self::HASH_CHAR.']{'.$hashLength.'}';
@@ -142,6 +141,6 @@ class KeyGeneratorService
     public function idleCapacity(): int
     {
         // prevent negative values
-        return max($this->possibleOutput() - $this->usedCapacity(), 0);
+        return max($this->possibleOutput() - $this->totalKey(), 0);
     }
 }
