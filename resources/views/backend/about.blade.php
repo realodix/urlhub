@@ -46,7 +46,7 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Possible Output</td>
-                        <td>{{number_format($keyGeneratorService->possibleOutput())}}</td>
+                        <td>( 62<sup>{{config('urlhub.hash_length')}}</sup> ) {{number_format($keyGeneratorService->possibleOutput())}}</td>
                     </tr>
                     <tr>
                         <td>Generated</td>
