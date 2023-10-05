@@ -98,15 +98,15 @@ class KeyGeneratorService
     public function possibleOutput(): int
     {
         $nChar = strlen(self::HASH_CHAR);
-        $length = config('urlhub.hash_length');
+        $strLen= config('urlhub.hash_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
-        if ($length === 0) {
+        if ($strLen === 0) {
             return 0;
         }
 
-        return gmp_intval(gmp_pow($nChar, $length));
+        return gmp_intval(gmp_pow($nChar, $strLen));
     }
 
     /**
