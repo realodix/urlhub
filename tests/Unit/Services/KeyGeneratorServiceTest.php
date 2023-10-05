@@ -154,6 +154,8 @@ class KeyGeneratorServiceTest extends TestCase
 
         $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foobar'));
         $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foob/ar'));
+
+        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('fooBar'));
     }
 
     /**
