@@ -46,11 +46,11 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Possible Output</td>
-                        <td>{{$keyGeneratorService->maxCapacity()}}</td>
+                        <td>( 62<sup>{{config('urlhub.hash_length')}}</sup> ) {{number_format($keyGeneratorService->possibleOutput())}}</td>
                     </tr>
                     <tr>
                         <td>Generated</td>
-                        <td>{{$keyGeneratorService->usedCapacity()}}</td>
+                        <td>{{number_format($keyGeneratorService->totalKey())}}</td>
                     </tr>
                 </tbody>
             </table>

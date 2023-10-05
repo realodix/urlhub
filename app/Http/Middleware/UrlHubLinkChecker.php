@@ -68,7 +68,7 @@ class UrlHubLinkChecker
      */
     private function canGenerateUniqueRandomKeys(): bool
     {
-        if (app(KeyGeneratorService::class)->idleCapacity() === 0) {
+        if (app(KeyGeneratorService::class)->remainingCapacity() === 0) {
             return false;
         }
 

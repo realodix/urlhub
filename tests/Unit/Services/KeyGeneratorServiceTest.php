@@ -172,12 +172,10 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function maxCapacity(): void
+    public function possibleOutput(): void
     {
-        $this->assertIsInt($this->keyGenerator->maxCapacity());
-
-        // config(['urlhub.hash_length' => 11]);
-        // $this->assertIsFloat($this->keyGenerator->maxCapacity());
+        config(['urlhub.hash_length' => 2]);
+        $this->assertSame(pow(62, 2), $this->keyGenerator->possibleOutput());
     }
 
     /**
@@ -186,20 +184,20 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function usedCapacity(): void
+    public function totalKey(): void
     {
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 1]);
 
         Url::factory()->create([
             'keyword' => $this->keyGenerator->generateRandomString(),
         ]);
-        $this->assertSame(1, $this->keyGenerator->usedCapacity());
+        $this->assertSame(1, $this->keyGenerator->totalKey());
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', config('urlhub.hash_length')),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->usedCapacity());
+        $this->assertSame(2, $this->keyGenerator->totalKey());
 
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.hash_length',
         // maka ini tidak ikut terhitung.
@@ -207,37 +205,37 @@ class KeyGeneratorServiceTest extends TestCase
             'keyword'   => str_repeat('b', config('urlhub.hash_length') + 2),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->usedCapacity());
+        $this->assertSame(2, $this->keyGenerator->totalKey());
 
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 3]);
-        $this->assertSame(0, $this->keyGenerator->usedCapacity());
+        $this->assertSame(0, $this->keyGenerator->totalKey());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
 
     /**
      * @test
      * @group u-model
-     * @dataProvider idleCapacityProvider
+     * @dataProvider remainingCapacityProvider
      *
-     * @param mixed $kc
-     * @param mixed $ku
+     * @param mixed $po
+     * @param mixed $tk
      * @param mixed $expected
      */
-    public function idleCapacity($kc, $ku, $expected): void
+    public function remainingCapacity($po, $tk, $expected): void
     {
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
-            'maxCapacity'  => $kc,
-            'usedCapacity' => $ku,
+            'possibleOutput' => $po,
+            'totalKey'       => $tk,
         ]);
-        $actual = $mock->idleCapacity();
+        $actual = $mock->remainingCapacity();
 
         $this->assertSame($expected, $actual);
     }
 
-    public static function idleCapacityProvider(): array
+    public static function remainingCapacityProvider(): array
     {
-        // maxCapacity(), usedCapacity(), expected_result
+        // possibleOutput(), totalKey(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],

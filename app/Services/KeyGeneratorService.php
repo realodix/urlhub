@@ -93,34 +93,32 @@ class KeyGeneratorService
     */
 
     /**
-     * Calculate the maximum number of unique random strings that can be
-     * generated
+     * The maximum number of unique strings that can be generated.
      */
-    public function maxCapacity(): int
+    public function possibleOutput(): int
     {
-        $characters = strlen(self::HASH_CHAR);
-        $length = config('urlhub.hash_length');
+        $nChar = strlen(self::HASH_CHAR);
+        $strLen= config('urlhub.hash_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
-        if ($length === 0) {
+        if ($strLen === 0) {
             return 0;
         }
 
-        return (int) pow($characters, $length);
+        return gmp_intval(gmp_pow($nChar, $strLen));
     }
 
     /**
-     * The number of unique random strings that have been used as the key for
-     * the long url that has been shortened
+     * Number of unique keywords that have been used.
      *
      * Formula:
-     * usedCapacity = randomKey + customKey
+     * totalKey = randomKey + customKey
      *
-     * The character length and set of characters of `customKey` must be the same
-     * as `randomKey`.
+     * The length of the generated string (randomKey) and the length of the
+     * `customKey` string must be identical.
      */
-    public function usedCapacity(): int
+    public function totalKey(): int
     {
         $hashLength = (int) config('urlhub.hash_length');
         $regexPattern = '['.self::HASH_CHAR.']{'.$hashLength.'}';
@@ -140,9 +138,9 @@ class KeyGeneratorService
     /**
      * Calculate the number of unique random strings that can still be generated.
      */
-    public function idleCapacity(): int
+    public function remainingCapacity(): int
     {
         // prevent negative values
-        return max($this->maxCapacity() - $this->usedCapacity(), 0);
+        return max($this->possibleOutput() - $this->totalKey(), 0);
     }
 }
