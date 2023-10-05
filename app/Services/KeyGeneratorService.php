@@ -138,7 +138,7 @@ class KeyGeneratorService
     /**
      * Calculate the number of unique random strings that can still be generated.
      */
-    public function idleCapacity(): int
+    public function remainingCapacity(): int
     {
         // prevent negative values
         return max($this->possibleOutput() - $this->totalKey(), 0);

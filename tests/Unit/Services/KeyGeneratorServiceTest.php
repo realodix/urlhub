@@ -215,7 +215,7 @@ class KeyGeneratorServiceTest extends TestCase
     /**
      * @test
      * @group u-model
-     * @dataProvider idleCapacityProvider
+     * @dataProvider remainingCapacityProvider
      *
      * @param mixed $po
      * @param mixed $tk
@@ -228,12 +228,12 @@ class KeyGeneratorServiceTest extends TestCase
             'possibleOutput' => $po,
             'totalKey'       => $tk,
         ]);
-        $actual = $mock->idleCapacity();
+        $actual = $mock->remainingCapacity();
 
         $this->assertSame($expected, $actual);
     }
 
-    public static function idleCapacityProvider(): array
+    public static function remainingCapacityProvider(): array
     {
         // possibleOutput(), totalKey(), expected_result
         return [
