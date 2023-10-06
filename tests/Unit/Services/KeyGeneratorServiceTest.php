@@ -30,6 +30,35 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
+     * Pengujian untuk kondisi dimana panjang string yang diberikan tidak cocok dengan panjang
+     * string yang telah ditentukan.
+     *
+     * - Panjang cocok: gunakan string tersebut
+     * - Panjang tidak cocok: generator harus menghasilkan string acak dengan panjang yang
+     *   sesuai.
+     *
+     * @test
+     * @group u-model
+     */
+    public function urlKey_string_lenght(): void
+    {
+        $actual = 'foobar';
+
+        $strLen = 3;
+        config(['urlhub.hash_length' => $strLen]);
+        $this->assertSame(
+            substr($actual, -$strLen),
+            $this->keyGenerator->urlKey($actual)
+        );
+
+        $strLen = 8;
+        config(['urlhub.hash_length' => $strLen]);
+        $actual = strlen($this->keyGenerator->urlKey($actual));
+        $this->assertSame($strLen, $actual);
+        $this->assertNotSame(substr($actual, -$strLen), $actual);
+    }
+
+    /**
      * String dihasilkan dari pemotongan link dari belakang sepanjang panjang
      * karakter yang telah ditentukan.
      *
