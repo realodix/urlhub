@@ -30,13 +30,13 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * String yang dihasilkan dengan memotong string url dari belakang sepanjang
-     * panjang karakter yang telah ditentukan.
+     * String dihasilkan dari pemotongan link dari belakang sepanjang panjang
+     * karakter yang telah ditentukan.
      *
      * @test
      * @group u-model
      */
-    public function urlKey_default_value(): void
+    public function urlKey_string_from_link_truncation(): void
     {
         $length = 3;
         config(['urlhub.hash_length' => $length]);
@@ -48,31 +48,73 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * String yang dihasilkan dari URL harus berupa huruf kecil.
+     * String yang dihasilkan dari pemotongan tautan harus berupa abjad.
      *
      * @test
      * @group u-model
      */
-    public function urlKey_default_value_mus_be_lowercase(): void
+    public function string_from_link_truncation_must_be_alphabet(): void
+    {
+        config(['urlhub.hash_length' => 3]);
+
+        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foobar'));
+        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foob/ar'));
+
+        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('fooBar'));
+    }
+
+    /**
+     * Panjang string yang dihasilkan dari pemotongan link harus harus sesuai
+     * dengan panjang yang telah ditentukan pada konfigurasi.
+     *
+     * @test
+     * @group u-model
+     */
+    public function string_lenght_from_link_truncation_must_be_match_with_configured_length(): void
+    {
+        config(['urlhub.hash_length' => 6]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'alodix';
+        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
+
+        config(['urlhub.hash_length' => 9]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'mrealodix';
+        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
+
+        config(['urlhub.hash_length' => 12]);
+        $actual = 'https://github.com/realodix';
+        $expected = 'bcomrealodix';
+        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
+    }
+
+    /**
+     * String yang dihasilkan dari pemotongan link harus berupa huruf kecil.
+     *
+     * @test
+     * @group u-model
+     */
+    public function string_from_link_truncation_mus_be_lowercase(): void
     {
         $length = 4;
         config(['urlhub.hash_length' => $length]);
 
         $longUrl = 'https://github.com/realoDIX';
-        $urlKey = $this->keyGenerator->urlKey($longUrl);
+        $urlKey = $this->keyGenerator->generateSimpleString($longUrl);
 
         $this->assertSame(mb_strtolower(substr($longUrl, -$length)), $urlKey);
         $this->assertNotSame(substr($longUrl, -$length), $urlKey);
     }
 
     /**
-     * Karena kunci sudah ada, maka generator akan terus diulangi hingga
-     * menghasilkan kunci yang unik atau tidak ada yang sama.
+     * Generator harus memberikan string yang belum digunakan. Jika string sudah
+     * digunakan sebagai keyword, maka generator harus memberikan string unik
+     * lainnya untuk `keyword`.
      *
      * @test
      * @group u-model
      */
-    public function urlKey_generated_string(): void
+    public function string_already_in_use(): void
     {
         $length = 3;
         config(['urlhub.hash_length' => $length]);
@@ -84,38 +126,14 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Panjang dari karakter kunci yang dihasilkan harus sama dengan panjang
-     * karakter yang telah ditentukan.
+     * Generator harus memberikan string yang tidak ada di dalam daftar reserved
+     * keyword (config('urlhub.reserved_keyword')). Jika string ada di dalam daftar,
+     * maka generator harus memberikan string unik lainnya untuk `keyword`.
      *
      * @test
      * @group u-model
      */
-    public function urlKey_specified_hash_length(): void
-    {
-        config(['urlhub.hash_length' => 6]);
-        $actual = 'https://github.com/realodix';
-        $expected = 'alodix';
-        $this->assertSame($expected, $this->keyGenerator->urlKey($actual));
-
-        config(['urlhub.hash_length' => 9]);
-        $actual = 'https://github.com/realodix';
-        $expected = 'mrealodix';
-        $this->assertSame($expected, $this->keyGenerator->urlKey($actual));
-
-        config(['urlhub.hash_length' => 12]);
-        $actual = 'https://github.com/realodix';
-        $expected = 'bcomrealodix';
-        $this->assertSame($expected, $this->keyGenerator->urlKey($actual));
-    }
-
-    /**
-     * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
-     * config('urlhub.reserved_keyword')
-     *
-     * @test
-     * @group u-model
-     */
-    public function urlKey_prevent_reserved_keyword(): void
+    public function string_is_reserved_keyword(): void
     {
         $actual = 'https://example.com/css';
         $expected = 'css';
@@ -127,45 +145,24 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * String yang dihasilkan tidak boleh sama dengan string yang telah ada di
-     * registered route path. Di sini, string yang dihasilkan sebagai keyword
-     * adalah 'admin', dimana 'admin' sudah digunakan sebagai route path.
+     * Generator harus memberikan string yang tidak ada di dalam daftar registered
+     * route paths di Laravel. Jika string ada di dalam daftar, maka generator
+     * harus memberikan string unik lainnya untuk `keyword`.
+     *
+     * Pada pengujian ini, string yang diberikan adalah 'login', dimana 'login'
+     * sudah digunakan sebagai route path.
      *
      * @test
      * @group u-model
      */
-    public function urlKey_prevent_generating_strings_that_are_in_registered_route_path(): void
+    public function string_is_route_path(): void
     {
-        $actual = 'https://example.com/admin';
-        $expected = 'admin';
+        $actual = 'https://example.com/login';
+        $expected = 'login';
 
         config(['urlhub.hash_length' => strlen($expected)]);
 
         $this->assertNotSame($expected, $this->keyGenerator->urlKey($actual));
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function generateSimpleString(): void
-    {
-        config(['urlhub.hash_length' => 3]);
-
-        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foobar'));
-        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foob/ar'));
-
-        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('fooBar'));
-    }
-
-    /**
-     * @test
-     * @group u-model
-     */
-    public function assertStringCanBeUsedAsKey(): void
-    {
-        $this->assertTrue($this->keyGenerator->assertStringCanBeUsedAsKey('foo'));
-        $this->assertFalse($this->keyGenerator->assertStringCanBeUsedAsKey('login'));
     }
 
     /**
@@ -184,7 +181,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function totalKey(): void
+    public function totalStringsUsedAsKeys(): void
     {
         config(['urlhub.hash_length' => config('urlhub.hash_length') + 1]);
 
