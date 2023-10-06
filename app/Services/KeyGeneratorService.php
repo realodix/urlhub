@@ -23,7 +23,10 @@ class KeyGeneratorService
         // Step 2
         // If step 1 fails (the string has been used or cannot be used), then the
         // string generator must generate a unique random string
-        if ($this->assertStringCanBeUsedAsKey($key) === false) {
+        if (
+            $this->assertStringCanBeUsedAsKey($key) === false
+            || strlen($key) < config('urlhub.hash_length')
+        ) {
             $key = $this->generateRandomString();
         }
 
