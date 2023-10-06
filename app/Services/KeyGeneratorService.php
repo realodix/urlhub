@@ -23,7 +23,10 @@ class KeyGeneratorService
         // Step 2
         // If step 1 fails (the string has been used or cannot be used), then the
         // string generator must generate a unique random string
-        if ($this->assertStringCanBeUsedAsKey($key) === false) {
+        if (
+            $this->assertStringCanBeUsedAsKey($key) === false
+            || strlen($key) < config('urlhub.hash_length')
+        ) {
             $key = $this->generateRandomString();
         }
 
@@ -71,15 +74,15 @@ class KeyGeneratorService
      */
     public function assertStringCanBeUsedAsKey(string $value): bool
     {
-        $route = \Illuminate\Routing\Route::class;
-        $routeCollection = \Illuminate\Support\Facades\Route::getRoutes()->get();
-        $routePath = array_map(fn ($route) => $route->uri, $routeCollection);
+        $routePath = array_map(fn (\Illuminate\Routing\Route $route) => $route->uri,
+            \Illuminate\Support\Facades\Route::getRoutes()->get()
+        );
 
-        $isExistsInDb = Url::whereKeyword($value)->exists();
+        $alreadyInUse = Url::whereKeyword($value)->exists();
         $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'));
-        $isRegisteredRoutePath = in_array($value, $routePath);
+        $isRoutePath = in_array($value, $routePath);
 
-        if ($isExistsInDb || $isReservedKeyword || $isRegisteredRoutePath) {
+        if ($alreadyInUse || $isReservedKeyword || $isRoutePath) {
             return false;
         }
 
