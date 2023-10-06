@@ -10,10 +10,10 @@ class KeyGeneratorService
     private const HASH_CHAR = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
-     * Generate a short string that can be used as a unique key for shortened long
-     * urls.
+     * Generate a short string that can be used as a unique key for the shortened
+     * url.
      *
-     * @return string A unique string to use as the short url key
+     * @return string A unique string to use as the shortened url key
      */
     public function urlKey(string $value): string
     {
@@ -49,7 +49,7 @@ class KeyGeneratorService
      *
      * @return string The generated random string
      */
-    public function generateRandomString()
+    public function generateRandomString(): string
     {
         $factory = new \RandomLib\Factory;
         $generator = $factory->getMediumStrengthGenerator();
@@ -66,23 +66,23 @@ class KeyGeneratorService
      *
      * This function will check under several conditions:
      * 1. If the string is already used as a key
-     * 2. If the string has been used as a reserved keyword
-     * 3. If the string is already registered on the route path
+     * 2. If the string is in the list of reserved keywords
+     * 3. If the string is in the route path list
      *
-     * If any or all of the above conditions are true, then the string cannot be
-     * used as a keyword.
+     * If any or all of the above conditions are met, then the string cannot be
+     * used as a keyword and must return false.
      */
     public function assertStringCanBeUsedAsKey(string $value): bool
     {
-        $routePath = array_map(fn (\Illuminate\Routing\Route $route) => $route->uri,
+        $route = array_map(fn (\Illuminate\Routing\Route $route) => $route->uri,
             \Illuminate\Support\Facades\Route::getRoutes()->get()
         );
 
         $alreadyInUse = Url::whereKeyword($value)->exists();
         $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'));
-        $isRoutePath = in_array($value, $routePath);
+        $isRoute = in_array($value, $route);
 
-        if ($alreadyInUse || $isReservedKeyword || $isRoutePath) {
+        if ($alreadyInUse || $isReservedKeyword || $isRoute) {
             return false;
         }
 
@@ -113,7 +113,7 @@ class KeyGeneratorService
     }
 
     /**
-     * Number of unique keywords that have been used.
+     * The number of unique keywords that have been used.
      *
      * Formula:
      * totalKey = randomKey + customKey
