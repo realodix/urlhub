@@ -66,13 +66,13 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Karena kunci sudah ada, maka generator akan terus diulangi hingga
-     * menghasilkan kunci yang unik atau tidak ada yang sama.
+     * Karena kunci sudah digunakan, maka generator harus memberikan string unik
+     * untuk `keyword`.
      *
      * @test
      * @group u-model
      */
-    public function urlKey_generated_string(): void
+    public function urlKey_string_already_in_use(): void
     {
         $length = 3;
         config(['urlhub.hash_length' => $length]);
