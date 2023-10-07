@@ -49,12 +49,12 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => $strLen]);
         $this->assertSame(
             substr($actual, -$strLen),
-            $this->keyGenerator->urlKey($actual)
+            $this->keyGenerator->generate($actual)
         );
 
         $strLen = 8;
         config(['urlhub.hash_length' => $strLen]);
-        $actual = strlen($this->keyGenerator->urlKey($actual));
+        $actual = strlen($this->keyGenerator->generate($actual));
         $this->assertSame($strLen, $actual);
         $this->assertNotSame(substr($actual, -$strLen), $actual);
     }
@@ -97,7 +97,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => $length]);
 
         $longUrl = 'https://github.com/realodix';
-        $urlKey = $this->keyGenerator->urlKey($longUrl);
+        $urlKey = $this->keyGenerator->generate($longUrl);
 
         $this->assertSame(substr($longUrl, -$length), $urlKey);
     }
@@ -175,9 +175,9 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.hash_length' => $length]);
 
         $longUrl = 'https://github.com/realodix';
-        Url::factory()->create(['keyword'  => $this->keyGenerator->urlKey($longUrl)]);
+        Url::factory()->create(['keyword'  => $this->keyGenerator->generate($longUrl)]);
 
-        $this->assertNotSame(substr($longUrl, -$length), $this->keyGenerator->urlKey($longUrl));
+        $this->assertNotSame(substr($longUrl, -$length), $this->keyGenerator->generate($longUrl));
     }
 
     /**
@@ -196,7 +196,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.reserved_keyword' => [$expected]]);
         config(['urlhub.hash_length' => strlen($expected)]);
 
-        $this->assertNotSame($expected, $this->keyGenerator->urlKey($actual));
+        $this->assertNotSame($expected, $this->keyGenerator->generate($actual));
     }
 
     /**
@@ -217,7 +217,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         config(['urlhub.hash_length' => strlen($expected)]);
 
-        $this->assertNotSame($expected, $this->keyGenerator->urlKey($actual));
+        $this->assertNotSame($expected, $this->keyGenerator->generate($actual));
     }
 
     /**

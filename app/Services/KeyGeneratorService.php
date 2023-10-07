@@ -15,7 +15,7 @@ class KeyGeneratorService
      *
      * @return string A unique string to use as the shortened url key
      */
-    public function urlKey(string $value): string
+    public function generate(string $value): string
     {
         // Step 1
         $key = $this->generateSimpleString($value);

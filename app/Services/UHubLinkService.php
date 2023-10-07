@@ -98,7 +98,7 @@ class UHubLinkService
     private function urlKey(StoreUrl $request): string
     {
         return $request->custom_key ??
-            $this->keyGeneratorService->urlKey($request->long_url);
+            $this->keyGeneratorService->generate($request->long_url);
     }
 
     private function isCustom(StoreUrl $request): bool
