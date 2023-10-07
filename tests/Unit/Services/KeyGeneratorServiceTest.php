@@ -59,7 +59,6 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertNotSame(substr($actual, -$strLen), $actual);
     }
 
-
     /**
      * Pengujian untuk kondisi dimana panjang string yang diberikan pada `custom_key`
      * lebih pendek dari pada panjang string yang telah ditentukan.
