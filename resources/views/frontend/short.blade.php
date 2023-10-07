@@ -20,7 +20,6 @@
                                 {{compactNumber($url->clicks)}}
                             </span>
                         </i>
-                        {{__('Total engagements')}}
                     </li>
                 </ul>
             </div>
@@ -62,7 +61,7 @@
 
                 <br> <br>
 
-                <span class="font-bold text-indigo-700 text-xl sm:text-2xl">
+                <span class="font-bold text-uh-blue-2 text-xl sm:text-2xl">
                     <a href="{{ $url->short_url }}" target="_blank" id="copy">
                         {{urlDisplay($url->short_url, scheme: false)}}
                     </a>
