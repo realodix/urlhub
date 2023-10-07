@@ -4,7 +4,7 @@
 
 @section('content')
     <main>
-        <div class="common-card-style mb-4 p-4">
+        <div class="mb-4 p-4">
             <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/4">
                     <span class="font-semibold sm:text-2xl">@svg('icon-link', 'mr-1.5') {{__('Short links')}}:</span>

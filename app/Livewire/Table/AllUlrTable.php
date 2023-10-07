@@ -87,8 +87,8 @@ final class AllUlrTable extends PowerGridComponent
             })
             ->addColumn('keyword', function (Url $url) {
                 return
-                    '<a href="'.$url->short_url.'" target="_blank" class="font-light text-indigo-700">'.$url->keyword.'</a>'
-                    .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')');
+                    '<a href="'.$url->short_url.'" target="_blank"class="font-light">'.$url->keyword.'</a>'
+                    .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1 text-indigo-600\')');
             })
             ->addColumn('destination', function (Url $url) {
                 return
@@ -97,10 +97,10 @@ final class AllUlrTable extends PowerGridComponent
                     '</span>
                     <br>
                     <a href="'.$url->destination.'" target="_blank" title="'.$url->destination.'" rel="noopener noreferrer"
-                        class="text-slate-500"
+                        class="text-[#6c6c6c]"
                     >'
                         .Helper::urlDisplay($url->destination, self::STR_LIMIT)
-                        .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1\')').
+                        .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1 text-indigo-600\')').
                     '</a>';
             })
             ->addColumn('t_clicks', function (Url $url) {

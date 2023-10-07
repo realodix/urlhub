@@ -5,7 +5,7 @@ main {
 }
 
 .frontend, .backend, .auth {
-  @apply bg-bg-primary font-sans text-gray-900 antialiased;
+  @apply bg-neutral-100 font-sans text-gray-900 antialiased;
 }
 
 .navbar {
@@ -17,7 +17,7 @@ main {
   }
 
   &-toggler {
-    @apply text-uh-indigo-500;
+    @apply text-uh-blue-2;
   }
 
   .nav-item {

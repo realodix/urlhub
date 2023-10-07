@@ -60,10 +60,10 @@
 }
 
 .btn-icon {
-  @apply px-2 py-1 rounded-md;
+  @apply px-2 py-1 rounded-md border border-[#e4e4e7];
   @apply text-gray-500 hover:text-gray-600 active:text-gray-500 ;
   @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 ;
-  box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11);
+  @apply shadow-[0_1px_2px_hsl(240,3.8%,46.1%/12%)];
 
   &-table-delete {
     @apply text-red-700 hover:text-red-800 active:text-red-700;
@@ -71,17 +71,17 @@
 }
 
 .btn-icon-detail {
-  @apply px-2 py-1 rounded mr-4;
+  @apply px-2 py-1 rounded mr-4 border border-gray-300;
   @apply text-[#273144];
-  @apply bg-[#e8ebf2] hover:bg-[#dbe0eb] active:bg-[#e8ebf2];
+  @apply hover:text-uh-blue-2 hover:bg-neutral-100 active:bg-neutral-200;
 }
 
 .form-input {
   @apply block w-full;
-  @apply border-slate-200 focus:ring-uh-indigo-400 focus:border-uh-indigo-400 rounded
+  @apply border-slate-200 focus:ring-uh-blue-2 focus:border-uh-blue-2 rounded
 }
 
 .common-card-style {
-  @apply bg-white sm:rounded-md;
-  @apply sm:shadow-[0px_1px_2px_rgba(25,39,52,0.05),0px_0px_4px_rgba(25,39,52,0.1)];
+  @apply bg-white sm:rounded-lg sm:border sm:border-[#e4e4e7];
+  @apply sm:shadow-[0_1px_2px_hsl(240,3.8%,46.1%/12%)];
 }
