@@ -58,6 +58,33 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertNotSame(substr($actual, -$strLen), $actual);
     }
 
+
+    /**
+     * Pengujian untuk kondisi dimana panjang string yang diberikan tidak cocok
+     * dengan panjang string yang telah ditentukan.
+     *
+     * - Panjang cocok: gunakan string tersebut
+     * - Panjang tidak cocok: generator harus menghasilkan string acak dengan
+     *   panjang yang sesuai.
+     *
+     * @test
+     * @group u-model
+     */
+    public function urlKey_string_lenght2(): void
+    {
+        config(['urlhub.hash_length' => 10]);
+        $longUrl = 'https://t.co';
+        $customKey = 'tco';
+        $response = $this->post(route('su_create'), [
+            'long_url'   => $longUrl,
+            'custom_key' => $customKey,
+        ]);
+        $response->assertRedirectToRoute('su_detail', $customKey);
+
+        $url = Url::whereDestination($longUrl)->first();
+        $this->assertTrue($url->is_custom);
+    }
+
     /**
      * String dihasilkan dari pemotongan link dari belakang sepanjang panjang
      * karakter yang telah ditentukan.
