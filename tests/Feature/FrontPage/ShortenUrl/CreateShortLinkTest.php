@@ -35,15 +35,24 @@ class CreateShortLinkTest extends TestCase
      */
     public function shortenUrlWithCustomKeyword(): void
     {
-        $longUrl = 'https://laravel.com';
-        $customKey = 'laravel';
+        $longUrl = 'https://t.co';
+        $customKey = 'foobar';
 
+        config(['urlhub.hash_length' => strlen($customKey) + 1]);
         $response = $this->post(route('su_create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
         $response->assertRedirectToRoute('su_detail', $customKey);
+        $url = Url::whereDestination($longUrl)->first();
+        $this->assertTrue($url->is_custom);
 
+        config(['urlhub.hash_length' => strlen($customKey) - 1]);
+        $response = $this->post(route('su_create'), [
+            'long_url'   => $longUrl,
+            'custom_key' => $customKey,
+        ]);
+        $response->assertRedirectToRoute('su_detail', $customKey);
         $url = Url::whereDestination($longUrl)->first();
         $this->assertTrue($url->is_custom);
     }
