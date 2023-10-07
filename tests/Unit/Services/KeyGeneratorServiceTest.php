@@ -30,12 +30,12 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Pengujian untuk kondisi dimana panjang string yang diberikan tidak cocok dengan panjang
-     * string yang telah ditentukan.
+     * Pengujian untuk kondisi dimana panjang string yang diberikan tidak cocok
+     * dengan panjang string yang telah ditentukan.
      *
-     * - Panjang cocok: gunakan string tersebut
-     * - Panjang tidak cocok: generator harus menghasilkan string acak dengan panjang yang
-     *   sesuai.
+     * - Panjang cocok: gunakan string tersebut.
+     * - Panjang tidak cocok: generator harus menghasilkan string acak dengan
+     *   panjang yang sesuai.
      *
      * @test
      * @group u-model
