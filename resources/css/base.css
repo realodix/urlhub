@@ -60,7 +60,7 @@
 }
 
 .btn-icon {
-  @apply px-2 py-1 rounded-md border border-[#d6d6f5];
+  @apply px-2 py-1 rounded-md border border-[#e4e4e7];
   @apply text-gray-500 hover:text-gray-600 active:text-gray-500 ;
   @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 ;
   @apply shadow-[0_1px_2px_hsl(240,3.8%,46.1%/12%)];
@@ -82,6 +82,6 @@
 }
 
 .common-card-style {
-  @apply bg-white sm:rounded-lg sm:border sm:border-[#d6d6f5];
+  @apply bg-white sm:rounded-lg sm:border sm:border-[#e4e4e7];
   @apply sm:shadow-[0_1px_2px_hsl(240,3.8%,46.1%/12%)];
 }
