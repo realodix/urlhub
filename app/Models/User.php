@@ -84,13 +84,15 @@ class User extends Authenticatable
 
     public function signature(): string
     {
-        $data = [
-            'ip'      => request()->ip(),
-            'browser' => \Browser::browserFamily(),
-            'os'      => \Browser::platformFamily(),
-            'device'  => \Browser::deviceFamily().\Browser::deviceModel(),
-        ];
+        if (auth()->check() === false) {
+            return hash('sha3-256', implode([
+                'ip'      => request()->ip(),
+                'browser' => \Browser::browserFamily(),
+                'os'      => \Browser::platformFamily(),
+                'device'  => \Browser::deviceFamily().\Browser::deviceModel(),
+            ]));
+        }
 
-        return hash('sha3-256', implode($data));
+        return (string) auth()->id();
     }
 }
