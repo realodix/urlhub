@@ -30,6 +30,23 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
+     * String dihasilkan dari pemotongan link dari belakang sepanjang panjang
+     * karakter yang telah ditentukan.
+     *
+     * @group u-model
+     */
+    public function keyword_test(): void
+    {
+        $length = 3;
+        config(['urlhub.hash_length' => $length]);
+
+        $longUrl = 'https://github.com/realodix';
+        $urlKey = $this->keyGenerator->generate($longUrl);
+
+        $this->assertSame(substr($longUrl, -$length), $urlKey);
+    }
+
+    /**
      * UrlKey dihasilkan dari hasil pemotongan string URL. Sayangnya terkadang
      * panjang string dari hasil pemotongan tersebut bisa lebih pendek daripada
      * panjang yang harapkan. Ketika itu terjadi, maka generator harus menghasilkan
@@ -78,30 +95,12 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * String dihasilkan dari pemotongan link dari belakang sepanjang panjang
-     * karakter yang telah ditentukan.
-     *
-     * @test
-     * @group u-model
-     */
-    public function urlKey_string_from_link_truncation(): void
-    {
-        $length = 3;
-        config(['urlhub.hash_length' => $length]);
-
-        $longUrl = 'https://github.com/realodix';
-        $urlKey = $this->keyGenerator->generate($longUrl);
-
-        $this->assertSame(substr($longUrl, -$length), $urlKey);
-    }
-
-    /**
      * String yang dihasilkan dari pemotongan tautan harus berupa abjad.
      *
      * @test
      * @group u-model
      */
-    public function string_from_link_truncation_must_be_alphabet(): void
+    public function generateSimpleString_must_be_alphabet(): void
     {
         config(['urlhub.hash_length' => 3]);
 
@@ -118,7 +117,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function string_lenght_from_link_truncation_must_be_match_with_configured_length(): void
+    public function generateSimpleString_string_length(): void
     {
         config(['urlhub.hash_length' => 6]);
         $actual = 'https://github.com/realodix';
@@ -142,7 +141,7 @@ class KeyGeneratorServiceTest extends TestCase
      * @test
      * @group u-model
      */
-    public function string_from_link_truncation_mus_be_lowercase(): void
+    public function generateSimpleString_mus_be_lowercase(): void
     {
         $length = 4;
         config(['urlhub.hash_length' => $length]);
