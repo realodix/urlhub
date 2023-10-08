@@ -17,12 +17,8 @@ class KeyGeneratorService
      */
     public function generate(string $value): string
     {
-        // Step 1
         $key = $this->generateSimpleString($value);
 
-        // Step 2
-        // If step 1 fails (the string has been used or cannot be used), then the
-        // string generator must generate a unique random string
         if (
             $this->assertStringCanBeUsedAsKey($key) === false
             || strlen($key) < config('urlhub.hash_length')

@@ -78,9 +78,9 @@ class UrlHubLinkChecker
     /**
      * Check if a destination URL already exists in the database.
      */
-    private function destinationUrlAlreadyExists(Request $request): Url|null
+    private function destinationUrlAlreadyExists(Request $request): ?Url
     {
-        $longUrl = rtrim($request->long_url, '/'); // Remove trailing slash
+        $longUrl = rtrim($request->long_url, '/'); // Strip trailing slashes
 
         if (auth()->check()) {
             $s_url = Url::whereUserId(auth()->id())
