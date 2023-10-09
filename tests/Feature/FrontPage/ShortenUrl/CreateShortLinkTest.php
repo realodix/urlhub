@@ -36,8 +36,8 @@ class CreateShortLinkTest extends TestCase
     public function shortenUrlWithCustomKeyword(): void
     {
         $longUrl = 'https://t.co';
-        $customKey = 'foobar';
 
+        $customKey = 'foobar';
         config(['urlhub.hash_length' => strlen($customKey) + 1]);
         $response = $this->post(route('su_create'), [
             'long_url'   => $longUrl,
@@ -47,6 +47,7 @@ class CreateShortLinkTest extends TestCase
         $url = Url::whereDestination($longUrl)->first();
         $this->assertTrue($url->is_custom);
 
+        $customKey = 'barfoo';
         config(['urlhub.hash_length' => strlen($customKey) - 1]);
         $response = $this->post(route('su_create'), [
             'long_url'   => $longUrl,
@@ -62,77 +63,6 @@ class CreateShortLinkTest extends TestCase
     | URL already exist
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * Memastikan URL dengan atau tanpa trailing slash akan dianggap sama.
-     *
-     * @test
-     */
-    public function urlsWithOrWithoutSlashesWillBeConsideredTheSame(): void
-    {
-        $longUrl_1 = 'https://example.com/';
-        $longUrl_2 = 'https://example.com';
-
-        $url = Url::factory()->create([
-            'user_id'     => null,
-            'destination' => $longUrl_1,
-        ]);
-
-        $response = $this->post(route('su_create'), [
-            'long_url' => $longUrl_2,
-        ]);
-
-        $response
-            ->assertRedirectToRoute('su_detail', $url->keyword)
-            ->assertSessionHas('msgLinkAlreadyExists');
-
-        $this->assertCount(1, Url::all());
-    }
-
-    /**
-     * User A and User A
-     * Tampilkan peringatan bahwa URL sudah ada, dimana ketika dia sudah memiliki
-     * URL tersebut.
-     *
-     * @test
-     */
-    public function longUrlAlreadyExist(): void
-    {
-        $url = Url::factory()->create();
-
-        $response = $this->actingAs($url->author)
-            ->post(route('su_create'), [
-                'long_url' => $url->destination,
-            ]);
-
-        $response
-            ->assertRedirectToRoute('su_detail', $url->keyword)
-            ->assertSessionHas('msgLinkAlreadyExists');
-
-        $this->assertCount(1, Url::all());
-    }
-
-    /**
-     * Guest A and guest B
-     * Tampilkan peringatan bahwa URL sudah ada, dimana ketika user guest lainnya sudah
-     * memiliki url tersebut.
-     *
-     * @test
-     */
-    public function urlAlreadyExist_guestWithAnotherGuest(): void
-    {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
-
-        $response = $this->post(route('su_create'), [
-            'long_url' => $url->destination,
-        ]);
-
-        $response
-            ->assertRedirectToRoute('su_detail', $url->keyword)
-            ->assertSessionHas('msgLinkAlreadyExists');
-
-        $this->assertCount(1, Url::all());
-    }
 
     /**
      * User A and User B
@@ -215,27 +145,6 @@ class CreateShortLinkTest extends TestCase
      * @test
      */
     public function customKeyAlreadyExist(): void
-    {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
-        $customKey = 'laravel';
-
-        $response = $this->post(route('su_create'), [
-            'long_url'   => $url->destination,
-            'custom_key' => $customKey,
-        ]);
-        $response->assertRedirectToRoute('su_detail', $url->keyword);
-
-        $response2 = $this->get(route('home').'/'.$customKey);
-        $response2->assertNotFound();
-        $this->assertCount(1, Url::all());
-    }
-
-    /**
-     * This test is to make sure that the custom key is not used by other users.
-     *
-     * @test
-     */
-    public function customKeyAlreadyExist2(): void
     {
         $url = Url::factory()->create();
 

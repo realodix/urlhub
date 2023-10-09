@@ -28,13 +28,6 @@ class UrlHubLinkChecker
                 );
         }
 
-        $destUrlExists = $this->destinationUrlAlreadyExists($request);
-
-        if ($destUrlExists == true) {
-            return to_route('su_detail', $destUrlExists->keyword)
-                ->with('msgLinkAlreadyExists', __('Link already exists.'));
-        }
-
         return $next($request);
     }
 
