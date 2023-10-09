@@ -91,7 +91,7 @@ class CreateShortLinkTest extends TestCase
      *
      * @test
      */
-    public function customKeyAlreadyExist3(): void
+    public function customKeyAlreadyExist2(): void
     {
         $url = Url::factory()->create();
 
