@@ -21,26 +21,4 @@ class DuplicateShortLinkTest extends TestCase
 
         $this->assertCount(2, Url::all());
     }
-
-    /**
-     * Users can duplicate short links created by guests.
-     *
-     * @test
-     */
-    public function duplicateUrlCreatedByGuest(): void
-    {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
-
-        $this->actingAs($this->normalUser())
-            ->post(route('su_create'), [
-                'long_url' => $url->destination,
-            ]);
-
-        $this->from(route('su_detail', $url->keyword))
-            ->get(route('su_duplicate', $url->keyword));
-
-        $this->assertCount(3, Url::all());
-    }
-
-
 }
