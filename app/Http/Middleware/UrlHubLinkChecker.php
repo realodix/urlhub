@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
