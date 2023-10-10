@@ -35,13 +35,13 @@
 }
 
 .btn {
-	@apply inline-flex items-center px-3 py-1.5;
+  @apply inline-flex items-center px-3 py-1.5;
   @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 text-gray-500 hover:text-gray-600 active:text-gray-500;
-	@apply text-base font-normal leading-6 text-center no-underline align-middle tracking-wide;
+  @apply text-base font-normal leading-6 text-center no-underline align-middle tracking-wide;
   @apply rounded disabled:opacity-25;
-	@apply cursor-pointer select-none;
-  box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
-	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  @apply cursor-pointer select-none;
+  /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
   &-sm {
     @apply text-sm leading-6;
@@ -49,31 +49,15 @@
   }
 
   &-primary {
-    @apply text-base font-normal text-white bg-[#0078d4] border-[#0078d4];
-    @apply hover:text-[#0078d4] hover:bg-white active:bg-[#0078d4] hover:border-white;
+    @apply text-base font-normal text-white bg-sky-800 border-sky-800;
+    @apply hover:text-white hover:bg-sky-900 active:bg-[#0078d4] hover:border-white;
   }
 
   &-secondary {
-    @apply text-base font-normal text-[#0078d4] bg-white;
-    @apply hover:text-white hover:bg-[#0078d4] active:bg-white hover:border-[#0078d4];
+    @apply border border-zinc-200;
+    @apply text-sky-800 hover:text-sky-900 active:text-sky-800 ;
+    @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 ;
   }
-}
-
-.btn-icon {
-  @apply px-2 py-1 rounded-md border border-[#e4e4e7];
-  @apply text-gray-500 hover:text-gray-600 active:text-gray-500 ;
-  @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 ;
-  @apply shadow-[0_1px_2px_hsl(240,3.8%,46.1%/12%)];
-
-  &-table-delete {
-    @apply text-red-700 hover:text-red-800 active:text-red-700;
-  }
-}
-
-.btn-icon-detail {
-  @apply px-2 py-1 rounded mr-4 border border-gray-300;
-  @apply text-[#273144];
-  @apply hover:text-uh-blue-2 hover:bg-neutral-100 active:bg-neutral-200;
 }
 
 .form-input {
