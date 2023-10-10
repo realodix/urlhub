@@ -87,8 +87,7 @@ final class AllUlrTable extends PowerGridComponent
             })
             ->addColumn('keyword', function (Url $url) {
                 return
-                    '<a href="'.$url->short_url.'" target="_blank"class="font-light">'.$url->keyword.'</a>'
-                    .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1 text-indigo-600\')');
+                    '<a href="'.$url->short_url.'" target="_blank"class="font-light text-sky-800">'.$url->keyword.'</a>';
             })
             ->addColumn('destination', function (Url $url) {
                 return
@@ -99,14 +98,13 @@ final class AllUlrTable extends PowerGridComponent
                     <a href="'.$url->destination.'" target="_blank" title="'.$url->destination.'" rel="noopener noreferrer"
                         class="text-[#6c6c6c]"
                     >'
-                        .Helper::urlDisplay($url->destination, self::STR_LIMIT)
-                        .Blade::render('@svg(\'icon-open-in-new\', \'!h-[0.7em] ml-1 text-indigo-600\')').
+                        .Helper::urlDisplay($url->destination, self::STR_LIMIT).
                     '</a>';
             })
             ->addColumn('t_clicks', function (Url $url) {
                 $uClick = Helper::compactNumber($url->uniqueClicks);
                 $tClick = Helper::compactNumber($url->clicks);
-                $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-indigo-600\')');
+                $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-amber-600\')');
                 $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
 
                 return '<div title="'.$title.'">'.$uClick.' / '.$tClick.$icon.'</div>';
@@ -120,22 +118,22 @@ final class AllUlrTable extends PowerGridComponent
             ->addColumn('action', function (Url $url) {
                 return
                     '<a role="button" href="'.route('su_detail', $url->keyword).'" target="_blank" title="'.__('Open front page').'"
-                        class="btn-icon btn-icon-table"
+                        class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.su_duplicate', $url->keyword).'" title="'.__('Duplicate').'"
-                        class="btn-icon btn-icon-table"
+                        class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-clone-alt\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.su_edit', $url->keyword).'" title="'.__('Edit').'"
-                        class="btn-icon btn-icon-table"
+                        class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-edit-alt\')').
                     '</a>
                     <a role="button" href="'.route('dashboard.su_delete', $url->getRouteKey()).'" title="'.__('Delete').'"
-                        class="btn-icon btn-icon-table-delete"
+                        class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700"
                     >'
                         .Blade::render('@svg(\'icon-trash-alt\')').
                     '</a>';
