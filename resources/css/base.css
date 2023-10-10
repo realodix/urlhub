@@ -67,5 +67,5 @@
 
 .common-card-style {
   @apply bg-white sm:rounded-lg sm:border sm:border-zinc-200;
-  @apply sm:shadow-[0_1px_2px_hsl(240,3.8%,46.1%/12%)];
+  @apply sm:shadow-[0_1px_2px_#e5e5e8];
 }
