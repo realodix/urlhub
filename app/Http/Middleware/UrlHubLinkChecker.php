@@ -67,24 +67,4 @@ class UrlHubLinkChecker
 
         return true;
     }
-
-    /**
-     * Check if a destination URL already exists in the database.
-     */
-    private function destinationUrlAlreadyExists(Request $request): ?Url
-    {
-        $longUrl = rtrim($request->long_url, '/'); // Strip trailing slashes
-
-        if (auth()->check()) {
-            $s_url = Url::whereUserId(auth()->id())
-                ->whereDestination($longUrl)
-                ->first();
-        } else {
-            $s_url = Url::whereDestination($longUrl)
-                ->byGuests()
-                ->first();
-        }
-
-        return $s_url;
-    }
 }
