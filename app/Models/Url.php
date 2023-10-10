@@ -120,20 +120,6 @@ class Url extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Scopes
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Scope a query to only include guest users.
-     */
-    public function scopeByGuests(Builder $query): Builder
-    {
-        return $query->whereNull('user_id');
-    }
-
-    /*
-    |--------------------------------------------------------------------------
     | General
     |--------------------------------------------------------------------------
     */
@@ -154,7 +140,7 @@ class Url extends Model
      */
     public function numberOfUrlsByGuests(): int
     {
-        return self::byGuests()->count();
+        return self::whereNull('user_id')->count();
     }
 
     /**
@@ -196,7 +182,7 @@ class Url extends Model
      */
     public function numberOfClicksFromGuests(): int
     {
-        $url = self::byGuests()->get();
+        $url = self::whereNull('user_id')->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
     }
