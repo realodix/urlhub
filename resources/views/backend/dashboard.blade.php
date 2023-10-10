@@ -23,7 +23,7 @@
                     <span class="text-2xl text-uh-1">{{__('My URLs')}}</span>
                 </div>
                 <div class="w-1/2 text-right">
-                    <a href="{{ url('./') }}" target="_blank" title="{{__('Add URL')}}" class="btn">
+                    <a href="{{ url('./') }}" target="_blank" title="{{__('Add URL')}}" class="btn btn-primary">
                         @svg('icon-add-link', '!h-[1.5em] mr-1')
                         {{__('Add URL')}}
                     </a>
