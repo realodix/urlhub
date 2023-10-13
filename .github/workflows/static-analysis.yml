@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -24,3 +25,25 @@ jobs:
 
       - name: Run PHPStan
         run: ./vendor/bin/phpstan analyse --error-format=github
+
+  checkstyle:
+    name: Checkstyle
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          coverage: none
+
+      - name: Install composer dependencies
+        run: "composer install --no-interaction --no-progress --no-scripts"
+
+      - name: Run PHP-CS-Fixer
+        run: ./vendor/bin/php-cs-fixer check --diff
