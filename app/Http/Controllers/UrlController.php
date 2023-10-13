@@ -7,7 +7,7 @@ use App\Models\Url;
 use App\Models\Visit;
 use App\Services\QrCodeService;
 use App\Services\UHubLinkService;
-use App\Test;
+use App\Models\User;
 
 class UrlController extends Controller
 {
