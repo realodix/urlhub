@@ -26,7 +26,7 @@ jobs:
       - name: Run PHPStan
         run: ./vendor/bin/phpstan analyse --error-format=github
 
-  phpcsfixer:
+  checkstyle:
     name: Checkstyle
     runs-on: ubuntu-latest
     timeout-minutes: 6
