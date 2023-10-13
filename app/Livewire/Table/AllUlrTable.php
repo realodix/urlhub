@@ -91,7 +91,7 @@ final class AllUlrTable extends PowerGridComponent
             ->addColumn('destination', function (Url $url) {
                 return
                     '<span title="'.htmlspecialchars($url->title).'">'
-                        .Str::limit($url->title, self::STR_LIMIT).
+                        .htmlspecialchars(Str::limit($url->title, self::STR_LIMIT)).
                     '</span>
                     <br>
                     <a href="'.$url->destination.'" target="_blank" title="'.$url->destination.'" rel="noopener noreferrer"
