@@ -51,26 +51,6 @@ class UHubLinkService
     }
 
     /**
-     * Duplicate the existing URL and create a new shortened URL.
-     *
-     * @param string $urlKey A unique key to identify the shortened URL
-     * @return bool \Illuminate\Database\Eloquent\Model::save()
-     */
-    public function duplicate(string $urlKey)
-    {
-        /** @var \App\Models\Url */
-        $shortenedUrl = Url::whereKeyword($urlKey)->first();
-
-        $replicate = $shortenedUrl->replicate()->fill([
-            'user_id'   => auth()->id(),
-            'keyword'   => $this->new_keyword,
-            'is_custom' => false,
-        ]);
-
-        return $replicate->save();
-    }
-
-    /**
      * Fetch the page title from the web page URL
      *
      * @throws \Exception

@@ -121,11 +121,6 @@ final class AllUrlTable extends PowerGridComponent
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.su_duplicate', $url->keyword).'" title="'.__('Duplicate').'"
-                        class="btn btn-secondary btn-sm"
-                    >'
-                        .Blade::render('@svg(\'icon-clone-alt\')').
-                    '</a>
                     <a role="button" href="'.route('dashboard.su_edit', $url->keyword).'" title="'.__('Edit').'"
                         class="btn btn-secondary btn-sm"
                     >'

@@ -42,25 +42,6 @@ class DashboardPageTest extends TestCase
      * @test
      * @group f-dashboard
      */
-    public function dCanDuplicate(): void
-    {
-        $url = Url::factory()->create();
-
-        $response = $this->actingAs($url->author)
-            ->from(route('dashboard'))
-            ->get(route('dashboard.su_duplicate', $url->keyword));
-
-        $response
-            ->assertRedirectToRoute('dashboard')
-            ->assertSessionHas('flash_success');
-
-        $this->assertCount(2, Url::all());
-    }
-
-    /**
-     * @test
-     * @group f-dashboard
-     */
     public function dAuthorizedUserCanAccessEditUrlPage(): void
     {
         $url = Url::factory()->create();
