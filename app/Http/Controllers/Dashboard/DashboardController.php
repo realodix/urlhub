@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use App\Models\User;
-use App\Rules\Url\DomainBlacklist;
 use App\Services\KeyGeneratorService;
 use App\Services\UHubLinkService;
 use Illuminate\Http\RedirectResponse;
