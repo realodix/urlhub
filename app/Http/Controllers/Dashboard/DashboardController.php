@@ -8,7 +8,6 @@ use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyGeneratorService;
 use App\Services\UHubLinkService;
-use Illuminate\Http\RedirectResponse;
 
 class DashboardController extends Controller
 {
@@ -81,16 +80,5 @@ class DashboardController extends Controller
 
         return redirect()->back()
             ->withFlashSuccess(__('Link was successfully deleted.'));
-    }
-
-    /**
-     * @param string $urlKey A unique key to identify the shortened URL
-     */
-    public function duplicate($urlKey): RedirectResponse
-    {
-        $this->uHubLinkService->duplicate($urlKey);
-
-        return redirect()->back()
-            ->withFlashSuccess(__('The link has successfully duplicated.'));
     }
 }

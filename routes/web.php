@@ -19,7 +19,6 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
         Route::get('/delete/{hash_id}', [DashboardController::class, 'delete'])->name('dashboard.su_delete');
-        Route::get('/duplicate/{keyword}', [DashboardController::class, 'duplicate'])->name('dashboard.su_duplicate');
         Route::get('/edit/{keyword}', [DashboardController::class, 'edit'])->name('dashboard.su_edit');
         Route::post('/edit/{hash_id}', [DashboardController::class, 'update'])->name('dashboard.su_edit.post');
 
