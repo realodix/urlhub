@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -26,13 +25,6 @@ class UrlHubLinkChecker
                 ->withFlashError(
                     __('Sorry, our service is currently under maintenance.')
                 );
-        }
-
-        $destUrlExists = $this->destinationUrlAlreadyExists($request);
-
-        if ($destUrlExists == true) {
-            return to_route('su_detail', $destUrlExists->keyword)
-                ->with('msgLinkAlreadyExists', __('Link already exists.'));
         }
 
         return $next($request);
@@ -73,25 +65,5 @@ class UrlHubLinkChecker
         }
 
         return true;
-    }
-
-    /**
-     * Check if a destination URL already exists in the database.
-     */
-    private function destinationUrlAlreadyExists(Request $request): ?Url
-    {
-        $longUrl = rtrim($request->long_url, '/'); // Strip trailing slashes
-
-        if (auth()->check()) {
-            $s_url = Url::whereUserId(auth()->id())
-                ->whereDestination($longUrl)
-                ->first();
-        } else {
-            $s_url = Url::whereDestination($longUrl)
-                ->byGuests()
-                ->first();
-        }
-
-        return $s_url;
     }
 }
