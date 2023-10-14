@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyGeneratorService;
 use App\Services\UHubLinkService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -51,13 +51,13 @@ class DashboardController extends Controller
     /**
      * Update the destination URL
      *
-     * @param Request $request \Illuminate\Http\Request
-     * @param Url     $hash_id \App\Models\Url
+     * @param StoreUrl $request \Illuminate\Http\Request
+     * @param Url      $hash_id \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $hash_id)
+    public function update(StoreUrl $request, Url $hash_id)
     {
         $this->uHubLinkService->update($request, $hash_id);
 
