@@ -72,20 +72,4 @@ class UrlController extends Controller
 
         return to_route('home');
     }
-
-    /**
-     * UrlHub only allows users (registered & unregistered) to have a unique
-     * link. You can duplicate it and it will generated a new unique random
-     * key.
-     *
-     * @param string $urlKey A unique key to identify the shortened URL
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function duplicate(string $urlKey)
-    {
-        $this->uHubLinkService->duplicate($urlKey);
-
-        return to_route('su_detail', $this->uHubLinkService->new_keyword)
-            ->withFlashSuccess(__('The link has successfully duplicated.'));
-    }
 }
