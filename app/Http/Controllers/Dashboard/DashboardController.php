@@ -51,7 +51,7 @@ class DashboardController extends Controller
     /**
      * Update the destination URL
      *
-     * @param StoreUrl $request \Illuminate\Http\Request
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
      * @param Url      $hash_id \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *

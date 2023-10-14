@@ -6,7 +6,6 @@ use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use App\Models\User;
 use Embed\Embed;
-use Illuminate\Http\Request;
 use Spatie\Url\Url as SpatieUrl;
 
 class UHubLinkService
@@ -40,10 +39,10 @@ class UHubLinkService
     /**
      * Update the shortened URL details.
      *
-     * @param Request $request \Illuminate\Http\Request
+     * @param StoreUrl $request \App\Http\Requests\StoreUrl
      * @return bool \Illuminate\Database\Eloquent\Model::update()
      */
-    public function update(Request $request, Url $url)
+    public function update(StoreUrl $request, Url $url)
     {
         return $url->update([
             'destination' => $request->long_url,
