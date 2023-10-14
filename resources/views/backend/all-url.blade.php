@@ -21,7 +21,7 @@
 
             @include('partials/messages')
 
-            @livewire('table.all-ulr-table')
+            @livewire('table.all-url-table')
         </div>
     </main>
 @endsection

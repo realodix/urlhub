@@ -14,7 +14,7 @@ use PowerComponents\LivewirePowerGrid\{
 /**
  * @codeCoverageIgnore
  */
-final class AllUlrTable extends PowerGridComponent
+final class AllUrlTable extends PowerGridComponent
 {
     const STR_LIMIT = 60;
 
