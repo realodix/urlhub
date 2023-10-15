@@ -6,6 +6,7 @@
     "keywords": ["laravel", "url-shortener", "shorten-urls", "shorturl"],
     "require": {
         "php": "^8.1",
+        "ext-gmp": "*",
         "blade-ui-kit/blade-icons": "^1.5",
         "doctrine/dbal": "^3.7",
         "embed/embed": "^4.4",
