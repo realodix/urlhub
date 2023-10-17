@@ -7,7 +7,7 @@ use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyGeneratorService;
-use App\Services\UHubLinkService;
+use App\Services\UrlService;
 
 class DashboardController extends Controller
 {
@@ -51,7 +51,7 @@ class DashboardController extends Controller
      */
     public function update(StoreUrl $request, Url $hash_id)
     {
-        app(UHubLinkService::class)->update($request, $hash_id);
+        app(UrlService::class)->update($request, $hash_id);
 
         return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));

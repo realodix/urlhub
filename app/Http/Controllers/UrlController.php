@@ -6,7 +6,7 @@ use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use App\Models\Visit;
 use App\Services\QrCodeService;
-use App\Services\UHubLinkService;
+use App\Services\UrlService;
 
 class UrlController extends Controller
 {
@@ -26,7 +26,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = app(UHubLinkService::class)->create($request);
+        $url = app(UrlService::class)->create($request);
 
         return to_route('su_detail', $url->keyword);
     }

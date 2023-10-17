@@ -2,29 +2,29 @@
 
 namespace Tests\Unit\Services;
 
-use App\Services\UHubLinkService;
+use App\Services\UrlService;
 use Tests\TestCase;
 
-class UHubLinkServiceTest extends TestCase
+class UrlServiceTest extends TestCase
 {
-    private UHubLinkService $uHubLinkService;
+    private UrlService $UrlService;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->uHubLinkService = app(UHubLinkService::class);
+        $this->UrlService = app(UrlService::class);
     }
 
     /** @test */
     public function title(): void
     {
         $expected = 'example123456789.com - Untitled';
-        $actual = $this->uHubLinkService->title('https://example123456789.com');
+        $actual = $this->UrlService->title('https://example123456789.com');
         $this->assertSame($expected, $actual);
 
         $expected = 'www.example123456789.com - Untitled';
-        $actual = $this->uHubLinkService->title('https://www.example123456789.com');
+        $actual = $this->UrlService->title('https://www.example123456789.com');
         $this->assertSame($expected, $actual);
     }
 
@@ -39,7 +39,7 @@ class UHubLinkServiceTest extends TestCase
         config(['urlhub.web_title' => false]);
 
         $expected = 'No Title';
-        $actual = $this->uHubLinkService->title('https://example123456789.com');
+        $actual = $this->UrlService->title('https://example123456789.com');
         $this->assertSame($expected, $actual);
     }
 }

@@ -8,7 +8,7 @@ use App\Models\User;
 use Embed\Embed;
 use Spatie\Url\Url as SpatieUrl;
 
-class UHubLinkService
+class UrlService
 {
     /**
      * Create a shortened URL.
