@@ -51,7 +51,10 @@ class DashboardController extends Controller
      */
     public function update(StoreUrl $request, Url $hash_id)
     {
-        app(UrlService::class)->update($request, $hash_id);
+        $hash_id->update([
+            'destination' => $request->long_url,
+            'title'       => $request->title,
+        ]);
 
         return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));

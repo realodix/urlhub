@@ -28,20 +28,6 @@ class UrlService
     }
 
     /**
-     * Update the shortened URL details.
-     *
-     * @param StoreUrl $request \App\Http\Requests\StoreUrl
-     * @return bool \Illuminate\Database\Eloquent\Model::update()
-     */
-    public function update(StoreUrl $request, Url $url)
-    {
-        return $url->update([
-            'destination' => $request->long_url,
-            'title'       => $request->title,
-        ]);
-    }
-
-    /**
      * Fetch the page title from the web page URL
      *
      * @throws \Exception
