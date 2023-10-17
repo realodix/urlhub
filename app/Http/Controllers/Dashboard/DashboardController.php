@@ -7,7 +7,6 @@ use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyGeneratorService;
-use App\Services\UrlService;
 
 class DashboardController extends Controller
 {
