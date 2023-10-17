@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class UrlRedirectController extends Controller
 {
-    public function __construct(
-        public UrlRedirection $urlRedirection,
-        public VisitorService $visitorService,
-    ) {
-    }
-
     /**
      * Redirect the client to the intended long URL (no checks are performed)
      * and executes the create visitor data task.
@@ -31,9 +25,9 @@ class UrlRedirectController extends Controller
             // found and 404 will be returned to the client.
             $url = Url::whereKeyword($urlKey)->firstOrFail();
 
-            $this->visitorService->create($url);
+            app(VisitorService::class)->create($url);
 
-            return $this->urlRedirection->execute($url);
+            return app(UrlRedirection::class)->execute($url);
         });
     }
 }

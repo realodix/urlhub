@@ -10,15 +10,6 @@ use Spatie\Url\Url as SpatieUrl;
 
 class UHubLinkService
 {
-    /** @readonly */
-    public string $new_keyword;
-
-    public function __construct(
-        public KeyGeneratorService $keyGeneratorService,
-    ) {
-        $this->new_keyword = $keyGeneratorService->generateRandomString();
-    }
-
     /**
      * Create a shortened URL.
      *
@@ -77,7 +68,7 @@ class UHubLinkService
     private function urlKey(StoreUrl $request): string
     {
         return $request->custom_key ??
-            $this->keyGeneratorService->generate($request->long_url);
+            app(KeyGeneratorService::class)->generate($request->long_url);
     }
 
     private function isCustom(StoreUrl $request): bool

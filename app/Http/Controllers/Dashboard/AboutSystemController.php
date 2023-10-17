@@ -9,10 +9,8 @@ use App\Services\KeyGeneratorService;
 
 class AboutSystemController extends Controller
 {
-    public function __construct(
-        public Url $url,
-        public User $user,
-    ) {
+    public function __construct()
+    {
         $this->middleware('role:admin');
     }
 
@@ -22,8 +20,8 @@ class AboutSystemController extends Controller
     public function view()
     {
         return view('backend.about', [
-            'url'  => $this->url,
-            'user' => $this->user,
+            'url'  => app(Url::class),
+            'user' => app(User::class),
             'keyGeneratorService' => app(KeyGeneratorService::class),
         ]);
     }

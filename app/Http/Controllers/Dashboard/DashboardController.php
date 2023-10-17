@@ -11,13 +11,6 @@ use App\Services\UHubLinkService;
 
 class DashboardController extends Controller
 {
-    public function __construct(
-        public Url $url,
-        public User $user,
-        public UHubLinkService $uHubLinkService,
-    ) {
-    }
-
     /**
      * Show all user short URLs.
      *
@@ -26,8 +19,8 @@ class DashboardController extends Controller
     public function view()
     {
         return view('backend.dashboard', [
-            'url'  => $this->url,
-            'user' => $this->user,
+            'url'  => app(Url::class),
+            'user' => app(User::class),
             'keyGeneratorService' => app(KeyGeneratorService::class),
         ]);
     }
@@ -58,7 +51,7 @@ class DashboardController extends Controller
      */
     public function update(StoreUrl $request, Url $hash_id)
     {
-        $this->uHubLinkService->update($request, $hash_id);
+        app(UHubLinkService::class)->update($request, $hash_id);
 
         return to_route('dashboard')
             ->withFlashSuccess(__('Link changed successfully !'));

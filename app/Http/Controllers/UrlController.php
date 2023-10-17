@@ -13,10 +13,8 @@ class UrlController extends Controller
     /**
      * UrlController constructor.
      */
-    public function __construct(
-        public Url $url,
-        public UHubLinkService $uHubLinkService,
-    ) {
+    public function __construct()
+    {
         $this->middleware('urlhublinkchecker')->only('create');
     }
 
@@ -28,7 +26,7 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = $this->uHubLinkService->create($request);
+        $url = app(UHubLinkService::class)->create($request);
 
         return to_route('su_detail', $url->keyword);
     }
