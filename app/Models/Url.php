@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Requests\StoreUrl;
+use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -122,6 +124,32 @@ class Url extends Model
     | General
     |--------------------------------------------------------------------------
     */
+
+    public function getKeyword(StoreUrl $request): string
+    {
+        $keyGen = app(KeyGeneratorService::class);
+
+        return $request->custom_key ?? $keyGen->generate($request->long_url);
+    }
+
+    public function getWebTitle(string $webAddress): string
+    {
+        $spatieUrl = \Spatie\Url\Url::fromString($webAddress);
+        $defaultTitle = $spatieUrl->getHost().' - Untitled';
+
+        if (config('urlhub.web_title')) {
+            try {
+                $title = app(\Embed\Embed::class)->get($webAddress)->title ?? $defaultTitle;
+            } catch (\Exception) {
+                // If failed or not found, then return "{domain_name} - Untitled"
+                $title = $defaultTitle;
+            }
+
+            return $title;
+        }
+
+        return 'No Title';
+    }
 
     /**
      * The number of shortened URLs that have been created by each User

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
+use App\Models\User;
 use App\Models\Visit;
 use App\Services\QrCodeService;
-use App\Services\UrlService;
 
 class UrlController extends Controller
 {
@@ -26,7 +26,14 @@ class UrlController extends Controller
      */
     public function create(StoreUrl $request)
     {
-        $url = app(UrlService::class)->create($request);
+        $url = Url::create([
+            'user_id'     => auth()->id(),
+            'destination' => $request->long_url,
+            'title'       => app(Url::class)->getWebTitle($request->long_url),
+            'keyword'     => app(Url::class)->getKeyword($request),
+            'is_custom'   => $request->custom_key ? true : false,
+            'user_sign'   => app(User::class)->signature(),
+        ]);
 
         return to_route('su_detail', $url->keyword);
     }
