@@ -4,12 +4,10 @@ namespace App\Models;
 
 use App\Http\Requests\StoreUrl;
 use App\Services\KeyGeneratorService;
-use Embed\Embed;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\Url\Url as SpatieUrl;
 
 /**
  * @property User           $author
@@ -136,12 +134,12 @@ class Url extends Model
 
     public function getWebTitle(string $webAddress): string
     {
-        $spatieUrl = SpatieUrl::fromString($webAddress);
+        $spatieUrl = \Spatie\Url\Url::fromString($webAddress);
         $defaultTitle = $spatieUrl->getHost().' - Untitled';
 
         if (config('urlhub.web_title')) {
             try {
-                $title = app(Embed::class)->get($webAddress)->title ?? $defaultTitle;
+                $title = app(\Embed\Embed::class)->get($webAddress)->title ?? $defaultTitle;
             } catch (\Exception) {
                 // If failed or not found, then return "{domain_name} - Untitled"
                 $title = $defaultTitle;
