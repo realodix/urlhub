@@ -55,9 +55,5 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('user_name', function (string $value): User {
             return User::whereName($value)->firstOrFail();
         });
-
-        Route::bind('url_key', function (string $value): Url {
-            return Url::whereKeyword($value)->firstOrFail();
-        });
     }
 }
