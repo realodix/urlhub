@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Url;
-use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -42,18 +40,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace('App\Http\Controllers')
                 ->group(base_path('routes/web.php'));
-        });
-
-        $this->routeModelBinding();
-    }
-
-    /**
-     * @return void
-     */
-    private function routeModelBinding()
-    {
-        Route::bind('user_name', function (string $value): User {
-            return User::whereName($value)->firstOrFail();
         });
     }
 }

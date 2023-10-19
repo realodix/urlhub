@@ -111,7 +111,7 @@ class UserPolicyTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
-            ->get($this->getCPRoute($user->name));
+            ->get($this->getCPRoute($user));
 
         $response->assertOk();
     }

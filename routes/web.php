@@ -29,11 +29,11 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         // User
         Route::namespace('User')->prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'view'])->name('user.index');
-            Route::get('{user_name}/edit', [UserController::class, 'edit'])->name('user.edit');
-            Route::post('{user_name}/edit', [UserController::class, 'update'])->name('user.update');
+            Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
+            Route::post('{user:name}/edit', [UserController::class, 'update'])->name('user.update');
 
-            Route::get('{user_name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
-            Route::post('{user_name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
+            Route::get('{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
+            Route::post('{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
         });
 
         // About Page

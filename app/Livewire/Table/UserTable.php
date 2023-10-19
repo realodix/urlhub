@@ -75,12 +75,12 @@ final class UserTable extends PowerGridComponent
             })
             ->addColumn('action', function (User $user) {
                 return
-                    '<a role="button" href="'.route('user.edit', $user->name).'" title="'.__('Details').'"
+                    '<a role="button" href="'.route('user.edit', $user).'" title="'.__('Details').'"
                         class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-user-edit\')').
                     '</a>
-                    <a role="button" href="'.route('user.change-password', $user->name).'" title="'.__('Change Password').'"
+                    <a role="button" href="'.route('user.change-password', $user).'" title="'.__('Change Password').'"
                         class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-key\')').
