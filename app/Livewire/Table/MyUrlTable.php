@@ -93,7 +93,7 @@ final class MyUrlTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('su_detail', $url).'" target="_blank" title="'.__('Go to front page').'"
+                    '<a role="button" href="'.route('su_detail', $url->keyword).'" target="_blank" title="'.__('Go to front page').'"
                         class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').

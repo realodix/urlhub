@@ -22,7 +22,7 @@ class CreateShortLinkTest extends TestCase
 
         $url = Url::whereDestination($longUrl)->first();
 
-        $response->assertRedirectToRoute('su_detail', $url);
+        $response->assertRedirectToRoute('su_detail', $url->keyword);
         $this->assertFalse($url->is_custom);
     }
 

@@ -52,14 +52,6 @@ class Url extends Model
         'is_custom' => 'boolean',
     ];
 
-    /**
-     * Get the route key for the model.
-     */
-    public function getRouteKeyName(): string
-    {
-        return 'keyword';
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Eloquent: Relationships

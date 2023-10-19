@@ -48,7 +48,7 @@ class UrlControllerTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->get(route('su_detail', $url));
+        $response = $this->get(route('su_detail', $url->keyword));
 
         $response->assertStatus(200);
     }
