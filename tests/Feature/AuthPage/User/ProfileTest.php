@@ -127,7 +127,7 @@ class ProfileTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute($user))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
     }
 

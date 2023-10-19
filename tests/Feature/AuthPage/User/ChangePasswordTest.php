@@ -122,7 +122,7 @@ class ChangePasswordTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute($user))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('new-password');
 
         $this->assertFalse(
