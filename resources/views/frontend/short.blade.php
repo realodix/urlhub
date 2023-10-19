@@ -48,7 +48,7 @@
                         </button>
 
                         <button class="btn-clipboard btn btn-secondary btn-sm hover:text-red-600 active:text-red-700">
-                            <a href="{{route('su_delete', $url->getRouteKey())}}" title="{{__('Delete')}}">
+                            <a href="{{route('su_delete', $url->keyword)}}" title="{{__('Delete')}}">
                                 @svg('icon-trash') {{__('Delete')}}
                             </a>
                         </button>
