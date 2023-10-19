@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Url;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -53,6 +54,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::bind('user_name', function (string $value): User {
             return User::whereName($value)->firstOrFail();
+        });
+
+        Route::bind('url_key', function (string $value): Url {
+            return Url::whereKeyword($value)->firstOrFail();
         });
 
         Route::bind('hash_id', function (string $value) {

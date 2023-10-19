@@ -27,13 +27,10 @@ class DashboardController extends Controller
     /**
      * Show shortened url details page
      *
-     * @param string $urlKey A unique key to identify the shortened URL
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit(string $urlKey)
+    public function edit(Url $url)
     {
-        $url = Url::whereKeyword($urlKey)->firstOrFail();
-
         $this->authorize('updateUrl', $url);
 
         return view('backend.edit', ['url' => $url]);
@@ -43,14 +40,14 @@ class DashboardController extends Controller
      * Update the destination URL
      *
      * @param StoreUrl $request \App\Http\Requests\StoreUrl
-     * @param Url      $hash_id \App\Models\Url
+     * @param Url      $url     \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreUrl $request, Url $hash_id)
+    public function update(StoreUrl $request, Url $url)
     {
-        $hash_id->update([
+        $url->update([
             'destination' => $request->long_url,
             'title'       => $request->title,
         ]);
@@ -62,16 +59,16 @@ class DashboardController extends Controller
     /**
      * Delete shortened URLs
      *
-     * @param Url $hash_id \App\Models\Url
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $hash_id)
+    public function delete(Url $url)
     {
-        $this->authorize('forceDelete', $hash_id);
+        $this->authorize('forceDelete', $url);
 
-        $hash_id->delete();
+        $url->delete();
 
         return redirect()->back()
             ->withFlashSuccess(__('Link was successfully deleted.'));
