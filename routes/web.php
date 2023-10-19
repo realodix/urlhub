@@ -29,10 +29,10 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         // User
         Route::namespace('User')->prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'view'])->name('user.index');
-            Route::get('{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+            Route::get('{user_name}/edit', [UserController::class, 'edit'])->name('user.edit');
             Route::post('{hash_id}/edit', [UserController::class, 'update'])->name('user.update');
 
-            Route::get('{user}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
+            Route::get('{user_name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
             Route::post('{hash_id}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
         });
 

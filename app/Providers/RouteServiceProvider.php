@@ -51,7 +51,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     private function routeModelBinding()
     {
-        Route::bind('user', function (string $value): User {
+        Route::bind('user_name', function (string $value): User {
             return User::whereName($value)->firstOrFail();
         });
 
