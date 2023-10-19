@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Url extends Model
 {
-    use \App\Models\Traits\Hashidable;
     use \Illuminate\Database\Eloquent\Factories\HasFactory;
 
     const GUEST_ID = null;

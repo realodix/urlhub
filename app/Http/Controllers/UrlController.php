@@ -41,12 +41,12 @@ class UrlController extends Controller
     /**
      * View the shortened URL details.
      *
-     * @param string $urlKey A unique key to identify the shortened URL
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Contracts\View\View
      */
-    public function showDetail(string $urlKey)
+    public function showDetail(Url $url)
     {
-        $url = Url::with('visits')->whereKeyword($urlKey)->firstOrFail();
+        $url->with('visits');
         $data = [
             'url'   => $url,
             'visit' => app(Visit::class),
@@ -64,16 +64,16 @@ class UrlController extends Controller
     /**
      * Delete a shortened URL on user request.
      *
-     * @param Url $hash_id \App\Models\Url
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $hash_id)
+    public function delete(Url $url)
     {
-        $this->authorize('forceDelete', $hash_id);
+        $this->authorize('forceDelete', $url);
 
-        $hash_id->delete();
+        $url->delete();
 
         return to_route('home');
     }

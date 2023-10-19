@@ -29,7 +29,7 @@ class DashboardPageTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('dashboard'))
-            ->get($this->secureRoute('dashboard.su_delete', $url->id));
+            ->get(route('dashboard.su_delete', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -64,7 +64,7 @@ class DashboardPageTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('dashboard.su_edit', $url->keyword))
-            ->post($this->secureRoute('dashboard.su_edit.post', $url->id), [
+            ->post(route('dashboard.su_edit.post', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);

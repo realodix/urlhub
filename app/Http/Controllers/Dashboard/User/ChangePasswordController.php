@@ -28,17 +28,17 @@ class ChangePasswordController extends Controller
      * Change the password.
      *
      * @param UpdateUserPassword $request \App\Http\Requests\UpdateUserPassword
-     * @param User               $hash_id \App\Models\User
+     * @param User               $user    \App\Models\User
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateUserPassword $request, User $hash_id)
+    public function update(UpdateUserPassword $request, User $user)
     {
-        $this->authorize('updatePass', $hash_id);
+        $this->authorize('updatePass', $user);
 
-        $hash_id->password = Hash::make($request['new-password']);
-        $hash_id->save();
+        $user->password = Hash::make($request['new-password']);
+        $user->save();
 
         return redirect()->back()
             ->withFlashSuccess(__('Password changed successfully !'));
