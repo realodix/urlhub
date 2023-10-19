@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/shorten', [UrlController::class, 'create'])->name('su_create');
-Route::get('/+{keyword}', [UrlController::class, 'showDetail'])->name('su_detail');
+Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('su_detail');
 Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('su_delete');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {

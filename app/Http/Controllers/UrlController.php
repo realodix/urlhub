@@ -41,12 +41,12 @@ class UrlController extends Controller
     /**
      * View the shortened URL details.
      *
-     * @param string $urlKey A unique key to identify the shortened URL
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Contracts\View\View
      */
-    public function showDetail(string $urlKey)
+    public function showDetail(Url $url)
     {
-        $url = Url::with('visits')->whereKeyword($urlKey)->firstOrFail();
+        $url->with('visits');
         $data = [
             'url'   => $url,
             'visit' => app(Visit::class),
