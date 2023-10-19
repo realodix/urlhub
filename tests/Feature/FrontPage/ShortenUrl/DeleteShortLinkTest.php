@@ -13,8 +13,8 @@ class DeleteShortLinkTest extends TestCase
         $url = Url::factory()->create();
 
         $response = $this->actingAs($url->author)
-            ->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+            ->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
 
         $response->assertRedirectToRoute('home');
         $this->assertCount(0, Url::all());
@@ -25,8 +25,8 @@ class DeleteShortLinkTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
-            ->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+            ->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
 
         $response->assertRedirectToRoute('home');
         $this->assertCount(0, Url::all());
@@ -37,8 +37,8 @@ class DeleteShortLinkTest extends TestCase
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->adminUser())
-            ->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+            ->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
 
         $response->assertRedirectToRoute('home');
         $this->assertCount(0, Url::all());
@@ -49,8 +49,8 @@ class DeleteShortLinkTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->normalUser())
-            ->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+            ->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());
@@ -61,8 +61,8 @@ class DeleteShortLinkTest extends TestCase
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->normalUser())
-            ->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+            ->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());
@@ -72,18 +72,18 @@ class DeleteShortLinkTest extends TestCase
     public function guestCannotDelete(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
-        $response = $this->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+        $response = $this->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
         $response->assertForbidden();
 
         $url = Url::factory()->create(['user_id' => $this->adminUser()->id]);
-        $response = $this->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+        $response = $this->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
         $response->assertForbidden();
 
         $url = Url::factory()->create();
-        $response = $this->from(route('su_detail', $url))
-            ->get(route('su_delete', $url));
+        $response = $this->from(route('su_detail', $url->keyword))
+            ->get(route('su_delete', $url->keyword));
         $response->assertForbidden();
 
         $this->assertCount(3, Url::all());

@@ -29,7 +29,7 @@ class DashboardPageTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('dashboard'))
-            ->get(route('dashboard.su_delete', $url));
+            ->get(route('dashboard.su_delete', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -47,7 +47,7 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
 
         $response = $this->actingAs($url->author)
-            ->get(route('dashboard.su_edit', $url));
+            ->get(route('dashboard.su_edit', $url->keyword));
 
         $response->assertOk();
     }
@@ -63,8 +63,8 @@ class DashboardPageTest extends TestCase
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
 
         $response = $this->actingAs($url->author)
-            ->from(route('dashboard.su_edit', $url))
-            ->post(route('dashboard.su_edit.post', $url), [
+            ->from(route('dashboard.su_edit', $url->keyword))
+            ->post(route('dashboard.su_edit.post', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);

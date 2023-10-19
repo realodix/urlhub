@@ -114,8 +114,8 @@ class ChangePasswordTest extends TestCase
         $user = $this->user;
 
         $response = $this->actingAs($user)
-            ->from($this->getRoute($user))
-            ->post($this->postRoute($user), [
+            ->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->name), [
                 'current-password'          => self::$password,
                 'new-password'              => $data1,
                 'new-password_confirmation' => $data2,
@@ -156,15 +156,15 @@ class ChangePasswordTest extends TestCase
         $user = $this->user;
 
         $response = $this->actingAs($user)
-            ->from($this->getRoute($user))
-            ->post($this->postRoute($user), [
+            ->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->name), [
                 'current-password'          => self::$password,
                 'new-password'              => self::$password,
                 'new-password_confirmation' => self::$password,
             ]);
 
         $response
-            ->assertRedirect($this->getRoute($user))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('new-password');
 
         $this->assertTrue(

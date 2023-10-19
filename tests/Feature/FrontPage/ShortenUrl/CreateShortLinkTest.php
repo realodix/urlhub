@@ -75,7 +75,7 @@ class CreateShortLinkTest extends TestCase
 
         $response = $this->post(route('su_create'), [
             'long_url'   => 'https://laravel-news.com',
-            'custom_key' => $url,
+            'custom_key' => $url->keyword,
         ]);
 
         $response
@@ -98,7 +98,7 @@ class CreateShortLinkTest extends TestCase
         $response = $this->actingAs($this->normalUser())
             ->post(route('su_create'), [
                 'long_url'   => 'https://laravel-news.com',
-                'custom_key' => $url,
+                'custom_key' => $url->keyword,
             ]);
 
         $response
