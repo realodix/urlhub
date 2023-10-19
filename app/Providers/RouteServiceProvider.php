@@ -59,9 +59,5 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('url_key', function (string $value): Url {
             return Url::whereKeyword($value)->firstOrFail();
         });
-
-        Route::bind('hash_id', function (string $value) {
-            return decrypt($value);
-        });
     }
 }

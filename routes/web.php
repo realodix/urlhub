@@ -30,10 +30,10 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::namespace('User')->prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'view'])->name('user.index');
             Route::get('{user_name}/edit', [UserController::class, 'edit'])->name('user.edit');
-            Route::post('{hash_id}/edit', [UserController::class, 'update'])->name('user.update');
+            Route::post('{user_name}/edit', [UserController::class, 'update'])->name('user.update');
 
             Route::get('{user_name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
-            Route::post('{hash_id}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
+            Route::post('{user_name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
         });
 
         // About Page
@@ -41,4 +41,4 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
     });
 });
 
-Route::get('/{keyword}', UrlRedirectController::class);
+Route::get('/{url_key}', UrlRedirectController::class);

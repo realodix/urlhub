@@ -14,7 +14,7 @@ class ProfileTest extends TestCase
 
     protected function postRoute(mixed $value): string
     {
-        return $this->secureRoute('user.update', $value);
+        return route('user.update', $value);
     }
 
     /**
@@ -64,7 +64,7 @@ class ProfileTest extends TestCase
 
         $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
+            ->post($this->postRoute($user->name), [
                 'email' => 'new_user_email@urlhub.test',
             ]);
 
@@ -85,7 +85,7 @@ class ProfileTest extends TestCase
 
         $response = $this->actingAs($this->normalUser())
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
+            ->post($this->postRoute($user->name), [
                 'email' => 'new_email_user2@urlhub.test',
             ]);
 
@@ -103,7 +103,7 @@ class ProfileTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
+            ->post($this->postRoute($user->name), [
                 'email' => '',
             ]);
 
@@ -122,7 +122,7 @@ class ProfileTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
+            ->post($this->postRoute($user->name), [
                 'email' => 'invalid_format',
             ]);
 
@@ -141,7 +141,7 @@ class ProfileTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
+            ->post($this->postRoute($user->name), [
                 // 255 + 9
                 'email' => str_repeat('a', 255).'@mail.com',
             ]);
@@ -161,7 +161,7 @@ class ProfileTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->id), [
+            ->post($this->postRoute($user->name), [
                 'email' => $this->normalUser()->email,
             ]);
 
