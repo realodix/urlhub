@@ -65,7 +65,7 @@ final class MyUrlTable extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('keyword', function (Url $url) {
-                return '<a href="'.$url->short_url.'" target="_blank" class="font-light text-sky-800">'.$url.'</a>';
+                return '<a href="'.$url->short_url.'" target="_blank" class="font-light text-sky-800">'.$url->keyword.'</a>';
             })
             ->addColumn('destination', function (Url $url) {
                 return
