@@ -86,7 +86,7 @@ final class AllUrlTable extends PowerGridComponent
                 return '<span class="font-semibold">'.$url->author->name.'</span>';
             })
             ->addColumn('keyword', function (Url $url) {
-                return '<a href="'.$url->short_url.'" target="_blank"class="font-light text-sky-800">'.$url->keyword.'</a>';
+                return '<a href="'.$url->short_url.'" target="_blank"class="font-light text-sky-800">'.$url.'</a>';
             })
             ->addColumn('destination', function (Url $url) {
                 return
@@ -116,17 +116,17 @@ final class AllUrlTable extends PowerGridComponent
             })
             ->addColumn('action', function (Url $url) {
                 return
-                    '<a role="button" href="'.route('su_detail', $url->keyword).'" target="_blank" title="'.__('Open front page').'"
+                    '<a role="button" href="'.route('su_detail', $url).'" target="_blank" title="'.__('Open front page').'"
                         class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-open-in-new\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.su_edit', $url->keyword).'" title="'.__('Edit').'"
+                    <a role="button" href="'.route('dashboard.su_edit', $url).'" title="'.__('Edit').'"
                         class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-edit-alt\')').
                     '</a>
-                    <a role="button" href="'.route('dashboard.su_delete', $url->keyword).'" title="'.__('Delete').'"
+                    <a role="button" href="'.route('dashboard.su_delete', $url).'" title="'.__('Delete').'"
                         class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700"
                     >'
                         .Blade::render('@svg(\'icon-trash-alt\')').

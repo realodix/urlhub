@@ -22,7 +22,7 @@ class CreateShortLinkTest extends TestCase
 
         $url = Url::whereDestination($longUrl)->first();
 
-        $response->assertRedirectToRoute('su_detail', $url->keyword);
+        $response->assertRedirectToRoute('su_detail', $url);
         $this->assertFalse($url->is_custom);
     }
 
@@ -75,7 +75,7 @@ class CreateShortLinkTest extends TestCase
 
         $response = $this->post(route('su_create'), [
             'long_url'   => 'https://laravel-news.com',
-            'custom_key' => $url->keyword,
+            'custom_key' => $url,
         ]);
 
         $response
@@ -98,7 +98,7 @@ class CreateShortLinkTest extends TestCase
         $response = $this->actingAs($this->normalUser())
             ->post(route('su_create'), [
                 'long_url'   => 'https://laravel-news.com',
-                'custom_key' => $url->keyword,
+                'custom_key' => $url,
             ]);
 
         $response

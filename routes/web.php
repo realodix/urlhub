@@ -12,19 +12,19 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/shorten', [UrlController::class, 'create'])->name('su_create');
 Route::get('/+{keyword}', [UrlController::class, 'showDetail'])->name('su_detail');
-Route::get('/delete/{url_key}', [UrlController::class, 'delete'])->name('su_delete');
+Route::get('/delete/{url}', [UrlController::class, 'delete'])->name('su_delete');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('/delete/{url_key}', [DashboardController::class, 'delete'])->name('dashboard.su_delete');
-        Route::get('/edit/{url_key}', [DashboardController::class, 'edit'])->name('dashboard.su_edit');
-        Route::post('/edit/{url_key}', [DashboardController::class, 'update'])->name('dashboard.su_edit.post');
+        Route::get('/delete/{url}', [DashboardController::class, 'delete'])->name('dashboard.su_delete');
+        Route::get('/edit/{url}', [DashboardController::class, 'edit'])->name('dashboard.su_edit');
+        Route::post('/edit/{url}', [DashboardController::class, 'update'])->name('dashboard.su_edit.post');
 
         // All URLs
         Route::get('/allurl', [AllUrlController::class, 'view'])->name('dashboard.allurl');
-        Route::get('/allurl/delete/{url_key}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.su_delete');
+        Route::get('/allurl/delete/{url}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.su_delete');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
@@ -41,4 +41,4 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
     });
 });
 
-Route::get('/{url_key}', UrlRedirectController::class);
+Route::get('/{url}', UrlRedirectController::class);
