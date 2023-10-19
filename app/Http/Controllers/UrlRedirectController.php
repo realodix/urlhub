@@ -14,6 +14,8 @@ class UrlRedirectController extends Controller
      * Redirect the client to the intended long URL (no checks are performed)
      * and executes the create visitor data task.
      *
+     * @param Url $url \App\Models\Url
+     *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function __invoke(Url $url): RedirectResponse
