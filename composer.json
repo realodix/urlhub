@@ -14,7 +14,7 @@
         "guzzlehttp/guzzle": "^7.8",
         "hisorange/browser-detect": "^5.0",
         "laravel/fortify": "^1.18",
-        "laravel/framework": "^10.25",
+        "laravel/framework": "^10.29",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
