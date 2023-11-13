@@ -16,6 +16,9 @@ module.exports = {
         "uh-blue": "#3d5b99",
         "uh-blue-2": "#005a9e",
         "bg-primary": "#f8fafc",
+        "uh-bg-1": "#fff",
+        "uh-bg-2": "#f6f8fa",
+        "uh-border-color": "#d0d7de",
         uh: {
           1: "#344767",
           "2a": "rgb(63 152 222)",

@@ -18,7 +18,7 @@
         <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
             <form method="post" action="{{route('user.update', $user)}}">
             @csrf
-                <div class="common-card-style sm:rounded-b-none px-4 py-5 sm:p-6">
+                <div class="common-card-style px-4 py-5 sm:p-6">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
                             <label class="block font-medium text-sm text-slate-700">{{__('Username')}}</label>
@@ -30,14 +30,12 @@
                             <input type="email" name="email" value="{{$user->email}}" class="form-input mt-1">
                         </div>
                     </div>
-                </div>
-                <div class="common-card-style bg-bg-primary sm:bg-slate-50 sm:rounded-t-none
-                    flex items-center justify-end px-4 py-3 sm:px-6
-                    text-right border-t"
-                >
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        {{__('Save')}}
-                    </button>
+
+                    <div class="flex items-center justify-end mt-4 text-right">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            {{__('Save')}}
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
