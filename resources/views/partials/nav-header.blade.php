@@ -167,7 +167,7 @@
 
     {{-- It should only appear on the dashboard page only. --}}
     @if (request()->is('admin*'))
-        <nav class="bg-white border-t border-slate-900/10 pt-1">
+        <nav class="bg-uh-bg-2 border-t border-uh-border-color pt-1">
             <div class="hidden sm:flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
                 <a href="{{route('dashboard')}}"
                     class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent

@@ -5,11 +5,11 @@ main {
 }
 
 .frontend, .backend, .auth {
-  @apply bg-neutral-100 font-sans text-gray-900 antialiased;
+  @apply bg-uh-bg-1 font-sans text-gray-900 antialiased;
 }
 
 .navbar {
-  @apply bg-white text-uh-blue;
+  @apply bg-uh-bg-2 text-uh-blue;
 
   &-brand {
     @apply font-serif text-4xl font-bold;
