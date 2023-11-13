@@ -172,7 +172,7 @@
                 <a href="{{route('dashboard')}}"
                     class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                         {{(request()->route()->getName() === 'dashboard') ?
-                        'text-uh-blue-2 border-orange-500' :
+                        'text-uh-blue-2 !border-orange-500' :
                         'text-slate-600 hover:border-slate-300'}}"
                 >
                     @svg('icon-dashboard', 'mr-1')
@@ -183,7 +183,7 @@
                     <a href="{{route('dashboard.allurl')}}"
                         class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                             {{(request()->route()->getName() === 'dashboard.allurl') ?
-                            'text-uh-blue-2 border-orange-500' :
+                            'text-uh-blue-2 !border-orange-500' :
                             'text-slate-600 hover:border-slate-300'}}"
                     >
                         @svg('icon-link', 'mr-1')
@@ -192,7 +192,7 @@
                     <a href="{{route('user.index')}}"
                         class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                             {{(request()->route()->getName() === 'user.index') ?
-                            'text-uh-blue-2 border-orange-500' :
+                            'text-uh-blue-2 !border-orange-500' :
                             'text-slate-600 hover:border-slate-300'}}"
                     >
                         @svg('icon-users', 'mr-1')
@@ -201,7 +201,7 @@
                     <a href="{{route('dashboard.about')}}"
                         class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                             {{(request()->route()->getName() === 'dashboard.about') ?
-                            'text-uh-blue-2 border-orange-500' :
+                            'text-uh-blue-2 !border-orange-500' :
                             'text-slate-600 hover:border-slate-300'}}"
                     >
                         @svg('icon-about-system', 'mr-1')

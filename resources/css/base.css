@@ -22,7 +22,7 @@
   }
 }
 
-hr, input {
+hr {
   @apply !border-uh-border-color;
 }
 
