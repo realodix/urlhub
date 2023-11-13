@@ -22,8 +22,8 @@
   }
 }
 
-hr {
-  @apply border-uh-border-color;
+hr, input {
+  @apply !border-uh-border-color;
 }
 
 /*
