@@ -32,22 +32,22 @@
                 </div>
             @endif
             <div class="w-full md:w-3/4 mt-8 sm:mt-0">
-                <button title="{{__('Copy the shortened URL to clipboard')}}"
+                <button class="btn-clipboard btn btn-secondary btn-sm"
+                    title="{{__('Copy the shortened URL to clipboard')}}"
                     data-clipboard-text="{{$url->short_url}}"
-                    class="btn-clipboard btn btn-secondary btn-sm"
                 >
                     @svg('icon-clone') {{__('Copy')}}
                 </button>
 
                 @auth
                     @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
-                        <button class="btn-clipboard btn btn-secondary btn-sm">
+                        <button class="btn btn-secondary btn-sm">
                             <a href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}">
                                 @svg('icon-edit') {{__('Edit')}}
                             </a>
                         </button>
 
-                        <button class="btn-clipboard btn btn-secondary btn-sm hover:text-red-600 active:text-red-700">
+                        <button class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700">
                             <a href="{{route('su_delete', $url)}}" title="{{__('Delete')}}">
                                 @svg('icon-trash') {{__('Delete')}}
                             </a>

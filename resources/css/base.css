@@ -22,6 +22,10 @@
   }
 }
 
+hr {
+  @apply border-uh-border-color;
+}
+
 /*
  * Components
  */
@@ -36,7 +40,7 @@
 
 .btn {
   @apply inline-flex items-center px-3 py-1.5;
-  @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 text-gray-500 hover:text-gray-600 active:text-gray-500;
+  @apply bg-uh-bg-2 hover:bg-stone-200 active:bg-uh-bg-2 text-gray-500 hover:text-gray-600 active:text-gray-500;
   @apply text-base font-normal leading-6 text-center no-underline align-middle tracking-wide;
   @apply rounded disabled:opacity-25;
   @apply cursor-pointer select-none;
@@ -49,23 +53,23 @@
   }
 
   &-primary {
-    @apply text-base font-normal text-white bg-sky-800 border-sky-800;
-    @apply hover:text-white hover:bg-sky-900 active:bg-[#0078d4] hover:border-white;
+    @apply text-base font-normal text-white bg-green-700 border-green-800;
+    @apply hover:text-white hover:bg-green-800 active:bg-[#0078d4] hover:border-white;
   }
 
   &-secondary {
-    @apply border border-zinc-200;
-    @apply text-sky-800 hover:text-sky-900 active:text-sky-800 ;
-    @apply bg-stone-50 hover:bg-stone-200 active:bg-stone-50 ;
+    @apply border border-uh-border-color;
+    @apply text-sky-950 hover:text-sky-700 active:text-sky-950 ;
+    @apply bg-uh-bg-2 hover:bg-stone-200 active:bg-uh-bg-2 ;
   }
 }
 
 .form-input {
   @apply block w-full;
-  @apply border-slate-200 focus:ring-uh-blue-2 focus:border-uh-blue-2 rounded
+  @apply border-uh-border-color focus:ring-uh-blue-2 focus:border-uh-blue-2 rounded
 }
 
 .common-card-style {
-  @apply bg-white sm:rounded-lg sm:border sm:border-zinc-200;
-  @apply sm:shadow-[0_1px_2px_#e5e5e8];
+  @apply bg-white border-y sm:rounded-lg sm:border border-uh-border-color;
+  /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
 }

@@ -1,4 +1,4 @@
-<header class="navbar shadow" x-data="{ open: false }">
+<header class="navbar" x-data="{ open: false }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <a class="navbar-brand" href="{{ url('/') }}">{{config('app.name')}}</a>
@@ -40,7 +40,7 @@
                                             {{__('Dashboard')}}
                                         </a>
 
-                                        <div class="border-t border-slate-100"></div>
+                                        <div class="border-t border-uh-border-color"></div>
                                     @endif
 
                                     <!-- Account Management -->
@@ -49,13 +49,13 @@
                                     </div>
 
                                     <a href="{{route('user.edit', auth()->user()->name)}}"
-                                        class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-uh-blue-2':''}}">
+                                        class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':''}}">
                                         @svg('icon-user', 'mr-1') {{__('Profile')}}</a>
                                     <a href="{{route('user.change-password', auth()->user()->name)}}"
-                                        class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-uh-blue-2':''}}">
+                                        class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-orange-500':''}}">
                                         @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
 
-                                    <div class="border-t border-slate-100"></div>
+                                    <div class="border-t border-uh-border-color"></div>
 
                                     <!-- Authentication -->
                                     <form method="POST" action="{{route('logout')}}">
@@ -110,22 +110,22 @@
             <div class="pt-2 pb-3 space-y-1">
                 @if (Route::currentRouteName() != 'dashboard')
                     <a href="{{route('dashboard')}}"
-                        class="nav-item {{(request()->route()->getName() === 'dashboard') ? 'border-l-2 border-uh-blue-2':''}}">
+                        class="nav-item {{(request()->route()->getName() === 'dashboard') ? 'border-l-2 border-orange-500':''}}">
                         @svg('icon-dashboard', 'mr-1') {{__('Dashboard')}}</a>
                 @endif
                 <a href="{{route('dashboard.allurl')}}"
-                    class="nav-item {{(request()->route()->getName() === 'dashboard.allurl') ? 'border-l-2 border-uh-blue-2':''}}">
+                    class="nav-item {{(request()->route()->getName() === 'dashboard.allurl') ? 'border-l-2 border-orange-500':''}}">
                     @svg('icon-link', 'mr-1') {{__('URL List')}}</a>
                 <a href="{{route('user.index')}}"
-                    class="nav-item {{(request()->route()->getName() === 'user.index') ? 'border-l-2 border-uh-blue-2':''}}">
+                    class="nav-item {{(request()->route()->getName() === 'user.index') ? 'border-l-2 border-orange-500':''}}">
                     @svg('icon-users', 'mr-1') {{__('User List')}}</a>
                 <a href="{{route('dashboard.about')}}"
-                    class="nav-item {{(request()->route()->getName() === 'dashboard.about') ? 'border-l-2 border-uh-blue-2':''}}">
+                    class="nav-item {{(request()->route()->getName() === 'dashboard.about') ? 'border-l-2 border-orange-500':''}}">
                     @svg('icon-about-system', 'mr-1') {{__('About')}}</a>
             </div>
 
             <!-- Responsive Settings Options -->
-            <div class="pt-4 pb-1 border-t border-slate-200">
+            <div class="pt-4 pb-1 border-t border-uh-border-color">
                 <div class="flex items-center px-4">
                     <div>
                         <div class="nav-item-username">{{auth()->user()->name}}</div>
@@ -136,10 +136,10 @@
                 <div class="mt-3 space-y-1">
                     <!-- Account Management -->
                     <a href="{{route('user.edit', auth()->user()->name)}}"
-                        class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-uh-blue-2':''}}">
+                        class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':''}}">
                         @svg('icon-user', 'mr-1') {{__('Profile')}}</a>
                     <a href="{{route('user.change-password', auth()->user()->name)}}"
-                        class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-uh-blue-2':''}}">
+                        class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-orange-500':''}}">
                         @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
 
                     <!-- Authentication -->
@@ -167,13 +167,13 @@
 
     {{-- It should only appear on the dashboard page only. --}}
     @if (request()->is('admin*'))
-        <nav class="bg-uh-bg-2 border-t border-uh-border-color pt-1">
+        <nav class="bg-uh-bg-1 pt-1">
             <div class="hidden sm:flex max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
                 <a href="{{route('dashboard')}}"
                     class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                         {{(request()->route()->getName() === 'dashboard') ?
-                        'text-uh-blue-2 border-uh-blue-2' :
-                        'text-slate-500 hover:border-slate-300'}}"
+                        'text-uh-blue-2 border-orange-500' :
+                        'text-slate-600 hover:border-slate-300'}}"
                 >
                     @svg('icon-dashboard', 'mr-1')
                     <span class="">{{__('Dashboard')}}</span>
@@ -183,8 +183,8 @@
                     <a href="{{route('dashboard.allurl')}}"
                         class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                             {{(request()->route()->getName() === 'dashboard.allurl') ?
-                            'text-uh-blue-2 border-uh-blue-2' :
-                            'text-slate-500 hover:border-slate-300'}}"
+                            'text-uh-blue-2 border-orange-500' :
+                            'text-slate-600 hover:border-slate-300'}}"
                     >
                         @svg('icon-link', 'mr-1')
                         <span class="">{{__('URL List')}}</span>
@@ -192,8 +192,8 @@
                     <a href="{{route('user.index')}}"
                         class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                             {{(request()->route()->getName() === 'user.index') ?
-                            'text-uh-blue-2 border-uh-blue-2' :
-                            'text-slate-500 hover:border-slate-300'}}"
+                            'text-uh-blue-2 border-orange-500' :
+                            'text-slate-600 hover:border-slate-300'}}"
                     >
                         @svg('icon-users', 'mr-1')
                         <span class="">{{__('User List')}}</span>
@@ -201,8 +201,8 @@
                     <a href="{{route('dashboard.about')}}"
                         class="mr-8 py-3 font-semibold hover:text-uh-blue-2 transition duration-100 ease-in-out border-b-2 border-transparent
                             {{(request()->route()->getName() === 'dashboard.about') ?
-                            'text-uh-blue-2 border-uh-blue-2' :
-                            'text-slate-500 hover:border-slate-300'}}"
+                            'text-uh-blue-2 border-orange-500' :
+                            'text-slate-600 hover:border-slate-300'}}"
                     >
                         @svg('icon-about-system', 'mr-1')
                         <span class="">{{__('About')}}</span>
