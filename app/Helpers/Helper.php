@@ -2,20 +2,21 @@
 
 namespace App\Helpers;
 
-use DeviceDetector\DeviceDetector;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Spatie\Url\Url as SpatieUrl;
 
 class Helper
 {
-    public static function deviceDetector(): DeviceDetector
+    /**
+     * Parse any User Agent
+     *
+     * @return \DeviceDetector\DeviceDetector
+     */
+    public static function deviceDetector()
     {
-        $dd = new DeviceDetector(request()->userAgent());
-        $dd->setCache(
-            new \DeviceDetector\Cache\LaravelCache()
-        );
-
+        $dd = new \DeviceDetector\DeviceDetector(request()->userAgent());
+        $dd->setCache(new \DeviceDetector\Cache\LaravelCache);
         $dd->parse();
 
         return $dd;
