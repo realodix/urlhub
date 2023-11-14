@@ -9,6 +9,20 @@ use Spatie\Url\Url as SpatieUrl;
 class Helper
 {
     /**
+     * Parse any User Agent
+     *
+     * @return \DeviceDetector\DeviceDetector
+     */
+    public static function deviceDetector()
+    {
+        $dd = new \DeviceDetector\DeviceDetector(request()->userAgent());
+        $dd->setCache(new \DeviceDetector\Cache\LaravelCache);
+        $dd->parse();
+
+        return $dd;
+    }
+
+    /**
      * Display the link according to what You need.
      *
      * @param string $url           URL or Link
