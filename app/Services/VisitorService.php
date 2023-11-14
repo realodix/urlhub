@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
@@ -22,7 +23,9 @@ class VisitorService
     public function create(Url $url)
     {
         $logBotVisit = config('urlhub.track_bot_visits');
-        if ($logBotVisit === false && \Browser::isBot() === true) {
+        $dd = Helper::deviceDetector();
+
+        if ($logBotVisit === false && $dd->isBot() === true) {
             return;
         }
 
