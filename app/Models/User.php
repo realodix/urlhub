@@ -84,11 +84,15 @@ class User extends Authenticatable
     public function signature(): string
     {
         if (auth()->check() === false) {
+            $ua = \hexydec\agentzero\agentzero::parse(request()->userAgent());
+
             return hash('sha3-256', implode([
                 'ip'      => request()->ip(),
-                'browser' => \Browser::browserFamily(),
-                'os'      => \Browser::platformFamily(),
-                'device'  => \Browser::deviceFamily().\Browser::deviceModel(),
+                'type'    => $ua->type,
+                'browser' => $ua->browser,
+                'os'      => $ua->platform.$ua->platformversion,
+                'device'  => $ua->category.$ua->vendor.$ua->device,
+                'lang'    => request()->getPreferredLanguage(),
             ]));
         }
 
