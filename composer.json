@@ -12,7 +12,6 @@
         "embed/embed": "^4.4",
         "endroid/qr-code": "^4.8",
         "guzzlehttp/guzzle": "^7.8",
-        "hexydec/agentzero": "^0.4.0",
         "laravel/fortify": "^1.18",
         "laravel/framework": "^10.29",
         "laravel/sanctum": "^3.3",
