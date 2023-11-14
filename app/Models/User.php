@@ -87,13 +87,13 @@ class User extends Authenticatable
         if (auth()->check() === false) {
             $dd = Helper::deviceDetector();
 
-            return implode([
+            return hash('sha3-256', implode([
                 'ip'      => request()->ip(),
                 'browser' => $dd->getClient('name'),
                 'os'      => $dd->getOs('name').$dd->getOs('version'),
                 'device'  => $dd->getDeviceName().$dd->getModel().$dd->getBrandName(),
                 'lang'    => request()->getPreferredLanguage(),
-            ]);
+            ]));
         }
 
         return (string) auth()->id();
