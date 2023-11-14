@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -84,16 +85,15 @@ class User extends Authenticatable
     public function signature(): string
     {
         if (auth()->check() === false) {
-            $ua = \hexydec\agentzero\agentzero::parse(request()->userAgent());
+            $dd = Helper::deviceDetector();
 
-            return hash('sha3-256', implode([
+            return implode([
                 'ip'      => request()->ip(),
-                'type'    => $ua->type,
-                'browser' => $ua->browser,
-                'os'      => $ua->platform.$ua->platformversion,
-                'device'  => $ua->category.$ua->vendor.$ua->device,
+                'browser' => $dd->getClient('name'),
+                'os'      => $dd->getOs('name').$dd->getOs('version'),
+                'device'  => $dd->getDeviceName().$dd->getModel().$dd->getBrandName(),
                 'lang'    => request()->getPreferredLanguage(),
-            ]));
+            ]);
         }
 
         return (string) auth()->id();
