@@ -17,7 +17,15 @@ return new class extends Migration
                 ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->string('keyword')->unique();
+
+            if (Schema::getConnection()->getConfig('driver') === 'mysql') {
+                $table->string('keyword')
+                    ->collation('utf8mb4_bin')
+                    ->unique();
+            } else {
+                $table->string('keyword')->unique();
+            }
+
             $table->boolean('is_custom');
             $table->longText('destination');
             $table->string('title');
