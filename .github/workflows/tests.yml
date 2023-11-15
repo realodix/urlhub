@@ -49,8 +49,4 @@ jobs:
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
       - name: Upload Coverage Results To Coveralls
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          composer global require php-coveralls/php-coveralls
-          php-coveralls --coverage_clover=build/logs/clover.xml --verbose
+        uses: coverallsapp/github-action@v2
