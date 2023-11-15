@@ -54,7 +54,7 @@ hr {
 
   &-primary {
     @apply text-base font-normal text-white bg-green-700 border-green-800;
-    @apply hover:text-white hover:bg-green-800 active:bg-[#0078d4] hover:border-white;
+    @apply hover:text-white hover:bg-green-800 active:bg-green-700 hover:border-white;
   }
 
   &-secondary {
