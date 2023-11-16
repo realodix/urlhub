@@ -47,5 +47,5 @@ jobs:
       - name: Execute Tests
         run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
-      - name: Upload Coverage Results To Coveralls
+      - name: Send Coverage To Coveralls
         uses: coverallsapp/github-action@v2
