@@ -327,4 +327,19 @@ class UrlTest extends TestCase
 
         $this->assertSame(1, $actual);
     }
+
+    /**
+     * @group u-model
+     */
+    public function testKeywordColumnIsCaseSensitive(): void
+    {
+        $url_1 = Url::factory(['keyword' => 'foo', 'destination' => 'https://example.com'])->create();
+        $url_2 = Url::factory(['keyword' => 'Foo', 'destination' => 'https://example.org'])->create();
+
+        $dest_1 = $url_1->whereKeyword('foo')->first();
+        $dest_2 = $url_2->whereKeyword('Foo')->first();
+
+        $this->assertSame('https://example.com', $dest_1->destination);
+        $this->assertSame('https://example.org', $dest_2->destination);
+    }
 }
