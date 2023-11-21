@@ -28,7 +28,11 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 
 ## Requirements
-* All requirements by [Laravel](https://laravel.com/docs/installation#server-requirements) & dependencies - PHP >= 8.1, [Composer](https://getcomposer.org/) and such.
+UrlHub is a Laravel application. That means it requires this setup:
+
+- PHP 8.1 or newer
+- A web server like Apache or Nginx
+- MySQL 5.7+/8.0.23+ or MariaDB 10.0.5+
 
 
 ## Quick Start
