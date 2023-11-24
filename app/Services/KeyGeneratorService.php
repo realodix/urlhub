@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class KeyGeneratorService
 {
-    private const HASH_CHAR = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const HASH_CHAR = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
      * Generate a short string that can be used as a unique key for the shortened
@@ -20,7 +20,7 @@ class KeyGeneratorService
         $key = $this->generateSimpleString($value);
 
         if (
-            $this->assertStringCanBeUsedAsKey($key) === false
+            $this->ensureStringCanBeUsedAsKey($key) === false
             || strlen($key) < config('urlhub.hash_length')
         ) {
             $key = $this->generateRandomString();
@@ -52,7 +52,7 @@ class KeyGeneratorService
 
         do {
             $urlKey = $generator->generateString(config('urlhub.hash_length'), self::HASH_CHAR);
-        } while ($this->assertStringCanBeUsedAsKey($urlKey) == false);
+        } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
     }
@@ -68,9 +68,10 @@ class KeyGeneratorService
      * If any or all of the above conditions are met, then the string cannot be
      * used as a keyword and must return false.
      */
-    public function assertStringCanBeUsedAsKey(string $value): bool
+    public function ensureStringCanBeUsedAsKey(string $value): bool
     {
-        $route = array_map(fn (\Illuminate\Routing\Route $route) => $route->uri,
+        $route = array_map(
+            fn (\Illuminate\Routing\Route $route) => $route->uri,
             \Illuminate\Support\Facades\Route::getRoutes()->get()
         );
 

@@ -333,8 +333,8 @@ class UrlTest extends TestCase
      */
     public function testKeywordColumnIsCaseSensitive(): void
     {
-        $url_1 = Url::factory(['keyword' => 'foo', 'destination' => 'https://example.com'])->create();
-        $url_2 = Url::factory(['keyword' => 'Foo', 'destination' => 'https://example.org'])->create();
+        $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);
+        $url_2 = Url::factory()->create(['keyword' => 'Foo', 'destination' => 'https://example.org']);
 
         $dest_1 = $url_1->whereKeyword('foo')->first();
         $dest_2 = $url_2->whereKeyword('Foo')->first();

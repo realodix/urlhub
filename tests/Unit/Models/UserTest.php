@@ -30,7 +30,7 @@ class UserTest extends TestCase
      */
     public function totalGuestUsers(): void
     {
-        Url::factory(2)->create(['user_id' => Url::GUEST_ID]);
+        Url::factory()->count(2)->create(['user_id' => Url::GUEST_ID]);
         $this->assertSame(2, (new User)->totalGuestUsers());
     }
 
@@ -42,7 +42,7 @@ class UserTest extends TestCase
      */
     public function totalGuestUsers2(): void
     {
-        Url::factory(5)->create(['user_id' => Url::GUEST_ID, 'user_sign' => 'foo']);
+        Url::factory()->count(5)->create(['user_id' => Url::GUEST_ID, 'user_sign' => 'foo']);
         $this->assertSame(1, (new User)->totalGuestUsers());
     }
 }
