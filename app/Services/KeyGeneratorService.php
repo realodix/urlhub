@@ -47,9 +47,6 @@ class KeyGeneratorService
      */
     public function generateRandomString(): string
     {
-        $factory = new \RandomLib\Factory;
-        $generator = $factory->getMediumStrengthGenerator();
-
         do {
             $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.hash_length'));
         } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
