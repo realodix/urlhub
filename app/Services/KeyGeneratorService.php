@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class KeyGeneratorService
 {
-    const HASH_CHAR = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
      * Generate a short string that can be used as a unique key for the shortened
@@ -33,7 +33,7 @@ class KeyGeneratorService
     {
         return Str::of($value)
             // Remove all characters except `0-9a-z-AZ`
-            ->replaceMatches('/[^'.self::HASH_CHAR.']/i', '')
+            ->replaceMatches('/[^'.self::ALPHABET.']/i', '')
             // Take the specified number of characters from the end of the string.
             ->substr(config('urlhub.hash_length') * -1)
             ->lower();
@@ -51,10 +51,29 @@ class KeyGeneratorService
         $generator = $factory->getMediumStrengthGenerator();
 
         do {
-            $urlKey = $generator->generateString(config('urlhub.hash_length'), self::HASH_CHAR);
+            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.hash_length'));
         } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
+    }
+
+    /**
+     * Generates a string of random characters with the specified length.
+     *
+     * @param string $alphabet the alphabet as a sequence of unique characters.
+     * @param int    $length   The length of the string to generate.
+     * @return string The generated string.
+     */
+    public function getBytesFromString(string $alphabet, int $length): string
+    {
+        $stringLength = strlen($alphabet);
+
+        $result = '';
+        for ($i = 0; $i < $length; $i++) {
+            $result .= $alphabet[random_int(0, $stringLength - 1)];
+        }
+
+        return $result;
     }
 
     /**
@@ -97,7 +116,7 @@ class KeyGeneratorService
      */
     public function possibleOutput(): int
     {
-        $nChar = strlen(self::HASH_CHAR);
+        $nChar = strlen(self::ALPHABET);
         $strLen= config('urlhub.hash_length');
 
         // for testing purposes only
