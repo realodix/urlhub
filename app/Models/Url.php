@@ -10,13 +10,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property User           $author
- * @property Visit          $visits
+ * @property int            $id
  * @property int|null       $user_id
- * @property string         $short_url
+ * @property string         $keyword
+ * @property bool           $is_custom
  * @property string         $destination
+ * @property string         $title
+ * @property string         $user_sign
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property User           $author
+ * @property Visit          $visits
+ * @property string         $short_url
  * @property int            $clicks
  * @property int            $uniqueClicks
  */
