@@ -12,9 +12,17 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
- * @property Url            $urls
+ * @property int            $id
+ * @property string         $name
+ * @property string         $email
+ * @property string         $email_verified_at
+ * @property string         $password
+ * @property string         $two_factor_secret
+ * @property string         $two_factor_recovery_codes
+ * @property string         $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property Url            $urls
  */
 class User extends Authenticatable
 {
