@@ -63,14 +63,21 @@ class KeyGeneratorService
      */
     public function getBytesFromString(string $alphabet, int $length): string
     {
-        $stringLength = strlen($alphabet);
+        if (\PHP_VERSION_ID < 80300) {
+            $stringLength = strlen($alphabet);
 
-        $result = '';
-        for ($i = 0; $i < $length; $i++) {
-            $result .= $alphabet[random_int(0, $stringLength - 1)];
+            $result = '';
+            for ($i = 0; $i < $length; $i++) {
+                $result .= $alphabet[random_int(0, $stringLength - 1)];
+            }
+
+            return $result;
         }
 
-        return $result;
+        // https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
+        $randomizer = new \Random\Randomizer;
+
+        return $randomizer->getBytesFromString($alphabet, $length);
     }
 
     /**
