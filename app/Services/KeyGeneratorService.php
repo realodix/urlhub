@@ -23,7 +23,7 @@ class KeyGeneratorService
             $this->ensureStringCanBeUsedAsKey($key) === false
             || strlen($key) < config('urlhub.hash_length')
         ) {
-            $key = $this->generateRandomString();
+            $key = $this->generateRandomString(self::ALPHABET, config('urlhub.hash_length'));
         }
 
         return $key;
@@ -43,23 +43,23 @@ class KeyGeneratorService
      * Generate a random string of specified length. The string will only contain
      * characters from the specified character set.
      *
-     * @return string The generated random string
+     * @param string $alphabet The alphabet as a sequence of unique characters.
+     * @param int    $length   The length of the string to generate.
+     * @return string The generated random string.
      */
-    public function generateRandomString(): string
+    public function generateRandomString(string $alphabet, int $length): string
     {
         do {
-            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.hash_length'));
+            $urlKey = $this->getBytesFromString($alphabet, $length);
         } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
     }
 
     /**
-     * Generates a string of random characters with the specified length.
+     * Random\Randomizer::getBytesFromString
      *
-     * @param string $alphabet the alphabet as a sequence of unique characters.
-     * @param int    $length   The length of the string to generate.
-     * @return string The generated string.
+     * https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
      */
     public function getBytesFromString(string $alphabet, int $length): string
     {
@@ -74,7 +74,6 @@ class KeyGeneratorService
             return $result;
         }
 
-        // https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
         $randomizer = new \Random\Randomizer;
 
         return $randomizer->getBytesFromString($alphabet, $length);
