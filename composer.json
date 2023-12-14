@@ -25,10 +25,10 @@
     "require-dev": {
         "brianium/paratest": "^7.2",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^2.7",
         "laravel/dusk": "^7.6",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^7.9",
-        "nunomaduro/larastan": "^2.6",
         "phpunit/phpunit": "^10.3",
         "realodix/relax": "^1.6",
         "spatie/laravel-ignition": "^2.3"
