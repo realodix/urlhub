@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class KeyGeneratorService
 {
-    const HASH_CHAR = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
      * Generate a short string that can be used as a unique key for the shortened
@@ -33,7 +33,7 @@ class KeyGeneratorService
     {
         return Str::of($value)
             // Remove all characters except `0-9a-z-AZ`
-            ->replaceMatches('/[^'.self::HASH_CHAR.']/i', '')
+            ->replaceMatches('/[^'.self::ALPHABET.']/i', '')
             // Take the specified number of characters from the end of the string.
             ->substr(config('urlhub.hash_length') * -1)
             ->lower();
@@ -43,18 +43,38 @@ class KeyGeneratorService
      * Generate a random string of specified length. The string will only contain
      * characters from the specified character set.
      *
-     * @return string The generated random string
+     * @return string The generated random string.
      */
     public function generateRandomString(): string
     {
-        $factory = new \RandomLib\Factory;
-        $generator = $factory->getMediumStrengthGenerator();
-
         do {
-            $urlKey = $generator->generateString(config('urlhub.hash_length'), self::HASH_CHAR);
+            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.hash_length'));
         } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
+    }
+
+    /**
+     * Random\Randomizer::getBytesFromString
+     *
+     * https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
+     */
+    public function getBytesFromString(string $alphabet, int $length): string
+    {
+        if (\PHP_VERSION_ID < 80300) {
+            $stringLength = strlen($alphabet);
+
+            $result = '';
+            for ($i = 0; $i < $length; $i++) {
+                $result .= $alphabet[random_int(0, $stringLength - 1)];
+            }
+
+            return $result;
+        }
+
+        $randomizer = new \Random\Randomizer;
+
+        return $randomizer->getBytesFromString($alphabet, $length);
     }
 
     /**
@@ -97,7 +117,7 @@ class KeyGeneratorService
      */
     public function possibleOutput(): int
     {
-        $nChar = strlen(self::HASH_CHAR);
+        $nChar = strlen(self::ALPHABET);
         $strLen= config('urlhub.hash_length');
 
         // for testing purposes only
