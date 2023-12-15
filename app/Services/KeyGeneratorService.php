@@ -23,7 +23,7 @@ class KeyGeneratorService
             $this->ensureStringCanBeUsedAsKey($key) === false
             || strlen($key) < config('urlhub.hash_length')
         ) {
-            $key = $this->generateRandomString(self::ALPHABET, config('urlhub.hash_length'));
+            $key = $this->generateRandomString();
         }
 
         return $key;
@@ -43,14 +43,12 @@ class KeyGeneratorService
      * Generate a random string of specified length. The string will only contain
      * characters from the specified character set.
      *
-     * @param string $alphabet The alphabet as a sequence of unique characters.
-     * @param int    $length   The length of the string to generate.
      * @return string The generated random string.
      */
-    public function generateRandomString(string $alphabet, int $length): string
+    public function generateRandomString(): string
     {
         do {
-            $urlKey = $this->getBytesFromString($alphabet, $length);
+            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.hash_length'));
         } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
