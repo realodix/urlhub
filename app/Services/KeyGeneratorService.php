@@ -66,7 +66,7 @@ class KeyGeneratorService
 
             $result = '';
             for ($i = 0; $i < $length; $i++) {
-                $result .= $alphabet[random_int(0, $stringLength - 1)];
+                $result .= $alphabet[mt_rand(0, $stringLength - 1)];
             }
 
             return $result;
