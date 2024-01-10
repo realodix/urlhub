@@ -32,7 +32,7 @@ class Helper
      */
     public static function urlDisplay(
         string $url,
-        int $limit = null,
+        ?int $limit = null,
         bool $scheme = true,
         bool $trailingSlash = true
     ): string|Stringable {
