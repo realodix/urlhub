@@ -126,7 +126,17 @@ class KeyGeneratorService
             return 0;
         }
 
-        return gmp_intval(gmp_pow($nChar, $strLen));
+        $pow = pow($nChar, $strLen);
+
+        if ($pow > PHP_INT_MAX) {
+            if (! extension_loaded('intl')) {
+                throw new \RuntimeException('The "gmp" PHP extension is required.');
+            }
+
+            return gmp_intval(gmp_pow($nChar, $strLen));
+        }
+
+        return pow($nChar, $strLen);
     }
 
     /**
