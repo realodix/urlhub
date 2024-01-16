@@ -29,20 +29,20 @@ return [
     | mailers below. You are free to add additional mailers as required.
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses", "ses-v2",
-    |            "postmark", "log", "array", "failover"
+    |            "postmark", "log", "array", "failover", "roundrobin"
     |
     */
 
     'mailers' => [
         'smtp' => [
-            'transport'    => 'smtp',
-            'url'          => env('MAIL_URL'),
-            'host'         => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port'         => env('MAIL_PORT', 587),
-            'encryption'   => env('MAIL_ENCRYPTION', 'tls'),
-            'username'     => env('MAIL_USERNAME'),
-            'password'     => env('MAIL_PASSWORD'),
-            'timeout'      => null,
+            'transport' => 'smtp',
+            'url' => env('MAIL_URL'),
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
@@ -50,16 +50,16 @@ return [
             'transport' => 'ses',
         ],
 
-        'mailgun' => [
-            'transport' => 'mailgun',
+        'postmark' => [
+            'transport' => 'postmark',
+            // 'message_stream_id' => null,
             // 'client' => [
             //     'timeout' => 5,
             // ],
         ],
 
-        'postmark' => [
-            'transport' => 'postmark',
-            // 'message_stream_id' => null,
+        'mailgun' => [
+            'transport' => 'mailgun',
             // 'client' => [
             //     'timeout' => 5,
             // ],
@@ -72,7 +72,7 @@ return [
 
         'log' => [
             'transport' => 'log',
-            'channel'   => env('MAIL_LOG_CHANNEL'),
+            'channel' => env('MAIL_LOG_CHANNEL'),
         ],
 
         'array' => [
@@ -84,6 +84,14 @@ return [
             'mailers' => [
                 'smtp',
                 'log',
+            ],
+        ],
+
+        'roundrobin' => [
+            'transport' => 'roundrobin',
+            'mailers' => [
+                'ses',
+                'postmark',
             ],
         ],
     ],
@@ -101,7 +109,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name'    => env('MAIL_FROM_NAME', 'Example'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
