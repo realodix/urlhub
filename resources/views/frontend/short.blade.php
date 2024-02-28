@@ -32,11 +32,11 @@
                 </div>
             @endif
             <div class="w-full md:w-3/4 mt-8 sm:mt-0">
-                <button class="btn-clipboard btn btn-secondary btn-sm"
+                <button id="clipboard_shortlink" class="btn-clipboard btn btn-secondary btn-sm"
                     title="{{__('Copy the shortened URL to clipboard')}}"
                     data-clipboard-text="{{$url->short_url}}"
                 >
-                    @svg('icon-clone') {{__('Copy')}}
+                    @svg('icon-clone', 'mr-1') {{__('Copy')}}
                 </button>
 
                 @auth
