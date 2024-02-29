@@ -6,10 +6,25 @@ import './bootstrap';
  *
  * https://github.com/zenorocha/clipboard.js
  */
-var ClipboardJS = require('clipboard');
+const clipboardJs = require('clipboard');
 
-new ClipboardJS('.btn-clipboard').on('success', function() {
-    $('.btn-clipboard')
-        .attr('data-original-title','Copied!').tooltip("_fixTitle").tooltip("show")
-        .attr("title", "Copy to clipboard").tooltip("_fixTitle");
+const target = document.getElementById('clipboard_shortlink');
+const clipboard = new clipboardJs(target);
+
+// Success action handler
+clipboard.on('success', function (e) {
+    const currentLabel = target.innerHTML;
+
+    // Exit label update when already in progress
+    if (target.innerHTML === 'Copied!') {
+        return;
+    }
+
+    // Update button label
+    target.innerHTML = 'Copied!';
+
+    // Revert button label after 3 seconds
+    setTimeout(function () {
+        target.innerHTML = currentLabel;
+    }, 3000)
 });
