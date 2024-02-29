@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const BrowserSyncPlugin = require("browser-sync-v3-webpack-plugin");
 
 mix.postCss('resources/css/main.css', 'public/css', [
     require('tailwindcss/nesting'),
@@ -23,10 +24,19 @@ if (!mix.inProduction()) {
       devtool: 'source-map',
     })
     .sourceMaps()
-    .browserSync({
-      open: 'external',
-      host: 'urlhub.test',
-      proxy: 'urlhub.test'
+    // .browserSync({
+    //   open: 'external',
+    //   host: 'urlhub.test',
+    //   proxy: 'urlhub.test'
+    // })
+    .webpackConfig({
+      plugins: [
+        new BrowserSyncPlugin({
+          open: 'external',
+          host: 'urlhub.test',
+          proxy: 'urlhub.test'
+        }),
+      ],
     })
 }
 
