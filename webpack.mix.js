@@ -20,7 +20,6 @@ mix.extract()
   .disableSuccessNotifications();
 
 if (!mix.inProduction()) {
-
   mix.webpackConfig({
       devtool: 'source-map',
     })
