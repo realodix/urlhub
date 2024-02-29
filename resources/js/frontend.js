@@ -6,10 +6,10 @@ import './bootstrap';
  *
  * https://github.com/zenorocha/clipboard.js
  */
-const { default: ClipboardJS } = await import('clipboard');
+const clipboardJs = require('clipboard');
 
 const target = document.getElementById('clipboard_shortlink');
-const clipboard = new ClipboardJS(target);
+const clipboard = new clipboardJs(target);
 
 // Success action handler
 clipboard.on('success', function (e) {
