@@ -29,7 +29,7 @@ class QrCodeService
             ->build();
     }
 
-    protected function resolveSize(): int
+    public function resolveSize(): int
     {
         $size = config('urlhub.qrcode_size');
 
@@ -40,7 +40,7 @@ class QrCodeService
         return $size > self::MAX_SIZE ? self::MAX_SIZE : $size;
     }
 
-    protected function resolveMargin(): int
+    public function resolveMargin(): int
     {
         $margin = config('urlhub.qrcode_margin');
 
@@ -52,7 +52,7 @@ class QrCodeService
     /**
      * @return \Endroid\QrCode\Writer\WriterInterface
      */
-    protected function resolveWriter()
+    public function resolveWriter()
     {
         $qFormat = self::normalizeValue(config('urlhub.qrcode_format'));
         $containSupportedFormat = collect(self::SUPPORTED_FORMAT)
@@ -65,7 +65,7 @@ class QrCodeService
         };
     }
 
-    protected function resolveErrorCorrection(): ErrorCorrectionLevel
+    public function resolveErrorCorrection(): ErrorCorrectionLevel
     {
         $level = self::normalizeValue(config('urlhub.qrcode_error_correction'));
 
@@ -77,7 +77,7 @@ class QrCodeService
         };
     }
 
-    protected function resolveRoundBlockSize(): RoundBlockSizeMode
+    public function resolveRoundBlockSize(): RoundBlockSizeMode
     {
         $isRounded = config('urlhub.qrcode_round_block_size');
 
@@ -88,7 +88,7 @@ class QrCodeService
         return RoundBlockSizeMode::Margin;
     }
 
-    protected function normalizeValue(string $param): string
+    public function normalizeValue(string $param): string
     {
         return strtolower(trim($param));
     }

@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services;
 
 use App\Services\QrCodeService;
-use Endroid\QrCode\Writer\Result\ResultInterface;
 use Tests\TestCase;
 
 class QrCodeServiceTest extends TestCase
@@ -21,7 +20,7 @@ class QrCodeServiceTest extends TestCase
     {
         $QrCode = $this->getQrCode()->execute('foo');
 
-        $this->assertInstanceOf(ResultInterface::class, $QrCode);
+        $this->assertInstanceOf(\Endroid\QrCode\Writer\Result\ResultInterface::class, $QrCode);
     }
 
     /**
@@ -55,7 +54,7 @@ class QrCodeServiceTest extends TestCase
     }
 
     /**
-     * resolveRoundBlockSize() should return \Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeNone
+     * resolveRoundBlockSize() should return \Endroid\QrCode\RoundBlockSizeMode::None
      * if config('urlhub.qrcode_round_block_size') set `false`.
      *
      * @test
@@ -64,15 +63,9 @@ class QrCodeServiceTest extends TestCase
     {
         config(['urlhub.qrcode_round_block_size' => false]);
 
-        $QrCode = $this->getQrCode();
-
-        $reflection = new \ReflectionClass($QrCode);
-        $method = $reflection->getMethod('resolveRoundBlockSize');
-        $method->setAccessible(true);
-
-        $this->assertInstanceOf(
-            \Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeNone::class,
-            $method->invoke($QrCode)
+        $this->assertSame(
+            \Endroid\QrCode\RoundBlockSizeMode::None,
+            $this->getQrCode()->resolveRoundBlockSize()
         );
     }
 }
