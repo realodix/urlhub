@@ -22,13 +22,6 @@ final class AllUrlTable extends PowerGridComponent
 
     public string $sortDirection = 'desc';
 
-    /*
-    |--------------------------------------------------------------------------
-    | Features Setup
-    |--------------------------------------------------------------------------
-    | Setup Table's general features
-    |
-    */
     public function setUp(): array
     {
         return [
@@ -41,44 +34,11 @@ final class AllUrlTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
     public function datasource(): ?Builder
     {
         return Url::query();
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
-    public function relationSearch(): array
-    {
-        return [];
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    */
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
@@ -134,18 +94,7 @@ final class AllUrlTable extends PowerGridComponent
             });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
     /**
-     * PowerGrid Columns.
-     *
      * @return array<int, Column>
      */
     public function columns(): array
