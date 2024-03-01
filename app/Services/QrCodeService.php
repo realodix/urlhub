@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\Result\ResultInterface;
+use Endroid\QrCode\{ErrorCorrectionLevel, RoundBlockSizeMode};
 
 class QrCodeService
 {
@@ -64,33 +65,27 @@ class QrCodeService
         };
     }
 
-    /**
-     * @return \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelInterface
-     */
-    protected function resolveErrorCorrection()
+    protected function resolveErrorCorrection(): ErrorCorrectionLevel
     {
         $level = self::normalizeValue(config('urlhub.qrcode_error_correction'));
 
         return match ($level) {
-            'h' => new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh,
-            'q' => new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelQuartile,
-            'm' => new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelMedium,
-            default => new \Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow, // 'l'
+            'h' => ErrorCorrectionLevel::High,
+            'q' => ErrorCorrectionLevel::Quartile,
+            'm' => ErrorCorrectionLevel::Medium,
+            default => ErrorCorrectionLevel::Low, // 'l'
         };
     }
 
-    /**
-     * @return \Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeInterface
-     */
-    protected function resolveRoundBlockSize()
+    protected function resolveRoundBlockSize(): RoundBlockSizeMode
     {
         $isRounded = config('urlhub.qrcode_round_block_size');
 
         if (! $isRounded) {
-            return new \Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeNone;
+            return RoundBlockSizeMode::None;
         }
 
-        return new \Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+        return RoundBlockSizeMode::Margin;
     }
 
     protected function normalizeValue(string $param): string
