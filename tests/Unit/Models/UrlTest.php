@@ -2,9 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Url;
-use App\Models\User;
-use App\Models\Visit;
+use App\Models\{Url, User, Visit};
 use Tests\TestCase;
 
 class UrlTest extends TestCase

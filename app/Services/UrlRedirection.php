@@ -11,6 +11,7 @@ class UrlRedirection
      * Execute the HTTP redirect and return the redirect response.
      *
      * @param Url $url \App\Models\Url
+     * @return RedirectResponse \Illuminate\Http\RedirectResponse
      */
     public function execute(Url $url): RedirectResponse
     {

@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
-use App\Models\Url;
-use App\Models\User;
+use App\Models\{Url, User};
 use App\Services\KeyGeneratorService;
 
 class DashboardController extends Controller

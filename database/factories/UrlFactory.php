@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Url;
-use App\Models\User;
+use App\Models\{Url, User};
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

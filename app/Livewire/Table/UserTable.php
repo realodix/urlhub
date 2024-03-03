@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent
-};
+    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent};
 
 /**
  * @codeCoverageIgnore

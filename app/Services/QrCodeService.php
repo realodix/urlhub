@@ -3,8 +3,7 @@
 namespace App\Services;
 
 use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Writer\Result\ResultInterface;
-use Endroid\QrCode\Writer\{PngWriter, SvgWriter, WriterInterface};
+use Endroid\QrCode\Writer\{PngWriter, SvgWriter};
 use Endroid\QrCode\{ErrorCorrectionLevel, RoundBlockSizeMode};
 
 class QrCodeService
@@ -18,9 +17,9 @@ class QrCodeService
     const SUPPORTED_FORMAT = ['png', 'svg'];
 
     /**
-     * @return ResultInterface \Endroid\QrCode\Writer\Result\ResultInterface
+     * @return \Endroid\QrCode\Writer\Result\ResultInterface
      */
-    public function execute(string $data): ResultInterface
+    public function execute(string $data)
     {
         return Builder::create()
             ->data($data)
@@ -54,9 +53,9 @@ class QrCodeService
     }
 
     /**
-     * @return WriterInterface \Endroid\QrCode\Writer\WriterInterface
+     * @return \Endroid\QrCode\Writer\WriterInterface
      */
-    public function resolveWriter(): WriterInterface
+    public function resolveWriter()
     {
         $qFormat = self::normalizeValue(config('urlhub.qrcode_format'));
         $containSupportedFormat = collect(self::SUPPORTED_FORMAT)
@@ -72,7 +71,7 @@ class QrCodeService
     /**
      * @return ErrorCorrectionLevel \Endroid\QrCode\ErrorCorrectionLevel
      */
-    public function resolveErrorCorrection(): ErrorCorrectionLevel
+    public function resolveErrorCorrection()
     {
         $level = self::normalizeValue(config('urlhub.qrcode_error_correction'));
 
@@ -87,7 +86,7 @@ class QrCodeService
     /**
      * @return RoundBlockSizeMode \Endroid\QrCode\RoundBlockSizeMode
      */
-    public function resolveRoundBlockSize(): RoundBlockSizeMode
+    public function resolveRoundBlockSize()
     {
         $isRounded = config('urlhub.qrcode_round_block_size');
 
