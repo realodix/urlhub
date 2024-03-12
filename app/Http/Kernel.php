@@ -65,7 +65,7 @@ class Kernel extends HttpKernel
         'throttle'          => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified'          => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'urlhublinkchecker' => \App\Http\Middleware\UrlHubLinkChecker::class,
-        'role'              => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-        'permission'        => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role'              => \Spatie\Permission\Middleware\RoleMiddleware::class,
+        'permission'        => \Spatie\Permission\Middleware\PermissionMiddleware::class,
     ];
 }
