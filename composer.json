@@ -5,18 +5,16 @@
     "type": "project",
     "keywords": ["laravel", "url-shortener", "shorten-urls", "shorturl"],
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "ext-gmp": "*",
-        "blade-ui-kit/blade-icons": "^1.5",
-        "doctrine/dbal": "^3.7",
+        "blade-ui-kit/blade-icons": "^1.6",
         "embed/embed": "^4.4",
         "endroid/qr-code": "^5.0",
-        "guzzlehttp/guzzle": "^7.8",
-        "laravel/fortify": "^1.18",
-        "laravel/framework": "^10.40",
-        "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.0",
+        "laravel/fortify": "^1.20",
+        "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.4",
         "matomo/device-detector": "^6.1",
         "power-components/livewire-powergrid": "^5.1",
         "spatie/laravel-permission": "^6.4",
@@ -25,13 +23,13 @@
     "require-dev": {
         "brianium/paratest": "^7.2",
         "fakerphp/faker": "^1.23",
-        "larastan/larastan": "^2.7",
-        "laravel/dusk": "^7.6",
+        "larastan/larastan": "^2.8",
+        "laravel/dusk": "^8.0",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^7.9",
-        "phpunit/phpunit": "^10.3",
+        "nunomaduro/collision": "^8.1",
+        "phpunit/phpunit": "^10.5|^11.0",
         "realodix/relax": "^1.6",
-        "spatie/laravel-ignition": "^2.3"
+        "spatie/laravel-ignition": "^2.4"
     },
     "minimum-stability": "stable",
     "autoload": {
@@ -57,18 +55,20 @@
         }
     },
     "scripts": {
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
         ],
         "test": [
             "./vendor/bin/phpunit"
