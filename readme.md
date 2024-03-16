@@ -32,7 +32,7 @@ UrlHub is a Laravel application. That means it requires this setup:
 
 - PHP 8.2 or newer
 - A web server like Apache or Nginx
-- MySQL 5.7+/8.0.23+ or MariaDB 10.3+ or SQLite 3.35.0+
+- MySQL / MariaDB / SQLite
 
 
 ## Quick Start
