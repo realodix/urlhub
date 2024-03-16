@@ -24,13 +24,18 @@ jobs:
           php-version: ${{ matrix.php-version }}
           tools: composer:v2
           coverage: xdebug
+      - name: Create SQLite database
+        run: |
+          touch database/database.sqlite
 
       - name: Install Dependencies (Composer)
         uses: nick-fields/retry@v3
         with:
           timeout_minutes: 5
           max_attempts: 3
-          command: composer update --no-interaction --no-progress
+          command: |
+            touch database/database.sqlite
+            composer install --prefer-dist --no-interaction --no-progress
 
       - name: Install Dependencies (NPM)
         uses: nick-fields/retry@v3
