@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{config('app.name').' - '.config('app.description')}}</title>
+    <title>{{config('app.name').' - Simplify your links'}}</title>
 
     @livewireStyles
     <link rel="stylesheet" media="all" href="{!! mix('css/main.css') !!}" />
