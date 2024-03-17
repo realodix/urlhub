@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserPassword;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\{Gate, Hash};
 
 class ChangePasswordController extends Controller
 {
@@ -19,7 +19,7 @@ class ChangePasswordController extends Controller
      */
     public function view(User $user)
     {
-        $this->authorize('view', $user);
+        Gate::authorize('view', $user);
 
         return view('backend.user.changepassword', ['user' => $user]);
     }
@@ -35,7 +35,7 @@ class ChangePasswordController extends Controller
      */
     public function update(UpdateUserPassword $request, User $user)
     {
-        $this->authorize('updatePass', $user);
+        Gate::authorize('updatePass', $user);
 
         $user->password = Hash::make($request['new-password']);
         $user->save();

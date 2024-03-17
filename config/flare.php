@@ -56,11 +56,17 @@ return [
         CensorRequestBodyFields::class => [
             'censor_fields' => [
                 'password',
+                'password_confirmation',
             ],
         ],
         CensorRequestHeaders::class => [
             'headers' => [
                 'API-KEY',
+                'Authorization',
+                'Cookie',
+                'Set-Cookie',
+                'X-CSRF-TOKEN',
+                'X-XSRF-TOKEN',
             ],
         ],
     ],

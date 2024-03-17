@@ -5,12 +5,18 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\{Url, User};
 use App\Services\KeyGeneratorService;
+use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
-class AboutSystemController extends Controller
+class AboutSystemController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
     {
-        $this->middleware('role:admin');
+        return [
+            new Middleware('role:admin'),
+        ];
     }
 
     /**

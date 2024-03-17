@@ -3,6 +3,10 @@
 use Spatie\Ignition\Solutions\SolutionProviders\BadMethodCallSolutionProvider;
 use Spatie\Ignition\Solutions\SolutionProviders\MergeConflictSolutionProvider;
 use Spatie\Ignition\Solutions\SolutionProviders\UndefinedPropertySolutionProvider;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\DumpRecorder;
+use Spatie\LaravelIgnition\Recorders\JobRecorder\JobRecorder;
+use Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder;
+use Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\DefaultDbNameSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\GenericLaravelExceptionSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\IncorrectValetDbCredentialsSolutionProvider;
@@ -12,9 +16,14 @@ use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingColumnSolutionProv
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingImportSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingLivewireComponentSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingMixManifestSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\MissingViteManifestSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\OpenAiSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\RunningLaravelDuskInProductionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\SailNetworkSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\TableNotFoundSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\UndefinedViewVariableSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\UnknownMariadbCollationSolutionProvider;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\UnknownMysql8CollationSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\UnknownValidationSolutionProvider;
 use Spatie\LaravelIgnition\Solutions\SolutionProviders\ViewNotFoundSolutionProvider;
 
@@ -29,7 +38,7 @@ return [
     |
     | Supported: "phpstorm", "vscode", "vscode-insiders", "textmate", "emacs",
     |            "sublime", "atom", "nova", "macvim", "idea", "netbeans",
-    |            "xdebug"
+    |            "xdebug", "phpstorm-remote"
     |
     */
 
@@ -82,9 +91,8 @@ return [
     | Solution Providers
     |--------------------------------------------------------------------------
     |
-    | You may specify a list of solution providers (as fully qualified class
-    | names) that shouldn't be loaded. Ignition will ignore these classes
-    | and possible solutions provided by them will never be displayed.
+    | List of solution providers that should be loaded. You may specify additional
+    | providers as fully qualified class names.
     |
     */
 
@@ -106,9 +114,14 @@ return [
         MissingColumnSolutionProvider::class,
         UnknownValidationSolutionProvider::class,
         MissingMixManifestSolutionProvider::class,
+        MissingViteManifestSolutionProvider::class,
         MissingLivewireComponentSolutionProvider::class,
         UndefinedViewVariableSolutionProvider::class,
         GenericLaravelExceptionSolutionProvider::class,
+        OpenAiSolutionProvider::class,
+        SailNetworkSolutionProvider::class,
+        UnknownMysql8CollationSolutionProvider::class,
+        UnknownMariadbCollationSolutionProvider::class,
     ],
 
     /*
@@ -132,14 +145,19 @@ return [
     |--------------------------------------------------------------------------
     |
     | Some solutions that Ignition displays are runnable and can perform
-    | various tasks. By default, runnable solutions are enabled when your app
-    | has debug mode enabled. You may also fully disable this feature.
+    | various tasks. By default, runnable solutions are only enabled when your
+    | app has debug mode enabled and the environment is `local` or
+    | `development`.
     |
-    | Default: env('IGNITION_ENABLE_RUNNABLE_SOLUTIONS', env('APP_DEBUG', false))
+    | Using the `IGNITION_ENABLE_RUNNABLE_SOLUTIONS` environment variable, you
+    | can override this behaviour and enable or disable runnable solutions
+    | regardless of the application's environment.
+    |
+    | Default: env('IGNITION_ENABLE_RUNNABLE_SOLUTIONS')
     |
     */
 
-    'enable_runnable_solutions' => env('IGNITION_ENABLE_RUNNABLE_SOLUTIONS', env('APP_DEBUG', false)),
+    'enable_runnable_solutions' => env('IGNITION_ENABLE_RUNNABLE_SOLUTIONS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -203,5 +221,65 @@ return [
     */
 
     'settings_file_path' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Recorders
+    |--------------------------------------------------------------------------
+    |
+    | Ignition registers a couple of recorders when it is enabled. Below you may
+    | specify a recorders will be used to record specific events.
+    |
+    */
+
+    'recorders' => [
+        DumpRecorder::class,
+        JobRecorder::class,
+        LogRecorder::class,
+        QueryRecorder::class,
+    ],
+
+    /*
+     * When a key is set, we'll send your exceptions to Open AI to generate a solution
+     */
+
+    'open_ai_key' => env('IGNITION_OPEN_AI_KEY'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Include arguments
+    |--------------------------------------------------------------------------
+    |
+    | Ignition show you stack traces of exceptions with the arguments that were
+    | passed to each method. This feature can be disabled here.
+    |
+    */
+
+    'with_stack_frame_arguments' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Argument reducers
+    |--------------------------------------------------------------------------
+    |
+    | Ignition show you stack traces of exceptions with the arguments that were
+    | passed to each method. To make these variables more readable, you can
+    | specify a list of classes here which summarize the variables.
+    |
+    */
+
+    'argument_reducers' => [
+        \Spatie\Backtrace\Arguments\Reducers\BaseTypeArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\ArrayArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\StdClassArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\EnumArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\ClosureArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\DateTimeArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\DateTimeZoneArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\SymphonyRequestArgumentReducer::class,
+        \Spatie\LaravelIgnition\ArgumentReducers\ModelArgumentReducer::class,
+        \Spatie\LaravelIgnition\ArgumentReducers\CollectionArgumentReducer::class,
+        \Spatie\Backtrace\Arguments\Reducers\StringableArgumentReducer::class,
+    ],
 
 ];
