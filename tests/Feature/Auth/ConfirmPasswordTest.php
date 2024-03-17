@@ -2,14 +2,13 @@
 
 namespace Tests\Feature\Auth;
 
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class ConfirmPasswordTest extends TestCase
 {
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userCanViewPasswordConfirm(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -25,9 +24,8 @@ class ConfirmPasswordTest extends TestCase
      * - [pass] php artisan test --parallel
      *
      * assertViewHas juga menghasilkan hal yang sama
-     *
-     * @group f-auth
      */
+    // #[Group('f-auth')]
     // public function testViewIs(): void
     // {
     //     $response = $this->actingAs($this->normalUser())
@@ -36,10 +34,8 @@ class ConfirmPasswordTest extends TestCase
     //     $response->assertViewIs('auth.confirm-password');
     // }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function guestCantViewPasswordConfirm(): void
     {
         $response = $this->get(route('password.confirm'));

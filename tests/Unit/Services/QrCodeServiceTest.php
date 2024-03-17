@@ -3,6 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Services\QrCodeService;
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class QrCodeServiceTest extends TestCase
@@ -12,10 +13,8 @@ class QrCodeServiceTest extends TestCase
         return app(QrCodeService::class);
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function QrCodeService(): void
     {
         $QrCode = $this->getQrCode()->execute('foo');
@@ -23,10 +22,8 @@ class QrCodeServiceTest extends TestCase
         $this->assertInstanceOf(\Endroid\QrCode\Writer\Result\ResultInterface::class, $QrCode);
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function sizeMin(): void
     {
         $size = QrCodeService::MIN_SIZE - 1;
@@ -38,10 +35,8 @@ class QrCodeServiceTest extends TestCase
         $this->assertSame(QrCodeService::MIN_SIZE, imagesx($image));
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function sizeMax(): void
     {
         $size = QrCodeService::MAX_SIZE + 1;
@@ -53,10 +48,8 @@ class QrCodeServiceTest extends TestCase
         $this->assertSame(QrCodeService::MAX_SIZE, imagesx($image));
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function resolveSize(): void
     {
         $size = $this->getQrCode()->resolveSize();
@@ -64,10 +57,8 @@ class QrCodeServiceTest extends TestCase
         $this->assertLessThanOrEqual(QrCodeService::MAX_SIZE, $size);
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function resolveMargin(): void
     {
         config(['urlhub.qrcode_margin' => -1]);
@@ -80,10 +71,8 @@ class QrCodeServiceTest extends TestCase
         $this->assertSame(1, $this->getQrCode()->resolveMargin());
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function resolveWriter(): void
     {
         config(['urlhub.qrcode_format' => 'svg']);
@@ -99,10 +88,8 @@ class QrCodeServiceTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function resolveErrorCorrection(): void
     {
         config(['urlhub.qrcode_error_correction' => 'l']);
@@ -130,10 +117,8 @@ class QrCodeServiceTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     * @group u-actions
-     */
+    #[Test]
+    #[Group('u-actions')]
     public function resolveRoundBlockSize(): void
     {
         config(['urlhub.qrcode_round_block_size' => true]);

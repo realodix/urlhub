@@ -3,14 +3,13 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class DashboardPageTest extends TestCase
 {
-    /**
-     * @test
-     * @group f-dashboard
-     */
+    #[Test]
+    #[Group('f-dashboard')]
     public function dCanAccessPage(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -19,10 +18,8 @@ class DashboardPageTest extends TestCase
         $response->assertOk();
     }
 
-    /**
-     * @test
-     * @group f-dashboard
-     */
+    #[Test]
+    #[Group('f-dashboard')]
     public function dCanDelete(): void
     {
         $url = Url::factory()->create();
@@ -38,10 +35,8 @@ class DashboardPageTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    /**
-     * @test
-     * @group f-dashboard
-     */
+    #[Test]
+    #[Group('f-dashboard')]
     public function dAuthorizedUserCanAccessEditUrlPage(): void
     {
         $url = Url::factory()->create();
@@ -52,10 +47,8 @@ class DashboardPageTest extends TestCase
         $response->assertOk();
     }
 
-    /**
-     * @test
-     * @group f-dashboard
-     */
+    #[Test]
+    #[Group('f-dashboard')]
     public function dCanUpdateUrl(): void
     {
         $url = Url::factory()->create();

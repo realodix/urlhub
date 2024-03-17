@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Url;
-use App\Models\Visit;
+use App\Models\{Url, Visit};
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class VisitTest extends TestCase
@@ -13,10 +13,8 @@ class VisitTest extends TestCase
         parent::setUp();
     }
 
-    /**
-     * @test
-     * @group u-model
-     */
+    #[Test]
+    #[Group('u-model')]
     public function belongsToUrlModel(): void
     {
         $visit = Visit::factory()->create();

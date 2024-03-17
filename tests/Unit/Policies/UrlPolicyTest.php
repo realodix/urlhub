@@ -3,16 +3,16 @@
 namespace Tests\Unit\Policies;
 
 use App\Models\Url;
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class UrlPolicyTest extends TestCase
 {
     /**
      * Admin can delete their own data and other user data.
-     *
-     * @test
-     * @group u-policy
      */
+    #[Test]
+    #[Group('u-policy')]
     public function forceDeleteAdmin(): void
     {
         $admin = $this->adminUser();
@@ -27,10 +27,9 @@ class UrlPolicyTest extends TestCase
 
     /**
      * Normal users can only delete their own data.
-     *
-     * @test
-     * @group u-policy
      */
+    #[Test]
+    #[Group('u-policy')]
     public function forceDeleteNormalUser(): void
     {
         $url = Url::factory()->create();

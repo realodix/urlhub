@@ -3,15 +3,14 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\StrAlphaUnderscore;
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\Support\Helper;
 use Tests\TestCase;
 
 class StrAlphaUnderscoreTest extends TestCase
 {
-    /**
-     * @test
-     * @group u-rule
-     */
+    #[Test]
+    #[Group('u-rule')]
     public function strAlphaUnderscorePass(): void
     {
         $val = Helper::validator(['foo' => 'foo_bar'], ['foo' => new StrAlphaUnderscore]);
@@ -20,10 +19,8 @@ class StrAlphaUnderscoreTest extends TestCase
         $this->assertSame([], $val->messages()->messages());
     }
 
-    /**
-     * @test
-     * @group u-rule
-     */
+    #[Test]
+    #[Group('u-rule')]
     public function strAlphaUnderscoreFail(): void
     {
         $val = Helper::validator(['foo' => 'foo-bar'], ['foo' => new StrAlphaUnderscore]);
