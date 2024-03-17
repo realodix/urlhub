@@ -27,7 +27,7 @@
         "laravel/dusk": "^8.0",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "phpunit/phpunit": "^10.5|^11.0",
+        "phpunit/phpunit": "^11.0",
         "realodix/relax": "^1.6",
         "spatie/laravel-ignition": "^2.4"
     },
