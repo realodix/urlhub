@@ -39,7 +39,6 @@ return [
      * domains below.
      */
     'domain_blacklist' => [
-        config('app.url'),
         // 'bit.ly',
     ],
 
