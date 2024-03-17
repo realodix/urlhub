@@ -33,13 +33,16 @@ class Visit extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'is_first_click' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'is_first_click' => 'boolean',
+        ];
+    }
 
     /*
     |--------------------------------------------------------------------------
