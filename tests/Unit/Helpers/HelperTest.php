@@ -3,11 +3,13 @@
 namespace Tests\Unit\Helpers;
 
 use App\Helpers\Helper;
+use PHPUnit\Framework\Attributes\{DataProvider, Group, Test};
 use Tests\TestCase;
 
 class HelperTest extends TestCase
 {
-    /** @test */
+    #[Test]
+    #[Group('u-helper')]
     public function urlDisplay(): void
     {
         $this->assertSame(
@@ -27,12 +29,12 @@ class HelperTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider urlDisplayWithoutSchemeProvider
-     *
      * @param mixed $expected
      * @param mixed $actual
      */
+    #[Test]
+    #[Group('u-helper')]
+    #[DataProvider('urlDisplayWithoutSchemeProvider')]
     public function urlDisplayWithoutScheme($expected, $actual): void
     {
         $this->assertSame($expected, Helper::urlDisplay($actual, scheme: false));
@@ -52,22 +54,19 @@ class HelperTest extends TestCase
     }
 
     /**
-     * @test
-     * @group u-helper
-     * @dataProvider toAmountShortProvider
-     *
      * @param mixed $expected
      * @param mixed $actual
      */
+    #[Test]
+    #[Group('u-helper')]
+    #[DataProvider('toAmountShortProvider')]
     public function compactNumber($expected, $actual): void
     {
         $this->assertSame($expected, Helper::compactNumber($actual));
     }
 
-    /**
-     * @test
-     * @group u-helper
-     */
+    #[Test]
+    #[Group('u-helper')]
     public function numberFormatPrecision(): void
     {
         $this->assertSame(19.12, Helper::numberFormatPrecision(19.123456));

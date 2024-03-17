@@ -2,16 +2,16 @@
 
 namespace Tests\Unit\Middleware;
 
+use PHPUnit\Framework\Attributes\{DataProvider, Test};
 use Tests\TestCase;
 
 class UrlHubLinkCheckerTest extends TestCase
 {
     /**
-     * @test
-     * @dataProvider keywordBlacklistFailDataProvider
-     *
      * @param array $value
      */
+    #[Test]
+    #[DataProvider('keywordBlacklistFailDataProvider')]
     public function keywordBlacklistFail($value): void
     {
         $response = $this->post(route('su_create'), [
@@ -28,9 +28,8 @@ class UrlHubLinkCheckerTest extends TestCase
      * Persingkat URL ketika generator string sudah tidak dapat menghasilkan keyword
      * unik (semua keyword sudah terpakai). UrlHub harus mencegah user untuk melakukan
      * penyingkatan URL.
-     *
-     * @test
      */
+    #[Test]
     public function remainingCapacityIsZero(): void
     {
         config(['urlhub.hash_length' => 0]);

@@ -86,7 +86,7 @@ From the projects root folder run
 - or `composer test`
 - or `./vendor/bin/phpunit`
 
-![screenshot](https://github.com/realodix/urlhub/assets/1314456/f5e6c059-daac-44b0-bf24-79d1f6ebf181)
+![screenshot](https://i.imgur.com/88vGleT.png)
 
 
 

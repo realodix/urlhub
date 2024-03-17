@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Url\DomainBlacklist;
-use App\Rules\Url\KeywordBlacklist;
+use App\Rules\Url\{DomainBlacklist, KeywordBlacklist};
+use PHPUnit\Framework\Attributes\{DataProvider, Group, Test};
 use Tests\Support\Helper;
 use Tests\TestCase;
 
@@ -17,12 +17,11 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @test
-     * @group u-rule
-     * @dataProvider domainBlacklistPassDataProvider
-     *
      * @param mixed $value
      */
+    #[Test]
+    #[Group('f-user')]
+    #[DataProvider('domainBlacklistPassDataProvider')]
     public function domainBlacklistPass($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
@@ -32,12 +31,11 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @test
-     * @group u-rule
-     * @dataProvider domainBlacklistFailDataProvider
-     *
      * @param mixed $value
      */
+    #[Test]
+    #[Group('f-user')]
+    #[DataProvider('domainBlacklistFailDataProvider')]
     public function domainBlacklistFail($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
@@ -70,12 +68,11 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @test
-     * @group u-rule
-     * @dataProvider customKeywordBlacklistPassDataProvider
-     *
      * @param string $value
      */
+    #[Test]
+    #[Group('f-user')]
+    #[DataProvider('customKeywordBlacklistPassDataProvider')]
     public function customKeywordBlacklistPass($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
@@ -85,12 +82,11 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @test
-     * @group u-rule
-     * @dataProvider customKeywordContainsRegisteredRouteWillFailDataProvider
-     *
      * @param array $value
      */
+    #[Test]
+    #[Group('f-user')]
+    #[DataProvider('customKeywordContainsRegisteredRouteWillFailDataProvider')]
     public function customKeywordContainsRegisteredRouteWillFail($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
