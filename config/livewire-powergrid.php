@@ -19,7 +19,7 @@ return [
     | Plugins
     |--------------------------------------------------------------------------
     |
-    | Plugins used: bootstrap-select when bootstrap, flatpicker.js to datepicker.
+    | Plugins used: flatpickr.js to datepicker.
     |
     */
 
@@ -27,9 +27,8 @@ return [
         /*
          * https://flatpickr.js.org
          */
-        'flat_piker' => [
-            'translate' => (app()->getLocale() != 'en') ? 'https://npmcdn.com/flatpickr/dist/l10n/'.\Illuminate\Support\Str::substr(app()->getLocale(), 0, 2).'.js' : '',
-            'locales'   => [
+        'flatpickr' => [
+            'locales' => [
                 'pt_BR' => [
                     'locale'     => 'pt',
                     'dateFormat' => 'd/m/Y H:i',
@@ -106,15 +105,23 @@ return [
 
     'check_version' => false,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Exportable class
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
     'exportable' => [
         'default'      => 'openspout_v4',
         'openspout_v4' => [
-            'xlsx' => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v4\ExportToXLS::class,
-            'csv'  => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v4\ExportToCsv::class,
+            'xlsx' => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v4\ExportToXLS::class,
+            'csv'  => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v4\ExportToCsv::class,
         ],
         'openspout_v3' => [
-            'xlsx' => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v3\ExportToXLS::class,
-            'csv'  => \PowerComponents\LivewirePowerGrid\Services\OpenSpout\v3\ExportToCsv::class,
+            'xlsx' => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v3\ExportToXLS::class,
+            'csv'  => \PowerComponents\LivewirePowerGrid\Components\Exports\OpenSpout\v3\ExportToCsv::class,
         ],
     ],
 ];
