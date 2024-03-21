@@ -5,19 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUrl;
 use App\Models\{Url, User, Visit};
 use App\Services\QrCodeService;
-use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
-use Illuminate\Support\Facades\Gate;
 
-class UrlController extends Controller implements HasMiddleware
+class UrlController extends Controller
 {
     /**
-     * Get the middleware that should be assigned to the controller.
+     * UrlController constructor.
      */
-    public static function middleware(): array
+    public function __construct()
     {
-        return [
-            new Middleware('urlhublinkchecker', only: ['create']),
-        ];
+        $this->middleware('urlhublinkchecker')->only('create');
     }
 
     /**
@@ -73,7 +69,7 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function delete(Url $url)
     {
-        Gate::authorize('forceDelete', $url);
+        $this->authorize('forceDelete', $url);
 
         $url->delete();
 

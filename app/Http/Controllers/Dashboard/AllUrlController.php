@@ -4,18 +4,15 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
-use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
-class AllUrlController extends Controller implements HasMiddleware
+class AllUrlController extends Controller
 {
     /**
-     * Get the middleware that should be assigned to the controller.
+     * AllUrlController constructor.
      */
-    public static function middleware(): array
+    public function __construct()
     {
-        return [
-            new Middleware('role:admin'),
-        ];
+        $this->middleware('role:admin');
     }
 
     /**
