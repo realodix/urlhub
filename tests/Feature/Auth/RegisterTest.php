@@ -25,11 +25,6 @@ class RegisterTest extends TestCase
         return route('register');
     }
 
-    protected function guestMiddlewareRoute(): string
-    {
-        return route('home');
-    }
-
     #[Test]
     #[Group('f-auth')]
     public function userCanViewARegistrationForm(): void
@@ -62,7 +57,7 @@ class RegisterTest extends TestCase
         $response = $this->actingAs($this->normalUser())
             ->get($this->getRoute());
 
-        $response->assertRedirect($this->guestMiddlewareRoute());
+        $response->assertRedirect(route('dashboard'));
     }
 
     #[Test]
