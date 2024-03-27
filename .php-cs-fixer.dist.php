@@ -14,4 +14,4 @@ $localRules = [
 
 return Config::create('@Realodix', $localRules)
     ->setFinder(Finder::laravel())
-    ->setCacheFile(__DIR__.'/.tmp/.php-cs-fixer.cache');;
+    ->setCacheFile(__DIR__.'/.tmp/.php-cs-fixer.cache');
