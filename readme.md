@@ -58,19 +58,11 @@ UrlHub is a Laravel application. That means it requires this setup:
 
 ### Compiling assets with Laravel Mix
 
-#### Using Yarn
-1. `yarn`
-2. `yarn dev` or `yarn prod`
-
-    *You can watch assets with `yarn watch`*
-
-#### Using NPM
 1. `npm install`
 2. `npm run dev` or `npm run prod`
 
     *You can watch assets with `npm run watch`*
 
-   Please note that this project uses Yarn as the package manager, so you can't find the package-lock.json file that is needed by NPM.
 
 ## Contributing
 The people who contribute to UrlHub do so for the love of open source, our users and ecosystem, and most importantly, pushing the web forward together. Developers like you can help by contributing to rich and vibrant documentation, issuing pull requests to help us cover niche use cases, and to help sustain what you love about UrlHub.
@@ -87,7 +79,6 @@ From the projects root folder run
 - or `./vendor/bin/phpunit`
 
 ![screenshot](https://i.imgur.com/88vGleT.png)
-
 
 
 ## Bug Report
