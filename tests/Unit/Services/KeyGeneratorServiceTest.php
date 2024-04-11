@@ -210,6 +210,12 @@ class KeyGeneratorServiceTest extends TestCase
     {
         config(['urlhub.hash_length' => 2]);
         $this->assertSame(pow(62, 2), $this->keyGenerator->possibleOutput());
+
+        if (! extension_loaded('gmp')) {
+            $this->markTestSkipped('The GMP extension is not available.');
+        }
+        config(['urlhub.hash_length' => 11]);
+        $this->assertSame(gmp_intval(gmp_pow(62, 11)), $this->keyGenerator->possibleOutput());
     }
 
     /**
