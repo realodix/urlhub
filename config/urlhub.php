@@ -2,6 +2,8 @@
 
 return [
 
+    'version' => 'v1.0.0-alpha.9-dev',
+
     /*
     |--------------------------------------------------------------------------
     | Unregistered Users Access
@@ -37,7 +39,6 @@ return [
      * domains below.
      */
     'domain_blacklist' => [
-        config('app.url'),
         // 'bit.ly',
     ],
 

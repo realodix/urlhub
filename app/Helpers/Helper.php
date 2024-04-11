@@ -2,8 +2,7 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
+use Illuminate\Support\{Str, Stringable};
 use Spatie\Url\Url as SpatieUrl;
 
 class Helper
@@ -32,7 +31,7 @@ class Helper
      */
     public static function urlDisplay(
         string $url,
-        int $limit = null,
+        ?int $limit = null,
         bool $scheme = true,
         bool $trailingSlash = true
     ): string|Stringable {

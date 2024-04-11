@@ -6,8 +6,7 @@ use App\Http\Requests\StoreUrl;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 /**
  * @property int            $id
@@ -48,14 +47,17 @@ class Url extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'user_id'   => 'integer',
-        'is_custom' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'user_id'   => 'integer',
+            'is_custom' => 'boolean',
+        ];
+    }
 
     /*
     |--------------------------------------------------------------------------

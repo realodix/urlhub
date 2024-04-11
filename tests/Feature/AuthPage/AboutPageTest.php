@@ -5,24 +5,24 @@ namespace Tests\Feature\AuthPage;
 use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
-class UserListPageTest extends TestCase
+class AboutPageTest extends TestCase
 {
     #[Test]
-    #[Group('f-userlist')]
-    public function ulpAdminCanAccessThisPage(): void
+    #[Group('f-about')]
+    public function auAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get(route('user.index'));
+            ->get(route('dashboard.about'));
 
         $response->assertOk();
     }
 
     #[Test]
-    #[Group('f-userlist')]
-    public function ulpNormalUserCantAccessThisPage(): void
+    #[Group('f-about')]
+    public function auNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->normalUser())
-            ->get(route('user.index'));
+            ->get(route('dashboard.about'));
 
         $response->assertForbidden();
     }

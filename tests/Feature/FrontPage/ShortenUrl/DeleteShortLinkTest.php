@@ -7,8 +7,7 @@ use Tests\TestCase;
 
 class DeleteShortLinkTest extends TestCase
 {
-    /** @test */
-    public function userCanDelete(): void
+    public function testUserCanDeleteContent(): void
     {
         $url = Url::factory()->create();
 
@@ -20,8 +19,7 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    /** @test */
-    public function adminCanDeleteUrlsCreatedByOtherUsers(): void
+    public function testAdminCanDeleteUrLsCreatedByOtherUsers(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
@@ -32,8 +30,7 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    /** @test */
-    public function adminCanDeleteUrlsCreatedByGuest(): void
+    public function testAdminCanDeleteUrlsCreatedByGuest(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->adminUser())
@@ -44,8 +41,7 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    /** @test */
-    public function userCannotDeleteUrlsCreatedByOtherUsers(): void
+    public function testUserCannotDeleteUrlsCreatedByOtherUsers(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->normalUser())
@@ -56,8 +52,7 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(1, Url::all());
     }
 
-    /** @test */
-    public function userCannotDeleteUrlsCreatedByGuest(): void
+    public function testUserCannotDeleteUrlsCreatedByGuest(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->normalUser())
@@ -68,8 +63,7 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(1, Url::all());
     }
 
-    /** @test */
-    public function guestCannotDelete(): void
+    public function testGuestCannotDeleteContent(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->from(route('su_detail', $url->keyword))

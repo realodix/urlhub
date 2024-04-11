@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class LoginTest extends TestCase
@@ -23,15 +24,8 @@ class LoginTest extends TestCase
         return route('login');
     }
 
-    protected function guestMiddlewareRoute(): string
-    {
-        return route('home');
-    }
-
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userCanViewALoginForm(): void
     {
         $response = $this->get($this->getRoute());
@@ -46,9 +40,8 @@ class LoginTest extends TestCase
      * - [pass] php artisan test --parallel
      *
      * assertViewHas juga menghasilkan hal yang sama
-     *
-     * @group f-auth
      */
+    // #[Group('f-auth')]
     // public function testViewIs(): void
     // {
     //     $response = $this->get($this->getRoute());
@@ -56,22 +49,18 @@ class LoginTest extends TestCase
     //     $response->assertViewIs('auth.login');
     // }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userCannotViewALoginFormWhenAuthenticated(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get($this->getRoute());
 
-        $response->assertRedirect($this->guestMiddlewareRoute());
+        $response->assertRedirect(route('dashboard'));
     }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userCanLoginWithCorrectCredentials(): void
     {
         $user = User::factory()->create([
@@ -87,10 +76,8 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userCannotLoginWithIncorrectPassword(): void
     {
         $user = User::factory()->create([
@@ -112,19 +99,15 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function unauthenticatedUsersCantAccessTheDashboard(): void
     {
         $this->get('/admin')->assertRedirect('/login');
     }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userCannotLoginWithEmailThatDoesNotExist(): void
     {
         $response = $this->from($this->getRoute())

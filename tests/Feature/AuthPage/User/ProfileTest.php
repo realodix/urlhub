@@ -3,6 +3,7 @@
 namespace Tests\Feature\AuthPage\User;
 
 use App\Models\User;
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -17,10 +18,8 @@ class ProfileTest extends TestCase
         return route('user.update', $value);
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function usersCanAccessTheirOwnProfilePage(): void
     {
         $user = $this->normalUser();
@@ -30,10 +29,8 @@ class ProfileTest extends TestCase
         $response->assertOk();
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function adminCanAccessOtherUsersProfilePages(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -42,10 +39,8 @@ class ProfileTest extends TestCase
         $response->assertOk();
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function adminUserCantAccessOtherUsersProfilePages(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -54,10 +49,8 @@ class ProfileTest extends TestCase
         $response->assertForbidden();
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function adminCanChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
@@ -75,10 +68,8 @@ class ProfileTest extends TestCase
         $this->assertSame('new_user_email@urlhub.test', $user->fresh()->email);
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function normalUserCantChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
@@ -93,10 +84,8 @@ class ProfileTest extends TestCase
         $this->assertSame('user2@urlhub.test', $user->email);
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function validationEmailRequired(): void
     {
         $user = $this->normalUser();
@@ -112,10 +101,8 @@ class ProfileTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function validationEmailInvalidFormat(): void
     {
         $user = $this->normalUser();
@@ -131,10 +118,8 @@ class ProfileTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function validationEmailMaxLength(): void
     {
         $user = $this->normalUser();
@@ -151,10 +136,8 @@ class ProfileTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /**
-     * @test
-     * @group f-user
-     */
+    #[Test]
+    #[Group('f-user')]
     public function validationEmailUnique(): void
     {
         $user = $this->normalUser();

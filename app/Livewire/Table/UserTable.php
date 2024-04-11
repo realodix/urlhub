@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent
-};
+    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent};
 
 /**
  * @codeCoverageIgnore
@@ -19,13 +18,6 @@ final class UserTable extends PowerGridComponent
 
     public string $sortDirection = 'desc';
 
-    /*
-    |--------------------------------------------------------------------------
-    | Features Setup
-    |--------------------------------------------------------------------------
-    | Setup Table's general features
-    |
-    */
     public function setUp(): array
     {
         return [
@@ -38,26 +30,11 @@ final class UserTable extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
     public function datasource(): ?Builder
     {
         return User::query();
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    */
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
@@ -88,18 +65,7 @@ final class UserTable extends PowerGridComponent
             });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
     /**
-     * PowerGrid Columns.
-     *
      * @return array<int, Column>
      */
     public function columns(): array

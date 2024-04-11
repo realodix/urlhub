@@ -4,9 +4,8 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\{DB, Hash, Notification};
+use PHPUnit\Framework\Attributes\{Group, Test};
 use Tests\TestCase;
 
 class ForgotPasswordTest extends TestCase
@@ -26,10 +25,8 @@ class ForgotPasswordTest extends TestCase
         return route('password.email');
     }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userCanViewAnEmailPasswordForm(): void
     {
         $response = $this->get($this->requestRoute());
@@ -44,9 +41,8 @@ class ForgotPasswordTest extends TestCase
      * - [pass] php artisan test --parallel
      *
      * assertViewHas juga menghasilkan hal yang sama
-     *
-     * @group f-auth
      */
+    // #[Group('f-auth')]
     // public function testViewIs(): void
     // {
     //     $response = $this->get($this->requestRoute());
@@ -54,10 +50,8 @@ class ForgotPasswordTest extends TestCase
     //     $response->assertViewIs('auth.forgot-password');
     // }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userReceivesAnEmailWithAPasswordResetLink(): void
     {
         Notification::fake();
@@ -78,10 +72,8 @@ class ForgotPasswordTest extends TestCase
         });
     }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function userDoesNotReceiveEmailWhenNotRegistered(): void
     {
         Notification::fake();
@@ -98,10 +90,8 @@ class ForgotPasswordTest extends TestCase
         Notification::assertNotSentTo(User::factory()->make(['email' => 'nobody@example.com']), ResetPassword::class);
     }
 
-    /**
-     * @test
-     * @group f-auth
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function emailIsRequired(): void
     {
         $response = $this->from($this->getRoute())
@@ -112,10 +102,8 @@ class ForgotPasswordTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    /**
-     * @test
-     * @group f-api
-     */
+    #[Test]
+    #[Group('f-auth')]
     public function emailIsAValidEmail(): void
     {
         $response = $this->from($this->getRoute())

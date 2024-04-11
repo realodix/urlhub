@@ -4,6 +4,7 @@ namespace Tests\Unit\Rule;
 
 use App\Models\User;
 use App\Rules\PwdCurrent;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\Support\Helper;
 use Tests\TestCase;
 
@@ -24,9 +25,7 @@ class PwdCurrentTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    /**
-     * @group u-rule
-     */
+    #[Group('u-rule')]
     public function testPwdCurrentPass(): void
     {
         $val = Helper::validator(['foo' => self::$password], ['foo' => new PwdCurrent]);
@@ -35,9 +34,7 @@ class PwdCurrentTest extends TestCase
         $this->assertSame([], $val->messages()->messages());
     }
 
-    /**
-     * @group u-rule
-     */
+    #[Group('u-rule')]
     public function testPwdCurrentFail(): void
     {
         $val = Helper::validator(['foo' => 'bar'], ['foo' => new PwdCurrent]);
