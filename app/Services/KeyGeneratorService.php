@@ -114,6 +114,8 @@ class KeyGeneratorService
 
     /**
      * The maximum number of unique strings that can be generated.
+     *
+     * @throws \RuntimeException
      */
     public function possibleOutput(): int
     {

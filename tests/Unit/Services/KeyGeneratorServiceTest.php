@@ -276,11 +276,4 @@ class KeyGeneratorServiceTest extends TestCase
             [100, 100, 0],
         ];
     }
-
-    public function testZ(): void
-    {
-        $pow = pow(62, 11);
-
-        $this->assertTrue($pow > PHP_INT_MAX);
-    }
 }
