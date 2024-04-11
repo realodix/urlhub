@@ -38,7 +38,7 @@ UrlHub is a Laravel application. That means it requires this setup:
 ### Installation Instructions
 1. Rename `.env.example` file to `.env` or run `cp .env.example .env`.
 
-   Update `.env` to your specific needs. Don't forget to set `DB_USERNAME` and `DB_PASSWORD` with the settings used behind.
+   Update `.env` to your specific needs.
 
 2. Run `composer install`.
 
