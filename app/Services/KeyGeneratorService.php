@@ -126,17 +126,17 @@ class KeyGeneratorService
             return 0;
         }
 
-        $pow = pow($nChar, $strLen);
+        $nPossibleOutput = pow($nChar, $strLen);
 
-        if ($pow > PHP_INT_MAX) {
-            if (! extension_loaded('intl')) {
-                throw new \RuntimeException('The "gmp" PHP extension is required.');
+        if ($nPossibleOutput > PHP_INT_MAX) {
+            if (! extension_loaded('gmp')) {
+                throw new \RuntimeException('The "GMP" PHP extension is required.');
             }
 
             return gmp_intval(gmp_pow($nChar, $strLen));
         }
 
-        return pow($nChar, $strLen);
+        return $nPossibleOutput;
     }
 
     /**
