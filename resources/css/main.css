@@ -45,13 +45,24 @@ main {
 
 
 #power-grid-table-base {
-    table, th, td {
-        @apply border border-uh-border-color;
+    > div:has(> div > #table_base_default) {
+        border-radius: unset;
     }
 
     table {
         thead {
             @apply bg-uh-bg-2;
+            box-shadow: none;
+            border-radius: unset;
+        }
+
+        td {
+            border: 1px solid;
+            @apply border-uh-border-color;
+        }
+
+        td:last-child {
+            border-right-color: inherit;
         }
     }
 
