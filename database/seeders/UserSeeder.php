@@ -14,15 +14,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name'       => 'admin',
-            'email'      => 'admin@urlhub.test',
-            'password'   => Hash::make('admin'),
+            'name'       => 'Brayan Serrano',
+            'email'      => 'serranobrayan@gmail.com',
+            'password'   => Hash::make('uxqH0_341'),
         ])->assignRole('admin');
 
         User::factory()->create([
-            'name'       => 'user',
-            'email'      => 'user@urlhub.test',
-            'password'   => Hash::make('user'),
+            'name'       => 'Aracelly Acuña',
+            'email'      => 'aacuna@lamarka.pe',
+            'password'   => Hash::make('Titkufvmtm-21'),
         ]);
     }
 }
