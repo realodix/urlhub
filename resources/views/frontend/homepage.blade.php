@@ -3,7 +3,7 @@
 @section('css_class', 'frontend home')
 
 @section('content')
-    <div class="pt-16 sm:pt-28">
+    <!-- <div class="pt-16 sm:pt-28">
         @if (! auth()->check() and ! Config::get('urlhub.public_site'))
             <div class="flex flex-wrap md:justify-center">
                 <div class="w-full md:w-8/12 font-thin text-5xl text-slate-600 text-center welcome-msg">
@@ -57,5 +57,5 @@
                 </div>
             </div>
         @endif
-    </div>
+    </div> -->
 @endsection
