@@ -4,10 +4,8 @@
 
 @section('content')
     <main>
-        <div class="common-card-style p-4">
-            <div class="text-2xl text-uh-1 mb-8">
-                <span>{{__('All Users')}}</span>
-            </div>
+        <div class="common-card-style">
+            <div class="card_header__v2">{{__('All Users')}}</div>
 
             @livewire('table.user-table')
         </div>

@@ -4,8 +4,8 @@
 
 @section('content')
     <main>
-        <div class="common-card-style p-4">
-            <h4>Links</h4>
+        <div class="common-card-style">
+            <div class="card_header__sub_header">Links</div>
             <table>
                 <tbody>
                     <tr>
@@ -23,9 +23,7 @@
                 </tbody>
             </table>
 
-            <br>
-
-            <h4>Users</h4>
+            <div class="card_header__sub_header">Users</div>
             <table>
                 <tbody>
                     <tr>
@@ -39,9 +37,7 @@
                 </tbody>
             </table>
 
-            <br>
-
-            <h4>Random String</h4>
+            <div class="card_header__sub_header">Random String</div>
             <table>
                 <tbody>
                     <tr>
@@ -58,16 +54,10 @@
 
         <br>
 
-        <div class="common-card-style p-4">
-            <div class="flex mb-8">
-                <div class="w-1/2">
-                    <span class="text-2xl text-uh-1">
-                        {{__('Configuration')}}
-                    </span>
-                </div>
-            </div>
+        <div class="common-card-style">
+            <div class="card_header">{{__('Configuration')}}</div>
 
-            <h4>Shortened Links</h4>
+            <div class="card_header__sub_header">Shortened Links</div>
             <table>
                 <tbody>
                     @php
@@ -97,9 +87,7 @@
                 </tbody>
             </table>
 
-            <br>
-
-            <h4>Guest / Unregistered Users</h4>
+            <div class="card_header__sub_header">Guest / Unregistered Users</div>
             <table>
                 <tbody>
                     <tr>
@@ -113,9 +101,7 @@
                 </tbody>
             </table>
 
-            <br>
-
-            <h4>QRCode</h4>
+            <div class="card_header__sub_header">QRCode</div>
             <table>
                 <tbody>
                     <tr>

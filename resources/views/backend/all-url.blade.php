@@ -4,8 +4,8 @@
 
 @section('content')
     <main>
-        <div class="common-card-style p-4">
-            <div class="flex mb-8">
+        <div class="common-card-style">
+            <div class="card_header__v2">
                 <div class="w-1/2">
                     <span class="text-2xl text-uh-1">
                         {{__('All URLs')}}
