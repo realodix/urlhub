@@ -16,11 +16,9 @@
 <body class="backend">
     @include('partials.nav-header')
 
-    <main class="main max-w-7xl mx-auto sm:mt-0 py-4 sm:px-6 lg:px-8">
+    <main class="main">
         @yield('content')
     </main>
-
-    @include('partials.b-footer')
 
     <script src="{!! mix('js/manifest.js') !!}"></script>
     <script src="{!! mix('js/vendor.js') !!}"></script>
