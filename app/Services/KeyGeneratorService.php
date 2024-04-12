@@ -32,7 +32,7 @@ class KeyGeneratorService
     public function generateSimpleString(string $value): string
     {
         return Str::of($value)
-            // Remove all characters except `0-9a-z-AZ`
+            // Delete all characters except those in the ALPHABET constant.
             ->replaceMatches('/[^'.self::ALPHABET.']/i', '')
             // Take the specified number of characters from the end of the string.
             ->substr(config('urlhub.hash_length') * -1)
