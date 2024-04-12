@@ -124,7 +124,7 @@ class KeyGeneratorService
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
-        if ($strLen === 0) {
+        if ($strLen < 1) {
             return 0;
         }
 
@@ -160,7 +160,7 @@ class KeyGeneratorService
      */
     public function remainingCapacity(): int
     {
-        // prevent negative values
+        // max() is used to avoid negative values
         return max($this->possibleOutput() - $this->totalKey(), 0);
     }
 }
