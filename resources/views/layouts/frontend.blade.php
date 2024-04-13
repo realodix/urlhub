@@ -14,7 +14,7 @@
 </head>
 
 <body class="@yield('css_class')">
-    @include('partials.nav-header')
+    @include('partials.header')
 
     @yield('content')
 
