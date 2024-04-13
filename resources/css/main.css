@@ -1,15 +1,5 @@
 @import 'base.css';
 
-main {
-    @apply py-4 sm:px-6 lg:px-8;
-    @apply max-w-7xl mx-auto;
-}
-
-.frontend, .backend, .auth {
-    @apply bg-uh-bg-2 font-sans text-gray-900 antialiased;
-}
-
-
 .navbar {
     @apply bg-uh-bg-1 text-uh-blue;
     @apply border-b border-uh-border-color;

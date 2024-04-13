@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+    @apply py-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto;
+}
+
+.frontend, .backend, .auth {
+    @apply bg-uh-bg-2 font-sans text-gray-900 antialiased;
+}
+
 @layer base {
     h1 {
         @apply text-4xl;
