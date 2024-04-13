@@ -26,6 +26,8 @@
                         <div class="absolute z-50 mt-2 w-48 rounded-md shadow-lg origin-top-right right-0"
                             x-on:click="open = false" x-show="open"
                             x-transition
+                            {{-- Prevent blinking --}}
+                            style="display: none;"
                         >
                             <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
@@ -104,6 +106,8 @@
     <div class="navbar-mobile sm:hidden block"
         :class="{'block': open, 'hidden': ! open}" x-show="open"
         x-transition
+        {{-- Prevent blinking --}}
+        style="display: none;"
     >
         @auth
             @include('partials.header-localmenu_mobile')
