@@ -14,7 +14,7 @@
 </head>
 
 <body class="backend">
-    @include('partials.nav-header')
+    @include('partials.header')
 
     <main class="main">
         @yield('content')
