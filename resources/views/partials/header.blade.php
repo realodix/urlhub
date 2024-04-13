@@ -11,8 +11,7 @@
                     <div class="relative" x-data="{ open: false }" x-on:click.away="open = false">
                         <div x-on:click="open = ! open">
                             <span class="inline-flex rounded-md">
-                                <button type="button"
-                                    class="navbar-toggler inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 rounded-md focus:outline-none transition">
+                                <button class="inline-flex p-2 items-center">
                                     <div class="text-base font-semibold">{{Str::title(auth()->user()->name)}}</div>
 
                                     <svg class="navbar-toggler-icon ml-2 -mr-0.5 h-4 w-4"
@@ -24,15 +23,9 @@
                                 </button>
                             </span>
                         </div>
-                        <div x-on:click="open = false" x-show="open"
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="transform opacity-0 scale-95"
-                            x-transition:enter-end="transform opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-75"
-                            x-transition:leave-start="transform opacity-100 scale-100"
-                            x-transition:leave-end="transform opacity-0 scale-95"
-                            class="absolute z-50 mt-2 w-48 rounded-md shadow-lg origin-top-right right-0"
-                            style="display: none;"
+                        <div class="absolute z-50 mt-2 w-48 rounded-md shadow-lg origin-top-right right-0"
+                            x-on:click="open = false" x-show="open"
+                            x-transition
                         >
                             <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
@@ -81,7 +74,7 @@
                 @if (Route::has('register') and Config::get('urlhub.registration'))
                     <a href="{{route('register')}}"
                         class="text-xl font-medium text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600
-                            px-4 py-2 rounded-md transition ease-in-out duration-150"
+                        px-4 py-2 rounded-md"
                     >
                         {{__('Sign up')}}
                     </a>
@@ -91,10 +84,10 @@
 
         {{-- Mobile hamburger menu button --}}
         <div class="-mr-2 flex items-center sm:hidden">
-            <button x-on:click="open = ! open"
-                class="inline-flex items-center justify-center p-2 rounded-md
+            <button class="inline-flex p-2 rounded-md
                     text-slate-400 hover:text-slate-500 focus:text-slate-500
-                    hover:bg-slate-100 focus:bg-slate-100 focus:outline-none transition"
+                    hover:bg-slate-100 focus:bg-slate-100 focus:outline-none"
+                x-on:click="open = ! open"
             >
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
@@ -108,7 +101,10 @@
     </div>
 
     {{-- Responsive Navigation Menu --}}
-    <div :class="{'block': open, 'hidden': ! open}" x-show="open" x-transition class="navbar-mobile sm:hidden block">
+    <div class="navbar-mobile sm:hidden block"
+        :class="{'block': open, 'hidden': ! open}" x-show="open"
+        x-transition
+    >
         @auth
             @include('partials.header-localmenu_mobile')
 
@@ -141,11 +137,11 @@
             </div>
         @else
             <div class="pt-2 pb-3 space-y-1">
-                <a href="{{route('login')}}" class="block pl-3 pr-4 py-2 font-medium transition">
+                <a href="{{route('login')}}" class="block pl-3 pr-4 py-2 font-medium">
                     {{__('Log in')}}
                 </a>
                 @if (Route::has('register') and Config::get('urlhub.registration'))
-                    <a href="{{route('register')}}" class="block pl-3 pr-4 py-2 font-medium transition">
+                    <a href="{{route('register')}}" class="block pl-3 pr-4 py-2 font-medium">
                         {{__('Sign up')}}
                     </a>
                 @endif
