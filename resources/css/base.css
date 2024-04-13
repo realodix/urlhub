@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+    @apply py-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto;
+}
+
+.frontend, .backend, .auth {
+    @apply bg-uh-bg-2 font-sans text-gray-900 antialiased;
+}
+
 @layer base {
     h1 {
         @apply text-4xl;
@@ -71,5 +80,40 @@ hr {
 
 .common-card-style {
     @apply bg-white border-y sm:rounded-lg sm:border border-uh-border-color;
+    @apply px-4 py-5;
     /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
+
+    .card_header {
+        color: #1f2328;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.25;
+        border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 0.5rem;
+    }
+
+    .card_header__v2 {
+        display: flex;
+        @apply text-uh-1;
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .card_header__sub_header {
+        color: #1f2328;
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.25;
+        margin-top: 24px;
+        margin-bottom: 8px;
+
+        &:first-child {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+.auth-card {
+    @apply bg-white border-y sm:rounded-lg sm:border border-uh-border-color;
+    @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
 }

@@ -23,7 +23,7 @@
         <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
             <form method="post" action="{{route('dashboard.su_edit.post', $url)}}">
             @csrf
-                <div class="common-card-style px-4 py-5 sm:p-6">
+                <div class="common-card-style">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
                             <label for="short-url" class="block font-medium text-sm text-slate-700">{{__('Short URL')}}</label>

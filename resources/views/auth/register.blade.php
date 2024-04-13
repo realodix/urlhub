@@ -8,7 +8,7 @@
     <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
         <div class="text-uh-blue font-bold text-4xl sm:text-6xl">{{config('app.name')}}</div>
 
-        <div class="common-card-style w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden">
+        <div class="auth-card">
             @if ( ! Config::get('urlhub.registration') )
                 <p class="text-muted">{{__('Sorry, not allowed to register by administrator')}}</p>
             @else
