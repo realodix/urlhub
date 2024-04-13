@@ -11,10 +11,10 @@
                     <div class="relative" x-data="{ open: false }" x-on:click.away="open = false">
                         <div x-on:click="open = ! open">
                             <span class="inline-flex rounded-md">
-                                <button class="inline-flex p-2 items-center">
+                                <button class="navbar-toggler items-center">
                                     <div class="text-base font-semibold">{{Str::title(auth()->user()->name)}}</div>
 
-                                    <svg class="navbar-toggler-icon ml-2 -mr-0.5 h-4 w-4"
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd"
                                             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -84,7 +84,7 @@
 
         {{-- Mobile hamburger menu button --}}
         <div class="-mr-2 flex items-center sm:hidden">
-            <button class="inline-flex p-2 rounded-md
+            <button class="navbar-toggler rounded-md
                     text-slate-400 hover:text-slate-500 focus:text-slate-500
                     hover:bg-slate-100 focus:bg-slate-100 focus:outline-none"
                 x-on:click="open = ! open"

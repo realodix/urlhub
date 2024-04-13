@@ -20,7 +20,7 @@ main {
     }
 
     &-toggler {
-        @apply text-uh-blue-2;
+        @apply inline-flex p-2;
     }
 
     .nav-item {
