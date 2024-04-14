@@ -5,8 +5,7 @@ mix.postCss('resources/css/main.css', 'public/css', [
         require('tailwindcss/nesting'),
         require('tailwindcss'),
     ])
-    .js('resources/js/frontend.js', 'js/frontend.js')
-    .js('resources/js/backend.js', 'js/backend.js');
+    .js('resources/js/app.js', 'js/app.js');
 
 mix.extract()
     .version()

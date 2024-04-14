@@ -1,6 +1,3 @@
-import './bootstrap';
-
-
 /**
  * Copy short url to clipboard
  *
