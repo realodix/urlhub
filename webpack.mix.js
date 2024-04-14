@@ -1,12 +1,10 @@
 const mix = require('laravel-mix');
-const BrowserSyncPlugin = require("browser-sync-v3-webpack-plugin");
+const BrowserSyncPlugin = require('browser-sync-v3-webpack-plugin');
 
 mix.postCss('resources/css/main.css', 'public/css', [
         require('tailwindcss/nesting'),
         require('tailwindcss'),
     ])
-    .sass('resources/sass/backend.scss', 'css/backend.css')
-    .sass('resources/sass/frontend.scss', 'css/frontend.css')
     .js('resources/js/frontend.js', 'js/frontend.js')
     .js('resources/js/backend.js', 'js/backend.js');
 
