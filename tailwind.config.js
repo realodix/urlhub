@@ -1,4 +1,6 @@
-module.exports = {
+import forms from '@tailwindcss/forms';
+
+export default {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
@@ -41,8 +43,8 @@ module.exports = {
         },
     },
     plugins: [
-        require("@tailwindcss/forms")({
-            strategy: "class",
-        }),
+        forms({
+            strategy: 'class',
+        })
     ],
 };

@@ -4,12 +4,12 @@
     @apply bg-uh-bg-1 text-uh-blue;
     @apply border-b border-uh-border-color;
 
-    &-brand {
+    .navbar-brand {
         @apply flex items-center;
         @apply font-serif text-4xl font-bold;
     }
 
-    &-toggler {
+    .navbar-toggler {
         @apply inline-flex p-2;
     }
 
@@ -18,7 +18,7 @@
         @apply block px-4 py-2 focus:outline-none transition;
     }
 
-    &-mobile {
+    .navbar-mobile {
         .nav-item {
             @apply text-gray-700;
             @apply block pl-3 pr-4 py-2 font-medium transition;
