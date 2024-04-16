@@ -4,7 +4,7 @@
 
 @section('content')
     <main>
-        <div class="text-4xl text-center">
+        <div class="text-3xl md:text-4xl text-center">
             <span class="text-[#ff2d20]">@svg('icon-brand-laravel') {{app()->version()}}</span> -
             <span class="text-[#4f5b93]">@svg('icon-brand-php') {{phpversion()}}</span>
         </div>
