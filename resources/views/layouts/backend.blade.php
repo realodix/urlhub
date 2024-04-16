@@ -9,7 +9,7 @@
     <title>@yield('title') | {{config('app.name')}}</title>
 
     @livewireStyles
-    @vite(['public/css/main.css', 'public/js/app.js'])
+    @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
 
 <body class="backend">

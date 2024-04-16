@@ -1,4 +1,5 @@
 import forms from '@tailwindcss/forms';
+import presetPowerGrid from './vendor/power-components/livewire-powergrid/tailwind.config.js';
 
 export default {
     content: [
@@ -10,7 +11,7 @@ export default {
         "./vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php",
     ],
     presets: [
-        require('./vendor/power-components/livewire-powergrid/tailwind.config.js'),
+        presetPowerGrid,
     ],
     theme: {
         extend: {
