@@ -10,5 +10,5 @@
         @svg('icon-users', 'mr-1') {{__('User List')}}</a>
     <a href="{{route('dashboard.about')}}"
         class="nav-item {{(request()->route()->getName() === 'dashboard.about') ? 'border-l-2 border-orange-500':''}}">
-        @svg('icon-about-system', 'mr-1') {{__('About mobile')}}</a>
+        @svg('icon-about-system', 'mr-1') {{__('About')}}</a>
 </div>
