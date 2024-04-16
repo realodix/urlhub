@@ -56,17 +56,17 @@ hr {
     /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
-    .btn-sm {
+    &-sm {
         @apply text-sm leading-6;
         @apply px-2 py-1;
     }
 
-    .btn-primary {
+    &-primary {
         @apply text-base font-normal text-white bg-green-700 border-green-800;
         @apply hover:text-white hover:bg-green-800 active:bg-green-700 hover:border-white;
     }
 
-    .btn-secondary {
+    &-secondary {
         @apply border border-uh-border-color;
         @apply text-sky-950 hover:text-sky-700 active:text-sky-950;
         @apply bg-uh-bg-2 hover:bg-stone-200 active:bg-uh-bg-2;
