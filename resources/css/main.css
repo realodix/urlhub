@@ -4,12 +4,12 @@
     @apply bg-uh-bg-1 text-uh-blue;
     @apply border-b border-uh-border-color;
 
-    .navbar-brand {
+    &-brand {
         @apply flex items-center;
         @apply font-serif text-4xl font-bold;
     }
 
-    .navbar-toggler {
+    &-toggler {
         @apply inline-flex p-2;
     }
 
@@ -17,19 +17,19 @@
         @apply text-sm text-gray-700 hover:bg-slate-50 focus:bg-slate-100 leading-5;
         @apply block px-4 py-2 focus:outline-none transition;
     }
+}
 
-    .navbar-mobile {
-        .nav-item {
-            @apply text-gray-700;
-            @apply block pl-3 pr-4 py-2 font-medium transition;
+.navbar-mobile {
+    .nav-item {
+        @apply text-gray-700;
+        @apply block pl-3 pr-4 py-2 font-medium transition;
 
-            .nav-item-username {
-                @apply font-semibold;
-            }
+        &-username {
+            @apply font-semibold;
+        }
 
-            .nav-item-email {
-                @apply text-gray-500 font-medium text-sm;
-            }
+        &-email {
+            @apply text-gray-500 font-medium text-sm;
         }
     }
 }
