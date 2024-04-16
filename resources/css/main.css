@@ -23,11 +23,11 @@
             @apply text-gray-700;
             @apply block pl-3 pr-4 py-2 font-medium transition;
 
-            &-username {
+            .nav-item-username {
                 @apply font-semibold;
             }
 
-            &-email {
+            .nav-item-email {
                 @apply text-gray-500 font-medium text-sm;
             }
         }
