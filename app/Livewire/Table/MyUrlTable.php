@@ -33,7 +33,7 @@ final class MyUrlTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): ?Builder
+    public function datasource(): Builder
     {
         return Url::whereUserId(auth()->id());
     }

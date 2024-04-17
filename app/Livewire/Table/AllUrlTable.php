@@ -33,7 +33,7 @@ final class AllUrlTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): ?Builder
+    public function datasource(): Builder
     {
         return Url::query();
     }

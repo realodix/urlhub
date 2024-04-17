@@ -30,7 +30,7 @@ final class UserTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): ?Builder
+    public function datasource(): Builder
     {
         return User::query();
     }
