@@ -24,7 +24,7 @@ return [
     */
 
     /*
-     * The expected length of the string generated when creating a new short URL.
+     * The expected length of the keyword generated when creating a new short URL.
      */
     'keyword_length' => env('UH_KEYWORD_LENGTH', 5), // >= 1
 
