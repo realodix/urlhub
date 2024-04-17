@@ -32,7 +32,7 @@ class UrlHubLinkCheckerTest extends TestCase
     #[Test]
     public function remainingCapacityIsZero(): void
     {
-        config(['urlhub.hash_length' => 0]);
+        config(['urlhub.keyword_length' => 0]);
 
         $response = $this->post(route('su_create'), ['long_url' => 'https://laravel.com']);
 
