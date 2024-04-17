@@ -27,7 +27,7 @@ return [
      * The expected (and maximum) number of characters in generating unique
      * keyword.
      */
-    'hash_length' => env('UH_HASH_LENGTH', 6), // >= 1
+    'hash_length' => env('UH_HASH_LENGTH', 5), // >= 1
 
     /*
      * List of non allowed domain.
