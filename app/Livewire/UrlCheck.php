@@ -21,9 +21,12 @@ class UrlCheck extends Component
      */
     public function rules()
     {
+        $minLen = config('urlhub.custom_keyword_min_length');
+        $maxLen = config('urlhub.custom_keyword_max_length');
+
         return [
             'keyword' => [
-                'min:2', 'max:20', 'unique:App\Models\Url', 'lowercase:field',
+                "min:$minLen", "max:$maxLen", 'unique:App\Models\Url', 'lowercase:field',
                 new \App\Rules\StrAlphaUnderscore,
                 new \App\Rules\Url\KeywordBlacklist,
             ],
