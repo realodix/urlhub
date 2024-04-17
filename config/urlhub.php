@@ -24,11 +24,11 @@ return [
     */
 
     /*
-     * The expected length of the keyword generated when creating a new short URL.
+     * The expected length of the string generated when creating a new short URL.
      */
     'keyword_length' => env('UH_KEYWORD_LENGTH', 5), // >= 1
 
-        /**
+    /**
      * Minimum length of keyword to use.
      */
     'custom_keyword_min_length' => env('UH_CUSTOM_KEYWORD_MIN_LENGTH', 3),
