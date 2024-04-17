@@ -58,6 +58,8 @@ class KeyGeneratorService
      * Random\Randomizer::getBytesFromString
      *
      * https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
+     *
+     * @codeCoverageIgnore
      */
     public function getBytesFromString(string $alphabet, int $length): string
     {
@@ -131,9 +133,11 @@ class KeyGeneratorService
         $nPossibleOutput = pow($nChar, $strLen);
 
         if ($nPossibleOutput > PHP_INT_MAX) {
+            // @codeCoverageIgnoreStart
             if (! extension_loaded('gmp')) {
                 throw new \RuntimeException('The "GMP" PHP extension is required.');
             }
+            // @codeCoverageIgnoreEnd
 
             return gmp_intval(gmp_pow($nChar, $strLen));
         }
