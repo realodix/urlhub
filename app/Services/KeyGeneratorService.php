@@ -17,16 +17,16 @@ class KeyGeneratorService
      */
     public function generate(string $value): string
     {
-        $key = $this->generateSimpleString($value);
+        $string = $this->generateSimpleString($value);
 
         if (
-            $this->ensureStringCanBeUsedAsKey($key) === false
-            || strlen($key) < config('urlhub.hash_length')
+            $this->ensureStringCanBeUsedAsKey($string) === false
+            || strlen($string) < config('urlhub.hash_length')
         ) {
-            $key = $this->generateRandomString();
+            $string = $this->generateRandomString();
         }
 
-        return $key;
+        return $string;
     }
 
     public function generateSimpleString(string $value): string
@@ -146,10 +146,10 @@ class KeyGeneratorService
     }
 
     /**
-     * The number of unique keywords that have been used.
+     * Total number of keywords
      *
-     * The length of the generated string (randomKey) and the length of the
-     * `customKey` string must be identical.
+     * The length of the generated string (random string) and the length of the
+     * reserved string must be identical.
      */
     public function totalKey(): int
     {
