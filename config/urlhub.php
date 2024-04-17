@@ -24,10 +24,9 @@ return [
     */
 
     /*
-     * The expected (and maximum) number of characters in generating unique
-     * keyword.
+     * The expected length of the keyword generated when creating a new short URL.
      */
-    'hash_length' => env('UH_HASH_LENGTH', 5), // >= 1
+    'keyword_length' => env('UH_KEYWORD_LENGTH', 5), // >= 1
 
     /*
      * List of non allowed domain.

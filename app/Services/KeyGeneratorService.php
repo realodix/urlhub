@@ -21,7 +21,7 @@ class KeyGeneratorService
 
         if (
             $this->ensureStringCanBeUsedAsKey($string) === false
-            || strlen($string) < config('urlhub.hash_length')
+            || strlen($string) < config('urlhub.keyword_length')
         ) {
             $string = $this->generateRandomString();
         }
@@ -35,7 +35,7 @@ class KeyGeneratorService
             // Delete all characters except those in the ALPHABET constant.
             ->replaceMatches('/[^'.self::ALPHABET.']/i', '')
             // Take the specified number of characters from the end of the string.
-            ->substr(config('urlhub.hash_length') * -1)
+            ->substr(config('urlhub.keyword_length') * -1)
             ->lower();
     }
 
@@ -48,7 +48,7 @@ class KeyGeneratorService
     public function generateRandomString(): string
     {
         do {
-            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.hash_length'));
+            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.keyword_length'));
         } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
@@ -122,7 +122,7 @@ class KeyGeneratorService
     public function possibleOutput(): int
     {
         $nChar = strlen(self::ALPHABET);
-        $strLen= config('urlhub.hash_length');
+        $strLen= config('urlhub.keyword_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
@@ -153,7 +153,7 @@ class KeyGeneratorService
      */
     public function totalKey(): int
     {
-        $hashLength = (int) config('urlhub.hash_length');
+        $hashLength = (int) config('urlhub.keyword_length');
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->count();
