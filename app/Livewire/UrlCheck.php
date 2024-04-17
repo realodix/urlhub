@@ -4,6 +4,11 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
+/**
+ * - https://livewire.laravel.com/docs/validation#real-time-validation
+ * - resources\views\frontend\homepage.blade.php
+ * - resources\views\livewire\url-check.blade.php
+ */
 class UrlCheck extends Component
 {
     /**
@@ -12,8 +17,6 @@ class UrlCheck extends Component
     public $keyword;
 
     /**
-     * https://github.com/livewire/livewire/blob/6aaa3ec856/src/ComponentConcerns/ValidatesInput.php#L80
-     *
      * @return array
      */
     public function rules()
