@@ -49,7 +49,7 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Possible Output</td>
-                        <td>( 62<sup>{{config('urlhub.hash_length')}}</sup> ) {{number_format($keyGeneratorService->possibleOutput())}}</td>
+                        <td>( 62<sup>{{config('urlhub.keyword_length')}}</sup> ) {{number_format($keyGeneratorService->possibleOutput())}}</td>
                     </tr>
                     <tr>
                         <td>Generated</td>
@@ -68,7 +68,7 @@
             <table>
                 <tbody>
                     @php
-                        $hashLength = config('urlhub.hash_length');
+                        $hashLength = config('urlhub.keyword_length');
                         $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
                     @endphp
                     <tr>

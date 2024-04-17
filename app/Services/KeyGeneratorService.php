@@ -17,16 +17,16 @@ class KeyGeneratorService
      */
     public function generate(string $value): string
     {
-        $key = $this->generateSimpleString($value);
+        $string = $this->generateSimpleString($value);
 
         if (
-            $this->ensureStringCanBeUsedAsKey($key) === false
-            || strlen($key) < config('urlhub.hash_length')
+            $this->ensureStringCanBeUsedAsKey($string) === false
+            || strlen($string) < config('urlhub.keyword_length')
         ) {
-            $key = $this->generateRandomString();
+            $string = $this->generateRandomString();
         }
 
-        return $key;
+        return $string;
     }
 
     public function generateSimpleString(string $value): string
@@ -35,7 +35,7 @@ class KeyGeneratorService
             // Delete all characters except those in the ALPHABET constant.
             ->replaceMatches('/[^'.self::ALPHABET.']/i', '')
             // Take the specified number of characters from the end of the string.
-            ->substr(config('urlhub.hash_length') * -1)
+            ->substr(config('urlhub.keyword_length') * -1)
             ->lower();
     }
 
@@ -48,7 +48,7 @@ class KeyGeneratorService
     public function generateRandomString(): string
     {
         do {
-            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.hash_length'));
+            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.keyword_length'));
         } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
 
         return $urlKey;
@@ -58,6 +58,8 @@ class KeyGeneratorService
      * Random\Randomizer::getBytesFromString
      *
      * https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
+     *
+     * @codeCoverageIgnore
      */
     public function getBytesFromString(string $alphabet, int $length): string
     {
@@ -120,7 +122,7 @@ class KeyGeneratorService
     public function possibleOutput(): int
     {
         $nChar = strlen(self::ALPHABET);
-        $strLen= config('urlhub.hash_length');
+        $strLen= config('urlhub.keyword_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
@@ -131,9 +133,11 @@ class KeyGeneratorService
         $nPossibleOutput = pow($nChar, $strLen);
 
         if ($nPossibleOutput > PHP_INT_MAX) {
+            // @codeCoverageIgnoreStart
             if (! extension_loaded('gmp')) {
                 throw new \RuntimeException('The "GMP" PHP extension is required.');
             }
+            // @codeCoverageIgnoreEnd
 
             return gmp_intval(gmp_pow($nChar, $strLen));
         }
@@ -142,14 +146,14 @@ class KeyGeneratorService
     }
 
     /**
-     * The number of unique keywords that have been used.
+     * Total number of keywords
      *
-     * The length of the generated string (randomKey) and the length of the
-     * `customKey` string must be identical.
+     * The length of the generated string (random string) and the length of the
+     * reserved string must be identical.
      */
     public function totalKey(): int
     {
-        $hashLength = (int) config('urlhub.hash_length');
+        $hashLength = (int) config('urlhub.keyword_length');
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$hashLength])
             ->count();
