@@ -28,6 +28,16 @@ return [
      */
     'keyword_length' => env('UH_KEYWORD_LENGTH', 5), // >= 1
 
+    /**
+     * Minimum length of keyword to use.
+     */
+    'custom_keyword_min_length' => env('UH_CUSTOM_KEYWORD_MIN_LENGTH', 3),
+
+    /**
+     * Maximum length of keyword to use.
+     */
+    'custom_keyword_max_length' => env('UH_CUSTOM_KEYWORD_MAX_LENGTH', 11),
+
     /*
      * List of non allowed domain.
      *
