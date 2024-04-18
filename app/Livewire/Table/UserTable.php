@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent};
+    Column, Footer, Header, PowerGrid, PowerGridComponent, PowerGridFields};
 
 /**
  * @codeCoverageIgnore
@@ -35,22 +35,22 @@ final class UserTable extends PowerGridComponent
         return User::query();
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('name', function (User $user) {
+        return PowerGrid::fields()
+            ->add('name', function (User $user) {
                 $urlCountTitle = $user->urls()->count().' '.Str::plural('url', $user->urls()->count()).' created';
 
                 return $user->name.' <span title="'.$urlCountTitle.'">('.$user->urls()->count().')</span>';
             })
-            ->addColumn('email')
-            ->addColumn('created_at_formatted', function (User $user) {
+            ->add('email')
+            ->add('created_at_formatted', function (User $user) {
                 return
                     '<span title="'.$user->created_at->toDayDateTimeString().'">'
                         .$user->created_at->shortRelativeDiffForHumans().
                     '</span>';
             })
-            ->addColumn('action', function (User $user) {
+            ->add('action', function (User $user) {
                 return
                     '<a role="button" href="'.route('user.edit', $user).'" title="'.__('Details').'"
                         class="btn btn-secondary btn-sm"
