@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserEmail;
 use App\Models\User;
+use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
-    /**
-     * UserController constructor.
-     */
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('role:admin')->only('view');
+        return [
+            new Middleware('role:admin', only: ['view']),
+        ];
     }
 
     /**

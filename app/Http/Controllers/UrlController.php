@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUrl;
 use App\Models\{Url, User, Visit};
 use App\Services\QrCodeService;
+use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
-class UrlController extends Controller
+class UrlController extends Controller implements HasMiddleware
 {
-    /**
-     * UrlController constructor.
-     */
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('urlhublinkchecker')->only('create');
+        return [
+            new Middleware('urlhublinkchecker', only: ['create']),
+        ];
     }
 
     /**
