@@ -198,13 +198,19 @@ class Url extends Model
     }
 
     /**
+     * Total clicks on all shortened URLs
+     */
+    public function totalClick(): int
+    {
+        return Visit::count();
+    }
+
+    /**
      * Total clicks on all short URLs on each user
      */
-    public function numberOfClicksPerAuthor(): int
+    public function totalClicksOfEachUser(): int
     {
-        // If the user is logged in, get the total clicks on all short URLs from
-        // the user
-        $authorId = auth()->check() ? auth()->id() : $this->author->id;
+        $authorId = auth()->id();
         $url = self::whereUserId($authorId)->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
@@ -213,18 +219,10 @@ class Url extends Model
     /**
      * Total clicks on all short URLs from all guest users
      */
-    public function numberOfClicksFromGuests(): int
+    public function totalClicksFromGuests(): int
     {
         $url = self::whereNull('user_id')->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
-    }
-
-    /**
-     * Total clicks on all shortened URLs
-     */
-    public function totalClick(): int
-    {
-        return Visit::count();
     }
 }

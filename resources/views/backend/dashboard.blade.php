@@ -12,7 +12,7 @@
                 </div>
                 <div class="w-full sm:w-1/4">
                     <span class="font-semibold sm:text-2xl">@svg('icon-bar-chart', 'mr-1.5 text-amber-600') {{__('Clicks')}}:</span>
-                    <span class="font-light sm:text-2xl">{{compactNumber($url->numberOfClicksPerAuthor())}}</span>
+                    <span class="font-light sm:text-2xl">{{compactNumber($url->totalClicksOfEachUser())}}</span>
                 </div>
             </div>
         </div>
