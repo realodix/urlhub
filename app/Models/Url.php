@@ -202,7 +202,6 @@ class Url extends Model
      */
     public function numberOfClicksOfEachUser(): int
     {
-        $authorId = auth()->id();
         $url = self::whereUserId(auth()->id())->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));

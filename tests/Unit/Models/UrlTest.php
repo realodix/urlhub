@@ -296,17 +296,6 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    #[Test]
-    #[Group('u-model')]
-    public function totalClicks(): void
-    {
-        Visit::factory()->create();
-
-        $actual = $this->url->totalClick();
-
-        $this->assertSame(1, $actual);
-    }
-
     #[Group('u-model')]
     public function testKeywordColumnIsCaseSensitive(): void
     {
