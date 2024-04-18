@@ -17,15 +17,15 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Total</td>
-                        <td>{{$url->count()}}</td>
+                        <td>{{$url->count()}} ({{$visit->count()}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Users</td>
-                        <td>{{$url->where('user_id', '!=' , null)->count()}}</td>
+                        <td>{{$url->where('user_id', '!=' , null)->count()}} ({{$visit->count() - $url->numberOfClickFromGuest()}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{$url->numberOfUrlFromGuests()}}</td>
+                        <td>{{$url->numberOfUrlFromGuests()}} ({{$url->numberOfClickFromGuest()}} visits)</td>
                     </tr>
                 </tbody>
             </table>
@@ -69,26 +69,36 @@
                 <tbody>
                     @php
                         $hashLength = config('urlhub.keyword_length');
+                        $customKeywordMinLength = config('urlhub.custom_keyword_min_length');
+                        $customKeywordMaxLength = config('urlhub.custom_keyword_max_length');
                         $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
                     @endphp
                     <tr>
-                        <td class="w-72">Random string length</td>
+                        <td class="w-72"><code>keyword_length</code></td>
                         <td>{{$hashLength.' '.str('character')->plural($hashLength)}}</td>
                     </tr>
                     <tr>
-                        <td>web_title</td>
+                        <td class="w-72"><code>custom_keyword_min_length</code></td>
+                        <td>{{$customKeywordMinLength.' '.str('character')->plural($customKeywordMinLength)}}</td>
+                    </tr>
+                    <tr>
+                        <td class="w-72"><code>custom_keyword_max_length</code></td>
+                        <td>{{$customKeywordMaxLength.' '.str('character')->plural($customKeywordMaxLength)}}</td>
+                    </tr>
+                    <tr>
+                        <td><code>web_title</code></td>
                         <td>{{var_export(config('urlhub.web_title'))}}</td>
                     </tr>
                     <tr>
-                        <td>redirect_status_code</td>
+                        <td><code>redirect_status_code</code></td>
                         <td>{{config('urlhub.redirect_status_code')}}</td>
                     </tr>
                     <tr>
-                        <td>redirect_cache_max_age</td>
+                        <td><code>redirect_cache_max_age</code></td>
                         <td>{{$redirectCacheMaxAge.' '.str('second')->plural($redirectCacheMaxAge)}}</td>
                     </tr>
                     <tr>
-                        <td>track_bot_visits</td>
+                        <td><code>track_bot_visits</code></td>
                         <td>{{var_export(config('urlhub.track_bot_visits'))}}</td>
                     </tr>
                 </tbody>
@@ -98,11 +108,11 @@
             <table>
                 <tbody>
                     <tr>
-                        <td class="w-72">Anyone can shorten the link</td>
+                        <td class="w-72">Create short links</td>
                         <td>{{var_export(config('urlhub.public_site'))}}</td>
                     </tr>
                     <tr>
-                        <td>Anyone can sign up</td>
+                        <td>Sign up</td>
                         <td>{{var_export(config('urlhub.registration'))}}</td>
                     </tr>
                 </tbody>

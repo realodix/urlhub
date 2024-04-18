@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Url, User};
+use App\Models\{Url, User, Visit};
 use App\Services\KeyGeneratorService;
 
 class AboutSystemController extends Controller
@@ -21,6 +21,7 @@ class AboutSystemController extends Controller
         return view('backend.about', [
             'url'  => app(Url::class),
             'user' => app(User::class),
+            'visit' => app(Visit::class),
             'keyGeneratorService' => app(KeyGeneratorService::class),
         ]);
     }
