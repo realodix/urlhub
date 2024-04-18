@@ -62,8 +62,8 @@ hr {
     }
 
     &-primary {
-        @apply text-base font-normal text-white bg-green-700 border-green-800;
-        @apply hover:text-white hover:bg-green-800 active:bg-green-700 hover:border-white;
+        @apply text-base font-normal text-white bg-teal-700 border-teal-800;
+        @apply hover:text-white hover:bg-teal-800 active:bg-teal-700 hover:border-white;
     }
 
     &-secondary {
