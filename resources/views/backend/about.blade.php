@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{$url->numberOfUrlsFromGuests()}}</td>
+                        <td>{{$url->numberOfUrlFromGuests()}}</td>
                     </tr>
                 </tbody>
             </table>

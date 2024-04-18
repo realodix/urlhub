@@ -200,11 +200,16 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function numberOfUrls(): void
+    public function numberOfUrl(): void
     {
-        $url = Url::factory()->create();
+        $user = $this->normalUser();
 
-        $actual = $this->url->numberOfUrls($url->author->id);
+        Url::factory([
+            'user_id' => $user->id,
+        ])->create();
+
+        $this->actingAs($user);
+        $actual = $this->url->numberOfUrl();
 
         $this->assertSame(1, $actual);
     }
@@ -214,11 +219,11 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function numberOfUrlsFromGuests(): void
+    public function numberOfUrlFromGuests(): void
     {
         Url::factory()->create(['user_id' => Url::GUEST_ID]);
 
-        $actual = $this->url->numberOfUrlsFromGuests();
+        $actual = $this->url->numberOfUrlFromGuests();
 
         $this->assertSame(1, $actual);
     }
