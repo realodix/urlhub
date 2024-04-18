@@ -260,7 +260,7 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function totalClicksOfEachUser(): void
+    public function numberOfClicksOfEachUser(): void
     {
         $user = $this->normalUser();
 
@@ -272,7 +272,7 @@ class UrlTest extends TestCase
 
         $this->actingAs($user);
         $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $visit->url->totalClicksOfEachUser();
+        $actual = $visit->url->numberOfClicksOfEachUser();
 
         $this->assertSame($expected, $actual);
         $this->assertSame(1, $actual);
@@ -283,14 +283,14 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function totalClicksFromGuests(): void
+    public function numberOfClickFromGuest(): void
     {
         $visit = Visit::factory()
             ->for(Url::factory()->create(['user_id' => Url::GUEST_ID]))
             ->create();
 
         $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $this->url->totalClicksFromGuests();
+        $actual = $this->url->numberOfClickFromGuest();
 
         $this->assertSame(Url::GUEST_ID, $visit->url->user_id);
         $this->assertSame($expected, $actual);

@@ -20,12 +20,12 @@
                         <td>{{$url->count()}}</td>
                     </tr>
                     <tr>
-                        <td>From Registered Users</td>
+                        <td>From Users</td>
                         <td>{{$url->where('user_id', '!=' , null)->count()}}</td>
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{$url->numberOfUrlsByGuests()}}</td>
+                        <td>{{$url->numberOfUrlsFromGuests()}}</td>
                     </tr>
                 </tbody>
             </table>
