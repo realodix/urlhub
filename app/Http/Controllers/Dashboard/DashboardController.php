@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
 use App\Models\{Url, User};
 use App\Services\KeyGeneratorService;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
@@ -31,7 +32,7 @@ class DashboardController extends Controller
      */
     public function edit(Url $url)
     {
-        $this->authorize('updateUrl', $url);
+        Gate::authorize('updateUrl', $url);
 
         return view('backend.edit', ['url' => $url]);
     }
@@ -66,7 +67,7 @@ class DashboardController extends Controller
      */
     public function delete(Url $url)
     {
-        $this->authorize('forceDelete', $url);
+        Gate::authorize('forceDelete', $url);
 
         $url->delete();
 

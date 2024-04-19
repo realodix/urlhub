@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserEmail;
 use App\Models\User;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -36,7 +37,7 @@ class UserController extends Controller implements HasMiddleware
      */
     public function edit(User $user)
     {
-        $this->authorize('view', $user);
+        Gate::authorize('view', $user);
 
         return view('backend.user.profile', ['user' => $user]);
     }
@@ -52,7 +53,7 @@ class UserController extends Controller implements HasMiddleware
      */
     public function update(UpdateUserEmail $request, User $user)
     {
-        $this->authorize('update', $user);
+        Gate::authorize('update', $user);
 
         $user->email = $request->email;
         $user->save();

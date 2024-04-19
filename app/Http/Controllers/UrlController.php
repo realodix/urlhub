@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUrl;
 use App\Models\{Url, User, Visit};
 use App\Services\QrCodeService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
+use Illuminate\Support\Facades\Gate;
 
 class UrlController extends Controller implements HasMiddleware
 {
@@ -69,7 +70,7 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function delete(Url $url)
     {
-        $this->authorize('forceDelete', $url);
+        Gate::authorize('forceDelete', $url);
 
         $url->delete();
 
