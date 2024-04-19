@@ -6,8 +6,12 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridComponent, PowerGridFields};
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 /**
  * @codeCoverageIgnore

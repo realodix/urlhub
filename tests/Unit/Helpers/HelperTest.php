@@ -3,7 +3,9 @@
 namespace Tests\Unit\Helpers;
 
 use App\Helpers\Helper;
-use PHPUnit\Framework\Attributes\{DataProvider, Group, Test};
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class HelperTest extends TestCase

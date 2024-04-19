@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Url;
-use App\Services\{UrlRedirection, VisitorService};
+use App\Services\UrlRedirection;
+use App\Services\VisitorService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 

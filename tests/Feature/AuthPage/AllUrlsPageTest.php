@@ -3,7 +3,8 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
-use PHPUnit\Framework\Attributes\{Group, Test};
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class AllUrlsPageTest extends TestCase

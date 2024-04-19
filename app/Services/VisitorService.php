@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Helpers\Helper;
-use App\Models\{Url, User, Visit};
+use App\Models\Url;
+use App\Models\User;
+use App\Models\Visit;
 
 class VisitorService
 {
