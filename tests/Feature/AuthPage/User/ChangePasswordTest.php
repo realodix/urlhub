@@ -4,7 +4,9 @@ namespace Tests\Feature\AuthPage\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use PHPUnit\Framework\Attributes\{DataProvider, Group, Test};
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ChangePasswordTest extends TestCase

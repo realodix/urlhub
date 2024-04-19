@@ -4,8 +4,10 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\{Event, Hash};
-use PHPUnit\Framework\Attributes\{Group, Test};
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase

@@ -2,7 +2,8 @@
 
 namespace Tests\Unit\Middleware;
 
-use PHPUnit\Framework\Attributes\{DataProvider, Test};
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UrlHubLinkCheckerTest extends TestCase

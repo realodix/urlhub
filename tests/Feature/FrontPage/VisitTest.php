@@ -2,7 +2,8 @@
 
 namespace Tests\Feature\FrontPage;
 
-use App\Models\{Url, Visit};
+use App\Models\Url;
+use App\Models\Visit;
 use Tests\TestCase;
 
 class VisitTest extends TestCase

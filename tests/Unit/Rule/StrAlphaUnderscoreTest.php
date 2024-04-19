@@ -3,7 +3,8 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\StrAlphaUnderscore;
-use PHPUnit\Framework\Attributes\{Group, Test};
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Support\Helper;
 use Tests\TestCase;
 

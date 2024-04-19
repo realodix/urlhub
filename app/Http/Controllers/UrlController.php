@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUrl;
-use App\Models\{Url, User, Visit};
+use App\Models\Url;
+use App\Models\User;
+use App\Models\Visit;
 use App\Services\QrCodeService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;

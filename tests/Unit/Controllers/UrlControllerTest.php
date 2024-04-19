@@ -3,7 +3,8 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
-use PHPUnit\Framework\Attributes\{Group, Test};
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UrlControllerTest extends TestCase

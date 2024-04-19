@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use Endroid\QrCode\Builder\Builder;
-use Endroid\QrCode\Writer\{PngWriter, SvgWriter};
-use Endroid\QrCode\{ErrorCorrectionLevel, RoundBlockSizeMode};
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\RoundBlockSizeMode;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Writer\SvgWriter;
 
 class QrCodeService
 {

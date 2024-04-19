@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Url, User, Visit};
+use App\Models\Url;
+use App\Models\User;
+use App\Models\Visit;
 use App\Services\KeyGeneratorService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
