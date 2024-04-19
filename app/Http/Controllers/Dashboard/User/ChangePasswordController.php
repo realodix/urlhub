@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserPassword;
 use App\Models\User;
-use Illuminate\Support\Facades\{Gate, Hash};
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
