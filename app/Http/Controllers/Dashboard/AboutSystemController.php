@@ -7,12 +7,15 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use App\Services\KeyGeneratorService;
+use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
-class AboutSystemController extends Controller
+class AboutSystemController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('role:admin');
+        return [
+            new Middleware('role:admin'),
+        ];
     }
 
     /**
