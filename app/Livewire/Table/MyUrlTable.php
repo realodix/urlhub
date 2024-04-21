@@ -7,8 +7,12 @@ use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
-use PowerComponents\LivewirePowerGrid\{
-    Column, Footer, Header, PowerGrid, PowerGridColumns, PowerGridComponent};
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 /**
  * @codeCoverageIgnore
@@ -33,18 +37,18 @@ final class MyUrlTable extends PowerGridComponent
         ];
     }
 
-    public function datasource(): ?Builder
+    public function datasource(): Builder
     {
         return Url::whereUserId(auth()->id());
     }
 
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('keyword', function (Url $url) {
+        return PowerGrid::fields()
+            ->add('keyword', function (Url $url) {
                 return '<a href="'.$url->short_url.'" target="_blank" class="font-light text-sky-800">'.$url->keyword.'</a>';
             })
-            ->addColumn('destination', function (Url $url) {
+            ->add('destination', function (Url $url) {
                 return
                     '<span title="'.htmlspecialchars($url->title).'">'
                         .htmlspecialchars(Str::limit($url->title, self::STR_LIMIT)).
@@ -54,7 +58,7 @@ final class MyUrlTable extends PowerGridComponent
                         .Helper::urlDisplay($url->destination, self::STR_LIMIT).
                     '</a>';
             })
-            ->addColumn('t_clicks', function (Url $url) {
+            ->add('t_clicks', function (Url $url) {
                 $uClick = Helper::compactNumber($url->uniqueClicks);
                 $tClick = Helper::compactNumber($url->clicks);
                 $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-amber-600\')');
@@ -62,13 +66,13 @@ final class MyUrlTable extends PowerGridComponent
 
                 return '<div title="'.$title.'">'.$uClick.' / '.$tClick.$icon.'</div>';
             })
-            ->addColumn('created_at_formatted', function (Url $url) {
+            ->add('created_at_formatted', function (Url $url) {
                 return
                     '<span title="'.$url->created_at->toDayDateTimeString().'">'
                         .$url->created_at->shortRelativeDiffForHumans().
                     '</span>';
             })
-            ->addColumn('action', function (Url $url) {
+            ->add('action', function (Url $url) {
                 return
                     '<a role="button" href="'.route('su_detail', $url->keyword).'" target="_blank" title="'.__('Go to front page').'"
                         class="btn btn-secondary btn-sm"

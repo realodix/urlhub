@@ -14,7 +14,7 @@
             @else
                 <form method="post" action="{{ route('register') }}" aria-label="{{__('Register')}}">
                 @csrf
-                    <label class="text-slate-700">{{__('Username')}}</label>
+                    <label class="form-label">{{__('Username')}}</label>
                     <input type="text" name="name" class="form-input mt-1" id="name" required autofocus>
 
                     @if ($errors->has('name'))
@@ -23,7 +23,7 @@
 
                     <div class="mt-4"></div>
 
-                    <label class="text-slate-700">{{__('Email')}}</label>
+                    <label class="form-label">{{__('Email')}}</label>
                     <input type="email" name="email" class="form-input mt-1" id="email" required>
 
                     @if ($errors->has('email'))
@@ -32,7 +32,7 @@
 
                     <div class="mt-4"></div>
 
-                    <label class="text-slate-700">{{__('Password')}}</label>
+                    <label class="form-label">{{__('Password')}}</label>
                     <input type="password" name="password" class="form-input mt-1" id="password" required>
 
                     @if ($errors->has('password'))
@@ -41,7 +41,7 @@
 
                     <div class="mt-4"></div>
 
-                    <label class="text-slate-700">{{__('Password')}}</label>
+                    <label class="form-label">{{__('Password Confirmation')}}</label>
                     <input type="password" name="password_confirmation" class="form-input mt-1" id="password-confirm" required>
 
                     <div class="flex items-center justify-end mt-8">

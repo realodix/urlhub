@@ -6,7 +6,8 @@ use App\Http\Requests\StoreUrl;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int            $id
@@ -159,19 +160,17 @@ class Url extends Model
 
     /**
      * The number of shortened URLs that have been created by each User
-     *
-     * @param int $userId The ID of the author of the shortened URL
      */
-    public function numberOfUrls(int $userId): int
+    public function numberOfUrl(): int
     {
-        return self::whereUserId($userId)->count();
+        return self::whereUserId(auth()->id())->count();
     }
 
     /**
      * The total number of shortened URLs that have been created by all guest
      * users
      */
-    public function numberOfUrlsByGuests(): int
+    public function numberOfUrlFromGuests(): int
     {
         return self::whereNull('user_id')->count();
     }
@@ -198,33 +197,22 @@ class Url extends Model
     }
 
     /**
-     * Total clicks on all short URLs on each user
+     * The total number of clicks on all short URLs from each User
      */
-    public function numberOfClicksPerAuthor(): int
+    public function numberOfClicksOfEachUser(): int
     {
-        // If the user is logged in, get the total clicks on all short URLs from
-        // the user
-        $authorId = auth()->check() ? auth()->id() : $this->author->id;
-        $url = self::whereUserId($authorId)->get();
+        $url = self::whereUserId(auth()->id())->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
     }
 
     /**
-     * Total clicks on all short URLs from all guest users
+     * The total number of clicks on all short URLs from all guest users
      */
-    public function numberOfClicksFromGuests(): int
+    public function numberOfClickFromGuest(): int
     {
         $url = self::whereNull('user_id')->get();
 
         return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
-    }
-
-    /**
-     * Total clicks on all shortened URLs
-     */
-    public function totalClick(): int
-    {
-        return Visit::count();
     }
 }

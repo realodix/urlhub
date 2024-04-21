@@ -26,18 +26,18 @@
                 <div class="common-card-style">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
-                            <label for="short-url" class="block font-medium text-sm text-slate-700">{{__('Short URL')}}</label>
-                            <span class="short-url">{{urlDisplay($url->short_url, scheme: false)}}</span>
+                            <label for="short-url" class="form-label">{{__('Short URL')}}</label>
+                            <span class="short-url text-uh-blue">{{urlDisplay($url->short_url, scheme: false)}}</span>
                         </div>
 
                         <div class="col-span-6">
-                            <label class="block font-medium text-sm text-slate-700">{{__('Title')}}</label>
+                            <label class="form-label">{{__('Title')}}</label>
                             <input type="text" name="title" placeholder="{{__('Title')}}" required
                                 value="{{$url->title}}" class="form-input">
                         </div>
 
                         <div class="col-span-6">
-                            <label for="long-url" class="block font-medium text-sm text-slate-700">{{__('Destination URL')}}</label>
+                            <label for="long-url" class="form-label">{{__('Destination URL')}}</label>
                             <input id="long-url" type="text" name="long_url" placeholder="http://www.my_long_url.com"
                                 required value="{{$url->destination}}" class="form-input">
                         </div>

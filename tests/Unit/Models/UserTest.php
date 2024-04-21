@@ -2,8 +2,10 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\{Url, User};
-use PHPUnit\Framework\Attributes\{Group, Test};
+use App\Models\Url;
+use App\Models\User;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UserTest extends TestCase

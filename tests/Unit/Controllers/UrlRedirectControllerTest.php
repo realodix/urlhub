@@ -2,8 +2,10 @@
 
 namespace Tests\Unit\Controllers;
 
-use App\Models\{Url, Visit};
-use PHPUnit\Framework\Attributes\{Group, Test};
+use App\Models\Url;
+use App\Models\Visit;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UrlRedirectControllerTest extends TestCase

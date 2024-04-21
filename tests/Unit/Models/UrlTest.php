@@ -2,8 +2,11 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\{Url, User, Visit};
-use PHPUnit\Framework\Attributes\{Group, Test};
+use App\Models\Url;
+use App\Models\User;
+use App\Models\Visit;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UrlTest extends TestCase
@@ -200,11 +203,16 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function numberOfUrls(): void
+    public function numberOfUrl(): void
     {
-        $url = Url::factory()->create();
+        $user = $this->normalUser();
 
-        $actual = $this->url->numberOfUrls($url->author->id);
+        Url::factory([
+            'user_id' => $user->id,
+        ])->create();
+
+        $this->actingAs($user);
+        $actual = $this->url->numberOfUrl();
 
         $this->assertSame(1, $actual);
     }
@@ -214,11 +222,11 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function numberOfUrlsByGuests(): void
+    public function numberOfUrlFromGuests(): void
     {
         Url::factory()->create(['user_id' => Url::GUEST_ID]);
 
-        $actual = $this->url->numberOfUrlsByGuests();
+        $actual = $this->url->numberOfUrlFromGuests();
 
         $this->assertSame(1, $actual);
     }
@@ -260,14 +268,19 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function numberOfClicksPerAuthor(): void
+    public function numberOfClicksOfEachUser(): void
     {
+        $user = $this->normalUser();
+
         $visit = Visit::factory()
-            ->for(Url::factory())
+            ->for(Url::factory([
+                'user_id' => $user->id,
+            ]))
             ->create();
 
+        $this->actingAs($user);
         $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $visit->url->numberOfClicksPerAuthor();
+        $actual = $visit->url->numberOfClicksOfEachUser();
 
         $this->assertSame($expected, $actual);
         $this->assertSame(1, $actual);
@@ -278,28 +291,17 @@ class UrlTest extends TestCase
      */
     #[Test]
     #[Group('u-model')]
-    public function numberOfClicksFromGuests(): void
+    public function numberOfClickFromGuest(): void
     {
         $visit = Visit::factory()
             ->for(Url::factory()->create(['user_id' => Url::GUEST_ID]))
             ->create();
 
         $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $this->url->numberOfClicksFromGuests();
+        $actual = $this->url->numberOfClickFromGuest();
 
         $this->assertSame(Url::GUEST_ID, $visit->url->user_id);
         $this->assertSame($expected, $actual);
-    }
-
-    #[Test]
-    #[Group('u-model')]
-    public function totalClicks(): void
-    {
-        Visit::factory()->create();
-
-        $actual = $this->url->totalClick();
-
-        $this->assertSame(1, $actual);
     }
 
     #[Group('u-model')]

@@ -3,7 +3,8 @@
 namespace Tests\Unit\Services;
 
 use App\Services\QrCodeService;
-use PHPUnit\Framework\Attributes\{Group, Test};
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class QrCodeServiceTest extends TestCase

@@ -11,7 +11,7 @@
                 <h3 class="text-lg font-medium text-slate-900">{{__('Profile Information')}}</h3>
 
                 <p class="mt-1 text-sm text-slate-600">
-                    {{__("Update your account's profile information and email address.")}}
+                    {{__("Update your account's profile information.")}}
                 </p>
             </div>
         </div>
@@ -21,12 +21,12 @@
                 <div class="common-card-style">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
-                            <label class="block font-medium text-sm text-slate-700">{{__('Username')}}</label>
+                            <label class="form-label">{{__('Username')}}</label>
                             <input type="text" name="name" value="{{$user->name}}" class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
                             <small class="block text-red-400"><i>{{__('Usernames cannot be changed.')}}</i></small>
                         </div>
                         <div class="col-span-6 lg:col-span-4">
-                            <label class="block font-medium text-sm text-slate-700">{{__('E-mail Address')}}</label>
+                            <label class="form-label">{{__('E-mail Address')}}</label>
                             <input type="email" name="email" value="{{$user->email}}" class="form-input mt-1">
                         </div>
                     </div>

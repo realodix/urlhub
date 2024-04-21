@@ -2,8 +2,11 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Url\{DomainBlacklist, KeywordBlacklist};
-use PHPUnit\Framework\Attributes\{DataProvider, Group, Test};
+use App\Rules\Url\DomainBlacklist;
+use App\Rules\Url\KeywordBlacklist;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\Support\Helper;
 use Tests\TestCase;
 

@@ -62,8 +62,8 @@ hr {
     }
 
     &-primary {
-        @apply text-base font-normal text-white bg-green-700 border-green-800;
-        @apply hover:text-white hover:bg-green-800 active:bg-green-700 hover:border-white;
+        @apply text-base font-normal text-white bg-teal-700 border-teal-800;
+        @apply hover:text-white hover:bg-teal-800 active:bg-teal-700 hover:border-white;
     }
 
     &-secondary {
@@ -71,11 +71,6 @@ hr {
         @apply text-sky-950 hover:text-sky-700 active:text-sky-950;
         @apply bg-uh-bg-2 hover:bg-stone-200 active:bg-uh-bg-2;
     }
-}
-
-.form-input {
-    @apply block w-full;
-    @apply border-uh-border-color focus:ring-uh-blue-2 focus:border-uh-blue-2 rounded;
 }
 
 .common-card-style {
@@ -116,4 +111,16 @@ hr {
 .auth-card {
     @apply bg-white border-y sm:rounded-lg sm:border border-uh-border-color;
     @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
+}
+
+.form-label {
+    display: block;
+    font-weight: 200;
+    margin: 0 0 6px;
+}
+
+.form-input {
+    @apply block w-full;
+    @apply border-uh-border-color focus:ring-uh-blue-2 focus:border-uh-blue-2 rounded;
+    @apply bg-[#f6f8fa] focus:bg-white;
 }
