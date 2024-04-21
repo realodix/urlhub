@@ -19,10 +19,6 @@ class DashboardController extends Controller
     {
         return view('backend.dashboard', [
             'url'  => app(Url::class),
-            'user' => app(User::class),
-            'keyGeneratorService' => app(
-                \App\Services\KeyGeneratorService::class
-            ),
         ]);
     }
 
