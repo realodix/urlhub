@@ -49,11 +49,11 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Possible Output</td>
-                        <td>( 62<sup>{{config('urlhub.keyword_length')}}</sup> ) {{number_format($keyGeneratorService->possibleOutput())}}</td>
+                        <td>( 62<sup>{{config('urlhub.keyword_length')}}</sup> ) {{number_format($keyGenerator->possibleOutput())}}</td>
                     </tr>
                     <tr>
                         <td>Generated</td>
-                        <td>{{number_format($keyGeneratorService->totalKey())}}</td>
+                        <td>{{number_format($keyGenerator->totalKey())}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUrl;
 use App\Models\Url;
 use App\Models\User;
-use App\Services\KeyGeneratorService;
 use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
@@ -20,8 +19,6 @@ class DashboardController extends Controller
     {
         return view('backend.dashboard', [
             'url'  => app(Url::class),
-            'user' => app(User::class),
-            'keyGeneratorService' => app(KeyGeneratorService::class),
         ]);
     }
 
