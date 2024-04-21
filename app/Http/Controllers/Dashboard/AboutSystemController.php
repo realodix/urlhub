@@ -9,9 +9,7 @@ class AboutSystemController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [
-            new Middleware('role:admin'),
-        ];
+        return [new Middleware('role:admin')];
     }
 
     /**
@@ -23,9 +21,7 @@ class AboutSystemController extends Controller implements HasMiddleware
             'url'  => app(\App\Models\Url::class),
             'user' => app(\App\Models\User::class),
             'visit' => app(\App\Models\Visit::class),
-            'keyGeneratorService' => app(
-                \App\Services\KeyGeneratorService::class
-            ),
+            'keyGenerator' => app(\App\Services\KeyGeneratorService::class),
         ]);
     }
 }
