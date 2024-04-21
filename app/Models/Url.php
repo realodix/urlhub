@@ -6,8 +6,6 @@ use App\Http\Requests\StoreUrl;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int            $id
@@ -68,8 +66,10 @@ class Url extends Model
 
     /**
      * Get the user that owns the Url.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author(): BelongsTo
+    public function author()
     {
         return $this->belongsTo(User::class, 'user_id')
             ->withDefault([
@@ -79,8 +79,10 @@ class Url extends Model
 
     /**
      * Get the visits for the Url.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function visits(): HasMany
+    public function visits()
     {
         return $this->hasMany(Visit::class);
     }
