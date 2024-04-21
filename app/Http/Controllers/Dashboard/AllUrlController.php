@@ -10,9 +10,7 @@ class AllUrlController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [
-            new Middleware('role:admin'),
-        ];
+        return [new Middleware('role:admin')];
     }
 
     /**
