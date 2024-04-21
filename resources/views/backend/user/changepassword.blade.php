@@ -21,12 +21,12 @@
                 <div class="common-card-style">
                     <div class="grid grid-cols-6 gap-6" x-data="{show: true}">
                         <div class="col-span-6 lg:col-span-4">
-                            <label for="current-password" class="block font-medium text-sm text-slate-700">{{__('Your Password')}}</label>
+                            <label for="current-password" class="form-label">{{__('Your Password')}}</label>
                             <input type="password" name="current-password" placeholder="{{__('Enter your password')}}" class="form-input mt-1" required>
                         </div>
 
                         <div class="col-span-6 lg:col-span-4">
-                            <label for="new-password" class="block font-medium text-sm text-slate-700">{{__('New Password')}}</label>
+                            <label for="new-password" class="form-label">{{__('New Password')}}</label>
                             <div class="relative">
                                 <input name="new-password" :type="show ? 'password' : 'text'" placeholder="{{__('Enter a new password')}}" class="form-input mt-1" required>
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
@@ -39,7 +39,7 @@
 
                         <div class="col-span-6 lg:col-span-4">
                             <label for="new-password-confirm"
-                                class="block font-medium text-sm text-slate-700">{{__('Confirmation')}}</label>
+                                class="form-label">{{__('Confirmation')}}</label>
                             <div class="relative">
                                 <input :type="show ? 'password' : 'text'" id="new-password-confirm"
                                     name="new-password_confirmation" aria-label="Retype the new password"

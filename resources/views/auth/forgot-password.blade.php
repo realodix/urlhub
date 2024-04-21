@@ -28,19 +28,20 @@
                 </ul>
             </div>
         @endif
+        <div class="auth-card">
+            <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+                <div>
+                    <label class="form-label">{{ __('Email') }}</label>
+                    <input type="email" name="email" class="form-input" id="email" value="{{ old('email') }}" required autofocus>
+                </div>
 
-        <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-            <div>
-                <label class="block font-medium text-sm text-slate-700">{{ __('Email') }}</label>
-                <input type="email" name="email" class="form-input" id="email" value="{{ old('email') }}" required autofocus>
-            </div>
-
-            <div class="flex items-center justify-center mt-4">
-                <button type="submit" class="btn btn-primary ml-4">
-                    {{ __('Email Password Reset Link') }}
-                </button>
-            </div>
-        </form>
+                <div class="flex items-center justify-center mt-4">
+                    <button type="submit" class="btn btn-primary ml-4">
+                        {{ __('Email Password Reset Link') }}
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection
