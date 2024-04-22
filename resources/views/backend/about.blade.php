@@ -17,15 +17,15 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Total</td>
-                        <td>{{$url->count()}} ({{$visit->count()}} visits)</td>
+                        <td>{{compactNumber($url->count())}} ({{compactNumber($visit->count())}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Users</td>
-                        <td>{{$url->where('user_id', '!=' , null)->count()}} ({{$visit->count() - $url->numberOfClickFromGuest()}} visits)</td>
+                        <td>{{compactNumber($url->where('user_id', '!=' , null)->count())}} ({{compactNumber($visit->count() - $url->numberOfClickFromGuest())}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{$url->numberOfUrlFromGuests()}} ({{$url->numberOfClickFromGuest()}} visits)</td>
+                        <td>{{compactNumber($url->numberOfUrlFromGuests())}} ({{compactNumber($url->numberOfClickFromGuest())}} visits)</td>
                     </tr>
                 </tbody>
             </table>
@@ -35,11 +35,11 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Registered</td>
-                        <td>{{$user->count()}}</td>
+                        <td>{{compactNumber($user->count())}}</td>
                     </tr>
                     <tr>
                         <td>Unregistered</td>
-                        <td>{{$user->totalGuestUsers()}}</td>
+                        <td>{{compactNumber($user->totalGuestUsers())}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -53,7 +53,7 @@
                     </tr>
                     <tr>
                         <td>Generated</td>
-                        <td>{{number_format($keyGenerator->totalKey())}}</td>
+                        <td>{{compactNumber($keyGenerator->totalKey())}}</td>
                     </tr>
                 </tbody>
             </table>
