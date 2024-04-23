@@ -14,17 +14,25 @@
             <div class="card_header__sub_header">Links</div>
             <table>
                 <tbody>
+                    @php
+                        $tUrl = numberAbbreviate($url->count());
+                        $tUrlVisit = numberAbbreviate($visit->count());
+                        $nUrlFromUser = numberAbbreviate($url->where('user_id', '!=' , null)->count());
+                        $nUrlVisitFromUser = numberAbbreviate($visit->count() - $url->numberOfClickFromGuest());
+                        $nUrlFromGuest = numberAbbreviate($url->numberOfUrlFromGuests());
+                        $nUrlVisitFromGuest = numberAbbreviate($url->numberOfClickFromGuest());
+                    @endphp
                     <tr>
                         <td class="w-72">Total</td>
-                        <td>{{numberAbbreviate($url->count())}} ({{numberAbbreviate($visit->count())}} visits)</td>
+                        <td>{{$tUrl}} ({{$tUrlVisit}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Users</td>
-                        <td>{{numberAbbreviate($url->where('user_id', '!=' , null)->count())}} ({{numberAbbreviate($visit->count() - $url->numberOfClickFromGuest())}} visits)</td>
+                        <td>{{$nUrlFromUser}} ({{$nUrlVisitFromUser}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{numberAbbreviate($url->numberOfUrlFromGuests())}} ({{numberAbbreviate($url->numberOfClickFromGuest())}} visits)</td>
+                        <td>{{$nUrlFromGuest}} ({{$nUrlVisitFromGuest}} visits)</td>
                     </tr>
                 </tbody>
             </table>
