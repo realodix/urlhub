@@ -1,6 +1,7 @@
 import forms from '@tailwindcss/forms';
 import presetPowerGrid from './vendor/power-components/livewire-powergrid/tailwind.config.js';
 
+/** @type {import('tailwindcss').Config} */
 export default {
     content: [
         "./resources/**/*.blade.php",
@@ -44,8 +45,6 @@ export default {
         },
     },
     plugins: [
-        forms({
-            strategy: 'class',
-        })
+        forms({strategy: 'class'})
     ],
 };
