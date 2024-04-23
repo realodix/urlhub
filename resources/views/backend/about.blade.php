@@ -56,7 +56,7 @@ use Illuminate\Support\Number;
                     </tr>
                     <tr>
                         <td>Generated</td>
-                        <td>{{compactNumber($keyGenerator->totalKey())}}</td>
+                        <td>{{number_format($keyGenerator->totalKey())}}</td>
                     </tr>
                 </tbody>
             </table>
