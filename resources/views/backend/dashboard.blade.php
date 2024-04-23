@@ -1,7 +1,3 @@
-@php
-use Illuminate\Support\Number;
-@endphp
-
 @extends('layouts.backend')
 
 @section('title', __('Dashboard'))
@@ -10,8 +6,8 @@ use Illuminate\Support\Number;
         <div class="mb-4 p-4 bg-uh-bg-1 border-y sm:rounded-lg sm:border border-uh-border-color">
             <div class="flex flex-wrap">
                 @php
-                    $numberOfUrl = Number::abbreviate($url->numberOfUrl(auth()->id()), maxPrecision: 2);
-                    $numberOfClicks = Number::abbreviate($url->numberOfClicksOfEachUser(), maxPrecision: 2);
+                    $numberOfUrl = numberAbbreviate($url->numberOfUrl(auth()->id()));
+                    $numberOfClicks = numberAbbreviate($url->numberOfClicksOfEachUser());
                 @endphp
 
                 <div class="w-full sm:w-1/4">

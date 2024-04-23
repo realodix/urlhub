@@ -5,7 +5,6 @@ namespace App\Livewire\Table;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
@@ -46,7 +45,7 @@ final class UserTable extends PowerGridComponent
             ->add('name', function (User $user) {
                 $urlCountTitle = $user->urls()->count().' '.Str::plural('url', $user->urls()->count()).' created';
 
-                return $user->name.' <span title="'.$urlCountTitle.'">('.Number::abbreviate($user->urls()->count(), maxPrecision: 2).')</span>';
+                return $user->name.' <span title="'.$urlCountTitle.'">('.numberAbbreviate($user->urls()->count()).')</span>';
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {

@@ -1,7 +1,3 @@
-@php
-use Illuminate\Support\Number;
-@endphp
-
 @extends('layouts.frontend')
 
 @section('css_class', 'frontend view_short')
@@ -20,7 +16,7 @@ use Illuminate\Support\Number;
                         @svg('icon-bar-chart')
                         <i>
                             <span title="{{number_format($url->clicks)}}" class="font-bold">
-                                {{Number::abbreviate($url->clicks, maxPrecision: 2)}}
+                                {{numberAbbreviate($url->clicks)}}
                             </span>
                         </i>
                     </li>

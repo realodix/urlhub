@@ -54,4 +54,12 @@ class HelperTest extends TestCase
             ['www.example.com/abc', 'https://www.example.com/abc'],
         ];
     }
+
+    #[Group('u-helper')]
+    public function testNumberAbbreviate(): void
+    {
+        $this->assertSame('7K', \Illuminate\Support\Number::abbreviate(6789));
+
+        $this->assertSame('6.79K', numberAbbreviate(6789));
+    }
 }
