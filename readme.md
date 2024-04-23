@@ -75,7 +75,7 @@ From the projects root folder run
 - or `composer test`
 - or `./vendor/bin/phpunit`
 
-![screenshot](https://i.imgur.com/88vGleT.png)
+![screenshot](https://github.com/realodix/urlhub/assets/1314456/ae460c2d-77c6-44de-9183-7fca6cf50095)
 
 
 ## Bug Report
