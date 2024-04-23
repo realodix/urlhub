@@ -9,7 +9,7 @@
     <title>@yield('title') | {{config('app.name')}}</title>
 
     @livewireStyles
-    <link rel="stylesheet" media="all" href="{!! mix('css/main.css') !!}"/>
+    @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
 
 <body class="backend">
@@ -19,9 +19,6 @@
         @yield('content')
     </main>
 
-    <script src="{!! mix('js/manifest.js') !!}"></script>
-    <script src="{!! mix('js/vendor.js') !!}"></script>
-    <script src="{!! mix('js/app.js') !!}"></script>
     @livewireScripts
 </body>
 

@@ -1,4 +1,8 @@
-module.exports = {
+import forms from '@tailwindcss/forms';
+import presetPowerGrid from './vendor/power-components/livewire-powergrid/tailwind.config.js';
+
+/** @type {import('tailwindcss').Config} */
+export default {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
@@ -8,7 +12,7 @@ module.exports = {
         "./vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php",
     ],
     presets: [
-        require('./vendor/power-components/livewire-powergrid/tailwind.config.js'),
+        presetPowerGrid,
     ],
     theme: {
         extend: {
@@ -41,8 +45,6 @@ module.exports = {
         },
     },
     plugins: [
-        require("@tailwindcss/forms")({
-            strategy: "class",
-        }),
+        forms({strategy: 'class'})
     ],
 };

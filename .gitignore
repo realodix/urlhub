@@ -1,7 +1,6 @@
 /.tmp
 public/css/*
 public/js/*
-public/mix-manifest.json
 
 ## IDE Local Workspace Folder
 /.idea
