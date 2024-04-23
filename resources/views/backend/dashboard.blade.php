@@ -1,18 +1,17 @@
 @extends('layouts.backend')
 
 @section('title', __('Dashboard'))
-
 @section('content')
     <main>
         <div class="mb-4 p-4 bg-uh-bg-1 border-y sm:rounded-lg sm:border border-uh-border-color">
             <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/4">
                     <span class="font-semibold sm:text-2xl">@svg('icon-link', 'mr-1.5 text-green-700') {{__('Short links')}}:</span>
-                    <span class="font-light sm:text-2xl">{{compactNumber($url->numberOfUrl(auth()->id()))}}</span>
+                    <span class="font-light sm:text-2xl">{{numberAbbreviate($url->numberOfUrl(auth()->id()))}}</span>
                 </div>
                 <div class="w-full sm:w-1/4">
                     <span class="font-semibold sm:text-2xl">@svg('icon-bar-chart', 'mr-1.5 text-amber-600') {{__('Clicks')}}:</span>
-                    <span class="font-light sm:text-2xl">{{compactNumber($url->numberOfClicksOfEachUser())}}</span>
+                    <span class="font-light sm:text-2xl">{{numberAbbreviate($url->numberOfClicksOfEachUser())}}</span>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\Helper;
+use Illuminate\Support\Number;
 
 if (! function_exists('urlDisplay')) {
     /**
@@ -17,15 +18,21 @@ if (! function_exists('urlDisplay')) {
     }
 }
 
-if (! function_exists('compactNumber')) {
+if (! function_exists('numberAbbreviate')) {
     /**
-     * \App\Helpers\Helper::compactNumber()
+     * This is modified version of Laravel Number::abbreviate() method with the
+     * default value of maxPrecision is 2.
      *
-     * @param int $value
-     * @return int|string
+     * - https://laravel.com/docs/11.x/helpers#method-number-abbreviate
+     * - https://github.com/laravel/framework/blob/5d4b26e/src/Illuminate/Support/Number.php#L154
+     *
+     * @param int|float $number
+     * @param int       $precision
+     * @param int|null  $maxPrecision
+     * @return bool|string
      */
-    function compactNumber($value)
+    function numberAbbreviate($number, $precision = 0, $maxPrecision = 2)
     {
-        return Helper::compactNumber($value);
+        return Number::abbreviate($number, $precision, $maxPrecision);
     }
 }

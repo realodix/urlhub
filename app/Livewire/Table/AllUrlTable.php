@@ -64,8 +64,8 @@ final class AllUrlTable extends PowerGridComponent
                     '</a>';
             })
             ->add('t_clicks', function (Url $url) {
-                $uClick = Helper::compactNumber($url->uniqueClicks);
-                $tClick = Helper::compactNumber($url->clicks);
+                $uClick = numberAbbreviate($url->uniqueClicks);
+                $tClick = numberAbbreviate($url->clicks);
                 $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-amber-600\')');
                 $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
 

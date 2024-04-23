@@ -1,7 +1,6 @@
 @extends('layouts.backend')
 
 @section('title', __('About System'))
-
 @section('content')
     <main>
         <div class="text-3xl md:text-4xl text-center">
@@ -15,17 +14,25 @@
             <div class="card_header__sub_header">Links</div>
             <table>
                 <tbody>
+                    @php
+                        $tUrl = numberAbbreviate($url->count());
+                        $tUrlVisit = numberAbbreviate($visit->count());
+                        $nUrlFromUser = numberAbbreviate($url->where('user_id', '!=' , null)->count());
+                        $nUrlVisitFromUser = numberAbbreviate($visit->count() - $url->numberOfClickFromGuest());
+                        $nUrlFromGuest = numberAbbreviate($url->numberOfUrlFromGuests());
+                        $nUrlVisitFromGuest = numberAbbreviate($url->numberOfClickFromGuest());
+                    @endphp
                     <tr>
                         <td class="w-72">Total</td>
-                        <td>{{compactNumber($url->count())}} ({{compactNumber($visit->count())}} visits)</td>
+                        <td>{{$tUrl}} ({{$tUrlVisit}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Users</td>
-                        <td>{{compactNumber($url->where('user_id', '!=' , null)->count())}} ({{compactNumber($visit->count() - $url->numberOfClickFromGuest())}} visits)</td>
+                        <td>{{$nUrlFromUser}} ({{$nUrlVisitFromUser}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{compactNumber($url->numberOfUrlFromGuests())}} ({{compactNumber($url->numberOfClickFromGuest())}} visits)</td>
+                        <td>{{$nUrlFromGuest}} ({{$nUrlVisitFromGuest}} visits)</td>
                     </tr>
                 </tbody>
             </table>
@@ -35,11 +42,11 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Registered</td>
-                        <td>{{compactNumber($user->count())}}</td>
+                        <td>{{numberAbbreviate($user->count())}}</td>
                     </tr>
                     <tr>
                         <td>Unregistered</td>
-                        <td>{{compactNumber($user->totalGuestUsers())}}</td>
+                        <td>{{numberAbbreviate($user->totalGuestUsers())}}</td>
                     </tr>
                 </tbody>
             </table>
