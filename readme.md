@@ -53,13 +53,18 @@ UrlHub is a Laravel application. That means it requires this setup:
    | user@urlhub.test  | user     | user     | User Access  |
 
 
-### Compiling assets with Laravel Mix
+### Bundle application's assets
 
 1. `npm install`
-2. `npm run dev` or `npm run prod`
 
-    *You can watch assets with `npm run watch`*
+2.
+    ```sh
+    # Run the Vite development server...
+    npm run dev
 
+    # Build and version the assets for production...
+    npm run build
+    ```
 
 ## Contributing
 The people who contribute to UrlHub do so for the love of open source, our users and ecosystem, and most importantly, pushing the web forward together. Developers like you can help by contributing to rich and vibrant documentation, issuing pull requests to help us cover niche use cases, and to help sustain what you love about UrlHub.
