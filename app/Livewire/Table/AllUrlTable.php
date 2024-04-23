@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
@@ -64,8 +65,8 @@ final class AllUrlTable extends PowerGridComponent
                     '</a>';
             })
             ->add('t_clicks', function (Url $url) {
-                $uClick = Helper::compactNumber($url->uniqueClicks);
-                $tClick = Helper::compactNumber($url->clicks);
+                $uClick = Number::abbreviate($url->uniqueClicks, maxPrecision: 2);
+                $tClick = Number::abbreviate($url->clicks, maxPrecision: 2);
                 $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-amber-600\')');
                 $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
 

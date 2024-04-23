@@ -1,7 +1,10 @@
+@php
+use Illuminate\Support\Number;
+@endphp
+
 @extends('layouts.frontend')
 
 @section('css_class', 'frontend view_short')
-
 @section('content')
     <div class="max-w-7xl mx-auto mb-12">
         <div class="flex flex-wrap mt-6 lg:mt-8 px-4 sm:p-6">
@@ -17,7 +20,7 @@
                         @svg('icon-bar-chart')
                         <i>
                             <span title="{{number_format($url->clicks)}}" class="font-bold">
-                                {{compactNumber($url->clicks)}}
+                                {{Number::abbreviate($url->clicks, maxPrecision: 2)}}
                             </span>
                         </i>
                     </li>

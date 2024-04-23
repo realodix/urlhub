@@ -1,7 +1,10 @@
+@php
+use Illuminate\Support\Number;
+@endphp
+
 @extends('layouts.backend')
 
 @section('title', __('About System'))
-
 @section('content')
     <main>
         <div class="text-3xl md:text-4xl text-center">
@@ -17,15 +20,15 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Total</td>
-                        <td>{{compactNumber($url->count())}} ({{compactNumber($visit->count())}} visits)</td>
+                        <td>{{Number::abbreviate($url->count(), maxPrecision: 2)}} ({{Number::abbreviate($visit->count(), maxPrecision: 2)}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Users</td>
-                        <td>{{compactNumber($url->where('user_id', '!=' , null)->count())}} ({{compactNumber($visit->count() - $url->numberOfClickFromGuest())}} visits)</td>
+                        <td>{{Number::abbreviate($url->where('user_id', '!=' , null)->count(), maxPrecision: 2)}} ({{Number::abbreviate($visit->count() - $url->numberOfClickFromGuest(), maxPrecision: 2)}} visits)</td>
                     </tr>
                     <tr>
                         <td>From Unregistered Users</td>
-                        <td>{{compactNumber($url->numberOfUrlFromGuests())}} ({{compactNumber($url->numberOfClickFromGuest())}} visits)</td>
+                        <td>{{Number::abbreviate($url->numberOfUrlFromGuests(), maxPrecision: 2)}} ({{Number::abbreviate($url->numberOfClickFromGuest(), maxPrecision: 2)}} visits)</td>
                     </tr>
                 </tbody>
             </table>
@@ -35,11 +38,11 @@
                 <tbody>
                     <tr>
                         <td class="w-72">Registered</td>
-                        <td>{{compactNumber($user->count())}}</td>
+                        <td>{{Number::abbreviate($user->count(), maxPrecision: 2)}}</td>
                     </tr>
                     <tr>
                         <td>Unregistered</td>
-                        <td>{{compactNumber($user->totalGuestUsers())}}</td>
+                        <td>{{Number::abbreviate($user->totalGuestUsers(), maxPrecision: 2)}}</td>
                     </tr>
                 </tbody>
             </table>
