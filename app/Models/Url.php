@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUrl;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * @property int            $id
@@ -30,6 +31,8 @@ class Url extends Model
     const GUEST_ID = null;
 
     const GUEST_NAME = 'Guest';
+
+    const TITLE_LENGTH = 255;
 
     /**
      * The attributes that are mass assignable.
@@ -111,6 +114,20 @@ class Url extends Model
     {
         return Attribute::make(
             set: fn ($value) => rtrim($value, '/'),
+        );
+    }
+
+    protected function title(): Attribute
+    {
+        return Attribute::make(
+            set: function ($value) {
+                if (mb_strlen($value) > self::TITLE_LENGTH) {
+
+                    return Str::limit($value, (self::TITLE_LENGTH - 3), '...');
+                }
+
+                return $value;
+            },
         );
     }
 
