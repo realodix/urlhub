@@ -60,6 +60,7 @@ class HelperTest extends TestCase
     {
         $this->assertSame('7K', \Illuminate\Support\Number::abbreviate(6789));
 
+        $this->assertSame('6.79K', \Illuminate\Support\Number::abbreviate(6789, maxPrecision: 2));
         $this->assertSame('6.79K', numberAbbreviate(6789));
     }
 }
