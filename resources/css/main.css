@@ -61,3 +61,21 @@
         border: none;
     }
 }
+
+
+.page_about {
+    dl {
+        display: grid;
+        grid-gap: 4px 16px;
+        grid-template-columns: max-content;
+    }
+
+    dt {
+        @apply w-56 md:w-64;
+        @apply font-semibold md:font-normal;
+    }
+
+    dd {
+        @apply ms-6 md:col-start-2;
+    }
+}
