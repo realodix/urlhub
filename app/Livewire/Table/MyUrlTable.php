@@ -19,7 +19,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 final class MyUrlTable extends PowerGridComponent
 {
-    const STR_LIMIT = 60;
+    const STR_LIMIT = 100;
 
     public bool $showUpdateMessages = true;
 

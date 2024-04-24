@@ -3,25 +3,23 @@
 @section('css_class', 'frontend view_short')
 @section('content')
     <div class="max-w-7xl mx-auto mb-12">
-        <div class="flex flex-wrap mt-6 lg:mt-8 px-4 sm:p-6">
-            <div class="md:w-9/12">
-                <div class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">{!! $url->title !!}</div>
+        <div class="md:w-9/12 flex flex-wrap mt-6 lg:mt-8 px-4 sm:p-6">
+            <div class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">{!! $url->title !!}</div>
 
-                <ul class="mb-4">
-                    <li class="inline-block pr-4">
-                        @svg('icon-calendar')
-                        <i>{{$url->created_at->toDayDateTimeString()}}</i>
-                    </li>
-                    <li class="inline-block pr-4 mt-4 lg:mt-0">
-                        @svg('icon-bar-chart')
-                        <i>
-                            <span title="{{number_format($url->clicks)}}" class="font-bold">
-                                {{numberAbbreviate($url->clicks)}}
-                            </span>
-                        </i>
-                    </li>
-                </ul>
-            </div>
+            <ul class="mb-4">
+                <li class="inline-block pr-4">
+                    @svg('icon-calendar')
+                    <i>{{$url->created_at->toDayDateTimeString()}}</i>
+                </li>
+                <li class="inline-block pr-4 mt-4 lg:mt-0">
+                    @svg('icon-bar-chart')
+                    <i>
+                        <span title="{{number_format($url->clicks)}}" class="font-bold">
+                            {{numberAbbreviate($url->clicks)}}
+                        </span>
+                    </i>
+                </li>
+            </ul>
         </div>
 
         <div class="common-card-style flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6">

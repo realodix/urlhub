@@ -6,7 +6,7 @@
 
 main {
     @apply py-4 sm:px-6 lg:px-8;
-    @apply max-w-7xl mx-auto;
+    @apply max-w-[100rem] mx-auto;
 }
 
 .frontend, .backend, .auth {
