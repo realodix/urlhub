@@ -75,7 +75,7 @@ hr {
 
 .common-card-style {
     @apply bg-white border-y sm:rounded-lg sm:border border-uh-border-color;
-    @apply px-4 py-5;
+    @apply px-2 md:px-8 py-5;
     /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
 
     .card_header {

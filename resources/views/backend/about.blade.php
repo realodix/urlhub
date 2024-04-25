@@ -2,10 +2,32 @@
 
 @section('title', __('About System'))
 @section('content')
-    <main class="page_about">
-        <div class="text-3xl md:text-4xl text-center">
-            <span class="text-[#ff2d20]">@svg('icon-brand-laravel') {{app()->version()}}</span> -
-            <span class="text-[#4f5b93]">@svg('icon-brand-php') {{phpversion()}}</span>
+    <main class="page_about max-w-4xl">
+        <div class="flex flex-wrap gap-4 mb-4 justify-end">
+            <div class="bg-uh-bg-1 p-6 sm:rounded-lg w-full md:w-2/6
+                border-y border-uh-border-color sm:border-none sm:shadow-md"
+            >
+                <div class="flex flex-row space-x-4 items-center">
+                    <div>
+                        <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
+                        <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
+                            {{phpversion()}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-uh-bg-1 p-6 sm:rounded-lg w-full md:w-2/6
+                border-y border-uh-border-color sm:border-none sm:shadow-md"
+            >
+                <div class="flex flex-row space-x-4 items-center">
+                    <div>
+                        <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
+                        <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
+                            {{app()->version()}}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <br>
