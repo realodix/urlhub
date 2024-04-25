@@ -5,7 +5,7 @@
     <div class="max-w-7xl mx-auto mb-12">
         <div class="flex flex-wrap mt-6 lg:mt-8 px-4 sm:p-6">
             <div class="md:w-9/12">
-                <div class="text-xl break-words sm:text-2xl lg:text-3xl font-bold mb-4">{!! $url->title !!}</div>
+                <div class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">{!! $url->title !!}</div>
 
                 <ul class="mb-4">
                     <li class="inline-block pr-4">
