@@ -120,6 +120,21 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
+    #[Group('u-model')]
+    public function testSetTitleLength(): void
+    {
+        $lengthLimit = Url::TITLE_LENGTH;
+
+        $url = Url::factory()->create(['title' => str_repeat('a', $lengthLimit)]);
+        $this->assertEquals($lengthLimit, strlen($url->title));
+
+        $url = Url::factory()->create(['title' => str_repeat('a', $lengthLimit - 10)]);
+        $this->assertLessThan($lengthLimit, strlen($url->title));
+
+        $url = Url::factory()->create(['title' => str_repeat('a', $lengthLimit + 10)]);
+        $this->assertEquals($lengthLimit, strlen($url->title));
+    }
+
     #[Test]
     #[Group('u-model')]
     public function setMetaTitleAttributeWhenWebTitleSetToFalse(): void

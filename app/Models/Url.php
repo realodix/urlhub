@@ -31,6 +31,8 @@ class Url extends Model
 
     const GUEST_NAME = 'Guest';
 
+    const TITLE_LENGTH = 255;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -111,6 +113,20 @@ class Url extends Model
     {
         return Attribute::make(
             set: fn ($value) => rtrim($value, '/'),
+        );
+    }
+
+    protected function title(): Attribute
+    {
+        return Attribute::make(
+            set: function ($value) {
+                if (mb_strlen($value) > self::TITLE_LENGTH) {
+                    // $limit minus 3 because Str::limit() adds 3 extra characters.
+                    return str($value)->limit(self::TITLE_LENGTH - 3, '...');
+                }
+
+                return $value;
+            },
         );
     }
 
