@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUrl;
+use App\Http\Requests\UpdateUrlRequest;
 use App\Models\Url;
 use Illuminate\Support\Facades\Gate;
 
@@ -37,13 +37,13 @@ class DashboardController extends Controller
     /**
      * Update the destination URL
      *
-     * @param StoreUrl $request \App\Http\Requests\StoreUrl
-     * @param Url      $url     \App\Models\Url
+     * @param UpdateUrlRequest $request \App\Http\Requests\UpdateUrlRequest
+     * @param Url              $url     \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreUrl $request, Url $url)
+    public function update(UpdateUrlRequest $request, Url $url)
     {
         $url->update([
             'destination' => $request->long_url,
