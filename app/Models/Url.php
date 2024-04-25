@@ -6,7 +6,6 @@ use App\Http\Requests\StoreUrl;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * @property int            $id
@@ -122,8 +121,8 @@ class Url extends Model
         return Attribute::make(
             set: function ($value) {
                 if (mb_strlen($value) > self::TITLE_LENGTH) {
-
-                    return Str::limit($value, (self::TITLE_LENGTH - 3), '...');
+                    // $limit minus 3 because Str::limit() adds 3 extra characters.
+                    return str($value)->limit(self::TITLE_LENGTH - 3, '...');
                 }
 
                 return $value;
