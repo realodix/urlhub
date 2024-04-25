@@ -6,7 +6,7 @@ use App\Rules\StrAlphaUnderscore;
 use App\Rules\Url\DomainBlacklist;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUrl extends FormRequest
+class StoreUrlRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +21,7 @@ class StoreUrl extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules()
     {

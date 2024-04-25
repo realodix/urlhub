@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUrl;
+use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
@@ -20,10 +20,10 @@ class UrlController extends Controller implements HasMiddleware
     /**
      * Shorten long URLs.
      *
-     * @param StoreUrl $request \App\Http\Requests\StoreUrl
+     * @param StoreUrlRequest $request \App\Http\Requests\StoreUrlRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function create(StoreUrl $request)
+    public function create(StoreUrlRequest $request)
     {
         $url = Url::create([
             'user_id'     => auth()->id(),

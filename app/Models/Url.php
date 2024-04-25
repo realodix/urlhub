@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Requests\StoreUrl;
+use App\Http\Requests\StoreUrlRequest;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -150,7 +150,7 @@ class Url extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function getKeyword(StoreUrl $request): string
+    public function getKeyword(StoreUrlRequest $request): string
     {
         $keyGen = app(KeyGeneratorService::class);
 
