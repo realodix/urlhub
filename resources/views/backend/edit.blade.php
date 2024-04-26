@@ -18,6 +18,13 @@
                     @svg('icon-calendar', 'mr-1')
                     <span title="{{$url->created_at->toDayDateTimeString()}}">{{$url->created_at->diffForHumans()}}</span>
                 </div>
+
+                @if ($url->created_at != $url->updated_at)
+                <div class="inline sm:block text-sm text-slate-600">
+                    @svg('icon-updated', 'mr-1 font-bold')
+                    <span title="{{$url->updated_at->toDayDateTimeString()}}">{{$url->updated_at->diffForHumans()}}</span>
+                </div>
+                @endif
             </div>
         </div>
         <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
