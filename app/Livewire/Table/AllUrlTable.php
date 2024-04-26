@@ -21,6 +21,8 @@ final class AllUrlTable extends PowerGridComponent
 {
     const STR_LIMIT = 100;
 
+    public int $perPage = 25;
+
     public bool $showUpdateMessages = true;
 
     public string $sortDirection = 'desc';
@@ -32,7 +34,7 @@ final class AllUrlTable extends PowerGridComponent
                 ->showToggleColumns()
                 ->showSearchInput(),
             Footer::make()
-                ->showPerPage()
+                ->showPerPage($this->perPage)
                 ->showRecordCount('full'),
         ];
     }

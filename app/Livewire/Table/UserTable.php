@@ -18,6 +18,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 final class UserTable extends PowerGridComponent
 {
+    public int $perPage = 25;
+
     public bool $showUpdateMessages = true;
 
     public string $sortDirection = 'desc';
@@ -29,7 +31,7 @@ final class UserTable extends PowerGridComponent
                 ->showToggleColumns()
                 ->showSearchInput(),
             Footer::make()
-                ->showPerPage()
+                ->showPerPage($this->perPage)
                 ->showRecordCount('full'),
         ];
     }
