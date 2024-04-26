@@ -1,5 +1,5 @@
 <header class="navbar" x-data="{ open: false }">
-    <div class="flex max-w-[100rem] mx-auto
+    <div class="layout-container flex
         px-4 sm:px-6 lg:px-8 h-16 justify-between"
     >
         <a class="navbar-brand" href="{{ url('/') }}">{{config('app.name')}}</a>

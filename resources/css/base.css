@@ -4,9 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.layout-container {
+    @apply max-w-[90rem] mx-auto;
+}
+
 main {
     @apply py-4 sm:px-6 lg:px-8;
-    @apply max-w-[100rem] mx-auto;
+    @apply layout-container;
 }
 
 .frontend, .backend, .auth {

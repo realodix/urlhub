@@ -19,7 +19,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 final class AllUrlTable extends PowerGridComponent
 {
-    const STR_LIMIT = 100;
+    const STR_LIMIT = 85;
 
     public int $perPage = 25;
 
