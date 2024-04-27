@@ -1,6 +1,9 @@
 <span>
     <input type="text" name="custom_key" wire:model.live="keyword"
-        class="px-2 text-2xl text-orange-400 bg-transparent border-b-4 border-emerald-500 focus:outline-none">
+        class="px-2 text-2xl text-orange-400 bg-transparent border-b-4 border-emerald-500 focus:outline-none
+        {{-- tailwindcss/forms --}}
+        focus:border-emerald-500
+        border-0 focus:ring-inherit">
 
     @error('keyword')
         <br>

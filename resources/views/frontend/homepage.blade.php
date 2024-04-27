@@ -32,7 +32,9 @@
                                 class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
                                     text-xl outline-none
                                     border border-border-uh-border-color focus:border-green-700
-                                    rounded-t-md md:rounded-l-md md:rounded-r-none">
+                                    rounded-t-md md:rounded-l-md md:rounded-r-none
+                                    {{-- tailwindcss/forms --}}
+                                    border-transparent focus:ring-inherit">
                             <button type="submit" id="actProcess"
                                 class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md
                                     text-lg text-white bg-green-700 hover:bg-green-800 focus:uh-blue-2"
