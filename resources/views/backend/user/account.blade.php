@@ -11,7 +11,7 @@
                 <h3 class="text-lg font-medium text-slate-900">{{__('Account Information')}}</h3>
 
                 <p class="mt-1 text-sm text-slate-600">
-                    {{__("Update your account's information.")}}
+                    {{__("Update your account information.")}}
                 </p>
             </div>
         </div>
