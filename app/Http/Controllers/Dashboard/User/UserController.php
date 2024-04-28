@@ -37,7 +37,7 @@ class UserController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $user);
 
-        return view('backend.user.profile', ['user' => $user]);
+        return view('backend.user.account', ['user' => $user]);
     }
 
     /**
@@ -57,6 +57,6 @@ class UserController extends Controller implements HasMiddleware
         $user->save();
 
         return redirect()->back()
-            ->withFlashSuccess(__('Profile updated.'));
+            ->withFlashSuccess(__('Account updated.'));
     }
 }
