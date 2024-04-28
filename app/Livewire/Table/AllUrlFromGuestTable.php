@@ -17,9 +17,9 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 /**
  * @codeCoverageIgnore
  */
-final class AllUrlTable extends PowerGridComponent
+final class AllUrlFromGuestTable extends PowerGridComponent
 {
-    const STR_LIMIT = 85;
+    const STR_LIMIT = 100;
 
     public int $perPage = 25;
 
@@ -41,15 +41,12 @@ final class AllUrlTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Url::where('user_id', '!=', Url::GUEST_ID);
+        return Url::whereUserId(Url::GUEST_ID);
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('user_name', function (Url $url) {
-                return '<span class="font-semibold">'.$url->author->name.'</span>';
-            })
             ->add('keyword', function (Url $url) {
                 return '<a href="'.$url->short_url.'" target="_blank"class="font-light text-sky-800">'.$url->keyword.'</a>';
             })
@@ -105,10 +102,6 @@ final class AllUrlTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Owner', 'user_name', 'users.name')
-                ->sortable()
-                ->searchable(),
-
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),

@@ -24,6 +24,16 @@ class AllUrlController extends Controller implements HasMiddleware
     }
 
     /**
+     * Show all short URLs created by all users.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function viewFromGuest()
+    {
+        return view('backend.all-url-from-guest');
+    }
+
+    /**
      * Delete a Short URL on user (Admin) request.
      *
      * @param Url $url \App\Models\Url
