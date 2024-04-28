@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class ProfileTest extends TestCase
+class AccountTest extends TestCase
 {
     protected function getRoute(mixed $value): string
     {
@@ -19,9 +19,8 @@ class ProfileTest extends TestCase
         return route('user.update', $value);
     }
 
-    #[Test]
     #[Group('f-user')]
-    public function usersCanAccessTheirOwnProfilePage(): void
+    public function testUsersCanAccessTheirOwnAccountPages(): void
     {
         $user = $this->normalUser();
         $response = $this->actingAs($user)
@@ -30,9 +29,8 @@ class ProfileTest extends TestCase
         $response->assertOk();
     }
 
-    #[Test]
     #[Group('f-user')]
-    public function adminCanAccessOtherUsersProfilePages(): void
+    public function testAdminCanAccessEveryUserAccountPage(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get($this->getRoute($this->normalUser()->name));
@@ -40,9 +38,8 @@ class ProfileTest extends TestCase
         $response->assertOk();
     }
 
-    #[Test]
     #[Group('f-user')]
-    public function adminUserCantAccessOtherUsersProfilePages(): void
+    public function testUserCannotAccessAnotherUserSAccountPage(): void
     {
         $response = $this->actingAs($this->normalUser())
             ->get($this->getRoute($this->adminUser()->name));
