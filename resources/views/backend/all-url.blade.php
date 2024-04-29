@@ -12,9 +12,8 @@
                     </span>
                 </div>
                 <div class="w-1/2 text-right">
-                    <a href="{{ url('./') }}" target="_blank" title="{{__('Add URL')}}" class="btn btn-primary">
-                        @svg('icon-add-link', '!h-[1.5em] mr-1')
-                        {{__('Add URL')}}
+                    <a href="{{ route('dashboard.allurl-from-guest') }}" title="{{__('Shortened long links by Guest')}}" class="btn btn-secondary">
+                        {{__('By Guest')}}
                     </a>
                 </div>
             </div>
