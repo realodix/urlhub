@@ -47,7 +47,7 @@ final class AllUrlTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('user_name', function (Url $url) {
+            ->add('author', function (Url $url) {
                 return '<span class="font-semibold">'.$url->author->name.'</span>';
             })
             ->add('keyword', function (Url $url) {
@@ -105,7 +105,7 @@ final class AllUrlTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Owner', 'user_name', 'users.name')
+            Column::make('Owner', 'author')
                 ->sortable()
                 ->searchable(),
 
@@ -129,6 +129,13 @@ final class AllUrlTable extends PowerGridComponent
 
             Column::make('ACTIONS', 'action')
                 ->bodyAttribute(styleAttr: ';padding-left: 8px'),
+        ];
+    }
+
+    public function relationSearch(): array
+    {
+        return [
+            'author' => ['name'],
         ];
     }
 }
