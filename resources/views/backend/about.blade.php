@@ -1,3 +1,5 @@
+@use('App\Services\KeyGeneratorService');
+
 @extends('layouts.backend')
 
 @section('title', __('About System'))
@@ -65,7 +67,14 @@
             <div class="card_header__sub_header">Random String</div>
             <dl>
                 <dt>Possible Output</dt>
-                <dd>( 62<sup>{{config('urlhub.keyword_length')}}</sup> ) {{number_format($keyGenerator->possibleOutput())}}</dd>
+                <dd>
+                    @php
+                        $number = strlen(KeyGeneratorService::ALPHABET);
+                        $powNumber = config('urlhub.keyword_length');
+                        $result = number_format($keyGenerator->possibleOutput());
+                    @endphp
+                    ( {{$number}}<sup>{{$powNumber}}</sup> ) {{$result}}
+                </dd>
 
                 <dt>Generated</dt>
                 <dd>{{number_format($keyGenerator->totalKey())}}</dd>
