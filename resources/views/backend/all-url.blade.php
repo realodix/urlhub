@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('All URLs'))
+@section('title', __('All URLs List'))
 
 @section('content')
     <main>
