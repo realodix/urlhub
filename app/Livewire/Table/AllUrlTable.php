@@ -51,7 +51,7 @@ final class AllUrlTable extends PowerGridComponent
                 return '<span class="font-semibold">'.$url->author->name.'</span>';
             })
             ->add('keyword', function (Url $url) {
-                return '<a href="'.$url->short_url.'" target="_blank"class="font-light text-sky-800">'.$url->keyword.'</a>';
+                return view('components.table.keyword', ['url' => $url])->render();
             })
             ->add('destination', function (Url $url) {
                 return
