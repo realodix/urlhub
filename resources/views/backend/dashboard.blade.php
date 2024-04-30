@@ -4,7 +4,7 @@
 @section('content')
     <main>
         <div class="grid gird-cols-1 md:grid-cols-4 gap-7 mb-8">
-            <div class="bg-uh-bg-1 p-6 sm:rounded-lg
+            <div class="bg-uh-bg-1 p-4 sm:rounded-lg
                 border-y border-uh-border-color sm:border-none sm:shadow-md"
             >
                 <div class="flex flex-row space-x-4 items-center">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-uh-bg-1 p-6 sm:rounded-lg
+            <div class="bg-uh-bg-1 p-4 sm:rounded-lg
                 border-y border-uh-border-color sm:border-none sm:shadow-md"
             >
                 <div class="flex flex-row space-x-4 items-center">
