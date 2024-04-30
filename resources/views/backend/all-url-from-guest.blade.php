@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('All URLs Created By Guests'))
+@section('title', __('All URLs List > Guests'))
 
 @section('content')
     <main>
