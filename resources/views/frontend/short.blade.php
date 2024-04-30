@@ -63,7 +63,7 @@
                 <div class="break-all max-w-2xl mt-2">
                     @svg('arrow-turn-right')
                     <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer" class="redirect-anchor">
-                        {{ urlDisplay($url->destination, limit: 80) }}
+                        {{ $url->destination }}
                     </a>
                 </div>
             </div>
