@@ -2,11 +2,9 @@
 
 namespace App\Livewire\Table;
 
-use App\Helpers\Helper;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -54,16 +52,10 @@ final class AllUrlTable extends PowerGridComponent
                 return view('components.table.keyword', ['url' => $url])->render();
             })
             ->add('destination', function (Url $url) {
-                return
-                    '<span title="'.htmlspecialchars($url->title).'">'
-                        .htmlspecialchars(Str::limit($url->title, self::STR_LIMIT)).
-                    '</span>
-                    <br>
-                    <a href="'.$url->destination.'" target="_blank" title="'.$url->destination.'" rel="noopener noreferrer"
-                        class="text-[#6c6c6c]"
-                    >'
-                        .Helper::urlDisplay($url->destination, self::STR_LIMIT).
-                    '</a>';
+                return view('components.table.destination', [
+                    'url' => $url,
+                    'limit' => self::STR_LIMIT,
+                ])->render();
             })
             ->add('t_clicks', function (Url $url) {
                 $uClick = numberAbbreviate($url->uniqueClicks);
