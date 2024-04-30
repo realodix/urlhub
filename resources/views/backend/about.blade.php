@@ -1,4 +1,4 @@
-@use('App\Services\KeyGeneratorService');
+@use('App\Services\KeyGeneratorService')
 
 @extends('layouts.backend')
 
