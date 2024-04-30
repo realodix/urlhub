@@ -4,7 +4,6 @@ namespace App\Livewire\Table;
 
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Blade;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -69,22 +68,7 @@ final class AllUrlTable extends PowerGridComponent
                 return view('components.table.date-created', ['url' => $url])->render();
             })
             ->add('action', function (Url $url) {
-                return
-                    '<a role="button" href="'.route('su_detail', $url->keyword).'" target="_blank" title="'.__('Open front page').'"
-                        class="btn btn-secondary btn-sm"
-                    >'
-                        .Blade::render('@svg(\'icon-open-in-new\')').
-                    '</a>
-                    <a role="button" href="'.route('dashboard.su_edit', $url).'" title="'.__('Edit').'"
-                        class="btn btn-secondary btn-sm"
-                    >'
-                        .Blade::render('@svg(\'icon-edit-alt\')').
-                    '</a>
-                    <a role="button" href="'.route('dashboard.su_delete', $url).'" title="'.__('Delete').'"
-                        class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700"
-                    >'
-                        .Blade::render('@svg(\'icon-trash-alt\')').
-                    '</a>';
+                return view('components.table.action-button', ['url' => $url])->render();
             });
     }
 
