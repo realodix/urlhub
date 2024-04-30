@@ -60,11 +60,15 @@
                     </a>
                 </span>
 
-                <div class="break-all max-w-2xl mt-2">
-                    @svg('arrow-turn-right')
-                    <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer" class="redirect-anchor">
-                        {{ $url->destination }}
-                    </a>
+                <div class="mt-2">
+                    <div class="flex gap-x-2">
+                        <div class="hidden md:block">@svg('arrow-turn-right')</div>
+                        <div class="break-all max-w-2xl">
+                            <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer" class="redirect-anchor">
+                                {{ $url->destination }}
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
