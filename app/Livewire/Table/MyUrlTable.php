@@ -64,10 +64,7 @@ final class MyUrlTable extends PowerGridComponent
                 return '<div title="'.$title.'">'.$uClick.' / '.$tClick.$icon.'</div>';
             })
             ->add('created_at_formatted', function (Url $url) {
-                return
-                    '<span title="'.$url->created_at->toDayDateTimeString().'">'
-                        .$url->created_at->shortRelativeDiffForHumans().
-                    '</span>';
+                return view('components.table.date-created', ['url' => $url])->render();
             })
             ->add('action', function (Url $url) {
                 return
