@@ -4,9 +4,7 @@
     $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
 @endphp
 
-<div>
-    <div title="{{ $title }}">
-        {{ $uClick }} / {{ $tClick }}
-        @svg('icon-bar-chart', 'ml-2 text-amber-600')
-    </div>
+<div title="{{ $title }}">
+    {{ $uClick }} / {{ $tClick }}
+    @svg('icon-bar-chart', 'ml-2 text-amber-600')
 </div>
