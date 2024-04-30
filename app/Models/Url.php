@@ -29,8 +29,6 @@ class Url extends Model
 
     const GUEST_ID = null;
 
-    const GUEST_NAME = 'Guest';
-
     const TITLE_LENGTH = 255;
 
     /**
@@ -73,10 +71,7 @@ class Url extends Model
      */
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id')
-            ->withDefault([
-                'name' => self::GUEST_NAME,
-            ]);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**

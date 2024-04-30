@@ -55,18 +55,6 @@ class UrlTest extends TestCase
     }
 
     /**
-     * The default guest name must be Guest.
-     */
-    #[Test]
-    #[Group('u-model')]
-    public function defaultGuestName(): void
-    {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
-
-        $this->assertSame(Url::GUEST_NAME, $url->author->name);
-    }
-
-    /**
      * The default guest id must be null.
      */
     #[Test]
