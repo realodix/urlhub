@@ -32,7 +32,7 @@ class UrlFactory extends Factory
             'title'       => 'No Title',
             'keyword'     => app(KeyGeneratorService::class)->generateRandomString(),
             'is_custom'   => false,
-            'user_sign'   => fake()->word(),
+            'user_sign'   => fake()->uuid(),
         ];
     }
 }
