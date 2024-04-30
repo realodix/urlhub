@@ -45,7 +45,8 @@ final class AllUrlFromGuestTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('keyword', function (Url $url) {
-                return view('components.table.keyword', ['url' => $url])->render();
+                return view('components.table.keyword', ['url' => $url])
+                    ->render();
             })
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
@@ -54,13 +55,16 @@ final class AllUrlFromGuestTable extends PowerGridComponent
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
-                return view('components.table.visit', ['url' => $url])->render();
+                return view('components.table.visit', ['url' => $url])
+                    ->render();
             })
             ->add('created_at_formatted', function (Url $url) {
-                return view('components.table.date-created', ['url' => $url])->render();
+                return view('components.table.date-created', ['url' => $url])
+                    ->render();
             })
             ->add('action', function (Url $url) {
-                return view('components.table.action-button', ['url' => $url])->render();
+                return view('components.table.action-button', ['url' => $url])
+                    ->render();
             });
     }
 
