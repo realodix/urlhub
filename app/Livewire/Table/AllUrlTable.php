@@ -57,12 +57,7 @@ final class AllUrlTable extends PowerGridComponent
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
-                $uClick = numberAbbreviate($url->uniqueClicks);
-                $tClick = numberAbbreviate($url->clicks);
-                $icon = Blade::render('@svg(\'icon-bar-chart\', \'ml-2 text-amber-600\')');
-                $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
-
-                return '<div title="'.$title.'">'.$uClick.' / '.$tClick.$icon.'</div>';
+                return view('components.table.visit', ['url' => $url])->render();
             })
             ->add('created_at_formatted', function (Url $url) {
                 return view('components.table.date-created', ['url' => $url])->render();
