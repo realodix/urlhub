@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('All URLs List'))
+@section('title', __('URLs List'))
 
 @section('content')
     <main>
@@ -8,7 +8,7 @@
             <div class="card_header__v2">
                 <div class="w-1/2">
                     <span class="text-2xl text-uh-1">
-                        {{__('All URLs')}}
+                        {{__('List of All URLs')}}
                     </span>
                 </div>
                 <div class="w-1/2 text-right">
@@ -20,7 +20,7 @@
 
             @include('partials/messages')
 
-            @livewire('table.all-url-table')
+            @livewire('table.url-list-table')
         </div>
     </main>
 @endsection

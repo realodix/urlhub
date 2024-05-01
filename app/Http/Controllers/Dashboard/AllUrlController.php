@@ -20,7 +20,7 @@ class AllUrlController extends Controller implements HasMiddleware
      */
     public function view()
     {
-        return view('backend.all-url');
+        return view('backend.url-list');
     }
 
     /**
