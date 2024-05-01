@@ -2,8 +2,8 @@
 @use('Illuminate\Support\Str')
 
 <div>
-    <span title="{{ htmlspecialchars($url->title)}} ">
-        {{ htmlspecialchars(Str::limit($url->title, $limit)) }}
+    <span title="{{ $url->title}} ">
+        {{ Str::limit($url->title, $limit) }}
     </span>
 
     <br>
