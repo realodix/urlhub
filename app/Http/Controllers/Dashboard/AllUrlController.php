@@ -30,7 +30,7 @@ class AllUrlController extends Controller implements HasMiddleware
      */
     public function viewFromGuest()
     {
-        return view('backend.all-url-from-guest');
+        return view('backend.url-list-of-guest');
     }
 
     /**
