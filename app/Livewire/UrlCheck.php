@@ -27,7 +27,7 @@ class UrlCheck extends Component
         return [
             'keyword' => [
                 "min:$minLen", "max:$maxLen", 'unique:App\Models\Url', 'lowercase:field',
-                new \App\Rules\StrAlphaUnderscore,
+                new \App\Rules\AlphaNumHyphen,
                 new \App\Rules\Url\KeywordBlacklist,
             ],
         ];
