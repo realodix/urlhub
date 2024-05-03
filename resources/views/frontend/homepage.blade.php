@@ -50,7 +50,7 @@
                             <span class="block mb-4 font-light">
                                 {{__('Replace clunky URLs with meaningful short links that get more clicks.')}}</span>
                             <div class="inline text-2xl">
-                                {{request()->getHttpHost()}}/ @livewire('custom-keyword-validator')
+                                {{request()->getHttpHost()}}/ @livewire('validation.validate-custom-keyword')
                             </div>
                         </div>
                     </form>
