@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\FrontPage;
 
-use App\Livewire\UrlCheck;
+use App\Livewire\CustomKeywordValidator;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -20,11 +20,11 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * app\Livewire\UrlCheck.php
+     * app\Livewire\CustomKeywordValidator.php
      */
     public function testCustomKeyValidation(): void
     {
-        $component = Livewire::test(UrlCheck::class);
+        $component = Livewire::test(CustomKeywordValidator::class);
 
         $component->assertStatus(200)
             ->set('keyword', '!')
@@ -38,11 +38,11 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * app\Livewire\UrlCheck.php
+     * app\Livewire\CustomKeywordValidator.php
      */
     public function testCustomKeywordLengthValidation(): void
     {
-        $component = Livewire::test(UrlCheck::class);
+        $component = Livewire::test(CustomKeywordValidator::class);
 
         $minLen = 3;
         $maxLen = 7;
