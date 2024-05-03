@@ -7,9 +7,9 @@ use Livewire\Component;
 /**
  * - https://livewire.laravel.com/docs/validation#real-time-validation
  * - resources\views\frontend\homepage.blade.php
- * - resources\views\livewire\url-check.blade.php
+ * - resources\views\livewire\custom-keyword-validator.blade.php
  */
-class UrlCheck extends Component
+class CustomKeywordValidator extends Component
 {
     /**
      * @var string
@@ -47,6 +47,6 @@ class UrlCheck extends Component
      */
     public function render()
     {
-        return view('livewire.url-check');
+        return view('livewire.custom-keyword-validator');
     }
 }
