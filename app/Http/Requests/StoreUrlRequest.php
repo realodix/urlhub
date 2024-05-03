@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\StrAlphaUnderscore;
+use App\Rules\AlphaNumHyphen;
 use App\Rules\Url\DomainBlacklist;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +27,7 @@ class StoreUrlRequest extends FormRequest
     {
         return [
             'long_url'   => ['required', 'url', 'max:65535', new DomainBlacklist],
-            'custom_key' => ['nullable', 'max:20', new StrAlphaUnderscore, 'unique:urls,keyword'],
+            'custom_key' => ['nullable', 'max:20', new AlphaNumHyphen, 'unique:urls,keyword'],
         ];
     }
 

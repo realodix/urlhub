@@ -27,14 +27,18 @@ class ValidationTest extends TestCase
         $component = Livewire::test(ValidateCustomKeyword::class);
 
         $component->assertStatus(200)
-            ->set('keyword', '!')
-            ->assertHasErrors('keyword')
-            ->set('keyword', 'FOO')
-            ->assertHasErrors('keyword')
-            ->set('keyword', 'admin')
-            ->assertHasErrors('keyword')
-            ->set('keyword', 'foo_bar')
+            ->set('keyword', 'foobar')
+            ->assertHasNoErrors('keyword')
+            ->set('keyword', '123456')
+            ->assertHasNoErrors('keyword')
+            ->set('keyword', 'foo-b4r')
             ->assertHasNoErrors('keyword');
+
+        $component
+            ->set('keyword', 'FOOBAR')
+            ->assertHasErrors('keyword')
+            ->set('keyword', 'admin') // Dashboard route
+            ->assertHasErrors('keyword');
     }
 
     /**
