@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\FrontPage;
 
-use App\Livewire\CustomKeywordValidator;
+use App\Livewire\Validation\ValidateCustomKeyword;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -20,11 +20,11 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * app\Livewire\CustomKeywordValidator.php
+     * app\Livewire\Validation\ValidateCustomKeyword.php
      */
     public function testCustomKeyValidation(): void
     {
-        $component = Livewire::test(CustomKeywordValidator::class);
+        $component = Livewire::test(ValidateCustomKeyword::class);
 
         $component->assertStatus(200)
             ->set('keyword', 'foobar')
@@ -42,11 +42,11 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * app\Livewire\CustomKeywordValidator.php
+     * app\Livewire\Validation\ValidateCustomKeyword.php
      */
     public function testCustomKeywordLengthValidation(): void
     {
-        $component = Livewire::test(CustomKeywordValidator::class);
+        $component = Livewire::test(ValidateCustomKeyword::class);
 
         $minLen = 3;
         $maxLen = 7;

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Validation;
 
 use Livewire\Component;
 
 /**
  * - https://livewire.laravel.com/docs/validation#real-time-validation
  * - resources\views\frontend\homepage.blade.php
- * - resources\views\livewire\custom-keyword-validator.blade.php
+ * - resources\views\livewire\validation\validate-custom-keyword.blade.php
  */
-class CustomKeywordValidator extends Component
+class ValidateCustomKeyword extends Component
 {
     /**
      * @var string
@@ -47,6 +47,6 @@ class CustomKeywordValidator extends Component
      */
     public function render()
     {
-        return view('livewire.custom-keyword-validator');
+        return view('livewire.validation.validate-custom-keyword');
     }
 }
