@@ -6,7 +6,7 @@ use App\Livewire\Validation\ValidateCustomKeyword;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class ValidationTest extends TestCase
+class ShorteningUrlValidationTest extends TestCase
 {
     public function testShortUrlGenerationWithIncorrectUrlFormat(): void
     {
