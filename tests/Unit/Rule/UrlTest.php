@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Url\DomainBlacklist;
 use App\Rules\Url\KeywordBlacklist;
+use App\Rules\Url\NotBlacklistedDomain;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
@@ -27,7 +27,7 @@ class UrlTest extends TestCase
     #[DataProvider('domainBlacklistPassDataProvider')]
     public function domainBlacklistPass($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
+        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());
@@ -41,7 +41,7 @@ class UrlTest extends TestCase
     #[DataProvider('domainBlacklistFailDataProvider')]
     public function domainBlacklistFail($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new DomainBlacklist]);
+        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
 
         $this->assertTrue($val->fails());
         $this->assertSame([

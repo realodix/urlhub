@@ -5,7 +5,7 @@ namespace App\Rules\Url;
 use App\Helpers\Helper;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class DomainBlacklist implements ValidationRule
+class NotBlacklistedDomain implements ValidationRule
 {
     /**
      * Run the validation rule.
