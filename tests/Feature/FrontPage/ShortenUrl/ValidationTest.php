@@ -4,7 +4,7 @@ namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Livewire\Validation\ValidateCustomKeyword;
 use Livewire\Livewire;
-use PHPUnit\Framework\Attributes\TestWith;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ValidationTest extends TestCase
@@ -20,11 +20,19 @@ class ValidationTest extends TestCase
             ->assertSessionHasErrors('long_url');
     }
 
+    public static function customKeyPassProvider(): array
+    {
+        return [
+            ['foobar'],
+            ['f0ob4r'],
+            ['foo-bar'],
+        ];
+    }
+
     /**
-     * app\Livewire\Validation\ValidateCustomKeyword.php
+     * app\Http\Requests\StoreUrlRequest.php
      */
-    #[TestWith(['foobar'])]
-    #[TestWith(['foo-bar'])]
+    #[DataProvider('customKeyPassProvider')]
     public function testCustomKeyValidationShouldPass($value): void
     {
         $response = $this->post(route('su_create'), [
@@ -39,8 +47,28 @@ class ValidationTest extends TestCase
     /**
      * app\Livewire\Validation\ValidateCustomKeyword.php
      */
-    #[TestWith(['fooBar'])]
-    #[TestWith(['foo_bar'])]
+    #[DataProvider('customKeyPassProvider')]
+    public function testLivewireCustomKeyValidationShouldPass($value): void
+    {
+        $component = Livewire::test(ValidateCustomKeyword::class);
+
+        $component->assertStatus(200)
+            ->set('keyword', $value)
+            ->assertHasNoErrors('keyword');
+    }
+
+    public static function customKeyFailProvider(): array
+    {
+        return [
+            ['fooBar'],
+            ['foo_bar'],
+        ];
+    }
+
+    /**
+     * app\Http\Requests\StoreUrlRequest.php
+     */
+    #[DataProvider('customKeyFailProvider')]
     public function testCustomKeyValidationShouldFail($value): void
     {
         $response = $this->post(route('su_create'), [
@@ -48,29 +76,18 @@ class ValidationTest extends TestCase
             'custom_key' => $value,
         ]);
 
-        $response
+        $response->assertRedirectToRoute('home')
             ->assertSessionHasErrors('custom_key');
     }
 
     /**
      * app\Livewire\Validation\ValidateCustomKeyword.php
      */
-    public function testLivewireCustomKeyValidation(): void
+    #[DataProvider('customKeyFailProvider')]
+    public function testLivewireCustomKeyValidationShouldFail($value): void
     {
         $component = Livewire::test(ValidateCustomKeyword::class);
-
-        $component->assertStatus(200)
-            ->set('keyword', 'foobar')
-            ->assertHasNoErrors('keyword')
-            ->set('keyword', '123456')
-            ->assertHasNoErrors('keyword')
-            ->set('keyword', 'foo-b4r')
-            ->assertHasNoErrors('keyword');
-
-        $component
-            ->set('keyword', 'FOOBAR')
-            ->assertHasErrors('keyword')
-            ->set('keyword', 'admin') // Dashboard route
+        $component->set('keyword', $value)
             ->assertHasErrors('keyword');
     }
 
