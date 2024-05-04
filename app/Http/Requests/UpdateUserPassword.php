@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\PwdCurrent;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserPassword extends FormRequest
