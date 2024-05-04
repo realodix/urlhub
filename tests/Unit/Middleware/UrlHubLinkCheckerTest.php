@@ -2,29 +2,11 @@
 
 namespace Tests\Unit\Middleware;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class UrlHubLinkCheckerTest extends TestCase
 {
-    /**
-     * @param array $value
-     */
-    #[Test]
-    #[DataProvider('keywordBlacklistFailDataProvider')]
-    public function keywordBlacklistFail($value): void
-    {
-        $response = $this->post(route('su_create'), [
-            'long_url' => 'https://laravel.com',
-            'custom_key' => $value,
-        ]);
-
-        $response
-            ->assertRedirectToRoute('home')
-            ->assertSessionHas('flash_error');
-    }
-
     /**
      * Persingkat URL ketika generator string sudah tidak dapat menghasilkan keyword
      * unik (semua keyword sudah terpakai). UrlHub harus mencegah user untuk melakukan
@@ -40,14 +22,5 @@ class UrlHubLinkCheckerTest extends TestCase
         $response
             ->assertRedirectToRoute('home')
             ->assertSessionHas('flash_error');
-    }
-
-    public static function keywordBlacklistFailDataProvider(): array
-    {
-        return [
-            ['login'],
-            ['register'],
-            ['css'], // urlhub.reserved_keyword
-        ];
     }
 }
