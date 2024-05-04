@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\FrontPage;
+namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Livewire\Validation\ValidateCustomKeyword;
 use Livewire\Livewire;
