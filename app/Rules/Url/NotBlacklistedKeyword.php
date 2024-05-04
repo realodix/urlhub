@@ -9,7 +9,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
  * Check if keyword id is free (ie not already taken, not a URL path, and not
  * reserved).
  */
-class KeywordBlacklist implements ValidationRule
+class NotBlacklistedKeyword implements ValidationRule
 {
     /**
      * Run the validation rule.

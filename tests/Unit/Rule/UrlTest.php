@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Url\KeywordBlacklist;
 use App\Rules\Url\NotBlacklistedDomain;
+use App\Rules\Url\NotBlacklistedKeyword;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
@@ -78,7 +78,7 @@ class UrlTest extends TestCase
     #[DataProvider('customKeywordBlacklistPassDataProvider')]
     public function customKeywordBlacklistPass($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
+        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());
@@ -92,7 +92,7 @@ class UrlTest extends TestCase
     #[DataProvider('customKeywordContainsRegisteredRouteWillFailDataProvider')]
     public function customKeywordContainsRegisteredRouteWillFail($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
+        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
 
         $this->assertTrue($val->fails());
         $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
@@ -103,7 +103,7 @@ class UrlTest extends TestCase
         $value = 'css';
         config(['urlhub.reserved_keyword' => $value]);
 
-        $val = Helper::validator(['foo' => $value], ['foo' => new KeywordBlacklist]);
+        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
 
         $this->assertTrue($val->fails());
         $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
