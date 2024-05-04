@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AlphaNumHyphen;
 use App\Rules\Url\DomainBlacklist;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,16 +25,9 @@ class StoreUrlRequest extends FormRequest
      */
     public function rules()
     {
-        $minLen = config('urlhub.custom_keyword_min_length');
-        $maxLen = config('urlhub.custom_keyword_max_length');
-
         return [
             'long_url'   => ['required', 'url', 'max:65535', new DomainBlacklist],
-            'custom_key' => [
-                "min:$minLen", "max:$maxLen", 'unique:App\Models\Url', 'lowercase:field',
-                new \App\Rules\AlphaNumHyphen,
-                new \App\Rules\Url\KeywordBlacklist,
-            ],
+            'custom_key' => ['nullable', 'max:20', new AlphaNumHyphen, 'unique:urls,keyword'],
         ];
     }
 
