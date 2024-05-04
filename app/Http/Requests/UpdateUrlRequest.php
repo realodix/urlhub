@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Url;
-use App\Rules\Url\DomainBlacklist;
+use App\Rules\NotBlacklistedDomain;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUrlRequest extends FormRequest
@@ -27,7 +27,7 @@ class UpdateUrlRequest extends FormRequest
 
         return [
             'title'    => ["max:{$titleLength}"],
-            'long_url' => ['required', 'url', 'max:65535', new DomainBlacklist],
+            'long_url' => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
         ];
     }
 }

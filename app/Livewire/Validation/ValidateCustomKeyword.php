@@ -28,7 +28,7 @@ class ValidateCustomKeyword extends Component
             'keyword' => [
                 "min:$minLen", "max:$maxLen", 'unique:App\Models\Url', 'lowercase:field',
                 new \App\Rules\AlphaNumHyphen,
-                new \App\Rules\Url\KeywordBlacklist,
+                new \App\Rules\NotBlacklistedKeyword,
             ],
         ];
     }

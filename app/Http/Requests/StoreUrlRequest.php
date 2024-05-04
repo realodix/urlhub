@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\Url\DomainBlacklist;
+use App\Rules\NotBlacklistedDomain;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrlRequest extends FormRequest
@@ -28,12 +28,12 @@ class StoreUrlRequest extends FormRequest
         $maxLen = config('urlhub.custom_keyword_max_length');
 
         return [
-            'long_url'   => ['required', 'url', 'max:65535', new DomainBlacklist],
+            'long_url'   => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',
                 "min:$minLen", "max:$maxLen", 'lowercase',
                 new \App\Rules\AlphaNumHyphen,
-                new \App\Rules\Url\KeywordBlacklist,
+                new \App\Rules\NotBlacklistedKeyword,
             ],
         ];
     }
