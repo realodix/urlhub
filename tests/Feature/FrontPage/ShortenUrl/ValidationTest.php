@@ -62,6 +62,7 @@ class ValidationTest extends TestCase
         return [
             ['fooBar'],
             ['foo_bar'],
+            ['login'], // reserved keyword (route)
         ];
     }
 

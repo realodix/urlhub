@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Services\KeyGeneratorService;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
 class UrlHubLinkChecker
 {
@@ -15,11 +14,6 @@ class UrlHubLinkChecker
      */
     public function handle(Request $request, \Closure $next)
     {
-        if ($this->customKeywordIsAcceptable($request) == false) {
-            return redirect()->back()
-                ->withFlashError(__('Custom keyword not available.'));
-        }
-
         if ($this->canGenerateUniqueRandomKeys() == false) {
             return redirect()->back()
                 ->withFlashError(
@@ -28,27 +22,6 @@ class UrlHubLinkChecker
         }
 
         return $next($request);
-    }
-
-    /**
-     * Check whether the custom keyword is acceptable or not
-     *
-     * - Prevent registered routes from being used as custom keywords.
-     * - Prevent using blacklisted words or reserved keywords as custom keywords.
-     */
-    private function customKeywordIsAcceptable(Request $request): bool
-    {
-        $value = $request->custom_key;
-        $routes = array_map(
-            fn (Route $route) => $route->uri,
-            \Route::getRoutes()->get()
-        );
-
-        if (in_array($value, $routes) || in_array($value, config('urlhub.reserved_keyword'))) {
-            return false;
-        }
-
-        return true;
     }
 
     /**
