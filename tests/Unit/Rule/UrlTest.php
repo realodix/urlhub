@@ -3,7 +3,7 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\NotBlacklistedDomain;
-use App\Rules\Url\NotBlacklistedKeyword;
+use App\Rules\NotBlacklistedKeyword;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
