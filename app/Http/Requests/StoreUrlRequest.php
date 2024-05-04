@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\AlphaNumHyphen;
-use App\Rules\Url\DomainBlacklist;
+use App\Rules\NotBlacklistedDomain;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrlRequest extends FormRequest
@@ -26,7 +26,7 @@ class StoreUrlRequest extends FormRequest
     public function rules()
     {
         return [
-            'long_url'   => ['required', 'url', 'max:65535', new DomainBlacklist],
+            'long_url'   => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
             'custom_key' => ['nullable', 'max:20', new AlphaNumHyphen, 'unique:urls,keyword'],
         ];
     }
