@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules\Url;
+namespace App\Rules;
 
 use App\Helpers\Helper;
 use Illuminate\Contracts\Validation\ValidationRule;

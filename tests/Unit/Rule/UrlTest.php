@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Rule;
 
-use App\Rules\Url\NotBlacklistedDomain;
+use App\Rules\NotBlacklistedDomain;
 use App\Rules\Url\NotBlacklistedKeyword;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;

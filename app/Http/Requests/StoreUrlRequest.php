@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\AlphaNumHyphen;
-use App\Rules\Url\NotBlacklistedDomain;
+use App\Rules\NotBlacklistedDomain;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrlRequest extends FormRequest
