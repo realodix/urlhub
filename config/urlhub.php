@@ -56,7 +56,8 @@ return [
      * example rude words.
      */
     'reserved_keyword' => [
-        'images', 'img', 'fonts',
+        'images',
+        'fonts',
     ],
 
     'web_title' => env('UH_WEB_TITLE', true),
