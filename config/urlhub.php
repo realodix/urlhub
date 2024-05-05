@@ -58,6 +58,7 @@ return [
     'reserved_keyword' => [
         'images',
         'fonts',
+        'storage',
     ],
 
     'web_title' => env('UH_WEB_TITLE', true),
