@@ -66,4 +66,17 @@ class Helper
 
         return $url;
     }
+
+    public static function routeList(): array
+    {
+        $route = array_map(
+            fn (\Illuminate\Routing\Route $route) => $route->uri,
+            \Illuminate\Support\Facades\Route::getRoutes()->get()
+        );
+
+        return collect($route)
+            ->map(fn ($value) => preg_replace('/(\/){.+/', '', $value))
+            ->unique()
+            ->toArray();
+    }
 }

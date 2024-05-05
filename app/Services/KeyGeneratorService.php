@@ -92,14 +92,9 @@ class KeyGeneratorService
      */
     public function ensureStringCanBeUsedAsKey(string $value): bool
     {
-        $route = array_map(
-            fn (\Illuminate\Routing\Route $route) => $route->uri,
-            \Illuminate\Support\Facades\Route::getRoutes()->get()
-        );
-
         $alreadyInUse = Url::whereKeyword($value)->exists();
         $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'));
-        $isRoute = in_array($value, $route);
+        $isRoute = in_array($value, \App\Helpers\Helper::routeList());
         $isPublicPath = in_array($value, scandir(public_path()));
 
         if ($alreadyInUse || $isReservedKeyword || $isRoute || $isPublicPath) {
