@@ -44,6 +44,10 @@ class NotBlacklistedKeywordTest extends TestCase
         return [
             ['login'],
             ['register'],
+
+            // in public folder
+            ['svg'], // folder
+            ['build'], // vite folder
         ];
     }
 
@@ -68,7 +72,7 @@ class NotBlacklistedKeywordTest extends TestCase
     #[Group('u-rule')]
     public function testCustomKeywordIsReservedKeyword(): void
     {
-        $value = 'css';
+        $value = 'reserved_keyword';
         config(['urlhub.reserved_keyword' => [$value]]);
 
         $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
