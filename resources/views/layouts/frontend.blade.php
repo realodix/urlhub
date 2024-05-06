@@ -9,6 +9,7 @@
     <title>{{config('app.name').' - Simplify your links'}}</title>
 
     @livewireStyles
+    @filamentStyles
     @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
 
@@ -18,6 +19,7 @@
     @yield('content')
 
     @livewireScripts
+    @filamentScripts
 </body>
 
 </html>
