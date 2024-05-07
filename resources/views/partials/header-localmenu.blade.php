@@ -30,7 +30,7 @@
                     'text-uh-blue-2 !border-orange-500' :
                     'text-slate-600 hover:border-slate-300'}}"
             >
-                @svg('icon-users', 'mr-1')
+                @svg('icon-people', 'mr-1')
                 <span class="@if ($routeName === 'user.index') text-black @endif">{{__('User List')}}</span>
             </a>
             <a href="{{route('dashboard.about')}}"

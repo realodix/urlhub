@@ -7,7 +7,7 @@
         @svg('icon-link', 'mr-1') {{__('URL List')}}</a>
     <a href="{{route('user.index')}}"
         class="nav-item {{(request()->route()->getName() === 'user.index') ? 'border-l-2 border-orange-500':''}}">
-        @svg('icon-users', 'mr-1') {{__('User List')}}</a>
+        @svg('icon-people', 'mr-1') {{__('User List')}}</a>
     <a href="{{route('dashboard.about')}}"
         class="nav-item {{(request()->route()->getName() === 'dashboard.about') ? 'border-l-2 border-orange-500':''}}">
         @svg('icon-about-system', 'mr-1') {{__('About')}}</a>

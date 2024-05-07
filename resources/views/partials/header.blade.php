@@ -47,7 +47,7 @@
 
                                 <a href="{{route('user.edit', auth()->user()->name)}}"
                                     class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':''}}">
-                                    @svg('icon-user', 'mr-1') {{__('Account')}}</a>
+                                    @svg('icon-person', 'mr-1') {{__('Account')}}</a>
                                 <a href="{{route('user.change-password', auth()->user()->name)}}"
                                     class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-orange-500':''}}">
                                     @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
@@ -125,7 +125,7 @@
                     <!-- Account Management -->
                     <a href="{{route('user.edit', auth()->user()->name)}}"
                         class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':''}}">
-                        @svg('icon-user', 'mr-1') {{__('Account')}}</a>
+                        @svg('icon-person', 'mr-1') {{__('Account')}}</a>
                     <a href="{{route('user.change-password', auth()->user()->name)}}"
                         class="nav-item {{(request()->route()->getName() === 'user.change-password') ? 'border-l-2 border-orange-500':''}}">
                         @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
