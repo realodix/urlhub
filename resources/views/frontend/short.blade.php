@@ -70,6 +70,11 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="mt-20">
+                    @livewire(\App\Livewire\Chart\UrlClickChart::class, ['model' => $url])
+                </div>
+
             </div>
         </div>
     </div>
