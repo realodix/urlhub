@@ -67,6 +67,9 @@ class Helper
         return $url;
     }
 
+    /**
+     * @return array<string>
+     */
     public static function routeList(): array
     {
         $route = array_map(

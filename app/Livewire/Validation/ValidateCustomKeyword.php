@@ -17,7 +17,7 @@ class ValidateCustomKeyword extends Component
     public $keyword;
 
     /**
-     * @return array
+     * @return array<string, array<string|object>>
      */
     public function rules()
     {
