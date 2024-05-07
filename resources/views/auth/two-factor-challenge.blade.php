@@ -25,7 +25,7 @@
 
     <div>
         <label>{{ __('Code') }}</label>
-        <input type="text" name="code" autofocus autocomplete="one-time-code" />
+        <input name="code" autofocus autocomplete="one-time-code" />
     </div>
 
     {{-- ** OR ** --}}
@@ -36,7 +36,7 @@
 
     <div>
         <label>{{ __('Recovery Code') }}</label>
-        <input type="text" name="recovery_code" autocomplete="one-time-code" />
+        <input name="recovery_code" autocomplete="one-time-code" />
     </div>
 
     <div>

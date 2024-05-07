@@ -31,7 +31,7 @@
                     <label for="email" class="form-label">
                         {{__('E-Mail / Username')}}
                     </label>
-                    <input type="text" name="identity" class="form-input mt-1" value="{{ old('identity') }}" required autofocus>
+                    <input name="identity" class="form-input mt-1" value="{{ old('identity') }}" required autofocus>
                 </div>
 
                 <div class="mt-4">

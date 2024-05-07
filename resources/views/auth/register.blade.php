@@ -15,7 +15,7 @@
                 <form method="post" action="{{ route('register') }}" aria-label="{{__('Register')}}">
                 @csrf
                     <label class="form-label">{{__('Username')}}</label>
-                    <input type="text" name="name" class="form-input mt-1" id="name" required autofocus>
+                    <input name="name" class="form-input mt-1" id="name" required autofocus>
 
                     @if ($errors->has('name'))
                         <strong class="text-red-500">{{ $errors->first('name') }}</strong>

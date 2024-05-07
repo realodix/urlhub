@@ -22,7 +22,7 @@
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
                             <label class="form-label">{{__('Username')}}</label>
-                            <input type="text" name="name" value="{{$user->name}}" class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
+                            <input name="name" value="{{$user->name}}" class="form-input bg-slate-100 text-slate-700 mt-1" disabled>
                             <small class="block text-red-400"><i>{{__('Usernames cannot be changed.')}}</i></small>
                         </div>
                         <div class="col-span-6 lg:col-span-4">
