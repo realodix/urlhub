@@ -1,6 +1,2 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Class App\\\\Livewire\\\\Chart\\\\UrlClickChart has an uninitialized property \\$model\\. Give it default value or assign it in the constructor\\.$#"
-			count: 1
-			path: app/Livewire/Chart/UrlClickChart.php
+	ignoreErrors: []
