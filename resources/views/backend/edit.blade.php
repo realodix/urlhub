@@ -39,13 +39,13 @@
 
                         <div class="col-span-6">
                             <label class="form-label">{{__('Title')}}</label>
-                            <input type="text" name="title" placeholder="{{__('Title')}}" required
+                            <input name="title" placeholder="{{__('Title')}}" required
                                 value="{{$url->title}}" class="form-input">
                         </div>
 
                         <div class="col-span-6">
                             <label for="long-url" class="form-label">{{__('Destination URL')}}</label>
-                            <input id="long-url" type="text" name="long_url" placeholder="http://www.my_long_url.com"
+                            <input id="long-url" name="long_url" placeholder="http://www.my_long_url.com"
                                 required value="{{$url->destination}}" class="form-input">
                         </div>
                     </div>
