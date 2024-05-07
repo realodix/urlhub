@@ -30,8 +30,8 @@
                             <div class="relative">
                                 <input name="new-password" :type="show ? 'password' : 'text'" placeholder="{{__('Enter a new password')}}" class="form-input mt-1" required>
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                                    <x-icon-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
-                                    <x-icon-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
+                                    <x-icon-eye-slash x-on:click="show=!show" ::class="{'!hidden': !show, 'block': show}" />
+                                    <x-icon-eye x-on:click="show=!show" ::class="{'block': !show, '!hidden': show}" />
                                 </div>
                             </div>
 
@@ -45,8 +45,8 @@
                                     name="new-password_confirmation" aria-label="Retype the new password"
                                     placeholder="Retype the new password" class="form-input mt-1" required>
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                                    <x-icon-eye x-on:click="show=!show" ::class="{'!hidden': !show, 'block':show}" />
-                                    <x-icon-eye-slash x-on:click="show=!show" ::class="{'block': !show, '!hidden':show}" />
+                                    <x-icon-eye-slash x-on:click="show=!show" ::class="{'!hidden': !show, 'block': show}" />
+                                    <x-icon-eye x-on:click="show=!show" ::class="{'block': !show, '!hidden': show}" />
                                 </div>
                             </div>
                         </div>
