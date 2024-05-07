@@ -1,8 +1,8 @@
 <div>
-    <a role="button" href="{{route('su_detail', $url->keyword)}}" target="_blank" title="{{__('Go to front page')}}"
+    <a role="button" href="{{route('su_detail', $url->keyword)}}" target="_blank" title="{{__('Details')}}"
         class="btn btn-secondary btn-sm"
     >
-        @svg('icon-open-in-new')
+        @svg('icon-chart-line')
     </a>
     <a role="button" href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}"
         class="btn btn-secondary btn-sm"
