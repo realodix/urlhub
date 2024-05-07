@@ -19,16 +19,13 @@ class UrlClickChart extends ChartWidget
     {
         $startDate = now()->subQuarter();
         $endDate = now();
-
-        $carbon = CarbonPeriod::since($startDate)->until($endDate)->toArray();
-        $label = collect($carbon)->map(fn ($date) => $date->format('M d'))->toArray();
+        $carbon = CarbonPeriod::create($startDate, $endDate)->toArray();
+        $label = collect($carbon)->map(fn ($date) => $date->format('M d'))
+            ->toArray();
 
         $visitModel = Visit::where('url_id', $this->model->id);
         $data = Trend::query($visitModel)
-            ->between(
-                start: $startDate,
-                end: $endDate,
-            )
+            ->between(start: $startDate, end: $endDate)
             ->perDay()
             ->count();
 
