@@ -75,8 +75,8 @@ class Helper
         );
 
         return collect($route)
+            // ex. admin/{any} => admin
             ->map(fn ($value) => preg_replace('/(\/){.+/', '', $value))
-            ->unique()
             ->toArray();
     }
 }
