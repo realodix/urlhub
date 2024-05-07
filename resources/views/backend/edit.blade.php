@@ -11,7 +11,7 @@
                 <h3 class="text-lg font-medium text-slate-900">{{__('Edit URL Details')}}</h3>
                 <br>
                 <div class="inline sm:block mr-2 text-sm text-slate-600">
-                    @svg('icon-user', 'mr-1')
+                    @svg('icon-person', 'mr-1')
                     {{$url->author->name}}
                 </div>
                 <div class="inline sm:block text-sm text-slate-600">

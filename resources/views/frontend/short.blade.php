@@ -12,7 +12,7 @@
                     <i>{{$url->created_at->toDayDateTimeString()}}</i>
                 </li>
                 <li class="inline-block pr-4 mt-4 lg:mt-0">
-                    @svg('icon-bar-chart')
+                    @svg('icon-chart-line-alt')
                     <i>
                         <span title="{{number_format($url->clicks)}}" class="font-bold">
                             {{numberAbbreviate($url->clicks)}}

@@ -6,5 +6,5 @@
 
 <div title="{{ $title }}">
     {{ $uClick }} / {{ $tClick }}
-    @svg('icon-bar-chart', 'ml-2 text-amber-600')
+    @svg('icon-chart-line-alt', 'ml-2 text-amber-600')
 </div>

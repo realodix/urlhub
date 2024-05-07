@@ -1,17 +1,17 @@
 <div>
-    <a role="button" href="{{route('su_detail', $url->keyword)}}" target="_blank" title="{{__('Go to front page')}}"
+    <a role="button" href="{{route('su_detail', $url->keyword)}}" target="_blank" title="{{__('Details')}}"
         class="btn btn-secondary btn-sm"
     >
-        @svg('icon-open-in-new')
+        @svg('icon-chart-line')
     </a>
     <a role="button" href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}"
         class="btn btn-secondary btn-sm"
     >
-        @svg('icon-edit-alt')
+        @svg('icon-edit')
     </a>
     <a role="button" href="{{route('dashboard.su_delete', $url)}}" title="{{__('Delete')}}"
         class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700"
     >
-        @svg('icon-trash-alt')
+        @svg('icon-trash')
     </a>
 </div>
