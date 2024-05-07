@@ -12,6 +12,6 @@
     <a role="button" href="{{route('dashboard.su_delete', $url)}}" title="{{__('Delete')}}"
         class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700"
     >
-        @svg('icon-trash-alt')
+        @svg('icon-trash')
     </a>
 </div>
