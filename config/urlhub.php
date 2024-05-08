@@ -56,6 +56,12 @@ return [
      * example rude words.
      */
     'reserved_keyword' => [
+        // Reserved for future use
+        'build', // When Vite is running in development
+        'hot', // When Vite is running in development
+        'vendor', // When installing packages (ex: laravel/telescope)
+
+        // Others
         'images',
         'fonts',
         'storage',
