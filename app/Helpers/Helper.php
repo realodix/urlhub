@@ -68,6 +68,8 @@ class Helper
     }
 
     /**
+     * List of potentially colliding routes with shortened link keywords
+     *
      * @return array<string>
      */
     public static function routeList(): array
@@ -78,8 +80,17 @@ class Helper
         );
 
         return collect($route)
-            // ex. admin/{any} => admin
-            ->map(fn ($value) => preg_replace('/(\/){.+/', '', $value))
+            // ex. foobar/{route_param?} => foobar
+            ->map(fn ($value) => preg_replace('/(\/{)([a-zA-Z]+)(\?})$/', '', $value))
+            // Remove foo/bar
+            ->map(fn ($value) => preg_replace('/^([a-zA-Z-_]+)\/([a-zA-Z-\/{}\.]+)/', '', $value))
+            // Remove '{route_param}' or '+{route_param}'
+            ->map(fn ($value) => preg_replace('/^(\+?)({)([a-zA-Z]+)(})/', '', $value))
+            // Remove '/'
+            ->map(fn ($value) => preg_replace('/\//', '', $value))
+            // Remove empty value
+            ->reject(fn ($value) => empty($value))
+            ->unique()
             ->toArray();
     }
 }
