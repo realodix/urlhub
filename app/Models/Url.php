@@ -152,14 +152,19 @@ class Url extends Model
         return $request->custom_key ?? $keyGen->generate($request->long_url);
     }
 
-    public function getWebTitle(string $webAddress): string
+    /**
+     * Get the title from the web
+     *
+     * @param string $value A webpage's URL
+     */
+    public function getWebTitle(string $value): string
     {
-        $spatieUrl = \Spatie\Url\Url::fromString($webAddress);
+        $spatieUrl = \Spatie\Url\Url::fromString($value);
         $defaultTitle = $spatieUrl->getHost().' - Untitled';
 
         if (config('urlhub.web_title')) {
             try {
-                $title = app(\Embed\Embed::class)->get($webAddress)->title ?? $defaultTitle;
+                $title = app(\Embed\Embed::class)->get($value)->title ?? $defaultTitle;
             } catch (\Exception) {
                 // If failed or not found, then return "{domain_name} - Untitled"
                 $title = $defaultTitle;
@@ -191,7 +196,7 @@ class Url extends Model
     /**
      * Total clicks on each shortened URLs
      *
-     * @param int  $urlId  The ID of the shortened URL
+     * @param int  $urlId  ID of the shortened URL in the URL table
      * @param bool $unique If true, only count unique clicks
      */
     public function numberOfClicks(int $urlId, bool $unique = false): int

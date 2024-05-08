@@ -7,14 +7,14 @@ if (! function_exists('urlDisplay')) {
     /**
      * Display the link according to what You need.
      *
-     * @param string $url
-     * @param int    $limit
-     * @param bool   $scheme
+     * @param string   $value
+     * @param int|null $limit
+     * @param bool     $scheme
      * @return string|\Illuminate\Support\Stringable
      */
-    function urlDisplay($url, $limit = null, $scheme = true)
+    function urlDisplay($value, $limit = null, $scheme = true)
     {
-        return Helper::urlDisplay($url, $limit, $scheme);
+        return Helper::urlDisplay($value, $limit, $scheme);
     }
 }
 

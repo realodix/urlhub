@@ -25,30 +25,30 @@ class Helper
     /**
      * Display the link according to what You need.
      *
-     * @param string $url           URL or Link
-     * @param int    $limit         Length string will be truncated to, including suffix
-     * @param bool   $scheme        Show or remove URL schemes
-     * @param bool   $trailingSlash Show or remove trailing slash
+     * @param string   $value         URL links
+     * @param int|null $limit         Length string will be truncated to, including suffix
+     * @param bool     $scheme        Show or remove URL schemes
+     * @param bool     $trailingSlash Show or remove trailing slash
      */
     public static function urlDisplay(
-        string $url,
+        string $value,
         ?int $limit = null,
         bool $scheme = true,
         bool $trailingSlash = true
     ): string|Stringable {
-        $sUrl = SpatieUrl::fromString($url);
+        $sUrl = SpatieUrl::fromString($value);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
-        $urlLen = strlen($url);
+        $urlLen = strlen($value);
         $limit = $limit ?? $urlLen;
 
         if ($scheme === false) {
-            $url = preg_replace('{^http(s)?://}', '', $url);
+            $value = preg_replace('{^http(s)?://}', '', $value);
             $hostLen = strlen($sUrl->getHost());
-            $urlLen = strlen($url);
+            $urlLen = strlen($value);
         }
 
         if ($trailingSlash === false) {
-            $url = rtrim($url, '/');
+            $value = rtrim($value, '/');
         }
 
         $pathLen = $limit - $hostLen;
@@ -56,15 +56,15 @@ class Helper
         if ($urlLen > $limit) {
             // The length of the string returned by str()->limit() does not include the suffix, so
             // it needs to be adjusted so that the length of the string matches the expected limit.
-            $adjLimit = $limit - (strlen((string) Str::of($url)->limit($limit)) - $limit);
+            $adjLimit = $limit - (strlen((string) Str::of($value)->limit($limit)) - $limit);
 
             $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
             $lastSide = -abs($adjLimit - $firstSide);
 
-            return Str::of($url)->limit($firstSide).substr($url, $lastSide);
+            return Str::of($value)->limit($firstSide).substr($value, $lastSide);
         }
 
-        return $url;
+        return $value;
     }
 
     /**
