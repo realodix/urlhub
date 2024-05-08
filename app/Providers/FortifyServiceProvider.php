@@ -36,7 +36,6 @@ class FortifyServiceProvider extends ServiceProvider
         $this->loginAndRegister();
         $this->register();
         $this->password();
-        $this->twoFactor();
 
         // Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         // Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
@@ -109,18 +108,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::confirmPasswordView(function () {
             return view('auth.confirm-password');
-        });
-    }
-
-    /**
-     * @codeCoverageIgnore
-     *
-     * @return void
-     */
-    private function twoFactor()
-    {
-        Fortify::twoFactorChallengeView(function () {
-            return view('auth.two-factor-challenge');
         });
     }
 }
