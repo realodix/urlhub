@@ -104,6 +104,21 @@
                 <dd>{{$customKeywordMaxLength.' '.str('character')->plural($customKeywordMaxLength)}}</dd>
 
                 @php
+                    $domainBlacklist = collect(config('urlhub.domain_blacklist'))
+                        ->sort()->toArray();
+                @endphp
+                <dt><code>domain_blacklist</code></dt>
+                <dd>
+                    <div class="bg-gray-50 p-2 border border-gray-300 rounded">
+                        @if (! empty($domainBlacklist))
+                            <code>{{implode(", ", $domainBlacklist)}}</code>
+                        @else
+                            <code>None</code>
+                        @endif
+                    </div>
+                </dd>
+
+                @php
                     $reservedKey = collect(config('urlhub.reserved_keyword'))
                         ->sort()->toArray();
                     $rkFromRoute = collect(\App\Helpers\Helper::routeList())
