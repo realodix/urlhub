@@ -78,4 +78,9 @@
     dd {
         @apply ms-6 md:col-start-2;
     }
+
+    .config-value-bool {
+        padding: .2em .4em;
+        @apply bg-gray-100 rounded-sm
+    }
 }

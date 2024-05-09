@@ -123,7 +123,9 @@
                 </dd>
 
                 <dt><code>web_title</code></dt>
-                <dd>{{var_export(config('urlhub.web_title'))}}</dd>
+                <dd>
+                    <code class="config-value-bool">{{var_export(config('urlhub.web_title'))}}</code>
+                </dd>
 
                 <dt><code>redirect_status_code</code></dt>
                 <dd>{{config('urlhub.redirect_status_code')}}</dd>
@@ -132,22 +134,30 @@
                 <dd>{{$redirectCacheMaxAge.' '.str('second')->plural($redirectCacheMaxAge)}}</dd>
 
                 <dt><code>track_bot_visits</code></dt>
-                <dd>{{var_export(config('urlhub.track_bot_visits'))}}</dd>
+                <dd>
+                    <code class="config-value-bool">{{var_export(config('urlhub.track_bot_visits'))}}</code>
+                </dd>
             </dl>
 
             <div class="card_header__sub_header">Guest / Unregistered Users</div>
             <dl>
                 <dt>Create short links</dt>
-                <dd>{{var_export(config('urlhub.public_site'))}}</dd>
+                <dd>
+                    <code class="config-value-bool">{{var_export(config('urlhub.public_site'))}}</code>
+                </dd>
 
                 <dt>Sign up</dt>
-                <dd>{{var_export(config('urlhub.registration'))}}</dd>
+                <dd>
+                    <code class="config-value-bool">{{var_export(config('urlhub.registration'))}}</code>
+                </dd>
             </dl>
 
             <div class="card_header__sub_header">QRCode</div>
             <dl>
                 <dt>Enabled</dt>
-                <dd>{{var_export(config('urlhub.qrcode'))}}</dd>
+                <dd>
+                    <code class="config-value-bool">{{var_export(config('urlhub.qrcode'))}}</code>
+                </dd>
 
                 <dt>Size</dt>
                 <dd>{{config('urlhub.qrcode_size')}} px</dd>
@@ -162,7 +172,9 @@
                 <dd>{{config('urlhub.qrcode_error_correction')}}</dd>
 
                 <dt>Round block</dt>
-                <dd>{{var_export(config('urlhub.qrcode_round_block_size'))}}</dd>
+                <dd>
+                    <code class="config-value-bool">{{var_export(config('urlhub.qrcode_round_block_size'))}}</code>
+                </dd>
             </dl>
         </div>
     </main>
