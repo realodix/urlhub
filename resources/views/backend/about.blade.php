@@ -103,6 +103,14 @@
                 <dt><code>custom_keyword_max_length</code></dt>
                 <dd>{{$customKeywordMaxLength.' '.str('character')->plural($customKeywordMaxLength)}}</dd>
 
+                @php
+                    $reservedKey = collect(config('urlhub.reserved_keyword'))
+                        ->merge(\App\Helpers\Helper::routeList())
+                        ->sort()->toArray();
+                @endphp
+                <dt><code>reserved_keyword</code></dt>
+                <dd>{{implode(", ", $reservedKey)}}</dd>
+
                 <dt><code>web_title</code></dt>
                 <dd>{{var_export(config('urlhub.web_title'))}}</dd>
 
