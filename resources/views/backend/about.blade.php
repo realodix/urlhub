@@ -111,14 +111,14 @@
                 @endphp
                 <dt><code>reserved_keyword</code></dt>
                 <dd>
-                    <div class="bg-gray-100 p-2 rounded">
+                    <div class="bg-gray-50 p-2 border border-gray-300 rounded">
                         <p><b>Config</b></p>
-                        {{implode(", ", $reservedKey)}}
+                        <code>{{implode(", ", $reservedKey)}}</code>
 
                         <br> <br>
 
                         <p><b>Registered routes</b></p>
-                        {{implode(", ", $rkFromRoute)}}
+                        <code>{{implode(", ", $rkFromRoute)}}</code>
                     </div>
                 </dd>
 
