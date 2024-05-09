@@ -1,10 +1,10 @@
 @php
-    $uClick = numberAbbreviate($url->uniqueClicks);
     $tClick = numberAbbreviate($url->clicks);
-    $title = $uClick.' '.__('Uniques').' / '.$tClick.' '.__('Clicks');
+    $uClick = numberAbbreviate($url->uniqueClicks);
+    $title = $tClick.' '.__('Clicks').' / '.$uClick.' '.__('Uniques');
 @endphp
 
 <div title="{{ $title }}">
-    {{ $uClick }} / {{ $tClick }}
+    {{ $tClick }} / {{ $uClick }}
     @svg('icon-chart-line-alt', 'ml-2 text-amber-600')
 </div>
