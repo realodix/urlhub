@@ -109,7 +109,7 @@
                 @endphp
                 <dt><code>domain_blacklist</code></dt>
                 <dd>
-                    <div class="bg-gray-50 p-2 border border-gray-300 rounded">
+                    <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                         @if (! empty($domainBlacklist))
                             <code>{{implode(", ", $domainBlacklist)}}</code>
                         @else
