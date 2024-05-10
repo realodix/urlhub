@@ -124,7 +124,7 @@
                     $rkFromRoute = collect(\App\Helpers\Helper::routeList())
                         ->sort()->toArray();
                 @endphp
-                <dt><code>reserved_keyword</code></dt>
+                <dt>Reserved Keyword</dt>
                 <dd>
                     <div class="bg-gray-50 p-2 border border-gray-300 rounded">
                         <p><b>Config</b></p>
