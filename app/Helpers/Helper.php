@@ -91,6 +91,21 @@ class Helper
             // Remove empty value
             ->reject(fn ($value) => empty($value))
             ->unique()
+            ->sort()
+            ->toArray();
+    }
+
+    /**
+     * Get list of public path
+     */
+    public static function publicPathList(): array
+    {
+        return collect(scandir(public_path()))
+            ->reject(fn ($value) => in_array($value, ['.', '..']))
+            // remove file with extension
+            ->reject(fn ($value) => preg_match('/\.[^.]+/', $value))
+            // remove array value which is in config('urlhub.reserved_keyword')
+            ->reject(fn ($value) => in_array($value, config('urlhub.reserved_keyword')))
             ->toArray();
     }
 }

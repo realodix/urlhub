@@ -121,19 +121,22 @@
                 @php
                     $reservedKey = collect(config('urlhub.reserved_keyword'))
                         ->sort()->toArray();
-                    $rkFromRoute = collect(\App\Helpers\Helper::routeList())
-                        ->sort()->toArray();
                 @endphp
-                <dt><code>reserved_keyword</code></dt>
+                <dt>Reserved Keywords</dt>
                 <dd>
-                    <div class="bg-gray-50 p-2 border border-gray-300 rounded">
+                    <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                         <p><b>Config</b></p>
                         <code>{{implode(", ", $reservedKey)}}</code>
 
                         <br> <br>
 
                         <p><b>Registered routes</b></p>
-                        <code>{{implode(", ", $rkFromRoute)}}</code>
+                        <code>{{implode(", ", \App\Helpers\Helper::routeList())}}</code>
+
+                        <br> <br>
+
+                        <p><b>Public Folder</b></p>
+                        <code>{{implode(", ", \App\Helpers\Helper::publicPathList())}}</code>
                     </div>
                 </dd>
 
