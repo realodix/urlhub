@@ -122,9 +122,9 @@
                     $reservedKey = collect(config('urlhub.reserved_keyword'))
                         ->sort()->toArray();
                 @endphp
-                <dt>Reserved Keyword</dt>
+                <dt>Reserved Keywords</dt>
                 <dd>
-                    <div class="bg-gray-50 p-2 border border-gray-300 rounded">
+                    <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                         <p><b>Config</b></p>
                         <code>{{implode(", ", $reservedKey)}}</code>
 
