@@ -134,6 +134,11 @@
 
                         <p><b>Registered routes</b></p>
                         <code>{{implode(", ", $rkFromRoute)}}</code>
+
+                        <br> <br>
+
+                        <p><b>Public Folder</b></p>
+                        <code>{{implode(", ", \App\Helpers\Helper::publicPathList())}}</code>
                     </div>
                 </dd>
 
