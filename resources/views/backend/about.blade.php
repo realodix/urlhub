@@ -121,8 +121,6 @@
                 @php
                     $reservedKey = collect(config('urlhub.reserved_keyword'))
                         ->sort()->toArray();
-                    $rkFromRoute = collect(\App\Helpers\Helper::routeList())
-                        ->sort()->toArray();
                 @endphp
                 <dt>Reserved Keyword</dt>
                 <dd>
@@ -133,7 +131,7 @@
                         <br> <br>
 
                         <p><b>Registered routes</b></p>
-                        <code>{{implode(", ", $rkFromRoute)}}</code>
+                        <code>{{implode(", ", \App\Helpers\Helper::routeList())}}</code>
 
                         <br> <br>
 

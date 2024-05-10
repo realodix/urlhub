@@ -91,6 +91,7 @@ class Helper
             // Remove empty value
             ->reject(fn ($value) => empty($value))
             ->unique()
+            ->sort()
             ->toArray();
     }
 
