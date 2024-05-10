@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
+use App\Models\User;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
 class AllUrlController extends Controller implements HasMiddleware
@@ -31,6 +32,14 @@ class AllUrlController extends Controller implements HasMiddleware
     public function viewFromGuest()
     {
         return view('backend.url-list-of-guest');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function userLinkView(Url $url)
+    {
+        return view('backend.user-link');
     }
 
     /**
