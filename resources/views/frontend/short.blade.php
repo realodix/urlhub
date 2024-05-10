@@ -29,30 +29,27 @@
                 </div>
             @endif
             <div class="w-full md:w-3/4 mt-8 sm:mt-0">
-                <button id="clipboard_shortlink" class="btn-clipboard btn btn-secondary btn-sm"
-                    title="{{__('Copy the shortened URL to clipboard')}}"
-                    data-clipboard-text="{{$url->short_url}}"
-                >
-                    @svg('icon-clone', 'mr-1') {{__('Copy')}}
-                </button>
+                <div class="text-right pr-6">
+                    <button id="clipboard_shortlink" class="mr-6 hover:text-indigo-600"
+                        title="{{__('Copy the shortened URL to clipboard')}}"
+                        data-clipboard-text="{{$url->short_url}}"
+                    >
+                        @svg('icon-clone', 'mr-1')
+                    </button>
 
-                @auth
-                    @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
-                        <button class="btn btn-secondary btn-sm">
-                            <a href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}">
-                                @svg('icon-edit') {{__('Edit')}}
+                    @auth
+                        @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
+                            <a href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}" class="mr-6 hover:text-indigo-600">
+                                @svg('icon-edit')
                             </a>
-                        </button>
-
-                        <button class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700">
-                            <a href="{{route('su_delete', $url)}}" title="{{__('Delete')}}">
-                                @svg('icon-trash') {{__('Delete')}}
+                            <a href="{{route('su_delete', $url)}}" title="{{__('Delete')}}" class="hover:text-red-600">
+                                @svg('icon-trash')
                             </a>
-                        </button>
-                    @endif
-                @endauth
+                        @endif
+                    @endauth
+                </div>
 
-                <br> <br>
+                <br>
 
                 <span class="font-bold text-uh-blue-2 text-xl sm:text-2xl">
                     <a href="{{ $url->short_url }}" target="_blank" id="copy">
