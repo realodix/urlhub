@@ -80,7 +80,7 @@
     }
 
     .config-value-bool {
-        padding: .2em .4em;
-        @apply bg-gray-100 rounded-sm
+        padding: .1em .2em;
+        @apply bg-gray-100 rounded
     }
 }

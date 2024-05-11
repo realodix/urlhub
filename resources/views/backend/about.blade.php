@@ -107,8 +107,8 @@
                     $domainBlacklist = collect(config('urlhub.domain_blacklist'))
                         ->sort()->toArray();
                 @endphp
-                <dt><code>domain_blacklist</code></dt>
-                <dd>
+                <dt class="mt-2"><code>domain_blacklist</code></dt>
+                <dd class="mt-2">
                     <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                         @if (! empty($domainBlacklist))
                             <code>{{implode(", ", $domainBlacklist)}}</code>
@@ -122,8 +122,8 @@
                     $reservedKey = collect(config('urlhub.reserved_keyword'))
                         ->sort()->toArray();
                 @endphp
-                <dt>Reserved Keywords</dt>
-                <dd>
+                <dt class="mt-2 mb-2">Reserved Keywords</dt>
+                <dd class="mt-2 mb-2">
                     <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                         <p><b>Config</b></p>
                         <code>{{implode(", ", $reservedKey)}}</code>
