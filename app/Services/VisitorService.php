@@ -25,6 +25,7 @@ class VisitorService
     {
         $logBotVisit = config('urlhub.track_bot_visits');
         $dd = Helper::deviceDetector();
+        // Gunakan use statement
         $referer = request()->header('referer');
 
         if ($logBotVisit === false && $dd->isBot() === true) {
@@ -56,6 +57,8 @@ class VisitorService
 
     /**
      * Get the referer host.
+     *
+     * Only input the URL host into the referer column
      */
     public function getRefererHost(?string $value): ?string
     {
