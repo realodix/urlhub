@@ -24,7 +24,7 @@ class AllUrlController extends Controller implements HasMiddleware
     }
 
     /**
-     * Show all short URLs created by all users.
+     * Show all short URLs created by guest.
      *
      * @return \Illuminate\Contracts\View\View
      */
