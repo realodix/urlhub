@@ -48,7 +48,7 @@ class Url extends Model
     /**
      * Get the attributes that should be cast.
      *
-     * @return array<string, string>
+     * @return array{user_id: 'integer', is_custom: 'boolean'}
      */
     protected function casts(): array
     {
