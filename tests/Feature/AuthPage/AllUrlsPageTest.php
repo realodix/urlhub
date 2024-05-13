@@ -18,7 +18,7 @@ class AllUrlsPageTest extends TestCase
         $response->assertOk();
 
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dashboard.allurl-from-guest'));
+            ->get(route('dashboard.allurl.u-guest'));
         $response->assertOk();
     }
 
@@ -31,7 +31,7 @@ class AllUrlsPageTest extends TestCase
         $response->assertForbidden();
 
         $response = $this->actingAs($this->normalUser())
-            ->get(route('dashboard.allurl-from-guest'));
+            ->get(route('dashboard.allurl.u-guest'));
         $response->assertForbidden();
     }
 
