@@ -35,11 +35,18 @@ class AllUrlController extends Controller implements HasMiddleware
     }
 
     /**
+     * Show all short links from specific user.
+     *
      * @return \Illuminate\Contracts\View\View
      */
-    public function userLinkView(Url $url)
+    public function userLinkView(string $author)
     {
-        return view('backend.user-link');
+        $authorId = User::where('name', $author)->first()->id;
+
+        return view('backend.user-link', [
+            'authorName' => $author,
+            'authorId' => $authorId
+        ]);
     }
 
     /**

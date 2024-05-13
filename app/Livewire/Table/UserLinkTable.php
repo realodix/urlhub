@@ -18,6 +18,8 @@ final class UserLinkTable extends PowerGridComponent
 {
     const STR_LIMIT = 95;
 
+    public int $user_id;
+
     public int $perPage = 25;
 
     public bool $showUpdateMessages = true;
@@ -38,7 +40,7 @@ final class UserLinkTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Url::whereUserId(auth()->id());
+        return Url::where('user_id', $this->user_id);
     }
 
     public function fields(): PowerGridFields
