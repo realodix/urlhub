@@ -25,16 +25,6 @@ class AllUrlController extends Controller implements HasMiddleware
     }
 
     /**
-     * Show all short URLs created by all users.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function guestLinkView()
-    {
-        return view('backend.url-list-of-guest');
-    }
-
-    /**
      * Show all short links from specific user.
      *
      * @return \Illuminate\Contracts\View\View
@@ -43,10 +33,20 @@ class AllUrlController extends Controller implements HasMiddleware
     {
         $authorId = User::where('name', $author)->first()->id;
 
-        return view('backend.user-link', [
+        return view('backend.url-list-of-user', [
             'authorName' => $author,
-            'authorId' => $authorId
+            'authorId' => $authorId,
         ]);
+    }
+
+    /**
+     * Show all short URLs created by all users.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function guestLinkView()
+    {
+        return view('backend.url-list-of-guest');
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Links > Guests'))
+@section('title', __('Links').'  >  '. $authorName)
 
 @section('content')
     <main>
@@ -15,7 +15,7 @@
 
             @include('partials/messages')
 
-            @livewire('table.user-link-table', ['user_id' => $authorId])
+            @livewire('table.UrlListOfUsersTable', ['user_id' => $authorId])
         </div>
     </main>
 @endsection

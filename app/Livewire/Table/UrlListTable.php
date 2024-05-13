@@ -45,7 +45,8 @@ final class UrlListTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('author', function (Url $url) {
-                return '<span class="font-semibold"><a href="'.route('dashboard.allurl.u-user', $url->author->name).'">'.$url->author->name.'</a></span>';
+                return view('components.table.author', ['url' => $url])
+                    ->render();
             })
             ->add('keyword', function (Url $url) {
                 return view('components.table.keyword', ['url' => $url])
