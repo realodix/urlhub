@@ -12,7 +12,7 @@
                     </span>
                 </div>
                 <div class="w-1/2 text-right">
-                    <a href="{{ route('dashboard.allurl-from-guest') }}" title="{{__('Shortened long links by Guest')}}" class="btn btn-secondary">
+                    <a href="{{ route('dashboard.allurl.u-guest') }}" title="{{__('Shortened long links by Guest')}}" class="btn btn-secondary">
                         {{__('By Guest')}}
                     </a>
                 </div>
