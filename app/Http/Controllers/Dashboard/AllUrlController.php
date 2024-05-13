@@ -29,7 +29,7 @@ class AllUrlController extends Controller implements HasMiddleware
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function viewFromGuest()
+    public function guestLinkView()
     {
         return view('backend.url-list-of-guest');
     }
