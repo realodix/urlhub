@@ -31,11 +31,9 @@ class AllUrlController extends Controller implements HasMiddleware
      */
     public function userLinkView(string $author)
     {
-        $authorId = User::where('name', $author)->first()->id;
-
         return view('backend.url-list-of-user', [
             'authorName' => $author,
-            'authorId' => $authorId,
+            'authorId' => User::where('name', $author)->first()->id,
         ]);
     }
 
