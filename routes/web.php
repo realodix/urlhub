@@ -26,6 +26,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::get('/allurl', [AllUrlController::class, 'view'])->name('dashboard.allurl');
         Route::get('/allurl/delete/{url:keyword}', [AllUrlController::class, 'delete'])->name('dashboard.allurl.su_delete');
         Route::get('/allurl/u/guest', [AllUrlController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
+        Route::get('/allurl/u/{user:name}', [AllUrlController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {

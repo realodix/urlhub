@@ -16,10 +16,6 @@ class AllUrlsPageTest extends TestCase
         $response = $this->actingAs($this->adminUser())
             ->get(route('dashboard.allurl'));
         $response->assertOk();
-
-        $response = $this->actingAs($this->adminUser())
-            ->get(route('dashboard.allurl.u-guest'));
-        $response->assertOk();
     }
 
     #[Test]
@@ -29,8 +25,38 @@ class AllUrlsPageTest extends TestCase
         $response = $this->actingAs($this->normalUser())
             ->get(route('dashboard.allurl'));
         $response->assertForbidden();
+    }
 
-        $response = $this->actingAs($this->normalUser())
+    /**
+     * Admin can access user links and guest links table page
+     */
+    #[Group('f-allurl')]
+    public function testAdminCanAccessUserLinksTablePage(): void
+    {
+        $user = $this->adminUser();
+
+        $response = $this->actingAs($user)
+            ->get(route('dashboard.allurl.u-user', $user->name));
+        $response->assertOk();
+
+        $response = $this->actingAs($user)
+            ->get(route('dashboard.allurl.u-guest'));
+        $response->assertOk();
+    }
+
+    /**
+     * Non admin users can't access user links and guest links table page
+     */
+    #[Group('f-allurl')]
+    public function testNonAdminUsersCantAccessUserLinksTablePage(): void
+    {
+        $user = $this->normalUser();
+
+        $response = $this->actingAs($user)
+            ->get(route('dashboard.allurl.u-user', $this->adminUser()->name));
+        $response->assertForbidden();
+
+        $response = $this->actingAs($user)
             ->get(route('dashboard.allurl.u-guest'));
         $response->assertForbidden();
     }

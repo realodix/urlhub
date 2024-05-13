@@ -14,9 +14,11 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 /**
  * @codeCoverageIgnore
  */
-final class UrlListTable extends PowerGridComponent
+final class UrlListOfUsersTable extends PowerGridComponent
 {
-    const STR_LIMIT = 85;
+    const STR_LIMIT = 95;
+
+    public int $user_id;
 
     public int $perPage = 25;
 
@@ -38,16 +40,12 @@ final class UrlListTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Url::where('user_id', '!=', Url::GUEST_ID);
+        return Url::where('user_id', $this->user_id);
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('author', function (Url $url) {
-                return view('components.table.author', ['url' => $url])
-                    ->render();
-            })
             ->add('keyword', function (Url $url) {
                 return view('components.table.keyword', ['url' => $url])
                     ->render();
@@ -78,10 +76,6 @@ final class UrlListTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Owner', 'author')
-                ->sortable()
-                ->searchable(),
-
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),
@@ -93,8 +87,7 @@ final class UrlListTable extends PowerGridComponent
                 ->searchable()
                 ->hidden(),
 
-            Column::make('CLICKS', 't_clicks')
-                ->bodyAttribute(styleAttr: ';padding-left: 8px'),
+            Column::make('CLICKS', 't_clicks'),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
@@ -102,13 +95,6 @@ final class UrlListTable extends PowerGridComponent
 
             Column::make('ACTIONS', 'action')
                 ->bodyAttribute(styleAttr: ';padding-left: 8px'),
-        ];
-    }
-
-    public function relationSearch(): array
-    {
-        return [
-            'author' => ['name'],
         ];
     }
 }
