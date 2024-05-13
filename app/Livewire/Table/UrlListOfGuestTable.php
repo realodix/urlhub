@@ -69,7 +69,7 @@ final class UrlListOfGuestTable extends PowerGridComponent
     }
 
     /**
-     * @return array<int, Column>
+     * @return array<\PowerComponents\LivewirePowerGrid\Column>
      */
     public function columns(): array
     {
