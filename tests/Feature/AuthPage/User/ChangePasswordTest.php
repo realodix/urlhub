@@ -31,7 +31,7 @@ class ChangePasswordTest extends TestCase
 
     protected function postRoute(mixed $value): string
     {
-        return route('user.change-password.post', $value);
+        return route('user.password.store', $value);
     }
 
     #[Test]

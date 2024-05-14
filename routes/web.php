@@ -35,7 +35,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
             Route::post('{user:name}/edit', [UserController::class, 'update'])->name('user.update');
 
             Route::get('{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
-            Route::post('{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
+            Route::post('{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
         });
 
         // About Page
