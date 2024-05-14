@@ -19,7 +19,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
         Route::get('/delete/{url:keyword}', [DashboardController::class, 'delete'])->name('dashboard.su_delete');
-        Route::get('/edit/{url:keyword}', [DashboardController::class, 'edit'])->name('dashboard.su_edit');
+        Route::get('/edit/{url:keyword}', [DashboardController::class, 'edit'])->name('dboard.url.edit.show');
         Route::post('/edit/{url:keyword}', [DashboardController::class, 'update'])->name('url.edit.store');
 
         // All URLs

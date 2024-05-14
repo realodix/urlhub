@@ -4,7 +4,7 @@
     >
         @svg('icon-chart-line')
     </a>
-    <a role="button" href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}"
+    <a role="button" href="{{route('dboard.url.edit.show', $url)}}" title="{{__('Edit')}}"
         class="btn btn-secondary btn-sm"
     >
         @svg('icon-edit')
