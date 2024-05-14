@@ -9,7 +9,7 @@
     >
         @svg('icon-edit')
     </a>
-    <a role="button" href="{{route('dashboard.su_delete', $url)}}" title="{{__('Delete')}}"
+    <a role="button" href="{{route('dboard.url.delete', $url)}}" title="{{__('Delete')}}"
         class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700"
     >
         @svg('icon-trash')
