@@ -58,7 +58,7 @@ class DashboardPageTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('dboard.url.edit.show', $url->keyword))
-            ->post(route('url.edit.store', $url->keyword), [
+            ->post(route('dboard.url.edit.store', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);
