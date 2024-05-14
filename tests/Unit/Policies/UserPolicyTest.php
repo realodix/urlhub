@@ -93,7 +93,7 @@ class UserPolicyTest extends TestCase
 
     protected function getCPRoute(mixed $value): string
     {
-        return route('user.change-password', $value);
+        return route('user.password.show', $value);
     }
 
     /**

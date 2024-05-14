@@ -34,7 +34,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
             Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
             Route::post('{user:name}/edit', [UserController::class, 'update'])->name('user.update');
 
-            Route::get('{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
+            Route::get('{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.password.show');
             Route::post('{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
         });
 
