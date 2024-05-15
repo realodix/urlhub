@@ -77,19 +77,19 @@ final class UserTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('USERNAME', 'name')
+            Column::make(__('Username'), 'name')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('EMAIL', 'email')
+            Column::make(__('Email'), 'email')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+            Column::make(__('Created At'), 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
 
-            Column::make('ACTIONS', 'action')
+            Column::make(__('Actions'), 'action')
                 ->bodyAttribute(styleAttr: ';padding-left: 8px'),
         ];
     }
