@@ -69,7 +69,7 @@ class AllUrlsPageTest extends TestCase
 
         $response = $this->actingAs($this->adminUser())
             ->from(route('dashboard.allurl'))
-            ->get(route('dashboard.su_delete', $url->keyword));
+            ->get(route('dboard.url.delete', $url->keyword));
 
         $response->assertRedirectToRoute('dashboard.allurl')
             ->assertSessionHas('flash_success');
@@ -85,7 +85,7 @@ class AllUrlsPageTest extends TestCase
 
         $response = $this->actingAs($this->normalUser())
             ->from(route('dashboard.allurl'))
-            ->get(route('dashboard.su_delete', $url->keyword));
+            ->get(route('dboard.url.delete', $url->keyword));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());

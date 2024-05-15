@@ -63,7 +63,7 @@ final class UserTable extends PowerGridComponent
                     >'
                         .Blade::render('@svg(\'icon-person-edit\')').
                     '</a>
-                    <a role="button" href="'.route('user.change-password', $user).'" title="'.__('Change Password').'"
+                    <a role="button" href="'.route('user.password.show', $user).'" title="'.__('Change Password').'"
                         class="btn btn-secondary btn-sm"
                     >'
                         .Blade::render('@svg(\'icon-key\')').

@@ -4,12 +4,12 @@
     >
         @svg('icon-chart-line')
     </a>
-    <a role="button" href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}"
+    <a role="button" href="{{route('dboard.url.edit.show', $url)}}" title="{{__('Edit')}}"
         class="btn btn-secondary btn-sm"
     >
         @svg('icon-edit')
     </a>
-    <a role="button" href="{{route('dashboard.su_delete', $url)}}" title="{{__('Delete')}}"
+    <a role="button" href="{{route('dboard.url.delete', $url)}}" title="{{__('Delete')}}"
         class="btn btn-secondary btn-sm hover:text-red-600 active:text-red-700"
     >
         @svg('icon-trash')

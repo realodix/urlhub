@@ -39,7 +39,7 @@
 
                     @auth
                         @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
-                            <a href="{{route('dashboard.su_edit', $url)}}" title="{{__('Edit')}}" class="mr-6 hover:text-indigo-600">
+                            <a href="{{route('dboard.url.edit.show', $url)}}" title="{{__('Edit')}}" class="mr-6 hover:text-indigo-600">
                                 @svg('icon-edit')
                             </a>
                             <a href="{{route('su_delete', $url)}}" title="{{__('Delete')}}" class="hover:text-red-600">

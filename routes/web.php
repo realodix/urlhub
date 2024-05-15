@@ -18,14 +18,14 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware('auth')->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('/delete/{url:keyword}', [DashboardController::class, 'delete'])->name('dashboard.su_delete');
-        Route::get('/edit/{url:keyword}', [DashboardController::class, 'edit'])->name('dashboard.su_edit');
-        Route::post('/edit/{url:keyword}', [DashboardController::class, 'update'])->name('dashboard.su_edit.post');
+        Route::get('links/{url:keyword}/delete', [DashboardController::class, 'delete'])->name('dboard.url.delete');
+        Route::get('links/{url:keyword}/edit', [DashboardController::class, 'edit'])->name('dboard.url.edit.show');
+        Route::post('links/{url:keyword}/edit', [DashboardController::class, 'update'])->name('dboard.url.edit.store');
 
         // All URLs
-        Route::get('/allurl', [AllUrlController::class, 'view'])->name('dashboard.allurl');
-        Route::get('/allurl/u/guest', [AllUrlController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
-        Route::get('/allurl/u/{user:name}', [AllUrlController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
+        Route::get('/links', [AllUrlController::class, 'view'])->name('dashboard.allurl');
+        Route::get('/links/u/guest', [AllUrlController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
+        Route::get('/links/u/{user:name}', [AllUrlController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
@@ -33,8 +33,8 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
             Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
             Route::post('{user:name}/edit', [UserController::class, 'update'])->name('user.update');
 
-            Route::get('{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.change-password');
-            Route::post('{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.change-password.post');
+            Route::get('{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.password.show');
+            Route::post('{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
         });
 
         // About Page
