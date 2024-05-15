@@ -18,8 +18,8 @@
                 <h1 class="mx-auto max-w-md md:max-w-3xl relative z-10
                     font-bold text-uh-blue-2 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
                 >
-                    Simple URL shortener <br>
-                    <span class="font-thin text-black">for individuals &amp; businesses.</span>
+                    @lang('pages/homepage.title') <br>
+                    <span class="font-thin text-black">@lang('pages/homepage.subtitle')</span>
                 </h1>
             </div>
 
