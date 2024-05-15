@@ -39,6 +39,7 @@
     "Collapse All": "Réduire tout",
     "Comment": "Commentaire",
     "Confirm": "Confirmer",
+    "Confirmation": "Confirmation",
     "Conflict": "Conflit",
     "Connect": "Connecter",
     "Connection Closed Without Response": "Connexion fermée sans réponse",
@@ -68,6 +69,9 @@
     "E-Mail / Username": "E-Mail / Nom d'utilisateur",
     "Email Password Reset Link": "Envoyer le lien de réinitialisation",
     "Enable": "Activer",
+    "Ensure your account is using a long, random password to stay secure.": "Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité.",
+    "Enter a new password": "Entrez un nouveau mot de passe",
+    "Enter your password": "Entrez votre mot de passe",
     "errors": "les erreurs",
     "Expand": "Développer",
     "Expand All": "Développer tout",
@@ -135,6 +139,7 @@
     "Network Read Timeout Error": "Erreur de délai de lecture réseau",
     "New": "Nouveau",
     "New :name": "Nouveau :name",
+    "New Password": "Nouveau mot de passe",
     "No": "Non",
     "No Content": "Pas de contenu",
     "Non-Authoritative Information": "Informations non autorisées",
@@ -183,6 +188,7 @@
     "Replace clunky URLs with meaningful short links that get more clicks.": "Remplacez les URL encombrantes par des liens courts significatifs qui obtiennent plus de clics.",
     "results": "résultats",
     "Retry With": "Réessayer avec",
+    "Retype the new password": "Retapez le nouveau mot de passe",
     "Save": "Sauvegarder",
     "Save & Close": "Sauvegarder et fermer",
     "Save & Return": "Enregistrer et retourner",
@@ -267,5 +273,6 @@
     "Web Server is Down": "Le serveur Web est en panne",
     "Whoops!": "Oups !",
     "Yes": "Oui",
-    "You are receiving this email because we received a password reset request for your account.": "Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte."
+    "You are receiving this email because we received a password reset request for your account.": "Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.",
+    "Your Password": "Votre mot de passe"
 }
