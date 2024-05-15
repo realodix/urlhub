@@ -47,7 +47,7 @@
                     </a>
 
                     <button type="submit" class="btn btn-primary ml-4">
-                        {{__('Log in')}}
+                        {{__('Log In')}}
                     </button>
                 </div>
             </form>
