@@ -74,25 +74,25 @@ final class UrlListOfGuestTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Short URL', 'keyword')
+            Column::make(__('Short URL'), 'keyword')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Destination URL', 'destination')
+            Column::make(__('Destination URL'), 'destination')
                 ->sortable()
                 ->searchable(),
-            Column::make('title', 'title')
+            Column::make(__('Title'), 'title')
                 ->searchable()
                 ->hidden(),
 
-            Column::make('CLICKS', 't_clicks')
+            Column::make(__('Clicks'), 't_clicks')
                 ->bodyAttribute(styleAttr: ';padding-left: 8px'),
 
-            Column::make('CREATED AT', 'created_at_formatted', 'created_at')
+            Column::make(__('Created At'), 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
 
-            Column::make('ACTIONS', 'action')
+            Column::make(__('Actions'), 'action')
                 ->bodyAttribute(styleAttr: ';padding-left: 8px'),
         ];
     }
