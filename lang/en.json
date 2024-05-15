@@ -68,6 +68,9 @@
     "E-Mail / Username": "E-Mail / Username",
     "Email Password Reset Link": "Email Password Reset Link",
     "Enable": "Enable",
+    "Ensure your account is using a long, random password to stay secure.": "Ensure your account is using a long, random password to stay secure.",
+    "Enter your password": "Enter your password",
+    "Enter a new password": "Enter a new password",
     "errors": "errors",
     "Expand": "Expand",
     "Expand All": "Expand All",
@@ -135,6 +138,7 @@
     "Network Read Timeout Error": "Network Read Timeout Error",
     "New": "New",
     "New :name": "New :name",
+    "New Password": "New Password",
     "No": "No",
     "No Content": "No Content",
     "Non-Authoritative Information": "Non-Authoritative Information",
@@ -183,6 +187,7 @@
     "Replace clunky URLs with meaningful short links that get more clicks.": "Replace clunky URLs with meaningful short links that get more clicks.",
     "results": "results",
     "Retry With": "Retry With",
+    "Retype the new password": "Retype the new password",
     "Save": "Save",
     "Save & Close": "Save & Close",
     "Save & Return": "Save & Return",
@@ -267,5 +272,6 @@
     "Web Server is Down": "Web Server is Down",
     "Whoops!": "Whoops!",
     "Yes": "Yes",
-    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account."
+    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
+    "Your Password": "Your Password"
 }
