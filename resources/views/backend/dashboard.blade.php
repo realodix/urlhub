@@ -10,7 +10,7 @@
                 <div class="flex flex-row space-x-4 items-center">
                     @svg('icon-link', 'mr-1.5 text-emerald-600 text-3xl')
                     <div>
-                        <p class="text-gray-400 text-sm font-medium uppercase leading-4">Total Links</p>
+                        <p class="text-gray-400 text-sm font-medium uppercase leading-4">{{__('Total Links')}}</p>
                         <p class="text-2xl font-bold text-gray-900 inline-flex items-center space-x-2">
                             {{numberAbbreviate($url->numberOfUrl(auth()->id()))}}
                         </p>
@@ -23,7 +23,7 @@
                 <div class="flex flex-row space-x-4 items-center">
                     @svg('icon-chart-line-alt', 'mr-1.5 text-amber-600 text-3xl')
                     <div>
-                        <p class="text-gray-400 text-sm font-medium uppercase leading-4">Total Clicks</p>
+                        <p class="text-gray-400 text-sm font-medium uppercase leading-4">{{__('Total Clicks')}}</p>
                         <p class="text-2xl font-bold text-gray-900 inline-flex items-center space-x-2">
                             {{numberAbbreviate($url->numberOfClicksOfEachUser())}}
                         </p>
