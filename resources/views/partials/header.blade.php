@@ -72,13 +72,13 @@
         @else
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <a href="{{route('login')}}"
-                    class="text-xl font-medium text-gray-500 hover:text-gray-900 mr-8">{{__('Log in')}}</a>
+                    class="text-xl font-medium text-gray-500 hover:text-gray-900 mr-8">{{__('Log In')}}</a>
                 @if (Route::has('register') and Config::get('urlhub.registration'))
                     <a href="{{route('register')}}"
                         class="text-xl font-medium text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600
                         px-4 py-2 rounded-md"
                     >
-                        {{__('Sign up')}}
+                        {{__('Sign Up')}}
                     </a>
                 @endif
             </div>
