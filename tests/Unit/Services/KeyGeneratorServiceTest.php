@@ -7,6 +7,7 @@ use App\Services\KeyGeneratorService;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\TestWith;
 use Tests\TestCase;
 
 class KeyGeneratorServiceTest extends TestCase
@@ -92,6 +93,22 @@ class KeyGeneratorServiceTest extends TestCase
 
         $url = Url::whereDestination($longUrl)->first();
         $this->assertTrue($url->is_custom);
+    }
+
+    /**
+     * String yang dihasilkan dari pemotongan tautan harus berupa abjad.
+     */
+    #[Test]
+    #[Group('u-model')]
+    #[TestWith(['ravel', 'https://github.com/laravel/laravel'])]
+    #[TestWith(['ravel', 'https://en.wikipedia.org/wiki/Laravel'])]
+    #[TestWith(['uting', 'https://laravel.com/docs/11.x/routing'])]
+    #[TestWith(['uting', 'https://en.wikipedia.org/wiki/Routing'])]
+    public function generateSimpleString($expected, $actual): void
+    {
+        config(['urlhub.keyword_length' => 5]);
+
+        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
     }
 
     /**
