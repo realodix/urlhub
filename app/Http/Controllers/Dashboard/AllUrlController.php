@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Url;
 use App\Models\User;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
@@ -45,19 +44,5 @@ class AllUrlController extends Controller implements HasMiddleware
     public function guestLinkView()
     {
         return view('backend.url-list-of-guest');
-    }
-
-    /**
-     * Delete a Short URL on user (Admin) request.
-     *
-     * @param Url $url \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function delete(Url $url)
-    {
-        $url->delete();
-
-        return redirect()->back()
-            ->withFlashSuccess(__('Link was successfully deleted.'));
     }
 }
