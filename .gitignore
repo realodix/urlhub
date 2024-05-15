@@ -5,6 +5,7 @@ public/js/*
 ## IDE Local Workspace Folder
 /.idea
 /.fleet
+.lando.yml
 
 ## Laravel
 .env
