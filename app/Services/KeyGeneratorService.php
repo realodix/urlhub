@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Url;
 use Illuminate\Support\Str;
+use Spatie\Url\Url as SpatieUrl;
 
 class KeyGeneratorService
 {
@@ -17,7 +18,7 @@ class KeyGeneratorService
      */
     public function generate(string $value): string
     {
-        $string = $this->generateSimpleString($value);
+        $string = $this->simpleString($value);
 
         if (
             $this->ensureStringCanBeUsedAsKey($string) === false
@@ -29,13 +30,30 @@ class KeyGeneratorService
         return $string;
     }
 
-    public function generateSimpleString(string $value): string
+    /**
+     * Simple string generator
+     */
+    public function simpleString(string $value): string
     {
+        $spatieUrl = SpatieUrl::fromString($value);
+        $length = config('urlhub.keyword_length');
+
+        $path = Str::of($spatieUrl->getPath())
+            ->replaceMatches('/[^'.self::ALPHABET.']/i', '');
+
+        if (($length - $path->length()) <= 2) {
+            $f1 = Str::charAt($spatieUrl->getHost(), 0);
+            $f2 = $path->charAt(0);
+            // 2 => 1 char for f1 and 1 char for f2
+            // -1 => start from the end
+            $f3 = $path->substr(($length-2) * -1);
+
+            return strtolower($f1.$f2.$f3);
+        }
+
         return Str::of($value)
-            // Delete all characters except those in the ALPHABET constant.
             ->replaceMatches('/[^'.self::ALPHABET.']/i', '')
-            // Take the specified number of characters from the end of the string.
-            ->substr(config('urlhub.keyword_length') * -1)
+            ->substr($length * -1)
             ->lower();
     }
 
