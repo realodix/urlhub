@@ -5,11 +5,11 @@ namespace Tests\Unit\Services;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('services')]
 class KeyGeneratorServiceTest extends TestCase
 {
     private Url $url;
@@ -38,7 +38,6 @@ class KeyGeneratorServiceTest extends TestCase
      * karakter yang telah ditentukan.
      */
     #[Test]
-    #[Group('u-model')]
     public function keyword_test(): void
     {
         $length = 3;
@@ -57,7 +56,6 @@ class KeyGeneratorServiceTest extends TestCase
      * string acak dengan panjang yang sesuai dengan yang diharapkan.
      */
     #[Test]
-    #[Group('u-model')]
     public function urlKey_string_lenght(): void
     {
         $inputString = 'foobar';
@@ -79,7 +77,6 @@ class KeyGeneratorServiceTest extends TestCase
      * - String tersebut harus digunakan.
      */
     #[Test]
-    #[Group('u-model')]
     public function urlKey_string_lenght2(): void
     {
         config(['urlhub.keyword_length' => 10]);
@@ -99,7 +96,6 @@ class KeyGeneratorServiceTest extends TestCase
      * String yang dihasilkan dari pemotongan tautan harus berupa abjad.
      */
     #[Test]
-    #[Group('u-model')]
     #[TestWith(['ravel', 'https://github.com/laravel/laravel'])]
     #[TestWith(['ravel', 'https://en.wikipedia.org/wiki/Laravel'])]
     #[TestWith(['uting', 'https://laravel.com/docs/11.x/routing'])]
@@ -115,7 +111,6 @@ class KeyGeneratorServiceTest extends TestCase
      * String yang dihasilkan dari pemotongan tautan harus berupa abjad.
      */
     #[Test]
-    #[Group('u-model')]
     public function generateSimpleString_must_be_alphabet(): void
     {
         config(['urlhub.keyword_length' => 3]);
@@ -131,7 +126,6 @@ class KeyGeneratorServiceTest extends TestCase
      * dengan panjang yang telah ditentukan pada konfigurasi.
      */
     #[Test]
-    #[Group('u-model')]
     public function generateSimpleString_string_length(): void
     {
         config(['urlhub.keyword_length' => 6]);
@@ -154,7 +148,6 @@ class KeyGeneratorServiceTest extends TestCase
      * String yang dihasilkan dari pemotongan link harus berupa huruf kecil.
      */
     #[Test]
-    #[Group('u-model')]
     public function generateSimpleString_mus_be_lowercase(): void
     {
         $length = 4;
@@ -173,7 +166,6 @@ class KeyGeneratorServiceTest extends TestCase
      * lainnya untuk `keyword`.
      */
     #[Test]
-    #[Group('u-model')]
     public function string_already_in_use(): void
     {
         $length = 3;
@@ -191,7 +183,6 @@ class KeyGeneratorServiceTest extends TestCase
      * maka generator harus memberikan string unik lainnya untuk `keyword`.
      */
     #[Test]
-    #[Group('u-model')]
     public function string_is_reserved_keyword(): void
     {
         $actual = 'https://example.com/css';
@@ -212,7 +203,6 @@ class KeyGeneratorServiceTest extends TestCase
      * sudah digunakan sebagai route path.
      */
     #[Test]
-    #[Group('u-model')]
     public function string_is_route_path(): void
     {
         $actual = 'https://example.com/login';
@@ -224,7 +214,6 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     #[Test]
-    #[Group('u-model')]
     public function possibleOutput(): void
     {
         $charLen = strlen($this->keyGenerator::ALPHABET);
@@ -246,7 +235,6 @@ class KeyGeneratorServiceTest extends TestCase
      * Pengujian dilakukan berdasarkan panjang karakternya.
      */
     #[Test]
-    #[Group('u-model')]
     public function totalStringsUsedAsKeys(): void
     {
         config(['urlhub.keyword_length' => config('urlhub.keyword_length') + 1]);
@@ -281,7 +269,6 @@ class KeyGeneratorServiceTest extends TestCase
      * @param mixed $expected
      */
     #[Test]
-    #[Group('u-model')]
     #[DataProvider('remainingCapacityProvider')]
     public function remainingCapacity($po, $tk, $expected): void
     {
