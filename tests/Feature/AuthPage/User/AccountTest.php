@@ -3,11 +3,11 @@
 namespace Tests\Feature\AuthPage\User;
 
 use App\Models\User;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('auth-page')]
-#[\PHPUnit\Framework\Attributes\Group('user-page')]
+#[PHPUnit\Group('auth-page')]
+#[PHPUnit\Group('user-page')]
 class AccountTest extends TestCase
 {
     protected function getRoute(mixed $value): string
@@ -45,7 +45,7 @@ class AccountTest extends TestCase
         $response->assertForbidden();
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function adminCanChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
@@ -63,7 +63,7 @@ class AccountTest extends TestCase
         $this->assertSame('new_user_email@urlhub.test', $user->fresh()->email);
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function normalUserCantChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
@@ -78,7 +78,7 @@ class AccountTest extends TestCase
         $this->assertSame('user2@urlhub.test', $user->email);
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function validationEmailRequired(): void
     {
         $user = $this->normalUser();
@@ -94,7 +94,7 @@ class AccountTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function validationEmailInvalidFormat(): void
     {
         $user = $this->normalUser();
@@ -110,7 +110,7 @@ class AccountTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function validationEmailMaxLength(): void
     {
         $user = $this->normalUser();
@@ -127,7 +127,7 @@ class AccountTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function validationEmailUnique(): void
     {
         $user = $this->normalUser();
