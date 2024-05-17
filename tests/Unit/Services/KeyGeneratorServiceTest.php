@@ -9,6 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('services')]
+#[\PHPUnit\Framework\Attributes\Group('key-generator')]
 class KeyGeneratorServiceTest extends TestCase
 {
     private Url $url;

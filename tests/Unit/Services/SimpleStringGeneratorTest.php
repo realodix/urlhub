@@ -4,10 +4,10 @@ namespace Tests\Unit\Services;
 
 use App\Services\KeyGeneratorService;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
-#[Group('services')]
+#[\PHPUnit\Framework\Attributes\Group('services')]
+#[\PHPUnit\Framework\Attributes\Group('key-generator')]
 class SimpleStringGeneratorTest extends TestCase
 {
     private KeyGeneratorService $generator;
