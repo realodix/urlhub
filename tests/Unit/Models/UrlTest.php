@@ -5,10 +5,10 @@ namespace Tests\Unit\Models;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('model')]
 class UrlTest extends TestCase
 {
     private Url $url;
@@ -30,8 +30,7 @@ class UrlTest extends TestCase
      * Url model must have a relationship with User model as one to many.
      * This test will check if the relationship exists.
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function belongsToUserModel(): void
     {
         $url = Url::factory()->create();
@@ -44,8 +43,7 @@ class UrlTest extends TestCase
      * Url model must have a relationship with Visit model as one to many.
      * This test will check if the relationship exists.
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function hasManyVisitModel(): void
     {
         $v = Visit::factory()->create();
@@ -57,8 +55,7 @@ class UrlTest extends TestCase
     /**
      * The default guest id must be null.
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function defaultGuestId(): void
     {
         $longUrl = 'https://example.com';
@@ -76,8 +73,7 @@ class UrlTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function setUserIdAttributeMustBeNull(): void
     {
         $url = Url::factory()->create(['user_id' => 0]);
@@ -85,8 +81,7 @@ class UrlTest extends TestCase
         $this->assertSame(null, $url->user_id);
     }
 
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function setLongUrlAttribute(): void
     {
         $url = Url::factory()->create(['destination' => 'http://example.com/']);
@@ -96,8 +91,7 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function getShortUrlAttribute(): void
     {
         $url = Url::factory()->create();
@@ -108,7 +102,6 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    #[Group('u-model')]
     public function testSetTitleLength(): void
     {
         $lengthLimit = Url::TITLE_LENGTH;
@@ -123,8 +116,7 @@ class UrlTest extends TestCase
         $this->assertEquals($lengthLimit, strlen($url->title));
     }
 
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function setMetaTitleAttributeWhenWebTitleSetToFalse(): void
     {
         config(['urlhub.web_title' => false]);
@@ -137,8 +129,7 @@ class UrlTest extends TestCase
     /**
      * Get clicks attribute
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function getClicksAttribute(): void
     {
         $url = Url::factory()->create();
@@ -151,8 +142,7 @@ class UrlTest extends TestCase
     /**
      * Get uniqueClicks attribute
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function getUniqueClicksAttribute(): void
     {
         $url = Url::factory()->create();
@@ -173,8 +163,7 @@ class UrlTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function getWebTitle(): void
     {
         $expected = 'example123456789.com - Untitled';
@@ -190,8 +179,7 @@ class UrlTest extends TestCase
      * When config('urlhub.web_title') set `false`, title() should return
      * 'No Title' if the title is empty
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function getWebTitle_ShouldReturnNoTitle(): void
     {
         config(['urlhub.web_title' => false]);
@@ -204,8 +192,7 @@ class UrlTest extends TestCase
     /**
      * The number of shortened URLs that have been created by each User
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function numberOfUrl(): void
     {
         $user = $this->normalUser();
@@ -223,8 +210,7 @@ class UrlTest extends TestCase
     /**
      * The total number of shortened URLs that have been created by all guests
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function numberOfUrlFromGuests(): void
     {
         Url::factory()->create(['user_id' => Url::GUEST_ID]);
@@ -234,8 +220,7 @@ class UrlTest extends TestCase
         $this->assertSame(1, $actual);
     }
 
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function numberOfClicks(): void
     {
         $v = Visit::factory()->create();
@@ -250,8 +235,7 @@ class UrlTest extends TestCase
     /**
      * Total clicks on each shortened URL, but only count unique clicks
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function numberOfClicksAndUnique(): void
     {
         $v = Visit::factory()->create();
@@ -269,8 +253,7 @@ class UrlTest extends TestCase
     /**
      * Total klik dari setiap shortened URLs yang dibuat oleh user tertentu
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function numberOfClicksOfEachUser(): void
     {
         $user = $this->normalUser();
@@ -292,8 +275,7 @@ class UrlTest extends TestCase
     /**
      * Total clicks on all short URLs from all guest users
      */
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function numberOfClickFromGuest(): void
     {
         $visit = Visit::factory()
@@ -307,7 +289,6 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    #[Group('u-model')]
     public function testKeywordColumnIsCaseSensitive(): void
     {
         $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);

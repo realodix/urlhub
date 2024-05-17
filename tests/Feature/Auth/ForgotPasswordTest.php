@@ -7,10 +7,10 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('auth-page')]
 class ForgotPasswordTest extends TestCase
 {
     protected function requestRoute(): string
@@ -28,8 +28,7 @@ class ForgotPasswordTest extends TestCase
         return route('password.email');
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userCanViewAnEmailPasswordForm(): void
     {
         $response = $this->get($this->requestRoute());
@@ -53,8 +52,7 @@ class ForgotPasswordTest extends TestCase
     //     $response->assertViewIs('auth.forgot-password');
     // }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userReceivesAnEmailWithAPasswordResetLink(): void
     {
         Notification::fake();
@@ -75,8 +73,7 @@ class ForgotPasswordTest extends TestCase
         });
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userDoesNotReceiveEmailWhenNotRegistered(): void
     {
         Notification::fake();
@@ -93,8 +90,7 @@ class ForgotPasswordTest extends TestCase
         Notification::assertNotSentTo(User::factory()->make(['email' => 'nobody@example.com']), ResetPassword::class);
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function emailIsRequired(): void
     {
         $response = $this->from($this->getRoute())
@@ -105,8 +101,7 @@ class ForgotPasswordTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function emailIsAValidEmail(): void
     {
         $response = $this->from($this->getRoute())

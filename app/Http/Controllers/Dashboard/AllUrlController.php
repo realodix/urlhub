@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Url;
+use App\Models\User;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
 class AllUrlController extends Controller implements HasMiddleware
@@ -24,26 +24,25 @@ class AllUrlController extends Controller implements HasMiddleware
     }
 
     /**
-     * Show all short URLs created by all users.
+     * Show all short links from specific user.
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function viewFromGuest()
+    public function userLinkView(string $author)
     {
-        return view('backend.url-list-of-guest');
+        return view('backend.url-list-of-user', [
+            'authorName' => $author,
+            'authorId' => User::where('name', $author)->first()->id,
+        ]);
     }
 
     /**
-     * Delete a Short URL on user (Admin) request.
+     * Show all short URLs created by guest.
      *
-     * @param Url $url \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\View\View
      */
-    public function delete(Url $url)
+    public function guestLinkView()
     {
-        $url->delete();
-
-        return redirect()->back()
-            ->withFlashSuccess(__('Link was successfully deleted.'));
+        return view('backend.url-list-of-guest');
     }
 }

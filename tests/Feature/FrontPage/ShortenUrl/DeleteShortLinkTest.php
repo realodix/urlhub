@@ -5,6 +5,7 @@ namespace Tests\Feature\FrontPage\ShortenUrl;
 use App\Models\Url;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('front-page')]
 class DeleteShortLinkTest extends TestCase
 {
     public function testUserCanDeleteContent(): void

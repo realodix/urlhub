@@ -4,10 +4,10 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('auth-page')]
 class LoginTest extends TestCase
 {
     protected function successfulLoginRoute(): string
@@ -25,8 +25,7 @@ class LoginTest extends TestCase
         return route('login');
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userCanViewALoginForm(): void
     {
         $response = $this->get($this->getRoute());
@@ -50,8 +49,7 @@ class LoginTest extends TestCase
     //     $response->assertViewIs('auth.login');
     // }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userCannotViewALoginFormWhenAuthenticated(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -60,8 +58,7 @@ class LoginTest extends TestCase
         $response->assertRedirect(route('dashboard'));
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userCanLoginWithCorrectCredentials(): void
     {
         $user = User::factory()->create([
@@ -77,8 +74,7 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userCannotLoginWithIncorrectPassword(): void
     {
         $user = User::factory()->create([
@@ -100,15 +96,13 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function unauthenticatedUsersCantAccessTheDashboard(): void
     {
         $this->get('/admin')->assertRedirect('/login');
     }
 
-    #[Test]
-    #[Group('f-auth')]
+    #[PHPUnit\Test]
     public function userCannotLoginWithEmailThatDoesNotExist(): void
     {
         $response = $this->from($this->getRoute())

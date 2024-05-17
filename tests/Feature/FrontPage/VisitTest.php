@@ -6,6 +6,7 @@ use App\Models\Url;
 use App\Models\Visit;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('front-page')]
 class VisitTest extends TestCase
 {
     const BOT_UA = 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)';

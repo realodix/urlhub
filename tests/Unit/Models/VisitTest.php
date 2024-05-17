@@ -4,10 +4,10 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('model')]
 class VisitTest extends TestCase
 {
     protected function setUp(): void
@@ -15,8 +15,7 @@ class VisitTest extends TestCase
         parent::setUp();
     }
 
-    #[Test]
-    #[Group('u-model')]
+    #[PHPUnit\Test]
     public function belongsToUrlModel(): void
     {
         $visit = Visit::factory()->create();

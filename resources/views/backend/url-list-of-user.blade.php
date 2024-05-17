@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Links').'  >  Guests')
+@section('title', __('Links').'  >  '. $authorName)
 
 @section('content')
     <main>
@@ -8,14 +8,14 @@
             <div class="card_header__v2">
                 <div class="w-1/2">
                     <span class="text-2xl text-uh-1">
-                        {{__('Links created by Guests')}}
+                        {{__('Links created by')}} {{$authorName}}
                     </span>
                 </div>
             </div>
 
             @include('partials/messages')
 
-            @livewire('table.url-list-of-guest_table')
+            @livewire('table.UrlListOfUsersTable', ['user_id' => $authorId])
         </div>
     </main>
 @endsection

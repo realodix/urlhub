@@ -34,7 +34,7 @@ class Visit extends Model
     /**
      * Get the attributes that should be cast.
      *
-     * @return array<string, string>
+     * @return array{is_first_click: 'boolean'}
      */
     protected function casts(): array
     {

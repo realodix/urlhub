@@ -3,18 +3,17 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('controller')]
 class UrlControllerTest extends TestCase
 {
     /**
      * When the guest (users who are not logged in) shortens the URL, the user_id column
      * (Urls table) must be filled with a null value.
      */
-    #[Test]
-    #[Group('u-controller')]
+    #[PHPUnit\Test]
     public function guestShortenURL(): void
     {
         $longUrl = 'https://laravel.com';
@@ -29,8 +28,7 @@ class UrlControllerTest extends TestCase
      * When the User shortens the URL, the user_id column (Urls table) must be filled with
      * the authenticated user id.
      */
-    #[Test]
-    #[Group('u-controller')]
+    #[PHPUnit\Test]
     public function userShortenURL(): void
     {
         $user = $this->normalUser();
@@ -43,8 +41,7 @@ class UrlControllerTest extends TestCase
         $this->assertSame($user->id, $url->user_id);
     }
 
-    #[Test]
-    #[Group('u-controller')]
+    #[PHPUnit\Test]
     public function showDetail(): void
     {
         $url = Url::factory()->create();

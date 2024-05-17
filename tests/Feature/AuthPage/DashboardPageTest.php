@@ -3,14 +3,14 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('auth-page')]
+#[PHPUnit\Group('link-page')]
 class DashboardPageTest extends TestCase
 {
-    #[Test]
-    #[Group('f-dashboard')]
+    #[PHPUnit\Test]
     public function dCanAccessPage(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -19,15 +19,14 @@ class DashboardPageTest extends TestCase
         $response->assertOk();
     }
 
-    #[Test]
-    #[Group('f-dashboard')]
+    #[PHPUnit\Test]
     public function dCanDelete(): void
     {
         $url = Url::factory()->create();
 
         $response = $this->actingAs($url->author)
             ->from(route('dashboard'))
-            ->get(route('dashboard.su_delete', $url->keyword));
+            ->get(route('dboard.url.delete', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -36,20 +35,18 @@ class DashboardPageTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    #[Test]
-    #[Group('f-dashboard')]
+    #[PHPUnit\Test]
     public function dAuthorizedUserCanAccessEditUrlPage(): void
     {
         $url = Url::factory()->create();
 
         $response = $this->actingAs($url->author)
-            ->get(route('dashboard.su_edit', $url->keyword));
+            ->get(route('dboard.url.edit.show', $url->keyword));
 
         $response->assertOk();
     }
 
-    #[Test]
-    #[Group('f-dashboard')]
+    #[PHPUnit\Test]
     public function dCanUpdateUrl(): void
     {
         $url = Url::factory()->create();
@@ -57,8 +54,8 @@ class DashboardPageTest extends TestCase
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
 
         $response = $this->actingAs($url->author)
-            ->from(route('dashboard.su_edit', $url->keyword))
-            ->post(route('dashboard.su_edit.post', $url->keyword), [
+            ->from(route('dboard.url.edit.show', $url->keyword))
+            ->post(route('dboard.url.edit.store', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);

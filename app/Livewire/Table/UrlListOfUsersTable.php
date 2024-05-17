@@ -2,10 +2,8 @@
 
 namespace App\Livewire\Table;
 
-use App\Models\User;
+use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -16,8 +14,12 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 /**
  * @codeCoverageIgnore
  */
-final class UserTable extends PowerGridComponent
+final class UrlListOfUsersTable extends PowerGridComponent
 {
+    const STR_LIMIT = 95;
+
+    public int $user_id;
+
     public int $perPage = 25;
 
     public bool $showUpdateMessages = true;
@@ -38,36 +40,33 @@ final class UserTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query();
+        return Url::where('user_id', $this->user_id);
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('name', function (User $user) {
-                $urlCountTitle = $user->urls()->count().' '.Str::plural('url', $user->urls()->count()).' created';
-
-                return $user->name.' <span title="'.$urlCountTitle.'">('.numberAbbreviate($user->urls()->count()).')</span>';
+            ->add('keyword', function (Url $url) {
+                return view('components.table.keyword', ['url' => $url])
+                    ->render();
             })
-            ->add('email')
-            ->add('created_at_formatted', function (User $user) {
-                return
-                    '<span title="'.$user->created_at->toDayDateTimeString().'">'
-                        .$user->created_at->shortRelativeDiffForHumans().
-                    '</span>';
+            ->add('destination', function (Url $url) {
+                return view('components.table.destination', [
+                    'url' => $url,
+                    'limit' => self::STR_LIMIT,
+                ])->render();
             })
-            ->add('action', function (User $user) {
-                return
-                    '<a role="button" href="'.route('user.edit', $user).'" title="'.__('Details').'"
-                        class="btn btn-secondary btn-sm"
-                    >'
-                        .Blade::render('@svg(\'icon-person-edit\')').
-                    '</a>
-                    <a role="button" href="'.route('user.password.show', $user).'" title="'.__('Change Password').'"
-                        class="btn btn-secondary btn-sm"
-                    >'
-                        .Blade::render('@svg(\'icon-key\')').
-                    '</a>';
+            ->add('t_clicks', function (Url $url) {
+                return view('components.table.visit', ['url' => $url])
+                    ->render();
+            })
+            ->add('created_at_formatted', function (Url $url) {
+                return view('components.table.date-created', ['url' => $url])
+                    ->render();
+            })
+            ->add('action', function (Url $url) {
+                return view('components.table.action-button', ['url' => $url])
+                    ->render();
             });
     }
 
@@ -77,13 +76,18 @@ final class UserTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('USERNAME', 'name')
+            Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('EMAIL', 'email')
+            Column::make('Destination URL', 'destination')
                 ->sortable()
                 ->searchable(),
+            Column::make('title', 'title')
+                ->searchable()
+                ->hidden(),
+
+            Column::make('CLICKS', 't_clicks'),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()

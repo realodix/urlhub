@@ -5,6 +5,7 @@ namespace Tests\Feature\FrontPage\ShortenUrl;
 use App\Models\Url;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('front-page')]
 class CreateShortLinkTest extends TestCase
 {
     /**

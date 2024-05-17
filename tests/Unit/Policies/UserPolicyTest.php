@@ -3,17 +3,16 @@
 namespace Tests\Unit\Policies;
 
 use App\Models\User;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('policy')]
 class UserPolicyTest extends TestCase
 {
     /**
      * Admin can access their own the page and other user pages.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function viewAsAdmin(): void
     {
         $admin = $this->adminUser();
@@ -25,8 +24,7 @@ class UserPolicyTest extends TestCase
     /**
      * Non-admin can only access their own page.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function viewAsNormalUser(): void
     {
         $user = $this->normalUser();
@@ -38,8 +36,7 @@ class UserPolicyTest extends TestCase
     /**
      * Admin can change their own data and other user data.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function updateAsAdmin(): void
     {
         $admin = $this->adminUser();
@@ -51,8 +48,7 @@ class UserPolicyTest extends TestCase
     /**
      * Non-admin can only change their own data.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function updateAsNormalUser(): void
     {
         $user = $this->normalUser();
@@ -64,8 +60,7 @@ class UserPolicyTest extends TestCase
     /**
      * Admin can change their own data and other user data.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function updatePassAsAdmin(): void
     {
         $admin = $this->adminUser();
@@ -77,8 +72,7 @@ class UserPolicyTest extends TestCase
     /**
      * Non-admin can only change their own data.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function updatePassAsNormalUser(): void
     {
         $user = $this->normalUser();
@@ -93,14 +87,13 @@ class UserPolicyTest extends TestCase
 
     protected function getCPRoute(mixed $value): string
     {
-        return route('user.change-password', $value);
+        return route('user.password.show', $value);
     }
 
     /**
      * User can access change password page.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function userCanAccessChangePasswordPage(): void
     {
         $user = User::factory()->create();
@@ -114,8 +107,7 @@ class UserPolicyTest extends TestCase
     /**
      * Admin can access another user's change password page.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function adminCanAccessOtherUsersChangePasswordPage(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -127,8 +119,7 @@ class UserPolicyTest extends TestCase
     /**
      * Normal user cant access other user's change password page.
      */
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function normalUserCantAccessOtherUsersChangePasswordPage(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -141,8 +132,7 @@ class UserPolicyTest extends TestCase
     // ALl Users Page.
     //
 
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function adminCanAccessAllUsersPage(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -151,8 +141,7 @@ class UserPolicyTest extends TestCase
         $response->assertOk();
     }
 
-    #[Test]
-    #[Group('u-policy')]
+    #[PHPUnit\Test]
     public function normalUserCantAccessAllUsersPage(): void
     {
         $response = $this->actingAs($this->normalUser())
