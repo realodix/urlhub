@@ -4,14 +4,13 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
 use App\Models\Visit;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('controller')]
 class UrlRedirectControllerTest extends TestCase
 {
     #[Test]
-    #[Group('u-controller')]
     public function urlRedirection(): void
     {
         $url = Url::factory()->create();

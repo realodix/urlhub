@@ -7,6 +7,7 @@ use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('front-page')]
 class ValidationTest extends TestCase
 {
     public function testShortUrlGenerationWithIncorrectUrlFormat(): void

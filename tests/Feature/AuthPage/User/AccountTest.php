@@ -3,10 +3,11 @@
 namespace Tests\Feature\AuthPage\User;
 
 use App\Models\User;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('auth-page')]
+#[\PHPUnit\Framework\Attributes\Group('user-page')]
 class AccountTest extends TestCase
 {
     protected function getRoute(mixed $value): string
@@ -19,7 +20,6 @@ class AccountTest extends TestCase
         return route('user.update', $value);
     }
 
-    #[Group('f-user')]
     public function testUsersCanAccessTheirOwnAccountPages(): void
     {
         $user = $this->normalUser();
@@ -29,7 +29,6 @@ class AccountTest extends TestCase
         $response->assertOk();
     }
 
-    #[Group('f-user')]
     public function testAdminCanAccessEveryUserAccountPage(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -38,7 +37,6 @@ class AccountTest extends TestCase
         $response->assertOk();
     }
 
-    #[Group('f-user')]
     public function testUserCannotAccessAnotherUserSAccountPage(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -48,7 +46,6 @@ class AccountTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function adminCanChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
@@ -67,7 +64,6 @@ class AccountTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function normalUserCantChangeOtherUsersEmail(): void
     {
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
@@ -83,7 +79,6 @@ class AccountTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function validationEmailRequired(): void
     {
         $user = $this->normalUser();
@@ -100,7 +95,6 @@ class AccountTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function validationEmailInvalidFormat(): void
     {
         $user = $this->normalUser();
@@ -117,7 +111,6 @@ class AccountTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function validationEmailMaxLength(): void
     {
         $user = $this->normalUser();
@@ -135,7 +128,6 @@ class AccountTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function validationEmailUnique(): void
     {
         $user = $this->normalUser();

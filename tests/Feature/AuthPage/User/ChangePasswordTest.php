@@ -5,10 +5,11 @@ namespace Tests\Feature\AuthPage\User;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('auth-page')]
+#[\PHPUnit\Framework\Attributes\Group('user-page')]
 class ChangePasswordTest extends TestCase
 {
     protected User $user;
@@ -35,7 +36,6 @@ class ChangePasswordTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function changePasswordWithCorrectCredentials(): void
     {
         $response = $this->actingAs($this->user)
@@ -56,7 +56,6 @@ class ChangePasswordTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function adminCanChangeThePasswordOfAllUsers(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -78,7 +77,6 @@ class ChangePasswordTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-user')]
     public function currentPasswordDoesNotMatch(): void
     {
         $response = $this->actingAs($this->user)
@@ -103,7 +101,6 @@ class ChangePasswordTest extends TestCase
      * @param mixed $data2
      */
     #[Test]
-    #[Group('f-user')]
     #[DataProvider('newPasswordFailProvider')]
     public function newPasswordValidateFail($data1, $data2): void
     {
@@ -144,7 +141,6 @@ class ChangePasswordTest extends TestCase
      * The new password must be different from the current password.
      */
     #[Test]
-    #[Group('f-user')]
     #[DataProvider('newPasswordFailProvider')]
     public function newPasswordmustBeDifferent(): void
     {
