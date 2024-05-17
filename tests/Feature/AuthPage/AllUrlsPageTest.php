@@ -3,14 +3,14 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('auth-page')]
-#[\PHPUnit\Framework\Attributes\Group('link-page')]
+#[PHPUnit\Group('auth-page')]
+#[PHPUnit\Group('link-page')]
 class AllUrlsPageTest extends TestCase
 {
-    #[Test]
+    #[PHPUnit\Test]
     public function auAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -18,7 +18,7 @@ class AllUrlsPageTest extends TestCase
         $response->assertOk();
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function auNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -58,7 +58,7 @@ class AllUrlsPageTest extends TestCase
         $response->assertForbidden();
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function auAdminCanDelete(): void
     {
         $url = Url::factory()->create();
@@ -73,7 +73,7 @@ class AllUrlsPageTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
-    #[Test]
+    #[PHPUnit\Test]
     public function auNormalUserCantDelete(): void
     {
         $url = Url::factory()->create();

@@ -3,11 +3,11 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\NotBlacklistedDomain;
-use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\Support\Helper;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('validation-rule')]
+#[PHPUnit\Group('validation-rule')]
 class NotBlacklistedDomainTest extends TestCase
 {
     protected function setUp(): void
@@ -17,7 +17,7 @@ class NotBlacklistedDomainTest extends TestCase
         config(['urlhub.domain_blacklist' => ['github.com', 't.co']]);
     }
 
-    #[DataProvider('notBlacklistedDomainDataProvider')]
+    #[PHPUnit\DataProvider('notBlacklistedDomainDataProvider')]
     public function testIsNotBlacklistedDomain($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
@@ -26,7 +26,7 @@ class NotBlacklistedDomainTest extends TestCase
         $this->assertSame([], $val->messages()->messages());
     }
 
-    #[DataProvider('blacklistedDomainDataProvider')]
+    #[PHPUnit\DataProvider('blacklistedDomainDataProvider')]
     public function testIsBlacklistedDomain($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);

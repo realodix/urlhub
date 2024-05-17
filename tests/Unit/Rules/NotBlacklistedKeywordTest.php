@@ -3,11 +3,11 @@
 namespace Tests\Unit\Rules;
 
 use App\Rules\NotBlacklistedKeyword;
-use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\Support\Helper;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('validation-rule')]
+#[PHPUnit\Group('validation-rule')]
 class NotBlacklistedKeywordTest extends TestCase
 {
     protected function setUp(): void
@@ -25,7 +25,7 @@ class NotBlacklistedKeywordTest extends TestCase
         ];
     }
 
-    #[DataProvider('customKeywordIsNotBlacklistedDataProvider')]
+    #[PHPUnit\DataProvider('customKeywordIsNotBlacklistedDataProvider')]
     public function testCutomKeywordIsNotBlacklisted($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
@@ -49,7 +49,7 @@ class NotBlacklistedKeywordTest extends TestCase
     /**
      * When custom keyword is registered route, it should not be available.
      */
-    #[DataProvider('registeredRouteDataProvider')]
+    #[PHPUnit\DataProvider('registeredRouteDataProvider')]
     public function testCustomKeywordIsRegisteredRoute($value): void
     {
         $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);

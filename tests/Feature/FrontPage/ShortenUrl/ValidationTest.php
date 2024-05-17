@@ -4,10 +4,10 @@ namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Livewire\Validation\ValidateCustomKeyword;
 use Livewire\Livewire;
-use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('front-page')]
+#[PHPUnit\Group('front-page')]
 class ValidationTest extends TestCase
 {
     public function testShortUrlGenerationWithIncorrectUrlFormat(): void
@@ -33,7 +33,7 @@ class ValidationTest extends TestCase
     /**
      * app\Http\Requests\StoreUrlRequest.php
      */
-    #[DataProvider('customKeyPassProvider')]
+    #[PHPUnit\DataProvider('customKeyPassProvider')]
     public function testCustomKeyValidationShouldPass($value): void
     {
         $response = $this->post(route('su_create'), [
@@ -48,7 +48,7 @@ class ValidationTest extends TestCase
     /**
      * app\Livewire\Validation\ValidateCustomKeyword.php
      */
-    #[DataProvider('customKeyPassProvider')]
+    #[PHPUnit\DataProvider('customKeyPassProvider')]
     public function testLivewireCustomKeyValidationShouldPass($value): void
     {
         $component = Livewire::test(ValidateCustomKeyword::class);
@@ -71,7 +71,7 @@ class ValidationTest extends TestCase
     /**
      * app\Http\Requests\StoreUrlRequest.php
      */
-    #[DataProvider('customKeyFailProvider')]
+    #[PHPUnit\DataProvider('customKeyFailProvider')]
     public function testCustomKeyValidationShouldFail($value): void
     {
         $response = $this->post(route('su_create'), [
@@ -86,7 +86,7 @@ class ValidationTest extends TestCase
     /**
      * app\Livewire\Validation\ValidateCustomKeyword.php
      */
-    #[DataProvider('customKeyFailProvider')]
+    #[PHPUnit\DataProvider('customKeyFailProvider')]
     public function testLivewireCustomKeyValidationShouldFail($value): void
     {
         $component = Livewire::test(ValidateCustomKeyword::class);
