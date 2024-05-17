@@ -2,14 +2,14 @@
 
 namespace Tests\Feature\AuthPage;
 
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('auth-page')]
+#[\PHPUnit\Framework\Attributes\Group('link-page')]
 class UserListPageTest extends TestCase
 {
     #[Test]
-    #[Group('f-userlist')]
     public function ulpAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -19,7 +19,6 @@ class UserListPageTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-userlist')]
     public function ulpNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->normalUser())

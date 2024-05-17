@@ -4,14 +4,13 @@ namespace Tests\Unit\Helpers;
 
 use App\Helpers\Helper;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('helper')]
 class HelperTest extends TestCase
 {
     #[Test]
-    #[Group('u-helper')]
     public function urlDisplay(): void
     {
         $this->assertSame(
@@ -35,7 +34,6 @@ class HelperTest extends TestCase
      * @param mixed $actual
      */
     #[Test]
-    #[Group('u-helper')]
     #[DataProvider('urlDisplayWithoutSchemeProvider')]
     public function urlDisplayWithoutScheme($expected, $actual): void
     {
@@ -55,7 +53,6 @@ class HelperTest extends TestCase
         ];
     }
 
-    #[Group('u-helper')]
     public function testNumberAbbreviate(): void
     {
         $this->assertSame('7K', \Illuminate\Support\Number::abbreviate(6789));

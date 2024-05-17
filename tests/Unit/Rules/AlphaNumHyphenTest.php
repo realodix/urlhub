@@ -3,15 +3,14 @@
 namespace Tests\Unit\Rule;
 
 use App\Rules\AlphaNumHyphen;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\Support\Helper;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('validation-rule')]
 class AlphaNumHyphenTest extends TestCase
 {
     #[Test]
-    #[Group('u-rule')]
     public function AlphaNumHyphenPass(): void
     {
         $val = Helper::validator(['foo' => 'foo-bar'], ['foo' => new AlphaNumHyphen]);
@@ -21,7 +20,6 @@ class AlphaNumHyphenTest extends TestCase
     }
 
     #[Test]
-    #[Group('u-rule')]
     public function AlphaNumHyphenFail(): void
     {
         $val = Helper::validator(['foo' => 'foo_bar'], ['foo' => new AlphaNumHyphen]);

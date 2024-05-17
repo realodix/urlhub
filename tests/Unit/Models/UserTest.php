@@ -4,14 +4,13 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\User;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('model')]
 class UserTest extends TestCase
 {
     #[Test]
-    #[Group('u-model')]
     public function hasManyUrlModel(): void
     {
         $user = User::factory()
@@ -26,7 +25,6 @@ class UserTest extends TestCase
      * Jumlah tamu yang memiliki tanda tangan yang berbeda.
      */
     #[Test]
-    #[Group('u-model')]
     public function totalGuestUsers(): void
     {
         Url::factory()->count(2)->create(['user_id' => Url::GUEST_ID]);
@@ -37,7 +35,6 @@ class UserTest extends TestCase
      * Semua tamu yang memiliki tanda tangan yang identik, harus disatukan.
      */
     #[Test]
-    #[Group('u-model')]
     public function totalGuestUsers2(): void
     {
         Url::factory()->count(5)->create(['user_id' => Url::GUEST_ID, 'user_sign' => 'foo']);

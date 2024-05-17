@@ -3,10 +3,10 @@
 namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('controller')]
 class UrlControllerTest extends TestCase
 {
     /**
@@ -14,7 +14,6 @@ class UrlControllerTest extends TestCase
      * (Urls table) must be filled with a null value.
      */
     #[Test]
-    #[Group('u-controller')]
     public function guestShortenURL(): void
     {
         $longUrl = 'https://laravel.com';
@@ -30,7 +29,6 @@ class UrlControllerTest extends TestCase
      * the authenticated user id.
      */
     #[Test]
-    #[Group('u-controller')]
     public function userShortenURL(): void
     {
         $user = $this->normalUser();
@@ -44,7 +42,6 @@ class UrlControllerTest extends TestCase
     }
 
     #[Test]
-    #[Group('u-controller')]
     public function showDetail(): void
     {
         $url = Url::factory()->create();

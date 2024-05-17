@@ -3,14 +3,14 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('auth-page')]
+#[\PHPUnit\Framework\Attributes\Group('link-page')]
 class AllUrlsPageTest extends TestCase
 {
     #[Test]
-    #[Group('f-allurl')]
     public function auAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -19,7 +19,6 @@ class AllUrlsPageTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-allurl')]
     public function auNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->normalUser())
@@ -30,7 +29,6 @@ class AllUrlsPageTest extends TestCase
     /**
      * Admin can access user links and guest links table page
      */
-    #[Group('f-allurl')]
     public function testAdminCanAccessUserLinksTablePage(): void
     {
         $user = $this->adminUser();
@@ -47,7 +45,6 @@ class AllUrlsPageTest extends TestCase
     /**
      * Non admin users can't access user links and guest links table page
      */
-    #[Group('f-allurl')]
     public function testNonAdminUsersCantAccessUserLinksTablePage(): void
     {
         $user = $this->normalUser();
@@ -62,7 +59,6 @@ class AllUrlsPageTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-allurl')]
     public function auAdminCanDelete(): void
     {
         $url = Url::factory()->create();
@@ -78,7 +74,6 @@ class AllUrlsPageTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-allurl')]
     public function auNormalUserCantDelete(): void
     {
         $url = Url::factory()->create();

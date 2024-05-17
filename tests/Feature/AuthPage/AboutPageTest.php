@@ -2,14 +2,13 @@
 
 namespace Tests\Feature\AuthPage;
 
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('auth-page')]
 class AboutPageTest extends TestCase
 {
     #[Test]
-    #[Group('f-about')]
     public function auAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
@@ -19,7 +18,6 @@ class AboutPageTest extends TestCase
     }
 
     #[Test]
-    #[Group('f-about')]
     public function auNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->normalUser())
