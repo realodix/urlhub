@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Unit\Rule;
+namespace Tests\Unit\Rules;
 
 use App\Rules\NotBlacklistedKeyword;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 use Tests\Support\Helper;
 use Tests\TestCase;
 
+#[\PHPUnit\Framework\Attributes\Group('validation-rule')]
 class NotBlacklistedKeywordTest extends TestCase
 {
     protected function setUp(): void
@@ -17,7 +17,6 @@ class NotBlacklistedKeywordTest extends TestCase
         config(['urlhub.domain_blacklist' => ['github.com', 't.co']]);
     }
 
-    #[Group('u-rule')]
     public static function customKeywordIsNotBlacklistedDataProvider(): array
     {
         return [
@@ -26,10 +25,6 @@ class NotBlacklistedKeywordTest extends TestCase
         ];
     }
 
-    /**
-     * @param string $value
-     */
-    #[Group('u-rule')]
     #[DataProvider('customKeywordIsNotBlacklistedDataProvider')]
     public function testCutomKeywordIsNotBlacklisted($value): void
     {
@@ -53,10 +48,7 @@ class NotBlacklistedKeywordTest extends TestCase
 
     /**
      * When custom keyword is registered route, it should not be available.
-     *
-     * @param array $value
      */
-    #[Group('u-rule')]
     #[DataProvider('registeredRouteDataProvider')]
     public function testCustomKeywordIsRegisteredRoute($value): void
     {
@@ -69,7 +61,6 @@ class NotBlacklistedKeywordTest extends TestCase
     /**
      * When custom keyword is reserved keyword, it should not be available.
      */
-    #[Group('u-rule')]
     public function testCustomKeywordIsReservedKeyword(): void
     {
         $value = 'reserved_keyword';
