@@ -3,10 +3,10 @@
 namespace Tests\Unit\Services;
 
 use App\Services\VisitorService;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('services')]
 class VisitorServiceTest extends TestCase
 {
     private VisitorService $visitorService;
@@ -18,8 +18,8 @@ class VisitorServiceTest extends TestCase
         $this->visitorService = app(VisitorService::class);
     }
 
-    #[Test]
-    #[Group('u-service')]
+    #[PHPUnit\Test]
+    #[PHPUnit\Group('u-service')]
     public function getRefererHost(): void
     {
         $this->assertSame(null, $this->visitorService->getRefererHost(null));
