@@ -3,11 +3,11 @@
 namespace Tests\Unit\Services;
 
 use App\Services\KeyGeneratorService;
-use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('services')]
-#[\PHPUnit\Framework\Attributes\Group('key-generator')]
+#[PHPUnit\Group('services')]
+#[PHPUnit\Group('key-generator')]
 class SimpleStringGeneratorTest extends TestCase
 {
     private KeyGeneratorService $generator;
@@ -43,7 +43,7 @@ class SimpleStringGeneratorTest extends TestCase
         ];
     }
 
-    #[DataProvider('generateSimpleStringProvider')]
+    #[PHPUnit\DataProvider('generateSimpleStringProvider')]
     public function testGenerateSimpleStringMethod($expected, $actual): void
     {
         config(['urlhub.keyword_length' => 5]);
