@@ -46,6 +46,14 @@ class KeyGeneratorService
                 ->ltrim('www.') // remove "www." if it exists
                 ->charAt(0);
             $f2 = $path->charAt(0);
+
+            if (count($url->getSegments()) > 2) {
+                $f3 = Str::substr($url->getSegment(2), -1);
+                $f4 = $path->substr(($length-3) * -1);
+
+                return strtolower($f1.$f2.$f3.$f4);
+            }
+
             // 2 => 1 char for f1 and 1 char for f2
             // -1 => start from the end
             $f3 = $path->substr(($length-2) * -1);

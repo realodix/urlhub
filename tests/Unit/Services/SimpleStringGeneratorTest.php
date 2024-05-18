@@ -23,12 +23,12 @@ class SimpleStringGeneratorTest extends TestCase
     {
         return [
             ['glvel', 'https://github.com/laravel/laravel'],
-            ['sqvel', 'https://stackoverflow.com/questions/tagged/laravel'],
+            ['sqdel', 'https://stackoverflow.com/questions/tagged/laravel'],
             ['yhvel', 'https://www.youtube.com/hashtag/laravel'],
             ['rrvel', 'https://www.reddit.com/r/laravel/'],
             ['dtvel', 'https://dev.to/t/laravel'],
             ['ltvel', 'https://laracasts.com/topics/laravel'],
-            ['lfvel', 'https://laravel.io/forum/tags/laravel'],
+            ['lfsel', 'https://laravel.io/forum/tags/laravel'],
             ['mtvel', 'https://medium.com/tag/laravel'],
             ['fivel', 'https://fontawesome.com/icons/laravel'],
 
@@ -69,7 +69,7 @@ class SimpleStringGeneratorTest extends TestCase
         );
 
         $this->assertSame(
-            'eacdef',
+            'eabdef',
             $this->generator->simpleString('http://example.com/a/b/c/d/e/f')
         );
     }
@@ -152,6 +152,21 @@ class SimpleStringGeneratorTest extends TestCase
             // Path + fragment
             'https://getcomposer.org/doc/03-cli.md#init',
             'https://getcomposer.org/doc/03-cli.md#bump',
+
+            // Path is almost exactly the same
+            'http://example.com/a-b-c-d-e-f',
+            'http://example.com/a/b/c/d/e/f',
+            'https://github.com/laravel/laravel/issues',
+            'https://github.com/laravel/framework/issues',
+            'https://github.com/laravel-zero/laravel-zero/issues',
+            'https://github.com/larastan/larastan/issues',
+            'https://github.com/barryvdh/laravel-debugbar/issues',
+            'https://github.com/spatie/laravel-permission/issues',
+            'https://github.com/SpartnerNL/Laravel-Excel/issues',
+            'https://github.com/alexeymezenin/laravel-best-practices/issues',
+            'https://github.com/mongodb/laravel-mongodb/issues',
+            'https://github.com/php/php-src/issues',
+            'https://github.com/phpmyadmin/phpmyadmin/issues',
         ];
 
         $collection = collect($data)
