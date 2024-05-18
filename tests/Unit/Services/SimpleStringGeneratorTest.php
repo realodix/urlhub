@@ -40,6 +40,14 @@ class SimpleStringGeneratorTest extends TestCase
             ['gcork', 'https://github.com/codeigniter4/framework'],
             ['gsork', 'https://github.com/spring-projects/spring-framework'],
             ['giork', 'https://github.com/ionic-team/ionic-framework'],
+
+            // Path + query
+            ['wcphp', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2646991'],
+            ['wcphp', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2650426'],
+
+            // Path + fragment
+            ['gdimd', 'https://getcomposer.org/doc/03-cli.md#init'],
+            ['gdimd', 'https://getcomposer.org/doc/03-cli.md#bump'],
         ];
     }
 
