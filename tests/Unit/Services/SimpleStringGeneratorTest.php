@@ -122,4 +122,43 @@ class SimpleStringGeneratorTest extends TestCase
         config(['urlhub.keyword_length' => 7]);
         $this->assertSame('comdocs', $this->generator->simpleString('https://laravel.com/docs'));
     }
+
+    public function testOfUniqueness(): void
+    {
+        $data = [
+            'https://github.com/laravel/laravel',
+            'https://stackoverflow.com/questions/tagged/laravel',
+            'https://www.youtube.com/hashtag/laravel',
+            'https://www.reddit.com/r/laravel/',
+            'https://dev.to/t/laravel',
+            'https://laracasts.com/topics/laravel',
+            'https://laravel.io/forum/tags/laravel',
+            'https://medium.com/tag/laravel',
+            'https://fontawesome.com/icons/laravel',
+
+            'https://en.wikipedia.org/wiki/Laravel',
+            'https://id.wikipedia.org/wiki/Laravel',
+
+            'https://github.com/topics/framework',
+            'https://github.com/laravel/framework',
+            'https://github.com/codeigniter4/framework',
+            'https://github.com/spring-projects/spring-framework',
+            'https://github.com/ionic-team/ionic-framework',
+
+            // Path + query
+            'https://www.phpbb.com/community/viewtopic.php?f=14&t=2646991',
+            'https://www.phpbb.com/community/viewtopic.php?f=14&t=2650426',
+
+            // Path + fragment
+            'https://getcomposer.org/doc/03-cli.md#init',
+            'https://getcomposer.org/doc/03-cli.md#bump',
+        ];
+
+        $collection = collect($data)
+            ->map(fn ($item) => $this->generator->simpleString($item))
+            ->unique()
+            ->count();
+
+        $this->assertSame(count($data), $collection);
+    }
 }
