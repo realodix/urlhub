@@ -28,10 +28,6 @@ class HelperTest extends TestCase
         );
     }
 
-    /**
-     * @param mixed $expected
-     * @param mixed $actual
-     */
     #[PHPUnit\Test]
     #[PHPUnit\DataProvider('urlDisplayWithoutSchemeProvider')]
     public function urlDisplayWithoutScheme($expected, $actual): void

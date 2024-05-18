@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Rule;
+namespace Tests\Unit\Rules;
 
 use App\Rules\NotBlacklistedDomain;
 use PHPUnit\Framework\Attributes as PHPUnit;

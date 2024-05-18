@@ -178,11 +178,6 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame($this->totalUrl, $this->url->count());
     }
 
-    /**
-     * @param mixed $po
-     * @param mixed $tk
-     * @param mixed $expected
-     */
     #[PHPUnit\Test]
     #[PHPUnit\DataProvider('remainingCapacityProvider')]
     public function remainingCapacity($po, $tk, $expected): void
