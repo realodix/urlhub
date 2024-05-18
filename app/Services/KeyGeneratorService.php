@@ -35,14 +35,14 @@ class KeyGeneratorService
      */
     public function simpleString(string $value): string
     {
-        $spatieUrl = SpatieUrl::fromString($value);
+        $url = SpatieUrl::fromString($value);
         $length = config('urlhub.keyword_length');
 
-        $path = Str::of($spatieUrl->getPath())
+        $path = Str::of($url->getPath().$url->getQuery().$url->getFragment())
             ->replaceMatches('/[^'.self::ALPHABET.']/i', '');
 
         if (($length - $path->length()) <= 2) {
-            $f1 = Str::charAt($spatieUrl->getHost(), 0);
+            $f1 = Str::charAt($url->getHost(), 0);
             $f2 = $path->charAt(0);
             // 2 => 1 char for f1 and 1 char for f2
             // -1 => start from the end

@@ -42,12 +42,12 @@ class SimpleStringGeneratorTest extends TestCase
             ['giork', 'https://github.com/ionic-team/ionic-framework'],
 
             // Path + query
-            ['wcphp', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2646991'],
-            ['wcphp', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2650426'],
+            ['wc991', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2646991'],
+            ['wc426', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2650426'],
 
             // Path + fragment
-            ['gdimd', 'https://getcomposer.org/doc/03-cli.md#init'],
-            ['gdimd', 'https://getcomposer.org/doc/03-cli.md#bump'],
+            ['gdnit', 'https://getcomposer.org/doc/03-cli.md#init'],
+            ['gdump', 'https://getcomposer.org/doc/03-cli.md#bump'],
         ];
     }
 
@@ -118,16 +118,8 @@ class SimpleStringGeneratorTest extends TestCase
 
         // Panjang path tidak sesuai kriteria
         config(['urlhub.keyword_length' => 4]);
-        $this->assertSame('mupe', $this->generator->simpleString('http://example.com/U?p=e'));
+        $this->assertSame('eupe', $this->generator->simpleString('http://example.com/U?p=e'));
         config(['urlhub.keyword_length' => 7]);
         $this->assertSame('comdocs', $this->generator->simpleString('https://laravel.com/docs'));
-
-        // $spatieUrl->getPath() hanya menganggap `url` sebagai path, dan karakter `?` hingga sisanya
-        // tidak dianggap sebagai path
-        config(['urlhub.keyword_length' => 6]);
-        $this->assertSame(
-            'velcom',
-            $this->generator->simpleString('https://www.google.com/url?sa=t&url=https://laravel.com/')
-        );
     }
 }
