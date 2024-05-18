@@ -24,8 +24,8 @@ class SimpleStringGeneratorTest extends TestCase
         return [
             ['glvel', 'https://github.com/laravel/laravel'],
             ['sqvel', 'https://stackoverflow.com/questions/tagged/laravel'],
-            ['whvel', 'https://www.youtube.com/hashtag/laravel'],
-            ['wrvel', 'https://www.reddit.com/r/laravel/'],
+            ['yhvel', 'https://www.youtube.com/hashtag/laravel'],
+            ['rrvel', 'https://www.reddit.com/r/laravel/'],
             ['dtvel', 'https://dev.to/t/laravel'],
             ['ltvel', 'https://laracasts.com/topics/laravel'],
             ['lfvel', 'https://laravel.io/forum/tags/laravel'],
@@ -42,8 +42,8 @@ class SimpleStringGeneratorTest extends TestCase
             ['giork', 'https://github.com/ionic-team/ionic-framework'],
 
             // Path + query
-            ['wc991', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2646991'],
-            ['wc426', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2650426'],
+            ['pc991', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2646991'],
+            ['pc426', 'https://www.phpbb.com/community/viewtopic.php?f=14&t=2650426'],
 
             // Path + fragment
             ['gdnit', 'https://getcomposer.org/doc/03-cli.md#init'],
