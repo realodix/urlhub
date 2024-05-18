@@ -49,6 +49,8 @@ class KeyGeneratorService
                 ->charAt(0);
             $f2 = $path->charAt(0);
 
+            // YES https://github.com/laravel/laravel/issues
+            // NO  https://github.com/laravel/laravel
             if (count($url->getSegments()) > 2) {
                 $f3 = Str::substr($url->getSegment(2), -1);
                 $f4 = $path->substr(($length-3) * -1);
