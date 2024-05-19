@@ -38,27 +38,28 @@ class KeyGeneratorService
         $url = SpatieUrl::fromString($value);
         $length = config('urlhub.keyword_length');
 
-        $path = Str::of($url->getPath().$url->getQuery().$url->getFragment())
-            ->replaceMatches('/[^'.self::ALPHABET.']/i', '');
+        $path = preg_replace(
+            '/[^'.self::ALPHABET.']/i',
+            '',
+            $url->getPath().$url->getQuery().$url->getFragment()
+        );
 
-        if (($length - $path->length()) <= 2) {
-            $f1 = Str::of($url->getHost())
-                ->ltrim('www.') // remove "www." if it exists
-                ->charAt(0);
-            $f2 = $path->charAt(0);
+        if (($length - strlen($path)) <= 2) {
+            $f1 = Str::charAt(ltrim($url->getHost(), 'www.'), 0);
+            $f2 = Str::charAt($path, 0);
 
             // YES https://github.com/laravel/laravel/issues
             // NO  https://github.com/laravel/laravel
             if (count($url->getSegments()) > 2) {
-                $f3 = Str::substr($url->getSegment(2), -1);
-                $f4 = $path->substr(($length-3) * -1);
+                $f3 = substr($url->getSegment(2), -1);
+                $f4 = substr($path, ($length-3) * -1);
 
                 return strtolower($f1.$f2.$f3.$f4);
             }
 
             // 2 => 1 char for f1 and 1 char for f2
             // -1 => start from the end
-            $f3 = $path->substr(($length-2) * -1);
+            $f3 = substr($path, ($length-2) * -1);
 
             return strtolower($f1.$f2.$f3);
         }
