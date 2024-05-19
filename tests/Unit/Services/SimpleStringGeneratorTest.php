@@ -123,14 +123,6 @@ class SimpleStringGeneratorTest extends TestCase
         $this->assertSame('comdocs', $this->generator->simpleString('https://laravel.com/docs'));
     }
 
-    public function testPathWithUrlEncode(): void
-    {
-        config(['urlhub.keyword_length' => 5]);
-        $url = 'https://www.google.com/url?sa=t&url=https://laravel.com/';
-
-        $this->assertSame('gucom', $this->generator->simpleString($url));
-    }
-
     public function testOfUniqueness(): void
     {
         $data = [

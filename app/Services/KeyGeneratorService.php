@@ -39,8 +39,6 @@ class KeyGeneratorService
         $length = config('urlhub.keyword_length');
 
         $path = Str::of($url->getPath().$url->getQuery().$url->getFragment())
-            // remove encoded characters
-            ->replaceMatches('/%\w{2}/', '')
             ->replaceMatches('/[^'.self::ALPHABET.']/i', '');
 
         if (($length - $path->length()) <= 2) {
