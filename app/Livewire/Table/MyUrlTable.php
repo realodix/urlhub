@@ -16,7 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 final class MyUrlTable extends PowerGridComponent
 {
-    const STR_LIMIT = 95;
+    const STR_LIMIT = 90;
 
     public int $perPage = 25;
 

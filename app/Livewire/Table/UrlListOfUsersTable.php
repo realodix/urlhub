@@ -16,8 +16,6 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 final class UrlListOfUsersTable extends PowerGridComponent
 {
-    const STR_LIMIT = 95;
-
     public int $user_id;
 
     public int $perPage = 25;
@@ -53,7 +51,7 @@ final class UrlListOfUsersTable extends PowerGridComponent
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
                     'url' => $url,
-                    'limit' => self::STR_LIMIT,
+                    'limit' => MyUrlTable::STR_LIMIT,
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
