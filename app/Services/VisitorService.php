@@ -25,7 +25,6 @@ class VisitorService
     {
         $logBotVisit = config('urlhub.track_bot_visits');
         $dd = Helper::deviceDetector();
-        // Gunakan use statement
         $referer = request()->header('referer');
 
         if ($logBotVisit === false && $dd->isBot() === true) {
