@@ -95,10 +95,6 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    /**
-     * @param mixed $data1
-     * @param mixed $data2
-     */
     #[PHPUnit\Test]
     #[PHPUnit\DataProvider('newPasswordFailProvider')]
     public function newPasswordValidateFail($data1, $data2): void

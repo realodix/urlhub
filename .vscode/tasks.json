@@ -24,7 +24,7 @@
         {
             "label": "[SA] PHPStan",
             "type": "shell",
-            "command": "./vendor/bin/phpstan analyse",
+            "command": "./vendor/bin/phpstan analyse -v",
             "problemMatcher": []
         },
         {
