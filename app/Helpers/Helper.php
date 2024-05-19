@@ -15,11 +15,11 @@ class Helper
      */
     public static function deviceDetector()
     {
-        $dd = new \DeviceDetector\DeviceDetector(request()->userAgent());
-        $dd->setCache(new \DeviceDetector\Cache\LaravelCache);
-        $dd->parse();
+        $device = new \DeviceDetector\DeviceDetector(request()->userAgent());
+        $device->setCache(new \DeviceDetector\Cache\LaravelCache);
+        $device->parse();
 
-        return $dd;
+        return $device;
     }
 
     /**

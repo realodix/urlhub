@@ -24,10 +24,10 @@ class VisitorService
     public function create(Url $url)
     {
         $logBotVisit = config('urlhub.track_bot_visits');
-        $dd = Helper::deviceDetector();
+        $device = Helper::deviceDetector();
         $referer = request()->header('referer');
 
-        if ($logBotVisit === false && $dd->isBot() === true) {
+        if ($logBotVisit === false && $device->isBot() === true) {
             return;
         }
 

@@ -96,13 +96,13 @@ class User extends Authenticatable
     public function signature(): string
     {
         if (auth()->check() === false) {
-            $dd = Helper::deviceDetector();
+            $device = Helper::deviceDetector();
 
             return hash('xxh3', implode([
                 'ip'      => request()->ip(),
-                'browser' => $dd->getClient('name'),
-                'os'      => $dd->getOs('name').$dd->getOs('version'),
-                'device'  => $dd->getDeviceName().$dd->getModel().$dd->getBrandName(),
+                'browser' => $device->getClient('name'),
+                'os'      => $device->getOs('name').$device->getOs('version'),
+                'device'  => $device->getDeviceName().$device->getModel().$device->getBrandName(),
                 'lang'    => request()->getPreferredLanguage(),
             ]));
         }
