@@ -24,7 +24,7 @@ class KeyGeneratorService
             || strlen($string) < config('urlhub.keyword_length')
         ) {
             do {
-                $randomString = $this->generateRandomString();
+                $randomString = $this->randomString();
             } while ($this->ensureStringCanBeUsedAsKey($randomString) == false);
 
             return $randomString;
@@ -50,7 +50,7 @@ class KeyGeneratorService
      *
      * @codeCoverageIgnore
      */
-    public function generateRandomString(): string
+    public function randomString(): string
     {
         $alphabet = self::ALPHABET;
         $length = config('urlhub.keyword_length');
