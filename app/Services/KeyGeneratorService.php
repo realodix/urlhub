@@ -24,7 +24,11 @@ class KeyGeneratorService
             $this->ensureStringCanBeUsedAsKey($string) === false
             || strlen($string) < config('urlhub.keyword_length')
         ) {
-            $string = $this->generateRandomString();
+            do {
+                $randomString = $this->randomString();
+            } while ($this->ensureStringCanBeUsedAsKey($randomString) == false);
+
+            return $randomString;
         }
 
         return $string;
@@ -71,29 +75,16 @@ class KeyGeneratorService
     }
 
     /**
-     * Generate a random string of specified length. The string will only contain
-     * characters from the specified character set.
-     *
-     * @return string The generated random string.
-     */
-    public function generateRandomString(): string
-    {
-        do {
-            $urlKey = $this->getBytesFromString(self::ALPHABET, config('urlhub.keyword_length'));
-        } while ($this->ensureStringCanBeUsedAsKey($urlKey) == false);
-
-        return $urlKey;
-    }
-
-    /**
+     * @codeCoverageIgnore
      * Random\Randomizer::getBytesFromString
      *
      * https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
-     *
-     * @codeCoverageIgnore
      */
-    public function getBytesFromString(string $alphabet, int $length): string
+    public function randomString(): string
     {
+        $alphabet = self::ALPHABET;
+        $length = config('urlhub.keyword_length');
+
         if (\PHP_VERSION_ID < 80300) {
             $stringLength = strlen($alphabet);
 

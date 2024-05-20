@@ -155,7 +155,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.keyword_length' => config('urlhub.keyword_length') + 1]);
 
         Url::factory()->create([
-            'keyword' => $this->keyGenerator->generateRandomString(),
+            'keyword' => $this->keyGenerator->randomString(),
         ]);
         $this->assertSame(1, $this->keyGenerator->totalKey());
 
