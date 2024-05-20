@@ -98,11 +98,11 @@ class KeyGeneratorServiceTest extends TestCase
     #[PHPUnit\TestWith(['ravel', 'https://en.wikipedia.org/wiki/Laravel'])]
     #[PHPUnit\TestWith(['uting', 'https://laravel.com/docs/11.x/routing'])]
     #[PHPUnit\TestWith(['uting', 'https://en.wikipedia.org/wiki/Routing'])]
-    public function generateSimpleString($expected, $actual): void
+    public function simpleString($expected, $actual): void
     {
         config(['urlhub.keyword_length' => 5]);
 
-        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
+        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
     }
 
     /**
@@ -113,10 +113,10 @@ class KeyGeneratorServiceTest extends TestCase
     {
         config(['urlhub.keyword_length' => 3]);
 
-        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foobar'));
-        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('foob/ar'));
+        $this->assertSame('bar', $this->keyGenerator->simpleString('foobar'));
+        $this->assertSame('bar', $this->keyGenerator->simpleString('foob/ar'));
 
-        $this->assertSame('bar', $this->keyGenerator->generateSimpleString('fooBar'));
+        $this->assertSame('bar', $this->keyGenerator->simpleString('fooBar'));
     }
 
     /**
@@ -129,17 +129,17 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.keyword_length' => 6]);
         $actual = 'https://github.com/realodix';
         $expected = 'alodix';
-        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
+        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
 
         config(['urlhub.keyword_length' => 9]);
         $actual = 'https://github.com/realodix';
         $expected = 'mrealodix';
-        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
+        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
 
         config(['urlhub.keyword_length' => 12]);
         $actual = 'https://github.com/realodix';
         $expected = 'bcomrealodix';
-        $this->assertSame($expected, $this->keyGenerator->generateSimpleString($actual));
+        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
     }
 
     /**
@@ -152,7 +152,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.keyword_length' => $length]);
 
         $longUrl = 'https://github.com/realoDIX';
-        $urlKey = $this->keyGenerator->generateSimpleString($longUrl);
+        $urlKey = $this->keyGenerator->simpleString($longUrl);
 
         $this->assertSame(mb_strtolower(substr($longUrl, -$length)), $urlKey);
         $this->assertNotSame(substr($longUrl, -$length), $urlKey);
