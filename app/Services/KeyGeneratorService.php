@@ -44,11 +44,10 @@ class KeyGeneratorService
     }
 
     /**
+     * @codeCoverageIgnore
      * Random\Randomizer::getBytesFromString
      *
      * https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
-     *
-     * @codeCoverageIgnore
      */
     public function randomString(): string
     {
