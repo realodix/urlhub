@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Url;
-use Illuminate\Support\Str;
 
 class KeyGeneratorService
 {
@@ -35,12 +34,7 @@ class KeyGeneratorService
 
     public function simpleString(string $value): string
     {
-        return Str::of($value)
-            // Delete all characters except those in the ALPHABET constant.
-            ->replaceMatches('/[^'.self::ALPHABET.']/i', '')
-            // Take the specified number of characters from the end of the string.
-            ->substr(config('urlhub.keyword_length') * -1)
-            ->lower();
+        return substr(hash('xxh3', $value), 0, config('urlhub.keyword_length'));
     }
 
     /**

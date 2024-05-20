@@ -32,22 +32,6 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * String dihasilkan dari pemotongan link dari belakang sepanjang panjang
-     * karakter yang telah ditentukan.
-     */
-    #[PHPUnit\Test]
-    public function keyword_test(): void
-    {
-        $length = 3;
-        config(['urlhub.keyword_length' => $length]);
-
-        $longUrl = 'https://github.com/realodix';
-        $urlKey = $this->keyGenerator->generate($longUrl);
-
-        $this->assertSame(substr($longUrl, -$length), $urlKey);
-    }
-
-    /**
      * UrlKey dihasilkan dari hasil pemotongan string URL. Sayangnya terkadang
      * panjang string dari hasil pemotongan tersebut bisa lebih pendek daripada
      * panjang yang harapkan. Ketika itu terjadi, maka generator harus menghasilkan
@@ -88,74 +72,6 @@ class KeyGeneratorServiceTest extends TestCase
 
         $url = Url::whereDestination($longUrl)->first();
         $this->assertTrue($url->is_custom);
-    }
-
-    /**
-     * String yang dihasilkan dari pemotongan tautan harus berupa abjad.
-     */
-    #[PHPUnit\Test]
-    #[PHPUnit\TestWith(['ravel', 'https://github.com/laravel/laravel'])]
-    #[PHPUnit\TestWith(['ravel', 'https://en.wikipedia.org/wiki/Laravel'])]
-    #[PHPUnit\TestWith(['uting', 'https://laravel.com/docs/11.x/routing'])]
-    #[PHPUnit\TestWith(['uting', 'https://en.wikipedia.org/wiki/Routing'])]
-    public function simpleString($expected, $actual): void
-    {
-        config(['urlhub.keyword_length' => 5]);
-
-        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
-    }
-
-    /**
-     * String yang dihasilkan dari pemotongan tautan harus berupa abjad.
-     */
-    #[PHPUnit\Test]
-    public function generateSimpleString_must_be_alphabet(): void
-    {
-        config(['urlhub.keyword_length' => 3]);
-
-        $this->assertSame('bar', $this->keyGenerator->simpleString('foobar'));
-        $this->assertSame('bar', $this->keyGenerator->simpleString('foob/ar'));
-
-        $this->assertSame('bar', $this->keyGenerator->simpleString('fooBar'));
-    }
-
-    /**
-     * Panjang string yang dihasilkan dari pemotongan link harus harus sesuai
-     * dengan panjang yang telah ditentukan pada konfigurasi.
-     */
-    #[PHPUnit\Test]
-    public function generateSimpleString_string_length(): void
-    {
-        config(['urlhub.keyword_length' => 6]);
-        $actual = 'https://github.com/realodix';
-        $expected = 'alodix';
-        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
-
-        config(['urlhub.keyword_length' => 9]);
-        $actual = 'https://github.com/realodix';
-        $expected = 'mrealodix';
-        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
-
-        config(['urlhub.keyword_length' => 12]);
-        $actual = 'https://github.com/realodix';
-        $expected = 'bcomrealodix';
-        $this->assertSame($expected, $this->keyGenerator->simpleString($actual));
-    }
-
-    /**
-     * String yang dihasilkan dari pemotongan link harus berupa huruf kecil.
-     */
-    #[PHPUnit\Test]
-    public function generateSimpleString_mus_be_lowercase(): void
-    {
-        $length = 4;
-        config(['urlhub.keyword_length' => $length]);
-
-        $longUrl = 'https://github.com/realoDIX';
-        $urlKey = $this->keyGenerator->simpleString($longUrl);
-
-        $this->assertSame(mb_strtolower(substr($longUrl, -$length)), $urlKey);
-        $this->assertNotSame(substr($longUrl, -$length), $urlKey);
     }
 
     /**
