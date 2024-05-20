@@ -105,6 +105,22 @@ class SimpleStringGeneratorTest extends TestCase
         );
     }
 
+    public static function urlHostDataProvider(): array
+    {
+        return [
+            ['rrvel', 'https://www.reddit.com/r/laravel/'],
+            ['wrses', 'https://wiki.php.net/rfc/readonly_classes'],
+        ];
+    }
+
+    #[PHPUnit\DataProvider('urlHostDataProvider')]
+    public function testUrlHost($expected, $actual): void
+    {
+        config(['urlhub.keyword_length' => 5]);
+
+        $this->assertSame($expected, $this->generator->simpleString($actual));
+    }
+
     /**
      * Testing for problems caused by the url path. It usually occurs when the path
      * string length does not match the criteria.

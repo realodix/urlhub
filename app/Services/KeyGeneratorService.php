@@ -45,7 +45,7 @@ class KeyGeneratorService
         );
 
         if (($length - strlen($path)) <= 2) {
-            $f1 = Str::charAt(ltrim($url->getHost(), 'www.'), 0);
+            $f1 = Str::charAt(str_replace('www.', '', $url->getHost()), 0);
             $f2 = Str::charAt($path, 0);
 
             // YES https://github.com/laravel/laravel/issues
