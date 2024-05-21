@@ -1,6 +1,7 @@
 /.tmp
 public/css/*
 public/js/*
+.phpactor.json
 
 ## IDE Local Workspace Folder
 /.idea
