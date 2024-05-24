@@ -134,10 +134,10 @@ class KeyGeneratorService
      */
     public function totalKey(): int
     {
-        $hashLength = (int) config('urlhub.keyword_length');
+        $length = (int) config('urlhub.keyword_length');
 
-        return Url::whereRaw('LENGTH(keyword) = ?', [$hashLength])
-            ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{'.$hashLength.'}$"')
+        return Url::whereRaw('LENGTH(keyword) = ?', [$length])
+            ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{'.$length.'}$"')
             ->count();
     }
 
