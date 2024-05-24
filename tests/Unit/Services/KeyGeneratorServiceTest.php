@@ -177,6 +177,20 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame($this->totalUrl, $this->url->count());
     }
 
+    /**
+     * Only alphanumeric characters
+     */
+    #[PHPUnit\Test]
+    public function totalStringsUsedAsKeys2(): void
+    {
+        config(['urlhub.keyword_length' => 5]);
+
+        Url::factory()->create([
+            'keyword' => 'ab-cd',
+        ]);
+        $this->assertSame(0, $this->keyGenerator->totalKey());
+    }
+
     #[PHPUnit\Test]
     #[PHPUnit\DataProvider('remainingCapacityProvider')]
     public function remainingCapacity($po, $tk, $expected): void

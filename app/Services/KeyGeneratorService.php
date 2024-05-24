@@ -137,6 +137,7 @@ class KeyGeneratorService
         $hashLength = (int) config('urlhub.keyword_length');
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$hashLength])
+            ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{'.$hashLength.'}$"')
             ->count();
     }
 
