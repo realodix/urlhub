@@ -148,8 +148,7 @@ class KeyGeneratorServiceTest extends TestCase
     /**
      * Pengujian dilakukan berdasarkan panjang karakternya.
      */
-    #[PHPUnit\Test]
-    public function totalStringsUsedAsKeys(): void
+    public function testTotalKeyBasedOnStringLength(): void
     {
         config(['urlhub.keyword_length' => config('urlhub.keyword_length') + 1]);
 
@@ -180,8 +179,7 @@ class KeyGeneratorServiceTest extends TestCase
     /**
      * Only alphanumeric characters
      */
-    #[PHPUnit\Test]
-    public function totalStringsUsedAsKeys2(): void
+    public function testTotalKeysBasedOnStringCharacters(): void
     {
         config(['urlhub.keyword_length' => 5]);
 
