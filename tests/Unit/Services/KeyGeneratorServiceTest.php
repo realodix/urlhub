@@ -94,7 +94,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         Url::factory()->create(['keyword'  => $value]);
 
-        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
+        $this->assertFalse($this->keyGenerator->verify($value));
     }
 
     public function testStringIsAReservedKeyword(): void
@@ -103,14 +103,14 @@ class KeyGeneratorServiceTest extends TestCase
 
         config(['urlhub.reserved_keyword' => [$value]]);
 
-        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
+        $this->assertFalse($this->keyGenerator->verify($value));
     }
 
     public function testStringIsRegisteredRoute(): void
     {
         $value = 'admin';
 
-        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
+        $this->assertFalse($this->keyGenerator->verify($value));
     }
 
     public function testStringIsPablicPath(): void
@@ -120,7 +120,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         $fileSystem->makeDirectory(public_path($value));
 
-        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
+        $this->assertFalse($this->keyGenerator->verify($value));
 
         $fileSystem->deleteDirectory(public_path($value));
     }
