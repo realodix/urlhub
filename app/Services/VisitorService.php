@@ -66,8 +66,7 @@ class VisitorService
         }
 
         $referer = SpatieUrl::fromString($value);
-        $path = $referer->getPath();
 
-        return str_replace($path, '', $value);
+        return $referer->getScheme().'://'.$referer->getHost();
     }
 }
