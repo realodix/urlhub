@@ -1,12 +1,13 @@
 includes:
     - phpstan-baseline.neon
     - vendor/larastan/larastan/extension.neon
-    # - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
 
 parameters:
     level: 6
     paths:
         - app
     tmpDir: .tmp/PHPStan
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
