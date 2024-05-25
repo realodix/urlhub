@@ -74,21 +74,14 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertTrue($url->is_custom);
     }
 
-    /**
-     * Generator harus memberikan string yang belum digunakan. Jika string sudah
-     * digunakan sebagai keyword, maka generator harus memberikan string unik
-     * lainnya untuk `keyword`.
-     */
-    #[PHPUnit\Test]
-    public function string_already_in_use(): void
+    public function testStringAlreadyInUse(): void
     {
-        $length = 3;
-        config(['urlhub.keyword_length' => $length]);
+        config(['urlhub.keyword_length' => 5]);
+        $value = $this->keyGenerator->generate('https://github.com/realodix');
 
-        $longUrl = 'https://github.com/realodix';
-        Url::factory()->create(['keyword'  => $this->keyGenerator->generate($longUrl)]);
+        Url::factory()->create(['keyword'  => $value]);
 
-        $this->assertNotSame(substr($longUrl, -$length), $this->keyGenerator->generate($longUrl));
+        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
     }
 
     /**
