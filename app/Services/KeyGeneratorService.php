@@ -18,13 +18,10 @@ class KeyGeneratorService
     {
         $string = $this->simpleString($value);
 
-        if (
-            $this->verify($string) === false
-            || strlen($string) < config('urlhub.keyword_length')
-        ) {
+        if (! $this->verify($string) || strlen($string) < config('urlhub.keyword_length')) {
             do {
                 $randomString = $this->randomString();
-            } while ($this->verify($randomString) == false);
+            } while (! $this->verify($randomString));
 
             return $randomString;
         }

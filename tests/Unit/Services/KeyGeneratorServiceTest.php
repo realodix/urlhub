@@ -34,14 +34,16 @@ class KeyGeneratorServiceTest extends TestCase
     public function testGenerateUniqueString(): void
     {
         $value1 = 'foo';
-        $foo1 = $this->keyGenerator->generate($value1);
-        Url::factory()->create(['keyword'  => $foo1]);
-        $this->assertNotSame($foo1, $this->keyGenerator->generate($value1));
+        $generatedString1 = $this->keyGenerator->generate($value1);
+        Url::factory()->create(['keyword'  => $generatedString1]);
+        $this->assertSame($this->keyGenerator->simpleString($value1), $generatedString1);
+        $this->assertNotSame($generatedString1, $this->keyGenerator->generate($value1));
 
         $value2 = 'foo2';
-        $foo2 = $this->keyGenerator->generate($value2);
-        config(['urlhub.reserved_keyword' => [$foo2]]);
-        $this->assertNotSame($foo2, $this->keyGenerator->generate($value2));
+        $generatedString2 = $this->keyGenerator->generate($value2);
+        config(['urlhub.reserved_keyword' => [$generatedString2]]);
+        $this->assertSame($this->keyGenerator->simpleString($value2), $generatedString2);
+        $this->assertNotSame($generatedString2, $this->keyGenerator->generate($value2));
     }
 
     /**
