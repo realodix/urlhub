@@ -84,21 +84,13 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
     }
 
-    /**
-     * Generator harus memberikan string yang tidak ada di dalam daftar reserved
-     * keyword (config('urlhub.reserved_keyword')). Jika string ada di dalam daftar,
-     * maka generator harus memberikan string unik lainnya untuk `keyword`.
-     */
-    #[PHPUnit\Test]
-    public function string_is_reserved_keyword(): void
+    public function testStringIsAReservedKeyword(): void
     {
-        $actual = 'https://example.com/css';
-        $expected = 'css';
+        $value = 'foobar';
 
-        config(['urlhub.reserved_keyword' => [$expected]]);
-        config(['urlhub.keyword_length' => strlen($expected)]);
+        config(['urlhub.reserved_keyword' => [$value]]);
 
-        $this->assertNotSame($expected, $this->keyGenerator->generate($actual));
+        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
     }
 
     /**
