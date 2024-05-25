@@ -31,6 +31,19 @@ class KeyGeneratorServiceTest extends TestCase
         $this->totalUrl = self::N_URL_WITH_USER_ID + self::N_URL_WITHOUT_USER_ID;
     }
 
+    public function testGenerateUniqueString(): void
+    {
+        $value1 = 'foo';
+        $foo1 = $this->keyGenerator->generate($value1);
+        Url::factory()->create(['keyword'  => $foo1]);
+        $this->assertNotSame($foo1, $this->keyGenerator->generate($value1));
+
+        $value2 = 'foo2';
+        $foo2 = $this->keyGenerator->generate($value2);
+        config(['urlhub.reserved_keyword' => [$foo2]]);
+        $this->assertNotSame($foo2, $this->keyGenerator->generate($value2));
+    }
+
     /**
      * UrlKey dihasilkan dari hasil pemotongan string URL. Sayangnya terkadang
      * panjang string dari hasil pemotongan tersebut bisa lebih pendek daripada
@@ -74,57 +87,42 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertTrue($url->is_custom);
     }
 
-    /**
-     * Generator harus memberikan string yang belum digunakan. Jika string sudah
-     * digunakan sebagai keyword, maka generator harus memberikan string unik
-     * lainnya untuk `keyword`.
-     */
-    #[PHPUnit\Test]
-    public function string_already_in_use(): void
+    public function testStringAlreadyInUse(): void
     {
-        $length = 3;
-        config(['urlhub.keyword_length' => $length]);
+        config(['urlhub.keyword_length' => 5]);
+        $value = $this->keyGenerator->generate('https://github.com/realodix');
 
-        $longUrl = 'https://github.com/realodix';
-        Url::factory()->create(['keyword'  => $this->keyGenerator->generate($longUrl)]);
+        Url::factory()->create(['keyword'  => $value]);
 
-        $this->assertNotSame(substr($longUrl, -$length), $this->keyGenerator->generate($longUrl));
+        $this->assertFalse($this->keyGenerator->verify($value));
     }
 
-    /**
-     * Generator harus memberikan string yang tidak ada di dalam daftar reserved
-     * keyword (config('urlhub.reserved_keyword')). Jika string ada di dalam daftar,
-     * maka generator harus memberikan string unik lainnya untuk `keyword`.
-     */
-    #[PHPUnit\Test]
-    public function string_is_reserved_keyword(): void
+    public function testStringIsAReservedKeyword(): void
     {
-        $actual = 'https://example.com/css';
-        $expected = 'css';
+        $value = 'foobar';
 
-        config(['urlhub.reserved_keyword' => [$expected]]);
-        config(['urlhub.keyword_length' => strlen($expected)]);
+        config(['urlhub.reserved_keyword' => [$value]]);
 
-        $this->assertNotSame($expected, $this->keyGenerator->generate($actual));
+        $this->assertFalse($this->keyGenerator->verify($value));
     }
 
-    /**
-     * Generator harus memberikan string yang tidak ada di dalam daftar registered
-     * route paths di Laravel. Jika string ada di dalam daftar, maka generator
-     * harus memberikan string unik lainnya untuk `keyword`.
-     *
-     * Pada pengujian ini, string yang diberikan adalah 'login', dimana 'login'
-     * sudah digunakan sebagai route path.
-     */
-    #[PHPUnit\Test]
-    public function string_is_route_path(): void
+    public function testStringIsRegisteredRoute(): void
     {
-        $actual = 'https://example.com/login';
-        $expected = 'login';
+        $value = 'admin';
 
-        config(['urlhub.keyword_length' => strlen($expected)]);
+        $this->assertFalse($this->keyGenerator->verify($value));
+    }
 
-        $this->assertNotSame($expected, $this->keyGenerator->generate($actual));
+    public function testStringIsPablicPath(): void
+    {
+        $fileSystem = new \Illuminate\Filesystem\Filesystem;
+        $value = 'foo';
+
+        $fileSystem->makeDirectory(public_path($value));
+
+        $this->assertFalse($this->keyGenerator->verify($value));
+
+        $fileSystem->deleteDirectory(public_path($value));
     }
 
     #[PHPUnit\Test]
