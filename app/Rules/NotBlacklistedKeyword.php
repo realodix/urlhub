@@ -18,7 +18,7 @@ class NotBlacklistedKeyword implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
-        $stringCanBeUsedAsKey = app(KeyGeneratorService::class)->ensureStringCanBeUsedAsKey($value);
+        $stringCanBeUsedAsKey = app(KeyGeneratorService::class)->verify($value);
 
         if ($stringCanBeUsedAsKey === false) {
             $fail('Not available.');
