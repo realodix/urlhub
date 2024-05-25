@@ -100,6 +100,18 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
     }
 
+    public function testStringIsPablicPath(): void
+    {
+        $fileSystem = new \Illuminate\Filesystem\Filesystem;
+        $value = 'foo';
+
+        $fileSystem->makeDirectory(public_path($value));
+
+        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
+
+        $fileSystem->deleteDirectory(public_path($value));
+    }
+
     #[PHPUnit\Test]
     public function possibleOutput(): void
     {
