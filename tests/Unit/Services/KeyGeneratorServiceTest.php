@@ -31,6 +31,19 @@ class KeyGeneratorServiceTest extends TestCase
         $this->totalUrl = self::N_URL_WITH_USER_ID + self::N_URL_WITHOUT_USER_ID;
     }
 
+    public function testGenerateUniqueString(): void
+    {
+        $value1 = 'foo';
+        $foo1 = $this->keyGenerator->generate($value1);
+        Url::factory()->create(['keyword'  => $foo1]);
+        $this->assertNotSame($foo1, $this->keyGenerator->generate($value1));
+
+        $value2 = 'foo2';
+        $foo2 = $this->keyGenerator->generate($value2);
+        config(['urlhub.reserved_keyword' => [$foo2]]);
+        $this->assertNotSame($foo2, $this->keyGenerator->generate($value2));
+    }
+
     /**
      * UrlKey dihasilkan dari hasil pemotongan string URL. Sayangnya terkadang
      * panjang string dari hasil pemotongan tersebut bisa lebih pendek daripada
