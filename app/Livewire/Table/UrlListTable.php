@@ -6,7 +6,6 @@ use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\DB;
-use LaraDumps\LaraDumps\Livewire\Attributes\Ds;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -17,7 +16,6 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 /**
  * @codeCoverageIgnore
  */
-#[Ds]
 final class UrlListTable extends PowerGridComponent
 {
     const STR_LIMIT = 80;
