@@ -93,23 +93,11 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
     }
 
-    /**
-     * Generator harus memberikan string yang tidak ada di dalam daftar registered
-     * route paths di Laravel. Jika string ada di dalam daftar, maka generator
-     * harus memberikan string unik lainnya untuk `keyword`.
-     *
-     * Pada pengujian ini, string yang diberikan adalah 'login', dimana 'login'
-     * sudah digunakan sebagai route path.
-     */
-    #[PHPUnit\Test]
-    public function string_is_route_path(): void
+    public function testStringIsRegisteredRoute(): void
     {
-        $actual = 'https://example.com/login';
-        $expected = 'login';
+        $value = 'admin';
 
-        config(['urlhub.keyword_length' => strlen($expected)]);
-
-        $this->assertNotSame($expected, $this->keyGenerator->generate($actual));
+        $this->assertFalse($this->keyGenerator->ensureStringCanBeUsedAsKey($value));
     }
 
     #[PHPUnit\Test]
