@@ -19,12 +19,12 @@ class KeyGeneratorService
         $string = $this->simpleString($value);
 
         if (
-            $this->ensureStringCanBeUsedAsKey($string) === false
+            $this->verify($string) === false
             || strlen($string) < config('urlhub.keyword_length')
         ) {
             do {
                 $randomString = $this->randomString();
-            } while ($this->ensureStringCanBeUsedAsKey($randomString) == false);
+            } while ($this->verify($randomString) == false);
 
             return $randomString;
         }
@@ -65,17 +65,9 @@ class KeyGeneratorService
     }
 
     /**
-     * Check if string can be used as a keyword.
-     *
-     * This function will check under several conditions:
-     * 1. If the string is already used as a key
-     * 2. If the string is in the list of reserved keywords
-     * 3. If the string is in the route path list
-     *
-     * If any or all of the above conditions are met, then the string cannot be
-     * used as a keyword and must return false.
+     * Verifies whether a string can be used as a keyword
      */
-    public function ensureStringCanBeUsedAsKey(string $value): bool
+    public function verify(string $value): bool
     {
         $alreadyInUse = Url::whereKeyword($value)->exists();
         $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'));
