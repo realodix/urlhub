@@ -4,6 +4,7 @@ namespace App\Livewire\Table;
 
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\DB;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Footer;
@@ -15,15 +16,22 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 /**
  * @codeCoverageIgnore
  */
-final class UrlListOfUsersTable extends PowerGridComponent
+class BaseUrlTable extends PowerGridComponent
 {
-    public int $user_id;
+    const STR_LIMIT = 90;
 
     public int $perPage = 25;
 
-    public bool $showUpdateMessages = true;
-
     public string $sortDirection = 'desc';
+
+    public string $sortField = 'urls.id';
+
+    public string $primaryKey = 'urls.id';
+
+    public function getUserIdBuilder(Builder $query): Builder
+    {
+        return $query;
+    }
 
     public function setUp(): array
     {
@@ -43,15 +51,15 @@ final class UrlListOfUsersTable extends PowerGridComponent
             ->join('users', 'urls.user_id', '=', 'users.id')
             ->leftJoinSub(DB::table('visits')
                 ->select('url_id', DB::raw('COUNT(id) as visits_count'))
-                ->groupBy('url_id'), 'visits_counts', function ($join) {
+                ->groupBy('url_id'), 'visits_counts', function (JoinClause $join) {
                 $join->on('urls.id', '=', 'visits_counts.url_id');
             })
             ->leftJoinSub(DB::table('visits')
                 ->select('url_id', DB::raw('SUM(CASE WHEN is_first_click = 1 THEN 1 ELSE 0 END) as unique_click_count'))
-                ->groupBy('url_id'), 'unique_click_counts', function ($join) {
+                ->groupBy('url_id'), 'unique_click_counts', function (JoinClause $join) {
                 $join->on('urls.id', '=', 'unique_click_counts.url_id');
             })
-            ->where('urls.user_id', '=', $this->user_id)
+            ->where(fn (Builder $query) => $this->getUserIdBuilder($query))
             ->select(
                 'urls.id as id',
                 'users.name as author',
@@ -67,6 +75,10 @@ final class UrlListOfUsersTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
+            ->add('author', function (Url $url) {
+                return view('components.table.author', ['name' => $url->author])
+                    ->render();
+            })
             ->add('keyword', function (Url $url) {
                 return view('components.table.keyword', ['shortUrl' => $url->short_url, 'keyword' => $url->keyword])
                     ->render();
@@ -75,7 +87,7 @@ final class UrlListOfUsersTable extends PowerGridComponent
                 return view('components.table.destination', [
                     'title' => $url->title,
                     'destination' => $url->destination,
-                    'limit' => MyUrlTable::STR_LIMIT,
+                    'limit' => self::STR_LIMIT,
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
@@ -98,6 +110,10 @@ final class UrlListOfUsersTable extends PowerGridComponent
     public function columns(): array
     {
         return [
+            Column::make('Owner', 'author')
+                ->sortable()
+                ->searchable(),
+
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),
