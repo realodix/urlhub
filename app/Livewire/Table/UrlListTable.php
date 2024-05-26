@@ -71,8 +71,10 @@ final class UrlListTable extends PowerGridComponent
                     ->render();
             })
             ->add('keyword', function (Url $url) {
-                return view('components.table.keyword', ['shortUrl' => $url->short_url, 'keyword' => $url->keyword])
-                    ->render();
+                return view('components.table.keyword', [
+                    'shortUrl' => $url->short_url,
+                    'keyword' => $url->keyword,
+                ])->render();
             })
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
@@ -82,8 +84,10 @@ final class UrlListTable extends PowerGridComponent
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
-                return view('components.table.visit', ['clicks' => $url->visits_count, 'uniqueClicks' => $url->unique_click_count])
-                    ->render();
+                return view('components.table.visit', [
+                    'clicks' => $url->visits_count,
+                    'uniqueClicks' => $url->unique_click_count,
+                ])->render();
             })
             ->add('created_at_formatted', function (Url $url) {
                 return view('components.table.date-created', ['createdAt' => $url->created_at])
