@@ -45,21 +45,26 @@ final class MyUrlTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('keyword', function (Url $url) {
-                return view('components.table.keyword', ['url' => $url])
-                    ->render();
+                return view('components.table.keyword', [
+                    'shortUrl' => $url->short_url,
+                    'keyword' => $url->keyword,
+                ])->render();
             })
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
-                    'url' => $url,
+                    'title' => $url->title,
+                    'destination' => $url->destination,
                     'limit' => self::STR_LIMIT,
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
-                return view('components.table.visit', ['url' => $url])
-                    ->render();
+                return view('components.table.visit', [
+                    'clicks' => $url->clicks,
+                    'uniqueClicks' => $url->uniqueClicks,
+                ])->render();
             })
             ->add('created_at_formatted', function (Url $url) {
-                return view('components.table.date-created', ['url' => $url])
+                return view('components.table.date-created', ['createdAt' => $url->created_at])
                     ->render();
             })
             ->add('action', function (Url $url) {
