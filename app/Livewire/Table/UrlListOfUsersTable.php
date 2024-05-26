@@ -45,26 +45,21 @@ final class UrlListOfUsersTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('keyword', function (Url $url) {
-                return view('components.table.keyword', [
-                    'shortUrl' => $url->short_url,
-                    'keyword' => $url->keyword,
-                ])->render();
+                return view('components.table.keyword', ['url' => $url])
+                    ->render();
             })
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
-                    'title' => $url->title,
-                    'destination' => $url->destination,
+                    'url' => $url,
                     'limit' => MyUrlTable::STR_LIMIT,
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
-                return view('components.table.visit', [
-                    'clicks' => $url->clicks,
-                    'uniqueClicks' => $url->uniqueClicks,
-                ])->render();
+                return view('components.table.visit', ['url' => $url])
+                    ->render();
             })
             ->add('created_at_formatted', function (Url $url) {
-                return view('components.table.date-created', ['createdAt' => $url->created_at])
+                return view('components.table.date-created', ['url' => $url])
                     ->render();
             })
             ->add('action', function (Url $url) {

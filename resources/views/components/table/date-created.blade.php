@@ -1,8 +1,5 @@
 <div>
-    @php
-        $date = \Illuminate\Support\Carbon::parse($createdAt);
-    @endphp
-    <span title="{{ $date->toDayDateTimeString()}} ">
-        {{ $date->shortRelativeDiffForHumans() }}
+    <span title="{{ $url->created_at->toDayDateTimeString()}} ">
+        {{ $url->created_at->shortRelativeDiffForHumans() }}
     </span>
 </div>
