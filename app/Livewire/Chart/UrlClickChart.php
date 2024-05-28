@@ -49,6 +49,6 @@ class UrlClickChart extends ChartWidget
 
     public function getDescription(): ?string
     {
-        return 'Number of clicks on each day for 4 months';
+        return 'Last 4 months';
     }
 }
