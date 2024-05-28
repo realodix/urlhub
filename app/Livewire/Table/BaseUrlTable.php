@@ -87,7 +87,7 @@ class BaseUrlTable extends PowerGridComponent
                 return view('components.table.destination', [
                     'title' => $url->title,
                     'destination' => $url->destination,
-                    'limit' => self::STR_LIMIT,
+                    'limit' => static::STR_LIMIT,
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
