@@ -55,10 +55,10 @@ class BaseUrlTable extends PowerGridComponent
                     $join->on('urls.id', '=', 'visits_counts.url_id');
                 })
             ->leftJoinSub(DB::table('visits')
-                    ->select('url_id', DB::raw('SUM(CASE WHEN is_first_click = 1 THEN 1 ELSE 0 END) as unique_click_count'))
-                    ->groupBy('url_id'), 'unique_click_counts', function (JoinClause $join) {
-                        $join->on('urls.id', '=', 'unique_click_counts.url_id');
-                    })
+                ->select('url_id', DB::raw('SUM(CASE WHEN is_first_click = 1 THEN 1 ELSE 0 END) as unique_click_count'))
+                ->groupBy('url_id'), 'unique_click_counts', function (JoinClause $join) {
+                    $join->on('urls.id', '=', 'unique_click_counts.url_id');
+                })
             ->where(fn (Builder $query) => $this->getUserIdBuilder($query))
             ->select(
                 'urls.id as id',
