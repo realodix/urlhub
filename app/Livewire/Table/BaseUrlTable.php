@@ -50,9 +50,9 @@ class BaseUrlTable extends PowerGridComponent
         return Url::query()
             ->join('users', 'urls.user_id', '=', 'users.id')
             ->leftJoinSub(DB::table('visits')
-                ->select('url_id', DB::raw('COUNT(id) as visits_count'))
-                ->groupBy('url_id'), 'visits_counts', function (JoinClause $join) {
-                    $join->on('urls.id', '=', 'visits_counts.url_id');
+                ->select('url_id', DB::raw('COUNT(id) as visit_count'))
+                ->groupBy('url_id'), 'visit_counts', function (JoinClause $join) {
+                    $join->on('urls.id', '=', 'visit_counts.url_id');
                 })
             ->leftJoinSub(DB::table('visits')
                 ->select('url_id', DB::raw('SUM(CASE WHEN is_first_click = 1 THEN 1 ELSE 0 END) as unique_click_count'))
@@ -67,7 +67,7 @@ class BaseUrlTable extends PowerGridComponent
                 'urls.keyword',
                 'urls.destination',
                 'urls.created_at',
-                DB::raw('COALESCE(visits_counts.visits_count, 0) as visits_count'),
+                DB::raw('COALESCE(visit_counts.visit_count, 0) as visit_count'),
                 DB::raw('COALESCE(unique_click_counts.unique_click_count, 0) as unique_click_count')
             );
     }
@@ -94,7 +94,7 @@ class BaseUrlTable extends PowerGridComponent
             })
             ->add('t_clicks', function (Url $url) {
                 return view('components.table.visit', [
-                    'clicks' => $url->visits_count,
+                    'clicks' => $url->visit_count,
                     'uniqueClicks' => $url->unique_click_count,
                 ])->render();
             })
