@@ -4,13 +4,13 @@ import presetPowerGrid from './vendor/power-components/livewire-powergrid/tailwi
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
+        "./app/Livewire/**/*Table.php",
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
-        "./app/Livewire/**/*Table.php",
+        "./vendor/filament/**/*.blade.php",
         "./vendor/power-components/livewire-powergrid/resources/views/**/*.php",
         "./vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php",
-        './vendor/filament/**/*.blade.php',
     ],
     presets: [
         presetPowerGrid,
