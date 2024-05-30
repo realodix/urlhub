@@ -80,8 +80,10 @@ class BaseUrlTable extends PowerGridComponent
                     ->render();
             })
             ->add('keyword', function (Url $url) {
-                return view('components.table.keyword', ['shortUrl' => $url->short_url, 'keyword' => $url->keyword])
-                    ->render();
+                return view('components.table.keyword', [
+                    'shortLink' => $url->short_url,
+                    'keyword' => $url->keyword,
+                ])->render();
             })
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
@@ -91,16 +93,22 @@ class BaseUrlTable extends PowerGridComponent
                 ])->render();
             })
             ->add('t_clicks', function (Url $url) {
-                return view('components.table.visit', ['clicks' => $url->visits_count, 'uniqueClicks' => $url->unique_click_count])
-                    ->render();
+                return view('components.table.visit', [
+                    'clicks' => $url->visits_count,
+                    'uniqueClicks' => $url->unique_click_count,
+                ])->render();
             })
             ->add('created_at_formatted', function (Url $url) {
-                return view('components.table.date-created', ['createdAt' => $url->created_at])
-                    ->render();
+                return view('components.table.date-created', [
+                    'date' => \Illuminate\Support\Carbon::parse($url->created_at),
+                ])->render();
             })
             ->add('action', function (Url $url) {
-                return view('components.table.action-button', ['url' => $url])
-                    ->render();
+                return view('components.table.action-button', [
+                    'detail_link' => route('su_detail', $url->keyword),
+                    'edit_link' => route('dboard.url.edit.show', $url),
+                    'delete_link' => route('dboard.url.delete', $url),
+                ])->render();
             });
     }
 
