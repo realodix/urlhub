@@ -1,5 +1,7 @@
+@use('Illuminate\Support\Str')
+
 <div>
-    <a href="{{ $url->short_url }}" title="{{ $url->keyword }}" target="_blank" class="font-light text-sky-800">
-        {{ str()->limit($url->keyword, 12) }}
+    <a href="{{ $shortLink }}" title="{{ $keyword }}" target="_blank" class="font-light text-sky-800">
+        {{ Str::limit($keyword, 12) }}
     </a>
 </div>

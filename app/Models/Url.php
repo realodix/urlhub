@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string         $short_url
  * @property int            $clicks
  * @property int            $uniqueClicks
+ * @property-read int       $visit_count
+ * @property-read int       $unique_visit_count
  */
 class Url extends Model
 {
@@ -132,6 +134,9 @@ class Url extends Model
         );
     }
 
+    /**
+     * @deprecated https://github.com/realodix/urlhub/pull/1003
+     */
     protected function uniqueClicks(): Attribute
     {
         return Attribute::make(

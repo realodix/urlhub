@@ -1,5 +1,5 @@
 <div>
-    <span title="{{ $url->created_at->toDayDateTimeString()}} ">
-        {{ $url->created_at->shortRelativeDiffForHumans() }}
+    <span title="{{ $date->toDayDateTimeString() }} ">
+        {{ $date->shortRelativeDiffForHumans() }}
     </span>
 </div>
