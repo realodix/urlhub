@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int            $clicks
  * @property int            $uniqueClicks
  * @property-read int       $visit_count
- * @property-read int       $unique_click_count
+ * @property-read int       $unique_visit_count
  */
 class Url extends Model
 {
