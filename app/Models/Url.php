@@ -134,6 +134,9 @@ class Url extends Model
         );
     }
 
+    /**
+     * @deprecated https://github.com/realodix/urlhub/pull/1003
+     */
     protected function uniqueClicks(): Attribute
     {
         return Attribute::make(
