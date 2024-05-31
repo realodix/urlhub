@@ -251,10 +251,10 @@ class UrlTest extends TestCase
     }
 
     /**
-     * Total klik dari setiap shortened URLs yang dibuat oleh user tertentu
+     * The total number of clicks on all short URLs from the current user
      */
     #[PHPUnit\Test]
-    public function numberOfClicksOfEachUser(): void
+    public function numberOfSelfClicks(): void
     {
         $user = $this->normalUser();
 
@@ -266,7 +266,7 @@ class UrlTest extends TestCase
 
         $this->actingAs($user);
         $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $visit->url->numberOfClicksOfEachUser();
+        $actual = $visit->url->numberOfSelfClicks();
 
         $this->assertSame($expected, $actual);
         $this->assertSame(1, $actual);
