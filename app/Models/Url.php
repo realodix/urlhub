@@ -223,11 +223,9 @@ class Url extends Model
      */
     public function currentUserClickCount(): int
     {
-        $urls = self::with('visits')
-            ->where('user_id', auth()->id())
-            ->get();
-
-        return $urls->sum(fn ($url) => $url->visits->count());
+        return $this->where('user_id', auth()->id())
+            ->join('visits', 'urls.id', '=', 'visits.url_id')
+            ->count('visits.id');
     }
 
     /**
