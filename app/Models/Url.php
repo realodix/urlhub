@@ -219,13 +219,13 @@ class Url extends Model
     }
 
     /**
-     * The total number of clicks on all short URLs from each User
+     * The total number of clicks on all short URLs from the current user
      */
-    public function numberOfClicksOfEachUser(): int
+    public function currentUserClickCount(): int
     {
-        $url = self::whereUserId(auth()->id())->get();
-
-        return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
+        return self::with('visits')
+            ->where('user_id', auth()->id())
+            ->count();
     }
 
     /**
