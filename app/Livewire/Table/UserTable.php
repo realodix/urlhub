@@ -45,9 +45,10 @@ final class UserTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('name', function (User $user) {
-                $urlCountTitle = $user->urls()->count().' '.Str::plural('url', $user->urls()->count()).' created';
+                $urlsCount = $user->urls()->count();
+                $urlCountTitle = $urlsCount.' '.Str::plural('url', $urlsCount).' created';
 
-                return $user->name.' <span title="'.$urlCountTitle.'">('.numberAbbreviate($user->urls()->count()).')</span>';
+                return $user->name.' <span title="'.$urlCountTitle.'">('.numberAbbreviate($urlsCount).')</span>';
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {
