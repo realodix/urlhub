@@ -221,7 +221,7 @@ class Url extends Model
     /**
      * The total number of clicks on all short URLs from the current user
      */
-    public function numberOfSelfClicks(): int
+    public function currentUserClickCount(): int
     {
         $urls = self::with('visits')
             ->where('user_id', auth()->id())

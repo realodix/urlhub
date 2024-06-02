@@ -25,7 +25,7 @@
                     <div>
                         <p class="text-gray-400 text-sm font-medium uppercase leading-4">Total Clicks</p>
                         <p class="text-2xl font-bold text-gray-900 inline-flex items-center space-x-2">
-                            {{numberAbbreviate($url->numberOfSelfClicks())}}
+                            {{numberAbbreviate($url->currentUserClickCount())}}
                         </p>
                     </div>
                 </div>
