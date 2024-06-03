@@ -219,7 +219,7 @@ class Url extends Model
     }
 
     /**
-     * The total number of clicks on all short URLs from the current user
+     * Total clicks from the current user
      */
     public function currentUserClickCount(): int
     {
@@ -229,7 +229,7 @@ class Url extends Model
     }
 
     /**
-     * The total number of clicks on all short URLs from all users
+     * Total clicks from all users
      */
     public function userClickCount(): int
     {
@@ -239,7 +239,7 @@ class Url extends Model
     }
 
     /**
-     * The total number of clicks on all short URLs from all guest users
+     * Total clicks from all guest users
      */
     public function guestUserClickCount(): int
     {
