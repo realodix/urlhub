@@ -219,7 +219,7 @@ class Url extends Model
     }
 
     /**
-     * The total number of clicks on all short URLs from the current user
+     * Total clicks from the current user
      */
     public function currentUserClickCount(): int
     {
@@ -229,12 +229,22 @@ class Url extends Model
     }
 
     /**
-     * The total number of clicks on all short URLs from all guest users
+     * Total clicks from all users
      */
-    public function numberOfClickFromGuest(): int
+    public function userClickCount(): int
     {
-        $url = self::whereNull('user_id')->get();
+        return Visit::join('urls', 'visits.url_id', '=', 'urls.id')
+            ->where('urls.user_id', '!=', null)
+            ->count('visits.id');
+    }
 
-        return $url->sum(fn ($url) => $url->numberOfClicks($url->id));
+    /**
+     * Total clicks from all guest users
+     */
+    public function guestUserClickCount(): int
+    {
+        return Visit::join('urls', 'visits.url_id', '=', 'urls.id')
+            ->where('urls.user_id', '=', null)
+            ->count('visits.id');
     }
 }

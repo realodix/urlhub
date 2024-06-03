@@ -40,19 +40,19 @@
                 @php
                     $tUrl = numberAbbreviate($url->count());
                     $tUrlVisit = numberAbbreviate($visit->count());
-                    $nUrlFromUser = numberAbbreviate($url->where('user_id', '!=' , null)->count());
-                    $nUrlVisitFromUser = numberAbbreviate($visit->count() - $url->numberOfClickFromGuest());
-                    $nUrlFromGuest = numberAbbreviate($url->numberOfUrlFromGuests());
-                    $nUrlVisitFromGuest = numberAbbreviate($url->numberOfClickFromGuest());
+                    $userUrlCount = numberAbbreviate($url->where('user_id', '!=' , null)->count());
+                    $userClickCount = numberAbbreviate($url->userClickCount());
+                    $guestUrlCount = numberAbbreviate($url->numberOfUrlFromGuests());
+                    $guestUserClickCount = numberAbbreviate($url->guestUserClickCount());
                 @endphp
                 <dt>Total</dt>
                 <dd>{{$tUrl}} ({{$tUrlVisit}} visits)</dd>
 
                 <dt>From Users</dt>
-                <dd>{{$nUrlFromUser}} ({{$nUrlVisitFromUser}} visits)</dd>
+                <dd>{{$userUrlCount}} ({{$userClickCount}} visits)</dd>
 
                 <dt>From Unregistered Users</dt>
-                <dd>{{$nUrlFromGuest}} ({{$nUrlVisitFromGuest}} visits)</dd>
+                <dd>{{$guestUrlCount}} ({{$guestUserClickCount}} visits)</dd>
             </dl>
 
             <div class="card_header__sub_header">Users</div>

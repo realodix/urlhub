@@ -18,6 +18,7 @@ class UrlTest extends TestCase
         parent::setUp();
 
         $this->url = new Url;
+        $this->visit = new Visit;
     }
 
     /*
@@ -250,16 +251,13 @@ class UrlTest extends TestCase
         $this->assertSame(1, $actual);
     }
 
-    /**
-     * The total number of clicks on all short URLs from the current user
-     */
     #[PHPUnit\Test]
     public function currentUserClickCount(): void
     {
         $user = $this->normalUser();
 
         $visit = Visit::factory()
-            ->for(Url::factory([
+            ->for(Url::factory()->state([
                 'user_id' => $user->id,
             ]))
             ->create();
@@ -269,24 +267,46 @@ class UrlTest extends TestCase
         $actual = $visit->url->currentUserClickCount();
 
         $this->assertSame($expected, $actual);
-        $this->assertSame(1, $actual);
     }
 
-    /**
-     * Total clicks on all short URLs from all guest users
-     */
     #[PHPUnit\Test]
-    public function numberOfClickFromGuest(): void
+    public function userClickCount(): void
     {
-        $visit = Visit::factory()
-            ->for(Url::factory()->create(['user_id' => Url::GUEST_ID]))
+        $nUser = 6;
+        $nGuest = 4;
+
+        Visit::factory()->count($nUser)
+            ->for(Url::factory())
             ->create();
 
-        $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $this->url->numberOfClickFromGuest();
+        Visit::factory()->count($nGuest)
+            ->for(Url::factory()->state([
+                'user_id' => Url::GUEST_ID,
+            ]))
+            ->create();
 
-        $this->assertSame(Url::GUEST_ID, $visit->url->user_id);
-        $this->assertSame($expected, $actual);
+        $this->assertSame($nUser, $this->url->userClickCount());
+        $this->assertSame($nUser + $nGuest, $this->visit->count());
+    }
+
+    #[PHPUnit\Test]
+    public function guestUserClickCount(): void
+    {
+        $nUser = 6;
+        $nGuest = 4;
+
+        Visit::factory()->count($nUser)
+            ->for(Url::factory())
+            ->create();
+
+        Visit::factory()->count($nGuest)
+            ->for(Url::factory()->state([
+                'user_id' => Url::GUEST_ID,
+            ]))
+            ->create();
+
+        $this->assertSame($nGuest, $this->url->guestUserClickCount());
+        $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 
     public function testKeywordColumnIsCaseSensitive(): void
