@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUrlRequest;
 use App\Models\Url;
+use App\Models\Visit;
 use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
@@ -16,8 +17,11 @@ class DashboardController extends Controller
      */
     public function view()
     {
+        $urlVisitCount = app(Visit::class)->currentUserUrlVisitCount();
+
         return view('backend.dashboard', [
             'url'  => app(Url::class),
+            'urlVisitCount' => numberAbbreviate($urlVisitCount),
         ]);
     }
 

@@ -66,6 +66,16 @@ class Visit extends Model
     */
 
     /**
+     * Total clicks from the current user
+     */
+    public function currentUserUrlVisitCount(): int
+    {
+        return self::join('urls', 'visits.url_id', '=', 'urls.id')
+            ->where('user_id', auth()->id())
+            ->count();
+    }
+
+    /**
      * Total clicks from all users
      */
     public function userClickCount(): int

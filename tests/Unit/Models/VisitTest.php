@@ -27,6 +27,25 @@ class VisitTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    public function currentUserUrlVisitCount(): void
+    {
+        $user = $this->normalUser();
+        $nCurrentUser = 8;
+        $nUser = 6;
+
+        Visit::factory()->count($nCurrentUser)
+            ->for(Url::factory()->state(['user_id' => $user->id]))
+            ->create();
+        Visit::factory()->count($nUser)
+            ->for(Url::factory())
+            ->create();
+
+        $this->actingAs($user);
+        $this->assertSame($nCurrentUser, $this->visit->currentUserUrlVisitCount());
+        $this->assertSame($nCurrentUser + $nUser, $this->visit->userClickCount());
+    }
+
+    #[PHPUnit\Test]
     public function userClickCount(): void
     {
         $nUser = 6;

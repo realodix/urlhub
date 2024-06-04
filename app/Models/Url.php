@@ -217,14 +217,4 @@ class Url extends Model
 
         return $total;
     }
-
-    /**
-     * Total clicks from the current user
-     */
-    public function currentUserClickCount(): int
-    {
-        return self::with('visits')
-            ->where('user_id', auth()->id())
-            ->count();
-    }
 }

@@ -251,24 +251,6 @@ class UrlTest extends TestCase
         $this->assertSame(1, $actual);
     }
 
-    #[PHPUnit\Test]
-    public function currentUserClickCount(): void
-    {
-        $user = $this->normalUser();
-
-        $visit = Visit::factory()
-            ->for(Url::factory()->state([
-                'user_id' => $user->id,
-            ]))
-            ->create();
-
-        $this->actingAs($user);
-        $expected = Visit::whereUrlId($visit->url->id)->count();
-        $actual = $visit->url->currentUserClickCount();
-
-        $this->assertSame($expected, $actual);
-    }
-
     public function testKeywordColumnIsCaseSensitive(): void
     {
         $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);
