@@ -41,9 +41,9 @@
                     $tUrl = numberAbbreviate($url->count());
                     $tUrlVisit = numberAbbreviate($visit->count());
                     $userUrlCount = numberAbbreviate($url->where('user_id', '!=' , null)->count());
-                    $userClickCount = numberAbbreviate($url->userClickCount());
+                    $userClickCount = numberAbbreviate($visit->userClickCount());
                     $guestUrlCount = numberAbbreviate($url->numberOfUrlFromGuests());
-                    $guestUserClickCount = numberAbbreviate($url->guestUserClickCount());
+                    $guestUserClickCount = numberAbbreviate($visit->guestUserUrlVisitCount());
                 @endphp
                 <dt>Total</dt>
                 <dd>{{$tUrl}} ({{$tUrlVisit}} visits)</dd>

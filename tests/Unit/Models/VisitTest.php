@@ -13,6 +13,8 @@ class VisitTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->visit = new Visit;
     }
 
     #[PHPUnit\Test]
@@ -22,5 +24,45 @@ class VisitTest extends TestCase
 
         $this->assertEquals(1, $visit->url->count());
         $this->assertInstanceOf(Url::class, $visit->url);
+    }
+
+    #[PHPUnit\Test]
+    public function userClickCount(): void
+    {
+        $nUser = 6;
+        $nGuest = 4;
+
+        Visit::factory()->count($nUser)
+            ->for(Url::factory())
+            ->create();
+
+        Visit::factory()->count($nGuest)
+            ->for(Url::factory()->state([
+                'user_id' => Url::GUEST_ID,
+            ]))
+            ->create();
+
+        $this->assertSame($nUser, $this->visit->userClickCount());
+        $this->assertSame($nUser + $nGuest, $this->visit->count());
+    }
+
+    #[PHPUnit\Test]
+    public function guestUserUrlVisitCount(): void
+    {
+        $nUser = 6;
+        $nGuest = 4;
+
+        Visit::factory()->count($nUser)
+            ->for(Url::factory())
+            ->create();
+
+        Visit::factory()->count($nGuest)
+            ->for(Url::factory()->state([
+                'user_id' => Url::GUEST_ID,
+            ]))
+            ->create();
+
+        $this->assertSame($nGuest, $this->visit->guestUserUrlVisitCount());
+        $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 }

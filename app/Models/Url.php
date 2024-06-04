@@ -227,24 +227,4 @@ class Url extends Model
             ->where('user_id', auth()->id())
             ->count();
     }
-
-    /**
-     * Total clicks from all users
-     */
-    public function userClickCount(): int
-    {
-        return Visit::join('urls', 'visits.url_id', '=', 'urls.id')
-            ->where('urls.user_id', '!=', null)
-            ->count('visits.id');
-    }
-
-    /**
-     * Total clicks from all guest users
-     */
-    public function guestUserClickCount(): int
-    {
-        return Visit::join('urls', 'visits.url_id', '=', 'urls.id')
-            ->where('urls.user_id', '=', null)
-            ->count('visits.id');
-    }
 }

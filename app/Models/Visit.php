@@ -58,4 +58,30 @@ class Visit extends Model
     {
         return $this->belongsTo(Url::class);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | General
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Total clicks from all users
+     */
+    public function userClickCount(): int
+    {
+        return self::join('urls', 'visits.url_id', '=', 'urls.id')
+            ->where('urls.user_id', '!=', Url::GUEST_ID)
+            ->count('visits.id');
+    }
+
+    /**
+     * Total clicks from all guest users
+     */
+    public function guestUserUrlVisitCount(): int
+    {
+        return self::join('urls', 'visits.url_id', '=', 'urls.id')
+            ->where('urls.user_id', Url::GUEST_ID)
+            ->count('visits.id');
+    }
 }
