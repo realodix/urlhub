@@ -190,22 +190,19 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * The number of shortened URLs that have been created by each User
-     */
     #[PHPUnit\Test]
-    public function numberOfUrl(): void
+    public function currentUserUrlCount(): void
     {
         $user = $this->normalUser();
+        $nCurrentUser = 8;
+        $nUser = 6;
 
-        Url::factory([
-            'user_id' => $user->id,
-        ])->create();
+        Url::factory()->count($nCurrentUser)->create(['user_id' => $user->id]);
+        Url::factory()->count($nUser)->create();
 
         $this->actingAs($user);
-        $actual = $this->url->numberOfUrl();
-
-        $this->assertSame(1, $actual);
+        $this->assertSame($nCurrentUser, $this->url->currentUserUrlCount());
+        $this->assertSame($nUser + $nCurrentUser, $this->url->count());
     }
 
     #[PHPUnit\Test]
