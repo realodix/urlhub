@@ -61,7 +61,9 @@ class BaseUrlTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('author', function (Url $url) {
-                return view('components.table.author', ['name' => $url->author->name])
+                $author = $url->author->name ?? 'Guest';
+
+                return view('components.table.author', ['name' => $author])
                     ->render();
             })
             ->add('keyword', function (Url $url) {
