@@ -21,6 +21,7 @@
         "spatie/url": "^2.4"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.13",
         "brianium/paratest": "^7.4",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^2.9.7",
