@@ -208,17 +208,17 @@ class UrlTest extends TestCase
         $this->assertSame(1, $actual);
     }
 
-    /**
-     * The total number of shortened URLs that have been created by all guests
-     */
     #[PHPUnit\Test]
-    public function numberOfUrlFromGuests(): void
+    public function guestUserUrlCount(): void
     {
-        Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $nUser = 6;
+        $nGuest = 4;
 
-        $actual = $this->url->numberOfUrlFromGuests();
+        Url::factory()->count($nUser)->create();
+        Url::factory()->count($nGuest)->create(['user_id' => Url::GUEST_ID]);
 
-        $this->assertSame(1, $actual);
+        $this->assertSame($nGuest, $this->url->guestUserUrlCount());
+        $this->assertSame($nUser + $nGuest, $this->url->count());
     }
 
     #[PHPUnit\Test]
