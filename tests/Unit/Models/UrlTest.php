@@ -206,6 +206,19 @@ class UrlTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    public function userUrlCount(): void
+    {
+        $nUser = 6;
+        $nGuest = 4;
+
+        Url::factory()->count($nUser)->create();
+        Url::factory()->count($nGuest)->create(['user_id' => Url::GUEST_ID]);
+
+        $this->assertSame($nUser, $this->url->userUrlCount());
+        $this->assertSame($nUser + $nGuest, $this->url->count());
+    }
+
+    #[PHPUnit\Test]
     public function guestUserUrlCount(): void
     {
         $nUser = 6;

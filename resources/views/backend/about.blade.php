@@ -40,7 +40,7 @@
                 @php
                     $tUrl = numberAbbreviate($url->count());
                     $tUrlVisit = numberAbbreviate($visit->count());
-                    $userUrlCount = numberAbbreviate($url->where('user_id', '!=' , null)->count());
+                    $userUrlCount = numberAbbreviate($url->userUrlCount());
                     $userClickCount = numberAbbreviate($visit->userClickCount());
                     $guestUrlCount = numberAbbreviate($url->guestUserUrlCount());
                     $guestUserClickCount = numberAbbreviate($visit->guestUserUrlVisitCount());

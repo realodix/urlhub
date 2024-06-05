@@ -191,6 +191,15 @@ class Url extends Model
     }
 
     /**
+     * Total short URLs that have been created by all users
+     */
+    public function userUrlCount(): int
+    {
+        return self::where('user_id', '!=', self::GUEST_ID)
+            ->count();
+    }
+
+    /**
      * Total short URLs that have been created by all guest users
      */
     public function guestUserUrlCount(): int
