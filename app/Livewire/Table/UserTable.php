@@ -46,7 +46,7 @@ final class UserTable extends PowerGridComponent
                 $urlsCount = $user->urls_count;
                 $urlCountTitle = number_format($urlsCount).' short '.Str::plural('link', $urlsCount);
 
-                return $user->name.' <span title="'.$urlCountTitle.'">('.numberAbbreviate($urlsCount).')</span>';
+                return $user->name.' <span title="'.$urlCountTitle.'">('.n_abb($urlsCount).')</span>';
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {

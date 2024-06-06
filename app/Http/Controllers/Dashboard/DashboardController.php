@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         return view('backend.dashboard', [
             'url'  => app(Url::class),
-            'urlVisitCount' => numberAbbreviate($urlVisitCount),
+            'urlVisitCount' => n_abb($urlVisitCount),
         ]);
     }
 
