@@ -15,7 +15,7 @@
                     @svg('icon-chart-line-alt')
                     <i>
                         <span title="{{number_format($url->clicks)}}" class="font-bold">
-                            {{numberAbbreviate($url->clicks)}}
+                            {{n_abb($url->clicks)}}
                         </span>
                     </i>
                 </li>

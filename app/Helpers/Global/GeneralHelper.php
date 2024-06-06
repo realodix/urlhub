@@ -18,7 +18,7 @@ if (! function_exists('urlDisplay')) {
     }
 }
 
-if (! function_exists('numberAbbreviate')) {
+if (! function_exists('n_abb')) {
     /**
      * This is modified version of Laravel Number::abbreviate() method with the
      * default value of maxPrecision is 2.
@@ -31,7 +31,7 @@ if (! function_exists('numberAbbreviate')) {
      * @param int|null  $maxPrecision
      * @return bool|string
      */
-    function numberAbbreviate($number, $precision = 0, $maxPrecision = 2)
+    function n_abb($number, $precision = 0, $maxPrecision = 2)
     {
         return Number::abbreviate($number, $precision, $maxPrecision);
     }
