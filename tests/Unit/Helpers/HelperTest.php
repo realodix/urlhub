@@ -48,11 +48,11 @@ class HelperTest extends TestCase
         ];
     }
 
-    public function testNumberAbbreviate(): void
+    public function test_n_abb(): void
     {
         $this->assertSame('7K', \Illuminate\Support\Number::abbreviate(6789));
 
         $this->assertSame('6.79K', \Illuminate\Support\Number::abbreviate(6789, maxPrecision: 2));
-        $this->assertSame('6.79K', numberAbbreviate(6789));
+        $this->assertSame('6.79K', n_abb(6789));
     }
 }
