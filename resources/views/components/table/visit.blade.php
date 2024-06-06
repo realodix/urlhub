@@ -1,6 +1,6 @@
 @php
-    $tClick = numberAbbreviate($clicks);
-    $uClick = numberAbbreviate($uniqueClicks);
+    $tClick = n_abb($clicks);
+    $uClick = n_abb($uniqueClicks);
     $title = $tClick.' '.__('Clicks').' / '.$uClick.' '.__('Uniques');
 @endphp
 

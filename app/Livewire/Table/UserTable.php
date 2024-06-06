@@ -18,8 +18,6 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 final class UserTable extends PowerGridComponent
 {
-    public int $perPage = 25;
-
     public bool $showUpdateMessages = true;
 
     public string $sortDirection = 'desc';
@@ -31,7 +29,7 @@ final class UserTable extends PowerGridComponent
                 ->showToggleColumns()
                 ->showSearchInput(),
             Footer::make()
-                ->showPerPage($this->perPage)
+                ->showPerPage(25, [10, 25, 50, 100])
                 ->showRecordCount('full'),
         ];
     }
@@ -48,7 +46,7 @@ final class UserTable extends PowerGridComponent
                 $urlsCount = $user->urls_count;
                 $urlCountTitle = number_format($urlsCount).' short '.Str::plural('link', $urlsCount);
 
-                return $user->name.' <span title="'.$urlCountTitle.'">('.numberAbbreviate($urlsCount).')</span>';
+                return $user->name.' <span title="'.$urlCountTitle.'">('.n_abb($urlsCount).')</span>';
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {

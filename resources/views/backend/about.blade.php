@@ -38,12 +38,12 @@
             <div class="card_header__sub_header">Links</div>
             <dl>
                 @php
-                    $tUrl = numberAbbreviate($url->count());
-                    $tUrlVisit = numberAbbreviate($visit->count());
-                    $userUrlCount = numberAbbreviate($url->where('user_id', '!=' , null)->count());
-                    $userClickCount = numberAbbreviate($visit->userClickCount());
-                    $guestUrlCount = numberAbbreviate($url->numberOfUrlFromGuests());
-                    $guestUserClickCount = numberAbbreviate($visit->guestUserUrlVisitCount());
+                    $tUrl = n_abb($url->count());
+                    $tUrlVisit = n_abb($visit->count());
+                    $userUrlCount = n_abb($url->userUrlCount());
+                    $userClickCount = n_abb($visit->userClickCount());
+                    $guestUrlCount = n_abb($url->guestUserUrlCount());
+                    $guestUserClickCount = n_abb($visit->guestUserUrlVisitCount());
                 @endphp
                 <dt>Total</dt>
                 <dd>{{$tUrl}} ({{$tUrlVisit}} visits)</dd>
@@ -58,10 +58,10 @@
             <div class="card_header__sub_header">Users</div>
             <dl>
                 <dt>Registered</dt>
-                <dd>{{numberAbbreviate($user->count())}}</dd>
+                <dd>{{n_abb($user->count())}}</dd>
 
                 <dt>Unregistered</dt>
-                <dd>{{numberAbbreviate($user->totalGuestUsers())}}</dd>
+                <dd>{{n_abb($user->totalGuestUsers())}}</dd>
             </dl>
 
             <div class="card_header__sub_header">Random String</div>
