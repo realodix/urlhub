@@ -40,9 +40,9 @@
                 @php
                     $tUrl = n_abb($url->count());
                     $tUrlVisit = n_abb($visit->count());
-                    $userUrlCount = n_abb($url->where('user_id', '!=' , null)->count());
+                    $userUrlCount = n_abb($url->userUrlCount());
                     $userClickCount = n_abb($visit->userClickCount());
-                    $guestUrlCount = n_abb($url->numberOfUrlFromGuests());
+                    $guestUrlCount = n_abb($url->guestUserUrlCount());
                     $guestUserClickCount = n_abb($visit->guestUserUrlVisitCount());
                 @endphp
                 <dt>Total</dt>
