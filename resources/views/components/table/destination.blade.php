@@ -1,9 +1,8 @@
 @use('App\Helpers\Helper')
-@use('Illuminate\Support\Str')
 
 <div>
     <span title="{{ $title}} ">
-        {{ Str::limit($title, $limit) }}
+        {{ str()->limit($title, $limit) }}
     </span>
 
     <br>
