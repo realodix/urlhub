@@ -103,10 +103,6 @@ class BaseUrlTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Owner', 'author')
-                ->sortable()
-                ->searchable(),
-
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),
