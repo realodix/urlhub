@@ -13,7 +13,7 @@ final class UrlListOfGuestTable extends BaseUrlTable
 {
     public function getUserIdBuilder(Builder $query): Builder
     {
-        return $query->where('urls.user_id', '=', Url::GUEST_ID);
+        return $query->where('urls.user_id', Url::GUEST_ID);
     }
 
     /**
