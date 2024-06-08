@@ -9,7 +9,7 @@ use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 
-class UrlClickChart extends ChartWidget
+class LinkVisitChart extends ChartWidget
 {
     protected static ?string $maxHeight = '250px';
 
@@ -32,7 +32,7 @@ class UrlClickChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Clicks',
+                    'label' => 'Visits',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#9BD0F5',

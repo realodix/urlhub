@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="mt-20">
-                    @livewire(\App\Livewire\Chart\UrlClickChart::class, ['model' => $url])
+                    @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
                 </div>
 
             </div>
