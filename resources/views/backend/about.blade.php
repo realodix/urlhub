@@ -39,20 +39,20 @@
             <dl>
                 @php
                     $tUrl = n_abb($url->count());
-                    $tUrlVisit = n_abb($visit->count());
+                    $visitCount = n_abb($visit->count());
                     $userUrlCount = n_abb($url->userUrlCount());
-                    $userClickCount = n_abb($visit->userClickCount());
+                    $userLinkVisitCount = n_abb($visit->userLinkVisitCount());
                     $guestUrlCount = n_abb($url->guestUserUrlCount());
-                    $guestUserClickCount = n_abb($visit->guestUserUrlVisitCount());
+                    $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
                 @endphp
                 <dt>Total</dt>
-                <dd>{{$tUrl}} ({{$tUrlVisit}} visits)</dd>
+                <dd>{{$tUrl}} ({{$visitCount}} visits)</dd>
 
                 <dt>From Users</dt>
-                <dd>{{$userUrlCount}} ({{$userClickCount}} visits)</dd>
+                <dd>{{$userUrlCount}} ({{$userLinkVisitCount}} visits)</dd>
 
                 <dt>From Unregistered Users</dt>
-                <dd>{{$guestUrlCount}} ({{$guestUserClickCount}} visits)</dd>
+                <dd>{{$guestUrlCount}} ({{$guestUserLinkVisitCount}} visits)</dd>
             </dl>
 
             <div class="card_header__sub_header">Users</div>

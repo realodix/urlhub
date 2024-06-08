@@ -66,9 +66,9 @@ class Visit extends Model
     */
 
     /**
-     * Total clicks from the current user
+     * Number of current user link visits
      */
-    public function currentUserUrlVisitCount(): int
+    public function currentUserLinkVisitCount(): int
     {
         return self::join('urls', 'visits.url_id', '=', 'urls.id')
             ->where('user_id', auth()->id())
@@ -76,9 +76,9 @@ class Visit extends Model
     }
 
     /**
-     * Total clicks from all users
+     * Number of user link visits
      */
-    public function userClickCount(): int
+    public function userLinkVisitCount(): int
     {
         return self::join('urls', 'visits.url_id', '=', 'urls.id')
             ->where('urls.user_id', '!=', Url::GUEST_ID)
@@ -86,9 +86,9 @@ class Visit extends Model
     }
 
     /**
-     * Total clicks from all guest users
+     * Number of guest user link visits
      */
-    public function guestUserUrlVisitCount(): int
+    public function guestUserLinkVisitCount(): int
     {
         return self::join('urls', 'visits.url_id', '=', 'urls.id')
             ->where('urls.user_id', Url::GUEST_ID)

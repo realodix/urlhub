@@ -27,7 +27,7 @@ class VisitTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function currentUserUrlVisitCount(): void
+    public function currentUserLinkVisitCount(): void
     {
         $user = $this->normalUser();
         $nCurrentUser = 8;
@@ -41,12 +41,12 @@ class VisitTest extends TestCase
             ->create();
 
         $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->visit->currentUserUrlVisitCount());
-        $this->assertSame($nCurrentUser + $nUser, $this->visit->userClickCount());
+        $this->assertSame($nCurrentUser, $this->visit->currentUserLinkVisitCount());
+        $this->assertSame($nCurrentUser + $nUser, $this->visit->userLinkVisitCount());
     }
 
     #[PHPUnit\Test]
-    public function userClickCount(): void
+    public function userLinkVisitCount(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -61,12 +61,12 @@ class VisitTest extends TestCase
             ]))
             ->create();
 
-        $this->assertSame($nUser, $this->visit->userClickCount());
+        $this->assertSame($nUser, $this->visit->userLinkVisitCount());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 
     #[PHPUnit\Test]
-    public function guestUserUrlVisitCount(): void
+    public function guestUserLinkVisitCount(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -81,7 +81,7 @@ class VisitTest extends TestCase
             ]))
             ->create();
 
-        $this->assertSame($nGuest, $this->visit->guestUserUrlVisitCount());
+        $this->assertSame($nGuest, $this->visit->guestUserLinkVisitCount());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 }

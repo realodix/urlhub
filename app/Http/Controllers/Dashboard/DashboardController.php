@@ -17,7 +17,7 @@ class DashboardController extends Controller
      */
     public function view()
     {
-        $urlVisitCount = app(Visit::class)->currentUserUrlVisitCount();
+        $urlVisitCount = app(Visit::class)->currentUserLinkVisitCount();
 
         return view('backend.dashboard', [
             'url'  => app(Url::class),
