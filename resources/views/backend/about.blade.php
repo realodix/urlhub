@@ -38,7 +38,7 @@
             <div class="card_header__sub_header">Links</div>
             <dl>
                 @php
-                    $tUrl = n_abb($url->count());
+                    $urlCount = n_abb($url->count());
                     $visitCount = n_abb($visit->count());
                     $userUrlCount = n_abb($url->userUrlCount());
                     $userLinkVisitCount = n_abb($visit->userLinkVisitCount());
@@ -46,7 +46,7 @@
                     $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
                 @endphp
                 <dt>Total</dt>
-                <dd>{{$tUrl}} ({{$visitCount}} visits)</dd>
+                <dd>{{$urlCount}} ({{$visitCount}} visits)</dd>
 
                 <dt>From Users</dt>
                 <dd>{{$userUrlCount}} ({{$userLinkVisitCount}} visits)</dd>
