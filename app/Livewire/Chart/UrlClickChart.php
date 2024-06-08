@@ -49,6 +49,6 @@ class UrlClickChart extends ChartWidget
 
     public function getDescription(): ?string
     {
-        return 'Last 4 months';
+        return 'Stats for past quarter';
     }
 }
