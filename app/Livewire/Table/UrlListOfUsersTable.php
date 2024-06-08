@@ -13,6 +13,6 @@ final class UrlListOfUsersTable extends BaseUrlTable
 
     public function getUserIdBuilder(Builder $query): Builder
     {
-        return $query->where('urls.user_id', '=', $this->user_id);
+        return $query->where('urls.user_id', $this->user_id);
     }
 }

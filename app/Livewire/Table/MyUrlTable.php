@@ -11,6 +11,6 @@ final class MyUrlTable extends BaseUrlTable
 {
     public function getUserIdBuilder(Builder $query): Builder
     {
-        return $query->where('urls.user_id', '=', auth()->id());
+        return $query->where('urls.user_id', auth()->id());
     }
 }
