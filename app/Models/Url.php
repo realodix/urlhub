@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string         $short_url
  * @property int            $clicks
  * @property int            $uniqueClicks
- * @property-read int       $unique_visit_count
  */
 class Url extends Model
 {
