@@ -3,18 +3,18 @@
 use App\Helpers\Helper;
 use Illuminate\Support\Number;
 
-if (! function_exists('urlDisplay')) {
+if (! function_exists('urlFormat')) {
     /**
      * Display the link according to what You need.
      *
      * @param string   $value
      * @param int|null $limit
      * @param bool     $scheme
-     * @return string|\Illuminate\Support\Stringable
+     * @return string
      */
-    function urlDisplay($value, $limit = null, $scheme = true)
+    function urlFormat($value, $limit = null, $scheme = true)
     {
-        return Helper::urlDisplay($value, $limit, $scheme);
+        return Helper::urlFormat($value, $limit, $scheme);
     }
 }
 

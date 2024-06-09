@@ -8,6 +8,6 @@
     <br>
 
     <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer" class="text-[#6c6c6c]">
-        {{ Helper::urlDisplay($destination, $limit) }}
+        {{ Helper::urlFormat($destination, $limit) }}
     </a>
 </div>
