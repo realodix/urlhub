@@ -2,7 +2,7 @@
     <div class="layout-container flex
         px-4 sm:px-6 lg:px-8 h-16 justify-between"
     >
-        <a class="navbar-brand" href="{{ url('/') }}">{{config('app.name')}}</a>
+        <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
         @auth
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -12,7 +12,7 @@
                         <div x-on:click="open = ! open">
                             <span class="inline-flex rounded-md">
                                 <button class="navbar-toggler items-center">
-                                    <div class="text-base font-semibold">{{Str::title(auth()->user()->name)}}</div>
+                                    <div class="text-base font-semibold">{{ Str::title(auth()->user()->name) }}</div>
 
                                     <svg class="ml-2 -mr-0.5 h-4 w-4"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -32,9 +32,9 @@
                             <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
 
                                 @if (Route::currentRouteName() != 'dashboard')
-                                    <a class="nav-item" href="{{route('dashboard')}}">
+                                    <a class="nav-item" href="{{ route('dashboard') }}">
                                         @svg('icon-dashboard', 'mr-1')
-                                        {{__('Dashboard')}}
+                                        {{ __('Dashboard') }}
                                     </a>
 
                                     <div class="border-t border-uh-border-color"></div>
@@ -42,26 +42,26 @@
 
                                 <!-- Account Management -->
                                 <div class="block px-4 py-2 text-xs text-slate-400">
-                                    {{__('Manage Account')}}
+                                    {{ __('Manage Account') }}
                                 </div>
 
-                                <a href="{{route('user.edit', auth()->user()->name)}}"
-                                    class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':''}}">
-                                    @svg('icon-person', 'mr-1') {{__('Account')}}</a>
-                                <a href="{{route('user.password.show', auth()->user()->name)}}"
-                                    class="nav-item {{(request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-orange-500':''}}">
-                                    @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
+                                <a href="{{ route('user.edit', auth()->user()->name) }}"
+                                    class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':'' }}">
+                                    @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
+                                <a href="{{ route('user.password.show', auth()->user()->name) }}"
+                                    class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-orange-500':'' }}">
+                                    @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
 
                                 <div class="border-t border-uh-border-color"></div>
 
                                 <!-- Authentication -->
-                                <form method="POST" action="{{route('logout')}}">
+                                <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                    <a href="{{route('logout')}}"
+                                    <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); this.closest('form').submit();"
                                         class="nav-item"
                                     >
-                                        @svg('icon-log-out', 'mr-1') {{__('Log Out')}}
+                                        @svg('icon-log-out', 'mr-1') {{ __('Log Out') }}
                                     </a>
                                 </form>
                             </div>
@@ -71,14 +71,14 @@
             </div>
         @else
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <a href="{{route('login')}}"
-                    class="text-xl font-medium text-gray-500 hover:text-gray-900 mr-8">{{__('Log in')}}</a>
+                <a href="{{ route('login') }}"
+                    class="text-xl font-medium text-gray-500 hover:text-gray-900 mr-8">{{ __('Log in') }}</a>
                 @if (Route::has('register') and Config::get('urlhub.registration'))
-                    <a href="{{route('register')}}"
+                    <a href="{{ route('register') }}"
                         class="text-xl font-medium text-white bg-uh-indigo-600 hover:bg-uh-indigo-700 active:bg-uh-indigo-600
                         px-4 py-2 rounded-md"
                     >
-                        {{__('Sign up')}}
+                        {{ __('Sign up') }}
                     </a>
                 @endif
             </div>
@@ -116,37 +116,37 @@
             <div class="pt-4 pb-1 border-t border-uh-border-color">
                 <div class="flex items-center px-4">
                     <div>
-                        <div class="nav-item-username">{{auth()->user()->name}}</div>
-                        <div class="nav-item-email">{{auth()->user()->email}}</div>
+                        <div class="nav-item-username">{{ auth()->user()->name }}</div>
+                        <div class="nav-item-email">{{ auth()->user()->email }}</div>
                     </div>
                 </div>
 
                 <div class="mt-3 space-y-1">
                     <!-- Account Management -->
-                    <a href="{{route('user.edit', auth()->user()->name)}}"
-                        class="nav-item {{(request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':''}}">
-                        @svg('icon-person', 'mr-1') {{__('Account')}}</a>
-                    <a href="{{route('user.password.show', auth()->user()->name)}}"
-                        class="nav-item {{(request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-orange-500':''}}">
-                        @svg('icon-key', 'mr-1') {{__('Change Password')}}</a>
+                    <a href="{{ route('user.edit', auth()->user()->name) }}"
+                        class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':'' }}">
+                        @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
+                    <a href="{{ route('user.password.show', auth()->user()->name) }}"
+                        class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-orange-500':'' }}">
+                        @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
 
                     <!-- Authentication -->
-                    <form method="POST" action="{{route('logout')}}">
+                    <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                        <a class="nav-item" href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();">
-                            @svg('icon-log-out', 'mr-1') {{__('Log Out')}}
+                        <a class="nav-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                            @svg('icon-log-out', 'mr-1') {{ __('Log Out') }}
                         </a>
                     </form>
                 </div>
             </div>
         @else
             <div class="pt-2 pb-3 space-y-1">
-                <a href="{{route('login')}}" class="block pl-3 pr-4 py-2 font-medium">
-                    {{__('Log in')}}
+                <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 font-medium">
+                    {{ __('Log in') }}
                 </a>
                 @if (Route::has('register') and Config::get('urlhub.registration'))
-                    <a href="{{route('register')}}" class="block pl-3 pr-4 py-2 font-medium">
-                        {{__('Sign up')}}
+                    <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 font-medium">
+                        {{ __('Sign up') }}
                     </a>
                 @endif
             </div>
