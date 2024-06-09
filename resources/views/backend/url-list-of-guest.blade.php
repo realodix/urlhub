@@ -8,7 +8,7 @@
             <div class="card_header__v2">
                 <div class="w-1/2">
                     <span class="text-2xl text-uh-1">
-                        {{__('Links created by Guests')}}
+                        {{ __('Links created by Guests') }}
                     </span>
                 </div>
             </div>

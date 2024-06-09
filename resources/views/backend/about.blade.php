@@ -13,7 +13,7 @@
                     <div>
                         <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
                         <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
-                            {{phpversion()}}
+                            {{ phpversion() }}
                         </p>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <div>
                         <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
                         <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
-                            {{app()->version()}}
+                            {{ app()->version() }}
                         </p>
                     </div>
                 </div>
@@ -46,22 +46,22 @@
                     $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
                 @endphp
                 <dt>Total</dt>
-                <dd>{{$urlCount}} ({{$visitCount}} visits)</dd>
+                <dd>{{ $urlCount }} ({{ $visitCount }} visits)</dd>
 
                 <dt>From Users</dt>
-                <dd>{{$userUrlCount}} ({{$userLinkVisitCount}} visits)</dd>
+                <dd>{{ $userUrlCount }} ({{ $userLinkVisitCount }} visits)</dd>
 
                 <dt>From Unregistered Users</dt>
-                <dd>{{$guestUrlCount}} ({{$guestUserLinkVisitCount}} visits)</dd>
+                <dd>{{ $guestUrlCount }} ({{ $guestUserLinkVisitCount }} visits)</dd>
             </dl>
 
             <div class="card_header__sub_header">Users</div>
             <dl>
                 <dt>Registered</dt>
-                <dd>{{n_abb($user->count())}}</dd>
+                <dd>{{ n_abb($user->count()) }}</dd>
 
                 <dt>Unregistered</dt>
-                <dd>{{n_abb($user->totalGuestUsers())}}</dd>
+                <dd>{{ n_abb($user->totalGuestUsers()) }}</dd>
             </dl>
 
             <div class="card_header__sub_header">Random String</div>
@@ -73,18 +73,18 @@
                         $powNumber = config('urlhub.keyword_length');
                         $result = number_format($keyGenerator->possibleOutput());
                     @endphp
-                    ( {{$number}}<sup>{{$powNumber}}</sup> ) {{$result}}
+                    ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
                 </dd>
 
                 <dt>Generated</dt>
-                <dd>{{number_format($keyGenerator->totalKey())}}</dd>
+                <dd>{{ number_format($keyGenerator->totalKey()) }}</dd>
             </dl>
         </div>
 
         <br>
 
         <div class="common-card-style">
-            <div class="card_header">{{__('Configuration')}}</div>
+            <div class="card_header">{{ __('Configuration') }}</div>
 
             <div class="card_header__sub_header">Shortened Links</div>
             <dl>
@@ -95,13 +95,13 @@
                     $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
                 @endphp
                 <dt><code>keyword_length</code></dt>
-                <dd>{{$hashLength.' '.str('character')->plural($hashLength)}}</dd>
+                <dd>{{ $hashLength.' '.str('character')->plural($hashLength) }}</dd>
 
                 <dt><code>custom_keyword_min_length</code></dt>
-                <dd>{{$customKeywordMinLength.' '.str('character')->plural($customKeywordMinLength)}}</dd>
+                <dd>{{ $customKeywordMinLength.' '.str('character')->plural($customKeywordMinLength) }}</dd>
 
                 <dt><code>custom_keyword_max_length</code></dt>
-                <dd>{{$customKeywordMaxLength.' '.str('character')->plural($customKeywordMaxLength)}}</dd>
+                <dd>{{ $customKeywordMaxLength.' '.str('character')->plural($customKeywordMaxLength) }}</dd>
 
                 @php
                     $domainBlacklist = collect(config('urlhub.domain_blacklist'))
@@ -111,7 +111,7 @@
                 <dd class="mt-2">
                     <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                         @if (! empty($domainBlacklist))
-                            <code>{{implode(", ", $domainBlacklist)}}</code>
+                            <code>{{ implode(", ", $domainBlacklist) }}</code>
                         @else
                             <code>None</code>
                         @endif
@@ -126,34 +126,34 @@
                 <dd class="mt-2 mb-2">
                     <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                         <p><b>Config</b></p>
-                        <code>{{implode(", ", $reservedKey)}}</code>
+                        <code>{{ implode(", ", $reservedKey) }}</code>
 
                         <br> <br>
 
                         <p><b>Registered routes</b></p>
-                        <code>{{implode(", ", \App\Helpers\Helper::routeList())}}</code>
+                        <code>{{ implode(", ", \App\Helpers\Helper::routeList()) }}</code>
 
                         <br> <br>
 
                         <p><b>Public Folder</b></p>
-                        <code>{{implode(", ", \App\Helpers\Helper::publicPathList())}}</code>
+                        <code>{{ implode(", ", \App\Helpers\Helper::publicPathList()) }}</code>
                     </div>
                 </dd>
 
                 <dt><code>web_title</code></dt>
                 <dd>
-                    <code class="config-value-bool">{{var_export(config('urlhub.web_title'))}}</code>
+                    <code class="config-value-bool">{{ var_export(config('urlhub.web_title')) }}</code>
                 </dd>
 
                 <dt><code>redirect_status_code</code></dt>
-                <dd>{{config('urlhub.redirect_status_code')}}</dd>
+                <dd>{{ config('urlhub.redirect_status_code') }}</dd>
 
                 <dt><code>redirect_cache_max_age</code></dt>
-                <dd>{{$redirectCacheMaxAge.' '.str('second')->plural($redirectCacheMaxAge)}}</dd>
+                <dd>{{ $redirectCacheMaxAge.' '.str('second')->plural($redirectCacheMaxAge) }}</dd>
 
                 <dt><code>track_bot_visits</code></dt>
                 <dd>
-                    <code class="config-value-bool">{{var_export(config('urlhub.track_bot_visits'))}}</code>
+                    <code class="config-value-bool">{{ var_export(config('urlhub.track_bot_visits')) }}</code>
                 </dd>
             </dl>
 
@@ -161,12 +161,12 @@
             <dl>
                 <dt>Create short links</dt>
                 <dd>
-                    <code class="config-value-bool">{{var_export(config('urlhub.public_site'))}}</code>
+                    <code class="config-value-bool">{{ var_export(config('urlhub.public_site')) }}</code>
                 </dd>
 
                 <dt>Sign up</dt>
                 <dd>
-                    <code class="config-value-bool">{{var_export(config('urlhub.registration'))}}</code>
+                    <code class="config-value-bool">{{ var_export(config('urlhub.registration')) }}</code>
                 </dd>
             </dl>
 
@@ -174,24 +174,24 @@
             <dl>
                 <dt>Enabled</dt>
                 <dd>
-                    <code class="config-value-bool">{{var_export(config('urlhub.qrcode'))}}</code>
+                    <code class="config-value-bool">{{ var_export(config('urlhub.qrcode')) }}</code>
                 </dd>
 
                 <dt>Size</dt>
-                <dd>{{config('urlhub.qrcode_size')}} px</dd>
+                <dd>{{ config('urlhub.qrcode_size') }} px</dd>
 
                 <dt>Margin</dt>
-                <dd>{{config('urlhub.qrcode_margin')}} px</dd>
+                <dd>{{ config('urlhub.qrcode_margin') }} px</dd>
 
                 <dt>Format</dt>
-                <dd>{{config('urlhub.qrcode_format')}}</dd>
+                <dd>{{ config('urlhub.qrcode_format') }}</dd>
 
                 <dt>Error correction levels</dt>
-                <dd>{{config('urlhub.qrcode_error_correction')}}</dd>
+                <dd>{{ config('urlhub.qrcode_error_correction') }}</dd>
 
                 <dt>Round block</dt>
                 <dd>
-                    <code class="config-value-bool">{{var_export(config('urlhub.qrcode_round_block_size'))}}</code>
+                    <code class="config-value-bool">{{ var_export(config('urlhub.qrcode_round_block_size')) }}</code>
                 </dd>
             </dl>
         </div>
