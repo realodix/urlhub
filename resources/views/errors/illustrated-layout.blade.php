@@ -7,11 +7,11 @@
 
     <title>@yield('title')</title>
 
-    <!-- Fonts -->
+    {{-- Fonts --}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
+    {{-- Styles --}}
     <style>
         html {
             line-height: 1.15;

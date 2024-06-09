@@ -40,7 +40,7 @@
                                     <div class="border-t border-uh-border-color"></div>
                                 @endif
 
-                                <!-- Account Management -->
+                                {{-- Account Management --}}
                                 <div class="block px-4 py-2 text-xs text-slate-400">
                                     {{ __('Manage Account') }}
                                 </div>
@@ -54,7 +54,7 @@
 
                                 <div class="border-t border-uh-border-color"></div>
 
-                                <!-- Authentication -->
+                                {{-- Authentication --}}
                                 <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                     <a href="{{ route('logout') }}"
@@ -112,7 +112,7 @@
         @auth
             @include('partials.header-localmenu_mobile')
 
-            <!-- Responsive Settings Options -->
+            {{-- Responsive Settings Options --}}
             <div class="pt-4 pb-1 border-t border-uh-border-color">
                 <div class="flex items-center px-4">
                     <div>
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <!-- Account Management -->
+                    {{-- Account Management --}}
                     <a href="{{ route('user.edit', auth()->user()->name) }}"
                         class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-orange-500':'' }}">
                         @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
@@ -130,7 +130,7 @@
                         class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-orange-500':'' }}">
                         @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
 
-                    <!-- Authentication -->
+                    {{-- Authentication --}}
                     <form method="POST" action="{{ route('logout') }}">
                     @csrf
                         <a class="nav-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
