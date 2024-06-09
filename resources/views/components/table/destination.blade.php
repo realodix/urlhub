@@ -1,7 +1,7 @@
 @use('App\Helpers\Helper')
 
 <div>
-    <span title="{{ $title}} ">
+    <span title="{{ $title }} ">
         {{ str()->limit($title, $limit) }}
     </span>
 
