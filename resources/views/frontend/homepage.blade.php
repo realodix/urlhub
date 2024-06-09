@@ -7,7 +7,7 @@
         @if (! auth()->check() and ! Config::get('urlhub.public_site'))
             <div class="flex flex-wrap md:justify-center">
                 <div class="w-full md:w-8/12 font-thin text-5xl text-slate-600 text-center welcome-msg">
-                    {{__('Please login to shorten URLs')}}</div>
+                    {{ __('Please login to shorten URLs') }}</div>
             </div>
             <div class="flex flex-wrap md:justify-center mt-12">
                 <div class="w-full md:w-7/12">
@@ -25,10 +25,10 @@
 
             <div class="flex flex-wrap justify-center mt-12 px-4 lg:px-0">
                 <div class="w-full max-w-4xl">
-                    <form method="post" action="{{route('su_create')}}" class="mb-4 mt-12" id="formUrl">
+                    <form method="post" action="{{ route('su_create') }}" class="mb-4 mt-12" id="formUrl">
                     @csrf
                         <div class="mt-1 text-center">
-                            <input name="long_url" value="{{ old('long_url') }}" placeholder="{{__('Shorten your link')}}"
+                            <input name="long_url" value="{{ old('long_url') }}" placeholder="{{ __('Shorten your link') }}"
                                 class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
                                     text-xl outline-none
                                     border border-border-uh-border-color focus:border-green-700
@@ -39,18 +39,18 @@
                                 class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md
                                     text-lg text-white bg-green-700 hover:bg-green-800 focus:uh-blue-2"
                             >
-                                {{__('Shorten')}}
+                                {{ __('Shorten') }}
                             </button>
                         </div>
 
                         <br>
 
                         <div class="custom-url sm:mt-8">
-                            <b>{{__('Custom URL (optional)')}}</b>
+                            <b>{{ __('Custom URL (optional)') }}</b>
                             <span class="block mb-4 font-light">
-                                {{__('Replace clunky URLs with meaningful short links that get more clicks.')}}</span>
+                                {{ __('Replace clunky URLs with meaningful short links that get more clicks.') }}</span>
                             <div class="inline text-2xl">
-                                {{request()->getHttpHost()}}/ @livewire('validation.validate-custom-keyword')
+                                {{ request()->getHttpHost() }}/ @livewire('validation.validate-custom-keyword')
                             </div>
                         </div>
                     </form>
