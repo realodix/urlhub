@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>@yield('title') | {{config('app.name')}}</title>
+    <title>@yield('title') | {{ config('app.name') }}</title>
 
     @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
