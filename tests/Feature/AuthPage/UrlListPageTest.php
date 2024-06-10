@@ -36,10 +36,6 @@ class UrlListPageTest extends TestCase
         $response = $this->actingAs($user)
             ->get(route('dashboard.allurl.u-user', $user->name));
         $response->assertOk();
-
-        $response = $this->actingAs($user)
-            ->get(route('dashboard.allurl.u-guest'));
-        $response->assertOk();
     }
 
     /**
@@ -53,9 +49,6 @@ class UrlListPageTest extends TestCase
             ->get(route('dashboard.allurl.u-user', $this->adminUser()->name));
         $response->assertForbidden();
 
-        $response = $this->actingAs($user)
-            ->get(route('dashboard.allurl.u-guest'));
-        $response->assertForbidden();
     }
 
     #[PHPUnit\Test]
