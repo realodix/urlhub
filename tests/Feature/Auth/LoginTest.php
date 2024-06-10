@@ -52,7 +52,7 @@ class LoginTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotViewALoginFormWhenAuthenticated(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get($this->getRoute());
 
         $response->assertRedirect(route('dashboard'));

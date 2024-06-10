@@ -21,7 +21,7 @@ class AllUrlsPageTest extends TestCase
     #[PHPUnit\Test]
     public function auNormalUserCantAccessThisPage(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get(route('dashboard.allurl'));
         $response->assertForbidden();
     }
@@ -47,7 +47,7 @@ class AllUrlsPageTest extends TestCase
      */
     public function testNonAdminUsersCantAccessUserLinksTablePage(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $response = $this->actingAs($user)
             ->get(route('dashboard.allurl.u-user', $this->adminUser()->name));
@@ -78,7 +78,7 @@ class AllUrlsPageTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->from(route('dashboard.allurl'))
             ->get(route('dboard.url.delete', $url->keyword));
 

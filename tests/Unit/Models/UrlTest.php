@@ -193,7 +193,7 @@ class UrlTest extends TestCase
     #[PHPUnit\Test]
     public function currentUserUrlCount(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
         $nCurrentUser = 8;
         $nUser = 6;
 

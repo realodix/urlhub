@@ -53,7 +53,7 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotViewARegistrationFormWhenAuthenticated(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get($this->getRoute());
 
         $response->assertRedirect(route('dashboard'));

@@ -88,7 +88,7 @@ class CreateShortLinkTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->post(route('su_create'), [
                 'long_url'   => 'https://laravel-news.com',
                 'custom_key' => $url->keyword,

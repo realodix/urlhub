@@ -25,9 +25,9 @@ class UserPolicyTest extends TestCase
      * Non-admin can only access their own page.
      */
     #[PHPUnit\Test]
-    public function viewAsNormalUser(): void
+    public function viewAsBasicUser(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $this->assertTrue($user->can('view', $user));
         $this->assertFalse($user->can('view', new User));
@@ -49,9 +49,9 @@ class UserPolicyTest extends TestCase
      * Non-admin can only change their own data.
      */
     #[PHPUnit\Test]
-    public function updateAsNormalUser(): void
+    public function updateAsBasicUser(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $this->assertTrue($user->can('update', $user));
         $this->assertFalse($user->can('update', new User));
@@ -73,9 +73,9 @@ class UserPolicyTest extends TestCase
      * Non-admin can only change their own data.
      */
     #[PHPUnit\Test]
-    public function updatePassAsNormalUser(): void
+    public function updatePassAsBasicUser(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $this->assertTrue($user->can('updatePass', $user));
         $this->assertFalse($user->can('updatePass', new User));
@@ -111,7 +111,7 @@ class UserPolicyTest extends TestCase
     public function adminCanAccessOtherUsersChangePasswordPage(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get($this->getCPRoute($this->normalUser()->name));
+            ->get($this->getCPRoute($this->basicUser()->name));
 
         $response->assertOk();
     }
@@ -122,7 +122,7 @@ class UserPolicyTest extends TestCase
     #[PHPUnit\Test]
     public function normalUserCantAccessOtherUsersChangePasswordPage(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get($this->getCPRoute($this->adminUser()->name));
 
         $response->assertForbidden();
@@ -144,7 +144,7 @@ class UserPolicyTest extends TestCase
     #[PHPUnit\Test]
     public function normalUserCantAccessAllUsersPage(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get(route('user.index'));
 
         $response->assertForbidden();

@@ -31,7 +31,7 @@ class UrlControllerTest extends TestCase
     #[PHPUnit\Test]
     public function userShortenURL(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
         $longUrl = 'https://laravel.com';
 
         $this->actingAs($user)

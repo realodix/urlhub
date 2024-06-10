@@ -11,7 +11,7 @@ class ConfirmPasswordTest extends TestCase
     #[PHPUnit\Test]
     public function userCanViewPasswordConfirm(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get(route('password.confirm'));
 
         $response->assertSuccessful();
@@ -28,7 +28,7 @@ class ConfirmPasswordTest extends TestCase
     // #[Group('f-auth')]
     // public function testViewIs(): void
     // {
-    //     $response = $this->actingAs($this->normalUser())
+    //     $response = $this->actingAs($this->basicUser())
     //         ->get(route('password.confirm'));
 
     //     $response->assertViewIs('auth.confirm-password');

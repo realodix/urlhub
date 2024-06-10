@@ -21,7 +21,7 @@ class UserListPageTest extends TestCase
     #[PHPUnit\Test]
     public function ulpNormalUserCantAccessThisPage(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get(route('user.index'));
 
         $response->assertForbidden();

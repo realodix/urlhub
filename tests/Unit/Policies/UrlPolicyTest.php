@@ -29,7 +29,7 @@ class UrlPolicyTest extends TestCase
      * Normal users can only delete their own data.
      */
     #[PHPUnit\Test]
-    public function forceDeleteNormalUser(): void
+    public function forceDeleteBasicUser(): void
     {
         $url = Url::factory()->create();
 

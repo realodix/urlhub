@@ -13,7 +13,7 @@ class DashboardPageTest extends TestCase
     #[PHPUnit\Test]
     public function dCanAccessPage(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get(route('dashboard'));
 
         $response->assertOk();

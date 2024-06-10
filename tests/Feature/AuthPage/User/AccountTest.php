@@ -22,7 +22,7 @@ class AccountTest extends TestCase
 
     public function testUsersCanAccessTheirOwnAccountPages(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
         $response = $this->actingAs($user)
             ->get($this->getRoute($user->name));
 
@@ -32,14 +32,14 @@ class AccountTest extends TestCase
     public function testAdminCanAccessEveryUserAccountPage(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get($this->getRoute($this->normalUser()->name));
+            ->get($this->getRoute($this->basicUser()->name));
 
         $response->assertOk();
     }
 
     public function testUserCannotAccessAnotherUserSAccountPage(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get($this->getRoute($this->adminUser()->name));
 
         $response->assertForbidden();
@@ -68,7 +68,7 @@ class AccountTest extends TestCase
     {
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
                 'email' => 'new_email_user2@urlhub.test',
@@ -81,7 +81,7 @@ class AccountTest extends TestCase
     #[PHPUnit\Test]
     public function validationEmailRequired(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -97,7 +97,7 @@ class AccountTest extends TestCase
     #[PHPUnit\Test]
     public function validationEmailInvalidFormat(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -113,7 +113,7 @@ class AccountTest extends TestCase
     #[PHPUnit\Test]
     public function validationEmailMaxLength(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
@@ -130,12 +130,12 @@ class AccountTest extends TestCase
     #[PHPUnit\Test]
     public function validationEmailUnique(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
-                'email' => $this->normalUser()->email,
+                'email' => $this->basicUser()->email,
             ]);
 
         $response

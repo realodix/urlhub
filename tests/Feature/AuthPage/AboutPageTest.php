@@ -20,7 +20,7 @@ class AboutPageTest extends TestCase
     #[PHPUnit\Test]
     public function auNormalUserCantAccessThisPage(): void
     {
-        $response = $this->actingAs($this->normalUser())
+        $response = $this->actingAs($this->basicUser())
             ->get(route('dashboard.about'));
 
         $response->assertForbidden();

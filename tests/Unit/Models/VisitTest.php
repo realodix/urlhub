@@ -29,7 +29,7 @@ class VisitTest extends TestCase
     #[PHPUnit\Test]
     public function currentUserLinkVisitCount(): void
     {
-        $user = $this->normalUser();
+        $user = $this->basicUser();
         $nCurrentUser = 8;
         $nUser = 6;
 

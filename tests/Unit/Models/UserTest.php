@@ -49,7 +49,7 @@ class UserTest extends TestCase
         $user = app(User::class);
         $this->assertTrue(strlen($user->signature()) >= 16);
 
-        $user = $this->normalUser();
+        $user = $this->basicUser();
         $this->actingAs($user)
             ->post(route('su_create'), ['long_url' => 'https://laravel.com']);
         $this->assertEquals($user->id, $user->signature());

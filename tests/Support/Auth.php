@@ -34,7 +34,7 @@ trait Auth
         return $admin;
     }
 
-    protected function normalUser(): User
+    protected function basicUser(): User
     {
         return User::factory()->create();
     }
