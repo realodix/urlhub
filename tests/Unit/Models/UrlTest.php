@@ -127,37 +127,6 @@ class UrlTest extends TestCase
         $this->assertSame('No Title', $url->title);
     }
 
-    /**
-     * Get clicks attribute
-     */
-    #[PHPUnit\Test]
-    public function getClicksAttribute(): void
-    {
-        $url = Url::factory()->create();
-
-        Visit::factory()->create(['url_id' => $url->id]);
-
-        $this->assertSame(1, $url->clicks);
-    }
-
-    /**
-     * Get uniqueClicks attribute
-     */
-    #[PHPUnit\Test]
-    public function getUniqueClicksAttribute(): void
-    {
-        $url = Url::factory()->create();
-
-        Visit::factory()->create(['url_id' => $url->id]);
-
-        Visit::factory()->create([
-            'url_id' => $url->id,
-            'is_first_click' => false,
-        ]);
-
-        $this->assertSame(1, $url->uniqueClicks);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | General
@@ -229,36 +198,6 @@ class UrlTest extends TestCase
 
         $this->assertSame($nGuest, $this->url->guestUserUrlCount());
         $this->assertSame($nUser + $nGuest, $this->url->count());
-    }
-
-    #[PHPUnit\Test]
-    public function numberOfClicks(): void
-    {
-        $v = Visit::factory()->create();
-
-        Visit::factory()->create(['url_id' => $v->url->id]);
-
-        $actual = $this->url->numberOfClicks($v->url->id);
-
-        $this->assertSame(2, $actual);
-    }
-
-    /**
-     * Total clicks on each shortened URL, but only count unique clicks
-     */
-    #[PHPUnit\Test]
-    public function numberOfClicksAndUnique(): void
-    {
-        $v = Visit::factory()->create();
-
-        Visit::factory()->create([
-            'url_id' => $v->url->id,
-            'is_first_click' => false,
-        ]);
-
-        $actual = $this->url->numberOfClicks($v->url->id, unique: true);
-
-        $this->assertSame(1, $actual);
     }
 
     public function testKeywordColumnIsCaseSensitive(): void

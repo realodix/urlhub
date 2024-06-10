@@ -20,8 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property User           $author
  * @property Visit          $visits
  * @property string         $short_url
- * @property int            $clicks
- * @property int            $uniqueClicks
  */
 class Url extends Model
 {
@@ -128,23 +126,6 @@ class Url extends Model
         );
     }
 
-    protected function clicks(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value, $attr) => $this->numberOfClicks($attr['id']),
-        );
-    }
-
-    /**
-     * @deprecated https://github.com/realodix/urlhub/pull/1003
-     */
-    protected function uniqueClicks(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value, $attr) => $this->numberOfClicks($attr['id'], unique: true),
-        );
-    }
-
     /*
     |--------------------------------------------------------------------------
     | General
@@ -207,25 +188,5 @@ class Url extends Model
     {
         return self::where('user_id', self::GUEST_ID)
             ->count();
-    }
-
-    /**
-     * Total clicks on each shortened URLs
-     *
-     * @param int  $urlId  ID of the shortened URL in the URL table
-     * @param bool $unique If true, only count unique clicks
-     */
-    public function numberOfClicks(int $urlId, bool $unique = false): int
-    {
-        $self = self::find($urlId);
-        $total = $self->visits()->count();
-
-        if ($unique === true) {
-            $total = $self->visits()
-                ->whereIsFirstClick(true)
-                ->count();
-        }
-
-        return $total;
     }
 }
