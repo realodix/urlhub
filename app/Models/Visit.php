@@ -70,9 +70,9 @@ class Visit extends Model
      */
     public function currentUserLinkVisitCount(): int
     {
-        return self::join('urls', 'visits.url_id', '=', 'urls.id')
-            ->where('user_id', auth()->id())
-            ->count();
+        return self::whereHas('url', function ($query) {
+            $query->where('user_id', auth()->id());
+        })->count();
     }
 
     /**
@@ -80,9 +80,9 @@ class Visit extends Model
      */
     public function userLinkVisitCount(): int
     {
-        return self::join('urls', 'visits.url_id', '=', 'urls.id')
-            ->where('urls.user_id', '!=', Url::GUEST_ID)
-            ->count('visits.id');
+        return self::whereHas('url', function ($query) {
+            $query->where('user_id', '!=', Url::GUEST_ID);
+        })->count();
     }
 
     /**
@@ -90,8 +90,8 @@ class Visit extends Model
      */
     public function guestUserLinkVisitCount(): int
     {
-        return self::join('urls', 'visits.url_id', '=', 'urls.id')
-            ->where('urls.user_id', Url::GUEST_ID)
-            ->count('visits.id');
+        return self::whereHas('url', function ($query) {
+            $query->where('user_id', Url::GUEST_ID);
+        })->count();
     }
 }
