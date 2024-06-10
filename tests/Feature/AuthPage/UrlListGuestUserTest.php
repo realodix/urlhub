@@ -10,13 +10,15 @@ use Tests\TestCase;
 #[PHPUnit\Group('link-page')]
 class UrlListGuestUserTest extends TestCase
 {
+    private $url;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         // This must be created, to ensure `$url->author->name` does not raise
         // an error.
-        Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $this->url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
     }
 
     #[PHPUnit\Test]
@@ -36,5 +38,14 @@ class UrlListGuestUserTest extends TestCase
         $response = $this->actingAs($this->basicUser())
             ->get(route('dashboard.allurl.u-guest'));
         $response->assertForbidden();
+    }
+
+    #[PHPUnit\Test]
+    public function adminUserCanAccessEditUrlPage(): void
+    {
+        $response = $this->actingAs($this->adminUser())
+            ->get(route('dboard.url.edit.show', $this->url->keyword));
+
+        $response->assertOk();
     }
 }
