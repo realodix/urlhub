@@ -189,24 +189,4 @@ class Url extends Model
         return self::where('user_id', self::GUEST_ID)
             ->count();
     }
-
-    /**
-     * Total clicks on each shortened URLs
-     *
-     * @param int  $urlId  ID of the shortened URL in the URL table
-     * @param bool $unique If true, only count unique clicks
-     */
-    public function numberOfClicks(int $urlId, bool $unique = false): int
-    {
-        $self = self::find($urlId);
-        $total = $self->visits()->count();
-
-        if ($unique === true) {
-            $total = $self->visits()
-                ->whereIsFirstClick(true)
-                ->count();
-        }
-
-        return $total;
-    }
 }

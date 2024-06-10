@@ -200,36 +200,6 @@ class UrlTest extends TestCase
         $this->assertSame($nUser + $nGuest, $this->url->count());
     }
 
-    #[PHPUnit\Test]
-    public function numberOfClicks(): void
-    {
-        $v = Visit::factory()->create();
-
-        Visit::factory()->create(['url_id' => $v->url->id]);
-
-        $actual = $this->url->numberOfClicks($v->url->id);
-
-        $this->assertSame(2, $actual);
-    }
-
-    /**
-     * Total clicks on each shortened URL, but only count unique clicks
-     */
-    #[PHPUnit\Test]
-    public function numberOfClicksAndUnique(): void
-    {
-        $v = Visit::factory()->create();
-
-        Visit::factory()->create([
-            'url_id' => $v->url->id,
-            'is_first_click' => false,
-        ]);
-
-        $actual = $this->url->numberOfClicks($v->url->id, unique: true);
-
-        $this->assertSame(1, $actual);
-    }
-
     public function testKeywordColumnIsCaseSensitive(): void
     {
         $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);
