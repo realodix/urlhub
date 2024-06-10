@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property User           $author
  * @property Visit          $visits
  * @property string         $short_url
- * @property int            $uniqueClicks
  */
 class Url extends Model
 {
@@ -124,16 +123,6 @@ class Url extends Model
 
                 return $value;
             },
-        );
-    }
-
-    /**
-     * @deprecated https://github.com/realodix/urlhub/pull/1003
-     */
-    protected function uniqueClicks(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value, $attr) => $this->numberOfClicks($attr['id'], unique: true),
         );
     }
 

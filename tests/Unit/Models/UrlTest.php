@@ -127,24 +127,6 @@ class UrlTest extends TestCase
         $this->assertSame('No Title', $url->title);
     }
 
-    /**
-     * Get uniqueClicks attribute
-     */
-    #[PHPUnit\Test]
-    public function getUniqueClicksAttribute(): void
-    {
-        $url = Url::factory()->create();
-
-        Visit::factory()->create(['url_id' => $url->id]);
-
-        Visit::factory()->create([
-            'url_id' => $url->id,
-            'is_first_click' => false,
-        ]);
-
-        $this->assertSame(1, $url->uniqueClicks);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | General
