@@ -95,13 +95,13 @@
                     $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
                 @endphp
                 <dt><code>keyword_length</code></dt>
-                <dd>{{ $hashLength.' '.str('character')->plural($hashLength) }}</dd>
+                <dd>{{ $hashLength.' '.str()->plural('character', $hashLength) }}</dd>
 
                 <dt><code>custom_keyword_min_length</code></dt>
-                <dd>{{ $customKeywordMinLength.' '.str('character')->plural($customKeywordMinLength) }}</dd>
+                <dd>{{ $customKeywordMinLength.' '.str()->plural('character', $customKeywordMinLength) }}</dd>
 
                 <dt><code>custom_keyword_max_length</code></dt>
-                <dd>{{ $customKeywordMaxLength.' '.str('character')->plural($customKeywordMaxLength) }}</dd>
+                <dd>{{ $customKeywordMaxLength.' '.str()->plural('character', $customKeywordMaxLength) }}</dd>
 
                 @php
                     $domainBlacklist = collect(config('urlhub.domain_blacklist'))
@@ -149,7 +149,7 @@
                 <dd>{{ config('urlhub.redirect_status_code') }}</dd>
 
                 <dt><code>redirect_cache_max_age</code></dt>
-                <dd>{{ $redirectCacheMaxAge.' '.str('second')->plural($redirectCacheMaxAge) }}</dd>
+                <dd>{{ $redirectCacheMaxAge.' '.str()->plural('second', $redirectCacheMaxAge) }}</dd>
 
                 <dt><code>track_bot_visits</code></dt>
                 <dd>
