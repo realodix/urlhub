@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 #[PHPUnit\Group('auth-page')]
 #[PHPUnit\Group('link-page')]
-class AllUrlsPageTest extends TestCase
+class UrlListPageTest extends TestCase
 {
     #[PHPUnit\Test]
     public function auAdminCanAccessThisPage(): void
