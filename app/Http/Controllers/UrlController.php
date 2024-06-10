@@ -45,10 +45,10 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function showDetail(Url $url)
     {
-        $url->with('visits');
         $data = [
             'url'   => $url,
             'visit' => app(Visit::class),
+            'visitsCount' => $url->visits()->count(),
         ];
 
         if (config('urlhub.qrcode')) {

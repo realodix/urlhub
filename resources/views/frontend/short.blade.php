@@ -14,8 +14,8 @@
                 <li class="inline-block pr-4 mt-4 lg:mt-0">
                     @svg('icon-chart-line-alt')
                     <i>
-                        <span title="{{ number_format($url->clicks) }}" class="font-bold">
-                            {{ n_abb($url->clicks) }}
+                        <span title="{{ number_format($visitsCount) }}" class="font-bold">
+                            {{ n_abb($visitsCount) }}
                         </span>
                     </i>
                 </li>

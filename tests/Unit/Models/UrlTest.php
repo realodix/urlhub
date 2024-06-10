@@ -128,19 +128,6 @@ class UrlTest extends TestCase
     }
 
     /**
-     * Get clicks attribute
-     */
-    #[PHPUnit\Test]
-    public function getClicksAttribute(): void
-    {
-        $url = Url::factory()->create();
-
-        Visit::factory()->create(['url_id' => $url->id]);
-
-        $this->assertSame(1, $url->clicks);
-    }
-
-    /**
      * Get uniqueClicks attribute
      */
     #[PHPUnit\Test]
