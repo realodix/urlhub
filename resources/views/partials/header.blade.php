@@ -144,7 +144,7 @@
                 <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 font-medium">
                     {{ __('Log in') }}
                 </a>
-                @if (Route::has('register') and Config::get('urlhub.registration'))
+                @if (Route::has('register') and config('urlhub.registration'))
                     <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 font-medium">
                         {{ __('Sign up') }}
                     </a>
