@@ -12,7 +12,7 @@
                         <div x-on:click="open = ! open">
                             <span class="inline-flex rounded-md">
                                 <button class="navbar-toggler items-center">
-                                    <div class="text-base font-semibold">{{ Str::title(auth()->user()->name) }}</div>
+                                    <div class="text-base font-semibold">{{ str()->title(auth()->user()->name) }}</div>
 
                                     <svg class="ml-2 -mr-0.5 h-4 w-4"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
