@@ -23,11 +23,6 @@
             <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
             @csrf
                 <div>
-                    @if (Request::has('previous'))
-                        <input type="hidden" name="previous" value="{{ Request::get('previous') }}">
-                    @else
-                        <input type="hidden" name="previous" value="{{ URL::previous() }}">
-                    @endif
                     <label for="email" class="form-label">
                         {{ __('E-Mail / Username') }}
                     </label>
