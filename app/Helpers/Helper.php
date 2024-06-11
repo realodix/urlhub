@@ -54,7 +54,8 @@ class Helper
         if ($urlLen > $limit) {
             // The string length returned by Str::limit() does not include the suffix,
             // so it needs to be adjusted to match the expected limit.
-            $adjLimit = $limit - (strlen(Str::limit($value, $limit)) - $limit);
+            $truncatedStrLen = Str::of($value)->limit($limit)->length();
+            $adjLimit = $limit - ($truncatedStrLen - $limit);
 
             $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
             $lastSide = -abs($adjLimit - $firstSide);
@@ -95,6 +96,8 @@ class Helper
 
     /**
      * Get list of public path
+     *
+     * @return array<string>
      */
     public static function publicPathList(): array
     {
