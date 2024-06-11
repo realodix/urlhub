@@ -48,19 +48,19 @@
                 <dt>Total</dt>
                 <dd>{{ $urlCount }} ({{ $visitCount }} visits)</dd>
 
-                <dt>From Users</dt>
+                <dt>User</dt>
                 <dd>{{ $userUrlCount }} ({{ $userLinkVisitCount }} visits)</dd>
 
-                <dt>From Unregistered Users</dt>
+                <dt>Guest</dt>
                 <dd>{{ $guestUrlCount }} ({{ $guestUserLinkVisitCount }} visits)</dd>
             </dl>
 
             <div class="card_header__sub_header">Users</div>
             <dl>
-                <dt>Registered</dt>
+                <dt>User</dt>
                 <dd>{{ n_abb($user->count()) }}</dd>
 
-                <dt>Unregistered</dt>
+                <dt>Guest</dt>
                 <dd>{{ n_abb($user->totalGuestUsers()) }}</dd>
             </dl>
 
@@ -159,12 +159,12 @@
 
             <div class="card_header__sub_header">Guest / Unregistered Users</div>
             <dl>
-                <dt>Create short links</dt>
+                <dt>Can create short links</dt>
                 <dd>
                     <code class="config-value-bool">{{ var_export(config('urlhub.public_site')) }}</code>
                 </dd>
 
-                <dt>Sign up</dt>
+                <dt>Can sign up</dt>
                 <dd>
                     <code class="config-value-bool">{{ var_export(config('urlhub.registration')) }}</code>
                 </dd>
