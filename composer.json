@@ -12,7 +12,7 @@
         "filament/widgets": "^3.2",
         "flowframe/laravel-trend": "^0.2.0",
         "laravel/fortify": "^1.21",
-        "laravel/framework": "^11.8",
+        "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "matomo/device-detector": "^6.3",
