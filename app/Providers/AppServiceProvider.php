@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Indicate if destructive Artisan commands should be prohibited.
+        DB::prohibitDestructiveCommands($this->app->isProduction());
+
         // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL.
         if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
             DB::connection()->getPdo()->sqliteCreateFunction('REGEXP', function (string $pattern, string $value) {
