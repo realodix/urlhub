@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Indicate if destructive Artisan commands should be prohibited.
+        // Prevent destructive commands from running in production environments.
         DB::prohibitDestructiveCommands($this->app->isProduction());
 
         // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL.
