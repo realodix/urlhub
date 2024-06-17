@@ -94,13 +94,15 @@ class User extends Authenticatable
         if (auth()->check() === false) {
             $device = Helper::deviceDetector();
 
-            return hash('xxh3', implode([
+            $userDeviceInfo = implode([
                 'ip'      => request()->ip(),
                 'browser' => $device->getClient('name'),
                 'os'      => $device->getOs('name').$device->getOs('version'),
                 'device'  => $device->getDeviceName().$device->getModel().$device->getBrandName(),
                 'lang'    => request()->getPreferredLanguage(),
-            ]));
+            ]);
+
+            return hash('xxh3', $userDeviceInfo);
         }
 
         return (string) auth()->id();

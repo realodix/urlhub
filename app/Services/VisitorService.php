@@ -10,10 +10,7 @@ use Spatie\Url\Url as SpatieUrl;
 
 class VisitorService
 {
-    public function __construct(
-        public User $user,
-    ) {
-    }
+    public function __construct(public User $user) {}
 
     /**
      * Store the visitor data.
