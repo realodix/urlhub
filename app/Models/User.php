@@ -7,7 +7,6 @@ use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @property int            $id
@@ -81,18 +80,13 @@ class User extends Authenticatable
     */
 
     /*
-     * Count the number of guests (URL without user id) by user_sign, then
-     * grouped by user_sign.
+     * Count the total number of guest users
      */
     public function totalGuestUsers(): int
     {
-        $url = DB::table('urls')
-            ->select('user_sign')
-            ->where('user_id', null)
-            ->groupBy('user_sign')
-            ->get();
-
-        return $url->count();
+        return Url::where('user_id', null)
+            ->distinct('user_sign')
+            ->count();
     }
 
     public function signature(): string
