@@ -95,16 +95,24 @@ class Helper
     }
 
     /**
-     * Get list of public path
+     * List of files/folders in the public/ directory that will potentially collide
+     * with shortened link keywords.
      *
      * @return array<string>
      */
-    public static function publicPathList(): array
+    public static function publicPathCollisionList(): array
     {
-        return collect(scandir(public_path()))
+        $publicPath = scandir(public_path());
+
+        if ($publicPath === false) {
+            return [];
+        }
+
+        return collect($publicPath)
+            // remove ., ..,
             ->reject(fn ($value) => in_array($value, ['.', '..']))
             // remove file with extension
-            ->reject(fn ($value) => preg_match('/\.[^.]+/', $value))
+            ->filter(fn ($value) => ! preg_match('/\.[a-z]+$/', $value))
             // remove array value which is in config('urlhub.reserved_keyword')
             ->reject(fn ($value) => in_array($value, config('urlhub.reserved_keyword')))
             ->toArray();

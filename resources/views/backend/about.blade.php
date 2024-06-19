@@ -136,7 +136,7 @@
                         <br> <br>
 
                         <p><b>Public Folder</b></p>
-                        <code>{{ implode(", ", \App\Helpers\Helper::publicPathList()) }}</code>
+                        <code>{{ implode(", ", \App\Helpers\Helper::publicPathCollisionList()) }}</code>
                     </div>
                 </dd>
 

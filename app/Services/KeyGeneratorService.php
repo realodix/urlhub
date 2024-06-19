@@ -69,7 +69,7 @@ class KeyGeneratorService
         $alreadyInUse = Url::whereKeyword($value)->exists();
         $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'));
         $isRoute = in_array($value, \App\Helpers\Helper::routeList());
-        $isPublicPath = in_array($value, \App\Helpers\Helper::publicPathList());
+        $isPublicPath = in_array($value, \App\Helpers\Helper::publicPathCollisionList());
 
         if ($alreadyInUse || $isReservedKeyword || $isRoute || $isPublicPath) {
             return false;
