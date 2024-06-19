@@ -14,7 +14,7 @@ class Helper
      */
     public static function deviceDetector()
     {
-        $device = new \DeviceDetector\DeviceDetector(request()->userAgent());
+        $device = new \DeviceDetector\DeviceDetector(request()->userAgent() ?? '');
         $device->setCache(new \DeviceDetector\Cache\LaravelCache);
         $device->parse();
 
