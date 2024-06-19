@@ -14,8 +14,8 @@ class UrlRedirection
      */
     public function execute(Url $url)
     {
-        $statusCode = (int) config('urlhub.redirect_status_code');
-        $maxAge = (int) config('urlhub.redirect_cache_max_age');
+        $statusCode = config('urlhub.redirect_status_code');
+        $maxAge = config('urlhub.redirect_cache_max_age');
         $headers = ['Cache-Control' => sprintf('private,max-age=%s', $maxAge)];
 
         return redirect()->away($url->destination, $statusCode, $headers);
