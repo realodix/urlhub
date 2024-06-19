@@ -93,11 +93,17 @@ class User extends Authenticatable
     {
         if (auth()->check() === false) {
             $device = Helper::deviceDetector();
+            $browser = $device->getClient();
+            $os = $device->getOs();
+
+            $browserName = ! empty($browser['name']) ? $browser['name'] : '';
+            $osName = ! empty($os['name']) ? $os['name'] : '';
+            $osVersion = ! empty($os['version']) ? $os['version'] : '';
 
             $userDeviceInfo = implode([
                 'ip'      => request()->ip(),
-                'browser' => $device->getClient('name'),
-                'os'      => $device->getOs('name').$device->getOs('version'),
+                'browser' => $browserName,
+                'os'      => $osName.$osVersion,
                 'device'  => $device->getDeviceName().$device->getModel().$device->getBrandName(),
                 'lang'    => request()->getPreferredLanguage(),
             ]);
