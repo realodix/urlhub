@@ -131,7 +131,7 @@
                         <br> <br>
 
                         <p><b>Registered routes</b></p>
-                        <code>{{ implode(", ", \App\Helpers\Helper::routeList()) }}</code>
+                        <code>{{ implode(", ", \App\Helpers\Helper::routeCollisionList()) }}</code>
 
                         <br> <br>
 

@@ -67,30 +67,16 @@ class Helper
     }
 
     /**
-     * List of potentially colliding routes with shortened link keywords
+     * List of potentially colliding routes with shortened link keywords.
      *
      * @return array<string>
      */
-    public static function routeList(): array
+    public static function routeCollisionList(): array
     {
-        $route = array_map(
-            fn (\Illuminate\Routing\Route $route) => $route->uri,
-            \Illuminate\Support\Facades\Route::getRoutes()->get()
-        );
-
-        return collect($route)
-            // ex. foobar/{route_param?} => foobar
-            ->map(fn ($value) => preg_replace('/(\/{)([a-zA-Z]+)(\?})$/', '', $value))
-            // Remove foo/bar
-            ->map(fn ($value) => preg_replace('/^([a-zA-Z-_]+)\/([a-zA-Z-\/{}\.]+)/', '', $value))
-            // Remove '{route_param}' or '+{route_param}'
-            ->map(fn ($value) => preg_replace('/^(\+?)({)([a-zA-Z]+)(})/', '', $value))
-            // Remove '/'
-            ->map(fn ($value) => preg_replace('/\//', '', $value))
-            // Remove empty value
-            ->reject(fn ($value) => empty($value))
-            ->unique()
-            ->sort()
+        return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
+            ->map(fn (\Illuminate\Routing\Route $route) => $route->uri)
+            ->reject(fn ($value) => ! preg_match('/^[a-zA-Z\-]+$/', $value))
+            ->unique()->sort()
             ->toArray();
     }
 
