@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $urlVisitCount = app(Visit::class)->currentUserLinkVisitCount();
 
         return view('backend.dashboard', [
-            'url'  => app(Url::class),
+            'url' => app(Url::class),
             'urlVisitCount' => n_abb($urlVisitCount),
         ]);
     }
@@ -51,7 +51,7 @@ class DashboardController extends Controller
     {
         $url->update([
             'destination' => $request->long_url,
-            'title'       => $request->title,
+            'title' => $request->title,
         ]);
 
         return to_route('dashboard')

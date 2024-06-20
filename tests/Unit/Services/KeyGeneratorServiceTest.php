@@ -35,7 +35,7 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $value1 = 'foo';
         $generatedString1 = $this->keyGenerator->generate($value1);
-        Url::factory()->create(['keyword'  => $generatedString1]);
+        Url::factory()->create(['keyword' => $generatedString1]);
         $this->assertSame($this->keyGenerator->simpleString($value1), $generatedString1);
         $this->assertNotSame($generatedString1, $this->keyGenerator->generate($value1));
 
@@ -80,7 +80,7 @@ class KeyGeneratorServiceTest extends TestCase
         $longUrl = 'https://t.co';
         $customKey = 'tco';
         $response = $this->post(route('su_create'), [
-            'long_url'   => $longUrl,
+            'long_url' => $longUrl,
             'custom_key' => $customKey,
         ]);
         $response->assertRedirectToRoute('su_detail', $customKey);
@@ -94,7 +94,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.keyword_length' => 5]);
         $value = $this->keyGenerator->generate('https://github.com/realodix');
 
-        Url::factory()->create(['keyword'  => $value]);
+        Url::factory()->create(['keyword' => $value]);
 
         $this->assertFalse($this->keyGenerator->verify($value));
     }
@@ -158,7 +158,7 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame(1, $this->keyGenerator->totalKey());
 
         Url::factory()->create([
-            'keyword'   => str_repeat('a', config('urlhub.keyword_length')),
+            'keyword' => str_repeat('a', config('urlhub.keyword_length')),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGenerator->totalKey());
@@ -166,7 +166,7 @@ class KeyGeneratorServiceTest extends TestCase
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.keyword_length',
         // maka ini tidak ikut terhitung.
         Url::factory()->create([
-            'keyword'   => str_repeat('b', config('urlhub.keyword_length') + 2),
+            'keyword' => str_repeat('b', config('urlhub.keyword_length') + 2),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGenerator->totalKey());
@@ -196,7 +196,7 @@ class KeyGeneratorServiceTest extends TestCase
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
             'possibleOutput' => $po,
-            'totalKey'       => $tk,
+            'totalKey' => $tk,
         ]);
         $actual = $mock->remainingCapacity();
 

@@ -52,7 +52,7 @@ class Url extends Model
     protected function casts(): array
     {
         return [
-            'user_id'   => 'integer',
+            'user_id' => 'integer',
             'is_custom' => 'boolean',
         ];
     }

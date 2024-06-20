@@ -92,7 +92,7 @@ class KeyGeneratorService
     public function possibleOutput(): int
     {
         $nChar = strlen(self::ALPHABET);
-        $strLen= config('urlhub.keyword_length');
+        $strLen = config('urlhub.keyword_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
