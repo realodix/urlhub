@@ -158,7 +158,7 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame(1, $this->keyGenerator->totalKey());
 
         Url::factory()->create([
-            'keyword' => str_repeat('a', config('urlhub.keyword_length')),
+            'keyword'   => str_repeat('a', config('urlhub.keyword_length')),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGenerator->totalKey());
@@ -166,7 +166,7 @@ class KeyGeneratorServiceTest extends TestCase
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.keyword_length',
         // maka ini tidak ikut terhitung.
         Url::factory()->create([
-            'keyword' => str_repeat('b', config('urlhub.keyword_length') + 2),
+            'keyword'   => str_repeat('b', config('urlhub.keyword_length') + 2),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGenerator->totalKey());

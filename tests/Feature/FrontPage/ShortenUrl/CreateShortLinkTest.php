@@ -37,7 +37,7 @@ class CreateShortLinkTest extends TestCase
         $customKey = 'foobar';
         config(['urlhub.keyword_length' => strlen($customKey) + 1]);
         $response = $this->post(route('su_create'), [
-            'long_url' => $longUrl,
+            'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
         $response->assertRedirectToRoute('su_detail', $customKey);
@@ -47,7 +47,7 @@ class CreateShortLinkTest extends TestCase
         $customKey = 'barfoo';
         config(['urlhub.keyword_length' => strlen($customKey) - 1]);
         $response = $this->post(route('su_create'), [
-            'long_url' => $longUrl,
+            'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
         $response->assertRedirectToRoute('su_detail', $customKey);
@@ -69,7 +69,7 @@ class CreateShortLinkTest extends TestCase
         $url = Url::factory()->create();
 
         $response = $this->post(route('su_create'), [
-            'long_url' => 'https://laravel-news.com',
+            'long_url'   => 'https://laravel-news.com',
             'custom_key' => $url->keyword,
         ]);
 
@@ -90,7 +90,7 @@ class CreateShortLinkTest extends TestCase
 
         $response = $this->actingAs($this->basicUser())
             ->post(route('su_create'), [
-                'long_url' => 'https://laravel-news.com',
+                'long_url'   => 'https://laravel-news.com',
                 'custom_key' => $url->keyword,
             ]);
 
