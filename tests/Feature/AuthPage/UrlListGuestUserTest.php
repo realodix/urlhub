@@ -30,7 +30,7 @@ class UrlListGuestUserTest extends TestCase
     }
 
     /**
-     * Non admin users can't access guest links table page
+     * Non admin users can't access guest links table page.
      */
     #[PHPUnit\Test]
     public function basicUsersCantAccessPage(): void

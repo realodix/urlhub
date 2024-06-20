@@ -141,7 +141,7 @@ class Url extends Model
     }
 
     /**
-     * Get the title from the web
+     * Get the title from the web.
      *
      * @param string $value A webpage's URL
      */
@@ -165,7 +165,7 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by current user
+     * Total short URLs that have been created by current user.
      */
     public function currentUserUrlCount(): int
     {
@@ -174,7 +174,7 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by all users
+     * Total short URLs that have been created by all users.
      */
     public function userUrlCount(): int
     {
@@ -183,7 +183,7 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by all guest users
+     * Total short URLs that have been created by all guest users.
      */
     public function guestUserUrlCount(): int
     {

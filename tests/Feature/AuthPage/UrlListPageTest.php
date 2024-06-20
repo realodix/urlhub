@@ -27,7 +27,7 @@ class UrlListPageTest extends TestCase
     }
 
     /**
-     * Admin can access user links and guest links table page
+     * Admin can access user links and guest links table page.
      */
     public function testAdminCanAccessUserLinksTablePage(): void
     {
@@ -39,7 +39,7 @@ class UrlListPageTest extends TestCase
     }
 
     /**
-     * Non admin users can't access user links and guest links table page
+     * Non admin users can't access user links and guest links table page.
      */
     public function testNonAdminUsersCantAccessUserLinksTablePage(): void
     {

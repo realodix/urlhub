@@ -62,7 +62,7 @@ class KeyGeneratorService
     }
 
     /**
-     * Verifies whether a string can be used as a keyword
+     * Verifies whether a string can be used as a keyword.
      */
     public function verify(string $value): bool
     {

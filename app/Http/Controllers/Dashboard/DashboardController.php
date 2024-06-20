@@ -26,7 +26,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show shortened url details page
+     * Show shortened url details page.
      *
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Contracts\View\View
@@ -39,7 +39,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Update the destination URL
+     * Update the destination URL.
      *
      * @param UpdateUrlRequest $request \App\Http\Requests\UpdateUrlRequest
      * @param Url              $url     \App\Models\Url
@@ -59,7 +59,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Delete shortened URLs
+     * Delete shortened URLs.
      *
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse

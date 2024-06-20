@@ -177,7 +177,7 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Only alphanumeric characters
+     * Only alphanumeric characters.
      */
     public function testTotalKeysBasedOnStringCharacters(): void
     {

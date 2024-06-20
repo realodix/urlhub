@@ -8,7 +8,7 @@ use Spatie\Url\Url as SpatieUrl;
 class Helper
 {
     /**
-     * Parse any User Agent
+     * Parse any User Agent.
      *
      * @return \DeviceDetector\DeviceDetector
      */
