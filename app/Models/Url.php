@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 /**
  * @property int            $id
- * @property int|null       $user_id
+ * @property null|int       $user_id
  * @property string         $keyword
  * @property bool           $is_custom
  * @property string         $destination

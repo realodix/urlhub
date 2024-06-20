@@ -25,7 +25,7 @@ class Helper
      * A URL formatted according to the specified format.
      *
      * @param string   $value         URL links
-     * @param int|null $limit         Length string will be truncated to, including suffix
+     * @param null|int $limit         Length string will be truncated to, including suffix
      * @param bool     $scheme        Show or remove URL schemes
      * @param bool     $trailingSlash Show or remove trailing slash
      * @return string
