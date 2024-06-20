@@ -30,8 +30,14 @@
         "nunomaduro/collision": "^8.1",
         "phpstan/phpstan-deprecation-rules": "^1.2",
         "phpunit/phpunit": "^11.1",
-        "realodix/relax": "^1.8",
+        "realodix/relax": "dev-realodix-ruleset",
         "spatie/laravel-ignition": "^2.7"
+    },
+    "repositories": {
+        "realodix/relax": {
+            "type": "vcs",
+            "url": "git@github.com:realodix/relax.git"
+        }
     },
     "minimum-stability": "stable",
     "autoload": {
