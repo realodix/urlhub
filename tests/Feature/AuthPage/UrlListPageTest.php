@@ -48,7 +48,6 @@ class UrlListPageTest extends TestCase
         $response = $this->actingAs($user)
             ->get(route('dashboard.allurl.u-user', $this->adminUser()->name));
         $response->assertForbidden();
-
     }
 
     #[PHPUnit\Test]
