@@ -43,7 +43,7 @@ class BaseUrlTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Url::where(fn (Builder $query) => $this->getUserIdBuilder($query))
+        return Url::where(fn(Builder $query) => $this->getUserIdBuilder($query))
             ->with('author')
             ->withCount([
                 'visits',

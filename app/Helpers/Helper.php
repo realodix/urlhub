@@ -74,8 +74,8 @@ class Helper
     public static function routeCollisionList(): array
     {
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
-            ->map(fn (\Illuminate\Routing\Route $route) => $route->uri)
-            ->reject(fn ($value) => ! preg_match('/^[a-zA-Z\-]+$/', $value))
+            ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
+            ->reject(fn($value) => ! preg_match('/^[a-zA-Z\-]+$/', $value))
             ->unique()->sort()
             ->toArray();
     }
@@ -96,11 +96,11 @@ class Helper
 
         return collect($publicPath)
             // remove ., ..,
-            ->reject(fn ($value) => in_array($value, ['.', '..']))
+            ->reject(fn($value) => in_array($value, ['.', '..']))
             // remove file with extension
-            ->filter(fn ($value) => ! preg_match('/\.[a-z]+$/', $value))
+            ->filter(fn($value) => ! preg_match('/\.[a-z]+$/', $value))
             // remove array value which is in config('urlhub.reserved_keyword')
-            ->reject(fn ($value) => in_array($value, config('urlhub.reserved_keyword')))
+            ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
             ->toArray();
     }
 }

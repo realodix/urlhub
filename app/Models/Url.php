@@ -95,21 +95,21 @@ class Url extends Model
     protected function userId(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => $value === 0 ? self::GUEST_ID : $value,
+            set: fn($value) => $value === 0 ? self::GUEST_ID : $value,
         );
     }
 
     protected function shortUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attr) => url('/'.$attr['keyword']),
+            get: fn($value, $attr) => url('/'.$attr['keyword']),
         );
     }
 
     protected function destination(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => rtrim($value, '/'),
+            set: fn($value) => rtrim($value, '/'),
         );
     }
 
