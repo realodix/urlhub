@@ -2,6 +2,7 @@
 
 use Realodix\Relax\Config;
 use Realodix\Relax\Finder;
+use Realodix\Relax\RuleSet\Sets\Realodix;
 
 $localRules = [
     // Base
@@ -12,6 +13,6 @@ $localRules = [
     'no_empty_comment'  => false,
 ];
 
-return Config::create('@Realodix', $localRules)
+return Config::create(new Realodix, $localRules)
     ->setFinder(Finder::laravel())
     ->setCacheFile(__DIR__.'/.tmp/.php-cs-fixer.cache');
