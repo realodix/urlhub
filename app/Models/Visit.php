@@ -66,7 +66,7 @@ class Visit extends Model
     */
 
     /**
-     * Number of current user link visits
+     * Number of current user link visits.
      */
     public function currentUserLinkVisitCount(): int
     {
@@ -76,7 +76,7 @@ class Visit extends Model
     }
 
     /**
-     * Number of user link visits
+     * Number of user link visits.
      */
     public function userLinkVisitCount(): int
     {
@@ -86,7 +86,7 @@ class Visit extends Model
     }
 
     /**
-     * Number of guest user link visits
+     * Number of guest user link visits.
      */
     public function guestUserLinkVisitCount(): int
     {

@@ -62,7 +62,7 @@ class KeyGeneratorService
     }
 
     /**
-     * Verifies whether a string can be used as a keyword
+     * Verifies whether a string can be used as a keyword.
      */
     public function verify(string $value): bool
     {
@@ -92,7 +92,7 @@ class KeyGeneratorService
     public function possibleOutput(): int
     {
         $nChar = strlen(self::ALPHABET);
-        $strLen= config('urlhub.keyword_length');
+        $strLen = config('urlhub.keyword_length');
 
         // for testing purposes only
         // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
@@ -123,7 +123,7 @@ class KeyGeneratorService
      */
     public function totalKey(): int
     {
-        $length = (int) config('urlhub.keyword_length');
+        $length = config('urlhub.keyword_length');
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$length])
             ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{'.$length.'}$"')

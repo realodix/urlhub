@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 /**
  * @property int            $id
- * @property int|null       $user_id
+ * @property null|int       $user_id
  * @property string         $keyword
  * @property bool           $is_custom
  * @property string         $destination
@@ -52,7 +52,7 @@ class Url extends Model
     protected function casts(): array
     {
         return [
-            'user_id'   => 'integer',
+            'user_id' => 'integer',
             'is_custom' => 'boolean',
         ];
     }
@@ -95,21 +95,21 @@ class Url extends Model
     protected function userId(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => $value === 0 ? self::GUEST_ID : $value,
+            set: fn($value) => $value === 0 ? self::GUEST_ID : $value,
         );
     }
 
     protected function shortUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attr) => url('/'.$attr['keyword']),
+            get: fn($value, $attr) => url('/'.$attr['keyword']),
         );
     }
 
     protected function destination(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => rtrim($value, '/'),
+            set: fn($value) => rtrim($value, '/'),
         );
     }
 
@@ -141,7 +141,7 @@ class Url extends Model
     }
 
     /**
-     * Get the title from the web
+     * Get the title from the web.
      *
      * @param string $value A webpage's URL
      */
@@ -165,7 +165,7 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by current user
+     * Total short URLs that have been created by current user.
      */
     public function currentUserUrlCount(): int
     {
@@ -174,7 +174,7 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by all users
+     * Total short URLs that have been created by all users.
      */
     public function userUrlCount(): int
     {
@@ -183,7 +183,7 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by all guest users
+     * Total short URLs that have been created by all guest users.
      */
     public function guestUserUrlCount(): int
     {

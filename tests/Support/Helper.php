@@ -11,8 +11,7 @@ class Helper
         $trans = new \Illuminate\Translation\Translator(
             new \Illuminate\Translation\ArrayLoader, 'en'
         );
-        $validator = new Validator($trans, $data, $rules);
 
-        return $validator;
+        return new Validator($trans, $data, $rules);
     }
 }

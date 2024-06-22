@@ -26,12 +26,12 @@ class UrlController extends Controller implements HasMiddleware
     public function create(StoreUrlRequest $request)
     {
         $url = Url::create([
-            'user_id'     => auth()->id(),
+            'user_id' => auth()->id(),
             'destination' => $request->long_url,
-            'title'       => app(Url::class)->getWebTitle($request->long_url),
-            'keyword'     => app(Url::class)->getKeyword($request),
-            'is_custom'   => $request->custom_key ? true : false,
-            'user_sign'   => app(User::class)->signature(),
+            'title' => app(Url::class)->getWebTitle($request->long_url),
+            'keyword' => app(Url::class)->getKeyword($request),
+            'is_custom' => $request->custom_key ? true : false,
+            'user_sign' => app(User::class)->signature(),
         ]);
 
         return to_route('su_detail', $url->keyword);
@@ -46,7 +46,7 @@ class UrlController extends Controller implements HasMiddleware
     public function showDetail(Url $url)
     {
         $data = [
-            'url'   => $url,
+            'url' => $url,
             'visit' => app(Visit::class),
             'visitsCount' => $url->visits()->count(),
         ];

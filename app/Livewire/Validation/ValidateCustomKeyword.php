@@ -7,7 +7,7 @@ use Livewire\Component;
 /**
  * - https://livewire.laravel.com/docs/validation#real-time-validation
  * - resources\views\frontend\homepage.blade.php
- * - resources\views\livewire\validation\validate-custom-keyword.blade.php
+ * - resources\views\livewire\validation\validate-custom-keyword.blade.php.
  */
 class ValidateCustomKeyword extends Component
 {
