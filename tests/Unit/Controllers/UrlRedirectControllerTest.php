@@ -15,7 +15,7 @@ class UrlRedirectControllerTest extends TestCase
 
         $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->destination)
-            ->assertStatus((int) config('urlhub.redirect_status_code'));
+            ->assertStatus(config('urlhub.redirect_status_code'));
 
         $this->assertCount(1, Visit::all());
     }

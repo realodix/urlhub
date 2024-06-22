@@ -28,18 +28,18 @@ return [
      */
     'keyword_length' => env('UH_KEYWORD_LENGTH', 5), // >= 1
 
-    /**
+    /*
      * Minimum length of custom keyword.
      */
     'custom_keyword_min_length' => env('UH_CUSTOM_KEYWORD_MIN_LENGTH', 3),
 
-    /**
+    /*
      * Maximum length of custom keyword.
      */
     'custom_keyword_max_length' => env('UH_CUSTOM_KEYWORD_MAX_LENGTH', 11),
 
     /*
-     * List of non allowed domain.
+     * List of non allowed domain
      *
      * This list is used to prevent shortening of urls that contain one of the
      * domains below.
@@ -49,7 +49,7 @@ return [
     ],
 
     /*
-     * List of reserved or not allowed URL ending.
+     * List of reserved or not allowed URL ending
      *
      * Some of them represent things that look like folder names in public
      * folders. Feel free to add keywords that you want to prevent, for
@@ -92,8 +92,8 @@ return [
      */
     'redirect_cache_max_age' => env('UH_REDIRECT_CACHE_MAX_AGE', 30),
 
-    /**
-     * Determine whether bot visits are logged or not
+    /*
+     * Determine whether bot visits are logged or not.
      *
      * - TRUE: Logs bot visits in the visitor log
      * - FALSE: Doesn't log bot visits in visitor logs
@@ -106,13 +106,13 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    /**
+    /*
      * Type: bool
      * Accepted values: true or false
      */
     'qrcode' => env('QRCODE', true),
 
-    /**
+    /*
      * Determines the width/height in pixels.
      *
      * Type: int
@@ -120,20 +120,20 @@ return [
      */
     'qrcode_size' => env('QRCODE_SIZE', 170),
 
-    /**
+    /*
      * The space in pixels between the QR code itself and the border of the image.
      *
      * Type: int (positive)
      */
     'qrcode_margin' => env('QRCODE_MARGIN', 0),
 
-    /**
+    /*
      * Type: string
      * Accepted values: png or svg
      */
     'qrcode_format' => env('QRCODE_FORMAT', 'png'),
 
-    /**
+    /*
      * Determine error correction levels to restore data if the code is dirty or
      * damaged.
      *
@@ -144,7 +144,7 @@ return [
      */
     'qrcode_error_correction' => env('QRCODE_ERROR_CORRECTION', 'm'),
 
-    /**
+    /*
      * Tells if the block size should be rounded, making the QR code more readable,
      * but potentially adding some extra margin as a side effect.
      *

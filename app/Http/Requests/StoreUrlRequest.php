@@ -28,7 +28,7 @@ class StoreUrlRequest extends FormRequest
         $maxLen = config('urlhub.custom_keyword_max_length');
 
         return [
-            'long_url'   => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
+            'long_url' => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',
                 "min:$minLen", "max:$maxLen", 'lowercase',
@@ -47,7 +47,7 @@ class StoreUrlRequest extends FormRequest
     {
         return [
             'long_url.required' => __('The URL field must be filled, should not be empty.'),
-            'custom_key.max'    => __('The custom url may not be greater than :max characters.'),
+            'custom_key.max' => __('The custom url may not be greater than :max characters.'),
             'custom_key.unique' => __(':input has already been taken'),
         ];
     }

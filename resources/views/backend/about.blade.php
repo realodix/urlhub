@@ -4,196 +4,196 @@
 
 @section('title', __('About System'))
 @section('content')
-    <main class="page_about max-w-4xl">
-        <div class="flex flex-wrap gap-4 mb-4 justify-end">
-            <div class="bg-uh-bg-1 p-4 sm:rounded-lg w-full md:w-2/6
-                border-y border-uh-border-color sm:border-none sm:shadow-md"
-            >
-                <div class="flex flex-row space-x-4 items-center">
-                    <div>
-                        <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
-                        <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
-                            {{ phpversion() }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-uh-bg-1 p-4 sm:rounded-lg w-full md:w-2/6
-                border-y border-uh-border-color sm:border-none sm:shadow-md"
-            >
-                <div class="flex flex-row space-x-4 items-center">
-                    <div>
-                        <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
-                        <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
-                            {{ app()->version() }}
-                        </p>
-                    </div>
+<main class="page_about max-w-4xl">
+    <div class="flex flex-wrap gap-4 mb-4 justify-end">
+        <div class="bg-uh-bg-1 p-4 sm:rounded-lg w-full md:w-2/6
+            border-y border-uh-border-color sm:border-none sm:shadow-md"
+        >
+            <div class="flex flex-row space-x-4 items-center">
+                <div>
+                    <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
+                    <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
+                        {{ phpversion() }}
+                    </p>
                 </div>
             </div>
         </div>
-
-        <br>
-
-        <div class="common-card-style">
-            <div class="card_header__sub_header">Links</div>
-            <dl>
-                @php
-                    $urlCount = n_abb($url->count());
-                    $visitCount = n_abb($visit->count());
-                    $userUrlCount = n_abb($url->userUrlCount());
-                    $userLinkVisitCount = n_abb($visit->userLinkVisitCount());
-                    $guestUrlCount = n_abb($url->guestUserUrlCount());
-                    $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
-                @endphp
-                <dt>Total</dt>
-                <dd>{{ $urlCount }} ({{ $visitCount }} visits)</dd>
-
-                <dt>User</dt>
-                <dd>{{ $userUrlCount }} ({{ $userLinkVisitCount }} visits)</dd>
-
-                <dt>Guest</dt>
-                <dd>{{ $guestUrlCount }} ({{ $guestUserLinkVisitCount }} visits)</dd>
-            </dl>
-
-            <div class="card_header__sub_header">Users</div>
-            <dl>
-                <dt>User</dt>
-                <dd>{{ n_abb($user->count()) }}</dd>
-
-                <dt>Guest</dt>
-                <dd>{{ n_abb($user->totalGuestUsers()) }}</dd>
-            </dl>
-
-            <div class="card_header__sub_header">Random String</div>
-            <dl>
-                <dt>Possible Output</dt>
-                <dd>
-                    @php
-                        $number = strlen(KeyGeneratorService::ALPHABET);
-                        $powNumber = config('urlhub.keyword_length');
-                        $result = number_format($keyGenerator->possibleOutput());
-                    @endphp
-                    ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
-                </dd>
-
-                <dt>Generated</dt>
-                <dd>{{ number_format($keyGenerator->totalKey()) }}</dd>
-            </dl>
+        <div class="bg-uh-bg-1 p-4 sm:rounded-lg w-full md:w-2/6
+            border-y border-uh-border-color sm:border-none sm:shadow-md"
+        >
+            <div class="flex flex-row space-x-4 items-center">
+                <div>
+                    <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
+                    <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
+                        {{ app()->version() }}
+                    </p>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <br>
+    <br>
 
-        <div class="common-card-style">
-            <div class="card_header">{{ __('Configuration') }}</div>
+    <div class="common-card-style">
+        <div class="card_header__sub_header">Links</div>
+        <dl>
+            @php
+                $urlCount = n_abb($url->count());
+                $visitCount = n_abb($visit->count());
+                $userUrlCount = n_abb($url->userUrlCount());
+                $userLinkVisitCount = n_abb($visit->userLinkVisitCount());
+                $guestUrlCount = n_abb($url->guestUserUrlCount());
+                $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
+            @endphp
+            <dt>Total</dt>
+            <dd>{{ $urlCount }} ({{ $visitCount }} visits)</dd>
 
-            <div class="card_header__sub_header">Shortened Links</div>
-            <dl>
+            <dt>User</dt>
+            <dd>{{ $userUrlCount }} ({{ $userLinkVisitCount }} visits)</dd>
+
+            <dt>Guest</dt>
+            <dd>{{ $guestUrlCount }} ({{ $guestUserLinkVisitCount }} visits)</dd>
+        </dl>
+
+        <div class="card_header__sub_header">Users</div>
+        <dl>
+            <dt>User</dt>
+            <dd>{{ n_abb($user->count()) }}</dd>
+
+            <dt>Guest</dt>
+            <dd>{{ n_abb($user->totalGuestUsers()) }}</dd>
+        </dl>
+
+        <div class="card_header__sub_header">Random String</div>
+        <dl>
+            <dt>Possible Output</dt>
+            <dd>
                 @php
-                    $hashLength = config('urlhub.keyword_length');
-                    $customKeywordMinLength = config('urlhub.custom_keyword_min_length');
-                    $customKeywordMaxLength = config('urlhub.custom_keyword_max_length');
-                    $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
+                    $number = strlen(KeyGeneratorService::ALPHABET);
+                    $powNumber = config('urlhub.keyword_length');
+                    $result = number_format($keyGenerator->possibleOutput());
                 @endphp
-                <dt><code>keyword_length</code></dt>
-                <dd>{{ $hashLength.' '.str()->plural('character', $hashLength) }}</dd>
+                ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
+            </dd>
 
-                <dt><code>custom_keyword_min_length</code></dt>
-                <dd>{{ $customKeywordMinLength.' '.str()->plural('character', $customKeywordMinLength) }}</dd>
+            <dt>Generated</dt>
+            <dd>{{ number_format($keyGenerator->totalKey()) }}</dd>
+        </dl>
+    </div>
 
-                <dt><code>custom_keyword_max_length</code></dt>
-                <dd>{{ $customKeywordMaxLength.' '.str()->plural('character', $customKeywordMaxLength) }}</dd>
+    <br>
 
-                @php
-                    $domainBlacklist = collect(config('urlhub.domain_blacklist'))
-                        ->sort()->toArray();
-                @endphp
-                <dt class="mt-2"><code>domain_blacklist</code></dt>
-                <dd class="mt-2">
-                    <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
-                        @if (! empty($domainBlacklist))
-                            <code>{{ implode(", ", $domainBlacklist) }}</code>
-                        @else
-                            <code>None</code>
-                        @endif
-                    </div>
-                </dd>
+    <div class="common-card-style">
+        <div class="card_header">{{ __('Configuration') }}</div>
 
-                @php
-                    $reservedKey = collect(config('urlhub.reserved_keyword'))
-                        ->sort()->toArray();
-                @endphp
-                <dt class="mt-2 mb-2">Reserved Keywords</dt>
-                <dd class="mt-2 mb-2">
-                    <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
-                        <p><b>Config</b></p>
-                        <code>{{ implode(", ", $reservedKey) }}</code>
+        <div class="card_header__sub_header">Shortened Links</div>
+        <dl>
+            @php
+                $hashLength = config('urlhub.keyword_length');
+                $customKeywordMinLength = config('urlhub.custom_keyword_min_length');
+                $customKeywordMaxLength = config('urlhub.custom_keyword_max_length');
+                $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
+            @endphp
+            <dt><code>keyword_length</code></dt>
+            <dd>{{ $hashLength.' '.str()->plural('character', $hashLength) }}</dd>
 
-                        <br> <br>
+            <dt><code>custom_keyword_min_length</code></dt>
+            <dd>{{ $customKeywordMinLength.' '.str()->plural('character', $customKeywordMinLength) }}</dd>
 
-                        <p><b>Registered routes</b></p>
-                        <code>{{ implode(", ", \App\Helpers\Helper::routeCollisionList()) }}</code>
+            <dt><code>custom_keyword_max_length</code></dt>
+            <dd>{{ $customKeywordMaxLength.' '.str()->plural('character', $customKeywordMaxLength) }}</dd>
 
-                        <br> <br>
+            @php
+                $domainBlacklist = collect(config('urlhub.domain_blacklist'))
+                    ->sort()->toArray();
+            @endphp
+            <dt class="mt-2"><code>domain_blacklist</code></dt>
+            <dd class="mt-2">
+                <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
+                    @if (! empty($domainBlacklist))
+                        <code>{{ implode(", ", $domainBlacklist) }}</code>
+                    @else
+                        <code>None</code>
+                    @endif
+                </div>
+            </dd>
 
-                        <p><b>Public Folder</b></p>
-                        <code>{{ implode(", ", \App\Helpers\Helper::publicPathCollisionList()) }}</code>
-                    </div>
-                </dd>
+            @php
+                $reservedKey = collect(config('urlhub.reserved_keyword'))
+                    ->sort()->toArray();
+            @endphp
+            <dt class="mt-2 mb-2">Reserved Keywords</dt>
+            <dd class="mt-2 mb-2">
+                <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
+                    <p><b>Config</b></p>
+                    <code>{{ implode(", ", $reservedKey) }}</code>
 
-                <dt><code>web_title</code></dt>
-                <dd>
-                    <code class="config-value-bool">{{ var_export(config('urlhub.web_title')) }}</code>
-                </dd>
+                    <br> <br>
 
-                <dt><code>redirect_status_code</code></dt>
-                <dd>{{ config('urlhub.redirect_status_code') }}</dd>
+                    <p><b>Registered routes</b></p>
+                    <code>{{ implode(", ", \App\Helpers\Helper::routeCollisionList()) }}</code>
 
-                <dt><code>redirect_cache_max_age</code></dt>
-                <dd>{{ $redirectCacheMaxAge.' '.str()->plural('second', $redirectCacheMaxAge) }}</dd>
+                    <br> <br>
 
-                <dt><code>track_bot_visits</code></dt>
-                <dd>
-                    <code class="config-value-bool">{{ var_export(config('urlhub.track_bot_visits')) }}</code>
-                </dd>
-            </dl>
+                    <p><b>Public Folder</b></p>
+                    <code>{{ implode(", ", \App\Helpers\Helper::publicPathCollisionList()) }}</code>
+                </div>
+            </dd>
 
-            <div class="card_header__sub_header">Guest / Unregistered Users</div>
-            <dl>
-                <dt>Can create short links</dt>
-                <dd>
-                    <code class="config-value-bool">{{ var_export(config('urlhub.public_site')) }}</code>
-                </dd>
+            <dt><code>web_title</code></dt>
+            <dd>
+                <code class="config-value-bool">{{ var_export(config('urlhub.web_title')) }}</code>
+            </dd>
 
-                <dt>Can sign up</dt>
-                <dd>
-                    <code class="config-value-bool">{{ var_export(config('urlhub.registration')) }}</code>
-                </dd>
-            </dl>
+            <dt><code>redirect_status_code</code></dt>
+            <dd>{{ config('urlhub.redirect_status_code') }}</dd>
 
-            <div class="card_header__sub_header">QRCode</div>
-            <dl>
-                <dt>Enabled</dt>
-                <dd>
-                    <code class="config-value-bool">{{ var_export(config('urlhub.qrcode')) }}</code>
-                </dd>
+            <dt><code>redirect_cache_max_age</code></dt>
+            <dd>{{ $redirectCacheMaxAge.' '.str()->plural('second', $redirectCacheMaxAge) }}</dd>
 
-                <dt>Size</dt>
-                <dd>{{ config('urlhub.qrcode_size') }} px</dd>
+            <dt><code>track_bot_visits</code></dt>
+            <dd>
+                <code class="config-value-bool">{{ var_export(config('urlhub.track_bot_visits')) }}</code>
+            </dd>
+        </dl>
 
-                <dt>Margin</dt>
-                <dd>{{ config('urlhub.qrcode_margin') }} px</dd>
+        <div class="card_header__sub_header">Guest / Unregistered Users</div>
+        <dl>
+            <dt>Can create short links</dt>
+            <dd>
+                <code class="config-value-bool">{{ var_export(config('urlhub.public_site')) }}</code>
+            </dd>
 
-                <dt>Format</dt>
-                <dd>{{ config('urlhub.qrcode_format') }}</dd>
+            <dt>Can sign up</dt>
+            <dd>
+                <code class="config-value-bool">{{ var_export(config('urlhub.registration')) }}</code>
+            </dd>
+        </dl>
 
-                <dt>Error correction levels</dt>
-                <dd>{{ config('urlhub.qrcode_error_correction') }}</dd>
+        <div class="card_header__sub_header">QRCode</div>
+        <dl>
+            <dt>Enabled</dt>
+            <dd>
+                <code class="config-value-bool">{{ var_export(config('urlhub.qrcode')) }}</code>
+            </dd>
 
-                <dt>Round block</dt>
-                <dd>
-                    <code class="config-value-bool">{{ var_export(config('urlhub.qrcode_round_block_size')) }}</code>
-                </dd>
-            </dl>
-        </div>
-    </main>
+            <dt>Size</dt>
+            <dd>{{ config('urlhub.qrcode_size') }} px</dd>
+
+            <dt>Margin</dt>
+            <dd>{{ config('urlhub.qrcode_margin') }} px</dd>
+
+            <dt>Format</dt>
+            <dd>{{ config('urlhub.qrcode_format') }}</dd>
+
+            <dt>Error correction levels</dt>
+            <dd>{{ config('urlhub.qrcode_error_correction') }}</dd>
+
+            <dt>Round block</dt>
+            <dd>
+                <code class="config-value-bool">{{ var_export(config('urlhub.qrcode_round_block_size')) }}</code>
+            </dd>
+        </dl>
+    </div>
+</main>
 @endsection

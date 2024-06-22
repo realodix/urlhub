@@ -42,7 +42,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test the signature of the user
+     * Test the signature of the user.
      */
     public function testSignature(): void
     {

@@ -20,7 +20,7 @@ class LinkVisitChart extends ChartWidget
         $startDate = now()->subQuarter();
         $endDate = now();
         $carbon = CarbonPeriod::create($startDate, $endDate)->toArray();
-        $label = collect($carbon)->map(fn ($date) => $date->format('M d'))
+        $label = collect($carbon)->map(fn($date) => $date->format('M d'))
             ->toArray();
 
         $visitModel = Visit::where('url_id', $this->model->id);
@@ -33,7 +33,7 @@ class LinkVisitChart extends ChartWidget
             'datasets' => [
                 [
                     'label' => 'Visits',
-                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                    'data' => $data->map(fn(TrendValue $value) => $value->aggregate),
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#9BD0F5',
                 ],

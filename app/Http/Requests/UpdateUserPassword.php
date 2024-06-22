@@ -25,7 +25,7 @@ class UpdateUserPassword extends FormRequest
     {
         return [
             'current-password' => ['current_password'],
-            'new-password'     => ['required', 'min:6', 'confirmed', 'unique:users,password', 'different:current-password'],
+            'new-password' => ['required', 'min:6', 'confirmed', 'unique:users,password', 'different:current-password'],
         ];
     }
 }

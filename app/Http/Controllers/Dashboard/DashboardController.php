@@ -20,13 +20,13 @@ class DashboardController extends Controller
         $urlVisitCount = app(Visit::class)->currentUserLinkVisitCount();
 
         return view('backend.dashboard', [
-            'url'  => app(Url::class),
+            'url' => app(Url::class),
             'urlVisitCount' => n_abb($urlVisitCount),
         ]);
     }
 
     /**
-     * Show shortened url details page
+     * Show shortened url details page.
      *
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Contracts\View\View
@@ -39,7 +39,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Update the destination URL
+     * Update the destination URL.
      *
      * @param UpdateUrlRequest $request \App\Http\Requests\UpdateUrlRequest
      * @param Url              $url     \App\Models\Url
@@ -51,7 +51,7 @@ class DashboardController extends Controller
     {
         $url->update([
             'destination' => $request->long_url,
-            'title'       => $request->title,
+            'title' => $request->title,
         ]);
 
         return to_route('dashboard')
@@ -59,7 +59,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Delete shortened URLs
+     * Delete shortened URLs.
      *
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse

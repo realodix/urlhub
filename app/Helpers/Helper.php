@@ -8,7 +8,7 @@ use Spatie\Url\Url as SpatieUrl;
 class Helper
 {
     /**
-     * Parse any User Agent
+     * Parse any User Agent.
      *
      * @return \DeviceDetector\DeviceDetector
      */
@@ -25,7 +25,7 @@ class Helper
      * A URL formatted according to the specified format.
      *
      * @param string   $value         URL links
-     * @param int|null $limit         Length string will be truncated to, including suffix
+     * @param null|int $limit         Length string will be truncated to, including suffix
      * @param bool     $scheme        Show or remove URL schemes
      * @param bool     $trailingSlash Show or remove trailing slash
      * @return string
@@ -74,8 +74,8 @@ class Helper
     public static function routeCollisionList(): array
     {
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
-            ->map(fn (\Illuminate\Routing\Route $route) => $route->uri)
-            ->reject(fn ($value) => ! preg_match('/^[a-zA-Z\-]+$/', $value))
+            ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
+            ->reject(fn($value) => ! preg_match('/^[a-zA-Z\-]+$/', $value))
             ->unique()->sort()
             ->toArray();
     }
@@ -96,11 +96,11 @@ class Helper
 
         return collect($publicPath)
             // remove ., ..,
-            ->reject(fn ($value) => in_array($value, ['.', '..']))
+            ->reject(fn($value) => in_array($value, ['.', '..']))
             // remove file with extension
-            ->filter(fn ($value) => ! preg_match('/\.[a-z]+$/', $value))
+            ->filter(fn($value) => ! preg_match('/\.[a-z]+$/', $value))
             // remove array value which is in config('urlhub.reserved_keyword')
-            ->reject(fn ($value) => in_array($value, config('urlhub.reserved_keyword')))
+            ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
             ->toArray();
     }
 }
