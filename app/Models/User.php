@@ -96,16 +96,13 @@ class User extends Authenticatable
             $browser = $device->getClient();
             $os = $device->getOs();
 
-            $browserName = ! empty($browser['name']) ? $browser['name'] : '';
-            $osName = ! empty($os['name']) ? $os['name'] : '';
-            $osVersion = ! empty($os['version']) ? $os['version'] : '';
-
             $userDeviceInfo = implode([
-                'ip'      => request()->ip(),
-                'browser' => $browserName,
-                'os'      => $osName.$osVersion,
-                'device'  => $device->getDeviceName().$device->getModel().$device->getBrandName(),
-                'lang'    => request()->getPreferredLanguage(),
+                request()->ip(),
+                ! empty($browser['name']) ? $browser['name'] : '',
+                ! empty($os['name']) ? $os['name'] : '',
+                ! empty($os['version']) ? $os['version'] : '',
+                $device->getDeviceName().$device->getModel().$device->getBrandName(),
+                request()->getPreferredLanguage(),
             ]);
 
             return hash('xxh3', $userDeviceInfo);

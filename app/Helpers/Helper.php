@@ -88,13 +88,8 @@ class Helper
      */
     public static function publicPathCollisionList(): array
     {
-        $publicPath = scandir(public_path());
-
-        if ($publicPath === false) {
-            return [];
-        }
-
-        return collect($publicPath)
+        // scandir can return false on failure, PHPStan L7 will report an error
+        return collect(scandir(public_path()))
             // remove ., ..,
             ->reject(fn($value) => in_array($value, ['.', '..']))
             // remove file with extension
