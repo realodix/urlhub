@@ -57,14 +57,12 @@ return [
      */
     'reserved_keyword' => [
         // Reserved for future use
-        'build', // When Vite is running in development
-        'hot', // When Vite is running in development
+        'build',  // When Vite is running in development
+        'hot',    // When Vite is running in development
         'vendor', // When installing packages (ex: laravel/telescope)
 
         // Others
-        'images',
-        'fonts',
-        'storage',
+        'images', 'fonts', 'storage',
     ],
 
     'web_title' => true,
@@ -75,28 +73,22 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    /*
-     * Configure the kind of redirect you want to use for your short URLs. You
-     * can either set:
-     * - 301
-     * - 302
-     *
-     * When selecting 301 redirects, you can also configure the time redirects
-     * are cached, to mitigate deviations in stats.
+    /**
+     * HTTP redirect status code.
      */
     'redirect_status_code' => 302,
 
     /*
-     * Set the amount of seconds that redirects should be cached when redirect
-     * status is 301. Default values is 30.
+     * Indicates that the response remains fresh until N seconds after the response
+     * is generated.
      */
     'redirect_cache_max_age' => 30,
 
     /*
-     * Determine whether bot visits are logged or not.
+     * Determine whether bot visits count or not.
      *
-     * - TRUE: Logs bot visits in the visitor log
-     * - FALSE: Doesn't log bot visits in visitor logs
+     * - true: bot will be counted as a visitor
+     * - false: bots will not be counted as visitors
      */
     'track_bot_visits' => false,
 ];
