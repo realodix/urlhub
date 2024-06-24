@@ -34,27 +34,9 @@
             "problemMatcher": []
         },
         {
-            "label": "[GIT] Commit",
-            "type": "shell",
-            "command": "git add -A && git commit -m \"U-$(Get-Date -UFormat +'%y%m%d%H%M%S')\"",
-            "problemMatcher": []
-        },
-        {
-            "label": "[GIT] Commit & Push",
-            "type": "shell",
-            "command": "git add -A && git commit -m \"U-$(Get-Date -UFormat +'%y%m%d%H%M%S')\" && git push",
-            "problemMatcher": []
-        },
-        {
             "label": "[Composer] dump-autoload",
             "type": "shell",
             "command": "composer dump-autoload",
-            "problemMatcher": []
-        },
-        {
-            "label": "[Artisan] Migrate (seed)",
-            "type": "shell",
-            "command": "php artisan migrate:fresh --seed",
             "problemMatcher": []
         },
         {
@@ -67,12 +49,6 @@
             "label": "[Artisan] Icon: Cache-clear",
             "type": "shell",
             "command": "php artisan icons:clear",
-            "problemMatcher": []
-        },
-        {
-            "label": "[NPM] Dev",
-            "type": "shell",
-            "command": "yarn dev",
             "problemMatcher": []
         }
     ]
