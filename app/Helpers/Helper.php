@@ -69,9 +69,9 @@ class Helper
     /**
      * List of potentially colliding routes with shortened link keywords.
      *
-     * @return array<string>
+     * @return array
      */
-    public static function routeCollisionList(): array
+    public static function routeCollisionList()
     {
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
             ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
@@ -84,9 +84,9 @@ class Helper
      * List of files/folders in the public/ directory that will potentially collide
      * with shortened link keywords.
      *
-     * @return array<string>
+     * @return array
      */
-    public static function publicPathCollisionList(): array
+    public static function publicPathCollisionList()
     {
         // scandir can return false on failure, PHPStan L7 will report an error
         return collect(scandir(public_path()))
