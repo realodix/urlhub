@@ -49,13 +49,8 @@ class UrlController extends Controller implements HasMiddleware
             'url' => $url,
             'visit' => app(Visit::class),
             'visitsCount' => $url->visits()->count(),
+            'qrCode' => app(QrCodeService::class)->execute($url->short_url),
         ];
-
-        if (config('urlhub.qrcode')) {
-            $qrCode = app(QrCodeService::class)->execute($url->short_url);
-
-            $data = array_merge($data, ['qrCode' => $qrCode]);
-        }
 
         return view('frontend.short', $data);
     }

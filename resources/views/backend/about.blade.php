@@ -169,31 +169,6 @@
                 <code class="config-value-bool">{{ var_export(config('urlhub.registration')) }}</code>
             </dd>
         </dl>
-
-        <div class="card_header__sub_header">QRCode</div>
-        <dl>
-            <dt>Enabled</dt>
-            <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.qrcode')) }}</code>
-            </dd>
-
-            <dt>Size</dt>
-            <dd>{{ config('urlhub.qrcode_size') }} px</dd>
-
-            <dt>Margin</dt>
-            <dd>{{ config('urlhub.qrcode_margin') }} px</dd>
-
-            <dt>Format</dt>
-            <dd>{{ config('urlhub.qrcode_format') }}</dd>
-
-            <dt>Error correction levels</dt>
-            <dd>{{ config('urlhub.qrcode_error_correction') }}</dd>
-
-            <dt>Round block</dt>
-            <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.qrcode_round_block_size')) }}</code>
-            </dd>
-        </dl>
     </div>
 </main>
 @endsection
