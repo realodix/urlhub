@@ -10,12 +10,12 @@ return [
     /*
      * If you set false, users must be registered to create Short URL.
      */
-    'public_site' => env('UH_PUBLIC_SITE', true),
+    'public_site' => true,
 
     /*
      * Enable users registration. If disabled it, no one can register.
      */
-    'registration' => env('UH_REGISTRATION', true),
+    'registration' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -26,17 +26,17 @@ return [
     /*
      * The expected length of the keyword generated when creating a new short URL.
      */
-    'keyword_length' => env('UH_KEYWORD_LENGTH', 5), // >= 1
+    'keyword_length' => 5, // >= 1
 
     /*
      * Minimum length of custom keyword.
      */
-    'custom_keyword_min_length' => env('UH_CUSTOM_KEYWORD_MIN_LENGTH', 3),
+    'custom_keyword_min_length' => 3,
 
     /*
      * Maximum length of custom keyword.
      */
-    'custom_keyword_max_length' => env('UH_CUSTOM_KEYWORD_MAX_LENGTH', 11),
+    'custom_keyword_max_length' => 11,
 
     /*
      * List of non allowed domain
@@ -67,7 +67,7 @@ return [
         'storage',
     ],
 
-    'web_title' => env('UH_WEB_TITLE', true),
+    'web_title' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -84,13 +84,13 @@ return [
      * When selecting 301 redirects, you can also configure the time redirects
      * are cached, to mitigate deviations in stats.
      */
-    'redirect_status_code' => env('UH_REDIRECT_STATUS_CODE', 302),
+    'redirect_status_code' => 302,
 
     /*
      * Set the amount of seconds that redirects should be cached when redirect
      * status is 301. Default values is 30.
      */
-    'redirect_cache_max_age' => env('UH_REDIRECT_CACHE_MAX_AGE', 30),
+    'redirect_cache_max_age' => 30,
 
     /*
      * Determine whether bot visits are logged or not.
@@ -98,5 +98,5 @@ return [
      * - TRUE: Logs bot visits in the visitor log
      * - FALSE: Doesn't log bot visits in visitor logs
      */
-    'track_bot_visits' => env('UH_TRACK_BOT_VISITS', false),
+    'track_bot_visits' => false,
 ];
