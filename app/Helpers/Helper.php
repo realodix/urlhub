@@ -37,30 +37,30 @@ class Helper
         $urlLen = strlen($value);
         $limit = $limit ?? $urlLen;
 
-        // Strip the URL scheme
-        if ($scheme === false) {
+        // Strip the URL scheme if needed
+        if (! $scheme) {
             $value = preg_replace('{^http(s)?://}', '', $value);
             $hostLen = strlen($sUrl->getHost());
             $urlLen = strlen($value);
         }
 
-        // Strip the trailing slash from the end of the string
-        if ($trailingSlash === false) {
+        // Strip the trailing slash if needed
+        if (! $trailingSlash) {
             $value = rtrim($value, '/');
         }
 
-        $pathLen = $limit - $hostLen;
-
         if ($urlLen > $limit) {
+            $pathLen = $limit - $hostLen;
+
             // The string length returned by Str::limit() does not include the suffix,
             // so it needs to be adjusted to match the expected limit.
-            $truncatedStrLen = Str::of($value)->limit($limit)->length();
-            $adjLimit = $limit - ($truncatedStrLen - $limit);
+            $truncStrLen = Str::of($value)->limit($limit)->length();
+            $adjLimit = $limit - ($truncStrLen - $limit);
 
-            $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
-            $lastSide = -abs($adjLimit - $firstSide);
+            $firstPartLen = $hostLen + intval(($pathLen - 1) * 0.5);
+            $lastPartLen = -abs($adjLimit - $firstPartLen);
 
-            return Str::limit($value, $firstSide).substr($value, $lastSide);
+            return Str::limit($value, $firstPartLen).substr($value, $lastPartLen);
         }
 
         return $value;

@@ -22,9 +22,21 @@ class HelperTest extends TestCase
             Helper::urlFormat('https://example.com/', trailingSlash: false)
         );
 
+        $url = 'https://github.com/realodix/urlhub/commit/33e6d649d2d18345ac2d53a2fe553ae5d174e0be';
+
         $this->assertSame(
             'https://github.com/real...e0be',
-            Helper::urlFormat('https://github.com/realodix/urlhub/commit/33e6d649d2d18345ac2d53a2fe553ae5d174e0be', limit: 30)
+            Helper::urlFormat($url, limit: 30)
+        );
+
+        $this->assertSame(
+            'github.com/realodix...d174e0be',
+            Helper::urlFormat($url, scheme: false, limit: 30)
+        );
+
+        $this->assertSame(
+            'github.com/realodix...74e0be/',
+            Helper::urlFormat($url.'/', scheme: false, limit: 29)
         );
     }
 
