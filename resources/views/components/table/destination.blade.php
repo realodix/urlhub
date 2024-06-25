@@ -2,7 +2,7 @@
 
 <div>
     <span title="{{ $title }} ">
-        {{ str()->limit($title, $limit) }}
+        {{ mb_strimwidth($title, 0, $limit, '...') }}
     </span>
 
     <br>
