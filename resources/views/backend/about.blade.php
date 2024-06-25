@@ -121,7 +121,7 @@
             <dt class="mt-2 mb-2">Reserved Keywords</dt>
             <dd class="mt-2 mb-2">
                 <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
-                    <b>{{ \App\Helpers\Helper::reservedKeyword()->count() }} Strings as Reserved Keywords</b> <br> <br>
+                    <b>{{ \App\Helpers\Helper::reservedKeyword()->count() }} Strings</b> <br> <br>
                     <code>{{ \App\Helpers\Helper::reservedKeyword()->sort()->implode(', ') }}</code>
                 </div>
             </dd>
