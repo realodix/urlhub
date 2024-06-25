@@ -59,7 +59,6 @@ return [
         // Reserved for future use
         'build', 'hot', // When Vite is running in development
         'vendor',       // Packages (ex: laravel/telescope)
-        // Others
         'assets', 'fonts', 'images', 'img', 'storage',
     ],
 
