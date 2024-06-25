@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Str;
 use Spatie\Url\Url as SpatieUrl;
 
 class Helper
@@ -34,33 +33,26 @@ class Helper
     {
         $sUrl = SpatieUrl::fromString($value);
         $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
-        $urlLen = strlen($value);
-        $limit = $limit ?? $urlLen;
+        $limit = $limit ?? strlen($value);
 
-        // Strip the URL scheme
+        // Optionally strip scheme
         if ($scheme === false) {
             $value = preg_replace('{^http(s)?://}', '', $value);
             $hostLen = strlen($sUrl->getHost());
-            $urlLen = strlen($value);
         }
 
-        // Strip the trailing slash from the end of the string
+        // Optionally strip trailing slash
         if ($trailingSlash === false) {
             $value = rtrim($value, '/');
         }
 
-        $pathLen = $limit - $hostLen;
+        if (strlen($value) > $limit) {
+            $trimMarker = '...';
+            $pathLen = $limit - $hostLen;
+            $firstPartLen = $hostLen + intval(($pathLen - 1) * 0.5) + strlen($trimMarker);
+            $lastPartLen = -abs($limit - $firstPartLen);
 
-        if ($urlLen > $limit) {
-            // The string length returned by Str::limit() does not include the suffix,
-            // so it needs to be adjusted to match the expected limit.
-            $truncatedStrLen = Str::of($value)->limit($limit)->length();
-            $adjLimit = $limit - ($truncatedStrLen - $limit);
-
-            $firstSide = $hostLen + intval(($pathLen - 1) * 0.5);
-            $lastSide = -abs($adjLimit - $firstSide);
-
-            return Str::limit($value, $firstSide).substr($value, $lastSide);
+            return mb_strimwidth($value, 0, $firstPartLen, $trimMarker).substr($value, $lastPartLen);
         }
 
         return $value;
