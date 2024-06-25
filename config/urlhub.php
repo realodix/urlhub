@@ -62,7 +62,7 @@ return [
         'vendor', // When installing packages (ex: laravel/telescope)
 
         // Others
-        'images', 'fonts', 'storage',
+        'assets', 'fonts', 'images', 'img', 'storage',
     ],
 
     'web_title' => true,
