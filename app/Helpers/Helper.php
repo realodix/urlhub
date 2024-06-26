@@ -59,20 +59,6 @@ class Helper
     }
 
     /**
-     * @return \Illuminate\Support\Collection
-     */
-    public static function reservedKeyword()
-    {
-        $data = [
-            config('urlhub.reserved_keyword'),
-            self::routeCollisionList(),
-            self::publicPathCollisionList(),
-        ];
-
-        return collect($data)->flatten()->unique();
-    }
-
-    /**
      * List of potentially colliding routes with shortened link keywords.
      *
      * @return array

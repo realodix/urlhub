@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Helpers\Helper;
 use App\Models\Url;
 
 class KeyGeneratorService
@@ -68,13 +67,27 @@ class KeyGeneratorService
     public function verify(string $value): bool
     {
         $alreadyInUse = Url::whereKeyword($value)->exists();
-        $reservedKeyword = in_array($value, Helper::reservedKeyword()->toArray());
+        $reservedKeyword = in_array($value, $this->reservedKeyword()->toArray());
 
         if ($alreadyInUse || $reservedKeyword) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function reservedKeyword()
+    {
+        $data = [
+            config('urlhub.reserved_keyword'),
+            \App\Helpers\Helper::routeCollisionList(),
+            \App\Helpers\Helper::publicPathCollisionList(),
+        ];
+
+        return collect($data)->flatten()->unique();
     }
 
     /*
