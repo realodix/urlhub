@@ -65,8 +65,8 @@ class Helper
     {
         $data = [
             config('urlhub.reserved_keyword'),
-            \App\Helpers\Helper::routeCollisionList(),
-            \App\Helpers\Helper::publicPathCollisionList(),
+            self::routeCollisionList(),
+            self::publicPathCollisionList(),
         ];
 
         return collect($data)->flatten()->unique();
