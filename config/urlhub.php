@@ -57,11 +57,8 @@ return [
      */
     'reserved_keyword' => [
         // Reserved for future use
-        'build',  // When Vite is running in development
-        'hot',    // When Vite is running in development
-        'vendor', // When installing packages (ex: laravel/telescope)
-
-        // Others
+        'build', 'hot', // When Vite is running in development
+        'vendor',       // Packages (ex: laravel/telescope)
         'assets', 'fonts', 'images', 'img', 'storage',
     ],
 

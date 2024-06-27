@@ -67,15 +67,27 @@ class KeyGeneratorService
     public function verify(string $value): bool
     {
         $alreadyInUse = Url::whereKeyword($value)->exists();
-        $isReservedKeyword = in_array($value, config('urlhub.reserved_keyword'));
-        $isRoute = in_array($value, \App\Helpers\Helper::routeCollisionList());
-        $isPublicPath = in_array($value, \App\Helpers\Helper::publicPathCollisionList());
+        $reservedKeyword = in_array($value, $this->reservedKeyword()->toArray());
 
-        if ($alreadyInUse || $isReservedKeyword || $isRoute || $isPublicPath) {
+        if ($alreadyInUse || $reservedKeyword) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function reservedKeyword()
+    {
+        $data = [
+            config('urlhub.reserved_keyword'),
+            \App\Helpers\Helper::routeCollisionList(),
+            \App\Helpers\Helper::publicPathCollisionList(),
+        ];
+
+        return collect($data)->flatten()->unique();
     }
 
     /*

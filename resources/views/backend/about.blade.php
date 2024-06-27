@@ -113,25 +113,11 @@
                 </div>
             </dd>
 
-            @php
-                $reservedKey = collect(config('urlhub.reserved_keyword'))
-                    ->sort()->toArray();
-            @endphp
             <dt class="mt-2 mb-2">Reserved Keywords</dt>
             <dd class="mt-2 mb-2">
                 <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
-                    <p><b>Config</b></p>
-                    <code>{{ implode(", ", $reservedKey) }}</code>
-
-                    <br> <br>
-
-                    <p><b>Registered routes</b></p>
-                    <code>{{ implode(", ", \App\Helpers\Helper::routeCollisionList()) }}</code>
-
-                    <br> <br>
-
-                    <p><b>Public Folder</b></p>
-                    <code>{{ implode(", ", \App\Helpers\Helper::publicPathCollisionList()) }}</code>
+                    <code class="text-gray-500">// {{ $keyGenerator->reservedKeyword()->count() }} Strings</code> <br>
+                    <code>{{ $keyGenerator->reservedKeyword()->sort()->implode(', ') }}</code>
                 </div>
             </dd>
 
