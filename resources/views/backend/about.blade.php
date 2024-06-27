@@ -83,30 +83,25 @@
 
     <br>
 
+    @php
+        $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
+        $domainBlacklist = collect(config('urlhub.domain_blacklist'))
+            ->sort()->toArray();
+    @endphp
     <div class="common-card-style">
         <div class="card_header">{{ __('Configuration') }}</div>
 
         <div class="card_header__sub_header">Shortened Links</div>
         <dl>
-            @php
-                $hashLength = config('urlhub.keyword_length');
-                $customKeywordMinLength = config('urlhub.custom_keyword_min_length');
-                $customKeywordMaxLength = config('urlhub.custom_keyword_max_length');
-                $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
-            @endphp
             <dt><code>keyword_length</code></dt>
-            <dd>{{ $hashLength.' '.str()->plural('character', $hashLength) }}</dd>
+            <dd>{{ config('urlhub.keyword_length') }} characters</dd>
 
             <dt><code>custom_keyword_min_length</code></dt>
-            <dd>{{ $customKeywordMinLength.' '.str()->plural('character', $customKeywordMinLength) }}</dd>
+            <dd>{{ config('urlhub.custom_keyword_min_length') }} characters</dd>
 
             <dt><code>custom_keyword_max_length</code></dt>
-            <dd>{{ $customKeywordMaxLength.' '.str()->plural('character', $customKeywordMaxLength) }}</dd>
+            <dd>{{ config('urlhub.custom_keyword_max_length') }} characters</dd>
 
-            @php
-                $domainBlacklist = collect(config('urlhub.domain_blacklist'))
-                    ->sort()->toArray();
-            @endphp
             <dt class="mt-2"><code>domain_blacklist</code></dt>
             <dd class="mt-2">
                 <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
