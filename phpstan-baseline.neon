@@ -1,2 +1,6 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$unique_visit_count\\.$#"
+			count: 1
+			path: app/Livewire/Table/BaseUrlTable.php

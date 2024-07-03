@@ -11,4 +11,3 @@ parameters:
     ignoreErrors:
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
-        - message: "#Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$unique_visit_count\\.#"
