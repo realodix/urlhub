@@ -25,8 +25,10 @@ class Url extends Model
 {
     use \Illuminate\Database\Eloquent\Factories\HasFactory;
 
+    /** @var null */
     const GUEST_ID = null;
 
+    /** @var int */
     const TITLE_LENGTH = 255;
 
     /**

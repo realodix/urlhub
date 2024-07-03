@@ -16,6 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 class BaseUrlTable extends PowerGridComponent
 {
+    /** @var int */
     const STR_LIMIT = 90;
 
     public string $sortDirection = 'desc';

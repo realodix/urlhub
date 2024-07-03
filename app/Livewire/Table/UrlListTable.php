@@ -11,6 +11,7 @@ use PowerComponents\LivewirePowerGrid\Column;
  */
 final class UrlListTable extends BaseUrlTable
 {
+    /** @var int */
     const STR_LIMIT = 80;
 
     public function getUserIdBuilder(Builder $query): Builder

@@ -71,7 +71,7 @@ final class UserTable extends PowerGridComponent
     }
 
     /**
-     * @return array<\PowerComponents\LivewirePowerGrid\Column>
+     * @return array<Column>
      */
     public function columns(): array
     {
