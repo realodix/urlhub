@@ -7,6 +7,7 @@ parameters:
     level: 6
     paths:
         - app
+        - bootstrap
     tmpDir: .tmp/PHPStan
     ignoreErrors:
         - identifier: missingType.generics
