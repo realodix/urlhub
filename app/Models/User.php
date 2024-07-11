@@ -98,9 +98,9 @@ class User extends Authenticatable
 
             $userDeviceInfo = implode([
                 request()->ip(),
-                ! empty($browser['name']) ? $browser['name'] : '',
-                ! empty($os['name']) ? $os['name'] : '',
-                ! empty($os['version']) ? $os['version'] : '',
+                isset($browser['name']) ? $browser['name'] : '',
+                isset($os['name']) ? $os['name'] : '',
+                isset($os['version']) ? $os['version'] : '',
                 $device->getDeviceName().$device->getModel().$device->getBrandName(),
                 request()->getPreferredLanguage(),
             ]);
