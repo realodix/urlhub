@@ -30,7 +30,7 @@
         "nunomaduro/collision": "^8.1",
         "phpstan/phpstan-deprecation-rules": "^1.2",
         "phpunit/phpunit": "^11.1",
-        "realodix/relax": "^1.12",
+        "realodix/relax": "^1.15",
         "spatie/laravel-ignition": "^2.7"
     },
     "minimum-stability": "stable",

@@ -7,7 +7,7 @@ $localRules = [
     'single_import_per_statement' => false,
 ];
 
-return Config::create('Realodix')
+return Config::create('relax')
     ->setRules($localRules)
-    ->setFinder(Finder::laravel())
+    ->setFinder(Finder::laravel()->in(__DIR__))
     ->setCacheFile(__DIR__.'/.tmp/.php-cs-fixer.cache');
