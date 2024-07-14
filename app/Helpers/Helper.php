@@ -80,8 +80,12 @@ class Helper
      */
     public static function publicPathCollisionList()
     {
-        // scandir can return false on failure, PHPStan L7 will report an error
-        return collect(scandir(public_path()))
+        $publicPathList = scandir(public_path());
+        if ($publicPathList === false) {
+            return [];
+        }
+
+        return collect($publicPathList)
             // remove ., ..,
             ->reject(fn($value) => in_array($value, ['.', '..']))
             // remove file with extension
