@@ -61,7 +61,7 @@ class Helper
     /**
      * List of potentially colliding routes with shortened link keywords.
      *
-     * @return list<string>
+     * @return array
      */
     public static function routeCollisionList()
     {
@@ -76,7 +76,7 @@ class Helper
      * List of files/folders in the public/ directory that will potentially collide
      * with shortened link keywords.
      *
-     * @return list<string>
+     * @return array
      */
     public static function publicPathCollisionList()
     {
