@@ -91,6 +91,8 @@ class KeyGeneratorService
     }
 
     /**
+     * Reserved keywords that are already in use as keywords.
+     *
      * @return \Illuminate\Support\Collection
      */
     public function reservedKeywordsAlreadyInUse()
