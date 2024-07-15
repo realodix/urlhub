@@ -123,7 +123,7 @@
                     @if (! empty($reservedKey->toArray()))
                         <br><br>
                         <code class="text-red-400">// Unfortunately the list below is already used </code> <br>
-                        <code class="text-red-400">// as keyword</code> <br>
+                        <code class="text-red-400">// as shortened URL keyword</code> <br>
                         <code>
                         @php
                             $reservedKeys = $reservedKey->sort()->toArray();
