@@ -90,9 +90,12 @@ class KeyGeneratorService
         return collect($data)->flatten()->unique();
     }
 
-    public function reservedKeywordIntersect()
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function reservedKeywordsAlreadyInUse()
     {
-        $reservedKeyword = self::reservedKeyword();
+        $reservedKeyword = $this->reservedKeyword();
         $usedKeyWord = Url::pluck('keyword')->toArray();
         $intersect = $reservedKeyword->intersect($usedKeyWord);
 

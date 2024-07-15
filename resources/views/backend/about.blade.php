@@ -87,6 +87,7 @@
         $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
         $domainBlacklist = collect(config('urlhub.domain_blacklist'))
             ->sort()->toArray();
+        $reservedKeywordsAlreadyInUse = $keyGenerator->reservedKeywordsAlreadyInUse();
     @endphp
     <div class="common-card-style">
         <div class="card_header">{{ __('Configuration') }}</div>
@@ -119,8 +120,11 @@
                     <code class="text-gray-500">// {{ $keyGenerator->reservedKeyword()->count() }} Strings</code> <br>
                     <code>{{ $keyGenerator->reservedKeyword()->sort()->implode(', ') }}</code>
 
+                    @if (! empty($reservedKeywordsAlreadyInUse->toArray()))
                     <br><br>
-                    <code>{{ $keyGenerator->reservedKeywordIntersect()->implode(', ') }}</code>
+                    <code class="text-gray-500">// Already used as a keyword</code> <br>
+                    <code>{{ $keyGenerator->reservedKeywordsAlreadyInUse()->sort()->implode(', ') }}</code>
+                    @endif
                 </div>
             </dd>
 
