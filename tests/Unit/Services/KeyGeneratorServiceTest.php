@@ -121,9 +121,7 @@ class KeyGeneratorServiceTest extends TestCase
         $value = fake()->word();
 
         $fileSystem->makeDirectory(public_path($value));
-
         $this->assertFalse($this->keyGenerator->verify($value));
-
         $fileSystem->deleteDirectory(public_path($value));
     }
 
