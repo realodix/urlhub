@@ -90,6 +90,19 @@ class KeyGeneratorService
         return collect($data)->flatten()->unique();
     }
 
+    /**
+     * Reserved keywords that are already in use as url shortened keywords.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function reservedActiveKeyword()
+    {
+        $reservedKeyword = $this->reservedKeyword();
+        $usedKeyWord = Url::pluck('keyword')->toArray();
+
+        return $reservedKeyword->intersect($usedKeyWord);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Capacity calculation

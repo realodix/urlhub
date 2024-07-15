@@ -125,6 +125,28 @@ class KeyGeneratorServiceTest extends TestCase
         $fileSystem->deleteDirectory(public_path($value));
     }
 
+    public function testReservedActiveKeyword()
+    {
+        $fileSystem = new \Illuminate\Filesystem\Filesystem;
+
+        // Test case 1: No reserved keywords already in use
+        $this->assertEquals(
+            new \Illuminate\Support\Collection,
+            $this->keyGenerator->reservedActiveKeyword()
+        );
+
+        // Test case 2: Some reserved keywords already in use
+        $usedKeyWord = fake()->word();
+        Url::factory()->create(['keyword' => $usedKeyWord]);
+
+        $fileSystem->makeDirectory(public_path($usedKeyWord));
+        $this->assertEquals(
+            $usedKeyWord,
+            $this->keyGenerator->reservedActiveKeyword()->implode('')
+        );
+        $fileSystem->deleteDirectory(public_path($usedKeyWord));
+    }
+
     #[PHPUnit\Test]
     public function possibleOutput(): void
     {
