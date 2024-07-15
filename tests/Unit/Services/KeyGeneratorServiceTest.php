@@ -115,7 +115,7 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertFalse($this->keyGenerator->verify($value));
     }
 
-    public function testStringIsPablicPath(): void
+    public function testStringIsPublicPath(): void
     {
         $fileSystem = new \Illuminate\Filesystem\Filesystem;
         $value = 'foo';
