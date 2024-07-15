@@ -87,7 +87,7 @@
         $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
         $domainBlacklist = collect(config('urlhub.domain_blacklist'))
             ->sort()->toArray();
-        $reservedKey = $keyGenerator->reservedKeywordsAlreadyInUse();
+        $reservedUsedKeyList = $keyGenerator->reservedKeywordsAlreadyInUse();
     @endphp
     <div class="common-card-style">
         <div class="card_header">{{ __('Configuration') }}</div>
@@ -120,15 +120,13 @@
                     <code class="text-gray-500">// {{ $keyGenerator->reservedKeyword()->count() }} Strings</code> <br>
                     <code>{{ $keyGenerator->reservedKeyword()->sort()->implode(', ') }}</code>
 
-                    @if (! empty($reservedKey->toArray()))
+                    @if (! empty($reservedUsedKeyList->toArray()))
                         <br><br>
                         <code class="text-red-400">// Unfortunately the list below is already used </code> <br>
                         <code class="text-red-400">// as shortened URL keyword</code> <br>
                         <code>
-                        @php
-                            $reservedKeys = $reservedKey->sort()->toArray();
-                        @endphp
-                        @foreach ($reservedKeys as $reservedKey)
+
+                        @foreach ($reservedUsedKeyList->sort()->toArray() as $reservedKey)
                             <a href="{{ route('su_detail', $reservedKey) }}"
                                 target="_blank"
                                 class="underline decoration-dotted">{{ $reservedKey }}</a>,
