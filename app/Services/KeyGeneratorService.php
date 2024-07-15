@@ -90,6 +90,15 @@ class KeyGeneratorService
         return collect($data)->flatten()->unique();
     }
 
+    public function reservedKeywordIntersect()
+    {
+        $reservedKeyword = self::reservedKeyword();
+        $usedKeyWord = Url::pluck('keyword')->toArray();
+        $intersect = $reservedKeyword->intersect($usedKeyWord);
+
+        return $intersect;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Capacity calculation

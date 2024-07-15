@@ -118,6 +118,9 @@
                 <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                     <code class="text-gray-500">// {{ $keyGenerator->reservedKeyword()->count() }} Strings</code> <br>
                     <code>{{ $keyGenerator->reservedKeyword()->sort()->implode(', ') }}</code>
+
+                    <br><br>
+                    <code>{{ $keyGenerator->reservedKeywordIntersect()->implode(', ') }}</code>
                 </div>
             </dd>
 
