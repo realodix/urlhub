@@ -91,11 +91,11 @@ class KeyGeneratorService
     }
 
     /**
-     * Reserved keywords that are already in use as keywords.
+     * Reserved keywords that are already in use as url shortened keywords.
      *
      * @return \Illuminate\Support\Collection
      */
-    public function reservedKeywordsAlreadyInUse()
+    public function reservedActiveKeyword()
     {
         $reservedKeyword = $this->reservedKeyword();
         $usedKeyWord = Url::pluck('keyword')->toArray();

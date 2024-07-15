@@ -125,14 +125,14 @@ class KeyGeneratorServiceTest extends TestCase
         $fileSystem->deleteDirectory(public_path($value));
     }
 
-    public function testReservedKeywordsAlreadyInUse()
+    public function testreservedActiveKeyword()
     {
         $fileSystem = new \Illuminate\Filesystem\Filesystem;
 
         // Test case 1: No reserved keywords already in use
         $this->assertEquals(
             new \Illuminate\Support\Collection,
-            $this->keyGenerator->reservedKeywordsAlreadyInUse()
+            $this->keyGenerator->reservedActiveKeyword()
         );
 
         // Test case 2: Some reserved keywords already in use
@@ -142,7 +142,7 @@ class KeyGeneratorServiceTest extends TestCase
         $fileSystem->makeDirectory(public_path($usedKeyWord));
         $this->assertEquals(
             $usedKeyWord,
-            $this->keyGenerator->reservedKeywordsAlreadyInUse()->implode('')
+            $this->keyGenerator->reservedActiveKeyword()->implode('')
         );
         $fileSystem->deleteDirectory(public_path($usedKeyWord));
     }
