@@ -125,7 +125,7 @@ class KeyGeneratorServiceTest extends TestCase
         $fileSystem->deleteDirectory(public_path($value));
     }
 
-    public function testreservedActiveKeyword()
+    public function testReservedActiveKeyword()
     {
         $fileSystem = new \Illuminate\Filesystem\Filesystem;
 
