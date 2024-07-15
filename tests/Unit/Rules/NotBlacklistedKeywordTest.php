@@ -41,7 +41,7 @@ class NotBlacklistedKeywordTest extends TestCase
             ['register'],
 
             // in public folder
-            ['svg'], // folder
+            ['svg'],   // folder
             ['build'], // vite folder
         ];
     }
