@@ -79,7 +79,7 @@ class KeyGeneratorService
     /**
      * @return \Illuminate\Support\Collection
      */
-    public static function reservedKeyword()
+    public function reservedKeyword()
     {
         $data = [
             config('urlhub.reserved_keyword'),
