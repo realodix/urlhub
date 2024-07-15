@@ -99,9 +99,8 @@ class KeyGeneratorService
     {
         $reservedKeyword = $this->reservedKeyword();
         $usedKeyWord = Url::pluck('keyword')->toArray();
-        $intersect = $reservedKeyword->intersect($usedKeyWord);
 
-        return $intersect;
+        return $reservedKeyword->intersect($usedKeyWord);
     }
 
     /*

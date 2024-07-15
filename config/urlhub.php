@@ -60,6 +60,9 @@ return [
         'build', 'hot', // When Vite is running in development
         'vendor',       // Packages (ex: laravel/telescope)
         'assets', 'fonts', 'images', 'img', 'storage',
+
+        'gemini', 'nodejs', 'bun', 'ublock', 'pint',
+        'idflix', 'phpunit', 'youtube'
     ],
 
     'web_title' => true,
