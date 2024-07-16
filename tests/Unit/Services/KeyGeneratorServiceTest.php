@@ -118,7 +118,7 @@ class KeyGeneratorServiceTest extends TestCase
     public function testStringIsPublicPath(): void
     {
         $fileSystem = new \Illuminate\Filesystem\Filesystem;
-        $value = fake()->word();
+        $value = 'zzz'.fake()->word();
 
         $fileSystem->makeDirectory(public_path($value));
         $this->assertFalse($this->keyGenerator->verify($value));
@@ -136,7 +136,7 @@ class KeyGeneratorServiceTest extends TestCase
         );
 
         // Test case 2: Some reserved keywords already in use
-        $usedKeyWord = fake()->word();
+        $usedKeyWord = 'zzz'.fake()->word();
         Url::factory()->create(['keyword' => $usedKeyWord]);
 
         $fileSystem->makeDirectory(public_path($usedKeyWord));
