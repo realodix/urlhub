@@ -7,11 +7,6 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class NotBlacklistedDomain implements ValidationRule
 {
-    /**
-     * Run the validation rule.
-     *
-     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
-     */
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
         $blackLists = config('urlhub.domain_blacklist');
