@@ -25,11 +25,11 @@ class VisitorServiceTest extends TestCase
         $this->assertSame(null, $this->visitorService->getRefererHost(null));
         $this->assertSame(
             'https://github.com',
-            $this->visitorService->getRefererHost('https://github.com/laravel')
+            $this->visitorService->getRefererHost('https://github.com/laravel'),
         );
         $this->assertSame(
             'http://urlhub.test',
-            $this->visitorService->getRefererHost('http://urlhub.test/admin?page=2')
+            $this->visitorService->getRefererHost('http://urlhub.test/admin?page=2'),
         );
     }
 }

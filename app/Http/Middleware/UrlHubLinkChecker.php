@@ -20,7 +20,7 @@ class UrlHubLinkChecker
         if (app(KeyGeneratorService::class)->remainingCapacity() === 0) {
             return redirect()->back()
                 ->withFlashError(
-                    __('Sorry, our service is currently under maintenance.')
+                    __('Sorry, our service is currently under maintenance.'),
                 );
         }
 

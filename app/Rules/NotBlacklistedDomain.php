@@ -26,7 +26,7 @@ class NotBlacklistedDomain implements ValidationRule
         if ($bool === false) {
             $fail(
                 'Sorry, the URL you entered is on our internal blacklist. '
-                .'It may have been used abusively in the past, or it may link to another URL redirection service.'
+                .'It may have been used abusively in the past, or it may link to another URL redirection service.',
             );
         }
     }
