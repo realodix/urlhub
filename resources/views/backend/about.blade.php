@@ -106,7 +106,7 @@
             <dt class="mt-2"><code>domain_blacklist</code></dt>
             <dd class="mt-2">
                 <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
-                    @if (! empty($domainBlacklist))
+                    @if (!empty($domainBlacklist))
                         <code>{{ implode(", ", $domainBlacklist) }}</code>
                     @else
                         <code>None</code>
@@ -120,7 +120,7 @@
                     <code class="text-gray-500">// {{ $keyGenerator->reservedKeyword()->count() }} Strings</code> <br>
                     <code>{{ $keyGenerator->reservedKeyword()->sort()->implode(', ') }}</code>
 
-                    @if (! empty($reservedActiveKeyList->toArray()))
+                    @if (!empty($reservedActiveKeyList->toArray()))
                         <br><br>
                         <code class="text-red-400">// Unfortunately the list below is already used </code> <br>
                         <code class="text-red-400">// as shortened URL keyword</code> <br>

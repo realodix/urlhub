@@ -9,17 +9,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @property int            $id
- * @property string         $name
- * @property string         $email
- * @property string         $email_verified_at
- * @property string         $password
- * @property string         $two_factor_secret
- * @property string         $two_factor_recovery_codes
- * @property string         $remember_token
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $email_verified_at
+ * @property string $password
+ * @property string $two_factor_secret
+ * @property string $two_factor_recovery_codes
+ * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property Url            $urls
+ * @property Url $urls
  */
 class User extends Authenticatable
 {
@@ -47,7 +47,7 @@ class User extends Authenticatable
     /**
      * Get the attributes that should be cast.
      *
-     * @return array{email_verified_at: 'datetime', password: 'hashed'}
+     * @return array{email_verified_at:'datetime',password:'hashed'}
      */
     protected function casts(): array
     {
@@ -98,10 +98,10 @@ class User extends Authenticatable
 
             $userDeviceInfo = implode([
                 request()->ip(),
-                isset($browser['name']) ? $browser['name'] : '',
-                isset($os['name']) ? $os['name'] : '',
-                isset($os['version']) ? $os['version'] : '',
-                $device->getDeviceName().$device->getModel().$device->getBrandName(),
+                $browser['name'] ?? '',
+                $os['name'] ?? '',
+                $os['version'] ?? '',
+                $device->getDeviceName() . $device->getModel() . $device->getBrandName(),
                 request()->getPreferredLanguage(),
             ]);
 

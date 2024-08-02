@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int            $id
- * @property int            $url_id
- * @property string         $visitor_id
- * @property bool           $is_first_click
- * @property string         $referer
+ * @property int $id
+ * @property int $url_id
+ * @property string $visitor_id
+ * @property bool $is_first_click
+ * @property string $referer
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property Url            $urls
+ * @property Url $urls
  */
 class Visit extends Model
 {
@@ -34,7 +34,7 @@ class Visit extends Model
     /**
      * Get the attributes that should be cast.
      *
-     * @return array{is_first_click: 'boolean'}
+     * @return array{is_first_click:'boolean'}
      */
     protected function casts(): array
     {

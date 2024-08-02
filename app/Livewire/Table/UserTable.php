@@ -44,28 +44,28 @@ final class UserTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('name', function (User $user) {
                 $urlsCount = $user->urls_count;
-                $urlCountTitle = number_format($urlsCount).' short '.Str::plural('link', $urlsCount);
+                $urlCountTitle = number_format($urlsCount) . ' short ' . Str::plural('link', $urlsCount);
 
-                return $user->name.' <span title="'.$urlCountTitle.'">('.n_abb($urlsCount).')</span>';
+                return $user->name . ' <span title="' . $urlCountTitle . '">(' . n_abb($urlsCount) . ')</span>';
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {
                 return
-                    '<span title="'.$user->created_at->toDayDateTimeString().'">'
-                        .$user->created_at->shortRelativeDiffForHumans().
+                    '<span title="' . $user->created_at->toDayDateTimeString() . '">'
+                        . $user->created_at->shortRelativeDiffForHumans() .
                     '</span>';
             })
             ->add('action', function (User $user) {
                 return
-                    '<a role="button" href="'.route('user.edit', $user).'" title="'.__('Details').'"
+                    '<a role="button" href="' . route('user.edit', $user) . '" title="' . __('Details') . '"
                         class="btn btn-secondary btn-sm"
                     >'
-                        .Blade::render('@svg(\'icon-person-edit\')').
+                        . Blade::render('@svg(\'icon-person-edit\')') .
                     '</a>
-                    <a role="button" href="'.route('user.password.show', $user).'" title="'.__('Change Password').'"
+                    <a role="button" href="' . route('user.password.show', $user) . '" title="' . __('Change Password') . '"
                         class="btn btn-secondary btn-sm"
                     >'
-                        .Blade::render('@svg(\'icon-key\')').
+                        . Blade::render('@svg(\'icon-key\')') .
                     '</a>';
             });
     }

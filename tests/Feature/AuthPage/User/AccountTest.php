@@ -119,7 +119,7 @@ class AccountTest extends TestCase
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
                 // 255 + 9
-                'email' => str_repeat('a', 255).'@mail.com',
+                'email' => str_repeat('a', 255) . '@mail.com',
             ]);
 
         $response

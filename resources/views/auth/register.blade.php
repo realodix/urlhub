@@ -9,7 +9,7 @@
     <div class="text-uh-blue font-bold text-4xl sm:text-6xl">{{ config('app.name') }}</div>
 
     <div class="auth-card">
-        @if ( ! config('urlhub.registration') )
+        @if (!config('urlhub.registration') )
             <p class="text-muted">{{ __('Sorry, not allowed to register by administrator') }}</p>
         @else
             <form method="post" action="{{ route('register') }}" aria-label="{{ __('Register') }}">

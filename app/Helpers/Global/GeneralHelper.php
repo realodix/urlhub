@@ -3,13 +3,13 @@
 use App\Helpers\Helper;
 use Illuminate\Support\Number;
 
-if (! function_exists('urlFormat')) {
+if (!function_exists('urlFormat')) {
     /**
      * Display the link according to what You need.
      *
-     * @param string   $value
-     * @param null|int $limit
-     * @param bool     $scheme
+     * @param string $value
+     * @param int|null $limit
+     * @param bool $scheme
      * @return string
      */
     function urlFormat($value, $limit = null, $scheme = true)
@@ -18,7 +18,7 @@ if (! function_exists('urlFormat')) {
     }
 }
 
-if (! function_exists('n_abb')) {
+if (!function_exists('n_abb')) {
     /**
      * This is modified version of Laravel Number::abbreviate() method with the
      * default value of maxPrecision is 2.
@@ -27,8 +27,8 @@ if (! function_exists('n_abb')) {
      * - https://github.com/laravel/framework/blob/5d4b26e/src/Illuminate/Support/Number.php#L154
      *
      * @param int|float $number
-     * @param int       $precision
-     * @param null|int  $maxPrecision
+     * @param int $precision
+     * @param int|null $maxPrecision
      * @return bool|string
      */
     function n_abb($number, $precision = 0, $maxPrecision = 2)

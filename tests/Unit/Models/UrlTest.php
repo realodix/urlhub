@@ -99,7 +99,7 @@ class UrlTest extends TestCase
         $url->whereUserId($url->author->id)->first();
 
         $expected = $url->short_url;
-        $actual = url('/'.$url->keyword);
+        $actual = url('/' . $url->keyword);
         $this->assertSame($expected, $actual);
     }
 

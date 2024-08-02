@@ -23,17 +23,17 @@ class Helper
     /**
      * A URL formatted according to the specified format.
      *
-     * @param string   $value         URL links
-     * @param null|int $limit         Length string will be truncated to, including suffix
-     * @param bool     $scheme        Show or remove URL schemes
-     * @param bool     $trailingSlash Show or remove trailing slash
+     * @param string $value URL links
+     * @param int|null $limit Length string will be truncated to, including suffix
+     * @param bool $scheme Show or remove URL schemes
+     * @param bool $trailingSlash Show or remove trailing slash
      * @return string
      */
     public static function urlFormat(string $value, ?int $limit = null, bool $scheme = true, bool $trailingSlash = true)
     {
         $sUrl = SpatieUrl::fromString($value);
-        $hostLen = strlen($sUrl->getScheme().'://'.$sUrl->getHost());
-        $limit = $limit ?? strlen($value);
+        $hostLen = strlen($sUrl->getScheme() . '://' . $sUrl->getHost());
+        $limit ??= strlen($value);
 
         // Optionally strip scheme
         if ($scheme === false) {
@@ -52,7 +52,7 @@ class Helper
             $firstPartLen = $hostLen + intval(($pathLen - 1) * 0.5) + strlen($trimMarker);
             $lastPartLen = -abs($limit - $firstPartLen);
 
-            return mb_strimwidth($value, 0, $firstPartLen, $trimMarker).substr($value, $lastPartLen);
+            return mb_strimwidth($value, 0, $firstPartLen, $trimMarker) . substr($value, $lastPartLen);
         }
 
         return $value;
@@ -67,7 +67,7 @@ class Helper
     {
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
             ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
-            ->reject(fn($value) => ! preg_match('/^[a-zA-Z\-]+$/', $value))
+            ->reject(fn($value) => !preg_match('/^[a-zA-Z\-]+$/', $value))
             ->unique()->sort()
             ->toArray();
     }
@@ -89,7 +89,7 @@ class Helper
             // remove ., ..,
             ->reject(fn($value) => in_array($value, ['.', '..']))
             // remove file with extension
-            ->filter(fn($value) => ! preg_match('/\.[a-z]+$/', $value))
+            ->filter(fn($value) => !preg_match('/\.[a-z]+$/', $value))
             // remove array value which is in config('urlhub.reserved_keyword')
             ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
             ->toArray();

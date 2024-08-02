@@ -8,18 +8,18 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int            $id
- * @property null|int       $user_id
- * @property string         $keyword
- * @property bool           $is_custom
- * @property string         $destination
- * @property string         $title
- * @property string         $user_sign
+ * @property int $id
+ * @property int|null $user_id
+ * @property string $keyword
+ * @property bool $is_custom
+ * @property string $destination
+ * @property string $title
+ * @property string $user_sign
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property User           $author
- * @property Visit          $visits
- * @property string         $short_url
+ * @property User $author
+ * @property Visit $visits
+ * @property string $short_url
  */
 class Url extends Model
 {
@@ -48,7 +48,7 @@ class Url extends Model
     /**
      * Get the attributes that should be cast.
      *
-     * @return array{user_id: 'integer', is_custom: 'boolean'}
+     * @return array{user_id:'integer',is_custom:'boolean'}
      */
     protected function casts(): array
     {
@@ -103,7 +103,7 @@ class Url extends Model
     protected function shortUrl(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attr) => url('/'.$attr['keyword']),
+            get: fn($value, $attr) => url('/' . $attr['keyword']),
         );
     }
 
@@ -148,7 +148,7 @@ class Url extends Model
     public function getWebTitle(string $value): string
     {
         $spatieUrl = \Spatie\Url\Url::fromString($value);
-        $defaultTitle = $spatieUrl->getHost().' - Untitled';
+        $defaultTitle = $spatieUrl->getHost() . ' - Untitled';
 
         if (config('urlhub.web_title')) {
             try {

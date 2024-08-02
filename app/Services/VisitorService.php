@@ -64,6 +64,6 @@ class VisitorService
 
         $referer = SpatieUrl::fromString($value);
 
-        return $referer->getScheme().'://'.$referer->getHost();
+        return $referer->getScheme() . '://' . $referer->getHost();
     }
 }

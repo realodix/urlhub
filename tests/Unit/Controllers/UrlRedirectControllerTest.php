@@ -13,7 +13,7 @@ class UrlRedirectControllerTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->get(route('home').'/'.$url->keyword);
+        $response = $this->get(route('home') . '/' . $url->keyword);
         $response->assertRedirect($url->destination)
             ->assertStatus(config('urlhub.redirect_status_code'));
 

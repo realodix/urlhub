@@ -29,7 +29,7 @@ class ChangePasswordController extends Controller
      * Change the password.
      *
      * @param UpdateUserPassword $request \App\Http\Requests\UpdateUserPassword
-     * @param User               $user    \App\Models\User
+     * @param User $user \App\Models\User
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException

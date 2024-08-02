@@ -36,7 +36,7 @@ class HelperTest extends TestCase
 
         $this->assertSame(
             'github.com/laravel/...8036d6/',
-            Helper::urlFormat($url.'/', scheme: false, limit: 29),
+            Helper::urlFormat($url . '/', scheme: false, limit: 29),
         );
     }
 

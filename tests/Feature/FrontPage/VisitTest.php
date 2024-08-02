@@ -18,7 +18,7 @@ class VisitTest extends TestCase
         $url = Url::factory()->create();
 
         $this->withHeaders(['user-agent' => self::BOT_UA])
-            ->get(route('home').'/'.$url->keyword);
+            ->get(route('home') . '/' . $url->keyword);
         $this->assertCount(1, Visit::all());
     }
 
@@ -29,7 +29,7 @@ class VisitTest extends TestCase
         $url = Url::factory()->create();
 
         $this->withHeaders(['user-agent' => self::BOT_UA])
-            ->get(route('home').'/'.$url->keyword);
+            ->get(route('home') . '/' . $url->keyword);
         $this->assertCount(0, Visit::all());
     }
 }

@@ -42,7 +42,7 @@ class DashboardController extends Controller
      * Update the destination URL.
      *
      * @param UpdateUrlRequest $request \App\Http\Requests\UpdateUrlRequest
-     * @param Url              $url     \App\Models\Url
+     * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
