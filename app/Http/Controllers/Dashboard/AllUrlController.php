@@ -32,7 +32,7 @@ class AllUrlController extends Controller implements HasMiddleware
     {
         return view('backend.url-list-of-user', [
             'authorName' => $author,
-            'authorId' => User::where('name', $author)->first()->id,
+            'authorId'   => User::where('name', $author)->first()->id,
         ]);
     }
 

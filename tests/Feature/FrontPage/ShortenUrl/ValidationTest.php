@@ -37,7 +37,7 @@ class ValidationTest extends TestCase
     public function testCustomKeyValidationShouldPass($value): void
     {
         $response = $this->post(route('su_create'), [
-            'long_url' => 'https://laravel.com/',
+            'long_url'   => 'https://laravel.com/',
             'custom_key' => $value,
         ]);
 
@@ -75,7 +75,7 @@ class ValidationTest extends TestCase
     public function testCustomKeyValidationShouldFail($value): void
     {
         $response = $this->post(route('su_create'), [
-            'long_url' => 'https://laravel.com/',
+            'long_url'   => 'https://laravel.com/',
             'custom_key' => $value,
         ]);
 

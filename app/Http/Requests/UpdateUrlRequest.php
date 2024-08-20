@@ -26,7 +26,7 @@ class UpdateUrlRequest extends FormRequest
         $titleLength = Url::TITLE_LENGTH;
 
         return [
-            'title' => ["max:{$titleLength}"],
+            'title'    => ["max:{$titleLength}"],
             'long_url' => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
         ];
     }

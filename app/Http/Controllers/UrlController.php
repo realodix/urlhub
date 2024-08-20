@@ -26,10 +26,10 @@ class UrlController extends Controller implements HasMiddleware
     public function create(StoreUrlRequest $request)
     {
         $url = Url::create([
-            'user_id' => auth()->id(),
+            'user_id'   => auth()->id(),
             'destination' => $request->long_url,
-            'title' => app(Url::class)->getWebTitle($request->long_url),
-            'keyword' => app(Url::class)->getKeyword($request),
+            'title'     => app(Url::class)->getWebTitle($request->long_url),
+            'keyword'   => app(Url::class)->getKeyword($request),
             'is_custom' => isset($request->custom_key) ? true : false,
             'user_sign' => app(User::class)->signature(),
         ]);

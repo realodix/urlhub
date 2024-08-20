@@ -67,7 +67,7 @@ class BaseUrlTable extends PowerGridComponent
             ->add('keyword', function (Url $url) {
                 return view('components.table.keyword', [
                     'shortLink' => $url->short_url,
-                    'keyword' => $url->keyword,
+                    'keyword'   => $url->keyword,
                 ])->render();
             })
             ->add('destination', function (Url $url) {
@@ -79,7 +79,7 @@ class BaseUrlTable extends PowerGridComponent
             })
             ->add('t_clicks', function (Url $url) {
                 return view('components.table.visit', [
-                    'clicks' => $url->visits_count,
+                    'clicks'       => $url->visits_count,
                     'uniqueClicks' => $url->unique_visit_count,
                 ])->render();
             })
@@ -91,7 +91,7 @@ class BaseUrlTable extends PowerGridComponent
             ->add('action', function (Url $url) {
                 return view('components.table.action-button', [
                     'detail_link' => route('su_detail', $url->keyword),
-                    'edit_link' => route('dboard.url.edit.show', $url),
+                    'edit_link'   => route('dboard.url.edit.show', $url),
                     'delete_link' => route('dboard.url.delete', $url),
                 ])->render();
             });
