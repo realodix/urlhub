@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Composer\Pcre\Preg;
 use Spatie\Url\Url as SpatieUrl;
 
 class Helper
@@ -37,7 +38,7 @@ class Helper
 
         // Optionally strip scheme
         if ($scheme === false) {
-            $value = preg_replace('{^http(s)?://}', '', $value);
+            $value = Preg::replace('{^http(s)?://}', '', $value);
             $hostLen = strlen($sUrl->getHost());
         }
 
