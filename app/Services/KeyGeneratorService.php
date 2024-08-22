@@ -87,7 +87,7 @@ class KeyGeneratorService
             \App\Helpers\Helper::publicPathCollisionList(),
         ];
 
-        return collect($data)->flatten()->unique();
+        return collect($data)->flatten()->unique()->sort();
     }
 
     /**

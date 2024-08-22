@@ -68,8 +68,7 @@ class Helper
     {
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
             ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
-            ->reject(fn($value) => !preg_match('/^[a-zA-Z\-]+$/', $value))
-            ->unique()->sort()
+            ->pipe(fn($value) => self::collisionCandidateFilter($value))
             ->toArray();
     }
 
@@ -87,12 +86,19 @@ class Helper
         }
 
         return collect($publicPathList)
-            // remove ., ..,
-            ->reject(fn($value) => in_array($value, ['.', '..']))
-            // remove file with extension
-            ->filter(fn($value) => !preg_match('/\.[a-z]+$/', $value))
-            // remove array value which is in config('urlhub.reserved_keyword')
-            ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
+            ->pipe(fn($value) => self::collisionCandidateFilter($value))
             ->toArray();
+    }
+
+    /**
+     * @param \Illuminate\Support\Collection $value
+     * @return \Illuminate\Support\Collection
+     */
+    public static function collisionCandidateFilter($value)
+    {
+        return collect($value)
+            ->filter(fn($value) => preg_match('/^([0-9a-zA-Z\-])+$/', $value))
+            ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
+            ->unique();
     }
 }
