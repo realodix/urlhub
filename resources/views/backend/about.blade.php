@@ -118,7 +118,7 @@
             <dd class="mt-2 mb-2">
                 <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
                     <code class="text-gray-500">// {{ $keyGenerator->reservedKeyword()->count() }} Strings</code> <br>
-                    <code>{{ $keyGenerator->reservedKeyword()->sort()->implode(', ') }}</code>
+                    <code>{{ $keyGenerator->reservedKeyword()->implode(', ') }}</code>
 
                     @if (!empty($reservedActiveKeyList->toArray()))
                         <br><br>
@@ -126,7 +126,7 @@
                         <code class="text-red-400">// as shortened URL keyword</code> <br>
                         <code>
 
-                        @foreach ($reservedActiveKeyList->sort()->toArray() as $reservedActiveKey)
+                        @foreach ($reservedActiveKeyList->toArray() as $reservedActiveKey)
                             <a href="{{ route('su_detail', $reservedActiveKey) }}"
                                 target="_blank"
                                 class="underline decoration-dotted">{{ $reservedActiveKey }}</a>,
