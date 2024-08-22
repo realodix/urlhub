@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Composer\Pcre\Preg;
 use Spatie\Url\Url as SpatieUrl;
 
 class Helper
@@ -37,7 +38,7 @@ class Helper
 
         // Optionally strip scheme
         if ($scheme === false) {
-            $value = preg_replace('{^http(s)?://}', '', $value);
+            $value = Preg::replace('{^http(s)?://}', '', $value);
             $hostLen = strlen($sUrl->getHost());
         }
 
@@ -96,7 +97,7 @@ class Helper
     public static function collisionCandidateFilter($value)
     {
         return collect($value)
-            ->filter(fn($value) => preg_match('/^([0-9a-zA-Z\-])+$/', $value))
+            ->filter(fn($value) => Preg::isMatch('/^([0-9a-zA-Z\-])+$/', $value))
             ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
             ->unique();
     }
