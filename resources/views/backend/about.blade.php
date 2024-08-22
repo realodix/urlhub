@@ -87,7 +87,8 @@
         $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
         $domainBlacklist = collect(config('urlhub.domain_blacklist'))
             ->sort()->toArray();
-        $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword();
+        $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
+        $reservedKeyword = $keyGenerator->reservedKeyword();
     @endphp
     <div class="common-card-style">
         <div class="card_header">{{ __('Configuration') }}</div>
@@ -117,16 +118,16 @@
             <dt class="mt-2 mb-2">Reserved Keywords</dt>
             <dd class="mt-2 mb-2">
                 <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
-                    <code class="text-gray-500">// {{ $keyGenerator->reservedKeyword()->count() }} Strings</code> <br>
-                    <code>{{ $keyGenerator->reservedKeyword()->implode(', ') }}</code>
+                    <code class="text-gray-500">// {{ $reservedKeyword->count() }} Strings</code> <br>
+                    <code>{{ $reservedKeyword->implode(', ') }}</code>
 
-                    @if (!empty($reservedActiveKeyList->toArray()))
+                    @if (!empty($reservedActiveKeyList))
                         <br><br>
                         <code class="text-red-400">// Unfortunately the list below is already used </code> <br>
                         <code class="text-red-400">// as shortened URL keyword</code> <br>
                         <code>
 
-                        @foreach ($reservedActiveKeyList->toArray() as $reservedActiveKey)
+                        @foreach ($reservedActiveKeyList as $reservedActiveKey)
                             <a href="{{ route('su_detail', $reservedActiveKey) }}"
                                 target="_blank"
                                 class="underline decoration-dotted">{{ $reservedActiveKey }}</a>,
