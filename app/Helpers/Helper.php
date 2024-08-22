@@ -68,7 +68,6 @@ class Helper
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
             ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
             ->pipe(fn($value) => self::collisionCandidateFilter($value))
-            ->sort()
             ->toArray();
     }
 
