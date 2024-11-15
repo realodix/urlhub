@@ -14,6 +14,8 @@ final class UrlListTable extends BaseUrlTable
     /** @var int */
     const STR_LIMIT = 80;
 
+    public string $tableName = 'url-list-table';
+
     public function getUserIdBuilder(Builder $query): Builder
     {
         return $query->where('urls.user_id', '!=', Url::GUEST_ID);

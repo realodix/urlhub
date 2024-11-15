@@ -20,6 +20,8 @@ final class UserTable extends PowerGridComponent
 
     public string $sortDirection = 'desc';
 
+    public string $tableName = 'user-table';
+
     public function setUp(): array
     {
         return [
