@@ -5,9 +5,7 @@ namespace App\Livewire\Table;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Footer;
-use PowerComponents\LivewirePowerGrid\Header;
-use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
@@ -33,10 +31,10 @@ class BaseUrlTable extends PowerGridComponent
     public function setUp(): array
     {
         return [
-            Header::make()
+            PowerGrid::header()
                 ->showToggleColumns()
                 ->showSearchInput(),
-            Footer::make()
+            PowerGrid::footer()
                 ->showPerPage(25, [10, 25, 50, 100])
                 ->showRecordCount('full'),
         ];
