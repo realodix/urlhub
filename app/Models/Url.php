@@ -80,7 +80,7 @@ class Url extends Model
     /**
      * Get the visits for the Url.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Visit, $this>
      */
     public function visits()
     {

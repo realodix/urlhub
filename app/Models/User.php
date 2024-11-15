@@ -66,7 +66,7 @@ class User extends Authenticatable
     /**
      * Get the urls associated with the user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Url, $this>
      */
     public function urls()
     {
