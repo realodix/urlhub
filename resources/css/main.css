@@ -49,7 +49,7 @@
 
         td {
             border: 1px solid;
-            @apply border-uh-border-color;
+            border-color: rgb(226 232 240 / var(--tw-border-opacity));;
         }
 
         td:last-child {
