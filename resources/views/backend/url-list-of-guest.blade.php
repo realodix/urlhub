@@ -15,7 +15,7 @@
 
         @include('partials/messages')
 
-        @livewire('table.url-list-of-guest_table')
+        @livewire('table.url-list-of-guest-table')
     </div>
 </main>
 @endsection

@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 final class UrlListOfGuestTable extends BaseUrlTable
 {
+    public string $tableName = 'url-list-of-guest-table';
+
     public function getUserIdBuilder(Builder $query): Builder
     {
         return $query->where('urls.user_id', Url::GUEST_ID);

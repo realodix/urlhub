@@ -15,7 +15,7 @@
 
         @include('partials/messages')
 
-        @livewire('table.UrlListOfUsersTable', ['user_id' => $authorId])
+        @livewire('table.url_list_of_users_table', ['user_id' => $authorId])
     </div>
 </main>
 @endsection
