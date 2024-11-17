@@ -13,14 +13,16 @@ class QrCodeService
      */
     public function execute(string $data)
     {
-        return Builder::create()
-            ->data($data)
-            ->labelText(__('Scan QR Code'))
-            ->size(170)
-            ->margin(0)
-            ->writer(new \Endroid\QrCode\Writer\PngWriter)
-            ->errorCorrectionLevel(ErrorCorrectionLevel::Low)
-            ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
-            ->build();
+        $builder = new Builder(
+            data: $data,
+            labelText: __('Scan QR Code'),
+            size: 170,
+            margin: 0,
+            writer: new \Endroid\QrCode\Writer\PngWriter,
+            errorCorrectionLevel: ErrorCorrectionLevel::Low,
+            roundBlockSizeMode: RoundBlockSizeMode::Margin,
+        );
+
+        return $builder->build();
     }
 }
