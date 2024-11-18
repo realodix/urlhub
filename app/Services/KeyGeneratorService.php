@@ -6,6 +6,7 @@ use App\Models\Url;
 
 class KeyGeneratorService
 {
+    /** @var string */
     const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
