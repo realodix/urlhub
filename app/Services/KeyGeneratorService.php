@@ -133,6 +133,13 @@ class KeyGeneratorService
             if (! extension_loaded('gmp')) {
                 throw new \RuntimeException('The "GMP" PHP extension is required.');
             }
+
+            // See https://github.com/php/php-src/issues/16870
+            if (PHP_VERSION_ID == 80226 || PHP_VERSION_ID == 80314 || PHP_VERSION_ID == 80401) {
+                throw new \RuntimeException(
+                    'Since there is a gmp_pow bug in PHP 8.2.26 or 8.3.14 or 8.4.1, please update your PHP version immediately.',
+                );
+            }
             // @codeCoverageIgnoreEnd
 
             return gmp_intval(gmp_pow($nChar, $strLen));
