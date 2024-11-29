@@ -73,7 +73,12 @@
                     $powNumber = config('urlhub.keyword_length');
                     $result = number_format($keyGenerator->possibleOutput());
                 @endphp
-                ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
+
+                @if ($keyGenerator->possibleOutput() === PHP_INT_MAX)
+                    (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
+                @else
+                    ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
+                @endif
             </dd>
 
             <dt>Generated</dt>

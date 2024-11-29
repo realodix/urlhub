@@ -154,19 +154,8 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.keyword_length' => 2]);
         $this->assertSame(pow($charLen, 2), $this->keyGenerator->possibleOutput());
 
-        // See https://github.com/php/php-src/issues/16870
-        if (PHP_VERSION_ID == 80226 || PHP_VERSION_ID == 80314 || PHP_VERSION_ID == 80401) {
-            $this->markTestSkipped('Skip this test, because PHP gmp_pow() bug.');
-        }
-
-        if (!extension_loaded('gmp')) {
-            $this->markTestSkipped('The GMP extension is not available.');
-        }
         config(['urlhub.keyword_length' => 11]);
-        $this->assertSame(
-            gmp_intval(gmp_pow($charLen, 11)),
-            $this->keyGenerator->possibleOutput(),
-        );
+        $this->assertSame(PHP_INT_MAX, $this->keyGenerator->possibleOutput());
     }
 
     /**
