@@ -18,12 +18,13 @@ class ConfirmPasswordTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userCanViewThePasswordConfirmationPage(): void
+    public function userCanSeeThePasswordConfirmationPage(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('password.confirm'));
 
-        $response->assertViewIs('auth.confirm-password');
+        $response->assertSuccessful()
+            ->assertViewIs('auth.confirm-password');
     }
 
     #[PHPUnit\Test]
