@@ -17,22 +17,14 @@ class ConfirmPasswordTest extends TestCase
         $response->assertSuccessful();
     }
 
-    /**
-     * Sejak https://github.com/realodix/urlhub/pull/895, test mengalami kegagalan dengan
-     * mengembalikan pesan "The response is not a view".
-     * - [fail] php artisan test / ./vendor/bin/phpunit
-     * - [pass] php artisan test --parallel
-     *
-     * assertViewHas juga menghasilkan hal yang sama
-     */
-    // #[Group('f-auth')]
-    // public function testViewIs(): void
-    // {
-    //     $response = $this->actingAs($this->basicUser())
-    //         ->get(route('password.confirm'));
+    #[PHPUnit\Test]
+    public function userCanViewThePasswordConfirmationPage(): void
+    {
+        $response = $this->actingAs($this->basicUser())
+            ->get(route('password.confirm'));
 
-    //     $response->assertViewIs('auth.confirm-password');
-    // }
+        $response->assertViewIs('auth.confirm-password');
+    }
 
     #[PHPUnit\Test]
     public function guestCantViewPasswordConfirm(): void
