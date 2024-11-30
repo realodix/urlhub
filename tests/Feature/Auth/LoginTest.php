@@ -42,6 +42,10 @@ class LoginTest extends TestCase
             ->assertViewIs('auth.login');
     }
 
+    /**
+     * Test that an authenticated user is redirected to the dashboard
+     * and cannot view the login form.
+     */
     #[PHPUnit\Test]
     public function userCannotViewALoginFormWhenAuthenticated(): void
     {
@@ -51,6 +55,9 @@ class LoginTest extends TestCase
         $response->assertRedirect(route('dashboard'));
     }
 
+    /**
+     * Test that a user can login with their correct credentials.
+     */
     #[PHPUnit\Test]
     public function userCanLoginWithCorrectCredentials(): void
     {
@@ -67,6 +74,9 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
+    /**
+     * Test that a user cannot login with an incorrect password.
+     */
     #[PHPUnit\Test]
     public function userCannotLoginWithIncorrectPassword(): void
     {
@@ -89,12 +99,20 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
+    /**
+     * Test that unauthenticated users cannot access the dashboard and are
+     * redirected to the login page.
+     */
     #[PHPUnit\Test]
     public function unauthenticatedUsersCantAccessTheDashboard(): void
     {
         $this->get('/admin')->assertRedirect('/login');
     }
 
+    /**
+     * Test that a user cannot login with an email that doesn't exist in the
+     * database.
+     */
     #[PHPUnit\Test]
     public function userCannotLoginWithEmailThatDoesNotExist(): void
     {

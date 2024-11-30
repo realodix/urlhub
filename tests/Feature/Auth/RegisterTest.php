@@ -79,6 +79,13 @@ class RegisterTest extends TestCase
         });
     }
 
+    /**
+     * Test that a user cannot register with a name longer than the allowed limit.
+     *
+     * This test posts a registration request with a name consisting of 51 characters,
+     * and asserts that the response has a status of 302, indicating a redirect, and
+     * that the session contains an error for the 'name' field.
+     */
     #[PHPUnit\Test]
     public function nameShouldNotBeTooLong(): void
     {
@@ -91,6 +98,13 @@ class RegisterTest extends TestCase
             ->assertSessionHasErrors('name');
     }
 
+    /**
+     * Test that a user cannot register without providing a name.
+     *
+     * This test posts a registration request without providing a name, and asserts
+     * that the response redirects to the registration page, that the session contains
+     * an error for the 'name' field, and that the user is not logged in.
+     */
     #[PHPUnit\Test]
     public function userCannotRegisterWithoutName(): void
     {
