@@ -35,20 +35,14 @@ class RegisterTest extends TestCase
         $response->assertSuccessful();
     }
 
-    /**
-     * Sejak https://github.com/realodix/urlhub/pull/895, test mengalami kegagalan dengan
-     * mengembalikan pesan "The response is not a view".
-     * - [fail] php artisan test / ./vendor/bin/phpunit
-     * - [pass] php artisan test --parallel
-     *
-     * assertViewHas juga menghasilkan hal yang sama
-     */
-    // public function testViewIs(): void
-    // {
-    //     $response = $this->get($this->getRoute());
+    #[PHPUnit\Test]
+    public function userCanSeeTheRegisterPage(): void
+    {
+        $response = $this->get($this->getRoute());
 
-    //     $response->assertViewIs('auth.register');
-    // }
+        $response->assertSuccessful()
+            ->assertViewIs('auth.register');
+    }
 
     #[PHPUnit\Test]
     public function userCannotViewARegistrationFormWhenAuthenticated(): void
