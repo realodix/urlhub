@@ -78,6 +78,8 @@ class KeyGeneratorService
     }
 
     /**
+     * The keywords that are currently in use as reserved keywords.
+     *
      * @return \Illuminate\Support\Collection
      */
     public function reservedKeyword()
@@ -92,16 +94,17 @@ class KeyGeneratorService
     }
 
     /**
-     * Reserved keywords that are already in use as url shortened keywords.
+     * The keywords that are currently in use as reserved keywords, but on the other
+     * hand also used as active keywords.
      *
      * @return \Illuminate\Support\Collection
      */
     public function reservedActiveKeyword()
     {
         $reservedKeyword = $this->reservedKeyword();
-        $usedKeyWord = Url::pluck('keyword')->toArray();
+        $activeKeyword = Url::pluck('keyword')->toArray();
 
-        return $reservedKeyword->intersect($usedKeyWord);
+        return $reservedKeyword->intersect($activeKeyword);
     }
 
     /*

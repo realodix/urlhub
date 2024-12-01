@@ -17,20 +17,20 @@ class HelperServiceProvider extends ServiceProvider
     public function boot()
     {
         $rdi = new \RecursiveDirectoryIterator(app_path('Helpers' . DIRECTORY_SEPARATOR . 'Global'));
-        $it = new \RecursiveIteratorIterator($rdi);
+        $rit = new \RecursiveIteratorIterator($rdi);
 
-        while ($it->valid()) {
+        while ($rit->valid()) {
             if (
-                !$it->isDot()
-                && $it->isFile()
-                && $it->isReadable()
-                && $it->current()->getExtension() === 'php'
-                && strpos($it->current()->getFilename(), 'Helper')
+                !$rit->isDot()
+                && $rit->isFile()
+                && $rit->isReadable()
+                && $rit->current()->getExtension() === 'php'
+                && strpos($rit->current()->getFilename(), 'Helper')
             ) {
-                require $it->key();
+                require $rit->key();
             }
 
-            $it->next();
+            $rit->next();
         }
     }
 }

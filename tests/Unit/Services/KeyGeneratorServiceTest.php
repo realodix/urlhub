@@ -169,15 +169,15 @@ class KeyGeneratorServiceTest extends TestCase
         );
 
         // Test case 2: Some reserved keywords already in use
-        $usedKeyWord = 'zzz' . fake()->word();
-        Url::factory()->create(['keyword' => $usedKeyWord]);
+        $activeKeyword = 'zzz' . fake()->word();
+        Url::factory()->create(['keyword' => $activeKeyword]);
 
-        $fileSystem->makeDirectory(public_path($usedKeyWord));
+        $fileSystem->makeDirectory(public_path($activeKeyword));
         $this->assertEquals(
-            $usedKeyWord,
+            $activeKeyword,
             $this->keyGenerator->reservedActiveKeyword()->implode(''),
         );
-        $fileSystem->deleteDirectory(public_path($usedKeyWord));
+        $fileSystem->deleteDirectory(public_path($activeKeyword));
     }
 
     /**
