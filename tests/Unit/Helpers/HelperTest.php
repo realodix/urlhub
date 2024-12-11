@@ -25,18 +25,32 @@ class HelperTest extends TestCase
         $url = 'https://github.com/laravel/framework/commit/de69bb287c5017d1acb7d47a6db1dedf578036d6';
 
         $this->assertSame(
-            'https://github.com/lara...36d6',
+            'https://github.com/laravel/fra...',
             Helper::urlFormat($url, limit: 30),
         );
 
         $this->assertSame(
-            'github.com/laravel/...578036d6',
+            'github.com/laravel/framework/c...',
             Helper::urlFormat($url, scheme: false, limit: 30),
+        );
+    }
+
+    /**
+     * Test the urlFormat() method with too long host.
+     */
+    #[PHPUnit\Test]
+    public function urlFormatWithTooLongHost(): void
+    {
+        $url = 'http://theofficialabsolutelongestdomainnameregisteredontheworldwideweb.international/search?client=firefox-b-d&q=longets+domain';
+
+        $this->assertSame(
+            'http://theofficialabsolutelongestdomainname.../search?client=firefox-b-d&q=longets+domain',
+            Helper::urlFormat($url, limit: 90),
         );
 
         $this->assertSame(
-            'github.com/laravel/...8036d6/',
-            Helper::urlFormat($url . '/', scheme: false, limit: 29),
+            'theofficialabsolutelongestdomainnameregi...arch?client=firefox-b-d&q=longets+domain',
+            Helper::urlFormat($url, scheme: false, limit: 84),
         );
     }
 

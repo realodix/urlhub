@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use Composer\Pcre\Preg;
-use Spatie\Url\Url as SpatieUrl;
 
 class Helper
 {
@@ -32,28 +31,35 @@ class Helper
      */
     public static function urlFormat(string $value, ?int $limit = null, bool $scheme = true, bool $trailingSlash = true)
     {
-        $sUrl = SpatieUrl::fromString($value);
-        $hostLen = strlen($sUrl->getScheme() . '://' . $sUrl->getHost());
-        $limit ??= strlen($value);
+        $uri = \Illuminate\Support\Uri::of($value);
+        $schemePrefix = $scheme && $uri->scheme() ? $uri->scheme() . '://' : '';
 
-        // Optionally strip scheme
-        if ($scheme === false) {
-            $value = Preg::replace('{^http(s)?://}', '', $value);
-            $hostLen = strlen($sUrl->getHost());
+        // Strip scheme if not required
+        if (!$scheme) {
+            $value = Preg::replace('/^https?:\/\//', '', $value);
         }
 
-        // Optionally strip trailing slash
-        if ($trailingSlash === false) {
+        // Remove trailing slash if not required
+        if (!$trailingSlash) {
             $value = rtrim($value, '/');
         }
 
+        $limit = $limit ?? strlen($value);
+        $hostLength = strlen($schemePrefix . $uri->host());
+
         if (strlen($value) > $limit) {
             $trimMarker = '...';
-            $pathLen = $limit - $hostLen;
-            $firstPartLen = $hostLen + intval(($pathLen - 1) * 0.5) + strlen($trimMarker);
-            $lastPartLen = -abs($limit - $firstPartLen);
+            $adjustedLimit = $limit - strlen($trimMarker);
 
-            return mb_strimwidth($value, 0, $firstPartLen, $trimMarker) . substr($value, $lastPartLen);
+            // Handle cases where host is too long
+            if ($hostLength >= 45) {
+                $firstHalf = mb_substr($value, 0, intval($adjustedLimit / 2));
+                $secondHalf = mb_substr($value, -strlen($firstHalf));
+
+                return $firstHalf . $trimMarker . $secondHalf;
+            }
+
+            return \Illuminate\Support\Str::limit($value, $limit, $trimMarker);
         }
 
         return $value;
