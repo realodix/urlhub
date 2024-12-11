@@ -6,7 +6,7 @@ use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
-use Spatie\Url\Url as SpatieUrl;
+use Illuminate\Support\Uri;
 
 class VisitorService
 {
@@ -62,8 +62,8 @@ class VisitorService
             return null;
         }
 
-        $referer = SpatieUrl::fromString($value);
+        $referer = Uri::of($value);
 
-        return $referer->getScheme() . '://' . $referer->getHost();
+        return $referer->scheme() . '://' . $referer->host();
     }
 }

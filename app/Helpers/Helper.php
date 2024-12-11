@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use Composer\Pcre\Preg;
-use Spatie\Url\Url as SpatieUrl;
 
 class Helper
 {
@@ -32,14 +31,14 @@ class Helper
      */
     public static function urlFormat(string $value, ?int $limit = null, bool $scheme = true, bool $trailingSlash = true)
     {
-        $sUrl = SpatieUrl::fromString($value);
-        $hostLen = strlen($sUrl->getScheme() . '://' . $sUrl->getHost());
+        $uri = \Illuminate\Support\Uri::of($value);
+        $hostLen = strlen($uri->scheme() . '://' . $uri->host());
         $limit ??= strlen($value);
 
         // Optionally strip scheme
         if ($scheme === false) {
             $value = Preg::replace('{^http(s)?://}', '', $value);
-            $hostLen = strlen($sUrl->getHost());
+            $hostLen = strlen($uri->host());
         }
 
         // Optionally strip trailing slash
