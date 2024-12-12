@@ -27,10 +27,16 @@ class Helper
      * @param int|null $limit Length string will be truncated to, including suffix
      * @param bool $scheme Show or remove URL schemes
      * @param bool $trailingSlash Show or remove trailing slash
+     * @param int $maxHostLength Maximum length of the host
      * @return string
      */
-    public static function urlFormat(string $value, ?int $limit = null, bool $scheme = true, bool $trailingSlash = true)
-    {
+    public static function urlFormat(
+        string $value,
+        ?int $limit = null,
+        bool $scheme = true,
+        bool $trailingSlash = true,
+        int $maxHostLength = 45,
+    ) {
         $uri = \Illuminate\Support\Uri::of($value);
         $schemePrefix = $scheme && $uri->scheme() ? $uri->scheme() . '://' : '';
 
@@ -47,12 +53,13 @@ class Helper
         $limit = $limit ?? strlen($value);
         $hostLength = strlen($schemePrefix . $uri->host());
 
+        // Truncate the URL if necessary
         if (strlen($value) > $limit) {
             $trimMarker = '...';
             $adjustedLimit = $limit - strlen($trimMarker);
 
             // Handle cases where host is too long or the limit is shorter than the host
-            if ($hostLength >= 45 || $hostLength >= $adjustedLimit) {
+            if ($hostLength >= $maxHostLength || $hostLength >= $adjustedLimit) {
                 $firstHalf = mb_substr($value, 0, intval($adjustedLimit * 0.7));
                 $secondHalf = mb_substr($value, -intval($adjustedLimit * 0.3));
 
