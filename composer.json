@@ -13,13 +13,12 @@
         "filament/widgets": "^3.2",
         "flowframe/laravel-trend": "^0.2.0",
         "laravel/fortify": "^1.25",
-        "laravel/framework": "^11.33",
+        "laravel/framework": "^11.35",
         "laravel/tinker": "^2.10",
         "livewire/livewire": "^3.5",
         "matomo/device-detector": "^6.3",
         "power-components/livewire-powergrid": "^6.1",
-        "spatie/laravel-permission": "^6.10",
-        "spatie/url": "^2.4"
+        "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
