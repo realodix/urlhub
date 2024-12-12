@@ -51,10 +51,10 @@ class Helper
             $trimMarker = '...';
             $adjustedLimit = $limit - strlen($trimMarker);
 
-            // Handle cases where host is too long
-            if ($hostLength >= 45) {
-                $firstHalf = mb_substr($value, 0, intval($adjustedLimit / 2));
-                $secondHalf = mb_substr($value, -strlen($firstHalf));
+            // Handle cases where host is too long or the limit is shorter than the host
+            if ($hostLength >= 45 || $hostLength >= $adjustedLimit) {
+                $firstHalf = mb_substr($value, 0, intval($adjustedLimit * 0.7));
+                $secondHalf = mb_substr($value, -intval($adjustedLimit * 0.3));
 
                 return $firstHalf . $trimMarker . $secondHalf;
             }
