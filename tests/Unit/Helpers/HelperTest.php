@@ -44,17 +44,17 @@ class HelperTest extends TestCase
         $url = 'http://theofficialabsolutelongestdomainnameregisteredontheworldwideweb.international/search?client=firefox-b-d&q=longets+domain';
 
         $this->assertSame(
-            'http://theofficialabsolutelongestdomainnameregisteredonthewo...refox-b-d&q=longets+domain',
+            'http://theofficialabsolutelongestdomainnameregisteredontheworldwidewe...&q=longets+domain',
             Helper::urlFormat($url, limit: 90),
         );
 
         $this->assertSame(
-            'theofficialabsolutelongestdomainnameregisteredontheworld...fox-b-d&q=longets+domain',
+            'theofficialabsolutelongestdomainnameregisteredontheworldwideweb....q=longets+domain',
             Helper::urlFormat($url, scheme: false, limit: 84),
         );
 
         $this->assertSame(
-            'https://hunterxhun...7_Hunter',
+            'https://hunterxhunter...unter',
             Helper::urlFormat('https://hunterxhunter.fandom.com/wiki/Hunter_%C3%97_Hunter', limit: 30),
         );
     }
