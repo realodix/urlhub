@@ -26,12 +26,12 @@ class HelperTest extends TestCase
 
         $this->assertSame(
             'https://github.com/laravel/fra...',
-            Helper::urlFormat($url, limit: 30),
+            Helper::urlFormat($url, limit: 33),
         );
 
         $this->assertSame(
             'github.com/laravel/framework/c...',
-            Helper::urlFormat($url, scheme: false, limit: 30),
+            Helper::urlFormat($url, scheme: false, limit: 33),
         );
     }
 

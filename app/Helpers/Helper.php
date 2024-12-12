@@ -66,7 +66,7 @@ class Helper
                 return $firstHalf . $trimMarker . $secondHalf;
             }
 
-            return \Illuminate\Support\Str::limit($value, $limit, $trimMarker);
+            return \Illuminate\Support\Str::limit($value, $adjustedLimit, $trimMarker);
         }
 
         return $value;
