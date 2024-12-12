@@ -21,7 +21,7 @@ class Helper
     }
 
     /**
-     * A URL formatted according to the specified format.
+     * Format URL links for display.
      *
      * @param string $value URL links
      * @param int|null $limit Length string will be truncated to, including suffix
