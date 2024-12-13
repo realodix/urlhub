@@ -1,7 +1,7 @@
 @import 'base.css';
 
 .navbar {
-    @apply bg-uh-bg-1 text-uh-blue;
+    @apply bg-uh-bg-1 text-primary-800;
     @apply border-b border-uh-border-color;
 
     &-brand {
@@ -14,7 +14,7 @@
     }
 
     .nav-item {
-        @apply text-sm text-gray-700 hover:bg-slate-50 focus:bg-slate-100 leading-5;
+        @apply text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-800 focus:bg-slate-100 leading-5;
         @apply block px-4 py-2 focus:outline-none transition;
     }
 }
@@ -42,7 +42,7 @@
 
     table {
         thead {
-            @apply bg-uh-bg-2;
+            @apply bg-gray-100;
             box-shadow: none;
             border-radius: unset;
         }

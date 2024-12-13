@@ -16,7 +16,7 @@
     @else
         <div class="flex flex-wrap md:justify-center">
             <h1 class="mx-auto max-w-md md:max-w-3xl relative z-10
-                font-bold text-uh-blue-2 text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
+                font-bold text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
             >
                 Simple URL shortener <br>
                 <span class="font-thin text-black">for individuals &amp; businesses.</span>
@@ -31,13 +31,13 @@
                         <input name="long_url" value="{{ old('long_url') }}" placeholder="{{ __('Shorten your link') }}"
                             class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
                                 text-xl outline-none
-                                border border-border-uh-border-color focus:border-green-700
+                                border border-border-uh-border-color focus:border-green-600
                                 rounded-t-md md:rounded-l-md md:rounded-r-none
                                 {{-- tailwindcss/forms --}}
                                 border-slate-300 focus:ring-inherit">
                         <button type="submit" id="actProcess"
                             class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md
-                                text-lg text-white bg-green-700 hover:bg-green-800 focus:uh-blue-2"
+                                text-lg text-white bg-emerald-600 hover:bg-emerald-700 focus:bg-emerald-700"
                         >
                             {{ __('Shorten') }}
                         </button>

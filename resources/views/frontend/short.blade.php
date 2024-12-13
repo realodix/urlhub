@@ -28,19 +28,22 @@
         </div>
         <div class="w-full md:w-3/4 mt-8 sm:mt-0">
             <div class="text-right pr-6">
-                <button id="clipboard_shortlink" class="mr-6 hover:text-indigo-600"
+                <button id="clipboard_shortlink"
+                    class="btn btn-secondary mr-6"
                     title="{{ __('Copy the shortened URL to clipboard') }}"
                     data-clipboard-text="{{ $url->short_url }}"
                 >
-                    @svg('icon-clone', 'mr-1')
+                    @svg('icon-clone')
                 </button>
 
                 @auth
                     @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
-                        <a href="{{ route('dboard.url.edit.show', $url) }}" title="{{ __('Edit') }}" class="mr-6 hover:text-indigo-600">
+                        <a href="{{ route('dboard.url.edit.show', $url) }}" title="{{ __('Edit') }}"
+                            class="btn btn-secondary mr-6">
                             @svg('icon-edit')
                         </a>
-                        <a href="{{ route('su_delete', $url) }}" title="{{ __('Delete') }}" class="hover:text-red-600">
+                        <a href="{{ route('su_delete', $url) }}" title="{{ __('Delete') }}"
+                            class="btn btn-secondary hover:!bg-red-100 hover:!text-red-800">
                             @svg('icon-trash')
                         </a>
                     @endif
@@ -49,7 +52,7 @@
 
             <br>
 
-            <span class="font-bold text-uh-blue-2 text-xl sm:text-2xl">
+            <span class="font-bold text-xl sm:text-2xl">
                 <a href="{{ $url->short_url }}" target="_blank" id="copy">
                     {{ urlFormat($url->short_url, scheme: false) }}
                 </a>

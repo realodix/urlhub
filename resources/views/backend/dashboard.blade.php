@@ -35,7 +35,7 @@
     <div class="common-card-style">
         <div class="card_header__v2">
             <div class="w-1/2">
-                <span class="text-2xl text-uh-1">{{ __('My URLs') }}</span>
+                <span class="text-2xl text-black">{{ __('My URLs') }}</span>
             </div>
             <div class="w-1/2 text-right">
                 <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-primary">
