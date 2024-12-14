@@ -25,7 +25,6 @@ export default {
                 "primary-700": "#4338ca",
                 "primary-800": "#3730a3",
                 "uh-blue": "#3d5b99",
-                "uh-bg-1": "#fff",
                 "uh-border-color": "#d0d7de",
             },
         },

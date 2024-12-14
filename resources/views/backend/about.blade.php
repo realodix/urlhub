@@ -6,7 +6,7 @@
 @section('content')
 <main class="page_about max-w-4xl">
     <div class="flex flex-wrap gap-4 mb-4 justify-end">
-        <div class="bg-uh-bg-1 p-4 sm:rounded-lg w-full md:w-2/6
+        <div class="bg-white p-4 sm:rounded-lg w-full md:w-2/6
             border-y border-uh-border-color sm:border-none sm:shadow-md"
         >
             <div class="flex flex-row space-x-4 items-center">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-uh-bg-1 p-4 sm:rounded-lg w-full md:w-2/6
+        <div class="bg-white p-4 sm:rounded-lg w-full md:w-2/6
             border-y border-uh-border-color sm:border-none sm:shadow-md"
         >
             <div class="flex flex-row space-x-4 items-center">

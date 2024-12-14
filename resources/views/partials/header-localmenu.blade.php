@@ -2,7 +2,7 @@
     $routeName = request()->route()->getName();
 @endphp
 
-<nav class="bg-uh-bg-1 pt-1">
+<nav class="pt-1">
     <div class="hidden layout-container sm:flex px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
         <a href="{{ route('dashboard') }}"
             class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
