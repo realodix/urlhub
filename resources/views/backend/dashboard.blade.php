@@ -4,7 +4,7 @@
 @section('content')
 <main>
     <div class="grid gird-cols-1 md:grid-cols-4 gap-7 mb-8">
-        <div class="bg-uh-bg-1 p-4 sm:rounded-lg
+        <div class="bg-white p-4 sm:rounded-lg
             border-y border-uh-border-color sm:border-none sm:shadow-md"
         >
             <div class="flex flex-row space-x-4 items-center">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-uh-bg-1 p-4 sm:rounded-lg
+        <div class="bg-white p-4 sm:rounded-lg
             border-y border-uh-border-color sm:border-none sm:shadow-md"
         >
             <div class="flex flex-row space-x-4 items-center">
@@ -35,7 +35,7 @@
     <div class="common-card-style">
         <div class="card_header__v2">
             <div class="w-1/2">
-                <span class="text-2xl text-uh-1">{{ __('My URLs') }}</span>
+                <span class="text-2xl text-black">{{ __('My URLs') }}</span>
             </div>
             <div class="w-1/2 text-right">
                 <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-primary">

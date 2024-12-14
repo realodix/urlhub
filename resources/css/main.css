@@ -1,7 +1,7 @@
 @import 'base.css';
 
 .navbar {
-    @apply bg-uh-bg-1 text-uh-blue;
+    @apply bg-white text-primary-800;
     @apply border-b border-uh-border-color;
 
     &-brand {
@@ -14,7 +14,7 @@
     }
 
     .nav-item {
-        @apply text-sm text-gray-700 hover:bg-slate-50 focus:bg-slate-100 leading-5;
+        @apply text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-800 focus:bg-slate-100 leading-5;
         @apply block px-4 py-2 focus:outline-none transition;
     }
 }
@@ -36,29 +36,24 @@
 
 
 #power-grid-table-base {
-    > div:has(> div > #table_base_default) {
-        border-radius: unset;
-    }
-
     table {
         thead {
-            @apply bg-uh-bg-2;
+            @apply bg-gray-100;
             box-shadow: none;
             border-radius: unset;
         }
 
         td {
-            border: 1px solid;
-            border-color: rgb(226 232 240 / var(--tw-border-opacity));;
-        }
+            border: 1px solid #e2e8f0;
 
-        td:last-child {
-            border-right-color: inherit;
-        }
-    }
+            &:first-child {
+                border-left: none;
+            }
 
-    #pg-footer {
-        border: none;
+            &:last-child {
+                border-right: none;
+            }
+        }
     }
 }
 
