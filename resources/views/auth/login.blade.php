@@ -48,9 +48,11 @@
         </form>
     </div>
 
+    @if (Route::has('register') and Config::get('urlhub.registration'))
     <div class="auth-card">
         New to {{ config('app.name') }}? <a href="{{ route('register') }}" class="text-slate-600 hover:text-slate-900 underline">Create an account</a>
     </div>
+    @endif
 
 </div>
 @endsection

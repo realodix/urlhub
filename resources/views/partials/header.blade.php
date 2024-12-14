@@ -73,11 +73,6 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <a href="{{ route('login') }}"
                     class="text-xl font-medium text-gray-500 hover:text-gray-900 mr-8">{{ __('Log in') }}</a>
-                @if (Route::has('register') and Config::get('urlhub.registration'))
-                    <a href="{{ route('register') }}" class="btn btn-primary">
-                        {{ __('Sign up') }}
-                    </a>
-                @endif
             </div>
         @endauth
 
