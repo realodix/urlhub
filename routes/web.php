@@ -15,7 +15,7 @@ Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('su_de
 Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('su_delete');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'auth.session'])->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
         Route::get('links/{url:keyword}/delete', [DashboardController::class, 'delete'])->name('dboard.url.delete');
