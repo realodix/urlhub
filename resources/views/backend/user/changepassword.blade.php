@@ -36,7 +36,6 @@
                                 <x-icon-eye x-on:click="show=!show" ::class="{'block': !show, '!hidden': show}" />
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-span-6 lg:col-span-4">

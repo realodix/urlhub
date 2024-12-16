@@ -21,7 +21,6 @@ export default {
                 "primary-50": "#eef2ff",
                 "primary-100": "#e0e7ff",
                 "primary-500": "#6366f1",
-                "primary-600": "#4f46e5",
                 "primary-700": "#4338ca",
                 "primary-800": "#3730a3",
                 "uh-blue": "#3d5b99",

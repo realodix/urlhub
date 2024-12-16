@@ -122,6 +122,6 @@ hr {
 
 .form-input {
     @apply block w-full;
-    @apply border-uh-border-color focus:ring-primary-500 focus:border-primary-500 rounded;
+    @apply border-uh-border-color focus:ring-0 focus:border-primary-500 rounded;
     @apply bg-[#f6f8fa] focus:bg-white;
 }
