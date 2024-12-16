@@ -37,7 +37,7 @@
                                 border-slate-300 focus:ring-inherit">
                         <button type="submit" id="actProcess"
                             class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md
-                                text-lg text-white bg-emerald-600 hover:bg-emerald-700 focus:bg-emerald-700"
+                                duration-300 text-lg text-white bg-emerald-600 hover:bg-emerald-700 focus:bg-emerald-700"
                         >
                             {{ __('Shorten') }}
                         </button>

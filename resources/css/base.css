@@ -52,7 +52,7 @@ hr {
 }
 
 .btn {
-    @apply inline-flex items-center px-3 py-1.5;
+    @apply duration-300 inline-flex items-center px-3 py-1.5;
     @apply text-base font-normal leading-6 text-center no-underline align-middle tracking-wide;
     @apply border rounded-md border-gray-300 disabled:opacity-25;
     @apply cursor-pointer select-none;

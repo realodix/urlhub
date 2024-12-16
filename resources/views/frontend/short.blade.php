@@ -52,7 +52,7 @@
 
             <br>
 
-            <span class="font-bold text-xl sm:text-2xl">
+            <span class="text-primary-700 font-bold text-xl sm:text-2xl">
                 <a href="{{ $url->short_url }}" target="_blank" id="copy">
                     {{ urlFormat($url->short_url, scheme: false) }}
                 </a>
