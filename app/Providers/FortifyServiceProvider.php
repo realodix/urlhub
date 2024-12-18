@@ -109,5 +109,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::confirmPasswordView(function () {
             return view('auth.confirm-password');
         });
+
+        Fortify::confirmPasswordsUsing(function (User $user) {
+            return Hash::check(request('password'), $user->password);
+        });
     }
 }
