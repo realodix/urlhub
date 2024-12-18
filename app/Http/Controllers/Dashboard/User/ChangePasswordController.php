@@ -39,7 +39,7 @@ class ChangePasswordController extends Controller
     {
         Gate::authorize('updatePass', $user);
 
-        $newPassword = $request['new-password'];
+        $newPassword = $request->new_password;
 
         // Check if admin user is changing another user's password.
         // Admin authority check has been done by the gate.
