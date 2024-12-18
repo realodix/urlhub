@@ -33,7 +33,7 @@
                 <label for="password" class="form-label">
                     {{ __('Password') }}
                 </label>
-                <input type="password" name="password" class="form-input mt-1" autocomplete="current-password" required>
+                <input type="password" name="password" class="form-input mt-1" autocomplete="current_password" required>
             </div>
 
             <div class="flex items-center justify-end mt-4">

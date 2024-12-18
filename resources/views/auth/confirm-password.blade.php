@@ -21,7 +21,7 @@
 @csrf
     <div>
         <label>{{ __('Password') }}</label>
-        <input type="password" name="password" autocomplete="current-password" required>
+        <input type="password" name="password" autocomplete="current_password" required>
     </div>
 
     <div>

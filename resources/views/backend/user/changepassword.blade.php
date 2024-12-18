@@ -21,8 +21,8 @@
             <div class="common-card-style">
                 <div class="grid grid-cols-6 gap-6" x-data="{show: true}">
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="current-password" class="form-label">{{ __('Your Password') }}</label>
-                        <input required type="password" name="current-password" placeholder="{{ __('Enter your password') }}"
+                        <label for="current_password" class="form-label">{{ __('Your Password') }}</label>
+                        <input required type="password" name="current_password" placeholder="{{ __('Enter your password') }}"
                             class="form-input mt-1">
                     </div>
 
