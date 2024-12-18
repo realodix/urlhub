@@ -9,15 +9,15 @@
 
     <div class="font-bold text-uh-blue text-4xl sm:text-6xl">{{ config('app.name') }}</div>
 
-    @if(session()->has('login_error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session()->get('login_error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+    {{-- @if(session()->has('login_error')) --}}
+        <div class="mt-4 block pl-3 pr-4 py-2 font-medium text-base text-red-700 bg-red-50 border-l-4 border-red-400"" role="alert">
+            {{-- {{ session()->get('login_error') }} --}}
+            These credentials do not match our records.
         </div>
         {{ session()->forget('login_error') }}
-    @endif
+    {{-- @endif --}}
+
+    @include('partials/messages')
 
     <div class="auth-card">
         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
