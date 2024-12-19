@@ -62,7 +62,7 @@ class FortifyServiceProvider extends ServiceProvider
     private function loginAndRegister()
     {
         Fortify::loginView(function () {
-            return view('auth.login');
+            return view('auth.verify-email');
         });
 
         Fortify::authenticateUsing(function (Request $request) {
