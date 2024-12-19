@@ -19,7 +19,8 @@ class UrlHubLinkChecker
         // that no more unique keys can be generated.
         if (app(KeyGeneratorService::class)->remainingCapacity() === 0) {
             return redirect()->back()
-                ->withFlashError(
+                ->with(
+                    'flash_error',
                     __('Sorry, our service is currently under maintenance.'),
                 );
         }
