@@ -6,7 +6,7 @@
 
 @section('content')
 @if ($errors->any())
-    <div>
+    <div class="alert alert-error">
         <div>{{ __('Whoops! Something went wrong.') }}</div>
 
         <ul>
