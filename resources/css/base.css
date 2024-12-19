@@ -47,6 +47,19 @@ hr {
  * Components
  */
 
+.alert {
+    @apply block mb-4 pl-3 pr-4 py-2 border-l-4;
+    @apply text-base font-medium;
+
+    &-success {
+        @apply text-emerald-700 bg-emerald-50 border-emerald-600;
+    }
+
+    &-error {
+        @apply text-red-700 bg-red-50 border-red-600;
+    }
+}
+
 .blade-icon {
     display: inline-block;
     height: 1em;
