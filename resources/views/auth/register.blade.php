@@ -6,7 +6,9 @@
 
 @section('content')
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
-    <div class="text-uh-blue font-bold text-4xl sm:text-6xl">{{ config('app.name') }}</div>
+    <div class="logo text-4xl sm:text-6xl">
+        <a href="{{ url('/') }}">{{ config('app.name') }}</a>
+    </div>
 
     <div class="auth-card">
         @if (!config('urlhub.registration') )

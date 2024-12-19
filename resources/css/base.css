@@ -17,6 +17,10 @@ main {
     @apply bg-gray-50 font-sans text-gray-900 antialiased;
 }
 
+.logo {
+    @apply text-uh-blue font-serif font-bold;
+}
+
 @layer base {
     h1 {
         @apply text-4xl;
