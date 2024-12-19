@@ -6,8 +6,9 @@
 
 @section('content')
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
-
-    <div class="font-bold text-uh-blue text-4xl sm:text-6xl">{{ config('app.name') }}</div>
+    <div class="logo text-4xl sm:text-6xl">
+        {{ config('app.name') }}
+    </div>
 
     @if(session()->has('login_error'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
