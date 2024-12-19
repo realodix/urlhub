@@ -40,9 +40,9 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($this->user)
             ->from($this->getRoute($this->user->name))
             ->post($this->postRoute($this->user->name), [
-                'current-password' => self::$password,
-                'new-password'     => 'new-awesome-password',
-                'new-password_confirmation' => 'new-awesome-password',
+                'current_password' => self::$password,
+                'new_password'     => 'new-awesome-password',
+                'new_password_confirmation' => 'new-awesome-password',
             ]);
 
         $response
@@ -61,9 +61,9 @@ class ChangePasswordTest extends TestCase
             ->from($this->getRoute($this->user->name))
             ->post($this->postRoute($this->user->name), [
                 // An Admin will enter their own password, not the password of a User
-                'current-password' => self::$adminPass,
-                'new-password'     => 'new-awesome-password',
-                'new-password_confirmation' => 'new-awesome-password',
+                'current_password' => self::$adminPass,
+                'new_password'     => 'new-awesome-password',
+                'new_password_confirmation' => 'new-awesome-password',
             ]);
 
         $response
@@ -81,14 +81,14 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($this->user)
             ->from($this->getRoute($this->user->name))
             ->post($this->postRoute($this->user->name), [
-                'current-password' => 'laravel',
-                'new-password'     => 'new-awesome-password',
-                'new-password_confirmation' => 'new-awesome-password',
+                'current_password' => 'laravel',
+                'new_password'     => 'new-awesome-password',
+                'new_password_confirmation' => 'new-awesome-password',
             ]);
 
         $response
             ->assertRedirect($this->getRoute($this->user->name))
-            ->assertSessionHasErrors('current-password');
+            ->assertSessionHasErrors('current_password');
 
         $this->assertFalse(
             Hash::check('new-awesome-password', $this->user->fresh()->password),
@@ -104,14 +104,14 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
-                'current-password' => self::$password,
-                'new-password'     => $data1,
-                'new-password_confirmation' => $data2,
+                'current_password' => self::$password,
+                'new_password'     => $data1,
+                'new_password_confirmation' => $data2,
             ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
+            ->assertSessionHasErrors('new_password');
 
         $this->assertFalse(
             Hash::check($data1, $user->fresh()->password),
@@ -123,7 +123,7 @@ class ChangePasswordTest extends TestCase
         return [
             ['', ''], // required
             [null, null], // string
-            ['new-password', 'new-pass-word'], // confirmed
+            ['new_password', 'new-pass-word'], // confirmed
 
             // Laravel NIST Password Rules
             // ['new-awe', 'new-awe'], // min:8
@@ -144,14 +144,14 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
-                'current-password' => self::$password,
-                'new-password'     => self::$password,
-                'new-password_confirmation' => self::$password,
+                'current_password' => self::$password,
+                'new_password'     => self::$password,
+                'new_password_confirmation' => self::$password,
             ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('new-password');
+            ->assertSessionHasErrors('new_password');
 
         $this->assertTrue(
             Hash::check(self::$password, $user->fresh()->password),
