@@ -8,7 +8,7 @@
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
     @if ($errors->any())
         <div class="alert alert-error">
-            <div>{{ __('Whoops! Something went wrong.') }}</div>
+            <div class="font-bold">{{ __('Whoops! Something went wrong.') }}</div>
 
             <ul>
                 @foreach ($errors->all() as $error)

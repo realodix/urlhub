@@ -52,11 +52,11 @@ hr {
     @apply text-base font-medium;
 
     &-success {
-        @apply text-emerald-700 bg-emerald-50 border-emerald-400;
+        @apply text-emerald-700 bg-emerald-50 border-emerald-600;
     }
 
     &-error {
-        @apply text-red-700 bg-red-50 border-red-400;
+        @apply text-red-700 bg-red-50 border-red-600;
     }
 }
 
