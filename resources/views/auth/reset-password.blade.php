@@ -31,12 +31,12 @@
 
             <div class="mt-4">
                 <label class="form-label">{{ __('Password') }}</label>
-                <input type="password" name="password" autocomplete="new-password" class="form-input mt-1" required/>
+                <input type="password" name="password" autocomplete="new_password" class="form-input mt-1" required/>
             </div>
 
             <div class="mt-4">
                 <label class="form-label">{{ __('Confirm Password') }}</label>
-                <input type="password" name="password_confirmation" autocomplete="new-password" class="form-input mt-1" required/>
+                <input type="password" name="password_confirmation" autocomplete="new_password" class="form-input mt-1" required/>
             </div>
 
             <div class="flex items-center justify-center mt-8">

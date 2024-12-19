@@ -23,7 +23,7 @@
         @csrf
             <div>
                 <label>{{ __('Password') }}</label>
-                <input type="password" name="password" autocomplete="current-password" class="form-input" required>
+                <input type="password" name="password" autocomplete="current_password" class="form-input" required>
             </div>
 
             <div class="flex items-center justify-end mt-4">
