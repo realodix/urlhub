@@ -55,6 +55,6 @@ class ChangePasswordController extends Controller
         }
 
         return redirect()->back()
-            ->withFlashSuccess(__('Password changed successfully !'));
+            ->with('flash_success', __('Password changed successfully !'));
     }
 }
