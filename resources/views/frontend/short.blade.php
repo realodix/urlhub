@@ -7,10 +7,6 @@
         <div class="text-xl sm:text-2xl lg:text-3xl mb-4">{{ $url->title }}</div>
 
         <ul class="mb-4">
-            <li class="inline-block pr-4">
-                @svg('icon-calendar')
-                <i>{{ $url->created_at->toDayDateTimeString() }}</i>
-            </li>
             <li class="inline-block pr-4 mt-4 lg:mt-0">
                 @svg('icon-chart-line-alt')
                 <i>
@@ -18,6 +14,10 @@
                         {{ n_abb($visitsCount) }}
                     </span>
                 </i>
+            </li>
+            <li class="inline-block pr-4">
+                @svg('icon-calendar')
+                <i>{{ $url->created_at->toFormattedDateString() }}</i>
             </li>
         </ul>
     </div>
