@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserEmail;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
 
@@ -43,15 +43,19 @@ class UserController extends Controller implements HasMiddleware
     /**
      * Update the specified user in storage.
      *
-     * @param UpdateUserEmail $request \App\Http\Requests\UpdateUserEmail
+     * @param Request $request \Illuminate\Http\Request
      * @param User $user \App\Models\User
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateUserEmail $request, User $user)
+    public function update(Request $request, User $user)
     {
         Gate::authorize('update', $user);
+
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
 
         $user->email = $request->email;
         $user->save();

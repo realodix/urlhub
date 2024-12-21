@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUrlRequest;
 use App\Models\Url;
 use App\Models\Visit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
@@ -41,14 +41,22 @@ class DashboardController extends Controller
     /**
      * Update the destination URL.
      *
-     * @param UpdateUrlRequest $request \App\Http\Requests\UpdateUrlRequest
+     * @param Request $request \Illuminate\Http\Request
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateUrlRequest $request, Url $url)
+    public function update(Request $request, Url $url)
     {
+        $request->validate([
+            'title'    => ['max:' . Url::TITLE_LENGTH],
+            'long_url' => [
+                'required', 'url', 'max:65535',
+                new \App\Rules\NotBlacklistedDomain,
+            ],
+        ]);
+
         $url->update([
             'destination' => $request->long_url,
             'title'       => $request->title,
