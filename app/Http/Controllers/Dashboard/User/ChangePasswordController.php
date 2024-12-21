@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserPassword;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,21 +28,29 @@ class ChangePasswordController extends Controller
     /**
      * Change the password.
      *
-     * @param UpdateUserPassword $request \App\Http\Requests\UpdateUserPassword
+     * @param Request $request \Illuminate\Http\Request
      * @param User $user \App\Models\User
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UpdateUserPassword $request, User $user)
+    public function update(Request $request, User $user)
     {
         Gate::authorize('updatePass', $user);
+
+        $request->validate([
+            'current_password' => ['current_password'],
+            'new_password' => [
+                'required', 'min:6', 'confirmed',
+                'unique:users,password', 'different:current_password',
+            ],
+        ]);
 
         $newPassword = $request->new_password;
 
         // Check if admin user is changing another user's password.
         // Admin authority check has been done by the gate.
-        if (!Auth::user()->is($user)) {
+        if (!auth()->user()->is($user)) {
             $user->password = Hash::make($newPassword);
             $user->save();
         } else {
@@ -51,7 +58,7 @@ class ChangePasswordController extends Controller
             $request->user()->save();
 
             // Clear sessions on other devices
-            Auth::logoutOtherDevices($newPassword);
+            auth()->logoutOtherDevices($newPassword);
         }
 
         return redirect()->back()
