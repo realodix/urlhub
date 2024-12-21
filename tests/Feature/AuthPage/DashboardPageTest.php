@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\AuthPage;
 
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Models\Url;
+use Illuminate\Http\Request;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -65,5 +67,34 @@ class DashboardPageTest extends TestCase
             ->assertSessionHas('flash_success');
 
         $this->assertSame($newLongUrl, $url->fresh()->destination);
+    }
+
+    public function test_update_validates_title_length(): void
+    {
+        $request = new Request(['title' => str_repeat('a', Url::TITLE_LENGTH + 1), 'long_url' => 'https://example.com']);
+        $this->expectException(\Illuminate\Validation\ValidationException::class);
+        (new DashboardController)->update($request, new Url);
+    }
+
+    public function test_update_validates_long_url_is_url(): void
+    {
+        $request = new Request(['title' => 'Short title', 'long_url' => 'invalid-url']);
+        $this->expectException(\Illuminate\Validation\ValidationException::class);
+        (new DashboardController)->update($request, new Url);
+    }
+
+    public function test_update_validates_long_url_max_length(): void
+    {
+        $request = new Request(['title' => 'Short title', 'long_url' => str_repeat('a', 65536)]);
+        $this->expectException(\Illuminate\Validation\ValidationException::class);
+        (new DashboardController)->update($request, new Url);
+    }
+
+    public function test_update_validates_long_url_not_blacklisted()
+    {
+        config(['urlhub.domain_blacklist' => ['t.co']]);
+        $request = new Request(['title' => 'Short title', 'long_url' => 'https://t.co/about']);
+        $this->expectException(\Illuminate\Validation\ValidationException::class);
+        (new DashboardController)->update($request, new Url);
     }
 }
