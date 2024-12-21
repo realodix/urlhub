@@ -78,8 +78,7 @@ class AccountTest extends TestCase
         $this->assertSame('user2@urlhub.test', $user->email);
     }
 
-    #[PHPUnit\Test]
-    public function validationEmailRequired(): void
+    public function testValidateEmailRequired(): void
     {
         $user = $this->basicUser();
 
@@ -94,8 +93,7 @@ class AccountTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    #[PHPUnit\Test]
-    public function validationEmailInvalidFormat(): void
+    public function testValidateEmailInvalidFormat(): void
     {
         $user = $this->basicUser();
 
@@ -110,8 +108,7 @@ class AccountTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    #[PHPUnit\Test]
-    public function validationEmailMaxLength(): void
+    public function testValidateEmailMaxLength(): void
     {
         $user = $this->basicUser();
 
@@ -127,8 +124,7 @@ class AccountTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    #[PHPUnit\Test]
-    public function validationEmailUnique(): void
+    public function testValidateEmailUnique(): void
     {
         $user = $this->basicUser();
 
