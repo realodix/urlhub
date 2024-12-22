@@ -69,6 +69,10 @@ class DashboardPageTest extends TestCase
 
     /**
      * A normal user can't change the password of another user.
+     *
+     * This test simulates a normal user trying to change the password of another
+     * user, verifies that the operation is forbidden by checking for a forbidden
+     * response, and confirms that the password is unchanged in the database.
      */
     #[PHPUnit\Test]
     public function normalUserCantUpdateOtherUsersUrl(): void
