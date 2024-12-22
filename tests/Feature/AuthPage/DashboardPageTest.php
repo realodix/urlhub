@@ -52,7 +52,6 @@ class DashboardPageTest extends TestCase
     public function dCanUpdateUrl(): void
     {
         $url = Url::factory()->create();
-
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
 
         $response = $this->actingAs($url->author)
@@ -69,11 +68,33 @@ class DashboardPageTest extends TestCase
         $this->assertSame($newLongUrl, $url->fresh()->destination);
     }
 
+    /**
+     * A normal user can't change the password of another user.
+     */
+    #[PHPUnit\Test]
+    public function normalUserCantUpdateOtherUsersUrl(): void
+    {
+        $url = Url::factory()->create();
+        $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
+
+        $response = $this->actingAs($this->basicUser())
+            ->from(route('dboard.url.edit.show', $url->keyword))
+            ->post(route('dboard.url.edit.store', $url->keyword), [
+                'title'    => $url->title,
+                'long_url' => $newLongUrl,
+            ]);
+
+        $response->assertForbidden();
+        $this->assertNotSame($newLongUrl, $url->fresh()->destination);
+    }
+
     public function test_update_validates_title_length(): void
     {
         $request = new Request(['title' => str_repeat('a', Url::TITLE_LENGTH + 1), 'long_url' => 'https://example.com']);
         $this->expectException(\Illuminate\Validation\ValidationException::class);
         (new DashboardController)->update($request, new Url);
+
+        $this->actingAs($user)->post(route('dboard.url.edit.store', $url->keyword), $request);
     }
 
     public function test_update_validates_long_url_is_url(): void
