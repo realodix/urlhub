@@ -2,9 +2,7 @@
 
 namespace Tests\Feature\AuthPage;
 
-use App\Http\Controllers\Dashboard\DashboardController;
 use App\Models\Url;
-use Illuminate\Http\Request;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
