@@ -53,7 +53,6 @@ class DashboardPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
-
         $response = $this->actingAs($url->author)
             ->from(route('dboard.url.edit.show', $url->keyword))
             ->post(route('dboard.url.edit.store', $url->keyword), [
@@ -90,32 +89,62 @@ class DashboardPageTest extends TestCase
 
     public function test_update_validates_title_length(): void
     {
-        $request = new Request(['title' => str_repeat('a', Url::TITLE_LENGTH + 1), 'long_url' => 'https://example.com']);
-        $this->expectException(\Illuminate\Validation\ValidationException::class);
-        (new DashboardController)->update($request, new Url);
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('dboard.url.edit.show', $url->keyword))
+            ->post(route('dboard.url.edit.store', $url->keyword), [
+                'title'    => str_repeat('a', Url::TITLE_LENGTH + 1),
+                'long_url' => 'https://laravel.com/',
+            ]);
 
-        $this->actingAs($user)->post(route('dboard.url.edit.store', $url->keyword), $request);
+        $response
+            ->assertRedirect(route('dboard.url.edit.show', $url->keyword))
+            ->assertSessionHasErrors('title');
     }
 
     public function test_update_validates_long_url_is_url(): void
     {
-        $request = new Request(['title' => 'Short title', 'long_url' => 'invalid-url']);
-        $this->expectException(\Illuminate\Validation\ValidationException::class);
-        (new DashboardController)->update($request, new Url);
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('dboard.url.edit.show', $url->keyword))
+            ->post(route('dboard.url.edit.store', $url->keyword), [
+                'title'    => 'Laravel',
+                'long_url' => 'invalid-url',
+            ]);
+
+        $response
+            ->assertRedirect(route('dboard.url.edit.show', $url->keyword))
+            ->assertSessionHasErrors('long_url');
     }
 
     public function test_update_validates_long_url_max_length(): void
     {
-        $request = new Request(['title' => 'Short title', 'long_url' => str_repeat('a', 65536)]);
-        $this->expectException(\Illuminate\Validation\ValidationException::class);
-        (new DashboardController)->update($request, new Url);
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('dboard.url.edit.show', $url->keyword))
+            ->post(route('dboard.url.edit.store', $url->keyword), [
+                'title'    => 'Laravel',
+                'long_url' => 'https://laravel.com/' . str_repeat('a', 65536),
+            ]);
+
+        $response
+            ->assertRedirect(route('dboard.url.edit.show', $url->keyword))
+            ->assertSessionHasErrors('long_url');
     }
 
     public function test_update_validates_long_url_not_blacklisted()
     {
         config(['urlhub.domain_blacklist' => ['t.co']]);
-        $request = new Request(['title' => 'Short title', 'long_url' => 'https://t.co/about']);
-        $this->expectException(\Illuminate\Validation\ValidationException::class);
-        (new DashboardController)->update($request, new Url);
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('dboard.url.edit.show', $url->keyword))
+            ->post(route('dboard.url.edit.store', $url->keyword), [
+                'title'    => 'Laravel',
+                'long_url' => 'https://t.co/about',
+            ]);
+
+        $response
+            ->assertRedirect(route('dboard.url.edit.show', $url->keyword))
+            ->assertSessionHasErrors('long_url');
     }
 }
