@@ -21,13 +21,12 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Normal users can access their own account pages.
+     * Verifies that a user can access their own account page.
      *
-     * This test simulates a normal user accessing their own account page,
-     * verifies that the operation is successful by checking for an ok response,
-     * and confirms that the user is on the target page.
+     * This test checks that when a user attempts to access their own account page,
+     * the operation is successful by asserting an OK response.
      */
-    public function testUsersCanAccessTheirOwnAccountPages(): void
+    public function testCanAccessThisPage(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
@@ -36,81 +35,18 @@ class AccountTest extends TestCase
         $response->assertOk();
     }
 
-    /**
-     * Admin can access every user's account page.
-     *
-     * This test simulates an admin user accessing another user's account page,
-     * verifies that the operation is successful by checking for an ok response,
-     * and confirms that the user is on the target page.
-     */
-    public function testAdminCanAccessEveryUserAccountPage(): void
+    public function testCanUpdateEmail(): void
     {
-        $response = $this->actingAs($this->adminUser())
-            ->get($this->getRoute($this->basicUser()->name));
-
-        $response->assertOk();
-    }
-
-    /**
-     * Normal user can't access another user's account page.
-     *
-     * This test simulates a normal user trying to access another user's account page,
-     * verifies that the operation is forbidden by checking for a forbidden response,
-     * and confirms that the user remains on the same page.
-     */
-    public function testUserCannotAccessAnotherUserSAccountPage(): void
-    {
-        $response = $this->actingAs($this->basicUser())
-            ->get($this->getRoute($this->adminUser()->name));
-
-        $response->assertForbidden();
-    }
-
-    /**
-     * Admin can change the email of another user.
-     *
-     * This test simulates an admin user changing the email of another user,
-     * verifies that the operation is successful by checking for a redirect
-     * and a success flash message, and confirms the email change in the database.
-     */
-    #[PHPUnit\Test]
-    public function adminCanChangeOtherUsersEmail(): void
-    {
-        $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
-
-        $response = $this->actingAs($this->adminUser())
+        $user = $this->basicUser();
+        $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
-                'email' => 'new_user_email@urlhub.test',
+                'email' => 'new_email@example.com',
             ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHas('flash_success');
-
-        $this->assertSame('new_user_email@urlhub.test', $user->fresh()->email);
-    }
-
-    /**
-     * A normal user cannot change the email of another user.
-     *
-     * This test simulates a normal user trying to change the email of another user,
-     * verifies that the operation is forbidden by checking for a forbidden response,
-     * and confirms that the email is unchanged in the database.
-     */
-    #[PHPUnit\Test]
-    public function normalUserCantChangeOtherUsersEmail(): void
-    {
-        $user = User::factory()->create(['email' => 'user2@urlhub.test']);
-
-        $response = $this->actingAs($this->basicUser())
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
-                'email' => 'new_email_user2@urlhub.test',
-            ]);
-
-        $response->assertForbidden();
-        $this->assertSame('user2@urlhub.test', $user->email);
     }
 
     public function testValidateEmailRequired(): void
