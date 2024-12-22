@@ -34,6 +34,10 @@ class ChangePasswordTest extends TestCase
         return route('user.password.store', $value);
     }
 
+    /**
+     * Test that a user can successfully change their password when providing
+     * correct current and new password credentials.
+     */
     #[PHPUnit\Test]
     public function changePasswordWithCorrectCredentials(): void
     {
@@ -54,6 +58,13 @@ class ChangePasswordTest extends TestCase
         );
     }
 
+    /**
+     * Admin can change the password of all users.
+     *
+     * This test is almost the same as changePasswordWithCorrectCredentials, but
+     * it's here to explicitly test that an Admin can change the password of all
+     * users.
+     */
     #[PHPUnit\Test]
     public function adminCanChangeThePasswordOfAllUsers(): void
     {
@@ -75,6 +86,34 @@ class ChangePasswordTest extends TestCase
         );
     }
 
+    /**
+     * A normal user can't change the password of another user.
+     */
+    #[PHPUnit\Test]
+    public function normalUserCantChangeOtherUsersPassword(): void
+    {
+        $response = $this->actingAs($this->basicUser())
+            ->from($this->getRoute($this->user->name))
+            ->post($this->postRoute($this->user->name), [
+                'current_password' => self::$adminPass,
+                'new_password'     => 'new-awesome-password',
+                'new_password_confirmation' => 'new-awesome-password',
+            ]);
+
+        $response->assertForbidden();
+        $this->assertFalse(
+            Hash::check('new-awesome-password', $this->user->fresh()->password),
+        );
+    }
+
+    /**
+     * Test that a user cannot change their password if the current password is incorrect.
+     *
+     * This test ensures that a password change request fails when the provided
+     * current password does not match the actual current password of the user.
+     * It verifies that an error is returned for the 'current_password' field
+     * and that the user's password remains unchanged.
+     */
     #[PHPUnit\Test]
     public function currentPasswordDoesNotMatch(): void
     {
