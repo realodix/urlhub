@@ -20,6 +20,11 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
+    /**
+     * Test that an admin can delete short URLs created by other users.
+     * The action should be allowed and the URL should be deleted,
+     * resulting in a redirect to the home route.
+     */
     public function testAdminCanDeleteUrLsCreatedByOtherUsers(): void
     {
         $url = Url::factory()->create();
@@ -31,6 +36,10 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
+    /**
+     * When an admin tries to delete a short URL created by a guest user,
+     * the action should be allowed and the URL should be deleted.
+     */
     public function testAdminCanDeleteUrlsCreatedByGuest(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
@@ -42,6 +51,10 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
+    /**
+     * When a normal user tries to delete a short URL created by another user,
+     * the action should be forbidden and the URL should not be deleted.
+     */
     public function testUserCannotDeleteUrlsCreatedByOtherUsers(): void
     {
         $url = Url::factory()->create();
@@ -53,6 +66,10 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(1, Url::all());
     }
 
+    /**
+     * When a normal user tries to delete a short URL created by a guest user,
+     * the action should be forbidden and the URL should not be deleted.
+     */
     public function testUserCannotDeleteUrlsCreatedByGuest(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
@@ -64,6 +81,10 @@ class DeleteShortLinkTest extends TestCase
         $this->assertCount(1, Url::all());
     }
 
+    /**
+     * Test that guest users cannot delete any short URLs, regardless of who created
+     * it, including themself.
+     */
     public function testGuestCannotDeleteContent(): void
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);

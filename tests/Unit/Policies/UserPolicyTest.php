@@ -117,7 +117,7 @@ class UserPolicyTest extends TestCase
     }
 
     /**
-     * Normal user cant access other user's change password page.
+     * Normal user can't access other user's change password page.
      */
     #[PHPUnit\Test]
     public function normalUserCantAccessOtherUsersChangePasswordPage(): void

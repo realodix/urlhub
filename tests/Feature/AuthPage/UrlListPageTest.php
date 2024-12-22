@@ -65,6 +65,9 @@ class UrlListPageTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
+    /**
+     * Normal users can't delete other users' URLs.
+     */
     #[PHPUnit\Test]
     public function auNormalUserCantDelete(): void
     {
