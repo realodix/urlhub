@@ -49,6 +49,8 @@ class DashboardController extends Controller
      */
     public function update(Request $request, Url $url)
     {
+        Gate::authorize('updateUrl', $url);
+
         $request->validate([
             'title'    => ['max:' . Url::TITLE_LENGTH],
             'long_url' => [
