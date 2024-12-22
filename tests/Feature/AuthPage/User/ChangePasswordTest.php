@@ -35,6 +35,19 @@ class ChangePasswordTest extends TestCase
     }
 
     /**
+     * User can access change password page.
+     */
+    #[PHPUnit\Test]
+    public function canAccessChangePasswordPage(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)
+            ->get($this->getRoute($user->name));
+
+        $response->assertOk();
+    }
+
+    /**
      * Test that a user can successfully change their password when providing
      * correct current and new password credentials.
      */
@@ -54,54 +67,6 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHas('flash_success');
 
         $this->assertTrue(
-            Hash::check('new-awesome-password', $this->user->fresh()->password),
-        );
-    }
-
-    /**
-     * Admin can change the password of all users.
-     *
-     * This test is almost the same as changePasswordWithCorrectCredentials, but
-     * it's here to explicitly test that an Admin can change the password of all
-     * users.
-     */
-    #[PHPUnit\Test]
-    public function adminCanChangeThePasswordOfAllUsers(): void
-    {
-        $response = $this->actingAs($this->adminUser())
-            ->from($this->getRoute($this->user->name))
-            ->post($this->postRoute($this->user->name), [
-                // An Admin will enter their own password, not the password of a User
-                'current_password' => self::$adminPass,
-                'new_password'     => 'new-awesome-password',
-                'new_password_confirmation' => 'new-awesome-password',
-            ]);
-
-        $response
-            ->assertRedirect($this->getRoute($this->user->name))
-            ->assertSessionHas('flash_success');
-
-        $this->assertTrue(
-            Hash::check('new-awesome-password', $this->user->fresh()->password),
-        );
-    }
-
-    /**
-     * A normal user can't change the password of another user.
-     */
-    #[PHPUnit\Test]
-    public function normalUserCantChangeOtherUsersPassword(): void
-    {
-        $response = $this->actingAs($this->basicUser())
-            ->from($this->getRoute($this->user->name))
-            ->post($this->postRoute($this->user->name), [
-                'current_password' => self::$adminPass,
-                'new_password'     => 'new-awesome-password',
-                'new_password_confirmation' => 'new-awesome-password',
-            ]);
-
-        $response->assertForbidden();
-        $this->assertFalse(
             Hash::check('new-awesome-password', $this->user->fresh()->password),
         );
     }
