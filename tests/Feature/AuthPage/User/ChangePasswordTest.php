@@ -35,6 +35,49 @@ class ChangePasswordTest extends TestCase
     }
 
     /**
+     * User can access change password page.
+     */
+    #[PHPUnit\Test]
+    public function canAccessChangePasswordPage(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)
+            ->get($this->getRoute($user->name));
+
+        $response->assertOk();
+    }
+
+    /**
+     * Admin users can access other user's change password page.
+     *
+     * This test simulates an admin user accessing the change password page of
+     * another user, verifies that the operation is successful by checking for
+     * a successful response.
+     */
+    #[PHPUnit\Test]
+    public function adminCanAccessOtherUsersChangePasswordPage(): void
+    {
+        $response = $this->actingAs($this->adminUser())
+            ->get($this->getRoute($this->basicUser()->name));
+        $response->assertOk();
+    }
+
+    /**
+     * Basic users can't access other user's change password page.
+     *
+     * This test simulates a normal user trying to access the change password
+     * page of an admin user, verifies that the operation is forbidden by
+     * checking for a forbidden response.
+     */
+    #[PHPUnit\Test]
+    public function basicUserCantAccessOtherUsersChangePasswordPage(): void
+    {
+        $response = $this->actingAs($this->basicUser())
+            ->get($this->getRoute($this->adminUser()->name));
+        $response->assertForbidden();
+    }
+
+    /**
      * Test that a user can successfully change their password when providing
      * correct current and new password credentials.
      */
@@ -61,12 +104,13 @@ class ChangePasswordTest extends TestCase
     /**
      * Admin can change the password of all users.
      *
-     * This test is almost the same as changePasswordWithCorrectCredentials, but
-     * it's here to explicitly test that an Admin can change the password of all
-     * users.
+     * This test simulates an admin user changing the password of another user,
+     * verifies that the operation is successful by checking for a redirect
+     * and a success flash message, and confirms the password change in the
+     * database.
      */
     #[PHPUnit\Test]
-    public function adminCanChangeThePasswordOfAllUsers(): void
+    public function adminCanChangeOtherUsersPassword(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($this->user->name))
@@ -87,15 +131,19 @@ class ChangePasswordTest extends TestCase
     }
 
     /**
-     * A normal user can't change the password of another user.
+     * Basic users can't change the password of other users.
+     *
+     * This test simulates a basic user trying to change the password of another
+     * user, verifies that the operation is forbidden by checking for a forbidden
+     * response, and confirms that the password is unchanged in the database.
      */
     #[PHPUnit\Test]
-    public function normalUserCantChangeOtherUsersPassword(): void
+    public function basicUserCantChangeOtherUsersPassword(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->from($this->getRoute($this->user->name))
             ->post($this->postRoute($this->user->name), [
-                'current_password' => self::$adminPass,
+                'current_password' => $this->user->password,
                 'new_password'     => 'new-awesome-password',
                 'new_password_confirmation' => 'new-awesome-password',
             ]);
