@@ -13,7 +13,7 @@ class UrlListPageTest extends TestCase
     /**
      * Admin users can access the link table page.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::view()
+     * @see App\Http\Controllers\Dashboard\DashboardController::allUrlView()
      */
     #[PHPUnit\Test]
     public function adminCasAccessLinkTablePage(): void
@@ -26,7 +26,7 @@ class UrlListPageTest extends TestCase
     /**
      * Normal users can't access the link table page.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::view()
+     * @see App\Http\Controllers\Dashboard\DashboardController::allUrlView()
      */
     #[PHPUnit\Test]
     public function basicUserCantAccessLinkTablePage(): void

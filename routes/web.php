@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AboutSystemController;
-use App\Http\Controllers\Dashboard\AllUrlController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\User\ChangePasswordController;
 use App\Http\Controllers\Dashboard\User\UserController;
@@ -23,9 +22,9 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('dboard.url.edit.store');
 
         // All URLs
-        Route::get('/links', [AllUrlController::class, 'view'])->name('dashboard.allurl');
-        Route::get('/links/u/guest', [AllUrlController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
-        Route::get('/links/u/{user:name}', [AllUrlController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
+        Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dashboard.allurl');
+        Route::get('/links/u/guest', [DashboardController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
+        Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {

@@ -13,7 +13,7 @@ class UrlListPageSingleUserTest extends TestCase
     /**
      * Admin can access user links and guest links table page.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::userLinkView()
+     * @see App\Http\Controllers\Dashboard\DashboardController::userLinkView()
      */
     #[PHPUnit\Test]
     public function adminCanAccessUserLinksTablePage(): void
@@ -28,7 +28,7 @@ class UrlListPageSingleUserTest extends TestCase
     /**
      * Non admin users can't access user links and guest links table page.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::userLinkView()
+     * @see App\Http\Controllers\Dashboard\DashboardController::userLinkView()
      */
     #[PHPUnit\Test]
     public function basicUsersCantAccessUserLinksTablePage(): void
@@ -43,7 +43,7 @@ class UrlListPageSingleUserTest extends TestCase
     /**
      * Test that an admin user can access the URL list page of a guest user.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::guestLinkView()
+     * @see App\Http\Controllers\Dashboard\DashboardController::guestLinkView()
      */
     #[PHPUnit\Test]
     public function adminCanAccessTheUrlListPageOfAGuestUser(): void
@@ -56,7 +56,7 @@ class UrlListPageSingleUserTest extends TestCase
     /**
      * Non admin users can't access guest links table page.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::guestLinkView()
+     * @see App\Http\Controllers\Dashboard\DashboardController::guestLinkView()
      */
     #[PHPUnit\Test]
     public function basicUsersCantAccessTheUrlListPageOfAGuestUser(): void
