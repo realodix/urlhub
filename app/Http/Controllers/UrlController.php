@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use App\Services\QrCodeService;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
 
@@ -56,6 +57,49 @@ class UrlController extends Controller implements HasMiddleware
     }
 
     /**
+     * Show shortened url details page.
+     *
+     * @param Url $url \App\Models\Url
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function edit(Url $url)
+    {
+        Gate::authorize('updateUrl', $url);
+
+        return view('backend.edit', ['url' => $url]);
+    }
+
+    /**
+     * Update the destination URL.
+     *
+     * @param Request $request \Illuminate\Http\Request
+     * @param Url $url \App\Models\Url
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(Request $request, Url $url)
+    {
+        Gate::authorize('updateUrl', $url);
+
+        $request->validate([
+            'title'    => ['max:' . Url::TITLE_LENGTH],
+            'long_url' => [
+                'required', 'url', 'max:65535',
+                new \App\Rules\NotBlacklistedDomain,
+            ],
+        ]);
+
+        $url->update([
+            'destination' => $request->long_url,
+            'title'       => $request->title,
+        ]);
+
+        return to_route('dashboard')
+            ->with('flash_success', __('Link changed successfully !'));
+    }
+
+    /**
      * Delete a shortened URL on user request.
      *
      * @param Url $url \App\Models\Url
@@ -69,6 +113,12 @@ class UrlController extends Controller implements HasMiddleware
 
         $url->delete();
 
-        return to_route('home');
+        // if requst from shorten url details page, return to home
+        if (request()->routeIs('su_delete')) {
+            return to_route('home');
+        }
+
+        return redirect()->back()
+            ->with('flash_success', __('Link was successfully deleted.'));
     }
 }

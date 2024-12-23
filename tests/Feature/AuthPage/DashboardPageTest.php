@@ -26,7 +26,7 @@ class DashboardPageTest extends TestCase
     /**
      * Test that an authenticated user can delete a link.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::delete()
+     * @see App\Http\Controllers\UrlController::delete()
      */
     #[PHPUnit\Test]
     public function canDelete(): void
@@ -45,7 +45,7 @@ class DashboardPageTest extends TestCase
     /**
      * Test that an authorized user can access the edit page.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::edit()
+     * @see App\Http\Controllers\UrlController::edit()
      */
     #[PHPUnit\Test]
     public function canAccessEditLinkPage(): void
@@ -59,7 +59,7 @@ class DashboardPageTest extends TestCase
     /**
      * Test that an authorized user can update a link.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::update()
+     * @see App\Http\Controllers\UrlController::update()
      */
     #[PHPUnit\Test]
     public function canUpdateLink(): void
@@ -80,7 +80,7 @@ class DashboardPageTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\Dashboard\DashboardController::update()
+     * @see App\Http\Controllers\UrlController::update()
      */
     public function test_update_validates_title_length(): void
     {
@@ -98,7 +98,7 @@ class DashboardPageTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\Dashboard\DashboardController::update()
+     * @see App\Http\Controllers\UrlController::update()
      */
     public function test_update_validates_long_url_is_url(): void
     {
@@ -116,7 +116,7 @@ class DashboardPageTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\Dashboard\DashboardController::update()
+     * @see App\Http\Controllers\UrlController::update()
      */
     public function test_update_validates_long_url_max_length(): void
     {
@@ -134,7 +134,7 @@ class DashboardPageTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\Dashboard\DashboardController::update()
+     * @see App\Http\Controllers\UrlController::update()
      */
     public function test_update_validates_long_url_not_blacklisted()
     {
