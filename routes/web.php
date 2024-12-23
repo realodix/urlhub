@@ -22,9 +22,9 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('link_edit.store');
 
         // All URLs
-        Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dashboard.allurl');
-        Route::get('/links/u/guest', [DashboardController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
-        Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
+        Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
+        Route::get('/links/u/guest', [DashboardController::class, 'guestLinkView'])->name('dboard.allurl.u-guest');
+        Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
@@ -37,7 +37,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         });
 
         // About Page
-        Route::get('/about', [AboutSystemController::class, 'view'])->name('dashboard.about');
+        Route::get('/about', [AboutSystemController::class, 'view'])->name('dboard.about');
     });
 });
 

@@ -15,14 +15,14 @@
         </a>
 
         @role('admin')
-            <a href="{{ route('dashboard.allurl') }}"
+            <a href="{{ route('dboard.allurl') }}"
                 class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
-                    {{ ($routeName === 'dashboard.allurl') ?
+                    {{ ($routeName === 'dboard.allurl') ?
                     'text-primary-700 !border-primary-500' :
                     'text-black hover:border-primary-100' }}"
             >
                 @svg('icon-link', 'mr-1')
-                <span class="@if ($routeName === 'dashboard.allurl') text-black @endif">{{ __('URL List') }}</span>
+                <span class="@if ($routeName === 'dboard.allurl') text-black @endif">{{ __('URL List') }}</span>
             </a>
             <a href="{{ route('user.index') }}"
                 class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
@@ -33,14 +33,14 @@
                 @svg('icon-people', 'mr-1')
                 <span class="@if ($routeName === 'user.index') text-black @endif">{{ __('User List') }}</span>
             </a>
-            <a href="{{ route('dashboard.about') }}"
+            <a href="{{ route('dboard.about') }}"
                 class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
-                    {{ ($routeName === 'dashboard.about') ?
+                    {{ ($routeName === 'dboard.about') ?
                     'text-primary-700 !border-primary-500' :
                     'text-black hover:border-primary-100' }}"
             >
                 @svg('icon-about-system', 'mr-1')
-                <span class="@if ($routeName === 'dashboard.about') text-black @endif">{{ __('About') }}</span>
+                <span class="@if ($routeName === 'dboard.about') text-black @endif">{{ __('About') }}</span>
             </a>
         @endrole
     </div>

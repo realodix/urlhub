@@ -19,7 +19,7 @@ class UrlListPageTest extends TestCase
     public function adminCasAccessLinkTablePage(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dashboard.allurl'));
+            ->get(route('dboard.allurl'));
         $response->assertOk();
     }
 
@@ -32,7 +32,7 @@ class UrlListPageTest extends TestCase
     public function basicUserCantAccessLinkTablePage(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get(route('dashboard.allurl'));
+            ->get(route('dboard.allurl'));
         $response->assertForbidden();
     }
 
@@ -51,10 +51,10 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
-            ->from(route('dashboard.allurl'))
+            ->from(route('dboard.allurl'))
             ->get(route('link_delete', $url->keyword));
 
-        $response->assertRedirectToRoute('dashboard.allurl')
+        $response->assertRedirectToRoute('dboard.allurl')
             ->assertSessionHas('flash_success');
         $this->assertCount(0, Url::all());
     }
@@ -69,7 +69,7 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
-            ->from(route('dashboard.allurl'))
+            ->from(route('dboard.allurl'))
             ->get(route('link_delete', $url->keyword));
 
         $response->assertForbidden();

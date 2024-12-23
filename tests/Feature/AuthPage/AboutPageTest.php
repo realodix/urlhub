@@ -12,7 +12,7 @@ class AboutPageTest extends TestCase
     public function auAdminCanAccessThisPage(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dashboard.about'));
+            ->get(route('dboard.about'));
 
         $response->assertOk();
     }
@@ -21,7 +21,7 @@ class AboutPageTest extends TestCase
     public function auNormalUserCantAccessThisPage(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get(route('dashboard.about'));
+            ->get(route('dboard.about'));
 
         $response->assertForbidden();
     }
