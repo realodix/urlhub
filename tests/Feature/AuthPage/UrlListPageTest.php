@@ -36,7 +36,6 @@ class UrlListPageTest extends TestCase
         $response->assertForbidden();
     }
 
-
     /**
      * Test that an admin user can delete another user's link.
      *
