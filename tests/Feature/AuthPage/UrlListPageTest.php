@@ -86,7 +86,7 @@ class UrlListPageTest extends TestCase
      * @see App\Http\Controllers\Dashboard\DashboardController::edit()
      */
     #[PHPUnit\Test]
-    public function adminCanAccessAnotherUsersLinkEditPage(): void
+    public function adminCanAccessOtherUsersLinkEditPage(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
@@ -118,7 +118,7 @@ class UrlListPageTest extends TestCase
      * @see App\Http\Controllers\Dashboard\DashboardController::edit()
      */
     #[PHPUnit\Test]
-    public function basicUserCantAccessOotherUsersLinkEditPage(): void
+    public function basicUserCantAccessOtherUsersLinkEditPage(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())

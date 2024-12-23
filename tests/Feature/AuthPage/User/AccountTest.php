@@ -63,7 +63,7 @@ class AccountTest extends TestCase
      * @see App\Http\Controllers\Dashboard\User\UserController::edit()
      */
     #[PHPUnit\Test]
-    public function basicUserCantAccessAnotherUsersAccountPage(): void
+    public function basicUserCantAccessOtherUsersAccountPage(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get($this->getRoute($this->adminUser()->name));
