@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 #[PHPUnit\Group('auth-page')]
 #[PHPUnit\Group('user-page')]
-class UserListTest extends TestCase
+class UserListPageTest extends TestCase
 {
     /**
      * A user with the admin role should be able to access the user list page.
