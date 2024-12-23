@@ -4,14 +4,19 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Url;
+use App\Models\User;
 use App\Models\Visit;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
-class DashboardController extends Controller
+class DashboardController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [new Middleware('role:admin', except: ['view'])];
+    }
+
     /**
-     * Show all user short URLs.
+     * Show the dashboard and the URL list.
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -26,63 +31,35 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show shortened url details page.
+     * Show all short URLs created by all users.
      *
-     * @param Url $url \App\Models\Url
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit(Url $url)
+    public function allUrlView()
     {
-        Gate::authorize('updateUrl', $url);
-
-        return view('backend.edit', ['url' => $url]);
+        return view('backend.url-list');
     }
 
     /**
-     * Update the destination URL.
+     * Show all short links from specific user.
      *
-     * @param Request $request \Illuminate\Http\Request
-     * @param Url $url \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Contracts\View\View
      */
-    public function update(Request $request, Url $url)
+    public function userLinkView(string $author)
     {
-        Gate::authorize('updateUrl', $url);
-
-        $request->validate([
-            'title'    => ['max:' . Url::TITLE_LENGTH],
-            'long_url' => [
-                'required', 'url', 'max:65535',
-                new \App\Rules\NotBlacklistedDomain,
-            ],
+        return view('backend.url-list-of-user', [
+            'authorName' => $author,
+            'authorId'   => User::where('name', $author)->first()->id,
         ]);
-
-        $url->update([
-            'destination' => $request->long_url,
-            'title'       => $request->title,
-        ]);
-
-        return to_route('dashboard')
-            ->with('flash_success', __('Link changed successfully !'));
     }
 
     /**
-     * Delete shortened URLs.
+     * Show all short URLs created by guest.
      *
-     * @param Url $url \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Contracts\View\View
      */
-    public function delete(Url $url)
+    public function guestLinkView()
     {
-        Gate::authorize('forceDelete', $url);
-
-        $url->delete();
-
-        return redirect()->back()
-            ->with('flash_success', __('Link was successfully deleted.'));
+        return view('backend.url-list-of-guest');
     }
 }

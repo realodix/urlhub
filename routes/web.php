@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AboutSystemController;
-use App\Http\Controllers\Dashboard\AllUrlController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\User\ChangePasswordController;
 use App\Http\Controllers\Dashboard\User\UserController;
@@ -18,14 +17,14 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware(['auth', 'auth.session'])->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('links/{url:keyword}/delete', [DashboardController::class, 'delete'])->name('dboard.url.delete');
-        Route::get('links/{url:keyword}/edit', [DashboardController::class, 'edit'])->name('dboard.url.edit.show');
-        Route::post('links/{url:keyword}/edit', [DashboardController::class, 'update'])->name('dboard.url.edit.store');
+        Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('dboard.url.delete');
+        Route::get('links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('dboard.url.edit.show');
+        Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('dboard.url.edit.store');
 
         // All URLs
-        Route::get('/links', [AllUrlController::class, 'view'])->name('dashboard.allurl');
-        Route::get('/links/u/guest', [AllUrlController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
-        Route::get('/links/u/{user:name}', [AllUrlController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
+        Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dashboard.allurl');
+        Route::get('/links/u/guest', [DashboardController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
+        Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {

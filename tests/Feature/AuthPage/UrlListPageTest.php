@@ -13,7 +13,7 @@ class UrlListPageTest extends TestCase
     /**
      * Admin users can access the link table page.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::view()
+     * @see App\Http\Controllers\Dashboard\DashboardController::allUrlView()
      */
     #[PHPUnit\Test]
     public function adminCasAccessLinkTablePage(): void
@@ -26,7 +26,7 @@ class UrlListPageTest extends TestCase
     /**
      * Normal users can't access the link table page.
      *
-     * @see App\Http\Controllers\Dashboard\AllUrlController::view()
+     * @see App\Http\Controllers\Dashboard\DashboardController::allUrlView()
      */
     #[PHPUnit\Test]
     public function basicUserCantAccessLinkTablePage(): void
@@ -44,7 +44,7 @@ class UrlListPageTest extends TestCase
      * database, and confirms that the operation is successful by checking for
      * a redirect response and a success flash message.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::delete()
+     * @see App\Http\Controllers\UrlController::delete()
      */
     #[PHPUnit\Test]
     public function adminCanDelete(): void
@@ -62,7 +62,7 @@ class UrlListPageTest extends TestCase
     /**
      * Normal users can't delete other users' URLs.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::delete()
+     * @see App\Http\Controllers\UrlController::delete()
      */
     #[PHPUnit\Test]
     public function basicUserCantDelete(): void
@@ -83,7 +83,7 @@ class UrlListPageTest extends TestCase
      * of another user, verifies that the operation is successful by checking for
      * a successful response.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::edit()
+     * @see App\Http\Controllers\UrlController::edit()
      */
     #[PHPUnit\Test]
     public function adminCanAccessOtherUsersLinkEditPage(): void
@@ -101,7 +101,7 @@ class UrlListPageTest extends TestCase
      * of a guest user, verifies that the operation is successful by checking for
      * a successful response.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::edit()
+     * @see App\Http\Controllers\UrlController::edit()
      */
     #[PHPUnit\Test]
     public function adminCanAccessGuestUsersLinkEditPage(): void
@@ -115,7 +115,7 @@ class UrlListPageTest extends TestCase
     /**
      * Basic users can't access other users' link edit page.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::edit()
+     * @see App\Http\Controllers\UrlController::edit()
      */
     #[PHPUnit\Test]
     public function basicUserCantAccessOtherUsersLinkEditPage(): void
@@ -129,7 +129,7 @@ class UrlListPageTest extends TestCase
     /**
      * Admin can update another user's link.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::update()
+     * @see App\Http\Controllers\UrlController::update()
      */
     #[PHPUnit\Test]
     public function adminCanUpdateOtherUsersLink(): void
@@ -156,7 +156,7 @@ class UrlListPageTest extends TestCase
      * verifies that the operation is forbidden by checking for a forbidden response,
      * and confirms that the link is not updated.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::update()
+     * @see App\Http\Controllers\UrlController::update()
      */
     #[PHPUnit\Test]
     public function basicUserCantUpdateOtherUsersLink(): void
