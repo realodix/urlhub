@@ -17,9 +17,9 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware(['auth', 'auth.session'])->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('dboard.url.delete');
-        Route::get('links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('dboard.url.edit.show');
-        Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('dboard.url.edit.store');
+        Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('dboard.link_delete');
+        Route::get('links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('dboard.link_edit.show');
+        Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('dboard.link_edit.store');
 
         // All URLs
         Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dashboard.allurl');

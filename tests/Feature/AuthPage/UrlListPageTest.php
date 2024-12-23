@@ -52,7 +52,7 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
             ->from(route('dashboard.allurl'))
-            ->get(route('dboard.url.delete', $url->keyword));
+            ->get(route('dboard.link_delete', $url->keyword));
 
         $response->assertRedirectToRoute('dashboard.allurl')
             ->assertSessionHas('flash_success');
@@ -70,7 +70,7 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
             ->from(route('dashboard.allurl'))
-            ->get(route('dboard.url.delete', $url->keyword));
+            ->get(route('dboard.link_delete', $url->keyword));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());
@@ -90,7 +90,7 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dboard.url.edit.show', $url->keyword));
+            ->get(route('dboard.link_edit.show', $url->keyword));
         $response->assertOk();
     }
 
@@ -108,7 +108,7 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dboard.url.edit.show', $url->keyword));
+            ->get(route('dboard.link_edit.show', $url->keyword));
         $response->assertOk();
     }
 
@@ -122,7 +122,7 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
-            ->get(route('dboard.url.edit.show', $url->keyword));
+            ->get(route('dboard.link_edit.show', $url->keyword));
         $response->assertForbidden();
     }
 
@@ -137,8 +137,8 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->adminUser())
-            ->from(route('dboard.url.edit.show', $url->keyword))
-            ->post(route('dboard.url.edit.store', $url->keyword), [
+            ->from(route('dboard.link_edit.show', $url->keyword))
+            ->post(route('dboard.link_edit.store', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);
@@ -164,8 +164,8 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->basicUser())
-            ->from(route('dboard.url.edit.show', $url->keyword))
-            ->post(route('dboard.url.edit.store', $url->keyword), [
+            ->from(route('dboard.link_edit.show', $url->keyword))
+            ->post(route('dboard.link_edit.store', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);
