@@ -61,7 +61,7 @@ class UrlTest extends TestCase
     {
         $longUrl = 'https://example.com';
 
-        $this->post(route('link_create'), ['long_url' => $longUrl]);
+        $this->post(route('link.create'), ['long_url' => $longUrl]);
 
         $url = Url::whereDestination($longUrl)->first();
 

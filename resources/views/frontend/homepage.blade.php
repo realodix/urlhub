@@ -25,7 +25,7 @@
 
         <div class="flex flex-wrap justify-center mt-12 px-4 lg:px-0">
             <div class="w-full max-w-4xl">
-                <form method="post" action="{{ route('link_create') }}" class="mb-4 mt-12" id="formUrl">
+                <form method="post" action="{{ route('link.create') }}" class="mb-4 mt-12" id="formUrl">
                 @csrf
                     <div class="mt-1 text-center">
                         <input name="long_url" value="{{ old('long_url') }}" placeholder="{{ __('Shorten your link') }}"

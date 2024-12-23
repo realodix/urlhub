@@ -15,7 +15,7 @@ class CreateShortLinkTest extends TestCase
     public function testShortenUrl(): void
     {
         $longUrl = 'https://laravel.com';
-        $response = $this->post(route('link_create'), [
+        $response = $this->post(route('link.create'), [
             'long_url' => $longUrl,
         ]);
 
@@ -36,7 +36,7 @@ class CreateShortLinkTest extends TestCase
 
         $customKey = 'foobar';
         config(['urlhub.keyword_length' => strlen($customKey) + 1]);
-        $response = $this->post(route('link_create'), [
+        $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
@@ -46,7 +46,7 @@ class CreateShortLinkTest extends TestCase
 
         $customKey = 'barfoo';
         config(['urlhub.keyword_length' => strlen($customKey) - 1]);
-        $response = $this->post(route('link_create'), [
+        $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
         ]);
@@ -68,7 +68,7 @@ class CreateShortLinkTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->post(route('link_create'), [
+        $response = $this->post(route('link.create'), [
             'long_url'   => 'https://laravel-news.com',
             'custom_key' => $url->keyword,
         ]);
@@ -89,7 +89,7 @@ class CreateShortLinkTest extends TestCase
         $url = Url::factory()->create();
 
         $response = $this->actingAs($this->basicUser())
-            ->post(route('link_create'), [
+            ->post(route('link.create'), [
                 'long_url'   => 'https://laravel-news.com',
                 'custom_key' => $url->keyword,
             ]);

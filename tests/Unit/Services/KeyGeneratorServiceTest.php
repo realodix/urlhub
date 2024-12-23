@@ -78,7 +78,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.keyword_length' => 10]);
         $longUrl = 'https://t.co';
         $customKey = 'tco';
-        $response = $this->post(route('link_create'), [
+        $response = $this->post(route('link.create'), [
             'long_url' => $longUrl,
             'custom_key' => $customKey,
         ]);

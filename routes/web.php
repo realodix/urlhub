@@ -9,7 +9,7 @@ use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
-Route::post('/shorten', [UrlController::class, 'create'])->name('link_create');
+Route::post('/shorten', [UrlController::class, 'create'])->name('link.create');
 Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('link_detail');
 Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('link_detail.delete');
 
