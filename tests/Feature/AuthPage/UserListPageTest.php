@@ -20,7 +20,6 @@ class UserListPageTest extends TestCase
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('user.index'));
-
         $response->assertOk();
     }
 
@@ -35,7 +34,6 @@ class UserListPageTest extends TestCase
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('user.index'));
-
         $response->assertForbidden();
     }
 }
