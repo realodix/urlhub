@@ -35,7 +35,7 @@ class UrlController extends Controller implements HasMiddleware
             'user_sign' => app(User::class)->signature(),
         ]);
 
-        return to_route('su_detail', $url->keyword);
+        return to_route('link_detail', $url->keyword);
     }
 
     /**
@@ -114,7 +114,7 @@ class UrlController extends Controller implements HasMiddleware
         $url->delete();
 
         // if requst from shorten url details page, return to home
-        if (request()->routeIs('su_delete')) {
+        if (request()->routeIs('link_delete')) {
             return to_route('home');
         }
 

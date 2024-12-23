@@ -88,7 +88,7 @@ class BaseUrlTable extends PowerGridComponent
             })
             ->add('action', function (Url $url) {
                 return view('components.table.action-button', [
-                    'detail_link' => route('su_detail', $url->keyword),
+                    'detail_link' => route('link_detail', $url->keyword),
                     'edit_link'   => route('dboard.url.edit.show', $url),
                     'delete_link' => route('dboard.url.delete', $url),
                 ])->render();

@@ -42,7 +42,7 @@
                             class="btn btn-secondary mr-6">
                             @svg('icon-edit')
                         </a>
-                        <a href="{{ route('su_delete', $url) }}" title="{{ __('Delete') }}"
+                        <a href="{{ route('link_delete', $url) }}" title="{{ __('Delete') }}"
                             class="btn btn-secondary hover:!bg-red-100 hover:!text-red-800">
                             @svg('icon-trash')
                         </a>

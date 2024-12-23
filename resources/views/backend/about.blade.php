@@ -133,7 +133,7 @@
                         <code>
 
                         @foreach ($reservedActiveKeyList as $reservedActiveKey)
-                            <a href="{{ route('su_detail', $reservedActiveKey) }}"
+                            <a href="{{ route('link_detail', $reservedActiveKey) }}"
                                 target="_blank"
                                 class="underline decoration-dotted">{{ $reservedActiveKey }}</a>,
                         @endforeach
