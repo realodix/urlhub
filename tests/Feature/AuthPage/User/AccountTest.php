@@ -106,7 +106,7 @@ class AccountTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect(route('user.edit', $user->name))
+            ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHas('flash_success');
 
         $this->assertSame('new_user_email@urlhub.test', $user->fresh()->email);
