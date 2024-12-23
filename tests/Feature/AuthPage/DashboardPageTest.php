@@ -34,7 +34,7 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('dashboard'))
-            ->get(route('link_delete', $url->keyword));
+            ->get(route('link.delete', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -52,7 +52,7 @@ class DashboardPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->get(route('link_edit.show', $url->keyword));
+            ->get(route('link.edit', $url->keyword));
         $response->assertOk();
     }
 
@@ -67,8 +67,8 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($url->author)
-            ->from(route('link_edit.show', $url->keyword))
-            ->post(route('link_edit.store', $url->keyword), [
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);
@@ -86,14 +86,14 @@ class DashboardPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->from(route('link_edit.show', $url->keyword))
-            ->post(route('link_edit.store', $url->keyword), [
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
                 'title'    => str_repeat('a', Url::TITLE_LENGTH + 1),
                 'long_url' => 'https://laravel.com/',
             ]);
 
         $response
-            ->assertRedirect(route('link_edit.show', $url->keyword))
+            ->assertRedirect(route('link.edit', $url->keyword))
             ->assertSessionHasErrors('title');
     }
 
@@ -104,14 +104,14 @@ class DashboardPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->from(route('link_edit.show', $url->keyword))
-            ->post(route('link_edit.store', $url->keyword), [
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
                 'title'    => 'Laravel',
                 'long_url' => 'invalid-url',
             ]);
 
         $response
-            ->assertRedirect(route('link_edit.show', $url->keyword))
+            ->assertRedirect(route('link.edit', $url->keyword))
             ->assertSessionHasErrors('long_url');
     }
 
@@ -122,14 +122,14 @@ class DashboardPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->from(route('link_edit.show', $url->keyword))
-            ->post(route('link_edit.store', $url->keyword), [
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
                 'title'    => 'Laravel',
                 'long_url' => 'https://laravel.com/' . str_repeat('a', 65536),
             ]);
 
         $response
-            ->assertRedirect(route('link_edit.show', $url->keyword))
+            ->assertRedirect(route('link.edit', $url->keyword))
             ->assertSessionHasErrors('long_url');
     }
 
@@ -141,14 +141,14 @@ class DashboardPageTest extends TestCase
         config(['urlhub.domain_blacklist' => ['t.co']]);
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->from(route('link_edit.show', $url->keyword))
-            ->post(route('link_edit.store', $url->keyword), [
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
                 'title'    => 'Laravel',
                 'long_url' => 'https://t.co/about',
             ]);
 
         $response
-            ->assertRedirect(route('link_edit.show', $url->keyword))
+            ->assertRedirect(route('link.edit', $url->keyword))
             ->assertSessionHasErrors('long_url');
     }
 }

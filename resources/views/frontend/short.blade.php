@@ -38,7 +38,7 @@
 
                 @auth
                     @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
-                        <a href="{{ route('link_edit.show', $url) }}" title="{{ __('Edit') }}"
+                        <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}"
                             class="btn btn-secondary mr-6">
                             @svg('icon-edit')
                         </a>
