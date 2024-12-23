@@ -48,7 +48,7 @@ class AccountTest extends TestCase
     public function adminCanAccessOtherUsersAccountPage(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get(route('user.edit', $this->basicUser()->name));
+            ->get($this->getRoute($this->basicUser()->name));
 
         $response->assertOk();
     }
@@ -66,7 +66,7 @@ class AccountTest extends TestCase
     public function basicUserCantAccessAnotherUsersAccountPage(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get(route('user.edit', $this->adminUser()->name));
+            ->get($this->getRoute($this->adminUser()->name));
 
         $response->assertForbidden();
     }
@@ -100,8 +100,8 @@ class AccountTest extends TestCase
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
 
         $response = $this->actingAs($this->adminUser())
-            ->from(route('user.edit', $user->name))
-            ->post(route('user.update', $user->name), [
+            ->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->name), [
                 'email' => 'new_user_email@urlhub.test',
             ]);
 
@@ -127,8 +127,8 @@ class AccountTest extends TestCase
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
         $response = $this->actingAs($this->basicUser())
-            ->from(route('user.edit', $user->name))
-            ->post(route('user.update', $user->name), [
+            ->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->name), [
                 'email' => 'new_email_user2@urlhub.test',
             ]);
 
