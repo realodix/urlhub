@@ -114,7 +114,7 @@ class UrlController extends Controller implements HasMiddleware
         $url->delete();
 
         // if requst from shorten url details page, return to home
-        if (request()->routeIs('link_delete')) {
+        if (request()->routeIs('link_detail.delete')) {
             return to_route('home');
         }
 

@@ -34,7 +34,7 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('dashboard'))
-            ->get(route('dboard.link_delete', $url->keyword));
+            ->get(route('link_delete', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')

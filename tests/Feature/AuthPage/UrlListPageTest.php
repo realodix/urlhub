@@ -52,7 +52,7 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
             ->from(route('dashboard.allurl'))
-            ->get(route('dboard.link_delete', $url->keyword));
+            ->get(route('link_delete', $url->keyword));
 
         $response->assertRedirectToRoute('dashboard.allurl')
             ->assertSessionHas('flash_success');
@@ -70,7 +70,7 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
             ->from(route('dashboard.allurl'))
-            ->get(route('dboard.link_delete', $url->keyword));
+            ->get(route('link_delete', $url->keyword));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());

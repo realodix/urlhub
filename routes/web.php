@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/shorten', [UrlController::class, 'create'])->name('link_create');
 Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('link_detail');
-Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('link_delete');
+Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('link_detail.delete');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware(['auth', 'auth.session'])->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('dboard.link_delete');
+        Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('link_delete');
         Route::get('links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('link_edit.show');
         Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('link_edit.store');
 
