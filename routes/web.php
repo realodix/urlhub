@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Dashboard\AboutSystemController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\User\ChangePasswordController;
 use App\Http\Controllers\Dashboard\User\UserController;
@@ -37,7 +36,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         });
 
         // About Page
-        Route::get('/about', [AboutSystemController::class, 'view'])->name('dboard.about');
+        Route::get('/about', [DashboardController::class, 'aboutView'])->name('dboard.about');
     });
 });
 

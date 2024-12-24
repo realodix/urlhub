@@ -62,4 +62,19 @@ class DashboardController extends Controller implements HasMiddleware
     {
         return view('backend.url-list-of-guest');
     }
+
+    /**
+     * Show about page.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function aboutView()
+    {
+        return view('backend.about', [
+            'url'   => app(\App\Models\Url::class),
+            'user'  => app(\App\Models\User::class),
+            'visit' => app(\App\Models\Visit::class),
+            'keyGenerator' => app(\App\Services\KeyGeneratorService::class),
+        ]);
+    }
 }
