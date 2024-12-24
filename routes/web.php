@@ -12,7 +12,7 @@ Route::post('/shorten', [UrlController::class, 'create'])->name('link.create');
 Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('link_detail');
 Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('link_detail.delete');
 
-Route::namespace('Dashboard')->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::middleware(['auth', 'auth.session'])->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
@@ -26,7 +26,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
         // User
-        Route::namespace('User')->prefix('user')->group(function () {
+        Route::prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'view'])->name('user.index');
             Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
             Route::post('{user:name}/edit', [UserController::class, 'update'])->name('user.update');
