@@ -9,22 +9,22 @@ use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
-Route::post('/shorten', [UrlController::class, 'create'])->name('su_create');
-Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('su_detail');
-Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('su_delete');
+Route::post('/shorten', [UrlController::class, 'create'])->name('link.create');
+Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('link_detail');
+Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('link_detail.delete');
 
 Route::namespace('Dashboard')->prefix('admin')->group(function () {
     Route::middleware(['auth', 'auth.session'])->group(function () {
         // Dashboard (My URLs)
         Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-        Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('dboard.url.delete');
-        Route::get('links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('dboard.url.edit.show');
-        Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('dboard.url.edit.store');
+        Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('link.delete');
+        Route::get('links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('link.edit');
+        Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('link.update');
 
         // All URLs
-        Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dashboard.allurl');
-        Route::get('/links/u/guest', [DashboardController::class, 'guestLinkView'])->name('dashboard.allurl.u-guest');
-        Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dashboard.allurl.u-user');
+        Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
+        Route::get('/links/u/guest', [DashboardController::class, 'guestLinkView'])->name('dboard.allurl.u-guest');
+        Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
         // User
         Route::namespace('User')->prefix('user')->group(function () {
@@ -37,7 +37,7 @@ Route::namespace('Dashboard')->prefix('admin')->group(function () {
         });
 
         // About Page
-        Route::get('/about', [AboutSystemController::class, 'view'])->name('dashboard.about');
+        Route::get('/about', [AboutSystemController::class, 'view'])->name('dboard.about');
     });
 });
 

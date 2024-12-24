@@ -18,7 +18,7 @@ class UrlControllerTest extends TestCase
     {
         $longUrl = 'https://laravel.com';
 
-        $this->post(route('su_create'), ['long_url' => $longUrl]);
+        $this->post(route('link.create'), ['long_url' => $longUrl]);
 
         $url = Url::whereDestination($longUrl)->first();
         $this->assertSame(null, $url->user_id);
@@ -35,7 +35,7 @@ class UrlControllerTest extends TestCase
         $longUrl = 'https://laravel.com';
 
         $this->actingAs($user)
-            ->post(route('su_create'), ['long_url' => $longUrl]);
+            ->post(route('link.create'), ['long_url' => $longUrl]);
 
         $url = Url::whereDestination($longUrl)->first();
         $this->assertSame($user->id, $url->user_id);
@@ -46,7 +46,7 @@ class UrlControllerTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->get(route('su_detail', $url->keyword));
+        $response = $this->get(route('link_detail', $url->keyword));
 
         $response->assertStatus(200);
     }

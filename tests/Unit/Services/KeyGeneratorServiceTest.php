@@ -78,11 +78,11 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.keyword_length' => 10]);
         $longUrl = 'https://t.co';
         $customKey = 'tco';
-        $response = $this->post(route('su_create'), [
+        $response = $this->post(route('link.create'), [
             'long_url' => $longUrl,
             'custom_key' => $customKey,
         ]);
-        $response->assertRedirectToRoute('su_detail', $customKey);
+        $response->assertRedirectToRoute('link_detail', $customKey);
 
         $url = Url::whereDestination($longUrl)->first();
         $this->assertTrue($url->is_custom);

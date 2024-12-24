@@ -19,7 +19,7 @@ class UrlListPageTest extends TestCase
     public function adminCasAccessLinkTablePage(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dashboard.allurl'));
+            ->get(route('dboard.allurl'));
         $response->assertOk();
     }
 
@@ -32,7 +32,7 @@ class UrlListPageTest extends TestCase
     public function basicUserCantAccessLinkTablePage(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get(route('dashboard.allurl'));
+            ->get(route('dboard.allurl'));
         $response->assertForbidden();
     }
 
@@ -51,10 +51,10 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
-            ->from(route('dashboard.allurl'))
-            ->get(route('dboard.url.delete', $url->keyword));
+            ->from(route('dboard.allurl'))
+            ->get(route('link.delete', $url->keyword));
 
-        $response->assertRedirectToRoute('dashboard.allurl')
+        $response->assertRedirectToRoute('dboard.allurl')
             ->assertSessionHas('flash_success');
         $this->assertCount(0, Url::all());
     }
@@ -69,8 +69,8 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
-            ->from(route('dashboard.allurl'))
-            ->get(route('dboard.url.delete', $url->keyword));
+            ->from(route('dboard.allurl'))
+            ->get(route('link.delete', $url->keyword));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());
@@ -90,7 +90,7 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dboard.url.edit.show', $url->keyword));
+            ->get(route('link.edit', $url->keyword));
         $response->assertOk();
     }
 
@@ -108,7 +108,7 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dboard.url.edit.show', $url->keyword));
+            ->get(route('link.edit', $url->keyword));
         $response->assertOk();
     }
 
@@ -122,7 +122,7 @@ class UrlListPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
-            ->get(route('dboard.url.edit.show', $url->keyword));
+            ->get(route('link.edit', $url->keyword));
         $response->assertForbidden();
     }
 
@@ -137,8 +137,8 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->adminUser())
-            ->from(route('dboard.url.edit.show', $url->keyword))
-            ->post(route('dboard.url.edit.store', $url->keyword), [
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);
@@ -164,8 +164,8 @@ class UrlListPageTest extends TestCase
         $url = Url::factory()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->basicUser())
-            ->from(route('dboard.url.edit.show', $url->keyword))
-            ->post(route('dboard.url.edit.store', $url->keyword), [
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
                 'title'    => $url->title,
                 'long_url' => $newLongUrl,
             ]);

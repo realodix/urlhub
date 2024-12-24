@@ -51,7 +51,7 @@ class UserTest extends TestCase
 
         $user = $this->basicUser();
         $this->actingAs($user)
-            ->post(route('su_create'), ['long_url' => 'https://laravel.com']);
+            ->post(route('link.create'), ['long_url' => 'https://laravel.com']);
         $this->assertEquals($user->id, $user->signature());
     }
 }
