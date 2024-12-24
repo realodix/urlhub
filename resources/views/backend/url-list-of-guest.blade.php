@@ -4,7 +4,7 @@
 
 @section('content')
 <main>
-    <div class="common-card-style">
+    <div class="card-default">
         <div class="card_header__v2">
             <div class="w-1/2">
                 <span class="text-2xl text-black">

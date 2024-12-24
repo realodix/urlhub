@@ -87,13 +87,19 @@ hr {
     }
 
     &-secondary {
-        @apply bg-gray-100 border-gray-100;
+        @apply bg-gray-100 border-gray-200;
         @apply hover:bg-gray-200 active:bg-gray-100;
     }
 }
 
-.common-card-style {
-    @apply bg-white border-y sm:rounded-lg sm:border border-uh-border-color;
+.--card-style {
+    @apply bg-white;
+    @apply border-y border-uh-border-color shadow-sm;
+    @apply sm:border sm:shadow-sm sm:rounded-lg;
+}
+
+.card-default {
+    @apply --card-style;
     @apply px-2 md:px-8 py-5;
     /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
 
@@ -127,7 +133,7 @@ hr {
 }
 
 .auth-card {
-    @apply bg-white border-y sm:rounded-lg sm:border border-uh-border-color;
+    @apply --card-style;
     @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
 }
 

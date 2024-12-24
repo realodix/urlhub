@@ -18,7 +18,7 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{ route('user.update', $user) }}">
         @csrf
-            <div class="common-card-style">
+            <div class="card-default">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
                         <label class="form-label">{{ __('Username') }}</label>

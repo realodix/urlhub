@@ -6,9 +6,7 @@
 @section('content')
 <main class="page_about max-w-4xl">
     <div class="flex flex-wrap gap-4 mb-4 justify-end">
-        <div class="bg-white p-4 sm:rounded-lg w-full md:w-2/6
-            border-y border-uh-border-color sm:border-none sm:shadow-md"
-        >
+        <div class="--card-style p-4 w-full md:w-2/6">
             <div class="flex flex-row space-x-4 items-center">
                 <div>
                     <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
@@ -18,9 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white p-4 sm:rounded-lg w-full md:w-2/6
-            border-y border-uh-border-color sm:border-none sm:shadow-md"
-        >
+        <div class="--card-style p-4 w-full md:w-2/6">
             <div class="flex flex-row space-x-4 items-center">
                 <div>
                     <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
@@ -34,7 +30,7 @@
 
     <br>
 
-    <div class="common-card-style">
+    <div class="card-default">
         <div class="card_header__sub_header">Links</div>
         <dl>
             @php
@@ -95,7 +91,7 @@
         $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
         $reservedKeyword = $keyGenerator->reservedKeyword();
     @endphp
-    <div class="common-card-style">
+    <div class="card-default">
         <div class="card_header">{{ __('Configuration') }}</div>
 
         <div class="card_header__sub_header">Shortened Links</div>

@@ -3,10 +3,8 @@
 @section('title', __('Dashboard'))
 @section('content')
 <main>
-    <div class="grid gird-cols-1 md:grid-cols-4 gap-7 mb-8">
-        <div class="bg-white p-4 sm:rounded-lg
-            border-y border-uh-border-color sm:border-none sm:shadow-md"
-        >
+    <div class="grid gird-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div class="--card-style p-4">
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-link', 'mr-1.5 text-emerald-600 text-3xl')
                 <div>
@@ -17,9 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white p-4 sm:rounded-lg
-            border-y border-uh-border-color sm:border-none sm:shadow-md"
-        >
+        <div class="--card-style p-4">
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-chart-line-alt', 'mr-1.5 text-amber-600 text-3xl')
                 <div>
@@ -32,7 +28,7 @@
         </div>
     </div>
 
-    <div class="common-card-style">
+    <div class="card-default">
         <div class="card_header__v2">
             <div class="w-1/2">
                 <span class="text-2xl text-black">{{ __('My URLs') }}</span>

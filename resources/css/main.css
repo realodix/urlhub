@@ -42,6 +42,10 @@
             border-radius: unset;
         }
 
+        tr {
+            @apply hover:bg-gray-50;
+        }
+
         td {
             border: 1px solid #e2e8f0;
 
@@ -54,6 +58,12 @@
             }
         }
     }
+
+    nav[aria-label="Pagination Navigation"] {
+        span, a {
+            @apply !border-uh-border-color;
+        }
+    }
 }
 
 
@@ -61,7 +71,7 @@
     dl {
         display: grid;
         grid-gap: 4px 16px;
-        grid-template-columns: max-content;
+        /* grid-template-columns: max-content; */
     }
 
     dt {

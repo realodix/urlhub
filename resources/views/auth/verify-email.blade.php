@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <div class="common-card-style mb-8">
+    <div class="card-default mb-8">
         <p class="font-bold">
             {{ __('Thanks for signing up!') }}
         </p>
