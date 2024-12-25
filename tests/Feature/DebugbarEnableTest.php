@@ -64,7 +64,7 @@ class DebugbarEnableTest extends TestCase
             $this->assertFalse(Debugbar::isEnabled());
             $this->assertFalse(Debugbar::hasCollector('time'));
 
-            // return response('OK');
+            return response('OK');
         });
     }
 }
