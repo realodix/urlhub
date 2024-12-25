@@ -58,7 +58,9 @@ class DebugbarEnableTest extends TestCase
      */
     public function testDebugbarIsDisabledForGuestUser()
     {
+        // Create a dummy request
         $request = Request::create('/test', 'GET');
+
         $middleware = new DebugbarEnable;
         $middleware->handle($request, function ($request) {
             $this->assertFalse(Debugbar::isEnabled());
