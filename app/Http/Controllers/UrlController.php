@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
 use App\Models\User;
@@ -15,7 +16,7 @@ class UrlController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [new Middleware('urlhublinkchecker', only: ['create'])];
+        return [new Middleware(UrlHubLinkChecker::class, only: ['create'])];
     }
 
     /**
