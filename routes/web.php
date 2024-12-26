@@ -15,9 +15,9 @@ Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('lin
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () {
     // Dashboard (My URLs)
     Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-    Route::get('links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('link.delete');
-    Route::get('links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('link.edit');
-    Route::post('links/{url:keyword}/edit', [UrlController::class, 'update'])->name('link.update');
+    Route::get('/links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('link.delete');
+    Route::get('/links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('link.edit');
+    Route::post('/links/{url:keyword}/edit', [UrlController::class, 'update'])->name('link.update');
 
     // All URLs
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
@@ -27,11 +27,11 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     // User
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'view'])->name('user.index');
-        Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
-        Route::post('{user:name}/edit', [UserController::class, 'update'])->name('user.update');
+        Route::get('/{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
+        Route::post('/{user:name}/edit', [UserController::class, 'update'])->name('user.update');
 
-        Route::get('{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.password.show');
-        Route::post('{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
+        Route::get('/{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.password.show');
+        Route::post('/{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
     });
 
     // About Page
