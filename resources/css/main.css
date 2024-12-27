@@ -35,6 +35,11 @@
 
 
 #power-grid-table-base {
+    div:has(> div > table) {
+        @apply border-uh-border-color;
+        scrollbar-width: thin;
+    }
+
     table {
         thead {
             @apply bg-gray-100;
@@ -47,21 +52,40 @@
         }
 
         td {
-            border: 1px solid #e2e8f0;
+            @apply border border-uh-border-color;
+            @apply first:border-l-0 last:border-r-0;
+        }
+    }
 
-            &:first-child {
-                border-left: none;
-            }
+    input, select {
+        @apply focus:ring-primary-500 focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
+    }
 
-            &:last-child {
-                border-right: none;
-            }
+    button[data-cy^="toggle-columns-"] {
+        @apply bg-gray-100 border-gray-200 hover:bg-gray-200 active:bg-gray-100 focus-within:ring-1;
+        @apply duration-300 ease-out;
+
+        svg {
+            @apply text-gray-800;
         }
     }
 
     nav[aria-label="Pagination Navigation"] {
         span, a {
             @apply !border-uh-border-color;
+        }
+
+        span {
+            @apply bg-primary-50 text-primary-700;
+            @apply first:rounded-l-md last:rounded-r-md;
+        }
+
+        a:first-child {
+            border-right: none;
+        }
+
+        a:nth-last-child(-n + 2) {
+            border-left: none;
         }
     }
 }

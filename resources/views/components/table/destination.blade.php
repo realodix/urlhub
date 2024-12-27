@@ -7,7 +7,7 @@
 
     <br>
 
-    <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer" class="text-neutral-500">
+    <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer" class="text-gray-500">
         {{ Helper::urlFormat($destination, $limit) }}
     </a>
 </div>
