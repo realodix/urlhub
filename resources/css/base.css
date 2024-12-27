@@ -69,7 +69,7 @@ hr {
 }
 
 .btn {
-    @apply duration-300 inline-flex items-center px-3 py-1.5;
+    @apply inline-flex items-center px-3 py-1.5 duration-300 ease-out;
     @apply text-base font-normal leading-6 text-center no-underline align-middle tracking-wide;
     @apply border rounded-md border-gray-300 disabled:opacity-25;
     @apply cursor-pointer select-none;
@@ -146,5 +146,9 @@ hr {
 .form-input {
     @apply block w-full;
     @apply border-uh-border-color focus:ring-0 focus:border-primary-500 rounded;
-    @apply bg-[#f6f8fa] focus:bg-white;
+    @apply bg-gray-50 focus:bg-white;
+
+    &[disabled], &:disabled {
+        @apply bg-gray-300 text-gray-700 bg-opacity-50 text-opacity-50;
+    }
 }
