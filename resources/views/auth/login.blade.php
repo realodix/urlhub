@@ -36,7 +36,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a href="{{ route('password.request') }}" class="text-sm text-slate-600 hover:text-slate-900 underline">
-                    {{ __('Forgot your password?') }}
+                    {{ __('Forgot password?') }}
                 </a>
 
                 <button type="submit" class="btn btn-primary ml-4">
