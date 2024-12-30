@@ -10,7 +10,7 @@
             <div class="flex flex-row space-x-4 items-center">
                 <div>
                     <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
-                    <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
+                    <p class="text-2xl font-bold text-slate-600 inline-flex items-center space-x-2">
                         {{ phpversion() }}
                     </p>
                 </div>
@@ -20,7 +20,7 @@
             <div class="flex flex-row space-x-4 items-center">
                 <div>
                     <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
-                    <p class="text-2xl font-bold text-gray-600 inline-flex items-center space-x-2">
+                    <p class="text-2xl font-bold text-slate-600 inline-flex items-center space-x-2">
                         {{ app()->version() }}
                     </p>
                 </div>
@@ -107,7 +107,7 @@
 
             <dt class="mt-2"><code>domain_blacklist</code></dt>
             <dd class="mt-2">
-                <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
+                <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
                     @if (!empty($domainBlacklist))
                         <code>{{ implode(", ", $domainBlacklist) }}</code>
                     @else
@@ -118,8 +118,8 @@
 
             <dt class="mt-2 mb-2">Reserved Keywords</dt>
             <dd class="mt-2 mb-2">
-                <div class="bg-gray-50 p-2 border border-gray-300 rounded text-sm">
-                    <code class="text-gray-500">// {{ $reservedKeyword->count() }} Strings</code> <br>
+                <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
+                    <code class="text-slate-500">// {{ $reservedKeyword->count() }} Strings</code> <br>
                     <code>{{ $reservedKeyword->implode(', ') }}</code>
 
                     @if (!empty($reservedActiveKeyList))

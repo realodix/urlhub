@@ -14,7 +14,7 @@ main {
 }
 
 .frontend, .backend, .auth {
-    @apply bg-gray-50 font-sans text-gray-900 antialiased;
+    @apply bg-gray-50 font-sans text-slate-900 antialiased;
 }
 
 .logo {
@@ -40,7 +40,7 @@ main {
 }
 
 hr {
-    @apply !border-uh-border-color;
+    @apply !border-border-200;
 }
 
 /*
@@ -70,18 +70,13 @@ hr {
 
 .btn {
     @apply inline-flex items-center justify-center px-4 h-10 min-h-10 ;
-    @apply border rounded-md border-gray-300 duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
+    @apply border rounded-md border-border-300 duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
     @apply text-base font-normal text-center no-underline align-middle tracking-wide;
     /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
     &-primary {
-        @apply bg-gray-100 text-black border-gray-300;
-        @apply hover:bg-gray-200 active:bg-gray-100;
-    }
-
-    &-secondary {
-        @apply bg-gray-100 border-gray-200;
+        @apply bg-gray-100 border-border-300;
         @apply hover:bg-gray-200 active:bg-gray-100;
     }
 
@@ -110,7 +105,7 @@ hr {
 
 .--card-style {
     @apply bg-white;
-    @apply border-y border-uh-border-color shadow-sm;
+    @apply border-y border-border-200 shadow-sm;
     @apply sm:border sm:shadow-sm sm:rounded-lg;
 }
 
@@ -120,11 +115,11 @@ hr {
     /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
 
     .card_header {
+        @apply border-b border-border-200;
         color: #1f2328;
         font-size: 1.5rem;
         font-weight: 600;
         line-height: 1.25;
-        border-bottom: 1px solid #e6e6e6;
         padding-bottom: 0.5rem;
     }
 
@@ -161,10 +156,10 @@ hr {
 
 .form-input {
     @apply block w-full;
-    @apply border-uh-border-color focus:ring-0 focus:border-primary-500 rounded;
-    @apply bg-gray-50 focus:bg-white;
+    @apply border-border-300 focus:ring-0 focus:border-indigo-500 rounded;
+    @apply bg-[#fdfdfd] focus:bg-white;
 
     &[disabled], &:disabled {
-        @apply bg-gray-300 text-gray-700 bg-opacity-50 text-opacity-50;
+        @apply bg-gray-300 text-slate-700 bg-opacity-50 text-opacity-50;
     }
 }

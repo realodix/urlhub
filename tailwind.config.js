@@ -18,13 +18,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                "primary-50": "#eef2ff",
-                "primary-100": "#e0e7ff",
-                "primary-500": "#6366f1",
-                "primary-700": "#4338ca",
-                "primary-800": "#3730a3",
                 "uh-blue": "#3d5b99",
-                "uh-border-color": "#e7e5e4",
+                "border-200": "#e7e5e4",
+                "border-300": "#d6d3d1",
             },
         },
     },

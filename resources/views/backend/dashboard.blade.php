@@ -8,8 +8,8 @@
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-link', 'mr-1.5 text-emerald-600 text-3xl')
                 <div>
-                    <p class="text-gray-400 text-sm font-medium uppercase leading-4">Total Links</p>
-                    <p class="text-2xl font-bold text-gray-900 inline-flex items-center space-x-2">
+                    <p class="text-slate-400 text-sm font-medium uppercase leading-4">Total Links</p>
+                    <p class="text-2xl font-bold text-slate-900 inline-flex items-center space-x-2">
                         {{ n_abb($url->currentUserUrlCount(auth()->id())) }}
                     </p>
                 </div>
@@ -19,8 +19,8 @@
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-chart-line-alt', 'mr-1.5 text-amber-600 text-3xl')
                 <div>
-                    <p class="text-gray-400 text-sm font-medium uppercase leading-4">Total Clicks</p>
-                    <p class="text-2xl font-bold text-gray-900 inline-flex items-center space-x-2">
+                    <p class="text-slate-400 text-sm font-medium uppercase leading-4">Total Clicks</p>
+                    <p class="text-2xl font-bold text-slate-900 inline-flex items-center space-x-2">
                         {{ $urlVisitCount }}
                     </p>
                 </div>
@@ -31,7 +31,7 @@
     <div class="card-default">
         <div class="card_header__v2">
             <div class="w-1/2">
-                <span class="text-2xl text-black">{{ __('My URLs') }}</span>
+                <span class="text-2xl text-slate-800">{{ __('My URLs') }}</span>
             </div>
             <div class="w-1/2 text-right">
                 <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-primary">

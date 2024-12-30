@@ -58,12 +58,12 @@ final class UserTable extends PowerGridComponent
             ->add('action', function (User $user) {
                 return
                     '<a role="button" href="' . route('user.edit', $user) . '" title="' . __('Details') . '"
-                        class="btn btn-secondary btn-xs"
+                        class="btn btn-primary btn-xs"
                     >'
                         . Blade::render('@svg(\'icon-person-edit\')') .
                     '</a>
                     <a role="button" href="' . route('user.password.show', $user) . '" title="' . __('Change Password') . '"
-                        class="btn btn-secondary btn-xs"
+                        class="btn btn-primary btn-xs"
                     >'
                         . Blade::render('@svg(\'icon-key\')') .
                     '</a>';

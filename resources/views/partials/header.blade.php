@@ -34,7 +34,7 @@
                                         {{ __('Dashboard') }}
                                     </a>
 
-                                    <div class="border-t border-uh-border-color"></div>
+                                    <div class="border-t border-border-200"></div>
                                 @endif
 
                                 {{-- Account Management --}}
@@ -43,13 +43,13 @@
                                 </div>
 
                                 <a href="{{ route('user.edit', auth()->user()->name) }}"
-                                    class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-primary-500':'' }}">
+                                    class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-indigo-500':'' }}">
                                     @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
                                 <a href="{{ route('user.password.show', auth()->user()->name) }}"
-                                    class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-primary-500':'' }}">
+                                    class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-indigo-500':'' }}">
                                     @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
 
-                                <div class="border-t border-uh-border-color"></div>
+                                <div class="border-t border-border-200"></div>
 
                                 {{-- Authentication --}}
                                 <form method="POST" action="{{ route('logout') }}">
@@ -108,7 +108,7 @@
             @include('partials.header-localmenu_mobile')
 
             {{-- Responsive Settings Options --}}
-            <div class="pt-4 pb-1 border-t border-uh-border-color">
+            <div class="pt-4 pb-1 border-t border-border-200">
                 <div class="flex items-center px-4">
                     <div>
                         <div class="nav-item-username">{{ auth()->user()->name }}</div>
@@ -119,10 +119,10 @@
                 <div class="mt-3 space-y-1">
                     {{-- Account Management --}}
                     <a href="{{ route('user.edit', auth()->user()->name) }}"
-                        class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-primary-500':'' }}">
+                        class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-indigo-500':'' }}">
                         @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
                     <a href="{{ route('user.password.show', auth()->user()->name) }}"
-                        class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-primary-500':'' }}">
+                        class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-indigo-500':'' }}">
                         @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
 
                     {{-- Authentication --}}

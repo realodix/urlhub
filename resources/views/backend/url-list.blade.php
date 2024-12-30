@@ -7,7 +7,7 @@
     <div class="card-default">
         <div class="card_header__v2">
             <div class="w-1/2">
-                <span class="text-2xl text-black">
+                <span class="text-2xl text-slate-800">
                     {{ __('List of All URLs') }}
                 </span>
             </div>
