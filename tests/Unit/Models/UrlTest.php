@@ -160,7 +160,7 @@ class UrlTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function currentUserUrlCount(): void
+    public function authUserUrlCount(): void
     {
         $user = $this->basicUser();
         $nCurrentUser = 8;
@@ -170,7 +170,7 @@ class UrlTest extends TestCase
         Url::factory()->count($nUser)->create();
 
         $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->url->currentUserUrlCount());
+        $this->assertSame($nCurrentUser, $this->url->authUserUrlCount());
         $this->assertSame($nUser + $nCurrentUser, $this->url->count());
     }
 

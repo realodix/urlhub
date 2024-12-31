@@ -10,7 +10,7 @@
                 <div>
                     <p class="text-slate-400 text-sm font-medium uppercase leading-4">Total Links</p>
                     <p class="text-2xl font-bold text-slate-900 inline-flex items-center space-x-2">
-                        {{ n_abb($url->currentUserUrlCount(auth()->id())) }}
+                        {{ n_abb($url->authUserUrlCount(auth()->id())) }}
                     </p>
                 </div>
             </div>
