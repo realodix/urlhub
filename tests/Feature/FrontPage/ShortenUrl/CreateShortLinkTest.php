@@ -55,6 +55,25 @@ class CreateShortLinkTest extends TestCase
         $this->assertTrue($url->is_custom);
     }
 
+    /**
+     * Shorten urls when the remaining space is not enough.
+     *
+     * Shorten the URL when the string generator can no longer generate unique
+     * keywords (all keywords have been used). UrlHub must prevent users from
+     * shortening URLs.
+     *
+     * @see App\Http\Controllers\UrlController::create()
+     * @see App\Http\Middleware\UrlHubLinkChecker
+     */
+    public function testShortenUrlWhenRemainingSpaceIsNotEnough(): void
+    {
+        config(['urlhub.keyword_length' => 0]);
+        $response = $this->post(route('link.create'), ['long_url' => 'https://laravel.com']);
+        $response
+            ->assertRedirectToRoute('home')
+            ->assertSessionHas('flash_error');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Custom key already exist
