@@ -165,9 +165,9 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by current user.
+     * Total short URLs that have been created by the currently logged-in user.
      */
-    public function currentUserUrlCount(): int
+    public function authUserUrlCount(): int
     {
         return self::where('user_id', auth()->id())
             ->count();

@@ -43,10 +43,10 @@ final class UserTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('name', function (User $user) {
-                $urlsCount = $user->urls_count;
-                $urlCountTitle = number_format($urlsCount) . ' short ' . Str::plural('link', $urlsCount);
+                $urlCount = $user->urls_count;
+                $urlCountTitle = number_format($urlCount) . ' short ' . Str::plural('link', $urlCount);
 
-                return $user->name . ' <span title="' . $urlCountTitle . '">(' . n_abb($urlsCount) . ')</span>';
+                return $user->name . ' <span title="' . $urlCountTitle . '">(' . n_abb($urlCount) . ')</span>';
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {
@@ -58,12 +58,12 @@ final class UserTable extends PowerGridComponent
             ->add('action', function (User $user) {
                 return
                     '<a role="button" href="' . route('user.edit', $user) . '" title="' . __('Details') . '"
-                        class="btn btn-secondary btn-sm"
+                        class="btn btn-primary btn-xs"
                     >'
                         . Blade::render('@svg(\'icon-person-edit\')') .
                     '</a>
                     <a role="button" href="' . route('user.password.show', $user) . '" title="' . __('Change Password') . '"
-                        class="btn btn-secondary btn-sm"
+                        class="btn btn-primary btn-xs"
                     >'
                         . Blade::render('@svg(\'icon-key\')') .
                     '</a>';

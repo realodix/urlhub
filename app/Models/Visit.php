@@ -66,9 +66,9 @@ class Visit extends Model
     */
 
     /**
-     * Number of current user link visits.
+     * Number of link visits from the currently logged-in user.
      */
-    public function currentUserLinkVisitCount(): int
+    public function authUserLinkVisitCount(): int
     {
         return self::whereHas('url', function ($query) {
             $query->where('user_id', auth()->id());

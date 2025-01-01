@@ -68,7 +68,7 @@ class KeyGeneratorService
     public function verify(string $value): bool
     {
         $alreadyInUse = Url::whereKeyword($value)->exists();
-        $reservedKeyword = in_array($value, $this->reservedKeyword()->toArray());
+        $reservedKeyword = $this->reservedKeyword()->contains($value);
 
         if ($alreadyInUse || $reservedKeyword) {
             return false;

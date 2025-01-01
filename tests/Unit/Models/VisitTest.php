@@ -27,7 +27,7 @@ class VisitTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function currentUserLinkVisitCount(): void
+    public function authUserLinkVisitCount(): void
     {
         $user = $this->basicUser();
         $nCurrentUser = 8;
@@ -41,7 +41,7 @@ class VisitTest extends TestCase
             ->create();
 
         $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->visit->currentUserLinkVisitCount());
+        $this->assertSame($nCurrentUser, $this->visit->authUserLinkVisitCount());
         $this->assertSame($nCurrentUser + $nUser, $this->visit->userLinkVisitCount());
     }
 
