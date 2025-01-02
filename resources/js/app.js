@@ -1,3 +1,5 @@
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
+
 /**
  * Copy short url to clipboard
  *
