@@ -10,13 +10,6 @@ use Tests\TestCase;
 #[PHPUnit\Group('validation-rule')]
 class NotBlacklistedKeywordTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        config(['urlhub.domain_blacklist' => ['github.com', 't.co']]);
-    }
-
     public static function customKeywordIsNotBlacklistedDataProvider(): array
     {
         return [
