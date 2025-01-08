@@ -82,7 +82,7 @@ hr {
 
     &-secondary {
         @apply bg-gray-100 border-border-300;
-        @apply hover:bg-gray-200 active:bg-gray-100;
+        @apply hover:bg-primary-100 hover:border-indigo-300 hover:text-indigo-800 active:text-primary-700 active:bg-primary-100;
     }
 
     &-sm {
