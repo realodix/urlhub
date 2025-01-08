@@ -20,6 +20,7 @@ export default {
             colors: {
                 "primary-500": "#6366f1",
                 "primary-600": "#4f46e5",
+                "primary-700": "#4338ca",
                 "uh-blue": "#3d5b99",
                 "border-200": "#e7e5e4",
                 "border-300": "#d6d3d1",

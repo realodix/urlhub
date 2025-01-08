@@ -1,7 +1,7 @@
 @import 'base.css';
 
 .navbar {
-    @apply bg-white text-indigo-800;
+    @apply bg-white text-primary-700;
     @apply border-b border-border-200;
 
     &-brand {
