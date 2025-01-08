@@ -48,7 +48,7 @@
         }
 
         tr {
-            @apply hover:bg-gray-50;
+            @apply hover:bg-primary-50/50;
         }
 
         td {
@@ -76,7 +76,7 @@
         }
 
         span {
-            @apply bg-gray-100 text-slate-800;
+            @apply bg-indigo-600 text-white;
             @apply first:rounded-l-md last:rounded-r-md;
         }
 
