@@ -156,7 +156,7 @@ hr {
 
 .form-input {
     @apply block w-full;
-    @apply border-border-300 focus:ring-0 focus:border-indigo-500 rounded;
+    @apply border-border-300 focus:ring-0 focus:border-primary-500 rounded;
     @apply bg-[#fdfdfd] focus:bg-white;
 
     &[disabled], &:disabled {
