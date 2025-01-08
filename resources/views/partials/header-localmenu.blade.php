@@ -8,7 +8,7 @@
             class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
                 {{ ($routeName === 'dashboard') ?
                 'text-primary-700 !border-primary-500' :
-                'text-slate-800 hover:border-indigo-100' }}"
+                'text-slate-800 hover:border-primary-100' }}"
         >
             @svg('icon-dashboard', 'mr-1')
             <span class="@if ($routeName === 'dashboard') text-slate-800 @endif">{{ __('Dashboard') }}</span>
@@ -19,7 +19,7 @@
                 class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
                     {{ ($routeName === 'dboard.allurl') ?
                     'text-primary-700 !border-primary-500' :
-                    'text-slate-800 hover:border-indigo-100' }}"
+                    'text-slate-800 hover:border-primary-100' }}"
             >
                 @svg('icon-link', 'mr-1')
                 <span class="@if ($routeName === 'dboard.allurl') text-slate-800 @endif">{{ __('URL List') }}</span>
@@ -28,7 +28,7 @@
                 class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
                     {{ ($routeName === 'user.index') ?
                     'text-primary-700 !border-primary-500' :
-                    'text-slate-800 hover:border-indigo-100' }}"
+                    'text-slate-800 hover:border-primary-100' }}"
             >
                 @svg('icon-people', 'mr-1')
                 <span class="@if ($routeName === 'user.index') text-slate-800 @endif">{{ __('User List') }}</span>
@@ -37,7 +37,7 @@
                 class="mr-8 py-3 font-semibold hover:text-primary-700 transition duration-100 ease-in-out border-b-2 border-transparent
                     {{ ($routeName === 'dboard.about') ?
                     'text-primary-700 !border-primary-500' :
-                    'text-slate-800 hover:border-indigo-100' }}"
+                    'text-slate-800 hover:border-primary-100' }}"
             >
                 @svg('icon-about-system', 'mr-1')
                 <span class="@if ($routeName === 'dboard.about') text-slate-800 @endif">{{ __('About') }}</span>
