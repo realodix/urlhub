@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex items-center justify-end">
-                <a href="{{ route('password.request') }}" class="text-indigo-600 hover:text-primary-500 font-medium">
+                <a href="{{ route('password.request') }}" class="text-primary-600 hover:text-primary-500 font-medium">
                     {{ __('Forgot password?') }}
                 </a>
             </div>
@@ -48,7 +48,7 @@
         @if (Route::has('register') and Config::get('urlhub.registration'))
         <div class="mt-6 text-center text-sm text-gray-600">
             Don't have an account?
-            <a href="{{ route('register') }}" target="_blank" class="text-indigo-600 hover:text-primary-500 font-medium">Sign up</a>
+            <a href="{{ route('register') }}" target="_blank" class="text-primary-600 hover:text-primary-500 font-medium">Sign up</a>
         </div>
         @endif
     </div>
