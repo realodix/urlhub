@@ -48,7 +48,7 @@
         }
 
         tr {
-            @apply hover:bg-gray-50;
+            @apply hover:bg-primary-50/40;
         }
 
         td {
@@ -76,16 +76,20 @@
         }
 
         span {
-            @apply bg-gray-100 text-slate-800;
+            @apply text-white bg-primary-600 border-primary-600;
             @apply first:rounded-l-md last:rounded-r-md;
         }
 
-        a:first-child {
-            border-right: none;
-        }
+        a {
+            @apply hover:text-primary-600 hover:font-semibold;
 
-        a:nth-last-child(-n + 2) {
-            border-left: none;
+            &:first-child {
+                border-right: none;
+            }
+
+            &:nth-last-child(-n + 2) {
+                border-left: none;
+            }
         }
     }
 
