@@ -19,7 +19,7 @@
     @endif
 
     <div class="auth-card">
-        <form method="POST" action="{{ route('password.update') }}">
+        <form method="POST" action="{{ route('password.update') }}" class="space-y-4">
         @csrf
 
             <input type="hidden" name="token" value="{{ $token }}">
@@ -29,21 +29,19 @@
                 <input type="email" name="email" value="{{ old('email', $email) }}" class="form-input mt-1" required autofocus/>
             </div>
 
-            <div class="mt-4">
+            <div>
                 <label class="form-label">{{ __('Password') }}</label>
                 <input type="password" name="password" autocomplete="new_password" class="form-input mt-1" required/>
             </div>
 
-            <div class="mt-4">
+            <div>
                 <label class="form-label">{{ __('Confirm Password') }}</label>
                 <input type="password" name="password_confirmation" autocomplete="new_password" class="form-input mt-1" required/>
             </div>
 
-            <div class="flex items-center justify-center mt-8">
-                <button type="submit" class="btn btn-primary ml-4">
-                    {{ __('Reset Password') }}
-                </button>
-            </div>
+            <button type="submit" class="btn btn-primary w-full !mt-6">
+                {{ __('Reset Password') }}
+            </button>
         </form>
     </div>
 </div>

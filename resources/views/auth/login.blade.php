@@ -18,7 +18,7 @@
     @endif
 
     <div class="auth-card">
-        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="space-y-4">
         @csrf
             <div>
                 <label for="email" class="form-label">
@@ -27,30 +27,30 @@
                 <input name="identity" class="form-input mt-1" value="{{ old('identity') }}" required autofocus>
             </div>
 
-            <div class="mt-4">
+            <div>
                 <label for="password" class="form-label">
                     {{ __('Password') }}
                 </label>
                 <input type="password" name="password" class="form-input mt-1" autocomplete="current_password" required>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a href="{{ route('password.request') }}" class="text-sm text-slate-600 hover:text-slate-900 underline">
+            <div class="flex items-center justify-end">
+                <a href="{{ route('password.request') }}" class="text-indigo-600 hover:text-indigo-500 font-medium">
                     {{ __('Forgot password?') }}
                 </a>
-
-                <button type="submit" class="btn btn-primary ml-4">
-                    {{ __('Log in') }}
-                </button>
             </div>
+
+            <button type="submit" class="btn btn-primary w-full">
+                {{ __('Log in') }}
+            </button>
         </form>
-    </div>
 
-    @if (Route::has('register') and Config::get('urlhub.registration'))
-    <div class="auth-card">
-        New to {{ config('app.name') }}? <a href="{{ route('register') }}" class="text-slate-600 hover:text-slate-900 underline">Create an account</a>
+        @if (Route::has('register') and Config::get('urlhub.registration'))
+        <div class="mt-6 text-center text-sm text-gray-600">
+            Don't have an account?
+            <a href="{{ route('register') }}" target="_blank" class="text-indigo-600 hover:text-indigo-500 font-medium">Sign up</a>
+        </div>
+        @endif
     </div>
-    @endif
-
 </div>
 @endsection

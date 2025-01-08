@@ -25,25 +25,21 @@
     @endif
 
     <div class="auth-card">
-        <p class="font-bold">{{ __('Forgot your password? No problem.') }}
-        <p class="text-slate-600">
+        <p class="mb-1">{{ __('Forgot your password? No problem.') }}
+        <p class="text-gray-600 text-sm">
             {{ __('Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </p>
 
-        <br>
-
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route('password.email') }}" class="space-y-4">
         @csrf
             <div>
                 <label class="form-label">{{ __('Email') }}</label>
                 <input type="email" name="email" class="form-input" id="email" value="{{ old('email') }}" required autofocus>
             </div>
 
-            <div class="flex items-center justify-center mt-8">
-                <button type="submit" class="btn btn-primary ml-4">
-                    {{ __('Email Password Reset Link') }}
-                </button>
-            </div>
+            <button type="submit" class="btn btn-primary w-full">
+                {{ __('Email Password Reset Link') }}
+            </button>
         </form>
     </div>
 </div>

@@ -19,18 +19,16 @@
     @endif
 
     <div class="auth-card">
-        <form method="POST" action="{{ route('password.confirm') }}">
+        <form method="POST" action="{{ route('password.confirm') }}" class="space-y-4">
         @csrf
             <div>
                 <label>{{ __('Password') }}</label>
                 <input type="password" name="password" autocomplete="current_password" class="form-input" required>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <button type="submit" class="btn btn-primary ml-4">
-                    {{ __('Confirm Password') }}
-                </button>
-            </div>
+            <button type="submit" class="btn btn-primary">
+                {{ __('Confirm Password') }}
+            </button>
         </form>
     </div>
 </div>
