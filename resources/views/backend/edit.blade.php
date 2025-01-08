@@ -34,7 +34,7 @@
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
                         <label for="short-url" class="form-label">{{ __('Short URL') }}</label>
-                        <span class="short-url text-indigo-500">{{ urlFormat($url->short_url, scheme: false) }}</span>
+                        <span class="short-url text-primary-500">{{ urlFormat($url->short_url, scheme: false) }}</span>
                     </div>
 
                     <div class="col-span-6">

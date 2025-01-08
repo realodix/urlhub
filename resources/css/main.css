@@ -58,7 +58,7 @@
     }
 
     input, select, button {
-        @apply ring-border-200 focus:ring-indigo-500 focus-within:focus:ring-indigo-500 focus-within:ring-indigo-500 focus-within:ring-1;
+        @apply ring-border-200 focus:ring-primary-500 focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
     }
 
     button[data-cy^="toggle-columns-"] {

@@ -7,7 +7,7 @@
         <a href="{{ route('dashboard') }}"
             class="mr-8 py-3 font-semibold hover:text-indigo-700 transition duration-100 ease-in-out border-b-2 border-transparent
                 {{ ($routeName === 'dashboard') ?
-                'text-indigo-700 !border-indigo-500' :
+                'text-indigo-700 !border-primary-500' :
                 'text-slate-800 hover:border-indigo-100' }}"
         >
             @svg('icon-dashboard', 'mr-1')
@@ -18,7 +18,7 @@
             <a href="{{ route('dboard.allurl') }}"
                 class="mr-8 py-3 font-semibold hover:text-indigo-700 transition duration-100 ease-in-out border-b-2 border-transparent
                     {{ ($routeName === 'dboard.allurl') ?
-                    'text-indigo-700 !border-indigo-500' :
+                    'text-indigo-700 !border-primary-500' :
                     'text-slate-800 hover:border-indigo-100' }}"
             >
                 @svg('icon-link', 'mr-1')
@@ -27,7 +27,7 @@
             <a href="{{ route('user.index') }}"
                 class="mr-8 py-3 font-semibold hover:text-indigo-700 transition duration-100 ease-in-out border-b-2 border-transparent
                     {{ ($routeName === 'user.index') ?
-                    'text-indigo-700 !border-indigo-500' :
+                    'text-indigo-700 !border-primary-500' :
                     'text-slate-800 hover:border-indigo-100' }}"
             >
                 @svg('icon-people', 'mr-1')
@@ -36,7 +36,7 @@
             <a href="{{ route('dboard.about') }}"
                 class="mr-8 py-3 font-semibold hover:text-indigo-700 transition duration-100 ease-in-out border-b-2 border-transparent
                     {{ ($routeName === 'dboard.about') ?
-                    'text-indigo-700 !border-indigo-500' :
+                    'text-indigo-700 !border-primary-500' :
                     'text-slate-800 hover:border-indigo-100' }}"
             >
                 @svg('icon-about-system', 'mr-1')
