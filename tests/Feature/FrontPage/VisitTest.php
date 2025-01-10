@@ -4,6 +4,7 @@ namespace Tests\Feature\FrontPage;
 
 use App\Models\Url;
 use App\Models\Visit;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('front-page')]
@@ -13,7 +14,7 @@ class VisitTest extends TestCase
 
     public function testLogBotVisits(): void
     {
-        config(['urlhub.track_bot_visits' => true]);
+        Helper::setSettings(['track_bot_visits' => true]);
 
         $url = Url::factory()->create();
 
@@ -24,7 +25,7 @@ class VisitTest extends TestCase
 
     public function testDontLogBotVisits(): void
     {
-        config(['urlhub.track_bot_visits' => false]);
+        Helper::setSettings(['track_bot_visits' => false]);
 
         $url = Url::factory()->create();
 

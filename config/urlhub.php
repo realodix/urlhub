@@ -62,12 +62,4 @@ return [
      * is generated.
      */
     'redirect_cache_max_age' => 30,
-
-    /*
-     * Determine whether bot visits count or not.
-     *
-     * - true: bot will be counted as a visitor
-     * - false: bots will not be counted as visitors
-     */
-    'track_bot_visits' => false,
 ];

@@ -143,11 +143,6 @@
 
             <dt><code>redirect_cache_max_age</code></dt>
             <dd>{{ $redirectCacheMaxAge.' '.str()->plural('second', $redirectCacheMaxAge) }}</dd>
-
-            <dt><code>track_bot_visits</code></dt>
-            <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.track_bot_visits')) }}</code>
-            </dd>
         </dl>
 
         </dl>
