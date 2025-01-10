@@ -103,11 +103,11 @@
     dl {
         display: grid;
         grid-gap: 4px 16px;
-        /* grid-template-columns: max-content; */
+        @apply md:auto-cols-[auto_1fr];
     }
 
     dt {
-        @apply w-56 md:w-64;
+        @apply md:w-64;
         @apply font-semibold md:font-normal;
     }
 

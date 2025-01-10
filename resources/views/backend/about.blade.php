@@ -61,8 +61,9 @@
         </dl>
 
         <div class="card_header__sub_header">Random String</div>
+        <div class="font-light text-sm">Random String Generation for Shortened URLs.</div> <br>
         <dl>
-            <dt>Possible Output</dt>
+            <dt>Potential Output</dt>
             <dd>
                 @if ($keyGenerator->possibleOutput() === PHP_INT_MAX)
                     (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
@@ -77,7 +78,7 @@
                 @endif
             </dd>
 
-            <dt>Generated</dt>
+            <dt>Generated Count</dt>
             <dd>{{ number_format($keyGenerator->totalKey()) }}</dd>
         </dl>
     </div>
@@ -105,7 +106,10 @@
             <dt><code>custom_keyword_max_length</code></dt>
             <dd>{{ config('urlhub.custom_keyword_max_length') }} characters</dd>
 
-            <dt class="mt-2"><code>domain_blacklist</code></dt>
+            <dt class="mt-2">
+                <code>domain_blacklist</code>
+                <div class="font-light text-sm">This is a list of domain names that are not allowed to be shortened.</div>
+            </dt>
             <dd class="mt-2">
                 <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
                     @if (!empty($domainBlacklist))
@@ -116,7 +120,12 @@
                 </div>
             </dd>
 
-            <dt class="mt-2 mb-2">Reserved Keywords</dt>
+            <dt class="mt-2 mb-2">
+                <code>reserved_keyword</code>
+                <div class="font-light text-sm">
+                    Reserved keywords are strings that cannot be used as a shortened URL keyword. The route list and folder/file names in the public folder are also included in this list.
+                </div>
+            </dt>
             <dd class="mt-2 mb-2">
                 <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
                     <code class="text-slate-500">// {{ $reservedKeyword->count() }} Strings</code> <br>
