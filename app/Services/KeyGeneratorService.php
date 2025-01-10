@@ -123,12 +123,6 @@ class KeyGeneratorService
         $nChar = strlen(self::ALPHABET);
         $strLen = config('urlhub.keyword_length');
 
-        // for testing purposes only
-        // tests\Unit\Middleware\UrlHubLinkCheckerTest.php
-        if ($strLen < 1) {
-            return 0;
-        }
-
         $nPossibleOutput = pow($nChar, $strLen);
 
         if ($nPossibleOutput > PHP_INT_MAX) {

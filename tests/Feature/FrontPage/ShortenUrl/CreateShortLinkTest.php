@@ -3,6 +3,8 @@
 namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Models\Url;
+use App\Services\KeyGeneratorService;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('front-page')]
@@ -64,10 +66,14 @@ class CreateShortLinkTest extends TestCase
      *
      * @see App\Http\Controllers\UrlController::create()
      * @see App\Http\Middleware\UrlHubLinkChecker
+     * @see App\Services\KeyGeneratorService::remainingCapacity()
      */
     public function testShortenUrlWhenRemainingSpaceIsNotEnough(): void
     {
-        config(['urlhub.keyword_length' => 0]);
+        $this->mock(KeyGeneratorService::class, function (MockInterface $mock) {
+            $mock->shouldReceive('remainingCapacity')->andReturn(0);
+        });
+
         $response = $this->post(route('link.create'), ['long_url' => 'https://laravel.com']);
         $response
             ->assertRedirectToRoute('home')
