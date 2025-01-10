@@ -138,11 +138,6 @@
                 </div>
             </dd>
 
-            <dt><code>web_title</code></dt>
-            <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.web_title')) }}</code>
-            </dd>
-
             <dt><code>redirect_status_code</code></dt>
             <dd>{{ config('urlhub.redirect_status_code') }}</dd>
 

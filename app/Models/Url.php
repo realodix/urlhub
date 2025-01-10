@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Requests\StoreUrlRequest;
 use App\Services\KeyGeneratorService;
+use App\Settings\GeneralSettings;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
@@ -150,7 +151,7 @@ class Url extends Model
         $uri = \Illuminate\Support\Uri::of($value);
         $defaultTitle = $uri->host() . ' - Untitled';
 
-        if (config('urlhub.web_title')) {
+        if (app(GeneralSettings::class)->retrieve_web_title) {
             try {
                 $title = app(\Embed\Embed::class)->get($value)->title ?? $defaultTitle;
             } catch (\Exception) {

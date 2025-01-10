@@ -46,8 +46,6 @@ return [
         'assets', 'fonts', 'images', 'img', 'storage',
     ],
 
-    'web_title' => true,
-
     /*
     |--------------------------------------------------------------------------
     | Visiting
