@@ -98,12 +98,6 @@
             <dt><code>keyword_length</code></dt>
             <dd>{{ config('urlhub.keyword_length') }} characters</dd>
 
-            <dt><code>custom_keyword_min_length</code></dt>
-            <dd>{{ config('urlhub.custom_keyword_min_length') }} characters</dd>
-
-            <dt><code>custom_keyword_max_length</code></dt>
-            <dd>{{ config('urlhub.custom_keyword_max_length') }} characters</dd>
-
             <dt class="mt-2"><code>domain_blacklist</code></dt>
             <dd class="mt-2">
                 <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">

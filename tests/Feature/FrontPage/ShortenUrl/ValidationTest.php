@@ -5,6 +5,7 @@ namespace Tests\Feature\FrontPage\ShortenUrl;
 use App\Livewire\Validation\ValidateCustomKeyword;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes as PHPUnit;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('front-page')]
@@ -104,8 +105,10 @@ class ValidationTest extends TestCase
         $minLen = 3;
         $maxLen = 7;
 
-        config(['urlhub.custom_keyword_min_length' => $minLen]);
-        config(['urlhub.custom_keyword_max_length' => $maxLen]);
+        Helper::setSettings([
+            'custom_keyword_min_length' => $minLen,
+            'custom_keyword_max_length' => $maxLen,
+        ]);
 
         $component->assertStatus(200);
         $component->set('keyword', str_repeat('a', $minLen))

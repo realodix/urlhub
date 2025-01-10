@@ -13,16 +13,6 @@ return [
     'keyword_length' => 5, // >= 1
 
     /*
-     * Minimum length of custom keyword.
-     */
-    'custom_keyword_min_length' => 3,
-
-    /*
-     * Maximum length of custom keyword.
-     */
-    'custom_keyword_max_length' => 11,
-
-    /*
      * List of non allowed domain
      *
      * This list is used to prevent shortening of urls that contain one of the

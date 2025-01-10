@@ -24,8 +24,9 @@ class StoreUrlRequest extends FormRequest
      */
     public function rules()
     {
-        $minLen = config('urlhub.custom_keyword_min_length');
-        $maxLen = config('urlhub.custom_keyword_max_length');
+        $settings = app(\App\Settings\GeneralSettings::class);
+        $minLen = $settings->custom_keyword_min_length;
+        $maxLen = $settings->custom_keyword_max_length;
 
         return [
             'long_url' => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
