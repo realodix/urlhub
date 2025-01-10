@@ -10,6 +10,10 @@
         <a href="{{ route('user.index') }}"
             class="nav-item {{ (request()->route()->getName() === 'user.index') ? 'border-l-2 border-primary-500':'' }}">
             @svg('icon-people', 'mr-1') {{ __('User List') }}</a>
+        <a class="nav-item" href="">
+            @svg('icon-setting', 'mr-1')
+            {{ __('Settings') }}
+        </a>
         <a href="{{ route('dboard.about') }}"
             class="nav-item {{ (request()->route()->getName() === 'dboard.about') ? 'border-l-2 border-primary-500':'' }}">
             @svg('icon-about-system', 'mr-1') {{ __('About') }}</a>

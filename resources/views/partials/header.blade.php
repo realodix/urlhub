@@ -33,7 +33,16 @@
                                         @svg('icon-dashboard', 'mr-1')
                                         {{ __('Dashboard') }}
                                     </a>
+                                @endif
 
+                                @role('admin')
+                                    <a class="nav-item" href="">
+                                        @svg('icon-setting', 'mr-1')
+                                        {{ __('Settings') }}
+                                    </a>
+                                @endrole
+
+                                @if (Route::currentRouteName() != 'dashboard' || auth()->user()->hasRole('admin'))
                                     <div class="border-t border-border-200"></div>
                                 @endif
 
