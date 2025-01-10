@@ -3,22 +3,6 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Unregistered Users Access
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-     * If you set false, users must be registered to create Short URL.
-     */
-    'public_site' => true,
-
-    /*
-     * Enable users registration. If disabled it, no one can register.
-     */
-    'registration' => true,
-
-    /*
-    |--------------------------------------------------------------------------
     | Shorten URL
     |--------------------------------------------------------------------------
     */

@@ -155,17 +155,6 @@
             </dd>
         </dl>
 
-        <div class="card_header__sub_header">Guest / Unregistered Users</div>
-        <dl>
-            <dt>Allow create short links</dt>
-            <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.public_site')) }}</code>
-            </dd>
-
-            <dt>Allow sign up</dt>
-            <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.registration')) }}</code>
-            </dd>
         </dl>
     </div>
 </main>
