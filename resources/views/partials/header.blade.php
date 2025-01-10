@@ -36,7 +36,7 @@
                                 @endif
 
                                 @role('admin')
-                                    <a class="nav-item" href="">
+                                    <a class="nav-item" href="{{ route('dboard.settings') }}">
                                         @svg('icon-setting', 'mr-1')
                                         {{ __('Settings') }}
                                     </a>
