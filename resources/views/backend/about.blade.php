@@ -69,7 +69,7 @@
                 @else
                     @php
                         $number = strlen(KeyGeneratorService::ALPHABET);
-                        $powNumber = config('urlhub.keyword_length');
+                        $powNumber = settings()->keyword_length;
                         $result = number_format($keyGenerator->possibleOutput());
                     @endphp
 
@@ -95,9 +95,6 @@
 
         <div class="card_header__sub_header">Shortened Links</div>
         <dl>
-            <dt><code>keyword_length</code></dt>
-            <dd>{{ config('urlhub.keyword_length') }} characters</dd>
-
             <dt class="mt-2"><code>domain_blacklist</code></dt>
             <dd class="mt-2">
                 <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">

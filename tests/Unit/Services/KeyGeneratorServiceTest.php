@@ -5,6 +5,7 @@ namespace Tests\Unit\Services;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use PHPUnit\Framework\Attributes as PHPUnit;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('services')]
@@ -59,8 +60,9 @@ class KeyGeneratorServiceTest extends TestCase
         // configured_strlen > input_strlen
         // Generator harus menghasilkan string acak dengan panjang yang sesuai.
         $strLen = 8;
-        config(['urlhub.keyword_length' => $strLen]);
+        Helper::setSettings(['keyword_length' => $strLen]);
         $actual = $this->keyGenerator->generate($inputString);
+
         $this->assertSame($strLen, strlen($actual));
         $this->assertNotSame(strlen($inputString), strlen($actual));
     }
@@ -75,7 +77,8 @@ class KeyGeneratorServiceTest extends TestCase
     #[PHPUnit\Test]
     public function urlKey_string_lenght2(): void
     {
-        config(['urlhub.keyword_length' => 10]);
+        Helper::setSettings(['keyword_length' => 10]);
+
         $longUrl = 'https://t.co';
         $customKey = 'tco';
         $response = $this->post(route('link.create'), [
@@ -97,7 +100,8 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testStringIsAlreadyUsedAsTheActiveKeyword(): void
     {
-        config(['urlhub.keyword_length' => 5]);
+        Helper::setSettings(['keyword_length' => 5]);
+
         $value = $this->keyGenerator->generate('https://github.com/realodix');
 
         Url::factory()->create(['keyword' => $value]);
@@ -195,10 +199,10 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $charLen = strlen($this->keyGenerator::ALPHABET);
 
-        config(['urlhub.keyword_length' => 2]);
+        Helper::setSettings(['keyword_length' => 2]);
         $this->assertSame(pow($charLen, 2), $this->keyGenerator->possibleOutput());
 
-        config(['urlhub.keyword_length' => 11]);
+        Helper::setSettings(['keyword_length' => 11]);
         $this->assertSame(PHP_INT_MAX, $this->keyGenerator->possibleOutput());
     }
 
@@ -207,7 +211,9 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testTotalKeyBasedOnStringLength(): void
     {
-        config(['urlhub.keyword_length' => config('urlhub.keyword_length') + 1]);
+        $settings = app(\App\Settings\GeneralSettings::class);
+        $keywordLength = $settings->keyword_length + 1;
+        Helper::setSettings(['keyword_length' => $keywordLength]);
 
         Url::factory()->create([
             'keyword' => $this->keyGenerator->randomString(),
@@ -215,20 +221,20 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame(1, $this->keyGenerator->totalKey());
 
         Url::factory()->create([
-            'keyword'   => str_repeat('a', config('urlhub.keyword_length')),
+            'keyword'   => str_repeat('a', $keywordLength),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGenerator->totalKey());
 
-        // Karena panjang karakter 'keyword' berbeda dengan dengan 'urlhub.keyword_length',
+        // Karena panjang karakter 'keyword' berbeda dengan dengan 'keyword_length',
         // maka ini tidak ikut terhitung.
         Url::factory()->create([
-            'keyword'   => str_repeat('b', config('urlhub.keyword_length') + 2),
+            'keyword'   => str_repeat('b', $settings->keyword_length + 2),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGenerator->totalKey());
 
-        config(['urlhub.keyword_length' => config('urlhub.keyword_length') + 3]);
+        Helper::setSettings(['keyword_length' => $settings->keyword_length + 3]);
         $this->assertSame(0, $this->keyGenerator->totalKey());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
@@ -238,7 +244,7 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testTotalKeysBasedOnStringCharacters(): void
     {
-        config(['urlhub.keyword_length' => 5]);
+        Helper::setSettings(['keyword_length' => 5]);
 
         Url::factory()->create([
             'keyword' => 'ab-cd',

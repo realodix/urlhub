@@ -2,17 +2,6 @@
 
 return [
     /*
-    |--------------------------------------------------------------------------
-    | Shorten URL
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-     * The expected length of the keyword generated when creating a new short URL.
-     */
-    'keyword_length' => 5, // >= 1
-
-    /*
      * List of non allowed domain
      *
      * This list is used to prevent shortening of urls that contain one of the

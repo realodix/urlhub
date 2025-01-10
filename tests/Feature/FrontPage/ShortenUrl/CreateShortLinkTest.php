@@ -3,6 +3,7 @@
 namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Models\Url;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('front-page')]
@@ -35,7 +36,7 @@ class CreateShortLinkTest extends TestCase
         $longUrl = 'https://t.co';
 
         $customKey = 'foobar';
-        config(['urlhub.keyword_length' => strlen($customKey) + 1]);
+        Helper::setSettings(['keyword_length' => strlen($customKey) + 1]);
         $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
@@ -45,7 +46,7 @@ class CreateShortLinkTest extends TestCase
         $this->assertTrue($url->is_custom);
 
         $customKey = 'barfoo';
-        config(['urlhub.keyword_length' => strlen($customKey) - 1]);
+        Helper::setSettings(['keyword_length' => strlen($customKey) - 1]);
         $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
@@ -67,7 +68,8 @@ class CreateShortLinkTest extends TestCase
      */
     public function testShortenUrlWhenRemainingSpaceIsNotEnough(): void
     {
-        config(['urlhub.keyword_length' => 0]);
+        Helper::setSettings(['keyword_length' => 0]);
+
         $response = $this->post(route('link.create'), ['long_url' => 'https://laravel.com']);
         $response
             ->assertRedirectToRoute('home')
