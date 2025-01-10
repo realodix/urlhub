@@ -45,21 +45,4 @@ return [
         'vendor',       // Packages (ex: laravel/telescope)
         'assets', 'fonts', 'images', 'img', 'storage',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Visiting
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-     * HTTP redirect status code.
-     */
-    'redirect_status_code' => 302,
-
-    /*
-     * Indicates that the response remains fresh until N seconds after the response
-     * is generated.
-     */
-    'redirect_cache_max_age' => 30,
 ];

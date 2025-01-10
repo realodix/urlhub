@@ -85,7 +85,6 @@
     <br>
 
     @php
-        $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
         $domainBlacklist = collect(config('urlhub.domain_blacklist'))
             ->sort()->toArray();
         $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
@@ -137,12 +136,6 @@
                     @endif
                 </div>
             </dd>
-
-            <dt><code>redirect_status_code</code></dt>
-            <dd>{{ config('urlhub.redirect_status_code') }}</dd>
-
-            <dt><code>redirect_cache_max_age</code></dt>
-            <dd>{{ $redirectCacheMaxAge.' '.str()->plural('second', $redirectCacheMaxAge) }}</dd>
         </dl>
 
         </dl>
