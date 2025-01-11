@@ -6,6 +6,8 @@ public/js/*
 ## IDE Local Workspace Folder
 /.idea
 /.fleet
+/.nova
+/.zed
 
 ## Laravel
 .env
@@ -16,7 +18,7 @@ public/js/*
 /public/hot
 /public/storage
 /storage/*.key
-auth.json
+/auth.json
 Homestead.json
 Homestead.yaml
 
