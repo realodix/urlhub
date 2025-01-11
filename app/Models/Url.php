@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Requests\StoreUrlRequest;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,7 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Url extends Model
 {
-    use \Illuminate\Database\Eloquent\Factories\HasFactory;
+    /** @use HasFactory<\Database\Factories\UrlFactory> */
+    use HasFactory;
 
     /** @var null */
     const GUEST_ID = null;

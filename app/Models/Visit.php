@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Visit extends Model
 {
+    /** @use HasFactory<\Database\Factories\VisitFactory> */
     use HasFactory;
 
     /**
