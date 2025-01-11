@@ -80,6 +80,21 @@ class CreateShortLinkTest extends TestCase
             ->assertSessionHas('flash_error');
     }
 
+    public function testShortenUrlWithInternalLink(): void
+    {
+        $response = $this->post(route('link.create'), ['long_url' => request()->getHost()]);
+        $response
+            ->assertRedirectToRoute('home')
+            ->assertSessionHas('flash_error');
+        $this->assertCount(0, Url::all());
+
+        $response = $this->post(route('link.create'), ['long_url' => config('app.url')]);
+        $response
+            ->assertRedirectToRoute('home')
+            ->assertSessionHas('flash_error');
+        $this->assertCount(0, Url::all());
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Custom key already exist
