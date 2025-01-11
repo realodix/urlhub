@@ -57,8 +57,9 @@
         }
     }
 
-    input, select, button {
-        @apply ring-border-200 focus:ring-primary-500 focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
+    button, input, select {
+        @apply ring-border-300 focus:ring-primary-500;
+        @apply focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
     }
 
     button[data-cy^="toggle-columns-"] {
@@ -70,9 +71,25 @@
         }
     }
 
+    /* button[data-cy^="toggle-columns-"] */
+    div[role="none"] {
+        svg.text-pg-primary-200 {
+            @apply text-gray-200;
+        }
+
+        svg.text-pg-primary-500 {
+            @apply text-gray-500;
+        }
+
+        div.bg-pg-primary-100,
+        div.hover\:bg-pg-primary-100:hover {
+            @apply bg-gray-100;
+        }
+    }
+
     nav[aria-label="Pagination Navigation"] {
         span, a {
-            @apply border-border-200;
+            @apply border-border-300;
         }
 
         span {
