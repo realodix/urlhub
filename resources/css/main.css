@@ -42,7 +42,6 @@
 
     table {
         thead {
-            @apply bg-gray-100;
             box-shadow: none;
             border-radius: unset;
         }
@@ -68,22 +67,6 @@
 
         svg {
             @apply text-slate-800;
-        }
-    }
-
-    /* button[data-cy^="toggle-columns-"] */
-    div[role="none"] {
-        svg.text-pg-primary-200 {
-            @apply text-gray-200;
-        }
-
-        svg.text-pg-primary-500 {
-            @apply text-gray-500;
-        }
-
-        div.bg-pg-primary-100,
-        div.hover\:bg-pg-primary-100:hover {
-            @apply bg-gray-100;
         }
     }
 
