@@ -5,6 +5,7 @@ namespace Tests\Unit\Controllers;
 use App\Models\Url;
 use App\Models\Visit;
 use App\Services\UrlRedirection;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('controller')]
@@ -28,7 +29,7 @@ class UrlRedirectControllerTest extends TestCase
      */
     public function testUrlRedirectionHeadersWithMaxAge()
     {
-        config(['urlhub.redirect_cache_max_age' => 3600]);
+        Helper::setSettings(['redirect_cache_max_age' => 3600]);
 
         $url = Url::factory()->create();
         $response = app(UrlRedirection::class)->execute($url);
@@ -42,7 +43,7 @@ class UrlRedirectControllerTest extends TestCase
      */
     public function testUrlRedirectionHeadersWithMaxAgeZero()
     {
-        config(['urlhub.redirect_cache_max_age' => 0]);
+        Helper::setSettings(['redirect_cache_max_age' => 0]);
 
         $url = Url::factory()->create();
         $response = app(UrlRedirection::class)->execute($url);
