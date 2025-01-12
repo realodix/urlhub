@@ -42,7 +42,6 @@
 
     table {
         thead {
-            @apply bg-gray-100;
             box-shadow: none;
             border-radius: unset;
         }
@@ -57,8 +56,9 @@
         }
     }
 
-    input, select, button {
-        @apply ring-border-200 focus:ring-primary-500 focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
+    button, input, select {
+        @apply ring-border-300 focus:ring-primary-500;
+        @apply focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
     }
 
     button[data-cy^="toggle-columns-"] {
@@ -72,7 +72,7 @@
 
     nav[aria-label="Pagination Navigation"] {
         span, a {
-            @apply border-border-200;
+            @apply border-border-300;
         }
 
         span {
@@ -100,23 +100,27 @@
 
 
 .page_about {
-    dl {
-        display: grid;
-        grid-gap: 4px 16px;
-        /* grid-template-columns: max-content; */
-    }
 
-    dt {
-        @apply w-56 md:w-64;
-        @apply font-semibold md:font-normal;
-    }
 
-    dd {
-        @apply ms-6 md:col-start-2;
-    }
+    .config {
+        dl {
+            display: grid;
+            grid-gap: 4px 16px;
+            @apply md:auto-cols-[auto_1fr];
+        }
 
-    .config-value-bool {
-        padding: .1em .2em;
-        @apply bg-gray-100 rounded
+        dt {
+            @apply md:w-64;
+            @apply font-semibold md:font-normal;
+        }
+
+        dd {
+            @apply ms-6 md:col-start-2;
+        }
+
+        .config-value-bool {
+            padding: .1em .2em;
+            @apply bg-gray-100 rounded
+        }
     }
 }
