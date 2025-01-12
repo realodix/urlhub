@@ -12,7 +12,7 @@
                 </span>
             </div>
             <div class="w-1/2 text-right">
-                <a href="{{ route('dboard.allurl.u-guest') }}" title="{{ __('Shortened long links by Guest') }}" class="btn btn-primary">
+                <a href="{{ route('dboard.allurl.u-guest') }}" title="{{ __('Shortened long links by Guest') }}" class="btn btn-secondary">
                     {{ __('By Guest') }}
                 </a>
             </div>

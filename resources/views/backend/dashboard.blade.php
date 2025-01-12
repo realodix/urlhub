@@ -34,7 +34,7 @@
                 <span class="text-2xl text-slate-800">{{ __('My URLs') }}</span>
             </div>
             <div class="w-1/2 text-right">
-                <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-primary">
+                <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-secondary">
                     @svg('icon-add-link', '!h-[1.5em] mr-1')
                     {{ __('Add URL') }}
                 </a>
