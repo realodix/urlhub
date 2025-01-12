@@ -100,23 +100,27 @@
 
 
 .page_about {
-    dl {
-        display: grid;
-        grid-gap: 4px 16px;
-        @apply md:auto-cols-[auto_1fr];
-    }
 
-    dt {
-        @apply md:w-64;
-        @apply font-semibold md:font-normal;
-    }
 
-    dd {
-        @apply ms-6 md:col-start-2;
-    }
+    .config {
+        dl {
+            display: grid;
+            grid-gap: 4px 16px;
+            @apply md:auto-cols-[auto_1fr];
+        }
 
-    .config-value-bool {
-        padding: .1em .2em;
-        @apply bg-gray-100 rounded
+        dt {
+            @apply md:w-64;
+            @apply font-semibold md:font-normal;
+        }
+
+        dd {
+            @apply ms-6 md:col-start-2;
+        }
+
+        .config-value-bool {
+            padding: .1em .2em;
+            @apply bg-gray-100 rounded
+        }
     }
 }
