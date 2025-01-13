@@ -2,7 +2,7 @@
     <div class="layout-container flex
         px-4 sm:px-6 lg:px-8 h-16 justify-between"
     >
-        <a class="navbar-brand logo" href="{{ url('/') }}">{{ settings()->site_name }}</a>
+        <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
         @auth
             <div class="hidden sm:flex sm:items-center sm:ml-6">
