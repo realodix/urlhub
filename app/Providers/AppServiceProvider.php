@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,8 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        config(['app.name' => app(GeneralSettings::class)->site_name]);
-
         // Prevent destructive commands from running in production environments.
         DB::prohibitDestructiveCommands($this->app->isProduction());
 
