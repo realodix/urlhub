@@ -100,8 +100,6 @@
 
 
 .page_about {
-
-
     .config {
         dl {
             display: grid;
@@ -116,11 +114,6 @@
 
         dd {
             @apply ms-6 md:col-start-2;
-        }
-
-        .config-value-bool {
-            padding: .1em .2em;
-            @apply bg-gray-100 rounded
         }
     }
 }
