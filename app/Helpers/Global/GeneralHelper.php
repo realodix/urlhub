@@ -5,7 +5,7 @@ use Illuminate\Support\Number;
 
 if (!function_exists('settings')) {
     /**
-     * Get the site name.
+     * Get the settings.
      *
      * @return \App\Settings\GeneralSettings
      */
