@@ -28,6 +28,8 @@
         </div>
     </div>
 
+    <x-about.env-check />
+
     <br>
 
     @php
