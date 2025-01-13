@@ -5,7 +5,7 @@
 @section('title', __('About System'))
 @section('content')
 <main class="page_about max-w-4xl">
-    <div class="flex flex-wrap gap-4 mb-4 justify-end">
+    {{-- <div class="flex flex-wrap gap-4 mb-4 justify-end">
         <div class="--card-style p-4 w-full md:w-2/6">
             <div class="flex flex-row space-x-4 items-center">
                 <div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <x-about.env-check />
 
