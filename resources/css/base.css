@@ -111,10 +111,9 @@ hr {
 }
 
 
-.--card-style {
+.card {
     @apply bg-white;
-    @apply border-y border-border-200 shadow-sm;
-    @apply sm:border sm:shadow-sm sm:rounded-lg;
+    @apply border border-border-200 rounded-md;
 }
 
 

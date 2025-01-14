@@ -29,7 +29,7 @@
 
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
+                <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
                         <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
                             Total
@@ -39,7 +39,7 @@
                         </dd>
                     </div>
                 </div>
-                <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
+                <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
                         <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
                             User
@@ -49,7 +49,7 @@
                         </dd>
                     </div>
                 </div>
-                <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
+                <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
                         <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
                             Guest
@@ -65,7 +65,7 @@
         <h3>Users</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
+                <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
                         <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
                             User
@@ -75,7 +75,7 @@
                         </dd>
                     </div>
                 </div>
-                <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
+                <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
                         <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
                             Guest
@@ -92,7 +92,7 @@
         <p class="font-light text-sm">Random String Generation for Shortened URLs.</p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
-                <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
+                <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
                         <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
                             Potential Output
@@ -112,7 +112,7 @@
                         </dd>
                     </div>
                 </div>
-                <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
+                <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
                         <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1 md:w-64">
                             Generated Count
@@ -154,7 +154,7 @@
                 <p class="font-light text-sm">This is a list of domain names that are not allowed to be shortened.</p>
             </dt>
             <dd class="mt-2">
-                <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
+                <div class="card !bg-gray-50 !rounded px-3 py-2 text-sm">
                     @if (!empty($domainBlacklist))
                         <code>{{ implode(", ", $domainBlacklist) }}</code>
                     @else
@@ -170,7 +170,7 @@
                 </p>
             </dt>
             <dd class="mt-2 mb-2">
-                <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
+                <div class="card !bg-gray-50 !rounded px-3 py-2 text-sm">
                     <code class="text-slate-500">// {{ $reservedKeyword->count() }} Strings</code> <br>
                     <code>{{ $reservedKeyword->implode(', ') }}</code>
 

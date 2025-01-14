@@ -3,8 +3,8 @@
 @section('title', __('Dashboard'))
 @section('content')
 <main>
-    <div class="grid gird-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div class="--card-style p-4">
+    <div class="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+        <div class="card shadow-sm p-4">
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-link', 'mr-1.5 text-emerald-600 text-3xl')
                 <div>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="--card-style p-4">
+        <div class="card shadow-sm p-4">
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-chart-line-alt', 'mr-1.5 text-amber-600 text-3xl')
                 <div>

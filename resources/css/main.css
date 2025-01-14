@@ -35,7 +35,7 @@
 
 
 .content {
-    @apply --card-style;
+    @apply card;
     @apply px-2 md:px-8 py-5;
     /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
 
@@ -67,7 +67,7 @@
 
 
 .auth-card {
-    @apply --card-style;
+    @apply card;
     @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
 }
 
