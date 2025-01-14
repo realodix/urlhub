@@ -5,9 +5,7 @@
 @section('title', __('About System'))
 @section('content')
 <main class="page_about max-w-4xl">
-    <x-about.env-check />
-
-    <br>
+    <x-about.env-check class="mb-6" />
 
     @php
         $urlCount = n_abb($url->count());
