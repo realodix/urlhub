@@ -100,6 +100,10 @@
 
 
 .page_about {
+    .code {
+        @apply bg-gray-100 text-slate-800 rounded px-1 py-0.5
+    }
+
     .config {
         dl {
             display: grid;
