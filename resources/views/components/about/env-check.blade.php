@@ -64,16 +64,16 @@
             @endif
 
             <div>
-                <dd class="-mt-1 font-bold text-gray-900">
+                <p class="-mt-1 font-bold text-gray-900">
                     Environment
-                </dd>
-                <dt class="mt-0 text-sm font-light text-gray-600 md:mt-1">
+                </p>
+                <p class="mt-0 text-sm font-light text-gray-600 md:mt-1">
                     @if ($env !== 'production')
                         The environment was expected to be <code class="code">production</code>, but actually was <code class="code">{{ $env }}</code>.
                     @else
                         production
                     @endif
-                </dt>
+                </p>
             </div>
         </div>
     </div>

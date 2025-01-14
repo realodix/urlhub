@@ -5,29 +5,6 @@
 @section('title', __('About System'))
 @section('content')
 <main class="page_about max-w-4xl">
-    {{-- <div class="flex flex-wrap gap-4 mb-4 justify-end">
-        <div class="--card-style p-4 w-full md:w-2/6">
-            <div class="flex flex-row space-x-4 items-center">
-                <div>
-                    <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
-                    <p class="text-2xl font-bold text-slate-600 inline-flex items-center space-x-2">
-                        {{ phpversion() }}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="--card-style p-4 w-full md:w-2/6">
-            <div class="flex flex-row space-x-4 items-center">
-                <div>
-                    <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
-                    <p class="text-2xl font-bold text-slate-600 inline-flex items-center space-x-2">
-                        {{ app()->version() }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <x-about.env-check />
 
     <br>
