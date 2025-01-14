@@ -33,6 +33,37 @@
     }
 }
 
+.content {
+    @apply --card-style;
+    @apply px-2 md:px-8 py-5;
+    /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
+
+    .content-header {
+        @apply grid grid-cols-2 mb-8;
+    }
+
+    h1 {
+        @apply border-b border-border-200;
+        font-size: 2rem;
+        line-height: 1.25;
+        font-weight: 600;
+        padding-bottom: 0.5rem;
+    }
+
+    h3 {
+        color: #1f2328;
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.25;
+        margin-top: 24px;
+        margin-bottom: 8px;
+
+        &:first-child {
+            margin-top: 0 !important;
+        }
+    }
+}
+
 
 #power-grid-table-base {
     div:has(> div > table) {

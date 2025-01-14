@@ -4,8 +4,10 @@
 
 @section('content')
 <main>
-    <div class="card-default">
-        <div class="card_header__v2">{{ __('All Users') }}</div>
+    <div class="content">
+        <div class="content-header">
+            <p class="text-2xl">{{ __('All Users') }}</p>
+        </div>
 
         @livewire('table.user-table')
     </div>

@@ -16,8 +16,8 @@
         $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
     @endphp
 
-    <div class="card-default">
-        <div class="card_header__sub_header">Links</div>
+    <div class="content">
+        <h3>Links</h3>
         @php
             $urlCount = n_abb($url->count());
             $visitCount = n_abb($visit->count());
@@ -62,7 +62,7 @@
             </dl>
         </div>
 
-        <div class="card_header__sub_header">Users</div>
+        <h3>Users</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
@@ -88,8 +88,8 @@
             </dl>
         </div>
 
-        <div class="card_header__sub_header">Random String</div>
-        <div class="font-light text-sm">Random String Generation for Shortened URLs.</div>
+        <h3>Random String</h3>
+        <p class="font-light text-sm">Random String Generation for Shortened URLs.</p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
                 <div class="bg-gray-50 border border-border-200 rounded-md px-4 py-3">
@@ -135,10 +135,10 @@
         $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
         $reservedKeyword = $keyGenerator->reservedKeyword();
     @endphp
-    <div class="card-default config">
-        <div class="card_header">{{ __('Configuration') }}</div>
+    <div class="content config">
+        <h1>{{ __('Configuration') }}</h1>
 
-        <div class="card_header__sub_header">Shortened Links</div>
+        <h3>Shortened Links</h3>
         <dl>
             <dt><code>keyword_length</code></dt>
             <dd>{{ config('urlhub.keyword_length') }} characters</dd>
@@ -151,7 +151,7 @@
 
             <dt class="mt-2">
                 <code>domain_blacklist</code>
-                <div class="font-light text-sm">This is a list of domain names that are not allowed to be shortened.</div>
+                <p class="font-light text-sm">This is a list of domain names that are not allowed to be shortened.</p>
             </dt>
             <dd class="mt-2">
                 <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
@@ -165,9 +165,9 @@
 
             <dt class="mt-2 mb-2">
                 <code>reserved_keyword</code>
-                <div class="font-light text-sm">
+                <p class="font-light text-sm">
                     Reserved keywords are strings that cannot be used as a shortened URL keyword. The route list and folder/file names in the public folder are also included in this list.
-                </div>
+                </p>
             </dt>
             <dd class="mt-2 mb-2">
                 <div class="bg-gray-50 p-2 border border-border-300 rounded text-sm">
@@ -207,7 +207,7 @@
             </dd>
         </dl>
 
-        <div class="card_header__sub_header">Guest / Unregistered Users</div>
+        <h3>Guest / Unregistered Users</h3>
         <dl>
             <dt>Allow create short links</dt>
             <dd>

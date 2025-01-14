@@ -114,39 +114,7 @@ hr {
     @apply sm:border sm:shadow-sm sm:rounded-lg;
 }
 
-.card-default {
-    @apply --card-style;
-    @apply px-2 md:px-8 py-5;
-    /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
 
-    .card_header {
-        @apply border-b border-border-200;
-        color: #1f2328;
-        font-size: 1.5rem;
-        font-weight: 600;
-        line-height: 1.25;
-        padding-bottom: 0.5rem;
-    }
-
-    .card_header__v2 {
-        display: flex;
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .card_header__sub_header {
-        color: #1f2328;
-        font-size: 1.25rem;
-        font-weight: 600;
-        line-height: 1.25;
-        margin-top: 24px;
-        margin-bottom: 8px;
-
-        &:first-child {
-            margin-top: 0 !important;
-        }
-    }
-}
 
 .auth-card {
     @apply --card-style;

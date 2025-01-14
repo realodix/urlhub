@@ -18,7 +18,7 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{ route('user.password.store', $user) }}">
         @csrf
-            <div class="card-default">
+            <div class="content">
                 <div class="grid grid-cols-6 gap-6" x-data="{show: true}">
                     <div class="col-span-6 lg:col-span-4">
                         <label for="current_password" class="form-label">{{ __('Your Password') }}</label>
