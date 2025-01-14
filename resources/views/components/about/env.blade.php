@@ -23,7 +23,7 @@
 
     <div class="px-2 md:px-0">
         <div class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2">
-            <div class="flex items-start p-4 space-x-2 md:space-x-3 bg-white border border-border-200 rounded-xl">
+            <div class="flex items-start p-4 space-x-2 md:space-x-3 bg-white border border-border-200 rounded-md">
                 @if ($debug === true)
                     <x-about.mark-fail/>
                 @else
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="flex items-start p-4 space-x-2 md:space-x-3 bg-white border border-border-200 rounded-xl">
+            <div class="flex items-start p-4 space-x-2 md:space-x-3 bg-white border border-border-200 rounded-md">
                 @if ($env !== 'production')
                     <x-about.mark-fail/>
                 @else
