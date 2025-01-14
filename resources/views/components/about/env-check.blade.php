@@ -6,30 +6,22 @@
 <div class="mb-6">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="--card-style p-4 md:col-start-2">
-            <div class="f">
-                <div>
-                    <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
-                    <p class="text-2xl font-bold text-slate-600 inline-flex items-center space-x-2">
-                        {{ phpversion() }}
-                    </p>
-                </div>
-            </div>
+            <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
+            <p class="text-2xl font-bold text-slate-600">
+                {{ phpversion() }}
+            </p>
         </div>
         <div class="--card-style p-4 ">
-            <div class="">
-                <div>
-                    <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
-                    <p class="text-2xl font-bold text-slate-600 inline-flex items-center space-x-2">
-                        {{ app()->version() }}
-                    </p>
-                </div>
-            </div>
+            <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
+            <p class="text-2xl font-bold text-slate-600">
+                {{ app()->version() }}
+            </p>
         </div>
     </div>
 </div>
 
 <div class="px-2 my-6 md:mt-8 md:px-0">
-    <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2">
         <div class="flex items-start p-4 space-x-2 overflow-hidden text-opacity-0 transition transform bg-white border border-border-200 rounded-xl md:space-x-3">
             @if ($debug === true)
                 <div class="rounded-full p-0 md:p-2.5 md:bg-red-100 justify-center items-center flex">
@@ -48,16 +40,16 @@
             @endif
 
             <div>
-                <dd class="-mt-1 font-bold text-gray-900">
+                <p class="-mt-1 font-bold text-gray-900">
                     Debug Mode
-                </dd>
-                <dt class="mt-0 text-sm font-light text-gray-600 md:mt-1">
+                </p>
+                <p class="mt-0 text-sm font-light text-gray-600 md:mt-1">
                     @if ($debug === true)
                         The debug mode was expected to be <code class="code">false</code>, but actually was <code class="code">true</code>.
                     @else
                         false
                     @endif
-                </dt>
+                </p>
             </div>
         </div>
 
@@ -87,5 +79,5 @@
                 </dt>
             </div>
         </div>
-    </dl>
+    </div>
 </div>
