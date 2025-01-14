@@ -25,15 +25,9 @@
         <div class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2">
             <div class="flex items-start p-4 space-x-2 md:space-x-3 bg-white border border-border-200 rounded-xl">
                 @if ($debug === true)
-                    <div class="rounded-full flex items-center justify-center p-0 md:p-2.5 md:bg-red-100">
-                        <div class="rounded-full absolute w-3.5 h-3.5 bg-white"></div>
-                        @svg('icon-mark-fail', '!h-5 w-5 relative text-red-500')
-                    </div>
+                    <x-about.mark-fail/>
                 @else
-                    <div class="rounded-full flex items-center justify-center p-0 md:p-2.5 md:bg-emerald-100">
-                        <div class="rounded-full absolute w-3.5 h-3.5 bg-white"></div>
-                        @svg('icon-mark-check', '!h-5 w-5 relative text-emerald-500')
-                    </div>
+                    <x-about.mark-check/>
                 @endif
 
                 <div>
@@ -52,15 +46,9 @@
 
             <div class="flex items-start p-4 space-x-2 md:space-x-3 bg-white border border-border-200 rounded-xl">
                 @if ($env !== 'production')
-                    <div class="rounded-full flex items-center justify-center p-0 md:p-2.5 md:bg-red-100">
-                        <div class="rounded-full absolute w-3.5 h-3.5 bg-white"></div>
-                        @svg('icon-mark-fail', '!h-5 w-5 relative text-red-500')
-                    </div>
+                    <x-about.mark-fail/>
                 @else
-                    <div class="rounded-full flex items-center justify-center p-0 md:p-2.5 md:bg-emerald-100">
-                        <div class="rounded-full absolute w-3.5 h-3.5 bg-white"></div>
-                        @svg('icon-mark-check', '!h-5 w-5 relative text-emerald-500')
-                    </div>
+                    <x-about.mark-check/>
                 @endif
 
                 <div>
