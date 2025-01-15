@@ -27,7 +27,6 @@
                             style="display: none;"
                         >
                             <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
-
                                 @if (Route::currentRouteName() != 'dashboard')
                                     <a class="nav-item" href="{{ route('dashboard') }}">
                                         @svg('icon-dashboard', 'mr-1')
@@ -42,24 +41,7 @@
                                     {{ __('Manage Account') }}
                                 </div>
 
-                                <a href="{{ route('user.edit', auth()->user()->name) }}"
-                                    class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-primary-500':'' }}">
-                                    @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
-                                <a href="{{ route('user.password.show', auth()->user()->name) }}"
-                                    class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-primary-500':'' }}">
-                                    @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
-
-                                <div class="border-t border-border-200"></div>
-
-                                {{-- Authentication --}}
-                                <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); this.closest('form').submit();"
-                                        class="nav-item">
-                                        @svg('icon-log-out', 'mr-1') {{ __('Log Out') }}
-                                    </a>
-                                </form>
+                                @include('partials.header_nav-item_account')
                             </div>
                         </div>
                     </div>
@@ -96,7 +78,7 @@
         </div>
     </div>
 
-    {{-- Responsive Navigation Menu --}}
+    {{-- Responsive Navigation Menu (Mobile) --}}
     <div class="navbar-mobile sm:hidden block"
         :class="{'block': open, 'hidden': ! open}" x-show="open"
         x-transition
@@ -104,7 +86,14 @@
         style="display: none;"
     >
         @auth
-            @include('partials.header-localmenu_mobile')
+            <div class="pt-2 pb-3 space-y-1">
+                <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') {{ __('Dashboard') }}</x-nav-item>
+                @role('admin')
+                    <x-nav-item route-name="dboard.allurl">@svg('icon-link', 'mr-1') {{ __('URL List') }}</x-nav-item>
+                    <x-nav-item route-name="user.index">@svg('icon-people', 'mr-1') {{ __('User List') }}</x-nav-item>
+                    <x-nav-item route-name="dboard.about">@svg('icon-about-system', 'mr-1') {{ __('About') }}</x-nav-item>
+                @endrole
+            </div>
 
             {{-- Responsive Settings Options --}}
             <div class="pt-4 pb-1 border-t border-border-200">
@@ -117,20 +106,7 @@
 
                 <div class="mt-3 space-y-1">
                     {{-- Account Management --}}
-                    <a href="{{ route('user.edit', auth()->user()->name) }}"
-                        class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-primary-500':'' }}">
-                        @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
-                    <a href="{{ route('user.password.show', auth()->user()->name) }}"
-                        class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-primary-500':'' }}">
-                        @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
-
-                    {{-- Authentication --}}
-                    <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                        <a class="nav-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                            @svg('icon-log-out', 'mr-1') {{ __('Log Out') }}
-                        </a>
-                    </form>
+                    @include('partials.header_nav-item_account')
                 </div>
             </div>
         @else
@@ -149,6 +125,26 @@
 
     {{-- It should only appear on the dashboard page only. --}}
     @if (request()->is('admin*'))
-        @include('partials.header-localmenu')
+        <nav class="pt-1">
+            <div class="hidden layout-container sm:flex px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
+                <x-nav-item_local-menu route-name="dashboard" icon="icon-dashboard">
+                    {{ __('Dashboard') }}
+                </x-nav-item_local-menu>
+
+                @role('admin')
+                    <x-nav-item_local-menu route-name="dboard.allurl" icon="icon-link">
+                        {{ __('URL List') }}
+                    </x-nav-item_local-menu>
+
+                    <x-nav-item_local-menu route-name="user.index" icon="icon-people">
+                        {{ __('User List') }}
+                    </x-nav-item_local-menu>
+
+                    <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
+                        {{ __('About') }}
+                    </x-nav-item_local-menu>
+                @endrole
+            </div>
+        </nav>
     @endif
 </header>

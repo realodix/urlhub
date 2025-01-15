@@ -15,6 +15,10 @@
     .nav-item {
         @apply text-sm text-slate-800 hover:bg-gray-100 focus:bg-slate-100 leading-5;
         @apply block px-4 py-2 focus:outline-none transition;
+
+        &.active {
+            @apply border-l-2 border-primary-500 bg-gray-100;
+        }
     }
 }
 
