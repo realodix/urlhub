@@ -74,8 +74,8 @@ hr {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
     &-primary {
-        @apply text-white bg-slate-800 border-slate-800;
-        @apply hover:bg-slate-700 active:bg-slate-800;
+        @apply text-white bg-primary-600 border-primary-600;
+        @apply hover:bg-primary-600/90 active:bg-primary-800;
     }
 
     &-secondary {

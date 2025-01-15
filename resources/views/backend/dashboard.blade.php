@@ -32,7 +32,7 @@
         <div class="content-header">
             <p class="text-2xl">{{ __('My URLs') }}</p>
             <div class="flex justify-end">
-                <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-secondary">
+                <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-primary">
                     @svg('icon-add-link', '!h-[1.5em] mr-1')
                     {{ __('Add URL') }}
                 </a>

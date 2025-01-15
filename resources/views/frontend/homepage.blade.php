@@ -19,7 +19,7 @@
                 font-bold text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
             >
                 Simple URL shortener <br>
-                <span class="font-thin text-blue-600">for individuals &amp; businesses.</span>
+                <span class="text-blue-600">for individuals &amp; businesses</span>
             </span>
         </div>
 
@@ -31,13 +31,13 @@
                         <input name="long_url" value="{{ old('long_url') }}" placeholder="{{ __('Shorten your link') }}"
                             class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
                                 text-xl outline-none
-                                border border-border-200 focus:border-green-600
+                                border border-border-200 focus:border-primary-600
                                 rounded-t-md md:rounded-l-md md:rounded-r-none
                                 {{-- tailwindcss/forms --}}
                                 border-border-300 focus:ring-inherit">
                         <button type="submit" id="actProcess"
                             class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md
-                                duration-300 text-lg text-white bg-emerald-600 hover:bg-emerald-700 focus:bg-emerald-700"
+                                duration-300 text-lg text-white bg-primary-600 hover:bg-primary-600/90 focus:bg-primary-700"
                         >
                             {{ __('Shorten') }}
                         </button>
