@@ -15,12 +15,12 @@
         </div>
     @else
         <div class="flex flex-wrap md:justify-center">
-            <h1 class="mx-auto max-w-md md:max-w-3xl relative z-10
+            <span class="mx-auto max-w-md md:max-w-3xl relative z-10
                 font-bold text-center md:text-4xl xl:text-5xl text-3xl !leading-tight"
             >
                 Simple URL shortener <br>
-                <span class="font-thin text-slate-800">for individuals &amp; businesses.</span>
-            </h1>
+                <span class="font-thin text-blue-600">for individuals &amp; businesses.</span>
+            </span>
         </div>
 
         <div class="flex flex-wrap justify-center mt-12 px-4 lg:px-0">

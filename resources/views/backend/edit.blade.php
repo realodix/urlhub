@@ -8,7 +8,7 @@
 <main class="flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
-            <h3 class="text-lg font-medium text-slate-900">{{ __('Edit URL Details') }}</h3>
+            <h3>{{ __('Edit URL Details') }}</h3>
             <br>
             <div class="inline sm:block mr-2 text-sm text-slate-600">
                 @svg('icon-person', 'mr-1 text-slate-900')

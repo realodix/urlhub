@@ -45,15 +45,12 @@
 
     h1 {
         @apply border-b border-border-200;
-        font-size: 2rem;
         line-height: 1.25;
         font-weight: 600;
         padding-bottom: 0.5rem;
     }
 
     h3 {
-        color: #1f2328;
-        font-size: 1.25rem;
         font-weight: 600;
         line-height: 1.25;
         margin-top: 24px;

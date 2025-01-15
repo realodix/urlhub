@@ -8,7 +8,7 @@
 <main class="flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
-            <h3 class="text-lg font-medium text-slate-900">{{ __('Change Password') }}</h3>
+            <h3>{{ __('Change Password') }}</h3>
 
             <p class="mt-1 text-sm text-slate-600">
                 {{ __('Ensure your account is using a long, random password to stay secure.') }}

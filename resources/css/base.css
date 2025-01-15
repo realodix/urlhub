@@ -4,6 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    h1 {
+        font-size: 2em
+    }
+
+    h2 {
+        font-size: 1.75em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+}
+
 .layout-container {
     @apply max-w-[90rem] mx-auto;
 }
@@ -19,24 +33,6 @@ main {
 
 .logo {
     @apply text-uh-blue font-serif font-bold;
-}
-
-@layer base {
-    h1 {
-        @apply text-4xl;
-    }
-
-    h2 {
-        @apply text-3xl;
-    }
-
-    h3 {
-        @apply text-2xl;
-    }
-
-    h4 {
-        @apply text-xl;
-    }
 }
 
 hr {
