@@ -7,15 +7,6 @@
 <main class="page_about max-w-4xl">
     <x-about.env class="mb-6" />
 
-    @php
-        $urlCount = n_abb($url->count());
-        $visitCount = n_abb($visit->count());
-        $userUrlCount = n_abb($url->userUrlCount());
-        $userLinkVisitCount = n_abb($visit->userLinkVisitCount());
-        $guestUrlCount = n_abb($url->guestUserUrlCount());
-        $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
-    @endphp
-
     <div class="content">
         <h3>Links</h3>
         @php
