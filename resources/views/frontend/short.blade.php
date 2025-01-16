@@ -4,7 +4,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto mb-12">
     <div class="md:w-10/12 mt-6 lg:mt-8 px-4 sm:p-6">
-        <div class="text-xl sm:text-2xl lg:text-3xl mb-4">{{ $url->title }}</div>
+        <div class="text-xl sm:text-2xl lg:text-3xl md:mb-4">{{ $url->title }}</div>
 
         <ul class="mb-4">
             <li class="inline-block pr-4 mt-4 lg:mt-0">
