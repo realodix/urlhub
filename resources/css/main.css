@@ -6,7 +6,7 @@
     @apply border-b border-border-200;
 
     &-brand {
-        @apply flex items-center text-4xl;
+        @apply flex items-center text-3xl md:text-4xl;
     }
 
     &-toggler {
