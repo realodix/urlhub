@@ -23,7 +23,7 @@
             </span>
         </div>
 
-        <div class="flex flex-wrap justify-center mt-12 px-4 lg:px-0">
+        <div class="flex flex-wrap justify-center mt-12 md:mt-16 px-4 lg:px-0">
             <div class="w-full max-w-4xl">
                 <form method="post" action="{{ route('link.create') }}" class="mb-4 mt-12" id="formUrl">
                 @csrf
