@@ -21,14 +21,14 @@
         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="space-y-4">
         @csrf
             <div>
-                <label for="email" class="form-label">
+                <label class="form-label">
                     {{ __('E-Mail / Username') }}
                 </label>
-                <input name="identity" required value="{{ old('identity') }}" class="form-input mt-1" autofocus>
+                <input name="identity" required value="{{ old('identity') }}" id="identity" class="form-input mt-1" autofocus>
             </div>
 
             <div>
-                <label for="password" class="form-label">
+                <label class="form-label">
                     {{ __('Password') }}
                 </label>
                 <input type="password" name="password" required autocomplete="current_password" class="form-input mt-1">
