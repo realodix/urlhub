@@ -97,7 +97,7 @@
     }
 
     button, input, select {
-        @apply ring-border-300 focus:ring-primary-500;
+        @apply ring-border-200 focus:ring-primary-500;
         @apply focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
     }
 
@@ -112,7 +112,7 @@
 
     nav[aria-label="Pagination Navigation"] {
         span, a {
-            @apply border-border-300;
+            @apply border-border-200;
         }
 
         span {
