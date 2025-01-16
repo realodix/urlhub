@@ -25,7 +25,7 @@
 
         <div class="flex flex-wrap justify-center mt-12 md:mt-16 px-4 lg:px-0">
             <div class="w-full max-w-4xl">
-                <form method="post" action="{{ route('link.create') }}" class="mb-4 mt-12" id="formUrl">
+                <form method="post" action="{{ route('link.create') }}" class="mb-4 mt-12">
                 @csrf
                     <div class="mt-1 text-center">
                         <input name="long_url" required value="{{ old('long_url') }}" placeholder="{{ __('Shorten your link') }}"
@@ -35,10 +35,7 @@
                                 rounded-t-md md:rounded-l-md md:rounded-r-none
                                 {{-- tailwindcss/forms --}}
                                 border-border-300 focus:ring-inherit">
-                        <button type="submit" id="actProcess"
-                            class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md
-                                duration-300 text-lg text-white bg-primary-600 hover:bg-primary-600/90 focus:bg-primary-700"
-                        >
+                        <button type="submit" class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md duration-300 text-lg text-white bg-primary-600 hover:bg-primary-600/90 focus:bg-primary-700">
                             {{ __('Shorten') }}
                         </button>
                     </div>

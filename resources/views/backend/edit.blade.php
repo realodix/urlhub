@@ -33,8 +33,8 @@
             <div class="content">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="short-url" class="form-label">{{ __('Short URL') }}</label>
-                        <span class="short-url text-primary-500">{{ urlFormat($url->short_url, scheme: false) }}</span>
+                        <label class="form-label">{{ __('Short URL') }}</label>
+                        <span class="text-primary-500">{{ urlFormat($url->short_url, scheme: false) }}</span>
                     </div>
 
                     <div class="col-span-6">
@@ -43,8 +43,8 @@
                     </div>
 
                     <div class="col-span-6">
-                        <label for="long-url" class="form-label">{{ __('Destination URL') }}</label>
-                        <input name="long_url" required id="long-url" placeholder="http://www.my_long_url.com" value="{{ $url->destination }}" class="form-input">
+                        <label class="form-label">{{ __('Destination URL') }}</label>
+                        <input name="long_url" required placeholder="http://www.my_long_url.com" value="{{ $url->destination }}" class="form-input">
                     </div>
                 </div>
 

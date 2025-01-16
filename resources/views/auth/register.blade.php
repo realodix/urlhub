@@ -18,7 +18,7 @@
             @csrf
                 <div>
                     <label class="form-label">{{ __('Username') }}</label>
-                    <input name="name" required id="name" class="form-input mt-1" autofocus>
+                    <input name="name" required class="form-input mt-1" autofocus>
 
                     @if ($errors->has('name'))
                         <strong class="text-red-500">{{ $errors->first('name') }}</strong>
@@ -27,7 +27,7 @@
 
                 <div>
                     <label class="form-label">{{ __('Email') }}</label>
-                    <input type="email" name="email" required id="email" class="form-input mt-1">
+                    <input type="email" name="email" required class="form-input mt-1">
 
                     @if ($errors->has('email'))
                         <strong class="text-red-500">{{ $errors->first('email') }}</strong>
@@ -36,7 +36,7 @@
 
                 <div>
                     <label class="form-label">{{ __('Password') }}</label>
-                    <input type="password" name="password" required id="password" class="form-input mt-1">
+                    <input type="password" name="password" required class="form-input mt-1">
 
                     @if ($errors->has('password'))
                         <strong class="text-red-500">{{ $errors->first('password') }}</strong>
@@ -45,7 +45,7 @@
 
                 <div>
                     <label class="form-label">{{ __('Password Confirmation') }}</label>
-                    <input type="password" name="password_confirmation" required id="password-confirm" class="form-input mt-1">
+                    <input type="password" name="password_confirmation" required class="form-input mt-1">
                 </div>
 
                 <button type="submit" class="btn btn-primary w-full !mt-6">{{ __('Create Account') }}</button>
