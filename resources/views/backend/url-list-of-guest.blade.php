@@ -4,13 +4,9 @@
 
 @section('content')
 <main>
-    <div class="card-default">
-        <div class="card_header__v2">
-            <div class="w-1/2">
-                <span class="text-2xl text-slate-800">
-                    {{ __('Links created by Guests') }}
-                </span>
-            </div>
+    <div class="content">
+        <div class="content-header">
+            <p class="text-2xl">{{ __('Links created by Guests') }}</p>
         </div>
 
         @include('partials/messages')

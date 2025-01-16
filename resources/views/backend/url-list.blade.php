@@ -4,15 +4,11 @@
 
 @section('content')
 <main>
-    <div class="card-default">
-        <div class="card_header__v2">
-            <div class="w-1/2">
-                <span class="text-2xl text-slate-800">
-                    {{ __('List of All URLs') }}
-                </span>
-            </div>
-            <div class="w-1/2 text-right">
-                <a href="{{ route('dboard.allurl.u-guest') }}" title="{{ __('Shortened long links by Guest') }}" class="btn btn-secondary">
+    <div class="content">
+        <div class="content-header">
+            <p class="text-2xl">{{ __('List of All URLs') }}</p>
+            <div class="flex justify-end">
+                <a href="{{ route('dboard.allurl.u-guest') }}" title="{{ __('Shortened long links by Guest') }}" class="btn btn-primary">
                     {{ __('By Guest') }}
                 </a>
             </div>

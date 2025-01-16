@@ -8,7 +8,7 @@
 <main class="flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
-            <h3 class="text-lg font-medium text-slate-900">{{ __('Account Information') }}</h3>
+            <h3>{{ __('Account Information') }}</h3>
 
             <p class="mt-1 text-sm text-slate-600">
                 {{ __("Update your account information.") }}
@@ -18,7 +18,7 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{ route('user.update', $user) }}">
         @csrf
-            <div class="card-default">
+            <div class="content">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
                         <label class="form-label">{{ __('Username') }}</label>
