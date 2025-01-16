@@ -24,14 +24,14 @@
                 <label for="email" class="form-label">
                     {{ __('E-Mail / Username') }}
                 </label>
-                <input name="identity" class="form-input mt-1" value="{{ old('identity') }}" required autofocus>
+                <input name="identity" required value="{{ old('identity') }}" class="form-input mt-1" autofocus>
             </div>
 
             <div>
                 <label for="password" class="form-label">
                     {{ __('Password') }}
                 </label>
-                <input type="password" name="password" class="form-input mt-1" autocomplete="current_password" required>
+                <input type="password" name="password" required autocomplete="current_password" class="form-input mt-1">
             </div>
 
             <div class="flex items-center justify-end">

@@ -22,15 +22,14 @@
                 <div class="grid grid-cols-6 gap-6" x-data="{show: true}">
                     <div class="col-span-6 lg:col-span-4">
                         <label for="current_password" class="form-label">{{ __('Your Password') }}</label>
-                        <input required type="password" name="current_password" placeholder="{{ __('Enter your password') }}"
+                        <input type="password" name="current_password" required placeholder="{{ __('Enter your password') }}"
                             class="form-input mt-1">
                     </div>
 
                     <div class="col-span-6 lg:col-span-4">
                         <label for="new_password" class="form-label">{{ __('New Password') }}</label>
                         <div class="relative">
-                            <input required name="new_password" placeholder="{{ __('Enter a new password') }}"
-                                :type="show ? 'password' : 'text'" class="form-input mt-1" >
+                            <input :type="show ? 'password' : 'text'" name="new_password" required placeholder="{{ __('Enter a new password') }}" class="form-input mt-1" >
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
                                 <x-icon-eye-slash x-on:click="show=!show" ::class="{'!hidden': !show, 'block': show}" />
                                 <x-icon-eye x-on:click="show=!show" ::class="{'block': !show, '!hidden': show}" />
@@ -41,8 +40,7 @@
                     <div class="col-span-6 lg:col-span-4">
                         <label for="new_password-confirm" class="form-label">{{ __('Confirmation') }}</label>
                         <div class="relative">
-                            <input required name="new_password_confirmation" placeholder="Retype the new password"
-                                class="form-input mt-1" :type="show ? 'password' : 'text'">
+                            <input :type="show ? 'password' : 'text'" name="new_password_confirmation" required placeholder="Retype the new password" class="form-input mt-1">
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
                                 <x-icon-eye-slash x-on:click="show=!show" ::class="{'!hidden': !show, 'block': show}" />
                                 <x-icon-eye x-on:click="show=!show" ::class="{'block': !show, '!hidden': show}" />
