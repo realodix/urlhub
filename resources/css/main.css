@@ -1,7 +1,8 @@
 @import 'base.css';
 
 .navbar {
-    @apply bg-white text-primary-700;
+    @apply sticky top-0 z-50 w-full;
+    @apply text-primary-700 bg-white/40 backdrop-blur-lg;
     @apply border-b border-border-200;
 
     &-brand {
