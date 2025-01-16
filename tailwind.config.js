@@ -19,15 +19,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                "primary-50": "#eff6ff",
-                "primary-100": "#dbeafe",
-                "primary-200": "#bfdbfe",
-                "primary-300": "#93c5fd",
-                "primary-400": "#60a5fa",
-                "primary-500": "#3b82f6",
-                "primary-600": "#2563eb",
-                "primary-700": "#1d4ed8",
-                "primary-800": "#1e40af",
+                "primary": colors.blue,
                 "uh-blue": "#3d5b99",
                 "border-200": "#e7e5e4",
                 "border-300": "#d6d3d1",
