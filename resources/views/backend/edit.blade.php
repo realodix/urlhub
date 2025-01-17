@@ -8,7 +8,7 @@
 <main class="flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
-            <h3 class="text-lg font-medium text-slate-900">{{ __('Edit URL Details') }}</h3>
+            <h3>{{ __('Edit URL Details') }}</h3>
             <br>
             <div class="inline sm:block mr-2 text-sm text-slate-600">
                 @svg('icon-person', 'mr-1 text-slate-900')
@@ -30,23 +30,21 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         <form method="post" action="{{ route('link.update', $url) }}">
         @csrf
-            <div class="card-default">
+            <div class="content">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
-                        <label for="short-url" class="form-label">{{ __('Short URL') }}</label>
-                        <span class="short-url text-primary-500">{{ urlFormat($url->short_url, scheme: false) }}</span>
+                        <label class="form-label">{{ __('Short URL') }}</label>
+                        <span class="text-primary-600">{{ urlFormat($url->short_url, scheme: false) }}</span>
                     </div>
 
                     <div class="col-span-6">
                         <label class="form-label">{{ __('Title') }}</label>
-                        <input name="title" placeholder="{{ __('Title') }}" required
-                            value="{{ $url->title }}" class="form-input">
+                        <input name="title" required placeholder="{{ __('Title') }}" value="{{ $url->title }}" class="form-input">
                     </div>
 
                     <div class="col-span-6">
-                        <label for="long-url" class="form-label">{{ __('Destination URL') }}</label>
-                        <input id="long-url" name="long_url" placeholder="http://www.my_long_url.com"
-                            required value="{{ $url->destination }}" class="form-input">
+                        <label class="form-label">{{ __('Destination URL') }}</label>
+                        <input name="long_url" required placeholder="http://www.my_long_url.com" value="{{ $url->destination }}" class="form-input">
                     </div>
                 </div>
 

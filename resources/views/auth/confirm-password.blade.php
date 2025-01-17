@@ -23,7 +23,7 @@
         @csrf
             <div>
                 <label>{{ __('Password') }}</label>
-                <input type="password" name="password" autocomplete="current_password" class="form-input" required>
+                <input type="password" name="password" required autocomplete="current_password" class="form-input">
             </div>
 
             <button type="submit" class="btn btn-primary">

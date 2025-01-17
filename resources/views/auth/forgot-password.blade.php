@@ -34,7 +34,7 @@
         @csrf
             <div>
                 <label class="form-label">{{ __('Email') }}</label>
-                <input type="email" name="email" class="form-input" id="email" value="{{ old('email') }}" required autofocus>
+                <input type="email" name="email" required value="{{ old('email') }}" class="form-input" autofocus>
             </div>
 
             <button type="submit" class="btn btn-primary w-full">

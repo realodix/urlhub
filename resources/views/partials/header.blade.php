@@ -1,7 +1,5 @@
 <header class="navbar" x-data="{ open: false }">
-    <div class="layout-container flex
-        px-4 sm:px-6 lg:px-8 h-16 justify-between"
-    >
+    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between">
         <a class="navbar-brand logo" href="{{ url('/') }}">{{ settings()->site_name }}</a>
 
         @auth
@@ -12,11 +10,10 @@
                         <div x-on:click="open = ! open">
                             <span class="inline-flex rounded-md">
                                 <button class="navbar-toggler items-center">
-                                    <div class="text-base font-semibold">{{ str()->title(auth()->user()->name) }}</div>
-
-                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path>
-                                    </svg>
+                                    <div class="text-base font-semibold text-primary-700">
+                                        {{ str()->title(auth()->user()->name) }}
+                                    </div>
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
                                 </button>
                             </span>
                         </div>
@@ -27,7 +24,6 @@
                             style="display: none;"
                         >
                             <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
-
                                 @if (Route::currentRouteName() != 'dashboard')
                                     <a class="nav-item" href="{{ route('dashboard') }}">
                                         @svg('icon-dashboard', 'mr-1')
@@ -51,24 +47,7 @@
                                     {{ __('Manage Account') }}
                                 </div>
 
-                                <a href="{{ route('user.edit', auth()->user()->name) }}"
-                                    class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-primary-500':'' }}">
-                                    @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
-                                <a href="{{ route('user.password.show', auth()->user()->name) }}"
-                                    class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-primary-500':'' }}">
-                                    @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
-
-                                <div class="border-t border-border-200"></div>
-
-                                {{-- Authentication --}}
-                                <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); this.closest('form').submit();"
-                                        class="nav-item">
-                                        @svg('icon-log-out', 'mr-1') {{ __('Log Out') }}
-                                    </a>
-                                </form>
+                                @include('partials.header_nav-item_account')
                             </div>
                         </div>
                     </div>
@@ -76,9 +55,7 @@
             </div>
         @else
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <a href="{{ route('login') }}"
-                    class="btn text-xl font-medium bg-white hover:bg-primary-100 hover:border-primary-300 active:bg-primary-100">
-
+                <a href="{{ route('login') }}" class="btn btn-secondary text-xl font-medium">
                     <svg class="w-5 h-5 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
                     </svg>
@@ -105,7 +82,7 @@
         </div>
     </div>
 
-    {{-- Responsive Navigation Menu --}}
+    {{-- Responsive Navigation Menu (Mobile) --}}
     <div class="navbar-mobile sm:hidden block"
         :class="{'block': open, 'hidden': ! open}" x-show="open"
         x-transition
@@ -113,7 +90,14 @@
         style="display: none;"
     >
         @auth
-            @include('partials.header-localmenu_mobile')
+            <div class="pt-2 pb-3 space-y-1">
+                <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') {{ __('Dashboard') }}</x-nav-item>
+                @role('admin')
+                    <x-nav-item route-name="dboard.allurl">@svg('icon-link', 'mr-1') {{ __('URL List') }}</x-nav-item>
+                    <x-nav-item route-name="user.index">@svg('icon-people', 'mr-1') {{ __('User List') }}</x-nav-item>
+                    <x-nav-item route-name="dboard.about">@svg('icon-about-system', 'mr-1') {{ __('About') }}</x-nav-item>
+                @endrole
+            </div>
 
             {{-- Responsive Settings Options --}}
             <div class="pt-4 pb-1 border-t border-border-200">
@@ -126,20 +110,7 @@
 
                 <div class="mt-3 space-y-1">
                     {{-- Account Management --}}
-                    <a href="{{ route('user.edit', auth()->user()->name) }}"
-                        class="nav-item {{ (request()->route()->getName() === 'user.edit') ? 'border-l-2 border-primary-500':'' }}">
-                        @svg('icon-person', 'mr-1') {{ __('Account') }}</a>
-                    <a href="{{ route('user.password.show', auth()->user()->name) }}"
-                        class="nav-item {{ (request()->route()->getName() === 'user.password.show') ? 'border-l-2 border-primary-500':'' }}">
-                        @svg('icon-key', 'mr-1') {{ __('Change Password') }}</a>
-
-                    {{-- Authentication --}}
-                    <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                        <a class="nav-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                            @svg('icon-log-out', 'mr-1') {{ __('Log Out') }}
-                        </a>
-                    </form>
+                    @include('partials.header_nav-item_account')
                 </div>
             </div>
         @else
@@ -158,6 +129,26 @@
 
     {{-- It should only appear on the dashboard page only. --}}
     @if (request()->is('admin*'))
-        @include('partials.header-localmenu')
+        <nav class="pt-1">
+            <div class="hidden layout-container sm:flex px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
+                <x-nav-item_local-menu route-name="dashboard" icon="icon-dashboard">
+                    {{ __('Dashboard') }}
+                </x-nav-item_local-menu>
+
+                @role('admin')
+                    <x-nav-item_local-menu route-name="dboard.allurl" icon="icon-link">
+                        {{ __('URL List') }}
+                    </x-nav-item_local-menu>
+
+                    <x-nav-item_local-menu route-name="user.index" icon="icon-people">
+                        {{ __('User List') }}
+                    </x-nav-item_local-menu>
+
+                    <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
+                        {{ __('About') }}
+                    </x-nav-item_local-menu>
+                @endrole
+            </div>
+        </nav>
     @endif
 </header>

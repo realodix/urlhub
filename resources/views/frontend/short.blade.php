@@ -4,7 +4,7 @@
 @section('content')
 <div class="max-w-7xl mx-auto mb-12">
     <div class="md:w-10/12 mt-6 lg:mt-8 px-4 sm:p-6">
-        <div class="text-xl sm:text-2xl lg:text-3xl mb-4">{{ $url->title }}</div>
+        <div class="text-xl sm:text-2xl lg:text-3xl md:mb-4">{{ $url->title }}</div>
 
         <ul class="mb-4">
             <li class="inline-block pr-4 mt-4 lg:mt-0">
@@ -22,7 +22,7 @@
         </ul>
     </div>
 
-    <div class="card-default flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6">
+    <div class="content flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6">
         <div class="w-full md:w-1/4 flex justify-center md:mt-10">
             <img class="qrcode h-fit" src="{{ $qrCode->getDataUri() }}" alt="QR Code">
         </div>
@@ -38,12 +38,12 @@
 
                 @auth
                     @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
-                        <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}"
-                            class="btn btn-secondary btn-square btn-sm mr-6">
+                        <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}" class="btn btn-secondary btn-square btn-sm mr-6">
                             @svg('icon-edit')
                         </a>
                         <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
-                            class="btn btn-secondary btn-square btn-sm hover:bg-red-100 hover:border-red-200 hover:text-red-800 active:text-red-700">
+                            class="btn btn-secondary btn-square btn-sm hover:bg-red-100 hover:border-red-200 hover:text-red-800 active:text-red-700"
+                        >
                             @svg('icon-trash')
                         </a>
                     @endif
@@ -52,27 +52,26 @@
 
             <br>
 
-            <span class="text-primary-700 font-bold text-xl sm:text-2xl">
-                <a href="{{ $url->short_url }}" target="_blank" id="copy">
-                    {{ urlFormat($url->short_url, scheme: false) }}
-                </a>
-            </span>
+            <div class="mt-10 sm:mt-0">
+                <p class="text-primary-600 font-bold text-xl sm:text-2xl">
+                    <a href="{{ $url->short_url }}" target="_blank" id="copy">
+                        {{ urlFormat($url->short_url, scheme: false) }}
+                    </a>
+                </p>
 
-            <div class="mt-2">
-                <div class="flex gap-x-2">
+                <div class="flex gap-x-2 mt-2">
                     <div class="hidden md:block">@svg('arrow-turn-right')</div>
-                    <div class="break-all max-w-2xl">
-                        <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer" class="redirect-anchor">
+                    <p class="break-all max-w-2xl">
+                        <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
                             {{ $url->destination }}
                         </a>
-                    </div>
+                    </p>
                 </div>
             </div>
 
             <div class="mt-20">
                 @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
             </div>
-
         </div>
     </div>
 </div>
