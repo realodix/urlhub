@@ -1,5 +1,12 @@
-<header class="navbar" x-data="{ open: false }">
-    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between">
+<header class="navbar" x-data="{ open: false, atTop: false }"
+    @if (request()->is('admin*'))
+        :class="{ 'sticky top-0 z-50': atTop }"
+        @scroll.window="atTop = (window.pageYOffset < 65) ? false: true"
+    @endif
+>
+    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between"
+        :class="{ 'md:hidden': atTop }"
+    >
         <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
         @auth
@@ -120,8 +127,8 @@
 
     {{-- It should only appear on the dashboard page only. --}}
     @if (request()->is('admin*'))
-        <nav class="pt-1">
-            <div class="hidden layout-container sm:flex px-4 sm:px-6 lg:px-8 croll-smooth hover:scroll-auto">
+        <nav class="layout-container grid grid-cols-2 pt-1 px-4 sm:px-6 lg:px-8 ">
+            <div class="hidden sm:flex">
                 <x-nav-item_local-menu route-name="dashboard" icon="icon-dashboard">
                     {{ __('Dashboard') }}
                 </x-nav-item_local-menu>

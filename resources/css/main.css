@@ -1,7 +1,6 @@
 @import 'base.css';
 
 .navbar {
-    @apply sticky top-0 z-50 w-full;
     @apply bg-white/40 backdrop-blur-lg;
     @apply border-b border-border-200;
 
