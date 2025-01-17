@@ -8,8 +8,8 @@
 @include('partials/messages')
 
 <main class="max-w-4xl">
-    <div class="card-default">
-        <div class="card_header">Settings</div>
+    <div class="content">
+        <h1>{{ __('Settings') }}</h1>
 
         <form method="post" action="{{ route('dboard.settings.update') }}" class="space-y-6">
         @csrf
@@ -23,7 +23,7 @@
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Allow Anyone to Shorten URLs</label>
                     <div class="font-light text-sm">Enable to allow anyone to create short URLs. If disabled, only registered users can create them.</div>
-                    <label class="switch float-right">
+                    <label class="switch float-right mt-6">
                         <input type="checkbox" name="anyone_can_shorten" value="1" {{ $settings->anyone_can_shorten ? 'checked' : '' }}>
                         <span class="slider"></span>
                     </label>
@@ -31,14 +31,14 @@
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Allow User Registration</label>
                     <div class="font-light text-sm">Enable to allow new user registrations. If disabled, no new user registrations are allowed.</div>
-                    <label class="switch float-right">
+                    <label class="switch float-right mt-6">
                         <input type="checkbox" name="anyone_can_register" value="1" {{ $settings->anyone_can_register ? 'checked' : '' }}>
                         <span class="slider"></span>
                     </label>
                 </div>
 
                 <hr class="col-span-6 lg:col-span-4">
-                <div class="card_header__sub_header col-span-6 lg:col-span-4">Short URL Keyword</div>
+                <h3 class="col-span-6 lg:col-span-4">Short URL Keyword</h3>
 
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Keyword Length</label>
@@ -61,14 +61,14 @@
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Fetch Website Title</label>
                     <div class="font-light text-sm">Automatically retrieves the website's title when creating a short URL. If disabled, the domain name will be used instead.</div>
-                    <label class="switch float-right">
+                    <label class="switch float-right mt-6">
                         <input type="checkbox" name="retrieve_web_title" value="1" {{ $settings->retrieve_web_title ? 'checked' : '' }}>
                         <span class="slider"></span>
                     </label>
                 </div>
 
                 <hr class="col-span-6 lg:col-span-4">
-                <div class="card_header__sub_header col-span-6 lg:col-span-4">Redirection</div>
+                <h3 class="col-span-6 lg:col-span-4">Redirection</h3>
 
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label !inline">Redirection Status Code</label>
@@ -88,7 +88,7 @@
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">{{ __('Track bot visits') }}</label>
                     <div class="font-light text-sm">Determine whether bot visits count as visitors or not. If enabled, bot visits will be counted as visitors.</div>
-                    <label class="switch float-right">
+                    <label class="switch float-right mt-6">
                         <input type="checkbox" name="track_bot_visits" value="1" {{ $settings->track_bot_visits ? 'checked' : '' }}>
                         <span class="slider"></span>
                     </label>
