@@ -4,9 +4,7 @@
         @scroll.window="atTop = (window.pageYOffset < 65) ? false: true"
     @endif
 >
-    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between"
-        :class="{ 'md:hidden': atTop }"
-    >
+    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between" :class="{ 'md:hidden': atTop }">
         <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
         <x-nav-dropdown/>
