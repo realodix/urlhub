@@ -35,16 +35,16 @@ class KeyGeneratorServiceTest extends TestCase
         $value1 = 'foo';
 
         $hash = $this->keyGenerator->generate($value1);
-        $this->assertSame($this->keyGenerator->simpleString($value1), $hash);
+        $this->assertSame($this->keyGenerator->hashedString($value1), $hash);
 
         $urlFactory = Url::factory()->create(['keyword' => $hash]);
         $hash2 = $this->keyGenerator->generate($value1);
-        $this->assertSame(strtoupper($this->keyGenerator->simpleString($value1)), $hash2);
+        $this->assertSame(strtoupper($this->keyGenerator->hashedString($value1)), $hash2);
 
         Url::factory()->create(['keyword' => $hash2]);
         $hash3 = $this->keyGenerator->generate($value1);
         $this->assertSame(
-            $this->keyGenerator->simpleString($value1 . $urlFactory->latest('id')->value('id')),
+            $this->keyGenerator->hashedString($value1 . $urlFactory->latest('id')->value('id')),
             $hash3,
         );
 
