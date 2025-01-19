@@ -28,7 +28,7 @@ class KeyGeneratorService
             return $strUpper;
         }
 
-        // If the second attempt fail, try to add the latest url id
+        // If the second attempt fail, try to append the last url id
         $str = $this->simpleString($value . Url::latest('id')->value('id'));
         if ($this->verify($str)) {
             return $str;
