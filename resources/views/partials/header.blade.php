@@ -91,7 +91,7 @@
                     </x-nav-item_local-menu>
 
                     <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
-                        {{ __('Settings') }}
+                        <span class="hidden md:inline">{{ __('Settings') }}</span>
                     </x-nav-item_local-menu>
 
                     <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
