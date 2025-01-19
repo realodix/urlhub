@@ -33,6 +33,28 @@ class KeyGeneratorServiceTest extends TestCase
     public function testGenerateUniqueString(): void
     {
         $value1 = 'foo';
+
+        $hash = $this->keyGenerator->generate($value1);
+        $this->assertSame($this->keyGenerator->hashedString($value1), $hash);
+
+        $urlFactory = Url::factory()->create(['keyword' => $hash]);
+        $hash2 = $this->keyGenerator->generate($value1);
+        $this->assertSame(strtoupper($this->keyGenerator->hashedString($value1)), $hash2);
+
+        Url::factory()->create(['keyword' => $hash2]);
+        $hash3 = $this->keyGenerator->generate($value1);
+        $this->assertSame(
+            $this->keyGenerator->hashedString($value1 . $urlFactory->latest('id')->value('id')),
+            $hash3,
+        );
+
+        Url::factory()->create(['keyword' => $hash3]);
+        $this->assertNotSame($hash2, $this->keyGenerator->generate($value1));
+    }
+
+    public function testGenerateUniqueStringWithReservedKeyword(): void
+    {
+        $value1 = 'foo';
         $generatedString1 = $this->keyGenerator->generate($value1);
         Url::factory()->create(['keyword' => $generatedString1]);
         $this->assertSame($this->keyGenerator->hashedString($value1), $generatedString1);

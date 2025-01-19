@@ -17,17 +17,30 @@ class KeyGeneratorService
      */
     public function generate(string $value): string
     {
-        $string = $this->hashedString($value);
-
-        if (!$this->verify($string) || strlen($string) < config('urlhub.keyword_length')) {
-            do {
-                $randomString = $this->randomString();
-            } while (!$this->verify($randomString));
-
-            return $randomString;
+        $str = $this->hashedString($value);
+        if ($this->verify($str)) {
+            return $str;
         }
 
-        return $string;
+        // If the first attempt fail, try to make the string uppercase
+        $strUpper = strtoupper($str);
+        if ($this->verify($strUpper)) {
+            return $strUpper;
+        }
+
+        // If the second attempt fail, try to append the last url id
+        $str = $this->hashedString($value . Url::latest('id')->value('id'));
+        if ($this->verify($str)) {
+            return $str;
+        }
+
+        // If the string is still not unique, then generate a random string
+        // until it is unique
+        do {
+            $randomString = $this->randomString();
+        } while (!$this->verify($randomString));
+
+        return $randomString;
     }
 
     /**
