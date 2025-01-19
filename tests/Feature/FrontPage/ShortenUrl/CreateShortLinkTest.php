@@ -5,7 +5,6 @@ namespace Tests\Feature\FrontPage\ShortenUrl;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Mockery\MockInterface;
-use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('front-page')]
@@ -38,7 +37,7 @@ class CreateShortLinkTest extends TestCase
         $longUrl = 'https://t.co';
 
         $customKey = 'foobar';
-        Helper::setSettings(['keyword_length' => strlen($customKey) + 1]);
+        settings()->fill(['keyword_length' => strlen($customKey) + 1])->save();
         $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
@@ -48,7 +47,7 @@ class CreateShortLinkTest extends TestCase
         $this->assertTrue($url->is_custom);
 
         $customKey = 'barfoo';
-        Helper::setSettings(['keyword_length' => strlen($customKey) - 1]);
+        settings()->fill(['keyword_length' => strlen($customKey) - 1])->save();
         $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,

@@ -6,7 +6,6 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use PHPUnit\Framework\Attributes as PHPUnit;
-use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('model')]
@@ -121,7 +120,7 @@ class UrlTest extends TestCase
     #[PHPUnit\Test]
     public function setMetaTitleAttributeWhenWebTitleSetToFalse(): void
     {
-        Helper::setSettings(['retrieve_web_title' => false]);
+        settings()->fill(['retrieve_web_title' => false])->save();
 
         $url = Url::factory()->create(['destination' => 'http://example.com/']);
 
@@ -153,7 +152,7 @@ class UrlTest extends TestCase
     #[PHPUnit\Test]
     public function getWebTitle_ShouldReturnNoTitle(): void
     {
-        Helper::setSettings(['retrieve_web_title' => false]);
+        settings()->fill(['retrieve_web_title' => false])->save();
 
         $expected = 'No Title';
         $actual = $this->url->getWebTitle('https://example123456789.com');

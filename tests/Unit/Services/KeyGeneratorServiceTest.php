@@ -5,7 +5,6 @@ namespace Tests\Unit\Services;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use PHPUnit\Framework\Attributes as PHPUnit;
-use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('services')]
@@ -82,7 +81,7 @@ class KeyGeneratorServiceTest extends TestCase
         // configured_strlen > input_strlen
         // Generator harus menghasilkan string acak dengan panjang yang sesuai.
         $strLen = 8;
-        Helper::setSettings(['keyword_length' => $strLen]);
+        settings()->fill(['keyword_length' => $strLen])->save();
         $actual = $this->keyGenerator->generate($inputString);
 
         $this->assertSame($strLen, strlen($actual));
@@ -99,7 +98,7 @@ class KeyGeneratorServiceTest extends TestCase
     #[PHPUnit\Test]
     public function urlKey_string_lenght2(): void
     {
-        Helper::setSettings(['keyword_length' => 10]);
+        settings()->fill(['keyword_length' => 10])->save();
 
         $longUrl = 'https://t.co';
         $customKey = 'tco';
@@ -122,7 +121,7 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testStringIsAlreadyUsedAsTheActiveKeyword(): void
     {
-        Helper::setSettings(['keyword_length' => 5]);
+        settings()->fill(['keyword_length' => 5])->save();
 
         $value = $this->keyGenerator->generate('https://github.com/realodix');
 
@@ -221,10 +220,10 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $charLen = strlen($this->keyGenerator::ALPHABET);
 
-        Helper::setSettings(['keyword_length' => 2]);
+        settings()->fill(['keyword_length' => 2])->save();
         $this->assertSame(pow($charLen, 2), $this->keyGenerator->possibleOutput());
 
-        Helper::setSettings(['keyword_length' => 11]);
+        settings()->fill(['keyword_length' => 11])->save();
         $this->assertSame(PHP_INT_MAX, $this->keyGenerator->possibleOutput());
     }
 
@@ -235,7 +234,7 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $settings = app(\App\Settings\GeneralSettings::class);
         $keywordLength = $settings->keyword_length + 1;
-        Helper::setSettings(['keyword_length' => $keywordLength]);
+        settings()->fill(['keyword_length' => $keywordLength])->save();
 
         Url::factory()->create([
             'keyword' => $this->keyGenerator->randomString(),
@@ -256,7 +255,7 @@ class KeyGeneratorServiceTest extends TestCase
         ]);
         $this->assertSame(2, $this->keyGenerator->totalKey());
 
-        Helper::setSettings(['keyword_length' => $settings->keyword_length + 3]);
+        settings()->fill(['keyword_length' => $settings->keyword_length + 3])->save();
         $this->assertSame(0, $this->keyGenerator->totalKey());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
@@ -266,7 +265,7 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testTotalKeysBasedOnStringCharacters(): void
     {
-        Helper::setSettings(['keyword_length' => 5]);
+        settings()->fill(['keyword_length' => 5])->save();
 
         Url::factory()->create([
             'keyword' => 'ab-cd',
