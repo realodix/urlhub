@@ -44,19 +44,19 @@
                     <label class="form-label">Keyword Length</label>
                     <div class="font-light text-sm">Specifies the number of characters to be used in the generated short URL keywords. This value must be between 2 and 20.</div>
                     <input name="keyword_length" value="{{ $settings->keyword_length }}"
-                        class="form-input mt-4 md:mt-1 @error('keyword_length') !border-red-300 @enderror">
+                        class="form-input mt-4 md:mt-3 @error('keyword_length') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Min. Custom Keyword Length</label>
                     <div class="font-light text-sm">Specify the minimum number of characters allowed for the custom keyword. This value must be between 2 and 19.</div>
                     <input name="custom_keyword_min_length" value="{{ $settings->custom_keyword_min_length }}"
-                        class="form-input mt-4 md:mt-1 @error('custom_keyword_min_length') !border-red-300 @enderror">
+                        class="form-input mt-4 md:mt-3 @error('custom_keyword_min_length') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Max. Custom Keyword Length</label>
                     <div class="font-light text-sm">Specify the maximum number of characters allowed for the custom keyword. This value must be between 3 and 20.</div>
                     <input name="custom_keyword_max_length" value="{{ $settings->custom_keyword_max_length }}"
-                        class="form-input mt-4 md:mt-1 @error('custom_keyword_max_length') !border-red-300 @enderror">
+                        class="form-input mt-4 md:mt-3 @error('custom_keyword_max_length') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Fetch Website Title</label>
@@ -74,7 +74,7 @@
                     <label class="form-label !inline">Redirection Status Code</label>
                     <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections" target="_blank">@svg('icon-help', 'ml-1 hover:scale-110')</a>
                     <div class="font-light text-sm">The HTTP status code to use when redirecting a visitor to the original URL.</div>
-                    <select name="redirect_status_code" class="form-input mt-4 md:mt-1">
+                    <select name="redirect_status_code" class="form-input mt-4 md:mt-3">
                         <option value="301" {{ $settings->redirect_status_code == 301 ? 'selected' : '' }}>301 - Permanent Redirect</option>
                         <option value="302" {{ $settings->redirect_status_code == 302 ? 'selected' : '' }}>302 - Temporary Redirect</option>
                     </select>
@@ -83,7 +83,7 @@
                     <label class="form-label !inline">HTTP Cache-Control header (max-age)</label>
                     <div class="font-light text-sm">Set the maximum age for the HTTP Cache-Control header in seconds. Set to 0 for no caching.</div>
                     <input name="redirect_cache_max_age" value="{{ $settings->redirect_cache_max_age }}"
-                        class="form-input mt-4 md:mt-1 @error('redirect_cache_max_age') !border-red-300 @enderror">
+                        class="form-input mt-4 md:mt-3 @error('redirect_cache_max_age') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">{{ __('Track bot visits') }}</label>
