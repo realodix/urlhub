@@ -17,7 +17,7 @@ class KeyGeneratorService
      */
     public function generate(string $value): string
     {
-        $str = $this->simpleString($value);
+        $str = $this->hashedString($value);
         if ($this->verify($str)) {
             return $str;
         }
@@ -29,7 +29,7 @@ class KeyGeneratorService
         }
 
         // If the second attempt fail, try to append the last url id
-        $str = $this->simpleString($value . Url::latest('id')->value('id'));
+        $str = $this->hashedString($value . Url::latest('id')->value('id'));
         if ($this->verify($str)) {
             return $str;
         }
@@ -43,7 +43,13 @@ class KeyGeneratorService
         return $randomString;
     }
 
-    public function simpleString(string $value): string
+    /**
+     * Hashes the given string and truncates it to the configured keyword length.
+     *
+     * @param string $value The input string to hash.
+     * @return string The hashed and truncated string.
+     */
+    public function hashedString(string $value): string
     {
         return substr(hash('xxh3', $value), 0, config('urlhub.keyword_length'));
     }
