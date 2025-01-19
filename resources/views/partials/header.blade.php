@@ -90,6 +90,10 @@
                         {{ __('User List') }}
                     </x-nav-item_local-menu>
 
+                    <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
+                        {{ __('Settings') }}
+                    </x-nav-item_local-menu>
+
                     <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
                         {{ __('About') }}
                     </x-nav-item_local-menu>
