@@ -110,6 +110,10 @@ hr {
 .card {
     @apply bg-white;
     @apply border border-border-200 rounded-md;
+
+    &-master {
+        @apply max-[640px]:rounded-none;
+    }
 }
 
 
