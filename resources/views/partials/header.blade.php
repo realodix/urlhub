@@ -4,7 +4,7 @@
         @scroll.window="atTop = (window.pageYOffset < 65) ? false: true"
     @endif
 >
-    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between" :class="{ 'md:hidden': atTop }">
+    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between" :class="{ 'sm:hidden': atTop }">
         <a class="navbar-brand logo" href="{{ url('/') }}">{{ settings()->site_name }}</a>
 
         <x-nav-dropdown/>
@@ -75,19 +75,19 @@
 
     {{-- It should only appear on the dashboard page only. --}}
     @if (request()->is('admin*'))
-        <nav class="layout-container grid grid-cols-2 pt-1 px-4 sm:px-6 lg:px-8 ">
-            <div class="hidden sm:flex">
+        <nav class="layout-container grid grid-cols-3 pt-1 px-4 sm:px-6 lg:px-8 ">
+            <div class="hidden sm:flex col-span-2">
                 <x-nav-item_local-menu route-name="dashboard" icon="icon-dashboard">
-                    {{ __('Dashboard') }}
+                    <span class="hidden md:inline">{{ __('Dashboard') }}</span>
                 </x-nav-item_local-menu>
 
                 @role('admin')
                     <x-nav-item_local-menu route-name="dboard.allurl" icon="icon-link">
-                        {{ __('URL List') }}
+                        <span class="hidden md:inline">{{ __('URL List') }}</span>
                     </x-nav-item_local-menu>
 
                     <x-nav-item_local-menu route-name="user.index" icon="icon-people">
-                        {{ __('User List') }}
+                        <span class="hidden md:inline">{{ __('User List') }}</span>
                     </x-nav-item_local-menu>
 
                     <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
@@ -95,7 +95,7 @@
                     </x-nav-item_local-menu>
 
                     <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
-                        {{ __('About') }}
+                        <span class="hidden md:inline">{{ __('About') }}</span>
                     </x-nav-item_local-menu>
                 @endrole
             </div>
