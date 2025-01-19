@@ -45,7 +45,7 @@ class KeyGeneratorServiceTest extends TestCase
         $hash3 = $this->keyGenerator->generate($value1);
         $this->assertSame(
             $this->keyGenerator->simpleString($value1 . $urlFactory->latest('id')->value('id')),
-            $hash3
+            $hash3,
         );
 
         Url::factory()->create(['keyword' => $hash3]);
