@@ -17,7 +17,7 @@ class KeyGeneratorService
      */
     public function generate(string $value): string
     {
-        $string = $this->simpleString($value);
+        $string = $this->hashedString($value);
 
         if (!$this->verify($string) || strlen($string) < config('urlhub.keyword_length')) {
             do {
@@ -30,7 +30,13 @@ class KeyGeneratorService
         return $string;
     }
 
-    public function simpleString(string $value): string
+    /**
+     * Hashes the given string and truncates it to the configured keyword length.
+     *
+     * @param string $value The input string to hash.
+     * @return string The hashed and truncated string.
+     */
+    public function hashedString(string $value): string
     {
         return substr(hash('xxh3', $value), 0, config('urlhub.keyword_length'));
     }
