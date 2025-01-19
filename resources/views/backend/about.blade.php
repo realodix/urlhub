@@ -22,7 +22,7 @@
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
-                        <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
                             Total
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
-                        <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
                             User
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
-                        <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
                             Guest
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
@@ -58,7 +58,7 @@
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
-                        <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
                             User
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
-                        <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
                             Guest
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
@@ -85,7 +85,7 @@
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
                 <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
-                        <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
                             Potential Output
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
@@ -105,7 +105,7 @@
                 </div>
                 <div class="card !bg-gray-50 !rounded px-4 py-3">
                     <div>
-                        <dt class="-mt-0 text-sm font-medium text-gray-600 md:mt-1 md:w-64">
+                        <dt class="text-sm font-medium text-gray-600 md:mt-1 md:w-64">
                             Generated Count
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl md:w-64">
