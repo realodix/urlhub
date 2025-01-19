@@ -172,7 +172,7 @@ hr {
 }
 
 .form-input {
-    @apply block w-full;
+    @apply block w-full py-1.5;
     @apply border-border-300 focus:ring-0 focus:border-primary-500 rounded;
     @apply bg-[#fdfdfd] focus:bg-white;
 
