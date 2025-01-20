@@ -134,7 +134,7 @@
         }
 
         a {
-            @apply hover:text-primary-600 hover:font-semibold;
+            @apply hover:text-primary-700 hover:font-semibold;
 
             &:first-child {
                 border-right: none;
