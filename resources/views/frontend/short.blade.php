@@ -29,9 +29,9 @@
         <div class="w-full md:w-3/4 mt-8 sm:mt-0">
             <div class="text-right pr-6">
                 <button id="clipboard_shortlink"
-                    class="btn btn-secondary btn-square btn-sm mr-6"
                     title="{{ __('Copy the shortened URL to clipboard') }}"
                     data-clipboard-text="{{ $url->short_url }}"
+                    class="btn btn-secondary btn-square btn-sm mr-6"
                 >
                     @svg('icon-clone')
                 </button>
