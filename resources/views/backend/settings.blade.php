@@ -15,12 +15,6 @@
         @csrf
             <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 lg:col-span-4">
-                    <label class="form-label">Site Name</label>
-                    <input name="site_name" value="{{ $settings->site_name }}"
-                        class="form-input mt-4 md:mt-1 @error('site_name') !border-red-300 @enderror">
-                </div>
-
-                <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Allow Anyone to Shorten URLs</label>
                     <div class="font-light text-sm">Enable to allow anyone to create short URLs. If disabled, only registered users can create them.</div>
                     <label class="switch float-right mt-6">

@@ -5,7 +5,7 @@
     @endif
 >
     <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between" :class="{ 'sm:hidden': atTop }">
-        <a class="navbar-brand logo" href="{{ url('/') }}">{{ settings()->site_name }}</a>
+        <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
         <x-nav-dropdown/>
 

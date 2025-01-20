@@ -6,8 +6,6 @@ use Spatie\LaravelSettings\Settings;
 
 class GeneralSettings extends Settings
 {
-    public string $site_name;
-
     public bool $anyone_can_shorten;
 
     public bool $anyone_can_register;
@@ -34,7 +32,6 @@ class GeneralSettings extends Settings
     public function update(): void
     {
         request()->validate([
-            'site_name'                 => ['required', 'string', 'max:25'],
             'keyword_length'            => ['required', 'numeric', 'between:2,20'],
             'custom_keyword_min_length' => ['required', 'numeric', 'between:2,19'],
             'custom_keyword_max_length' => ['required', 'numeric', 'between:3,20'],
@@ -42,7 +39,6 @@ class GeneralSettings extends Settings
         ]);
 
         $this->fill([
-            'site_name'                 => request()->input('site_name'),
             'anyone_can_shorten'        => request()->boolean('anyone_can_shorten'),
             'anyone_can_register'       => request()->boolean('anyone_can_register'),
             'keyword_length'            => request()->input('keyword_length'),

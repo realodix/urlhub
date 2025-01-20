@@ -6,8 +6,6 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('general.site_name', 'UrlHub');
-
         $this->migrator->add('general.anyone_can_shorten', true);
         $this->migrator->add('general.anyone_can_register', true);
 

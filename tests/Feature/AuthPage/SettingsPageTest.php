@@ -68,7 +68,6 @@ class SettingsPageTest extends TestCase
     private function formData(?array $value = null): array
     {
         $data = [
-            'site_name' => 'Laravel',
             'anyone_can_shorten' => true,
             'anyone_can_register' => true,
             'keyword_length' => 7,
