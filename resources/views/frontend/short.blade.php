@@ -29,9 +29,9 @@
         <div class="w-full md:w-3/4 mt-8 sm:mt-0">
             <div class="text-right pr-6">
                 <button id="clipboard_shortlink"
-                    class="btn btn-secondary btn-square btn-sm mr-6"
                     title="{{ __('Copy the shortened URL to clipboard') }}"
                     data-clipboard-text="{{ $url->short_url }}"
+                    class="btn btn-secondary btn-square btn-sm mr-6"
                 >
                     @svg('icon-clone')
                 </button>
@@ -42,7 +42,7 @@
                             @svg('icon-edit')
                         </a>
                         <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
-                            class="btn btn-secondary btn-square btn-sm hover:bg-red-100 hover:border-red-200 hover:text-red-800 active:text-red-700"
+                            class="btn btn-delete btn-square btn-sm"
                         >
                             @svg('icon-trash')
                         </a>

@@ -21,8 +21,8 @@ export default {
             colors: {
                 "primary": colors.blue,
                 "uh-blue": "#3d5b99",
-                "border-200": "#e7e5e4",
-                "border-300": "#d6d3d1",
+                "border-200": "#e5e7eb",
+                "border-300": "#d1d5db",
                 // PowerGrid
                 'pg-primary': colors.gray,
             },

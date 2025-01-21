@@ -2,7 +2,7 @@
 
 .navbar {
     @apply bg-white/40 backdrop-blur-lg;
-    @apply border-b border-border-200;
+    @apply border-b border-border-300/70;
 
     &-brand {
         @apply flex items-center text-3xl md:text-4xl;
@@ -110,12 +110,19 @@
     }
 
     button, input, select {
-        @apply ring-border-200 focus:ring-primary-500;
-        @apply focus-within:focus:ring-primary-500 focus-within:ring-primary-500 focus-within:ring-1;
+        @apply focus-within:focus:ring-gray-400 focus-within:ring-gray-400 focus-within:ring-1;
+    }
+
+    input, button {
+        @apply ring-border-300 hover:ring-stone-400/70;
+    }
+
+    select {
+        @apply border-border-300/70;
     }
 
     button[data-cy^="toggle-columns-"] {
-        @apply bg-gray-100 hover:bg-gray-50 active:bg-gray-100 focus-within:ring-1;
+        @apply text-slate-800 bg-gray-100 hover:bg-gray-50 active:bg-gray-100 focus-within:ring-1;
         @apply duration-300 ease-out;
 
         svg {
@@ -125,16 +132,16 @@
 
     nav[aria-label="Pagination Navigation"] {
         span, a {
-            @apply border-border-200;
+            @apply border-border-300/70;
         }
 
         span {
-            @apply text-white bg-primary-600 border-primary-600;
+            @apply bg-white text-slate-800;
             @apply first:rounded-l-md last:rounded-r-md;
         }
 
         a {
-            @apply hover:text-primary-700 hover:font-semibold;
+            @apply bg-gray-100 hover:bg-gray-50 hover:text-slate-800 hover:font-semibold;
 
             &:first-child {
                 border-right: none;

@@ -12,9 +12,7 @@
 </head>
 
 <body class="@yield('css_class')">
-
     @yield('content')
-
 </body>
 
 </html>
