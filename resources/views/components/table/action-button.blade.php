@@ -10,7 +10,7 @@
         @svg('icon-edit')
     </a>
     <a role="button" href="{{ $delete_link }}" title="{{ __('Delete') }}"
-        class="btn btn-secondary btn-square btn-xs hover:bg-red-50 hover:border-red-200 hover:text-red-800 active:text-red-700"
+        class="btn btn-delete btn-square btn-xs"
     >
         @svg('icon-trash')
     </a>
