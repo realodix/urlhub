@@ -68,7 +68,7 @@ hr {
 
 .btn {
     @apply inline-flex items-center justify-center px-4 h-10 min-h-10 ;
-    @apply border rounded-md border-border-300 duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
+    @apply border border-border-300 rounded-md duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
     @apply text-base font-normal text-center text-slate-800 no-underline align-middle tracking-wide;
     /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
@@ -79,7 +79,7 @@ hr {
     }
 
     &-secondary {
-        @apply bg-gray-100 border-border-300;
+        @apply bg-gray-100;
         @apply hover:bg-gray-50 active:bg-gray-100 hover:border-stone-400/70;
     }
 
@@ -114,7 +114,7 @@ hr {
 
 .card {
     @apply bg-white;
-    @apply border border-border-200 rounded-md;
+    @apply ring-1 ring-border-300/70 rounded-md;
 
     &-master {
         @apply max-[640px]:rounded-none;
