@@ -3,19 +3,11 @@
 @config "./../../tailwind.config.js";
 @import "./_tailwind.css";
 
-@layer base {
-    h1 {
-        font-size: 2em
-    }
 
-    h2 {
-        font-size: 1.75em;
-    }
+h1 { font-size: 2em; }
+h2 { font-size: 1.75em; }
+h3 { font-size: 1.5em; }
 
-    h3 {
-        font-size: 1.5em;
-    }
-}
 
 main {
     @apply py-4 sm:px-6 lg:px-8;
