@@ -20,11 +20,7 @@ export default {
         extend: {
             colors: {
                 "primary": colors.blue,
-                "uh-blue": "#3d5b99",
-                "border-200": "#e5e7eb",
-                "border-300": "#d1d5db",
-                // PowerGrid
-                'pg-primary': colors.gray,
+                'pg-primary': colors.gray, // PowerGrid
             },
         },
     },

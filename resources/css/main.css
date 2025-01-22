@@ -4,11 +4,11 @@
     @apply bg-white/40 backdrop-blur-lg;
     @apply border-b border-border-300/70;
 
-    &-brand {
+    .navbar-brand {
         @apply flex items-center text-3xl md:text-4xl;
     }
 
-    &-toggler {
+    .navbar-toggler {
         @apply inline-flex p-2;
     }
 
@@ -26,14 +26,12 @@
     .nav-item {
         @apply text-slate-800;
         @apply block pl-3 pr-4 py-2 font-medium transition;
-
-        &-username {
-            @apply font-semibold;
-        }
-
-        &-email {
-            @apply text-slate-500 font-medium text-sm;
-        }
+    }
+    .nav-item-username {
+        @apply font-semibold;
+    }
+    .nav-item-email {
+        @apply text-slate-500 font-medium text-sm;
     }
 }
 

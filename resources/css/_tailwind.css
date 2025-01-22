@@ -1,0 +1,22 @@
+@import "./../../vendor/power-components/livewire-powergrid/dist/tailwind.css";
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@theme {
+    --color-uh-blue: #3d5b99;
+    --color-border-200: #e5e7eb;
+    --color-border-300: #d1d5db;
+}
+
+@utility layout-container {
+    @apply max-w-[90rem] mx-auto;
+}
+
+@utility card {
+    @apply bg-white;
+    @apply ring-1 ring-border-300/70 rounded-md;
+}
+
+@utility card-master {
+    @apply max-[640px]:rounded-none;
+}

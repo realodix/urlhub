@@ -1,8 +1,7 @@
 @import "./../../vendor/power-components/livewire-powergrid/dist/tailwind.css";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "./../../tailwind.config.js";
+@import "./_tailwind.css";
 
 @layer base {
     h1 {
@@ -16,10 +15,6 @@
     h3 {
         font-size: 1.5em;
     }
-}
-
-.layout-container {
-    @apply max-w-[90rem] mx-auto;
 }
 
 main {
@@ -47,11 +42,11 @@ hr {
     @apply block mb-4 pl-3 pr-4 py-2 border-l-4;
     @apply text-base font-medium;
 
-    &-success {
+    &.alert-success {
         @apply text-emerald-700 bg-emerald-50 border-emerald-600;
     }
 
-    &-error {
+    &.alert-error {
         @apply text-red-700 bg-red-50 border-red-600;
     }
 }
@@ -73,32 +68,32 @@ hr {
     /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
-    &-primary {
+    &.btn-primary {
         @apply text-white bg-primary-600 border-primary-600;
         @apply hover:bg-primary-600/90 active:bg-primary-800;
     }
 
-    &-secondary {
+    &.btn-secondary {
         @apply bg-gray-100;
         @apply hover:bg-gray-50 active:bg-gray-100 hover:border-stone-400/70;
     }
 
-    &-delete    {
-        @apply btn-secondary;
+    &.btn-delete    {
+        @apply bg-gray-100;
         @apply hover:bg-red-50 hover:border-red-400/70 hover:text-red-800 active:text-red-700;
     }
 
-    &-sm {
+    &.btn-sm {
         @apply h-8 min-h-8 px-3;
         @apply text-sm;
     }
 
-    &-xs {
+    &.btn-xs {
         @apply h-6 min-h-6 px-2;
         @apply text-xs;
     }
 
-    &-square {
+    &.btn-square {
         @apply h-12 w-12 p-0;
 
         &:where(.btn-sm) {
@@ -108,16 +103,6 @@ hr {
         &:where(.btn-xs) {
             @apply h-6 w-6;
         }
-    }
-}
-
-
-.card {
-    @apply bg-white;
-    @apply ring-1 ring-border-300/70 rounded-md;
-
-    &-master {
-        @apply max-[640px]:rounded-none;
     }
 }
 
