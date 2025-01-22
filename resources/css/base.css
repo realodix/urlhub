@@ -179,6 +179,6 @@ hr {
     @apply bg-gray-50/80 focus:bg-white;
 
     &[disabled], &:disabled {
-        @apply bg-gray-50/80 text-slate-700 bg-opacity-50 text-opacity-50 cursor-not-allowed;
+        @apply bg-gray-50/80 text-slate-700/50 cursor-not-allowed;
     }
 }
