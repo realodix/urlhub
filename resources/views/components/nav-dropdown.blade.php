@@ -19,7 +19,7 @@
                 {{-- Prevent blinking --}}
                 style="display: none;"
             >
-                <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+                <div class="rounded-md ring-1 ring-black/5 py-1 bg-white">
                     @if (Route::currentRouteName() != 'dashboard')
                         <a class="nav-item" href="{{ route('dashboard') }}">
                             @svg('icon-dashboard', 'mr-1')
