@@ -35,18 +35,18 @@
         style="display: none;"
     >
         @auth
-            <div class="pt-2 pb-3 space-y-1">
-                <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') {{ __('Dashboard') }}</x-nav-item>
-                @role('admin')
+            @role('admin')
+                <div class="pt-2 pb-3 space-y-1 border-b border-border-200">
+                    <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') {{ __('Dashboard') }}</x-nav-item>
                     <x-nav-item route-name="dboard.allurl">@svg('icon-link', 'mr-1') {{ __('URL List') }}</x-nav-item>
                     <x-nav-item route-name="user.index">@svg('icon-people', 'mr-1') {{ __('User List') }}</x-nav-item>
                     <x-nav-item route-name="dboard.settings">@svg('icon-setting', 'mr-1') {{ __('Settings') }}</x-nav-item>
                     <x-nav-item route-name="dboard.about">@svg('icon-about-system', 'mr-1') {{ __('About') }}</x-nav-item>
-                @endrole
-            </div>
+                </div>
+            @endrole
 
             {{-- Responsive Settings Options --}}
-            <div class="pt-4 pb-1 border-t border-border-200">
+            <div class="pt-4 pb-1">
                 <div class="flex items-center px-4">
                     <div>
                         <div class="nav-item-username">{{ auth()->user()->name }}</div>
@@ -74,30 +74,27 @@
     </div> {{-- End Responsive Navigation Menu --}}
 
     {{-- It should only appear on the dashboard page only. --}}
-    @if (request()->is('admin*'))
+    @if (request()->is('admin*') && auth()->user()->hasRole('admin'))
         <nav class="layout-container grid grid-cols-3 pt-1 px-4 sm:px-6 lg:px-8 ">
             <div class="hidden sm:flex col-span-2">
                 <x-nav-item_local-menu route-name="dashboard" icon="icon-dashboard">
                     <span class="hidden md:inline">{{ __('Dashboard') }}</span>
                 </x-nav-item_local-menu>
+                <x-nav-item_local-menu route-name="dboard.allurl" icon="icon-link">
+                    <span class="hidden md:inline">{{ __('URL List') }}</span>
+                </x-nav-item_local-menu>
 
-                @role('admin')
-                    <x-nav-item_local-menu route-name="dboard.allurl" icon="icon-link">
-                        <span class="hidden md:inline">{{ __('URL List') }}</span>
-                    </x-nav-item_local-menu>
+                <x-nav-item_local-menu route-name="user.index" icon="icon-people">
+                    <span class="hidden md:inline">{{ __('User List') }}</span>
+                </x-nav-item_local-menu>
 
-                    <x-nav-item_local-menu route-name="user.index" icon="icon-people">
-                        <span class="hidden md:inline">{{ __('User List') }}</span>
-                    </x-nav-item_local-menu>
+                <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
+                    <span class="hidden md:inline">{{ __('Settings') }}</span>
+                </x-nav-item_local-menu>
 
-                    <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
-                        <span class="hidden md:inline">{{ __('Settings') }}</span>
-                    </x-nav-item_local-menu>
-
-                    <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
-                        <span class="hidden md:inline">{{ __('About') }}</span>
-                    </x-nav-item_local-menu>
-                @endrole
+                <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
+                    <span class="hidden md:inline">{{ __('About') }}</span>
+                </x-nav-item_local-menu>
             </div>
             <x-nav-dropdown x-show="atTop" class="flex justify-end"/>
         </nav>
