@@ -86,8 +86,14 @@ class UrlController extends Controller implements HasMiddleware
         $request->validate([
             'title'    => ['max:' . Url::TITLE_LENGTH],
             'long_url' => [
-                'required', 'url', 'max:65535',
+                'required',
+                'max:65535',
                 new \App\Rules\NotBlacklistedDomain,
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
+                        $fail('El campo :attribute debe ser una URL válida o un deeplink válido.');
+                    }
+                },
             ],
         ]);
 
