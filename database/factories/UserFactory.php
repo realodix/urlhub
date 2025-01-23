@@ -18,16 +18,6 @@ class UserFactory extends Factory
     protected static ?string $password;
 
     /**
-     * The name of the factory's corresponding model.
-     *
-     * Laravel by default doesn't include it
-     * https://github.com/laravel/laravel/commit/9915831d22c150d68e562f443aca303151d70a4d
-     *
-     * @var class-string<User>
-     */
-    protected $model = User::class;
-
-    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
