@@ -9,7 +9,7 @@
 }
 
 @utility layout-container {
-    @apply max-w-[90rem] mx-auto;
+    @apply max-w-360 mx-auto;
 }
 
 @utility card {
@@ -18,5 +18,5 @@
 }
 
 @utility card-master {
-    @apply max-[640px]:rounded-none;
+    @apply max-sm:rounded-none;
 }
