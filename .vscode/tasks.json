@@ -40,6 +40,12 @@
             "problemMatcher": []
         },
         {
+            "label": "[NPM] Build",
+            "type": "shell",
+            "command": "npm run build",
+            "problemMatcher": []
+        },
+        {
             "label": "[Artisan] Icon: Cache-set",
             "type": "shell",
             "command": "php artisan icons:cache",
