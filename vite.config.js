@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
 
 const host = 'urlhub.test';
 
@@ -12,6 +13,7 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        tailwindcss(),
     ],
     server: {
         host,
