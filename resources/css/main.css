@@ -27,12 +27,6 @@
         @apply text-slate-800;
         @apply block pl-3 pr-4 py-2 font-medium transition;
     }
-    .nav-item-username {
-        @apply font-semibold;
-    }
-    .nav-item-email {
-        @apply text-slate-500 font-medium text-sm;
-    }
 }
 
 
@@ -46,21 +40,13 @@
     }
 
     h1 {
-        @apply border-b border-border-200;
-        line-height: 1.25;
-        font-weight: 600;
-        padding-bottom: 0.5rem;
+        font-weight: 600; line-height: 1.25;
+        @apply border-b border-border-200 pb-2;
     }
 
     h3 {
-        font-weight: 600;
-        line-height: 1.25;
-        margin-top: 24px;
-        margin-bottom: 8px;
-
-        &:first-child {
-            margin-top: 0 !important;
-        }
+        font-weight: 600; line-height: 1.25;
+        @apply mt-6 mb-2 first:!mt-0 ;
     }
 }
 
@@ -89,8 +75,7 @@
 
     table {
         thead {
-            box-shadow: none;
-            border-radius: unset;
+            @apply shadow-none;
         }
 
         tr {
@@ -153,8 +138,7 @@
 
     .config {
         dl {
-            display: grid;
-            grid-gap: 4px 16px;
+            @apply grid gap-[4px_16px];
             @apply md:auto-cols-[auto_1fr];
         }
 
@@ -169,7 +153,7 @@
 
         .config-value-bool {
             padding: .1em .2em;
-            @apply bg-gray-100 rounded
+            @apply bg-gray-100 rounded;
         }
     }
 }

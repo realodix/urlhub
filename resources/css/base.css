@@ -8,7 +8,6 @@ h1 { font-size: 2em; }
 h2 { font-size: 1.75em; }
 h3 { font-size: 1.5em; }
 
-
 main {
     @apply py-4 sm:px-6 lg:px-8;
     @apply layout-container;
@@ -88,13 +87,8 @@ hr {
     &.btn-square {
         @apply h-12 w-12 p-0;
 
-        &:where(.btn-sm) {
-            @apply h-8 w-8;
-        }
-
-        &:where(.btn-xs) {
-            @apply h-6 w-6;
-        }
+        &:where(.btn-sm) { @apply h-8 w-8; }
+        &:where(.btn-xs) { @apply h-6 w-6; }
     }
 }
 
