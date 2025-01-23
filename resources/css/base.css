@@ -1,12 +1,13 @@
-@import "./../../vendor/power-components/livewire-powergrid/dist/tailwind.css";
-@import "tailwindcss";
-@config "./../../tailwind.config.js";
 @import "./_tailwind.css";
 
+@layer base {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.75em; }
+    h3 { font-size: 1.5em; }
 
-h1 { font-size: 2em; }
-h2 { font-size: 1.75em; }
-h3 { font-size: 1.5em; }
+    hr { @apply !border-border-200; }
+}
+
 
 main {
     @apply py-4 sm:px-6 lg:px-8;
@@ -21,9 +22,6 @@ main {
     @apply text-uh-blue font-serif font-bold;
 }
 
-hr {
-    @apply !border-border-200;
-}
 
 /*
  * Components
@@ -40,6 +38,12 @@ hr {
     &.alert-error {
         @apply text-red-700 bg-red-50 border-red-600;
     }
+}
+
+
+.auth-card {
+    @apply card;
+    @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
 }
 
 
