@@ -7,7 +7,7 @@
 @section('content')
 @include('partials/messages')
 
-<main class="max-w-4xl">
+<main class="!max-w-4xl">
     <div class="content">
         <h1>{{ __('Settings') }}</h1>
 
