@@ -3,11 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Url;
-use App\Models\Visit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Visit>
+ * @extends Factory<\App\Models\Visit>
  */
 class VisitFactory extends Factory
 {
