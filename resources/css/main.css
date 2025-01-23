@@ -136,14 +136,7 @@
 
         a {
             @apply bg-gray-100 hover:bg-gray-50 hover:text-slate-800 hover:font-semibold;
-
-            &:first-child {
-                border-right: none;
-            }
-
-            &:nth-last-child(-n + 2) {
-                border-left: none;
-            }
+            @apply first:border-r-0 nth-last-[-n+2]:border-l-0;
         }
     }
 
