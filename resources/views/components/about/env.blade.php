@@ -6,13 +6,13 @@
 <div {{ $attributes }}>
     <div class="mb-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="card card-master shadow-sm p-4 md:col-start-2">
+            <div class="card card-master shadow-xs p-4 md:col-start-2">
                 <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
                 <p class="text-2xl font-bold text-slate-700">
                     {{ phpversion() }}
                 </p>
             </div>
-            <div class="card card-master shadow-sm p-4">
+            <div class="card card-master shadow-xs p-4">
                 <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
                 <p class="text-2xl font-bold text-slate-700">
                     {{ app()->version() }}
