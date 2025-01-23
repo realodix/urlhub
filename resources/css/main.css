@@ -4,11 +4,11 @@
     @apply bg-white/40 backdrop-blur-lg;
     @apply border-b border-border-300/70;
 
-    &-brand {
+    .navbar-brand {
         @apply flex items-center text-3xl md:text-4xl;
     }
 
-    &-toggler {
+    .navbar-toggler {
         @apply inline-flex p-2;
     }
 
@@ -26,14 +26,6 @@
     .nav-item {
         @apply text-slate-800;
         @apply block pl-3 pr-4 py-2 font-medium transition;
-
-        &-username {
-            @apply font-semibold;
-        }
-
-        &-email {
-            @apply text-slate-500 font-medium text-sm;
-        }
     }
 }
 
@@ -48,32 +40,18 @@
     }
 
     h1 {
-        @apply border-b border-border-200;
-        line-height: 1.25;
-        font-weight: 600;
-        padding-bottom: 0.5rem;
+        font-weight: 600; line-height: 1.25;
+        @apply border-b border-border-200 pb-2;
     }
 
     h3 {
-        font-weight: 600;
-        line-height: 1.25;
-        margin-top: 24px;
-        margin-bottom: 8px;
-
-        &:first-child {
-            margin-top: 0 !important;
-        }
+        font-weight: 600; line-height: 1.25;
+        @apply mt-6 mb-2 first:!mt-0 ;
     }
 
     hr + h3 {
         margin-top: 0;
     }
-}
-
-
-.auth-card {
-    @apply card;
-    @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
 }
 
 
@@ -95,8 +73,7 @@
 
     table {
         thead {
-            box-shadow: none;
-            border-radius: unset;
+            @apply shadow-none;
         }
 
         tr {
@@ -142,14 +119,7 @@
 
         a {
             @apply bg-gray-100 hover:bg-gray-50 hover:text-slate-800 hover:font-semibold;
-
-            &:first-child {
-                border-right: none;
-            }
-
-            &:nth-last-child(-n + 2) {
-                border-left: none;
-            }
+            @apply first:border-r-0 nth-last-[-n+2]:border-l-0;
         }
     }
 
@@ -166,8 +136,7 @@
 
     .config {
         dl {
-            display: grid;
-            grid-gap: 4px 16px;
+            @apply grid gap-[4px_16px];
             @apply md:auto-cols-[auto_1fr];
         }
 

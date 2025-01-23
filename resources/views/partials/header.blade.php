@@ -49,8 +49,8 @@
             <div class="pt-4 pb-1">
                 <div class="flex items-center px-4">
                     <div>
-                        <div class="nav-item-username">{{ auth()->user()->name }}</div>
-                        <div class="nav-item-email">{{ auth()->user()->email }}</div>
+                        <div class="font-semibold">{{ auth()->user()->name }}</div>
+                        <div class="font-medium text-slate-500 text-sm">{{ auth()->user()->email }}</div>
                     </div>
                 </div>
 

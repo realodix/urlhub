@@ -4,7 +4,7 @@
 
 @section('title', __('About System'))
 @section('content')
-<main class="page_about max-w-4xl">
+<main class="page_about !max-w-4xl">
     <x-about.env class="mb-6" />
 
     <div class="content">

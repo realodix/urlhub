@@ -24,7 +24,7 @@
                             {{ __('Dashboard') }}
                         </a>
 
-                        <div class="border-t border-border-200"></div>
+                        <hr>
                     @endif
 
                     {{-- Account Management --}}

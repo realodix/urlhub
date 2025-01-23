@@ -5,7 +5,7 @@
     @svg('icon-key', 'mr-1') {{ __('Change Password') }}
 </x-nav-item>
 
-<div class="border-t border-border-200"></div>
+<hr>
 
 <form method="POST" action="{{ route('logout') }}">
 @csrf
