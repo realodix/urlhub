@@ -63,7 +63,7 @@ main {
     /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
-    &-primary {
+    &.btn-primary {
         @apply text-white bg-primary-600 border-primary-600;
         @apply hover:bg-primary-600/90 active:bg-primary-800;
     }
