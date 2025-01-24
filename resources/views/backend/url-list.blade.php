@@ -14,8 +14,6 @@
             </div>
         </div>
 
-        @include('partials/messages')
-
         @livewire('table.url-list-table')
     </div>
 </main>

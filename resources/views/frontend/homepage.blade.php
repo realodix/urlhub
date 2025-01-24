@@ -9,10 +9,6 @@
             <div class="w-full md:w-8/12 font-thin text-5xl text-slate-600 text-center welcome-msg">
                 {{ __('Please login to shorten URLs') }}</div>
         </div>
-        <div class="flex flex-wrap md:justify-center mt-12">
-            <div class="w-full md:w-7/12">
-                @include('partials/messages')</div>
-        </div>
     @else
         <div class="flex flex-wrap md:justify-center">
             <span class="mx-auto max-w-md md:max-w-3xl relative z-10

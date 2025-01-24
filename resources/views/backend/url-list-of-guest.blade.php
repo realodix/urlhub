@@ -9,8 +9,6 @@
             <p class="text-2xl">{{ __('Links created by Guests') }}</p>
         </div>
 
-        @include('partials/messages')
-
         @livewire('table.url-list-of-guest-table')
     </div>
 </main>
