@@ -28,7 +28,14 @@ class StoreUrlRequest extends FormRequest
         $maxLen = config('urlhub.custom_keyword_max_length');
 
         return [
-            'long_url' => ['required', 'url', 'max:65535', new NotBlacklistedDomain],
+            'long_url' => [
+                'required', 'max:65535', new NotBlacklistedDomain,
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
+                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
+                    }
+                },
+            ],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',
                 "min:{$minLen}", "max:{$maxLen}", 'lowercase',
