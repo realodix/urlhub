@@ -34,7 +34,7 @@ class StoreUrlRequest extends FormRequest
                 new NotBlacklistedDomain,
                 function ($attribute, $value, $fail) {
                     if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
-                        $fail('El campo :attribute debe ser una URL válida o un deeplink válido.');
+                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
                     }
                 },
             ],
