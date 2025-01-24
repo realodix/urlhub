@@ -52,7 +52,7 @@
                     </div>
                 </form>
 
-                @include('partials/messages')
+                <div class="mt-8">@include('partials/messages')</div>
             </div>
         </div>
     @endif
