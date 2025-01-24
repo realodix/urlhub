@@ -1,12 +1,13 @@
 @php
     $debug = config('app.debug');
     $env = (string) app()->environment();
+    $commitVersion = readVersion('git rev-parse master');
 @endphp
 
 <div {{ $attributes }}>
     <div class="mb-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="card card-master shadow-xs p-4 md:col-start-2">
+            <div class="card card-master shadow-xs p-4">
                 <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
                 <p class="text-2xl font-bold text-slate-700">
                     {{ phpversion() }}
@@ -15,7 +16,18 @@
             <div class="card card-master shadow-xs p-4">
                 <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
                 <p class="text-2xl font-bold text-slate-700">
-                    {{ app()->version() }}
+                    <a href="https://github.com/laravel/framework/releases/tag/v{{ app()->version() }}" target="_blank">
+                        {{ app()->version() }}
+                    </a>
+                </p>
+            </div>
+            <div class="card card-master shadow-xs p-4">
+                <p class="text-uh-blue text-sm font-medium leading-4">UrlHub</p>
+                <p class="text-2xl font-bold text-slate-700">
+                    {{-- {{ readVersion('git describe --abbrev=0 --tags', '0.0.0') }} --}}
+                    <a href="https://github.com/realodix/urlhub/tree/{{ $commitVersion }}" target="_blank">
+                        v1.8.0-{{ substr($commitVersion, 0 , 7) }}
+                    </a>
                 </p>
             </div>
         </div>

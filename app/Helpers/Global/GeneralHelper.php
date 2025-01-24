@@ -36,3 +36,26 @@ if (!function_exists('n_abb')) {
         return Number::abbreviate($number, $precision, $maxPrecision);
     }
 }
+
+if (! function_exists('readVersion')) {
+    /**
+     * Read the version from git.
+     *
+     * @param string $gitCommand The git command to execute.
+     * @param string $default The default value.
+     * @return string
+     */
+    function readVersion(string $gitCommand, ?string $default = null): string
+    {
+        $content = null;
+        if (is_dir(base_path('.git'))) {
+            $command = Str::of($gitCommand)
+                ->start('git ')
+                ->replaceStart('git', 'git --git-dir "'.base_path('.git').'"');
+             // @phpstan-ignore argument.type (trim)
+            $content = trim(exec("$command 2>".(substr(php_uname(), 0, 7) === 'Windows' ? 'NUL' : '/dev/null')));
+        }
+
+        return trim($content ?? $default);
+    }
+}
