@@ -29,9 +29,7 @@ class StoreUrlRequest extends FormRequest
 
         return [
             'long_url' => [
-                'required',
-                'max:65535',
-                new NotBlacklistedDomain,
+                'required', 'max:65535', new NotBlacklistedDomain,
                 function ($attribute, $value, $fail) {
                     if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
                         $fail('The :attribute field must be a valid URL or a valid deeplink.');
