@@ -3,6 +3,10 @@
 @section('title', __('Dashboard'))
 @section('content')
 <main>
+    <div class="w-full md:max-w-md">
+        @include('partials/messages')
+    </div>
+
     <div class="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
         <div class="card card-master shadow-xs p-4">
             <div class="flex flex-row space-x-4 items-center">
@@ -38,8 +42,6 @@
                 </a>
             </div>
         </div>
-
-        @include('partials/messages')
 
         @livewire('table.my-url-table')
     </div>
