@@ -73,26 +73,18 @@ class UrlController extends Controller implements HasMiddleware
     /**
      * Update the destination URL.
      *
-     * @param Request $request \Illuminate\Http\Request
+     * @param StoreUrlRequest $request \App\Http\Requests\StoreUrlRequest
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $url)
+    public function update(StoreUrlRequest $request, Url $url)
     {
         Gate::authorize('updateUrl', $url);
 
         $request->validate([
             'title'    => ['max:' . Url::TITLE_LENGTH],
-            'long_url' => [
-                'required', 'max:65535', new \App\Rules\NotBlacklistedDomain,
-                function ($attribute, $value, $fail) {
-                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
-                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
-                    }
-                },
-            ],
         ]);
 
         $url->update([
