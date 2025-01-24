@@ -147,7 +147,16 @@ class UrlListPageTest extends TestCase
             ->assertRedirectToRoute('dboard.allurl')
             ->assertSessionHas('flash_success');
         $this->assertSame($newLongUrl, $url->fresh()->destination);
+    }
 
+    /**
+     * Admin can update guest users link.
+     *
+     * @see App\Http\Controllers\UrlController::update()
+     */
+    #[PHPUnit\Test]
+    public function adminCanUpdateGuestUsersLink(): void
+    {
         $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->adminUser())

@@ -92,18 +92,19 @@ class UrlController extends Controller implements HasMiddleware
             'title'       => $request->title,
         ]);
 
+        $flashType = 'flash_success';
+        $message = __('Link updated successfully !');
         // if the user is not the author of the link
         if (!$url->author()->is(auth()->user())) {
             // if the author of the link is guest
             if ($url->user_id === null) {
-                return to_route('dboard.allurl.u-guest')->with('flash_success', __('Link changed successfully !'));
+                return to_route('dboard.allurl.u-guest')->with($flashType, $message);
             }
 
-            return to_route('dboard.allurl')->with('flash_success', __('Link changed successfully !'));
+            return to_route('dboard.allurl')->with($flashType, $message);
         }
 
-        return to_route('dashboard')
-            ->with('flash_success', __('Link changed successfully !'));
+        return to_route('dashboard')->with($flashType, $message);
     }
 
     /**
