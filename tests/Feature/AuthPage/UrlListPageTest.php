@@ -144,7 +144,21 @@ class UrlListPageTest extends TestCase
             ]);
 
         $response
-            ->assertRedirectToRoute('dashboard')
+            ->assertRedirectToRoute('dboard.allurl')
+            ->assertSessionHas('flash_success');
+        $this->assertSame($newLongUrl, $url->fresh()->destination);
+
+        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
+        $response = $this->actingAs($this->adminUser())
+            ->from(route('link.edit', $url->keyword))
+            ->post(route('link.update', $url->keyword), [
+                'title'    => $url->title,
+                'long_url' => $newLongUrl,
+            ]);
+
+        $response
+            ->assertRedirectToRoute('dboard.allurl.u-guest')
             ->assertSessionHas('flash_success');
         $this->assertSame($newLongUrl, $url->fresh()->destination);
     }
