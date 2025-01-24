@@ -4,6 +4,10 @@
 
 @section('content')
 <main>
+    <div class="w-full md:max-w-md">
+        @include('partials/messages')
+    </div>
+
     <div class="content">
         <div class="content-header">
             <p class="text-2xl">{{ __('Links created by Guests') }}</p>
