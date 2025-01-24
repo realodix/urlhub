@@ -14,7 +14,7 @@
 
 @utility card {
     @apply bg-white;
-    @apply ring-1 ring-border-300/70 rounded-md;
+    @apply border border-border-300/70 rounded-md;
 }
 
 @utility card-master {

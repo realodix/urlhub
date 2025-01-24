@@ -73,22 +73,18 @@ class UrlController extends Controller implements HasMiddleware
     /**
      * Update the destination URL.
      *
-     * @param Request $request \Illuminate\Http\Request
+     * @param StoreUrlRequest $request \App\Http\Requests\StoreUrlRequest
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Url $url)
+    public function update(StoreUrlRequest $request, Url $url)
     {
         Gate::authorize('updateUrl', $url);
 
         $request->validate([
             'title'    => ['max:' . Url::TITLE_LENGTH],
-            'long_url' => [
-                'required', 'url', 'max:65535',
-                new \App\Rules\NotBlacklistedDomain,
-            ],
         ]);
 
         $url->update([
@@ -96,8 +92,19 @@ class UrlController extends Controller implements HasMiddleware
             'title'       => $request->title,
         ]);
 
-        return to_route('dashboard')
-            ->with('flash_success', __('Link changed successfully !'));
+        $flashType = 'flash_success';
+        $message = __('Link updated successfully !');
+        // if the user is not the author of the link
+        if (!$url->author()->is(auth()->user())) {
+            // if the author of the link is guest
+            if ($url->user_id === null) {
+                return to_route('dboard.allurl.u-guest')->with($flashType, $message);
+            }
+
+            return to_route('dboard.allurl')->with($flashType, $message);
+        }
+
+        return to_route('dashboard')->with($flashType, $message);
     }
 
     /**

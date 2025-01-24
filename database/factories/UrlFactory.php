@@ -2,23 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Url>
+ * @extends Factory<\App\Models\Url>
  */
 class UrlFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var class-string<Url>
-     */
-    protected $model = Url::class;
-
     /**
      * Define the model's default state.
      *

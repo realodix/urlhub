@@ -27,20 +27,6 @@ main {
  * Components
  */
 
-.alert {
-    @apply block mb-4 pl-3 pr-4 py-2 border-l-4;
-    @apply text-base font-medium;
-
-    &.alert-success {
-        @apply text-emerald-700 bg-emerald-50 border-emerald-600;
-    }
-
-    &.alert-error {
-        @apply text-red-700 bg-red-50 border-red-600;
-    }
-}
-
-
 .auth-card {
     @apply card;
     @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
