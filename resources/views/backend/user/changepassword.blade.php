@@ -3,7 +3,12 @@
 @section('title', __('Change User Password').' "'.$user->name.'"'.' ‹ '.str()->title(auth()->user()->name))
 
 @section('content')
-@include('partials/messages')
+
+<div class="flex flex-wrap">
+    <div class="w-full md:w-9/12">
+        @include('partials/messages')
+    </div>
+</div>
 
 <main class="flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
