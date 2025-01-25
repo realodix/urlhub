@@ -83,7 +83,7 @@ class UrlController extends Controller implements HasMiddleware
         Gate::authorize('updateUrl', $url);
 
         $request->validate([
-            'title'    => ['max:' . Url::TITLE_LENGTH],
+            'title' => ['max:' . Url::TITLE_LENGTH],
         ]);
 
         $url->update([
