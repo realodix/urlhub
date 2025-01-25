@@ -24,7 +24,7 @@
                 <label class="form-label">
                     {{ __('E-Mail / Username') }}
                 </label>
-                <input name="identity" required value="{{ old('identity') }}" id="identity" class="form-input mt-1" autofocus>
+                <input name="identity" required value="{{ old('identity') }}" class="form-input mt-1" autofocus>
             </div>
 
             <div>

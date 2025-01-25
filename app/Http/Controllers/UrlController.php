@@ -8,7 +8,6 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use App\Services\QrCodeService;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
 
@@ -84,7 +83,7 @@ class UrlController extends Controller implements HasMiddleware
         Gate::authorize('updateUrl', $url);
 
         $request->validate([
-            'title'    => ['max:' . Url::TITLE_LENGTH],
+            'title' => ['max:' . Url::TITLE_LENGTH],
         ]);
 
         $url->update([

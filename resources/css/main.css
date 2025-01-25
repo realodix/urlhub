@@ -106,6 +106,10 @@
         @apply text-slate-800 bg-gray-100 hover:bg-gray-50 active:bg-gray-100 focus-within:ring-1;
         @apply duration-300 ease-out;
 
+        & + div:has(> [role="none"] > [wire\:key="toggle-column-keyword"]) {
+            @apply ring-border-300;
+        }
+
         svg {
             @apply text-slate-800;
         }
