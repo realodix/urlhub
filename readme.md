@@ -29,7 +29,7 @@ UrlHub is a Laravel application. That means it requires this setup:
 - PHP 8.2 or newer
 - A web server like Apache or Nginx
 - MySQL / MariaDB / SQLite
-
+- Node v18+ and npm version 8
 
 ## Quick Start
 ### Installation Instructions
@@ -65,6 +65,10 @@ UrlHub is a Laravel application. That means it requires this setup:
     # Build and version the assets for production...
     npm run build
     ```
+3. **For Production** : `php artisan livewire:publish` to avoid issue with *Livewire not defined*
+
+## For Production
+1. ``
 
 ## Contributing
 The people who contribute to UrlHub do so for the love of open source, our users and ecosystem, and most importantly, pushing the web forward together. Developers like you can help by contributing to rich and vibrant documentation, issuing pull requests to help us cover niche use cases, and to help sustain what you love about UrlHub.
