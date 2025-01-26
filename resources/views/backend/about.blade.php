@@ -62,7 +62,6 @@
     </div>
 
     <div class="content">
-        <h3>Links</h3>
         @php
             $urlCount = n_abb($url->count());
             $visitCount = n_abb($visit->count());
@@ -71,6 +70,8 @@
             $guestUrlCount = n_abb($url->guestUserUrlCount());
             $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
         @endphp
+
+        <h3>Links</h3>
 
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
