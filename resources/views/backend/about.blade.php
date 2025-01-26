@@ -5,10 +5,63 @@
 @section('title', __('About System'))
 @section('content')
 <main class="page_about !max-w-4xl">
-    <x-about.env class="mb-6" />
+    @php
+        $debug = config('app.debug');
+        $env = (string) app()->environment();
+        $appVersion = str(config('urlhub.app_version'));
+        $commitVersion = runGitCommand('git rev-parse master');
+    @endphp
+
+    <div class="mb-6">
+        @if ($debug == true || $env !== 'production')
+        <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4">
+            <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-orange-600"></div>
+            <p class="mb-2 flex items-center gap-x-2 text-orange-600">
+                @svg('icon-sign-warning', '!size-5')
+                <span class="text-xs/4 font-medium">Warning</span>
+            </p>
+            <ul class="text-slate-600">
+                @if ($env !== 'production')
+                    <li>The environment was expected to be <code class="code">production</code>, but actually was <code class="code">{{ $env }}</code>.</li>
+                @endif
+                @if ($debug === true)
+                    <li>The debug mode was expected to be <code class="code">false</code>, but actually was <code class="code">true</code>.</li>
+                @endif
+            </ul>
+        </div>
+        @endif
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="card card-master shadow-xs p-4 md:col-span-2">
+                <p class="text-uh-blue text-sm font-medium leading-4">UrlHub</p>
+                <p class="text-2xl font-bold text-slate-700">
+                    @if($appVersion->endsWith('-dev') && !empty($commitVersion))
+                        <a href="https://github.com/realodix/urlhub/compare/{{ $commitVersion }}...master" target="_blank">
+                            {{$appVersion->remove('dev')}}{{ substr($commitVersion, 0 , 7) }}
+                        </a>
+                    @else
+                        {{ $appVersion->lower() }}
+                    @endif
+                </p>
+            </div>
+            <div class="card card-master shadow-xs p-4">
+                <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
+                <p class="text-2xl font-bold text-slate-700">
+                    {{ phpversion() }}
+                </p>
+            </div>
+            <div class="card card-master shadow-xs p-4">
+                <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
+                <p class="text-2xl font-bold text-slate-700">
+                    <a href="https://github.com/laravel/framework/releases/tag/v{{ app()->version() }}" target="_blank">
+                        {{ app()->version() }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 
     <div class="content">
-        <h3>Links</h3>
         @php
             $urlCount = n_abb($url->count());
             $visitCount = n_abb($visit->count());
@@ -17,6 +70,8 @@
             $guestUrlCount = n_abb($url->guestUserUrlCount());
             $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
         @endphp
+
+        <h3>Links</h3>
 
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
