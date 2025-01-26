@@ -36,7 +36,7 @@
                 <p class="text-uh-blue text-sm font-medium leading-4">UrlHub</p>
                 <p class="text-2xl font-bold text-slate-700">
                     @if($appVersion->endsWith('-dev') && !empty($commitVersion))
-                        <a href="https://github.com/realodix/urlhub/tree/{{ $commitVersion }}" target="_blank">
+                        <a href="https://github.com/realodix/urlhub/compare/{{ $commitVersion }}...master" target="_blank">
                             {{$appVersion->remove('dev')}}{{ substr($commitVersion, 0 , 7) }}
                         </a>
                     @else
