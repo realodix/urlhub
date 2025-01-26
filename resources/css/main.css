@@ -9,7 +9,7 @@
     }
 
     .navbar-toggler {
-        @apply inline-flex p-2;
+        @apply inline-flex p-2 cursor-pointer;
     }
 
     .nav-item {

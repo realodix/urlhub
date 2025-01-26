@@ -37,6 +37,7 @@
         </div>
     </div>
 
+    @if ($debug == true || $env !== 'production')
     <div class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2">
         <div class="card card-master flex items-start p-4 space-x-2 md:space-x-3">
             @if ($debug === true)
@@ -48,7 +49,7 @@
             <div>
                 <p class="-mt-1 font-bold">Debug Mode</p>
                 <p class="mt-0 text-sm font-light text-gray-600 md:mt-1">
-                    @if ($debug === true)
+                    @if ($debug == true)
                         The debug mode was expected to be <code class="code">false</code>, but actually was <code class="code">true</code>.
                     @else
                         false
@@ -76,4 +77,5 @@
             </div>
         </div>
     </div>
+    @endif
 </div>

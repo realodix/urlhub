@@ -126,7 +126,10 @@
         $reservedKeyword = $keyGenerator->reservedKeyword();
     @endphp
     <div class="content config">
-        <h1>{{ __('Configuration') }}</h1>
+        <h1>
+            {{ __('Configuration') }}
+            <p class="font-light text-sm float-right"><span class="text-gray-500/85">.\config</span>\urlhub.php</p>
+        </h1>
 
         <h3>Shortened Links</h3>
         <dl>
