@@ -17,7 +17,7 @@
         <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4">
             <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-orange-600"></div>
             <p class="mb-2 flex items-center gap-x-2 text-orange-600">
-                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.23 20.77l3.54-3.54M20.77 20.77l-3.54-3.54M7 10.5v3M12 10.5v3M17 10.5v3M2 13v2c0 5 2 7 7 7h4M22 13V9c0-5-2-7-7-7H9C4 2 2 4 2 9"></path></svg>
+                @svg('icon-sign-warning', '!size-5')
                 <span class="text-xs/4 font-medium">Warning</span>
             </p>
             <ul class="text-slate-600">
