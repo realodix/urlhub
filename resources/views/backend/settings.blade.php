@@ -5,9 +5,9 @@
 @section('title', __('Settings'))
 
 @section('content')
-@include('partials/messages')
 
 <main class="!max-w-4xl">
+    @include('partials/messages')
     <div class="content">
         <h1>{{ __('Settings') }}</h1>
 
@@ -37,19 +37,19 @@
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Keyword Length</label>
                     <div class="font-light text-sm">Specifies the number of characters to be used in the generated short URL keywords. This value must be between 2 and 20.</div>
-                    <input name="keyword_length" value="{{ $settings->keyword_length }}"
+                    <input name="keyword_length" required value="{{ $settings->keyword_length }}"
                         class="form-input mt-4 md:mt-3 @error('keyword_length') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Min. Custom Keyword Length</label>
                     <div class="font-light text-sm">Specify the minimum number of characters allowed for the custom keyword. This value must be between 2 and 19.</div>
-                    <input name="custom_keyword_min_length" value="{{ $settings->custom_keyword_min_length }}"
+                    <input name="custom_keyword_min_length" required value="{{ $settings->custom_keyword_min_length }}"
                         class="form-input mt-4 md:mt-3 @error('custom_keyword_min_length') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label">Max. Custom Keyword Length</label>
                     <div class="font-light text-sm">Specify the maximum number of characters allowed for the custom keyword. This value must be between 3 and 20.</div>
-                    <input name="custom_keyword_max_length" value="{{ $settings->custom_keyword_max_length }}"
+                    <input name="custom_keyword_max_length" required value="{{ $settings->custom_keyword_max_length }}"
                         class="form-input mt-4 md:mt-3 @error('custom_keyword_max_length') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
@@ -77,7 +77,7 @@
                     <label class="form-label !inline">HTTP Cache-Control header (max-age)</label>
                     <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#max-age" target="_blank">@svg('icon-help', 'ml-1 hover:scale-110')</a>
                     <div class="font-light text-sm">Set the maximum age for the HTTP Cache-Control header in seconds. Set to 0 for no caching.</div>
-                    <input name="redirect_cache_max_age" value="{{ $settings->redirect_cache_max_age }}"
+                    <input name="redirect_cache_max_age" required value="{{ $settings->redirect_cache_max_age }}"
                         class="form-input mt-4 md:mt-3 @error('redirect_cache_max_age') !border-red-300 @enderror">
                 </div>
                 <div class="col-span-6 lg:col-span-4">
