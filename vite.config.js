@@ -1,8 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
-const host = 'urlhub.test';
-
 export default defineConfig({
     plugins: [
         laravel({
@@ -14,7 +12,10 @@ export default defineConfig({
         }),
     ],
     server: {
-        host,
-        hmr: { host },
+        host: '0.0.0.0',
+        port: 5173,
+        watch: {
+            usePolling: true,
+        },
     },
 });

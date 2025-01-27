@@ -1,0 +1,66 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: urlhub_app
+    volumes:
+      - .:/var/www/html
+      - ./storage:/var/www/html/storage
+    depends_on:
+      - db
+    networks:
+      - laravel
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: urlhub
+      MYSQL_USER: urlhub
+      MYSQL_PASSWORD: laravel
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravel
+
+  nginx:
+    image: nginx:latest
+    container_name: laravel_nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - laravel
+
+  vite:
+    build:
+        context: .
+    container_name: urlhub_vite
+    working_dir: /var/www/html
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+    volumes:
+        - .:/var/www/html
+        - /var/www/html/node_modules
+    ports:
+        - "5173:5173"
+    depends_on:
+        - app
+    networks:
+        - laravel
+
+volumes:
+  db_data:
+
+networks:
+  laravel:
