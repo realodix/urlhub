@@ -40,7 +40,7 @@ UrlHub is a Laravel application that can be deployed with Docker, which means it
 
 4. Run `docker-compose up`.
 
-5. Run `docker exec -it urlhub-app-1 bash`.
+5. Run `docker exec -it urlhub_app bash`.
 
 6. Run `php artisan key:generate`.
 
