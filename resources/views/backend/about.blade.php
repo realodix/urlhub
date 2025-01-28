@@ -47,7 +47,9 @@
             <div class="card card-master shadow-xs p-4">
                 <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
                 <p class="text-2xl font-bold text-slate-700">
-                    {{ phpversion() }}
+                    <a href="https://www.php.net/ChangeLog-8.php#{{ phpversion() }}" target="_blank">
+                        {{ phpversion() }}
+                    </a>
                 </p>
             </div>
             <div class="card card-master shadow-xs p-4">
