@@ -41,7 +41,7 @@
 
     h1 {
         font-weight: 600; line-height: 1.25;
-        @apply border-b border-border-200 pb-2;
+        @apply border-b border-border-200 dark:border-dark-700 pb-2;
     }
 
     h3 {
@@ -137,7 +137,8 @@
 
 .page_about {
     .code {
-        @apply bg-gray-100 text-slate-800 rounded px-1 py-0.5
+        @apply bg-gray-100 text-slate-800 rounded px-1 py-0.5;
+        @apply dark:!bg-dark-950/50 dark:text-dark-400;
     }
 
     .config {
@@ -153,11 +154,7 @@
 
         dd {
             @apply ms-6 md:col-start-2;
-        }
-
-        .config-value-bool {
-            padding: .1em .2em;
-            @apply bg-gray-100 rounded;
+            @apply dark:text-dark-400;
         }
     }
 }
