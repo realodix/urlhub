@@ -65,74 +65,84 @@
 
 #power-grid-table-base {
     div:has(> div > table) {
-        @apply border-border-200;
+        @apply border-border-200 dark:border-dark-700;
         scrollbar-width: thin;
     }
 
     table {
+        /* Terpakasa menggunakan @layer utilities !important, karena PG juga menggunakan !important */
+        @layer utilities { @apply dark:!bg-transparent; }
+
         thead {
             @apply shadow-none;
         }
 
         tr {
             @apply hover:bg-primary-50/40;
+            @apply dark:bg-dark-900 dark:hover:bg-dark-800/90;
         }
 
         td {
-            @apply border border-border-200;
+            @apply border border-border-200 dark:border-dark-700;
             @apply first:border-l-0 last:border-r-0;
         }
     }
 
     button, input, select {
         @apply focus-within:focus:ring-gray-400 focus-within:ring-gray-400 focus-within:ring-1;
+        @apply dark:bg-dark-800 dark:ring-dark-700 dark:focus-within:focus:ring-dark-600 dark:focus-within:ring-dark-600;
     }
 
     input, button {
         @apply ring-border-300 hover:ring-stone-400/70;
+        @apply dark:ring-dark-700 dark:hover:ring-dark-600;
     }
 
     select {
-        @apply border-border-300/70;
+        @apply border-border-300/70 dark:border-dark-700;
     }
 
     button[data-cy^="toggle-columns-"] {
         @apply text-slate-800 bg-gray-100 hover:bg-gray-50 active:bg-gray-100 focus-within:ring-1;
+        @apply dark:bg-dark-800 dark:hover:bg-dark-700;
         @apply duration-300 ease-out;
 
-        & + div:has(> [role="none"] > [wire\:key="toggle-column-keyword"]) {
+        & + div:has(> [role="none"] > [wire\:key^="toggle-column-"]) {
             @apply ring-border-300;
+            @apply dark:ring-dark-700 dark:bg-dark-800;
         }
 
         svg {
-            @apply text-slate-800;
+            @apply text-slate-800 dark:text-dark-400;
         }
     }
 
     nav[aria-label="Pagination Navigation"] {
         span, a {
-            @apply border-border-300/70;
+            @apply border-border-300/70 dark:border-dark-700;
         }
 
         span {
-            @apply bg-white text-slate-800;
+            @apply bg-white text-slate-800 dark:bg-dark-800 dark:text-dark-300;
             @apply first:rounded-l-md last:rounded-r-md;
         }
 
         a {
             @apply bg-gray-100 hover:bg-gray-50 hover:text-slate-800 hover:font-semibold;
+            @apply dark:bg-dark-800 dark:hover:bg-dark-700 dark:text-dark-400 dark:hover:text-dark-300;
             @apply first:border-r-0 nth-last-[-n+2]:border-l-0;
         }
     }
 
     #pg-footer {
         @apply border-border-200;
+        @apply dark:bg-dark-900 dark:border-dark-700;
     }
 }
 
 .fi-wi-chart {
     section {
-        @apply ring-0 ring-border-300/70 shadow-none;
+        @apply ring-0 ring-border-300/70 dark:border-dark-700 shadow-none;
         @apply dark:!bg-dark-950/50;
     }
 }
