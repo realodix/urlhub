@@ -16,6 +16,7 @@ export default {
     presets: [
         presetPowerGrid,
     ],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
