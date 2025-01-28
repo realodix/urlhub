@@ -12,8 +12,8 @@
         {{-- Mobile hamburger menu button --}}
         <div class="-mr-2 flex items-center sm:hidden">
             <button class="navbar-toggler rounded-md
-                    text-slate-400 hover:text-slate-500 focus:text-slate-500
-                    hover:bg-slate-100 focus:bg-slate-100 focus:outline-none"
+                    text-slate-400 hover:text-slate-500 focus:text-slate-500 hover:bg-slate-100 focus:bg-slate-100 focus:outline-none
+                    dark:text-dark-400 dark:hover:text-dark-400 dark:focus:text-dark-400 dark:bg-dark-800 dark:hover:bg-dark-700 dark:focus:bg-dark-700"
                 x-on:click="open = ! open"
             >
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">

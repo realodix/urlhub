@@ -17,7 +17,7 @@
                 {{-- Prevent blinking --}}
                 style="display: none;"
             >
-                <div class="rounded-md ring-1 ring-black/5 py-1 bg-white">
+                <div class="bg-white dark:bg-dark-900 ring-1 ring-black/5 dark:ring-dark-700 rounded-md py-1">
                     @if (Route::currentRouteName() != 'dashboard')
                         <a class="nav-item" href="{{ route('dashboard') }}">
                             @svg('icon-dashboard', 'mr-1')
@@ -28,7 +28,7 @@
                     @endif
 
                     {{-- Account Management --}}
-                    <div class="block px-4 py-2 text-xs text-slate-400">
+                    <div class="block px-4 py-2 text-xs text-slate-400 dark:text-dark-500">
                         {{ __('Manage Account') }}
                     </div>
 
