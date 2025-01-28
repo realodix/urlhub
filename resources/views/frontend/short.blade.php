@@ -60,8 +60,8 @@
                 </p>
 
                 <div class="flex gap-x-2 mt-2">
-                    <div class="hidden md:block">@svg('arrow-turn-right')</div>
-                    <p class="break-all max-w-2xl">
+                    <div class="hidden md:block dark:text-dark-400">@svg('icon-arrow-turn-right', 'dark:text-dark-400')</div>
+                    <p class="break-all max-w-2xl dark:text-dark-400">
                         <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
                             {{ $url->destination }}
                         </a>
@@ -73,7 +73,8 @@
                 @if (auth()->check() && auth()->user()->id === $url->user_id)
                     @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
                 @else
-                    <div class="bg-orange-50 border border-border-200 p-4 text-center">
+                    <div class="bg-orange-50 border border-border-200 p-4 text-center
+                        dark:bg-transparent dark:border-dark-700 dark:text-dark-400">
                         If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 hover:text-orange-500 font-medium">log in</a> to view the statistics for this link.
                     </div>
                 @endif
