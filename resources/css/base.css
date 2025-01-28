@@ -93,8 +93,10 @@ main {
     @apply block w-full py-1.5;
     @apply border-border-300 focus:ring-0 focus:border-primary-500 rounded;
     @apply bg-gray-50/80 focus:bg-white;
+    @apply dark:bg-dark-800 dark:focus:bg-dark-800 dark:border-dark-700;
 
     &[disabled], &:disabled {
         @apply bg-gray-50/80 text-slate-700/50 cursor-not-allowed;
+        @apply dark:bg-dark-800/80 dark:text-dark-400/50;
     }
 }
