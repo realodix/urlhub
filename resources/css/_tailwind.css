@@ -6,6 +6,18 @@
     --color-uh-blue: #3d5b99;
     --color-border-200: #e5e7eb;
     --color-border-300: #d1d5db;
+
+    --color-dark-50: #fafafa;
+    --color-dark-100: #f5f5f5;
+    --color-dark-200: #e5e5e5;
+    --color-dark-300: #d4d4d4;
+    --color-dark-400: #a3a3a3;
+    --color-dark-500: #737373;
+    --color-dark-600: #525252;
+    --color-dark-700: #404040;
+    --color-dark-800: #262626;
+    --color-dark-900: #171717;
+    --color-dark-950: #0a0a0a;
 }
 
 @utility layout-container {
@@ -13,8 +25,8 @@
 }
 
 @utility card {
-    @apply bg-white;
-    @apply border border-border-300/70 rounded-md;
+    @apply bg-white dark:bg-dark-900;
+    @apply border border-border-300/70 dark:border-dark-700 rounded-md;
 }
 
 @utility card-master {

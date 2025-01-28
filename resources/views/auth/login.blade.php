@@ -46,7 +46,7 @@
         </form>
 
         @if (Route::has('register') and Config::get('urlhub.registration'))
-        <div class="mt-6 text-center text-sm text-gray-600">
+        <div class="mt-6 text-center text-sm text-gray-600 dark:text-dark-400">
             Don't have an account?
             <a href="{{ route('register') }}" class="text-primary-700 hover:text-primary-500 font-medium">Sign up</a>
         </div>

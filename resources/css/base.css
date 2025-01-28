@@ -16,6 +16,7 @@ main {
 
 .frontend, .backend, .auth {
     @apply bg-gray-50 font-sans text-slate-900 antialiased;
+    @apply dark:bg-dark-950 dark:text-dark-50;
 }
 
 .logo {

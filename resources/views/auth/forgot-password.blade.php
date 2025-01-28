@@ -26,7 +26,7 @@
 
     <div class="auth-card">
         <p class="mb-1">{{ __('Forgot your password? No problem.') }}
-        <p class="text-gray-600 text-sm">
+        <p class="text-sm text-gray-600 dark:text-dark-400">
             {{ __('Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </p>
 

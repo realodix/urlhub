@@ -15,7 +15,7 @@
         <div class="px-4 sm:px-0">
             <h3>{{ __('Account Information') }}</h3>
 
-            <p class="mt-1 text-sm text-slate-600">
+            <p class="mt-1 text-sm text-slate-600 dark:text-dark-400">
                 {{ __("Update your account information.") }}
             </p>
         </div>
