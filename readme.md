@@ -24,12 +24,9 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 
 
 ## Requirements
-UrlHub is a Laravel application. That means it requires this setup:
+UrlHub is a Laravel application that can be deployed with Docker, which means it requires this configuration:
 
-- PHP 8.2 or newer
-- A web server like Apache or Nginx
-- MySQL / MariaDB / SQLite
-
+- Docker
 
 ## Quick Start
 ### Installation Instructions
@@ -39,13 +36,17 @@ UrlHub is a Laravel application. That means it requires this setup:
 
 2. Run `composer install`.
 
-3. Run `php artisan key:generate`.
+3. Run `docker-compose build`.
 
-4. Run `php artisan migrate --seed`.
+4. Run `docker-compose up`.
 
-5. Run `php artisan serve`.
+5. Run `docker exec -it urlhub_app bash`.
 
-6. Login
+6. Run `php artisan key:generate`.
+
+7. Run `php artisan migrate --seed`.
+
+8. Login
 
    | Email             | Username | Password | Access       |
    |-------------------|----------|----------|--------------|
