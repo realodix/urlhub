@@ -3,11 +3,16 @@
 namespace App\Services;
 
 use App\Models\Url;
+use App\Settings\GeneralSettings;
 
 class KeyGeneratorService
 {
     /** @var string */
     const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    public function __construct(
+        protected GeneralSettings $settings,
+    ) {}
 
     /**
      * Generate a short string that can be used as a unique key for the shortened
@@ -51,7 +56,7 @@ class KeyGeneratorService
      */
     public function shortHash(string $value): string
     {
-        return substr(hash('xxh3', $value), 0, config('urlhub.keyword_length'));
+        return substr(hash('xxh3', $value), 0, $this->settings->keyword_length);
     }
 
     /**
@@ -63,7 +68,7 @@ class KeyGeneratorService
     public function randomString(): string
     {
         $alphabet = self::ALPHABET;
-        $length = config('urlhub.keyword_length');
+        $length = $this->settings->keyword_length;
 
         if (\PHP_VERSION_ID < 80300) {
             $stringLength = strlen($alphabet);
@@ -140,7 +145,7 @@ class KeyGeneratorService
     public function possibleOutput(): int
     {
         $nChar = strlen(self::ALPHABET);
-        $strLen = config('urlhub.keyword_length');
+        $strLen = $this->settings->keyword_length;
 
         $nPossibleOutput = pow($nChar, $strLen);
 
@@ -159,7 +164,7 @@ class KeyGeneratorService
      */
     public function totalKey(): int
     {
-        $length = config('urlhub.keyword_length');
+        $length = $this->settings->keyword_length;
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$length])
             ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{' . $length . '}$"')

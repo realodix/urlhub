@@ -6,11 +6,15 @@ use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
+use App\Settings\GeneralSettings;
 use Illuminate\Support\Uri;
 
 class VisitorService
 {
-    public function __construct(public User $user) {}
+    public function __construct(
+        protected User $user,
+        protected GeneralSettings $settings,
+    ) {}
 
     /**
      * Store the visitor data.
@@ -20,7 +24,7 @@ class VisitorService
      */
     public function create(Url $url)
     {
-        $logBotVisit = config('urlhub.track_bot_visits');
+        $logBotVisit = $this->settings->track_bot_visits;
         $device = Helper::deviceDetector();
         $referer = request()->header('referer');
 

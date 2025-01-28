@@ -104,8 +104,10 @@ class ValidationTest extends TestCase
         $minLen = 3;
         $maxLen = 7;
 
-        config(['urlhub.custom_keyword_min_length' => $minLen]);
-        config(['urlhub.custom_keyword_max_length' => $maxLen]);
+        settings()->fill([
+            'custom_keyword_min_length' => $minLen,
+            'custom_keyword_max_length' => $maxLen,
+        ])->save();
 
         $component->assertStatus(200);
         $component->set('keyword', str_repeat('a', $minLen))

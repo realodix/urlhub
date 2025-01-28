@@ -37,7 +37,7 @@ class CreateShortLinkTest extends TestCase
         $longUrl = 'https://t.co';
 
         $customKey = 'foobar';
-        config(['urlhub.keyword_length' => strlen($customKey) + 1]);
+        settings()->fill(['keyword_length' => strlen($customKey) + 1])->save();
         $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,
@@ -47,7 +47,7 @@ class CreateShortLinkTest extends TestCase
         $this->assertTrue($url->is_custom);
 
         $customKey = 'barfoo';
-        config(['urlhub.keyword_length' => strlen($customKey) - 1]);
+        settings()->fill(['keyword_length' => strlen($customKey) - 1])->save();
         $response = $this->post(route('link.create'), [
             'long_url'   => $longUrl,
             'custom_key' => $customKey,

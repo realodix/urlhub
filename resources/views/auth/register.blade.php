@@ -11,7 +11,7 @@
     </div>
 
     <div class="auth-card">
-        @if (!config('urlhub.registration') )
+        @if (settings()->anyone_can_register === false)
             <p class="text-muted">{{ __('Sorry, we are closed for registrations at this time.') }}</p>
         @else
             <form method="post" action="{{ route('register') }}" aria-label="{{ __('Register') }}" class="space-y-4">

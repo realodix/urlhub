@@ -13,7 +13,7 @@ class VisitTest extends TestCase
 
     public function testLogBotVisits(): void
     {
-        config(['urlhub.track_bot_visits' => true]);
+        settings()->fill(['track_bot_visits' => true])->save();
 
         $url = Url::factory()->create();
 
@@ -24,7 +24,7 @@ class VisitTest extends TestCase
 
     public function testDontLogBotVisits(): void
     {
-        config(['urlhub.track_bot_visits' => false]);
+        settings()->fill(['track_bot_visits' => false])->save();
 
         $url = Url::factory()->create();
 

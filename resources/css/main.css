@@ -42,11 +42,19 @@
     h1 {
         font-weight: 600; line-height: 1.25;
         @apply border-b border-border-200 pb-2;
+
+        &:not(:has(+ h3)) {
+            @apply mb-6;
+        }
     }
 
     h3 {
         font-weight: 600; line-height: 1.25;
         @apply mt-6 mb-2 first:!mt-0 ;
+    }
+
+    hr + h3 {
+        margin-top: 0;
     }
 }
 
@@ -153,11 +161,6 @@
 
         dd {
             @apply ms-6 md:col-start-2;
-        }
-
-        .config-value-bool {
-            padding: .1em .2em;
-            @apply bg-gray-100 rounded;
         }
     }
 }
