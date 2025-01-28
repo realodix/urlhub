@@ -70,7 +70,13 @@
             </div>
 
             <div class="mt-20">
-                @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                @if (auth()->check() && auth()->user()->id === $url->user_id)
+                    @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                @else
+                    <div class="bg-gray-50 border border-border-200 p-4 text-center">
+                        If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-primary-700 hover:text-primary-500 font-medium">log in</a> to view the statistics for this link.
+                    </div>
+                @endif
             </div>
         </div>
     </div>
