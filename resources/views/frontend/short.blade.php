@@ -7,6 +7,7 @@
         <div class="text-xl sm:text-2xl lg:text-3xl md:mb-4">{{ $url->title }}</div>
 
         <ul class="mb-4">
+            @if (auth()->check() && auth()->user()->id === $url->user_id)
             <li class="inline-block pr-4 mt-4 lg:mt-0">
                 @svg('icon-chart-line-alt')
                 <i>
@@ -15,6 +16,7 @@
                     </span>
                 </i>
             </li>
+            @endif
             <li class="inline-block pr-4">
                 @svg('icon-calendar')
                 <i>{{ $url->created_at->toFormattedDateString() }}</i>
