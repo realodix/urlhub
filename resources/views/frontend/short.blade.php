@@ -7,7 +7,7 @@
         <div class="text-xl sm:text-2xl lg:text-3xl md:mb-4">{{ $url->title }}</div>
 
         <ul class="mb-4">
-            @if (auth()->check() && auth()->user()->id === $url->user_id)
+            @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
             <li class="inline-block pr-4 mt-4 lg:mt-0">
                 @svg('icon-chart-line-alt')
                 <i>
@@ -38,18 +38,16 @@
                     @svg('icon-clone')
                 </button>
 
-                @auth
-                    @if (auth()->user()->hasRole('admin') || (auth()->user()->id === $url->user_id))
-                        <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}" class="btn btn-secondary btn-square btn-sm mr-6">
-                            @svg('icon-edit')
-                        </a>
-                        <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
-                            class="btn btn-delete btn-square btn-sm"
-                        >
-                            @svg('icon-trash')
-                        </a>
-                    @endif
-                @endauth
+                @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
+                    <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}" class="btn btn-secondary btn-square btn-sm mr-6">
+                        @svg('icon-edit')
+                    </a>
+                    <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
+                        class="btn btn-delete btn-square btn-sm"
+                    >
+                        @svg('icon-trash')
+                    </a>
+                @endif
             </div>
 
             <br>
@@ -72,7 +70,7 @@
             </div>
 
             <div class="mt-20">
-                @if (auth()->check() && auth()->user()->id === $url->user_id)
+                @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
                     @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
                 @else
                     <div class="bg-orange-50 border border-border-200 p-4 text-center
