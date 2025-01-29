@@ -130,7 +130,7 @@
 
 .fi-wi-chart {
     section {
-        @apply ring-0 ring-border-300/70 shadow-none;
+        @apply ring-0 shadow-none;
     }
 }
 
