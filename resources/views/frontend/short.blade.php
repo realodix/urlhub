@@ -62,7 +62,7 @@
                 </p>
 
                 <div class="flex gap-x-2 mt-2">
-                    <div class="hidden md:block">@svg('arrow-turn-right')</div>
+                    <div class="hidden md:block">@svg('icon-arrow-turn-right')</div>
                     <p class="break-all max-w-2xl">
                         <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
                             {{ $url->destination }}
