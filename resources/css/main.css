@@ -136,6 +136,12 @@
     }
 }
 
+.fi-wi-chart {
+    section {
+        @apply ring-0 shadow-none;
+    }
+}
+
 
 .page_about {
     .code {

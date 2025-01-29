@@ -7,6 +7,7 @@
         <div class="text-xl sm:text-2xl lg:text-3xl md:mb-4">{{ $url->title }}</div>
 
         <ul class="mb-4">
+            @if (auth()->check() && auth()->user()->id === $url->user_id)
             <li class="inline-block pr-4 mt-4 lg:mt-0">
                 @svg('icon-chart-line-alt')
                 <i>
@@ -15,6 +16,7 @@
                     </span>
                 </i>
             </li>
+            @endif
             <li class="inline-block pr-4">
                 @svg('icon-calendar')
                 <i>{{ $url->created_at->toFormattedDateString() }}</i>
@@ -60,7 +62,7 @@
                 </p>
 
                 <div class="flex gap-x-2 mt-2">
-                    <div class="hidden md:block">@svg('arrow-turn-right')</div>
+                    <div class="hidden md:block">@svg('icon-arrow-turn-right')</div>
                     <p class="break-all max-w-2xl">
                         <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
                             {{ $url->destination }}
@@ -70,7 +72,13 @@
             </div>
 
             <div class="mt-20">
-                @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                @if (auth()->check() && auth()->user()->id === $url->user_id)
+                    @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                @else
+                    <div class="bg-orange-50 border border-border-200 p-4 text-center">
+                        If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 hover:text-orange-500 font-medium">log in</a> to view the statistics for this link.
+                    </div>
+                @endif
             </div>
         </div>
     </div>
