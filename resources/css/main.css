@@ -1,8 +1,9 @@
 @import './base.css';
 
 .navbar {
-    @apply bg-white/40 dark:bg-dark-950/40 backdrop-blur-lg;
-    @apply border-b border-border-300/70 dark:border-dark-700;
+    @apply bg-white/40 backdrop-blur-lg;
+    @apply border-b border-border-300/70;
+    @apply dark:bg-dark-950/40  dark:border-dark-700;
 
     .navbar-brand {
         @apply flex items-center text-3xl md:text-4xl;
