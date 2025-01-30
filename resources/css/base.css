@@ -97,20 +97,20 @@ main {
 
     /* The slider */
     .slider {
+        @apply bg-gray-300 border border-border-300;
+        @apply dark:bg-dark-800 dark:border-dark-700;
         position: absolute;
         cursor: pointer;
         top: 0; bottom: 0; left: 0; right: 0;
-        background-color: theme(colors.gray.300);
         transition: .4s;
         border-radius: 34px;
-        border: 1px solid theme(colors.border-300);
 
         &:before {
+            background-color: white;
             position: absolute;
             content: "";
             height: 15px; width: 15px;
             left: 3px; bottom: 3px;
-            background-color: white;
             transition: .4s;
             border-radius: 50%;
         }
