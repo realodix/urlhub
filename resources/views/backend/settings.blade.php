@@ -66,7 +66,8 @@
 
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label !inline">Redirection Status Code</label>
-                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections" target="_blank">@svg('icon-help', 'ml-1 hover:scale-110')</a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections" target="_blank">
+                        @svg('icon-help', 'ml-1 hover:scale-110 text-gray-500 dark:text-amber-400')</a>
                     <div class="font-light text-sm dark:text-dark-400">The HTTP status code to use when redirecting a visitor to the original URL.</div>
                     <select name="redirect_status_code" class="form-input mt-4 md:mt-3">
                         <option value="301" {{ $settings->redirect_status_code == 301 ? 'selected' : '' }}>301 - Permanent Redirect</option>
@@ -75,7 +76,8 @@
                 </div>
                 <div class="col-span-6 lg:col-span-4">
                     <label class="form-label !inline">HTTP Cache-Control header (max-age)</label>
-                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#max-age" target="_blank">@svg('icon-help', 'ml-1 hover:scale-110')</a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#max-age" target="_blank">
+                        @svg('icon-help', 'ml-1 hover:scale-110 text-gray-500 dark:text-amber-400')</a>
                     <div class="font-light text-sm dark:text-dark-400">Set the maximum age for the HTTP Cache-Control header in seconds. Set to 0 for no caching.</div>
                     <input name="redirect_cache_max_age" required value="{{ $settings->redirect_cache_max_age }}"
                         class="form-input mt-4 md:mt-3 @error('redirect_cache_max_age') !border-red-300 @enderror">
