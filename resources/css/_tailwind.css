@@ -13,8 +13,8 @@
 }
 
 @utility card {
-    @apply bg-white;
-    @apply border border-border-300/70 rounded-md;
+    @apply bg-white border border-border-300/70 rounded-md;
+    @apply dark:bg-dark-900 dark:border-dark-700;
 }
 
 @utility card-master {

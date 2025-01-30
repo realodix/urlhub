@@ -7,23 +7,27 @@
     <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between" :class="{ 'sm:hidden': atTop }">
         <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
-        <x-nav-dropdown/>
+        <div class="flex items-center">
+            <x-theme-toggle />
 
-        {{-- Mobile hamburger menu button --}}
-        <div class="-mr-2 flex items-center sm:hidden">
-            <button class="navbar-toggler rounded-md
-                    text-slate-400 hover:text-slate-500 focus:text-slate-500
-                    hover:bg-slate-100 focus:bg-slate-100 focus:outline-none"
-                x-on:click="open = ! open"
-            >
-                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                    <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
+            <x-nav-dropdown/>
+
+            {{-- Mobile hamburger menu button --}}
+            <div class="-mr-2 ml-6 flex items-center sm:hidden">
+                <button class="navbar-toggler rounded-md
+                        text-slate-400 hover:text-slate-500 focus:text-slate-500 hover:bg-gray-950/5 focus:bg-gray-950/5 focus:outline-none
+                        dark:text-dark-400 dark:hover:text-dark-400 dark:focus:text-dark-400 dark:bg-dark-800 dark:hover:bg-dark-700 dark:focus:bg-dark-700"
+                    x-on:click="open = ! open"
+                >
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 

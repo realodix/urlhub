@@ -20,7 +20,7 @@
                 @svg('icon-sign-warning', '!size-5')
                 <span class="text-xs/4 font-medium">Warning</span>
             </p>
-            <ul class="text-slate-600">
+            <ul class="text-slate-600 dark:text-dark-400">
                 @if ($env !== 'production')
                     <li>The environment was expected to be <code class="code">production</code>, but actually was <code class="code">{{ $env }}</code>.</li>
                 @endif
@@ -34,7 +34,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="card card-master shadow-xs p-4 md:col-span-2">
                 <p class="text-uh-blue text-sm font-medium leading-4">UrlHub</p>
-                <p class="text-2xl font-bold text-slate-700">
+                <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     @if($appVersion->endsWith('-dev') && !empty($commitVersion))
                         <a href="https://github.com/realodix/urlhub/compare/{{ $commitVersion }}...master" target="_blank">
                             {{$appVersion->remove('dev')}}{{ substr($commitVersion, 0 , 7) }}
@@ -46,7 +46,7 @@
             </div>
             <div class="card card-master shadow-xs p-4">
                 <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
-                <p class="text-2xl font-bold text-slate-700">
+                <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     <a href="https://www.php.net/ChangeLog-8.php#{{ phpversion() }}" target="_blank">
                         {{ phpversion() }}
                     </a>
@@ -54,7 +54,7 @@
             </div>
             <div class="card card-master shadow-xs p-4">
                 <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
-                <p class="text-2xl font-bold text-slate-700">
+                <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     <a href="https://github.com/laravel/framework/releases/tag/v{{ app()->version() }}" target="_blank">
                         {{ app()->version() }}
                     </a>
@@ -77,32 +77,32 @@
 
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                <div class="card !bg-gray-50 !rounded px-4 py-3">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
-                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                             Total
                         </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
+                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                             {{ $urlCount }} ({{ $visitCount }} visits)
                         </dd>
                     </div>
                 </div>
-                <div class="card !bg-gray-50 !rounded px-4 py-3">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
-                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                             User
                         </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
+                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                             {{ $userUrlCount }} ({{ $userLinkVisitCount }} visits)
                         </dd>
                     </div>
                 </div>
-                <div class="card !bg-gray-50 !rounded px-4 py-3">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
-                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                             Guest
                         </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
+                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                             {{ $guestUrlCount }} ({{ $guestUserLinkVisitCount }} visits)
                         </dd>
                     </div>
@@ -113,22 +113,22 @@
         <h3>Users</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                <div class="card !bg-gray-50 !rounded px-4 py-3">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
-                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                             User
                         </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
+                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                             {{ n_abb($user->count()) }}
                         </dd>
                     </div>
                 </div>
-                <div class="card !bg-gray-50 !rounded px-4 py-3">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
-                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                             Guest
                         </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
+                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                             {{ n_abb($user->totalGuestUsers()) }}
                         </dd>
                     </div>
@@ -137,15 +137,15 @@
         </div>
 
         <h3>Random String</h3>
-        <p class="font-light text-sm">Random String Generation for Shortened URLs.</p>
+        <p class="font-light text-sm dark:text-dark-400">Random String Generation for Shortened URLs.</p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
-                <div class="card !bg-gray-50 !rounded px-4 py-3">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
-                        <dt class="text-sm font-medium text-gray-600 md:mt-1">
+                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                             Potential Output
                         </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl">
+                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                             @if ($keyGenerator->possibleOutput() === PHP_INT_MAX)
                                 (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
                             @else
@@ -160,12 +160,12 @@
                         </dd>
                     </div>
                 </div>
-                <div class="card !bg-gray-50 !rounded px-4 py-3">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
-                        <dt class="text-sm font-medium text-gray-600 md:mt-1 md:w-64">
+                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1 md:w-64">
                             Generated Count
                         </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 md:mt-1 md:text-xl md:w-64">
+                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl md:w-64">
                             {{ number_format($keyGenerator->totalKey()) }}
                         </dd>
                     </div>
@@ -202,10 +202,10 @@
 
             <dt class="mt-2">
                 <code>domain_blacklist</code>
-                <p class="font-light text-sm">This is a list of domain names that are not allowed to be shortened.</p>
+                <p class="font-light text-sm dark:text-dark-400">This is a list of domain names that are not allowed to be shortened.</p>
             </dt>
             <dd class="mt-2">
-                <div class="card !bg-gray-50 !rounded px-3 py-2 text-sm">
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
                     @if (!empty($domainBlacklist))
                         <code>{{ implode(", ", $domainBlacklist) }}</code>
                     @else
@@ -216,19 +216,19 @@
 
             <dt class="mt-2 mb-2">
                 <code>reserved_keyword</code>
-                <p class="font-light text-sm">
+                <p class="font-light text-sm dark:text-dark-400">
                     Reserved keywords are strings that cannot be used as a shortened URL keyword. The route list and folder/file names in the public folder are also included in this list.
                 </p>
             </dt>
             <dd class="mt-2 mb-2">
-                <div class="card !bg-gray-50 !rounded px-3 py-2 text-sm">
-                    <code class="text-slate-500">// {{ $reservedKeyword->count() }} Strings</code> <br>
-                    <code>{{ $reservedKeyword->implode(', ') }}</code>
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
+                    <code class="text-slate-500 dark:text-dark-600">// {{ $reservedKeyword->count() }} Strings</code> <br>
+                    <code class="dark:text-dark-400">{{ $reservedKeyword->implode(', ') }}</code>
 
                     @if (!empty($reservedActiveKeyList))
                         <br><br>
-                        <code class="text-red-400">// Unfortunately the list below is already used </code> <br>
-                        <code class="text-red-400">// as shortened URL keyword</code> <br>
+                        <code class="text-red-400 dark:text-orange-500/70">// Unfortunately the list below is already used </code> <br>
+                        <code class="text-red-400 dark:text-orange-500/70">// as shortened URL keyword</code> <br>
                         <code>
 
                         @foreach ($reservedActiveKeyList as $reservedActiveKey)
@@ -243,7 +243,7 @@
 
             <dt><code>web_title</code></dt>
             <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.web_title')) }}</code>
+                <code class="code">{{ var_export(config('urlhub.web_title')) }}</code>
             </dd>
 
             <dt><code>redirect_status_code</code></dt>
@@ -254,7 +254,7 @@
 
             <dt><code>track_bot_visits</code></dt>
             <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.track_bot_visits')) }}</code>
+                <code class="code">{{ var_export(config('urlhub.track_bot_visits')) }}</code>
             </dd>
         </dl>
 
@@ -262,12 +262,12 @@
         <dl>
             <dt>Allow create short links</dt>
             <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.public_site')) }}</code>
+                <code class="code">{{ var_export(config('urlhub.public_site')) }}</code>
             </dd>
 
             <dt>Allow sign up</dt>
             <dd>
-                <code class="config-value-bool">{{ var_export(config('urlhub.registration')) }}</code>
+                <code class="code">{{ var_export(config('urlhub.registration')) }}</code>
             </dd>
         </dl>
     </div>
