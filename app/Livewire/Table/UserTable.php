@@ -46,12 +46,12 @@ final class UserTable extends PowerGridComponent
                 $urlCount = $user->urls_count;
                 $urlCountTitle = number_format($urlCount) . ' short ' . Str::plural('link', $urlCount);
 
-                return $user->name . ' <span title="' . $urlCountTitle . '">(' . n_abb($urlCount) . ')</span>';
+                return $user->name . ' <span title="' . $urlCountTitle . '" class="dark:text-dark-400">(' . n_abb($urlCount) . ')</span>';
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {
                 return
-                    '<span title="' . $user->created_at->toDayDateTimeString() . '">'
+                    '<span title="' . $user->created_at->toDayDateTimeString() . '" class="dark:text-dark-400">'
                         . $user->created_at->shortRelativeDiffForHumans() .
                     '</span>';
             })
@@ -77,12 +77,12 @@ final class UserTable extends PowerGridComponent
     {
         return [
             Column::make('USERNAME', 'name')
-                ->sortable()
-                ->searchable(),
+                ->sortable()->searchable()
+                ->contentClassField('dark:text-dark-300'),
 
             Column::make('EMAIL', 'email')
-                ->sortable()
-                ->searchable(),
+                ->sortable()->searchable()
+                ->contentClassField('dark:text-dark-300'),
 
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
