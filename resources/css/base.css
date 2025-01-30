@@ -77,15 +77,10 @@ main {
     }
 
     &.btn-square {
-        @apply h-12 w-12 p-0;
+        @apply size-12 p-0;
 
-        &:where(.btn-sm) {
-            @apply h-8 w-8;
-        }
-
-        &:where(.btn-xs) {
-            @apply h-6 w-6;
-        }
+        &:where(.btn-sm) { @apply size-8; }
+        &:where(.btn-xs) { @apply size-6; }
     }
 }
 
@@ -116,10 +111,6 @@ main {
         }
     }
 
-    &:has(> input:checked) .slider {
-        border: 1px solid theme(colors.primary.600);
-    }
-
     /* Hide default HTML checkbox */
     input {
         opacity: 0;
@@ -127,10 +118,9 @@ main {
 
         &:checked + .slider {
             background-color: theme(colors.primary.600);
+            border: 1px solid theme(colors.primary.600);
 
-            &:before {
-                transform: translateX(26px);
-            }
+            &:before { transform: translateX(26px); }
         }
     }
 }
@@ -140,7 +130,6 @@ main {
     display: block;
     margin: 0 0 6px;
 }
-
 .form-input {
     @apply block w-full py-1.5;
     @apply border-border-300 focus:ring-0 focus:border-primary-500 rounded;
