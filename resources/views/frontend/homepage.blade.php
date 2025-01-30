@@ -31,7 +31,9 @@
                                 rounded-t-md md:rounded-l-md md:rounded-r-none
                                 {{-- tailwindcss/forms --}}
                                 border-border-300 focus:ring-inherit">
-                        <button type="submit" class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md duration-300 text-lg text-white bg-primary-600 hover:bg-primary-600/90 focus:bg-primary-700">
+                        <button type="submit" class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md duration-300
+                            text-lg text-white bg-primary-600 hover:bg-primary-600/90 focus:bg-primary-700
+                            dark:text-primary-600 dark:bg-dark-950 dark:focus:bg-dark-800 dark:border dark:border-dark-600 dark:hover:border-primary-600">
                             {{ __('Shorten') }}
                         </button>
                     </div>
