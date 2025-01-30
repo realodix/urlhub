@@ -100,8 +100,8 @@ main {
         transition: .4s;
         border-radius: 34px;
 
+        @apply before:bg-white dark:before:bg-dark-700;
         &:before {
-            background-color: white;
             position: absolute;
             content: "";
             height: 15px; width: 15px;
@@ -117,10 +117,11 @@ main {
         height: 0; width: 0;
 
         &:checked + .slider {
-            background-color: theme(colors.primary.600);
-            border: 1px solid theme(colors.primary.600);
+            @apply bg-primary-600 dark:bg-dark-800;
+            @apply border border-primary-600 dark:border-dark-700;
 
-            &:before { transform: translateX(26px); }
+            @apply before:bg-white dark:before:bg-emerald-500;
+            @apply before:translate-x-6.5;
         }
     }
 }
