@@ -8,11 +8,14 @@
 
     <title>@yield('title') | {{ config('app.name') }}</title>
 
+    @livewireStyles
     @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
 
 <body class="@yield('css_class')">
     @yield('content')
+
+    @livewireScripts
 </body>
 
 </html>

@@ -12,7 +12,7 @@
     @else
         <div class="flex flex-wrap md:justify-center">
             <span class="mx-auto max-w-md md:max-w-3xl relative z-10
-                font-bold text-center text-gray-700 md:text-4xl xl:text-5xl text-3xl !leading-tight"
+                font-bold text-center text-gray-700 dark:text-dark-300 md:text-4xl xl:text-5xl text-3xl !leading-tight"
             >
                 Simple <span class="hero__emphasizing">URL shortener</span> <br>
                 <span class="font-light">for individuals &amp; businesses</span>
@@ -25,7 +25,7 @@
                 @csrf
                     <div class="mt-1 text-center">
                         <input name="long_url" required value="{{ old('long_url') }}" placeholder="{{ __('Shorten your link') }}"
-                            class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
+                            class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14 dark:bg-dark-800 dark:border-dark-700
                                 text-xl outline-none
                                 border border-border-200 focus:border-primary-600
                                 rounded-t-md md:rounded-l-md md:rounded-r-none
@@ -40,7 +40,7 @@
 
                     <div class="custom-url sm:mt-8">
                         <b>{{ __('Custom URL (optional)') }}</b>
-                        <span class="block mb-4 font-light">
+                        <span class="block mb-4 font-light dark:text-dark-400">
                             {{ __('Replace clunky URLs with meaningful short links that get more clicks.') }}</span>
                         <div class="inline text-2xl">
                             {{ request()->getHttpHost() }}/ @livewire('validation.validate-custom-keyword')

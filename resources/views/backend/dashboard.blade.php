@@ -12,8 +12,8 @@
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-link', 'mr-1.5 text-emerald-600 text-3xl')
                 <div>
-                    <p class="text-slate-600 text-sm font-medium leading-4">Total Links</p>
-                    <p class="text-2xl font-bold text-slate-700 inline-flex items-center space-x-2">
+                    <p class="text-slate-600 dark:text-dark-400 text-sm font-medium leading-4">Total Links</p>
+                    <p class="text-2xl font-bold text-slate-700 dark:text-dark-100 inline-flex items-center space-x-2">
                         {{ n_abb($url->authUserUrlCount(auth()->id())) }}
                     </p>
                 </div>
@@ -23,8 +23,8 @@
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-chart-line-alt', 'mr-1.5 text-amber-600 text-3xl')
                 <div>
-                    <p class="text-slate-600 text-sm font-medium leading-4">Total Clicks</p>
-                    <p class="text-2xl font-bold text-slate-700 inline-flex items-center space-x-2">
+                    <p class="text-slate-600 dark:text-dark-400 text-sm font-medium leading-4">Total Clicks</p>
+                    <p class="text-2xl font-bold text-slate-700 dark:text-dark-100 inline-flex items-center space-x-2">
                         {{ $urlVisitCount }}
                     </p>
                 </div>

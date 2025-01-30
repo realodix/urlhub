@@ -10,18 +10,18 @@
         <div class="px-4 sm:px-0">
             <h3>{{ __('Edit URL Details') }}</h3>
             <br>
-            <div class="inline sm:block mr-2 text-sm text-slate-600">
-                @svg('icon-person', 'mr-1 text-slate-900')
+            <div class="inline sm:block mr-2 text-sm text-slate-600 dark:text-dark-400">
+                @svg('icon-person', 'mr-1')
                 {{ $url->author->name }}
             </div>
-            <div class="inline sm:block text-sm text-slate-600">
-                @svg('icon-calendar', 'mr-1 text-slate-900')
+            <div class="inline sm:block text-sm text-slate-600 dark:text-dark-400">
+                @svg('icon-calendar', 'mr-1')
                 <span title="{{ $url->created_at->toDayDateTimeString() }}">{{ $url->created_at->diffForHumans() }}</span>
             </div>
 
             @if ($url->created_at != $url->updated_at)
-            <div class="inline sm:block text-sm text-slate-600">
-                @svg('icon-updated', 'mr-1 font-bold text-slate-900')
+            <div class="inline sm:block text-sm text-slate-600 dark:text-dark-400">
+                @svg('icon-updated', 'mr-1 font-bold')
                 <span title="{{ $url->updated_at->toDayDateTimeString() }}">{{ $url->updated_at->diffForHumans() }}</span>
             </div>
             @endif

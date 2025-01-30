@@ -7,7 +7,7 @@
         </p>
         <ul>
             @foreach ($errors->all() as $error)
-                <li class="text-slate-600">{{ $error }}</li>
+                <li class="text-slate-600 dark:text-dark-400">{{ $error }}</li>
             @endforeach
         </ul>
     </div>
@@ -19,7 +19,7 @@
             @svg('icon-sign-success', '!size-5')
             <span class="text-xs/4 font-medium">Success</span>
         </p>
-        <p class="text-slate-600">{{ session('flash_success') }}</p>
+        <p class="text-slate-600 dark:text-dark-400">{{ session('flash_success') }}</p>
     </div>
 
 @elseif (session('flash_error'))

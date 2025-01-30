@@ -5,7 +5,7 @@
     h2 { font-size: 1.75em; }
     h3 { font-size: 1.5em; }
 
-    hr { @apply !border-border-200; }
+    hr { @apply !border-border-200 dark:!border-dark-700; }
 }
 
 
@@ -16,6 +16,7 @@ main {
 
 .frontend, .backend, .auth {
     @apply bg-gray-50 font-sans text-slate-900 antialiased;
+    @apply dark:bg-dark-950 dark:text-dark-300;
 }
 
 .logo {
@@ -46,6 +47,7 @@ main {
     @apply inline-flex items-center justify-center px-4 h-10 min-h-10 ;
     @apply border border-border-300 rounded-md duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
     @apply text-base font-normal text-center text-slate-800 no-underline align-middle tracking-wide;
+    @apply dark:text-dark-400 dark:border-dark-700;
     /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
@@ -55,13 +57,13 @@ main {
     }
 
     &.btn-secondary {
-        @apply bg-gray-100;
-        @apply hover:bg-gray-50 active:bg-gray-100 hover:border-stone-400/70;
+        @apply bg-gray-100 hover:bg-gray-50 active:bg-gray-100 hover:border-stone-400/70;
+        @apply dark:bg-dark-800 dark:hover:bg-dark-700;
     }
 
     &.btn-delete    {
-        @apply bg-gray-100;
-        @apply hover:bg-red-50 hover:border-red-400/70 hover:text-red-800 active:text-red-700;
+        @apply bg-gray-100 hover:bg-red-50 hover:border-red-400/70 hover:text-red-800 active:text-red-700;
+        @apply dark:bg-dark-800 dark:hover:bg-red-900 dark:hover:text-red-300;
     }
 
     &.btn-sm {
@@ -143,8 +145,10 @@ main {
     @apply block w-full py-1.5;
     @apply border-border-300 focus:ring-0 focus:border-primary-500 rounded;
     @apply bg-gray-50/80 focus:bg-white;
+    @apply dark:bg-dark-800 dark:focus:bg-dark-800 dark:border-dark-700 dark:hover:border-dark-600 dark:focus:border-dark-500;
 
     &[disabled], &:disabled {
         @apply bg-gray-50/80 text-slate-700/50 cursor-not-allowed;
+        @apply dark:bg-dark-800/80 dark:text-dark-400/50;
     }
 }
