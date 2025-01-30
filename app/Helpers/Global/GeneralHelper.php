@@ -3,6 +3,18 @@
 use App\Helpers\Helper;
 use Illuminate\Support\Number;
 
+if (!function_exists('settings')) {
+    /**
+     * Get the settings.
+     *
+     * @return \App\Settings\GeneralSettings
+     */
+    function settings()
+    {
+        return app(\App\Settings\GeneralSettings::class);
+    }
+}
+
 if (!function_exists('urlFormat')) {
     /**
      * Display the link according to what You need.

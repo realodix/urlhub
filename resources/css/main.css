@@ -44,12 +44,21 @@
 
     h1 {
         font-weight: 600; line-height: 1.25;
-        @apply border-b border-border-200 dark:border-dark-700 pb-2;
+        @apply border-b border-border-200 pb-2;
+        @apply dark:border-dark-700;
+
+        &:not(:has(+ h3)) {
+            @apply mb-6;
+        }
     }
 
     h3 {
         font-weight: 600; line-height: 1.25;
         @apply mt-6 mb-2 first:!mt-0 ;
+    }
+
+    hr + h3 {
+        margin-top: 0;
     }
 }
 

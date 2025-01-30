@@ -151,7 +151,7 @@
                             @else
                                 @php
                                     $number = strlen(KeyGeneratorService::ALPHABET);
-                                    $powNumber = config('urlhub.keyword_length');
+                                    $powNumber = settings()->keyword_length;
                                     $result = number_format($keyGenerator->possibleOutput());
                                 @endphp
 
@@ -177,7 +177,6 @@
     <br>
 
     @php
-        $redirectCacheMaxAge = config('urlhub.redirect_cache_max_age');
         $domainBlacklist = collect(config('urlhub.domain_blacklist'))
             ->sort()->toArray();
         $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
@@ -191,15 +190,6 @@
 
         <h3>Shortened Links</h3>
         <dl>
-            <dt><code>keyword_length</code></dt>
-            <dd>{{ config('urlhub.keyword_length') }} characters</dd>
-
-            <dt><code>custom_keyword_min_length</code></dt>
-            <dd>{{ config('urlhub.custom_keyword_min_length') }} characters</dd>
-
-            <dt><code>custom_keyword_max_length</code></dt>
-            <dd>{{ config('urlhub.custom_keyword_max_length') }} characters</dd>
-
             <dt class="mt-2">
                 <code>domain_blacklist</code>
                 <p class="font-light text-sm dark:text-dark-400">This is a list of domain names that are not allowed to be shortened.</p>
@@ -239,35 +229,6 @@
                         </code>
                     @endif
                 </div>
-            </dd>
-
-            <dt><code>web_title</code></dt>
-            <dd>
-                <code class="code">{{ var_export(config('urlhub.web_title')) }}</code>
-            </dd>
-
-            <dt><code>redirect_status_code</code></dt>
-            <dd>{{ config('urlhub.redirect_status_code') }}</dd>
-
-            <dt><code>redirect_cache_max_age</code></dt>
-            <dd>{{ $redirectCacheMaxAge.' '.str()->plural('second', $redirectCacheMaxAge) }}</dd>
-
-            <dt><code>track_bot_visits</code></dt>
-            <dd>
-                <code class="code">{{ var_export(config('urlhub.track_bot_visits')) }}</code>
-            </dd>
-        </dl>
-
-        <h3>Guest / Unregistered Users</h3>
-        <dl>
-            <dt>Allow create short links</dt>
-            <dd>
-                <code class="code">{{ var_export(config('urlhub.public_site')) }}</code>
-            </dd>
-
-            <dt>Allow sign up</dt>
-            <dd>
-                <code class="code">{{ var_export(config('urlhub.registration')) }}</code>
             </dd>
         </dl>
     </div>

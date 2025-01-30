@@ -13,10 +13,11 @@ class UrlRedirectControllerTest extends TestCase
     public function testUrlRedirection(): void
     {
         $url = Url::factory()->create();
+        $settings = app(\App\Settings\GeneralSettings::class);
 
         $response = $this->get(route('home') . '/' . $url->keyword);
         $response->assertRedirect($url->destination)
-            ->assertStatus(config('urlhub.redirect_status_code'));
+            ->assertStatus($settings->redirect_status_code);
 
         $this->assertCount(1, Visit::all());
     }
@@ -27,7 +28,7 @@ class UrlRedirectControllerTest extends TestCase
      */
     public function testUrlRedirectionHeadersWithMaxAge()
     {
-        config(['urlhub.redirect_cache_max_age' => 3600]);
+        settings()->fill(['redirect_cache_max_age' => 3600])->save();
 
         $url = Url::factory()->create();
         $response = app(UrlRedirection::class)->execute($url);
@@ -41,7 +42,7 @@ class UrlRedirectControllerTest extends TestCase
      */
     public function testUrlRedirectionHeadersWithMaxAgeZero()
     {
-        config(['urlhub.redirect_cache_max_age' => 0]);
+        settings()->fill(['redirect_cache_max_age' => 0])->save();
 
         $url = Url::factory()->create();
         $response = app(UrlRedirection::class)->execute($url);

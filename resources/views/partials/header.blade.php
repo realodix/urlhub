@@ -44,6 +44,7 @@
                     <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') {{ __('Dashboard') }}</x-nav-item>
                     <x-nav-item route-name="dboard.allurl">@svg('icon-link', 'mr-1') {{ __('URL List') }}</x-nav-item>
                     <x-nav-item route-name="user.index">@svg('icon-people', 'mr-1') {{ __('User List') }}</x-nav-item>
+                    <x-nav-item route-name="dboard.settings">@svg('icon-setting', 'mr-1') {{ __('Settings') }}</x-nav-item>
                     <x-nav-item route-name="dboard.about">@svg('icon-about-system', 'mr-1') {{ __('About') }}</x-nav-item>
                 </div>
             @endrole
@@ -67,7 +68,7 @@
                 <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 font-medium">
                     {{ __('Log in') }}
                 </a>
-                @if (Route::has('register') and config('urlhub.registration'))
+                @if (Route::has('register') && settings()->anyone_can_register)
                     <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 font-medium">
                         {{ __('Sign up') }}
                     </a>
@@ -89,6 +90,10 @@
 
                 <x-nav-item_local-menu route-name="user.index" icon="icon-people">
                     <span class="hidden md:inline">{{ __('User List') }}</span>
+                </x-nav-item_local-menu>
+
+                <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
+                    <span class="hidden md:inline">{{ __('Settings') }}</span>
                 </x-nav-item_local-menu>
 
                 <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
