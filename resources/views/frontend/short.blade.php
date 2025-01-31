@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="mt-20">
+            <div class="mt-22">
                 @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
                     @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
                 @else
