@@ -160,9 +160,9 @@
 
 
 .page_about {
-    .code {
+    code {
         @apply bg-gray-100 text-slate-800 rounded px-1 py-0.5;
-        @apply dark:!bg-dark-950/50 dark:text-dark-400;
+        @apply dark:!bg-dark-950/50 dark:text-dark-300;
     }
 
     .config {
