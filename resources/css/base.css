@@ -136,7 +136,7 @@ main {
     @apply block w-full py-1.5;
     @apply border-border-300 focus:ring-0 focus:border-primary-500 rounded;
     @apply bg-gray-50/80 focus:bg-white;
-    @apply dark:bg-dark-800 dark:focus:bg-dark-800 dark:border-dark-700 dark:hover:border-dark-600 dark:focus:border-dark-500;
+    @apply dark:text-dark-400 dark:bg-dark-800 dark:focus:bg-dark-800 dark:border-dark-700 dark:hover:[:not(:disabled)]:border-dark-600 dark:focus:border-dark-500;
 
     &[disabled], &:disabled {
         @apply bg-gray-50/80 text-slate-700/50 cursor-not-allowed;
