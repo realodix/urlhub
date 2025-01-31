@@ -1,5 +1,5 @@
 @if($errors->any())
-    <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4">
+    <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4 dark:shadow-xs shadow-orange-600">
         <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-orange-600"></div>
         <p class="mb-2 flex items-center gap-x-2 text-orange-600">
             @svg('icon-sign-warning', '!size-5')
@@ -13,7 +13,7 @@
     </div>
 
 @elseif (session('flash_success'))
-    <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4">
+    <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4 dark:shadow-xs shadow-green-600">
         <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-green-600"></div>
         <p class="mb-2 flex items-center gap-x-2 text-green-600">
             @svg('icon-sign-success', '!size-5')
