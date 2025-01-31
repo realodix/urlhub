@@ -1,7 +1,7 @@
 @use('App\Helpers\Helper')
 
 <div>
-    <span title="{{ $title }}">
+    <span title="{{ $title }}" class="dark:text-dark-300">
         {{ mb_strimwidth($title, 0, $limit, '...') }}
     </span>
 

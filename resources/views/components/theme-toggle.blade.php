@@ -1,8 +1,8 @@
 <div class="bg-gray-950/5 dark:bg-dark-900 border border-border-200 dark:border-dark-800 rounded-full p-0.75 inline-flex">
     <button x-data @click="$store.darkMode.light()"
         class="rounded-full flex items-center justify-center focus:outline-none
-            text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"
-        :class="$store.darkMode.mode == 'light' ? 'bg-white text-gray-800 hover:text-gray-600 inset-ring ring ring-gray-950/10 inset-ring-white/10' : ''"
+            text-gray-500 hover:text-gray-800 dark:hover:text-emerald-500"
+        :class="$store.darkMode.mode == 'light' ? 'bg-white text-gray-800 hover:text-gray-600 ring ring-gray-950/10' : ''"
     >
         <span class="text-base">
             <svg class="size-6" fill="none" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="3.5" stroke="currentColor"></circle><path d="M14 8.5V6.5" stroke="currentColor" stroke-linecap="round"></path><path d="M17.889 10.1115L19.3032 8.69727" stroke="currentColor" stroke-linecap="round"></path><path d="M19.5 14L21.5 14" stroke="currentColor" stroke-linecap="round"></path><path d="M17.889 17.8885L19.3032 19.3027" stroke="currentColor" stroke-linecap="round"></path><path d="M14 21.5V19.5" stroke="currentColor" stroke-linecap="round"></path><path d="M8.69663 19.3029L10.1108 17.8887" stroke="currentColor" stroke-linecap="round"></path><path d="M6.5 14L8.5 14" stroke="currentColor" stroke-linecap="round"></path><path d="M8.69663 8.69711L10.1108 10.1113" stroke="currentColor" stroke-linecap="round"></path></svg>
@@ -11,10 +11,10 @@
 
     <button x-data @click="$store.darkMode.system()"
         class="rounded-full flex items-center justify-center focus:outline-none
-            text-gray-500 hover:text-gray-800 dark:hover:text-gray-300
+            text-gray-500 hover:text-gray-800 dark:hover:text-emerald-500
             ml-2"
         :class="$store.darkMode.mode == 'system' ?
-            'bg-white dark:bg-dark-700 text-gray-800 dark:text-gray-300 inset-ring ring ring-gray-950/10 inset-ring-white/10'
+            'bg-white dark:bg-dark-950 text-gray-800 dark:text-emerald-500 ring ring-gray-950/10 dark:ring-dark-700'
             : ''"
     >
         <span class="text-base">
@@ -24,10 +24,10 @@
 
     <button x-data @click="$store.darkMode.dark()"
         class="rounded-full flex items-center justify-center focus:outline-none
-            text-gray-500 hover:text-gray-800 dark:hover:text-gray-300
+            text-gray-500 hover:text-gray-800 dark:hover:text-emerald-500
             ml-2"
         :class="$store.darkMode.mode == 'dark' ?
-            'dark:bg-dark-700 dark:text-gray-300 inset-ring ring ring-gray-950/10 inset-ring-white/10'
+            'bg-dark-950 !text-emerald-500 ring ring-dark-700'
             : ''"
     >
         <span class="text-base">

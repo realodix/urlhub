@@ -28,7 +28,7 @@
                     <div class="col-span-6 lg:col-span-4">
                         <label class="form-label">{{ __('Username') }}</label>
                         <input name="name" value="{{ $user->name }}" class="form-input mt-1" disabled>
-                        <small class="block text-red-400"><i>{{ __('Usernames cannot be changed.') }}</i></small>
+                        <small class="block text-red-600 dark:text-red-500"><i>{{ __('Usernames cannot be changed.') }}</i></small>
                     </div>
                     <div class="col-span-6 lg:col-span-4">
                         <label class="form-label">{{ __('E-mail Address') }}</label>

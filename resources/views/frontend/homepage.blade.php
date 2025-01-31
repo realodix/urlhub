@@ -14,7 +14,7 @@
             <span class="mx-auto max-w-md md:max-w-3xl relative z-10
                 font-bold text-center text-gray-700 dark:text-dark-300 md:text-4xl xl:text-5xl text-3xl !leading-tight"
             >
-                Simple <span class="hero__emphasizing">URL shortener</span> <br>
+                Simple <span class="hero__emphasizing dark:text-indigo-300">URL shortener</span> <br>
                 <span class="font-light">for individuals &amp; businesses</span>
             </span>
         </div>
@@ -25,13 +25,15 @@
                 @csrf
                     <div class="mt-1 text-center">
                         <input name="long_url" required value="{{ old('long_url') }}" placeholder="{{ __('Shorten your link') }}"
-                            class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14 dark:bg-dark-800 dark:border-dark-700
-                                text-xl outline-none
+                            class="w-full md:w-4/6 px-2 md:px-4 h-12 sm:h-14
+                                text-xl outline-none rounded-t-md md:rounded-l-md md:rounded-r-none
                                 border border-border-200 focus:border-primary-600
-                                rounded-t-md md:rounded-l-md md:rounded-r-none
+                                dark:bg-dark-900 dark:border-dark-700 dark:focus:border-dark-600
                                 {{-- tailwindcss/forms --}}
                                 border-border-300 focus:ring-inherit">
-                        <button type="submit" class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md duration-300 text-lg text-white bg-primary-600 hover:bg-primary-600/90 focus:bg-primary-700">
+                        <button type="submit" class="w-full md:w-1/6 h-12 sm:h-14 align-top rounded-t-none rounded-b md:rounded-l-none md:rounded-r-md duration-300
+                            text-lg text-white bg-primary-600 hover:bg-primary-600/90 focus:bg-primary-700
+                            dark:text-primary-600 dark:bg-dark-950 dark:focus:bg-dark-800 dark:border dark:border-dark-600 dark:hover:border-primary-600">
                             {{ __('Shorten') }}
                         </button>
                     </div>
