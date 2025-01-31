@@ -159,6 +159,13 @@
 }
 
 
+.qrcode {
+    @apply rounded-2xl p-1 shadow-md;
+    @apply bg-black/5 outline outline-white/15 backdrop-blur-md;
+    @apply dark:bg-white/15 dark:p-2;
+}
+
+
 .page_about {
     code {
         @apply bg-gray-100 text-slate-800 rounded px-1 py-0.5;
