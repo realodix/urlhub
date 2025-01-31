@@ -54,7 +54,7 @@
                 <div class="flex items-center px-4">
                     <div>
                         <div class="font-semibold">{{ auth()->user()->name }}</div>
-                        <div class="font-medium text-slate-500 text-sm">{{ auth()->user()->email }}</div>
+                        <div class="font-medium text-slate-500 dark:text-blue-500 text-sm">{{ auth()->user()->email }}</div>
                     </div>
                 </div>
 

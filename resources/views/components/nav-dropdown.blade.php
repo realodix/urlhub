@@ -5,7 +5,7 @@
         <div class="relative" x-data="{ open: false }" x-on:click.away="open = false">
             <div x-on:click="open = ! open">
                 <button class="navbar-toggler items-center">
-                    <div class="text-base font-semibold text-primary-700">
+                    <div class="text-base font-semibold text-primary-700 dark:text-primary-500">
                         {{ str()->title(auth()->user()->name) }}
                     </div>
                     <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
