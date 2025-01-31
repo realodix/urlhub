@@ -33,7 +33,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="card card-master shadow-xs p-4 md:col-span-2">
-                <p class="text-uh-blue text-sm font-medium leading-4">UrlHub</p>
+                <p class="text-uh-logo dark:text-uh-logo-dark text-sm font-medium leading-4">UrlHub</p>
                 <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     @if($appVersion->endsWith('-dev') && !empty($commitVersion))
                         <a href="https://github.com/realodix/urlhub/compare/{{ $commitVersion }}...master" target="_blank">
@@ -45,7 +45,7 @@
                 </p>
             </div>
             <div class="card card-master shadow-xs p-4">
-                <p class="text-[#4f5b93] text-sm font-medium leading-4">PHP</p>
+                <p class="text-[oklch(48.68%_0.0912_273.4)] dark:text-[oklch(62.3%_0.0912_273.4)] text-sm font-medium leading-4">PHP</p>
                 <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     <a href="https://www.php.net/ChangeLog-8.php#{{ phpversion() }}" target="_blank">
                         {{ phpversion() }}

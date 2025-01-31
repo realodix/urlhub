@@ -14,7 +14,7 @@
             <span class="mx-auto max-w-md md:max-w-3xl relative z-10
                 font-bold text-center text-gray-700 dark:text-dark-300 md:text-4xl xl:text-5xl text-3xl !leading-tight"
             >
-                Simple <span class="hero__emphasizing">URL shortener</span> <br>
+                Simple <span class="hero__emphasizing dark:text-indigo-300">URL shortener</span> <br>
                 <span class="font-light">for individuals &amp; businesses</span>
             </span>
         </div>

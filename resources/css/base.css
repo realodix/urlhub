@@ -20,7 +20,8 @@ main {
 }
 
 .logo {
-    @apply text-uh-blue font-serif font-bold;
+    @apply text-uh-logo font-serif font-bold;
+    @apply dark:text-uh-logo-dark;
 }
 
 
