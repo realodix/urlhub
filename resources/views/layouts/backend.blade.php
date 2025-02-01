@@ -15,9 +15,7 @@
 <body class="backend">
     @include('partials.header')
 
-    <main class="main">
-        @yield('content')
-    </main>
+    @yield('content')
 
     @livewireScripts
 </body>

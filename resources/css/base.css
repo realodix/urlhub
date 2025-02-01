@@ -10,7 +10,7 @@
 
 
 main {
-    @apply py-4 sm:px-6 lg:px-8;
+    @apply py-8 sm:px-6 lg:px-8;
     @apply layout-container;
 }
 
