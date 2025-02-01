@@ -167,9 +167,19 @@
 
 
 .page_about {
-    code {
-        @apply bg-gray-100 text-slate-800 rounded px-1 py-0.5;
-        @apply dark:!bg-dark-950/50 dark:text-dark-300;
+    .env_value {
+        @apply bg-gray-100 font-mono text-[1em];
+        @apply rounded px-1 py-0.5;
+
+        &.env_value_expected {
+            @apply text-emerald-700;
+            @apply dark:bg-dark-950/50 dark:text-emerald-600 ;
+        }
+
+        &.env_value_actual {
+            @apply text-slate-800;
+            @apply dark:bg-dark-950/50 dark:text-dark-300;
+        }
     }
 
     .config {

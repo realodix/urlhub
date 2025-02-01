@@ -22,10 +22,10 @@
             </p>
             <ul class="text-slate-600 dark:text-dark-400">
                 @if ($env !== 'production')
-                    <li>The environment was expected to be <code class="!text-emerald-700 dark:!text-emerald-600">production</code>, but actually was <code>{{ $env }}</code>.</li>
+                    <li>The environment was expected to be <span class="env_value env_value_expected">production</span>, but actually was <span class="env_value env_value_actual">{{ $env }}</span>.</li>
                 @endif
                 @if ($debug === true)
-                    <li>The debug mode was expected to be <code class="!text-emerald-700 dark:!text-emerald-600">false</code>, but actually was <code>true</code>.</li>
+                    <li>The debug mode was expected to be <span class="env_value env_value_expected">false</span>, but actually was <span class="env_value  env_value_actual">true</span>.</li>
                 @endif
             </ul>
         </div>
