@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <div class="content">
+    <div class="content-container card card-fluid">
         @php
             $urlCount = n_abb($url->count());
             $visitCount = n_abb($visit->count());
@@ -182,7 +182,7 @@
         $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
         $reservedKeyword = $keyGenerator->reservedKeyword();
     @endphp
-    <div class="content config">
+    <div class="config content-container card card-fluid">
         <h1>
             {{ __('Configuration') }}
             <p class="font-light text-sm float-right"><span class="text-gray-500/85">.\config</span>\urlhub.php</p>

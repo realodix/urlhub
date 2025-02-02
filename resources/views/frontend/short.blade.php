@@ -24,7 +24,7 @@
         </ul>
     </div>
 
-    <div class="content flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6">
+    <div class="content-container card card-fluid flex flex-wrap mt-6 sm:mt-0 px-4 py-5 sm:p-6">
         <div class="w-full md:w-1/4 flex justify-center md:mt-10">
             <img class="qrcode h-fit" src="{{ $qrCode->getDataUri() }}" alt="QR Code">
         </div>

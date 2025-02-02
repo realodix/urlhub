@@ -33,8 +33,7 @@
 }
 
 
-.content {
-    @apply card card-master;
+.content-container {
     @apply px-2 md:px-8 py-5;
     /* @apply sm:shadow-[0_1px_2px_#e5e5e8]; */
 
