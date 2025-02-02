@@ -8,7 +8,3 @@
     --color-border-200: #e5e7eb;
     --color-border-300: #d1d5db;
 }
-
-@utility layout-container {
-    @apply max-w-360 mx-auto;
-}

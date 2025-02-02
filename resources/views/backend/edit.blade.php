@@ -5,7 +5,7 @@
 @section('content')
 @include('partials/messages')
 
-<main class="flex flex-wrap">
+<main class="container flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
             <h3>{{ __('Edit URL Details') }}</h3>

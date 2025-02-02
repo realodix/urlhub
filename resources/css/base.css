@@ -8,11 +8,11 @@
     hr { @apply !border-border-200 dark:!border-dark-700; }
 }
 
-
 main {
     @apply py-8 sm:px-6 lg:px-8;
-    @apply layout-container;
 }
+
+
 
 .frontend, .backend, .auth {
     @apply bg-gray-50 font-sans text-slate-900 antialiased;
@@ -28,6 +28,11 @@ main {
 /*
  * Components
  */
+ @layer components {
+    .container {
+        @apply max-w-360 mx-auto;
+    }
+ }
 
 .blade-icon {
     display: inline-block;
