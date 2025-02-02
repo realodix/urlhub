@@ -166,7 +166,7 @@
                             Generated Count
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl md:w-64">
-                            {{ number_format($keyGenerator->totalKey()) }}
+                            {{ number_format($keyGenerator->keywordCount()) }}
                         </dd>
                     </div>
                 </div>

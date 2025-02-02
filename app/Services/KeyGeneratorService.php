@@ -160,10 +160,11 @@ class KeyGeneratorService
     /**
      * Total number of keywords
      *
+     * Calculates the total number of keywords with the correct length and format.
      * The length of the generated string (random string) and the length of the
      * reserved string must be identical.
      */
-    public function totalKey(): int
+    public function keywordCount(): int
     {
         $length = $this->settings->keyword_length;
 
@@ -178,6 +179,6 @@ class KeyGeneratorService
     public function remainingCapacity(): int
     {
         // max() is used to avoid negative values
-        return max($this->maxUniqueStrings() - $this->totalKey(), 0);
+        return max($this->maxUniqueStrings() - $this->keywordCount(), 0);
     }
 }

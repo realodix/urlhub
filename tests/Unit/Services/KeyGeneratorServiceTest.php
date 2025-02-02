@@ -230,7 +230,7 @@ class KeyGeneratorServiceTest extends TestCase
     /**
      * Pengujian dilakukan berdasarkan panjang karakternya.
      */
-    public function testTotalKeyBasedOnStringLength(): void
+    public function testKeywordCountBasedOnStringLength(): void
     {
         $settings = app(\App\Settings\GeneralSettings::class);
         $keywordLength = $settings->keyword_length + 1;
@@ -239,13 +239,13 @@ class KeyGeneratorServiceTest extends TestCase
         Url::factory()->create([
             'keyword' => $this->keyGenerator->randomString(),
         ]);
-        $this->assertSame(1, $this->keyGenerator->totalKey());
+        $this->assertSame(1, $this->keyGenerator->keywordCount());
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', $keywordLength),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->totalKey());
+        $this->assertSame(2, $this->keyGenerator->keywordCount());
 
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'keyword_length',
         // maka ini tidak ikut terhitung.
@@ -253,34 +253,34 @@ class KeyGeneratorServiceTest extends TestCase
             'keyword'   => str_repeat('b', $settings->keyword_length + 2),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->totalKey());
+        $this->assertSame(2, $this->keyGenerator->keywordCount());
 
         settings()->fill(['keyword_length' => $settings->keyword_length + 3])->save();
-        $this->assertSame(0, $this->keyGenerator->totalKey());
+        $this->assertSame(0, $this->keyGenerator->keywordCount());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
 
     /**
      * Only alphanumeric characters.
      */
-    public function testTotalKeysBasedOnStringCharacters(): void
+    public function testKeywordCountBasedOnStringCharacters(): void
     {
         settings()->fill(['keyword_length' => 5])->save();
 
         Url::factory()->create([
             'keyword' => 'ab-cd',
         ]);
-        $this->assertSame(0, $this->keyGenerator->totalKey());
+        $this->assertSame(0, $this->keyGenerator->keywordCount());
     }
 
     #[PHPUnit\Test]
     #[PHPUnit\DataProvider('remainingCapacityProvider')]
-    public function remainingCapacity($mus, $tk, $expected): void
+    public function remainingCapacity($mus, $kc, $expected): void
     {
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
             'maxUniqueStrings' => $mus,
-            'totalKey' => $tk,
+            'keywordCount' => $kc,
         ]);
         $actual = $mock->remainingCapacity();
 
@@ -289,7 +289,7 @@ class KeyGeneratorServiceTest extends TestCase
 
     public static function remainingCapacityProvider(): array
     {
-        // maxUniqueStrings(), totalKey(), expected_result
+        // maxUniqueStrings(), keywordCount(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],
