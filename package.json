@@ -14,8 +14,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "laravel-vite-plugin": "^1.2.0",
-    "postcss": "^8.5.1",
-    "postcss-nested": "^7.0.2",
     "vite": "^6.0.11"
   }
 }
