@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    <div class="auth-card">
+    <div class="auth-box card">
         <p class="mb-1">{{ __('Forgot your password? No problem.') }}
         <p class="text-sm text-gray-600 dark:text-dark-400">
             {{ __('Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}

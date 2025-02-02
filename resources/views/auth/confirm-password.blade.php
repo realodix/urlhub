@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <div class="auth-card">
+    <div class="auth-box card">
         <form method="POST" action="{{ route('password.confirm') }}" class="space-y-4">
         @csrf
             <div>

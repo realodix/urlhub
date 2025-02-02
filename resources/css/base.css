@@ -29,12 +29,6 @@ main {
  * Components
  */
 
-.auth-card {
-    @apply card;
-    @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
-}
-
-
 .blade-icon {
     display: inline-block;
     height: 1em;
