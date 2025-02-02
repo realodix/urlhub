@@ -89,12 +89,12 @@ class KeyGeneratorService
     /**
      * Verifies whether a string can be used as a keyword.
      */
-    public function verify(string $value): bool
+    public function verify(string $keyword): bool
     {
-        $alreadyInUse = Url::whereKeyword($value)->exists();
-        $reservedKeyword = $this->reservedKeyword()->contains($value);
+        $keywordExists = Url::whereKeyword($keyword)->exists();
+        $keywordIsReserved = $this->reservedKeyword()->contains($keyword);
 
-        if ($alreadyInUse || $reservedKeyword) {
+        if ($keywordExists || $keywordIsReserved) {
             return false;
         }
 
