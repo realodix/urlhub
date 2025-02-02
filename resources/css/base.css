@@ -9,7 +9,7 @@
 }
 
 main {
-    @apply py-8 sm:px-6 lg:px-8;
+    @apply py-8;
 }
 
 .frontend, .backend, .auth {
@@ -27,8 +27,9 @@ main {
  * Components
  */
  @layer components {
-    .container {
+    .container-alt {
         @apply max-w-360 mx-auto;
+        @apply sm:px-6 lg:px-8;
     }
  }
 

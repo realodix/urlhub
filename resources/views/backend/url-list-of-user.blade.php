@@ -3,7 +3,7 @@
 @section('title', __('Links').'  >  '. $authorName)
 
 @section('content')
-<div class="container">
+<div class="container-alt max-w-340">
     <div class="content-container card card-fluid">
         <div class="content-header">
             <p class="text-2xl">{{ __('Links created by') }} {{ $authorName }}</p>

@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div class="container flex flex-wrap">
+<div class="container-alt max-w-340 flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
             <h3>{{ __('Change Password') }}</h3>

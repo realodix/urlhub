@@ -3,7 +3,7 @@
 @section('title', __('Links').'  >  Guests')
 
 @section('content')
-<div class="container">
+<div class="container-alt max-w-340">
     <div class="w-full md:max-w-md">
         @include('partials/messages')
     </div>
