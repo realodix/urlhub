@@ -12,8 +12,6 @@ main {
     @apply py-8 sm:px-6 lg:px-8;
 }
 
-
-
 .frontend, .backend, .auth {
     @apply bg-gray-50 font-sans text-slate-900 antialiased;
     @apply dark:bg-dark-950 dark:text-dark-300;
