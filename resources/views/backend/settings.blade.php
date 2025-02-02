@@ -6,7 +6,7 @@
 
 @section('content')
 
-<main class="container max-w-4xl">
+<div class="container max-w-4xl">
     @include('partials/messages')
     <div class="content-container card card-fluid">
         <h1>{{ __('Settings') }}</h1>
@@ -101,5 +101,5 @@
             </div>
         </form>
     </div>
-</main>
+</div>
 @endsection

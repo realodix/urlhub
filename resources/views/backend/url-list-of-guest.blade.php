@@ -3,7 +3,7 @@
 @section('title', __('Links').'  >  Guests')
 
 @section('content')
-<main class="container">
+<div class="container">
     <div class="w-full md:max-w-md">
         @include('partials/messages')
     </div>
@@ -15,5 +15,5 @@
 
         @livewire('table.url-list-of-guest-table')
     </div>
-</main>
+</div>
 @endsection

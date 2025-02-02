@@ -3,7 +3,7 @@
 @section('title', __('All Users'))
 
 @section('content')
-<main class="container">
+<div class="container">
     <div class="content-container card card-fluid">
         <div class="content-header">
             <p class="text-2xl">{{ __('All Users') }}</p>
@@ -11,5 +11,5 @@
 
         @livewire('table.user-table')
     </div>
-</main>
+</div>
 @endsection

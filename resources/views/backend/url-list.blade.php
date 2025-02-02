@@ -3,7 +3,7 @@
 @section('title', __('URLs List'))
 
 @section('content')
-<main class="container">
+<div class="container">
     <div class="w-full md:max-w-md">
         @include('partials/messages')
     </div>
@@ -20,5 +20,5 @@
 
         @livewire('table.url-list-table')
     </div>
-</main>
+</div>
 @endsection

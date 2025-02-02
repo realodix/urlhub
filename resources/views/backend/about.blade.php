@@ -4,7 +4,7 @@
 
 @section('title', __('About System'))
 @section('content')
-<main class="page_about container max-w-4xl">
+<div class="page_about container max-w-4xl">
     @php
         $debug = config('app.debug');
         $env = (string) app()->environment();
@@ -232,5 +232,5 @@
             </dd>
         </dl>
     </div>
-</main>
+</div>
 @endsection

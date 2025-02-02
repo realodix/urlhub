@@ -2,7 +2,7 @@
 
 @section('title', __('Dashboard'))
 @section('content')
-<main class="container">
+<div class="container">
     <div class="w-full md:max-w-md">
         @include('partials/messages')
     </div>
@@ -45,5 +45,5 @@
 
         @livewire('table.my-url-table')
     </div>
-</main>
+</div>
 @endsection
