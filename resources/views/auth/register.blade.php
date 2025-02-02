@@ -10,7 +10,7 @@
         <a href="{{ url('/') }}">{{ config('app.name') }}</a>
     </div>
 
-    <div class="auth-card">
+    <div class="auth-box card">
         @if (settings()->anyone_can_register === false)
             <p class="text-muted">{{ __('Sorry, we are closed for registrations at this time.') }}</p>
         @else

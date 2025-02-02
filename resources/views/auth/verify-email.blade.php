@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <div class="content mb-8">
+    <div class="content-container card card-fluid mb-8">
         <p class="font-bold">
             {{ __('Thanks for signing up!') }}
         </p>

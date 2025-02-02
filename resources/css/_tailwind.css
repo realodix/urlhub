@@ -8,16 +8,3 @@
     --color-border-200: #e5e7eb;
     --color-border-300: #d1d5db;
 }
-
-@utility layout-container {
-    @apply max-w-360 mx-auto;
-}
-
-@utility card {
-    @apply bg-white border border-border-300/70 rounded-md;
-    @apply dark:bg-dark-900 dark:border-dark-700;
-}
-
-@utility card-master {
-    @apply max-sm:rounded-none;
-}

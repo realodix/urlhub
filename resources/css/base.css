@@ -8,11 +8,11 @@
     hr { @apply !border-border-200 dark:!border-dark-700; }
 }
 
-
 main {
     @apply py-8 sm:px-6 lg:px-8;
-    @apply layout-container;
 }
+
+
 
 .frontend, .backend, .auth {
     @apply bg-gray-50 font-sans text-slate-900 antialiased;
@@ -28,12 +28,11 @@ main {
 /*
  * Components
  */
-
-.auth-card {
-    @apply card;
-    @apply w-full sm:max-w-md mt-6 px-12 py-8 overflow-hidden;
-}
-
+ @layer components {
+    .container {
+        @apply max-w-360 mx-auto;
+    }
+ }
 
 .blade-icon {
     display: inline-block;
@@ -41,6 +40,15 @@ main {
     overflow: visible;
     box-sizing: content-box;
     vertical-align: -0.125em;
+}
+
+.card {
+    @apply bg-white border border-border-300/70 rounded-md;
+    @apply dark:bg-dark-900 dark:border-dark-700;
+
+    &.card-fluid {
+        @apply max-sm:rounded-none;
+    }
 }
 
 

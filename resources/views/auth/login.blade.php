@@ -17,7 +17,7 @@
         {{ session()->forget('login_error') }}
     @endif
 
-    <div class="auth-card">
+    <div class="auth-box card">
         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="space-y-4">
         @csrf
             <div>

@@ -3,12 +3,12 @@
 @section('title', __('Links').'  >  Guests')
 
 @section('content')
-<main>
+<main class="container">
     <div class="w-full md:max-w-md">
         @include('partials/messages')
     </div>
 
-    <div class="content">
+    <div class="content-container card card-fluid">
         <div class="content-header">
             <p class="text-2xl">{{ __('Links created by Guests') }}</p>
         </div>
