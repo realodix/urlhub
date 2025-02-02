@@ -67,23 +67,23 @@ class KeyGeneratorService
      */
     public function randomString(): string
     {
-        $alphabet = self::ALPHABET;
+        $characters = self::ALPHABET;
         $length = $this->settings->keyword_length;
 
         if (\PHP_VERSION_ID < 80300) {
-            $stringLength = strlen($alphabet);
+            $charactersLength = strlen($characters);
 
-            $result = '';
+            $randomString = '';
             for ($i = 0; $i < $length; $i++) {
-                $result .= $alphabet[mt_rand(0, $stringLength - 1)];
+                $randomString .= $characters[mt_rand(0, $charactersLength - 1)];
             }
 
-            return $result;
+            return $randomString;
         }
 
         $randomizer = new \Random\Randomizer;
 
-        return $randomizer->getBytesFromString($alphabet, $length);
+        return $randomizer->getBytesFromString($characters, $length);
     }
 
     /**
