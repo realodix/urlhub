@@ -4,7 +4,7 @@
         @scroll.window="atTop = (window.pageYOffset < 65) ? false: true"
     @endif
 >
-    <div class="layout-container flex px-4 sm:px-6 lg:px-8 h-16 justify-between" :class="{ 'sm:hidden': atTop }">
+    <div class="container flex px-4 sm:px-6 lg:px-8 h-16 justify-between" :class="{ 'sm:hidden': atTop }">
         <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
         <div class="flex items-center">
@@ -79,7 +79,7 @@
 
     {{-- It should only appear on the dashboard page only. --}}
     @if (request()->is('admin*') && auth()->user()->hasRole('admin'))
-        <nav class="layout-container grid grid-cols-3 pt-1 px-4 sm:px-6 lg:px-8 ">
+        <nav class="container grid grid-cols-3 pt-1 px-4 sm:px-6 lg:px-8 ">
             <div class="hidden sm:flex col-span-2">
                 <x-nav-item_local-menu route-name="dashboard" icon="icon-dashboard">
                     <span class="hidden md:inline">{{ __('Dashboard') }}</span>
