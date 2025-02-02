@@ -32,7 +32,7 @@
         @endif
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="card card-master shadow-xs p-4 md:col-span-2">
+            <div class="card card-fluid shadow-xs p-4 md:col-span-2">
                 <p class="text-uh-logo dark:text-uh-logo-dark text-sm font-medium leading-4">UrlHub</p>
                 <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     @if($appVersion->endsWith('-dev') && !empty($commitVersion))
@@ -44,7 +44,7 @@
                     @endif
                 </p>
             </div>
-            <div class="card card-master shadow-xs p-4">
+            <div class="card card-fluid shadow-xs p-4">
                 <p class="text-[oklch(48.68%_0.0912_273.4)] dark:text-[oklch(62.3%_0.0912_273.4)] text-sm font-medium leading-4">PHP</p>
                 <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     <a href="https://www.php.net/ChangeLog-8.php#{{ phpversion() }}" target="_blank">
@@ -52,7 +52,7 @@
                     </a>
                 </p>
             </div>
-            <div class="card card-master shadow-xs p-4">
+            <div class="card card-fluid shadow-xs p-4">
                 <p class="text-[#ff2d20] text-sm font-medium leading-4">Laravel</p>
                 <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     <a href="https://github.com/laravel/framework/releases/tag/v{{ app()->version() }}" target="_blank">

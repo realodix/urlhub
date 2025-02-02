@@ -8,7 +8,7 @@
     </div>
 
     <div class="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-        <div class="card card-master shadow-xs p-4">
+        <div class="card card-fluid shadow-xs p-4">
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-link', 'mr-1.5 text-emerald-600 text-3xl')
                 <div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="card card-master shadow-xs p-4">
+        <div class="card card-fluid shadow-xs p-4">
             <div class="flex flex-row space-x-4 items-center">
                 @svg('icon-chart-line-alt', 'mr-1.5 text-amber-600 text-3xl')
                 <div>

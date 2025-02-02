@@ -37,6 +37,15 @@ main {
     vertical-align: -0.125em;
 }
 
+.card {
+    @apply bg-white border border-border-300/70 rounded-md;
+    @apply dark:bg-dark-900 dark:border-dark-700;
+
+    &.card-fluid {
+        @apply max-sm:rounded-none;
+    }
+}
+
 
 .btn {
     @apply inline-flex items-center justify-center px-4 h-10 min-h-10 ;
