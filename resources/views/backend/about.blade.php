@@ -143,16 +143,16 @@
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
                         <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                            Potential Output
+                            Max Unique Strings
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                            @if ($keyGenerator->possibleOutput() === PHP_INT_MAX)
+                            @if ($keyGenerator->maxUniqueStrings() === PHP_INT_MAX)
                                 (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
                             @else
                                 @php
                                     $number = strlen(KeyGeneratorService::ALPHABET);
                                     $powNumber = settings()->keyword_length;
-                                    $result = number_format($keyGenerator->possibleOutput());
+                                    $result = number_format($keyGenerator->maxUniqueStrings());
                                 @endphp
 
                                 ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}

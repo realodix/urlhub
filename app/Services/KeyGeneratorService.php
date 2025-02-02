@@ -138,22 +138,23 @@ class KeyGeneratorService
     */
 
     /**
-     * The maximum number of unique strings that can be generated.
+     * Calculates the maximum number of unique strings that can be generated using
+     * the allowed character and the specified keyword length.
      *
      * @throws \RuntimeException
      */
-    public function possibleOutput(): int
+    public function maxUniqueStrings(): int
     {
-        $nChar = strlen(self::ALPHABET);
+        $charSize = strlen(self::ALPHABET);
         $strLen = $this->settings->keyword_length;
 
-        $nPossibleOutput = pow($nChar, $strLen);
+        $maxUniqueStrings = pow($charSize, $strLen);
 
-        if ($nPossibleOutput > PHP_INT_MAX) {
+        if ($maxUniqueStrings > PHP_INT_MAX) {
             return PHP_INT_MAX;
         }
 
-        return $nPossibleOutput;
+        return $maxUniqueStrings;
     }
 
     /**
@@ -177,6 +178,6 @@ class KeyGeneratorService
     public function remainingCapacity(): int
     {
         // max() is used to avoid negative values
-        return max($this->possibleOutput() - $this->totalKey(), 0);
+        return max($this->maxUniqueStrings() - $this->totalKey(), 0);
     }
 }

@@ -206,9 +206,9 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Menguji apakah fungsi possibleOutput mengembalikan nilai yang sesuai.
+     * Menguji apakah fungsi maxUniqueStrings mengembalikan nilai yang sesuai.
      *
-     * possibleOutput mengembalikan jumlah kombinasi string yang mungkin
+     * maxUniqueStrings mengembalikan jumlah kombinasi string yang mungkin
      * dihasilkan oleh generator keyword. Jika panjang keyword yang dihasilkan
      * terlalu panjang maka fungsi ini mengembalikan nilai PHP_INT_MAX.
      *
@@ -216,15 +216,15 @@ class KeyGeneratorServiceTest extends TestCase
      * Kondisi 2: Panjang keyword yang dihasilkan relatif panjang.
      */
     #[PHPUnit\Test]
-    public function possibleOutput(): void
+    public function maxUniqueStrings(): void
     {
         $charLen = strlen($this->keyGenerator::ALPHABET);
 
         settings()->fill(['keyword_length' => 2])->save();
-        $this->assertSame(pow($charLen, 2), $this->keyGenerator->possibleOutput());
+        $this->assertSame(pow($charLen, 2), $this->keyGenerator->maxUniqueStrings());
 
         settings()->fill(['keyword_length' => 11])->save();
-        $this->assertSame(PHP_INT_MAX, $this->keyGenerator->possibleOutput());
+        $this->assertSame(PHP_INT_MAX, $this->keyGenerator->maxUniqueStrings());
     }
 
     /**
@@ -275,11 +275,11 @@ class KeyGeneratorServiceTest extends TestCase
 
     #[PHPUnit\Test]
     #[PHPUnit\DataProvider('remainingCapacityProvider')]
-    public function remainingCapacity($po, $tk, $expected): void
+    public function remainingCapacity($mus, $tk, $expected): void
     {
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
-            'possibleOutput' => $po,
+            'maxUniqueStrings' => $mus,
             'totalKey' => $tk,
         ]);
         $actual = $mock->remainingCapacity();
@@ -289,7 +289,7 @@ class KeyGeneratorServiceTest extends TestCase
 
     public static function remainingCapacityProvider(): array
     {
-        // possibleOutput(), totalKey(), expected_result
+        // maxUniqueStrings(), totalKey(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],
