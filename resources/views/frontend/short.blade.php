@@ -81,5 +81,64 @@
             </div>
         </div>
     </div>
+
+    <div class="content-container card card-fluid mt-6 sm:mt-0 px-4 py-5 sm:p-6">
+        <div class="pr-6 flex justify-end">
+            <button id="clipboard_shortlink"
+                title="{{ __('Copy the shortened URL to clipboard') }}"
+                data-clipboard-text="{{ $url->short_url }}"
+                class="btn btn-secondary btn-square btn-sm mr-6"
+            >
+                @svg('icon-clone')
+            </button>
+
+            @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
+                <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}" class="btn btn-secondary btn-square btn-sm mr-6">
+                    @svg('icon-edit')
+                </a>
+                <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
+                    class="btn btn-delete btn-square btn-sm"
+                >
+                    @svg('icon-trash')
+                </a>
+            @endif
+        </div>
+
+        <div class="grid grid-cols-4">
+            <div class="grid justify-items-center">
+                <img class="qrcode h-fit" src="{{ $qrCode->getDataUri() }}" alt="QR Code">
+            </div>
+
+            <div class="col-span-3 pt-4">
+                <p class="text-primary-700 dark:text-emerald-500 font-bold text-xl sm:text-2xl">
+                    <a href="{{ $url->short_url }}" target="_blank" id="copy">
+                        {{ urlFormat($url->short_url, scheme: false) }}
+                    </a>
+                </p>
+
+                <div class="flex gap-x-2 mt-2">
+                    <div class="hidden md:block dark:text-dark-400">@svg('icon-arrow-turn-right', 'dark:text-dark-400')</div>
+                    <p class="break-all max-w-2xl dark:text-dark-400">
+                        <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
+                            {{ $url->destination }}
+                        </a>
+                    </p>
+                </div>
+
+                <div class="mt-22">
+                    @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
+                        @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                    @else
+                        <div class="bg-orange-50 border border-border-200 p-4 text-center
+                            dark:bg-transparent dark:border-dark-700 dark:text-dark-400"
+                        >
+                            If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 hover:text-orange-500 font-medium">log in</a> to view the statistics for this link.
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection
