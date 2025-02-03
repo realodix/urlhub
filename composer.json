@@ -11,7 +11,7 @@
         "embed/embed": "^4.4",
         "endroid/qr-code": "^6.0",
         "filament/widgets": "^3.2",
-        "flowframe/laravel-trend": "^0.2.0",
+        "flowframe/laravel-trend": "^0.3.0",
         "laravel/fortify": "^1.25",
         "laravel/framework": "^11.40",
         "laravel/tinker": "^2.10",
