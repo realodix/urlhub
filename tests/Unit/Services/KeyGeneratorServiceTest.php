@@ -299,7 +299,8 @@ class KeyGeneratorServiceTest extends TestCase
         ];
     }
 
-    public function testCollisionCandidateFilter(): void
+    #[PHPUnit\Test]
+    public function filterCollisionCandidates(): void
     {
         $actual = array_merge(
             [
@@ -326,7 +327,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         $this->assertEquals(
             $expected,
-            $this->keyGenerator->collisionCandidateFilter($actual)->toArray(),
+            $this->keyGenerator->filterCollisionCandidates($actual)->toArray(),
         );
     }
 }
