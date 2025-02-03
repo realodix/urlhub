@@ -82,34 +82,34 @@
         </div>
     </div>
 
-    <div class="content-container card card-fluid mt-6 sm:mt-0 px-4 py-5 sm:p-6">
-        <div class="pr-6 flex justify-end">
-            <button id="clipboard_shortlink"
-                title="{{ __('Copy the shortened URL to clipboard') }}"
-                data-clipboard-text="{{ $url->short_url }}"
-                class="btn btn-secondary btn-square btn-sm mr-6"
-            >
-                @svg('icon-clone')
-            </button>
-
-            @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-                <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}" class="btn btn-secondary btn-square btn-sm mr-6">
-                    @svg('icon-edit')
-                </a>
-                <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
-                    class="btn btn-delete btn-square btn-sm"
-                >
-                    @svg('icon-trash')
-                </a>
-            @endif
-        </div>
-
-        <div class="grid grid-cols-4">
-            <div class="grid justify-items-center">
+    <div class="card card-fluid mt-6 sm:mt-0 px-4 py-5 sm:p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-4">
+            <div class="grid justify-items-center md:mt-10">
                 <img class="qrcode h-fit" src="{{ $qrCode->getDataUri() }}" alt="QR Code">
             </div>
 
             <div class="col-span-3 pt-4">
+                <div class="flex justify-end pr-6 my-[2rem_3rem] sm:my-0">
+                    <button id="clipboard_shortlink"
+                        title="{{ __('Copy the shortened URL to clipboard') }}"
+                        data-clipboard-text="{{ $url->short_url }}"
+                        class="btn btn-secondary btn-square btn-sm mr-6"
+                    >
+                        @svg('icon-clone')
+                    </button>
+
+                    @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
+                        <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}" class="btn btn-secondary btn-square btn-sm mr-6">
+                            @svg('icon-edit')
+                        </a>
+                        <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
+                            class="btn btn-delete btn-square btn-sm"
+                        >
+                            @svg('icon-trash')
+                        </a>
+                    @endif
+                </div>
+
                 <p class="text-primary-700 dark:text-emerald-500 font-bold text-xl sm:text-2xl">
                     <a href="{{ $url->short_url }}" target="_blank" id="copy">
                         {{ urlFormat($url->short_url, scheme: false) }}
