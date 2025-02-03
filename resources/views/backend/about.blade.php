@@ -137,7 +137,7 @@
         </div>
 
         <h3>Random String</h3>
-        <p class="font-light text-sm dark:text-dark-400">Random String Generation for Shortened URLs.</p>
+        <p class="font-light text-sm dark:text-dark-400">Random String Generator for Short URLs</p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
@@ -163,7 +163,7 @@
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <div>
                         <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1 md:w-64">
-                            Generated Count
+                            Generated
                         </dt>
                         <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl md:w-64">
                             {{ number_format($keyGenerator->keywordCount()) }}
