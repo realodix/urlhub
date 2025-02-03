@@ -71,11 +71,11 @@ class KeyGeneratorService
         $length = $this->settings->keyword_length;
 
         if (\PHP_VERSION_ID < 80300) {
-            $charactersLength = strlen($characters);
+            $charLength = strlen($characters);
 
             $randomString = '';
             for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[mt_rand(0, $charactersLength - 1)];
+                $randomString .= $characters[mt_rand(0, $charLength - 1)];
             }
 
             return $randomString;
@@ -138,31 +138,33 @@ class KeyGeneratorService
     */
 
     /**
-     * The maximum number of unique strings that can be generated.
+     * Calculates the maximum number of unique strings that can be generated using
+     * the allowed character and the specified keyword length.
      *
      * @throws \RuntimeException
      */
-    public function possibleOutput(): int
+    public function maxUniqueStrings(): int
     {
-        $nChar = strlen(self::ALPHABET);
+        $charSize = strlen(self::ALPHABET);
         $strLen = $this->settings->keyword_length;
 
-        $nPossibleOutput = pow($nChar, $strLen);
+        $maxUniqueStrings = pow($charSize, $strLen);
 
-        if ($nPossibleOutput > PHP_INT_MAX) {
+        if ($maxUniqueStrings > PHP_INT_MAX) {
             return PHP_INT_MAX;
         }
 
-        return $nPossibleOutput;
+        return $maxUniqueStrings;
     }
 
     /**
      * Total number of keywords
      *
+     * Calculates the total number of keywords with the correct length and format.
      * The length of the generated string (random string) and the length of the
      * reserved string must be identical.
      */
-    public function totalKey(): int
+    public function keywordCount(): int
     {
         $length = $this->settings->keyword_length;
 
@@ -177,6 +179,6 @@ class KeyGeneratorService
     public function remainingCapacity(): int
     {
         // max() is used to avoid negative values
-        return max($this->possibleOutput() - $this->totalKey(), 0);
+        return max($this->maxUniqueStrings() - $this->keywordCount(), 0);
     }
 }

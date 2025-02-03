@@ -73,7 +73,11 @@ class Helper
     }
 
     /**
-     * List of potentially colliding routes with shortened link keywords.
+     * A list of route paths that could potentially conflict with shortened link
+     * keywords.
+     *
+     * This method retrieves all defined routes and filters them to identify potential
+     * conflicts with the format and reserved keywords used for shortened links.
      *
      * @return array
      */
@@ -81,13 +85,16 @@ class Helper
     {
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
             ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
-            ->pipe(fn($value) => self::collisionCandidateFilter($value))
+            ->pipe(fn($paths) => self::collisionCandidateFilter($paths))
             ->toArray();
     }
 
     /**
-     * List of files/folders in the public/ directory that will potentially collide
-     * with shortened link keywords.
+     * A list of file/folder names in the public directory that could potentially
+     * conflict with shortened link keywords.
+     *
+     * This method scans the public directory and filters the file/folder names
+     * to identify potential conflicts with keywords used for shortened links.
      *
      * @return array
      */
@@ -99,11 +106,17 @@ class Helper
         }
 
         return collect($publicPathList)
-            ->pipe(fn($value) => self::collisionCandidateFilter($value))
+            ->pipe(fn($paths) => self::collisionCandidateFilter($paths))
             ->toArray();
     }
 
     /**
+     * Filters a collection of strings to identify potential collisions with keywords.
+     *
+     * The resulting collection contains unique strings that "could potentially"
+     * clash with generated short link keywords. These strings are considered
+     * "collision candidates" because they have the same format as valid keywords
+     *
      * @param \Illuminate\Support\Collection $value
      * @return \Illuminate\Support\Collection
      */

@@ -206,9 +206,9 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Menguji apakah fungsi possibleOutput mengembalikan nilai yang sesuai.
+     * Menguji apakah fungsi maxUniqueStrings mengembalikan nilai yang sesuai.
      *
-     * possibleOutput mengembalikan jumlah kombinasi string yang mungkin
+     * maxUniqueStrings mengembalikan jumlah kombinasi string yang mungkin
      * dihasilkan oleh generator keyword. Jika panjang keyword yang dihasilkan
      * terlalu panjang maka fungsi ini mengembalikan nilai PHP_INT_MAX.
      *
@@ -216,21 +216,21 @@ class KeyGeneratorServiceTest extends TestCase
      * Kondisi 2: Panjang keyword yang dihasilkan relatif panjang.
      */
     #[PHPUnit\Test]
-    public function possibleOutput(): void
+    public function maxUniqueStrings(): void
     {
         $charLen = strlen($this->keyGenerator::ALPHABET);
 
         settings()->fill(['keyword_length' => 2])->save();
-        $this->assertSame(pow($charLen, 2), $this->keyGenerator->possibleOutput());
+        $this->assertSame(pow($charLen, 2), $this->keyGenerator->maxUniqueStrings());
 
         settings()->fill(['keyword_length' => 11])->save();
-        $this->assertSame(PHP_INT_MAX, $this->keyGenerator->possibleOutput());
+        $this->assertSame(PHP_INT_MAX, $this->keyGenerator->maxUniqueStrings());
     }
 
     /**
      * Pengujian dilakukan berdasarkan panjang karakternya.
      */
-    public function testTotalKeyBasedOnStringLength(): void
+    public function testKeywordCountBasedOnStringLength(): void
     {
         $settings = app(\App\Settings\GeneralSettings::class);
         $keywordLength = $settings->keyword_length + 1;
@@ -239,13 +239,13 @@ class KeyGeneratorServiceTest extends TestCase
         Url::factory()->create([
             'keyword' => $this->keyGenerator->randomString(),
         ]);
-        $this->assertSame(1, $this->keyGenerator->totalKey());
+        $this->assertSame(1, $this->keyGenerator->keywordCount());
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', $keywordLength),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->totalKey());
+        $this->assertSame(2, $this->keyGenerator->keywordCount());
 
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'keyword_length',
         // maka ini tidak ikut terhitung.
@@ -253,34 +253,34 @@ class KeyGeneratorServiceTest extends TestCase
             'keyword'   => str_repeat('b', $settings->keyword_length + 2),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->totalKey());
+        $this->assertSame(2, $this->keyGenerator->keywordCount());
 
         settings()->fill(['keyword_length' => $settings->keyword_length + 3])->save();
-        $this->assertSame(0, $this->keyGenerator->totalKey());
+        $this->assertSame(0, $this->keyGenerator->keywordCount());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
 
     /**
      * Only alphanumeric characters.
      */
-    public function testTotalKeysBasedOnStringCharacters(): void
+    public function testKeywordCountBasedOnStringCharacters(): void
     {
         settings()->fill(['keyword_length' => 5])->save();
 
         Url::factory()->create([
             'keyword' => 'ab-cd',
         ]);
-        $this->assertSame(0, $this->keyGenerator->totalKey());
+        $this->assertSame(0, $this->keyGenerator->keywordCount());
     }
 
     #[PHPUnit\Test]
     #[PHPUnit\DataProvider('remainingCapacityProvider')]
-    public function remainingCapacity($po, $tk, $expected): void
+    public function remainingCapacity($mus, $kc, $expected): void
     {
         $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
         $mock->shouldReceive([
-            'possibleOutput' => $po,
-            'totalKey' => $tk,
+            'maxUniqueStrings' => $mus,
+            'keywordCount' => $kc,
         ]);
         $actual = $mock->remainingCapacity();
 
@@ -289,7 +289,7 @@ class KeyGeneratorServiceTest extends TestCase
 
     public static function remainingCapacityProvider(): array
     {
-        // possibleOutput(), totalKey(), expected_result
+        // maxUniqueStrings(), keywordCount(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],
