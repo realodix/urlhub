@@ -298,4 +298,35 @@ class KeyGeneratorServiceTest extends TestCase
             [100, 100, 0],
         ];
     }
+
+    public function testCollisionCandidateFilter(): void
+    {
+        $actual = array_merge(
+            [
+                'css',
+                'reset-password',
+
+                '.',
+                '..',
+                '.htaccess',
+                'favicon.ico',
+
+                '+{url}',
+                '/',
+                '_debugbar',
+                '_debugbar/assets/javascript',
+                'admin/about',
+                'admin/user/{user}/changepassword',
+                'admin/links/u/{user}',
+            ],
+            config('urlhub.reserved_keyword'),
+        );
+
+        $expected = ['css', 'reset-password'];
+
+        $this->assertEquals(
+            $expected,
+            $this->keyGenerator->collisionCandidateFilter($actual)->toArray(),
+        );
+    }
 }

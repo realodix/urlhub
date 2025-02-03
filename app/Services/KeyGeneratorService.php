@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Url;
 use App\Settings\GeneralSettings;
+use Composer\Pcre\Preg;
 
 class KeyGeneratorService
 {
@@ -110,8 +111,8 @@ class KeyGeneratorService
     {
         $data = [
             config('urlhub.reserved_keyword'),
-            \App\Helpers\Helper::routeCollisionList(),
-            \App\Helpers\Helper::publicPathCollisionList(),
+            $this->routeCollisionList(),
+            $this->publicPathCollisionList(),
         ];
 
         return collect($data)->flatten()->unique()->sort();
@@ -129,6 +130,62 @@ class KeyGeneratorService
         $activeKeyword = Url::pluck('keyword')->toArray();
 
         return $reservedKeyword->intersect($activeKeyword);
+    }
+
+    /**
+     * A list of route paths that could potentially conflict with shortened link
+     * keywords.
+     *
+     * This method retrieves all defined routes and filters them to identify potential
+     * conflicts with the format and reserved keywords used for shortened links.
+     *
+     * @return array
+     */
+    public function routeCollisionList()
+    {
+        return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
+            ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
+            ->pipe(fn($paths) => $this->collisionCandidateFilter($paths))
+            ->toArray();
+    }
+
+    /**
+     * A list of file/folder names in the public directory that could potentially
+     * conflict with shortened link keywords.
+     *
+     * This method scans the public directory and filters the file/folder names
+     * to identify potential conflicts with keywords used for shortened links.
+     *
+     * @return array
+     */
+    public function publicPathCollisionList()
+    {
+        $publicPathList = scandir(public_path());
+        if ($publicPathList === false) {
+            return [];
+        }
+
+        return collect($publicPathList)
+            ->pipe(fn($paths) => $this->collisionCandidateFilter($paths))
+            ->toArray();
+    }
+
+    /**
+     * Filters a collection of strings to identify potential collisions with keywords.
+     *
+     * The resulting collection contains unique strings that "could potentially"
+     * clash with generated short link keywords. These strings are considered
+     * "collision candidates" because they have the same format as valid keywords
+     *
+     * @param \Illuminate\Support\Collection $value
+     * @return \Illuminate\Support\Collection
+     */
+    public function collisionCandidateFilter($value)
+    {
+        return collect($value)
+            ->filter(fn($value) => Preg::isMatch('/^([0-9a-zA-Z\-])+$/', $value))
+            ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
+            ->unique();
     }
 
     /*
