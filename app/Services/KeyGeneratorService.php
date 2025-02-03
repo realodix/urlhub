@@ -105,10 +105,8 @@ class KeyGeneratorService
 
     /**
      * The keywords that are currently in use as reserved keywords.
-     *
-     * @return \Illuminate\Support\Collection
      */
-    public function reservedKeyword()
+    public function reservedKeyword(): Collection
     {
         $data = [
             config('urlhub.reserved_keyword'),
@@ -122,10 +120,8 @@ class KeyGeneratorService
     /**
      * The keywords that are currently in use as reserved keywords, but on the other
      * hand also used as active keywords.
-     *
-     * @return \Illuminate\Support\Collection
      */
-    public function reservedActiveKeyword()
+    public function reservedActiveKeyword(): Collection
     {
         $reservedKeyword = $this->reservedKeyword();
         $activeKeyword = Url::pluck('keyword')->toArray();
