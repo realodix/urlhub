@@ -69,8 +69,30 @@
 
                 <div class="mt-22">
                     @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-                        @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
-                        @livewire(\App\Livewire\Chart\LinkVisitChartWeek::class, ['model' => $url])
+                        <div x-data="{ activeTab: 1 }">
+                            <div class="flex space-x-4 -mb-px ml-2">
+                                <button @click="activeTab = 1"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 1, 'text-dark-500': activeTab !== 1 }"
+                                    class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
+                                >
+                                    Per day
+                                </button>
+                                <button @click="activeTab = 2"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 2, 'text-dark-500': activeTab !== 2 }"
+                                    class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
+                                >
+                                    Per week
+                                </button>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-dark-700 rounded-lg">
+                                <div x-show="activeTab === 1">
+                                    @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                                </div>
+                                <div x-show="activeTab === 2">
+                                    @livewire(\App\Livewire\Chart\LinkVisitPerWeekChart::class, ['model' => $url])
+                                </div>
+                            </div>
+                        </div>
                     @else
                         <div class="bg-orange-50 border border-border-200 p-4 text-center
                             dark:bg-transparent dark:border-dark-700 dark:text-dark-400"

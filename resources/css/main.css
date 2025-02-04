@@ -152,7 +152,7 @@
 
 .fi-wi-chart {
     section {
-        @apply ring-0 shadow-none;
+        @apply rounded-lg ring-0 shadow-none;
         @apply dark:!bg-dark-950/50 dark:ring-1 dark:ring-[#282828];
     }
 }
