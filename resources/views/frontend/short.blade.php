@@ -70,6 +70,7 @@
                 <div class="mt-22">
                     @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
                         @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                        @livewire(\App\Livewire\Chart\LinkVisitChartWeek::class, ['model' => $url])
                     @else
                         <div class="bg-orange-50 border border-border-200 p-4 text-center
                             dark:bg-transparent dark:border-dark-700 dark:text-dark-400"
