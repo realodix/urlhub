@@ -83,6 +83,12 @@
                                 >
                                     Week
                                 </button>
+                                <button @click="activeTab = 3"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 3, 'text-dark-500': activeTab !== 3 }"
+                                    class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
+                                >
+                                    Month
+                                </button>
                             </div>
                             <div class="bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-dark-700 rounded-lg">
                                 <div x-show="activeTab === 1">
@@ -90,6 +96,9 @@
                                 </div>
                                 <div x-show="activeTab === 2">
                                     @livewire(\App\Livewire\Chart\LinkVisitPerWeekChart::class, ['model' => $url])
+                                </div>
+                                <div x-show="activeTab === 3">
+                                    @livewire(\App\Livewire\Chart\LinkVisitPerMonthChart::class, ['model' => $url])
                                 </div>
                             </div>
                         </div>
