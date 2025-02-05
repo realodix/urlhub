@@ -16,7 +16,7 @@ class LinkVisitPerWeekChart extends ChartWidget
 
     public function getDescription(): ?string
     {
-        return 'Stats for past quarter';
+        return 'Stats for past six months (week by week)';
     }
 
     protected function getType(): string
@@ -26,7 +26,7 @@ class LinkVisitPerWeekChart extends ChartWidget
 
     protected function getData(): array
     {
-        $startDate = Carbon::now()->subQuarter()->startOfWeek(); // Monday
+        $startDate = Carbon::now()->subMonths(6)->startOfWeek(); // Monday
         $endDate = Carbon::now()->endOfWeek(); // Sunday
         $period = CarbonPeriod::create($startDate, '1 week', $endDate);
 
