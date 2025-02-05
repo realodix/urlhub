@@ -64,48 +64,45 @@
     </div>
 
     <div class="content-container card card-fluid">
-        @php
-            $urlCount = n_abb($url->count());
-            $visitCount = n_abb($visit->count());
-            $userUrlCount = n_abb($url->userUrlCount());
-            $userLinkVisitCount = n_abb($visit->userLinkVisitCount());
-            $guestUrlCount = n_abb($url->guestUserUrlCount());
-            $guestUserLinkVisitCount = n_abb($visit->guestUserLinkVisitCount());
-        @endphp
 
         <h3>Links</h3>
-
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
+                @php
+                    $urlCount = $url->count();
+                    $visitCount = $visit->count();
+                    $userUrlCount = $url->userUrlCount();
+                    $userLinkVisitCount = $visit->userLinkVisitCount();
+                    $guestUrlCount = $url->guestUserUrlCount();
+                    $guestUserLinkVisitCount = $visit->guestUserLinkVisitCount();
+                @endphp
+
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <div>
-                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                            Total
-                        </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                            {{ $urlCount }} ({{ $visitCount }} visits)
-                        </dd>
-                    </div>
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        Total
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        <span title="{{ number_format($urlCount) }}">{{ n_abb($urlCount) }}</span>
+                        <span title="{{ number_format($visitCount) }}">({{ n_abb($visitCount) }} visits)</span>
+                    </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <div>
-                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                            User
-                        </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                            {{ $userUrlCount }} ({{ $userLinkVisitCount }} visits)
-                        </dd>
-                    </div>
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        User
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        <span title="{{ number_format($userUrlCount) }}">{{ n_abb($userUrlCount) }}</span>
+                        <span title="{{ number_format($userLinkVisitCount) }}">({{ n_abb($userLinkVisitCount) }} visits)</span>
+                    </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <div>
-                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                            Guest
-                        </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                            {{ $guestUrlCount }} ({{ $guestUserLinkVisitCount }} visits)
-                        </dd>
-                    </div>
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        Guest
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        <span title="{{ number_format($guestUrlCount) }}">{{ n_abb($guestUrlCount) }}</span>
+                        <span title="{{ number_format($guestUserLinkVisitCount) }}">({{ n_abb($guestUserLinkVisitCount) }} visits)</span>
+                    </dd>
                 </div>
             </dl>
         </div>
@@ -113,25 +110,25 @@
         <h3>Users</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
+                @php
+                    $userCount = $user->count();
+                    $guestUserCount = $user->totalGuestUsers();
+                @endphp
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <div>
-                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                            User
-                        </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                            {{ n_abb($user->count()) }}
-                        </dd>
-                    </div>
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        User
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
+                    </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <div>
-                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                            Guest
-                        </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                            {{ n_abb($user->totalGuestUsers()) }}
-                        </dd>
-                    </div>
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        Guest
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        <span title="{{ number_format($guestUserCount) }}">{{ n_abb($guestUserCount) }}</span>
+                    </dd>
                 </div>
             </dl>
         </div>
@@ -141,34 +138,30 @@
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <div>
-                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                            Max Unique Strings
-                        </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                            @if ($keyGenerator->maxUniqueStrings() === PHP_INT_MAX)
-                                (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
-                            @else
-                                @php
-                                    $number = strlen(KeyGeneratorService::ALPHABET);
-                                    $powNumber = settings()->keyword_length;
-                                    $result = number_format($keyGenerator->maxUniqueStrings());
-                                @endphp
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        Max Unique Strings
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        @if ($keyGenerator->maxUniqueStrings() === PHP_INT_MAX)
+                            (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
+                        @else
+                            @php
+                                $number = strlen(KeyGeneratorService::ALPHABET);
+                                $powNumber = settings()->keyword_length;
+                                $result = number_format($keyGenerator->maxUniqueStrings());
+                            @endphp
 
-                                ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
-                            @endif
-                        </dd>
-                    </div>
+                            ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
+                        @endif
+                    </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <div>
-                        <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1 md:w-64">
-                            Generated
-                        </dt>
-                        <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl md:w-64">
-                            {{ number_format($keyGenerator->keywordCount()) }}
-                        </dd>
-                    </div>
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1 md:w-64">
+                        Generated
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl md:w-64">
+                        {{ number_format($keyGenerator->keywordCount()) }}
+                    </dd>
                 </div>
             </dl>
         </div>
