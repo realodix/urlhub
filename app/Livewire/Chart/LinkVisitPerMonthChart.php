@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Filament\Widgets\ChartWidget;
 
-class LinkVisitPerWeekChart extends ChartWidget
+class LinkVisitPerMonthChart extends ChartWidget
 {
     protected static ?string $maxHeight = '250px';
 
@@ -16,14 +16,19 @@ class LinkVisitPerWeekChart extends ChartWidget
 
     public function getDescription(): ?string
     {
-        return 'Stats for past six months (week by week)';
+        return 'Stats for past one year (month by month)';
+    }
+
+    protected function getType(): string
+    {
+        return 'line';
     }
 
     protected function getData(): array
     {
-        $startDate = Carbon::now()->subMonths(6)->startOfWeek(); // Monday
-        $endDate = Carbon::now()->endOfWeek(); // Sunday
-        $period = CarbonPeriod::create($startDate, '1 week', $endDate);
+        $startDate = Carbon::now()->subYear()->startOfMonth(); // Monday
+        $endDate = Carbon::now()->endOfMonth(); // Sunday
+        $period = CarbonPeriod::create($startDate, '1 month', $endDate);
 
         return [
             'datasets' => [
@@ -38,43 +43,25 @@ class LinkVisitPerWeekChart extends ChartWidget
         ];
     }
 
-    /**
-     * Return the chart data
-     */
     protected function chartData(Carbon $startDate, Carbon $endDate, CarbonPeriod $period): array
     {
         $model = Visit::where('url_id', $this->model->id);
         $rawData = $model->whereBetween('created_at', [$startDate, $endDate])
             ->get()
-            ->countBy(fn(Visit $visit) => $visit->created_at->startOfWeek()->format('Y-m-d'));
+            ->countBy(fn(Visit $visit) => $visit->created_at->startOfMonth()->format('Y-m')); // Group by month
 
-        // Calculate the number of visits per week
+        // Calculate the number of visits per month
         $data = [];
-        foreach ($period as $week) {
-            $startOfWeek = $week->copy()->startOfWeek()->format('Y-m-d');
-            $data[] = $rawData->get($startOfWeek, 0);
+        foreach ($period as $month) {
+            $startOfMonth = $month->copy()->startOfMonth()->format('Y-m');
+            $data[] = $rawData->get($startOfMonth, 0);
         }
 
         return $data;
     }
 
-    /**
-     * Label format per week (Jan 01 - Jan 07)
-     */
     public function chartLabel(CarbonPeriod $period): array
     {
-        $label = [];
-        foreach ($period as $week) {
-            $startOfWeek = $week->copy()->startOfWeek(); // Monday
-            $endOfWeek = $week->copy()->endOfWeek(); // Sunday
-            $label[] = $startOfWeek->format('M d') . ' - ' . $endOfWeek->format('M d');
-        }
-
-        return $label;
-    }
-
-    protected function getType(): string
-    {
-        return 'line';
+        return [...$period->map(fn($month) => $month->format('M Y'))];
     }
 }
