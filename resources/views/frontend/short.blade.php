@@ -75,13 +75,13 @@
                                     :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 1, 'text-dark-500': activeTab !== 1 }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
-                                    Daily
+                                    Day
                                 </button>
                                 <button @click="activeTab = 2"
                                     :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 2, 'text-dark-500': activeTab !== 2 }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
-                                    Weekly
+                                    Week
                                 </button>
                             </div>
                             <div class="bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-dark-700 rounded-lg">
