@@ -20,11 +20,6 @@ class LinkVisitChart extends ChartWidget
         return 'Stats for past quarter';
     }
 
-    protected function getType(): string
-    {
-        return 'line';
-    }
-
     protected function getData(): array
     {
         $startDate = now()->subQuarter();
@@ -51,5 +46,10 @@ class LinkVisitChart extends ChartWidget
             ],
             'labels' => $label,
         ];
+    }
+
+    protected function getType(): string
+    {
+        return 'line';
     }
 }

@@ -19,11 +19,6 @@ class LinkVisitPerWeekChart extends ChartWidget
         return 'Stats for past six months (week by week)';
     }
 
-    protected function getType(): string
-    {
-        return 'line';
-    }
-
     protected function getData(): array
     {
         $startDate = Carbon::now()->subMonths(6)->startOfWeek(); // Monday
@@ -43,9 +38,6 @@ class LinkVisitPerWeekChart extends ChartWidget
         ];
     }
 
-    /**
-     * Return the chart data
-     */
     protected function chartData(Carbon $startDate, Carbon $endDate, CarbonPeriod $period): array
     {
         $model = Visit::where('url_id', $this->model->id);
@@ -63,9 +55,6 @@ class LinkVisitPerWeekChart extends ChartWidget
         return $data;
     }
 
-    /**
-     * Label format per week (Jan 01 - Jan 07)
-     */
     public function chartLabel(CarbonPeriod $period): array
     {
         $label = [];
@@ -76,5 +65,10 @@ class LinkVisitPerWeekChart extends ChartWidget
         }
 
         return $label;
+    }
+
+    protected function getType(): string
+    {
+        return 'line';
     }
 }
