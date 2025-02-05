@@ -17,6 +17,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **QR Code Generation:** The fastest way to access to this data is most likely opening the link from a phone. Though short URLs are handy for typing, a more convenient approach to transfer a web link to a mobile phone is through QR codes scanning.
 - **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
+- **Dark mode**: Switch to a darker color scheme for a more comfortable experience in low-light environments.
 - **Power of customisation:** Do you want your site to be just for your use, so no one can register? No problem. It's in the configuration. Users must be registered to create Short URL? That's okay. It's in the configuration. From configuration file, you can edit pretty everything of your website. The choice is yours.
 - **Sortable list of shortened URLs.**
 - **Modern and simple interface.**
