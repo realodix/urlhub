@@ -11,24 +11,15 @@
             {{ session('status') }}
         </div>
     @endif
-
-    @if ($errors->any())
-        <div class="alert alert-error">
-            <div class="font-bold">{{ __('Whoops! Something went wrong.') }}</div>
-
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('partials/messages')
 
     <div class="auth-box card">
         <p class="mb-1">{{ __('Forgot your password? No problem.') }}
         <p class="text-sm text-gray-600 dark:text-dark-400">
             {{ __('Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </p>
+
+        <br>
 
         <form method="POST" action="{{ route('password.email') }}" class="space-y-4">
         @csrf
