@@ -8,6 +8,9 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Filament\Widgets\ChartWidget;
 
+/**
+ * @codeCoverageIgnore
+ */
 class LinkVisitPerMonthChart extends ChartWidget
 {
     protected static ?string $maxHeight = '250px';

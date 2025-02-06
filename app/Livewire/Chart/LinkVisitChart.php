@@ -9,6 +9,9 @@ use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 
+/**
+ * @codeCoverageIgnore
+ */
 class LinkVisitChart extends ChartWidget
 {
     protected static ?string $maxHeight = '250px';
