@@ -4,12 +4,6 @@
 
 @section('content')
 
-<div class="flex flex-wrap">
-    <div class="w-full md:w-9/12">
-        @include('partials/messages')
-    </div>
-</div>
-
 <div class="container-alt max-w-340 flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
@@ -21,6 +15,8 @@
         </div>
     </div>
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
+        @include('partials/messages')
+
         <form method="post" action="{{ route('user.password.store', $user) }}">
         @csrf
             <div class="content-container card card-fluid">
