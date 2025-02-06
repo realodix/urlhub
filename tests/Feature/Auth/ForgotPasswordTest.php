@@ -7,6 +7,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Password;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -105,5 +106,28 @@ class ForgotPasswordTest extends TestCase
         $response
             ->assertRedirect($this->getRoute())
             ->assertSessionHasErrors('email');
+    }
+
+    public function test_user_can_reset_password()
+    {
+        $email = 'test@example.com';
+        $newPassword = 'newPassword';
+        $user = User::factory()->create(['email' => $email]);
+
+        // Send password reset link
+        $this->post('/forgot-password', ['email' => $email]);
+
+        // Reset password
+        $response = $this->post('/reset-password', [
+            'token' => Password::createToken($user),
+            'email' => $email,
+            'password' => $newPassword,
+            'password_confirmation' => $newPassword,
+        ]);
+        $response->assertStatus(302);
+        $response->assertRedirect('/login');
+
+        // Check if password was reset
+        $this->assertTrue(Hash::check($newPassword, $user->fresh()->password));
     }
 }
