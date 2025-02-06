@@ -24,16 +24,15 @@ class LinkVisitChart extends ChartWidget
     {
         $startDate = now()->subQuarter();
         $endDate = now();
+        $carbon = CarbonPeriod::create($startDate, $endDate)->toArray();
+        $label = collect($carbon)->map(fn($date) => $date->format('M d'))
+            ->toArray();
 
         $visitModel = Visit::where('url_id', $this->model->id);
         $data = Trend::query($visitModel)
             ->between(start: $startDate, end: $endDate)
             ->perDay()
             ->count();
-
-        $label = collect(CarbonPeriod::create($startDate, '1 day', $endDate))
-            ->transform(fn($date) => $date->format('M d'))
-            ->toArray();
 
         return [
             'datasets' => [
