@@ -41,7 +41,7 @@ class ChangePasswordController extends Controller
         $request->validate([
             'current_password' => ['current_password'],
             'new_password' => [
-                'required', 'min:6', 'confirmed',
+                'required', 'string', ...\App\Rules\PasswordRules::rule(),
                 'unique:users,password', 'different:current_password',
             ],
         ]);
