@@ -84,4 +84,36 @@ class VisitTest extends TestCase
         $this->assertSame($nGuest, $this->visit->guestUserLinkVisitCount());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
+
+    #[PHPUnit\Test]
+    public function userVisitCount()
+    {
+        $this->visitCountData();
+
+        $this->assertEquals(1, $this->visit->userVisitCount());
+    }
+
+    #[PHPUnit\Test]
+    public function guestVisitCount()
+    {
+        $this->visitCountData();
+
+        $this->assertEquals(3, $this->visit->guestVisitCount());
+    }
+
+    #[PHPUnit\Test]
+    public function uniqueGuestVisitCount()
+    {
+        $this->visitCountData();
+
+        $this->assertEquals(2, $this->visit->uniqueGuestVisitCount());
+    }
+
+    private function visitCountData()
+    {
+        Visit::factory()->create(); // user1
+        Visit::factory()->create(['visitor_id' => 'ff6db461ccba3fa6']); // guest1
+        Visit::factory()->create(['visitor_id' => '52df013b71713cd1']); // guest2
+        Visit::factory()->create(['visitor_id' => '52df013b71713cd1']); // guest2
+    }
 }

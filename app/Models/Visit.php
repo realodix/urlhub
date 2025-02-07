@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -67,6 +68,14 @@ class Visit extends Model
     */
 
     /**
+     * Scope a query to only include visits from guest users.
+     */
+    public function scopeIsGuest(Builder $query): void
+    {
+        $query->whereRaw('LENGTH(visitor_id) = 16');
+    }
+
+    /**
      * Number of link visits from the currently logged-in user.
      */
     public function authUserLinkVisitCount(): int
@@ -86,6 +95,11 @@ class Visit extends Model
         })->count();
     }
 
+    public function userVisitCount(): int
+    {
+        return self::count() - $this->guestVisitCount();
+    }
+
     /**
      * Number of guest user link visits.
      */
@@ -94,5 +108,17 @@ class Visit extends Model
         return self::whereHas('url', function ($query) {
             $query->where('user_id', Url::GUEST_ID);
         })->count();
+    }
+
+    public function guestVisitCount(): int
+    {
+        return self::isGuest()->count();
+    }
+
+    public function uniqueGuestVisitCount(): int
+    {
+        return self::isGuest()
+            ->distinct('visitor_id')
+            ->count();
     }
 }
