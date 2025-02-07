@@ -97,7 +97,7 @@
                 <hr class="col-span-6 lg:col-span-5">
 
                 <div class="!mt-6 !mb-4 flex justify-end">
-                    <button type="submit" class="btn btn-primary btn-sm mt-2">
+                    <button type="submit" class="btn btn-primary mt-2">
                         {{ __('Save Changes') }}
                     </button>
                 </div>
