@@ -64,6 +64,31 @@
     </div>
 
     <div class="content-container card card-fluid">
+        <h3>Users</h3>
+        <div class="mt-4 mb-6 px-0">
+            <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
+                @php
+                    $userCount = $user->count();
+                    $guestUserCount = $user->totalGuestUsers();
+                @endphp
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        User
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
+                    </dd>
+                </div>
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
+                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
+                        Guest
+                    </dt>
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                        <span title="{{ number_format($guestUserCount) }}">{{ n_abb($guestUserCount) }}</span>
+                    </dd>
+                </div>
+            </dl>
+        </div>
 
         <h3>Links</h3>
         <div class="mt-4 mb-6 px-0">
@@ -132,32 +157,6 @@
                         <span title="{{ number_format($visit->guestVisitCount()) }}">{{ n_abb($visit->guestVisitCount()) }}</span>
                         /
                         <span title="{{ number_format($visit->uniqueGuestVisitCount()) }}">{{ n_abb($visit->uniqueGuestVisitCount()) }}</span>
-                    </dd>
-                </div>
-            </dl>
-        </div>
-
-        <h3>Users</h3>
-        <div class="mt-4 mb-6 px-0">
-            <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                @php
-                    $userCount = $user->count();
-                    $guestUserCount = $user->totalGuestUsers();
-                @endphp
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                        User
-                    </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
-                    </dd>
-                </div>
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
-                    <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
-                        Guest
-                    </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($guestUserCount) }}">{{ n_abb($guestUserCount) }}</span>
                     </dd>
                 </div>
             </dl>
