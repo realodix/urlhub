@@ -106,7 +106,7 @@
                         <div class="bg-orange-50 border border-border-200 p-4 text-center
                             dark:bg-transparent dark:border-dark-700 dark:text-dark-400"
                         >
-                            If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 hover:text-orange-500 font-medium">log in</a> to view the statistics for this link.
+                            If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 dark:text-orange-600 hover:text-orange-500 dark:hover:text-orange-600/90 font-medium">log in</a> to view the statistics for this link.
                         </div>
                     @endif
                 </div>

@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex items-center justify-end">
-                <a href="{{ route('password.request') }}" class="text-primary-700 hover:text-primary-500 font-medium">
+                <a href="{{ route('password.request') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-500 dark:hover:text-primary-600/90 font-medium">
                     {{ __('Forgot password?') }}
                 </a>
             </div>
@@ -48,7 +48,7 @@
         @if (Route::has('register') && settings()->anyone_can_register)
         <div class="mt-6 text-center text-sm text-gray-600 dark:text-dark-400">
             Don't have an account?
-            <a href="{{ route('register') }}" class="text-primary-700 hover:text-primary-500 font-medium">Sign up</a>
+            <a href="{{ route('register') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-500 dark:hover:text-primary-600/90 font-medium">Sign up</a>
         </div>
         @endif
     </div>
