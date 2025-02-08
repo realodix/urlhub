@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserType;
 use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
@@ -26,8 +27,11 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function create(StoreUrlRequest $request)
     {
+        $userType = auth()->check() ? UserType::User->value : UserType::Guest->value;
+
         $url = Url::create([
             'user_id'   => auth()->id(),
+            'user_type' => $userType,
             'destination' => $request->long_url,
             'title'     => app(Url::class)->getWebTitle($request->long_url),
             'keyword'   => app(Url::class)->getKeyword($request),

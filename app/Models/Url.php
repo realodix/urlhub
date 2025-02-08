@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserType;
 use App\Http\Requests\StoreUrlRequest;
 use App\Services\KeyGeneratorService;
 use App\Settings\GeneralSettings;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int|null $user_id
+ * @property UserType $user_type
  * @property string $keyword
  * @property bool $is_custom
  * @property string $destination
@@ -41,6 +43,7 @@ class Url extends Model
      */
     protected $fillable = [
         'user_id',
+        'user_type',
         'keyword',
         'is_custom',
         'destination',
@@ -50,13 +53,12 @@ class Url extends Model
 
     /**
      * Get the attributes that should be cast.
-     *
-     * @return array{user_id:'integer',is_custom:'boolean'}
      */
     protected function casts(): array
     {
         return [
             'user_id' => 'integer',
+            'user_type' => UserType::class,
             'is_custom' => 'boolean',
         ];
     }
@@ -135,6 +137,17 @@ class Url extends Model
     | General
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * Scope a query to only include visits from specific user type.
+     *
+     * @param Builder<self> $query \Illuminate\Database\Eloquent\Builder
+     * @param UserType $type \App\Enums\UserType
+     */
+    public function scopeUserType(Builder $query, UserType $type): void
+    {
+        $query->where('user_type', $type);
+    }
 
     public function getKeyword(StoreUrlRequest $request): string
     {
