@@ -48,11 +48,6 @@ class Url extends Model
         'user_sign',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array{user_id:'integer',is_custom:'boolean'}
-     */
     protected function casts(): array
     {
         return [

@@ -36,11 +36,6 @@ class Visit extends Model
         'referer',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array{is_first_click:'boolean'}
-     */
     protected function casts(): array
     {
         return [
