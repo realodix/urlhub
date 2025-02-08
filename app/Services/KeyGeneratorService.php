@@ -154,9 +154,11 @@ class KeyGeneratorService
     public function publicPathCollisionList(): array
     {
         $publicPathList = scandir(public_path());
+        // @codeCoverageIgnoreStart
         if ($publicPathList === false) {
             return [];
         }
+        // @codeCoverageIgnoreEnd
 
         return collect($publicPathList)
             ->pipe(fn($paths) => $this->filterCollisionCandidates($paths))
