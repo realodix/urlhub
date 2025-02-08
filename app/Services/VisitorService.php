@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\UserType;
 use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\User;
@@ -34,10 +35,32 @@ class VisitorService
 
         Visit::create([
             'url_id'         => $url->id,
+            'user_type'      => $this->userType(),
             'visitor_id'     => $this->user->signature(),
             'is_first_click' => $this->isFirstClick($url),
             'referer'        => $this->getRefererHost($referer),
         ]);
+    }
+
+    /**
+     * Determine the type of user based on authentication status and device detection.
+     *
+     * @return string The user type, which can be 'user', 'guest', or 'bot'.
+     */
+    public function userType(): string
+    {
+        $type = UserType::User->value;
+        $device = Helper::deviceDetector();
+
+        if (auth()->check() === false) {
+            $type = UserType::Guest->value;
+        }
+
+        if ($device->isBot() === true) {
+            $type = UserType::Bot->value;
+        }
+
+        return $type;
     }
 
     /**
