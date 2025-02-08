@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $url_id
+ * @property string $user_type
  * @property string $visitor_id
  * @property bool $is_first_click
  * @property string $referer
@@ -28,6 +30,7 @@ class Visit extends Model
      */
     protected $fillable = [
         'url_id',
+        'user_type',
         'visitor_id',
         'is_first_click',
         'referer',
@@ -41,6 +44,7 @@ class Visit extends Model
     protected function casts(): array
     {
         return [
+            'user_type' => UserType::class,
             'is_first_click' => 'boolean',
         ];
     }
@@ -69,10 +73,14 @@ class Visit extends Model
 
     /**
      * Scope a query to only include visits from guest users.
+     *
+     * @param Builder<self> $query
      */
     public function scopeIsGuest(Builder $query): void
     {
-        $query->whereRaw('LENGTH(visitor_id) = 16');
+        $query->where('user_type', UserType::Guest->value)
+            // todo: remove this in the future
+            ->orWhereRaw('LENGTH(visitor_id) = 16');
     }
 
     /**
