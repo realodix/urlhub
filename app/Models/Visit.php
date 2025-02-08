@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $url_id
- * @property string $user_type
+ * @property UserType $user_type
  * @property string $visitor_id
  * @property bool $is_first_click
  * @property string $referer
@@ -72,13 +72,24 @@ class Visit extends Model
     */
 
     /**
+     * Scope a query to only include visits from specific user type.
+     *
+     * @param Builder<self> $query \Illuminate\Database\Eloquent\Builder
+     * @param UserType $type \App\Enums\UserType
+     */
+    public function scopeUserType(Builder $query, UserType $type): void
+    {
+        $query->where('user_type', $type);
+    }
+
+    /**
      * Scope a query to only include visits from guest users.
      *
      * @param Builder<self> $query
      */
     public function scopeIsGuest(Builder $query): void
     {
-        $query->where('user_type', UserType::Guest->value)
+        $query->userType(UserType::Guest)
             // todo: remove this in the future
             ->orWhereRaw('LENGTH(visitor_id) = 16');
     }

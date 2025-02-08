@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserType;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,7 @@ class VisitFactory extends Factory
     {
         return [
             'url_id'         => Url::factory(),
-            'user_type'      => 'user',
+            'user_type'      => UserType::User->value,
             'visitor_id'     => 'foo_bar',
             'is_first_click' => true,
             'referer'        => 'https://github.com/realodix/urlhub',
