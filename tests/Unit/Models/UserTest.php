@@ -37,7 +37,7 @@ class UserTest extends TestCase
     #[PHPUnit\Test]
     public function totalGuestUsers2(): void
     {
-        Url::factory()->count(5)->create(['user_id' => Url::GUEST_ID, 'user_sign' => 'foo']);
+        Url::factory()->count(5)->create(['user_id' => Url::GUEST_ID, 'user_uid' => 'foo']);
         $this->assertSame(1, (new User)->totalGuestUsers());
     }
 

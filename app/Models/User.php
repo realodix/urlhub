@@ -81,7 +81,7 @@ class User extends Authenticatable
     public function totalGuestUsers(): int
     {
         return Url::where('user_id', null)
-            ->distinct('user_sign')
+            ->distinct('user_uid')
             ->count();
     }
 
