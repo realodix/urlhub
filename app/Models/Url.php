@@ -6,6 +6,7 @@ use App\Enums\UserType;
 use App\Http\Requests\StoreUrlRequest;
 use App\Services\KeyGeneratorService;
 use App\Settings\GeneralSettings;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
