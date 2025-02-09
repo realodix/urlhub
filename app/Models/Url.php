@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $is_custom
  * @property string $destination
  * @property string $title
- * @property string $user_sign
+ * @property string $user_uid
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property User $author
@@ -49,7 +49,7 @@ class Url extends Model
         'is_custom',
         'destination',
         'title',
-        'user_sign',
+        'user_uid',
     ];
 
     /**

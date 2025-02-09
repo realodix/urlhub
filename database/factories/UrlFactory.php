@@ -26,7 +26,7 @@ class UrlFactory extends Factory
             'title'       => 'No Title',
             'keyword'     => app(KeyGeneratorService::class)->randomString(),
             'is_custom'   => false,
-            'user_sign'   => fake()->uuid(),
+            'user_uid'    => fake()->uuid(),
         ];
     }
 }

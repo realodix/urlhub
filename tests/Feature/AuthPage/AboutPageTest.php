@@ -59,10 +59,10 @@ class AboutPageTest extends TestCase
         Visit::factory()->for($userLink)->create();
         Visit::factory()
             ->for($userLink)
-            ->create(['visitor_id' => 'ff6db461ccba3fa6']);
+            ->create(['user_uid' => 'ff6db461ccba3fa6']);
         Visit::factory()
             ->for($guestLink)
-            ->create(['visitor_id' => 'ff6db461ccba3fa6']);
+            ->create(['user_uid' => 'ff6db461ccba3fa6']);
     }
 
     /*

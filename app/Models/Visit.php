@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $url_id
  * @property UserType $user_type
- * @property string $visitor_id
+ * @property string $user_uid
  * @property bool $is_first_click
  * @property string $referer
  * @property \Carbon\Carbon $created_at
@@ -31,7 +31,7 @@ class Visit extends Model
     protected $fillable = [
         'url_id',
         'user_type',
-        'visitor_id',
+        'user_uid',
         'is_first_click',
         'referer',
     ];
@@ -86,7 +86,7 @@ class Visit extends Model
     {
         $query->userType(UserType::Guest)
             // todo: remove this in the future
-            ->orWhereRaw('LENGTH(visitor_id) = 16');
+            ->orWhereRaw('LENGTH(user_uid) = 16');
     }
 
     /**
@@ -132,7 +132,7 @@ class Visit extends Model
     public function uniqueGuestVisitCount(): int
     {
         return self::isGuest()
-            ->distinct('visitor_id')
+            ->distinct('user_uid')
             ->count();
     }
 }

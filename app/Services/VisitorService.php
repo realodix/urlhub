@@ -36,7 +36,7 @@ class VisitorService
         Visit::create([
             'url_id'         => $url->id,
             'user_type'      => $this->userType(),
-            'visitor_id'     => $this->user->signature(),
+            'user_uid'       => $this->user->signature(),
             'is_first_click' => $this->isFirstClick($url),
             'referer'        => $this->getRefererHost($referer),
         ]);
@@ -72,7 +72,7 @@ class VisitorService
     public function isFirstClick(Url $url): bool
     {
         $hasVisited = $url->visits()
-            ->whereVisitorId($this->user->signature())
+            ->where('user_uid', $this->user->signature())
             ->exists();
 
         return $hasVisited ? false : true;
