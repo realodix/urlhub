@@ -40,18 +40,4 @@ class UserTest extends TestCase
         Url::factory()->count(5)->create(['user_id' => Url::GUEST_ID, 'user_uid' => 'foo']);
         $this->assertSame(1, (new User)->totalGuestUsers());
     }
-
-    /**
-     * Test the signature of the user.
-     */
-    public function testSignature(): void
-    {
-        $user = app(User::class);
-        $this->assertTrue(strlen($user->signature()) >= 16);
-
-        $user = $this->basicUser();
-        $this->actingAs($user)
-            ->post(route('link.create'), ['long_url' => 'https://laravel.com']);
-        $this->assertEquals($user->id, $user->signature());
-    }
 }

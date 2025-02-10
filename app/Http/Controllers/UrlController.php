@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserType;
 use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
-use App\Models\User;
 use App\Models\Visit;
 use App\Services\QrCodeService;
+use App\Services\UserService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
 
@@ -27,16 +26,16 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function create(StoreUrlRequest $request)
     {
-        $userType = auth()->check() ? UserType::User->value : UserType::Guest->value;
+        $userService = app(UserService::class);
 
         $url = Url::create([
             'user_id'   => auth()->id(),
-            'user_type' => $userType,
+            'user_type' => $userService->userType(),
             'destination' => $request->long_url,
             'title'     => app(Url::class)->getWebTitle($request->long_url),
             'keyword'   => app(Url::class)->getKeyword($request),
             'is_custom' => isset($request->custom_key) ? true : false,
-            'user_uid'  => app(User::class)->signature(),
+            'user_uid'  => $userService->signature(),
         ]);
 
         return to_route('link_detail', $url->keyword);
