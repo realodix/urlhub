@@ -39,10 +39,10 @@ class UserService
 
         if (auth()->check() === false) {
             $type = UserType::Guest->value;
-        }
 
-        if ($device->isBot() === true) {
-            $type = UserType::Bot->value;
+            if ($device->isBot() === true) {
+                $type = UserType::Bot->value;
+            }
         }
 
         return $type;
