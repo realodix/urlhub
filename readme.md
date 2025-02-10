@@ -81,7 +81,7 @@ From the projects root folder run
 - or `composer test`
 - or `./vendor/bin/phpunit`
 
-![screenshot](https://github.com/realodix/urlhub/assets/1314456/ae460c2d-77c6-44de-9183-7fca6cf50095)
+![phpunit_image](https://github.com/user-attachments/assets/ea34dc59-8a72-4e7c-864a-c7ba768ff02b)
 
 
 ## Bug Report
