@@ -63,7 +63,7 @@ class UrlTest extends TestCase
 
         $this->post(route('link.create'), ['long_url' => $longUrl]);
 
-        $url = Url::whereDestination($longUrl)->first();
+        $url = Url::where('destination', $longUrl)->first();
 
         $this->assertSame(Url::GUEST_ID, $url->user_id);
     }
@@ -96,7 +96,7 @@ class UrlTest extends TestCase
     public function getShortUrlAttribute(): void
     {
         $url = Url::factory()->create();
-        $url->whereUserId($url->author->id)->first();
+        $url->where('user_id', $url->author->id)->first();
 
         $expected = $url->short_url;
         $actual = url('/' . $url->keyword);
@@ -205,8 +205,8 @@ class UrlTest extends TestCase
         $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);
         $url_2 = Url::factory()->create(['keyword' => 'Foo', 'destination' => 'https://example.org']);
 
-        $dest_1 = $url_1->whereKeyword('foo')->first();
-        $dest_2 = $url_2->whereKeyword('Foo')->first();
+        $dest_1 = $url_1->where('keyword', 'foo')->first();
+        $dest_2 = $url_2->where('keyword', 'Foo')->first();
 
         $this->assertSame('https://example.com', $dest_1->destination);
         $this->assertSame('https://example.org', $dest_2->destination);

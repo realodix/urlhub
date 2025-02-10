@@ -20,7 +20,7 @@ class UrlControllerTest extends TestCase
 
         $this->post(route('link.create'), ['long_url' => $longUrl]);
 
-        $url = Url::whereDestination($longUrl)->first();
+        $url = Url::where('destination', $longUrl)->first();
         $this->assertSame(null, $url->user_id);
     }
 
@@ -37,7 +37,7 @@ class UrlControllerTest extends TestCase
         $this->actingAs($user)
             ->post(route('link.create'), ['long_url' => $longUrl]);
 
-        $url = Url::whereDestination($longUrl)->first();
+        $url = Url::where('destination', $longUrl)->first();
         $this->assertSame($user->id, $url->user_id);
     }
 

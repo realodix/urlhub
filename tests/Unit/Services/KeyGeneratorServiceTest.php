@@ -108,7 +108,7 @@ class KeyGeneratorServiceTest extends TestCase
         ]);
         $response->assertRedirectToRoute('link_detail', $customKey);
 
-        $url = Url::whereDestination($longUrl)->first();
+        $url = Url::where('destination', $longUrl)->first();
         $this->assertTrue($url->is_custom);
     }
 

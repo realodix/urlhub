@@ -21,7 +21,7 @@ class CreateShortLinkTest extends TestCase
             'long_url' => $longUrl,
         ]);
 
-        $url = Url::whereDestination($longUrl)->first();
+        $url = Url::where('destination', $longUrl)->first();
 
         $response->assertRedirectToRoute('link_detail', $url->keyword);
         $this->assertFalse($url->is_custom);
@@ -43,7 +43,7 @@ class CreateShortLinkTest extends TestCase
             'custom_key' => $customKey,
         ]);
         $response->assertRedirectToRoute('link_detail', $customKey);
-        $url = Url::whereDestination($longUrl)->first();
+        $url = Url::where('destination', $longUrl)->first();
         $this->assertTrue($url->is_custom);
 
         $customKey = 'barfoo';
@@ -53,7 +53,7 @@ class CreateShortLinkTest extends TestCase
             'custom_key' => $customKey,
         ]);
         $response->assertRedirectToRoute('link_detail', $customKey);
-        $url = Url::whereDestination($longUrl)->first();
+        $url = Url::where('destination', $longUrl)->first();
         $this->assertTrue($url->is_custom);
     }
 
