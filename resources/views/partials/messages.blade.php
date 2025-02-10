@@ -11,7 +11,7 @@
                     <li class="text-slate-600 dark:text-dark-400">{{ $error }}</li>
                 @endforeach
             </ul>
-            <span x-on:click="showNotification = false" class="absolute top-0 right-0 mt-2 mr-2 cursor-pointer">
+            <span x-on:click="showNotification = false" class="absolute top-0 right-0 mt-2 mr-2 cursor-pointer hover:bg-gray-100 px-1 rounded-sm">
                 @svg('icon-close', 'size-4 text-gray-500 dark:text-red-400')
             </span>
         </div>
@@ -25,7 +25,7 @@
                 <span class="text-xs/4 font-medium">Success</span>
             </p>
             <p class="text-slate-600 dark:text-dark-400">{{ session('flash_success') }}</p>
-            <span x-on:click="showNotification = false" class="absolute top-0 right-0 mt-2 mr-2 cursor-pointer">
+            <span x-on:click="showNotification = false" class="absolute top-0 right-0 mt-2 mr-2 cursor-pointer hover:bg-gray-100 px-1 rounded-sm">
                 @svg('icon-close', 'size-4 text-gray-500 dark:text-red-400')
             </span>
         </div>
