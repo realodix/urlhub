@@ -9,7 +9,6 @@ class UserService
 {
     /**
      * Generate unique identifiers for users, based on their IP address and more.
-     *
      * If the user is logged in, the signature is simply the user's ID.
      */
     public function signature(): string
@@ -35,7 +34,8 @@ class UserService
     }
 
     /**
-     * Determine the type of user based on authentication status and device detection.
+     * Determine the type of user based on authentication status and device
+     * detection.
      */
     public function userType(): string
     {
