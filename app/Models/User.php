@@ -3,7 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -83,27 +82,5 @@ class User extends Authenticatable
         return Url::where('user_id', null)
             ->distinct('user_uid')
             ->count();
-    }
-
-    public function signature(): string
-    {
-        if (auth()->check() === false) {
-            $device = Helper::deviceDetector();
-            $browser = $device->getClient();
-            $os = $device->getOs();
-
-            $userDeviceInfo = implode([
-                request()->ip(),
-                $browser['name'] ?? '',
-                $os['name'] ?? '',
-                $os['version'] ?? '',
-                $device->getDeviceName() . $device->getModel() . $device->getBrandName(),
-                request()->getPreferredLanguage(),
-            ]);
-
-            return hash('xxh3', $userDeviceInfo);
-        }
-
-        return (string) auth()->id();
     }
 }

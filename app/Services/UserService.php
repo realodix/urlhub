@@ -7,6 +7,11 @@ use App\Helpers\Helper;
 
 class UserService
 {
+    /**
+     * Generate unique identifiers for users, based on their IP address and more.
+     *
+     * If the user is logged in, the signature is simply the user's ID.
+     */
     public function signature(): string
     {
         if (auth()->check() === false) {

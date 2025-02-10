@@ -13,7 +13,7 @@ use Illuminate\Support\Uri;
 class VisitorService
 {
     public function __construct(
-        protected User $user,
+        protected UserService $userService,
         protected GeneralSettings $settings,
     ) {}
 
@@ -36,7 +36,7 @@ class VisitorService
         Visit::create([
             'url_id'         => $url->id,
             'user_type'      => $this->userType(),
-            'user_uid'       => $this->user->signature(),
+            'user_uid'       => $this->userService->signature(),
             'is_first_click' => $this->isFirstClick($url),
             'referer'        => $this->getRefererHost($referer),
         ]);
@@ -72,7 +72,7 @@ class VisitorService
     public function isFirstClick(Url $url): bool
     {
         $hasVisited = $url->visits()
-            ->where('user_uid', $this->user->signature())
+            ->where('user_uid', $this->userService->signature())
             ->exists();
 
         return $hasVisited ? false : true;
