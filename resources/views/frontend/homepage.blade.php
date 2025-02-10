@@ -11,11 +11,10 @@
         </div>
     @else
         <div class="flex flex-wrap md:justify-center">
-            <span class="mx-auto max-w-md md:max-w-3xl relative z-10
-                font-bold text-center text-gray-700 dark:text-dark-300 md:text-4xl xl:text-5xl text-3xl !leading-tight"
+            <span class="mx-auto max-w-md md:max-w-3xl
+                font-bold text-center text-gray-700 dark:text-dark-300 md:text-4xl xl:text-5xl text-3xl"
             >
-                Simple <span class="hero__emphasizing dark:text-indigo-300">URL shortener</span> <br>
-                <span class="font-light">for individuals &amp; businesses</span>
+                Give every <span class="text-blue-500">link</span> the <span class="hero__emphasizing dark:text-indigo-300">superpowers</span> it deserves
             </span>
         </div>
 
