@@ -78,18 +78,6 @@ class Visit extends Model
     }
 
     /**
-     * Scope a query to only include visits from guest users.
-     *
-     * @param Builder<self> $query
-     */
-    public function scopeIsGuest(Builder $query): void
-    {
-        $query->userType(UserType::Guest)
-            // todo: remove this in the future
-            ->orWhereRaw('LENGTH(user_uid) = 16');
-    }
-
-    /**
      * Number of link visits from the currently logged-in user.
      */
     public function authUserLinkVisitCount(): int
@@ -105,13 +93,13 @@ class Visit extends Model
     public function userLinkVisitCount(): int
     {
         return self::whereHas('url', function ($query) {
-            $query->where('user_id', '!=', Url::GUEST_ID);
+            $query->where('user_type', UserType::User);
         })->count();
     }
 
     public function userVisitCount(): int
     {
-        return self::count() - $this->guestVisitCount();
+        return self::userType(UserType::User)->count();
     }
 
     /**
@@ -120,18 +108,18 @@ class Visit extends Model
     public function guestUserLinkVisitCount(): int
     {
         return self::whereHas('url', function ($query) {
-            $query->where('user_id', Url::GUEST_ID);
+            $query->where('user_type', UserType::Guest);
         })->count();
     }
 
     public function guestVisitCount(): int
     {
-        return self::isGuest()->count();
+        return self::userType(UserType::Guest)->count();
     }
 
     public function uniqueGuestVisitCount(): int
     {
-        return self::isGuest()
+        return self::userType(UserType::Guest)
             ->distinct('user_uid')
             ->count();
     }

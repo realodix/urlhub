@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\Visit;
 use PHPUnit\Framework\Attributes as PHPUnit;
@@ -58,6 +59,7 @@ class VisitTest extends TestCase
         Visit::factory()->count($nGuest)
             ->for(Url::factory()->state([
                 'user_id' => Url::GUEST_ID,
+                'user_type' => UserType::Guest,
             ]))
             ->create();
 
@@ -78,6 +80,7 @@ class VisitTest extends TestCase
         Visit::factory()->count($nGuest)
             ->for(Url::factory()->state([
                 'user_id' => Url::GUEST_ID,
+                'user_type' => UserType::Guest,
             ]))
             ->create();
 
@@ -112,8 +115,8 @@ class VisitTest extends TestCase
     private function visitCountData()
     {
         Visit::factory()->create(); // user1
-        Visit::factory()->create(['user_uid' => 'ff6db461ccba3fa6']); // guest1
-        Visit::factory()->create(['user_uid' => '52df013b71713cd1']); // guest2
-        Visit::factory()->create(['user_uid' => '52df013b71713cd1']); // guest2
+        Visit::factory()->create(['user_type' => UserType::Guest, 'user_uid' => 'ff6db461ccba3fa6']); // guest1
+        Visit::factory()->create(['user_type' => UserType::Guest, 'user_uid' => '52df013b71713cd1']); // guest2
+        Visit::factory()->create(['user_type' => UserType::Guest, 'user_uid' => '52df013b71713cd1']); // guest2
     }
 }

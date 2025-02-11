@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\AuthPage;
 
+use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
@@ -52,6 +53,7 @@ class AboutPageTest extends TestCase
         $userLink = Url::factory()->create();
         $guestLink = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
+            'user_type' => UserType::Guest,
             'keyword' => 'verylonngggggkeyword',
         ]);
 
@@ -59,10 +61,16 @@ class AboutPageTest extends TestCase
         Visit::factory()->for($userLink)->create();
         Visit::factory()
             ->for($userLink)
-            ->create(['user_uid' => 'ff6db461ccba3fa6']);
+            ->create([
+                'user_type' => UserType::Guest,
+                'user_uid' => 'ff6db461ccba3fa6',
+            ]);
         Visit::factory()
             ->for($guestLink)
-            ->create(['user_uid' => 'ff6db461ccba3fa6']);
+            ->create([
+                'user_type' => UserType::Guest,
+                'user_uid' => 'ff6db461ccba3fa6',
+            ]);
     }
 
     /*
