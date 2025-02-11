@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\AuthPage;
 
+use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
@@ -18,7 +19,7 @@ class AboutPageTest extends TestCase
 
     private Visit $visit;
 
-    private KeyGeneratorService $keyGenerator;
+    private KeyGeneratorService $keyGen;
 
     const USER_COUNT = 1;
     const USER_GUEST_COUNT = 1;
@@ -26,15 +27,15 @@ class AboutPageTest extends TestCase
     // ..
     const URL_COUNT = 2;
     const USER_URL_COUNT = 1;
-    const USER_LINK_VISIT_COUNT = 2;
+    const USER_LINK_VISIT_COUNT = 4;
     const GUEST_URL_COUNT = 1;
-    const GUEST_LINK_VISIT_COUNT = 1;
+    const GUEST_LINK_VISIT_COUNT = 4;
 
     // ..
-    const VISIT_COUNT = 3;
-    const USER_VISIT_COUNT = 1;
-    const GUEST_VISIT_COUNT = 2;
-    const UNIQUE_GUEST_VISIT_COUNT = 1;
+    const VISIT_COUNT = 8;
+    const USER_VISIT_COUNT = 2;
+    const GUEST_VISIT_COUNT = 6;
+    const UNIQUE_GUEST_VISIT_COUNT = 3;
 
     // ..
     const KEYWORD_COUNT = 1;
@@ -46,23 +47,32 @@ class AboutPageTest extends TestCase
         $this->url = new Url;
         $this->user = new User;
         $this->visit = new Visit;
-        $this->keyGenerator = app(KeyGeneratorService::class);
+        $this->keyGen = app(KeyGeneratorService::class);
 
         // URL
         $userLink = Url::factory()->create();
         $guestLink = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
-            'keyword' => 'verylonngggggkeyword',
+            'user_type' => UserType::Guest,
+            'keyword' => 'veerryyyylonngggggkeyword',
         ]);
 
         // Visit
         Visit::factory()->for($userLink)->create();
-        Visit::factory()
-            ->for($userLink)
-            ->create(['user_uid' => 'ff6db461ccba3fa6']);
-        Visit::factory()
-            ->for($guestLink)
-            ->create(['user_uid' => 'ff6db461ccba3fa6']);
+        Visit::factory()->for($userLink)
+            ->create(['user_type' => UserType::Guest, 'user_uid' => 'e6c632b61e964e1f']);
+        Visit::factory()->for($userLink)
+            ->create(['user_type' => UserType::Guest, 'user_uid' => '575a0b1c44d8843f']);
+        Visit::factory()->for($userLink)
+            ->create(['user_type' => UserType::Bot, 'user_uid' => '8c40219a46b9f81b']);
+
+        Visit::factory()->for($guestLink)->create();
+        Visit::factory()->for($guestLink)
+            ->create(['user_type' => UserType::Guest, 'user_uid' => 'e6c632b61e964e1f']);
+        Visit::factory()->for($guestLink)
+            ->create(['user_type' => UserType::Guest, 'user_uid' => '575a0b1c44d8843f']);
+        Visit::factory()->for($guestLink)
+            ->create(['user_type' => UserType::Bot, 'user_uid' => '8c40219a46b9f81b']);
     }
 
     /*
@@ -197,6 +207,6 @@ class AboutPageTest extends TestCase
     #[PHPUnit\Test]
     public function keywordCount(): void
     {
-        $this->assertSame(self::KEYWORD_COUNT, $this->keyGenerator->keywordCount());
+        $this->assertSame(self::KEYWORD_COUNT, $this->keyGen->keywordCount());
     }
 }
