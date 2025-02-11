@@ -20,10 +20,19 @@ class VisitFactory extends Factory
     {
         return [
             'url_id'         => Url::factory(),
-            'user_type'      => UserType::User->value,
-            'user_uid'       => 'foo_bar',
+            'user_type'      => UserType::User,
+            'user_uid'       => fake()->uuid(),
             'is_first_click' => true,
             'referer'        => 'https://github.com/realodix/urlhub',
         ];
+    }
+
+    public function guest(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_type' => UserType::Guest,
+            ];
+        });
     }
 }

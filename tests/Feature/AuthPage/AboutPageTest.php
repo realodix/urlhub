@@ -34,8 +34,8 @@ class AboutPageTest extends TestCase
     // ..
     const VISIT_COUNT = 8;
     const USER_VISIT_COUNT = 2;
-    const GUEST_VISIT_COUNT = 4;
-    const UNIQUE_GUEST_VISIT_COUNT = 2;
+    const GUEST_VISIT_COUNT = 6;
+    const UNIQUE_GUEST_VISIT_COUNT = 3;
 
     // ..
     const KEYWORD_COUNT = 1;
@@ -54,25 +54,25 @@ class AboutPageTest extends TestCase
         $guestLink = Url::factory()->create([
             'user_id' => Url::GUEST_ID,
             'user_type' => UserType::Guest,
-            'keyword' => 'verylonngggggkeyword',
+            'keyword' => 'veerryyyylonngggggkeyword',
         ]);
 
         // Visit
         Visit::factory()->for($userLink)->create();
+        Visit::factory()->for($userLink)->guest()
+            ->create(['user_uid' => 'foo']);
+        Visit::factory()->for($userLink)->guest()
+            ->create(['user_uid' => 'bar']);
         Visit::factory()->for($userLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => 'e6c632b61e964e1f']);
-        Visit::factory()->for($userLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => '575a0b1c44d8843f']);
-        Visit::factory()->for($userLink)
-            ->create(['user_type' => UserType::Bot, 'user_uid' => '8c40219a46b9f81b']);
+            ->create(['user_type' => UserType::Bot, 'user_uid' => 'baz']);
 
         Visit::factory()->for($guestLink)->create();
+        Visit::factory()->for($guestLink)->guest()
+            ->create(['user_uid' => 'foo']);
+        Visit::factory()->for($guestLink)->guest()
+            ->create(['user_uid' => 'bar']);
         Visit::factory()->for($guestLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => 'e6c632b61e964e1f']);
-        Visit::factory()->for($guestLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => '575a0b1c44d8843f']);
-        Visit::factory()->for($guestLink)
-            ->create(['user_type' => UserType::Bot, 'user_uid' => '8c40219a46b9f81b']);
+            ->create(['user_type' => UserType::Bot, 'user_uid' => 'baz']);
     }
 
     /*

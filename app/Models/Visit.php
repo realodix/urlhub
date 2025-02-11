@@ -67,14 +67,14 @@ class Visit extends Model
     */
 
     /**
-     * Scope a query to only include visits from specific user type.
+     * Scope a query to only include visits from guest users.
      *
-     * @param Builder<self> $query \Illuminate\Database\Eloquent\Builder
-     * @param UserType $type \App\Enums\UserType
+     * @param Builder<self> $query
      */
-    public function scopeUserType(Builder $query, UserType $type): void
+    public function scopeIsGuest(Builder $query): void
     {
-        $query->where('user_type', $type);
+        $query->where('user_type', UserType::Guest)
+            ->orWhere('user_type', UserType::Bot);
     }
 
     /**
@@ -99,7 +99,7 @@ class Visit extends Model
 
     public function userVisitCount(): int
     {
-        return self::userType(UserType::User)->count();
+        return self::where('user_type', UserType::User)->count();
     }
 
     /**
@@ -114,12 +114,12 @@ class Visit extends Model
 
     public function guestVisitCount(): int
     {
-        return self::userType(UserType::Guest)->count();
+        return self::isGuest()->count();
     }
 
     public function uniqueGuestVisitCount(): int
     {
-        return self::userType(UserType::Guest)
+        return self::isGuest()
             ->distinct('user_uid')
             ->count();
     }
