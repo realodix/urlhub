@@ -6,7 +6,6 @@ use App\Enums\UserType;
 use App\Http\Requests\StoreUrlRequest;
 use App\Services\KeyGeneratorService;
 use App\Settings\GeneralSettings;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -139,17 +138,6 @@ class Url extends Model
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Scope a query to only include visits from specific user type.
-     *
-     * @param Builder<self> $query \Illuminate\Database\Eloquent\Builder
-     * @param UserType $type \App\Enums\UserType
-     */
-    public function scopeUserType(Builder $query, UserType $type): void
-    {
-        $query->where('user_type', $type);
-    }
-
     public function getKeyword(StoreUrlRequest $request): string
     {
         $keyGen = app(KeyGeneratorService::class);
@@ -195,7 +183,7 @@ class Url extends Model
      */
     public function userUrlCount(): int
     {
-        return self::where('user_id', '!=', self::GUEST_ID)
+        return self::where('user_type', UserType::User)
             ->count();
     }
 
@@ -204,7 +192,7 @@ class Url extends Model
      */
     public function guestUserUrlCount(): int
     {
-        return self::where('user_id', self::GUEST_ID)
+        return self::where('user_type', UserType::Guest)
             ->count();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -79,7 +80,7 @@ class User extends Authenticatable
      */
     public function totalGuestUsers(): int
     {
-        return Url::where('user_id', null)
+        return Url::where('user_type', UserType::Guest)
             ->distinct('user_uid')
             ->count();
     }

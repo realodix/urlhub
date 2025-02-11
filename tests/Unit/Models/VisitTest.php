@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Models;
 
-use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\Visit;
 use PHPUnit\Framework\Attributes as PHPUnit;
@@ -64,10 +63,7 @@ class VisitTest extends TestCase
             ->create();
 
         Visit::factory()->count($nGuest)
-            ->for(Url::factory()->state([
-                'user_id' => Url::GUEST_ID,
-                'user_type' => UserType::Guest,
-            ]))
+            ->for(Url::factory()->guest())
             ->create();
 
         $this->assertSame($nUser, $this->visit->userLinkVisitCount());
@@ -85,10 +81,7 @@ class VisitTest extends TestCase
             ->create();
 
         Visit::factory()->count($nGuest)
-            ->for(Url::factory()->state([
-                'user_id' => Url::GUEST_ID,
-                'user_type' => UserType::Guest,
-            ]))
+            ->for(Url::factory()->guest())
             ->create();
 
         $this->assertSame($nGuest, $this->visit->guestUserLinkVisitCount());
