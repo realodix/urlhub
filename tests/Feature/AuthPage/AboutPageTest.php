@@ -62,7 +62,7 @@ class AboutPageTest extends TestCase
         Visit::factory()->for($userLink)->guest()
             ->create(['user_uid' => 'bar']);
         Visit::factory()->for($userLink)
-            ->create(['user_type' => UserType::Bot, 'user_uid' => 'foo']);
+            ->create(['user_type' => UserType::Bot, 'user_uid' => 'baz']);
 
         Visit::factory()->for($guestLink)->create();
         Visit::factory()->for($guestLink)->guest()
@@ -70,7 +70,7 @@ class AboutPageTest extends TestCase
         Visit::factory()->for($guestLink)->guest()
             ->create(['user_uid' => 'bar']);
         Visit::factory()->for($guestLink)
-            ->create(['user_type' => UserType::Bot, 'user_uid' => 'foo']);
+            ->create(['user_type' => UserType::Bot, 'user_uid' => 'baz']);
     }
 
     /*
