@@ -21,7 +21,7 @@ class VisitFactory extends Factory
         return [
             'url_id'         => Url::factory(),
             'user_type'      => UserType::User,
-            'user_uid'       => 'foo_bar',
+            'user_uid'       => fake()->uuid(),
             'is_first_click' => true,
             'referer'        => 'https://github.com/realodix/urlhub',
         ];
