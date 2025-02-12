@@ -115,7 +115,7 @@ class VisitTest extends TestCase
     private function visitCountData()
     {
         Visit::factory()->create(); // user1
-        Visit::factory()->guest()->create(['user_uid' => 'foo']); // guest1
+        Visit::factory()->guest()->create(); // guest1
         Visit::factory()->guest()->create(['user_uid' => 'bar']); // guest2
         Visit::factory()->guest()->create(['user_uid' => 'bar']); // guest2
     }
