@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\Visit;
 use PHPUnit\Framework\Attributes as PHPUnit;
@@ -101,7 +102,7 @@ class VisitTest extends TestCase
     {
         $this->visitCountData();
 
-        $this->assertEquals(3, $this->visit->guestVisitCount());
+        $this->assertEquals(5, $this->visit->guestVisitCount());
     }
 
     #[PHPUnit\Test]
@@ -109,14 +110,17 @@ class VisitTest extends TestCase
     {
         $this->visitCountData();
 
-        $this->assertEquals(2, $this->visit->uniqueGuestVisitCount());
+        $this->assertEquals(3, $this->visit->uniqueGuestVisitCount());
     }
 
     private function visitCountData()
     {
         Visit::factory()->create(); // user1
         Visit::factory()->guest()->create(); // guest1
-        Visit::factory()->guest()->create(['user_uid' => 'bar']); // guest2
-        Visit::factory()->guest()->create(['user_uid' => 'bar']); // guest2
+        Visit::factory()->guest()->count(2)->create(['user_uid' => 'foo']); // guest2
+        Visit::factory()->count(2)->create([ // bot
+            'user_type' => UserType::Bot,
+            'user_uid' => 'bar',
+        ]);
     }
 }
