@@ -42,7 +42,7 @@ class DeleteShortLinkTest extends TestCase
      */
     public function testAdminCanDeleteUrlsCreatedByGuest(): void
     {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $url = Url::factory()->guest()->create();
         $response = $this->actingAs($this->adminUser())
             ->from(route('link_detail', $url->keyword))
             ->get(route('link_detail.delete', $url->keyword));
@@ -72,7 +72,7 @@ class DeleteShortLinkTest extends TestCase
      */
     public function testUserCannotDeleteUrlsCreatedByGuest(): void
     {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $url = Url::factory()->guest()->create();
         $response = $this->actingAs($this->basicUser())
             ->from(route('link_detail', $url->keyword))
             ->get(route('link_detail.delete', $url->keyword));
@@ -87,7 +87,7 @@ class DeleteShortLinkTest extends TestCase
      */
     public function testGuestCannotDeleteContent(): void
     {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $url = Url::factory()->guest()->create();
         $response = $this->from(route('link_detail', $url->keyword))
             ->get(route('link_detail.delete', $url->keyword));
         $response->assertForbidden();

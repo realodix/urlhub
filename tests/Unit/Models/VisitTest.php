@@ -56,9 +56,7 @@ class VisitTest extends TestCase
             ->create();
 
         Visit::factory()->count($nGuest)
-            ->for(Url::factory()->state([
-                'user_id' => Url::GUEST_ID,
-            ]))
+            ->for(Url::factory()->guest())
             ->create();
 
         $this->assertSame($nUser, $this->visit->userLinkVisitCount());
@@ -76,9 +74,7 @@ class VisitTest extends TestCase
             ->create();
 
         Visit::factory()->count($nGuest)
-            ->for(Url::factory()->state([
-                'user_id' => Url::GUEST_ID,
-            ]))
+            ->for(Url::factory()->guest())
             ->create();
 
         $this->assertSame($nGuest, $this->visit->guestUserLinkVisitCount());

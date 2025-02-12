@@ -51,9 +51,7 @@ class AboutPageTest extends TestCase
 
         // URL
         $userLink = Url::factory()->create();
-        $guestLink = Url::factory()->create([
-            'user_id' => Url::GUEST_ID,
-            'user_type' => UserType::Guest,
+        $guestLink = Url::factory()->guest()->create([
             'keyword' => 'veerryyyylonngggggkeyword',
         ]);
 
