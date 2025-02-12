@@ -57,18 +57,18 @@ class AboutPageTest extends TestCase
 
         // Visit
         Visit::factory()->for($userLink)->create();
-        Visit::factory()->for($userLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => 'e6c632b61e964e1f']);
-        Visit::factory()->for($userLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => '575a0b1c44d8843f']);
+        Visit::factory()->for($userLink)->guest()
+            ->create(['user_uid' => 'foo']);
+        Visit::factory()->for($userLink)->guest()
+            ->create(['user_uid' => 'bar']);
         Visit::factory()->for($userLink)
             ->create(['user_type' => UserType::Bot, 'user_uid' => '8c40219a46b9f81b']);
 
         Visit::factory()->for($guestLink)->create();
-        Visit::factory()->for($guestLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => 'e6c632b61e964e1f']);
-        Visit::factory()->for($guestLink)
-            ->create(['user_type' => UserType::Guest, 'user_uid' => '575a0b1c44d8843f']);
+        Visit::factory()->for($guestLink)->guest()
+            ->create(['user_uid' => 'foo']);
+        Visit::factory()->for($guestLink)->guest()
+            ->create(['user_uid' => 'bar']);
         Visit::factory()->for($guestLink)
             ->create(['user_type' => UserType::Bot, 'user_uid' => '8c40219a46b9f81b']);
     }

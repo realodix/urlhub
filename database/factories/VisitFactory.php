@@ -26,4 +26,13 @@ class VisitFactory extends Factory
             'referer'        => 'https://github.com/realodix/urlhub',
         ];
     }
+
+    public function guest(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_type' => UserType::Guest,
+            ];
+        });
+    }
 }
