@@ -74,8 +74,7 @@ class Visit extends Model
     public function scopeIsGuest(Builder $query): void
     {
         $query->where('user_type', UserType::Guest)
-            // todo: remove this in the future
-            ->orWhereRaw('LENGTH(user_uid) = 16');
+            ->orWhere('user_type', UserType::Bot);
     }
 
     /**
@@ -94,13 +93,13 @@ class Visit extends Model
     public function userLinkVisitCount(): int
     {
         return self::whereHas('url', function ($query) {
-            $query->where('user_id', '!=', Url::GUEST_ID);
+            $query->where('user_type', UserType::User);
         })->count();
     }
 
     public function userVisitCount(): int
     {
-        return self::count() - $this->guestVisitCount();
+        return self::where('user_type', UserType::User)->count();
     }
 
     /**
@@ -109,7 +108,7 @@ class Visit extends Model
     public function guestUserLinkVisitCount(): int
     {
         return self::whereHas('url', function ($query) {
-            $query->where('user_id', Url::GUEST_ID);
+            $query->where('user_type', UserType::Guest);
         })->count();
     }
 

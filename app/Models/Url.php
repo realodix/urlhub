@@ -183,7 +183,7 @@ class Url extends Model
      */
     public function userUrlCount(): int
     {
-        return self::where('user_id', '!=', self::GUEST_ID)
+        return self::where('user_type', UserType::User)
             ->count();
     }
 
@@ -192,7 +192,7 @@ class Url extends Model
      */
     public function guestUserUrlCount(): int
     {
-        return self::where('user_id', self::GUEST_ID)
+        return self::where('user_type', UserType::Guest)
             ->count();
     }
 }
