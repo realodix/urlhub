@@ -6,7 +6,6 @@ use App\Enums\UserType;
 use App\Http\Requests\StoreUrlRequest;
 use App\Services\KeyGeneratorService;
 use App\Settings\GeneralSettings;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -138,17 +137,6 @@ class Url extends Model
     | General
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * Scope a query to only include visits from specific user type.
-     *
-     * @param Builder<self> $query \Illuminate\Database\Eloquent\Builder
-     * @param UserType $type \App\Enums\UserType
-     */
-    public function scopeUserType(Builder $query, UserType $type): void
-    {
-        $query->where('user_type', $type);
-    }
 
     public function getKeyword(StoreUrlRequest $request): string
     {

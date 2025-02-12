@@ -67,24 +67,13 @@ class Visit extends Model
     */
 
     /**
-     * Scope a query to only include visits from specific user type.
-     *
-     * @param Builder<self> $query \Illuminate\Database\Eloquent\Builder
-     * @param UserType $type \App\Enums\UserType
-     */
-    public function scopeUserType(Builder $query, UserType $type): void
-    {
-        $query->where('user_type', $type);
-    }
-
-    /**
      * Scope a query to only include visits from guest users.
      *
      * @param Builder<self> $query
      */
     public function scopeIsGuest(Builder $query): void
     {
-        $query->userType(UserType::Guest)
+        $query->where('user_type', UserType::Guest)
             // todo: remove this in the future
             ->orWhereRaw('LENGTH(user_uid) = 16');
     }
