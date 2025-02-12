@@ -106,7 +106,7 @@ class UrlListPageTest extends TestCase
     #[PHPUnit\Test]
     public function adminCanAccessGuestUsersLinkEditPage(): void
     {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $url = Url::factory()->guest()->create();
         $response = $this->actingAs($this->adminUser())
             ->get(route('link.edit', $url->keyword));
         $response->assertOk();
@@ -157,7 +157,7 @@ class UrlListPageTest extends TestCase
     #[PHPUnit\Test]
     public function adminCanUpdateGuestUsersLink(): void
     {
-        $url = Url::factory()->create(['user_id' => Url::GUEST_ID]);
+        $url = Url::factory()->guest()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->adminUser())
             ->from(route('link.edit', $url->keyword))

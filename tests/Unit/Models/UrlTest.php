@@ -21,6 +21,14 @@ class UrlTest extends TestCase
         $this->visit = new Visit;
     }
 
+    public function testFactory(): void
+    {
+        $m = Url::factory()->guest()->create();
+
+        $this->assertSame(Url::GUEST_ID, $m->user_id);
+        $this->assertSame(\App\Enums\UserType::Guest, $m->user_type);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Eloquent: Relationships
@@ -181,7 +189,7 @@ class UrlTest extends TestCase
         $nGuest = 4;
 
         Url::factory()->count($nUser)->create();
-        Url::factory()->count($nGuest)->create(['user_id' => Url::GUEST_ID]);
+        Url::factory()->count($nGuest)->guest()->create();
 
         $this->assertSame($nUser, $this->url->userUrlCount());
         $this->assertSame($nUser + $nGuest, $this->url->count());
@@ -194,7 +202,7 @@ class UrlTest extends TestCase
         $nGuest = 4;
 
         Url::factory()->count($nUser)->create();
-        Url::factory()->count($nGuest)->create(['user_id' => Url::GUEST_ID]);
+        Url::factory()->count($nGuest)->guest()->create();
 
         $this->assertSame($nGuest, $this->url->guestUserUrlCount());
         $this->assertSame($nUser + $nGuest, $this->url->count());
