@@ -4,8 +4,8 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ChangePasswordController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\UrlController;
-use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
@@ -42,4 +42,4 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     Route::get('/about', [DashboardController::class, 'aboutView'])->name('dboard.about');
 });
 
-Route::get('/{url:keyword}', UrlRedirectController::class);
+Route::get('/{url:keyword}', RedirectController::class);

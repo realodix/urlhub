@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Url;
-use App\Services\UrlRedirection;
+use App\Services\RedirectService;
 use App\Services\VisitorService;
 use Illuminate\Support\Facades\DB;
 
-class UrlRedirectController extends Controller
+class RedirectController extends Controller
 {
     /**
      * Redirect the client to the intended long URL (no checks are performed)
@@ -23,7 +23,7 @@ class UrlRedirectController extends Controller
         return DB::transaction(function () use ($url) {
             app(VisitorService::class)->create($url);
 
-            return app(UrlRedirection::class)->execute($url);
+            return app(RedirectService::class)->execute($url);
         });
     }
 }
