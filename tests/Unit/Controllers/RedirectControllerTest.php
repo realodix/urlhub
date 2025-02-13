@@ -7,7 +7,7 @@ use App\Models\Visit;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('controller')]
-class UrlRedirectControllerTest extends TestCase
+class RedirectControllerTest extends TestCase
 {
     public function testUrlRedirection(): void
     {

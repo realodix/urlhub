@@ -7,7 +7,7 @@ use App\Services\RedirectService;
 use App\Services\VisitorService;
 use Illuminate\Support\Facades\DB;
 
-class UrlRedirectController extends Controller
+class RedirectController extends Controller
 {
     /**
      * Redirect the client to the intended long URL (no checks are performed)
