@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Url;
 use App\Settings\GeneralSettings;
 
-class UrlRedirection
+class RedirectService
 {
     /**
      * Execute the HTTP redirect and return the redirect response.
