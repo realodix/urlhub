@@ -67,6 +67,14 @@
                     <h3 class="col-span-6 lg:col-span-5">Redirection</h3>
 
                     <div class="col-span-6 lg:col-span-5">
+                        <label class="form-label">Forwarding Query Parameters</label>
+                        <div class="font-light text-sm dark:text-dark-400">Enable this to forward query parameters appended to the short URL to the final destination URL. For example, <code>https://short.link/abc?id=123</code> will redirect to <code>https://example.com?id=123</code>.</div>
+                        <label class="switch float-right mt-6">
+                            <input type="checkbox" name="forward_query" value="1" {{ $settings->forward_query ? 'checked' : '' }}>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="col-span-6 lg:col-span-5">
                         <label class="form-label !inline">Redirection Status Code</label>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections" target="_blank">
                             @svg('icon-help', 'ml-1 hover:scale-110 text-gray-500 dark:text-amber-400')</a>
