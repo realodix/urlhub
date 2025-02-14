@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $is_custom
  * @property string $destination
  * @property string $title
+ * @property bool $forward_query
  * @property string $user_uid
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -48,6 +49,7 @@ class Url extends Model
         'is_custom',
         'destination',
         'title',
+        'forward_query',
         'user_uid',
     ];
 
@@ -60,6 +62,7 @@ class Url extends Model
             'user_id' => 'integer',
             'user_type' => UserType::class,
             'is_custom' => 'boolean',
+            'forward_query' => 'boolean',
         ];
     }
 

@@ -26,6 +26,7 @@ class UrlFactory extends Factory
             'destination' => 'https://github.com/realodix/urlhub',
             'title'       => 'No Title',
             'keyword'     => app(KeyGeneratorService::class)->randomString(),
+            'forward_query' => true,
             'is_custom'   => false,
             'user_uid'    => fake()->uuid(),
         ];

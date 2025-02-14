@@ -34,6 +34,22 @@ class RedirectControllerTest extends TestCase
 
     /**
      * Visitors are redirected to destinations without source query parameters
+     * if the option is set to false
+     */
+    public function testRedirectWithoutSourceQueryWhenOptionSetToFalse(): void
+    {
+        $url = Url::factory()->create([
+            'destination' => 'https://example.com',
+            'forward_query' => false,
+        ]);
+
+        $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
+        $response->assertRedirect($url->destination)
+            ->assertStatus(settings()->redirect_status_code);
+    }
+
+    /**
+     * Visitors are redirected to destinations without source query parameters
      * if the setting is set to false
      */
     public function testRedirectWithoutSourceQueryWhenSettingSetToFalse(): void
@@ -46,5 +62,9 @@ class RedirectControllerTest extends TestCase
         $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
         $response->assertRedirect($url->destination)
             ->assertStatus($setting->redirect_status_code);
+
+        $response = $this->actingAs($url->author)
+            ->get(route('link.edit', $url->keyword));
+        $response->assertDontSeeText('Forwarding Query');
     }
 }
