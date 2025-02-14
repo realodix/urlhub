@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Url;
 use App\Settings\GeneralSettings;
+use Illuminate\Support\Uri;
 
 class RedirectService
 {
@@ -23,6 +24,35 @@ class RedirectService
             $headers = ['Cache-Control' => 'max-age=0, must-revalidate'];
         }
 
-        return redirect()->away($url->destination, $statusCode, $headers);
+        $destinationUrl = $url->destination;
+
+        /** @var array $currentQuery */
+        $currentQuery = request()->query(); // The `$key` parameter is not filled, so it will return an `array`.
+        if (! empty($currentQuery)) {
+            $destinationUrl = $this->resolveQuery($url->destination, $currentQuery);
+        }
+
+        return redirect()->away($destinationUrl, $statusCode, $headers);
+    }
+
+    /**
+     * Resolves a URL by merging query parameters from the current request with
+     * those in the provided base URL. The base URL's parameters are retained
+     * in case of duplicates.
+     *
+     * @param string $baseUrl The base URL to which query parameters will be
+     *                        appended or merged.
+     * @param array $currentQuery Query parameters from the current request.
+     * @return string
+     */
+    public function resolveQuery($baseUrl, $currentQuery)
+    {
+        $uri = Uri::of($baseUrl);
+        $query = $uri->query()
+            ->collect()
+            ->union($currentQuery)
+            ->toArray();
+
+        return $uri->withQuery($query)->__toString();
     }
 }

@@ -7,13 +7,13 @@ use App\Services\RedirectService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+/**
+ * @see \App\Services\RedirectService
+ * @see \App\Http\Controllers\RedirectController
+ */
 #[PHPUnit\Group('services')]
 class RedirectServiceTest extends TestCase
 {
-    /**
-     * @see \App\Services\RedirectService
-     * @see \App\Http\Controllers\RedirectController
-     */
     public function testUrlRedirect()
     {
         $url = Url::factory()->create();
@@ -23,10 +23,44 @@ class RedirectServiceTest extends TestCase
         $this->assertEquals(settings()->redirect_status_code, $response->status());
     }
 
-    /**
-     * @see \App\Services\RedirectService
-     * @see \App\Http\Controllers\RedirectController
-     */
+    #[PHPUnit\DataProvider('urlWithQueryStringDataProvider')]
+    public function testUrlWithQueryString(string $destination, array $incomingQuery, string $expectedDestination): void
+    {
+        $query = app(RedirectService::class)->resolveQuery($destination, $incomingQuery);
+
+        $this->assertSame($expectedDestination, $query);
+    }
+
+    public static function urlWithQueryStringDataProvider(): array
+    {
+        return [
+            'new_query_param' => [
+                'https://example.com', ['a' => '1'], 'https://example.com?a=1',
+            ],
+            'new_query_params' => [
+                'https://example.com', ['a' => '1', 'b' => '2'], 'https://example.com?a=1&b=2',
+            ],
+            'existing_query_params' => [
+                'https://example.com?a=1', ['a' => '1'], 'https://example.com?a=1',
+            ],
+            'existing_and_new_query_params' => [
+                'https://example.com?x=y', ['a' => '1', 'b' => '2'], 'https://example.com?x=y&a=1&b=2',
+            ],
+            'duplicate_params' => [
+                'https://example.com?a=1', ['a' => '2'], 'https://example.com?a=1',
+            ],
+            'duplicate_params_and_new_query_params' => [
+                'https://example.com?a=1', ['a' => '2', 'b' => '2'], 'https://example.com?a=1&b=2',
+            ],
+            'fragment' => [
+                'https://example.com#section', ['a' => '1'], 'https://example.com?a=1#section',
+            ],
+            'special_chars' => [ // space encoding
+                'https://example.com?a=b c', ['d' => 'e'], 'https://example.com?a=b%20c&d=e',
+            ],
+        ];
+    }
+
     public function testUrlRedirectionHeadersWithMaxAge()
     {
         settings()->fill(['redirect_cache_max_age' => 3600])->save();
@@ -37,10 +71,6 @@ class RedirectServiceTest extends TestCase
         $this->assertStringContainsString('max-age=3600', $response->headers->get('Cache-Control'));
     }
 
-    /**
-     * @see \App\Services\RedirectService
-     * @see \App\Http\Controllers\RedirectController
-     */
     public function testUrlRedirectionHeadersWithMaxAgeZero()
     {
         settings()->fill(['redirect_cache_max_age' => 0])->save();
