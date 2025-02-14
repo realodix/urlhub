@@ -12,11 +12,10 @@ class RedirectControllerTest extends TestCase
     public function testUrlRedirection(): void
     {
         $url = Url::factory()->create();
-        $settings = app(\App\Settings\GeneralSettings::class);
 
         $response = $this->get(route('home') . '/' . $url->keyword);
         $response->assertRedirect($url->destination)
-            ->assertStatus($settings->redirect_status_code);
+            ->assertStatus(settings()->redirect_status_code);
 
         $this->assertCount(1, Visit::all());
     }
@@ -26,13 +25,11 @@ class RedirectControllerTest extends TestCase
      */
     public function testRedirectWithSourceQuery(): void
     {
-        $settings = app(\App\Settings\GeneralSettings::class);
-
         $url = Url::factory()->create(['destination' => 'https://example.com']);
 
         $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
         $response->assertRedirect($url->destination . '?a=1&b=2')
-            ->assertStatus($settings->redirect_status_code);
+            ->assertStatus(settings()->redirect_status_code);
     }
 
     /**
@@ -41,13 +38,13 @@ class RedirectControllerTest extends TestCase
      */
     public function testRedirectWithoutSourceQueryWhenSettingSetToFalse(): void
     {
-        $settings = app(\App\Settings\GeneralSettings::class);
-        $settings->fill(['forward_query' => false])->save();
+        $setting = app(\App\Settings\GeneralSettings::class);
+        $setting->fill(['forward_query' => false])->save();
 
         $url = Url::factory()->create(['destination' => 'https://example.com']);
 
         $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
         $response->assertRedirect($url->destination)
-            ->assertStatus($settings->redirect_status_code);
+            ->assertStatus($setting->redirect_status_code);
     }
 }
