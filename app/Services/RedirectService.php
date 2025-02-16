@@ -29,9 +29,9 @@ class RedirectService
         /** @var array $currentQuery */
         $currentQuery = request()->query(); // The `$key` parameter is not filled, so it will return an `array`.
         if (! empty($currentQuery)
-            && $settings->forward_query === true
-            && $url->author->forward_query === true
-            && $url->forward_query === true
+            && $settings->forward_query === true // The `forward_query` setting is enabled on global level
+            && $url->author->forward_query === true // The `forward_query` setting is enabled on author level
+            && $url->forward_query === true // The `forward_query` setting is enabled on URL item level
         ) {
             $destinationUrl = $this->resolveQuery($url->destination, $currentQuery);
         }
