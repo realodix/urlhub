@@ -41,8 +41,8 @@ class RedirectService
 
     /**
      * Resolves a URL by merging query parameters from the current request with
-     * those in the provided base URL. The base URL's parameters are retained
-     * in case of duplicates.
+     * those in the provided base URL. The parameter in the short link will
+     * override its counterpart in the destination URL in case of duplicates.
      *
      * @param string $baseUrl The base URL to which query parameters will be
      *                        appended or merged.
