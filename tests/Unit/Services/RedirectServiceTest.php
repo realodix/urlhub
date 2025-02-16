@@ -46,17 +46,37 @@ class RedirectServiceTest extends TestCase
             'existing_and_new_query_params' => [
                 'https://example.com?x=y', ['a' => '1', 'b' => '2'], 'https://example.com?x=y&a=1&b=2',
             ],
-            'duplicate_params' => [
-                'https://example.com?a=1', ['a' => '2'], 'https://example.com?a=1',
-            ],
-            'duplicate_params_and_new_query_params' => [
-                'https://example.com?a=1', ['a' => '2', 'b' => '2'], 'https://example.com?a=1&b=2',
-            ],
             'fragment' => [
                 'https://example.com#section', ['a' => '1'], 'https://example.com?a=1#section',
             ],
             'special_chars' => [ // space encoding
                 'https://example.com?a=b c', ['d' => 'e'], 'https://example.com?a=b%20c&d=e',
+            ],
+        ];
+    }
+
+    #[PHPUnit\DataProvider('urlWithDuplicateQueryStringDataProvider')]
+    public function testUrlWithDuplicateQueryString(string $destination, array $incomingQuery, string $expectedDestination): void
+    {
+        $query = app(RedirectService::class)->resolveQuery($destination, $incomingQuery);
+
+        $this->assertSame($expectedDestination, $query);
+    }
+
+    /**
+     * https://dub.co/help/article/parameter-passing
+     */
+    public static function urlWithDuplicateQueryStringDataProvider(): array
+    {
+        return [
+            'duplicate_params' => [
+                'https://example.com?a=1', ['a' => '2'], 'https://example.com?a=2',
+            ],
+            'duplicate_params_and_new_query_params' => [
+                'https://example.com?a=1', ['a' => '2', 'b' => '2'], 'https://example.com?a=2&b=2',
+            ],
+            'duplicate_params_and_existing_duplicate_query_params' => [
+                'https://example.com?a=1&a=2', ['a' => '2', 'b' => 'b1', 'b' => 'b2'], 'https://example.com?a=2&b=b2',
             ],
         ];
     }

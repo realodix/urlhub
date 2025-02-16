@@ -50,12 +50,6 @@ class RedirectService
      */
     public function resolveQuery($baseUrl, $currentQuery)
     {
-        $uri = Uri::of($baseUrl);
-        $query = $uri->query()
-            ->collect()
-            ->union($currentQuery)
-            ->toArray();
-
-        return $uri->withQuery($query)->__toString();
+        return Uri::of($baseUrl)->withQuery($currentQuery)->__toString();
     }
 }
