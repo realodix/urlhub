@@ -4,6 +4,7 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\Url;
 use App\Models\Visit;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('controller')]
@@ -33,10 +34,11 @@ class RedirectControllerTest extends TestCase
     }
 
     /**
-     * Visitors are redirected to destinations without source query parameters
-     * if the option is set to false
+     * It asserts that query parameters are not forwarded to the destination URL
+     * when the 'forward_query' option is explicitly set to false on the URL model.
      */
-    public function testRedirectWithoutSourceQueryWhenOptionSetToFalse(): void
+    #[PHPUnit\Test]
+    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnUrl(): void
     {
         $url = Url::factory()->create([
             'destination' => 'https://example.com',
@@ -49,10 +51,12 @@ class RedirectControllerTest extends TestCase
     }
 
     /**
-     * Visitors are redirected to destinations without source query parameters
-     * if the setting is set to false
+     * It asserts that query parameters are not forwarded to the destination URL
+     * when the global 'forward_query' setting is disabled. It also checks that
+     * the "Forwarding Query" text is not displayed on the edit page.
      */
-    public function testRedirectWithoutSourceQueryWhenSettingSetToFalse(): void
+    #[PHPUnit\Test]
+    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledGlobally(): void
     {
         $setting = app(\App\Settings\GeneralSettings::class);
         $setting->fill(['forward_query' => false])->save();
