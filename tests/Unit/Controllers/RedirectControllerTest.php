@@ -26,7 +26,7 @@ class RedirectControllerTest extends TestCase
      */
     public function testRedirectWithSourceQuery(): void
     {
-        $url = Url::factory()->create(['destination' => 'https://example.com']);
+        $url = Url::factory()->create();
 
         $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
         $response->assertRedirect($url->destination . '?a=1&b=2')
@@ -40,10 +40,7 @@ class RedirectControllerTest extends TestCase
     #[PHPUnit\Test]
     public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnUrlItem(): void
     {
-        $url = Url::factory()->create([
-            'destination' => 'https://example.com',
-            'forward_query' => false,
-        ]);
+        $url = Url::factory()->create(['forward_query' => false]);
 
         $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
         $response->assertRedirect($url->destination)
@@ -88,7 +85,7 @@ class RedirectControllerTest extends TestCase
         $setting = app(\App\Settings\GeneralSettings::class);
         $setting->fill(['forward_query' => false])->save();
 
-        $url = Url::factory()->create(['destination' => 'https://example.com']);
+        $url = Url::factory()->create();
 
         $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
         $response->assertRedirect($url->destination)
