@@ -47,7 +47,7 @@
                         <input name="long_url" required placeholder="http://www.my_long_url.com" value="{{ $url->destination }}" class="form-input">
                     </div>
 
-                    @if (settings()->forward_query)
+                    @if (settings()->forward_query && $url->author->forward_query)
                         <div class="col-span-6">
                             <label class="form-label">Forwarding Query Parameters</label>
                             <p class="font-light text-sm dark:text-dark-400">Enable this to forward query parameters appended to the short URL to the final destination URL. For example, <code class="text-slate-600">https://short.link/abc?id=123</code> will redirect to <code class="text-slate-600">https://example.com?id=123</code>.</p>
