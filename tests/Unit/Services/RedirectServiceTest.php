@@ -64,7 +64,9 @@ class RedirectServiceTest extends TestCase
     }
 
     /**
-     * https://dub.co/help/article/parameter-passing
+     * Reference:
+     * - https://dub.co/help/article/parameter-passing
+     * - https://help.short.io/en/articles/8880292
      */
     public static function urlWithDuplicateQueryStringDataProvider(): array
     {
