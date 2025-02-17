@@ -53,11 +53,18 @@ class UserController extends Controller implements HasMiddleware
     {
         Gate::authorize('update', $user);
 
-        $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ]);
+        $forwardQuery = $request->forward_query ? true : false;
 
-        $user->email = $request->email;
+        if ($user->email == $request->email) {
+            $user->forward_query = $forwardQuery;
+        } else {
+            $request->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            ]);
+            $user->email = $request->email;
+            $user->forward_query = $forwardQuery;
+        }
+
         $user->save();
 
         return redirect()->back()

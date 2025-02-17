@@ -31,9 +31,21 @@
                             <label class="form-label">{{ __('E-mail Address') }}</label>
                             <input type="email" name="email" value="{{ $user->email }}" class="form-input mt-1">
                         </div>
+                        @if (settings()->forward_query)
+                            <div class="col-span-6">
+                                <label class="form-label">Parameter Passing</label>
+                                <p class="font-light text-sm dark:text-dark-400">Forward query parameters from your short link to the destination URL. For example, <code class="text-slate-600">https://short.link/abc?utm_medium=social</code> will redirect to <code class="text-slate-600">https://example.com?utm_medium=social</code>.</p>
+                                <label class="switch float-right mt-6">
+                                    <input type="checkbox" name="forward_query" value="1" {{ $user->forward_query ? 'checked' : '' }}>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        @else
+                            <input type="hidden" name="forward_query" value="{{ $user->forward_query ? true : false }}">
+                        @endif
                     </div>
 
-                    <div class="flex items-center justify-end mt-4 text-right">
+                    <div class="flex items-center justify-end mt-8 text-right">
                         <button type="submit" class="btn btn-primary btn-sm">
                             {{ __('Save') }}
                         </button>

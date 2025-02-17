@@ -18,6 +18,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $two_factor_secret
  * @property string $two_factor_recovery_codes
  * @property string $remember_token
+ * @property bool $forward_query
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property Url $urls
@@ -34,6 +35,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        'forward_query',
     ];
 
     /**
@@ -50,6 +52,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'forward_query' => 'boolean',
         ];
     }
 

@@ -5,6 +5,7 @@ namespace Tests\Feature\FrontPage\ShortenUrl;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Mockery\MockInterface;
+use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
 #[\PHPUnit\Framework\Attributes\Group('front-page')]
@@ -14,7 +15,24 @@ class CreateShortLinkTest extends TestCase
      * Users shorten the URLs, they don't fill in the custom keyword field. The
      * is_custom column (Urls table) must be filled with 0 / false.
      */
+    #[PHPUnit\Group('forward-query')]
     public function testShortenUrl(): void
+    {
+        $longUrl = 'https://laravel.com';
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), [
+                'long_url' => $longUrl,
+            ]);
+
+        $url = Url::where('destination', $longUrl)->first();
+
+        $response->assertRedirectToRoute('link_detail', $url->keyword);
+        $this->assertFalse($url->is_custom);
+        $this->assertTrue($url->forward_query);
+    }
+
+    #[PHPUnit\Group('forward-query')]
+    public function testGuestCanShortenUrl(): void
     {
         $longUrl = 'https://laravel.com';
         $response = $this->post(route('link.create'), [
@@ -25,6 +43,7 @@ class CreateShortLinkTest extends TestCase
 
         $response->assertRedirectToRoute('link_detail', $url->keyword);
         $this->assertFalse($url->is_custom);
+        $this->assertFalse($url->forward_query);
     }
 
     /**
