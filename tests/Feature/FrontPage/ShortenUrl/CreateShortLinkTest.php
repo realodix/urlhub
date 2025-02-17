@@ -20,9 +20,7 @@ class CreateShortLinkTest extends TestCase
     {
         $longUrl = 'https://laravel.com';
         $response = $this->actingAs($this->basicUser())
-            ->post(route('link.create'), [
-                'long_url' => $longUrl,
-            ]);
+            ->post(route('link.create'), ['long_url' => $longUrl]);
 
         $url = Url::where('destination', $longUrl)->first();
 
@@ -35,9 +33,7 @@ class CreateShortLinkTest extends TestCase
     public function testGuestCanShortenUrl(): void
     {
         $longUrl = 'https://laravel.com';
-        $response = $this->post(route('link.create'), [
-            'long_url' => $longUrl,
-        ]);
+        $response = $this->post(route('link.create'), ['long_url' => $longUrl]);
 
         $url = Url::where('destination', $longUrl)->first();
 
@@ -57,20 +53,22 @@ class CreateShortLinkTest extends TestCase
 
         $customKey = 'foobar';
         settings()->fill(['keyword_length' => strlen($customKey) + 1])->save();
-        $response = $this->post(route('link.create'), [
-            'long_url'   => $longUrl,
-            'custom_key' => $customKey,
-        ]);
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), [
+                'long_url'   => $longUrl,
+                'custom_key' => $customKey,
+            ]);
         $response->assertRedirectToRoute('link_detail', $customKey);
         $url = Url::where('destination', $longUrl)->first();
         $this->assertTrue($url->is_custom);
 
         $customKey = 'barfoo';
         settings()->fill(['keyword_length' => strlen($customKey) - 1])->save();
-        $response = $this->post(route('link.create'), [
-            'long_url'   => $longUrl,
-            'custom_key' => $customKey,
-        ]);
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), [
+                'long_url'   => $longUrl,
+                'custom_key' => $customKey,
+            ]);
         $response->assertRedirectToRoute('link_detail', $customKey);
         $url = Url::where('destination', $longUrl)->first();
         $this->assertTrue($url->is_custom);
@@ -93,7 +91,8 @@ class CreateShortLinkTest extends TestCase
             $mock->shouldReceive('remainingCapacity')->andReturn(0);
         });
 
-        $response = $this->post(route('link.create'), ['long_url' => 'https://laravel.com']);
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), ['long_url' => 'https://laravel.com']);
         $response
             ->assertRedirectToRoute('home')
             ->assertSessionHas('flash_error');
@@ -101,13 +100,15 @@ class CreateShortLinkTest extends TestCase
 
     public function testShortenUrlWithInternalLink(): void
     {
-        $response = $this->post(route('link.create'), ['long_url' => request()->getHost()]);
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), ['long_url' => request()->getHost()]);
         $response
             ->assertRedirectToRoute('home')
             ->assertSessionHas('flash_error');
         $this->assertCount(0, Url::all());
 
-        $response = $this->post(route('link.create'), ['long_url' => config('app.url')]);
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), ['long_url' => config('app.url')]);
         $response
             ->assertRedirectToRoute('home')
             ->assertSessionHas('flash_error');
@@ -127,10 +128,11 @@ class CreateShortLinkTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->post(route('link.create'), [
-            'long_url'   => 'https://laravel-news.com',
-            'custom_key' => $url->keyword,
-        ]);
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), [
+                'long_url'   => 'https://laravel-news.com',
+                'custom_key' => $url->keyword,
+            ]);
 
         $response
             ->assertRedirectToRoute('home')
