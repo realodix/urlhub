@@ -17,6 +17,21 @@ class CreateShortLinkTest extends TestCase
     public function testShortenUrl(): void
     {
         $longUrl = 'https://laravel.com';
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('link.create'), [
+                'long_url' => $longUrl,
+            ]);
+
+        $url = Url::where('destination', $longUrl)->first();
+
+        $response->assertRedirectToRoute('link_detail', $url->keyword);
+        $this->assertFalse($url->is_custom);
+        $this->assertTrue($url->forward_query);
+    }
+
+    public function testGuestCanShortenUrl(): void
+    {
+        $longUrl = 'https://laravel.com';
         $response = $this->post(route('link.create'), [
             'long_url' => $longUrl,
         ]);
@@ -25,6 +40,7 @@ class CreateShortLinkTest extends TestCase
 
         $response->assertRedirectToRoute('link_detail', $url->keyword);
         $this->assertFalse($url->is_custom);
+        $this->assertFalse($url->forward_query);
     }
 
     /**

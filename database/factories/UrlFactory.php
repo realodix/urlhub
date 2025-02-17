@@ -38,6 +38,7 @@ class UrlFactory extends Factory
             return [
                 'user_id' => Url::GUEST_ID,
                 'user_type' => UserType::Guest,
+                'forward_query' => false,
             ];
         });
     }

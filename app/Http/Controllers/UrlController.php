@@ -35,6 +35,7 @@ class UrlController extends Controller implements HasMiddleware
             'title'     => app(Url::class)->getWebTitle($request->long_url),
             'keyword'   => app(Url::class)->getKeyword($request),
             'is_custom' => isset($request->custom_key) ? true : false,
+            'forward_query' => auth()->check() ? true : false,
             'user_uid'  => $userService->signature(),
         ]);
 
