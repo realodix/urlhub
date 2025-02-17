@@ -24,6 +24,7 @@ class RedirectControllerTest extends TestCase
     /**
      * Visitors are redirected to destinations with source query parameters
      */
+    #[PHPUnit\Group('forward-query')]
     public function testRedirectWithSourceQuery(): void
     {
         $url = Url::factory()->create();
@@ -38,6 +39,7 @@ class RedirectControllerTest extends TestCase
      * when the 'forward_query' option is explicitly set to false on the URL item.
      */
     #[PHPUnit\Test]
+    #[PHPUnit\Group('forward-query')]
     public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnUrlItem(): void
     {
         $url = Url::factory()->create(['forward_query' => false]);
@@ -55,6 +57,7 @@ class RedirectControllerTest extends TestCase
      * - the "Forwarding Query" text is not displayed on the url edit page.
      */
     #[PHPUnit\Test]
+    #[PHPUnit\Group('forward-query')]
     public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnAuthor(): void
     {
         $url = Url::factory()
@@ -80,6 +83,7 @@ class RedirectControllerTest extends TestCase
      * - the "Forwarding Query" text is not displayed on the url edit page.
      */
     #[PHPUnit\Test]
+    #[PHPUnit\Group('forward-query')]
     public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledGlobally(): void
     {
         $setting = app(\App\Settings\GeneralSettings::class);

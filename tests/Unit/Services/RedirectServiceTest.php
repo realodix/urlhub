@@ -23,6 +23,7 @@ class RedirectServiceTest extends TestCase
         $this->assertEquals(settings()->redirect_status_code, $response->status());
     }
 
+    #[PHPUnit\Group('forward-query')]
     #[PHPUnit\DataProvider('urlWithQueryStringDataProvider')]
     public function testUrlWithQueryString(string $destination, array $incomingQuery, string $expectedDestination): void
     {
@@ -55,6 +56,7 @@ class RedirectServiceTest extends TestCase
         ];
     }
 
+    #[PHPUnit\Group('forward-query')]
     #[PHPUnit\DataProvider('urlWithDuplicateQueryStringDataProvider')]
     public function testUrlWithDuplicateQueryString(string $destination, array $incomingQuery, string $expectedDestination): void
     {
