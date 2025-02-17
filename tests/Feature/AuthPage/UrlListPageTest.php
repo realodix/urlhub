@@ -4,6 +4,7 @@ namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
 use PHPUnit\Framework\Attributes as PHPUnit;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('auth-page')]
@@ -138,10 +139,10 @@ class UrlListPageTest extends TestCase
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->adminUser())
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => $url->title,
-                'long_url' => $newLongUrl,
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['long_url' => $newLongUrl]),
+            );
 
         $response
             ->assertRedirectToRoute('dboard.allurl')
@@ -161,10 +162,10 @@ class UrlListPageTest extends TestCase
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->adminUser())
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => $url->title,
-                'long_url' => $newLongUrl,
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['long_url' => $newLongUrl]),
+            );
 
         $response
             ->assertRedirectToRoute('dboard.allurl.u-guest')
@@ -188,10 +189,10 @@ class UrlListPageTest extends TestCase
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($this->basicUser())
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => $url->title,
-                'long_url' => $newLongUrl,
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['long_url' => $newLongUrl]),
+            );
 
         $response->assertForbidden();
         $this->assertNotSame($newLongUrl, $url->fresh()->destination);

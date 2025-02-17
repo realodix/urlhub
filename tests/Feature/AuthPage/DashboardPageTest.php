@@ -4,6 +4,7 @@ namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
 use PHPUnit\Framework\Attributes as PHPUnit;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('auth-page')]
@@ -68,10 +69,10 @@ class DashboardPageTest extends TestCase
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => $url->title,
-                'long_url' => $newLongUrl,
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['long_url' => $newLongUrl]),
+            );
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -87,10 +88,12 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => str_repeat('a', Url::TITLE_LENGTH + 1),
-                'long_url' => 'https://laravel.com/',
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, [
+                    'title' => str_repeat('a', Url::TITLE_LENGTH + 1)],
+                ),
+            );
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
@@ -105,10 +108,10 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => 'Laravel',
-                'long_url' => 'invalid-url',
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['long_url' => 'invalid-url']),
+            );
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
@@ -123,10 +126,12 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => 'Laravel',
-                'long_url' => 'https://laravel.com/' . str_repeat('a', 65536),
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, [
+                    'long_url' => 'https://laravel.com/' . str_repeat('a', 65535),
+                ]),
+            );
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
@@ -142,10 +147,10 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(route('link.update', $url->keyword), [
-                'title'    => 'Laravel',
-                'long_url' => 'https://t.co/about',
-            ]);
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['long_url' => 'https://t.co/about']),
+            );
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
