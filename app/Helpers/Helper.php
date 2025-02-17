@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use Composer\Pcre\Preg;
+use Illuminate\Support\Str;
+use Illuminate\Support\Uri;
 
 class Helper
 {
@@ -37,7 +39,7 @@ class Helper
         bool $trailingSlash = true,
         int $maxHostLength = 45,
     ) {
-        $uri = \Illuminate\Support\Uri::of($value);
+        $uri = Uri::of($value);
         $schemePrefix = $scheme && $uri->scheme() ? $uri->scheme() . '://' : '';
 
         // Strip scheme if not required
@@ -66,7 +68,7 @@ class Helper
                 return $firstHalf . $trimMarker . $secondHalf;
             }
 
-            return \Illuminate\Support\Str::limit($value, $adjustedLimit, $trimMarker);
+            return Str::limit($value, $adjustedLimit, $trimMarker);
         }
 
         return $value;

@@ -15,12 +15,10 @@ class UrlHubLinkChecker
      */
     public function handle(Request $request, \Closure $next)
     {
-        $appUrl = Uri::of(config('app.url'));
-
         // Check if the long URL contains the current host or the app URL
         if (
             str_contains($request->long_url, $request->getHost())
-            || str_contains($request->long_url, $appUrl->host())
+            || str_contains($request->long_url, Uri::of(config('app.url'))->host())
         ) {
             return redirect()->back()
                 ->with('flash_error', __('Sorry, we do not allow shortening internal links.'));
