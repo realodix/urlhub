@@ -67,8 +67,8 @@
                     <h3 class="col-span-6 lg:col-span-5">Redirection</h3>
 
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-label">Forwarding Query Parameters</label>
-                        <div class="font-light text-sm dark:text-dark-400">Enable this to forward query parameters appended to the short URL to the final destination URL. For example, <code class="text-slate-600">https://short.link/abc?id=123</code> will redirect to <code class="text-slate-600">https://example.com?id=123</code>.</div>
+                        <label class="form-label">Parameter Passing</label>
+                        <div class="font-light text-sm dark:text-dark-400">Enable this to attach UTM parameters – or any other query parameter – to your short link and they're passed on to the destination URL. For example, <code class="text-slate-600">https://short.link/abc?utm_medium=social</code> will redirect to <code class="text-slate-600">https://example.com?utm_medium=social</code>.</div>
                         <label class="switch float-right mt-6">
                             <input type="checkbox" name="forward_query" value="1" {{ $settings->forward_query ? 'checked' : '' }}>
                             <span class="slider"></span>
