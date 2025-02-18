@@ -95,7 +95,7 @@
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
                     $urlCount = $url->count();
-                    $userUrlCount = $url->userUrlCount();
+                    $userLinks = $url->userLinks();
                     $userLinkVisits = $visit->userLinkVisits();
                     $guestUrlCount = $url->guestLinks();
                     $guestLinkVisits = $visit->guestLinkVisits();
@@ -114,7 +114,7 @@
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($userUrlCount) }}">{{ n_abb($userUrlCount) }}</span>
+                        <span title="{{ number_format($userLinks) }}">{{ n_abb($userLinks) }}</span>
                         <span title="{{ number_format($userLinkVisits) }}">({{ n_abb($userLinkVisits) }} visits)</span>
                     </dd>
                 </div>

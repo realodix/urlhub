@@ -26,7 +26,7 @@ class AboutPageTest extends TestCase
 
     // ..
     const URL_COUNT = 2;
-    const USER_URL_COUNT = 1;
+    const USER_LINKS = 1;
     const USER_LINK_VISITS = 4;
     const GUEST_LINKS = 1;
     const GUEST_LINK_VISITS = 4;
@@ -143,9 +143,9 @@ class AboutPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userUrlCount(): void
+    public function userLinks(): void
     {
-        $this->assertSame(self::USER_URL_COUNT, $this->url->userUrlCount());
+        $this->assertSame(self::USER_LINKS, $this->url->userLinks());
     }
 
     #[PHPUnit\Test]

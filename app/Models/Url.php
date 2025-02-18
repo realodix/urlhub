@@ -182,9 +182,9 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by all users.
+     * The number of short links created by all registered users.
      */
-    public function userUrlCount(): int
+    public function userLinks(): int
     {
         return self::where('user_type', UserType::User)
             ->count();
