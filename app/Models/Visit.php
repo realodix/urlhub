@@ -78,7 +78,7 @@ class Visit extends Model
     }
 
     /**
-     * Number of link visits from the currently logged-in user.
+     * Jumlah klik dari link yang dibuat oleh auth user saat ini
      */
     public function authUserLinkVisitCount(): int
     {
@@ -88,7 +88,7 @@ class Visit extends Model
     }
 
     /**
-     * Number of user link visits.
+     * Jumlah klik dari link yang dibuat oleh semua user
      */
     public function userLinkVisitCount(): int
     {
@@ -97,13 +97,8 @@ class Visit extends Model
         })->count();
     }
 
-    public function userVisitCount(): int
-    {
-        return self::where('user_type', UserType::User)->count();
-    }
-
     /**
-     * Number of guest user link visits.
+     * Jumlah klik dari link yang dibuat oleh semua guest user
      */
     public function guestUserLinkVisitCount(): int
     {
@@ -112,11 +107,25 @@ class Visit extends Model
         })->count();
     }
 
+    /**
+     * Jumlah klik yang dibuat oleh semua user
+     */
+    public function userVisitCount(): int
+    {
+        return self::where('user_type', UserType::User)->count();
+    }
+
+    /**
+     * Jumlah klik yang dibuat oleh semua guest user
+     */
     public function guestVisitCount(): int
     {
         return self::isGuest()->count();
     }
 
+    /**
+     * Jumlah klik yang dibuat oleh semua guest user yang unik
+     */
     public function uniqueGuestVisitCount(): int
     {
         return self::isGuest()
