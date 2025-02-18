@@ -83,9 +83,8 @@ class Visit extends Model
      */
     public function authUserLinkVisits(): int
     {
-        return self::whereHas('url', function ($query) {
-            $query->where('user_id', auth()->id());
-        })->count();
+        return self::whereRelation('url', 'user_id', auth()->id())
+            ->count();
     }
 
     /**
@@ -93,9 +92,8 @@ class Visit extends Model
      */
     public function userLinkVisits(): int
     {
-        return self::whereHas('url', function ($query) {
-            $query->where('user_type', UserType::User);
-        })->count();
+        return self::whereRelation('url', 'user_type', UserType::User)
+            ->count();
     }
 
     /**
@@ -103,9 +101,8 @@ class Visit extends Model
      */
     public function guestLinkVisits(): int
     {
-        return self::whereHas('url', function ($query) {
-            $query->where('user_type', UserType::Guest);
-        })->count();
+        return self::whereRelation('url', 'user_type', UserType::Guest)
+            ->count();
     }
 
     /**
