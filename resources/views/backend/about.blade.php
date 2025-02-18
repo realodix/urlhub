@@ -69,7 +69,7 @@
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
                     $userCount = $user->count();
-                    $guestUserCount = $user->totalGuestUsers();
+                    $guestUserCount = $user->guestUserCount();
                 @endphp
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">

@@ -79,9 +79,9 @@ class User extends Authenticatable
     */
 
     /*
-     * Count the total number of guest users
+     * The number of guest users.
      */
-    public function totalGuestUsers(): int
+    public function guestUserCount(): int
     {
         return Url::where('user_type', UserType::Guest)
             ->distinct('user_uid')

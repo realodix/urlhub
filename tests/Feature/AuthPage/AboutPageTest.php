@@ -127,7 +127,7 @@ class AboutPageTest extends TestCase
     #[PHPUnit\Test]
     public function guestUserCount(): void
     {
-        $this->assertSame(self::USER_GUEST_COUNT, $this->user->totalGuestUsers());
+        $this->assertSame(self::USER_GUEST_COUNT, $this->user->guestUserCount());
     }
 
     /*

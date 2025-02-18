@@ -25,19 +25,19 @@ class UserTest extends TestCase
      * Jumlah tamu yang memiliki tanda tangan yang berbeda.
      */
     #[PHPUnit\Test]
-    public function totalGuestUsers(): void
+    public function guestUserCount(): void
     {
         Url::factory()->count(2)->guest()->create();
-        $this->assertSame(2, (new User)->totalGuestUsers());
+        $this->assertSame(2, (new User)->guestUserCount());
     }
 
     /**
      * Semua tamu yang memiliki tanda tangan yang identik, harus disatukan.
      */
     #[PHPUnit\Test]
-    public function totalGuestUsers2(): void
+    public function guestUserCount2(): void
     {
         Url::factory()->count(5)->guest()->create(['user_uid' => 'foo']);
-        $this->assertSame(1, (new User)->totalGuestUsers());
+        $this->assertSame(1, (new User)->guestUserCount());
     }
 }
