@@ -156,7 +156,7 @@
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                         <span title="{{ number_format($visit->guestVisitCount()) }}">{{ n_abb($visit->guestVisitCount()) }}</span>
                         /
-                        <span title="{{ number_format($visit->uniqueGuestVisitCount()) }}">{{ n_abb($visit->uniqueGuestVisitCount()) }}</span>
+                        <span title="{{ number_format($visit->uniqueGuestVisits()) }}">{{ n_abb($visit->uniqueGuestVisits()) }}</span>
                     </dd>
                 </div>
             </dl>

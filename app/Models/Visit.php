@@ -125,9 +125,9 @@ class Visit extends Model
     }
 
     /**
-     * Jumlah klik yang dibuat oleh semua guest user yang unik
+     * Total unique guest users who clicked on a link.
      */
-    public function uniqueGuestVisitCount(): int
+    public function uniqueGuestVisits(): int
     {
         return self::isGuest()
             ->distinct('user_uid')
