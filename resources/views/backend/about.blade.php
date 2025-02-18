@@ -94,11 +94,11 @@
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
-                    $urlCount = $url->count();
-                    $userUrlCount = $url->userUrlCount();
-                    $userLinkVisitCount = $visit->userLinkVisitCount();
-                    $guestUrlCount = $url->guestUserUrlCount();
-                    $guestUserLinkVisitCount = $visit->guestUserLinkVisitCount();
+                    $linkCount = $url->count();
+                    $userLinks = $url->userLinks();
+                    $userLinkVisits = $visit->userLinkVisits();
+                    $guestUrlCount = $url->guestLinks();
+                    $guestLinkVisits = $visit->guestLinkVisits();
                 @endphp
 
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
@@ -106,7 +106,7 @@
                         Total
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($urlCount) }}">{{ n_abb($urlCount) }}</span>
+                        <span title="{{ number_format($linkCount) }}">{{ n_abb($linkCount) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
@@ -114,8 +114,8 @@
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($userUrlCount) }}">{{ n_abb($userUrlCount) }}</span>
-                        <span title="{{ number_format($userLinkVisitCount) }}">({{ n_abb($userLinkVisitCount) }} visits)</span>
+                        <span title="{{ number_format($userLinks) }}">{{ n_abb($userLinks) }}</span>
+                        <span title="{{ number_format($userLinkVisits) }}">({{ n_abb($userLinkVisits) }} visits)</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
@@ -124,7 +124,7 @@
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                         <span title="{{ number_format($guestUrlCount) }}">{{ n_abb($guestUrlCount) }}</span>
-                        <span title="{{ number_format($guestUserLinkVisitCount) }}">({{ n_abb($guestUserLinkVisitCount) }} visits)</span>
+                        <span title="{{ number_format($guestLinkVisits) }}">({{ n_abb($guestLinkVisits) }} visits)</span>
                     </dd>
                 </div>
             </dl>
@@ -146,7 +146,7 @@
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($visit->userVisitCount()) }}">{{ n_abb($visit->userVisitCount()) }}</span>
+                        <span title="{{ number_format($visit->userVisits()) }}">{{ n_abb($visit->userVisits()) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
@@ -154,9 +154,9 @@
                         Guest
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($visit->guestVisitCount()) }}">{{ n_abb($visit->guestVisitCount()) }}</span>
+                        <span title="{{ number_format($visit->guestVisits()) }}">{{ n_abb($visit->guestVisits()) }}</span>
                         /
-                        <span title="{{ number_format($visit->uniqueGuestVisitCount()) }}">{{ n_abb($visit->uniqueGuestVisitCount()) }}</span>
+                        <span title="{{ number_format($visit->uniqueGuestVisits()) }}">{{ n_abb($visit->uniqueGuestVisits()) }}</span>
                     </dd>
                 </div>
             </dl>

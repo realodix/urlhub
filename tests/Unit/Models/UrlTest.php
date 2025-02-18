@@ -168,7 +168,7 @@ class UrlTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function authUserUrlCount(): void
+    public function authUserLinks(): void
     {
         $user = $this->basicUser();
         $nCurrentUser = 8;
@@ -178,12 +178,12 @@ class UrlTest extends TestCase
         Url::factory()->count($nUser)->create();
 
         $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->url->authUserUrlCount());
+        $this->assertSame($nCurrentUser, $this->url->authUserLinks());
         $this->assertSame($nUser + $nCurrentUser, $this->url->count());
     }
 
     #[PHPUnit\Test]
-    public function userUrlCount(): void
+    public function userLinks(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -191,12 +191,12 @@ class UrlTest extends TestCase
         Url::factory()->count($nUser)->create();
         Url::factory()->count($nGuest)->guest()->create();
 
-        $this->assertSame($nUser, $this->url->userUrlCount());
+        $this->assertSame($nUser, $this->url->userLinks());
         $this->assertSame($nUser + $nGuest, $this->url->count());
     }
 
     #[PHPUnit\Test]
-    public function guestUserUrlCount(): void
+    public function guestLinks(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -204,7 +204,7 @@ class UrlTest extends TestCase
         Url::factory()->count($nUser)->create();
         Url::factory()->count($nGuest)->guest()->create();
 
-        $this->assertSame($nGuest, $this->url->guestUserUrlCount());
+        $this->assertSame($nGuest, $this->url->guestLinks());
         $this->assertSame($nUser + $nGuest, $this->url->count());
     }
 

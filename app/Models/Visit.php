@@ -78,9 +78,10 @@ class Visit extends Model
     }
 
     /**
-     * Number of link visits from the currently logged-in user.
+     * The number of clicks from links created by the currently authenticated
+     * user.
      */
-    public function authUserLinkVisitCount(): int
+    public function authUserLinkVisits(): int
     {
         return self::whereHas('url', function ($query) {
             $query->where('user_id', auth()->id());
@@ -88,36 +89,45 @@ class Visit extends Model
     }
 
     /**
-     * Number of user link visits.
+     * The number of clicks from links created by all registered users.
      */
-    public function userLinkVisitCount(): int
+    public function userLinkVisits(): int
     {
         return self::whereHas('url', function ($query) {
             $query->where('user_type', UserType::User);
         })->count();
     }
 
-    public function userVisitCount(): int
-    {
-        return self::where('user_type', UserType::User)->count();
-    }
-
     /**
-     * Number of guest user link visits.
+     * The number of clicks from links created by all guest users.
      */
-    public function guestUserLinkVisitCount(): int
+    public function guestLinkVisits(): int
     {
         return self::whereHas('url', function ($query) {
             $query->where('user_type', UserType::Guest);
         })->count();
     }
 
-    public function guestVisitCount(): int
+    /**
+     *  Total users who clicked on a link.
+     */
+    public function userVisits(): int
+    {
+        return self::where('user_type', UserType::User)->count();
+    }
+
+    /**
+     * Total guest users who clicked on a link.
+     */
+    public function guestVisits(): int
     {
         return self::isGuest()->count();
     }
 
-    public function uniqueGuestVisitCount(): int
+    /**
+     * Total unique guest users who clicked on a link.
+     */
+    public function uniqueGuestVisits(): int
     {
         return self::isGuest()
             ->distinct('user_uid')

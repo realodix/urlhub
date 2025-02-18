@@ -173,27 +173,27 @@ class Url extends Model
     }
 
     /**
-     * Total short URLs that have been created by the currently logged-in user.
+     * The number of short links created by the currently logged-in user.
      */
-    public function authUserUrlCount(): int
+    public function authUserLinks(): int
     {
         return self::where('user_id', auth()->id())
             ->count();
     }
 
     /**
-     * Total short URLs that have been created by all users.
+     * The number of short links created by all registered users.
      */
-    public function userUrlCount(): int
+    public function userLinks(): int
     {
         return self::where('user_type', UserType::User)
             ->count();
     }
 
     /**
-     * Total short URLs that have been created by all guest users.
+     * The number of short links created by all guest users.
      */
-    public function guestUserUrlCount(): int
+    public function guestLinks(): int
     {
         return self::where('user_type', UserType::Guest)
             ->count();

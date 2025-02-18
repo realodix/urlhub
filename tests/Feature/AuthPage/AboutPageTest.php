@@ -26,16 +26,16 @@ class AboutPageTest extends TestCase
 
     // ..
     const URL_COUNT = 2;
-    const USER_URL_COUNT = 1;
-    const USER_LINK_VISIT_COUNT = 4;
-    const GUEST_URL_COUNT = 1;
-    const GUEST_LINK_VISIT_COUNT = 4;
+    const USER_LINKS = 1;
+    const USER_LINK_VISITS = 4;
+    const GUEST_LINKS = 1;
+    const GUEST_LINK_VISITS = 4;
 
     // ..
     const VISIT_COUNT = 8;
-    const USER_VISIT_COUNT = 2;
-    const GUEST_VISIT_COUNT = 6;
-    const UNIQUE_GUEST_VISIT_COUNT = 3;
+    const USER_VISITS = 2;
+    const GUEST_VISITS = 6;
+    const UNIQUE_GUEST_VISITS = 3;
 
     // ..
     const KEYWORD_COUNT = 1;
@@ -143,15 +143,15 @@ class AboutPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userUrlCount(): void
+    public function userLinks(): void
     {
-        $this->assertSame(self::USER_URL_COUNT, $this->url->userUrlCount());
+        $this->assertSame(self::USER_LINKS, $this->url->userLinks());
     }
 
     #[PHPUnit\Test]
-    public function guestUserUrlCount(): void
+    public function guestLinks(): void
     {
-        $this->assertSame(self::GUEST_URL_COUNT, $this->url->guestUserUrlCount());
+        $this->assertSame(self::GUEST_LINKS, $this->url->guestLinks());
     }
 
     /*
@@ -167,33 +167,33 @@ class AboutPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userLinkVisitCount(): void
+    public function userLinkVisits(): void
     {
-        $this->assertSame(self::USER_LINK_VISIT_COUNT, $this->visit->userLinkVisitCount());
+        $this->assertSame(self::USER_LINK_VISITS, $this->visit->userLinkVisits());
     }
 
     #[PHPUnit\Test]
-    public function guestUserLinkVisitCount(): void
+    public function guestLinkVisits(): void
     {
-        $this->assertSame(self::GUEST_LINK_VISIT_COUNT, $this->visit->guestUserLinkVisitCount());
+        $this->assertSame(self::GUEST_LINK_VISITS, $this->visit->guestLinkVisits());
     }
 
     #[PHPUnit\Test]
-    public function userVisitCount(): void
+    public function userVisits(): void
     {
-        $this->assertSame(self::USER_VISIT_COUNT, $this->visit->userVisitCount());
+        $this->assertSame(self::USER_VISITS, $this->visit->userVisits());
     }
 
     #[PHPUnit\Test]
-    public function guestVisitCount(): void
+    public function guestVisits(): void
     {
-        $this->assertSame(self::GUEST_VISIT_COUNT, $this->visit->guestVisitCount());
+        $this->assertSame(self::GUEST_VISITS, $this->visit->guestVisits());
     }
 
     #[PHPUnit\Test]
-    public function uniqueGuestVisitCount(): void
+    public function uniqueGuestVisits(): void
     {
-        $this->assertSame(self::UNIQUE_GUEST_VISIT_COUNT, $this->visit->uniqueGuestVisitCount());
+        $this->assertSame(self::UNIQUE_GUEST_VISITS, $this->visit->uniqueGuestVisits());
     }
 
     /*

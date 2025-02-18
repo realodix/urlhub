@@ -35,7 +35,7 @@ class VisitTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function authUserLinkVisitCount(): void
+    public function authUserLinkVisits(): void
     {
         $user = $this->basicUser();
         $nCurrentUser = 8;
@@ -49,12 +49,12 @@ class VisitTest extends TestCase
             ->create();
 
         $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->visit->authUserLinkVisitCount());
-        $this->assertSame($nCurrentUser + $nUser, $this->visit->userLinkVisitCount());
+        $this->assertSame($nCurrentUser, $this->visit->authUserLinkVisits());
+        $this->assertSame($nCurrentUser + $nUser, $this->visit->userLinkVisits());
     }
 
     #[PHPUnit\Test]
-    public function userLinkVisitCount(): void
+    public function userLinkVisits(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -67,12 +67,12 @@ class VisitTest extends TestCase
             ->for(Url::factory()->guest())
             ->create();
 
-        $this->assertSame($nUser, $this->visit->userLinkVisitCount());
+        $this->assertSame($nUser, $this->visit->userLinkVisits());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 
     #[PHPUnit\Test]
-    public function guestUserLinkVisitCount(): void
+    public function guestLinkVisits(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -85,32 +85,32 @@ class VisitTest extends TestCase
             ->for(Url::factory()->guest())
             ->create();
 
-        $this->assertSame($nGuest, $this->visit->guestUserLinkVisitCount());
+        $this->assertSame($nGuest, $this->visit->guestLinkVisits());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 
     #[PHPUnit\Test]
-    public function userVisitCount()
+    public function userVisits()
     {
         $this->visitCountData();
 
-        $this->assertEquals(1, $this->visit->userVisitCount());
+        $this->assertEquals(1, $this->visit->userVisits());
     }
 
     #[PHPUnit\Test]
-    public function guestVisitCount()
+    public function guestVisits()
     {
         $this->visitCountData();
 
-        $this->assertEquals(5, $this->visit->guestVisitCount());
+        $this->assertEquals(5, $this->visit->guestVisits());
     }
 
     #[PHPUnit\Test]
-    public function uniqueGuestVisitCount()
+    public function uniqueGuestVisits()
     {
         $this->visitCountData();
 
-        $this->assertEquals(3, $this->visit->uniqueGuestVisitCount());
+        $this->assertEquals(3, $this->visit->uniqueGuestVisits());
     }
 
     private function visitCountData()
