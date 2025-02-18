@@ -117,9 +117,9 @@ class Visit extends Model
     }
 
     /**
-     * Jumlah klik yang dibuat oleh semua guest user
+     * Total guest users who clicked on a link.
      */
-    public function guestVisitCount(): int
+    public function guestVisits(): int
     {
         return self::isGuest()->count();
     }

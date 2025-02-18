@@ -98,11 +98,11 @@ class VisitTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function guestVisitCount()
+    public function guestVisits()
     {
         $this->visitCountData();
 
-        $this->assertEquals(5, $this->visit->guestVisitCount());
+        $this->assertEquals(5, $this->visit->guestVisits());
     }
 
     #[PHPUnit\Test]

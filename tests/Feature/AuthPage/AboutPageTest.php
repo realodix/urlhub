@@ -34,7 +34,7 @@ class AboutPageTest extends TestCase
     // ..
     const VISIT_COUNT = 8;
     const USER_VISITS = 2;
-    const GUEST_VISIT_COUNT = 6;
+    const GUEST_VISITS = 6;
     const UNIQUE_GUEST_VISITS = 3;
 
     // ..
@@ -185,9 +185,9 @@ class AboutPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function guestVisitCount(): void
+    public function guestVisits(): void
     {
-        $this->assertSame(self::GUEST_VISIT_COUNT, $this->visit->guestVisitCount());
+        $this->assertSame(self::GUEST_VISITS, $this->visit->guestVisits());
     }
 
     #[PHPUnit\Test]
