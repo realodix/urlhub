@@ -72,7 +72,7 @@ class VisitTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function guestUserLinkVisitCount(): void
+    public function guestLinkVisits(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -85,7 +85,7 @@ class VisitTest extends TestCase
             ->for(Url::factory()->guest())
             ->create();
 
-        $this->assertSame($nGuest, $this->visit->guestUserLinkVisitCount());
+        $this->assertSame($nGuest, $this->visit->guestLinkVisits());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 

@@ -29,7 +29,7 @@ class AboutPageTest extends TestCase
     const USER_URL_COUNT = 1;
     const USER_LINK_VISIT_COUNT = 4;
     const GUEST_URL_COUNT = 1;
-    const GUEST_LINK_VISIT_COUNT = 4;
+    const GUEST_LINK_VISITS = 4;
 
     // ..
     const VISIT_COUNT = 8;
@@ -173,9 +173,9 @@ class AboutPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function guestUserLinkVisitCount(): void
+    public function guestLinkVisits(): void
     {
-        $this->assertSame(self::GUEST_LINK_VISIT_COUNT, $this->visit->guestUserLinkVisitCount());
+        $this->assertSame(self::GUEST_LINK_VISITS, $this->visit->guestLinkVisits());
     }
 
     #[PHPUnit\Test]

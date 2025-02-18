@@ -98,7 +98,7 @@
                     $userUrlCount = $url->userUrlCount();
                     $userLinkVisitCount = $visit->userLinkVisitCount();
                     $guestUrlCount = $url->guestUserUrlCount();
-                    $guestUserLinkVisitCount = $visit->guestUserLinkVisitCount();
+                    $guestLinkVisits = $visit->guestLinkVisits();
                 @endphp
 
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
@@ -124,7 +124,7 @@
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
                         <span title="{{ number_format($guestUrlCount) }}">{{ n_abb($guestUrlCount) }}</span>
-                        <span title="{{ number_format($guestUserLinkVisitCount) }}">({{ n_abb($guestUserLinkVisitCount) }} visits)</span>
+                        <span title="{{ number_format($guestLinkVisits) }}">({{ n_abb($guestLinkVisits) }} visits)</span>
                     </dd>
                 </div>
             </dl>
