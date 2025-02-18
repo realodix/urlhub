@@ -89,9 +89,9 @@ class Visit extends Model
     }
 
     /**
-     * Jumlah klik dari link yang dibuat oleh semua user
+     * The number of clicks from links created by all registered users.
      */
-    public function userLinkVisitCount(): int
+    public function userLinkVisits(): int
     {
         return self::whereHas('url', function ($query) {
             $query->where('user_type', UserType::User);

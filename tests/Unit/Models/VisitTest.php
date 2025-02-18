@@ -50,11 +50,11 @@ class VisitTest extends TestCase
 
         $this->actingAs($user);
         $this->assertSame($nCurrentUser, $this->visit->authUserLinkVisits());
-        $this->assertSame($nCurrentUser + $nUser, $this->visit->userLinkVisitCount());
+        $this->assertSame($nCurrentUser + $nUser, $this->visit->userLinkVisits());
     }
 
     #[PHPUnit\Test]
-    public function userLinkVisitCount(): void
+    public function userLinkVisits(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -67,7 +67,7 @@ class VisitTest extends TestCase
             ->for(Url::factory()->guest())
             ->create();
 
-        $this->assertSame($nUser, $this->visit->userLinkVisitCount());
+        $this->assertSame($nUser, $this->visit->userLinkVisits());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 
