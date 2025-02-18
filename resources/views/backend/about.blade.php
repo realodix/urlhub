@@ -97,7 +97,7 @@
                     $urlCount = $url->count();
                     $userUrlCount = $url->userUrlCount();
                     $userLinkVisits = $visit->userLinkVisits();
-                    $guestUrlCount = $url->guestUserUrlCount();
+                    $guestUrlCount = $url->guestLinks();
                     $guestLinkVisits = $visit->guestLinkVisits();
                 @endphp
 

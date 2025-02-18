@@ -196,7 +196,7 @@ class UrlTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function guestUserUrlCount(): void
+    public function guestLinks(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -204,7 +204,7 @@ class UrlTest extends TestCase
         Url::factory()->count($nUser)->create();
         Url::factory()->count($nGuest)->guest()->create();
 
-        $this->assertSame($nGuest, $this->url->guestUserUrlCount());
+        $this->assertSame($nGuest, $this->url->guestLinks());
         $this->assertSame($nUser + $nGuest, $this->url->count());
     }
 
