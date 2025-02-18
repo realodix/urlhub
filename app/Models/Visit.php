@@ -78,9 +78,10 @@ class Visit extends Model
     }
 
     /**
-     * Jumlah klik dari link yang dibuat oleh auth user saat ini
+     * The number of clicks from links created by the currently authenticated
+     * user.
      */
-    public function authUserLinkVisitCount(): int
+    public function authUserLinkVisits(): int
     {
         return self::whereHas('url', function ($query) {
             $query->where('user_id', auth()->id());
