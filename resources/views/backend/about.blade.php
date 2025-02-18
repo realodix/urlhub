@@ -146,7 +146,7 @@
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($visit->userVisitCount()) }}">{{ n_abb($visit->userVisitCount()) }}</span>
+                        <span title="{{ number_format($visit->userVisits()) }}">{{ n_abb($visit->userVisits()) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">

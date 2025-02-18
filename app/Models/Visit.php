@@ -109,9 +109,9 @@ class Visit extends Model
     }
 
     /**
-     * Jumlah klik yang dibuat oleh semua user
+     *  Total users who clicked on a link.
      */
-    public function userVisitCount(): int
+    public function userVisits(): int
     {
         return self::where('user_type', UserType::User)->count();
     }
