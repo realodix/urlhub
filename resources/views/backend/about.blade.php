@@ -94,7 +94,7 @@
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
-                    $urlCount = $url->count();
+                    $linkCount = $url->count();
                     $userLinks = $url->userLinks();
                     $userLinkVisits = $visit->userLinkVisits();
                     $guestUrlCount = $url->guestLinks();
@@ -106,7 +106,7 @@
                         Total
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        <span title="{{ number_format($urlCount) }}">{{ n_abb($urlCount) }}</span>
+                        <span title="{{ number_format($linkCount) }}">{{ n_abb($linkCount) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-3">
