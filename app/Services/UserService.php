@@ -13,24 +13,23 @@ class UserService
      */
     public function signature(): string
     {
-        if (auth()->check() === false) {
-            $device = Helper::deviceDetector();
-            $browser = $device->getClient();
-            $os = $device->getOs();
-
-            $userDeviceInfo = implode([
-                request()->ip(),
-                $browser['name'] ?? '',
-                $os['name'] ?? '',
-                $os['version'] ?? '',
-                $device->getDeviceName() . $device->getModel() . $device->getBrandName(),
-                request()->getPreferredLanguage(),
-            ]);
-
-            return hash('xxh3', $userDeviceInfo);
+        if (auth()->check()) {
+            return (string) auth()->id();
         }
 
-        return (string) auth()->id();
+        $device = Helper::deviceDetector();
+        $browser = $device->getClient();
+        $os = $device->getOs();
+        $deviceInfo = implode([
+            request()->ip(),
+            $browser['name'] ?? '',
+            $os['name'] ?? '',
+            $os['version'] ?? '',
+            $device->getDeviceName() . $device->getModel() . $device->getBrandName(),
+            request()->getPreferredLanguage(),
+        ]);
+
+        return hash('xxh3', $deviceInfo);
     }
 
     /**
