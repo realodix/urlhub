@@ -35,12 +35,6 @@ class KeyGeneratorService
             return $strUpper;
         }
 
-        // If the second attempt fail, try to append the last url id
-        $str = $this->shortHash($value.Url::latest('id')->value('id'));
-        if ($this->verify($str)) {
-            return $str;
-        }
-
         // If the string is still not unique, then generate a random string
         // until it is unique
         do {
