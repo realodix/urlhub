@@ -130,7 +130,7 @@ class DashboardPageTest extends TestCase
             ->post(
                 route('link.update', $url->keyword),
                 Helper::updateLinkData($url, [
-                    'long_url' => 'https://laravel.com/' . str_repeat('a', StoreUrlRequest::URL_LENGTH),
+                    'long_url' => 'https://laravel.com/'.str_repeat('a', StoreUrlRequest::URL_LENGTH),
                 ]),
             );
 

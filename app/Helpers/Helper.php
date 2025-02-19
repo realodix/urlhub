@@ -40,7 +40,7 @@ class Helper
         int $maxHostLength = 45,
     ) {
         $uri = Uri::of($value);
-        $schemePrefix = $scheme && $uri->scheme() ? $uri->scheme() . '://' : '';
+        $schemePrefix = $scheme && $uri->scheme() ? $uri->scheme().'://' : '';
 
         // Strip scheme if not required
         if (!$scheme) {
@@ -53,7 +53,7 @@ class Helper
         }
 
         $limit = $limit ?? strlen($value);
-        $hostLength = strlen($schemePrefix . $uri->host());
+        $hostLength = strlen($schemePrefix.$uri->host());
 
         // Truncate the URL if necessary
         if (strlen($value) > $limit) {
@@ -65,7 +65,7 @@ class Helper
                 $firstHalf = mb_substr($value, 0, intval($adjustedLimit * 0.8));
                 $secondHalf = mb_substr($value, -intval($adjustedLimit * 0.2));
 
-                return $firstHalf . $trimMarker . $secondHalf;
+                return $firstHalf.$trimMarker.$secondHalf;
             }
 
             return Str::limit($value, $adjustedLimit, $trimMarker);

@@ -61,9 +61,9 @@ if (!function_exists('runGitCommand')) {
         $content = null;
         if (is_dir(base_path('.git'))) {
             $command = str($gitCommand)->start('git ')
-                ->replaceStart('git', 'git --git-dir "' . base_path('.git') . '"');
+                ->replaceStart('git', 'git --git-dir "'.base_path('.git').'"');
             // @phpstan-ignore argument.type (trim)
-            $content = trim(exec("$command 2>" . (substr(php_uname(), 0, 7) === 'Windows' ? 'NUL' : '/dev/null')));
+            $content = trim(exec("$command 2>".(substr(php_uname(), 0, 7) === 'Windows' ? 'NUL' : '/dev/null')));
         }
 
         return trim($content ?? $default);

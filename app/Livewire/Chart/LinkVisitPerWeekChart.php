@@ -64,7 +64,7 @@ class LinkVisitPerWeekChart extends ChartWidget
         foreach ($period as $week) {
             $startOfWeek = $week->copy()->startOfWeek(); // Monday
             $endOfWeek = $week->copy()->endOfWeek(); // Sunday
-            $label[] = $startOfWeek->format('M d') . ' - ' . $endOfWeek->format('M d');
+            $label[] = $startOfWeek->format('M d').' - '.$endOfWeek->format('M d');
         }
 
         return $label;

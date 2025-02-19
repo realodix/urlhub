@@ -19,7 +19,7 @@ class UserService
         }
 
         // 1. Cache the device info hash.
-        $cacheKey = 'device_signature_' . md5(request()->userAgent() . request()->ip());
+        $cacheKey = 'device_signature_'.md5(request()->userAgent().request()->ip());
         $cachedSignature = Cache::get($cacheKey);
         if ($cachedSignature) {
             return $cachedSignature;
@@ -33,7 +33,7 @@ class UserService
             $browser['name'] ?? '',
             $os['name'] ?? '',
             $os['version'] ?? '',
-            $device->getDeviceName() . $device->getModel() . $device->getBrandName(),
+            $device->getDeviceName().$device->getModel().$device->getBrandName(),
             request()->getPreferredLanguage(),
         ]);
 
