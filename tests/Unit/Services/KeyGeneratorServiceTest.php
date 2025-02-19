@@ -4,6 +4,7 @@ namespace Tests\Unit\Services;
 
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
+use Illuminate\Support\Facades\File;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -12,6 +13,7 @@ class KeyGeneratorServiceTest extends TestCase
 {
     private const N_URL_WITH_USER_ID = 1;
     private const N_URL_WITHOUT_USER_ID = 2;
+    private const RESOURCE_PREFIX = 'zzz';
 
     private Url $url;
 
@@ -138,31 +140,41 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Tests whether the verify function returns a false value if the given string
-     * is a registered route.
-     *
-     * The verify function should return a false value if the given string is
-     * a registered route.
+     * The verify function should return `false` if the given string is a
+     * registered route.
      */
     public function testStringIsRegisteredRoute(): void
     {
-        $value = 'admin';
+        $route = collect($this->keyGenerator->routeCollisionList())
+            ->first();
 
+        $this->assertFalse($this->keyGenerator->verify($route));
+    }
+
+    /**
+     * If the string is a valid directory name in the public directory,
+     * it must return `false`.
+     */
+    #[PHPUnit\Test]
+    public function stringIsADirectoryInsideThePubicDirectory(): void
+    {
+        $value = self::RESOURCE_PREFIX.fake()->word();
+
+        File::makeDirectory(public_path($value));
         $this->assertFalse($this->keyGenerator->verify($value));
     }
 
     /**
-     * If the keyword is the same as the name of a public path, then it
-     * shouldn't be used as a keyword.
+     * If the string is a valid file name in the public directory,
+     * it must return `false`.
      */
-    public function testStringIsPublicPath(): void
+    #[PHPUnit\Test]
+    public function stringIsAFileInsideThePublicDirectory(): void
     {
-        $fileSystem = new \Illuminate\Filesystem\Filesystem;
-        $value = 'zzz'.fake()->word();
+        $value = self::RESOURCE_PREFIX.fake()->word();
 
-        $fileSystem->makeDirectory(public_path($value));
+        File::put(public_path($value), '');
         $this->assertFalse($this->keyGenerator->verify($value));
-        $fileSystem->deleteDirectory(public_path($value));
     }
 
     /**
@@ -176,8 +188,6 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testReservedActiveKeyword()
     {
-        $fileSystem = new \Illuminate\Filesystem\Filesystem;
-
         // Test case 1: No reserved keywords already in use
         $this->assertEquals(
             new \Illuminate\Support\Collection,
@@ -185,15 +195,14 @@ class KeyGeneratorServiceTest extends TestCase
         );
 
         // Test case 2: Some reserved keywords already in use
-        $activeKeyword = 'zzz'.fake()->word();
+        $activeKeyword = self::RESOURCE_PREFIX.fake()->word();
         Url::factory()->create(['keyword' => $activeKeyword]);
 
-        $fileSystem->makeDirectory(public_path($activeKeyword));
+        File::makeDirectory(public_path($activeKeyword));
         $this->assertEquals(
             $activeKeyword,
             $this->keyGenerator->reservedActiveKeyword()->implode(''),
         );
-        $fileSystem->deleteDirectory(public_path($activeKeyword));
     }
 
     /**
@@ -320,5 +329,16 @@ class KeyGeneratorServiceTest extends TestCase
             $expected,
             $this->keyGenerator->filterCollisionCandidates($actual)->toArray(),
         );
+    }
+
+    public function tearDown(): void
+    {
+        $resources = File::glob(public_path(self::RESOURCE_PREFIX.'*'));
+        foreach ($resources as $resource) {
+            File::deleteDirectory($resource);
+            File::delete($resource);
+        }
+
+        parent::tearDown();
     }
 }
