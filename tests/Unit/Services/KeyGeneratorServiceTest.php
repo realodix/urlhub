@@ -114,8 +114,6 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testStringIsAlreadyUsedAsTheActiveKeyword(): void
     {
-        settings()->fill(['keyword_length' => 5])->save();
-
         $value = $this->keyGenerator->generate('https://github.com/realodix');
 
         Url::factory()->create(['keyword' => $value]);
@@ -216,7 +214,7 @@ class KeyGeneratorServiceTest extends TestCase
         settings()->fill(['keyword_length' => 2])->save();
         $this->assertSame(pow($charLen, 2), $this->keyGenerator->maxUniqueStrings());
 
-        settings()->fill(['keyword_length' => 11])->save();
+        settings()->fill(['keyword_length' => 12])->save();
         $this->assertSame(PHP_INT_MAX, $this->keyGenerator->maxUniqueStrings());
     }
 
