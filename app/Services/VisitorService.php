@@ -68,6 +68,6 @@ class VisitorService
 
         $referer = Uri::of($value);
 
-        return $referer->scheme() . '://' . $referer->host();
+        return $referer->scheme().'://'.$referer->host();
     }
 }

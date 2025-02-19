@@ -51,7 +51,7 @@ class UserServiceTest extends TestCase
         $url = Url::factory()->create();
 
         $this->actingAs($this->basicUser())
-            ->get(route('home') . '/' . $url->keyword);
+            ->get(route('home').'/'.$url->keyword);
         $visit = Visit::where('url_id', $url->id)->first();
         $this->assertSame(UserType::User, $visit->user_type);
     }
@@ -63,7 +63,7 @@ class UserServiceTest extends TestCase
         settings()->fill(['track_bot_visits' => true])->save();
         $this->actingAs($this->basicUser())
             ->withHeaders(['user-agent' => self::BOT_UA])
-            ->get(route('home') . '/' . $url->keyword);
+            ->get(route('home').'/'.$url->keyword);
 
         $visit = Visit::where('url_id', $url->id)->first();
         $this->assertSame(UserType::User, $visit->user_type);
@@ -73,7 +73,7 @@ class UserServiceTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $this->get(route('home') . '/' . $url->keyword);
+        $this->get(route('home').'/'.$url->keyword);
 
         $visit = Visit::where('url_id', $url->id)->first();
         $this->assertSame(UserType::Guest, $visit->user_type);
@@ -85,7 +85,7 @@ class UserServiceTest extends TestCase
 
         settings()->fill(['track_bot_visits' => true])->save();
         $this->withHeaders(['user-agent' => self::BOT_UA])
-            ->get(route('home') . '/' . $url->keyword);
+            ->get(route('home').'/'.$url->keyword);
 
         $visit = Visit::where('url_id', $url->id)->first();
         $this->assertSame(UserType::Bot, $visit->user_type);

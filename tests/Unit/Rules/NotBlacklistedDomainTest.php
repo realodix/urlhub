@@ -34,8 +34,8 @@ class NotBlacklistedDomainTest extends TestCase
         $this->assertTrue($val->fails());
         $this->assertSame([
             'foo' => [
-                'Sorry, the URL you entered is on our internal blacklist. ' .
-                'It may have been used abusively in the past, or it may link to another URL redirection service.',
+                'Sorry, the URL you entered is on our internal blacklist. '
+                .'It may have been used abusively in the past, or it may link to another URL redirection service.',
             ],
         ], $val->messages()->messages());
     }

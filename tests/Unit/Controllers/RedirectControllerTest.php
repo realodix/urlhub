@@ -14,7 +14,7 @@ class RedirectControllerTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->get(route('home') . '/' . $url->keyword);
+        $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->destination)
             ->assertStatus(settings()->redirect_status_code);
 
@@ -29,8 +29,8 @@ class RedirectControllerTest extends TestCase
     {
         $url = Url::factory()->create();
 
-        $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
-        $response->assertRedirect($url->destination . '?a=1&b=2')
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
+        $response->assertRedirect($url->destination.'?a=1&b=2')
             ->assertStatus(settings()->redirect_status_code);
     }
 
@@ -44,7 +44,7 @@ class RedirectControllerTest extends TestCase
     {
         $url = Url::factory()->create(['forward_query' => false]);
 
-        $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
         $response->assertRedirect($url->destination)
             ->assertStatus(settings()->redirect_status_code);
     }
@@ -62,7 +62,7 @@ class RedirectControllerTest extends TestCase
             ->forAuthor(['forward_query' => false])
             ->create();
 
-        $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
         $response->assertRedirect($url->destination)
             ->assertStatus(settings()->redirect_status_code);
     }
@@ -80,7 +80,7 @@ class RedirectControllerTest extends TestCase
 
         $url = Url::factory()->create();
 
-        $response = $this->get(route('home') . '/' . $url->keyword . '?a=1&b=2');
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
         $response->assertRedirect($url->destination)
             ->assertStatus($setting->redirect_status_code);
     }

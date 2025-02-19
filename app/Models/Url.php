@@ -111,7 +111,7 @@ class Url extends Model
     protected function shortUrl(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attr) => url('/' . $attr['keyword']),
+            get: fn($value, $attr) => url('/'.$attr['keyword']),
         );
     }
 
@@ -156,7 +156,7 @@ class Url extends Model
     public function getWebTitle(string $value): string
     {
         $uri = \Illuminate\Support\Uri::of($value);
-        $defaultTitle = $uri->host() . ' - Untitled';
+        $defaultTitle = $uri->host().' - Untitled';
 
         if (app(GeneralSettings::class)->retrieve_web_title) {
             try {

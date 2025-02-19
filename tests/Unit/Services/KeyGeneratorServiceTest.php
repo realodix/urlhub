@@ -44,7 +44,7 @@ class KeyGeneratorServiceTest extends TestCase
         Url::factory()->create(['keyword' => $hash2]);
         $hash3 = $this->keyGenerator->generate($value1);
         $this->assertSame(
-            $this->keyGenerator->shortHash($value1 . $urlFactory->latest('id')->value('id')),
+            $this->keyGenerator->shortHash($value1.$urlFactory->latest('id')->value('id')),
             $hash3,
         );
 
@@ -167,7 +167,7 @@ class KeyGeneratorServiceTest extends TestCase
     public function testStringIsPublicPath(): void
     {
         $fileSystem = new \Illuminate\Filesystem\Filesystem;
-        $value = 'zzz' . fake()->word();
+        $value = 'zzz'.fake()->word();
 
         $fileSystem->makeDirectory(public_path($value));
         $this->assertFalse($this->keyGenerator->verify($value));
@@ -194,7 +194,7 @@ class KeyGeneratorServiceTest extends TestCase
         );
 
         // Test case 2: Some reserved keywords already in use
-        $activeKeyword = 'zzz' . fake()->word();
+        $activeKeyword = 'zzz'.fake()->word();
         Url::factory()->create(['keyword' => $activeKeyword]);
 
         $fileSystem->makeDirectory(public_path($activeKeyword));

@@ -36,7 +36,7 @@ class KeyGeneratorService
         }
 
         // If the second attempt fail, try to append the last url id
-        $str = $this->shortHash($value . Url::latest('id')->value('id'));
+        $str = $this->shortHash($value.Url::latest('id')->value('id'));
         if ($this->verify($str)) {
             return $str;
         }
@@ -218,7 +218,7 @@ class KeyGeneratorService
         $length = $this->settings->keyword_length;
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$length])
-            ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{' . $length . '}$"')
+            ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{'.$length.'}$"')
             ->count();
     }
 
