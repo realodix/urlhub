@@ -108,13 +108,10 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Tests whether the verify function returns a false value if the given string
-     * is already used as the active keyword.
-     *
-     * The verify function should return a false value if the given string is
-     * already used as the active keyword.
+     * The `verify` function should return `false` when the string is already
+     * used as a short link keyword
      */
-    public function testStringIsAlreadyUsedAsTheActiveKeyword(): void
+    public function testStringIsAlreadyUsedAsAShortLinkKeyword(): void
     {
         $value = $this->keyGenerator->generate('https://github.com/realodix');
 
@@ -124,11 +121,8 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Tests whether the verify function returns a false value if the given string
-     * is a reserved keyword.
-     *
-     * The verify function should return a false value if the given string is
-     * a reserved keyword.
+     * The `verify` function should return `false` when the string is in the
+     * list of reserved keywords
      */
     public function testStringIsAReservedKeyword(): void
     {
@@ -140,8 +134,8 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * The verify function should return `false` if the given string is a
-     * registered route.
+     * The `verify` function should return `false` when the string is similar
+     * to the route path name
      */
     public function testStringIsRegisteredRoute(): void
     {
@@ -152,8 +146,8 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * If the string is a valid directory name in the public directory,
-     * it must return `false`.
+     * The `verify` function should return `false` when the string is a valid
+     * directory name in the public directory
      */
     #[PHPUnit\Test]
     public function stringIsADirectoryInsideThePubicDirectory(): void
@@ -165,8 +159,8 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * If the string is a valid file name in the public directory,
-     * it must return `false`.
+     * The `verify` function should return `false` when the string is a valid
+     * file name in the public directory
      */
     #[PHPUnit\Test]
     public function stringIsAFileInsideThePublicDirectory(): void
