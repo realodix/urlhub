@@ -152,10 +152,7 @@ class KeyGeneratorServiceTest extends TestCase
     public function testReservedActiveKeyword()
     {
         // Test case 1: No reserved keywords already in use
-        $this->assertEquals(
-            new \Illuminate\Support\Collection,
-            $this->keyGenerator->reservedActiveKeyword(),
-        );
+        $this->assertEmpty($this->keyGenerator->reservedActiveKeyword()->all());
 
         // Test case 2: Some reserved keywords already in use
         $activeKeyword = self::RESOURCE_PREFIX.fake()->word();
@@ -230,9 +227,7 @@ class KeyGeneratorServiceTest extends TestCase
     {
         settings()->fill(['keyword_length' => 5])->save();
 
-        Url::factory()->create([
-            'keyword' => 'ab-cd',
-        ]);
+        Url::factory()->create(['keyword' => 'ab-cd']);
         $this->assertSame(0, $this->keyGenerator->keywordCount());
     }
 
