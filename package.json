@@ -11,6 +11,6 @@
     "clipboard": "^2.0.11",
     "laravel-vite-plugin": "^1.2.0",
     "tailwindcss": "^4.0.6",
-    "vite": "^6.0.11"
+    "vite": "^6.1.1"
   }
 }
