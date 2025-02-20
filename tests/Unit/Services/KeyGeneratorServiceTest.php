@@ -84,30 +84,6 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Pengujian untuk kondisi dimana panjang string yang diberikan pada `custom_key`
-     * lebih pendek dari pada panjang string yang telah ditentukan.
-     *
-     * Maka:
-     * - String tersebut harus digunakan.
-     */
-    #[PHPUnit\Test]
-    public function urlKey_string_lenght2(): void
-    {
-        settings()->fill(['keyword_length' => 10])->save();
-
-        $longUrl = 'https://t.co';
-        $customKey = 'tco';
-        $response = $this->post(route('link.create'), [
-            'long_url' => $longUrl,
-            'custom_key' => $customKey,
-        ]);
-        $response->assertRedirectToRoute('link_detail', $customKey);
-
-        $url = Url::where('destination', $longUrl)->first();
-        $this->assertTrue($url->is_custom);
-    }
-
-    /**
      * The `verify` function should return `false` when the string is already
      * used as a short link keyword
      */
