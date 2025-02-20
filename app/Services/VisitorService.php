@@ -56,9 +56,9 @@ class VisitorService
     }
 
     /**
-     * Get the referer host.
+     * Get the referer host
      *
-     * Only input the URL host into the referer column
+     * Only input the URL host into the referer column.
      */
     public function getRefererHost(?string $value): ?string
     {

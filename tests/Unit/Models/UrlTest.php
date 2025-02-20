@@ -141,6 +141,18 @@ class UrlTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
+    public function testKeywordColumnIsCaseSensitive(): void
+    {
+        $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);
+        $url_2 = Url::factory()->create(['keyword' => 'Foo', 'destination' => 'https://example.org']);
+
+        $dest_1 = $url_1->where('keyword', 'foo')->first();
+        $dest_2 = $url_2->where('keyword', 'Foo')->first();
+
+        $this->assertSame('https://example.com', $dest_1->destination);
+        $this->assertSame('https://example.org', $dest_2->destination);
+    }
+
     #[PHPUnit\Test]
     public function getWebTitle(): void
     {
@@ -206,17 +218,5 @@ class UrlTest extends TestCase
 
         $this->assertSame($nGuest, $this->url->guestLinks());
         $this->assertSame($nUser + $nGuest, $this->url->count());
-    }
-
-    public function testKeywordColumnIsCaseSensitive(): void
-    {
-        $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);
-        $url_2 = Url::factory()->create(['keyword' => 'Foo', 'destination' => 'https://example.org']);
-
-        $dest_1 = $url_1->where('keyword', 'foo')->first();
-        $dest_2 = $url_2->where('keyword', 'Foo')->first();
-
-        $this->assertSame('https://example.com', $dest_1->destination);
-        $this->assertSame('https://example.org', $dest_2->destination);
     }
 }

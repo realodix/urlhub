@@ -124,11 +124,11 @@ class KeyGeneratorService
     }
 
     /**
-     * Retrieves a list of route paths that could potentially conflict with shortened
-     * link keywords.
+     * Returns a list of route paths that may conflict with generated keywords.
      *
      * This method retrieves all defined routes and filters them to identify potential
-     * conflicts with the "format" of keywords used for shortened links.
+     * conflicts with the format used for generating keywords. This list is used to
+     * prevent the generation of keywords that match existing routes.
      */
     public function routeCollisionList(): array
     {
@@ -139,11 +139,13 @@ class KeyGeneratorService
     }
 
     /**
-     * Retrieves a list of file/folder names in the public directory that could
-     * potentially conflict with shortened link keywords.
+     * Returns a list of file/folder names in the public directory that may
+     * conflict with generated keywords.
      *
-     * This method scans the public directory and filters the file/folder names
-     * to identify potential conflicts with keywords used for shortened links.
+     * This method scans the public directory and filters the results to identify
+     * potential conflicts with the format used for generating keywords. This list
+     * is used to prevent the generation of keywords that match existing files
+     * or folders in the public directory.
      */
     public function publicPathCollisionList(): array
     {
@@ -160,11 +162,8 @@ class KeyGeneratorService
     }
 
     /**
-     * Filters a collection of strings to identify potential collisions with keywords.
-     *
-     * The resulting collection contains unique strings that "could potentially"
-     * clash with generated short link keywords. These strings are considered
-     * "collision candidates" because they have the same format as valid keywords
+     * Filters a collection of strings to identify strings that could conflict
+     * with generated keywords.
      */
     public function filterCollisionCandidates(array|Collection $value): Collection
     {
