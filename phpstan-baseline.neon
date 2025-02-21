@@ -1,6 +1,25 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property App\\\\Models\\\\Url\\:\\:\\$unique_visit_count\\.$#"
+			message: '#^Access to an undefined property App\\Models\\Url\:\:\$unique_visit_count\.$#'
+			identifier: property.notFound
 			count: 1
 			path: app/Livewire/Table/BaseUrlTable.php
+
+		-
+			message: '#^Call to an undefined method Carbon\\Carbon\:\:inUserTimezone\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Table/BaseUrlTable.php
+
+		-
+			message: '#^Call to an undefined method Carbon\\Carbon\:\:inUserTimezone\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Livewire/Table/UserTable.php
+
+		-
+			message: '#^Call to an undefined static method App\\Providers\\AppServiceProvider\:\:this\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Providers/AppServiceProvider.php
