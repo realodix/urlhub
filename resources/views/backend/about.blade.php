@@ -235,20 +235,24 @@
             <dd class="mt-2 mb-2">
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
                     <code class="text-slate-500 dark:text-dark-600">// {{ $reservedKeyword->count() }} Strings</code> <br>
-                    <code class="dark:text-dark-400">{{ $reservedKeyword->implode(', ') }}</code>
+                    @foreach ($reservedKeyword as $reservedKeywordItem)
+                        @php $separator = $loop->last ? '.' : ','; @endphp
+                        <code class="dark:text-dark-400">{{ $reservedKeywordItem }}</code>
+                        {{$separator}}
+                    @endforeach
 
                     @if (!empty($reservedActiveKeyList))
                         <br><br>
                         <code class="text-red-400 dark:text-orange-500/70">// Unfortunately the list below is already used </code> <br>
                         <code class="text-red-400 dark:text-orange-500/70">// as shortened URL keyword</code> <br>
-                        <code>
 
                         @foreach ($reservedActiveKeyList as $reservedActiveKey)
-                            <a href="{{ route('link_detail', $reservedActiveKey) }}"
-                                target="_blank"
-                                class="underline decoration-dotted">{{ $reservedActiveKey }}</a>,
+                            @php $separator = $loop->last ? '.' : ','; @endphp
+                            <code><a href="{{ route('link_detail', $reservedActiveKey) }}" target="_blank"
+                                class="underline decoration-dotted">
+                                {{ $reservedActiveKey }}</a></code>
+                            {{$separator}}
                         @endforeach
-                        </code>
                     @endif
                 </div>
             </dd>
