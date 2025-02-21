@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('forward_query')
-                ->after('remember_token')
+                ->after('password')
                 ->default(true);
         });
     }
