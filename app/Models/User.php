@@ -16,11 +16,11 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $email
  * @property string $email_verified_at
  * @property string $password
+ * @property bool $forward_query
  * @property string $timezone
  * @property string $two_factor_secret
  * @property string $two_factor_recovery_codes
  * @property string $remember_token
- * @property bool $forward_query
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property Url $urls
