@@ -81,7 +81,8 @@ class User extends Authenticatable
     */
 
     /**
-     * Get the user's timezone.  If the attribute is null, it defaults to the application's timezone.
+     * Get the user's timezone. If the attribute is null, it defaults
+     * to the application's timezone.
      */
     protected function timezone(): Attribute
     {
