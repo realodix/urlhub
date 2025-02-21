@@ -21,6 +21,16 @@ class UserTest extends TestCase
         $this->assertInstanceOf(Url::class, $user->urls->first());
     }
 
+    #[PHPUnit\Test]
+    public function getTimezone(): void
+    {
+        $user = User::factory()->create();
+        $this->assertSame(config('app.timezone'), $user->timezone);
+
+        $user = User::factory()->create(['timezone' => 'America/New_York']);
+        $this->assertSame('America/New_York', $user->timezone);
+    }
+
     /**
      * Jumlah tamu yang memiliki tanda tangan yang berbeda.
      */
