@@ -3,6 +3,7 @@
 namespace Tests\Feature\AuthPage\User;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -195,5 +196,21 @@ class AccountTest extends TestCase
         $response
             ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
+    }
+
+    public function testUserCanDisableForwardQuery()
+    {
+        $user = $this->basicUser();
+        $request = new Request([
+            'email' => $user->email,
+            'forward_query' => false,
+        ]);
+
+        $response = $this->actingAs($user)
+            ->from($this->getRoute($user->name))
+            ->post($this->postRoute($user->name), $request->all());
+
+        $response->assertRedirect($this->getRoute($user->name));
+        $this->assertDatabaseHas(User::class, ['email' => $user->email, 'forward_query' => 0]);
     }
 }
