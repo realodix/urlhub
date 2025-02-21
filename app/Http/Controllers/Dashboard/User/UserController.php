@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
+use Jackiedo\Timezonelist\Facades\Timezonelist;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -37,7 +38,12 @@ class UserController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $user);
 
-        return view('backend.user.account', ['user' => $user]);
+        $tzList = Timezonelist::toSelectBox('user_timezone', $user->timezone);
+
+        return view('backend.user.account', [
+            'user' => $user,
+            'timezoneList' => $tzList,
+        ]);
     }
 
     /**
@@ -64,6 +70,8 @@ class UserController extends Controller implements HasMiddleware
             $user->email = $request->email;
             $user->forward_query = $forwardQuery;
         }
+
+        $user->timezone = $request->user_timezone;
 
         $user->save();
 

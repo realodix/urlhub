@@ -43,6 +43,11 @@
                         @else
                             <input type="hidden" name="forward_query" value="{{ $user->forward_query ? true : false }}">
                         @endif
+
+                        <div class="col-span-6 lg:col-span-4">
+                            <label class="form-label">{{ __('Timezone') }}</label>
+                            {!! $timezoneList !!}
+                        </div>
                     </div>
 
                     <div class="flex items-center justify-end mt-8 text-right">

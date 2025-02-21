@@ -150,3 +150,8 @@ main {
         @apply dark:bg-dark-800/80 dark:text-dark-400/50;
     }
 }
+
+select[name="user_timezone"] {
+    @apply block w-full py-1.5;
+    @apply rounded border-border-300/70 dark:border-dark-700;
+}
