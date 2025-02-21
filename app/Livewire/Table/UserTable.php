@@ -50,9 +50,11 @@ final class UserTable extends PowerGridComponent
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {
+                $date = $user->created_at->inUserTimezone();
+
                 return
-                    '<span title="'.$user->created_at->toDayDateTimeString().'" class="dark:text-dark-400">'
-                        .$user->created_at->shortRelativeDiffForHumans().
+                    '<span title="'.$date->toDayDateTimeString().'" class="dark:text-dark-400">'
+                        .$date->shortRelativeDiffForHumans().
                     '</span>';
             })
             ->add('action', function (User $user) {

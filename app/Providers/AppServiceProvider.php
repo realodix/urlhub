@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Set the timezone based on the user's timezone
+        Carbon::macro('inUserTimezone', static function () {
+            $userTimezone = auth()->user()->timezone ?? config('app.timezone');
+
+            return self::this()->copy()->tz($userTimezone);
+        });
+
         // Prevent destructive commands from running in production environments.
         DB::prohibitDestructiveCommands($this->app->isProduction());
 
