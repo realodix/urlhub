@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\ServiceProvider;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
