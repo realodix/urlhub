@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\ServiceProvider;
 
 use App\Http\Middleware\DebugbarEnable;
 use Barryvdh\Debugbar\Facades\Debugbar;
