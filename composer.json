@@ -12,7 +12,6 @@
         "endroid/qr-code": "^6.0",
         "filament/widgets": "^3.2",
         "flowframe/laravel-trend": "^0.3.0",
-        "jackiedo/timezonelist": "^5.1",
         "laravel/fortify": "^1.25",
         "laravel/framework": "^11.40",
         "laravel/tinker": "^2.10",
