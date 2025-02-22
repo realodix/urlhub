@@ -19,7 +19,7 @@ parameters:
 			path: app/Livewire/Table/UserTable.php
 
 		-
-			message: '#^Call to an undefined static method App\\Providers\\AppServiceProvider\:\:this\(\)\.$#'
+			message: '#^Call to an undefined static method App\\Providers\\MacroServiceProvider\:\:this\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
-			path: app/Providers/AppServiceProvider.php
+			path: app/Providers/MacroServiceProvider.php
