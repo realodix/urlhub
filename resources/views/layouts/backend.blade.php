@@ -18,11 +18,6 @@
     <main>
         @yield('content')
     </main>
-@if (auth()->check())
-    <p>Zona Waktu Anda: {{ auth()->user()?->timezone ?? 'Belum diatur' }}</p>
-    <p>{{auth()->user()->timezone}}</p>
-    https://laravel-news.com/laravel-timezones
-@endif
 
     @livewireScripts
 </body>
