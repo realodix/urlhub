@@ -46,7 +46,9 @@
 
                         <div class="col-span-6 lg:col-span-4">
                             <label class="form-label">{{ __('Timezone') }}</label>
-                            {!! $timezoneList !!}
+                            <p class="font-light text-sm dark:text-dark-400">Choose either a city in the same timezone as you or a UTC (Coordinated Universal Time) time offset.</p>
+
+                            <div class="mt-4">{!! $timezoneList !!}</div>
                         </div>
                     </div>
 
