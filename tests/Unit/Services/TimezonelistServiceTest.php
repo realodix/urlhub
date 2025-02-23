@@ -67,11 +67,11 @@ class TimezonelistServiceTest extends TestCase
         $output = $this->service->toSelectBox('timezone_default');
         $this->assertStringContainsString(
             '<option value="America/Argentina/Rio_Gallegos">(UTC-03:00)&#160;&#160;&#160;Argentina / Rio Gallegos</option>',
-            $output
+            $output,
         );
         $this->assertStringContainsString(
             '<option value="America/St_Johns">(UTC-03:30)&#160;&#160;&#160;St. Johns</option>',
-            $output
+            $output,
         );
     }
 
