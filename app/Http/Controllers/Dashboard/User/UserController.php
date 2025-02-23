@@ -39,7 +39,7 @@ class UserController extends Controller implements HasMiddleware
         Gate::authorize('view', $user);
 
         $tzList = app(TimezonelistService::class)
-            ->toSelectBox('user_timezone', $user->timezone);
+            ->toSelectBox('user_timezone', $user->timezone, ["class" => "form-input"]);
 
         return view('backend.user.account', [
             'user' => $user,
