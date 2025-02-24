@@ -88,6 +88,6 @@ class TimezonelistService
             ->format('P');
         $separator = str_repeat(self::HTML_WHITESPACE, 3);
 
-        return '('.self::GENERAL_TIMEZONE.$offset.')'.$separator.$normalizedTz;
+        return '(UTC'.$offset.')'.$separator.$normalizedTz;
     }
 }
