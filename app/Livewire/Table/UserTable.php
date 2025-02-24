@@ -51,9 +51,10 @@ final class UserTable extends PowerGridComponent
             ->add('email')
             ->add('created_at_formatted', function (User $user) {
                 $date = $user->created_at->inUserTimezone();
+                $offset = '('.$date->getOffsetString().')';
 
                 return
-                    '<span title="'.$date->toDayDateTimeString().'" class="dark:text-dark-400">'
+                    '<span title="'.$date->toDayDateTimeString().' '.$offset.'" class="dark:text-dark-400">'
                         .$date->shortRelativeDiffForHumans().
                     '</span>';
             })
