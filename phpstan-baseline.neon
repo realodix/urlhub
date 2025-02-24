@@ -7,13 +7,13 @@ parameters:
 			path: app/Livewire/Table/BaseUrlTable.php
 
 		-
-			message: '#^Call to an undefined method Carbon\\Carbon\:\:inUserTimezone\(\)\.$#'
+			message: '#^Call to an undefined method Carbon\\Carbon\:\:inUserTz\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: app/Livewire/Table/BaseUrlTable.php
 
 		-
-			message: '#^Call to an undefined method Carbon\\Carbon\:\:inUserTimezone\(\)\.$#'
+			message: '#^Call to an undefined method Carbon\\Carbon\:\:inUserTz\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: app/Livewire/Table/UserTable.php

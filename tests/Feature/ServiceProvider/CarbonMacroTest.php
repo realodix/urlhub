@@ -27,7 +27,7 @@ class CarbonMacroTest extends TestCase
         $utcTime = Carbon::create(2024, 10, 27, 10, 0, 0, 'UTC');
 
         // 4. Call the macro.
-        $userTime = $utcTime->inUserTimezone();
+        $userTime = $utcTime->inUserTz();
 
         // 5. Assertions.
         $this->assertInstanceOf(Carbon::class, $userTime);
@@ -52,7 +52,7 @@ class CarbonMacroTest extends TestCase
         $utcTime = Carbon::create(2024, 10, 27, 10, 0, 0, 'UTC');
 
         // 4. Call the macro.
-        $userTime = $utcTime->inUserTimezone();
+        $userTime = $utcTime->inUserTz();
 
         // 5. Assertions.
         $this->assertInstanceOf(Carbon::class, $userTime);
