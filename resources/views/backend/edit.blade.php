@@ -14,13 +14,13 @@
             </div>
             <div class="inline sm:block text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-calendar', 'mr-1')
-                <span title="{{ $url->created_at->toDayDateTimeString() }} ({{ $url->created_at->getOffsetString() }})">{{ $url->created_at->diffForHumans() }}</span>
+                <span title="{{ $createdAt->toDayDateTimeString() }} ({{ $createdAt->getOffsetString() }})">{{ $createdAt->diffForHumans() }}</span>
             </div>
 
-            @if ($url->created_at != $url->updated_at)
+            @if ($createdAt != $updatedAt)
             <div class="inline sm:block text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-updated', 'mr-1 font-bold')
-                <span title="{{ $url->updated_at->toDayDateTimeString() }} ({{ $url->updated_at->getOffsetString() }})">{{ $url->updated_at->diffForHumans() }}</span>
+                <span title="{{ $updatedAt->toDayDateTimeString() }} ({{ $updatedAt->getOffsetString() }})">{{ $updatedAt->diffForHumans() }}</span>
             </div>
             @endif
         </div>

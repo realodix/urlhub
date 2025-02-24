@@ -52,6 +52,7 @@ class UrlController extends Controller implements HasMiddleware
     {
         $data = [
             'url' => $url,
+            'createdAt' => $url->created_at,
             'visit' => app(Visit::class),
             'visitsCount' => $url->visits()->count(),
             'qrCode' => app(QrCodeService::class)->execute($url->short_url),
@@ -70,7 +71,13 @@ class UrlController extends Controller implements HasMiddleware
     {
         Gate::authorize('updateUrl', $url);
 
-        return view('backend.edit', ['url' => $url]);
+        $data = [
+            'url' => $url,
+            'createdAt' => $url->created_at,
+            'updatedAt' => $url->updated_at,
+        ];
+
+        return view('backend.edit', $data);
     }
 
     /**
