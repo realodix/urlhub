@@ -68,6 +68,15 @@ class TimezonelistService
     }
 
     /**
+     * Get timezone offset
+     */
+    public function timezoneOffset(string $timezone): string
+    {
+        return (new \DateTime('', new \DateTimeZone($timezone)))
+            ->format('P');
+    }
+
+    /**
      * Generate HTML <option> tag
      */
     protected function makeOptionTag(string $display, string $value, bool $selected): string
@@ -84,8 +93,7 @@ class TimezonelistService
     {
         $displayedTz = empty($cutOffContinent) ? $timezone : substr($timezone, strlen($cutOffContinent) + 1);
         $normalizedTz = str_replace(['St_', '/', '_'], ['St. ', ' / ', ' '], $displayedTz);
-        $offset = (new \DateTime('', new \DateTimeZone($timezone)))
-            ->format('P');
+        $offset = $this->timezoneOffset($timezone);
         $separator = str_repeat(self::HTML_WHITESPACE, 3);
 
         return '(UTC'.$offset.')'.$separator.$normalizedTz;
