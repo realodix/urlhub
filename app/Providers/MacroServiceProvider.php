@@ -22,10 +22,10 @@ class MacroServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Set the timezone based on the user's timezone
-        Carbon::macro('inUserTimezone', static function () {
+        Carbon::macro('inUserTimezone', function () {
             $userTimezone = auth()->user()->timezone ?? config('app.timezone');
 
-            return self::this()->copy()->tz($userTimezone);
+            return $this->copy()->tz($userTimezone);
         });
 
         // A SQLite UDF for the REGEXP keyword that mimics the behavior in MySQL.
