@@ -7,7 +7,7 @@ class TimezonelistService
     const HTML_WHITESPACE = '&#160;';
     const GENERAL_TIMEZONE = 'UTC';
 
-    protected array $continents = [
+    const CONTINENTS = [
         'Africa'     => \DateTimeZone::AFRICA,
         'America'    => \DateTimeZone::AMERICA,
         'Antarctica' => \DateTimeZone::ANTARCTICA,
@@ -48,7 +48,7 @@ class TimezonelistService
         $output .= '</optgroup>';
 
         // Continent
-        foreach ($this->continents as $continent => $mask) {
+        foreach (self::CONTINENTS as $continent => $mask) {
             $timezones = \DateTimeZone::listIdentifiers($mask);
 
             $output .= '<optgroup label="'.$continent.'">';
@@ -68,22 +68,13 @@ class TimezonelistService
     }
 
     /**
-     * Get timezone offset
-     */
-    public function timezoneOffset(string $timezone): string
-    {
-        return (new \DateTime('', new \DateTimeZone($timezone)))
-            ->format('P');
-    }
-
-    /**
      * Generate HTML <option> tag
      */
     protected function makeOptionTag(string $display, string $value, bool $selected): string
     {
-        $attrs = $selected ? ' selected="selected"' : '';
+        $attrs = $selected ? ' selected' : '';
 
-        return '<option value="'.(string) $value.'"'.$attrs.'>'.(string) $display.'</option>';
+        return "<option value=\"{$value}\" {$attrs}>{$display}</option>";
     }
 
     /**
@@ -93,9 +84,10 @@ class TimezonelistService
     {
         $displayedTz = empty($cutOffContinent) ? $timezone : substr($timezone, strlen($cutOffContinent) + 1);
         $normalizedTz = str_replace(['St_', '/', '_'], ['St. ', ' / ', ' '], $displayedTz);
-        $offset = $this->timezoneOffset($timezone);
+        $offset = (new \DateTime('', new \DateTimeZone($timezone)))
+            ->format('P');
         $separator = str_repeat(self::HTML_WHITESPACE, 3);
 
-        return '(UTC'.$offset.')'.$separator.$normalizedTz;
+        return "(UTC{$offset})".$separator.$normalizedTz;
     }
 }

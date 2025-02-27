@@ -12,3 +12,4 @@ parameters:
     ignoreErrors:
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
+        - message: '#^Call to an undefined method Carbon\\Carbon\:\:inUserTz\(\)\.$#'
