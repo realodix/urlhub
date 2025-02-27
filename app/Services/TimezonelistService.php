@@ -74,7 +74,7 @@ class TimezonelistService
     {
         $attrs = $selected ? ' selected' : '';
 
-        return "<option value=\"{$value}\" {$attrs}>{$display}</option>";
+        return "<option value=\"{$value}\"{$attrs}>{$display}</option>";
     }
 
     /**

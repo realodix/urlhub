@@ -52,7 +52,7 @@ class TimezonelistServiceTest extends TestCase
     {
         $selectedTimezone = 'America/New_York';
         $output = $this->service->toSelectBox('timezone_selected', $selectedTimezone);
-        $this->assertStringContainsString('<option value="America/New_York" selected="selected">', $output);
+        $this->assertStringContainsString('<option value="America/New_York" selected>', $output);
     }
 
     public function testToSelectBox_WithAttributes(): void
