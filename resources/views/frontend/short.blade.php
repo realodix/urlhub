@@ -19,7 +19,7 @@
             @endif
             <li class="inline-block pr-4">
                 @svg('icon-calendar')
-                <i>{{ $url->created_at->toFormattedDateString() }}</i>
+                <i>{{ $createdAt->toFormattedDateString() }}</i>
             </li>
         </ul>
     </div>
