@@ -73,8 +73,8 @@ class UrlController extends Controller implements HasMiddleware
 
         $data = [
             'url' => $url,
-            'createdAt' => $url->created_at,
-            'updatedAt' => $url->updated_at,
+            'createdAt' => $url->created_at->inUserTz(),
+            'updatedAt' => $url->updated_at->inUserTz(),
         ];
 
         return view('backend.edit', $data);
