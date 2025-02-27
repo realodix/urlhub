@@ -41,7 +41,6 @@ class TimezonelistService
             }
         }
 
-
         $output = '<select name="'.$name.'"'.$attributes.'>';
         $options = [];
         // General
