@@ -41,32 +41,34 @@ class TimezonelistService
             }
         }
 
-        $output = '<select name="'.$name.'"'.$attributes.'>';
 
+        $output = '<select name="'.$name.'"'.$attributes.'>';
+        $options = [];
         // General
-        $output .= '<optgroup label="General">';
-        $output .= $this->makeOptionTag(
+        $options[] = '<optgroup label="General">';
+        $options[] = $this->makeOptionTag(
             $this->formatTimezone(self::GENERAL_TIMEZONE),
             self::GENERAL_TIMEZONE,
             ($selected == self::GENERAL_TIMEZONE),
         );
-        $output .= '</optgroup>';
+        $options[] = '</optgroup>';
 
         // Continent
         foreach (self::CONTINENTS as $continent => $mask) {
             $timezones = \DateTimeZone::listIdentifiers($mask);
 
-            $output .= '<optgroup label="'.$continent.'">';
+            $options[] = '<optgroup label="'.$continent.'">';
             foreach ($timezones as $timezone) {
-                $output .= $this->makeOptionTag(
+                $options[] = $this->makeOptionTag(
                     $this->formatTimezone($timezone, $continent),
                     $timezone,
                     ($selected == $timezone),
                 );
             }
-            $output .= '</optgroup>';
+            $options[] = '</optgroup>';
         }
 
+        $output .= implode('', $options);
         $output .= '</select>';
 
         return $output;
