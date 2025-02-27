@@ -6,6 +6,12 @@ class TimezonelistService
 {
     const HTML_WHITESPACE = '&#160;';
     const GENERAL_TIMEZONE = 'UTC';
+
+    /**
+     * Continents
+     *
+     * @var array
+     */
     const CONTINENTS = [
         'Africa'     => \DateTimeZone::AFRICA,
         'America'    => \DateTimeZone::AMERICA,
