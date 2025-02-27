@@ -43,6 +43,13 @@
                         @else
                             <input type="hidden" name="forward_query" value="{{ $user->forward_query ? true : false }}">
                         @endif
+
+                        <div class="col-span-6 lg:col-span-4">
+                            <label class="form-label">{{ __('Timezone') }}</label>
+                            <p class="font-light text-sm dark:text-dark-400">Choose either a city in the same timezone as you or a UTC (Coordinated Universal Time) time offset.</p>
+
+                            <div class="mt-4">{!! $timezoneList !!}</div>
+                        </div>
                     </div>
 
                     <div class="flex items-center justify-end mt-8 text-right">

@@ -83,7 +83,7 @@ class BaseUrlTable extends PowerGridComponent
             })
             ->add('created_at_formatted', function (Url $url) {
                 return view('components.table.date-created', [
-                    'date' => $url->created_at,
+                    'date' => $url->created_at->inUserTz(),
                 ])->render();
             })
             ->add('action', function (Url $url) {

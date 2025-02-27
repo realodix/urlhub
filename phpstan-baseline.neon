@@ -5,3 +5,9 @@ parameters:
 			identifier: property.notFound
 			count: 1
 			path: app/Livewire/Table/BaseUrlTable.php
+
+		-
+			message: '#^Call to an undefined method App\\Providers\\MacroServiceProvider\:\:copy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Providers/MacroServiceProvider.php
