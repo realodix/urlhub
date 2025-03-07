@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Services\TimezonelistService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
+use Realodix\Timezone\Timezone;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -38,7 +38,7 @@ class UserController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $user);
 
-        $tzList = app(TimezonelistService::class)
+        $tzList = app(Timezone::class)
             ->toSelectBox('user_timezone', $user->timezone, ['class' => 'form-input']);
 
         return view('backend.user.account', [
