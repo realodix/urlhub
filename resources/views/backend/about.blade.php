@@ -199,8 +199,7 @@
     <br>
 
     @php
-        $domainBlacklist = collect(config('urlhub.domain_blacklist'))
-            ->sort()->toArray();
+        $domainBlacklist = collect(config('urlhub.domain_blacklist'))->sort();
         $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
         $reservedKeyword = $keyGenerator->reservedKeyword();
     @endphp
@@ -218,8 +217,8 @@
             </dt>
             <dd class="mt-2">
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
-                    @if (!empty($domainBlacklist))
-                        <code>{{ implode(", ", $domainBlacklist) }}</code>
+                    @if ($domainBlacklist->isNotEmpty())
+                        <code>{{ $domainBlacklist->implode(', ') }}</code>
                     @else
                         <code>None</code>
                     @endif
