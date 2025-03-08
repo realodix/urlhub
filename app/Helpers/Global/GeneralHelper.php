@@ -36,7 +36,7 @@ if (!function_exists('n_abb')) {
      * default value of maxPrecision is 2.
      *
      * - https://laravel.com/docs/11.x/helpers#method-number-abbreviate
-     * - https://github.com/laravel/framework/blob/5d4b26e/src/Illuminate/Support/Number.php#L154
+     * - https://github.com/laravel/framework/blob/151982cc/src/Illuminate/Support/Number.php#L184
      *
      * @param int|float $number
      * @param int $precision
