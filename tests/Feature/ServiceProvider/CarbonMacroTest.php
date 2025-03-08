@@ -14,8 +14,8 @@ class CarbonMacroTest extends TestCase
     public function it_returns_carbon_instance_in_user_timezone()
     {
         // 1. Mock Auth::user()
-        $user = new \stdClass; // Create a dummy user object
-        $user->timezone = 'America/Los_Angeles'; // Set the timezone directly
+        $user = new \stdClass;
+        $user->timezone = 'America/Los_Angeles';
         Auth::shouldReceive('user')->andReturn($user);
 
         // 2. Mock config('app.timezone')
@@ -23,7 +23,7 @@ class CarbonMacroTest extends TestCase
             $mock->shouldReceive('get')->with('app.timezone')->andReturn('UTC');
         });
 
-        // 3. Create a Carbon instance (UTC).
+        // 3. Create a Carbon instance (UTC)
         $utcTime = Carbon::create(2024, 10, 27, 10, 0, 0, 'UTC');
 
         // 4. Call the macro.
@@ -48,7 +48,7 @@ class CarbonMacroTest extends TestCase
             $mock->shouldReceive('get')->with('app.timezone')->andReturn('UTC');
         });
 
-        // 3. Create a Carbon instance (UTC).
+        // 3. Create a Carbon instance (UTC)
         $utcTime = Carbon::create(2024, 10, 27, 10, 0, 0, 'UTC');
 
         // 4. Call the macro.
