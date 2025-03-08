@@ -18,6 +18,7 @@
         "livewire/livewire": "^3.5",
         "matomo/device-detector": "^6.4",
         "power-components/livewire-powergrid": "^6.1",
+        "realodix/timezone": "^0.1.0",
         "spatie/laravel-permission": "^6.12",
         "spatie/laravel-settings": "^3.4"
     },

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
+use Realodix\Timezone\Timezone;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -37,7 +38,13 @@ class UserController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $user);
 
-        return view('backend.user.account', ['user' => $user]);
+        $tzList = app(Timezone::class)
+            ->toSelectBox('user_timezone', $user->timezone, ['class' => 'form-input']);
+
+        return view('backend.user.account', [
+            'user' => $user,
+            'timezoneList' => $tzList,
+        ]);
     }
 
     /**
@@ -55,6 +62,7 @@ class UserController extends Controller implements HasMiddleware
 
         $data = [
             'forward_query' => $request->forward_query ? true : false,
+            'timezone' => $request->user_timezone,
         ];
 
         if ($request->email != $user->email) {

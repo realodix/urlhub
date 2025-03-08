@@ -50,7 +50,7 @@ final class UserTable extends PowerGridComponent
             })
             ->add('email')
             ->add('created_at_formatted', function (User $user) {
-                $date = $user->created_at;
+                $date = $user->created_at->inUserTz();
                 $offset = '('.$date->getOffsetString().')';
 
                 return
