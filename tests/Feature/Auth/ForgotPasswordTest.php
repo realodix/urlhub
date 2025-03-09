@@ -4,10 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\{DB, Hash, Notification, Password};
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 

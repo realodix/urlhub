@@ -7,10 +7,8 @@ use App\Models\User;
 use App\Rules\PasswordRules;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\{Gate, Hash};
 use Illuminate\Validation\Rule;
-use Realodix\Timezone\Timezone;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -78,8 +76,10 @@ class UserController extends Controller implements HasMiddleware
     {
         Gate::authorize('view', $user);
 
-        $tzList = app(Timezone::class)
-            ->toSelectBox('user_timezone', $user->timezone, ['class' => 'form-input']);
+        $tzList = app(\Realodix\Timezone\Timezone::class)
+            ->toSelectBox('user_timezone', $user->timezone, [
+                'class' => 'form-input',
+            ]);
 
         return view('backend.user.account', [
             'user' => $user,
