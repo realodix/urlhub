@@ -132,7 +132,22 @@ class UserController extends Controller implements HasMiddleware
 
         $user->delete();
 
-        return redirect()->back()
+        return redirect()->route('user.index')
             ->with('flash_success', __('User deleted.'));
+    }
+
+    /**
+     * Show the confirmation page for deleting a user.
+     *
+     * @param User $user \App\Models\User
+     * @return \Illuminate\Contracts\View\View
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function confirmDelete(User $user)
+    {
+        Gate::authorize('forceDelete', $user);
+
+        return view('backend.user.delete-confirm', ['user' => $user]);
     }
 }
