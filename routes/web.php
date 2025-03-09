@@ -32,6 +32,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
         Route::post('/store', [UserController::class, 'store'])->name('user.store');
         Route::get('/{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::post('/{user:name}/edit', [UserController::class, 'update'])->name('user.update');
+        Route::get('/{user:name}/delete', [UserController::class, 'delete'])->name('user.delete');
 
         Route::get('/{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.password.show');
         Route::post('/{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
