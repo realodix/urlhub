@@ -23,4 +23,12 @@ class UserPolicy
     {
         return $authUser->hasRole('admin') || $authUser->id === $user->id;
     }
+
+    /**
+     * Determine whether the user can permanently delete the user.
+     */
+    public function forceDelete(User $authUser, User $user): bool
+    {
+        return $authUser->hasRole('admin') || $authUser->id === $user->id;
+    }
 }

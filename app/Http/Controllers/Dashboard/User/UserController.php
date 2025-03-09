@@ -117,4 +117,22 @@ class UserController extends Controller implements HasMiddleware
         return redirect()->back()
             ->with('flash_success', __('Account updated.'));
     }
+
+    /**
+     * Delete a user.
+     *
+     * @param User $user \App\Models\User
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function delete(User $user)
+    {
+        Gate::authorize('forceDelete', $user);
+
+        $user->delete();
+
+        return redirect()->back()
+            ->with('flash_success', __('User deleted.'));
+    }
 }

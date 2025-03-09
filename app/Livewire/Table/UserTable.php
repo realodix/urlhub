@@ -4,7 +4,6 @@ namespace App\Livewire\Table;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
@@ -59,17 +58,12 @@ final class UserTable extends PowerGridComponent
                     '</span>';
             })
             ->add('action', function (User $user) {
-                return
-                    '<a role="button" href="'.route('user.edit', $user).'" title="'.__('Details').'"
-                        class="btn btn-secondary btn-square btn-xs"
-                    >'
-                        .Blade::render('@svg(\'icon-person-edit\')').
-                    '</a>
-                    <a role="button" href="'.route('user.password.show', $user).'" title="'.__('Change Password').'"
-                        class="btn btn-secondary btn-square btn-xs"
-                    >'
-                        .Blade::render('@svg(\'icon-key\')').
-                    '</a>';
+                return view('components.table.action-button_user', [
+                    'model' => $user,
+                    'detail_link' => route('user.edit', $user),
+                    'cp_link' => route('user.password.show', $user),
+                    'delete_link' => route('user.delete', $user),
+                ])->render();
             });
     }
 
