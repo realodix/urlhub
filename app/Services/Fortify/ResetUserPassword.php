@@ -3,7 +3,7 @@
 namespace App\Services\Fortify;
 
 use App\Models\User;
-use App\Rules\PasswordRules;
+use App\Rules\UserRules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
@@ -18,7 +18,7 @@ class ResetUserPassword implements ResetsUserPasswords
     public function reset(User $user, array $input): void
     {
         Validator::make($input, [
-            'password' => PasswordRules::ruleWithConfirm(),
+            'password' => UserRules::passwordWithConfirm(),
         ])->validate();
 
         $user->forceFill([

@@ -40,7 +40,7 @@ class ChangePasswordController extends Controller
         $request->validate([
             'current_password' => ['current_password'],
             'new_password' => [
-                ...\App\Rules\PasswordRules::ruleWithConfirm(),
+                ...\App\Rules\UserRules::passwordWithConfirm(),
                 'unique:users,password', 'different:current_password',
             ],
         ]);
