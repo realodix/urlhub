@@ -62,7 +62,7 @@ final class UserTable extends PowerGridComponent
                     'model' => $user,
                     'detail_link' => route('user.edit', $user),
                     'cp_link' => route('user.password.show', $user),
-                    'delete_link' => route('user.delete', $user),
+                    'delete_link' => route('user.delete.confirm', $user),
                 ])->render();
             });
     }

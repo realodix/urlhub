@@ -20,8 +20,8 @@ class DeleteUserTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($this->adminUser())
-            ->from(route('user.index'))
-            ->get($this->getRoute($user));
+            ->from(route('user.delete.confirm', $user))
+            ->delete($this->getRoute($user));
 
         $response
             ->assertRedirectToRoute('user.index')
