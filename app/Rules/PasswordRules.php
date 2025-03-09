@@ -8,6 +8,11 @@ class PasswordRules
 {
     public static function rule(): array
     {
-        return ['required', 'string', Password::min(5), 'confirmed'];
+        return ['required', 'string', Password::min(5)];
+    }
+
+    public static function ruleWithConfirm(): array
+    {
+        return [...self::rule(), 'confirmed'];
     }
 }
