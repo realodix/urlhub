@@ -28,6 +28,8 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     // User
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'view'])->name('user.index');
+        Route::get('/new', [UserController::class, 'create'])->name('user.new');
+        Route::post('/store', [UserController::class, 'store'])->name('user.store');
         Route::get('/{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::post('/{user:name}/edit', [UserController::class, 'update'])->name('user.update');
 

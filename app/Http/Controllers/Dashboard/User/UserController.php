@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\PasswordRules;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Realodix\Timezone\Timezone;
 
 class UserController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [new Middleware('role:admin', only: ['view'])];
+        return [new Middleware('role:admin', only: ['view', 'create'])];
     }
 
     /**
@@ -24,6 +27,43 @@ class UserController extends Controller implements HasMiddleware
     public function view()
     {
         return view('backend.user.index');
+    }
+
+    /**
+     * Show the form for creating a new user.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function create()
+    {
+        return view('backend.user.create');
+    }
+
+    /**
+     * Store a newly created user in storage.
+     *
+     * @param Request $request \Illuminate\Http\Request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'username' => ['required', 'string', 'max:50'],
+            'email'    => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
+            'password' => PasswordRules::rule(),
+        ]);
+
+        $user = User::create([
+            'name' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        if ($request->role == 'admin') {
+            $user->assignRole('admin');
+        }
+
+        return to_route('user.edit', $user);
     }
 
     /**
