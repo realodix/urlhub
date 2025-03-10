@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
-use Illuminate\Support\Facades\{Gate, Hash};
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller implements HasMiddleware
 {
@@ -52,7 +52,7 @@ class UserController extends Controller implements HasMiddleware
         $user = User::create([
             'name' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
         if ($request->role == 'admin') {

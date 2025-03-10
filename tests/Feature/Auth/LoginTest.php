@@ -3,7 +3,6 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -62,7 +61,7 @@ class LoginTest extends TestCase
     public function userCanLoginWithCorrectCredentials(): void
     {
         $user = User::factory()->create([
-            'password' => Hash::make($password = 'i-love-laravel'),
+            'password' => $password = 'i-love-laravel',
         ]);
 
         $response = $this->post($this->postRoute(), [
@@ -80,13 +79,9 @@ class LoginTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotLoginWithIncorrectPassword(): void
     {
-        $user = User::factory()->create([
-            'password' => Hash::make('i-love-laravel'),
-        ]);
-
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'identity' => $user->email,
+                'identity' => $this->basicUser()->email,
                 'password' => 'invalid-password',
             ]);
 

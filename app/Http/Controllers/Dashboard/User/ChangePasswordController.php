@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Gate, Hash};
+use Illuminate\Support\Facades\Gate;
 
 class ChangePasswordController extends Controller
 {
@@ -50,10 +50,10 @@ class ChangePasswordController extends Controller
         // Check if admin user is changing another user's password.
         // Admin authority check has been done by the gate.
         if (!auth()->user()->is($user)) {
-            $user->password = Hash::make($newPassword);
+            $user->password = $newPassword;
             $user->save();
         } else {
-            $request->user()->password = Hash::make($newPassword);
+            $request->user()->password = $newPassword;
             $request->user()->save();
 
             // Clear sessions on other devices
