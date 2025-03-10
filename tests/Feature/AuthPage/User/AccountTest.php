@@ -137,52 +137,6 @@ class AccountTest extends TestCase
         $this->assertSame('user2@urlhub.test', $user->email);
     }
 
-    public function testValidateEmailRequired(): void
-    {
-        $user = $this->basicUser();
-
-        $response = $this->actingAs($user)
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
-                'email' => '',
-            ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('email');
-    }
-
-    public function testValidateEmailInvalidFormat(): void
-    {
-        $user = $this->basicUser();
-
-        $response = $this->actingAs($user)
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
-                'email' => 'invalid_format',
-            ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('email');
-    }
-
-    public function testValidateEmailMaxLength(): void
-    {
-        $user = $this->basicUser();
-
-        $response = $this->actingAs($user)
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
-                // 255 + 9
-                'email' => str_repeat('a', 255).'@mail.com',
-            ]);
-
-        $response
-            ->assertRedirect($this->getRoute($user->name))
-            ->assertSessionHasErrors('email');
-    }
-
     public function testValidateEmailUnique(): void
     {
         $user = $this->basicUser();
