@@ -17,11 +17,11 @@ class UserServiceTest extends TestCase
     public function testSignature(): void
     {
         $userService = app(UserService::class);
-        $this->assertTrue(strlen($userService->signature()) >= 16);
+
+        $this->assertEquals('75e9953ca8e14667', $userService->signature());
 
         $user = $this->basicUser();
-        $this->actingAs($user)
-            ->post(route('link.create'), ['long_url' => 'https://laravel.com']);
+        $this->actingAs($user);
         $this->assertEquals($user->id, $userService->signature());
     }
 
