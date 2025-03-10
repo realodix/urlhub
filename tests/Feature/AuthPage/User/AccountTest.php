@@ -211,7 +211,8 @@ class AccountTest extends TestCase
             ->post($this->postRoute($user->name), $request->all());
 
         $response->assertRedirect($this->getRoute($user->name));
-        $this->assertDatabaseHas(User::class, ['email' => $user->email, 'forward_query' => 0]);
+        $this->assertDatabaseHas(User::class, ['forward_query' => 0]);
+        $this->assertSame(false, $user->fresh()->forward_query);
     }
 
     public function testUserChangeTimezone()
@@ -228,6 +229,6 @@ class AccountTest extends TestCase
             ->post($this->postRoute($user->name), $request->all());
 
         $response->assertRedirect($this->getRoute($user->name));
-        $this->assertDatabaseHas(User::class, ['email' => $user->email, 'timezone' => $timezone]);
+        $this->assertSame($timezone, $user->fresh()->timezone);
     }
 }
