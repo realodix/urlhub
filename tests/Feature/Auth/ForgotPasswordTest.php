@@ -11,17 +11,17 @@ use Tests\TestCase;
 #[PHPUnit\Group('auth-page')]
 class ForgotPasswordTest extends TestCase
 {
-    protected function requestRoute(): string
+    private function requestRoute(): string
     {
         return route('password.request');
     }
 
-    protected function getRoute(): string
+    private function getRoute(): string
     {
         return route('password.email');
     }
 
-    protected function postRoute(): string
+    private function postRoute(): string
     {
         return route('password.email');
     }

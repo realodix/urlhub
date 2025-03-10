@@ -8,7 +8,7 @@ use Tests\TestCase;
 #[PHPUnit\Group('auth-page')]
 class SettingsPageTest extends TestCase
 {
-    protected function postRoute(): string
+    private function postRoute(): string
     {
         return route('dboard.settings.update');
     }

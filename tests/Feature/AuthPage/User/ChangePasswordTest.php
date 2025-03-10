@@ -11,9 +11,9 @@ use Tests\TestCase;
 #[PHPUnit\Group('user-page')]
 class ChangePasswordTest extends TestCase
 {
-    protected User $user;
+    private User $user;
 
-    protected static string $password = 'old-password';
+    private static string $password = 'old-password';
 
     protected function setUp(): void
     {
@@ -24,12 +24,12 @@ class ChangePasswordTest extends TestCase
         ]);
     }
 
-    protected function getRoute(mixed $value): string
+    private function getRoute(mixed $value): string
     {
         return route('user.password.show', $value);
     }
 
-    protected function postRoute(mixed $value): string
+    private function postRoute(mixed $value): string
     {
         return route('user.password.store', $value);
     }

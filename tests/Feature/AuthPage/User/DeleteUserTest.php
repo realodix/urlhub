@@ -10,7 +10,7 @@ use Tests\TestCase;
 #[PHPUnit\Group('user-page')]
 class DeleteUserTest extends TestCase
 {
-    protected function getRoute($user): string
+    private function getRoute($user): string
     {
         return route('user.delete', $user);
     }

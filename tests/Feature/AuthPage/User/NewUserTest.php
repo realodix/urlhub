@@ -11,12 +11,12 @@ use Tests\TestCase;
 #[PHPUnit\Group('user-page')]
 class NewUserTest extends TestCase
 {
-    protected function getRoute(): string
+    private function getRoute(): string
     {
         return route('user.new');
     }
 
-    protected function postRoute(): string
+    private function postRoute(): string
     {
         return route('user.store');
     }

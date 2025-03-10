@@ -10,17 +10,17 @@ use Tests\TestCase;
 #[PHPUnit\Group('auth-page')]
 class LoginTest extends TestCase
 {
-    protected function successfulLoginRoute(): string
+    private function successfulLoginRoute(): string
     {
         return route('home');
     }
 
-    protected function getRoute(): string
+    private function getRoute(): string
     {
         return route('login');
     }
 
-    protected function postRoute(): string
+    private function postRoute(): string
     {
         return route('login');
     }

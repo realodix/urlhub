@@ -11,12 +11,12 @@ use Tests\TestCase;
 #[PHPUnit\Group('user-page')]
 class AccountTest extends TestCase
 {
-    protected function getRoute(mixed $value): string
+    private function getRoute(mixed $value): string
     {
         return route('user.edit', $value);
     }
 
-    protected function postRoute(mixed $value): string
+    private function postRoute(mixed $value): string
     {
         return route('user.update', $value);
     }
