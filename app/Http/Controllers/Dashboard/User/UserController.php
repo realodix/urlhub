@@ -103,9 +103,9 @@ class UserController extends Controller implements HasMiddleware
             'timezone' => $request->user_timezone,
         ];
 
-        if ($request->email != $user->email) {
+        if ($request->email !== null) {
             $request->validate([
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'email' => ['string', 'email', 'max:255', 'unique:users'],
             ]);
             $data['email'] = $request->email;
         }

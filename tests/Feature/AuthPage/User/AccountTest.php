@@ -75,15 +75,18 @@ class AccountTest extends TestCase
     public function testCanUpdateEmail(): void
     {
         $user = $this->basicUser();
+        $newEmail = 'new_user_email@urlhub.test';
+
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
-                'email' => 'new_email@example.com',
+                'email' => $newEmail,
             ]);
 
         $response
             ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHas('flash_success');
+        $this->assertSame($newEmail, $user->fresh()->email);
     }
 
     /**
@@ -140,14 +143,20 @@ class AccountTest extends TestCase
     public function testValidateEmailUnique(): void
     {
         $user = $this->basicUser();
-
         $response = $this->actingAs($user)
-            ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
-                'email' => $this->basicUser()->email,
-            ]);
+            ->from($this->getRoute($user->name));
 
         $response
+            ->post($this->postRoute($user->name), [
+                'email' => $user->email, // same with self
+            ])
+            ->assertRedirect($this->getRoute($user->name))
+            ->assertSessionHasErrors('email');
+
+        $response
+            ->post($this->postRoute($user->name), [
+                'email' => $this->adminUser()->email, // same with others
+            ])
             ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
     }
@@ -156,7 +165,6 @@ class AccountTest extends TestCase
     {
         $user = $this->basicUser();
         $request = new Request([
-            'email' => $user->email,
             'forward_query' => false,
         ]);
 
@@ -174,7 +182,6 @@ class AccountTest extends TestCase
         $user = $this->basicUser();
         $timezone = 'America/New_York';
         $request = new Request([
-            'email' => $user->email,
             'user_timezone' => $timezone,
         ]);
 

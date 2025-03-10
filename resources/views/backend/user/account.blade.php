@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-span-6 lg:col-span-4">
                             <label class="form-label">{{ __('E-mail Address') }}</label>
-                            <input type="email" name="email" value="{{ $user->email }}" class="form-input mt-1">
+                            <input type="email" name="email" placeholder="{{ $user->email }}" class="form-input mt-1">
                         </div>
                         @if (settings()->forward_query)
                             <div class="col-span-6">
