@@ -11,16 +11,16 @@ use Tests\TestCase;
 #[PHPUnit\Group('user-page')]
 class ChangePasswordTest extends TestCase
 {
-    private User $user;
+    const PASSWORD = 'old-password';
 
-    private static string $password = 'old-password';
+    private User $user;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->user = User::factory()->create([
-            'password' => self::$password,
+            'password' => self::PASSWORD,
         ]);
     }
 
@@ -87,7 +87,7 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($this->user)
             ->from($this->getRoute($this->user->name))
             ->post($this->postRoute($this->user->name), [
-                'current_password' => self::$password,
+                'current_password' => self::PASSWORD,
                 'new_password'     => 'new-awesome-password',
                 'new_password_confirmation' => 'new-awesome-password',
             ]);
@@ -191,7 +191,7 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
-                'current_password' => self::$password,
+                'current_password' => self::PASSWORD,
                 'new_password'     => $data1,
                 'new_password_confirmation' => $data2,
             ]);
@@ -231,9 +231,9 @@ class ChangePasswordTest extends TestCase
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
             ->post($this->postRoute($user->name), [
-                'current_password' => self::$password,
-                'new_password'     => self::$password,
-                'new_password_confirmation' => self::$password,
+                'current_password' => self::PASSWORD,
+                'new_password'     => self::PASSWORD,
+                'new_password_confirmation' => self::PASSWORD,
             ]);
 
         $response
@@ -241,7 +241,7 @@ class ChangePasswordTest extends TestCase
             ->assertSessionHasErrors('new_password');
 
         $this->assertTrue(
-            Hash::check(self::$password, $user->fresh()->password),
+            Hash::check(self::PASSWORD, $user->fresh()->password),
         );
     }
 }
