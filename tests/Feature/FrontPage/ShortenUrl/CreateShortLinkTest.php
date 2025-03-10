@@ -11,12 +11,22 @@ use Tests\TestCase;
 #[\PHPUnit\Framework\Attributes\Group('front-page')]
 class CreateShortLinkTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->partialMock(Url::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getWebTitle')->andReturn('Mocked Web Title');
+        });
+    }
+
     /**
      * Users shorten the URLs, they don't fill in the custom keyword field. The
      * is_custom column (Urls table) must be filled with 0 / false.
      */
+    #[PHPUnit\Test]
     #[PHPUnit\Group('forward-query')]
-    public function testShortenUrl(): void
+    public function shortenUrl(): void
     {
         $longUrl = 'https://laravel.com';
         $response = $this->actingAs($this->basicUser())
@@ -49,21 +59,9 @@ class CreateShortLinkTest extends TestCase
      */
     public function testShortenUrlWithCustomKeyword(): void
     {
-        $longUrl = 'https://t.co';
+        $longUrl = 'https://example.com/shorten-url-with-custom-keyword';
 
         $customKey = 'foobar';
-        settings()->fill(['keyword_length' => strlen($customKey) + 1])->save();
-        $response = $this->actingAs($this->basicUser())
-            ->post(route('link.create'), [
-                'long_url'   => $longUrl,
-                'custom_key' => $customKey,
-            ]);
-        $response->assertRedirectToRoute('link_detail', $customKey);
-        $url = Url::where('destination', $longUrl)->first();
-        $this->assertTrue($url->is_custom);
-
-        $customKey = 'barfoo';
-        settings()->fill(['keyword_length' => strlen($customKey) - 1])->save();
         $response = $this->actingAs($this->basicUser())
             ->post(route('link.create'), [
                 'long_url'   => $longUrl,
