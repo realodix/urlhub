@@ -20,7 +20,7 @@ class ChangePasswordTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create([
-            'password' => bcrypt(self::$password),
+            'password' => self::$password,
         ]);
     }
 
