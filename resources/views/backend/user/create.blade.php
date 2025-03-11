@@ -8,10 +8,10 @@
     <div class="flex flex-wrap">
         <div class="md:w-3/12 flex justify-between">
             <div class="px-4 sm:px-0">
-                <h3>{{ __('Account Information') }}</h3>
+                <h3>{{ __('Add New User') }}</h3>
 
                 <p class="mt-1 text-sm text-slate-600 dark:text-dark-400">
-                    {{ __("Update your account information.") }}
+                    {{ __("Create a brand new user and add them to this site.") }}
                 </p>
             </div>
         </div>
