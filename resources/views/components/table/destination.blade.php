@@ -5,7 +5,8 @@
 
     <br>
 
-    <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer" class="text-slate-600 dark:text-dark-400">
+    <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer"
+        class="text-slate-600 dark:text-dark-400">
        {{ urlFormat($destination, $limit) }}
     </a>
 </div>
