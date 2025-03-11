@@ -16,7 +16,7 @@ class RedirectControllerTest extends TestCase
 
         $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->destination)
-            ->assertStatus(settings()->redirect_status_code);
+            ->assertStatus(config('urlhub.redirection_status_code'));
 
         $this->assertCount(1, Visit::all());
     }
@@ -30,8 +30,7 @@ class RedirectControllerTest extends TestCase
         $url = Url::factory()->create();
 
         $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
-        $response->assertRedirect($url->destination.'?a=1&b=2')
-            ->assertStatus(settings()->redirect_status_code);
+        $response->assertRedirect($url->destination.'?a=1&b=2');
     }
 
     /**
@@ -45,8 +44,7 @@ class RedirectControllerTest extends TestCase
         $url = Url::factory()->create(['forward_query' => false]);
 
         $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
-        $response->assertRedirect($url->destination)
-            ->assertStatus(settings()->redirect_status_code);
+        $response->assertRedirect($url->destination);
     }
 
     /**
@@ -63,8 +61,7 @@ class RedirectControllerTest extends TestCase
             ->create();
 
         $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
-        $response->assertRedirect($url->destination)
-            ->assertStatus(settings()->redirect_status_code);
+        $response->assertRedirect($url->destination);
     }
 
     /**
@@ -75,13 +72,11 @@ class RedirectControllerTest extends TestCase
     #[PHPUnit\Group('forward-query')]
     public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledGlobally(): void
     {
-        $setting = app(\App\Settings\GeneralSettings::class);
-        $setting->fill(['forward_query' => false])->save();
+        settings()->fill(['forward_query' => false])->save();
 
         $url = Url::factory()->create();
 
         $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
-        $response->assertRedirect($url->destination)
-            ->assertStatus($setting->redirect_status_code);
+        $response->assertRedirect($url->destination);
     }
 }

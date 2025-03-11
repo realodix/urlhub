@@ -75,16 +75,6 @@
                         </label>
                     </div>
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-label !inline">Redirection Status Code</label>
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections" target="_blank">
-                            @svg('icon-help', 'ml-1 hover:scale-110 text-gray-500 dark:text-amber-400')</a>
-                        <div class="font-light text-sm dark:text-dark-400">The HTTP status code to use when redirecting a visitor to the original URL.</div>
-                        <select name="redirect_status_code" class="form-input mt-4 md:mt-3 max-w-100">
-                            <option value="301" {{ $settings->redirect_status_code == 301 ? 'selected' : '' }}>301 - Permanent Redirect</option>
-                            <option value="302" {{ $settings->redirect_status_code == 302 ? 'selected' : '' }}>302 - Temporary Redirect</option>
-                        </select>
-                    </div>
-                    <div class="col-span-6 lg:col-span-5">
                         <label class="form-label !inline">HTTP Cache-Control header (max-age)</label>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#max-age" target="_blank">
                             @svg('icon-help', 'ml-1 hover:scale-110 text-gray-500 dark:text-amber-400')</a>
