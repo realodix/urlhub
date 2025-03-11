@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\AuthPage;
+namespace Tests\Feature\Config;
 
 use App\Enums\UserType;
 use App\Models\Url;
@@ -10,6 +10,7 @@ use App\Services\KeyGeneratorService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('config')]
 #[PHPUnit\Group('auth-page')]
 class AboutPageTest extends TestCase
 {

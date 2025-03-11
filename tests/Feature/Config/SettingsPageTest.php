@@ -1,10 +1,11 @@
 <?php
 
-namespace Tests\Feature\AuthPage;
+namespace Tests\Feature\Config;
 
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
+#[PHPUnit\Group('config')]
 #[PHPUnit\Group('auth-page')]
 class SettingsPageTest extends TestCase
 {
