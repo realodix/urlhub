@@ -20,8 +20,6 @@ class GeneralSettings extends Settings
 
     public bool $forward_query;
 
-    public int $redirect_status_code;
-
     public int $redirect_cache_max_age;
 
     public bool $track_bot_visits;
@@ -48,7 +46,6 @@ class GeneralSettings extends Settings
             'custom_keyword_max_length' => request()->input('custom_keyword_max_length'),
             'retrieve_web_title'        => request()->boolean('retrieve_web_title'),
             'forward_query'             => request()->boolean('forward_query'),
-            'redirect_status_code'      => request()->input('redirect_status_code'),
             'redirect_cache_max_age'    => request()->input('redirect_cache_max_age'),
             'track_bot_visits'          => request()->boolean('track_bot_visits'),
         ]);

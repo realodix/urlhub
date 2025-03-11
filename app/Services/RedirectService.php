@@ -17,7 +17,8 @@ class RedirectService
     public function execute(Url $url)
     {
         $settings = app(GeneralSettings::class);
-        $statusCode = $settings->redirect_status_code;
+        $statusCode = config('urlhub.redirection_status_code');
+
         $maxAge = $settings->redirect_cache_max_age;
         $headers = ['Cache-Control' => sprintf('private,max-age=%s', $maxAge)];
         if ($maxAge === 0) {

@@ -20,7 +20,7 @@ class RedirectServiceTest extends TestCase
         $response = app(RedirectService::class)->execute($url);
 
         $this->assertEquals($url->destination, $response->getTargetUrl());
-        $this->assertEquals(settings()->redirect_status_code, $response->status());
+        $this->assertEquals(config('urlhub.redirection_status_code'), $response->status());
     }
 
     #[PHPUnit\Group('forward-query')]
