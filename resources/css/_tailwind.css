@@ -1,6 +1,6 @@
-@import "./../../vendor/power-components/livewire-powergrid/dist/tailwind.css";
-@import "tailwindcss";
-@config "../../tailwind.config.js";
+@import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css';
+@import 'tailwindcss';
+@config '../../tailwind.config.js';
 
 @theme {
     --color-uh-logo: oklch(47.87% 0.1065 263.41);

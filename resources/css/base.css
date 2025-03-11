@@ -1,4 +1,4 @@
-@import "./_tailwind.css";
+@import './_tailwind.css';
 
 @layer base {
     h1 { font-size: 2em; }
