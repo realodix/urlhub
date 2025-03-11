@@ -35,8 +35,8 @@ if (!function_exists('n_abb')) {
      * This is modified version of Laravel Number::abbreviate() method with the
      * default value of maxPrecision is 2.
      *
-     * - https://laravel.com/docs/11.x/helpers#method-number-abbreviate
-     * - https://github.com/laravel/framework/blob/151982cc/src/Illuminate/Support/Number.php#L184
+     * - https://laravel.com/docs/12.x/helpers#method-number-abbreviate
+     * - https://github.com/laravel/framework/blob/e6753fc3/src/Illuminate/Support/Number.php#L184
      *
      * @param int|float $number
      * @param int $precision
