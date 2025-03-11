@@ -8,8 +8,6 @@
     @php
         $debug = config('app.debug');
         $env = (string) app()->environment();
-        $appVersion = str(config('urlhub.app_version'));
-        $commitVersion = runGitCommand('git rev-parse master');
     @endphp
 
     <div class="mb-6">
@@ -35,13 +33,7 @@
             <div class="card card-fluid shadow-xs p-4 md:col-span-2">
                 <p class="text-uh-logo dark:text-uh-logo-dark text-sm font-medium leading-4">UrlHub</p>
                 <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
-                    @if($appVersion->endsWith('-dev') && !empty($commitVersion))
-                        <a href="https://github.com/realodix/urlhub/compare/{{ $commitVersion }}...master" target="_blank">
-                            {{$appVersion->remove('dev')}}{{ substr($commitVersion, 0 , 7) }}
-                        </a>
-                    @else
-                        {{ $appVersion->lower() }}
-                    @endif
+                    {{ config('urlhub.app_version') }}
                 </p>
             </div>
             <div class="card card-fluid shadow-xs p-4">
