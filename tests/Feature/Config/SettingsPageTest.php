@@ -76,7 +76,6 @@ class SettingsPageTest extends TestCase
             'custom_keyword_max_length' => 10,
             'retrieve_web_title' => true,
             'forward_query' => true,
-            'redirect_status_code' => 302,
             'redirect_cache_max_age' => 1,
             'track_bot_visits' => true,
         ];
