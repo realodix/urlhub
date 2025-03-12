@@ -7,7 +7,7 @@ parameters:
 			path: app/Livewire/Table/BaseUrlTable.php
 
 		-
-			message: '#^Call to an undefined method App\\Providers\\MacroServiceProvider\:\:copy\(\)\.$#'
-			identifier: method.notFound
+			message: '#^Call to an undefined static method App\\Providers\\MacroServiceProvider\:\:this\(\)\.$#'
+			identifier: staticMethod.notFound
 			count: 1
 			path: app/Providers/MacroServiceProvider.php
