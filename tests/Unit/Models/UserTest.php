@@ -21,6 +21,9 @@ class UserTest extends TestCase
         $this->assertInstanceOf(Url::class, $user->urls->first());
     }
 
+    /**
+     * @see App\Models\User::timezone()
+     */
     #[PHPUnit\Test]
     public function getTimezone(): void
     {
