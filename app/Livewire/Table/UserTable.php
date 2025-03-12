@@ -28,7 +28,7 @@ final class UserTable extends PowerGridComponent
                 ->showToggleColumns()
                 ->showSearchInput(),
             PowerGrid::footer()
-                ->showPerPage(25, [10, 25, 50, 100])
+                ->showPerPage(BaseUrlTable::PER_PAGE, BaseUrlTable::PER_PAGE_VALUES)
                 ->showRecordCount('full'),
         ];
     }

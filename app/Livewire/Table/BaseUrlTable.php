@@ -17,6 +17,12 @@ class BaseUrlTable extends PowerGridComponent
     /** @var int */
     const STR_LIMIT = 90;
 
+    /** @var int */
+    const PER_PAGE = 25;
+
+    /** @var list<int> */
+    const PER_PAGE_VALUES = [10, 25, 50, 100];
+
     public string $sortDirection = 'desc';
 
     public string $sortField = 'urls.id';
@@ -35,7 +41,7 @@ class BaseUrlTable extends PowerGridComponent
                 ->showToggleColumns()
                 ->showSearchInput(),
             PowerGrid::footer()
-                ->showPerPage(25, [10, 25, 50, 100])
+                ->showPerPage(self::PER_PAGE, self::PER_PAGE_VALUES)
                 ->showRecordCount('full'),
         ];
     }
