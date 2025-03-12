@@ -25,19 +25,32 @@ class RedirectService
             $headers = ['Cache-Control' => 'max-age=0, must-revalidate'];
         }
 
+        $destinationUrl = $this->resolveDestinationUrl($url, $settings);
+
+        return redirect()->away($destinationUrl, $statusCode, $headers);
+    }
+
+    /**
+     * Resolves the final destination URL based on query forwarding settings.
+     *
+     * @param Url $url \App\Models\Url
+     * @param GeneralSettings $settings \App\Settings\GeneralSettings
+     */
+    public function resolveDestinationUrl(Url $url, GeneralSettings $settings): string
+    {
         $destinationUrl = $url->destination;
 
         /** @var array $currentQuery */
-        $currentQuery = request()->query(); // The `$key` parameter is not filled, so it will return an `array`.
+        $currentQuery = request()->query(); // Will be an array because the `$key` parameter is not filled
         if (! empty($currentQuery)
-            && $settings->forward_query === true // The `forward_query` setting is enabled on global level
-            && $url->author->forward_query === true // The `forward_query` setting is enabled on author level
-            && $url->forward_query === true // The `forward_query` setting is enabled on URL item level
+            && $settings->forward_query === true // Enabled on global level
+            && $url->author->forward_query === true // Enabled on author level
+            && $url->forward_query === true // Enabled on URL item level
         ) {
             $destinationUrl = $this->resolveQuery($url->destination, $currentQuery);
         }
 
-        return redirect()->away($destinationUrl, $statusCode, $headers);
+        return $destinationUrl;
     }
 
     /**
