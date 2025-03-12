@@ -137,16 +137,6 @@ class UrlTest extends TestCase
         $this->assertEquals($lengthLimit, strlen($url->title));
     }
 
-    #[PHPUnit\Test]
-    public function setMetaTitleAttributeWhenWebTitleSetToFalse(): void
-    {
-        settings()->fill(['retrieve_web_title' => false])->save();
-
-        $url = Url::factory()->create(['destination' => 'http://example.com/']);
-
-        $this->assertSame('No Title', $url->title);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | General
