@@ -61,21 +61,6 @@ class UrlTest extends TestCase
         $this->assertInstanceOf(Url::class, $v->url);
     }
 
-    /**
-     * The default guest id must be null.
-     */
-    #[PHPUnit\Test]
-    public function defaultGuestId(): void
-    {
-        $longUrl = 'https://example.com';
-
-        $this->post(route('link.create'), ['long_url' => $longUrl]);
-
-        $url = Url::where('destination', $longUrl)->first();
-
-        $this->assertSame(Url::GUEST_ID, $url->user_id);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Eloquent: Accessors & Mutators
@@ -83,14 +68,18 @@ class UrlTest extends TestCase
     */
 
     /**
+     * The default guest id must be GUEST_ID.
+     *
      * @see App\Models\Url::userId()
      */
     #[PHPUnit\Test]
-    public function setUserIdAttributeMustBeNull(): void
+    #[PHPUnit\TestWith([null])]
+    #[PHPUnit\TestWith([0])]
+    public function setUserIdAttributeMustBeGuestId($value): void
     {
-        $url = Url::factory()->create(['user_id' => 0]);
+        $url = Url::factory()->create(['user_id' => $value]);
 
-        $this->assertSame(null, $url->user_id);
+        $this->assertSame(Url::GUEST_ID, $url->user_id);
     }
 
     /**
