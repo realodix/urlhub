@@ -82,6 +82,9 @@ class UrlTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @see App\Models\Url::userId()
+     */
     #[PHPUnit\Test]
     public function setUserIdAttributeMustBeNull(): void
     {
@@ -90,6 +93,9 @@ class UrlTest extends TestCase
         $this->assertSame(null, $url->user_id);
     }
 
+    /**
+     * @see App\Models\Url::destination()
+     */
     #[PHPUnit\Test]
     public function setLongUrlAttribute(): void
     {
@@ -100,6 +106,9 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
+    /**
+     * @see App\Models\Url::shortUrl()
+     */
     #[PHPUnit\Test]
     public function getShortUrlAttribute(): void
     {
@@ -111,6 +120,9 @@ class UrlTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
+    /**
+     * @see App\Models\Url::title()
+     */
     public function testSetTitleLength(): void
     {
         $lengthLimit = Url::TITLE_LENGTH;
