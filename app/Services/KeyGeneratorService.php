@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Url;
 use App\Settings\GeneralSettings;
 use Composer\Pcre\Preg;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class KeyGeneratorService
@@ -211,7 +212,14 @@ class KeyGeneratorService
         $length = $this->settings->keyword_length;
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$length])
-            ->whereRaw('keyword REGEXP "^[a-zA-Z0-9]{'.$length.'}$"')
+            ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql',
+                function (Builder $query) use ($length): void {
+                    $query->where('keyword', '~', '^[a-zA-Z0-9]{'.$length.'}$');
+                },
+                function (Builder $query) use ($length): void {
+                    $query->where('keyword', 'REGEXP', '^[a-zA-Z0-9]{'.$length.'}$');
+                },
+            )
             ->count();
     }
 
