@@ -47,23 +47,23 @@ class RedirectService
             && $url->author->forward_query === true // Enabled on author level
             && $url->forward_query === true // Enabled on URL item level
         ) {
-            $destinationUrl = $this->resolveQuery($url->destination, $currentQuery);
+            $destinationUrl = $this->buildWithQuery($url->destination, $currentQuery);
         }
 
         return $destinationUrl;
     }
 
     /**
-     * Resolves a URL by merging query parameters from the current request with
+     * Builds a URL by merging query parameters from the current request with
      * those in the provided base URL. The parameter in the short link will
-     * override its counterpart in the destination URL in case of duplicates.
+     * override its counterpart in the base URL in case of duplicates.
      *
      * @param string $baseUrl The base URL to which query parameters will be
      *                        appended or merged.
      * @param array $currentQuery Query parameters from the current request.
      * @return string
      */
-    public function resolveQuery($baseUrl, $currentQuery)
+    public function buildWithQuery($baseUrl, $currentQuery)
     {
         return Uri::of($baseUrl)->withQuery($currentQuery)->__toString();
     }

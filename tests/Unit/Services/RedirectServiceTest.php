@@ -27,7 +27,7 @@ class RedirectServiceTest extends TestCase
     #[PHPUnit\DataProvider('urlWithQueryStringDataProvider')]
     public function testUrlWithQueryString(string $destination, array $incomingQuery, string $expectedDestination): void
     {
-        $query = app(RedirectService::class)->resolveQuery($destination, $incomingQuery);
+        $query = app(RedirectService::class)->buildWithQuery($destination, $incomingQuery);
 
         $this->assertSame($expectedDestination, $query);
     }
@@ -60,7 +60,7 @@ class RedirectServiceTest extends TestCase
     #[PHPUnit\DataProvider('urlWithDuplicateQueryStringDataProvider')]
     public function testUrlWithDuplicateQueryString(string $destination, array $incomingQuery, string $expectedDestination): void
     {
-        $query = app(RedirectService::class)->resolveQuery($destination, $incomingQuery);
+        $query = app(RedirectService::class)->buildWithQuery($destination, $incomingQuery);
 
         $this->assertSame($expectedDestination, $query);
     }
