@@ -30,12 +30,6 @@ class KeyGeneratorService
             return $str;
         }
 
-        // If the first attempt fail, try to make the string uppercase
-        $strUpper = strtoupper($str);
-        if ($this->verify($strUpper)) {
-            return $strUpper;
-        }
-
         // If the string is still not unique, then generate a random string
         // until it is unique
         do {
