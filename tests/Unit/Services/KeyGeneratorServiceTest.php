@@ -17,7 +17,7 @@ class KeyGeneratorServiceTest extends TestCase
 
     private Url $url;
 
-    private KeyGeneratorService $keyGenerator;
+    private KeyGeneratorService $keyGen;
 
     private int $totalUrl;
 
@@ -27,7 +27,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         $this->url = new Url;
 
-        $this->keyGenerator = app(KeyGeneratorService::class);
+        $this->keyGen = app(KeyGeneratorService::class);
 
         $this->totalUrl = self::N_URL_WITH_USER_ID + self::N_URL_WITHOUT_USER_ID;
     }
@@ -36,26 +36,26 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $value1 = 'foo';
 
-        $hash = $this->keyGenerator->generate($value1);
-        $this->assertSame($this->keyGenerator->shortHash($value1), $hash);
+        $hash = $this->keyGen->generate($value1);
+        $this->assertSame($this->keyGen->shortHash($value1), $hash);
 
         Url::factory()->create(['keyword' => $hash]);
-        $this->assertNotSame($hash, $this->keyGenerator->generate($value1));
+        $this->assertNotSame($hash, $this->keyGen->generate($value1));
     }
 
     public function testGenerateUniqueStringWithReservedKeyword(): void
     {
         $value1 = 'foo';
-        $generatedString1 = $this->keyGenerator->generate($value1);
+        $generatedString1 = $this->keyGen->generate($value1);
         Url::factory()->create(['keyword' => $generatedString1]);
-        $this->assertSame($this->keyGenerator->shortHash($value1), $generatedString1);
-        $this->assertNotSame($generatedString1, $this->keyGenerator->generate($value1));
+        $this->assertSame($this->keyGen->shortHash($value1), $generatedString1);
+        $this->assertNotSame($generatedString1, $this->keyGen->generate($value1));
 
         $value2 = 'foo2';
-        $generatedString2 = $this->keyGenerator->generate($value2);
+        $generatedString2 = $this->keyGen->generate($value2);
         config(['urlhub.reserved_keyword' => [$generatedString2]]);
-        $this->assertSame($this->keyGenerator->shortHash($value2), $generatedString2);
-        $this->assertNotSame($generatedString2, $this->keyGenerator->generate($value2));
+        $this->assertSame($this->keyGen->shortHash($value2), $generatedString2);
+        $this->assertNotSame($generatedString2, $this->keyGen->generate($value2));
     }
 
     /**
@@ -67,7 +67,7 @@ class KeyGeneratorServiceTest extends TestCase
         $strLen = 8;
         settings()->fill(['keyword_length' => $strLen])->save();
 
-        $actual = $this->keyGenerator->generate($inputString);
+        $actual = $this->keyGen->generate($inputString);
         $this->assertSame($strLen, strlen($actual));
         $this->assertNotSame(strlen($inputString), strlen($actual));
     }
@@ -78,11 +78,11 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testStringIsAlreadyUsedAsAShortLinkKeyword(): void
     {
-        $value = $this->keyGenerator->generate('https://github.com/realodix');
+        $value = $this->keyGen->generate('https://github.com/realodix');
 
         Url::factory()->create(['keyword' => $value]);
 
-        $this->assertFalse($this->keyGenerator->verify($value));
+        $this->assertFalse($this->keyGen->verify($value));
     }
 
     /**
@@ -95,7 +95,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         config(['urlhub.reserved_keyword' => [$value]]);
 
-        $this->assertFalse($this->keyGenerator->verify($value));
+        $this->assertFalse($this->keyGen->verify($value));
     }
 
     /**
@@ -104,10 +104,10 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testStringIsRegisteredRoute(): void
     {
-        $route = collect($this->keyGenerator->routeCollisionList())
+        $route = collect($this->keyGen->routeCollisionList())
             ->first();
 
-        $this->assertFalse($this->keyGenerator->verify($route));
+        $this->assertFalse($this->keyGen->verify($route));
     }
 
     /**
@@ -120,7 +120,7 @@ class KeyGeneratorServiceTest extends TestCase
         $value = self::RESOURCE_PREFIX.fake()->word();
 
         File::makeDirectory(public_path($value));
-        $this->assertFalse($this->keyGenerator->verify($value));
+        $this->assertFalse($this->keyGen->verify($value));
     }
 
     /**
@@ -133,7 +133,7 @@ class KeyGeneratorServiceTest extends TestCase
         $value = self::RESOURCE_PREFIX.fake()->word();
 
         File::put(public_path($value), '');
-        $this->assertFalse($this->keyGenerator->verify($value));
+        $this->assertFalse($this->keyGen->verify($value));
     }
 
     /**
@@ -148,7 +148,7 @@ class KeyGeneratorServiceTest extends TestCase
     public function testReservedActiveKeyword()
     {
         // Test case 1: No reserved keywords already in use
-        $this->assertEmpty($this->keyGenerator->reservedActiveKeyword()->all());
+        $this->assertEmpty($this->keyGen->reservedActiveKeyword()->all());
 
         // Test case 2: Some reserved keywords already in use
         $activeKeyword = self::RESOURCE_PREFIX.fake()->word();
@@ -157,7 +157,7 @@ class KeyGeneratorServiceTest extends TestCase
         File::makeDirectory(public_path($activeKeyword));
         $this->assertEquals(
             $activeKeyword,
-            $this->keyGenerator->reservedActiveKeyword()->implode(''),
+            $this->keyGen->reservedActiveKeyword()->implode(''),
         );
     }
 
@@ -174,13 +174,13 @@ class KeyGeneratorServiceTest extends TestCase
     #[PHPUnit\Test]
     public function maxUniqueStrings(): void
     {
-        $charLen = strlen($this->keyGenerator::ALPHABET);
+        $charLen = strlen($this->keyGen::ALPHABET);
 
         settings()->fill(['keyword_length' => 2])->save();
-        $this->assertSame(pow($charLen, 2), $this->keyGenerator->maxUniqueStrings());
+        $this->assertSame(pow($charLen, 2), $this->keyGen->maxUniqueStrings());
 
         settings()->fill(['keyword_length' => 12])->save();
-        $this->assertSame(PHP_INT_MAX, $this->keyGenerator->maxUniqueStrings());
+        $this->assertSame(PHP_INT_MAX, $this->keyGen->maxUniqueStrings());
     }
 
     /**
@@ -193,15 +193,15 @@ class KeyGeneratorServiceTest extends TestCase
         settings()->fill(['keyword_length' => $keywordLength])->save();
 
         Url::factory()->create([
-            'keyword' => $this->keyGenerator->randomString(),
+            'keyword' => $this->keyGen->randomString(),
         ]);
-        $this->assertSame(1, $this->keyGenerator->keywordCount());
+        $this->assertSame(1, $this->keyGen->keywordCount());
 
         Url::factory()->create([
             'keyword'   => str_repeat('a', $keywordLength),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->keywordCount());
+        $this->assertSame(2, $this->keyGen->keywordCount());
 
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'keyword_length',
         // maka ini tidak ikut terhitung.
@@ -209,10 +209,10 @@ class KeyGeneratorServiceTest extends TestCase
             'keyword'   => str_repeat('b', $settings->keyword_length + 2),
             'is_custom' => true,
         ]);
-        $this->assertSame(2, $this->keyGenerator->keywordCount());
+        $this->assertSame(2, $this->keyGen->keywordCount());
 
         settings()->fill(['keyword_length' => $settings->keyword_length + 3])->save();
-        $this->assertSame(0, $this->keyGenerator->keywordCount());
+        $this->assertSame(0, $this->keyGen->keywordCount());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
 
@@ -224,7 +224,7 @@ class KeyGeneratorServiceTest extends TestCase
         settings()->fill(['keyword_length' => 5])->save();
 
         Url::factory()->create(['keyword' => 'ab-cd']);
-        $this->assertSame(0, $this->keyGenerator->keywordCount());
+        $this->assertSame(0, $this->keyGen->keywordCount());
     }
 
     #[PHPUnit\Test]
@@ -281,7 +281,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         $this->assertEquals(
             $expected,
-            $this->keyGenerator->filterCollisionCandidates($actual)->toArray(),
+            $this->keyGen->filterCollisionCandidates($actual)->toArray(),
         );
     }
 
