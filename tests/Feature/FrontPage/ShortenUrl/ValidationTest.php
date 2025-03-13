@@ -10,7 +10,7 @@ use Tests\TestCase;
 #[PHPUnit\Group('front-page')]
 class ValidationTest extends TestCase
 {
-    public function testShortUrlGenerationWithIncorrectUrlFormat(): void
+    public function testShortUrlGenerationWithIncorrecturlDisplay(): void
     {
         $response = $this->post(route('link.create'), [
             'long_url' => 'wrong-url-format',

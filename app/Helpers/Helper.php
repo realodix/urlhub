@@ -32,7 +32,7 @@ class Helper
      * @param int $maxHostLength Maximum length of the host
      * @return string
      */
-    public static function urlFormat(
+    public static function urlDisplay(
         string $value,
         ?int $limit = null,
         bool $scheme = true,

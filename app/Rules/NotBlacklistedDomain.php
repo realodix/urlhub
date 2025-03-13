@@ -14,7 +14,7 @@ class NotBlacklistedDomain implements ValidationRule
         $bool = true;
 
         foreach ($blackLists as $blackList) {
-            $blackList = Helper::urlFormat($blackList, scheme: false);
+            $blackList = Helper::urlDisplay($blackList, scheme: false);
             $segment1 = '://'.$blackList.'/';
             $segment2 = '://www.'.$blackList.'/';
 

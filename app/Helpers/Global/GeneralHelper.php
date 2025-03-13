@@ -15,7 +15,7 @@ if (!function_exists('settings')) {
     }
 }
 
-if (!function_exists('urlFormat')) {
+if (!function_exists('urlDisplay')) {
     /**
      * Display the link according to what You need.
      *
@@ -24,9 +24,9 @@ if (!function_exists('urlFormat')) {
      * @param bool $scheme
      * @return string
      */
-    function urlFormat($value, $limit = null, $scheme = true)
+    function urlDisplay($value, $limit = null, $scheme = true)
     {
-        return Helper::urlFormat($value, $limit, $scheme);
+        return Helper::urlDisplay($value, $limit, $scheme);
     }
 }
 
