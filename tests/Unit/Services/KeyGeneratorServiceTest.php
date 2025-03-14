@@ -34,28 +34,36 @@ class KeyGeneratorServiceTest extends TestCase
 
     public function testGenerateUniqueString(): void
     {
-        $value1 = 'foo';
+        $value = 'foo';
 
-        $hash = $this->keyGen->generate($value1);
-        $this->assertSame($this->keyGen->shortHash($value1), $hash);
+        // Scenario 1
+        $hash = $this->keyGen->generate($value);
+        $this->assertSame($this->keyGen->shortHash($value), $hash);
 
+        // Scenario 2
+        // If the string is already used as a short link keyword
         Url::factory()->create(['keyword' => $hash]);
-        $this->assertNotSame($hash, $this->keyGen->generate($value1));
+        $mock = $this->partialMock(
+            KeyGeneratorService::class,
+            function (\Mockery\MockInterface $mock) use ($hash) {
+                $mock->shouldReceive('shortHash')->andReturn($hash);
+                $mock->shouldReceive('randomString')->andReturn('mocked_random_string');
+            });
+        $this->assertSame('mocked_random_string', $mock->generate($value));
     }
 
     public function testGenerateUniqueStringWithReservedKeyword(): void
     {
-        $value1 = 'foo';
-        $generatedString1 = $this->keyGen->generate($value1);
-        Url::factory()->create(['keyword' => $generatedString1]);
-        $this->assertSame($this->keyGen->shortHash($value1), $generatedString1);
-        $this->assertNotSame($generatedString1, $this->keyGen->generate($value1));
+        $reserved_keyword = 'foo';
+        config(['urlhub.reserved_keyword' => [$reserved_keyword]]);
 
-        $value2 = 'foo2';
-        $generatedString2 = $this->keyGen->generate($value2);
-        config(['urlhub.reserved_keyword' => [$generatedString2]]);
-        $this->assertSame($this->keyGen->shortHash($value2), $generatedString2);
-        $this->assertNotSame($generatedString2, $this->keyGen->generate($value2));
+        $mock = $this->partialMock(
+            KeyGeneratorService::class,
+            function (\Mockery\MockInterface $mock) use ($reserved_keyword) {
+                $mock->shouldReceive('shortHash')->andReturn($reserved_keyword);
+                $mock->shouldReceive('randomString')->andReturn('mocked_random_string');
+            });
+        $this->assertSame('mocked_random_string', $mock->generate($reserved_keyword));
     }
 
     /**
