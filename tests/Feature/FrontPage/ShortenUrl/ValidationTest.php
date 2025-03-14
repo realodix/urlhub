@@ -31,7 +31,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see app\Http\Requests\StoreUrlRequest.php
+     * @see App\Http\Requests\StoreUrlRequest
      */
     #[PHPUnit\DataProvider('customKeyPassProvider')]
     public function testCustomKeyValidationShouldPass($value): void
@@ -46,7 +46,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see app\Livewire\Validation\ValidateCustomKeyword.php
+     * @see App\Livewire\Validation\ValidateCustomKeyword
      */
     #[PHPUnit\DataProvider('customKeyPassProvider')]
     public function testLivewireCustomKeyValidationShouldPass($value): void
@@ -69,7 +69,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see app\Http\Requests\StoreUrlRequest.php
+     * @see App\Http\Requests\StoreUrlRequest
      */
     #[PHPUnit\DataProvider('customKeyFailProvider')]
     public function testCustomKeyValidationShouldFail($value): void
@@ -84,7 +84,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see app\Livewire\Validation\ValidateCustomKeyword.php
+     * @see App\Livewire\Validation\ValidateCustomKeyword
      */
     #[PHPUnit\DataProvider('customKeyFailProvider')]
     public function testLivewireCustomKeyValidationShouldFail($value): void
@@ -95,7 +95,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see app\Livewire\Validation\ValidateCustomKeyword.php
+     * @see App\Livewire\Validation\ValidateCustomKeyword
      */
     public function testLivewireCustomKeywordLengthValidation(): void
     {
