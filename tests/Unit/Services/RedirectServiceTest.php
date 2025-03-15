@@ -14,6 +14,9 @@ use Tests\TestCase;
 #[PHPUnit\Group('services')]
 class RedirectServiceTest extends TestCase
 {
+    const UA_ANDROID = 'Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.95 Mobile Safari/537.36';
+    const UA_IOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1';
+
     public function testUrlRedirection()
     {
         $url = Url::factory()->create();
@@ -21,6 +24,42 @@ class RedirectServiceTest extends TestCase
 
         $this->assertEquals($url->destination, $response->getTargetUrl());
         $this->assertEquals(config('urlhub.redirection_status_code'), $response->status());
+    }
+
+    public function testRedirection_Android()
+    {
+        $url = Url::factory()->create();
+        $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
+            ->get(route('home').'/'.$url->keyword);
+        $response->assertRedirect($url->dest_android);
+
+        $url = Url::factory()->create(['dest_android' => null]);
+        $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
+            ->get(route('home').'/'.$url->keyword);
+        $response->assertRedirect($url->destination);
+
+        $url = Url::factory()->create(['dest_android' => '']);
+        $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
+            ->get(route('home').'/'.$url->keyword);
+        $response->assertRedirect($url->destination);
+    }
+
+    public function testRedirection_Ios()
+    {
+        $url = Url::factory()->create();
+        $response = $this->withHeaders(['user-agent' => self::UA_IOS])
+            ->get(route('home').'/'.$url->keyword);
+        $response->assertRedirect($url->dest_ios);
+
+        $url = Url::factory()->create(['dest_ios' => null]);
+        $response = $this->withHeaders(['user-agent' => self::UA_IOS])
+            ->get(route('home').'/'.$url->keyword);
+        $response->assertRedirect($url->destination);
+
+        $url = Url::factory()->create(['dest_ios' => '']);
+        $response = $this->withHeaders(['user-agent' => self::UA_IOS])
+            ->get(route('home').'/'.$url->keyword);
+        $response->assertRedirect($url->destination);
     }
 
     /**
