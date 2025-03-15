@@ -25,7 +25,7 @@ class RedirectService
             $headers = ['Cache-Control' => 'max-age=0, must-revalidate'];
         }
 
-        $destinationUrl = $this->resolveDestinationUrl($url, $settings);
+        $destinationUrl = $this->resolveDestinationUrl($url);
 
         return redirect()->away($destinationUrl, $statusCode, $headers);
     }
@@ -34,10 +34,10 @@ class RedirectService
      * Resolves the final destination URL based on query forwarding settings.
      *
      * @param Url $url \App\Models\Url
-     * @param GeneralSettings $settings \App\Settings\GeneralSettings
      */
-    public function resolveDestinationUrl(Url $url, GeneralSettings $settings): string
+    public function resolveDestinationUrl(Url $url): string
     {
+        $settings = app(GeneralSettings::class);
         $destinationUrl = $url->destination;
 
         /** @var array $currentQuery */
@@ -47,7 +47,7 @@ class RedirectService
             && $url->author->forward_query === true // Enabled on author level
             && $url->forward_query === true // Enabled on URL item level
         ) {
-            $destinationUrl = $this->buildWithQuery($url->destination, $currentQuery);
+            $destinationUrl = $this->buildWithQuery($destinationUrl, $currentQuery);
         }
 
         return $destinationUrl;
