@@ -14,7 +14,7 @@ use Tests\TestCase;
 #[PHPUnit\Group('services')]
 class RedirectServiceTest extends TestCase
 {
-    public function testUrlRedirect()
+    public function testUrlRedirection()
     {
         $url = Url::factory()->create();
         $response = app(RedirectService::class)->execute($url);
