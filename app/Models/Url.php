@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $keyword
  * @property bool $is_custom
  * @property string $destination
+ * @property string $dest_android
+ * @property string $dest_ios
  * @property string $title
  * @property bool $forward_query
  * @property string $user_uid
@@ -47,7 +49,7 @@ class Url extends Model
         'user_type',
         'keyword',
         'is_custom',
-        'destination',
+        'destination', 'dest_android', 'dest_ios',
         'title',
         'forward_query',
         'user_uid',

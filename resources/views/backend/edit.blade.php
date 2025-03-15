@@ -47,6 +47,18 @@
                         <input name="long_url" required placeholder="http://www.my_long_url.com" value="{{ $url->destination }}" class="form-input">
                     </div>
 
+                    <div class="col-span-6">
+                        <label class="form-label">{{ __('Android Link') }}</label>
+                        <p class="font-light text-sm dark:text-dark-400 mb-2">Android devices will be automatically redirected to this link.</p>
+                        <input name="dest_android" placeholder="https://play.google.com/store/apps/details?id=com.canva.editor" value="{{ $url->dest_android }}" class="form-input">
+                    </div>
+
+                    <div class="col-span-6">
+                        <label class="form-label">{{ __('iOS Link') }}</label>
+                        <p class="font-light text-sm dark:text-dark-400 mb-2">iOS devices will be automatically redirected to this link.</p>
+                        <input name="dest_ios" placeholder="https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215" value="{{ $url->dest_ios }}" class="form-input">
+                    </div>
+
                     @if (settings()->forward_query && $url->author->forward_query)
                         <div class="col-span-6">
                             <label class="form-label">Parameter Passing</label>
