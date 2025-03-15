@@ -37,16 +37,11 @@ class RedirectService
      */
     public function resolveDestinationUrl(Url $url): string
     {
-        $settings = app(GeneralSettings::class);
         $destinationUrl = $url->destination;
 
         /** @var array $currentQuery */
         $currentQuery = request()->query(); // Array, because `$key` parameter is not filled
-        if (! empty($currentQuery)
-            && $settings->forward_query === true // Enabled on global level
-            && $url->author->forward_query === true // Enabled on author level
-            && $url->forward_query === true // Enabled on URL item level
-        ) {
+        if ($this->canForwardQuery($url, $currentQuery)) {
             $destinationUrl = $this->buildWithQuery($destinationUrl, $currentQuery);
         }
 
@@ -66,5 +61,23 @@ class RedirectService
     public function buildWithQuery($baseUrl, $currentQuery)
     {
         return Uri::of($baseUrl)->withQuery($currentQuery)->__toString();
+    }
+
+    /**
+     * Determines whether query parameters should be forwarded to the destination
+     * URL.
+     *
+     * @param Url $url The URL model.
+     * @param array $currentQuery The current query parameters.
+     * @return bool True if the query should be forwarded, false otherwise.
+     */
+    private function canForwardQuery(Url $url, array $currentQuery): bool
+    {
+        $settings = app(GeneralSettings::class);
+
+        return !empty($currentQuery) // Query parameters are present
+            && $settings->forward_query === true  // Enabled on global level
+            && $url->author->forward_query === true // Enabled on author level
+            && $url->forward_query === true;       // Enabled on URL item level
     }
 }
