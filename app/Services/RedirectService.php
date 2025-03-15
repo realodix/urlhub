@@ -41,7 +41,7 @@ class RedirectService
         $destinationUrl = $url->destination;
 
         /** @var array $currentQuery */
-        $currentQuery = request()->query(); // Will be an array because the `$key` parameter is not filled
+        $currentQuery = request()->query(); // Array, because `$key` parameter is not filled
         if (! empty($currentQuery)
             && $settings->forward_query === true // Enabled on global level
             && $url->author->forward_query === true // Enabled on author level
