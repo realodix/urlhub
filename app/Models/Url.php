@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property bool $forward_query
  * @property string $user_uid
+ * @property string|null $password
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property User $author
@@ -53,6 +54,16 @@ class Url extends Model
         'title',
         'forward_query',
         'user_uid',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
     ];
 
     /**
@@ -65,6 +76,7 @@ class Url extends Model
             'user_type' => UserType::class,
             'is_custom' => 'boolean',
             'forward_query' => 'boolean',
+            'password' => 'hashed',
         ];
     }
 

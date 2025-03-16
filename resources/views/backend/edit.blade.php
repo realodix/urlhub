@@ -59,6 +59,12 @@
                         <input name="dest_ios" placeholder="https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215" value="{{ $url->dest_ios }}" class="form-input">
                     </div>
 
+                    <div class="col-span-6">
+                        <label class="form-label">{{ __('Password') }}</label>
+                        <p class="font-light text-sm dark:text-dark-400 mb-2">Protect your link with a password.</p>
+                        <input type="password" name="password" class="form-input">
+                    </div>
+
                     @if (settings()->forward_query && $url->author->forward_query)
                         <div class="col-span-6">
                             <label class="form-label">Parameter Passing</label>
