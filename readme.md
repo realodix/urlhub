@@ -82,7 +82,7 @@ From the projects root folder run
 - or `composer test`
 - or `./vendor/bin/phpunit`
 
-![phpunit_image](https://github.com/user-attachments/assets/ea34dc59-8a72-4e7c-864a-c7ba768ff02b)
+![phpunit_image](https://github.com/user-attachments/assets/3beb22f3-673c-44b3-a2f3-a14172971db7)
 
 
 ## Bug Report
