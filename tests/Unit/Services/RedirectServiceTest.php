@@ -26,13 +26,20 @@ class RedirectServiceTest extends TestCase
         $this->assertEquals(config('urlhub.redirection_status_code'), $response->status());
     }
 
-    public function testRedirection_Android()
+    public function testAndroidRedirectsToSpecificUrl()
     {
         $url = Url::factory()->create();
         $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
             ->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->dest_android);
+    }
 
+    /**
+     * When user its on Android and no Android URL is set,
+     * it will redirects to the default URL
+     */
+    public function testAndroidRedirectsToDefaultUrl()
+    {
         $url = Url::factory()->create(['dest_android' => null]);
         $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
             ->get(route('home').'/'.$url->keyword);
@@ -44,13 +51,20 @@ class RedirectServiceTest extends TestCase
         $response->assertRedirect($url->destination);
     }
 
-    public function testRedirection_Ios()
+    public function testIosRedirectsToSpecificUrl()
     {
         $url = Url::factory()->create();
         $response = $this->withHeaders(['user-agent' => self::UA_IOS])
             ->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->dest_ios);
+    }
 
+    /**
+     * When user its on iOS and no iOS URL is set,
+     * it will redirects to the default URL
+     */
+    public function testIosRedirectsToDefaultUrl()
+    {
         $url = Url::factory()->create(['dest_ios' => null]);
         $response = $this->withHeaders(['user-agent' => self::UA_IOS])
             ->get(route('home').'/'.$url->keyword);
