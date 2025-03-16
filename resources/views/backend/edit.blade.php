@@ -77,6 +77,12 @@
                         @endif
                     </div>
 
+                    <div class="col-span-6">
+                        <label class="form-label">{{ __('Expiration') }}</label>
+                        <p class="font-light text-sm dark:text-dark-400 mb-2">After the expiration date, the link will be disabled.</p>
+                        <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}" :options="['time_24hr' => true]"  class="form-input"/>
+                    </div>
+
                     @if (settings()->forward_query && $url->author->forward_query)
                         <div class="col-span-6">
                             <label class="form-label">Parameter Passing</label>

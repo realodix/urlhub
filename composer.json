@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "blade-ui-kit/blade-icons": "^1.8",
+        "blade-ui-kit/blade-ui-kit": "^0.7.0",
         "composer/pcre": "^3.3",
         "embed/embed": "^4.4",
         "endroid/qr-code": "^6.0",
