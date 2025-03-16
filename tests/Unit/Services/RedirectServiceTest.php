@@ -23,6 +23,65 @@ class RedirectServiceTest extends TestCase
         $this->assertEquals(config('urlhub.redirection_status_code'), $response->status());
     }
 
+    /**
+     * Visitors are redirected to destinations with source query parameters
+     */
+    #[PHPUnit\Group('forward-query')]
+    public function testRedirectWithSourceQuery(): void
+    {
+        $url = Url::factory()->create(['destination' => 'https://example.com?a=a&b=b&c=c']);
+
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
+        $response->assertRedirect('https://example.com?a=1&b=2&c=c');
+    }
+
+    /**
+     * It asserts that query parameters are not forwarded to the destination URL
+     * when the 'forward_query' option is explicitly set to false on the URL item.
+     */
+    #[PHPUnit\Test]
+    #[PHPUnit\Group('forward-query')]
+    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnUrlItem(): void
+    {
+        $url = Url::factory()->create(['forward_query' => false]);
+
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
+        $response->assertRedirect($url->destination);
+    }
+
+    /**
+     * It asserts that query parameters are not forwarded to the destination URL
+     * when the 'forward_query' option is set to false on the URL's author.
+     */
+    #[PHPUnit\Test]
+    #[PHPUnit\Group('forward-query')]
+    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnAuthor(): void
+    {
+        $url = Url::factory()
+            // ->for(\App\Models\User::factory()->state(['forward_query' => false]), 'author')
+            ->forAuthor(['forward_query' => false])
+            ->create();
+
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
+        $response->assertRedirect($url->destination);
+    }
+
+    /**
+     * It asserts that query parameters are not forwarded to the destination URL
+     * when the global 'forward_query' setting is disabled.
+     */
+    #[PHPUnit\Test]
+    #[PHPUnit\Group('forward-query')]
+    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledGlobally(): void
+    {
+        settings()->fill(['forward_query' => false])->save();
+
+        $url = Url::factory()->create();
+
+        $response = $this->get(route('home').'/'.$url->keyword.'?a=1&b=2');
+        $response->assertRedirect($url->destination);
+    }
+
     #[PHPUnit\Group('forward-query')]
     #[PHPUnit\DataProvider('urlWithQueryStringDataProvider')]
     public function testUrlWithQueryString(string $destination, array $incomingQuery, string $expectedDestination): void
