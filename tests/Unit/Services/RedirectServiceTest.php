@@ -144,7 +144,8 @@ class RedirectServiceTest extends TestCase
         ];
     }
 
-    public function testUrlRedirectionHeadersWithMaxAge()
+    #[PHPUnit\Test]
+    public function urlRedirectionHeadersWithMaxAge()
     {
         settings()->fill(['redirect_cache_max_age' => 3600])->save();
 
