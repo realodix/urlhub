@@ -25,17 +25,17 @@ class RedirectService
             $headers = ['Cache-Control' => 'max-age=0, must-revalidate'];
         }
 
-        $destinationUrl = $this->resolveDestinationLink($url);
+        $destinationUrl = $this->resolveTargetLink($url);
 
         return redirect()->away($destinationUrl, $statusCode, $headers);
     }
 
     /**
-     * Resolves the final destination link based on query forwarding settings.
+     * Resolve the target link for the redirect.
      *
      * @param Url $url \App\Models\Url
      */
-    public function resolveDestinationLink(Url $url): string
+    public function resolveTargetLink(Url $url): string
     {
         $destinationUrl = $url->destination;
 
