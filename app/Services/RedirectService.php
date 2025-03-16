@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\Helper;
 use App\Models\Url;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Uri;
@@ -37,7 +38,14 @@ class RedirectService
      */
     public function resolveTargetLink(Url $url): string
     {
+        $device = Helper::deviceDetector();
         $destinationUrl = $url->destination;
+
+        if ($device->getOs('name') === 'Android' && !empty($url->dest_android)) {
+            $destinationUrl = $url->dest_android;
+        } elseif ($device->getOs('name') === 'iOS' && !empty($url->dest_ios)) {
+            $destinationUrl = $url->dest_ios;
+        }
 
         /** @var array $currentQuery */
         $currentQuery = request()->query(); // Array, because `$key` parameter is not filled

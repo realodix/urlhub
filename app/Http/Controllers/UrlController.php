@@ -99,6 +99,8 @@ class UrlController extends Controller implements HasMiddleware
 
         $url->update([
             'destination' => $request->long_url,
+            'dest_android' => $request->dest_android,
+            'dest_ios' => $request->dest_ios,
             'title' => $request->title,
             'forward_query' => $request->forward_query ? true : false,
         ]);

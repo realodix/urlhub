@@ -24,6 +24,8 @@ class UrlFactory extends Factory
             'user_id'     => User::factory(),
             'user_type'   => UserType::User,
             'destination' => 'https://github.com/realodix/urlhub',
+            'dest_android' => 'https://play.google.com/store/apps/details?id=com.canva.editor',
+            'dest_ios'    => 'https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215',
             'title'       => 'No Title',
             'keyword'     => app(KeyGeneratorService::class)->randomString(),
             'forward_query' => true,

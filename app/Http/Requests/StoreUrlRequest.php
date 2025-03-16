@@ -21,6 +21,19 @@ class StoreUrlRequest extends FormRequest
     }
 
     /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'dest_android' => 'Android link',
+            'dest_ios' => 'iOS link',
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -35,6 +48,22 @@ class StoreUrlRequest extends FormRequest
         return [
             'long_url' => [
                 'required', "max:{$maxUrlLen}", new NotBlacklistedDomain,
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
+                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
+                    }
+                },
+            ],
+            'dest_android' => [
+                'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
+                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
+                    }
+                },
+            ],
+            'dest_ios' => [
+                'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
                 function ($attribute, $value, $fail) {
                     if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
                         $fail('The :attribute field must be a valid URL or a valid deeplink.');

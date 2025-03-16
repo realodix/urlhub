@@ -15,6 +15,8 @@ class Helper
         $initialData = [
             'title' => $model->title,
             'long_url' => $model->destination,
+            'dest_android' => $model->dest_android,
+            'dest_ios' => $model->dest_ios,
             'forward_query' => $model->forward_query,
         ];
 
