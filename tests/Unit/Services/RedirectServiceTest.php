@@ -3,6 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Models\Url;
+use App\Models\Visit;
 use App\Services\RedirectService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -235,5 +236,15 @@ class RedirectServiceTest extends TestCase
 
         $response = $this->get(route('link.password', $url->keyword));
         $response->assertRedirect(route('link_detail', $url->keyword));
+    }
+
+    #[PHPUnit\Test]
+    public function linkHasExpiredAfterSpecifiedDate()
+    {
+        $url = Url::factory()->create(['expires_at' => now()->subDay()]);
+
+        $response = $this->get($url->keyword);
+        $response->assertNotFound();
+        $this->assertCount(0, $url->visits);
     }
 }

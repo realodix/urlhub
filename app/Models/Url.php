@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $password
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon|null $expires_at
  * @property User $author
  * @property Visit $visits
  * @property string $short_url
@@ -62,6 +63,7 @@ class Url extends Model
         'forward_query',
         'user_uid',
         'password',
+        'expires_at',
     ];
 
     /**
@@ -84,6 +86,7 @@ class Url extends Model
             'is_custom' => 'boolean',
             'forward_query' => 'boolean',
             'password' => 'hashed',
+            'expires_at' => 'datetime',
         ];
     }
 
@@ -161,6 +164,18 @@ class Url extends Model
     | General
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * Determine if the URL is expired
+     *
+     * It checks if the 'expires_at' field is set and if it is before the current time.
+     *
+     * @return bool Whether the URL is expired or not
+     */
+    public function isExpired(): bool
+    {
+        return $this->expires_at && $this->expires_at->isBefore(now());
+    }
 
     public function getKeyword(StoreUrlRequest $request): string
     {
