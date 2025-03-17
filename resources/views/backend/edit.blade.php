@@ -59,6 +59,24 @@
                         <input name="dest_ios" placeholder="https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215" value="{{ $url->dest_ios }}" class="form-input">
                     </div>
 
+                    <div class="col-span-6">
+                        <label class="form-label">Password</label>
+                        <p class="font-light text-sm dark:text-dark-400 mb-2">Protect your link with a password.</p>
+                        @if($url->password)
+                            <a href="{{ route('link.password.edit', $url) }}" class="btn btn-sm" title="Edit Password">
+                                @svg('icon-key', 'mr-1') Edit Password
+                            </a>
+
+                            <a href="{{ route('link.password.delete', $url) }}" class="btn btn-delete-danger btn-sm" onclick="return confirm('Are you sure you want to remove the password?')">
+                                Remove Password
+                            </a>
+                        @else
+                            <a href="{{ route('link.password.create', $url) }}" class="btn btn-success btn-sm" title="Add Password">
+                                @svg('icon-key', 'mr-1') Add Password
+                            </a>
+                        @endif
+                    </div>
+
                     @if (settings()->forward_query && $url->author->forward_query)
                         <div class="col-span-6">
                             <label class="form-label">Parameter Passing</label>

@@ -218,4 +218,20 @@ class RedirectServiceTest extends TestCase
         $this->assertStringContainsString('max-age=0', $response->headers->get('Cache-Control'));
         $this->assertStringContainsString('must-revalidate', $response->headers->get('Cache-Control'));
     }
+
+    /**
+     * Tests that a link with a password:
+     * - redirects to the password form page when the password is set
+     * - redirects to the destination URL when the correct password is provided
+     */
+    public function testLinkWithPassword()
+    {
+        $url = Url::factory()->create(['password' => 'secret']);
+
+        $response = $this->get($url->keyword);
+        $response->assertRedirect(route('link.password', $url->keyword));
+
+        $response = $this->post(route('link.password', $url->keyword), ['password' => 'secret']);
+        $response->assertRedirect($url->destination);
+    }
 }
