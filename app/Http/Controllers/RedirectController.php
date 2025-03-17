@@ -51,9 +51,7 @@ class RedirectController extends Controller
             return $this->handleRedirect($url);
         }
 
-        return back()->withErrors([
-            'password' => 'The password is incorrect.',
-        ]);
+        return back()->withErrors(['password' => 'The password is incorrect.']);
     }
 
     /**
