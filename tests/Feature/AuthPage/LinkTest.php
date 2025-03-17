@@ -57,7 +57,7 @@ class LinkTest extends TestCase
         $url = Url::factory()->create(['password' => 'password']);
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url))
-            ->get(route('link.password.destroy', $url));
+            ->get(route('link.password.delete', $url));
 
         $response
             ->assertRedirectToRoute('link.edit', $url)

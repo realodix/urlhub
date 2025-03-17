@@ -24,7 +24,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     Route::post('/links/{url:keyword}/password/store', [LinkPasswordController::class, 'store'])->name('link.password.store');
     Route::get('/links/{url:keyword}/password/edit', [LinkPasswordController::class, 'edit'])->name('link.password.edit');
     Route::post('/links/{url:keyword}/password/update', [LinkPasswordController::class, 'update'])->name('link.password.update');
-    Route::get('/links/{url:keyword}/password/destroy', [LinkPasswordController::class, 'destroy'])->name('link.password.destroy');
+    Route::get('/links/{url:keyword}/password/delete', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
 
     // All URLs
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');

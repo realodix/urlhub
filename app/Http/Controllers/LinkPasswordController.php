@@ -63,11 +63,11 @@ class LinkPasswordController extends Controller
     }
 
     /**
-     * Remove the specified password from storage.
+     * Remove the password from the specified link.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Url $url)
+    public function delete(Url $url)
     {
         $url->update(['password' => null]);
 
