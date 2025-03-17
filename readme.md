@@ -18,6 +18,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
 - **Device-Aware Redirection**: Quickly redirect your customers to the appropriate page based on their device.
 - **Parameter Passing**: Forward query parameters from your short link to the destination URL.
+- **Password protection:** Protect your links with a password.
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
 - **Dark mode**: Switch to a darker color scheme for a more comfortable experience in low-light environments.
 - **Power of customisation:** Do you want your site to be just for your use, so no one can register? No problem. It's in the configuration. Users must be registered to create Short URL? That's okay. It's in the configuration. From configuration file, you can edit pretty everything of your website. The choice is yours.
