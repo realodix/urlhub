@@ -46,7 +46,7 @@ class LinkPasswordController extends Controller
     }
 
     /**
-     * Update the specified password in storage.
+     * Update the password from the specified link.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
