@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $keyword
  * @property bool $is_custom
  * @property string $destination
- * @property string $dest_android
- * @property string $dest_ios
+ * @property string|null $dest_android
+ * @property string|null $dest_ios
  * @property string $title
  * @property bool $forward_query
  * @property string $user_uid
