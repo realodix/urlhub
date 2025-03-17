@@ -41,6 +41,13 @@ class Url extends Model
     const TITLE_LENGTH = 255;
 
     /**
+     * The minimum length of the password.
+     *
+     * @var int
+     */
+    const PWD_MIN_LENGTH = 3;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>

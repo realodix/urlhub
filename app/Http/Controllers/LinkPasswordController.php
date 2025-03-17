@@ -26,7 +26,7 @@ class LinkPasswordController extends Controller
     public function store(Request $request, Url $url)
     {
         $request->validate([
-            'password' => ['required', Password::min(3), 'confirmed'],
+            'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
         ]);
 
         $url->update(['password' => $request->password]);
@@ -52,7 +52,7 @@ class LinkPasswordController extends Controller
     public function update(Request $request, Url $url)
     {
         $request->validate([
-            'password' => ['required', Password::min(3), 'confirmed'],
+            'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
         ]);
 
         $url->update(['password' => $request->password]);
