@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ChangePasswordController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\LinkPasswordController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,11 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     Route::get('/links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('link.delete');
     Route::get('/links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('link.edit');
     Route::post('/links/{url:keyword}/edit', [UrlController::class, 'update'])->name('link.update');
+    Route::get('/links/{url:keyword}/password/create', [LinkPasswordController::class, 'create'])->name('link.password.create');
+    Route::post('/links/{url:keyword}/password/store', [LinkPasswordController::class, 'store'])->name('link.password.store');
+    Route::get('/links/{url:keyword}/password/edit', [LinkPasswordController::class, 'edit'])->name('link.password.edit');
+    Route::post('/links/{url:keyword}/password/update', [LinkPasswordController::class, 'update'])->name('link.password.update');
+    Route::get('/links/{url:keyword}/password/destroy', [LinkPasswordController::class, 'destroy'])->name('link.password.destroy');
 
     // All URLs
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');

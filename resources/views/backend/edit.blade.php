@@ -62,7 +62,19 @@
                     <div class="col-span-6">
                         <label class="form-label">{{ __('Password') }}</label>
                         <p class="font-light text-sm dark:text-dark-400 mb-2">Protect your link with a password.</p>
-                        <input type="password" name="password" class="form-input">
+                        @if($url->password)
+                            <a href="{{ route('link.password.edit', $url) }}" class="btn btn-sm" title="{{ __('Edit Password') }}">
+                                @svg('icon-key', 'mr-1') {{ __('Edit Password') }}
+                            </a>
+
+                            <a href="{{ route('link.password.destroy', $url) }}" class="btn btn-delete-danger btn-sm" onclick="return confirm('{{ __('Are you sure you want to remove the password?') }}')">
+                                {{ __('Remove Password') }}
+                            </a>
+                        @else
+                            <a href="{{ route('link.password.create', $url) }}" class="btn btn-success btn-sm" title="{{ __('Add Password') }}">
+                                @svg('icon-key', 'mr-1') {{ __('Add Password') }}
+                            </a>
+                        @endif
                     </div>
 
                     @if (settings()->forward_query && $url->author->forward_query)

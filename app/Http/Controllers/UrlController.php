@@ -103,7 +103,6 @@ class UrlController extends Controller implements HasMiddleware
             'dest_ios' => $request->dest_ios,
             'title' => $request->title,
             'forward_query' => $request->forward_query ? true : false,
-            'password' => $request->password,
         ]);
 
         $flashType = 'flash_success';

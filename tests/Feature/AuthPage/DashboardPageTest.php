@@ -182,7 +182,6 @@ class DashboardPageTest extends TestCase
                 Helper::updateLinkData($url, [
                     'dest_android' => '',
                     'dest_ios' => '',
-                    'password' => '',
                 ]),
             );
 
@@ -191,6 +190,5 @@ class DashboardPageTest extends TestCase
             ->assertSessionHas('flash_success');
         $this->assertNull($url->fresh()->dest_android);
         $this->assertNull($url->fresh()->dest_ios);
-        $this->assertNull($url->fresh()->password);
     }
 }

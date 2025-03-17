@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Rules\NotBlacklistedDomain;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
 class StoreUrlRequest extends FormRequest
 {
@@ -71,7 +70,6 @@ class StoreUrlRequest extends FormRequest
                     }
                 },
             ],
-            'password' => ['nullable', Password::min(3)],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',
                 "min:{$minLen}", "max:{$maxLen}", 'lowercase',
