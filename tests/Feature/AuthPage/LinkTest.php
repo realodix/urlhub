@@ -2,15 +2,165 @@
 
 namespace Tests\Feature\AuthPage;
 
+use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes as PHPUnit;
+use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('auth-page')]
 #[PHPUnit\Group('link-page')]
 class LinkTest extends TestCase
 {
+    /**
+     * Test that an authorized user can access the edit page.
+     *
+     * @see App\Http\Controllers\UrlController::edit()
+     */
+    #[PHPUnit\Test]
+    public function canAccessEditLinkPage(): void
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->get(route('link.edit', $url->keyword));
+        $response->assertOk();
+    }
+
+    /**
+     * Test that an authorized user can update a link.
+     *
+     * @see App\Http\Controllers\UrlController::update()
+     */
+    #[PHPUnit\Test]
+    public function canUpdateLink(): void
+    {
+        $url = Url::factory()->create();
+        $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['long_url' => $newLongUrl]),
+            );
+
+        $response
+            ->assertRedirectToRoute('dashboard')
+            ->assertSessionHas('flash_success');
+        $this->assertSame($newLongUrl, $url->fresh()->destination);
+    }
+
+    /**
+     * @see App\Http\Controllers\UrlController::update()
+     */
+    public function test_update_validates_title_length(): void
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, [
+                    'title' => str_repeat('a', Url::TITLE_LENGTH + 1)],
+                ),
+            );
+
+        $response
+            ->assertRedirect(route('link.edit', $url->keyword))
+            ->assertSessionHasErrors('title');
+    }
+
+    /**
+     * @see App\Http\Controllers\UrlController::update()
+     */
+    public function test_update_validates_long_url_is_url(): void
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, [
+                    'long_url' => 'invalid-url',
+                    'dest_android' => 'invalid-url',
+                    'dest_ios' => 'invalid-url',
+                ]),
+            );
+
+        $response
+            ->assertRedirect(route('link.edit', $url->keyword))
+            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios']);
+    }
+
+    /**
+     * @see App\Http\Controllers\UrlController::update()
+     */
+    public function test_update_validates_long_url_max_length(): void
+    {
+        $veryLongUrl = 'https://laravel.com/'.str_repeat('a', StoreUrlRequest::URL_LENGTH);
+
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, [
+                    'long_url' => $veryLongUrl,
+                    'dest_android' => $veryLongUrl,
+                    'dest_ios' => $veryLongUrl,
+                ]),
+            );
+
+        $response
+            ->assertRedirect(route('link.edit', $url->keyword))
+            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios']);
+    }
+
+    /**
+     * @see App\Http\Controllers\UrlController::update()
+     */
+    public function test_update_validates_long_url_not_blacklisted()
+    {
+        config(['urlhub.domain_blacklist' => ['t.co']]);
+        $blacklistedDomain = 'https://t.co/about';
+        $url = Url::factory()->create();
+
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, [
+                    'long_url' => $blacklistedDomain,
+                    'dest_android' => $blacklistedDomain,
+                    'dest_ios' => $blacklistedDomain,
+                ]),
+            );
+
+        $response
+            ->assertRedirect(route('link.edit', $url->keyword))
+            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios']);
+    }
+
+    public function testUpdateWithNullableValue()
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, [
+                    'dest_android' => '',
+                    'dest_ios' => '',
+                ]),
+            );
+
+        $response
+            ->assertRedirectToRoute('dashboard')
+            ->assertSessionHas('flash_success');
+        $this->assertNull($url->fresh()->dest_android);
+        $this->assertNull($url->fresh()->dest_ios);
+    }
+
     #[PHPUnit\Test]
     public function password_create_userCanAccess()
     {
