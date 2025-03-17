@@ -7,24 +7,24 @@
         @include('partials/messages')
 
         <div class="content-container card card-fluid">
-            <h1>{{ __('Edit Password for') }} <a href="{{ route('link.edit', $url) }}">{{ $url->keyword }}</a></h1>
+            <h1>Edit Password for <a href="{{ route('link.edit', $url) }}">{{ $url->keyword }}</a></h1>
 
             <form method="post" action="{{ route('link.password.update', $url) }}" class="space-y-6">
                 @csrf
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6">
-                        <label class="form-label" for="password">{{ __('New Password') }}</label>
+                        <label class="form-label" for="password">New Password</label>
                         <input type="password" name="password" required id="password" class="form-input">
                     </div>
                     <div class="col-span-6">
-                        <label class="form-label" for="password_confirmation">{{ __('Confirm New Password') }}</label>
+                        <label class="form-label" for="password_confirmation">Confirm New Password</label>
                         <input type="password" name="password_confirmation" required id="password_confirmation" class="form-input">
                     </div>
                 </div>
 
                 <div class="!mt-6 !mb-4 flex justify-end items-center">
                     <button type="submit" class="btn btn-primary mt-2">
-                        {{ __('Update Password') }}
+                        Update Password
                     </button>
                 </div>
             </form>
