@@ -13,6 +13,14 @@ class UrlPolicy
     /**
      * Determine whether the user can permanently delete the url.
      */
+    public function view(User $user, Url $url): bool
+    {
+        return $user->hasRole('admin') || $user->id === $url->user_id;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the url.
+     */
     public function forceDelete(User $user, Url $url): bool
     {
         return $user->hasRole('admin') || $user->id === $url->user_id;

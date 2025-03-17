@@ -11,6 +11,60 @@ use Tests\TestCase;
 #[PHPUnit\Group('link-page')]
 class LinkTest extends TestCase
 {
+    #[PHPUnit\Test]
+    public function password_create_userCanAccess()
+    {
+        $url = Url::factory()->create();
+        $this->actingAs($url->author)
+            ->get(route('link.password.create', $url))
+            ->assertSuccessful();
+    }
+
+    #[PHPUnit\Test]
+    public function password_create_adminCanAccessAll()
+    {
+        $url = Url::factory()->create();
+        $this->actingAs($this->adminUser())
+            ->get(route('link.password.create', $url))
+            ->assertSuccessful();
+    }
+
+    #[PHPUnit\Test]
+    public function password_create_otherUserCantAccess()
+    {
+        $url = Url::factory()->create();
+        $this->actingAs($this->basicUser())
+            ->get(route('link.password.create', $url))
+            ->assertForbidden();
+    }
+
+    #[PHPUnit\Test]
+    public function password_edit_userCanAccess()
+    {
+        $url = Url::factory()->create(['password' => 'password']);
+        $this->actingAs($url->author)
+            ->get(route('link.password.edit', $url))
+            ->assertSuccessful();
+    }
+
+    #[PHPUnit\Test]
+    public function password_edit_adminCanAccessAll()
+    {
+        $url = Url::factory()->create(['password' => 'password']);
+        $this->actingAs($this->adminUser())
+            ->get(route('link.password.edit', $url))
+            ->assertSuccessful();
+    }
+
+    #[PHPUnit\Test]
+    public function password_edit_otherUserCantAccess()
+    {
+        $url = Url::factory()->create(['password' => 'password']);
+        $this->actingAs($this->basicUser())
+            ->get(route('link.password.edit', $url))
+            ->assertForbidden();
+    }
+
     /**
      * @see App\Http\Controllers\LinkPasswordController
      */

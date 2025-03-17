@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Url;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Password;
 
 class LinkPasswordController extends Controller
@@ -15,6 +16,8 @@ class LinkPasswordController extends Controller
      */
     public function create(Url $url)
     {
+        Gate::authorize('view', $url);
+
         return view('backend.linkpassword.create', ['url' => $url]);
     }
 
@@ -42,6 +45,8 @@ class LinkPasswordController extends Controller
      */
     public function edit(Url $url)
     {
+        Gate::authorize('view', $url);
+
         return view('backend.linkpassword.edit', ['url' => $url]);
     }
 
