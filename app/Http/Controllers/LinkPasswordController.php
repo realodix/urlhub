@@ -31,7 +31,8 @@ class LinkPasswordController extends Controller
 
         $url->update(['password' => $request->password]);
 
-        return redirect()->route('link.edit', $url)->with('flash_success', 'Password has been set!');
+        return to_route('link.edit', $url)
+            ->with('flash_success', 'Password has been set!');
     }
 
     /**
@@ -57,9 +58,8 @@ class LinkPasswordController extends Controller
 
         $url->update(['password' => $request->password]);
 
-        return redirect()
-            ->route('link.edit', $url)
-            ->with('flash_success', __('Password has been updated!'));
+        return to_route('link.edit', $url)
+            ->with('flash_success', 'Password has been updated!');
     }
 
     /**
@@ -71,8 +71,7 @@ class LinkPasswordController extends Controller
     {
         $url->update(['password' => null]);
 
-        return redirect()
-            ->route('link.edit', $url)
-            ->with('flash_success', __('Password has been removed!'));
+        return to_route('link.edit', $url)
+            ->with('flash_success', 'Password has been removed!');
     }
 }

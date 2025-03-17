@@ -21,7 +21,7 @@ class RedirectController extends Controller
     public function __invoke(Url $url)
     {
         if ($url->password) {
-            return redirect(route('link.password', $url->keyword));
+            return to_route('link.password', $url->keyword);
         }
 
         return $this->handleRedirect($url);
