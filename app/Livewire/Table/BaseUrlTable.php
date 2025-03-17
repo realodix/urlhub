@@ -72,6 +72,7 @@ class BaseUrlTable extends PowerGridComponent
                 return view('components.table.keyword', [
                     'shortLink' => $url->short_url,
                     'keyword'   => $url->keyword,
+                    'model'     => $url,
                 ])->render();
             })
             ->add('destination', function (Url $url) {
