@@ -18,6 +18,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
 - **Device-Aware Redirection**: Redirect mobile visitors to the appropriate URL depending on the operating system.
 - **Password protection:** Limit access to the destination URL with a password.
+- **Link Expiration:** Set the expiration date and time to create temporary short links. Specify the expiration URL where visitors will be redirected after the old link has expired.
 - **Parameter Passing**: Forward query parameters from your short link to the destination URL.
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
 - **Dark mode**: Switch to a darker color scheme for a more comfortable experience in low-light environments.
