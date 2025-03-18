@@ -16,7 +16,7 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Custom URLs (ex: example.com/laravel):** Allows users to create more descriptive short URLs rather than a randomly generated mix of letters and numbers.
 - **QR Code Generation:** The fastest way to access to this data is most likely opening the link from a phone. Though short URLs are handy for typing, a more convenient approach to transfer a web link to a mobile phone is through QR codes scanning.
 - **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
-- **Device-Aware Redirection**: Quickly redirect your customers to the appropriate page based on their device.
+- **Device-Aware Redirection**: Redirect mobile visitors to the appropriate URL depending on the operating system.
 - **Password protection:** Limit access to the destination URL with a password.
 - **Parameter Passing**: Forward query parameters from your short link to the destination URL.
 - **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
