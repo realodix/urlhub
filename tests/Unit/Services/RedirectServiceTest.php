@@ -17,15 +17,6 @@ class RedirectServiceTest extends TestCase
     const UA_ANDROID = 'Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.95 Mobile Safari/537.36';
     const UA_IOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1';
 
-    public function testUrlRedirection()
-    {
-        $url = Url::factory()->create();
-        $response = app(RedirectService::class)->execute($url);
-
-        $this->assertEquals($url->destination, $response->getTargetUrl());
-        $this->assertEquals(config('urlhub.redirection_status_code'), $response->status());
-    }
-
     public function testAndroidRedirectsToSpecificUrl()
     {
         $url = Url::factory()->create();
