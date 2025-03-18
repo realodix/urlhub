@@ -188,8 +188,7 @@ class RedirectServiceTest extends TestCase
         ];
     }
 
-    #[PHPUnit\Test]
-    public function urlRedirectionHeadersWithMaxAge()
+    public function testRedirectResponse_MaxAgeSet()
     {
         settings()->fill(['redirect_cache_max_age' => 3600])->save();
 
@@ -199,7 +198,7 @@ class RedirectServiceTest extends TestCase
         $this->assertSame('max-age=3600, private', $response->headers->get('Cache-Control'));
     }
 
-    public function testUrlRedirectionHeadersWithMaxAgeZero()
+    public function testRedirectResponse_MaxAgeIsZero()
     {
         settings()->fill(['redirect_cache_max_age' => 0])->save();
 
