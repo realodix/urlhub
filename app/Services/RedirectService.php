@@ -19,16 +19,17 @@ class RedirectService
     {
         $settings = app(GeneralSettings::class);
         $statusCode = config('urlhub.redirection_status_code');
-
         $maxAge = $settings->redirect_cache_max_age;
-        $headers = ['Cache-Control' => sprintf('private,max-age=%s', $maxAge)];
-        if ($maxAge === 0) {
-            $headers = ['Cache-Control' => 'max-age=0, must-revalidate'];
-        }
-
         $destinationUrl = $this->resolveTargetLink($url);
 
-        return redirect()->away($destinationUrl, $statusCode, $headers);
+        $response = redirect()->away($destinationUrl, $statusCode);
+        $response->setMaxAge($maxAge);
+
+        if ($maxAge < 1) {
+            $response->headers->addCacheControlDirective('must-revalidate');
+        }
+
+        return $response;
     }
 
     /**

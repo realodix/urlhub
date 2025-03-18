@@ -205,7 +205,7 @@ class RedirectServiceTest extends TestCase
         $url = Url::factory()->create();
         $response = app(RedirectService::class)->execute($url);
 
-        $this->assertStringContainsString('max-age=3600', $response->headers->get('Cache-Control'));
+        $this->assertSame('max-age=3600, private', $response->headers->get('Cache-Control'));
     }
 
     public function testUrlRedirectionHeadersWithMaxAgeZero()
@@ -215,8 +215,7 @@ class RedirectServiceTest extends TestCase
         $url = Url::factory()->create();
         $response = app(RedirectService::class)->execute($url);
 
-        $this->assertStringContainsString('max-age=0', $response->headers->get('Cache-Control'));
-        $this->assertStringContainsString('must-revalidate', $response->headers->get('Cache-Control'));
+        $this->assertSame('max-age=0, must-revalidate, private', $response->headers->get('Cache-Control'));
     }
 
     /**
