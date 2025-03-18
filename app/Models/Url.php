@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon|null $expires_at
+ * @property string|null $expired_url
  * @property User $author
  * @property Visit $visits
  * @property string $short_url
@@ -63,7 +64,7 @@ class Url extends Model
         'forward_query',
         'user_uid',
         'password',
-        'expires_at',
+        'expires_at', 'expired_url',
     ];
 
     /**

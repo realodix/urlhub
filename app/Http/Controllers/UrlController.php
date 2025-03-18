@@ -104,6 +104,7 @@ class UrlController extends Controller implements HasMiddleware
             'title' => $request->title,
             'forward_query' => $request->forward_query ? true : false,
             'expires_at' => $request->expires_at,
+            'expired_url' => $request->expired_url,
         ]);
 
         return redirect()->back()

@@ -70,6 +70,14 @@ class StoreUrlRequest extends FormRequest
                     }
                 },
             ],
+            'expired_url' => [
+                'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
+                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
+                    }
+                },
+            ],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',
                 "min:{$minLen}", "max:{$maxLen}", 'lowercase',

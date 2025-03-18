@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services;
 
 use App\Models\Url;
-use App\Models\Visit;
 use App\Services\RedirectService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -241,10 +240,19 @@ class RedirectServiceTest extends TestCase
     #[PHPUnit\Test]
     public function linkHasExpiredAfterSpecifiedDate()
     {
+        // Test case 1: Redirect to not found and do not count as a visit
         $url = Url::factory()->create(['expires_at' => now()->subDay()]);
-
         $response = $this->get($url->keyword);
         $response->assertNotFound();
+        $this->assertCount(0, $url->visits);
+
+        // Test case 2: Redirect to the given url and do not count as a visit
+        $url = Url::factory()->create([
+            'expires_at' => now()->subDay(),
+            'expired_url' => 'https://example.com',
+        ]);
+        $response = $this->get($url->keyword);
+        $response->assertRedirect($url->expired_url);
         $this->assertCount(0, $url->visits);
     }
 }
