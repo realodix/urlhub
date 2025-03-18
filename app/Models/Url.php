@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon|null $expires_at
+ * @property int $expired_clicks
  * @property string|null $expired_url
  * @property User $author
  * @property Visit $visits
@@ -64,7 +65,7 @@ class Url extends Model
         'forward_query',
         'user_uid',
         'password',
-        'expires_at', 'expired_url',
+        'expires_at', 'expired_clicks', 'expired_url',
     ];
 
     /**
@@ -88,6 +89,7 @@ class Url extends Model
             'forward_query' => 'boolean',
             'password' => 'hashed',
             'expires_at' => 'datetime',
+            'expired_clicks' => 'integer',
         ];
     }
 
@@ -169,13 +171,19 @@ class Url extends Model
     /**
      * Determine if the URL is expired
      *
-     * It checks if the 'expires_at' field is set and if it is before the current time.
+     * - It checks if the 'expires_at' field is set and if it is before
+     *   the current time.
+     * - It also checks if the number of clicks is greater than or equal to
+     *   the 'expired_clicks' field.
      *
      * @return bool Whether the URL is expired or not
      */
     public function isExpired(): bool
     {
-        return $this->expires_at && $this->expires_at->isBefore(now());
+        $isExpiredAt = $this->expires_at && $this->expires_at->isBefore(now());
+        $isExpiredAfterClick = $this->expired_clicks > 0 && $this->visits()->count() >= $this->expired_clicks;
+
+        return $isExpiredAt || $isExpiredAfterClick;
     }
 
     public function getKeyword(StoreUrlRequest $request): string

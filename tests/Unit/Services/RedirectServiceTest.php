@@ -255,4 +255,43 @@ class RedirectServiceTest extends TestCase
         $response->assertRedirect($url->expired_url);
         $this->assertCount(0, $url->visits);
     }
+
+    #[PHPUnit\Test]
+    public function linkHasExpiredAfterClicks_NotFound()
+    {
+        $url = Url::factory()->create(['expired_clicks' => 1]);
+
+        // Test case 1: link has not expired
+        // Redirect to destination and count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertRedirect($url->destination);
+        $this->assertCount(1, $url->visits);
+
+        // Test case 2: Expired
+        // Redirect to not found and do not count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertNotFound();
+        $this->assertCount(1, $url->visits);
+    }
+
+    #[PHPUnit\Test]
+    public function linkHasExpiredAfterClicks_RedirectToExpiredUrl()
+    {
+        $url = Url::factory()->create([
+            'expired_clicks' => 1,
+            'expired_url' => 'https://example.com',
+        ]);
+
+        // Test case 1: link has not expired
+        // Redirect to destination and count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertRedirect($url->destination);
+        $this->assertCount(1, $url->visits);
+
+        // Test case 2: Expired
+        // Redirect to the given url and do not count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertRedirect('https://example.com');
+        $this->assertCount(1, $url->visits);
+    }
 }
