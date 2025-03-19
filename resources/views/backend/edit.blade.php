@@ -34,7 +34,7 @@
                 <p class="mb-2 flex items-center gap-x-2 text-orange-600">
                     @svg('icon-sign-warning', '!size-5') <span class="text-xs/4 font-medium">Warning</span>
                 </p>
-                <p>
+                <p class="text-slate-600 dark:text-dark-400">
                     This link has expired and
                     @if ($url->expired_url)
                         visitors will be redirected to <a href="{{ $url->expired_url }}" class="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">{{ urlDisplay($url->expired_url, 90) }}</a>.
