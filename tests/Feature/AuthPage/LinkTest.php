@@ -84,12 +84,13 @@ class LinkTest extends TestCase
                     'long_url' => 'invalid-url',
                     'dest_android' => 'invalid-url',
                     'dest_ios' => 'invalid-url',
+                    'expired_url' => 'invalid-url',
                 ]),
             );
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
-            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios']);
+            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios', 'expired_url']);
     }
 
     /**
@@ -108,12 +109,13 @@ class LinkTest extends TestCase
                     'long_url' => $veryLongUrl,
                     'dest_android' => $veryLongUrl,
                     'dest_ios' => $veryLongUrl,
+                    'expired_url' => $veryLongUrl,
                 ]),
             );
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
-            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios']);
+            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios', 'expired_url']);
     }
 
     /**
@@ -133,12 +135,58 @@ class LinkTest extends TestCase
                     'long_url' => $blacklistedDomain,
                     'dest_android' => $blacklistedDomain,
                     'dest_ios' => $blacklistedDomain,
+                    'expired_url' => $blacklistedDomain,
                 ]),
             );
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
-            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios']);
+            ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios', 'expired_url']);
+    }
+
+    #[PHPUnit\Test]
+    public function updateExpiresAt_Valid()
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['expires_at' => now()->addDay()->format('Y-m-d')]),
+            );
+
+        $response
+            ->assertRedirectToRoute('link.edit', $url->keyword)
+            ->assertSessionHas('flash_success');
+        $this->assertNotNull($url->fresh()->expires_at);
+
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['expires_at' => null]),
+            ); // remove expires_at
+
+        $response
+            ->assertRedirectToRoute('link.edit', $url->keyword)
+            ->assertSessionHas('flash_success');
+        $this->assertNull($url->fresh()->expires_at);
+    }
+
+    #[PHPUnit\Test]
+    public function updateExpiresAt_Invalid()
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['expires_at' => now()->subMinute()]),
+            );
+
+        $response
+            ->assertRedirectToRoute('link.edit', $url->keyword)
+            ->assertSessionHasErrors(['expires_at']);
     }
 
     public function testUpdateWithNullableValue()
@@ -151,6 +199,7 @@ class LinkTest extends TestCase
                 Helper::updateLinkData($url, [
                     'dest_android' => '',
                     'dest_ios' => '',
+                    'expired_url' => '',
                 ]),
             );
 
@@ -159,6 +208,7 @@ class LinkTest extends TestCase
             ->assertSessionHas('flash_success');
         $this->assertNull($url->fresh()->dest_android);
         $this->assertNull($url->fresh()->dest_ios);
+        $this->assertNull($url->fresh()->expired_url);
     }
 
     #[PHPUnit\Test]

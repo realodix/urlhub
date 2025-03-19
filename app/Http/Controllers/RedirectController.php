@@ -68,6 +68,14 @@ class RedirectController extends Controller
      */
     private function handleRedirect(Url $url)
     {
+        if ($url->isExpired()) {
+            if ($url->expired_url) {
+                return redirect()->away($url->expired_url);
+            }
+
+            return to_route('link.expired', $url);
+        }
+
         return DB::transaction(function () use ($url) {
             app(VisitorService::class)->create($url);
 

@@ -103,6 +103,10 @@ class UrlController extends Controller implements HasMiddleware
             'dest_ios' => $request->dest_ios,
             'title' => $request->title,
             'forward_query' => $request->forward_query ? true : false,
+            'expires_at' => $request->expires_at,
+            'expired_clicks' => $request->expired_clicks,
+            'expired_url' => $request->expired_url,
+            'expired_notes' => $request->expired_notes,
         ]);
 
         return redirect()->back()
@@ -130,5 +134,19 @@ class UrlController extends Controller implements HasMiddleware
 
         return redirect()->back()
             ->with('flash_success', __('Link was successfully deleted.'));
+    }
+
+    /**
+     * Display the expired link view.
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function expiredLink(Url $url)
+    {
+        if (!$url->isExpired()) {
+            return to_route('link_detail', $url->keyword);
+        }
+
+        return view('frontend.expired-link', ['url' => $url]);
     }
 }

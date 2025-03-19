@@ -236,4 +236,71 @@ class RedirectServiceTest extends TestCase
         $response = $this->get(route('link.password', $url->keyword));
         $response->assertRedirect(route('link_detail', $url->keyword));
     }
+
+    #[PHPUnit\Test]
+    public function linkHasExpiredAfterSpecifiedDate()
+    {
+        // Test case 1: Redirect to landing page and do not count as a visit
+        $url = Url::factory()->create(['expires_at' => now()->subDay()]);
+        $response = $this->get($url->keyword);
+        $response->assertRedirectToRoute('link.expired', $url->keyword);
+        $this->assertCount(0, $url->visits);
+
+        // Test case 2: Redirect to the given url and do not count as a visit
+        $url = Url::factory()->create([
+            'expires_at' => now()->subDay(),
+            'expired_url' => 'https://example.com',
+        ]);
+        $response = $this->get($url->keyword);
+        $response->assertRedirect($url->expired_url);
+        $this->assertCount(0, $url->visits);
+    }
+
+    #[PHPUnit\Test]
+    public function linkHasExpiredAfterClicks_NotFound()
+    {
+        $url = Url::factory()->create(['expired_clicks' => 1]);
+
+        // Test case 1: link has not expired
+        // Redirect to destination and count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertRedirect($url->destination);
+        $this->assertCount(1, $url->visits);
+
+        // Test case 2: Expired
+        // Redirect to landing page and do not count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertRedirectToRoute('link.expired', $url->keyword);
+        $this->assertCount(1, $url->visits);
+    }
+
+    #[PHPUnit\Test]
+    public function linkHasExpiredAfterClicks_RedirectToExpiredUrl()
+    {
+        $url = Url::factory()->create([
+            'expired_clicks' => 1,
+            'expired_url' => 'https://example.com',
+        ]);
+
+        // Test case 1: link has not expired
+        // Redirect to destination and count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertRedirect($url->destination);
+        $this->assertCount(1, $url->visits);
+
+        // Test case 2: Expired
+        // Redirect to the given url and do not count as a visit
+        $response = $this->get($url->keyword);
+        $response->assertRedirect('https://example.com');
+        $this->assertCount(1, $url->visits);
+    }
+
+    #[PHPUnit\Test]
+    public function linkHasNotExpired_AccessLandingPage()
+    {
+        $url = Url::factory()->create();
+
+        $response = $this->get(route('link.expired', $url));
+        $response->assertRedirect(route('link_detail', $url->keyword));
+    }
 }

@@ -28,6 +28,23 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         @include('partials/messages')
 
+        @if ($url->isExpired())
+            <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4 dark:shadow-xs shadow-orange-600">
+                <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-orange-600"></div>
+                <p class="mb-2 flex items-center gap-x-2 text-orange-600">
+                    @svg('icon-sign-warning', '!size-5') <span class="text-xs/4 font-medium">Warning</span>
+                </p>
+                <p class="text-slate-600 dark:text-dark-400">
+                    This link has expired and
+                    @if ($url->expired_url)
+                        visitors will be redirected to <a href="{{ $url->expired_url }}" class="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">{{ urlDisplay($url->expired_url, 90) }}</a>.
+                    @else
+                        visitors can't access it.
+                    @endif
+                </p>
+            </div>
+        @endif
+
         <form method="post" action="{{ route('link.update', $url) }}">
         @csrf
             <div class="content-container card card-fluid">
@@ -75,6 +92,34 @@
                                 @svg('icon-key', 'mr-1') Add Password
                             </a>
                         @endif
+                    </div>
+
+                    <div class="col-span-6">
+                        <label class="form-label">{{ __('Expiration') }}</label>
+                        <p class="font-light text-sm dark:text-dark-400 mt-2 mb-2">Set the expiration date or limit number of clicks to create a temporary short link. The link will become invalid once either criterion is met. Afterwards, it will be either disabled or redirected to the given URL.</p>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
+                                <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}"
+                                    :options="['time_24hr' => true, 'disableMobile' => true]"
+                                    class="form-input"
+                                />
+                            </div>
+
+                            <div>
+                                <p class="font-light text-sm dark:text-dark-400">Click limit</p>
+                                <input name="expired_clicks" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
+                            </div>
+                        </div>
+
+                        <label class="form-label !m-[0.5rem_0_0]">Expiration URL</label>
+                        <p class="font-light text-sm dark:text-dark-400">Visitors will be redirected her after the link expires.</p>
+                        <input name="expired_url" placeholder="https://example.com/" value="{{ $url->expired_url }}" class="form-input">
+
+                        <label class="form-label !m-[0.5rem_0_0]">Expiration Notes</label>
+                        <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
+                        <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
                     </div>
 
                     @if (settings()->forward_query && $url->author->forward_query)

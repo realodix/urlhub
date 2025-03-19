@@ -30,6 +30,8 @@ class StoreUrlRequest extends FormRequest
         return [
             'dest_android' => 'Android link',
             'dest_ios' => 'iOS link',
+            'expires_at' => 'expiration date',
+            'expired_notes' => 'expiration notes',
         ];
     }
 
@@ -70,6 +72,17 @@ class StoreUrlRequest extends FormRequest
                     }
                 },
             ],
+            'expires_at' => ['nullable', 'date', 'after:now'],
+            'expired_clicks' => ['nullable', 'integer', 'min:0'],
+            'expired_url' => [
+                'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
+                function ($attribute, $value, $fail) {
+                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
+                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
+                    }
+                },
+            ],
+            'expired_notes' => ['nullable', 'max:200'],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',
                 "min:{$minLen}", "max:{$maxLen}", 'lowercase',
@@ -88,6 +101,7 @@ class StoreUrlRequest extends FormRequest
     {
         return [
             'long_url.required' => __('The URL field must be filled, should not be empty.'),
+            'expires_at.after' => __('The :attribute must be a future date and time.'),
             'custom_key.max'    => __('The custom url may not be greater than :max characters.'),
             'custom_key.unique' => __(':input has already been taken'),
         ];

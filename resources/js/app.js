@@ -65,3 +65,11 @@ clipboard.on('success', (e) => {
         target.innerHTML = currentLabel;
     }, 3000);
 });
+
+/**
+ * https://flatpickr.js.org/
+ * https://blade-ui-kit.com/docs/0.x/flatpickr
+ */
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+flatpickr(element, {});
