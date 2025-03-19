@@ -101,7 +101,10 @@
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
-                                <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}" :options="['time_24hr' => true]"  class="form-input"/>
+                                <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}"
+                                    :options="['time_24hr' => true, 'disableMobile' => true]"
+                                    class="form-input"
+                                />
                             </div>
 
                             <div>
