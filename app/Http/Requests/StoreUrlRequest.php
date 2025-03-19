@@ -70,7 +70,7 @@ class StoreUrlRequest extends FormRequest
                     }
                 },
             ],
-            'expired_clicks' => 'integer|min:0',
+            'expired_clicks' => ['nullable', 'integer', 'min:0'],
             'expired_url' => [
                 'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
                 function ($attribute, $value, $fail) {

@@ -31,7 +31,6 @@ class UrlFactory extends Factory
             'forward_query' => true,
             'is_custom'   => false,
             'user_uid'    => fake()->uuid(),
-            'expired_clicks' => 0,
         ];
     }
 

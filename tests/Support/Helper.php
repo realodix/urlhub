@@ -18,7 +18,6 @@ class Helper
             'dest_android' => $model->dest_android,
             'dest_ios' => $model->dest_ios,
             'forward_query' => $model->forward_query,
-            'expired_clicks' => $model->expired_clicks,
         ];
 
         return array_merge($initialData, $replacements);

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('urls', function (Blueprint $table) {
             $table->dateTime('expires_at')->nullable();
-            $table->integer('expired_clicks')->default(0);
+            $table->integer('expired_clicks')->nullable();
             $table->longText('expired_url')->nullable();
         });
     }

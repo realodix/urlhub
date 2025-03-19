@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon|null $expires_at
- * @property int $expired_clicks
+ * @property int|null $expired_clicks
  * @property string|null $expired_url
  * @property User $author
  * @property Visit $visits
@@ -181,7 +181,9 @@ class Url extends Model
     public function isExpired(): bool
     {
         $isExpiredAt = $this->expires_at && $this->expires_at->isBefore(now());
-        $isExpiredAfterClick = $this->expired_clicks > 0 && $this->visits()->count() >= $this->expired_clicks;
+        $isExpiredAfterClick = $this->expired_clicks
+            && $this->expired_clicks > 0
+            && $this->visits()->count() >= $this->expired_clicks;
 
         return $isExpiredAt || $isExpiredAfterClick;
     }
