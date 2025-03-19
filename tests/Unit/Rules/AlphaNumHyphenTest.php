@@ -11,7 +11,7 @@ use Tests\TestCase;
 class AlphaNumHyphenTest extends TestCase
 {
     #[PHPUnit\Test]
-    public function AlphaNumHyphenPass(): void
+    public function alphaNumHyphenPass(): void
     {
         $val = Helper::validator(['foo' => 'foo-bar'], ['foo' => new AlphaNumHyphen]);
 
@@ -20,7 +20,7 @@ class AlphaNumHyphenTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function AlphaNumHyphenFail(): void
+    public function alphaNumHyphenFail(): void
     {
         $val = Helper::validator(['foo' => 'foo_bar'], ['foo' => new AlphaNumHyphen]);
         $this->assertTrue($val->fails());
