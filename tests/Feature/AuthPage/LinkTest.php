@@ -144,6 +144,51 @@ class LinkTest extends TestCase
             ->assertSessionHasErrors(['long_url', 'dest_android', 'dest_ios', 'expired_url']);
     }
 
+    #[PHPUnit\Test]
+    public function updateExpiresAt_Valid()
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['expires_at' => now()->addDay()->format('Y-m-d')]),
+            );
+
+        $response
+            ->assertRedirectToRoute('link.edit', $url->keyword)
+            ->assertSessionHas('flash_success');
+        $this->assertNotNull($url->fresh()->expires_at);
+
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['expires_at' => null]),
+            ); // remove expires_at
+
+        $response
+            ->assertRedirectToRoute('link.edit', $url->keyword)
+            ->assertSessionHas('flash_success');
+        $this->assertNull($url->fresh()->expires_at);
+    }
+
+    #[PHPUnit\Test]
+    public function updateExpiresAt_Invalid()
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route('link.edit', $url->keyword))
+            ->post(
+                route('link.update', $url->keyword),
+                Helper::updateLinkData($url, ['expires_at' => now()->subMinute()]),
+            );
+
+        $response
+            ->assertRedirectToRoute('link.edit', $url->keyword)
+            ->assertSessionHasErrors(['expires_at']);
+    }
+
     public function testUpdateWithNullableValue()
     {
         $url = Url::factory()->create();

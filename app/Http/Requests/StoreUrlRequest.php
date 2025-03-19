@@ -30,6 +30,7 @@ class StoreUrlRequest extends FormRequest
         return [
             'dest_android' => 'Android link',
             'dest_ios' => 'iOS link',
+            'expires_at' => 'expiration date',
         ];
     }
 
@@ -70,6 +71,7 @@ class StoreUrlRequest extends FormRequest
                     }
                 },
             ],
+            'expires_at' => ['nullable', 'date', 'after:now'],
             'expired_clicks' => ['nullable', 'integer', 'min:0'],
             'expired_url' => [
                 'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
@@ -97,6 +99,7 @@ class StoreUrlRequest extends FormRequest
     {
         return [
             'long_url.required' => __('The URL field must be filled, should not be empty.'),
+            'expires_at.after' => __('The :attribute must be a future date and time.'),
             'custom_key.max'    => __('The custom url may not be greater than :max characters.'),
             'custom_key.unique' => __(':input has already been taken'),
         ];
