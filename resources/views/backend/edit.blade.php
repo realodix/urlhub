@@ -28,6 +28,23 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         @include('partials/messages')
 
+        @if ($url->isExpired())
+            <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4 dark:shadow-xs shadow-orange-600">
+                <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-orange-600"></div>
+                <p class="mb-2 flex items-center gap-x-2 text-orange-600">
+                    @svg('icon-sign-warning', '!size-5') <span class="text-xs/4 font-medium">Warning</span>
+                </p>
+                <p>
+                    This link has expired and
+                    @if ($url->expired_url)
+                        visitors will be redirected to <a href="{{ $url->expired_url }}" class="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">{{ urlDisplay($url->expired_url, 90) }}</a>.
+                    @else
+                        visitors can't access it.
+                    @endif
+                </p>
+            </div>
+        @endif
+
         <form method="post" action="{{ route('link.update', $url) }}">
         @csrf
             <div class="content-container card card-fluid">
