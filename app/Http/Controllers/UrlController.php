@@ -134,4 +134,18 @@ class UrlController extends Controller implements HasMiddleware
         return redirect()->back()
             ->with('flash_success', __('Link was successfully deleted.'));
     }
+
+    /**
+     * Display the expired link view.
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function expiredLink(Url $url)
+    {
+        if (!$url->isExpired()) {
+            return to_route('link_detail', $url->keyword);
+        }
+
+        return view('frontend.expired', ['url' => $url]);
+    }
 }

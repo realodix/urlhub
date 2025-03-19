@@ -73,7 +73,7 @@ class RedirectController extends Controller
                 return redirect()->away($url->expired_url);
             }
 
-            return abort(404);
+            return to_route('link.expired', $url);
         }
 
         return DB::transaction(function () use ($url) {
