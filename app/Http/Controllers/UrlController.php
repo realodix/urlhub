@@ -147,6 +147,6 @@ class UrlController extends Controller implements HasMiddleware
             return to_route('link_detail', $url->keyword);
         }
 
-        return view('frontend.expired', ['url' => $url]);
+        return view('frontend.expired-link', ['url' => $url]);
     }
 }
