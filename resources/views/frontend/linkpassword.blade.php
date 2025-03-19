@@ -9,20 +9,12 @@
     @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased text-gray-800 overflow-hidden">
+<body class="font-sans antialiased text-gray-800 overflow-hidden dark:bg-dark-950">
     <div class="min-h-screen flex flex-col justify-center items-center py-12 sm:px-6 lg:px-8 relative">
         <div class="relative card p-10 max-w-xl w-full z-10 shadow-xl">
-            @if (session('error'))
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
-                    <strong class="font-bold">Error!</strong>
-                    <span class="block sm:inline">{{ session('error') }}</span>
-                </div>
-            @endif
-
             @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+                <div class="bg-red-100 border-red-400 text-red-700 px-4 py-3 rounded relative mb-6 dark:bg-dark-950 dark:text-red-500 dark:border-red-500" role="alert">
                     <strong class="font-bold">Whoops!</strong>
-                    <span class="block sm:inline">There were some problems with your input.</span>
                     <ul class="list-disc mt-2 ml-4">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -34,20 +26,20 @@
             <div class="mb-10 text-center">
                 <div class="flex justify-center items-center">
                     <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                    <h2 class="ml-2 text-3xl font-extrabold text-gray-900">
+                    <h2 class="ml-2 text-3xl font-extrabold text-gray-900 dark:text-dark-50">
                         Private Link
                     </h2>
                 </div>
-                <p class="mt-4 text-md text-gray-600">
+                <p class="mt-4 text-md text-gray-600 dark:text-dark-400">
                     This link is protected by a password. Please enter the correct password to continue.
                 </p>
             </div>
 
             <div class="mb-8">
-                <p class="text-center text-gray-700 font-medium">
+                <p class="text-center text-gray-700 font-medium dark:text-dark-400">
                     You are about to visit:
                 </p>
-                <code class="block break-all text-blue-700 font-mono text-sm mt-3">
+                <code class="block break-all text-blue-700 dark:text-emerald-400 font-mono text-sm mt-3">
                     {{ $url->short_url }}
                 </code>
             </div>
@@ -55,9 +47,9 @@
             <form method="post" action="{{ route('link.password.validate', $url) }}" class="space-y-6">
                 @csrf
                 <div>
-                    <label for="password" class="block mb-2 text-sm font-medium text-gray-700">Password</label>
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-700 dark:text-dark-400">Password</label>
                     <div class="relative">
-                        <input type="password" name="password" id="password" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-3 px-4 pr-10" placeholder="Enter your password">
+                        <input type="password" name="password" required placeholder="Enter your password" class="form-input">
                         <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
