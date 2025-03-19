@@ -31,10 +31,14 @@ class RedirectController extends Controller
      * Displays the password form for a link.
      *
      * @param Url $url \App\Models\Url
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function password(Url $url)
     {
+        if (!$url->password) {
+            return to_route('link_detail', $url->keyword);
+        }
+
         return view('frontend.linkpassword', ['url' => $url]);
     }
 

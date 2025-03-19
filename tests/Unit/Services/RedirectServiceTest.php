@@ -223,4 +223,17 @@ class RedirectServiceTest extends TestCase
         $response = $this->post(route('link.password', $url->keyword), ['password' => 'secret']);
         $response->assertRedirect($url->destination);
     }
+
+    /**
+     * Tests that a link without a password:
+     * - redirects to the link detail page when trying to access the password
+     *   form page
+     */
+    public function testLinkWithPasswordButNoPasswordSet()
+    {
+        $url = Url::factory()->create(['password' => null]);
+
+        $response = $this->get(route('link.password', $url->keyword));
+        $response->assertRedirect(route('link_detail', $url->keyword));
+    }
 }
