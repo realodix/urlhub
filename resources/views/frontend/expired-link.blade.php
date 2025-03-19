@@ -8,11 +8,15 @@
         <div class="relative mx-auto flex w-full max-w-md flex-col items-center">
             <x-icon-link-expired class="!w-32 !h-32 text-orange-500 animate-pulse" />
 
-            <h1 class="font-display mt-10 text-center text-4xl font-medium text-neutral-900 dark:text-dark-400 sm:text-5xl sm:leading-[1.15]">
+            <h1 class="font-display mt-10 text-center text-4xl font-medium text-gray-900 dark:text-dark-400 sm:text-5xl sm:leading-[1.15]">
                 Expired link
             </h1>
 
-            <p class="mt-8 text-pretty text-base text-neutral-700 dark:text-dark-300 sm:text-xl">
+            <p class="mt-6 text-orange-700 dark:text-orange-400">
+                {{ urlDisplay($url->short_url, scheme: false) }}
+            </p>
+
+            <p class="mt-8 text-gray-700 dark:text-dark-300 sm:text-xl">
                 @if ($url->expired_notes)
                     {{ $url->expired_notes }}
                 @else
