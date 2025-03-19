@@ -2,14 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\NotBlacklistedDomain;
+use App\Rules\LinkRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUrlRequest extends FormRequest
 {
-    /** @var int */
-    const URL_LENGTH = 7000;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -43,45 +40,16 @@ class StoreUrlRequest extends FormRequest
     public function rules()
     {
         $settings = app(\App\Settings\GeneralSettings::class);
-        $maxUrlLen = self::URL_LENGTH;
         $minLen = $settings->custom_keyword_min_length;
         $maxLen = $settings->custom_keyword_max_length;
 
         return [
-            'long_url' => [
-                'required', "max:{$maxUrlLen}", new NotBlacklistedDomain,
-                function ($attribute, $value, $fail) {
-                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
-                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
-                    }
-                },
-            ],
-            'dest_android' => [
-                'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
-                function ($attribute, $value, $fail) {
-                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
-                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
-                    }
-                },
-            ],
-            'dest_ios' => [
-                'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
-                function ($attribute, $value, $fail) {
-                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
-                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
-                    }
-                },
-            ],
+            'long_url' => ['required', ...LinkRules::rules()],
+            'dest_android' => ['nullable', ...LinkRules::rules()],
+            'dest_ios' => ['nullable', ...LinkRules::rules()],
             'expires_at' => ['nullable', 'date', 'after:now'],
             'expired_clicks' => ['nullable', 'integer', 'min:0'],
-            'expired_url' => [
-                'nullable', "max:{$maxUrlLen}", new NotBlacklistedDomain,
-                function ($attribute, $value, $fail) {
-                    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
-                        $fail('The :attribute field must be a valid URL or a valid deeplink.');
-                    }
-                },
-            ],
+            'expired_url' => ['nullable', ...LinkRules::rules()],
             'expired_notes' => ['nullable', 'max:200'],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',

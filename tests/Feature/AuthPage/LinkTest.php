@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\AuthPage;
 
-use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
+use App\Rules\LinkRules;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\Support\Helper;
@@ -98,7 +98,7 @@ class LinkTest extends TestCase
      */
     public function test_update_validates_long_url_max_length(): void
     {
-        $veryLongUrl = 'https://laravel.com/'.str_repeat('a', StoreUrlRequest::URL_LENGTH);
+        $veryLongUrl = 'https://laravel.com/'.str_repeat('a', LinkRules::LENGTH);
 
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
