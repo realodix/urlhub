@@ -45,7 +45,7 @@ class LinkTest extends TestCase
             );
 
         $response
-            ->assertRedirectToRoute('dashboard')
+            ->assertRedirectToRoute('link.edit', $url->keyword)
             ->assertSessionHas('flash_success');
         $this->assertSame($newLongUrl, $url->fresh()->destination);
     }
@@ -155,7 +155,7 @@ class LinkTest extends TestCase
             );
 
         $response
-            ->assertRedirectToRoute('dashboard')
+            ->assertRedirectToRoute('link.edit', $url->keyword)
             ->assertSessionHas('flash_success');
         $this->assertNull($url->fresh()->dest_android);
         $this->assertNull($url->fresh()->dest_ios);

@@ -105,19 +105,8 @@ class UrlController extends Controller implements HasMiddleware
             'forward_query' => $request->forward_query ? true : false,
         ]);
 
-        $flashType = 'flash_success';
-        $message = __('Link updated successfully !');
-        // if the user is not the author of the link
-        if (!$url->author()->is(auth()->user())) {
-            // if the author of the link is guest
-            if ($url->user_id === null) {
-                return to_route('dboard.allurl.u-guest')->with($flashType, $message);
-            }
-
-            return to_route('dboard.allurl')->with($flashType, $message);
-        }
-
-        return to_route('dashboard')->with($flashType, $message);
+        return redirect()->back()
+            ->with('flash_success', __('Link updated successfully !'));
     }
 
     /**

@@ -145,7 +145,7 @@ class UrlListPageTest extends TestCase
             );
 
         $response
-            ->assertRedirectToRoute('dboard.allurl')
+            ->assertRedirectToRoute('link.edit', $url->keyword)
             ->assertSessionHas('flash_success');
         $this->assertSame($newLongUrl, $url->fresh()->destination);
     }
@@ -168,7 +168,7 @@ class UrlListPageTest extends TestCase
             );
 
         $response
-            ->assertRedirectToRoute('dboard.allurl.u-guest')
+            ->assertRedirectToRoute('link.edit', $url->keyword)
             ->assertSessionHas('flash_success');
         $this->assertSame($newLongUrl, $url->fresh()->destination);
     }
