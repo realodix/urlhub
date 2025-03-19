@@ -19,7 +19,7 @@
                 {{ $url->short_url }}
             </code>
 
-            <p class="text-lg text-gray-700 dark:text-dark-300 leading-relaxed">
+            <p class="text-lg text-gray-700 dark:text-dark-300 leading-relaxed mt-4">
                 This link has expired. Please contact the owner of this link to get a new one.
             </p>
         </div>
