@@ -116,6 +116,10 @@
                         <label class="form-label !m-[0.5rem_0_0]">Expiration URL</label>
                         <p class="font-light text-sm dark:text-dark-400">Visitors will be redirected her after the link expires.</p>
                         <input name="expired_url" placeholder="https://example.com/" value="{{ $url->expired_url }}" class="form-input">
+
+                        <label class="form-label !m-[0.5rem_0_0]">Expiration Notes</label>
+                        <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
+                        <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
                     </div>
 
                     @if (settings()->forward_query && $url->author->forward_query)

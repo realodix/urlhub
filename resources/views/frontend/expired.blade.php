@@ -13,7 +13,11 @@
             </h1>
 
             <p class="mt-8 text-pretty text-base text-neutral-700 dark:text-dark-300 sm:text-xl">
-                This link has expired. Please contact the owner of this link to get a new one.
+                @if ($url->expired_notes)
+                    {{ $url->expired_notes }}
+                @else
+                    This link has expired. Please contact the owner of this link to get a new one.
+                @endif
             </p>
         </div>
     </div>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->dateTime('expires_at')->nullable();
             $table->integer('expired_clicks')->nullable();
             $table->longText('expired_url')->nullable();
+            $table->text('expired_notes')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->dropColumn('expires_at');
             $table->dropColumn('expired_clicks');
             $table->dropColumn('expired_url');
+            $table->dropColumn('expired_notes');
         });
     }
 };

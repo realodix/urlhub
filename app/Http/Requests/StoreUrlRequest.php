@@ -31,6 +31,7 @@ class StoreUrlRequest extends FormRequest
             'dest_android' => 'Android link',
             'dest_ios' => 'iOS link',
             'expires_at' => 'expiration date',
+            'expired_notes' => 'expiration notes',
         ];
     }
 
@@ -81,6 +82,7 @@ class StoreUrlRequest extends FormRequest
                     }
                 },
             ],
+            'expired_notes' => ['nullable', 'max:200'],
             'custom_key' => [
                 'nullable', 'unique:urls,keyword',
                 "min:{$minLen}", "max:{$maxLen}", 'lowercase',

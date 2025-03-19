@@ -106,6 +106,7 @@ class UrlController extends Controller implements HasMiddleware
             'expires_at' => $request->expires_at,
             'expired_clicks' => $request->expired_clicks,
             'expired_url' => $request->expired_url,
+            'expired_notes' => $request->expired_notes,
         ]);
 
         return redirect()->back()
