@@ -98,11 +98,17 @@
                         <label class="form-label">{{ __('Expiration') }}</label>
                         <p class="font-light text-sm dark:text-dark-400 mt-2 mb-2">Set the expiration date or limit number of clicks to create a temporary short link. The link will become invalid once either criterion is met. Afterwards, it will be either disabled or redirected to the given URL.</p>
 
-                        <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
-                        <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}" :options="['time_24hr' => true]"  class="form-input"/>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
+                                <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}" :options="['time_24hr' => true]"  class="form-input"/>
+                            </div>
 
-                        <p class="font-light text-sm dark:text-dark-400 mt-1">Click limit</p>
-                        <input name="expired_clicks" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
+                            <div>
+                                <p class="font-light text-sm dark:text-dark-400">Click limit</p>
+                                <input name="expired_clicks" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
+                            </div>
+                        </div>
 
                         <label class="form-label !m-[0.5rem_0_0]">Expiration URL</label>
                         <p class="font-light text-sm dark:text-dark-400">Visitors will be redirected her after the link expires.</p>
