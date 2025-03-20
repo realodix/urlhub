@@ -48,17 +48,19 @@ class UserService
     /**
      * Determine the type of user based on authentication status and device
      * detection.
+     *
+     * @return \App\Enums\UserType
      */
-    public function userType(): string
+    public function userType()
     {
-        $type = UserType::User->value;
+        $type = UserType::User;
         $device = Helper::deviceDetector();
 
         if (auth()->check() === false) {
-            $type = UserType::Guest->value;
+            $type = UserType::Guest;
 
-            if ($device->isBot() === true) {
-                $type = UserType::Bot->value;
+            if ($device->isBot()) {
+                $type = UserType::Bot;
             }
         }
 
