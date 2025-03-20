@@ -4,6 +4,8 @@ namespace Tests\Unit\Services;
 
 use App\Models\Url;
 use App\Services\RedirectService;
+use DeviceDetector\DeviceDetector;
+use DeviceDetector\Parser\OperatingSystem as OS;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -14,14 +16,21 @@ use Tests\TestCase;
 #[PHPUnit\Group('services')]
 class RedirectServiceTest extends TestCase
 {
-    const UA_ANDROID = 'Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.95 Mobile Safari/537.36';
-    const UA_IOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1';
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->partialMock(DeviceDetector::class)
+            ->shouldReceive(['setUserAgent' => null]);
+    }
 
     public function testAndroidRedirectsToSpecificUrl()
     {
+        $this->partialMock(DeviceDetector::class)
+            ->shouldReceive(['getOs' => OS::getNameFromId('AND')]);
         $url = Url::factory()->create();
-        $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
-            ->get(route('home').'/'.$url->keyword);
+
+        $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->dest_android);
     }
 
@@ -31,22 +40,25 @@ class RedirectServiceTest extends TestCase
      */
     public function testAndroidRedirectsToDefaultUrl()
     {
+        $this->partialMock(DeviceDetector::class)
+            ->shouldReceive(['getOs' => OS::getNameFromId('AND')]);
+
         $url = Url::factory()->create(['dest_android' => null]);
-        $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
-            ->get(route('home').'/'.$url->keyword);
+        $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->destination);
 
         $url = Url::factory()->create(['dest_android' => '']);
-        $response = $this->withHeaders(['user-agent' => self::UA_ANDROID])
-            ->get(route('home').'/'.$url->keyword);
+        $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->destination);
     }
 
     public function testIosRedirectsToSpecificUrl()
     {
+        $this->partialMock(DeviceDetector::class)
+            ->shouldReceive(['getOs' => OS::getNameFromId('IOS')]);
         $url = Url::factory()->create();
-        $response = $this->withHeaders(['user-agent' => self::UA_IOS])
-            ->get(route('home').'/'.$url->keyword);
+
+        $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->dest_ios);
     }
 
@@ -56,14 +68,15 @@ class RedirectServiceTest extends TestCase
      */
     public function testIosRedirectsToDefaultUrl()
     {
+        $this->partialMock(DeviceDetector::class)
+            ->shouldReceive(['getOs' => OS::getNameFromId('IOS')]);
+
         $url = Url::factory()->create(['dest_ios' => null]);
-        $response = $this->withHeaders(['user-agent' => self::UA_IOS])
-            ->get(route('home').'/'.$url->keyword);
+        $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->destination);
 
         $url = Url::factory()->create(['dest_ios' => '']);
-        $response = $this->withHeaders(['user-agent' => self::UA_IOS])
-            ->get(route('home').'/'.$url->keyword);
+        $response = $this->get(route('home').'/'.$url->keyword);
         $response->assertRedirect($url->destination);
     }
 

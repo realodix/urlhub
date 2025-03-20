@@ -11,6 +11,8 @@ class RedirectControllerTest extends TestCase
 {
     public function testUrlRedirection(): void
     {
+        $this->partialMock(\DeviceDetector\DeviceDetector::class)
+            ->shouldReceive(['setUserAgent' => null]);
         $url = Url::factory()->create();
 
         $response = $this->get(route('home').'/'.$url->keyword);

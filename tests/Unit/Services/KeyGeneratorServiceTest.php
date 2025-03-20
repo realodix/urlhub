@@ -5,6 +5,7 @@ namespace Tests\Unit\Services;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Illuminate\Support\Facades\File;
+use Mockery\MockInterface;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -45,7 +46,7 @@ class KeyGeneratorServiceTest extends TestCase
         Url::factory()->create(['keyword' => $hash]);
         $mock = $this->partialMock(
             KeyGeneratorService::class,
-            function (\Mockery\MockInterface $mock) use ($hash) {
+            function (MockInterface $mock) use ($hash) {
                 $mock->shouldReceive('shortHash')->andReturn($hash);
                 $mock->shouldReceive('randomString')->andReturn('mocked_random_string');
             });
@@ -59,7 +60,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         $mock = $this->partialMock(
             KeyGeneratorService::class,
-            function (\Mockery\MockInterface $mock) use ($reserved_keyword) {
+            function (MockInterface $mock) use ($reserved_keyword) {
                 $mock->shouldReceive('shortHash')->andReturn($reserved_keyword);
                 $mock->shouldReceive('randomString')->andReturn('mocked_random_string');
             });

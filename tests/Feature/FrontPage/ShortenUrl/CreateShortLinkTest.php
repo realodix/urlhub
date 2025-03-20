@@ -2,9 +2,10 @@
 
 namespace Tests\Feature\FrontPage\ShortenUrl;
 
+use App\Enums\UserType;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
-use Mockery\MockInterface;
+use App\Services\UserService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -15,9 +16,8 @@ class CreateShortLinkTest extends TestCase
     {
         parent::setUp();
 
-        $this->partialMock(Url::class, function (MockInterface $mock) {
-            $mock->shouldReceive('getWebTitle')->andReturn('Mocked Web Title');
-        });
+        $this->partialMock(Url::class)
+            ->shouldReceive(['getWebTitle' => 'Mocked Web Title']);
     }
 
     /**
@@ -28,10 +28,13 @@ class CreateShortLinkTest extends TestCase
     #[PHPUnit\Group('forward-query')]
     public function shortenUrl(): void
     {
+        $this->mock(UserService::class)
+            ->shouldReceive(['userType' => UserType::User])
+            ->shouldReceive(['signature' => 'mocked_signature']);
+
         $longUrl = 'https://laravel.com';
         $response = $this->actingAs($this->basicUser())
             ->post(route('link.create'), ['long_url' => $longUrl]);
-
         $url = Url::where('destination', $longUrl)->first();
 
         $response->assertRedirectToRoute('link_detail', $url->keyword);
@@ -42,9 +45,12 @@ class CreateShortLinkTest extends TestCase
     #[PHPUnit\Group('forward-query')]
     public function testGuestCanShortenUrl(): void
     {
+        $this->mock(UserService::class)
+            ->shouldReceive(['userType' => UserType::Guest])
+            ->shouldReceive(['signature' => 'mocked_signature']);
+
         $longUrl = 'https://laravel.com';
         $response = $this->post(route('link.create'), ['long_url' => $longUrl]);
-
         $url = Url::where('destination', $longUrl)->first();
 
         $response->assertRedirectToRoute('link_detail', $url->keyword);
@@ -59,14 +65,18 @@ class CreateShortLinkTest extends TestCase
      */
     public function testShortenUrlWithCustomKeyword(): void
     {
-        $longUrl = 'https://example.com/shorten-url-with-custom-keyword';
+        $this->mock(UserService::class)
+            ->shouldReceive(['userType' => UserType::User])
+            ->shouldReceive(['signature' => 'mocked_signature']);
 
+        $longUrl = 'https://example.com/shorten-url-with-custom-keyword';
         $customKey = 'foobar';
         $response = $this->actingAs($this->basicUser())
             ->post(route('link.create'), [
                 'long_url'   => $longUrl,
                 'custom_key' => $customKey,
             ]);
+
         $response->assertRedirectToRoute('link_detail', $customKey);
         $url = Url::where('destination', $longUrl)->first();
         $this->assertTrue($url->is_custom);
@@ -85,9 +95,8 @@ class CreateShortLinkTest extends TestCase
      */
     public function testShortenUrlWhenRemainingSpaceIsNotEnough(): void
     {
-        $this->mock(KeyGeneratorService::class, function (MockInterface $mock) {
-            $mock->shouldReceive('remainingCapacity')->andReturn(0);
-        });
+        $this->mock(KeyGeneratorService::class)
+            ->shouldReceive(['remainingCapacity' => 0]);
 
         $response = $this->actingAs($this->basicUser())
             ->post(route('link.create'), ['long_url' => 'https://laravel.com']);

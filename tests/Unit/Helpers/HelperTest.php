@@ -95,8 +95,8 @@ class HelperTest extends TestCase
         $this->assertEquals($userAgent, Helper::deviceDetector()->getUserAgent());
 
         // Can be mocked
-        $mock = $this->partialMock(\DeviceDetector\DeviceDetector::class);
-        $mock->shouldReceive('setUserAgent')->andReturn(null);
+        $this->partialMock(\DeviceDetector\DeviceDetector::class)
+            ->shouldReceive(['setUserAgent' => null]);
         $this->assertEquals(null, Helper::deviceDetector()->getUserAgent());
     }
 }
