@@ -86,4 +86,17 @@ class HelperTest extends TestCase
         $this->assertSame('6.79K', \Illuminate\Support\Number::abbreviate(6789, maxPrecision: 2));
         $this->assertSame('6.79K', n_abb(6789));
     }
+
+    public function testDeviceDetector()
+    {
+        // Can get from request
+        $userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0';
+        $this->withHeader('User-Agent', $userAgent)->get('/');
+        $this->assertEquals($userAgent, Helper::deviceDetector()->getUserAgent());
+
+        // Can be mocked
+        $mock = $this->partialMock(\DeviceDetector\DeviceDetector::class);
+        $mock->shouldReceive('setUserAgent')->andReturn(null);
+        $this->assertEquals(null, Helper::deviceDetector()->getUserAgent());
+    }
 }

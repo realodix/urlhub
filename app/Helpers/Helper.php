@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Composer\Pcre\Preg;
+use DeviceDetector\DeviceDetector;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
 
@@ -15,7 +16,8 @@ class Helper
      */
     public static function deviceDetector()
     {
-        $device = new \DeviceDetector\DeviceDetector(request()->userAgent() ?? '');
+        $device = app(DeviceDetector::class);
+        $device->setUserAgent(request()->userAgent() ?? '');
         $device->setCache(new \DeviceDetector\Cache\LaravelCache);
         $device->parse();
 
