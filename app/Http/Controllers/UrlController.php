@@ -26,18 +26,18 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function create(StoreUrlRequest $request)
     {
+        $url = new Url;
         $userService = app(UserService::class);
 
-        $url = Url::create([
-            'user_id'   => auth()->id(),
-            'user_type' => $userService->userType(),
-            'destination' => $request->long_url,
-            'title'     => app(Url::class)->getWebTitle($request->long_url),
-            'keyword'   => app(Url::class)->getKeyword($request),
-            'is_custom' => isset($request->custom_key) ? true : false,
-            'forward_query' => auth()->check() ? true : false,
-            'user_uid'  => $userService->signature(),
-        ]);
+        $url->user_id = (int) auth()->id();
+        $url->keyword = app(Url::class)->getKeyword($request);
+        $url->destination = $request->long_url;
+        $url->title = app(Url::class)->getWebTitle($request->long_url);
+        $url->forward_query = auth()->check() ? true : false;
+        $url->is_custom = isset($request->custom_key) ? true : false;
+        $url->user_type = $userService->userType();
+        $url->user_uid = $userService->signature();
+        $url->save();
 
         return to_route('link_detail', $url->keyword);
     }
@@ -97,17 +97,16 @@ class UrlController extends Controller implements HasMiddleware
             'title' => ['max:'.Url::TITLE_LENGTH],
         ]);
 
-        $url->update([
-            'destination' => $request->long_url,
-            'dest_android' => $request->dest_android,
-            'dest_ios' => $request->dest_ios,
-            'title' => $request->title,
-            'forward_query' => $request->forward_query ? true : false,
-            'expires_at' => $request->expires_at,
-            'expired_clicks' => $request->expired_clicks,
-            'expired_url' => $request->expired_url,
-            'expired_notes' => $request->expired_notes,
-        ]);
+        $url->title = $request->title;
+        $url->destination = $request->long_url;
+        $url->dest_android = $request->dest_android;
+        $url->dest_ios = $request->dest_ios;
+        $url->expires_at = $request->expires_at;
+        $url->expired_clicks = $request->expired_clicks;
+        $url->expired_url = $request->expired_url;
+        $url->expired_notes = $request->expired_notes;
+        $url->forward_query = $request->forward_query ? true : false;
+        $url->save();
 
         return redirect()->back()
             ->with('flash_success', __('Link updated successfully !'));

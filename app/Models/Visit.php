@@ -23,19 +23,6 @@ class Visit extends Model
     /** @use HasFactory<\Database\Factories\VisitFactory> */
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'url_id',
-        'user_type',
-        'user_uid',
-        'is_first_click',
-        'referer',
-    ];
-
     protected function casts(): array
     {
         return [

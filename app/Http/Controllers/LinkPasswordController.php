@@ -32,7 +32,8 @@ class LinkPasswordController extends Controller
             'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
         ]);
 
-        $url->update(['password' => $request->password]);
+        $url->password = $request->password;
+        $url->save();
 
         return to_route('link.edit', $url)
             ->with('flash_success', 'Password has been set!');
@@ -61,7 +62,8 @@ class LinkPasswordController extends Controller
             'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
         ]);
 
-        $url->update(['password' => $request->password]);
+        $url->password = $request->password;
+        $url->save();
 
         return to_route('link.edit', $url)
             ->with('flash_success', 'Password has been updated!');
@@ -74,7 +76,8 @@ class LinkPasswordController extends Controller
      */
     public function delete(Url $url)
     {
-        $url->update(['password' => null]);
+        $url->password = null;
+        $url->save();
 
         return to_route('link.edit', $url)
             ->with('flash_success', 'Password has been removed!');

@@ -23,6 +23,7 @@ class VisitorService
      */
     public function create(Url $url)
     {
+        $visit = new Visit;
         $logBotVisit = $this->settings->track_bot_visits;
         $device = Helper::deviceDetector();
         $referer = request()->header('referer');
@@ -31,13 +32,12 @@ class VisitorService
             return;
         }
 
-        Visit::create([
-            'url_id'         => $url->id,
-            'user_type'      => $this->userService->userType(),
-            'user_uid'       => $this->userService->signature(),
-            'is_first_click' => $this->isFirstClick($url),
-            'referer'        => $this->getRefererHost($referer),
-        ]);
+        $visit->url_id = $url->id;
+        $visit->user_type = $this->userService->userType();
+        $visit->user_uid = $this->userService->signature();
+        $visit->is_first_click = $this->isFirstClick($url);
+        $visit->referer = $this->getRefererHost($referer);
+        $visit->save();
     }
 
     /**

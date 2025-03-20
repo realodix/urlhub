@@ -52,24 +52,6 @@ class Url extends Model
     const PWD_MIN_LENGTH = 3;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'user_id',
-        'user_type',
-        'keyword',
-        'is_custom',
-        'destination', 'dest_android', 'dest_ios',
-        'title',
-        'forward_query',
-        'user_uid',
-        'password',
-        'expires_at', 'expired_clicks', 'expired_url', 'expired_notes',
-    ];
-
-    /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
