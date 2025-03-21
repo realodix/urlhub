@@ -69,7 +69,7 @@ class RedirectService
      */
     public function buildWithQuery($baseUrl, $currentQuery)
     {
-        return Uri::of($baseUrl)->withQuery($currentQuery)->__toString();
+        return Uri::of($baseUrl)->withQuery($currentQuery)->value();
     }
 
     /**
