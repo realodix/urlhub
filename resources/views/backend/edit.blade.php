@@ -76,64 +76,85 @@
                         <input name="dest_ios" placeholder="https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215" value="{{ $url->dest_ios }}" class="form-input">
                     </div>
 
-                    <div class="col-span-6">
-                        <label class="form-label">Password</label>
-                        <p class="font-light text-sm dark:text-dark-400 mb-2">Protect your link with a password.</p>
-                        @if($url->password)
-                            <a href="{{ route('link.password.edit', $url) }}" class="btn btn-sm" title="Edit Password">
-                                @svg('icon-key', 'mr-1') Edit Password
-                            </a>
+                    <!-- Accordion Container -->
+                    <div x-data="{ open: false }" class="col-span-6">
+                        <!-- Accordion Header -->
+                        <button type="button" @click="open = !open" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-500 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                            <span>Advanced Options</span>
+                            <svg x-show="!open" class="w-5 h-5 transition-transform transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                            <svg x-show="open" class="w-5 h-5 transition-transform transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
 
-                            <a href="{{ route('link.password.delete', $url) }}" class="btn btn-delete-danger btn-sm" onclick="return confirm('Are you sure you want to remove the password?')">
-                                Remove Password
-                            </a>
-                        @else
-                            <a href="{{ route('link.password.create', $url) }}" class="btn btn-success btn-sm" title="Add Password">
-                                @svg('icon-key', 'mr-1') Add Password
-                            </a>
-                        @endif
-                    </div>
+                        <!-- Accordion Content -->
+                        <div x-show="open" x-collapse class="mt-2">
+                            <!-- Password -->
+                            <div class="col-span-6">
+                                <label class="form-label"># Password</label>
+                                <p class="font-light text-sm dark:text-dark-400 mb-2">Protect your link with a password.</p>
+                                @if($url->password)
+                                    <a href="{{ route('link.password.edit', $url) }}" class="btn btn-sm" title="Edit Password">
+                                        @svg('icon-key', 'mr-1') Edit Password
+                                    </a>
 
-                    <div class="col-span-6">
-                        <label class="form-label">{{ __('Expiration') }}</label>
-                        <p class="font-light text-sm dark:text-dark-400 mt-2 mb-2">Set the expiration date or limit number of clicks to create a temporary short link. The link will become invalid once either criterion is met. Afterwards, it will be either disabled or redirected to the given URL.</p>
-
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
-                                <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}"
-                                    :options="['time_24hr' => true, 'disableMobile' => true]"
-                                    class="form-input"
-                                />
+                                    <a href="{{ route('link.password.delete', $url) }}" class="btn btn-delete-danger btn-sm" onclick="return confirm('Are you sure you want to remove the password?')">
+                                        Remove Password
+                                    </a>
+                                @else
+                                    <a href="{{ route('link.password.create', $url) }}" class="btn btn-success btn-sm" title="Add Password">
+                                        @svg('icon-key', 'mr-1') Add Password
+                                    </a>
+                                @endif
                             </div>
 
-                            <div>
-                                <p class="font-light text-sm dark:text-dark-400">Click limit</p>
-                                <input name="expired_clicks" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
+                            <!-- Expiration -->
+                            <div class="col-span-6 mt-6">
+                                <label class="form-label"># Expiration</label>
+                                <p class="font-light text-sm dark:text-dark-400 mt-2 mb-2">Set the expiration date or limit number of clicks to create a temporary short link. The link will become invalid once either criterion is met. Afterwards, it will be either disabled or redirected to the given URL.</p>
+
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
+                                        <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}"
+                                            :options="['time_24hr' => true, 'disableMobile' => true]"
+                                            class="form-input"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <p class="font-light text-sm dark:text-dark-400">Click limit</p>
+                                        <input name="expired_clicks" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
+                                    </div>
+                                </div>
+
+                                <label class="form-label !m-[0.5rem_0_0]">Expiration URL</label>
+                                <p class="font-light text-sm dark:text-dark-400">Visitors will be redirected her after the link expires.</p>
+                                <input name="expired_url" placeholder="https://example.com/" value="{{ $url->expired_url }}" class="form-input">
+
+                                <label class="form-label !m-[0.5rem_0_0]">Expiration Notes</label>
+                                <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
+                                <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
                             </div>
+
+                            <!-- Parameter Passing -->
+                            @if (settings()->forward_query && $url->author->forward_query)
+                                <div class="col-span-6 mt-6">
+                                    <label class="form-label"># Parameter Passing</label>
+                                    <p class="font-light text-sm dark:text-dark-400">Forward query parameters from your short link to the destination URL. For example, <code class="text-slate-600">https://short.link/abc?utm_medium=social</code> will redirect to <code class="text-slate-600">https://example.com?utm_medium=social</code>.</p>
+                                    <label class="switch float-right mt-6">
+                                        <input type="checkbox" name="forward_query" value="1" {{ $url->forward_query ? 'checked' : '' }}>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            @else
+                                <input type="hidden" name="forward_query" value="{{ $url->forward_query ? true : false }}">
+                            @endif
                         </div>
-
-                        <label class="form-label !m-[0.5rem_0_0]">Expiration URL</label>
-                        <p class="font-light text-sm dark:text-dark-400">Visitors will be redirected her after the link expires.</p>
-                        <input name="expired_url" placeholder="https://example.com/" value="{{ $url->expired_url }}" class="form-input">
-
-                        <label class="form-label !m-[0.5rem_0_0]">Expiration Notes</label>
-                        <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
-                        <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
                     </div>
-
-                    @if (settings()->forward_query && $url->author->forward_query)
-                        <div class="col-span-6">
-                            <label class="form-label">Parameter Passing</label>
-                            <p class="font-light text-sm dark:text-dark-400">Forward query parameters from your short link to the destination URL. For example, <code class="text-slate-600">https://short.link/abc?utm_medium=social</code> will redirect to <code class="text-slate-600">https://example.com?utm_medium=social</code>.</p>
-                            <label class="switch float-right mt-6">
-                                <input type="checkbox" name="forward_query" value="1" {{ $url->forward_query ? 'checked' : '' }}>
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                    @else
-                        <input type="hidden" name="forward_query" value="{{ $url->forward_query ? true : false }}">
-                    @endif
+                    <!-- End Accordion Container -->
                 </div>
 
                 <div class="flex items-center justify-end mt-8 text-right">
