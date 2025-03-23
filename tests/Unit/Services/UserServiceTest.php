@@ -30,8 +30,6 @@ class UserServiceTest extends TestCase
 
     public function testUserTypesWhenUserCreateShortLink(): void
     {
-        $this->partialMock(DeviceDetector::class)
-            ->shouldReceive(['setUserAgent' => null]);
         $longUrl = 'https://laravel.com';
 
         $this->actingAs($this->basicUser())

@@ -25,10 +25,10 @@ class VisitorService
     {
         $visit = new Visit;
         $logBotVisit = $this->settings->track_bot_visits;
-        $device = Helper::deviceDetector();
         $referer = request()->header('referer');
+        $botDetector = Helper::botDetector();
 
-        if ($logBotVisit === false && $device->isBot() === true) {
+        if ($logBotVisit === false && $botDetector->isCrawler()) {
             return;
         }
 

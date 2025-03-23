@@ -54,12 +54,12 @@ class UserService
     public function userType()
     {
         $type = UserType::User;
-        $device = Helper::deviceDetector();
 
         if (auth()->check() === false) {
             $type = UserType::Guest;
 
-            if ($device->isBot()) {
+            $botDetector = Helper::botDetector();
+            if ($botDetector->isCrawler()) {
                 $type = UserType::Bot;
             }
         }

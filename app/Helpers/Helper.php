@@ -6,9 +6,23 @@ use Composer\Pcre\Preg;
 use DeviceDetector\DeviceDetector;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
 class Helper
 {
+    /**
+     * Check if the User Agent from the request is a bot.
+     *
+     * @return \Jaybizzle\CrawlerDetect\CrawlerDetect
+     */
+    public static function botDetector()
+    {
+        $crawlerDetect = new CrawlerDetect;
+        $crawlerDetect->setUserAgent(request()->userAgent() ?? '');
+
+        return $crawlerDetect;
+    }
+
     /**
      * Parse any User Agent.
      *
