@@ -33,7 +33,6 @@ class UserService
             $browser['name'] ?? '',
             $os['name'] ?? '',
             $os['version'] ?? '',
-            $device->getDeviceName().$device->getModel().$device->getBrandName(),
             request()->getPreferredLanguage(),
         ]);
 
