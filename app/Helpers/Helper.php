@@ -6,7 +6,6 @@ use Composer\Pcre\Preg;
 use DeviceDetector\DeviceDetector;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
-use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
 class Helper
 {
@@ -17,7 +16,7 @@ class Helper
      */
     public static function botDetector()
     {
-        $crawlerDetect = new CrawlerDetect;
+        $crawlerDetect = new \Jaybizzle\CrawlerDetect\CrawlerDetect;
         $crawlerDetect->setUserAgent(request()->userAgent() ?? '');
 
         return $crawlerDetect;
