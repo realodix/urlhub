@@ -42,9 +42,9 @@ class RedirectService
         $device = Helper::deviceDetector();
         $destinationUrl = $url->destination;
 
-        if ($device->getOs('name') === 'Android' && !empty($url->dest_android)) {
+        if (!empty($url->dest_android) && $device->getOs('family') === 'Android') {
             $destinationUrl = $url->dest_android;
-        } elseif ($device->getOs('name') === 'iOS' && !empty($url->dest_ios)) {
+        } elseif (!empty($url->dest_ios) && $device->getOs('family') === 'iOS') {
             $destinationUrl = $url->dest_ios;
         }
 
