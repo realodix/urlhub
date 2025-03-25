@@ -3,7 +3,6 @@
 namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Livewire\Validation\ValidateCustomKeyword;
-use DeviceDetector\DeviceDetector;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -37,9 +36,6 @@ class ValidationTest extends TestCase
     #[PHPUnit\DataProvider('customKeyPassProvider')]
     public function testCustomKeyValidationShouldPass($value): void
     {
-        $this->partialMock(DeviceDetector::class)
-            ->shouldReceive(['setUserAgent' => null]);
-
         $response = $this->post(route('link.create'), [
             'long_url'   => 'https://laravel.com/',
             'custom_key' => $value,

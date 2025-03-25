@@ -6,7 +6,6 @@ use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\Visit;
 use App\Services\UserService;
-use DeviceDetector\DeviceDetector;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -17,11 +16,9 @@ class UserServiceTest extends TestCase
 
     public function testSignature(): void
     {
-        $this->partialMock(DeviceDetector::class)
-            ->shouldReceive(['setUserAgent' => null]);
         $userService = app(UserService::class);
 
-        $this->assertEquals('75e9953ca8e14667', $userService->signature());
+        $this->assertEquals('1b74bf4fdef5c961', $userService->signature());
 
         $user = $this->basicUser();
         $this->actingAs($user);
@@ -41,8 +38,6 @@ class UserServiceTest extends TestCase
 
     public function testUserTypesWhenGuestCreateShortLink(): void
     {
-        $this->partialMock(DeviceDetector::class)
-            ->shouldReceive(['setUserAgent' => null]);
         $longUrl = 'https://laravel.com';
 
         $this->post(route('link.create'), ['long_url' => $longUrl]);
@@ -53,8 +48,6 @@ class UserServiceTest extends TestCase
 
     public function testUserTypesWhenUsertVisit(): void
     {
-        $this->partialMock(DeviceDetector::class)
-            ->shouldReceive(['setUserAgent' => null]);
         $url = Url::factory()->create();
 
         $this->actingAs($this->basicUser())
@@ -78,8 +71,6 @@ class UserServiceTest extends TestCase
 
     public function testUserTypesWhenGuestVisit(): void
     {
-        $this->partialMock(DeviceDetector::class)
-            ->shouldReceive(['setUserAgent' => null]);
         $url = Url::factory()->create();
 
         $this->get(route('home').'/'.$url->keyword);

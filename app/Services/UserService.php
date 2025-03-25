@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Enums\UserType;
 use App\Helpers\Helper;
-use Illuminate\Support\Facades\Cache;
 
 class UserService
 {
@@ -18,30 +17,16 @@ class UserService
             return (string) auth()->id();
         }
 
-        // 1. Cache the device info hash.
-        $cacheKey = 'device_signature_'.md5(request()->userAgent().request()->ip());
-        $cachedSignature = Cache::get($cacheKey);
-        if ($cachedSignature) {
-            return $cachedSignature;
-        }
-
         $device = Helper::deviceDetector();
-        $browser = $device->getClient();
-        $os = $device->getOs();
         $deviceInfo = implode([
             request()->ip(),
-            $browser['name'] ?? '',
-            $os['name'] ?? '',
-            $os['version'] ?? '',
+            $device->getClientAttr('name'),
+            $device->getOsAttr('name'),
+            $device->getOsAttr('version'),
             request()->getPreferredLanguage(),
         ]);
 
-        $signature = hash('xxh3', $deviceInfo);
-
-        // 2. Store in cache for a reasonable duration
-        Cache::put($cacheKey, $signature, now()->addHour());
-
-        return $signature;
+        return hash('xxh3', $deviceInfo);
     }
 
     /**

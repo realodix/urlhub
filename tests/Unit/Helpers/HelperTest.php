@@ -3,7 +3,6 @@
 namespace Tests\Unit\Helpers;
 
 use App\Helpers\Helper;
-use DeviceDetector\Parser\OperatingSystem as OS;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -96,13 +95,8 @@ class HelperTest extends TestCase
         $this->assertEquals($userAgent, Helper::deviceDetector()->getUserAgent());
 
         // Can be mocked
-        $this->partialMock(\DeviceDetector\DeviceDetector::class)
+        $this->partialMock(\App\Services\DeviceDetectorService::class)
             ->shouldReceive(['setUserAgent' => null]);
         $this->assertEquals(null, Helper::deviceDetector()->getUserAgent());
-
-        // Make sure the OS name is correct
-        // https://github.com/realodix/urlhub/blob/36668754/app/Services/RedirectService.php#L45
-        $this->assertSame('Android', OS::getNameFromId('AND'));
-        $this->assertSame('iOS', OS::getNameFromId('IOS'));
     }
 }

@@ -3,8 +3,8 @@
 namespace Tests\Unit\Services;
 
 use App\Models\Url;
+use App\Services\DeviceDetectorService;
 use App\Services\RedirectService;
-use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\OperatingSystem as OS;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -16,17 +16,9 @@ use Tests\TestCase;
 #[PHPUnit\Group('services')]
 class RedirectServiceTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->partialMock(DeviceDetector::class)
-            ->shouldReceive(['setUserAgent' => null]);
-    }
-
     public function testAndroidRedirectsToSpecificUrl()
     {
-        $this->partialMock(DeviceDetector::class)
+        $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('AND')]);
         $url = Url::factory()->create();
 
@@ -40,7 +32,7 @@ class RedirectServiceTest extends TestCase
      */
     public function testAndroidRedirectsToDefaultUrl()
     {
-        $this->partialMock(DeviceDetector::class)
+        $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('AND')]);
 
         $url = Url::factory()->create(['dest_android' => null]);
@@ -54,7 +46,7 @@ class RedirectServiceTest extends TestCase
 
     public function testIosRedirectsToSpecificUrl()
     {
-        $this->partialMock(DeviceDetector::class)
+        $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('IOS')]);
         $url = Url::factory()->create();
 
@@ -68,7 +60,7 @@ class RedirectServiceTest extends TestCase
      */
     public function testIosRedirectsToDefaultUrl()
     {
-        $this->partialMock(DeviceDetector::class)
+        $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('IOS')]);
 
         $url = Url::factory()->create(['dest_ios' => null]);
