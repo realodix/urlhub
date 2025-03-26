@@ -5,17 +5,35 @@ namespace App\Services;
 use App\Helpers\Helper;
 use App\Models\Url;
 use App\Settings\GeneralSettings;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Uri;
 
 class RedirectService
 {
+    /**
+     * Handles the redirect logic and visitor creation.
+     *
+     * @param Url $url \App\Models\Url
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function execute(Url $url)
+    {
+        return DB::transaction(function () use ($url) {
+            app(VisitorService::class)->create($url);
+
+            return $this->handleRedirect($url);
+        });
+    }
+
     /**
      * Execute the HTTP redirect and return the redirect response.
      *
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function execute(Url $url)
+    public function handleRedirect(Url $url)
     {
         $settings = app(GeneralSettings::class);
         $statusCode = config('urlhub.redirection_status_code');

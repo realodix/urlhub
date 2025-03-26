@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Url;
 use App\Services\RedirectService;
-use App\Services\VisitorService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class RedirectController extends Controller
@@ -34,7 +32,7 @@ class RedirectController extends Controller
             return to_route('link.expired', $url);
         }
 
-        return $this->handleRedirect($url);
+        return app(RedirectService::class)->execute($url);
     }
 
     /**
@@ -62,26 +60,9 @@ class RedirectController extends Controller
     public function validatePassword(Request $request, Url $url)
     {
         if (Hash::check($request->password, $url->password)) {
-            return $this->handleRedirect($url);
+            return app(RedirectService::class)->execute($url);
         }
 
         return back()->withErrors(['password' => 'The password is incorrect.']);
-    }
-
-    /**
-     * Handles the redirect logic and visitor creation.
-     *
-     * @param Url $url \App\Models\Url
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
-     */
-    private function handleRedirect(Url $url)
-    {
-        return DB::transaction(function () use ($url) {
-            app(VisitorService::class)->create($url);
-
-            return app(RedirectService::class)->execute($url);
-        });
     }
 }
