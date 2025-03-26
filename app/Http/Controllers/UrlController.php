@@ -72,7 +72,7 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function edit(Url $url)
     {
-        Gate::authorize('updateUrl', $url);
+        Gate::authorize('authorOrAdmin', $url);
 
         $data = [
             'url' => $url,
@@ -94,7 +94,7 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function update(StoreUrlRequest $request, Url $url)
     {
-        Gate::authorize('updateUrl', $url);
+        Gate::authorize('authorOrAdmin', $url);
 
         $request->validate([
             'title' => ['max:'.Url::TITLE_LENGTH],
@@ -125,7 +125,7 @@ class UrlController extends Controller implements HasMiddleware
      */
     public function delete(Url $url)
     {
-        Gate::authorize('forceDelete', $url);
+        Gate::authorize('authorOrAdmin', $url);
 
         $url->delete();
 
