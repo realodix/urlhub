@@ -69,13 +69,13 @@
                     <div class="col-span-6">
                         <label class="form-label">{{ __('Android Link') }}</label>
                         <p class="font-light text-sm dark:text-dark-400 mb-2">Android devices will be automatically redirected to this link.</p>
-                        <input name="dest_android" placeholder="https://play.google.com/store/apps/details?id=com.canva.editor" value="{{ $url->dest_android }}" class="form-input">
+                        <input name="dest_android" placeholder="https://play.google.com/store/apps" value="{{ $url->dest_android }}" class="form-input">
                     </div>
 
                     <div class="col-span-6">
                         <label class="form-label">{{ __('iOS Link') }}</label>
                         <p class="font-light text-sm dark:text-dark-400 mb-2">iOS devices will be automatically redirected to this link.</p>
-                        <input name="dest_ios" placeholder="https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215" value="{{ $url->dest_ios }}" class="form-input">
+                        <input name="dest_ios" placeholder="https://apps.apple.com/us/charts/iphone" value="{{ $url->dest_ios }}" class="form-input">
                     </div>
 
                     <!-- Accordion Container -->
