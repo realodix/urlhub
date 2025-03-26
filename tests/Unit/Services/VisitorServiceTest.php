@@ -2,6 +2,9 @@
 
 namespace Tests\Unit\Services;
 
+use App\Models\Url;
+use App\Models\Visit;
+use App\Services\UserService;
 use App\Services\VisitorService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -9,27 +12,36 @@ use Tests\TestCase;
 #[PHPUnit\Group('services')]
 class VisitorServiceTest extends TestCase
 {
-    private VisitorService $visitorService;
-
-    protected function setUp(): void
+    #[PHPUnit\Test]
+    public function isFirstClick(): void
     {
-        parent::setUp();
+        $visitor = app(VisitorService::class);
 
-        $this->visitorService = app(VisitorService::class);
+        // First visit
+        $url = Url::factory()->create();
+        $this->assertTrue($visitor->isFirstClick($url));
+
+        // Second visit and so on
+        $url = Url::factory()->create();
+        Visit::factory()->for($url)->create([
+            'user_uid' => app(UserService::class)->signature(),
+        ]);
+        $this->assertFalse($visitor->isFirstClick($url));
     }
 
     #[PHPUnit\Test]
-    #[PHPUnit\Group('u-service')]
     public function getRefererHost(): void
     {
-        $this->assertSame(null, $this->visitorService->getRefererHost(null));
+        $visitor = app(VisitorService::class);
+
+        $this->assertSame(null, $visitor->getRefererHost(null));
         $this->assertSame(
             'https://github.com',
-            $this->visitorService->getRefererHost('https://github.com/laravel'),
+            $visitor->getRefererHost('https://github.com/laravel'),
         );
         $this->assertSame(
             'http://urlhub.test',
-            $this->visitorService->getRefererHost('http://urlhub.test/admin?page=2'),
+            $visitor->getRefererHost('http://urlhub.test/admin?page=2'),
         );
     }
 }

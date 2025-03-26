@@ -3,91 +3,48 @@
 namespace Tests\Unit\Services;
 
 use App\Enums\UserType;
-use App\Models\Url;
-use App\Models\Visit;
+use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
 #[PHPUnit\Group('services')]
 class UserServiceTest extends TestCase
 {
-    const BOT_UA = 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)';
-
     public function testSignature(): void
     {
         $userService = app(UserService::class);
-
         $this->assertEquals('1b74bf4fdef5c961', $userService->signature());
 
         $user = $this->basicUser();
-        $this->actingAs($user);
+        Auth::login($user);
         $this->assertEquals($user->id, $userService->signature());
     }
 
-    public function testUserTypesWhenUserCreateShortLink(): void
+    public function testUserTypesUser(): void
     {
-        $longUrl = 'https://laravel.com';
+        Auth::login(User::factory()->create());
 
-        $this->actingAs($this->basicUser())
-            ->post(route('link.create'), ['long_url' => $longUrl]);
+        $this->assertSame(UserType::User, app(UserService::class)->userType());
 
-        $url = Url::where('destination', $longUrl)->first();
-        $this->assertSame(UserType::User, $url->user_type);
+        // User logged in and with bot user agent
+        $this->partialMock(CrawlerDetect::class)
+            ->shouldReceive(['isCrawler' => true]);
+        $this->assertSame(UserType::User, app(UserService::class)->userType());
     }
 
-    public function testUserTypesWhenGuestCreateShortLink(): void
+    public function testUserTypesGuest(): void
     {
-        $longUrl = 'https://laravel.com';
-
-        $this->post(route('link.create'), ['long_url' => $longUrl]);
-
-        $url = Url::where('destination', $longUrl)->first();
-        $this->assertSame(UserType::Guest, $url->user_type);
+        $this->assertSame(UserType::Guest, app(UserService::class)->userType());
     }
 
-    public function testUserTypesWhenUsertVisit(): void
+    public function testUserTypesBot(): void
     {
-        $url = Url::factory()->create();
+        $this->partialMock(CrawlerDetect::class)
+            ->shouldReceive(['isCrawler' => true]);
 
-        $this->actingAs($this->basicUser())
-            ->get(route('home').'/'.$url->keyword);
-        $visit = Visit::where('url_id', $url->id)->first();
-        $this->assertSame(UserType::User, $visit->user_type);
-    }
-
-    public function testUserTypesWhenUsertVisitWithBotAgent(): void
-    {
-        $url = Url::factory()->create();
-
-        settings()->fill(['track_bot_visits' => true])->save();
-        $this->actingAs($this->basicUser())
-            ->withHeaders(['user-agent' => self::BOT_UA])
-            ->get(route('home').'/'.$url->keyword);
-
-        $visit = Visit::where('url_id', $url->id)->first();
-        $this->assertSame(UserType::User, $visit->user_type);
-    }
-
-    public function testUserTypesWhenGuestVisit(): void
-    {
-        $url = Url::factory()->create();
-
-        $this->get(route('home').'/'.$url->keyword);
-
-        $visit = Visit::where('url_id', $url->id)->first();
-        $this->assertSame(UserType::Guest, $visit->user_type);
-    }
-
-    public function testUserTypesWhenBotVisit(): void
-    {
-        $url = Url::factory()->create();
-
-        settings()->fill(['track_bot_visits' => true])->save();
-        $this->withHeaders(['user-agent' => self::BOT_UA])
-            ->get(route('home').'/'.$url->keyword);
-
-        $visit = Visit::where('url_id', $url->id)->first();
-        $this->assertSame(UserType::Bot, $visit->user_type);
+        $this->assertSame(UserType::Bot, app(UserService::class)->userType());
     }
 }

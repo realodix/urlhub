@@ -5,7 +5,6 @@ namespace Tests\Unit\Services;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Illuminate\Support\Facades\File;
-use Mockery\MockInterface;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -44,12 +43,12 @@ class KeyGeneratorServiceTest extends TestCase
         // Scenario 2
         // If the string is already used as a short link keyword
         Url::factory()->create(['keyword' => $hash]);
-        $mock = $this->partialMock(
-            KeyGeneratorService::class,
-            function (MockInterface $mock) use ($hash) {
-                $mock->shouldReceive('shortHash')->andReturn($hash);
-                $mock->shouldReceive('randomString')->andReturn('mocked_random_string');
-            });
+        $mock = $this->partialMock(KeyGeneratorService::class);
+        $mock->shouldReceive([
+            'shortHash' => $hash,
+            'randomString' => 'mocked_random_string',
+        ]);
+
         $this->assertSame('mocked_random_string', $mock->generate($value));
     }
 
@@ -58,12 +57,12 @@ class KeyGeneratorServiceTest extends TestCase
         $reserved_keyword = 'foo';
         config(['urlhub.reserved_keyword' => [$reserved_keyword]]);
 
-        $mock = $this->partialMock(
-            KeyGeneratorService::class,
-            function (MockInterface $mock) use ($reserved_keyword) {
-                $mock->shouldReceive('shortHash')->andReturn($reserved_keyword);
-                $mock->shouldReceive('randomString')->andReturn('mocked_random_string');
-            });
+        $mock = $this->partialMock(KeyGeneratorService::class);
+        $mock->shouldReceive([
+            'shortHash' => $reserved_keyword,
+            'randomString' => 'mocked_random_string',
+        ]);
+
         $this->assertSame('mocked_random_string', $mock->generate($reserved_keyword));
     }
 
@@ -240,7 +239,7 @@ class KeyGeneratorServiceTest extends TestCase
     #[PHPUnit\DataProvider('remainingCapacityProvider')]
     public function remainingCapacity($mus, $kc, $expected): void
     {
-        $mock = \Mockery::mock(KeyGeneratorService::class)->makePartial();
+        $mock = $this->partialMock(KeyGeneratorService::class);
         $mock->shouldReceive([
             'maxUniqueStrings' => $mus,
             'keywordCount' => $kc,

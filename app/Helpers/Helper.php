@@ -15,7 +15,7 @@ class Helper
      */
     public static function botDetector()
     {
-        $crawlerDetect = new \Jaybizzle\CrawlerDetect\CrawlerDetect;
+        $crawlerDetect = app(\Jaybizzle\CrawlerDetect\CrawlerDetect::class);
         $crawlerDetect->setUserAgent(request()->userAgent() ?? '');
 
         return $crawlerDetect;

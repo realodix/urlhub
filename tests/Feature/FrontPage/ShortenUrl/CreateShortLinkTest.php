@@ -28,8 +28,7 @@ class CreateShortLinkTest extends TestCase
     #[PHPUnit\Group('forward-query')]
     public function shortenUrl(): void
     {
-        $this->mock(UserService::class)
-            ->shouldReceive(['userType' => UserType::User])
+        $this->partialMock(UserService::class)
             ->shouldReceive(['signature' => 'mocked_signature']);
 
         $longUrl = 'https://laravel.com';
@@ -40,13 +39,13 @@ class CreateShortLinkTest extends TestCase
         $response->assertRedirectToRoute('link_detail', $url->keyword);
         $this->assertFalse($url->is_custom);
         $this->assertTrue($url->forward_query);
+        $this->assertSame(UserType::User, $url->user_type);
     }
 
     #[PHPUnit\Group('forward-query')]
     public function testGuestCanShortenUrl(): void
     {
-        $this->mock(UserService::class)
-            ->shouldReceive(['userType' => UserType::Guest])
+        $this->partialMock(UserService::class)
             ->shouldReceive(['signature' => 'mocked_signature']);
 
         $longUrl = 'https://laravel.com';
@@ -56,6 +55,7 @@ class CreateShortLinkTest extends TestCase
         $response->assertRedirectToRoute('link_detail', $url->keyword);
         $this->assertFalse($url->is_custom);
         $this->assertFalse($url->forward_query);
+        $this->assertSame(UserType::Guest, $url->user_type);
     }
 
     /**
@@ -65,8 +65,7 @@ class CreateShortLinkTest extends TestCase
      */
     public function testShortenUrlWithCustomKeyword(): void
     {
-        $this->mock(UserService::class)
-            ->shouldReceive(['userType' => UserType::User])
+        $this->partialMock(UserService::class)
             ->shouldReceive(['signature' => 'mocked_signature']);
 
         $longUrl = 'https://example.com/shorten-url-with-custom-keyword';
