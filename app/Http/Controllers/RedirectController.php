@@ -20,8 +20,18 @@ class RedirectController extends Controller
      */
     public function __invoke(Url $url)
     {
+        // If the link has a password, redirect to the password form
         if ($url->password) {
             return to_route('link.password', $url->keyword);
+        }
+
+        // If the link is expired, redirect to the expired page
+        if ($url->isExpired()) {
+            if ($url->expired_url) {
+                return redirect()->away($url->expired_url);
+            }
+
+            return to_route('link.expired', $url);
         }
 
         return $this->handleRedirect($url);
@@ -68,14 +78,6 @@ class RedirectController extends Controller
      */
     private function handleRedirect(Url $url)
     {
-        if ($url->isExpired()) {
-            if ($url->expired_url) {
-                return redirect()->away($url->expired_url);
-            }
-
-            return to_route('link.expired', $url);
-        }
-
         return DB::transaction(function () use ($url) {
             app(VisitorService::class)->create($url);
 
