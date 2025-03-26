@@ -73,6 +73,7 @@ class BaseUrlTable extends PowerGridComponent
             })
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
+                    'model' => $url,
                     'title' => $url->title,
                     'destination' => $url->destination,
                     'limit' => static::STR_LIMIT,

@@ -1,6 +1,8 @@
 <div>
     <span title="{{ $title }}" class="dark:text-dark-300">
-        {{ mb_strimwidth($title, 0, $limit, '...') }}
+        <a href="{{ route('link.edit', $model) }}">
+            {{ mb_strimwidth($title, 0, $limit, '...') }}
+        </a>
     </span>
 
     <br>
