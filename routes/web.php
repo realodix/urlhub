@@ -53,6 +53,6 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
 });
 
 Route::get('/{url:keyword}/expired', [UrlController::class, 'expiredLink'])->name('link.expired');
-Route::get('/{url:keyword}/password', [RedirectController::class, 'password'])->name('link.password');
-Route::post('/{url:keyword}/password', [RedirectController::class, 'validatePassword'])->name('link.password.validate');
+Route::get('/{url:keyword}/password', [UrlController::class, 'password'])->name('link.password');
+Route::post('/{url:keyword}/password', [UrlController::class, 'validatePassword'])->name('link.password.validate');
 Route::get('/{url:keyword}', RedirectController::class);

@@ -146,7 +146,8 @@ class VisitTest extends TestCase
      * - redirects to the destination URL when the correct password is provided
      *
      * @see \App\Http\Controllers\RedirectController::__invoke()
-     * @see \App\Http\Controllers\RedirectController::password()
+     * @see \App\Http\Controllers\UrlController::password()
+     * @see \App\Http\Controllers\UrlController::validatePassword()
      */
     #[PHPUnit\Test]
     public function linkWithPassword()
@@ -171,7 +172,7 @@ class VisitTest extends TestCase
      * Tests opening the password form page:
      *
      * @see \App\Http\Controllers\RedirectController::__invoke()
-     * @see \App\Http\Controllers\RedirectController::password()
+     * @see \App\Http\Controllers\UrlController::password()
      */
     public function testLinkWithPassword_form()
     {
