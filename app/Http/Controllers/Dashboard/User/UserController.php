@@ -72,7 +72,7 @@ class UserController extends Controller implements HasMiddleware
      */
     public function edit(User $user)
     {
-        Gate::authorize('view', $user);
+        Gate::authorize('authorOrAdmin', $user);
 
         $tzList = app(\Realodix\Timezone\Timezone::class)
             ->toSelectBox('user_timezone', $user->timezone, [
@@ -96,7 +96,7 @@ class UserController extends Controller implements HasMiddleware
      */
     public function update(Request $request, User $user)
     {
-        Gate::authorize('update', $user);
+        Gate::authorize('authorOrAdmin', $user);
 
         $data = [
             'forward_query' => $request->forward_query ? true : false,
