@@ -16,7 +16,7 @@ class LinkPasswordController extends Controller
      */
     public function create(Url $url)
     {
-        Gate::authorize('view', $url);
+        Gate::authorize('authorOrAdmin', $url);
 
         return view('backend.linkpassword.create', ['url' => $url]);
     }
@@ -46,7 +46,7 @@ class LinkPasswordController extends Controller
      */
     public function edit(Url $url)
     {
-        Gate::authorize('view', $url);
+        Gate::authorize('authorOrAdmin', $url);
 
         return view('backend.linkpassword.edit', ['url' => $url]);
     }

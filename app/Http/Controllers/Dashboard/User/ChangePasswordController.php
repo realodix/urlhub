@@ -19,7 +19,7 @@ class ChangePasswordController extends Controller
      */
     public function view(User $user)
     {
-        Gate::authorize('view', $user);
+        Gate::authorize('authorOrAdmin', $user);
 
         return view('backend.user.changepassword', ['user' => $user]);
     }
@@ -35,7 +35,7 @@ class ChangePasswordController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        Gate::authorize('updatePass', $user);
+        Gate::authorize('authorOrAdmin', $user);
 
         $request->validate([
             'current_password' => ['current_password'],

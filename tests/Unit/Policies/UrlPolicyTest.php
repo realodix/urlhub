@@ -9,31 +9,21 @@ use Tests\TestCase;
 #[PHPUnit\Group('policy')]
 class UrlPolicyTest extends TestCase
 {
-    /**
-     * Admin can delete their own data and other user data.
-     */
     #[PHPUnit\Test]
-    public function forceDeleteAdmin(): void
+    public function authorOrAdmin(): void
     {
+        // Admin can manage all data.
         $admin = $this->adminUser();
-        $url = Url::factory()->create([
-            'user_id'     => $admin->id,
-            'destination' => 'https://laravel.com',
-        ]);
+        $url = Url::factory()->for($admin, 'author')->create();
+        $this->assertTrue($admin->can('authorOrAdmin', $url));
+        $this->assertTrue($admin->can('authorOrAdmin', new Url));
 
-        $this->assertTrue($admin->can('forceDelete', $url));
-        $this->assertTrue($admin->can('forceDelete', new Url));
-    }
+        // Normal users can only manage their own data.
+        $owner = $this->basicUser();
+        $url = Url::factory()->for($owner, 'author')->create();
+        $this->assertTrue($owner->can('authorOrAdmin', $url));
 
-    /**
-     * Normal users can only delete their own data.
-     */
-    #[PHPUnit\Test]
-    public function forceDeleteBasicUser(): void
-    {
-        $url = Url::factory()->create();
-
-        $this->assertTrue($url->author->can('forceDelete', $url));
-        $this->assertFalse($url->author->can('forceDelete', new Url));
+        // Normal users cant manage other users data.
+        $this->assertFalse($owner->can('authorOrAdmin', new Url));
     }
 }

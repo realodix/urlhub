@@ -11,25 +11,9 @@ class UrlPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can permanently delete the url.
+     * Determine if the given user is the owner URL or is an administrator.
      */
-    public function view(User $user, Url $url): bool
-    {
-        return $user->hasRole('admin') || $user->id === $url->user_id;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the url.
-     */
-    public function forceDelete(User $user, Url $url): bool
-    {
-        return $user->hasRole('admin') || $user->id === $url->user_id;
-    }
-
-    /**
-     * Determine whether the user can update the url.
-     */
-    public function updateUrl(User $user, Url $url): bool
+    public function authorOrAdmin(User $user, Url $url): bool
     {
         return $user->hasRole('admin') || $user->id === $url->user_id;
     }
