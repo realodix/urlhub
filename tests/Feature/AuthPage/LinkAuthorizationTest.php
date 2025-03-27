@@ -3,6 +3,7 @@
 namespace Tests\Feature\AuthPage;
 
 use App\Models\Url;
+use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\Support\Helper;
 use Tests\TestCase;
@@ -165,6 +166,33 @@ class LinkAuthorizationTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    public function password_store_adminCanAccessAll()
+    {
+        $url = Url::factory()->create();
+        $this->actingAs($this->adminUser())
+            ->post(route('link.password.store', $url), [
+                'password' => 'password',
+                'password_confirmation' => 'password',
+            ]);
+
+        $this->assertNotNull($url->fresh()->password);
+    }
+
+    #[PHPUnit\Test]
+    public function password_store_otherUserCantAccess()
+    {
+        $url = Url::factory()->create();
+        $this->actingAs($this->basicUser())
+            ->post(route('link.password.store', $url), [
+                'password' => 'password',
+                'password_confirmation' => 'password',
+            ])
+            ->assertForbidden();
+
+        $this->assertNull($url->fresh()->password);
+    }
+
+    #[PHPUnit\Test]
     public function password_edit_userCanAccessPage()
     {
         $url = Url::factory()->create(['password' => 'password']);
@@ -189,5 +217,51 @@ class LinkAuthorizationTest extends TestCase
         $this->actingAs($this->basicUser())
             ->get(route('link.password.edit', $url))
             ->assertForbidden();
+    }
+
+    #[PHPUnit\Test]
+    public function password_update_adminCanAccessAll()
+    {
+        $url = Url::factory()->create(['password' => 'password']);
+        $this->actingAs($this->adminUser())
+            ->post(route('link.password.update', $url), [
+                'password' => 'new-password',
+                'password_confirmation' => 'new-password',
+            ]);
+
+        $this->assertTrue(Hash::check('new-password', $url->fresh()->password));
+    }
+
+    #[PHPUnit\Test]
+    public function password_update_otherUserCantAccess()
+    {
+        $url = Url::factory()->create(['password' => 'password']);
+        $this->actingAs($this->basicUser())
+            ->post(route('link.password.update', $url), [
+                'password' => 'new-password',
+                'password_confirmation' => 'new-password',
+            ]);
+
+        $this->assertFalse(Hash::check('new-password', $url->fresh()->password));
+    }
+
+    #[PHPUnit\Test]
+    public function password_delete_adminCanAccessAll()
+    {
+        $url = Url::factory()->create(['password' => 'password']);
+        $this->actingAs($this->adminUser())
+            ->get(route('link.password.delete', $url));
+
+        $this->assertNull($url->fresh()->password);
+    }
+
+    #[PHPUnit\Test]
+    public function password_delete_otherUserCantAccess()
+    {
+        $url = Url::factory()->create(['password' => 'password']);
+        $this->actingAs($this->basicUser())
+            ->get(route('link.password.delete', $url));
+
+        $this->assertNotNull($url->fresh()->password);
     }
 }

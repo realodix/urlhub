@@ -28,6 +28,8 @@ class LinkPasswordController extends Controller
      */
     public function store(Request $request, Url $url)
     {
+        Gate::authorize('authorOrAdmin', $url);
+
         $request->validate([
             'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
         ]);
@@ -58,6 +60,8 @@ class LinkPasswordController extends Controller
      */
     public function update(Request $request, Url $url)
     {
+        Gate::authorize('authorOrAdmin', $url);
+
         $request->validate([
             'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
         ]);
@@ -76,6 +80,8 @@ class LinkPasswordController extends Controller
      */
     public function delete(Url $url)
     {
+        Gate::authorize('authorOrAdmin', $url);
+
         $url->password = null;
         $url->save();
 
