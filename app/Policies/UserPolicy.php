@@ -29,6 +29,6 @@ class UserPolicy
      */
     public function forceDelete(User $authUser, User $user): bool
     {
-        return $authUser->hasRole('admin') || $authUser->id === $user->id;
+        return $authUser->hasRole('admin') && $authUser->id !== $user->id;
     }
 }
