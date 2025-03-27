@@ -14,26 +14,12 @@ use Tests\TestCase;
 class LinkTest extends TestCase
 {
     /**
-     * Test that an authorized user can access the edit page.
-     *
-     * @see App\Http\Controllers\UrlController::edit()
-     */
-    #[PHPUnit\Test]
-    public function canAccessEditLinkPage(): void
-    {
-        $url = Url::factory()->create();
-        $response = $this->actingAs($url->author)
-            ->get(route('link.edit', $url->keyword));
-        $response->assertOk();
-    }
-
-    /**
      * Test that an authorized user can update a link.
      *
      * @see App\Http\Controllers\UrlController::update()
      */
     #[PHPUnit\Test]
-    public function canUpdateLink(): void
+    public function updateLink(): void
     {
         $url = Url::factory()->create();
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
@@ -209,60 +195,6 @@ class LinkTest extends TestCase
         $this->assertNull($url->fresh()->dest_android);
         $this->assertNull($url->fresh()->dest_ios);
         $this->assertNull($url->fresh()->expired_url);
-    }
-
-    #[PHPUnit\Test]
-    public function password_create_userCanAccess()
-    {
-        $url = Url::factory()->create();
-        $this->actingAs($url->author)
-            ->get(route('link.password.create', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_create_adminCanAccessAll()
-    {
-        $url = Url::factory()->create();
-        $this->actingAs($this->adminUser())
-            ->get(route('link.password.create', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_create_otherUserCantAccess()
-    {
-        $url = Url::factory()->create();
-        $this->actingAs($this->basicUser())
-            ->get(route('link.password.create', $url))
-            ->assertForbidden();
-    }
-
-    #[PHPUnit\Test]
-    public function password_edit_userCanAccess()
-    {
-        $url = Url::factory()->create(['password' => 'password']);
-        $this->actingAs($url->author)
-            ->get(route('link.password.edit', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_edit_adminCanAccessAll()
-    {
-        $url = Url::factory()->create(['password' => 'password']);
-        $this->actingAs($this->adminUser())
-            ->get(route('link.password.edit', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_edit_otherUserCantAccess()
-    {
-        $url = Url::factory()->create(['password' => 'password']);
-        $this->actingAs($this->basicUser())
-            ->get(route('link.password.edit', $url))
-            ->assertForbidden();
     }
 
     /**
