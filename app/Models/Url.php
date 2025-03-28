@@ -190,11 +190,17 @@ class Url extends Model
         $defaultTitle = $uri->host().' - Untitled';
 
         if (app(GeneralSettings::class)->retrieve_web_title && Str::isUrl($value)) {
-            return rescue(
+            $title = rescue(
                 fn() => app(\Embed\Embed::class)->get($value)->title ?? $defaultTitle,
                 $defaultTitle,
                 false,
             );
+
+            if (mb_strlen($title) > self::TITLE_LENGTH) {
+                return $defaultTitle;
+            }
+
+            return $title;
         }
 
         return 'No Title';
