@@ -9,6 +9,7 @@ use App\Settings\GeneralSettings;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -188,15 +189,12 @@ class Url extends Model
         $uri = \Illuminate\Support\Uri::of($value);
         $defaultTitle = $uri->host().' - Untitled';
 
-        if (app(GeneralSettings::class)->retrieve_web_title) {
-            try {
-                $title = app(\Embed\Embed::class)->get($value)->title ?? $defaultTitle;
-            } catch (\Exception) {
-                // If failed or not found, then return "{domain_name} - Untitled"
-                $title = $defaultTitle;
-            }
-
-            return $title;
+        if (app(GeneralSettings::class)->retrieve_web_title && Str::isUrl($value)) {
+            return rescue(
+                fn() => app(\Embed\Embed::class)->get($value)->title ?? $defaultTitle,
+                $defaultTitle,
+                false,
+            );
         }
 
         return 'No Title';

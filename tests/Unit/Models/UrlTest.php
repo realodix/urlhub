@@ -154,6 +154,9 @@ class UrlTest extends TestCase
         $expected = 'www.example123456789.com - Untitled';
         $actual = $this->url->getWebTitle('https://www.example123456789.com');
         $this->assertSame($expected, $actual);
+
+        $actual = $this->url->getWebTitle('whatsapp://send?text=WHATEVER_YOU_WANT');
+        $this->assertSame('No Title', $actual);
     }
 
     /**
