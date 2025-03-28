@@ -13,6 +13,8 @@ class LinkPasswordController extends Controller
      * Show the form for creating a new password.
      *
      * @return \Illuminate\Contracts\View\View
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Url $url)
     {
@@ -25,6 +27,8 @@ class LinkPasswordController extends Controller
      * Store a newly created password in storage.
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Url $url)
     {
@@ -45,6 +49,8 @@ class LinkPasswordController extends Controller
      * Show the form for editing the specified password.
      *
      * @return \Illuminate\Contracts\View\View
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Url $url)
     {
@@ -57,6 +63,8 @@ class LinkPasswordController extends Controller
      * Update the password from the specified link.
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Url $url)
     {
@@ -77,6 +85,8 @@ class LinkPasswordController extends Controller
      * Remove the password from the specified link.
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function delete(Url $url)
     {

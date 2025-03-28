@@ -69,6 +69,8 @@ class UrlController extends Controller implements HasMiddleware
      *
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Contracts\View\View
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Url $url)
     {
