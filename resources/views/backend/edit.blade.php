@@ -108,7 +108,7 @@
                                         Remove Password
                                     </a>
                                 @else
-                                    <a href="{{ route('link.password.create', $url) }}" class="btn btn-success btn-sm" title="Add Password">
+                                    <a href="{{ route('link.password.create', $url) }}" class="btn btn-sm" title="Add Password">
                                         @svg('icon-key', 'mr-1') Add Password
                                     </a>
                                 @endif
