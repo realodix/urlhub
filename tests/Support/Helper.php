@@ -8,7 +8,7 @@ use Illuminate\Validation\Validator;
 class Helper
 {
     /**
-     * @see \App\Http\Controllers\UrlController::update()
+     * @see App\Http\Controllers\LinkController::update()
      */
     public static function updateLinkData(Url $model, array $replacements): array
     {

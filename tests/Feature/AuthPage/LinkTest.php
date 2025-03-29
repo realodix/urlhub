@@ -16,7 +16,7 @@ class LinkTest extends TestCase
     /**
      * Test that an authorized user can update a link.
      *
-     * @see App\Http\Controllers\UrlController::update()
+     * @see App\Http\Controllers\LinkController::update()
      */
     #[PHPUnit\Test]
     public function updateLink(): void
@@ -37,7 +37,7 @@ class LinkTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\UrlController::update()
+     * @see App\Http\Controllers\LinkController::update()
      */
     public function test_update_validates_title_length(): void
     {
@@ -57,7 +57,7 @@ class LinkTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\UrlController::update()
+     * @see App\Http\Controllers\LinkController::update()
      */
     public function test_update_validates_long_url_is_url(): void
     {
@@ -80,7 +80,7 @@ class LinkTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\UrlController::update()
+     * @see App\Http\Controllers\LinkController::update()
      */
     public function test_update_validates_long_url_max_length(): void
     {
@@ -105,7 +105,7 @@ class LinkTest extends TestCase
     }
 
     /**
-     * @see App\Http\Controllers\UrlController::update()
+     * @see App\Http\Controllers\LinkController::update()
      */
     public function test_update_validates_long_url_not_blacklisted()
     {

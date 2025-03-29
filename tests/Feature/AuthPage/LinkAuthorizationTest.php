@@ -15,7 +15,7 @@ class LinkAuthorizationTest extends TestCase
     /**
      * Test that an authorized user can access the edit page.
      *
-     * @see App\Http\Controllers\UrlController::edit()
+     * @see App\Http\Controllers\LinkController::edit()
      */
     #[PHPUnit\Test]
     public function canAccessEditLinkPage(): void
@@ -106,7 +106,7 @@ class LinkAuthorizationTest extends TestCase
     /**
      * Test that an admin user can delete another user's link.
      *
-     * @see App\Http\Controllers\UrlController::delete()
+     * @see App\Http\Controllers\LinkController::delete()
      */
     #[PHPUnit\Test]
     public function adminCanDeleteAnotherUsersLink(): void
@@ -124,7 +124,7 @@ class LinkAuthorizationTest extends TestCase
     /**
      * Normal users can't delete other users' URLs.
      *
-     * @see App\Http\Controllers\UrlController::delete()
+     * @see App\Http\Controllers\LinkController::delete()
      */
     #[PHPUnit\Test]
     public function basicUserCantDeleteAnotherUsersLink(): void

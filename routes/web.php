@@ -4,22 +4,22 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ChangePasswordController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LinkPasswordController;
 use App\Http\Controllers\RedirectController;
-use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'frontend.homepage')->name('home');
-Route::post('/shorten', [UrlController::class, 'create'])->name('link.create');
-Route::get('/+{url:keyword}', [UrlController::class, 'showDetail'])->name('link_detail');
-Route::get('/delete/{url:keyword}', [UrlController::class, 'delete'])->name('link_detail.delete');
+Route::post('/shorten', [LinkController::class, 'create'])->name('link.create');
+Route::get('/+{url:keyword}', [LinkController::class, 'showDetail'])->name('link_detail');
+Route::get('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link_detail.delete');
 
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () {
     // Dashboard (My URLs)
     Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-    Route::get('/links/{url:keyword}/delete', [UrlController::class, 'delete'])->name('link.delete');
-    Route::get('/links/{url:keyword}/edit', [UrlController::class, 'edit'])->name('link.edit');
-    Route::post('/links/{url:keyword}/edit', [UrlController::class, 'update'])->name('link.update');
+    Route::get('/links/{url:keyword}/delete', [LinkController::class, 'delete'])->name('link.delete');
+    Route::get('/links/{url:keyword}/edit', [LinkController::class, 'edit'])->name('link.edit');
+    Route::post('/links/{url:keyword}/edit', [LinkController::class, 'update'])->name('link.update');
     Route::get('/links/{url:keyword}/password/create', [LinkPasswordController::class, 'create'])->name('link.password.create');
     Route::post('/links/{url:keyword}/password/store', [LinkPasswordController::class, 'store'])->name('link.password.store');
     Route::get('/links/{url:keyword}/password/edit', [LinkPasswordController::class, 'edit'])->name('link.password.edit');
@@ -52,7 +52,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     Route::get('/about', [DashboardController::class, 'aboutView'])->name('dboard.about');
 });
 
-Route::get('/{url:keyword}/expired', [UrlController::class, 'expiredLink'])->name('link.expired');
-Route::get('/{url:keyword}/password', [UrlController::class, 'password'])->name('link.password');
-Route::post('/{url:keyword}/password', [UrlController::class, 'validatePassword'])->name('link.password.validate');
+Route::get('/{url:keyword}/expired', [LinkController::class, 'expiredLink'])->name('link.expired');
+Route::get('/{url:keyword}/password', [LinkController::class, 'password'])->name('link.password');
+Route::post('/{url:keyword}/password', [LinkController::class, 'validatePassword'])->name('link.password.validate');
 Route::get('/{url:keyword}', RedirectController::class);

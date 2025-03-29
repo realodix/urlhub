@@ -146,8 +146,8 @@ class VisitTest extends TestCase
      * - redirects to the destination URL when the correct password is provided
      *
      * @see \App\Http\Controllers\RedirectController::__invoke()
-     * @see \App\Http\Controllers\UrlController::password()
-     * @see \App\Http\Controllers\UrlController::validatePassword()
+     * @see App\Http\Controllers\LinkController::password()
+     * @see App\Http\Controllers\LinkController::validatePassword()
      */
     #[PHPUnit\Test]
     public function linkWithPassword()
@@ -172,7 +172,7 @@ class VisitTest extends TestCase
      * Tests opening the password form page:
      *
      * @see \App\Http\Controllers\RedirectController::__invoke()
-     * @see \App\Http\Controllers\UrlController::password()
+     * @see App\Http\Controllers\LinkController::password()
      */
     public function testLinkWithPassword_form()
     {
@@ -259,7 +259,7 @@ class VisitTest extends TestCase
 
     /**
      * @see \App\Http\Controllers\RedirectController::__invoke()
-     * @see \App\Http\Controllers\UrlController::expiredLink()
+     * @see App\Http\Controllers\LinkController::expiredLink()
      */
     #[PHPUnit\Test]
     public function linkHasExpired_AccessLandingPage()

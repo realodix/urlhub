@@ -26,7 +26,7 @@ class DashboardPageTest extends TestCase
     /**
      * Test that an authenticated user can delete a link.
      *
-     * @see App\Http\Controllers\UrlController::delete()
+     * @see App\Http\Controllers\LinkController::delete()
      */
     #[PHPUnit\Test]
     public function canDelete(): void

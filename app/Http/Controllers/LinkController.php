@@ -14,7 +14,7 @@ use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
-class UrlController extends Controller implements HasMiddleware
+class LinkController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {

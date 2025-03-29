@@ -80,7 +80,7 @@ class CreateShortLinkTest extends TestCase
      * keywords (all keywords have been used). UrlHub must prevent users from
      * shortening URLs.
      *
-     * @see App\Http\Controllers\UrlController::create()
+     * @see App\Http\Controllers\LinkController::create()
      * @see App\Http\Middleware\UrlHubLinkChecker
      * @see App\Services\KeyGeneratorService::remainingCapacity()
      */
