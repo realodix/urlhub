@@ -183,27 +183,27 @@ class Url extends Model
      * Get the title from the web.
      *
      * @param string $value A webpage's URL
+     * @return string|null
      */
-    public function getWebTitle(string $value): string
+    public function getWebTitle(string $value)
     {
-        $uri = \Illuminate\Support\Uri::of($value);
-        $defaultTitle = $uri->host().' - Untitled';
+        $defaultTitle = null;
 
         if (app(GeneralSettings::class)->retrieve_web_title && Str::isUrl($value)) {
             $title = rescue(
-                fn() => app(\Embed\Embed::class)->get($value)->title ?? $defaultTitle,
+                fn() => app(\Embed\Embed::class)->get($value)->title,
                 $defaultTitle,
                 false,
             );
 
-            if (mb_strlen($title) > self::TITLE_LENGTH) {
+            if (is_string($title) && mb_strlen($title) > self::TITLE_LENGTH) {
                 return $defaultTitle;
             }
 
             return $title;
         }
 
-        return 'No Title';
+        return $defaultTitle;
     }
 
     /**

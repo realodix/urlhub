@@ -147,32 +147,15 @@ class UrlTest extends TestCase
     #[PHPUnit\Test]
     public function getWebTitle(): void
     {
-        $expected = 'example123456789.com - Untitled';
-        settings()->fill(['retrieve_web_title' => true])->save();
-
-        $actual = $this->url->getWebTitle('https://example123456789.com');
-        $this->assertSame($expected, $actual);
-
-        $expected = 'www.example123456789.com - Untitled';
-        $actual = $this->url->getWebTitle('https://www.example123456789.com');
-        $this->assertSame($expected, $actual);
-
-        $actual = $this->url->getWebTitle('whatsapp://send?text=WHATEVER_YOU_WANT');
-        $this->assertSame('No Title', $actual);
-    }
-
-    /**
-     * When `retrieve_web_title` set `false`, title() should return
-     * 'No Title' if the title is empty.
-     */
-    #[PHPUnit\Test]
-    public function getWebTitle_ShouldReturnNoTitle(): void
-    {
         settings()->fill(['retrieve_web_title' => false])->save();
-
-        $expected = 'No Title';
         $actual = $this->url->getWebTitle('https://example123456789.com');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(null, $actual);
+
+        settings()->fill(['retrieve_web_title' => true])->save();
+        $actual = $this->url->getWebTitle('https://example123456789.com');
+        $this->assertSame(null, $actual);
+        $actual = $this->url->getWebTitle('whatsapp://send?text=WHATEVER_YOU_WANT');
+        $this->assertSame(null, $actual);
     }
 
     #[PHPUnit\Test]
