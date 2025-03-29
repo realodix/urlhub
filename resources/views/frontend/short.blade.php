@@ -4,7 +4,9 @@
 @section('content')
 <div class="max-w-7xl mx-auto mb-12">
     <div class="md:w-10/12 mt-6 lg:mt-8 px-4 sm:p-6">
+        @if (settings()->retrieve_web_title)
         <div class="text-xl sm:text-2xl lg:text-3xl md:mb-4">{{ $url->title }}</div>
+        @endif
 
         <ul class="mb-4">
             @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))

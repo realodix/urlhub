@@ -56,10 +56,12 @@
                         </span>
                     </div>
 
+                    @if (settings()->retrieve_web_title)
                     <div class="col-span-6">
                         <label class="form-label">{{ __('Title') }}</label>
                         <input name="title" required placeholder="{{ __('Title') }}" value="{{ $url->title }}" class="form-input">
                     </div>
+                    @endif
 
                     <div class="col-span-6">
                         <label class="form-label">{{ __('Destination URL') }}</label>
