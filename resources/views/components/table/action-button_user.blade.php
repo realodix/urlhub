@@ -1,9 +1,4 @@
 <div>
-    <a role="button" href="{{ $detail_link }}" target="_blank" title="{{ __('Details') }}"
-        class="btn btn-secondary btn-square btn-xs"
-    >
-        @svg('icon-person-edit')
-    </a>
     <a role="button" href="{{ $cp_link }}" title="{{ __('Change Password') }}"
         class="btn btn-secondary btn-square btn-xs"
     >

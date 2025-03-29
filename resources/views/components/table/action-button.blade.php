@@ -4,11 +4,6 @@
     >
         @svg('icon-chart-line')
     </a>
-    <a role="button" href="{{ $edit_link }}" title="{{ __('Edit') }}"
-        class="btn btn-secondary btn-square btn-xs"
-    >
-        @svg('icon-edit')
-    </a>
     <a role="button" href="{{ $delete_link }}" title="{{ __('Delete') }}"
         class="btn btn-delete btn-square btn-xs"
     >

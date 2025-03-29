@@ -58,7 +58,6 @@ final class UserTable extends PowerGridComponent
             ->add('action', function (User $user) {
                 return view('components.table.action-button_user', [
                     'model' => $user,
-                    'detail_link' => route('user.edit', $user),
                     'cp_link' => route('user.password.show', $user),
                     'delete_link' => route('user.delete.confirm', $user),
                 ])->render();
