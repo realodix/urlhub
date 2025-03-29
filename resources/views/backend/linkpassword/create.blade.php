@@ -6,8 +6,13 @@
     <div class="container-alt max-w-340">
         @include('partials/messages')
 
-        <div class="content-container card card-fluid">
-            <h1>Add Password for <a href="{{ route('link.edit', $url) }}">{{ $url->keyword }}</a></h1>
+        <div class="content-container card max-w-160">
+            <p class="text-2xl mb-8">
+                Add Password for
+                <a href="{{ route('link.edit', $url) }}" class="underline decoration-dotted">
+                    {{ $url->keyword }}
+                </a>
+            </p>
 
             <form method="post" action="{{ route('link.password.store', $url) }}" class="space-y-6">
                 @csrf
