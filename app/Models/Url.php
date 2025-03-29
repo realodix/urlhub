@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
  * @property string $destination
  * @property string|null $dest_android
  * @property string|null $dest_ios
- * @property string $title
+ * @property string|null $title
  * @property bool $forward_query
  * @property string $user_uid
  * @property string|null $password
