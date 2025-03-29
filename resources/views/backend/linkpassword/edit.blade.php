@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-alt max-w-340">
-        @include('partials/messages')
+        @include('partials.messages')
 
         <div class="content-container card card-fluid">
             <h1>Edit Password for <a href="{{ route('link.edit', $url) }}">{{ $url->keyword }}</a></h1>

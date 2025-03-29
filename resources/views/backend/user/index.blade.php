@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-alt max-w-340">
     <div class="w-full md:max-w-md">
-        @include('partials/messages')
+        @include('partials.messages')
     </div>
 
     <div class="content-container card card-fluid">

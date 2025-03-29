@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
-        @include('partials/messages')
+        @include('partials.messages')
 
         @if ($url->isExpired())
             <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4 dark:shadow-xs shadow-orange-600">

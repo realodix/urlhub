@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-alt max-w-340">
-        @include('partials/messages')
+        @include('partials.messages')
 
         <div class="content-container card max-w-160">
             <p class="text-2xl mb-8">

@@ -4,7 +4,7 @@
 @section('content')
 <div class="container-alt max-w-340">
     <div class="w-full md:max-w-md">
-        @include('partials/messages')
+        @include('partials.messages')
     </div>
 
     <div class="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">

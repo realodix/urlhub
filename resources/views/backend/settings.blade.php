@@ -8,7 +8,7 @@
 
 <div class="container-alt">
     <div class="max-w-4xl ml-0 lg:ml-12">
-        @include('partials/messages')
+        @include('partials.messages')
 
         <div class="content-container card card-fluid">
             <h1>{{ __('Settings') }}</h1>

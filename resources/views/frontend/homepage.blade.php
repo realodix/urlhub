@@ -49,7 +49,7 @@
                     </div>
                 </form>
 
-                <div class="mt-8">@include('partials/messages')</div>
+                <div class="mt-8">@include('partials.messages')</div>
             </div>
         </div>
     @endif

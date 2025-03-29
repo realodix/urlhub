@@ -18,7 +18,7 @@
             {{ session('status') }}
         </div>
     @endif
-    @include('partials/messages')
+    @include('partials.messages')
 
     <div class="auth-box card">
         <h1 class="text-2xl font-extrabold tracking-tight lg:text-5xl mb-6">Forgot Password</h1>
