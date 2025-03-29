@@ -12,14 +12,6 @@ use Tests\TestCase;
 #[\PHPUnit\Framework\Attributes\Group('front-page')]
 class CreateShortLinkTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->partialMock(Url::class)
-            ->shouldReceive(['getWebTitle' => 'Mocked Web Title']);
-    }
-
     /**
      * Users shorten the URLs, they don't fill in the custom keyword field. The
      * is_custom column (Urls table) must be filled with 0 / false.

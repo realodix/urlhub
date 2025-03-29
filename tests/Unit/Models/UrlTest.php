@@ -148,6 +148,8 @@ class UrlTest extends TestCase
     public function getWebTitle(): void
     {
         $expected = 'example123456789.com - Untitled';
+        settings()->fill(['retrieve_web_title' => true])->save();
+
         $actual = $this->url->getWebTitle('https://example123456789.com');
         $this->assertSame($expected, $actual);
 
