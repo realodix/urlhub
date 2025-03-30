@@ -27,9 +27,6 @@ final class UrlListTable extends BaseUrlTable
     public function columns(): array
     {
         return [
-            Column::make('Owner', 'author')
-                ->sortable()
-                ->searchable(),
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),

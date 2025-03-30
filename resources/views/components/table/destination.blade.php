@@ -8,4 +8,13 @@
     >
         @svg('open-link-in-new')
     </a>
+
+    @if (request()->routeIs('dboard.allurl'))
+        <p class="text-sm text-slate-600 dark:text-dark-400">
+            Created by
+            <a href="{{ route('dboard.allurl.u-user', $model->author) }}" class="underline decoration-dotted">
+                {{ $model->author->name }}
+            </a>
+        </p>
+    @endif
 </div>
