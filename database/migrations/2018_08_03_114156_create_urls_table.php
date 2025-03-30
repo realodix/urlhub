@@ -30,6 +30,13 @@ return new class extends Migration
             $table->boolean('is_custom');
             $table->text('destination');
             $table->string('title');
+            $table->text('dest_android')->nullable();
+            $table->text('dest_ios')->nullable();
+            $table->string('password')->nullable();
+            $table->dateTime('expires_at')->nullable();
+            $table->integer('expired_clicks')->nullable();
+            $table->longText('expired_url')->nullable();
+            $table->text('expired_notes')->nullable();
             $table->boolean('forward_query')->default(true);
             $table->string('user_uid');
             $table->timestamps();
