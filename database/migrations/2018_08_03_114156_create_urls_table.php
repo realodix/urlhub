@@ -29,7 +29,7 @@ return new class extends Migration
 
             $table->boolean('is_custom');
             $table->text('destination');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('dest_android')->nullable();
             $table->text('dest_ios')->nullable();
             $table->string('password')->nullable();

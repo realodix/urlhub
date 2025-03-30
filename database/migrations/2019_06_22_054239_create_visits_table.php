@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('user_type', 10)->nullable();
             $table->boolean('is_first_click');
             $table->string('referer', 300)->nullable();
+            $table->string('browser')->nullable();
+            $table->string('os')->nullable();
             $table->string('user_uid');
             $table->timestamps();
         });
