@@ -51,9 +51,20 @@
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
                         <label class="form-label">{{ __('Short URL') }}</label>
-                        <span class="text-primary-700 dark:text-emerald-500">
-                            <a href="{{ $url->short_url }}" target="_blank">{{ urlDisplay($url->short_url, scheme: false) }}</a>
-                        </span>
+                        <div class="grid grid-cols-2">
+                            <div>
+                                @svg('open-link-in-new')
+                                <span class="text-primary-700 dark:text-emerald-500">
+                                    <a href="{{ $url->short_url }}" target="_blank">{{ urlDisplay($url->short_url, scheme: false) }}</a>
+                                </span>
+                            </div>
+                            <div>
+                                @svg('icon-item-detail')
+                                <span class="text-primary-700 dark:text-emerald-500">
+                                    <a href="{{ route('link_detail', $url) }}" target="_blank">{{ urlDisplay(route('link_detail', $url), scheme: false) }}</a>
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
                     @if (settings()->retrieve_web_title)
