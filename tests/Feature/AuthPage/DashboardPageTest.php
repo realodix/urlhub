@@ -41,4 +41,46 @@ class DashboardPageTest extends TestCase
             ->assertSessionHas('flash_success');
         $this->assertCount(0, Url::all());
     }
+
+    #[PHPUnit\Test]
+    public function adminCanAccessOverviewPage(): void
+    {
+        $response = $this->actingAs($this->adminUser())
+            ->get(route('dboard.overview'));
+        $response->assertOk();
+    }
+
+    #[PHPUnit\Test]
+    public function userCantAccessOverviewPage(): void
+    {
+        $response = $this->actingAs($this->basicUser())
+            ->get(route('dboard.overview'));
+        $response->assertForbidden();
+    }
+
+    #[PHPUnit\Test]
+    public function userCanAccesOwnOverviewPage(): void
+    {
+        $user = $this->basicUser();
+        $response = $this->actingAs($user)
+            ->get(route('user.overview', $user));
+        $response->assertOk();
+    }
+
+    #[PHPUnit\Test]
+    public function adminCanAccessOtherOverviewPage(): void
+    {
+        $response = $this->actingAs($this->adminUser())
+            ->get(route('user.overview', $this->basicUser()));
+        $response->assertOk();
+    }
+
+    #[PHPUnit\Test]
+    public function userCantAccessOtherOverviewPage(): void
+    {
+        $user = $this->basicUser();
+        $response = $this->actingAs($user)
+            ->get(route('user.overview', $this->adminUser()));
+        $response->assertForbidden();
+    }
 }

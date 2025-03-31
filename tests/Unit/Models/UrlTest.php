@@ -198,4 +198,69 @@ class UrlTest extends TestCase
         $this->assertSame($nGuest, $this->url->guestLinks());
         $this->assertSame($nUser + $nGuest, $this->url->count());
     }
+
+    #[PHPUnit\Test]
+    public function getTopUrlsByVisits(): void
+    {
+        // Create some URLs with varying numbers of visits
+        $url1 = Url::factory()->hasVisits(3)->create();
+        $url2 = Url::factory()->hasVisits(5)->create();
+        $url3 = Url::factory()->hasVisits(1)->create();
+        $url5 = Url::factory()->hasVisits(7)->create();
+        $url6 = Url::factory()->hasVisits(2)->create();
+        $url4 = Url::factory()->create(); // No visits
+
+        // Get the top URLs by visits
+        $topUrls = Url::getTopUrlsByVisits();
+
+        // Assertions
+        $this->assertCount(5, $topUrls);
+
+        // Check if the URLs are ordered correctly by visit count
+        $this->assertEquals($url5->id, $topUrls[0]->id);
+        $this->assertEquals($url2->id, $topUrls[1]->id);
+        $this->assertEquals($url1->id, $topUrls[2]->id);
+        $this->assertEquals($url6->id, $topUrls[3]->id);
+        $this->assertEquals($url3->id, $topUrls[4]->id);
+
+        // Check if URLs without visits are not included
+        $this->assertNotContains($url4->id, $topUrls->pluck('id')->toArray());
+    }
+
+    #[PHPUnit\Test]
+    public function getTopUrlsByVisitsForAuthUser(): void
+    {
+        // Create a user and authenticate them
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        // Create some URLs, some belonging to the user, some not
+        $userUrl1 = Url::factory()->for($user, 'author')->hasVisits(3)->create();
+        $userUrl2 = Url::factory()->for($user, 'author')->hasVisits(5)->create();
+        $userUrl3 = Url::factory()->for($user, 'author')->hasVisits(1)->create();
+        $userUrl5 = Url::factory()->for($user, 'author')->hasVisits(8)->create();
+        $userUrl6 = Url::factory()->for($user, 'author')->hasVisits(2)->create();
+
+        $otherUserUrl = Url::factory()->hasVisits(7)->create(); // Not owned by the user
+        $userUrl4 = Url::factory()->for($user, 'author')->create(); // No visits
+
+        // Get the top URLs by visits for the authenticated user
+        $topUrls = Url::getTopUrlsByVisits($user);
+
+        // Assertions
+        $this->assertCount(5, $topUrls);
+
+        // Check if the URLs are ordered correctly by visit count
+        $this->assertEquals($userUrl5->id, $topUrls[0]->id);
+        $this->assertEquals($userUrl2->id, $topUrls[1]->id);
+        $this->assertEquals($userUrl1->id, $topUrls[2]->id);
+        $this->assertEquals($userUrl6->id, $topUrls[3]->id);
+        $this->assertEquals($userUrl3->id, $topUrls[4]->id);
+
+        // Check if URLs from other users are not included
+        $this->assertNotContains($otherUserUrl->id, $topUrls->pluck('id')->toArray());
+
+        // Check if URLs without visits are not included
+        $this->assertNotContains($userUrl4->id, $topUrls->pluck('id')->toArray());
+    }
 }

@@ -117,4 +117,35 @@ class Visit extends Model
             ->distinct('user_uid')
             ->count();
     }
+
+    /**
+     * Get the top referrers.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTopReferrers()
+    {
+        return self::select('referer')
+            ->selectRaw('count(*) as total')
+            ->groupBy('referer')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+    }
+
+    /**
+     * Get the top referrers for the currently logged-in user.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTopReferrersForAuthUser(User $user)
+    {
+        return self::whereRelation('url', 'user_id', $user->id)
+            ->select('referer')
+            ->selectRaw('count(*) as total')
+            ->groupBy('referer')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+    }
 }

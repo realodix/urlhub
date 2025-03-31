@@ -92,6 +92,10 @@
                     <span class="hidden md:inline">{{ __('User List') }}</span>
                 </x-nav-item_local-menu>
 
+                <x-nav-item_local-menu route-name="dboard.overview" icon="icon-overview">
+                    <span class="hidden md:inline">{{ __('Overview') }}</span>
+                </x-nav-item_local-menu>
+
                 <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
                     <span class="hidden md:inline">{{ __('Settings') }}</span>
                 </x-nav-item_local-menu>
