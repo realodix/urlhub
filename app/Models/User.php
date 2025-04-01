@@ -23,7 +23,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property Url $urls
+ * @property-read Url $urls
  */
 class User extends Authenticatable
 {

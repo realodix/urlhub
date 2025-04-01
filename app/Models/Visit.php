@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $referer
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property Url $urls
+ * @property-read Url $urls
  */
 class Visit extends Model
 {

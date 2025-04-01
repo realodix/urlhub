@@ -30,9 +30,9 @@ use Illuminate\Support\Str;
  * @property int|null $expired_clicks
  * @property string|null $expired_url
  * @property string|null $expired_notes
- * @property User $author
- * @property Visit $visits
- * @property string $short_url
+ * @property-read User $author
+ * @property-read Visit $visits
+ * @property-read string $short_url
  */
 class Url extends Model
 {
