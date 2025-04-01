@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
+use App\Services\KeyGeneratorService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 
 class DashboardController extends Controller implements HasMiddleware
@@ -71,10 +72,10 @@ class DashboardController extends Controller implements HasMiddleware
     public function aboutView()
     {
         return view('backend.about', [
-            'url'   => app(\App\Models\Url::class),
-            'user'  => app(\App\Models\User::class),
-            'visit' => app(\App\Models\Visit::class),
-            'keyGenerator' => app(\App\Services\KeyGeneratorService::class),
+            'url'   => app(Url::class),
+            'user'  => app(User::class),
+            'visit' => app(Visit::class),
+            'keyGenService' => app(KeyGeneratorService::class),
         ]);
     }
 }

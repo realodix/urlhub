@@ -1,5 +1,3 @@
-@use('App\Services\KeyGeneratorService')
-
 @extends('layouts.backend')
 
 @section('title', __('About System'))
@@ -163,13 +161,13 @@
                         Max Unique Strings
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
-                        @if ($keyGenerator->maxUniqueStrings() === PHP_INT_MAX)
+                        @if ($keyGenService->maxUniqueStrings() === PHP_INT_MAX)
                             (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
                         @else
                             @php
-                                $number = strlen(KeyGeneratorService::ALPHABET);
+                                $number = strlen($keyGenService::ALPHABET);
                                 $powNumber = settings()->keyword_length;
-                                $result = number_format($keyGenerator->maxUniqueStrings());
+                                $result = number_format($keyGenService->maxUniqueStrings());
                             @endphp
 
                             ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
@@ -181,7 +179,7 @@
                         Generated
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl md:w-64">
-                        {{ number_format($keyGenerator->keywordCount()) }}
+                        {{ number_format($keyGenService->keywordCount()) }}
                     </dd>
                 </div>
             </dl>
@@ -192,8 +190,8 @@
 
     @php
         $domainBlacklist = collect(config('urlhub.domain_blacklist'))->sort();
-        $reservedActiveKeyList = $keyGenerator->reservedActiveKeyword()->toArray();
-        $reservedKeyword = $keyGenerator->reservedKeyword();
+        $reservedActiveKeyList = $keyGenService->reservedActiveKeyword()->toArray();
+        $reservedKeyword = $keyGenService->reservedKeyword();
     @endphp
     <div class="config content-container card card-fluid">
         <h1>
