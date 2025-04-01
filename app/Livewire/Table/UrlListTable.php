@@ -33,7 +33,8 @@ final class UrlListTable extends BaseUrlTable
             Column::make('Destination URL', 'destination')
                 ->sortable()
                 ->searchable(),
-            Column::make('CLICKS', 't_clicks'),
+            Column::make('Clicks', 'visits_count')
+                ->sortable(),
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),

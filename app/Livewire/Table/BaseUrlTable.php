@@ -73,7 +73,7 @@ class BaseUrlTable extends PowerGridComponent
                     'limit' => static::STR_LIMIT,
                 ])->render();
             })
-            ->add('t_clicks', function (Url $url) {
+            ->add('visits_count', function (Url $url) {
                 return view('components.table.visit', [
                     'clicks'       => $url->visits_count,
                     'uniqueClicks' => $url->unique_visit_count,
@@ -104,7 +104,8 @@ class BaseUrlTable extends PowerGridComponent
             Column::make('Destination URL', 'destination')
                 ->sortable()
                 ->searchable(),
-            Column::make('CLICKS', 't_clicks'),
+            Column::make('Clicks', 'visits_count')
+                ->sortable(),
             Column::make('CREATED AT', 'created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable(),
