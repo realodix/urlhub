@@ -88,5 +88,79 @@
             @endforelse
         </div>
     </div>
+
+    <br>
+
+    <div class="card card-fluid overflow-hidden p-8">
+        <div class="mb-8">
+            <h2 class="text-2xl dark:text-dark-400 tracking-tight">Browsers</h2>
+            <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common browsers used to visit your short URLs.</p>
+        </div>
+
+        <div>
+            @php
+                $topBrowsers = \App\Models\Visit::getTopBrowsersForAuthUser($user);
+            @endphp
+
+            @forelse ($topBrowsers as $index => $browserData)
+                <div class="flex items-center border-b border-gray-200 py-1 last:border-b-0">
+                    <div class="size-8 rounded-full bg-indigo-500 text-white font-bold text-lg flex items-center justify-center mr-4">
+                        {{ $index + 1 }}
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-2">
+                            <div>
+                                <span class="text-gray-600 dark:text-dark-400">
+                                    {{ $browserData->browser }}
+                                </span>
+                            </div>
+                            <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                {{ number_format($browserData->total) }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p class="text-gray-500 text-center">No browser data available.</p>
+            @endforelse
+        </div>
+    </div>
+
+    <br>
+
+    <div class="card card-fluid overflow-hidden p-8">
+        <div class="mb-8">
+            <h2 class="text-2xl dark:text-dark-400 tracking-tight">Operating Systems</h2>
+            <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common operating systems used to visit your short URLs.</p>
+        </div>
+
+        <div>
+            @php
+                $topOperatingSystems = \App\Models\Visit::getTopOperatingSystemsForAuthUser($user);
+            @endphp
+
+            @forelse ($topOperatingSystems as $index => $osData)
+                <div class="flex items-center border-b border-gray-200 py-1 last:border-b-0">
+                    <div class="size-8 rounded-full bg-indigo-500 text-white font-bold text-lg flex items-center justify-center mr-4">
+                        {{ $index + 1 }}
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-2">
+                            <div>
+                                <span class="text-gray-600 dark:text-dark-400">
+                                    {{ $osData->os }}
+                                </span>
+                            </div>
+                            <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                {{ number_format($osData->total) }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p class="text-gray-500 text-center">No operating system data available.</p>
+            @endforelse
+        </div>
+    </div>
 </div>
 @endsection

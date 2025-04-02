@@ -164,6 +164,26 @@
                             Referrers
                         </button>
                     </li>
+                    <li class="mr-2">
+                        <button
+                            @click="activeTabHorizontal = 'topBrowsers'"
+                            :class="{ 'bg-blue-50 border-blue-500 text-blue-600': activeTabHorizontal === 'topBrowsers', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': activeTabHorizontal !== 'topBrowsers' }"
+                            class="inline-block py-2 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg"
+                            type="button"
+                        >
+                            Browsers
+                        </button>
+                    </li>
+                    <li class="mr-2">
+                        <button
+                            @click="activeTabHorizontal = 'topOperatingSystems'"
+                            :class="{ 'bg-blue-50 border-blue-500 text-blue-600': activeTabHorizontal === 'topOperatingSystems', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': activeTabHorizontal !== 'topOperatingSystems' }"
+                            class="inline-block py-2 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg"
+                            type="button"
+                        >
+                            OS
+                        </button>
+                    </li>
                 </ul>
             </div>
 
@@ -260,6 +280,76 @@
                         </div>
                     </div>
                     {{-- End Top Referrers --}}
+                </div>
+                <div x-show="activeTabHorizontal === 'topBrowsers'">
+                    {{-- Top Browsers --}}
+                    <div class="card card-fluid overflow-hidden px-8 py-4">
+                        <div class="mb-4">
+                            <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common browsers used to visit your short URLs.</p>
+                        </div>
+
+                        <div>
+                            @php
+                                $topBrowsers = \App\Models\Visit::getTopBrowsers();
+                            @endphp
+
+                            @forelse ($topBrowsers as $index => $browserData)
+                                <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
+                                    <div class="flex-1">
+                                        <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                            <div>
+                                                #{{ $index + 1 }} -
+                                                <span class="text-gray-600 mt-1">
+                                                    {{ $browserData->browser }}
+                                                </span>
+                                            </div>
+                                            <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                                {{ number_format($browserData->total) }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <p class="text-gray-500 text-center">No browser data available.</p>
+                            @endforelse
+                        </div>
+                    </div>
+                    {{-- End Top Browsers --}}
+                </div>
+                <div x-show="activeTabHorizontal === 'topOperatingSystems'">
+                    {{-- Top Operating Systems --}}
+                    <div class="card card-fluid overflow-hidden px-8 py-4">
+                        <div class="mb-4">
+                            <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common operating systems used to visit your short URLs.</p>
+                        </div>
+
+                        <div>
+                            @php
+                                $topOperatingSystems = \App\Models\Visit::getTopOperatingSystems();
+                            @endphp
+
+                            @forelse ($topOperatingSystems as $index => $osData)
+                                <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
+                                    <div class="flex-1">
+                                        <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                            <div>
+                                                #{{ $index + 1 }} -
+                                                <span class="text-gray-600 mt-1">
+                                                    {{ $osData->os }}
+                                                </span>
+                                            </div>
+                                            <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                                {{ number_format($osData->total) }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <p class="text-gray-500 text-center">No operating system data available.</p>
+                            @endforelse
+                        </div>
+                    </div>
+                    {{-- End Top Operating Systems --}}
                 </div>
             </div>
         </div>

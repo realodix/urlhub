@@ -190,4 +190,170 @@ class VisitTest extends TestCase
         $topReferrers = Visit::getTopReferrersForAuthUser($user);
         $this->assertCount(0, $topReferrers);
     }
+
+    public function test_get_top_browsers()
+    {
+        // Create some visits with different browsers
+        Visit::factory()->count(5)->create(['browser' => 'Chrome']);
+        Visit::factory()->count(3)->create(['browser' => 'Firefox']);
+        Visit::factory()->count(2)->create(['browser' => 'Safari']);
+        Visit::factory()->count(1)->create(['browser' => 'Edge']);
+        Visit::factory()->count(4)->create(['browser' => 'Opera']);
+        Visit::factory()->count(6)->create(['browser' => 'Internet Explorer']);
+        Visit::factory()->count(7)->create(['browser' => 'Chrome']);
+
+        // Get the top browsers
+        $topBrowsers = Visit::getTopBrowsers();
+
+        // Assertions
+        $this->assertCount(5, $topBrowsers);
+
+        // Check if the browsers are ordered correctly by visit count
+        $this->assertEquals('Chrome', $topBrowsers[0]->browser);
+        $this->assertEquals(12, $topBrowsers[0]->total);
+        $this->assertEquals('Internet Explorer', $topBrowsers[1]->browser);
+        $this->assertEquals(6, $topBrowsers[1]->total);
+        $this->assertEquals('Opera', $topBrowsers[2]->browser);
+        $this->assertEquals(4, $topBrowsers[2]->total);
+        $this->assertEquals('Firefox', $topBrowsers[3]->browser);
+        $this->assertEquals(3, $topBrowsers[3]->total);
+        $this->assertEquals('Safari', $topBrowsers[4]->browser);
+        $this->assertEquals(2, $topBrowsers[4]->total);
+    }
+
+    public function test_get_top_browsers_for_auth_user()
+    {
+        // Create a user and authenticate them
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        // Create some URLs, some belonging to the user, some not
+        $userUrl1 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(5)->for($userUrl1)->create(['browser' => 'Chrome']);
+        $userUrl2 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(3)->for($userUrl2)->create(['browser' => 'Firefox']);
+        $userUrl3 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(2)->for($userUrl3)->create(['browser' => 'Edge']);
+        $userUrl4 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(1)->for($userUrl4)->create(['browser' => 'Opera']);
+        $userUrl5 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(6)->for($userUrl5)->create(['browser' => 'Chrome']);
+        $userUrl6 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(4)->for($userUrl6)->create(['browser' => 'Internet Explorer']);
+
+        $otherUserUrl = Url::factory()->create();
+        Visit::factory()->count(7)->for($otherUserUrl)->create(['browser' => 'Safari']);
+
+        // Get the top browsers for the authenticated user
+        $topBrowsers = Visit::getTopBrowsersForAuthUser($user);
+
+        // Assertions
+        $this->assertCount(5, $topBrowsers);
+
+        // Check if the browsers are ordered correctly by visit count
+        $this->assertEquals('Chrome', $topBrowsers[0]->browser);
+        $this->assertEquals(11, $topBrowsers[0]->total);
+        $this->assertEquals('Internet Explorer', $topBrowsers[1]->browser);
+        $this->assertEquals(4, $topBrowsers[1]->total);
+        $this->assertEquals('Firefox', $topBrowsers[2]->browser);
+        $this->assertEquals(3, $topBrowsers[2]->total);
+        $this->assertEquals('Edge', $topBrowsers[3]->browser);
+        $this->assertEquals(2, $topBrowsers[3]->total);
+        $this->assertEquals('Opera', $topBrowsers[4]->browser);
+        $this->assertEquals(1, $topBrowsers[4]->total);
+
+        // Check if browsers from other users are not included
+        $this->assertNotContains('Safari', $topBrowsers->pluck('browser')->toArray());
+    }
+
+    public function test_get_top_browsers_for_auth_user_with_no_visits()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $topBrowsers = Visit::getTopBrowsersForAuthUser($user);
+        $this->assertCount(0, $topBrowsers);
+    }
+
+    public function test_get_top_operating_systems()
+    {
+        // Create some visits with different operating systems
+        Visit::factory()->count(5)->create(['os' => 'Windows']);
+        Visit::factory()->count(3)->create(['os' => 'macOS']);
+        Visit::factory()->count(2)->create(['os' => 'Linux']);
+        Visit::factory()->count(1)->create(['os' => 'Chrome OS']);
+        Visit::factory()->count(4)->create(['os' => 'Android']);
+        Visit::factory()->count(6)->create(['os' => 'iOS']);
+        Visit::factory()->count(7)->create(['os' => 'Windows']);
+
+        // Get the top operating systems
+        $topOS = Visit::getTopOperatingSystems();
+
+        // Assertions
+        $this->assertCount(5, $topOS);
+
+        // Check if the operating systems are ordered correctly by visit count
+        $this->assertEquals('Windows', $topOS[0]->os);
+        $this->assertEquals(12, $topOS[0]->total);
+        $this->assertEquals('iOS', $topOS[1]->os);
+        $this->assertEquals(6, $topOS[1]->total);
+        $this->assertEquals('Android', $topOS[2]->os);
+        $this->assertEquals(4, $topOS[2]->total);
+        $this->assertEquals('macOS', $topOS[3]->os);
+        $this->assertEquals(3, $topOS[3]->total);
+        $this->assertEquals('Linux', $topOS[4]->os);
+        $this->assertEquals(2, $topOS[4]->total);
+    }
+
+    public function test_get_top_operating_systems_for_auth_user()
+    {
+        // Create a user and authenticate them
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        // Create some URLs, some belonging to the user, some not
+        $userUrl1 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(5)->for($userUrl1)->create(['os' => 'Windows']);
+        $userUrl2 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(3)->for($userUrl2)->create(['os' => 'macOS']);
+        $userUrl3 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(2)->for($userUrl3)->create(['os' => 'Chrome OS']);
+        $userUrl4 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(1)->for($userUrl4)->create(['os' => 'Android']);
+        $userUrl5 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(6)->for($userUrl5)->create(['os' => 'iOS']);
+        $userUrl6 = Url::factory()->create(['user_id' => $user->id]);
+        Visit::factory()->count(4)->for($userUrl6)->create(['os' => 'Windows']);
+
+        $otherUserUrl = Url::factory()->create();
+        Visit::factory()->count(7)->for($otherUserUrl)->create(['os' => 'Linux']);
+
+        // Get the top operating systems for the authenticated user
+        $topOS = Visit::getTopOperatingSystemsForAuthUser($user);
+
+        // Assertions
+        $this->assertCount(5, $topOS);
+
+        // Check if the operating systems are ordered correctly by visit count
+        $this->assertEquals('Windows', $topOS[0]->os);
+        $this->assertEquals(9, $topOS[0]->total);
+        $this->assertEquals('iOS', $topOS[1]->os);
+        $this->assertEquals(6, $topOS[1]->total);
+        $this->assertEquals('macOS', $topOS[2]->os);
+        $this->assertEquals(3, $topOS[2]->total);
+        $this->assertEquals('Chrome OS', $topOS[3]->os);
+        $this->assertEquals(2, $topOS[3]->total);
+        $this->assertEquals('Android', $topOS[4]->os);
+        $this->assertEquals(1, $topOS[4]->total);
+
+        // Check if operating systems from other users are not included
+        $this->assertNotContains('Linux', $topOS->pluck('os')->toArray());
+    }
+
+    public function test_get_top_operating_systems_for_auth_user_with_no_visits()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $topOS = Visit::getTopOperatingSystemsForAuthUser($user);
+        $this->assertCount(0, $topOS);
+    }
 }

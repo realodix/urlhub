@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $user_uid
  * @property bool $is_first_click
  * @property string $referer
+ * @property string|null $browser
+ * @property string|null $os
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read Url $urls
@@ -144,6 +146,60 @@ class Visit extends Model
             ->select('referer')
             ->selectRaw('count(*) as total')
             ->groupBy('referer')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTopBrowsers()
+    {
+        return self::select('browser')
+            ->selectRaw('count(*) as total')
+            ->groupBy('browser')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTopBrowsersForAuthUser(User $user)
+    {
+        return self::whereRelation('url', 'user_id', $user->id)
+            ->select('browser')
+            ->selectRaw('count(*) as total')
+            ->groupBy('browser')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTopOperatingSystems()
+    {
+        return self::select('os')
+            ->selectRaw('count(*) as total')
+            ->groupBy('os')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTopOperatingSystemsForAuthUser(User $user)
+    {
+        return self::whereRelation('url', 'user_id', $user->id)
+            ->select('os')
+            ->selectRaw('count(*) as total')
+            ->groupBy('os')
             ->orderByDesc('total')
             ->limit(5)
             ->get();
