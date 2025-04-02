@@ -74,7 +74,7 @@ class UserController extends Controller implements HasMiddleware
     {
         Gate::authorize('authorOrAdmin', $user);
 
-        $tzList = app(\Realodix\Timezone\Timezone::class)
+        $tzList = app(\Realodix\Timezone\CompactTimezone::class)
             ->toSelectBox('user_timezone', $user->timezone, [
                 'class' => 'form-input',
             ]);

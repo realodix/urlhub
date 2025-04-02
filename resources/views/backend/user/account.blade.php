@@ -45,11 +45,10 @@
                         @endif
 
                         <div class="col-span-6 lg:col-span-4">
-                            <label class="form-label">{{ __('Timezone') }}</label>
+                            <label class="form-label">Timezone</label>
                             <p class="font-light text-sm dark:text-dark-400">
-                                Choose either a city in the same timezone as you or a UTC (Coordinated Universal Time) time offset.
+                                Select the timezone offset that you want to use for your account.
                             </p>
-
                             <div class="mt-4">{!! $timezoneList !!}</div>
                         </div>
                     </div>
