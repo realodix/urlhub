@@ -144,25 +144,17 @@ class VisitTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        // Create some URLs, some belonging to the user, some not
-        $userUrl1 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(5)->for($userUrl1)->create(['referer' => 'https://example.com']);
-        $userUrl2 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(3)->for($userUrl2)->create(['referer' => 'https://google.com']);
-        $userUrl3 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(2)->for($userUrl3)->create(['referer' => 'https://twitter.com']);
-        $userUrl4 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(1)->for($userUrl4)->create(['referer' => 'https://instagram.com']);
-        $userUrl5 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(6)->for($userUrl5)->create(['referer' => 'https://example.com']);
-        $userUrl6 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(4)->for($userUrl6)->create(['referer' => 'https://bing.com']);
-
-        $otherUserUrl = Url::factory()->create();
-        Visit::factory()->count(7)->for($otherUserUrl)->create(['referer' => 'https://facebook.com']);
+        // Create some URLs belonging to the user
+        Url::factory()->for($user, 'author')->hasVisits(5, ['referer' => 'https://example.com'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(3, ['referer' => 'https://google.com'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(2, ['referer' => 'https://twitter.com'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(1, ['referer' => 'https://instagram.com'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(6, ['referer' => 'https://example.com'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(4, ['referer' => 'https://bing.com'])->create();
+        Url::factory()->hasVisits(7, ['referer' => 'https://facebook.com'])->create(); // From other users
 
         // Get the top referrers for the authenticated user
-        $topReferrers = Visit::getTopReferrersForAuthUser($user);
+        $topReferrers = Visit::getTopReferrers($user);
 
         // Assertions
         $this->assertCount(5, $topReferrers);
@@ -187,7 +179,7 @@ class VisitTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $topReferrers = Visit::getTopReferrersForAuthUser($user);
+        $topReferrers = Visit::getTopReferrers($user);
         $this->assertCount(0, $topReferrers);
     }
 
@@ -227,25 +219,17 @@ class VisitTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        // Create some URLs, some belonging to the user, some not
-        $userUrl1 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(5)->for($userUrl1)->create(['browser' => 'Chrome']);
-        $userUrl2 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(3)->for($userUrl2)->create(['browser' => 'Firefox']);
-        $userUrl3 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(2)->for($userUrl3)->create(['browser' => 'Edge']);
-        $userUrl4 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(1)->for($userUrl4)->create(['browser' => 'Opera']);
-        $userUrl5 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(6)->for($userUrl5)->create(['browser' => 'Chrome']);
-        $userUrl6 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(4)->for($userUrl6)->create(['browser' => 'Internet Explorer']);
-
-        $otherUserUrl = Url::factory()->create();
-        Visit::factory()->count(7)->for($otherUserUrl)->create(['browser' => 'Safari']);
+        // Create some URLs belonging to the user
+        Url::factory()->for($user, 'author')->hasVisits(5, ['browser' => 'Chrome'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(3, ['browser' => 'Firefox'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(2, ['browser' => 'Edge'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(1, ['browser' => 'Opera'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(6, ['browser' => 'Chrome'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(4, ['browser' => 'Internet Explorer'])->create();
+        Url::factory()->hasVisits(7, ['browser' => 'Safari'])->create(); // From other users
 
         // Get the top browsers for the authenticated user
-        $topBrowsers = Visit::getTopBrowsersForAuthUser($user);
+        $topBrowsers = Visit::getTopBrowsers($user);
 
         // Assertions
         $this->assertCount(5, $topBrowsers);
@@ -270,7 +254,7 @@ class VisitTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $topBrowsers = Visit::getTopBrowsersForAuthUser($user);
+        $topBrowsers = Visit::getTopBrowsers($user);
         $this->assertCount(0, $topBrowsers);
     }
 
@@ -310,25 +294,17 @@ class VisitTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        // Create some URLs, some belonging to the user, some not
-        $userUrl1 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(5)->for($userUrl1)->create(['os' => 'Windows']);
-        $userUrl2 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(3)->for($userUrl2)->create(['os' => 'macOS']);
-        $userUrl3 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(2)->for($userUrl3)->create(['os' => 'Chrome OS']);
-        $userUrl4 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(1)->for($userUrl4)->create(['os' => 'Android']);
-        $userUrl5 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(6)->for($userUrl5)->create(['os' => 'iOS']);
-        $userUrl6 = Url::factory()->create(['user_id' => $user->id]);
-        Visit::factory()->count(4)->for($userUrl6)->create(['os' => 'Windows']);
-
-        $otherUserUrl = Url::factory()->create();
-        Visit::factory()->count(7)->for($otherUserUrl)->create(['os' => 'Linux']);
+        // Create some URLs belonging to the user
+        Url::factory()->for($user, 'author')->hasVisits(5, ['os' => 'Windows'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(3, ['os' => 'macOS'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(2, ['os' => 'Chrome OS'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(1, ['os' => 'Android'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(6, ['os' => 'iOS'])->create();
+        Url::factory()->for($user, 'author')->hasVisits(4, ['os' => 'Windows'])->create();
+        Url::factory()->hasVisits(7, ['os' => 'Linux'])->create(); // From other users
 
         // Get the top operating systems for the authenticated user
-        $topOS = Visit::getTopOperatingSystemsForAuthUser($user);
+        $topOS = Visit::getTopOperatingSystems($user);
 
         // Assertions
         $this->assertCount(5, $topOS);
@@ -353,7 +329,7 @@ class VisitTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $topOS = Visit::getTopOperatingSystemsForAuthUser($user);
+        $topOS = Visit::getTopOperatingSystems($user);
         $this->assertCount(0, $topOS);
     }
 }
