@@ -18,22 +18,24 @@
 </div>
 
 @if (request()->routeIs('dboard.allurl'))
-<div class="text-sm text-slate-600 dark:text-dark-400 inline">
-    @svg('icon-person', 'text-primary-600')
-    <a href="{{ route('dboard.allurl.u-user', $model->author) }}" class="underline decoration-dotted">
+<span class="text-[11px] text-indigo-600 dark:text-indigo-900 bg-indigo-100 dark:bg-indigo-300 rounded-sm px-1">
+    @svg('icon-person')
+    <a href="{{ route('dboard.allurl.u-user', $model->author) }}">
         {{ $model->author->name }}
     </a>
-</div>
+</span>
 @endif
 
-<div class="text-sm text-slate-600 dark:text-dark-400 inline">
-    @if ($model->password)
-    @svg('icon-key', 'text-emerald-600 size-[14px] ml-1', ['title' => 'Password protected'])
+@if ($model->password)
+<span class="text-[11px] text-emerald-600 dark:text-emerald-900 bg-emerald-100 dark:bg-emerald-300 rounded-sm px-1 ml-1">
+    @svg('icon-key', 'size-[14px]', ['title' => 'Password protected'])
     Password protected
-    @endif
+</span>
+@endif
 
-    @if ($model->isExpired())
-    @svg('link-expired', 'text-orange-600 size-[16px] ml-1')
+@if ($model->isExpired())
+<span class="text-[11px] text-orange-600 dark:text-orange-900 bg-orange-100 dark:bg-orange-300 rounded-sm px-1 ml-1">
+    @svg('link-expired', 'size-[16px]')
     Expired
-    @endif
-</div>
+</span>
+@endif
