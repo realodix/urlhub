@@ -27,6 +27,7 @@ class VisitorService
         $logBotVisit = $this->settings->track_bot_visits;
         $referer = request()->header('referer');
         $botDetector = Helper::botDetector();
+        $deviceDetector = Helper::deviceDetector();
 
         if ($logBotVisit === false && $botDetector->isCrawler()) {
             return;
@@ -37,6 +38,8 @@ class VisitorService
         $visit->user_uid = $this->userService->signature();
         $visit->is_first_click = $this->isFirstClick($url);
         $visit->referer = $this->getRefererHost($referer);
+        $visit->browser = $deviceDetector->getClientAttr('name');
+        $visit->os = $deviceDetector->getOsAttr('family');
         $visit->save();
     }
 

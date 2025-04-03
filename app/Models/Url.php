@@ -232,4 +232,22 @@ class Url extends Model
         return self::where('user_type', UserType::Guest)
             ->count();
     }
+
+    /**
+     * Get the top URLs with the most visits.
+     *
+     * @param \App\Models\User|null $user The user to filter by (optional).
+     * @param int $limit The maximum number of top URLs to return.
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getTopUrlsByVisits(?User $user = null, int $limit = 5)
+    {
+        $query = self::withCount('visits')
+            ->whereHas('visits')
+            ->when($user, fn($query) => $query->where('user_id', $user->id))
+            ->orderBy('visits_count', 'desc')
+            ->limit($limit);
+
+        return $query->get();
+    }
 }

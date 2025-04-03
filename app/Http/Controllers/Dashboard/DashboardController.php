@@ -8,12 +8,13 @@ use App\Models\User;
 use App\Models\Visit;
 use App\Services\KeyGeneratorService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
+use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [new Middleware('role:admin', except: ['view'])];
+        return [new Middleware('role:admin', except: ['view', 'overviewPerUser'])];
     }
 
     /**
@@ -39,6 +40,36 @@ class DashboardController extends Controller implements HasMiddleware
     public function allUrlView()
     {
         return view('backend.url-list');
+    }
+
+    /**
+     * Display the stat view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function overview()
+    {
+        return view('backend.overview', [
+            'url' => app(Url::class),
+            'user' => app(User::class),
+            'visit' => app(Visit::class),
+            'keyGenService' => app(KeyGeneratorService::class),
+        ]);
+    }
+
+    /**
+     * Display the stat view for specific user.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function overviewPerUser(User $user)
+    {
+        Gate::authorize('authorOrAdmin', $user);
+
+        return view('backend.overview_peruser', [
+            'url' => app(Url::class),
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -72,9 +103,6 @@ class DashboardController extends Controller implements HasMiddleware
     public function aboutView()
     {
         return view('backend.about', [
-            'url'   => app(Url::class),
-            'user'  => app(User::class),
-            'visit' => app(Visit::class),
             'keyGenService' => app(KeyGeneratorService::class),
         ]);
     }
