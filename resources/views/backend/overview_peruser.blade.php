@@ -11,7 +11,7 @@
 
         <div>
             @php
-                $topUrls = \App\Models\Url::getTopUrlsByVisits($user);
+                $topUrls = $url::getTopUrlsByVisits($user);
             @endphp
 
             @forelse ($topUrls as $index => $url)

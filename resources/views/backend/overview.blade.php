@@ -200,7 +200,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topUrls = \App\Models\Url::getTopUrlsByVisits();
+                        $topUrls = $url::getTopUrlsByVisits();
                     @endphp
                     @forelse ($topUrls as $index => $url)
                         <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
@@ -243,7 +243,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topReferrers = \App\Models\Visit::getTopReferrers();
+                        $topReferrers = $visit::getTopReferrers();
                     @endphp
                     @forelse ($topReferrers as $index => $referrerData)
                         <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
@@ -280,7 +280,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topBrowsers = \App\Models\Visit::getTopBrowsers();
+                        $topBrowsers = $visit::getTopBrowsers();
                     @endphp
                     @forelse ($topBrowsers as $index => $browserData)
                         <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
@@ -309,7 +309,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topOS = \App\Models\Visit::getTopOperatingSystems();
+                        $topOS = $visit::getTopOperatingSystems();
                     @endphp
                     @forelse ($topOS as $index => $osData)
                         <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
