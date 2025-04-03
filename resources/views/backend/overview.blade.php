@@ -15,7 +15,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         User
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
                     </dd>
                 </div>
@@ -23,7 +23,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         Guest
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($guestUserCount) }}">{{ n_abb($guestUserCount) }}</span>
                     </dd>
                 </div>
@@ -45,7 +45,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         Total
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($linkCount) }}">{{ n_abb($linkCount) }}</span>
                     </dd>
                 </div>
@@ -53,7 +53,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         User
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($userLinks) }}">{{ n_abb($userLinks) }}</span>
                         <span title="{{ number_format($userLinkVisits) }}">({{ n_abb($userLinkVisits) }} visits)</span>
                     </dd>
@@ -62,7 +62,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         Guest
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($guestUrlCount) }}">{{ n_abb($guestUrlCount) }}</span>
                         <span title="{{ number_format($guestLinkVisits) }}">({{ n_abb($guestLinkVisits) }} visits)</span>
                     </dd>
@@ -77,7 +77,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         Total
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($visit->count()) }}">{{ n_abb($visit->count()) }}</span>
                     </dd>
                 </div>
@@ -85,7 +85,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         User
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($visit->userVisits()) }}">{{ n_abb($visit->userVisits()) }}</span>
                     </dd>
                 </div>
@@ -93,7 +93,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         Guest
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         <span title="{{ number_format($visit->guestVisits()) }}">{{ n_abb($visit->guestVisits()) }}</span>
                         /
                         <span title="{{ number_format($visit->uniqueGuestVisits()) }}">{{ n_abb($visit->uniqueGuestVisits()) }}</span>
@@ -110,7 +110,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         Max Unique Strings
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
                         @if ($keyGenService->maxUniqueStrings() === PHP_INT_MAX)
                             (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
                         @else
@@ -128,7 +128,7 @@
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1 md:w-64">
                         Generated
                     </dt>
-                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:text-xl md:w-64">
+                    <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1 md:w-64">
                         {{ number_format($keyGenService->keywordCount()) }}
                     </dd>
                 </div>
@@ -140,15 +140,19 @@
 
     <div x-data="{activeTabHorizontal: localStorage.getItem('activeTabHorizontal') || 'topUrls',
         init() {this.$watch('activeTabHorizontal', value => localStorage.setItem('activeTabHorizontal', value));}}">
-        <div class="mb-8">
+        <div class="mb-8 px-2 sm:px-0">
             <h2 class="text-2xl font-bold mb-4">Global Top</h2>
-            <div class="border-b border-border-300/70 dark:border-dark-700">
+            <div class="">
                 <ul class="flex -mb-px">
+                    @php
+                        $activeTabClasses = 'bg-white dark:bg-dark-800 text-slate-800 dark:text-emerald-500 border border-border-200 dark:border-dark-700';
+                        $inactiveTabClasses = 'text-slate-500 hover:text-slate-800 dark:hover:text-emerald-500';
+                    @endphp
                     <li class="mr-2">
                         <button
                             @click="activeTabHorizontal = 'topUrls'"
-                            :class="{ 'bg-blue-50 dark:bg-dark-800 text-blue-600 dark:text-emerald-500 border-blue-500 dark:border-emerald-500': activeTabHorizontal === 'topUrls', 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-400 hover:border-gray-300 dark:hover:border-emerald-500': activeTabHorizontal !== 'topUrls' }"
-                            class="inline-block py-2 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg"
+                            :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topUrls', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topUrls' }"
+                            class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
                             type="button"
                         >
                             URLs
@@ -157,8 +161,8 @@
                     <li class="mr-2">
                         <button
                             @click="activeTabHorizontal = 'topReferrers'"
-                            :class="{ 'bg-blue-50 dark:bg-dark-800 text-blue-600 dark:text-emerald-500 border-blue-500 dark:border-emerald-500': activeTabHorizontal === 'topReferrers', 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-400 hover:border-gray-300 dark:hover:border-emerald-500': activeTabHorizontal !== 'topReferrers' }"
-                            class="inline-block py-2 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg"
+                            :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topReferrers', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topReferrers' }"
+                            class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
                             type="button"
                         >
                             Referrers
@@ -167,8 +171,8 @@
                     <li class="mr-2">
                         <button
                             @click="activeTabHorizontal = 'topBrowsers'"
-                            :class="{ 'bg-blue-50 dark:bg-dark-800 text-blue-600 dark:text-emerald-500 border-blue-500 dark:border-emerald-500': activeTabHorizontal === 'topBrowsers', 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-400 hover:border-gray-300 dark:hover:border-emerald-500': activeTabHorizontal !== 'topBrowsers' }"
-                            class="inline-block py-2 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg"
+                            :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topBrowsers', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topBrowsers' }"
+                            class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
                             type="button"
                         >
                             Browsers
@@ -177,8 +181,8 @@
                     <li class="mr-2">
                         <button
                             @click="activeTabHorizontal = 'topOperatingSystems'"
-                            :class="{ 'bg-blue-50 dark:bg-dark-800 text-blue-600 dark:text-emerald-500 border-blue-500 dark:border-emerald-500': activeTabHorizontal === 'topOperatingSystems', 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-400 hover:border-gray-300 dark:hover:border-emerald-500': activeTabHorizontal !== 'topOperatingSystems' }"
-                            class="inline-block py-2 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg"
+                            :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topOperatingSystems', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topOperatingSystems' }"
+                            class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
                             type="button"
                         >
                             OS
@@ -209,7 +213,6 @@
                                                 <a href="{{ $url->short_url }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
                                                     {{ $url->keyword }}
                                                 </a>
-
                                                 <a href="{{ route('link.edit', $url) }}" class="dark:text-dark-400 hover:underline ">
                                                     {{ Str::limit($url->destination, 70) }}
                                                 </a>
@@ -313,9 +316,9 @@
                     </div>
                     <div class="card card-fluid overflow-hidden px-8 py-4">
                         @php
-                            $topOperatingSystems = \App\Models\Visit::getTopOperatingSystems();
+                            $topOS = \App\Models\Visit::getTopOperatingSystems();
                         @endphp
-                        @forelse ($topOperatingSystems as $index => $osData)
+                        @forelse ($topOS as $index => $osData)
                             <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center text-sm md:text-base mb-1">
@@ -339,6 +342,5 @@
             </div>
         </div>
     </div>
-
 </div>
 @endsection
