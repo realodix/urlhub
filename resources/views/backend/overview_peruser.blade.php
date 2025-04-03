@@ -3,7 +3,7 @@
 @section('title', __('Overview'))
 @section('content')
 <div class="page_about container-alt max-w-4xl">
-    <div class="card card-fluid overflow-hidden p-8">
+    <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
             <h2 class="text-2xl dark:text-dark-400 tracking-tight">Visited URLs</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">A list of your short URLs with the highest number of visits.</p>
@@ -20,7 +20,7 @@
                         {{ $index + 1 }}
                     </div>
                     <div class="flex-1">
-                        <div class="flex justify-between items-center mb-2">
+                        <div class="flex justify-between items-center">
                             <div>
                                 <a href="{{ $url->short_url }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
                                     {{ $url->keyword }}
@@ -48,7 +48,7 @@
 
     <br>
 
-    <div class="card card-fluid overflow-hidden p-8">
+    <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
             <h2 class="text-2xl dark:text-dark-400 tracking-tight">Referrers</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common sources of traffic to your short URLs.</p>
@@ -65,7 +65,7 @@
                         {{ $index + 1 }}
                     </div>
                     <div class="flex-1">
-                        <div class="flex justify-between items-center mb-2">
+                        <div class="flex justify-between items-center">
                             <div>
                                 @if ($referrerData->referer)
                                     <a href="{{ $referrerData->referer }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
@@ -91,7 +91,7 @@
 
     <br>
 
-    <div class="card card-fluid overflow-hidden p-8">
+    <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
             <h2 class="text-2xl dark:text-dark-400 tracking-tight">Browsers</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common browsers used to visit your short URLs.</p>
@@ -108,7 +108,7 @@
                         {{ $index + 1 }}
                     </div>
                     <div class="flex-1">
-                        <div class="flex justify-between items-center mb-2">
+                        <div class="flex justify-between items-center">
                             <div>
                                 <span class="text-gray-600 dark:text-dark-400">
                                     @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
@@ -128,7 +128,7 @@
 
     <br>
 
-    <div class="card card-fluid overflow-hidden p-8">
+    <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
             <h2 class="text-2xl dark:text-dark-400 tracking-tight">Operating Systems</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common operating systems used to visit your short URLs.</p>
@@ -145,7 +145,7 @@
                         {{ $index + 1 }}
                     </div>
                     <div class="flex-1">
-                        <div class="flex justify-between items-center mb-2">
+                        <div class="flex justify-between items-center">
                             <div>
                                 <span class="text-gray-600 dark:text-dark-400">
                                     @if($osData->os) {{ $osData->os }} @else Unknown  @endif
