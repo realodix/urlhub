@@ -195,11 +195,9 @@
         <!-- Horizontal Tab Content -->
         <div class="mt-4">
             <div x-show="activeTabHorizontal === 'topUrls'">
-                <div class="mb-4">
-                    <p class="mt-2 text-md text-gray-600 dark:text-dark-400">
-                        The most popular short URLs across all users and guests, ranked by visit count.
-                    </p>
-                </div>
+                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
+                    The most popular short URLs across all users and guests, ranked by visit count.
+                </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
                         $topUrls = \App\Models\Url::getTopUrlsByVisits();
@@ -240,11 +238,9 @@
                 </div>
             </div>
             <div x-show="activeTabHorizontal === 'topReferrers'">
-                <div class="mb-4">
-                    <p class="mt-2 text-md text-gray-600 dark:text-dark-400">
-                        The most common sources of traffic to all short URLs.
-                    </p>
-                </div>
+                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
+                    The most common sources of traffic to all short URLs.
+                </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
                         $topReferrers = \App\Models\Visit::getTopReferrers();
@@ -267,9 +263,9 @@
                                             @endif
                                         </span>
                                     </div>
-                                    <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                         {{ number_format($referrerData->total) }}
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -279,11 +275,9 @@
                 </div>
             </div>
             <div x-show="activeTabHorizontal === 'topBrowsers'">
-                <div class="mb-4">
-                    <p class="mt-2 text-md text-gray-600 dark:text-dark-400">
-                        The most common browsers used to visit all short URLs.
-                    </p>
-                </div>
+                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
+                    The most common browsers used to visit all short URLs.
+                </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
                         $topBrowsers = \App\Models\Visit::getTopBrowsers();
@@ -298,9 +292,9 @@
                                             @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
                                         </span>
                                     </div>
-                                    <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                         {{ number_format($browserData->total) }}
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -310,11 +304,9 @@
                 </div>
             </div>
             <div x-show="activeTabHorizontal === 'topOperatingSystems'">
-                <div class="mb-4">
-                    <p class="mt-2 text-md text-gray-600 dark:text-dark-400">
-                        The most common operating systems used to visit all short URLs.
-                    </p>
-                </div>
+                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
+                    The most common operating systems used to visit all short URLs.
+                </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
                         $topOS = \App\Models\Visit::getTopOperatingSystems();
@@ -329,9 +321,9 @@
                                             @if($osData->os) {{ $osData->os }} @else Unknown  @endif
                                         </span>
                                     </div>
-                                    <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                         {{ number_format($osData->total) }}
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
