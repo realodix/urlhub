@@ -41,7 +41,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-gray-500 text-center">No URLs found.</p>
+                <p class="text-gray-500 text-center">Data is not yet available.</p>
             @endforelse
         </div>
     </div>
@@ -67,7 +67,7 @@
                     <div class="flex-1">
                         <div class="flex justify-between items-center mb-2">
                             <div>
-                                @if($referrerData->referer)
+                                @if ($referrerData->referer)
                                     <a href="{{ $referrerData->referer }}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
                                         {{ Str::limit($referrerData->referer, 50) }}
                                     </a>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-gray-500 text-center">No referrer data available.</p>
+                <p class="text-gray-500 text-center">Data is not yet available.</p>
             @endforelse
         </div>
     </div>
@@ -111,7 +111,7 @@
                         <div class="flex justify-between items-center mb-2">
                             <div>
                                 <span class="text-gray-600 dark:text-dark-400">
-                                    {{ $browserData->browser }}
+                                    @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
                                 </span>
                             </div>
                             <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
@@ -121,7 +121,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-gray-500 text-center">No browser data available.</p>
+                <p class="text-gray-500 text-center">Data is not yet available.</p>
             @endforelse
         </div>
     </div>
@@ -148,7 +148,7 @@
                         <div class="flex justify-between items-center mb-2">
                             <div>
                                 <span class="text-gray-600 dark:text-dark-400">
-                                    {{ $osData->os }}
+                                    @if($osData->os) {{ $osData->os }} @else Unknown  @endif
                                 </span>
                             </div>
                             <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
@@ -158,7 +158,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-gray-500 text-center">No operating system data available.</p>
+                <p class="text-gray-500 text-center">Data is not yet available.</p>
             @endforelse
         </div>
     </div>
