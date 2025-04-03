@@ -147,7 +147,7 @@
             <ul class="flex -mb-px">
                 @php
                     $activeTabClasses = 'bg-white dark:bg-dark-800 text-slate-800 dark:text-emerald-500 border border-border-200 dark:border-dark-700';
-                    $inactiveTabClasses = 'text-slate-500 hover:text-slate-800 dark:hover:text-emerald-500';
+                    $inactiveTabClasses = 'text-slate-500 dark:text-dark-500 hover:text-slate-800 dark:hover:text-emerald-500';
                 @endphp
                 <li class="mr-2">
                     <button
@@ -203,11 +203,11 @@
                         $topUrls = $url::getTopUrlsByVisits();
                     @endphp
                     @forelse ($topUrls as $index => $url)
-                        <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
+                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
                             <div class="flex-1">
                                 <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                     <div>
-                                        #{{ $index + 1 }} -
+                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
                                         <span class="text-gray-600 mt-1">
                                             <a href="{{ $url->short_url }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
                                                 {{ $url->keyword }}
@@ -222,7 +222,7 @@
                                     </span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-500 dark:text-dark-400">
+                                    <span class="text-sm text-gray-500 dark:text-dark-500">
                                         Created by
                                         <a href="{{ route('dboard.allurl.u-user', $url->author) }}" class="hover:text-blue-600 dark:hover:text-emerald-400">
                                             {{ $url->author->name }}
@@ -246,11 +246,11 @@
                         $topReferrers = $visit::getTopReferrers();
                     @endphp
                     @forelse ($topReferrers as $index => $referrerData)
-                        <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
+                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                             <div class="flex-1">
                                 <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                     <div>
-                                        #{{ $index + 1 }} -
+                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
                                         <span class="text-gray-600 mt-1">
                                             @if ($referrerData->referer)
                                                 <a href="{{ $referrerData->referer }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline">
@@ -283,12 +283,12 @@
                         $topBrowsers = $visit::getTopBrowsers();
                     @endphp
                     @forelse ($topBrowsers as $index => $browserData)
-                        <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
+                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
                             <div class="flex-1">
                                 <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                     <div>
-                                        #{{ $index + 1 }} -
-                                        <span class="text-gray-600 mt-1">
+                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
                                             @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
                                         </span>
                                     </div>
@@ -312,12 +312,12 @@
                         $topOS = $visit::getTopOperatingSystems();
                     @endphp
                     @forelse ($topOS as $index => $osData)
-                        <div class="flex items-center border-b border-gray-200 last:border-b-0 py-3">
+                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
                             <div class="flex-1">
                                 <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                     <div>
-                                        #{{ $index + 1 }} -
-                                        <span class="text-gray-600 mt-1">
+                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
                                             @if($osData->os) {{ $osData->os }} @else Unknown  @endif
                                         </span>
                                     </div>
