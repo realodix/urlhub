@@ -5,17 +5,17 @@ namespace Tests\Unit\Services;
 use App\Models\Url;
 use App\Models\Visit;
 use App\Services\UserService;
-use App\Services\VisitorService;
+use App\Services\VisitService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
 #[PHPUnit\Group('services')]
-class VisitorServiceTest extends TestCase
+class VisitServiceTest extends TestCase
 {
     #[PHPUnit\Test]
     public function isFirstClick(): void
     {
-        $visitor = app(VisitorService::class);
+        $visitor = app(VisitService::class);
 
         // First visit
         $url = Url::factory()->create();
@@ -32,7 +32,7 @@ class VisitorServiceTest extends TestCase
     #[PHPUnit\Test]
     public function getRefererHost(): void
     {
-        $visitor = app(VisitorService::class);
+        $visitor = app(VisitService::class);
 
         $this->assertSame(null, $visitor->getRefererHost(null));
         $this->assertSame(

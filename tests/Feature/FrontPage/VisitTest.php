@@ -24,7 +24,7 @@ class VisitTest extends TestCase
     }
 
     /**
-     * @see \App\Services\VisitorService::create()
+     * @see \App\Services\VisitService::create()
      * @see \App\Services\UserService::userType()
      */
     public function testUsertVisitor(): void
@@ -40,7 +40,7 @@ class VisitTest extends TestCase
     }
 
     /**
-     * @see \App\Services\VisitorService::create()
+     * @see \App\Services\VisitService::create()
      * @see \App\Services\UserService::userType()
      */
     #[PHPUnit\Test]
@@ -60,7 +60,7 @@ class VisitTest extends TestCase
     }
 
     /**
-     * @see \App\Services\VisitorService::create()
+     * @see \App\Services\VisitService::create()
      * @see \App\Services\UserService::userType()
      */
     public function testGuestVisitor(): void
@@ -75,7 +75,7 @@ class VisitTest extends TestCase
     }
 
     /**
-     * @see \App\Services\VisitorService::create()
+     * @see \App\Services\VisitService::create()
      * @see \App\Services\UserService::userType()
      */
     public function testBotVisitor(): void
@@ -93,7 +93,7 @@ class VisitTest extends TestCase
     }
 
     /**
-     * @see \App\Services\VisitorService::create()
+     * @see \App\Services\VisitService::create()
      * @see \App\Services\UserService::userType()
      */
     #[PHPUnit\Test]
@@ -112,8 +112,8 @@ class VisitTest extends TestCase
     }
 
     /**
-     * @see App\Services\VisitorService::create()
-     * @see App\Services\VisitorService::isFirstClick()
+     * @see App\Services\VisitService::create()
+     * @see App\Services\VisitService::isFirstClick()
      */
     public function testIsFirstClick(): void
     {

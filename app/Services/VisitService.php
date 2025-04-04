@@ -8,7 +8,7 @@ use App\Models\Visit;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Uri;
 
-class VisitorService
+class VisitService
 {
     public function __construct(
         protected UserService $userService,
