@@ -104,10 +104,15 @@ class Visit extends Model
 
     /**
      * Total guest users who clicked on a link.
+     *
+     * @param bool $unique Whether to count unique guest users or all guest visits.
+     * @return int
      */
-    public function guestVisits(): int
+    public function guestVisits(bool $unique = false)
     {
-        return self::isGuest()->count();
+        return self::isGuest()
+            ->when($unique, fn($query) => $query->distinct('user_uid'))
+            ->count();
     }
 
     /**
@@ -115,9 +120,7 @@ class Visit extends Model
      */
     public function uniqueGuestVisits(): int
     {
-        return self::isGuest()
-            ->distinct('user_uid')
-            ->count();
+        return $this->guestVisits(true);
     }
 
     /**
