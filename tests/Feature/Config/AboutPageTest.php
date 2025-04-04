@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use App\Services\KeyGeneratorService;
+use App\Services\VisitService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -48,6 +49,7 @@ class AboutPageTest extends TestCase
         $this->url = new Url;
         $this->user = new User;
         $this->visit = new Visit;
+        $this->visitService = app(VisitService::class);
         $this->keyGen = app(KeyGeneratorService::class);
 
         // URL
@@ -170,31 +172,31 @@ class AboutPageTest extends TestCase
     #[PHPUnit\Test]
     public function userLinkVisits(): void
     {
-        $this->assertSame(self::USER_LINK_VISITS, $this->visit->userLinkVisits());
+        $this->assertSame(self::USER_LINK_VISITS, $this->visitService->userLinkVisits());
     }
 
     #[PHPUnit\Test]
     public function guestLinkVisits(): void
     {
-        $this->assertSame(self::GUEST_LINK_VISITS, $this->visit->guestLinkVisits());
+        $this->assertSame(self::GUEST_LINK_VISITS, $this->visitService->guestLinkVisits());
     }
 
     #[PHPUnit\Test]
     public function userVisits(): void
     {
-        $this->assertSame(self::USER_VISITS, $this->visit->userVisits());
+        $this->assertSame(self::USER_VISITS, $this->visitService->userVisits());
     }
 
     #[PHPUnit\Test]
     public function guestVisits(): void
     {
-        $this->assertSame(self::GUEST_VISITS, $this->visit->guestVisits());
+        $this->assertSame(self::GUEST_VISITS, $this->visitService->guestVisits());
     }
 
     #[PHPUnit\Test]
     public function uniqueGuestVisits(): void
     {
-        $this->assertSame(self::UNIQUE_GUEST_VISITS, $this->visit->uniqueGuestVisits());
+        $this->assertSame(self::UNIQUE_GUEST_VISITS, $this->visitService->uniqueGuestVisits());
     }
 
     /*

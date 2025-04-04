@@ -36,9 +36,9 @@
                 @php
                     $linkCount = $url->count();
                     $userLinks = $url->userLinks();
-                    $userLinkVisits = $visit->userLinkVisits();
+                    $userLinkVisits = $visitService->userLinkVisits();
                     $guestUrlCount = $url->guestLinks();
-                    $guestLinkVisits = $visit->guestLinkVisits();
+                    $guestLinkVisits = $visitService->guestLinkVisits();
                 @endphp
 
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -86,7 +86,7 @@
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($visit->userVisits()) }}">{{ n_abb($visit->userVisits()) }}</span>
+                        <span title="{{ number_format($visitService->userVisits()) }}">{{ n_abb($visitService->userVisits()) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -94,9 +94,9 @@
                         Guest
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($visit->guestVisits()) }}">{{ n_abb($visit->guestVisits()) }}</span>
+                        <span title="{{ number_format($visitService->guestVisits()) }}">{{ n_abb($visitService->guestVisits()) }}</span>
                         /
-                        <span title="{{ number_format($visit->uniqueGuestVisits()) }}">{{ n_abb($visit->uniqueGuestVisits()) }}</span>
+                        <span title="{{ number_format($visitService->uniqueGuestVisits()) }}">{{ n_abb($visitService->uniqueGuestVisits()) }}</span>
                     </dd>
                 </div>
             </dl>
