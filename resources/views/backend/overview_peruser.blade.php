@@ -56,7 +56,7 @@
 
         <div>
             @php
-                $topReferrers = \App\Models\Visit::getTopReferrers($user);
+                $topReferrers = $visitService->getTopReferrers($user);
             @endphp
 
             @forelse ($topReferrers as $index => $referrerData)
@@ -99,7 +99,7 @@
 
         <div>
             @php
-                $topBrowsers = \App\Models\Visit::getTopBrowsers($user);
+                $topBrowsers = $visitService->getTopBrowsers($user);
             @endphp
 
             @forelse ($topBrowsers as $index => $browserData)
@@ -136,7 +136,7 @@
 
         <div>
             @php
-                $topOperatingSystems = \App\Models\Visit::getTopOperatingSystems($user);
+                $topOperatingSystems = $visitService->getTopOperatingSystems($user);
             @endphp
 
             @forelse ($topOperatingSystems as $index => $osData)

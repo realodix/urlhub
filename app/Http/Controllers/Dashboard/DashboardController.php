@@ -69,8 +69,9 @@ class DashboardController extends Controller implements HasMiddleware
         Gate::authorize('authorOrAdmin', $user);
 
         return view('backend.overview_peruser', [
-            'url' => app(Url::class),
             'user' => $user,
+            'url' => app(Url::class),
+            'visitService' => app(VisitService::class),
         ]);
     }
 

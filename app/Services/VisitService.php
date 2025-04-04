@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\UserType;
 use App\Helpers\Helper;
 use App\Models\Url;
+use App\Models\User;
 use App\Models\Visit;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Uri;
@@ -130,5 +131,66 @@ class VisitService
     public function uniqueGuestVisits(): int
     {
         return $this->guestVisits(true);
+    }
+
+    /**
+     * Get the top referrers based on visit count.
+     *
+     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
+     * @param int $limit The maximum number of top referrers to return
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getTopReferrers($object = null, $limit = 5)
+    {
+        return self::getTopItems('referer', $object, $limit);
+    }
+
+    /**
+     * Get the top browsers based on visit count.
+     *
+     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
+     * @param int $limit The maximum number of top browsers to return.
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getTopBrowsers($object = null, $limit = 5)
+    {
+        return self::getTopItems('browser', $object, $limit);
+    }
+
+    /**
+     * Get the top operating systems by visit count.
+     *
+     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
+     * @param int $limit The maximum number of top operating systems to return.
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getTopOperatingSystems($object = null, $limit = 5)
+    {
+        return self::getTopItems('os', $object, $limit);
+    }
+
+    /**
+     * Get the top items.
+     *
+     * @param string $column The database column to group by.
+     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
+     * @param int $limit The number of items to return.
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    private static function getTopItems(string $column, User|Url|null $object, int $limit)
+    {
+        $query = Visit::select($column)
+            ->selectRaw('count(*) as total')
+            ->when($object instanceof User, function ($query) use ($object) {
+                $query->whereRelation('url', 'user_id', $object->id);
+            })
+            ->when($object instanceof Url, function ($query) use ($object) {
+                $query->where('url_id', $object->id);
+            })
+            ->groupBy($column)
+            ->orderByDesc('total')
+            ->limit($limit);
+
+        return $query->get();
     }
 }

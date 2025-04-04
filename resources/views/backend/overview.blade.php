@@ -243,7 +243,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topReferrers = $visit::getTopReferrers();
+                        $topReferrers = $visitService->getTopReferrers();
                     @endphp
                     @forelse ($topReferrers as $index => $referrerData)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
@@ -280,7 +280,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topBrowsers = $visit::getTopBrowsers();
+                        $topBrowsers = $visitService->getTopBrowsers();
                     @endphp
                     @forelse ($topBrowsers as $index => $browserData)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
@@ -309,7 +309,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topOS = $visit::getTopOperatingSystems();
+                        $topOS = $visitService->getTopOperatingSystems();
                     @endphp
                     @forelse ($topOS as $index => $osData)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">

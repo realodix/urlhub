@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
-use App\Models\Visit;
 use App\Services\QrCodeService;
 use App\Services\RedirectService;
 use App\Services\UserService;
+use App\Services\VisitService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
@@ -56,8 +56,8 @@ class LinkController extends Controller implements HasMiddleware
         $data = [
             'url' => $url,
             'createdAt' => $url->created_at,
-            'visit' => app(Visit::class),
             'visitsCount' => $url->visits()->count(),
+            'visitService' => app(VisitService::class),
             'qrCode' => app(QrCodeService::class)->execute($url->short_url),
         ];
 
