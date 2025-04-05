@@ -138,22 +138,18 @@
 
     <br>
 
-    <div x-data="{activeTabHorizontal: localStorage.getItem('activeTabHorizontal') || 'topUrls',
-        init() {this.$watch('activeTabHorizontal', value => localStorage.setItem('activeTabHorizontal', value));}}"
-        class="mb-8 px-2 sm:px-0"
-    >
-        <h2 class="text-2xl font-bold mb-4">Global Top</h2>
-        <div class="">
-            <ul class="flex -mb-px">
+    <div x-data="{activeTabHorizontal: 'topUrls'}" class="mb-8">
+        <div>
+            <ul class="flex space-x-4 -mb-px ml-2">
                 @php
-                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-slate-800 dark:text-emerald-500 border border-border-200 dark:border-dark-700';
-                    $inactiveTabClasses = 'text-slate-500 dark:text-dark-500 hover:text-slate-800 dark:hover:text-emerald-500';
+                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700';
+                    $inactiveTabClasses = 'text-dark-500';
                 @endphp
                 <li class="mr-2">
                     <button
                         @click="activeTabHorizontal = 'topUrls'"
                         :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topUrls', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topUrls' }"
-                        class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
+                        class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                         type="button"
                     >
                         URLs
@@ -163,7 +159,7 @@
                     <button
                         @click="activeTabHorizontal = 'topReferrers'"
                         :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topReferrers', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topReferrers' }"
-                        class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
+                        class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                         type="button"
                     >
                         Referrers
@@ -173,7 +169,7 @@
                     <button
                         @click="activeTabHorizontal = 'topBrowsers'"
                         :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topBrowsers', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topBrowsers' }"
-                        class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
+                        class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                         type="button"
                     >
                         Browsers
@@ -183,7 +179,7 @@
                     <button
                         @click="activeTabHorizontal = 'topOperatingSystems'"
                         :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topOperatingSystems', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topOperatingSystems' }"
-                        class="inline-block py-2 px-4 text-sm font-medium text-center rounded"
+                        class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                         type="button"
                     >
                         OS
@@ -193,143 +189,145 @@
         </div>
 
         <!-- Horizontal Tab Content -->
-        <div class="mt-4">
-            <div x-show="activeTabHorizontal === 'topUrls'">
-                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
-                    The most popular short URLs across all users and guests, ranked by visit count.
-                </p>
-                <div class="card card-fluid overflow-hidden px-8 py-4">
-                    @php
-                        $topUrls = $linkService->getTopUrlsByVisits();
-                    @endphp
-                    @forelse ($topUrls as $index => $url)
-                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
-                            <div class="flex-1">
-                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                    <div>
-                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                        <span class="text-gray-600 mt-1">
-                                            <a href="{{ $url->short_url }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
-                                                {{ $url->keyword }}
-                                            </a>
-                                            <a href="{{ route('link.edit', $url) }}" class="dark:text-dark-400 hover:underline ">
-                                                {{ Str::limit($url->destination, 70) }}
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                        {{ $url->visits_count }}
-                                    </span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-500 dark:text-dark-500">
-                                        Created by
-                                        <a href="{{ route('dboard.allurl.u-user', $url->author) }}" class="hover:text-blue-600 dark:hover:text-emerald-400">
-                                            {{ $url->author->name }}
-                                        </a>
-                                        {{ $url->created_at->diffForHumans() }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="text-gray-500 text-center">Data is not yet available.</p>
-                    @endforelse
-                </div>
-            </div>
-            <div x-show="activeTabHorizontal === 'topReferrers'">
-                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
-                    The most common sources of traffic to all short URLs.
-                </p>
-                <div class="card card-fluid overflow-hidden px-8 py-4">
-                    @php
-                        $topReferrers = $visitService->topReferrers();
-                    @endphp
-                    @forelse ($topReferrers as $index => $referrerData)
-                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
-                            <div class="flex-1">
-                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                    <div>
-                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                        <span class="text-gray-600 mt-1">
-                                            @if ($referrerData->referer)
-                                                <a href="{{ $referrerData->referer }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline">
-                                                    {{ Str::limit($referrerData->referer, 50) }}
+        <div class="bg-white dark:bg-dark-950/50 border border-gray-200 dark:border-dark-800 rounded-lg">
+            <div class="mt-4 px-4 md:px-8 md:py-4">
+                <div x-show="activeTabHorizontal === 'topUrls'">
+                    <p class="text-gray-500 dark:text-dark-400 mb-2">
+                        The most common sources of traffic to all short URLs.
+                    </p>
+                    <div>
+                        @php
+                            $topUrls = $linkService->getTopUrlsByVisits();
+                        @endphp
+                        @forelse ($topUrls as $index => $url)
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                        <div>
+                                            <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                            <span class="text-gray-600 mt-1">
+                                                <a href="{{ $url->short_url }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
+                                                    {{ $url->keyword }}
                                                 </a>
-                                            @else
-                                                <span class="dark:text-dark-400">
-                                                    Direct / Unknown
-                                                </span>
-                                            @endif
+                                                <a href="{{ route('link.edit', $url) }}" class="dark:text-dark-400 hover:underline ">
+                                                    {{ Str::limit($url->destination, 70) }}
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                            {{ $url->visits_count }}
                                         </span>
                                     </div>
-                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                        {{ number_format($referrerData->total) }}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500 dark:text-dark-500">
+                                            Created by
+                                            <a href="{{ route('dboard.allurl.u-user', $url->author) }}" class="hover:text-blue-600 dark:hover:text-emerald-400">
+                                                {{ $url->author->name }}
+                                            </a>
+                                            {{ $url->created_at->diffForHumans() }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @empty
-                        <p class="text-gray-500 text-center">Data is not yet available.</p>
-                    @endforelse
+                        @empty
+                            <p class="text-gray-500 text-center">Data is not yet available.</p>
+                        @endforelse
+                    </div>
                 </div>
-            </div>
-            <div x-show="activeTabHorizontal === 'topBrowsers'">
-                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
-                    The most common browsers used to visit all short URLs.
-                </p>
-                <div class="card card-fluid overflow-hidden px-8 py-4">
-                    @php
-                        $topBrowsers = $visitService->topBrowsers();
-                    @endphp
-                    @forelse ($topBrowsers as $index => $browserData)
-                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
-                            <div class="flex-1">
-                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                    <div>
-                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                            @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
-                                        </span>
-                                    </div>
-                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                        {{ number_format($browserData->total) }}
+                <div x-show="activeTabHorizontal === 'topReferrers'">
+                    <p class="text-gray-500 dark:text-dark-400 mb-2">
+                        The most common sources of traffic to all short URLs.
+                    </p>
+                    <div>
+                        @php
+                            $topReferrers = $visitService->topReferrers();
+                        @endphp
+                        @forelse ($topReferrers as $index => $referrerData)
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                        <div>
+                                            <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                            <span class="text-gray-600 mt-1">
+                                                @if ($referrerData->referer)
+                                                    <a href="{{ $referrerData->referer }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline">
+                                                        {{ Str::limit($referrerData->referer, 50) }}
+                                                    </a>
+                                                @else
+                                                    <span class="dark:text-dark-400">
+                                                        Direct / Unknown
+                                                    </span>
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                            {{ number_format($referrerData->total) }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @empty
-                        <p class="text-gray-500 text-center">Data is not yet available.</p>
-                    @endforelse
+                        @empty
+                            <p class="text-gray-500 text-center">Data is not yet available.</p>
+                        @endforelse
+                    </div>
                 </div>
-            </div>
-            <div x-show="activeTabHorizontal === 'topOperatingSystems'">
-                <p class="text-md text-gray-600 dark:text-dark-400 mb-4 ml-2">
-                    The most common operating systems used to visit all short URLs.
-                </p>
-                <div class="card card-fluid overflow-hidden px-8 py-4">
-                    @php
-                        $topOS = $visitService->topOperatingSystems();
-                    @endphp
-                    @forelse ($topOS as $index => $osData)
-                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
-                            <div class="flex-1">
-                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                    <div>
-                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                            @if($osData->os) {{ $osData->os }} @else Unknown  @endif
-                                        </span>
-                                    </div>
-                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                        {{ number_format($osData->total) }}
+                <div x-show="activeTabHorizontal === 'topBrowsers'">
+                    <p class="text-gray-500 dark:text-dark-400 mb-2">
+                        The most common browsers used to visit all short URLs.
+                    </p>
+                    <div>
+                        @php
+                            $topBrowsers = $visitService->topBrowsers();
+                        @endphp
+                        @forelse ($topBrowsers as $index => $browserData)
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                        <div>
+                                            <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                            <span class="text-gray-600 dark:text-dark-400 mt-1">
+                                                @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
+                                            </span>
+                                        </div>
+                                        <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                            {{ number_format($browserData->total) }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @empty
-                        <p class="text-gray-500 text-center">Data is not yet available.</p>
-                    @endforelse
+                        @empty
+                            <p class="text-gray-500 text-center">Data is not yet available.</p>
+                        @endforelse
+                    </div>
+                </div>
+                <div x-show="activeTabHorizontal === 'topOperatingSystems'">
+                    <p class="text-gray-500 dark:text-dark-400 mb-2">
+                        The most common operating systems used to visit all short URLs.
+                    </p>
+                    <div>
+                        @php
+                            $topOS = $visitService->topOperatingSystems();
+                        @endphp
+                        @forelse ($topOS as $index => $osData)
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                        <div>
+                                            <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                            <span class="text-gray-600 dark:text-dark-400 mt-1">
+                                                @if($osData->os) {{ $osData->os }} @else Unknown  @endif
+                                            </span>
+                                        </div>
+                                        <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                            {{ number_format($osData->total) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-gray-500 text-center">Data is not yet available.</p>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

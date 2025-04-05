@@ -107,7 +107,7 @@
 
                         <br>
 
-                        <div x-data="{activeTabHorizontal: 'topReferrers'}" class="mb-8 px-2 sm:px-0">
+                        <div x-data="{activeTabHorizontal: 'topReferrers'}" class="mb-8">
                             <div class="">
                                 <ul class="flex space-x-4 -mb-px ml-2">
                                     @php
@@ -148,7 +148,7 @@
                             </div>
 
                             <!-- Horizontal Tab Content -->
-                            <div class="dark:bg-dark-950/50 border border-gray-200 dark:border-dark-800 rounded-lg">
+                            <div class="bg-white dark:bg-dark-950/50 border border-gray-200 dark:border-dark-800 rounded-lg">
                                 <div class="mt-4 px-4">
                                     <div x-show="activeTabHorizontal === 'topReferrers'">
                                         <p class="text-gray-500 dark:text-dark-400 mb-2">
@@ -196,7 +196,7 @@
                                                 $topBrowsers = $visitService->topBrowsers($url);
                                             @endphp
                                             @forelse ($topBrowsers as $index => $browserData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 py-3">
+                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
                                                     <div class="flex-1">
                                                         <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                                             <div>
@@ -225,7 +225,7 @@
                                                 $topOS = $visitService->topOperatingSystems($url);
                                             @endphp
                                             @forelse ($topOS as $index => $osData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 py-3">
+                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
                                                     <div class="flex-1">
                                                         <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                                             <div>
