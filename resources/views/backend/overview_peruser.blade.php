@@ -5,7 +5,7 @@
 <div class="page_about container-alt max-w-4xl">
     <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
-            <h2 class="text-2xl dark:text-dark-400 tracking-tight">Visited URLs</h2>
+            <h2 class="text-2xl dark:text-dark-200 tracking-tight">Visited URLs</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">A list of your short URLs with the highest number of visits.</p>
         </div>
 
@@ -50,7 +50,7 @@
 
     <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
-            <h2 class="text-2xl dark:text-dark-400 tracking-tight">Referrers</h2>
+            <h2 class="text-2xl dark:text-dark-200 tracking-tight">Referrers</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common sources of traffic to your short URLs.</p>
         </div>
 
@@ -93,7 +93,7 @@
 
     <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
-            <h2 class="text-2xl dark:text-dark-400 tracking-tight">Browsers</h2>
+            <h2 class="text-2xl dark:text-dark-200 tracking-tight">Browsers</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common browsers used to visit your short URLs.</p>
         </div>
 
@@ -130,7 +130,7 @@
 
     <div class="card card-fluid overflow-hidden p-4 md:p-8">
         <div class="mb-8">
-            <h2 class="text-2xl dark:text-dark-400 tracking-tight">Operating Systems</h2>
+            <h2 class="text-2xl dark:text-dark-200 tracking-tight">Operating Systems</h2>
             <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common operating systems used to visit your short URLs.</p>
         </div>
 
