@@ -4,9 +4,9 @@ namespace App\Actions;
 
 use App\Helpers\Helper;
 use App\Models\Url;
-use App\Services\RedirectService;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Uri;
 
 class RedirectToDestination
 {
@@ -45,7 +45,6 @@ class RedirectToDestination
      */
     private function resolveTargetLink(Url $url): string
     {
-        $redirectService = app(RedirectService::class);
         $device = Helper::deviceDetector();
         $destinationUrl = $url->destination;
 
@@ -58,7 +57,7 @@ class RedirectToDestination
         /** @var array $currentQuery */
         $currentQuery = request()->query(); // Array, because `$key` parameter is not filled
         if ($this->canForwardQuery($url, $currentQuery)) {
-            $destinationUrl = $redirectService->buildWithQuery($destinationUrl, $currentQuery);
+            $destinationUrl = Uri::of($destinationUrl)->withQuery($currentQuery)->value();
         }
 
         return $destinationUrl;
