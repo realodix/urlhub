@@ -134,14 +134,14 @@ class VisitServiceTest extends TestCase
     public function test_get_top_referrers()
     {
         Visit::factory()->count(5)->create();
-        $topReferrers = $this->visitService->getTopReferrers();
+        $topReferrers = $this->visitService->topReferrers();
         $this->assertEquals($topReferrers->first()->total, $topReferrers->max('total'));
 
         // Unique referrers
         $this->assertEquals(1, $topReferrers->count());
         Visit::factory()->count(5)->create(['referer' => 'foo']);
         Visit::factory()->count(5)->create(['referer' => 'bar']);
-        $topReferrers = $this->visitService->getTopReferrers(limit: 2);
+        $topReferrers = $this->visitService->topReferrers(limit: 2);
         $this->assertEquals(2, $topReferrers->count());
     }
 
@@ -159,7 +159,7 @@ class VisitServiceTest extends TestCase
         Url::factory()->hasVisits(7, ['referer' => 'https://example.com'])->create(); // From other users
 
         // Get the top referrers for the authenticated user
-        $topReferrers = $this->visitService->getTopReferrers($user, limit: 2);
+        $topReferrers = $this->visitService->topReferrers($user, limit: 2);
 
         // Assertions
         $this->assertCount(2, $topReferrers);
@@ -179,7 +179,7 @@ class VisitServiceTest extends TestCase
     public function test_get_top_referrers_for_auth_user_with_no_visits()
     {
         $user = User::factory()->create();
-        $topReferrers = $this->visitService->getTopReferrers($user);
+        $topReferrers = $this->visitService->topReferrers($user);
         $this->assertCount(0, $topReferrers);
     }
 
@@ -196,7 +196,7 @@ class VisitServiceTest extends TestCase
         Visit::factory()->count(7)->create(['referer' => 'https://example.com']); // From other URLs
 
         // Get the top referrers for the URL
-        $topReferrers = $this->visitService->getTopReferrers($url, limit: 2);
+        $topReferrers = $this->visitService->topReferrers($url, limit: 2);
 
         // Assertions
         $this->assertCount(2, $topReferrers);
@@ -216,7 +216,7 @@ class VisitServiceTest extends TestCase
     public function test_get_top_referrers_for_url_with_no_visits()
     {
         $url = Url::factory()->create();
-        $topReferrers = $this->visitService->getTopReferrers($url);
+        $topReferrers = $this->visitService->topReferrers($url);
         $this->assertCount(0, $topReferrers);
     }
 
@@ -229,7 +229,7 @@ class VisitServiceTest extends TestCase
         Visit::factory()->count(7)->create(['browser' => 'foo']);
 
         // Get the top browsers
-        $topBrowsers = $this->visitService->getTopBrowsers(limit: 2);
+        $topBrowsers = $this->visitService->topBrowsers(limit: 2);
 
         // Assertions
         $this->assertCount(2, $topBrowsers);
@@ -256,7 +256,7 @@ class VisitServiceTest extends TestCase
         Url::factory()->hasVisits(7, ['browser' => 'Safari'])->create(); // From other users
 
         // Get the top browsers for the authenticated user
-        $topBrowsers = $this->visitService->getTopBrowsers($user, limit: 2);
+        $topBrowsers = $this->visitService->topBrowsers($user, limit: 2);
 
         // Assertions
         $this->assertCount(2, $topBrowsers);
@@ -274,7 +274,7 @@ class VisitServiceTest extends TestCase
     public function test_get_top_browsers_for_auth_user_with_no_visits()
     {
         $user = User::factory()->create();
-        $topBrowsers = $this->visitService->getTopBrowsers($user);
+        $topBrowsers = $this->visitService->topBrowsers($user);
         $this->assertCount(0, $topBrowsers);
     }
 
@@ -291,7 +291,7 @@ class VisitServiceTest extends TestCase
         Visit::factory()->count(7)->create(['browser' => 'Safari']); // From other URLs
 
         // Get the top browsers for the URL
-        $topBrowsers = $this->visitService->getTopBrowsers($url, limit: 2);
+        $topBrowsers = $this->visitService->topBrowsers($url, limit: 2);
 
         // Assertions
         $this->assertCount(2, $topBrowsers);
@@ -309,7 +309,7 @@ class VisitServiceTest extends TestCase
     public function test_get_top_browsers_for_url_with_no_visits()
     {
         $url = Url::factory()->create();
-        $topBrowsers = $this->visitService->getTopBrowsers($url);
+        $topBrowsers = $this->visitService->topBrowsers($url);
         $this->assertCount(0, $topBrowsers);
     }
 
@@ -322,7 +322,7 @@ class VisitServiceTest extends TestCase
         Visit::factory()->count(7)->create(['os' => 'foo']);
 
         // Get the top operating systems
-        $topOS = $this->visitService->getTopOperatingSystems(limit: 2);
+        $topOS = $this->visitService->topOperatingSystems(limit: 2);
 
         // Assertions
         $this->assertCount(2, $topOS);
@@ -348,7 +348,7 @@ class VisitServiceTest extends TestCase
         Url::factory()->hasVisits(7, ['os' => 'Linux'])->create(); // From other users
 
         // Get the top operating systems for the authenticated user
-        $topOS = $this->visitService->getTopOperatingSystems($user, limit: 2);
+        $topOS = $this->visitService->topOperatingSystems($user, limit: 2);
 
         // Assertions
         $this->assertCount(2, $topOS);
@@ -366,7 +366,7 @@ class VisitServiceTest extends TestCase
     public function test_get_top_operating_systems_for_auth_user_with_no_visits()
     {
         $user = User::factory()->create();
-        $topOS = $this->visitService->getTopOperatingSystems($user);
+        $topOS = $this->visitService->topOperatingSystems($user);
         $this->assertCount(0, $topOS);
     }
 
@@ -383,7 +383,7 @@ class VisitServiceTest extends TestCase
         Visit::factory()->count(7)->create(['os' => 'Linux']); // From other URLs
 
         // Get the top operating systems for the URL
-        $topOS = $this->visitService->getTopOperatingSystems($url, limit: 2);
+        $topOS = $this->visitService->topOperatingSystems($url, limit: 2);
 
         // Assertions
         $this->assertCount(2, $topOS);
@@ -401,7 +401,7 @@ class VisitServiceTest extends TestCase
     public function test_get_top_operating_systems_for_url_with_no_visits()
     {
         $url = Url::factory()->create();
-        $topOS = $this->visitService->getTopOperatingSystems($url);
+        $topOS = $this->visitService->topOperatingSystems($url);
         $this->assertCount(0, $topOS);
     }
 }

@@ -125,7 +125,7 @@ class VisitService
      * @param int $limit The maximum number of top referrers to return
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getTopReferrers($object = null, $limit = 5)
+    public function topReferrers($object = null, $limit = 5)
     {
         return self::getTopItems('referer', $object, $limit);
     }
@@ -137,7 +137,7 @@ class VisitService
      * @param int $limit The maximum number of top browsers to return.
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getTopBrowsers($object = null, $limit = 5)
+    public function topBrowsers($object = null, $limit = 5)
     {
         return self::getTopItems('browser', $object, $limit);
     }
@@ -149,7 +149,7 @@ class VisitService
      * @param int $limit The maximum number of top operating systems to return.
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getTopOperatingSystems($object = null, $limit = 5)
+    public function topOperatingSystems($object = null, $limit = 5)
     {
         return self::getTopItems('os', $object, $limit);
     }
