@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\RedirectToDestination;
 use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
 use App\Services\LinkService;
 use App\Services\QrCodeService;
-use App\Services\RedirectService;
 use App\Services\UserService;
 use App\Services\VisitService;
 use Illuminate\Http\Request;
@@ -167,7 +167,7 @@ class LinkController extends Controller implements HasMiddleware
     public function validatePassword(Request $request, Url $url)
     {
         if (Hash::check($request->password, $url->password)) {
-            return app(RedirectService::class)->execute($url);
+            return app(RedirectToDestination::class)->handle($url);
         }
 
         return back()->withErrors(['password' => 'The password is incorrect.']);
