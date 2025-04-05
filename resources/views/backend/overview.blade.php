@@ -203,7 +203,7 @@
                         $topUrls = $linkService->getTopUrlsByVisits();
                     @endphp
                     @forelse ($topUrls as $index => $url)
-                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
+                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                             <div class="flex-1">
                                 <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                     <div>
@@ -283,7 +283,7 @@
                         $topBrowsers = $visitService->topBrowsers();
                     @endphp
                     @forelse ($topBrowsers as $index => $browserData)
-                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
+                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                             <div class="flex-1">
                                 <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                     <div>
@@ -312,7 +312,7 @@
                         $topOS = $visitService->topOperatingSystems();
                     @endphp
                     @forelse ($topOS as $index => $osData)
-                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
+                        <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                             <div class="flex-1">
                                 <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                     <div>

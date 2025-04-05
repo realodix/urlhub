@@ -196,7 +196,7 @@
                                                 $topBrowsers = $visitService->topBrowsers($url);
                                             @endphp
                                             @forelse ($topBrowsers as $index => $browserData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 py-3">
+                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
                                                     <div class="flex-1">
                                                         <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                                             <div>
@@ -225,7 +225,7 @@
                                                 $topOS = $visitService->topOperatingSystems($url);
                                             @endphp
                                             @forelse ($topOS as $index => $osData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 py-3">
+                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
                                                     <div class="flex-1">
                                                         <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                                             <div>
