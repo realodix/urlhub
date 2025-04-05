@@ -3,7 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,12 +57,6 @@ class User extends Authenticatable
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Eloquent: Relationships
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the urls associated with the user.
      *
@@ -74,12 +67,6 @@ class User extends Authenticatable
         return $this->hasMany(Url::class);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Eloquent: Accessors & Mutators
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the user's timezone. If the attribute is null, it defaults to the
      * application's timezone.
@@ -89,21 +76,5 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn($value) => $value ?? config('app.timezone'),
         );
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | General
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-     * The number of guest users.
-     */
-    public function guestUserCount(): int
-    {
-        return Url::where('user_type', UserType::Guest)
-            ->distinct('user_uid')
-            ->count();
     }
 }

@@ -33,24 +33,4 @@ class UserTest extends TestCase
         $user = User::factory()->create(['timezone' => 'America/New_York']);
         $this->assertSame('America/New_York', $user->timezone);
     }
-
-    /**
-     * Jumlah tamu yang memiliki tanda tangan yang berbeda.
-     */
-    #[PHPUnit\Test]
-    public function guestUserCount(): void
-    {
-        Url::factory()->count(2)->guest()->create();
-        $this->assertSame(2, (new User)->guestUserCount());
-    }
-
-    /**
-     * Semua tamu yang memiliki tanda tangan yang identik, harus disatukan.
-     */
-    #[PHPUnit\Test]
-    public function guestUserCount2(): void
-    {
-        Url::factory()->count(5)->guest()->create(['user_uid' => 'foo']);
-        $this->assertSame(1, (new User)->guestUserCount());
-    }
 }

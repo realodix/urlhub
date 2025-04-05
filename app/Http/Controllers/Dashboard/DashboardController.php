@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Visit;
 use App\Services\KeyGeneratorService;
 use App\Services\LinkService;
+use App\Services\UserService;
 use App\Services\VisitService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
@@ -56,6 +57,7 @@ class DashboardController extends Controller implements HasMiddleware
             'url' => app(Url::class),
             'user' => app(User::class),
             'visit' => app(Visit::class),
+            'userService' => app(UserService::class),
             'linkService' => app(LinkService::class),
             'visitService' => app(VisitService::class),
             'keyGenService' => app(KeyGeneratorService::class),

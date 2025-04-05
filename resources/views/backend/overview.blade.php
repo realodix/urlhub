@@ -8,15 +8,15 @@
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
-                    $userCount = $user->count();
-                    $guestUserCount = $user->guestUserCount();
+                    $users = $user->count();
+                    $guestUsers = $userService->guestUsers();
                 @endphp
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
+                        <span title="{{ number_format($users) }}">{{ n_abb($users) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -24,7 +24,7 @@
                         Guest
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($guestUserCount) }}">{{ n_abb($guestUserCount) }}</span>
+                        <span title="{{ number_format($guestUsers) }}">{{ n_abb($guestUsers) }}</span>
                     </dd>
                 </div>
             </dl>
