@@ -8,7 +8,7 @@
         <div class="relative mx-auto flex w-full max-w-md flex-col items-center">
             <x-icon-link-expired class="!w-32 !h-32 text-orange-500 animate-pulse" />
 
-            <h1 class="font-display mt-10 text-center text-4xl font-medium text-gray-900 dark:text-dark-400 sm:text-5xl sm:leading-[1.15]">
+            <h1 class="font-display mt-10 text-center text-4xl font-medium text-gray-900 dark:text-dark-200 sm:text-5xl sm:leading-[1.15]">
                 Expired link
             </h1>
 
