@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Actions\RecordVisit;
 use App\Helpers\Helper;
 use App\Models\Url;
 use App\Settings\GeneralSettings;
@@ -21,7 +22,7 @@ class RedirectService
     public function execute(Url $url)
     {
         return DB::transaction(function () use ($url) {
-            app(VisitService::class)->create($url);
+            app(RecordVisit::class)->handle($url);
 
             return $this->handleRedirect($url);
         });

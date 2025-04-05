@@ -3,48 +3,13 @@
 namespace App\Services;
 
 use App\Enums\UserType;
-use App\Helpers\Helper;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
-use App\Settings\GeneralSettings;
 use Illuminate\Support\Uri;
 
 class VisitService
 {
-    public function __construct(
-        protected UserService $userService,
-        protected GeneralSettings $settings,
-    ) {}
-
-    /**
-     * Store the visitor data.
-     *
-     * @param Url $url \App\Models\Url
-     * @return void
-     */
-    public function create(Url $url)
-    {
-        $visit = new Visit;
-        $logBotVisit = $this->settings->track_bot_visits;
-        $referer = request()->header('referer');
-        $botDetector = Helper::botDetector();
-        $deviceDetector = Helper::deviceDetector();
-
-        if ($logBotVisit === false && $botDetector->isCrawler()) {
-            return;
-        }
-
-        $visit->url_id = $url->id;
-        $visit->user_type = $this->userService->userType();
-        $visit->user_uid = $this->userService->signature();
-        $visit->is_first_click = $visit->isFirstClick($url);
-        $visit->referer = $this->getRefererHost($referer);
-        $visit->browser = $deviceDetector->getClientAttr('name');
-        $visit->os = $deviceDetector->getOsAttr('family');
-        $visit->save();
-    }
-
     /**
      * Get the referer host
      *
