@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\RedirectToDestination;
 use App\Models\Url;
-use App\Services\RedirectService;
 
 class RedirectController extends Controller
 {
@@ -30,6 +30,6 @@ class RedirectController extends Controller
             return to_route('link.expired', $url);
         }
 
-        return app(RedirectService::class)->execute($url);
+        return app(RedirectToDestination::class)->handle($url);
     }
 }
