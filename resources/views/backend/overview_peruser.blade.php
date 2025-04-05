@@ -15,7 +15,7 @@
             @endphp
 
             @forelse ($topUrls as $index => $url)
-                <div class="flex items-center border-b border-gray-200 py-1 last:border-b-0">
+                <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-1 last:border-b-0">
                     <div class="size-8 rounded-full bg-indigo-500 text-white font-bold text-lg flex items-center justify-center mr-4">
                         {{ $index + 1 }}
                     </div>
@@ -60,7 +60,7 @@
             @endphp
 
             @forelse ($topReferrers as $index => $referrerData)
-                <div class="flex items-center border-b border-gray-200 py-1 last:border-b-0">
+                <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-1 last:border-b-0">
                     <div class="size-8 rounded-full bg-indigo-500 text-white font-bold text-lg flex items-center justify-center mr-4">
                         {{ $index + 1 }}
                     </div>
@@ -103,7 +103,7 @@
             @endphp
 
             @forelse ($topBrowsers as $index => $browserData)
-                <div class="flex items-center border-b border-gray-200 py-1 last:border-b-0">
+                <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-1 last:border-b-0">
                     <div class="size-8 rounded-full bg-indigo-500 text-white font-bold text-lg flex items-center justify-center mr-4">
                         {{ $index + 1 }}
                     </div>
@@ -140,7 +140,7 @@
             @endphp
 
             @forelse ($topOperatingSystems as $index => $osData)
-                <div class="flex items-center border-b border-gray-200 py-1 last:border-b-0">
+                <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-1 last:border-b-0">
                     <div class="size-8 rounded-full bg-indigo-500 text-white font-bold text-lg flex items-center justify-center mr-4">
                         {{ $index + 1 }}
                     </div>

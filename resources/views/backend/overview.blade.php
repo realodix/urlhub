@@ -142,7 +142,7 @@
         <div>
             <ul class="flex space-x-4 -mb-px ml-2">
                 @php
-                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700';
+                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-200 dark:border-dark-700';
                     $inactiveTabClasses = 'text-dark-500';
                 @endphp
                 <li class="mr-2">
@@ -189,7 +189,7 @@
         </div>
 
         <!-- Horizontal Tab Content -->
-        <div class="bg-white dark:bg-dark-950/50 border border-gray-200 dark:border-dark-800 rounded-lg">
+        <div class="bg-white dark:bg-dark-950/50 border border-border-200 dark:border-dark-700 rounded-lg">
             <div class="mt-4 px-4 md:px-8 md:py-4">
                 <div x-show="activeTabHorizontal === 'topUrls'">
                     <p class="text-gray-500 dark:text-dark-400 mb-2">
@@ -200,7 +200,7 @@
                             $topUrls = $linkService->getTopUrlsByVisits();
                         @endphp
                         @forelse ($topUrls as $index => $url)
-                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                         <div>
@@ -243,7 +243,7 @@
                             $topReferrers = $visitService->topReferrers();
                         @endphp
                         @forelse ($topReferrers as $index => $referrerData)
-                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                         <div>
@@ -280,7 +280,7 @@
                             $topBrowsers = $visitService->topBrowsers();
                         @endphp
                         @forelse ($topBrowsers as $index => $browserData)
-                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                         <div>
@@ -309,7 +309,7 @@
                             $topOS = $visitService->topOperatingSystems();
                         @endphp
                         @forelse ($topOS as $index => $osData)
-                            <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                            <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                         <div>
