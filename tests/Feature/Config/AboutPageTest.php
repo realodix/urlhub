@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use App\Services\KeyGeneratorService;
+use App\Services\LinkService;
 use App\Services\VisitService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -22,6 +23,8 @@ class AboutPageTest extends TestCase
     private Visit $visit;
 
     private KeyGeneratorService $keyGen;
+
+    private LinkService $linkService;
 
     const USER_COUNT = 1;
     const USER_GUEST_COUNT = 1;
@@ -49,6 +52,7 @@ class AboutPageTest extends TestCase
         $this->url = new Url;
         $this->user = new User;
         $this->visit = new Visit;
+        $this->linkService = app(LinkService::class);
         $this->visitService = app(VisitService::class);
         $this->keyGen = app(KeyGeneratorService::class);
 
@@ -148,13 +152,13 @@ class AboutPageTest extends TestCase
     #[PHPUnit\Test]
     public function userLinks(): void
     {
-        $this->assertSame(self::USER_LINKS, $this->url->userLinks());
+        $this->assertSame(self::USER_LINKS, $this->linkService->userLinks());
     }
 
     #[PHPUnit\Test]
     public function guestLinks(): void
     {
-        $this->assertSame(self::GUEST_LINKS, $this->url->guestLinks());
+        $this->assertSame(self::GUEST_LINKS, $this->linkService->guestLinks());
     }
 
     /*

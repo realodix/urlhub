@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
+use App\Services\LinkService;
 use App\Services\QrCodeService;
 use App\Services\RedirectService;
 use App\Services\UserService;
@@ -31,11 +32,12 @@ class LinkController extends Controller implements HasMiddleware
     {
         $url = new Url;
         $userService = app(UserService::class);
+        $linkService = app(LinkService::class);
 
         $url->user_id = (int) auth()->id();
-        $url->keyword = app(Url::class)->getKeyword($request);
+        $url->keyword = $linkService->getKeyword($request);
         $url->destination = $request->long_url;
-        $url->title = app(Url::class)->getWebTitle($request->long_url);
+        $url->title = $linkService->getWebTitle($request->long_url);
         $url->forward_query = auth()->check() ? true : false;
         $url->is_custom = isset($request->custom_key) ? true : false;
         $url->user_type = $userService->userType();

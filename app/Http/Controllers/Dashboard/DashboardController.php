@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use App\Services\KeyGeneratorService;
+use App\Services\LinkService;
 use App\Services\VisitService;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
@@ -30,6 +31,7 @@ class DashboardController extends Controller implements HasMiddleware
         return view('backend.dashboard', [
             'url' => app(Url::class),
             'urlVisitCount' => n_abb($urlVisitCount),
+            'linkService' => app(LinkService::class),
         ]);
     }
 
@@ -54,6 +56,7 @@ class DashboardController extends Controller implements HasMiddleware
             'url' => app(Url::class),
             'user' => app(User::class),
             'visit' => app(Visit::class),
+            'linkService' => app(LinkService::class),
             'visitService' => app(VisitService::class),
             'keyGenService' => app(KeyGeneratorService::class),
         ]);
@@ -71,6 +74,7 @@ class DashboardController extends Controller implements HasMiddleware
         return view('backend.overview_peruser', [
             'user' => $user,
             'url' => app(Url::class),
+            'linkService' => app(LinkService::class),
             'visitService' => app(VisitService::class),
         ]);
     }

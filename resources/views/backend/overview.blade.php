@@ -35,9 +35,9 @@
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
                     $linkCount = $url->count();
-                    $userLinks = $url->userLinks();
+                    $userLinks = $linkService->userLinks();
                     $userLinkVisits = $visitService->userLinkVisits();
-                    $guestUrlCount = $url->guestLinks();
+                    $guestUrlCount = $linkService->guestLinks();
                     $guestLinkVisits = $visitService->guestLinkVisits();
                 @endphp
 
@@ -200,7 +200,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topUrls = $url::getTopUrlsByVisits();
+                        $topUrls = $linkService->getTopUrlsByVisits();
                     @endphp
                     @forelse ($topUrls as $index => $url)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">

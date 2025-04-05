@@ -3,13 +3,9 @@
 namespace App\Models;
 
 use App\Enums\UserType;
-use App\Http\Requests\StoreUrlRequest;
-use App\Services\KeyGeneratorService;
-use App\Settings\GeneralSettings;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -77,12 +73,6 @@ class Url extends Model
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Eloquent: Relationships
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the user that owns the Url.
      *
@@ -105,12 +95,6 @@ class Url extends Model
     {
         return $this->hasMany(Visit::class);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Eloquent: Accessors & Mutators
-    |--------------------------------------------------------------------------
-    */
 
     protected function userId(): Attribute
     {
@@ -146,12 +130,6 @@ class Url extends Model
         );
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | General
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Determine if the URL is expired
      *
@@ -170,84 +148,5 @@ class Url extends Model
             && $this->visits()->count() >= $this->expired_clicks;
 
         return $isExpiredAt || $isExpiredAfterClick;
-    }
-
-    public function getKeyword(StoreUrlRequest $request): string
-    {
-        $keyGen = app(KeyGeneratorService::class);
-
-        return $request->custom_key ?? $keyGen->generate($request->long_url);
-    }
-
-    /**
-     * Get the title from the web.
-     *
-     * @param string $value A webpage's URL
-     * @return string|null
-     */
-    public function getWebTitle(string $value)
-    {
-        $defaultTitle = null;
-
-        if (app(GeneralSettings::class)->retrieve_web_title && Str::isUrl($value)) {
-            $title = rescue(
-                fn() => app(\Embed\Embed::class)->get($value)->title,
-                $defaultTitle,
-                false,
-            );
-
-            if (is_string($title) && mb_strlen($title) > self::TITLE_LENGTH) {
-                return $defaultTitle;
-            }
-
-            return $title;
-        }
-
-        return $defaultTitle;
-    }
-
-    /**
-     * The number of short links created by the currently logged-in user.
-     */
-    public function authUserLinks(): int
-    {
-        return self::where('user_id', auth()->id())
-            ->count();
-    }
-
-    /**
-     * The number of short links created by all registered users.
-     */
-    public function userLinks(): int
-    {
-        return self::where('user_type', UserType::User)
-            ->count();
-    }
-
-    /**
-     * The number of short links created by all guest users.
-     */
-    public function guestLinks(): int
-    {
-        return self::where('user_type', UserType::Guest)
-            ->count();
-    }
-
-    /**
-     * Get the top URLs with the most visits.
-     *
-     * @param \App\Models\User|null $user The user to filter by (optional).
-     * @param int $limit The maximum number of top URLs to return.
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public static function getTopUrlsByVisits(?User $user = null, int $limit = 5)
-    {
-        $query = self::withCount('visits')
-            ->whereHas('visits')
-            ->when($user, fn($query) => $query->where('user_id', $user->id))
-            ->orderBy('visits_count', 'desc')
-            ->limit($limit);
-
-        return $query->get();
     }
 }

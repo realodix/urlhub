@@ -11,7 +11,7 @@
 
         <div>
             @php
-                $topUrls = $url::getTopUrlsByVisits($user);
+                $topUrls = $linkService->getTopUrlsByVisits($user);
             @endphp
 
             @forelse ($topUrls as $index => $url)
