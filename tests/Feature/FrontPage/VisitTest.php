@@ -5,6 +5,7 @@ namespace Tests\Feature\FrontPage;
 use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\Visit;
+use Illuminate\Support\Facades\Auth;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -161,10 +162,34 @@ class VisitTest extends TestCase
         $response = $this->from(route('link.password', $url->keyword))
             ->post(route('link.password', $url->keyword), ['password' => 'secret']);
         $response->assertRedirect($url->destination);
-
         // wrong password
         $response = $this->from(route('link.password', $url->keyword))
             ->post(route('link.password', $url->keyword), ['password' => 'wrong']);
+        $response->assertRedirect(route('link.password', $url->keyword));
+    }
+
+    /**
+     * @see \App\Http\Controllers\RedirectController::__invoke()
+     */
+    #[PHPUnit\Test]
+    public function linkWithPassword_ownerOrAdminCanByPass()
+    {
+        // Owner
+        $url = Url::factory()->create(['password' => 'secret']);
+        $response = $this->actingAs($url->author)
+            ->get($url->keyword);
+        $response->assertRedirect($url->destination);
+
+        // Admin
+        $response = $this->actingAs($this->adminUser())
+            ->get($url->keyword);
+        $response->assertRedirect($url->destination);
+
+        Auth::logout();
+
+        // Other user cannot bypass
+        $response = $this->actingAs($this->basicUser())
+            ->get($url->keyword);
         $response->assertRedirect(route('link.password', $url->keyword));
     }
 

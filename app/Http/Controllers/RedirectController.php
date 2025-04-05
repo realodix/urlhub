@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\RedirectToDestination;
 use App\Models\Url;
+use Illuminate\Support\Facades\Gate;
 
 class RedirectController extends Controller
 {
@@ -17,7 +18,7 @@ class RedirectController extends Controller
     public function __invoke(Url $url)
     {
         // If the link has a password, redirect to the password form
-        if ($url->password) {
+        if ($url->password && ! Gate::allows('authorOrAdmin', $url)) {
             return to_route('link.password', $url->keyword);
         }
 
