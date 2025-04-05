@@ -6,7 +6,6 @@ use App\Enums\UserType;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
-use App\Services\UserService;
 use App\Services\VisitService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -24,23 +23,6 @@ class VisitServiceTest extends TestCase
 
         $this->visit = new Visit;
         $this->visitService = app(VisitService::class);
-    }
-
-    #[PHPUnit\Test]
-    public function isFirstClick(): void
-    {
-        $visitor = app(VisitService::class);
-
-        // First visit
-        $url = Url::factory()->create();
-        $this->assertTrue($visitor->isFirstClick($url));
-
-        // Second visit and so on
-        $url = Url::factory()->create();
-        Visit::factory()->for($url)->create([
-            'user_uid' => app(UserService::class)->signature(),
-        ]);
-        $this->assertFalse($visitor->isFirstClick($url));
     }
 
     #[PHPUnit\Test]

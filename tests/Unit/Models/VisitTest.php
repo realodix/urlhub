@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Models\Url;
 use App\Models\Visit;
+use App\Services\UserService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -33,5 +34,20 @@ class VisitTest extends TestCase
 
         $this->assertEquals(1, $visit->url->count());
         $this->assertInstanceOf(Url::class, $visit->url);
+    }
+
+    #[PHPUnit\Test]
+    public function isFirstClick(): void
+    {
+        // First visit
+        $url = Url::factory()->create();
+        $this->assertTrue($this->visit->isFirstClick($url));
+
+        // Second visit and so on
+        $url = Url::factory()->create();
+        Visit::factory()->for($url)->create([
+            'user_uid' => app(UserService::class)->signature(),
+        ]);
+        $this->assertFalse($this->visit->isFirstClick($url));
     }
 }

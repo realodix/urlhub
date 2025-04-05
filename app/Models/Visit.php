@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\UserType;
+use App\Services\UserService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,12 +34,6 @@ class Visit extends Model
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Eloquent: Relationships
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the url that owns the visit.
      *
@@ -49,12 +44,6 @@ class Visit extends Model
         return $this->belongsTo(Url::class);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | General
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Scope a query to only include visits from guest users.
      *
@@ -64,5 +53,20 @@ class Visit extends Model
     {
         $query->where('user_type', UserType::Guest)
             ->orWhere('user_type', UserType::Bot);
+    }
+
+    /**
+     * Check if the visitor has clicked the link before. If the visitor has not
+     * clicked the link before, return true.
+     *
+     * @param Url $url \App\Models\Url
+     */
+    public function isFirstClick(Url $url): bool
+    {
+        $hasVisited = $url->visits()
+            ->where('user_uid', app(UserService::class)->signature())
+            ->exists();
+
+        return $hasVisited ? false : true;
     }
 }
