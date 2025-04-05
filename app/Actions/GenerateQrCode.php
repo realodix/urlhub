@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Services;
+namespace App\Actions;
 
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
 
-class QrCodeService
+class GenerateQrCode
 {
     /**
      * @return \Endroid\QrCode\Writer\Result\ResultInterface
      */
-    public function execute(string $data)
+    public function handle(string $data)
     {
         $builder = new Builder(
             data: $data,
