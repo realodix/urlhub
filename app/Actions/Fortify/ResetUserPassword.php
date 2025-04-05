@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Fortify;
+namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Rules\UserRules;
