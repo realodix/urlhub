@@ -8,15 +8,15 @@
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
-                    $userCount = $user->count();
-                    $guestUserCount = $user->guestUserCount();
+                    $users = $user->count();
+                    $guestUsers = $userService->guestUsers();
                 @endphp
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-400 md:mt-1">
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
+                        <span title="{{ number_format($users) }}">{{ n_abb($users) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -24,7 +24,7 @@
                         Guest
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($guestUserCount) }}">{{ n_abb($guestUserCount) }}</span>
+                        <span title="{{ number_format($guestUsers) }}">{{ n_abb($guestUsers) }}</span>
                     </dd>
                 </div>
             </dl>
@@ -35,10 +35,10 @@
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
                 @php
                     $linkCount = $url->count();
-                    $userLinks = $url->userLinks();
-                    $userLinkVisits = $visit->userLinkVisits();
-                    $guestUrlCount = $url->guestLinks();
-                    $guestLinkVisits = $visit->guestLinkVisits();
+                    $userLinks = $linkService->userLinks();
+                    $userLinkVisits = $visitService->userLinkVisits();
+                    $guestUrlCount = $linkService->guestLinks();
+                    $guestLinkVisits = $visitService->guestLinkVisits();
                 @endphp
 
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -86,7 +86,7 @@
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($visit->userVisits()) }}">{{ n_abb($visit->userVisits()) }}</span>
+                        <span title="{{ number_format($visitService->userVisits()) }}">{{ n_abb($visitService->userVisits()) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -94,9 +94,9 @@
                         Guest
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-dark-300 md:mt-1">
-                        <span title="{{ number_format($visit->guestVisits()) }}">{{ n_abb($visit->guestVisits()) }}</span>
+                        <span title="{{ number_format($visitService->guestVisits()) }}">{{ n_abb($visitService->guestVisits()) }}</span>
                         /
-                        <span title="{{ number_format($visit->uniqueGuestVisits()) }}">{{ n_abb($visit->uniqueGuestVisits()) }}</span>
+                        <span title="{{ number_format($visitService->uniqueGuestVisits()) }}">{{ n_abb($visitService->uniqueGuestVisits()) }}</span>
                     </dd>
                 </div>
             </dl>
@@ -200,7 +200,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topUrls = $url::getTopUrlsByVisits();
+                        $topUrls = $linkService->getTopUrlsByVisits();
                     @endphp
                     @forelse ($topUrls as $index => $url)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
@@ -243,7 +243,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topReferrers = $visit::getTopReferrers();
+                        $topReferrers = $visitService->topReferrers();
                     @endphp
                     @forelse ($topReferrers as $index => $referrerData)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-3">
@@ -280,7 +280,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topBrowsers = $visit::getTopBrowsers();
+                        $topBrowsers = $visitService->topBrowsers();
                     @endphp
                     @forelse ($topBrowsers as $index => $browserData)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">
@@ -309,7 +309,7 @@
                 </p>
                 <div class="card card-fluid overflow-hidden px-8 py-4">
                     @php
-                        $topOS = $visit::getTopOperatingSystems();
+                        $topOS = $visitService->topOperatingSystems();
                     @endphp
                     @forelse ($topOS as $index => $osData)
                         <div class="flex items-center border-b border-border-200 dark:border-dark-700 py-3">

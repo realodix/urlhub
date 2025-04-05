@@ -4,9 +4,20 @@ namespace App\Services;
 
 use App\Enums\UserType;
 use App\Helpers\Helper;
+use App\Models\Url;
 
 class UserService
 {
+    /*
+     * The number of guest users.
+     */
+    public function guestUsers(): int
+    {
+        return Url::where('user_type', UserType::Guest)
+            ->distinct('user_uid')
+            ->count();
+    }
+
     /**
      * Generate unique identifiers for users, based on their IP address and more.
      * If the user is logged in, the signature is simply the user's ID.

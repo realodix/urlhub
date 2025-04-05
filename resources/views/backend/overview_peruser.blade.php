@@ -11,7 +11,7 @@
 
         <div>
             @php
-                $topUrls = $url::getTopUrlsByVisits($user);
+                $topUrls = $linkService->getTopUrlsByVisits($user);
             @endphp
 
             @forelse ($topUrls as $index => $url)
@@ -56,7 +56,7 @@
 
         <div>
             @php
-                $topReferrers = \App\Models\Visit::getTopReferrers($user);
+                $topReferrers = $visitService->topReferrers($user);
             @endphp
 
             @forelse ($topReferrers as $index => $referrerData)
@@ -99,7 +99,7 @@
 
         <div>
             @php
-                $topBrowsers = \App\Models\Visit::getTopBrowsers($user);
+                $topBrowsers = $visitService->topBrowsers($user);
             @endphp
 
             @forelse ($topBrowsers as $index => $browserData)
@@ -136,7 +136,7 @@
 
         <div>
             @php
-                $topOperatingSystems = \App\Models\Visit::getTopOperatingSystems($user);
+                $topOperatingSystems = $visitService->topOperatingSystems($user);
             @endphp
 
             @forelse ($topOperatingSystems as $index => $osData)

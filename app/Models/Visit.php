@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\UserType;
+use App\Services\UserService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,12 +34,6 @@ class Visit extends Model
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Eloquent: Relationships
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the url that owns the visit.
      *
@@ -48,12 +43,6 @@ class Visit extends Model
     {
         return $this->belongsTo(Url::class);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | General
-    |--------------------------------------------------------------------------
-    */
 
     /**
      * Scope a query to only include visits from guest users.
@@ -67,120 +56,17 @@ class Visit extends Model
     }
 
     /**
-     * The number of clicks from links created by the currently authenticated
-     * user.
-     */
-    public function authUserLinkVisits(): int
-    {
-        return self::whereRelation('url', 'user_id', auth()->id())
-            ->count();
-    }
-
-    /**
-     * The number of clicks from links created by all registered users.
-     */
-    public function userLinkVisits(): int
-    {
-        return self::whereRelation('url', 'user_type', UserType::User)
-            ->count();
-    }
-
-    /**
-     * The number of clicks from links created by all guest users.
-     */
-    public function guestLinkVisits(): int
-    {
-        return self::whereRelation('url', 'user_type', UserType::Guest)
-            ->count();
-    }
-
-    /**
-     *  Total users who clicked on a link.
-     */
-    public function userVisits(): int
-    {
-        return self::where('user_type', UserType::User)->count();
-    }
-
-    /**
-     * Total guest users who clicked on a link.
+     * Check if the visitor has clicked the link before. If the visitor has not
+     * clicked the link before, return true.
      *
-     * @param bool $unique Whether to count unique guest users or all guest visits.
-     * @return int
+     * @param Url $url \App\Models\Url
      */
-    public function guestVisits(bool $unique = false)
+    public function isFirstClick(Url $url): bool
     {
-        return self::isGuest()
-            ->when($unique, fn($query) => $query->distinct('user_uid'))
-            ->count();
-    }
+        $hasVisited = $url->visits()
+            ->where('user_uid', app(UserService::class)->signature())
+            ->exists();
 
-    /**
-     * Total unique guest users who clicked on a link.
-     */
-    public function uniqueGuestVisits(): int
-    {
-        return $this->guestVisits(true);
-    }
-
-    /**
-     * Get the top referrers based on visit count.
-     *
-     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
-     * @param int $limit The maximum number of top referrers to return
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public static function getTopReferrers($object = null, $limit = 5)
-    {
-        return self::getTopItems('referer', $object, $limit);
-    }
-
-    /**
-     * Get the top browsers based on visit count.
-     *
-     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
-     * @param int $limit The maximum number of top browsers to return.
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public static function getTopBrowsers($object = null, $limit = 5)
-    {
-        return self::getTopItems('browser', $object, $limit);
-    }
-
-    /**
-     * Get the top operating systems by visit count.
-     *
-     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
-     * @param int $limit The maximum number of top operating systems to return.
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public static function getTopOperatingSystems($object = null, $limit = 5)
-    {
-        return self::getTopItems('os', $object, $limit);
-    }
-
-    /**
-     * Get the top items.
-     *
-     * @param string $column The database column to group by.
-     * @param \App\Models\User|\App\Models\Url|null $object Object to filter items.
-     * @param int $limit The number of items to return.
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    private static function getTopItems(string $column, User|Url|null $object, int $limit)
-    {
-        $query = self::select($column)
-            ->selectRaw('count(*) as total')
-            ->when($object instanceof User, function ($query) use ($object) {
-                $query->whereRelation('url', 'user_id', $object->id);
-            })
-            ->when($object instanceof Url, function ($query) use ($object) {
-                $query->where('url_id', $object->id);
-            })
-            ->groupBy($column)
-            ->orderByDesc('total')
-            ->limit($limit);
-
-        return $query->get();
+        return $hasVisited ? false : true;
     }
 }

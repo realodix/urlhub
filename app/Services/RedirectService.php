@@ -21,7 +21,7 @@ class RedirectService
     public function execute(Url $url)
     {
         return DB::transaction(function () use ($url) {
-            app(VisitorService::class)->create($url);
+            app(VisitService::class)->create($url);
 
             return $this->handleRedirect($url);
         });

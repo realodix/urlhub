@@ -156,7 +156,7 @@
                                         </p>
                                         <div>
                                             @php
-                                                $topReferrers = \App\Models\Visit::getTopReferrers($url);
+                                                $topReferrers = $visitService->topReferrers($url);
                                             @endphp
                                             @forelse ($topReferrers as $index => $referrerData)
                                                 <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
@@ -193,7 +193,7 @@
                                         </p>
                                         <div>
                                             @php
-                                                $topBrowsers = \App\Models\Visit::getTopBrowsers($url);
+                                                $topBrowsers = $visitService->topBrowsers($url);
                                             @endphp
                                             @forelse ($topBrowsers as $index => $browserData)
                                                 <div class="flex items-center border-b border-border-200 dark:border-dark-800 py-3">
@@ -222,7 +222,7 @@
                                         </p>
                                         <div>
                                             @php
-                                                $topOS = \App\Models\Visit::getTopOperatingSystems($url);
+                                                $topOS = $visitService->topOperatingSystems($url);
                                             @endphp
                                             @forelse ($topOS as $index => $osData)
                                                 <div class="flex items-center border-b border-border-200 dark:border-dark-800 py-3">

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Enums\UserType;
+use App\Models\Url;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,26 @@ use Tests\TestCase;
 #[PHPUnit\Group('services')]
 class UserServiceTest extends TestCase
 {
+    /**
+     * Number of guests who have different signatures.
+     */
+    #[PHPUnit\Test]
+    public function guestUsers(): void
+    {
+        Url::factory()->count(2)->guest()->create();
+        $this->assertSame(2, app(UserService::class)->guestUsers());
+    }
+
+    /**
+     * All guests who have identical signatures should be grouped together.
+     */
+    #[PHPUnit\Test]
+    public function guestUsers2(): void
+    {
+        Url::factory()->count(5)->guest()->create(['user_uid' => 'foo']);
+        $this->assertSame(1, app(UserService::class)->guestUsers());
+    }
+
     public function testSignature(): void
     {
         $userService = app(UserService::class);
