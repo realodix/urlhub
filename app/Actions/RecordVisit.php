@@ -25,10 +25,11 @@ class RecordVisit
         $visit = new Visit;
         $botDetector = Helper::botDetector();
         $deviceDetector = Helper::deviceDetector();
-        $logBotVisit = app(GeneralSettings::class)->track_bot_visits;
         $referer = request()->header('referer');
 
-        if ($logBotVisit === false && $botDetector->isCrawler()) {
+        if ($botDetector->isCrawler()
+            && app(GeneralSettings::class)->track_bot_visits === false
+        ) {
             return;
         }
 
