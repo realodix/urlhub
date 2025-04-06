@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $dest_ios
  * @property string|null $title
  * @property string|null $password
+ * @property \Carbon\Carbon|null $expires_at
  * @property int|null $expired_clicks
  * @property string|null $expired_url
  * @property string|null $expired_notes
@@ -25,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $user_uid
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon|null $expires_at
  * @property-read User $author
  * @property-read Visit $visits
  * @property-read string $short_url
