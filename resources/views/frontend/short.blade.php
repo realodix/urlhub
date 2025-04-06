@@ -74,25 +74,25 @@
                         <div x-data="{ activeTab: 1 }">
                             <div class="flex space-x-4 -mb-px ml-2">
                                 <button @click="activeTab = 1"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 1, 'text-dark-500': activeTab !== 1 }"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 1, 'text-dark-500': activeTab !== 1 }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Day
                                 </button>
                                 <button @click="activeTab = 2"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 2, 'text-dark-500': activeTab !== 2 }"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 2, 'text-dark-500': activeTab !== 2 }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Week
                                 </button>
                                 <button @click="activeTab = 3"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700': activeTab === 3, 'text-dark-500': activeTab !== 3 }"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 3, 'text-dark-500': activeTab !== 3 }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Month
                                 </button>
                             </div>
-                            <div class="bg-gray-50 dark:bg-transparent border border-gray-200 dark:border-dark-700 rounded-lg">
+                            <div class="bg-gray-50 dark:bg-transparent border border-border-300 dark:border-dark-700 rounded-lg">
                                 <div x-show="activeTab === 1">
                                     @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
                                 </div>
@@ -111,7 +111,7 @@
                             <div class="">
                                 <ul class="flex space-x-4 -mb-px ml-2">
                                     @php
-                                        $activeTabClasses = 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-gray-200 dark:border-dark-700';
+                                        $activeTabClasses = 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700';
                                         $inactiveTabClasses = 'text-dark-500';
                                     @endphp
                                     <li class="mr-2">
@@ -148,7 +148,7 @@
                             </div>
 
                             <!-- Horizontal Tab Content -->
-                            <div class="bg-white dark:bg-dark-950/50 border border-gray-200 dark:border-dark-800 rounded-lg">
+                            <div class="bg-white dark:bg-dark-950/50 border border-border-300 dark:border-dark-800 rounded-lg">
                                 <div class="mt-4 px-4">
                                     <div x-show="activeTabHorizontal === 'topReferrers'">
                                         <p class="text-gray-500 dark:text-dark-400 mb-2">
@@ -249,7 +249,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="bg-orange-50 border border-border-200 p-4 text-center
+                        <div class="bg-orange-50 border border-border-300 p-4 text-center
                             dark:bg-transparent dark:border-dark-700 dark:text-dark-400"
                         >
                             If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 dark:text-orange-600 hover:text-orange-500 dark:hover:text-orange-600/90 font-medium">log in</a> to view the statistics for this link.

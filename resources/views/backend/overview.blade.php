@@ -142,7 +142,7 @@
         <div>
             <ul class="flex space-x-4 -mb-px ml-2">
                 @php
-                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-200 dark:border-dark-700';
+                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700';
                     $inactiveTabClasses = 'text-dark-500';
                 @endphp
                 <li class="mr-2">
@@ -189,7 +189,7 @@
         </div>
 
         <!-- Horizontal Tab Content -->
-        <div class="bg-white dark:bg-dark-950/50 border border-border-200 dark:border-dark-700 rounded-lg">
+        <div class="bg-white dark:bg-dark-950/50 border border-border-300 dark:border-dark-700 rounded-lg">
             <div class="mt-4 px-4 md:px-8 md:py-4">
                 <div x-show="activeTabHorizontal === 'topUrls'">
                     <p class="text-gray-500 dark:text-dark-400 mb-2">
