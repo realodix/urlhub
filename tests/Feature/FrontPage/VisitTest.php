@@ -205,7 +205,7 @@ class VisitTest extends TestCase
         // form page must be shown when the link has a password
         $url = Url::factory()->create(['password' => 'secret']);
         $response = $this->get(route('link.password', $url->keyword));
-        $response->assertViewIs('frontend.linkpassword');
+        $response->assertViewIs('frontend.link-password');
         $response->assertViewHas('url', $url);
 
         // Password is not set
@@ -292,7 +292,7 @@ class VisitTest extends TestCase
         // Test case 1: link has expired
         $url = Url::factory()->create(['expires_at' => now()->subDay()]);
         $response = $this->get(route('link.expired', $url));
-        $response->assertViewIs('frontend.expired-link');
+        $response->assertViewIs('frontend.link-expired');
 
         // Test case 2: link has not expired
         $url = Url::factory()->create();

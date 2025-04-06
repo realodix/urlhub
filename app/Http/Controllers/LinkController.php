@@ -154,7 +154,7 @@ class LinkController extends Controller implements HasMiddleware
             return to_route('link_detail', $url->keyword);
         }
 
-        return view('frontend.linkpassword', ['url' => $url]);
+        return view('frontend.link-password', ['url' => $url]);
     }
 
     /**
@@ -184,6 +184,6 @@ class LinkController extends Controller implements HasMiddleware
             return to_route('link_detail', $url->keyword);
         }
 
-        return view('frontend.expired-link', ['url' => $url]);
+        return view('frontend.link-expired', ['url' => $url]);
     }
 }
