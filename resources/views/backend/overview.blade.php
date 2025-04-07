@@ -193,7 +193,7 @@
             <div class="mt-4 px-4 md:px-8 md:py-4">
                 <div x-show="activeTabHorizontal === 'topUrls'">
                     <p class="text-gray-500 dark:text-dark-400 mb-2">
-                        The most common sources of traffic to all short URLs.
+                        The most visited URLs.
                     </p>
                     <div>
                         @php
