@@ -28,12 +28,14 @@
 
 @if ($model->password)
 <span class="text-[11px] text-emerald-600 dark:text-emerald-300 bg-emerald-100 dark:bg-dark-800 rounded-sm px-1 ml-1">
+    @svg('icon-key', ['title' => 'Password protected'])
     Password protected
 </span>
 @endif
 
 @if ($model->isExpired())
 <span class="text-[11px] text-red-600 dark:text-red-300 bg-red-100 dark:bg-dark-800 rounded-sm px-1 ml-1">
+    @svg('icon-link-expired')
     Expired
 </span>
 @endif
