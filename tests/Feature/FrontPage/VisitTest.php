@@ -222,14 +222,14 @@ class VisitTest extends TestCase
     public function linkHasExpiredAfterSpecifiedDate()
     {
         // Test case 1: Redirect to landing page and do not count as a visit
-        $url = Url::factory()->create(['expires_at' => now()->subDay()]);
+        $url = Url::factory()->create(['expires_at' => now()->subSecond()]);
         $response = $this->get($url->keyword);
         $response->assertRedirectToRoute('link.expired', $url->keyword);
         $this->assertCount(0, $url->visits);
 
         // Test case 2: Redirect to the given url and do not count as a visit
         $url = Url::factory()->create([
-            'expires_at' => now()->subDay(),
+            'expires_at' => now()->subSecond(),
             'expired_url' => 'https://example.com',
         ]);
         $response = $this->get($url->keyword);
@@ -290,7 +290,7 @@ class VisitTest extends TestCase
     public function linkHasExpired_AccessLandingPage()
     {
         // Test case 1: link has expired
-        $url = Url::factory()->create(['expires_at' => now()->subDay()]);
+        $url = Url::factory()->create(['expires_at' => now()->subSecond()]);
         $response = $this->get(route('link.expired', $url));
         $response->assertViewIs('frontend.link-expired');
 
