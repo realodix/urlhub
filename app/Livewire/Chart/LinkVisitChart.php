@@ -2,56 +2,56 @@
 
 namespace App\Livewire\Chart;
 
-use App\Models\Url;
 use App\Models\Visit;
+use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Filament\Widgets\ChartWidget;
-use Flowframe\Trend\Trend;
-use Flowframe\Trend\TrendValue;
 
-/**
- * @codeCoverageIgnore
- */
-class LinkVisitChart extends ChartWidget
+class LinkVisitChart extends BaseLinkVisitChart
 {
-    protected static ?string $maxHeight = '250px';
-
-    public Url $model;
-
+    /**
+     * @codeCoverageIgnore
+     * {@inheritdoc}
+     */
     public function getDescription(): ?string
     {
         return 'Stats for past quarter';
     }
 
-    protected function getData(): array
+    /**
+     * Get the period for the chart.
+     *
+     * @return \Carbon\CarbonPeriod
+     */
+    public function period()
     {
-        $startDate = now()->subQuarter();
-        $endDate = now();
-        $carbon = CarbonPeriod::create($startDate, $endDate)->toArray();
-        $label = collect($carbon)->map(fn($date) => $date->format('M d'))
-            ->toArray();
+        $startDate = Carbon::now()->subQuarter();
+        $endDate = Carbon::now();
 
-        $visitModel = Visit::where('url_id', $this->model->id);
-        $data = Trend::query($visitModel)
-            ->between(start: $startDate, end: $endDate)
-            ->perDay()
-            ->count();
-
-        return [
-            'datasets' => [
-                [
-                    'label' => 'Visits',
-                    'data'  => $data->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#006edb',
-                    'borderColor'     => '#006edb',
-                ],
-            ],
-            'labels' => $label,
-        ];
+        return CarbonPeriod::create($startDate, '1 day', $endDate);
     }
 
-    protected function getType(): string
+    /**
+     * Returns the visits trend data for the given date range.
+     */
+    public function chartData(): array
     {
-        return 'line';
+        $period = $this->period();
+
+        $rawData = $this->getDataForPeriod($period)
+            ->countBy(fn(Visit $visit) => $visit->created_at->format('Y-m-d'));
+
+        // Calculate the number of visits per day
+        $data = [];
+        foreach ($period as $day) {
+            $currentDay = $day->format('Y-m-d');
+            $data[] = $rawData->get($currentDay, 0);
+        }
+
+        return $data;
+    }
+
+    public function chartLabel(): array
+    {
+        return [...$this->period()->map(fn($date) => $date->format('M d'))];
     }
 }
