@@ -9,6 +9,7 @@
     <title>@yield('title') | {{ config('app.name') }}</title>
 
     @livewireStyles
+    @filamentStyles
     @vite(['resources/css/main.css', 'resources/js/app.js'])
 </head>
 
@@ -20,6 +21,7 @@
     </main>
 
     @livewireScripts
+    @filamentScripts
 </body>
 
 </html>

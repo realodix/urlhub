@@ -71,35 +71,35 @@
 
                 <div class="mt-22">
                     @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-                        <div x-data="{ activeTab: 1 }">
+                        <div x-data="{ activeTab: 'tabDay' }">
                             <div class="flex space-x-4 -mb-px ml-2">
-                                <button @click="activeTab = 1"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 1, 'text-dark-500': activeTab !== 1 }"
+                                <button @click="activeTab = 'tabDay'"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabDay', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabDay' }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Day
                                 </button>
-                                <button @click="activeTab = 2"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 2, 'text-dark-500': activeTab !== 2 }"
+                                <button @click="activeTab = 'tabWeek'"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabWeek', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabWeek' }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Week
                                 </button>
-                                <button @click="activeTab = 3"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 3, 'text-dark-500': activeTab !== 3 }"
+                                <button @click="activeTab = 'tabMonth'"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabMonth', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabMonth' }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Month
                                 </button>
                             </div>
                             <div class="bg-gray-50 dark:bg-transparent border border-border-300 dark:border-dark-700 rounded-lg">
-                                <div x-show="activeTab === 1">
+                                <div x-show="activeTab === 'tabDay'">
                                     @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
                                 </div>
-                                <div x-show="activeTab === 2">
+                                <div x-show="activeTab === 'tabWeek'">
                                     @livewire(\App\Livewire\Chart\LinkVisitPerWeekChart::class, ['model' => $url])
                                 </div>
-                                <div x-show="activeTab === 3">
+                                <div x-show="activeTab === 'tabMonth'">
                                     @livewire(\App\Livewire\Chart\LinkVisitPerMonthChart::class, ['model' => $url])
                                 </div>
                             </div>
@@ -107,17 +107,17 @@
 
                         <br>
 
-                        <div x-data="{activeTabHorizontal: 'topReferrers'}" class="mb-8">
+                        <div x-data="{activeTab: 'topReferrers'}" class="mb-8">
                             <div class="">
                                 <ul class="flex space-x-4 -mb-px ml-2">
                                     @php
                                         $activeTabClasses = 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700';
-                                        $inactiveTabClasses = 'text-dark-500';
+                                        $inactiveTabClasses = 'text-dark-500 dark:hover:text-emerald-700';
                                     @endphp
                                     <li class="mr-2">
                                         <button
-                                            @click="activeTabHorizontal = 'topReferrers'"
-                                            :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topReferrers', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topReferrers' }"
+                                            @click="activeTab = 'topReferrers'"
+                                            :class="{ '{{ $activeTabClasses }}': activeTab === 'topReferrers', '{{ $inactiveTabClasses }}': activeTab !== 'topReferrers' }"
                                             class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                             type="button"
                                         >
@@ -126,8 +126,8 @@
                                     </li>
                                     <li class="mr-2">
                                         <button
-                                            @click="activeTabHorizontal = 'topBrowsers'"
-                                            :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topBrowsers', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topBrowsers' }"
+                                            @click="activeTab = 'topBrowsers'"
+                                            :class="{ '{{ $activeTabClasses }}': activeTab === 'topBrowsers', '{{ $inactiveTabClasses }}': activeTab !== 'topBrowsers' }"
                                             class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                             type="button"
                                         >
@@ -136,8 +136,8 @@
                                     </li>
                                     <li class="mr-2">
                                         <button
-                                            @click="activeTabHorizontal = 'topOperatingSystems'"
-                                            :class="{ '{{ $activeTabClasses }}': activeTabHorizontal === 'topOperatingSystems', '{{ $inactiveTabClasses }}': activeTabHorizontal !== 'topOperatingSystems' }"
+                                            @click="activeTab = 'topOperatingSystems'"
+                                            :class="{ '{{ $activeTabClasses }}': activeTab === 'topOperatingSystems', '{{ $inactiveTabClasses }}': activeTab !== 'topOperatingSystems' }"
                                             class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                             type="button"
                                         >
@@ -150,7 +150,7 @@
                             <!-- Horizontal Tab Content -->
                             <div class="bg-white dark:bg-dark-950/50 border border-border-300 dark:border-dark-800 rounded-lg">
                                 <div class="mt-4 px-4">
-                                    <div x-show="activeTabHorizontal === 'topReferrers'">
+                                    <div x-show="activeTab === 'topReferrers'">
                                         <p class="text-gray-500 dark:text-dark-400 mb-2">
                                             The most common sources of traffic to all short URLs.
                                         </p>
@@ -159,7 +159,7 @@
                                                 $topReferrers = $visitService->topReferrers($url);
                                             @endphp
                                             @forelse ($topReferrers as $index => $referrerData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
                                                     <div class="flex-1">
                                                         <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                                             <div>
@@ -187,7 +187,7 @@
                                             @endforelse
                                         </div>
                                     </div>
-                                    <div x-show="activeTabHorizontal === 'topBrowsers'">
+                                    <div x-show="activeTab === 'topBrowsers'">
                                         <p class="text-gray-500 dark:text-dark-400 mb-2">
                                             The most common browsers used to visit all short URLs.
                                         </p>
@@ -196,7 +196,7 @@
                                                 $topBrowsers = $visitService->topBrowsers($url);
                                             @endphp
                                             @forelse ($topBrowsers as $index => $browserData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
                                                     <div class="flex-1">
                                                         <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                                             <div>
@@ -216,7 +216,7 @@
                                             @endforelse
                                         </div>
                                     </div>
-                                    <div x-show="activeTabHorizontal === 'topOperatingSystems'">
+                                    <div x-show="activeTab === 'topOperatingSystems'">
                                         <p class="text-gray-500 dark:text-dark-400 mb-2">
                                             The most common operating systems used to visit all short URLs.
                                         </p>
@@ -225,7 +225,7 @@
                                                 $topOS = $visitService->topOperatingSystems($url);
                                             @endphp
                                             @forelse ($topOS as $index => $osData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-3">
+                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
                                                     <div class="flex-1">
                                                         <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                                             <div>
