@@ -27,8 +27,8 @@
         </div>
         @endif
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="card card-fluid shadow-xs p-4 md:col-span-2">
+        <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-4">
+            <div class="card card-fluid shadow-xs p-4">
                 <p class="text-uh-logo dark:text-uh-logo-dark text-sm font-medium leading-4">UrlHub</p>
                 <p class="text-2xl font-bold text-slate-700 dark:text-dark-300">
                     {{ config('urlhub.app_version') }}
