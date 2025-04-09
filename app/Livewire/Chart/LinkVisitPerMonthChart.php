@@ -2,56 +2,42 @@
 
 namespace App\Livewire\Chart;
 
-use App\Models\Url;
 use App\Models\Visit;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Filament\Widgets\ChartWidget;
 
-/**
- * @codeCoverageIgnore
- */
-class LinkVisitPerMonthChart extends ChartWidget
+class LinkVisitPerMonthChart extends BaseLinkVisitChart
 {
-    protected static ?string $maxHeight = '250px';
-
-    public Url $model;
-
+    /**
+     * @codeCoverageIgnore
+     * {@inheritdoc}
+     */
     public function getDescription(): ?string
     {
         return 'Stats for past one year (month by month)';
     }
 
-    protected function getType(): string
-    {
-        return 'line';
-    }
-
-    protected function getData(): array
+    /**
+     * Get the period for the chart.
+     *
+     * @return \Carbon\CarbonPeriod
+     */
+    public function period()
     {
         $startDate = Carbon::now()->subYear()->startOfMonth(); // Monday
         $endDate = Carbon::now()->endOfMonth(); // Sunday
-        $period = CarbonPeriod::create($startDate, '1 month', $endDate);
 
-        return [
-            'datasets' => [
-                [
-                    'label'           => 'Visits',
-                    'data'            => $this->chartData($startDate, $endDate, $period),
-                    'backgroundColor' => '#006edb',
-                    'borderColor'     => '#006edb',
-                ],
-            ],
-            'labels' => $this->chartLabel($period),
-        ];
+        return CarbonPeriod::create($startDate, '1 month', $endDate);
     }
 
-    protected function chartData(Carbon $startDate, Carbon $endDate, CarbonPeriod $period): array
+    public function chartData(): array
     {
-        $model = Visit::where('url_id', $this->model->id);
-        $rawData = $model->whereBetween('created_at', [$startDate, $endDate])
-            ->get()
-            ->countBy(fn(Visit $visit) => $visit->created_at->startOfMonth()->format('Y-m')); // Group by month
+        $period = $this->period();
+
+        $rawData = $this->getDataForPeriod($period)
+            ->countBy(function (Visit $visit) {
+                return $visit->created_at->startOfMonth()->format('Y-m');
+            });
 
         // Calculate the number of visits per month
         $data = [];
@@ -63,8 +49,8 @@ class LinkVisitPerMonthChart extends ChartWidget
         return $data;
     }
 
-    public function chartLabel(CarbonPeriod $period): array
+    public function chartLabel(): array
     {
-        return [...$period->map(fn($month) => $month->format('M Y'))];
+        return [...$this->period()->map(fn($month) => $month->format('M Y'))];
     }
 }

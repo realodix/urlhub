@@ -2,51 +2,42 @@
 
 namespace App\Livewire\Chart;
 
-use App\Models\Url;
 use App\Models\Visit;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Filament\Widgets\ChartWidget;
 
-/**
- * @codeCoverageIgnore
- */
-class LinkVisitPerWeekChart extends ChartWidget
+class LinkVisitPerWeekChart extends BaseLinkVisitChart
 {
-    protected static ?string $maxHeight = '250px';
-
-    public Url $model;
-
+    /**
+     * @codeCoverageIgnore
+     * {@inheritdoc}
+     */
     public function getDescription(): ?string
     {
         return 'Stats for past six months (week by week)';
     }
 
-    protected function getData(): array
+    /**
+     * Get the period for the chart.
+     *
+     * @return \Carbon\CarbonPeriod
+     */
+    public function period()
     {
         $startDate = Carbon::now()->subMonths(6)->startOfWeek(); // Monday
         $endDate = Carbon::now()->endOfWeek(); // Sunday
-        $period = CarbonPeriod::create($startDate, '1 week', $endDate);
 
-        return [
-            'datasets' => [
-                [
-                    'label'           => 'Visits',
-                    'data'            => $this->chartData($startDate, $endDate, $period),
-                    'backgroundColor' => '#006edb',
-                    'borderColor'     => '#006edb',
-                ],
-            ],
-            'labels' => $this->chartLabel($period),
-        ];
+        return CarbonPeriod::create($startDate, '1 week', $endDate);
     }
 
-    protected function chartData(Carbon $startDate, Carbon $endDate, CarbonPeriod $period): array
+    public function chartData(): array
     {
-        $model = Visit::where('url_id', $this->model->id);
-        $rawData = $model->whereBetween('created_at', [$startDate, $endDate])
-            ->get()
-            ->countBy(fn(Visit $visit) => $visit->created_at->startOfWeek()->format('Y-m-d'));
+        $period = $this->period();
+
+        $rawData = $this->getDataForPeriod($period)
+            ->countBy(function (Visit $visit) {
+                return $visit->created_at->startOfWeek()->format('Y-m-d');
+            });
 
         // Calculate the number of visits per week
         $data = [];
@@ -58,20 +49,15 @@ class LinkVisitPerWeekChart extends ChartWidget
         return $data;
     }
 
-    public function chartLabel(CarbonPeriod $period): array
+    public function chartLabel(): array
     {
         $label = [];
-        foreach ($period as $week) {
+        foreach ($this->period() as $week) {
             $startOfWeek = $week->copy()->startOfWeek(); // Monday
             $endOfWeek = $week->copy()->endOfWeek(); // Sunday
             $label[] = $startOfWeek->format('M d').' - '.$endOfWeek->format('M d');
         }
 
         return $label;
-    }
-
-    protected function getType(): string
-    {
-        return 'line';
     }
 }
