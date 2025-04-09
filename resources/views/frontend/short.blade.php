@@ -74,25 +74,25 @@
                         <div x-data="{ activeTab: 'tabDay' }">
                             <div class="flex space-x-4 -mb-px ml-2">
                                 <button @click="activeTab = 'tabDay'"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabDay', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabDay' }"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-200 dark:border-dark-700': activeTab === 'tabDay', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabDay' }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Day
                                 </button>
                                 <button @click="activeTab = 'tabWeek'"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabWeek', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabWeek' }"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-200 dark:border-dark-700': activeTab === 'tabWeek', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabWeek' }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Week
                                 </button>
                                 <button @click="activeTab = 'tabMonth'"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabMonth', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabMonth' }"
+                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-200 dark:border-dark-700': activeTab === 'tabMonth', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabMonth' }"
                                     class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
                                 >
                                     Month
                                 </button>
                             </div>
-                            <div class="bg-gray-50 dark:bg-transparent border border-border-300 dark:border-dark-700 rounded-lg">
+                            <div class="card p-1">
                                 <div x-show="activeTab === 'tabDay'">
                                     @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
                                 </div>
@@ -111,7 +111,7 @@
                             <div class="">
                                 <ul class="flex space-x-4 -mb-px ml-2">
                                     @php
-                                        $activeTabClasses = 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700';
+                                        $activeTabClasses = 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-200 dark:border-dark-700';
                                         $inactiveTabClasses = 'text-dark-500 dark:hover:text-emerald-700';
                                     @endphp
                                     <li class="mr-2">
@@ -148,8 +148,8 @@
                             </div>
 
                             <!-- Horizontal Tab Content -->
-                            <div class="bg-white dark:bg-dark-950/50 border border-border-300 dark:border-dark-800 rounded-lg">
-                                <div class="mt-4 px-4">
+                            <div class="card p-1">
+                                <div class="pt-2 px-4 rounded-lg dark:!bg-dark-950/50 dark:ring-1 dark:ring-neutral-800">
                                     <div x-show="activeTab === 'topReferrers'">
                                         <p class="text-gray-500 dark:text-dark-400 mb-2">
                                             The most common sources of traffic to all short URLs.
@@ -249,7 +249,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="bg-orange-50 border border-border-300 p-4 text-center
+                        <div class="bg-orange-50 border border-border-200 p-4 text-center
                             dark:bg-transparent dark:border-dark-700 dark:text-dark-400"
                         >
                             If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 dark:text-orange-600 hover:text-orange-500 dark:hover:text-orange-600/90 font-medium">log in</a> to view the statistics for this link.
