@@ -21,7 +21,7 @@ class LinkVisitPerMonthChartTest extends TestCase
 
     protected function tearDown(): void
     {
-        Carbon::setTestNow();
+        $this->travelBack();
         parent::tearDown();
     }
 

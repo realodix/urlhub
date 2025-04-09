@@ -22,7 +22,7 @@ class LinkVisitChartTest extends TestCase
 
     protected function tearDown(): void
     {
-        Carbon::setTestNow(); // Unfreeze time
+        $this->travelBack(); // Unfreeze time
         parent::tearDown();
     }
 
