@@ -3,7 +3,7 @@
 @section('title', __('Overview'))
 @section('content')
 <div class="container-alt max-w-4xl">
-    <div class="content-container card card-fluid">
+    <div class="content-container card card-master">
         <h3 class="text-xl">Users</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">

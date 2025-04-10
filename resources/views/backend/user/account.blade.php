@@ -20,7 +20,7 @@
 
             <form method="post" action="{{ route('user.update', $user) }}">
             @csrf
-                <div class="content-container card card-fluid">
+                <div class="content-container card card-master">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
                             <label class="form-label">{{ __('Username') }}</label>

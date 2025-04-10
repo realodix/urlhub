@@ -6,7 +6,7 @@
     <div class="container-alt max-w-340">
         @include('partials.messages')
 
-        <div class="content-container card card-fluid">
+        <div class="content-container card card-master">
             <h1>Edit Password for <a href="{{ route('link.edit', $url) }}">{{ $url->keyword }}</a></h1>
 
             <form method="post" action="{{ route('link.password.update', $url) }}" class="space-y-6">

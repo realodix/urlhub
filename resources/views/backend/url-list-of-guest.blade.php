@@ -8,7 +8,7 @@
         @include('partials.messages')
     </div>
 
-    <div class="content-container card card-fluid">
+    <div class="content-container card card-master">
         <div class="content-header">
             <p class="text-2xl">{{ __('Links created by Guests') }}</p>
         </div>

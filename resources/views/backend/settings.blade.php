@@ -10,7 +10,7 @@
     <div class="max-w-4xl ml-0 lg:ml-12">
         @include('partials.messages')
 
-        <div class="content-container card card-fluid">
+        <div class="content-container card card-master">
             <h1>{{ __('Settings') }}</h1>
 
             <form method="post" action="{{ route('dboard.settings.update') }}" class="space-y-6">

@@ -26,7 +26,7 @@
         </ul>
     </div>
 
-    <div class="card card-fluid mt-6 sm:mt-0 px-4 py-5 sm:p-6">
+    <div class="card card-master mt-6 sm:mt-0 px-4 py-5 sm:p-6">
         <div class="grid grid-cols-1 sm:grid-cols-4">
             <div class="grid justify-items-center md:mt-10">
                 <img class="qrcode h-fit" src="{{ $qrCode->getDataUri() }}" alt="QR Code">
