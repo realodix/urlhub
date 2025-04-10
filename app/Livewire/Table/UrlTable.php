@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Table;
 
-use App\Models\Url;
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Column;
 
@@ -18,7 +18,7 @@ final class UrlTable extends BaseUrlTable
 
     protected function scopeByUser(Builder $query): Builder
     {
-        return $query->where('urls.user_id', '!=', Url::GUEST_ID);
+        return $query->where('urls.user_type', UserType::User);
     }
 
     /**
