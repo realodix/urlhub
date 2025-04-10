@@ -44,6 +44,7 @@
                     <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') {{ __('Dashboard') }}</x-nav-item>
                     <x-nav-item route-name="dboard.allurl">@svg('icon-link', 'mr-1') {{ __('URL List') }}</x-nav-item>
                     <x-nav-item route-name="user.index">@svg('icon-people', 'mr-1') {{ __('User List') }}</x-nav-item>
+                    <x-nav-item route-name="dboard.overview">@svg('icon-overview', 'mr-1') {{ __('Overview') }}</x-nav-item>
                     <x-nav-item route-name="dboard.settings">@svg('icon-setting', 'mr-1') {{ __('Settings') }}</x-nav-item>
                     <x-nav-item route-name="dboard.about">@svg('icon-about-system', 'mr-1') {{ __('About') }}</x-nav-item>
                 </div>
