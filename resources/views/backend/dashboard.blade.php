@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        @livewire('table.my-url-table')
+        @livewire('table.UrlTableByUser', ['user_id' => auth()->id()])
     </div>
 </div>
 @endsection

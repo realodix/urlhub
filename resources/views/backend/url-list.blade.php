@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        @livewire('table.url-list-table')
+        @livewire('table.UrlTable')
     </div>
 </div>
 @endsection
