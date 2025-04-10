@@ -86,7 +86,9 @@ class LinkService
     {
         $query = Url::withCount('visits')
             ->whereHas('visits')
-            ->when($user, fn($query) => $query->where('user_id', $user->id))
+            ->when($user instanceof User, function ($query) use ($user) {
+                return $query->where('user_id', $user->id);
+            })
             ->orderBy('visits_count', 'desc')
             ->limit($limit);
 
