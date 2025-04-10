@@ -14,7 +14,7 @@ final class UrlListTable extends BaseUrlTable
     /** @var int */
     const STR_LIMIT = 80;
 
-    public string $tableName = 'url-list-table';
+    public string $tableName = 'all_urls_table';
 
     public function getUserIdBuilder(Builder $query): Builder
     {

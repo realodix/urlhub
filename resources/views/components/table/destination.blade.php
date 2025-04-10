@@ -17,7 +17,7 @@
     </a>
 </div>
 
-@if (request()->routeIs('dboard.allurl'))
+@if ($tableName == 'all_urls_table')
 <span class="text-[11px] text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-dark-800 rounded-sm px-1">
     @svg('icon-person')
     <a href="{{ route('dboard.allurl.u-user', $model->author) }}">
