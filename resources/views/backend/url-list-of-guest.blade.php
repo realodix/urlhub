@@ -13,7 +13,7 @@
             <p class="text-2xl">{{ __('Links created by Guests') }}</p>
         </div>
 
-        @livewire('table.url-list-of-guest-table')
+        @livewire('table.UrlTableByUser', ['user_id' => \App\Models\Url::GUEST_ID])
     </div>
 </div>
 @endsection
