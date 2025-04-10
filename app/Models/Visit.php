@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $url_id
  * @property UserType $user_type
  * @property bool $is_first_click
- * @property string $referer
+ * @property string|null $referer
  * @property string|null $browser
  * @property string|null $os
  * @property string $user_uid
