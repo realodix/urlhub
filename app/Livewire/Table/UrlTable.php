@@ -9,7 +9,7 @@ use PowerComponents\LivewirePowerGrid\Column;
 /**
  * @codeCoverageIgnore
  */
-final class UrlListTable extends BaseUrlTable
+final class UrlTable extends BaseUrlTable
 {
     /** @var int */
     const STR_LIMIT = 80;
