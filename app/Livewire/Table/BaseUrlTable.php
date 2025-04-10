@@ -12,7 +12,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 /**
  * @codeCoverageIgnore
  */
-class BaseUrlTable extends PowerGridComponent
+abstract class BaseUrlTable extends PowerGridComponent
 {
     /** @var int */
     const STR_LIMIT = 90;
@@ -29,10 +29,7 @@ class BaseUrlTable extends PowerGridComponent
 
     public string $primaryKey = 'urls.id';
 
-    public function getUserIdBuilder(Builder $query): Builder
-    {
-        return $query;
-    }
+    abstract protected function getUserIdBuilder(Builder $query): Builder;
 
     public function setUp(): array
     {
