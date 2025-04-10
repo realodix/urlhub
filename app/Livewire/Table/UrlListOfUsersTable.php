@@ -13,7 +13,7 @@ final class UrlListOfUsersTable extends BaseUrlTable
 
     public string $tableName = 'url_list_of_users_table';
 
-    public function getUserIdBuilder(Builder $query): Builder
+    protected function scopeByUser(Builder $query): Builder
     {
         return $query->where('urls.user_id', $this->user_id);
     }

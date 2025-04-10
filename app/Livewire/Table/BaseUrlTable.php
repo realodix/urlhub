@@ -29,7 +29,7 @@ abstract class BaseUrlTable extends PowerGridComponent
 
     public string $primaryKey = 'urls.id';
 
-    abstract protected function getUserIdBuilder(Builder $query): Builder;
+    abstract protected function scopeByUser(Builder $query): Builder;
 
     public function setUp(): array
     {
@@ -45,7 +45,7 @@ abstract class BaseUrlTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Url::where(fn(Builder $query) => $this->getUserIdBuilder($query))
+        return Url::where(fn(Builder $query) => $this->scopeByUser($query))
             ->with('author')
             ->withCount([
                 'visits',
