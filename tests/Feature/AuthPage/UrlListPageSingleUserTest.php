@@ -48,7 +48,7 @@ class UrlListPageSingleUserTest extends TestCase
     public function adminCanAccessTheUrlListPageOfAGuestUser(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dboard.allurl.u-guest'));
+            ->get(route('dboard.allurl.u-user'));
         $response->assertOk();
     }
 
@@ -61,7 +61,7 @@ class UrlListPageSingleUserTest extends TestCase
     public function basicUsersCantAccessTheUrlListPageOfAGuestUser(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get(route('dboard.allurl.u-guest'));
+            ->get(route('dboard.allurl.u-user'));
         $response->assertForbidden();
     }
 }

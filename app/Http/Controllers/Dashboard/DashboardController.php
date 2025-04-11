@@ -88,22 +88,16 @@ class DashboardController extends Controller implements HasMiddleware
      */
     public function userLinkView(string $author)
     {
+        if ($author === 'guests') {
+            $author = 'Guests';
+            $authorId = Url::GUEST_ID;
+        } else {
+            $authorId = User::where('name', $author)->first()->id;
+        }
+
         return view('backend.url-list-by-user', [
             'authorName' => $author,
-            'authorId'   => User::where('name', $author)->first()->id,
-        ]);
-    }
-
-    /**
-     * Show all short URLs created by guest.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function guestLinkView()
-    {
-        return view('backend.url-list-by-user', [
-            'authorName' => 'Guests',
-            'authorId'   => Url::GUEST_ID,
+            'authorId'   => $authorId,
         ]);
     }
 

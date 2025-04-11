@@ -30,8 +30,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
 
     // All URLs
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
-    Route::get('/links/u/guest', [DashboardController::class, 'guestLinkView'])->name('dboard.allurl.u-guest');
-    Route::get('/links/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
+    Route::get('/links/{user:name?}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
     // User
     Route::prefix('user')->group(function () {
