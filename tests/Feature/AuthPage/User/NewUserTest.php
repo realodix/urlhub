@@ -44,7 +44,7 @@ class NewUserTest extends TestCase
                 'password' => 'password',
             ]);
 
-        $response->assertRedirect(route('user.edit', 'test'));
+        $response->assertRedirect(route('user.edit', ['user' => 'test']));
 
         $user = User::where('name', 'test')->first();
         $this->assertEquals('test', $user->name);
@@ -91,7 +91,7 @@ class NewUserTest extends TestCase
                 'role' => 'admin',
             ]);
 
-        $response->assertRedirect(route('user.edit', 'test'));
+        $response->assertRedirect(route('user.edit', ['user' => 'test']));
 
         $user = User::where('name', 'test')->first();
         $this->assertEquals('test', $user->name);
