@@ -58,19 +58,19 @@ class RegisterTest extends TestCase
         Event::fake();
 
         $response = $this->post($this->postRoute(), [
-            'name'     => 'John Doe',
-            'email'    => 'john@example.com',
+            'name'     => 'usernametest',
+            'email'    => 'email@example.com',
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
 
-        $user = User::where('name', 'John Doe')->first();
+        $user = User::where('name', 'usernametest')->first();
 
         $response->assertRedirect($this->successfulRegistrationRoute());
         $this->assertCount(1, User::all());
         $this->assertAuthenticatedAs($user);
-        $this->assertEquals('John Doe', $user->name);
-        $this->assertEquals('john@example.com', $user->email);
+        $this->assertEquals('usernametest', $user->name);
+        $this->assertEquals('email@example.com', $user->email);
         $this->assertTrue(Hash::check('i-love-laravel', $user->password));
 
         Event::assertDispatched(Registered::class, function ($e) use ($user) {

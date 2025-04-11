@@ -10,7 +10,7 @@ use Tests\TestCase;
 #[PHPUnit\Group('validation-rule')]
 class UserRulesTest extends TestCase
 {
-    #[PHPUnit\TestWith(['required_string'])]
+    #[PHPUnit\TestWith(['foo123'])]
     public function testNamePass($value): void
     {
         $val = validator(['name' => $value], ['name' => UserRules::name()]);
@@ -19,6 +19,9 @@ class UserRulesTest extends TestCase
     }
 
     #[PHPUnit\TestWith([''])]
+    #[PHPUnit\TestWith(['foÖ123'])] // non-ascii
+    #[PHPUnit\TestWith(['foo_123'])]
+    #[PHPUnit\TestWith(['foo-123'])]
     #[PHPUnit\TestWith(['guest'])]
     #[PHPUnit\TestWith(['guests'])]
     public function testNameFail($value): void

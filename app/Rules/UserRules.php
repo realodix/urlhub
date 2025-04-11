@@ -11,7 +11,7 @@ class UserRules
     public static function name(): array
     {
         return [
-            'required', 'string', 'max:20',
+            'required', 'string', 'alpha_num:ascii', 'max:20',
             Rule::unique(User::class, 'name'),
             Rule::notIn(['guest', 'guests']),
         ];
