@@ -10,7 +10,10 @@ class UserRules
 {
     public static function name(): array
     {
-        return ['required', 'string', 'max:20'];
+        return [
+            'required', 'string', 'max:20',
+            Rule::unique(User::class, 'name'),
+        ];
     }
 
     public static function email(): array

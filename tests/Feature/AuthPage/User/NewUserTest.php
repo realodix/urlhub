@@ -53,6 +53,20 @@ class NewUserTest extends TestCase
         $this->assertFalse($user->hasRole('admin'));
     }
 
+    public function testUsernameMustBeUnique(): void
+    {
+        $user = User::factory()->create(['name' => 'test']);
+        $response = $this->actingAs($this->adminUser())
+            ->post($this->postRoute(), [
+                'username' => $user->name,
+                'email' => 'test@urlhub.test',
+                'password' => 'password',
+            ]);
+
+        $response->assertSessionHasErrors('username');
+        $this->assertCount(2, User::all()); // 2 (adminUser & $user)
+    }
+
     public function testCreateNewUserWithRoleAdmin(): void
     {
         $response = $this->actingAs($this->adminUser())

@@ -78,6 +78,23 @@ class RegisterTest extends TestCase
         });
     }
 
+    #[PHPUnit\Test]
+    public function usernameMustBeUnique(): void
+    {
+        $user = User::factory()->create(['name' => 'test']);
+        $response = $this->post('/register', [
+            'name'     => $user->name,
+            'email'    => 'john@example.com',
+            'password' => 'i-love-laravel',
+            'password_confirmation' => 'i-love-laravel',
+        ]);
+
+        $response
+            ->assertStatus(302)
+            ->assertSessionHasErrors('name');
+        $this->assertCount(1, User::all()); // 1 ($user)
+    }
+
     /**
      * Test that a user cannot register with a name longer than the allowed limit.
      *
