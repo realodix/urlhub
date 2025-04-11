@@ -13,6 +13,7 @@ class UserRules
         return [
             'required', 'string', 'max:20',
             Rule::unique(User::class, 'name'),
+            Rule::notIn(['guest', 'guests']),
         ];
     }
 
