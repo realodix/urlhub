@@ -50,8 +50,8 @@ class UserController extends Controller implements HasMiddleware
         ]);
 
         $user = User::create([
-            'name' => $request->username,
-            'email' => $request->email,
+            'name' => strtolower($request->username),
+            'email' => strtolower($request->email),
             'password' => $request->password,
         ]);
 

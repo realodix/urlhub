@@ -95,6 +95,20 @@ class RegisterTest extends TestCase
         $this->assertCount(1, User::all()); // 1 ($user)
     }
 
+    #[PHPUnit\Test]
+    public function storeUsernameAndEmailAsLowerCase(): void
+    {
+        $this->post('/register', [
+            'name'     => 'Test',
+            'email'    => 'John@example.com',
+            'password' => 'i-love-laravel',
+            'password_confirmation' => 'i-love-laravel',
+        ]);
+
+        $this->assertSame('test', User::first()->name);
+        $this->assertSame('john@example.com', User::first()->email);
+    }
+
     /**
      * Test that a user cannot register without providing a name.
      *

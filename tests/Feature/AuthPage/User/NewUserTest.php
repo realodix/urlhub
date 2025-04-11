@@ -67,6 +67,20 @@ class NewUserTest extends TestCase
         $this->assertCount(2, User::all()); // 2 (adminUser & $user)
     }
 
+    public function testStoreUsernameAndEmailAsLowerCase(): void
+    {
+        $this->actingAs($this->adminUser())
+            ->post($this->postRoute(), [
+                'username' => 'Test',
+                'email' => 'Email@example.com',
+                'password' => 'password',
+            ]);
+
+        $user = User::where('name', 'test')->first();
+        $this->assertEquals('test', $user->name);
+        $this->assertEquals('email@example.com', $user->email);
+    }
+
     public function testCreateNewUserWithRoleAdmin(): void
     {
         $response = $this->actingAs($this->adminUser())
