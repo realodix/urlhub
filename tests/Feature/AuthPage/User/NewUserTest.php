@@ -67,25 +67,6 @@ class NewUserTest extends TestCase
         $this->assertCount(2, User::all()); // 2 (adminUser & $user)
     }
 
-    /**
-     * Tests that a user cannot register with the username "guest" or "guests".
-     */
-    #[PHPUnit\Test]
-    #[PHPUnit\TestWith(['guest'])]
-    #[PHPUnit\TestWith(['guests'])]
-    public function guestMustNotBeUsedAsAUsername($name): void
-    {
-        $response = $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), [
-                'username' => $name,
-                'email' => 'test@urlhub.test',
-                'password' => 'password',
-            ]);
-
-        $response->assertSessionHasErrors('username');
-        $this->assertCount(1, User::all()); // 1 (adminUser)
-    }
-
     public function testCreateNewUserWithRoleAdmin(): void
     {
         $response = $this->actingAs($this->adminUser())

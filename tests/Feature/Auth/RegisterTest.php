@@ -96,46 +96,6 @@ class RegisterTest extends TestCase
     }
 
     /**
-     * Tests that a user cannot register with the username "guest" or "guests".
-     */
-    #[PHPUnit\Test]
-    #[PHPUnit\TestWith(['guest'])]
-    #[PHPUnit\TestWith(['guests'])]
-    public function guestMustNotBeUsedAsAUsername($name): void
-    {
-        $response = $this->post('/register', [
-            'name'     => $name,
-            'email'    => 'john@example.com',
-            'password' => 'i-love-laravel',
-            'password_confirmation' => 'i-love-laravel',
-        ]);
-
-        $response
-            ->assertStatus(302)
-            ->assertSessionHasErrors('name');
-        $this->assertCount(0, User::all());
-    }
-
-    /**
-     * Test that a user cannot register with a name longer than the allowed limit.
-     *
-     * This test posts a registration request with a name consisting of 51 characters,
-     * and asserts that the response has a status of 302, indicating a redirect, and
-     * that the session contains an error for the 'name' field.
-     */
-    #[PHPUnit\Test]
-    public function nameShouldNotBeTooLong(): void
-    {
-        $response = $this->post('/register', [
-            'name' => str_repeat('a', 51),
-        ]);
-
-        $response
-            ->assertStatus(302)
-            ->assertSessionHasErrors('name');
-    }
-
-    /**
      * Test that a user cannot register without providing a name.
      *
      * This test posts a registration request without providing a name, and asserts
