@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\AuthPage;
 
-use App\Models\Url;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
