@@ -88,7 +88,7 @@ class DashboardController extends Controller implements HasMiddleware
      */
     public function userLinkView(string $author)
     {
-        if ($author === 'guests') {
+        if ($author == 'guests') {
             $author = 'Guests';
             $authorId = Url::GUEST_ID;
         } else {
