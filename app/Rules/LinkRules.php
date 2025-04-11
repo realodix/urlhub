@@ -24,4 +24,18 @@ class LinkRules
             },
         ];
     }
+
+    public static function customKeyword(): array
+    {
+        $settings = app(\App\Settings\GeneralSettings::class);
+        $minLen = $settings->custom_keyword_min_length;
+        $maxLen = $settings->custom_keyword_max_length;
+
+        return [
+            "min:{$minLen}", "max:{$maxLen}", 'lowercase:field',
+            'unique:App\Models\Url,keyword',
+            new AlphaNumUnderscore,
+            new NotBlacklistedKeyword,
+        ];
+    }
 }

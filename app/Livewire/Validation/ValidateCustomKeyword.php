@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Validation;
 
+use App\Rules\LinkRules;
 use Livewire\Component;
 
 /**
@@ -21,16 +22,8 @@ class ValidateCustomKeyword extends Component
      */
     public function rules()
     {
-        $settings = app(\App\Settings\GeneralSettings::class);
-        $minLen = $settings->custom_keyword_min_length;
-        $maxLen = $settings->custom_keyword_max_length;
-
         return [
-            'keyword' => [
-                "min:{$minLen}", "max:{$maxLen}", 'unique:App\Models\Url', 'lowercase:field',
-                new \App\Rules\AlphaNumHyphen,
-                new \App\Rules\NotBlacklistedKeyword,
-            ],
+            'keyword' => [...LinkRules::customKeyword()],
         ];
     }
 

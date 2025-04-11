@@ -39,10 +39,6 @@ class StoreUrlRequest extends FormRequest
      */
     public function rules()
     {
-        $settings = app(\App\Settings\GeneralSettings::class);
-        $minLen = $settings->custom_keyword_min_length;
-        $maxLen = $settings->custom_keyword_max_length;
-
         return [
             'long_url' => ['required', ...LinkRules::rules()],
             'dest_android' => ['nullable', ...LinkRules::rules()],
@@ -51,12 +47,7 @@ class StoreUrlRequest extends FormRequest
             'expired_clicks' => ['nullable', 'integer', 'min:0'],
             'expired_url' => ['nullable', ...LinkRules::rules()],
             'expired_notes' => ['nullable', 'max:200'],
-            'custom_key' => [
-                'nullable', 'unique:urls,keyword',
-                "min:{$minLen}", "max:{$maxLen}", 'lowercase',
-                new \App\Rules\AlphaNumHyphen,
-                new \App\Rules\NotBlacklistedKeyword,
-            ],
+            'custom_key' => ['nullable', ...LinkRules::customKeyword()],
         ];
     }
 
