@@ -4,7 +4,6 @@ namespace Tests\Unit\Rules;
 
 use App\Rules\NotBlacklistedDomain;
 use PHPUnit\Framework\Attributes as PHPUnit;
-use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('validation-rule')]
@@ -20,7 +19,7 @@ class NotBlacklistedDomainTest extends TestCase
     #[PHPUnit\DataProvider('notBlacklistedDomainDataProvider')]
     public function testIsNotBlacklistedDomain($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
+        $val = validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());
@@ -29,7 +28,7 @@ class NotBlacklistedDomainTest extends TestCase
     #[PHPUnit\DataProvider('blacklistedDomainDataProvider')]
     public function testIsBlacklistedDomain($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
+        $val = validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
 
         $this->assertTrue($val->fails());
         $this->assertSame([

@@ -4,7 +4,6 @@ namespace Tests\Unit\Rules;
 
 use App\Rules\NotBlacklistedKeyword;
 use PHPUnit\Framework\Attributes as PHPUnit;
-use Tests\Support\Helper;
 use Tests\TestCase;
 
 #[PHPUnit\Group('validation-rule')]
@@ -21,7 +20,7 @@ class NotBlacklistedKeywordTest extends TestCase
     #[PHPUnit\DataProvider('customKeywordIsNotBlacklistedDataProvider')]
     public function testCutomKeywordIsNotBlacklisted($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
+        $val = validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());
@@ -45,7 +44,7 @@ class NotBlacklistedKeywordTest extends TestCase
     #[PHPUnit\DataProvider('registeredRouteDataProvider')]
     public function testCustomKeywordIsRegisteredRoute($value): void
     {
-        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
+        $val = validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
 
         $this->assertTrue($val->fails());
         $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
@@ -59,7 +58,7 @@ class NotBlacklistedKeywordTest extends TestCase
         $value = 'reserved_keyword';
         config(['urlhub.reserved_keyword' => [$value]]);
 
-        $val = Helper::validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
+        $val = validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
 
         $this->assertTrue($val->fails());
         $this->assertSame(['foo' => ['Not available.']], $val->messages()->messages());
