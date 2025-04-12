@@ -99,4 +99,16 @@ class NewUserTest extends TestCase
         $this->assertTrue(Hash::check('password', $user->password));
         $this->assertTrue($user->hasRole('admin'));
     }
+
+    public function testFormCannotBeFilledWithEmptyData(): void
+    {
+        $response = $this->actingAs($this->adminUser())
+            ->post($this->postRoute(), [
+                'username' => '',
+                'email' => '',
+                'password' => '',
+            ]);
+
+        $response->assertSessionHasErrors(['username', 'email', 'password']);
+    }
 }

@@ -142,7 +142,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'John Doe',
+                'name'     => 'usernametest',
                 'email'    => '',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => 'i-love-laravel',
@@ -163,7 +163,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'John Doe',
+                'name'     => 'usernametest',
                 'email'    => 'invalid-email',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => 'i-love-laravel',
@@ -196,7 +196,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'John Doe',
+                'name'     => 'usernametest',
                 'email'    => 'john@example.com',
                 'password' => '',
                 'password_confirmation' => '',
@@ -218,7 +218,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'John Doe',
+                'name'     => 'usernametest',
                 'email'    => 'john@example.com',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => '',
@@ -240,7 +240,7 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'John Doe',
+                'name'     => 'usernametest',
                 'email'    => 'john@example.com',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => 'i-love-symfony',
