@@ -40,12 +40,12 @@ class StoreUrlRequest extends FormRequest
     public function rules()
     {
         return [
-            'long_url' => ['required', ...LinkRules::rules()],
-            'dest_android' => ['nullable', ...LinkRules::rules()],
-            'dest_ios' => ['nullable', ...LinkRules::rules()],
+            'long_url' => ['required', ...LinkRules::link()],
+            'dest_android' => ['nullable', ...LinkRules::link()],
+            'dest_ios' => ['nullable', ...LinkRules::link()],
             'expires_at' => ['nullable', 'date', 'after:now'],
             'expired_clicks' => ['nullable', 'integer', 'min:0'],
-            'expired_url' => ['nullable', ...LinkRules::rules()],
+            'expired_url' => ['nullable', ...LinkRules::link()],
             'expired_notes' => ['nullable', 'max:200'],
             'custom_key' => ['nullable', ...LinkRules::customKeyword()],
         ];

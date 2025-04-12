@@ -13,7 +13,7 @@ class LinkRules
      */
     const LENGTH = 7000;
 
-    public static function rules(): array
+    public static function link(): array
     {
         return [
             'max:'.self::LENGTH, new NotBlacklistedDomain,
