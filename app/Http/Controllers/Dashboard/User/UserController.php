@@ -105,9 +105,7 @@ class UserController extends Controller implements HasMiddleware
         ];
 
         if ($request->email !== null) {
-            $request->validate([
-                'email' => ['string', 'email', 'max:255', 'unique:users'],
-            ]);
+            $request->validate(['email' => UserRules::email()]);
             $data['email'] = $request->email;
         }
 
