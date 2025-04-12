@@ -2,7 +2,6 @@
 
 namespace App\Rules;
 
-use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
@@ -12,14 +11,14 @@ class UserRules
     {
         return [
             'string', 'alpha_num:ascii', 'max:20',
-            Rule::unique(User::class, 'name'),
+            'unique:App\Models\User,name',
             Rule::notIn(['guest', 'guests']),
         ];
     }
 
     public static function email(): array
     {
-        return ['string', 'email', 'max:255', Rule::unique(User::class)];
+        return ['string', 'email', 'max:255', 'unique:App\Models\User,email'];
     }
 
     public static function password(): array
