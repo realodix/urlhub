@@ -6,8 +6,9 @@
 <div class="pt-16 sm:pt-28">
     @if (!auth()->check() && !settings()->anyone_can_shorten)
         <div class="flex flex-wrap md:justify-center">
-            <div class="w-full md:w-8/12 font-thin text-5xl text-slate-600 text-center welcome-msg">
-                {{ __('Please login to shorten URLs') }}</div>
+            <div class="w-full md:w-8/12 font-thin text-5xl text-slate-600 text-center">
+                {{ __('Please login to shorten URLs') }}
+            </div>
         </div>
     @else
         <div class="flex flex-wrap md:justify-center">
