@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\UserRules;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\{HasMiddleware, Middleware};
 use Illuminate\Support\Facades\Gate;
@@ -44,9 +45,9 @@ class UserController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         $request->validate([
-            'username' => \App\Rules\UserRules::name(),
-            'email'    => \App\Rules\UserRules::email(),
-            'password' => \App\Rules\UserRules::password(),
+            'username' => ['required', ...UserRules::name()],
+            'email'    => ['required', ...UserRules::email()],
+            'password' => ['required', ...UserRules::password()],
         ]);
 
         $user = User::create([

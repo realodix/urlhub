@@ -11,7 +11,7 @@ class UserRules
     public static function name(): array
     {
         return [
-            'required', 'string', 'alpha_num:ascii', 'max:20',
+            'string', 'alpha_num:ascii', 'max:20',
             Rule::unique(User::class, 'name'),
             Rule::notIn(['guest', 'guests']),
         ];
@@ -19,12 +19,12 @@ class UserRules
 
     public static function email(): array
     {
-        return ['required', 'string', 'email', 'max:255', Rule::unique(User::class)];
+        return ['string', 'email', 'max:255', Rule::unique(User::class)];
     }
 
     public static function password(): array
     {
-        return ['required', 'string', Password::min(5)];
+        return ['string', Password::min(5)];
     }
 
     public static function passwordWithConfirm(): array

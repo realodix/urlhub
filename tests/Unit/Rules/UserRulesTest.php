@@ -18,7 +18,6 @@ class UserRulesTest extends TestCase
         $this->assertTrue($val->passes());
     }
 
-    #[PHPUnit\TestWith([''])]
     #[PHPUnit\TestWith(['foÖ123'])] // non-ascii
     #[PHPUnit\TestWith(['foo_123'])]
     #[PHPUnit\TestWith(['foo-123'])]
@@ -44,7 +43,6 @@ class UserRulesTest extends TestCase
         $this->assertTrue($val->fails());
     }
 
-    #[PHPUnit\TestWith([''])]
     #[PHPUnit\TestWith(['foo'])]
     public function testEmailFail($value): void
     {

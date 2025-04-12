@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\UserRules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -40,7 +41,7 @@ class ChangePasswordController extends Controller
         $request->validate([
             'current_password' => ['current_password'],
             'new_password' => [
-                ...\App\Rules\UserRules::passwordWithConfirm(),
+                'required', ...UserRules::passwordWithConfirm(),
                 'unique:users,password', 'different:current_password',
             ],
         ]);

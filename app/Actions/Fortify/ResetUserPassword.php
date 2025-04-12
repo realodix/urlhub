@@ -17,7 +17,7 @@ class ResetUserPassword implements ResetsUserPasswords
     public function reset(User $user, array $input): void
     {
         Validator::make($input, [
-            'password' => UserRules::passwordWithConfirm(),
+            'password' => ['required', ...UserRules::passwordWithConfirm()],
         ])->validate();
 
         $user->forceFill([
