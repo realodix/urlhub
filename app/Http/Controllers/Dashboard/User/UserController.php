@@ -112,7 +112,7 @@ class UserController extends Controller implements HasMiddleware
         $user->update($data);
 
         return redirect()->back()
-            ->with('flash_success', __('Account updated.'));
+            ->with('flash_success', 'Account updated.');
     }
 
     /**
@@ -130,7 +130,7 @@ class UserController extends Controller implements HasMiddleware
         $user->delete();
 
         return redirect()->route('user.index')
-            ->with('flash_success', __('User deleted.'));
+            ->with('flash_success', 'User deleted.');
     }
 
     /**

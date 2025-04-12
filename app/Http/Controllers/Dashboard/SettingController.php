@@ -29,6 +29,6 @@ class SettingController extends Controller implements HasMiddleware
         $settings->update();
 
         return redirect()->back()
-            ->with('flash_success', __('Settings updated.'));
+            ->with('flash_success', 'Settings updated.');
     }
 }

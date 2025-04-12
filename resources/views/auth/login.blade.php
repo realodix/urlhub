@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', __('Login'))
+@section('title', 'Login')
 
 @section('css_class', 'auth')
 
@@ -18,30 +18,26 @@
     @endif
 
     <div class="auth-box card">
-        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="space-y-4">
+        <form method="POST" action="{{ route('login') }}" aria-label="Login" class="space-y-4">
         @csrf
             <div>
-                <label class="form-label">
-                    {{ __('E-Mail / Username') }}
-                </label>
+                <label class="form-label">E-Mail / Username</label>
                 <input name="identity" required value="{{ old('identity') }}" class="form-input mt-1" autofocus>
             </div>
 
             <div>
-                <label class="form-label">
-                    {{ __('Password') }}
-                </label>
+                <label class="form-label">Password</label>
                 <input type="password" name="password" required autocomplete="current_password" class="form-input mt-1">
             </div>
 
             <div class="flex items-center justify-end">
                 <a href="{{ route('password.request') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-500 dark:hover:text-primary-600/90 font-medium">
-                    {{ __('Forgot password?') }}
+                    Forgot password?
                 </a>
             </div>
 
             <button type="submit" class="btn btn-primary w-full">
-                {{ __('Log in') }}
+                Log in
             </button>
         </form>
 

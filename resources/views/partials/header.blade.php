@@ -41,12 +41,12 @@
         @auth
             @role('admin')
                 <div class="pt-2 pb-3 space-y-1 border-b border-border-200">
-                    <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') {{ __('Dashboard') }}</x-nav-item>
-                    <x-nav-item route-name="dboard.allurl">@svg('icon-link', 'mr-1') {{ __('URL List') }}</x-nav-item>
-                    <x-nav-item route-name="user.index">@svg('icon-people', 'mr-1') {{ __('User List') }}</x-nav-item>
-                    <x-nav-item route-name="dboard.overview">@svg('icon-overview', 'mr-1') {{ __('Overview') }}</x-nav-item>
-                    <x-nav-item route-name="dboard.settings">@svg('icon-setting', 'mr-1') {{ __('Settings') }}</x-nav-item>
-                    <x-nav-item route-name="dboard.about">@svg('icon-about-system', 'mr-1') {{ __('About') }}</x-nav-item>
+                    <x-nav-item route-name="dashboard">@svg('icon-dashboard', 'mr-1') Dashboard</x-nav-item>
+                    <x-nav-item route-name="dboard.allurl">@svg('icon-link', 'mr-1') URL List</x-nav-item>
+                    <x-nav-item route-name="user.index">@svg('icon-people', 'mr-1') User List</x-nav-item>
+                    <x-nav-item route-name="dboard.overview">@svg('icon-overview', 'mr-1') Overview</x-nav-item>
+                    <x-nav-item route-name="dboard.settings">@svg('icon-setting', 'mr-1') Settings</x-nav-item>
+                    <x-nav-item route-name="dboard.about">@svg('icon-about-system', 'mr-1') About</x-nav-item>
                 </div>
             @endrole
 
@@ -67,11 +67,11 @@
         @else
             <div class="pt-2 pb-3 space-y-1">
                 <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 font-medium">
-                    {{ __('Log in') }}
+                    Log in
                 </a>
                 @if (Route::has('register') && settings()->anyone_can_register)
                     <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 font-medium">
-                        {{ __('Sign up') }}
+                        Sign up
                     </a>
                 @endif
             </div>
@@ -83,26 +83,26 @@
         <nav class="container-alt grid grid-cols-3 pt-1">
             <div class="hidden sm:flex col-span-2">
                 <x-nav-item_local-menu route-name="dashboard" icon="icon-dashboard">
-                    <span class="hidden md:inline">{{ __('Dashboard') }}</span>
+                    <span class="hidden md:inline">Dashboard</span>
                 </x-nav-item_local-menu>
                 <x-nav-item_local-menu route-name="dboard.allurl" icon="icon-link">
-                    <span class="hidden md:inline">{{ __('URL List') }}</span>
+                    <span class="hidden md:inline">URL List</span>
                 </x-nav-item_local-menu>
 
                 <x-nav-item_local-menu route-name="user.index" icon="icon-people">
-                    <span class="hidden md:inline">{{ __('User List') }}</span>
+                    <span class="hidden md:inline">User List</span>
                 </x-nav-item_local-menu>
 
                 <x-nav-item_local-menu route-name="dboard.overview" icon="icon-overview">
-                    <span class="hidden md:inline">{{ __('Overview') }}</span>
+                    <span class="hidden md:inline">Overview</span>
                 </x-nav-item_local-menu>
 
                 <x-nav-item_local-menu route-name="dboard.settings" icon="icon-setting">
-                    <span class="hidden md:inline">{{ __('Settings') }}</span>
+                    <span class="hidden md:inline">Settings</span>
                 </x-nav-item_local-menu>
 
                 <x-nav-item_local-menu route-name="dboard.about" icon="icon-about-system">
-                    <span class="hidden md:inline">{{ __('About') }}</span>
+                    <span class="hidden md:inline">About</span>
                 </x-nav-item_local-menu>
             </div>
             <x-nav-dropdown x-show="atTop" class="flex justify-end"/>

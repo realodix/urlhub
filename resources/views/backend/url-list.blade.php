@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('URLs List'))
+@section('title', 'URLs List')
 
 @section('content')
 <div class="container-alt max-w-340">
@@ -10,10 +10,10 @@
 
     <div class="content-container card card-master">
         <div class="content-header">
-            <p class="text-2xl">{{ __('List of All URLs') }}</p>
+            <p class="text-2xl">List of All URLs</p>
             <div class="flex justify-end">
-                <a href="{{ route('dboard.allurl.u-user', ['user' => 'guests']) }}" title="{{ __('Shortened long links by Guest') }}" class="btn btn-primary">
-                    {{ __('By Guest') }}
+                <a href="{{ route('dboard.allurl.u-user', ['user' => 'guests']) }}" title="Shortened links by Guests" class="btn btn-primary">
+                    By Guest
                 </a>
             </div>
         </div>

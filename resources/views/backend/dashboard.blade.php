@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Dashboard'))
+@section('title', 'Dashboard')
 @section('content')
 <div class="container-alt max-w-340">
     <div class="w-full md:max-w-md">
@@ -34,15 +34,15 @@
 
     <div class="content-container card card-master">
         <div class="content-header">
-            <p class="text-2xl">{{ __('My URLs') }}</p>
+            <p class="text-2xl">My URLs</p>
             <div class="flex justify-end">
                 <a href="{{ route('user.overview', auth()->user()) }}" title="Overview" class="btn btn-secondary">
                     @svg('icon-overview', '!h-[1.5em] mr-1')
                     <p class="hidden sm:inline"> Overview </p>
                 </a>
-                <a href="{{ url('./') }}" target="_blank" title="{{ __('Add URL') }}" class="btn btn-primary ml-2">
+                <a href="{{ url('./') }}" target="_blank" title="Add URL" class="btn btn-primary ml-2">
                     @svg('icon-add-link', '!h-[1.5em] mr-1')
-                    <p class="hidden sm:inline">{{ __('Add URL') }}</p>
+                    <p class="hidden sm:inline">Add URL</p>
                 </a>
             </div>
         </div>

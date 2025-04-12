@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
-@section('title', __('Edit Link').' "'.$url->keyword.'"'.' ‹ '.str()->title(auth()->user()->name))
+@section('title', 'Edit "'.$url->keyword.'" ‹ '.str()->title(auth()->user()->name))
 
 @section('content')
 <div class="container-alt max-w-340 flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
         <div class="px-4 sm:px-0">
-            <h3>{{ __('Edit URL Details') }}</h3>
+            <h3>Edit URL Details</h3>
             <br>
             <div class="inline sm:block mr-2 text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-person', 'mr-1')
@@ -50,7 +50,7 @@
             <div class="content-container card card-master">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-4">
-                        <label class="form-label">{{ __('Short URL') }}</label>
+                        <label class="form-label">Short URL</label>
                         <div class="grid grid-cols-2">
                             <div>
                                 @svg('open-link-in-new')
@@ -69,24 +69,24 @@
 
                     @if (settings()->retrieve_web_title)
                     <div class="col-span-6">
-                        <label class="form-label">{{ __('Title') }}</label>
-                        <input name="title" required placeholder="{{ __('Title') }}" value="{{ $url->title }}" class="form-input">
+                        <label class="form-label">Title</label>
+                        <input name="title" required placeholder="Title" value="{{ $url->title }}" class="form-input">
                     </div>
                     @endif
 
                     <div class="col-span-6">
-                        <label class="form-label">{{ __('Destination URL') }}</label>
+                        <label class="form-label">Destination URL</label>
                         <input name="long_url" required placeholder="http://www.my_long_url.com" value="{{ $url->destination }}" class="form-input">
                     </div>
 
                     <div class="col-span-6">
-                        <label class="form-label">{{ __('Android Link') }}</label>
+                        <label class="form-label">Android Link</label>
                         <p class="font-light text-sm dark:text-dark-400 mb-2">Android devices will be automatically redirected to this link.</p>
                         <input name="dest_android" placeholder="https://play.google.com/store/apps" value="{{ $url->dest_android }}" class="form-input">
                     </div>
 
                     <div class="col-span-6">
-                        <label class="form-label">{{ __('iOS Link') }}</label>
+                        <label class="form-label">iOS Link</label>
                         <p class="font-light text-sm dark:text-dark-400 mb-2">iOS devices will be automatically redirected to this link.</p>
                         <input name="dest_ios" placeholder="https://apps.apple.com/us/charts/iphone" value="{{ $url->dest_ios }}" class="form-input">
                     </div>
@@ -174,7 +174,7 @@
 
                 <div class="flex items-center justify-end mt-8 text-right">
                     <button type="submit" class="btn btn-primary btn-sm">
-                        {{ __('Save Changes') }}
+                        Save Changes
                     </button>
                 </div>
             </div>

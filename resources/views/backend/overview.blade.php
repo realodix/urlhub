@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Overview'))
+@section('title', 'Overview')
 @section('content')
 <div class="container-alt max-w-4xl">
     <div class="content-container card card-master">

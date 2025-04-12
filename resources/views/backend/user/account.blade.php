@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Edit Account').' "'.$user->name.'"'.' ‹ '.str()->title(auth()->user()->name))
+@section('title', 'Edit Account "'.$user->name.'" ‹ '.str()->title(auth()->user()->name))
 
 @section('content')
 
@@ -8,10 +8,10 @@
     <div class="flex flex-wrap">
         <div class="md:w-3/12 flex justify-between">
             <div class="px-4 sm:px-0">
-                <h3>{{ __('Account Information') }}</h3>
+                <h3>Account Information</h3>
 
                 <p class="mt-1 text-sm text-slate-600 dark:text-dark-400">
-                    {{ __("Update your account information.") }}
+                    Update your account information.
                 </p>
             </div>
         </div>
@@ -23,12 +23,12 @@
                 <div class="content-container card card-master">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 lg:col-span-4">
-                            <label class="form-label">{{ __('Username') }}</label>
+                            <label class="form-label">Username</label>
                             <input name="name" value="{{ $user->name }}" class="form-input mt-1" disabled>
-                            <small class="block text-red-600 dark:text-red-500"><i>{{ __('Usernames cannot be changed.') }}</i></small>
+                            <small class="block text-red-600 dark:text-red-500"><i>Usernames cannot be changed.</i></small>
                         </div>
                         <div class="col-span-6 lg:col-span-4">
-                            <label class="form-label">{{ __('E-mail Address') }}</label>
+                            <label class="form-label">E-mail Address</label>
                             <input type="email" name="email" placeholder="{{ $user->email }}" class="form-input mt-1">
                         </div>
                         @if (settings()->forward_query)
@@ -55,7 +55,7 @@
 
                     <div class="flex items-center justify-end mt-8 text-right">
                         <button type="submit" class="btn btn-primary btn-sm">
-                            {{ __('Save') }}
+                            Save
                         </button>
                     </div>
                 </div>

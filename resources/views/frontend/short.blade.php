@@ -35,7 +35,7 @@
             <div class="col-span-3 pt-4">
                 <div class="flex justify-end pr-6 my-[2rem_3rem] sm:my-0">
                     <button id="clipboard_shortlink"
-                        title="{{ __('Copy the shortened URL to clipboard') }}"
+                        title="Copy the shortened URL to clipboard"
                         data-clipboard-text="{{ $url->short_url }}"
                         class="btn btn-secondary btn-square btn-sm mr-6"
                     >
@@ -43,10 +43,10 @@
                     </button>
 
                     @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-                        <a href="{{ route('link.edit', $url) }}" title="{{ __('Edit') }}" class="btn btn-secondary btn-square btn-sm mr-6">
+                        <a href="{{ route('link.edit', $url) }}" title="Edit" class="btn btn-secondary btn-square btn-sm mr-6">
                             @svg('icon-edit')
                         </a>
-                        <a href="{{ route('link_detail.delete', $url) }}" title="{{ __('Delete') }}"
+                        <a href="{{ route('link_detail.delete', $url) }}" title="Delete"
                             class="btn btn-delete btn-square btn-sm"
                         >
                             @svg('icon-trash')

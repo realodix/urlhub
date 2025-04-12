@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Overview'))
+@section('title', 'Overview')
 @section('content')
 <div class="container-alt max-w-340">
     <div x-data="{activeTab: 'tabDay'}">

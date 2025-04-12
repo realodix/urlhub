@@ -16,9 +16,9 @@
                 <form action="{{ route('user.delete', $user) }}" method="POST">
                     @csrf @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-delete-danger">
-                        {{ __('Confirm Deletion') }}
+                        Confirm Deletion
                     </button>
-                    <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary ml-4">{{ __('Cancel') }}</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary ml-4">Cancel</a>
                 </form>
             </div>
         </div>

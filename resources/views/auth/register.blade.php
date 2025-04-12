@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', __('Register'))
+@section('title', 'Register')
 
 @section('css_class', 'auth')
 
@@ -12,12 +12,12 @@
 
     <div class="auth-box card">
         @if (settings()->anyone_can_register === false)
-            <p class="text-muted">{{ __('Sorry, we are closed for registrations at this time.') }}</p>
+            <p class="text-muted">Sorry, we are closed for registrations at this time.</p>
         @else
-            <form method="post" action="{{ route('register') }}" aria-label="{{ __('Register') }}" class="space-y-4">
+            <form method="post" action="{{ route('register') }}" aria-label="Register" class="space-y-4">
             @csrf
                 <div>
-                    <label class="form-label">{{ __('Username') }}</label>
+                    <label class="form-label">Username</label>
                     <input name="name" required class="form-input mt-1" autofocus>
 
                     @if ($errors->has('name'))
@@ -26,7 +26,7 @@
                 </div>
 
                 <div>
-                    <label class="form-label">{{ __('Email') }}</label>
+                    <label class="form-label">Email</label>
                     <input type="email" name="email" required class="form-input mt-1">
 
                     @if ($errors->has('email'))
@@ -35,7 +35,7 @@
                 </div>
 
                 <div>
-                    <label class="form-label">{{ __('Password') }}</label>
+                    <label class="form-label">Password</label>
                     <input type="password" name="password" required class="form-input mt-1">
 
                     @if ($errors->has('password'))
@@ -44,11 +44,11 @@
                 </div>
 
                 <div>
-                    <label class="form-label">{{ __('Password Confirmation') }}</label>
+                    <label class="form-label">Password Confirmation</label>
                     <input type="password" name="password_confirmation" required class="form-input mt-1">
                 </div>
 
-                <button type="submit" class="btn btn-primary w-full !mt-6">{{ __('Create Account') }}</button>
+                <button type="submit" class="btn btn-primary w-full !mt-6">Create Account</button>
             </form>
         @endif
     </div>

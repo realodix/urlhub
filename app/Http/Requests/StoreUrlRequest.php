@@ -59,10 +59,10 @@ class StoreUrlRequest extends FormRequest
     public function messages()
     {
         return [
-            'long_url.required' => __('The URL field must be filled, should not be empty.'),
-            'expires_at.after' => __('The :attribute must be a future date and time.'),
-            'custom_key.max'    => __('The custom url may not be greater than :max characters.'),
-            'custom_key.unique' => __(':input has already been taken'),
+            'long_url.required' => 'The URL field must be filled, should not be empty.',
+            'expires_at.after' => 'The :attribute must be a future date and time.',
+            'custom_key.max'    => 'The custom url may not be greater than :max characters.',
+            'custom_key.unique' => ':input has already been taken',
         ];
     }
 }

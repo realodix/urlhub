@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', __('Forgot Password'))
+@section('title', 'Forgot Password')
 
 @section('css_class', 'auth')
 
@@ -23,7 +23,7 @@
     <div class="auth-box card">
         <h1 class="text-2xl font-extrabold tracking-tight lg:text-5xl mb-6">Forgot Password</h1>
         <p class="text-sm text-gray-600 dark:text-dark-400">
-            {{ __('Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
         </p>
 
         <br>
@@ -31,12 +31,12 @@
         <form method="POST" action="{{ route('password.email') }}" class="space-y-4">
         @csrf
             <div>
-                <label class="form-label">{{ __('Email') }}</label>
+                <label class="form-label">Email</label>
                 <input type="email" name="email" required value="{{ old('email') }}" class="form-input" autofocus>
             </div>
 
             <button type="submit" class="btn btn-primary w-full">
-                {{ __('Email Password Reset Link') }}
+                Email Password Reset Link
             </button>
         </form>
 

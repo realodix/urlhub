@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('About System'))
+@section('title', 'About')
 @section('content')
 <div class="page_about container-alt max-w-4xl">
     @php
@@ -60,7 +60,7 @@
     @endphp
     <div class="config content-container card card-master">
         <h1 class="text-2xl">
-            {{ __('Configuration') }}
+            Configuration
             <p class="font-light text-sm float-right"><span class="text-gray-500/85">.\config</span>\urlhub.php</p>
         </h1>
 

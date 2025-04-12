@@ -116,7 +116,7 @@ class LinkController extends Controller implements HasMiddleware
         $url->save();
 
         return redirect()->back()
-            ->with('flash_success', __('Link updated successfully !'));
+            ->with('flash_success', 'Link updated successfully !');
     }
 
     /**
@@ -139,7 +139,7 @@ class LinkController extends Controller implements HasMiddleware
         }
 
         return redirect()->back()
-            ->with('flash_success', __('Link was successfully deleted.'));
+            ->with('flash_success', 'Link was successfully deleted.');
     }
 
     /**

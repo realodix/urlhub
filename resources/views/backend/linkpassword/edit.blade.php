@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', __('Edit Password'))
+@section('title', 'Edit Password')
 
 @section('content')
     <div class="container-alt max-w-340">

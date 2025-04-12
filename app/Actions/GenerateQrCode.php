@@ -15,7 +15,7 @@ class GenerateQrCode
     {
         $builder = new Builder(
             data: $data,
-            labelText: __('Scan QR Code'),
+            labelText: 'Scan QR Code',
             size: 170,
             margin: 0,
             writer: new \Endroid\QrCode\Writer\PngWriter,
