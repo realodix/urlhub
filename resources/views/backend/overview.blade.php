@@ -172,7 +172,7 @@
                         @else
                             @php
                                 $number = strlen($keyGenService::ALPHABET);
-                                $powNumber = settings()->keyword_length;
+                                $powNumber = settings()->key_len;
                                 $result = number_format($keyGenService->maxUniqueStrings());
                             @endphp
 

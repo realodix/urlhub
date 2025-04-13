@@ -10,11 +10,11 @@ class GeneralSettings extends Settings
 
     public bool $anyone_can_register;
 
-    public int $keyword_length;
+    public int $key_len;
 
-    public int $custom_keyword_min_length;
+    public int $cst_key_min_len;
 
-    public int $custom_keyword_max_length;
+    public int $cst_key_max_len;
 
     public bool $retrieve_web_title;
 
@@ -41,9 +41,9 @@ class GeneralSettings extends Settings
         $this->fill([
             'anyone_can_shorten' => request()->boolean('anyone_can_shorten'),
             'anyone_can_register' => request()->boolean('anyone_can_register'),
-            'keyword_length' => request()->input('keyword_length'),
-            'custom_keyword_min_length' => request()->input('custom_keyword_min_length'),
-            'custom_keyword_max_length' => request()->input('custom_keyword_max_length'),
+            'key_len' => request()->input('keyword_length'),
+            'cst_key_min_len' => request()->input('custom_keyword_min_length'),
+            'cst_key_max_len' => request()->input('custom_keyword_max_length'),
             'retrieve_web_title' => request()->boolean('retrieve_web_title'),
             'forward_query' => request()->boolean('forward_query'),
             'redirect_cache_max_age' => request()->input('redirect_cache_max_age'),

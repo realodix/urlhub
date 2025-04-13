@@ -47,7 +47,7 @@ class KeyGeneratorService
      */
     public function shortHash(string $value): string
     {
-        return substr(hash('xxh3', $value), 0, $this->settings->keyword_length);
+        return substr(hash('xxh3', $value), 0, $this->settings->key_len);
     }
 
     /**
@@ -59,7 +59,7 @@ class KeyGeneratorService
     public function randomString(): string
     {
         $characters = self::ALPHABET;
-        $length = $this->settings->keyword_length;
+        $length = $this->settings->key_len;
 
         if (\PHP_VERSION_ID < 80300) {
             $charLength = strlen($characters);
@@ -183,7 +183,7 @@ class KeyGeneratorService
     public function maxUniqueStrings(): int
     {
         $charSize = strlen(self::ALPHABET);
-        $strLen = $this->settings->keyword_length;
+        $strLen = $this->settings->key_len;
 
         $maxUniqueStrings = pow($charSize, $strLen);
 
@@ -203,7 +203,7 @@ class KeyGeneratorService
      */
     public function keywordCount(): int
     {
-        $length = $this->settings->keyword_length;
+        $length = $this->settings->key_len;
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$length])
             ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql',

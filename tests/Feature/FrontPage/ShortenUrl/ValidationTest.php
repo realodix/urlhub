@@ -105,8 +105,8 @@ class ValidationTest extends TestCase
         $maxLen = 7;
 
         settings()->fill([
-            'custom_keyword_min_length' => $minLen,
-            'custom_keyword_max_length' => $maxLen,
+            'cst_key_min_len' => $minLen,
+            'cst_key_max_len' => $maxLen,
         ])->save();
 
         $component->assertStatus(200);

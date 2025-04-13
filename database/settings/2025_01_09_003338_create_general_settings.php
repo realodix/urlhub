@@ -9,9 +9,9 @@ return new class extends SettingsMigration
         $this->migrator->add('general.anyone_can_shorten', true);
         $this->migrator->add('general.anyone_can_register', true);
 
-        $this->migrator->add('general.keyword_length', 5);
-        $this->migrator->add('general.custom_keyword_min_length', 3);
-        $this->migrator->add('general.custom_keyword_max_length', 11);
+        $this->migrator->add('general.key_len', 5);
+        $this->migrator->add('general.cst_key_min_len', 3);
+        $this->migrator->add('general.cst_key_max_len', 11);
         $this->migrator->add('general.retrieve_web_title', false);
 
         $this->migrator->add('general.redirect_cache_max_age', 30);

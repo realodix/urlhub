@@ -73,7 +73,7 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $inputString = 'foobar';
         $strLen = 8;
-        settings()->fill(['keyword_length' => $strLen])->save();
+        settings()->fill(['key_len' => $strLen])->save();
 
         $actual = $this->keyGen->generate($inputString);
         $this->assertSame($strLen, strlen($actual));
@@ -184,10 +184,10 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $charLen = strlen($this->keyGen::ALPHABET);
 
-        settings()->fill(['keyword_length' => 2])->save();
+        settings()->fill(['key_len' => 2])->save();
         $this->assertSame(pow($charLen, 2), $this->keyGen->maxUniqueStrings());
 
-        settings()->fill(['keyword_length' => 12])->save();
+        settings()->fill(['key_len' => 12])->save();
         $this->assertSame(PHP_INT_MAX, $this->keyGen->maxUniqueStrings());
     }
 
@@ -197,8 +197,8 @@ class KeyGeneratorServiceTest extends TestCase
     public function testKeywordCountBasedOnStringLength(): void
     {
         $settings = app(\App\Settings\GeneralSettings::class);
-        $keywordLength = $settings->keyword_length + 1;
-        settings()->fill(['keyword_length' => $keywordLength])->save();
+        $keywordLength = $settings->key_len + 1;
+        settings()->fill(['key_len' => $keywordLength])->save();
 
         Url::factory()->create([
             'keyword' => $this->keyGen->randomString(),
@@ -211,15 +211,15 @@ class KeyGeneratorServiceTest extends TestCase
         ]);
         $this->assertSame(2, $this->keyGen->keywordCount());
 
-        // Karena panjang karakter 'keyword' berbeda dengan dengan 'keyword_length',
+        // Karena panjang karakter 'keyword' berbeda dengan dengan 'key_len',
         // maka ini tidak ikut terhitung.
         Url::factory()->create([
-            'keyword' => str_repeat('b', $settings->keyword_length + 2),
+            'keyword' => str_repeat('b', $settings->key_len + 2),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGen->keywordCount());
 
-        settings()->fill(['keyword_length' => $settings->keyword_length + 3])->save();
+        settings()->fill(['key_len' => $settings->key_len + 3])->save();
         $this->assertSame(0, $this->keyGen->keywordCount());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
@@ -229,7 +229,7 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testKeywordCountBasedOnStringCharacters(): void
     {
-        settings()->fill(['keyword_length' => 5])->save();
+        settings()->fill(['key_len' => 5])->save();
 
         Url::factory()->create(['keyword' => 'ab-cd']);
         $this->assertSame(0, $this->keyGen->keywordCount());
