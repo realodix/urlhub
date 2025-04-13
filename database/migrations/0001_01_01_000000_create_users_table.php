@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('forward_query')->default(true);
+            $table->string('timezone', 50)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

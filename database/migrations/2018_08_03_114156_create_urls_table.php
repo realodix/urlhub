@@ -17,6 +17,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
+            $table->string('user_type', 10)->nullable();
 
             if (Schema::getConnection()->getConfig('driver') === 'mysql') {
                 $table->string('keyword')
@@ -27,9 +28,10 @@ return new class extends Migration
             }
 
             $table->boolean('is_custom');
-            $table->longText('destination');
+            $table->text('destination');
             $table->string('title');
-            $table->string('user_sign');
+            $table->boolean('forward_query')->default(true);
+            $table->string('user_uid');
             $table->timestamps();
         });
     }

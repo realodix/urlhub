@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('url_id')->constrained()->cascadeOnDelete();
-            $table->string('visitor_id');
+            $table->string('user_type', 10)->nullable();
             $table->boolean('is_first_click');
             $table->string('referer', 300)->nullable();
+            $table->string('user_uid');
             $table->timestamps();
         });
     }
