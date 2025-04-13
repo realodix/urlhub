@@ -14,6 +14,7 @@ return new class extends SettingsMigration
         $this->migrator->add('general.cst_key_max_len', 11);
         $this->migrator->add('general.autofill_link_title', false);
 
+        $this->migrator->add('general.forward_query', true);
         $this->migrator->add('general.redirect_cache_max_age', 30);
         $this->migrator->add('general.track_bot_visits', false);
     }

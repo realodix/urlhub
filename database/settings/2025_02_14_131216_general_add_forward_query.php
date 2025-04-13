@@ -6,6 +6,8 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('general.forward_query', true);
+        if (! $this->migrator->exists('general.forward_query')) {
+            $this->migrator->add('general.forward_query', true);
+        }
     }
 };
