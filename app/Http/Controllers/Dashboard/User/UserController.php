@@ -46,7 +46,7 @@ class UserController extends Controller implements HasMiddleware
     {
         $request->validate([
             'username' => ['required', ...UserRules::name()],
-            'email'    => ['required', ...UserRules::email()],
+            'email' => ['required', ...UserRules::email()],
             'password' => ['required', ...UserRules::password()],
         ]);
 

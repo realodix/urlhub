@@ -13,15 +13,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name'       => 'admin',
-            'email'      => 'admin@urlhub.test',
-            'password'   => 'admin',
+            'name' => 'admin',
+            'email' => 'admin@urlhub.test',
+            'password' => 'admin',
         ])->assignRole('admin');
 
         User::factory()->create([
-            'name'       => 'user',
-            'email'      => 'user@urlhub.test',
-            'password'   => 'user',
+            'name' => 'user',
+            'email' => 'user@urlhub.test',
+            'password' => 'user',
         ]);
     }
 }

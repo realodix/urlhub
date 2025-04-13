@@ -19,11 +19,11 @@ class VisitFactory extends Factory
     public function definition(): array
     {
         return [
-            'url_id'         => Url::factory(),
-            'user_type'      => UserType::User,
-            'user_uid'       => fake()->uuid(),
+            'url_id' => Url::factory(),
+            'user_type' => UserType::User,
+            'user_uid' => fake()->uuid(),
             'is_first_click' => true,
-            'referer'        => 'https://github.com/realodix/urlhub',
+            'referer' => 'https://github.com/realodix/urlhub',
         ];
     }
 

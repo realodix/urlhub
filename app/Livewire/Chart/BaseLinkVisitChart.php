@@ -29,10 +29,10 @@ abstract class BaseLinkVisitChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label'           => 'Visits',
-                    'data'            => $this->chartData(),
+                    'label' => 'Visits',
+                    'data' => $this->chartData(),
                     'backgroundColor' => '#006edb',
-                    'borderColor'     => '#006edb',
+                    'borderColor' => '#006edb',
                 ],
             ],
             'labels' => $this->chartLabel(),

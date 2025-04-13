@@ -21,16 +21,16 @@ class UrlFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'     => User::factory(),
-            'user_type'   => UserType::User,
+            'user_id' => User::factory(),
+            'user_type' => UserType::User,
             'destination' => 'https://github.com/realodix/urlhub',
             'dest_android' => 'https://play.google.com/store/apps/details?id=com.canva.editor',
-            'dest_ios'    => 'https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215',
-            'title'       => 'No Title',
-            'keyword'     => app(KeyGeneratorService::class)->randomString(),
+            'dest_ios' => 'https://apps.apple.com/us/app/canva-ai-photo-video-editor/id897446215',
+            'title' => 'No Title',
+            'keyword' => app(KeyGeneratorService::class)->randomString(),
             'forward_query' => true,
-            'is_custom'   => false,
-            'user_uid'    => fake()->uuid(),
+            'is_custom' => false,
+            'user_uid' => fake()->uuid(),
         ];
     }
 

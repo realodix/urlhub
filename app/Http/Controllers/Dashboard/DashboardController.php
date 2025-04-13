@@ -97,7 +97,7 @@ class DashboardController extends Controller implements HasMiddleware
 
         return view('backend.url-list-by-user', [
             'authorName' => $author,
-            'authorId'   => $authorId,
+            'authorId' => $authorId,
         ]);
     }
 

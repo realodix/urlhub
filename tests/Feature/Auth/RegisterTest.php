@@ -58,8 +58,8 @@ class RegisterTest extends TestCase
         Event::fake();
 
         $response = $this->post($this->postRoute(), [
-            'name'     => 'usernametest',
-            'email'    => 'email@example.com',
+            'name' => 'usernametest',
+            'email' => 'email@example.com',
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
@@ -83,8 +83,8 @@ class RegisterTest extends TestCase
     {
         $user = User::factory()->create(['name' => 'test']);
         $response = $this->post('/register', [
-            'name'     => $user->name,
-            'email'    => 'john@example.com',
+            'name' => $user->name,
+            'email' => 'john@example.com',
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
@@ -99,8 +99,8 @@ class RegisterTest extends TestCase
     public function storeUsernameAndEmailAsLowerCase(): void
     {
         $this->post('/register', [
-            'name'     => 'Test',
-            'email'    => 'John@example.com',
+            'name' => 'Test',
+            'email' => 'John@example.com',
             'password' => 'i-love-laravel',
             'password_confirmation' => 'i-love-laravel',
         ]);
@@ -121,8 +121,8 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => '',
-                'email'    => 'john@example.com',
+                'name' => '',
+                'email' => 'john@example.com',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => 'i-love-laravel',
             ]);
@@ -142,8 +142,8 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'usernametest',
-                'email'    => '',
+                'name' => 'usernametest',
+                'email' => '',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => 'i-love-laravel',
             ]);
@@ -163,8 +163,8 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'usernametest',
-                'email'    => 'invalid-email',
+                'name' => 'usernametest',
+                'email' => 'invalid-email',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => 'i-love-laravel',
             ]);
@@ -196,8 +196,8 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'usernametest',
-                'email'    => 'john@example.com',
+                'name' => 'usernametest',
+                'email' => 'john@example.com',
                 'password' => '',
                 'password_confirmation' => '',
             ]);
@@ -218,8 +218,8 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'usernametest',
-                'email'    => 'john@example.com',
+                'name' => 'usernametest',
+                'email' => 'john@example.com',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => '',
             ]);
@@ -240,8 +240,8 @@ class RegisterTest extends TestCase
     {
         $response = $this->from($this->getRoute())
             ->post($this->postRoute(), [
-                'name'     => 'usernametest',
-                'email'    => 'john@example.com',
+                'name' => 'usernametest',
+                'email' => 'john@example.com',
                 'password' => 'i-love-laravel',
                 'password_confirmation' => 'i-love-symfony',
             ]);

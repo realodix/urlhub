@@ -40,6 +40,7 @@ class StoreUrlRequest extends FormRequest
     public function rules()
     {
         return [
+            'custom_key' => ['nullable', ...LinkRules::customKeyword()],
             'long_url' => ['required', ...LinkRules::link()],
             'dest_android' => ['nullable', ...LinkRules::link()],
             'dest_ios' => ['nullable', ...LinkRules::link()],
@@ -47,7 +48,6 @@ class StoreUrlRequest extends FormRequest
             'expired_clicks' => ['nullable', 'integer', 'min:0'],
             'expired_url' => ['nullable', ...LinkRules::link()],
             'expired_notes' => ['nullable', 'max:200'],
-            'custom_key' => ['nullable', ...LinkRules::customKeyword()],
         ];
     }
 
@@ -61,7 +61,7 @@ class StoreUrlRequest extends FormRequest
         return [
             'long_url.required' => 'The URL field must be filled, should not be empty.',
             'expires_at.after' => 'The :attribute must be a future date and time.',
-            'custom_key.max'    => 'The custom url may not be greater than :max characters.',
+            'custom_key.max' => 'The custom url may not be greater than :max characters.',
             'custom_key.unique' => ':input has already been taken',
         ];
     }

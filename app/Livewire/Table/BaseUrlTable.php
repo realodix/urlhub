@@ -73,7 +73,7 @@ abstract class BaseUrlTable extends PowerGridComponent
             })
             ->add('visits_count', function (Url $url) {
                 return view('components.table.visit', [
-                    'clicks'       => $url->visits_count,
+                    'clicks' => $url->visits_count,
                     'uniqueClicks' => $url->unique_visit_count,
                 ])->render();
             })
