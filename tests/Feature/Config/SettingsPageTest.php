@@ -74,7 +74,7 @@ class SettingsPageTest extends TestCase
             'keyword_length' => 7,
             'custom_keyword_min_length' => 5,
             'custom_keyword_max_length' => 10,
-            'retrieve_web_title' => true,
+            'autofill_link_title' => true,
             'forward_query' => true,
             'redirect_cache_max_age' => 1,
             'track_bot_visits' => true,

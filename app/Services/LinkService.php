@@ -31,7 +31,7 @@ class LinkService
     {
         $defaultTitle = null;
 
-        if ($this->settings->retrieve_web_title && Str::isUrl($value)) {
+        if ($this->settings->autofill_link_title && Str::isUrl($value)) {
             $title = rescue(
                 fn() => app(\Embed\Embed::class)->get($value)->title,
                 $defaultTitle,

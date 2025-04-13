@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    @if (settings()->retrieve_web_title)
+                    @if (settings()->autofill_link_title)
                     <div class="col-span-6">
                         <label class="form-label">Title</label>
                         <input name="title" required placeholder="Title" value="{{ $url->title }}" class="form-input">

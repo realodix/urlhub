@@ -16,7 +16,7 @@ class GeneralSettings extends Settings
 
     public int $cst_key_max_len;
 
-    public bool $retrieve_web_title;
+    public bool $autofill_link_title;
 
     public bool $forward_query;
 
@@ -44,7 +44,7 @@ class GeneralSettings extends Settings
             'key_len' => request()->input('keyword_length'),
             'cst_key_min_len' => request()->input('custom_keyword_min_length'),
             'cst_key_max_len' => request()->input('custom_keyword_max_length'),
-            'retrieve_web_title' => request()->boolean('retrieve_web_title'),
+            'autofill_link_title' => request()->boolean('autofill_link_title'),
             'forward_query' => request()->boolean('forward_query'),
             'redirect_cache_max_age' => request()->input('redirect_cache_max_age'),
             'track_bot_visits' => request()->boolean('track_bot_visits'),

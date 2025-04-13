@@ -55,10 +55,10 @@
                             class="form-input mt-4 md:mt-3 max-w-100 @error('custom_keyword_max_length') !border-red-300 @enderror">
                     </div>
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-label">Fetch Website Title</label>
-                        <div class="font-light text-sm dark:text-dark-400">Automatically retrieves the website's title when creating a short URL. If disabled, the domain name will be used instead.</div>
+                        <label class="form-label">Autofill Link Title</label>
+                        <div class="font-light text-sm dark:text-dark-400">The title is filled by retrieving the website title when creating a short link.</div>
                         <label class="switch float-right mt-6">
-                            <input type="checkbox" name="retrieve_web_title" value="1" {{ $settings->retrieve_web_title ? 'checked' : '' }}>
+                            <input type="checkbox" name="autofill_link_title" value="1" {{ $settings->autofill_link_title ? 'checked' : '' }}>
                             <span class="slider"></span>
                         </label>
                     </div>
