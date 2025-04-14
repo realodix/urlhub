@@ -18,7 +18,7 @@ final class UrlTable extends BaseUrlTable
 
     protected function scopeByUser(Builder $query): Builder
     {
-        return $query->where('urls.user_type', UserType::User);
+        return $query->with('author')->where('urls.user_type', UserType::User);
     }
 
     /**

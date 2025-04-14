@@ -46,7 +46,6 @@ abstract class BaseUrlTable extends PowerGridComponent
     public function datasource(): Builder
     {
         return Url::where(fn(Builder $query) => $this->scopeByUser($query))
-            ->with('author')
             ->withCount([
                 'visits',
                 'visits as unique_visit_count' => function (Builder $query) {
