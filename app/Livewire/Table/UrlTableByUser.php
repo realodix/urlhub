@@ -13,7 +13,7 @@ final class UrlTableByUser extends BaseUrlTable
 
     public ?int $user_id;
 
-    protected function scopeByUser(Builder $query): Builder
+    protected function scopeDatasource(Builder $query): Builder
     {
         return $query->where('urls.user_id', $this->user_id);
     }
