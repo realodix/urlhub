@@ -85,6 +85,8 @@ class LinkService
     public static function getTopUrlsByVisits(?User $user = null, int $limit = 5)
     {
         $query = Url::withCount('visits')
+            // Eager load, when the author is needed (global overview page)
+            ->with('author')
             ->whereHas('visits')
             ->when($user instanceof User, function ($query) use ($user) {
                 return $query->where('user_id', $user->id);
