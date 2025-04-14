@@ -34,7 +34,7 @@ class LinkVisitPerMonthChart extends BaseLinkVisitChart
     {
         $period = $this->period();
 
-        $rawData = $this->getDataForPeriod($period)
+        $rawData = $this->getPeriodData($period)
             ->countBy(function (Visit $visit) {
                 return $visit->created_at->startOfMonth()->format('Y-m');
             });

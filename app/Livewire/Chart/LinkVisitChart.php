@@ -37,7 +37,7 @@ class LinkVisitChart extends BaseLinkVisitChart
     {
         $period = $this->period();
 
-        $rawData = $this->getDataForPeriod($period)
+        $rawData = $this->getPeriodData($period)
             ->countBy(fn(Visit $visit) => $visit->created_at->format('Y-m-d'));
 
         // Calculate the number of visits per day

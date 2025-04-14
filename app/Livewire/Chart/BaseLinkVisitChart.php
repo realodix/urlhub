@@ -48,7 +48,7 @@ abstract class BaseLinkVisitChart extends ChartWidget
      *
      * @return \Illuminate\Database\Eloquent\Collection<int, \App\Models\Visit>
      */
-    protected function getDataForPeriod(CarbonPeriod $period)
+    protected function getPeriodData(CarbonPeriod $period)
     {
         return Visit::query()
             ->when($this->model instanceof User, function ($query) {
