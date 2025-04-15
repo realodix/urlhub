@@ -7,7 +7,7 @@
         <div>
             <ul class="flex space-x-4 -mb-px ml-2">
                 @php
-                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-200 dark:border-dark-700';
+                    $activeTabClasses = 'bg-white dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700';
                     $inactiveTabClasses = 'text-dark-500 dark:hover:text-emerald-700';
                 @endphp
                 <li class="mr-2">
