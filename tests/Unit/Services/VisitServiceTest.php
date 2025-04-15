@@ -7,6 +7,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use App\Services\VisitService;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -124,11 +125,21 @@ class VisitServiceTest extends TestCase
     {
         Visit::factory()->create(); // user1
         Visit::factory()->guest()->create(); // guest1
-        Visit::factory()->guest()->count(2)->create(['user_uid' => 'foo']); // guest2
-        Visit::factory()->count(2)->create([ // bot
-            'user_type' => UserType::Bot,
-            'user_uid' => 'bar',
-        ]);
+        Visit::factory()->guest()->count(2)
+            ->sequence(function (Sequence $sequence) {
+                return [
+                    'is_first_click' => $sequence->index === 0,
+                    'user_uid' => 'foo',
+                ];
+            })->create(); // guest2
+        Visit::factory()->count(2)
+            ->sequence(function (Sequence $sequence) {
+                return [
+                    'is_first_click' => $sequence->index === 0,
+                    'user_type' => UserType::Bot,
+                    'user_uid' => 'bar',
+                ];
+            })->create();
     }
 
     public function test_get_top_referrers()

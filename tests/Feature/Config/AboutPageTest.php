@@ -74,15 +74,15 @@ class AboutPageTest extends TestCase
         Visit::factory()->for($userLink)->guest()
             ->create(['user_uid' => 'bar']);
         Visit::factory()->for($userLink)
-            ->create(['user_type' => UserType::Bot, 'user_uid' => 'baz']);
+            ->create(['user_uid' => 'baz', 'user_type' => UserType::Bot]);
 
         Visit::factory()->for($guestLink)->create();
         Visit::factory()->for($guestLink)->guest()
-            ->create(['user_uid' => 'foo']);
+            ->create(['is_first_click' => false, 'user_uid' => 'foo']);
         Visit::factory()->for($guestLink)->guest()
-            ->create(['user_uid' => 'bar']);
+            ->create(['is_first_click' => false, 'user_uid' => 'bar']);
         Visit::factory()->for($guestLink)
-            ->create(['user_type' => UserType::Bot, 'user_uid' => 'baz']);
+            ->create(['is_first_click' => false, 'user_uid' => 'baz', 'user_type' => UserType::Bot]);
     }
 
     /*
