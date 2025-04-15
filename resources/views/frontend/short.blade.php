@@ -176,10 +176,15 @@
                                                                     @endif
                                                                 </span>
                                                             </div>
+
+                                                            @php
+                                                                $percentage = round(($referrerData->total/$topReferrers->sum('total')) * 100);
+                                                            @endphp
                                                             <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                                {{ number_format($referrerData->total) }}
+                                                                {{ number_format($referrerData->total) }} ({{ $percentage }}%)
                                                             </div>
                                                         </div>
+                                                        <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
                                                     </div>
                                                 </div>
                                             @empty
@@ -205,10 +210,15 @@
                                                                     @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
                                                                 </span>
                                                             </div>
+
+                                                            @php
+                                                                $percentage = round(($browserData->total/$topBrowsers->sum('total')) * 100);
+                                                            @endphp
                                                             <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                                {{ number_format($browserData->total) }}
+                                                                {{ number_format($browserData->total) }} ({{ $percentage }}%)
                                                             </div>
                                                         </div>
+                                                        <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
                                                     </div>
                                                 </div>
                                             @empty
@@ -234,10 +244,15 @@
                                                                     @if($osData->os) {{ $osData->os }} @else Unknown  @endif
                                                                 </span>
                                                             </div>
+
+                                                            @php
+                                                                $percentage = round(($osData->total/$topOS->sum('total')) * 100);
+                                                            @endphp
                                                             <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                                                 {{ number_format($osData->total) }}
                                                             </div>
                                                         </div>
+                                                        <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
                                                     </div>
                                                 </div>
                                             @empty
