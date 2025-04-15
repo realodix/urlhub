@@ -43,7 +43,11 @@ class AboutPageTest extends TestCase
     const VISIT_COUNT = 8;
     const USER_VISITS = 2;
     const GUEST_VISITS = 6;
-    const UNIQUE_GUEST_VISITS = 3;
+
+    // ..
+    const VISITORS = 5;
+    const VISITOR_USER = 2;
+    const VISITOR_GUEST = 3;
 
     // ..
     const KEYWORD_COUNT = 1;
@@ -203,9 +207,21 @@ class AboutPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function uniqueGuestVisits(): void
+    public function visitors(): void
     {
-        $this->assertSame(self::UNIQUE_GUEST_VISITS, $this->visitService->uniqueGuestVisits());
+        $this->assertSame(self::VISITORS, $this->visitService->visitors());
+    }
+
+    #[PHPUnit\Test]
+    public function userVisitors(): void
+    {
+        $this->assertSame(self::VISITOR_USER, $this->visitService->userVisitors());
+    }
+
+    #[PHPUnit\Test]
+    public function guestVisitors(): void
+    {
+        $this->assertSame(self::VISITOR_GUEST, $this->visitService->guestVisitors());
     }
 
     /*

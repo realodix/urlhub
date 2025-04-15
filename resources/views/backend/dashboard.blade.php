@@ -7,7 +7,7 @@
         @include('partials.messages')
     </div>
 
-    <div class="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+    <div class="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
         <div class="card card-master shadow-xs p-4">
             <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
                 <span class="text-sm font-medium">Links</span>
@@ -24,6 +24,15 @@
             </div>
             <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
                 {{ n_abb($visitService->visitsOnAuthUser()) }}
+            </p>
+        </div>
+        <div class="card card-master shadow-xs p-4">
+            <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
+                <span class="text-sm font-medium">Visitors</span>
+                @svg('icon-people', 'mr-1.5 size-4')
+            </div>
+            <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
+                {{ n_abb(auth()->user()->visits()->distinct('visits.user_uid')->count()) }}
             </p>
         </div>
     </div>

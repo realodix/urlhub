@@ -1,7 +1,7 @@
 @php
     $tClick = n_abb($clicks);
     $uClick = n_abb($uniqueClicks);
-    $title = "{$tClick} Clicks / {$uClick} Uniques";
+    $title = "{$tClick} Clicks / {$uClick} Visitors";
 @endphp
 
 <div title="{{ $title }}" class="dark:text-dark-400">

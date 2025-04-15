@@ -103,13 +103,40 @@ class VisitServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function uniqueGuestVisits()
+    public function visitors()
     {
         $this->visitCountData();
 
-        $this->assertEquals(3, $this->visitService->uniqueGuestVisits());
+        $this->assertEquals(4, $this->visitService->visitors());
     }
 
+    #[PHPUnit\Test]
+    public function userVisitors()
+    {
+        $this->visitCountData();
+
+        $this->assertEquals(1, $this->visitService->userVisitors());
+    }
+
+    #[PHPUnit\Test]
+    public function guestVisitors()
+    {
+        $this->visitCountData();
+
+        $this->assertEquals(3, $this->visitService->guestVisitors());
+    }
+
+    /**
+     * Creates sample Visit data for testing visit counters.
+     *
+     * Visits (total: 6):
+     * - 1 user visit
+     * - 5 (1+2+2) guest visit
+     *
+     * Visitors (total: 4):
+     * - 1 user visitor
+     * - 3 guest visitors
+     */
     private function visitCountData()
     {
         Visit::factory()->create(); // user1

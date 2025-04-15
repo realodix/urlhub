@@ -78,7 +78,7 @@
                         Total
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
-                        <span title="{{ number_format($visit->count()) }}">{{ n_abb($visit->count()) }}</span>
+                        {{ n_abb($visit->count()) }} visits / {{ n_abb($visitService->visitors()) }} visitors
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -86,7 +86,7 @@
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
-                        <span title="{{ number_format($visitService->userVisits()) }}">{{ n_abb($visitService->userVisits()) }}</span>
+                        {{ n_abb($visitService->userVisits()) }} visits / {{ n_abb($visitService->userVisitors()) }} visitors
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -94,9 +94,7 @@
                         Guest
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
-                        <span title="{{ number_format($visitService->guestVisits()) }}">{{ n_abb($visitService->guestVisits()) }}</span>
-                        /
-                        <span title="{{ number_format($visitService->uniqueGuestVisits()) }}">{{ n_abb($visitService->uniqueGuestVisits()) }}</span>
+                        {{ n_abb($visitService->guestVisits()) }}</span> visits / {{ n_abb($visitService->guestVisitors()) }} visitors
                     </dd>
                 </div>
             </dl>

@@ -57,9 +57,11 @@ class VisitService
     /**
      *  Total users who clicked on a link.
      */
-    public function userVisits(): int
+    public function userVisits(bool $unique = false): int
     {
-        return Visit::where('user_type', UserType::User)->count();
+        return Visit::where('user_type', UserType::User)
+            ->when($unique, fn($query) => $query->distinct('user_uid'))
+            ->count();
     }
 
     /**
@@ -76,9 +78,25 @@ class VisitService
     }
 
     /**
+     *  Total visitors who clicked on a link.
+     */
+    public function visitors(): int
+    {
+        return Visit::distinct('user_uid')->count();
+    }
+
+    /**
+     *  Total unique users who clicked on a link.
+     */
+    public function userVisitors(): int
+    {
+        return $this->userVisits(true);
+    }
+
+    /**
      * Total unique guest users who clicked on a link.
      */
-    public function uniqueGuestVisits(): int
+    public function guestVisitors(): int
     {
         return $this->guestVisits(true);
     }
