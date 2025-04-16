@@ -208,10 +208,10 @@ class KeyGeneratorService
         return Url::whereRaw('LENGTH(keyword) = ?', [$length])
             ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql',
                 function (Builder $query) use ($length): void {
-                    $query->where('keyword', '~', '^[a-zA-Z0-9]{'.$length.'}$');
+                    $query->where('keyword', '~', '^['.self::ALPHABET.']{'.$length.'}$');
                 },
                 function (Builder $query) use ($length): void {
-                    $query->where('keyword', 'REGEXP', '^[a-zA-Z0-9]{'.$length.'}$');
+                    $query->where('keyword', 'REGEXP', '^['.self::ALPHABET.']{'.$length.'}$');
                 },
             )
             ->count();
