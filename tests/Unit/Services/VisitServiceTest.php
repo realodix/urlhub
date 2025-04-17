@@ -52,12 +52,11 @@ class VisitServiceTest extends TestCase
         Visit::factory()->count($nCurrentUser)
             ->for(Url::factory()->state(['user_id' => $user->id]))
             ->create();
-        Visit::factory()->count($nUser)
-            ->for(Url::factory())
-            ->create();
+        Visit::factory()->count($nUser)->for(Url::factory())->create();
 
         $this->actingAs($user);
         $this->assertSame($nCurrentUser, $this->visitService->visitsOnAuthUser());
+        // Keep this assertion to ensure other visits are counted correctly elsewhere
         $this->assertSame($nCurrentUser + $nUser, $this->visitService->visitsOnUserLinks());
     }
 
@@ -67,13 +66,8 @@ class VisitServiceTest extends TestCase
         $nUser = 6;
         $nGuest = 4;
 
-        Visit::factory()->count($nUser)
-            ->for(Url::factory())
-            ->create();
-
-        Visit::factory()->count($nGuest)
-            ->for(Url::factory()->guest())
-            ->create();
+        Visit::factory()->count($nUser)->for(Url::factory())->create();
+        Visit::factory()->count($nGuest)->for(Url::factory()->guest())->create();
 
         $this->assertSame($nUser, $this->visitService->visitsOnUserLinks());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
@@ -85,13 +79,8 @@ class VisitServiceTest extends TestCase
         $nUser = 6;
         $nGuest = 4;
 
-        Visit::factory()->count($nUser)
-            ->for(Url::factory())
-            ->create();
-
-        Visit::factory()->count($nGuest)
-            ->for(Url::factory()->guest())
-            ->create();
+        Visit::factory()->count($nUser)->for(Url::factory())->create();
+        Visit::factory()->count($nGuest)->for(Url::factory()->guest())->create();
 
         $this->assertSame($nGuest, $this->visitService->visitsOnGuestLinks());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
