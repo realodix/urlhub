@@ -25,7 +25,7 @@
                 <div>
                     <p class="text-slate-600 dark:text-dark-400 text-sm font-medium leading-4">Total Clicks</p>
                     <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
-                        {{ $urlVisitCount }}
+                        {{ n_abb($visitService->visitsOnAuthUser()) }}
                     </p>
                 </div>
             </div>
