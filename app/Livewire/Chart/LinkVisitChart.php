@@ -5,6 +5,7 @@ namespace App\Livewire\Chart;
 use App\Models\Visit;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Database\Eloquent\Collection;
 
 class LinkVisitChart extends BaseLinkVisitChart
 {
@@ -33,12 +34,19 @@ class LinkVisitChart extends BaseLinkVisitChart
     /**
      * Returns the visits trend data for the given date range.
      */
-    public function chartData(): array
+    public function chartData(bool $visitor = false): array
     {
         $period = $this->period();
+        $visits = $this->getPeriodData($period);
 
-        $rawData = $this->getPeriodData($period)
-            ->countBy(fn(Visit $visit) => $visit->created_at->format('Y-m-d'));
+        $groupByFormat = fn(Visit $visit) => $visit->created_at->format('Y-m-d');
+        if ($visitor) {
+            // Group by day, then calculate unique `user_uid` per day
+            $rawData = $visits->groupBy($groupByFormat)
+                ->map(fn(Collection $dailyVisits) => $dailyVisits->pluck('user_uid')->unique()->count());
+        } else {
+            $rawData = $visits->countBy($groupByFormat);
+        }
 
         // Calculate the number of visits per day
         $data = [];

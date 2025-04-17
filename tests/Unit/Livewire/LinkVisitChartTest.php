@@ -136,6 +136,114 @@ class LinkVisitChartTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    public function it_returns_correct_chart_data_for_unique_visitors_all()
+    {
+        $period = app(LinkVisitChart::class)->period();
+        $endDate = $period->getEndDate(); // 2024-12-31
+        $yesterday = $endDate->copy()->subDay(); // 2024-12-30
+        $twoDaysAgo = $endDate->copy()->subDays(2); // 2024-12-29
+
+        // Arrange: Visits with duplicate UIDs within the same day
+        // Today (endDate): uid1 (2x), uid2 (1x) -> Expected Unique: 2
+        Visit::factory()->create(['created_at' => $endDate, 'user_uid' => 'visitor-1']);
+        Visit::factory()->create(['created_at' => $endDate, 'user_uid' => 'visitor-1']);
+        Visit::factory()->create(['created_at' => $endDate, 'user_uid' => 'visitor-2']);
+        // Yesterday: uid1 (1x), uid3 (1x) -> Expected Unique: 2
+        Visit::factory()->create(['created_at' => $yesterday, 'user_uid' => 'visitor-1']);
+        Visit::factory()->guest()->create(['created_at' => $yesterday, 'user_uid' => 'visitor-3']); // Guest visitor
+        // Two days ago: uid2 (1x) -> Expected Unique: 1
+        Visit::factory()->create(['created_at' => $twoDaysAgo, 'user_uid' => 'visitor-2']);
+        // Visit outside period (should be ignored)
+        Visit::factory()->create(['created_at' => $period->getStartDate()->copy()->subDay(), 'user_uid' => 'visitor-4']);
+
+        // Act
+        $chartData = $this->chartComponent()->chartData(visitor: true);
+
+        // Assert
+        $this->assertCount($period->count(), $chartData);
+        // Index $period->count() - 1 corresponds to the end date (today)
+        $this->assertEquals(2, $chartData[$period->count() - 1], 'Unique visitors count for today mismatch.');
+        // Index $period->count() - 2 corresponds to yesterday
+        $this->assertEquals(2, $chartData[$period->count() - 2], 'Unique visitors count for yesterday mismatch.');
+        // Index $period->count() - 3 corresponds to two days ago
+        $this->assertEquals(1, $chartData[$period->count() - 3], 'Unique visitors count for two days ago mismatch.');
+
+        // Check a day with no visits
+        if ($period->count() > 4) {
+            $this->assertEquals(0, $chartData[$period->count() - 4], 'Unique visitors count for three days ago should be 0.');
+        }
+
+        // Check total sum matches the number of unique visitors within the period
+        $this->assertEquals(2 + 2 + 1, array_sum($chartData));
+    }
+
+    #[PHPUnit\Test]
+    public function it_returns_correct_chart_data_for_unique_visitors_user()
+    {
+        $period = app(LinkVisitChart::class)->period();
+        $endDate = $period->getEndDate();
+        $yesterday = $endDate->copy()->subDay();
+
+        $user = User::factory()->create();
+        $userUrl = Url::factory()->for($user, 'author')->create();
+        $otherUrl = Url::factory()->create();
+
+        // Arrange: Visits for the specific user's URL
+        // Today: uid1 (2x), uid2 (1x) on userUrl -> Expected Unique for user: 2
+        Visit::factory()->for($userUrl)->create(['created_at' => $endDate, 'user_uid' => 'user-visitor-1']);
+        Visit::factory()->for($userUrl)->create(['created_at' => $endDate, 'user_uid' => 'user-visitor-1']);
+        Visit::factory()->for($userUrl)->create(['created_at' => $endDate, 'user_uid' => 'user-visitor-2']);
+        // Yesterday: uid1 (1x) on userUrl -> Expected Unique for user: 1
+        Visit::factory()->for($userUrl)->create(['created_at' => $yesterday, 'user_uid' => 'user-visitor-1']);
+        // Visits for other URL or outside period (should be ignored by the component's filter)
+        Visit::factory()->for($otherUrl)->create(['created_at' => $endDate, 'user_uid' => 'other-visitor-1']);
+        Visit::factory()->guest()->create(['created_at' => $yesterday, 'user_uid' => 'guest-visitor']);
+        Visit::factory()->for($userUrl)->create(['created_at' => $period->getStartDate()->copy()->subDay(), 'user_uid' => 'user-visitor-1']);
+
+        // Act
+        $chartData = $this->chartComponent($user)->chartData(visitor: true);
+
+        // Assert
+        $this->assertCount($period->count(), $chartData);
+        $this->assertEquals(2, $chartData[$period->count() - 1], 'Unique visitors count for user today mismatch.');
+        $this->assertEquals(1, $chartData[$period->count() - 2], 'Unique visitors count for user yesterday mismatch.');
+        // Other days should be 0 unless visits were added there
+        $this->assertEquals(0, $chartData[0], 'Unique visitors count for user at start date should be 0.');
+    }
+
+    #[PHPUnit\Test]
+    public function it_returns_correct_chart_data_for_unique_visitors_url()
+    {
+        $period = app(LinkVisitChart::class)->period();
+        $endDate = $period->getEndDate();
+        $yesterday = $endDate->copy()->subDay();
+
+        $targetUrl = Url::factory()->create();
+        $otherUrl = Url::factory()->create();
+
+        // Arrange: Visits for the specific URL
+        // Today: uid1 (2x), uid2 (1x) on targetUrl -> Expected Unique for URL: 2
+        Visit::factory()->for($targetUrl)->create(['created_at' => $endDate, 'user_uid' => 'url-visitor-1']);
+        Visit::factory()->for($targetUrl)->create(['created_at' => $endDate, 'user_uid' => 'url-visitor-1']);
+        Visit::factory()->for($targetUrl)->create(['created_at' => $endDate, 'user_uid' => 'url-visitor-2']);
+        // Yesterday: uid1 (1x) on targetUrl -> Expected Unique for URL: 1
+        Visit::factory()->for($targetUrl)->create(['created_at' => $yesterday, 'user_uid' => 'url-visitor-1']);
+        // Visits for other URL or outside period (should be ignored)
+        Visit::factory()->for($otherUrl)->create(['created_at' => $endDate, 'user_uid' => 'other-visitor-1']);
+        Visit::factory()->guest()->create(['created_at' => $yesterday, 'user_uid' => 'guest-visitor']);
+        Visit::factory()->for($targetUrl)->create(['created_at' => $period->getStartDate()->copy()->subDay(), 'user_uid' => 'url-visitor-1']);
+
+        // Act
+        $chartData = $this->chartComponent($targetUrl)->chartData(visitor: true);
+
+        // Assert
+        $this->assertCount($period->count(), $chartData);
+        $this->assertEquals(2, $chartData[$period->count() - 1], 'Unique visitors count for URL today mismatch.');
+        $this->assertEquals(1, $chartData[$period->count() - 2], 'Unique visitors count for URL yesterday mismatch.');
+        $this->assertEquals(0, $chartData[0], 'Unique visitors count for URL at start date should be 0.');
+    }
+
+    #[PHPUnit\Test]
     public function it_returns_correct_chart_label()
     {
         $period = app(LinkVisitChart::class)->period();

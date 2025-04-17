@@ -6,6 +6,7 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use Carbon\CarbonPeriod;
+use Filament\Support\Colors\Color;
 use Filament\Widgets\ChartWidget;
 
 /**
@@ -31,15 +32,23 @@ abstract class BaseLinkVisitChart extends ChartWidget
                 [
                     'label' => 'Visits',
                     'data' => $this->chartData(),
-                    'backgroundColor' => '#006edb',
-                    'borderColor' => '#006edb',
+                    'backgroundColor' => 'rgba('.Color::Blue[400].', 0.5)',
+                    'borderColor' => 'rgb('.Color::Blue[400].')',
+                    'fill' => true,
+                ],
+                [
+                    'label' => 'Visitors',
+                    'data' => $this->chartData(visitor: true),
+                    'backgroundColor' => 'rgba('.Color::Emerald[400].', 0.7)',
+                    'borderColor' => 'rgb('.Color::Emerald[400].')',
+                    'fill' => true,
                 ],
             ],
             'labels' => $this->chartLabel(),
         ];
     }
 
-    abstract public function chartData(): array;
+    abstract public function chartData(bool $visitor = false): array;
 
     abstract public function chartLabel(): array;
 
@@ -58,6 +67,6 @@ abstract class BaseLinkVisitChart extends ChartWidget
                 $query->where('url_id', $this->model->id);
             })
             ->whereBetween('created_at', [$period->getStartDate(), $period->getEndDate()])
-            ->get();
+            ->get(['user_uid', 'created_at']);
     }
 }

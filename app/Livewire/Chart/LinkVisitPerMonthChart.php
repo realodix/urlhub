@@ -5,6 +5,7 @@ namespace App\Livewire\Chart;
 use App\Models\Visit;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Database\Eloquent\Collection;
 
 class LinkVisitPerMonthChart extends BaseLinkVisitChart
 {
@@ -30,14 +31,19 @@ class LinkVisitPerMonthChart extends BaseLinkVisitChart
         return CarbonPeriod::create($startDate, '1 month', $endDate);
     }
 
-    public function chartData(): array
+    public function chartData(bool $visitor = false): array
     {
         $period = $this->period();
+        $visits = $this->getPeriodData($period);
 
-        $rawData = $this->getPeriodData($period)
-            ->countBy(function (Visit $visit) {
-                return $visit->created_at->startOfMonth()->format('Y-m');
-            });
+        $groupByFormat = fn(Visit $visit) => $visit->created_at->startOfMonth()->format('Y-m');
+        if ($visitor) {
+            // Group by month, then calculate the unique `user_uid` per month
+            $rawData = $visits->groupBy($groupByFormat)
+                ->map(fn(Collection $monthlyVisits) => $monthlyVisits->pluck('user_uid')->unique()->count());
+        } else {
+            $rawData = $visits->countBy($groupByFormat);
+        }
 
         // Calculate the number of visits per month
         $data = [];

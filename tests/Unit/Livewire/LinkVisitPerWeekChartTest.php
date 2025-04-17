@@ -91,6 +91,105 @@ class LinkVisitPerWeekChartTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    public function it_returns_correct_chart_data_for_unique_visitors_all()
+    {
+        $period = app(LinkVisitPerWeekChart::class)->period();
+        $thisWeekStart = Carbon::now()->startOfWeek();
+        $oneWeekAgoStart = Carbon::now()->subWeek()->startOfWeek();
+        $twoWeeksAgoStart = Carbon::now()->subWeeks(2)->startOfWeek();
+
+        // Arrange: Visits with duplicate UIDs within the same week
+        // This week: uid1 (2x), uid2 (1x) -> Expected Unique: 2
+        Visit::factory()->create(['created_at' => $thisWeekStart, 'user_uid' => 'visitor-wk-1']);
+        Visit::factory()->create(['created_at' => $thisWeekStart->copy()->addDay(), 'user_uid' => 'visitor-wk-1']);
+        Visit::factory()->create(['created_at' => $thisWeekStart->copy()->addDays(2), 'user_uid' => 'visitor-wk-2']);
+        // One week ago: uid5 (2x) -> Expected Unique: 1
+        Visit::factory()->create(['created_at' => $oneWeekAgoStart, 'user_uid' => 'visitor-wk-5']);
+        Visit::factory()->create(['created_at' => $oneWeekAgoStart->copy()->addDay(), 'user_uid' => 'visitor-wk-5']);
+        // Two weeks ago: uid1 (1x), uid3 (1x), uid3 (1x) -> Expected Unique: 2
+        Visit::factory()->create(['created_at' => $twoWeeksAgoStart, 'user_uid' => 'visitor-wk-1']);
+        Visit::factory()->guest()->create(['created_at' => $twoWeeksAgoStart->copy()->addDay(), 'user_uid' => 'visitor-wk-3']);
+        Visit::factory()->guest()->create(['created_at' => $twoWeeksAgoStart->copy()->addDays(2), 'user_uid' => 'visitor-wk-3']);
+        // Visit outside period (should be ignored)
+        Visit::factory()->create(['created_at' => $period->getStartDate()->copy()->subWeek(), 'user_uid' => 'visitor-wk-4']);
+
+        // Act
+        $chartData = $this->chartComponent()->chartData(visitor: true);
+
+        // Assert
+        $this->assertCount($period->count(), $chartData);
+        // Last index is 'this week'
+        $this->assertEquals(2, $chartData[$period->count() - 1], 'Unique visitors count for this week mismatch.');
+        // Second to last index is '1 week ago' (should be 0 based on setup)
+        $this->assertEquals(1, $chartData[$period->count() - 2], 'Unique visitors count for 1 week ago mismatch.');
+        // Third to last index is '2 weeks ago'
+        $this->assertEquals(2, $chartData[$period->count() - 3], 'Unique visitors count for 2 weeks ago mismatch.');
+    }
+
+    #[PHPUnit\Test]
+    public function it_returns_correct_chart_data_for_unique_visitors_user()
+    {
+        $period = app(LinkVisitPerWeekChart::class)->period();
+        $thisWeekStart = Carbon::now()->startOfWeek();
+        $oneWeekAgoStart = Carbon::now()->subWeek()->startOfWeek();
+
+        $user = User::factory()->create();
+        $userUrl = Url::factory()->for($user, 'author')->create();
+        $otherUrl = Url::factory()->create();
+
+        // Arrange: Visits for the specific user's URL
+        // This week: uid1 (2x), uid2 (1x) on userUrl -> Expected Unique for user: 2
+        Visit::factory()->for($userUrl)->create(['created_at' => $thisWeekStart, 'user_uid' => 'user-visitor-wk-1']);
+        Visit::factory()->for($userUrl)->create(['created_at' => $thisWeekStart->copy()->addDay(), 'user_uid' => 'user-visitor-wk-1']);
+        Visit::factory()->for($userUrl)->create(['created_at' => $thisWeekStart->copy()->addDays(2), 'user_uid' => 'user-visitor-wk-2']);
+        // One week ago: uid1 (1x) on userUrl -> Expected Unique for user: 1
+        Visit::factory()->for($userUrl)->create(['created_at' => $oneWeekAgoStart, 'user_uid' => 'user-visitor-wk-1']);
+        // Visits for other URL or outside period (should be ignored)
+        Visit::factory()->for($otherUrl)->create(['created_at' => $thisWeekStart, 'user_uid' => 'other-visitor-wk-1']);
+        Visit::factory()->guest()->create(['created_at' => $oneWeekAgoStart, 'user_uid' => 'guest-visitor-wk']);
+        Visit::factory()->for($userUrl)->create(['created_at' => $period->getStartDate()->copy()->subWeek(), 'user_uid' => 'user-visitor-wk-1']);
+
+        // Act
+        $chartData = $this->chartComponent($user)->chartData(visitor: true);
+
+        // Assert
+        $this->assertCount($period->count(), $chartData);
+        $this->assertEquals(2, $chartData[$period->count() - 1], 'Unique visitors count for user this week mismatch.');
+        $this->assertEquals(1, $chartData[$period->count() - 2], 'Unique visitors count for user 1 week ago mismatch.');
+    }
+
+    #[PHPUnit\Test]
+    public function it_returns_correct_chart_data_for_unique_visitors_url()
+    {
+        $period = app(LinkVisitPerWeekChart::class)->period();
+        $thisWeekStart = Carbon::now()->startOfWeek();
+        $oneWeekAgoStart = Carbon::now()->subWeek()->startOfWeek();
+
+        $targetUrl = Url::factory()->create();
+        $otherUrl = Url::factory()->create();
+
+        // Arrange: Visits for the specific URL
+        // This week: uid1 (2x), uid2 (1x) on targetUrl -> Expected Unique for URL: 2
+        Visit::factory()->for($targetUrl)->create(['created_at' => $thisWeekStart, 'user_uid' => 'url-visitor-wk-1']);
+        Visit::factory()->for($targetUrl)->create(['created_at' => $thisWeekStart->copy()->addDay(), 'user_uid' => 'url-visitor-wk-1']);
+        Visit::factory()->for($targetUrl)->create(['created_at' => $thisWeekStart->copy()->addDays(2), 'user_uid' => 'url-visitor-wk-2']);
+        // One week ago: uid1 (1x) on targetUrl -> Expected Unique for URL: 1
+        Visit::factory()->for($targetUrl)->create(['created_at' => $oneWeekAgoStart, 'user_uid' => 'url-visitor-wk-1']);
+        // Visits for other URL or outside period (should be ignored)
+        Visit::factory()->for($otherUrl)->create(['created_at' => $thisWeekStart, 'user_uid' => 'other-visitor-wk-1']);
+        Visit::factory()->guest()->create(['created_at' => $oneWeekAgoStart, 'user_uid' => 'guest-visitor-wk']);
+        Visit::factory()->for($targetUrl)->create(['created_at' => $period->getStartDate()->copy()->subWeek(), 'user_uid' => 'url-visitor-wk-1']);
+
+        // Act
+        $chartData = $this->chartComponent($targetUrl)->chartData(visitor: true);
+
+        // Assert
+        $this->assertCount($period->count(), $chartData);
+        $this->assertEquals(2, $chartData[$period->count() - 1], 'Unique visitors count for URL this week mismatch.');
+        $this->assertEquals(1, $chartData[$period->count() - 2], 'Unique visitors count for URL 1 week ago mismatch.');
+    }
+
+    #[PHPUnit\Test]
     public function it_returns_correct_chart_label()
     {
         $chartLabel = $this->chartComponent()->chartLabel();

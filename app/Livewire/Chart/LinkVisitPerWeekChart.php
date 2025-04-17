@@ -5,6 +5,7 @@ namespace App\Livewire\Chart;
 use App\Models\Visit;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Database\Eloquent\Collection;
 
 class LinkVisitPerWeekChart extends BaseLinkVisitChart
 {
@@ -30,14 +31,19 @@ class LinkVisitPerWeekChart extends BaseLinkVisitChart
         return CarbonPeriod::create($startDate, '1 week', $endDate);
     }
 
-    public function chartData(): array
+    public function chartData(bool $visitor = false): array
     {
         $period = $this->period();
+        $visits = $this->getPeriodData($period);
 
-        $rawData = $this->getPeriodData($period)
-            ->countBy(function (Visit $visit) {
-                return $visit->created_at->startOfWeek()->format('Y-m-d');
-            });
+        $groupByFormat = fn(Visit $visit) => $visit->created_at->startOfWeek()->format('Y-m-d');
+        if ($visitor) {
+            // Group by week, then calculate unique `user_uid` per week
+            $rawData = $visits->groupBy($groupByFormat)
+                ->map(fn(Collection $weeklyVisits) => $weeklyVisits->pluck('user_uid')->unique()->count());
+        } else {
+            $rawData = $visits->countBy($groupByFormat);
+        }
 
         // Calculate the number of visits per week
         $data = [];
