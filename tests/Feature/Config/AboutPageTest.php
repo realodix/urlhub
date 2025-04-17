@@ -179,15 +179,15 @@ class AboutPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userLinkVisits(): void
+    public function visitsOnUserLinks(): void
     {
-        $this->assertSame(self::USER_LINK_VISITS, $this->visitService->userLinkVisits());
+        $this->assertSame(self::USER_LINK_VISITS, $this->visitService->visitsOnUserLinks());
     }
 
     #[PHPUnit\Test]
-    public function guestLinkVisits(): void
+    public function visitsOnGuestLinks(): void
     {
-        $this->assertSame(self::GUEST_LINK_VISITS, $this->visitService->guestLinkVisits());
+        $this->assertSame(self::GUEST_LINK_VISITS, $this->visitService->visitsOnGuestLinks());
     }
 
     #[PHPUnit\Test]

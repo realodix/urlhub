@@ -27,7 +27,7 @@ class DashboardController extends Controller implements HasMiddleware
      */
     public function view()
     {
-        $urlVisitCount = app(VisitService::class)->authUserLinkVisits();
+        $urlVisitCount = app(VisitService::class)->visitsOnAuthUser();
 
         return view('backend.dashboard', [
             'url' => app(Url::class),

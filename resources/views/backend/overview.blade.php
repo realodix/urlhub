@@ -36,9 +36,9 @@
                 @php
                     $linkCount = $url->count();
                     $userLinks = $linkService->userLinks();
-                    $userLinkVisits = $visitService->userLinkVisits();
+                    $visitsOnUserLinks = $visitService->visitsOnUserLinks();
                     $guestUrlCount = $linkService->guestLinks();
-                    $guestLinkVisits = $visitService->guestLinkVisits();
+                    $visitsOnGuestLinks = $visitService->visitsOnGuestLinks();
                 @endphp
 
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -55,7 +55,7 @@
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
                         <span title="{{ number_format($userLinks) }}">{{ n_abb($userLinks) }}</span>
-                        <span title="{{ number_format($userLinkVisits) }}">({{ n_abb($userLinkVisits) }} visits)</span>
+                        <span title="{{ number_format($visitsOnUserLinks) }}">({{ n_abb($visitsOnUserLinks) }} visits)</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -64,7 +64,7 @@
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
                         <span title="{{ number_format($guestUrlCount) }}">{{ n_abb($guestUrlCount) }}</span>
-                        <span title="{{ number_format($guestLinkVisits) }}">({{ n_abb($guestLinkVisits) }} visits)</span>
+                        <span title="{{ number_format($visitsOnGuestLinks) }}">({{ n_abb($visitsOnGuestLinks) }} visits)</span>
                     </dd>
                 </div>
             </dl>

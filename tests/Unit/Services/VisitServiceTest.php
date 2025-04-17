@@ -43,7 +43,7 @@ class VisitServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function authUserLinkVisits(): void
+    public function visitsOnAuthUser(): void
     {
         $user = $this->basicUser();
         $nCurrentUser = 8;
@@ -57,12 +57,12 @@ class VisitServiceTest extends TestCase
             ->create();
 
         $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->visitService->authUserLinkVisits());
-        $this->assertSame($nCurrentUser + $nUser, $this->visitService->userLinkVisits());
+        $this->assertSame($nCurrentUser, $this->visitService->visitsOnAuthUser());
+        $this->assertSame($nCurrentUser + $nUser, $this->visitService->visitsOnUserLinks());
     }
 
     #[PHPUnit\Test]
-    public function userLinkVisits(): void
+    public function visitsOnUserLinks(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -75,12 +75,12 @@ class VisitServiceTest extends TestCase
             ->for(Url::factory()->guest())
             ->create();
 
-        $this->assertSame($nUser, $this->visitService->userLinkVisits());
+        $this->assertSame($nUser, $this->visitService->visitsOnUserLinks());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 
     #[PHPUnit\Test]
-    public function guestLinkVisits(): void
+    public function visitsOnGuestLinks(): void
     {
         $nUser = 6;
         $nGuest = 4;
@@ -93,7 +93,7 @@ class VisitServiceTest extends TestCase
             ->for(Url::factory()->guest())
             ->create();
 
-        $this->assertSame($nGuest, $this->visitService->guestLinkVisits());
+        $this->assertSame($nGuest, $this->visitService->visitsOnGuestLinks());
         $this->assertSame($nUser + $nGuest, $this->visit->count());
     }
 

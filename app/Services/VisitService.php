@@ -30,7 +30,7 @@ class VisitService
      * The number of clicks from links created by the currently authenticated
      * user.
      */
-    public function authUserLinkVisits(): int
+    public function visitsOnAuthUser(): int
     {
         return Visit::whereRelation('url', 'user_id', auth()->id())
             ->count();
@@ -39,7 +39,7 @@ class VisitService
     /**
      * The number of clicks from links created by all registered users.
      */
-    public function userLinkVisits(): int
+    public function visitsOnUserLinks(): int
     {
         return Visit::whereRelation('url', 'user_type', UserType::User)
             ->count();
@@ -48,7 +48,7 @@ class VisitService
     /**
      * The number of clicks from links created by all guest users.
      */
-    public function guestLinkVisits(): int
+    public function visitsOnGuestLinks(): int
     {
         return Visit::whereRelation('url', 'user_type', UserType::Guest)
             ->count();
