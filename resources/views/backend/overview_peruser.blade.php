@@ -68,7 +68,7 @@
         @endphp
         {{-- Visited URLs Card (Col 1, Row 1 - Wider) --}}
         <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-8">
+            <div class="mb-4">
                 <h2 class="text-2xl dark:text-dark-200 tracking-tight">Visited URLs</h2>
                 <p class="mt-2 text-md text-gray-600 dark:text-dark-400">A list of your short URLs with the highest number of visits.</p>
             </div>
@@ -77,7 +77,7 @@
                     $topUrls = $linkService->getTopUrlsByVisits($user);
                 @endphp
                 @forelse ($topUrls as $index => $url)
-                    <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-2">
+                    <div class="flex items-center py-2">
                         <div class="flex-1">
                             <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                 <div>
@@ -110,7 +110,7 @@
 
         {{-- Referrers Card (Col 2, Row 1 - Smaller) --}}
         <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-8">
+            <div class="mb-4">
                 <h2 class="text-2xl dark:text-dark-200 tracking-tight">Referrers</h2>
                 <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common sources of traffic to your short URLs.</p>
             </div>
@@ -119,7 +119,7 @@
                     $topReferrers = $visitService->topReferrers($user);
                 @endphp
                 @forelse ($topReferrers as $index => $referrerData)
-                    <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-2">
+                    <div class="flex items-center py-2">
                         <div class="flex-1">
                             <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                 <div>
@@ -158,7 +158,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         {{-- Browsers Card (Col 1, Row 2 - Same Width) --}}
         <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-8">
+            <div class="mb-4">
                 <h2 class="text-2xl dark:text-dark-200 tracking-tight">Browsers</h2>
                 <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common browsers used to visit your short URLs.</p>
             </div>
@@ -167,7 +167,7 @@
                     $topBrowsers = $visitService->topBrowsers($user);
                 @endphp
                 @forelse ($topBrowsers as $index => $browserData)
-                    <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-2">
+                    <div class="flex items-center py-2">
                         <div class="flex-1">
                             <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                 <div>
@@ -195,7 +195,7 @@
 
         {{-- Operating Systems Card (Col 2, Row 2 - Same Width) --}}
         <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-8">
+            <div class="mb-4">
                 <h2 class="text-2xl dark:text-dark-200 tracking-tight">Operating Systems</h2>
                 <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common operating systems used to visit your short URLs.</p>
             </div>
@@ -204,7 +204,7 @@
                     $topOS = $visitService->topOperatingSystems($user);
                 @endphp
                 @forelse ($topOS as $index => $osData)
-                    <div class="flex items-center border-b border-border-200 dark:border-dark-700 last:border-b-0 py-2">
+                    <div class="flex items-center py-2">
                         <div class="flex-1">
                             <div class="flex justify-between items-center text-sm md:text-base mb-1">
                                 <div>
