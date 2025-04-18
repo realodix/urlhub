@@ -2,21 +2,22 @@
 
 @section('title', 'Overview')
 @section('content')
+@php
+    $userCount = $user->count();
+    $guestUsers = $userService->guestUsers();
+    $visitCount = $visit->count();
+@endphp
 <div class="container-alt max-w-4xl">
     <div class="content-container card card-master">
         <h3 class="text-xl">Users</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                @php
-                    $users = $user->count();
-                    $guestUsers = $userService->guestUsers();
-                @endphp
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         User
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
-                        <span title="{{ number_format($users) }}">{{ n_abb($users) }}</span>
+                        <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -78,7 +79,7 @@
                         Total
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
-                        {{ n_abb($visit->count()) }} visits / {{ n_abb($visitService->visitors()) }} visitors
+                        {{ n_abb($visitCount) }} visits / {{ n_abb($visitService->visitors()) }} visitors
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -270,7 +271,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($url->visits_count/$visit->count()) * 100, 2);
+                                            $percentage = round(($url->visits_count/$visitCount) * 100, 2);
                                         @endphp
                                         <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ $url->visits_count }} ({{ $percentage }}%)
@@ -321,7 +322,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($referrerData->total/$visit->count()) * 100, 2);
+                                            $percentage = round(($referrerData->total/$visitCount) * 100, 2);
                                         @endphp
                                         <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ number_format($referrerData->total) }} ({{ $percentage }}%)
@@ -355,7 +356,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($browserData->total/$visit->count()) * 100, 2);
+                                            $percentage = round(($browserData->total/$visitCount) * 100, 2);
                                         @endphp
                                         <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ number_format($browserData->total) }} ({{ $percentage }}%)
@@ -389,7 +390,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($osData->total/$visit->count()) * 100, 2);
+                                            $percentage = round(($osData->total/$visitCount) * 100, 2);
                                         @endphp
                                         <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ number_format($osData->total) }} ({{ $percentage }}%)
