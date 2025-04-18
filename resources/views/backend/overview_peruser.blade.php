@@ -63,6 +63,9 @@
 
     {{-- Start Grid Container for Statistics --}}
     <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-4">
+        @php
+            $tVisits = $user->visits()->count();
+        @endphp
         {{-- Visited URLs Card (Col 1, Row 1 - Wider) --}}
         <div class="card card-master overflow-hidden p-4 md:p-8">
             <div class="mb-8">
@@ -90,7 +93,7 @@
                                 </div>
 
                                 @php
-                                    $percentage = round(($url->visits_count/$topUrls->sum('visits_count')) * 100);
+                                    $percentage = round(($url->visits_count/$tVisits) * 100, 2);
                                 @endphp
                                 <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                     {{ $url->visits_count }} ({{ $percentage }}%)
@@ -135,7 +138,7 @@
                                 </div>
 
                                 @php
-                                    $percentage = round(($referrerData->total/$topReferrers->sum('total')) * 100);
+                                    $percentage = round(($referrerData->total/$tVisits) * 100, 2);
                                 @endphp
                                 <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                     {{ number_format($referrerData->total) }} ({{ $percentage }}%)
@@ -175,7 +178,7 @@
                                 </div>
 
                                 @php
-                                    $percentage = round(($browserData->total/$topBrowsers->sum('total')) * 100);
+                                    $percentage = round(($browserData->total/$tVisits) * 100, 2);
                                 @endphp
                                 <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                     {{ number_format($browserData->total) }} ({{ $percentage }}%)
@@ -212,7 +215,7 @@
                                 </div>
 
                                 @php
-                                    $percentage = round(($osData->total/$topOS->sum('total')) * 100);
+                                    $percentage = round(($osData->total/$tVisits) * 100, 2);
                                 @endphp
                                 <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                     {{ number_format($osData->total) }} ({{ $percentage }}%)

@@ -68,6 +68,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all of the visits for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function visits()
+    {
+        return $this->hasManyThrough(Visit::class, Url::class);
+    }
+
+    /**
      * Get the user's timezone. If the attribute is null, it defaults to the
      * application's timezone.
      */
