@@ -178,7 +178,7 @@
                                                             </div>
 
                                                             @php
-                                                                $percentage = round(($referrerData->total/$topReferrers->sum('total')) * 100);
+                                                                $percentage = round(($referrerData->total/$visitsCount) * 100, 2);
                                                             @endphp
                                                             <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                                                 {{ number_format($referrerData->total) }} ({{ $percentage }}%)
@@ -212,7 +212,7 @@
                                                             </div>
 
                                                             @php
-                                                                $percentage = round(($browserData->total/$topBrowsers->sum('total')) * 100);
+                                                                $percentage = round(($browserData->total/$visitsCount) * 100, 2);
                                                             @endphp
                                                             <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                                                 {{ number_format($browserData->total) }} ({{ $percentage }}%)
@@ -246,7 +246,7 @@
                                                             </div>
 
                                                             @php
-                                                                $percentage = round(($osData->total/$topOS->sum('total')) * 100);
+                                                                $percentage = round(($osData->total/$visitsCount) * 100, 2);
                                                             @endphp
                                                             <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                                                 {{ number_format($osData->total) }}
