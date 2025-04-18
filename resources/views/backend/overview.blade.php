@@ -246,7 +246,7 @@
 
         <!-- Horizontal Tab Content -->
         <div class="card card-master">
-            <div class="mt-4 px-4 md:px-8 md:py-4">
+            <div class="mt-2 px-4 md:px-8 md:py-4">
                 <div x-show="activeTab === 'topUrls'">
                     <p class="text-gray-500 dark:text-dark-400 mb-2">
                         The most visited URLs.
@@ -272,7 +272,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($url->visits_count/$topUrls->sum('visits_count')) * 100);
+                                            $percentage = round(($url->visits_count/$visit->count()) * 100, 2);
                                         @endphp
                                         <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ $url->visits_count }} ({{ $percentage }}%)
@@ -323,7 +323,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($referrerData->total/$topReferrers->sum('total')) * 100);
+                                            $percentage = round(($referrerData->total/$visit->count()) * 100, 2);
                                         @endphp
                                         <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ number_format($referrerData->total) }} ({{ $percentage }}%)
@@ -357,7 +357,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($browserData->total/$topBrowsers->sum('total')) * 100);
+                                            $percentage = round(($browserData->total/$visit->count()) * 100, 2);
                                         @endphp
                                         <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ number_format($browserData->total) }} ({{ $percentage }}%)
@@ -391,7 +391,7 @@
                                         </div>
 
                                         @php
-                                            $percentage = round(($osData->total/$topOS->sum('total')) * 100);
+                                            $percentage = round(($osData->total/$visit->count()) * 100, 2);
                                         @endphp
                                         <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
                                             {{ number_format($osData->total) }} ({{ $percentage }}%)
