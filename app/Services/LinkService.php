@@ -49,15 +49,6 @@ class LinkService
     }
 
     /**
-     * The number of short links created by the currently logged-in user.
-     */
-    public function authUserLinks(): int
-    {
-        return Url::where('user_id', auth()->id())
-            ->count();
-    }
-
-    /**
      * The number of short links created by all registered users.
      */
     public function userLinks(): int

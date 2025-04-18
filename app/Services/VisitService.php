@@ -27,16 +27,6 @@ class VisitService
     }
 
     /**
-     * The number of clicks from links created by the currently authenticated
-     * user.
-     */
-    public function visitsOnAuthUser(): int
-    {
-        return Visit::whereRelation('url', 'user_id', auth()->id())
-            ->count();
-    }
-
-    /**
      * The number of clicks from links created by all registered users.
      */
     public function visitsOnUserLinks(): int

@@ -43,24 +43,6 @@ class VisitServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function visitsOnAuthUser(): void
-    {
-        $user = $this->basicUser();
-        $nCurrentUser = 8;
-        $nUser = 6;
-
-        Visit::factory()->count($nCurrentUser)
-            ->for(Url::factory()->state(['user_id' => $user->id]))
-            ->create();
-        Visit::factory()->count($nUser)->for(Url::factory())->create();
-
-        $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->visitService->visitsOnAuthUser());
-        // Keep this assertion to ensure other visits are counted correctly elsewhere
-        $this->assertSame($nCurrentUser + $nUser, $this->visitService->visitsOnUserLinks());
-    }
-
-    #[PHPUnit\Test]
     public function visitsOnUserLinks(): void
     {
         $nUser = 6;

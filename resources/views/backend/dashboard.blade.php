@@ -14,7 +14,7 @@
                 @svg('icon-link', 'mr-1.5 size-4')
             </div>
             <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
-                {{ n_abb($linkService->authUserLinks(auth()->id())) }}
+                {{ n_abb(auth()->user()->urls()->count()) }}
             </p>
         </div>
         <div class="card card-master shadow-xs p-4">
@@ -23,7 +23,7 @@
                 @svg('icon-chart-line-alt', 'mr-1.5 size-4')
             </div>
             <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
-                {{ n_abb($visitService->visitsOnAuthUser()) }}
+                {{ n_abb(auth()->user()->visits()->count()) }}
             </p>
         </div>
         <div class="card card-master shadow-xs p-4">

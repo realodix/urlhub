@@ -38,21 +38,6 @@ class LinkServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function authUserLinks(): void
-    {
-        $user = $this->basicUser();
-        $nCurrentUser = 8;
-        $nUser = 6;
-
-        Url::factory()->count($nCurrentUser)->create(['user_id' => $user->id]);
-        Url::factory()->count($nUser)->create();
-
-        $this->actingAs($user);
-        $this->assertSame($nCurrentUser, $this->linkService->authUserLinks());
-        $this->assertSame($nUser + $nCurrentUser, $this->url->count());
-    }
-
-    #[PHPUnit\Test]
     public function userLinks(): void
     {
         $nUser = 6;

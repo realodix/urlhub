@@ -29,8 +29,6 @@ class DashboardController extends Controller implements HasMiddleware
     {
         return view('backend.dashboard', [
             'url' => app(Url::class),
-            'linkService' => app(LinkService::class),
-            'visitService' => app(VisitService::class),
         ]);
     }
 
