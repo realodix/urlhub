@@ -23,6 +23,15 @@
                 <span title="{{ $updatedAt->toDayDateTimeString() }} ({{ $updatedAt->getOffsetString() }})">{{ $updatedAt->diffForHumans() }}</span>
             </div>
             @endif
+
+            <div class="inline sm:block text-sm text-red-600 dark:text-red-500 mt-4">
+                @svg('icon-trash', 'mr-1')
+                <a role="button" href="{{ route('link.delete', $url) }}" title="Delete"
+                    onclick="return confirm('Are you sure you want to delete this link?');"
+                >
+                    Delete
+                </a>
+            </div>
         </div>
     </div>
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
