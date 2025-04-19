@@ -47,6 +47,7 @@
                             @svg('icon-edit')
                         </a>
                         <a href="{{ route('link_detail.delete', $url) }}" title="Delete"
+                            onclick="return confirm('Are you sure you want to delete this link?');"
                             class="btn btn-delete btn-square btn-sm"
                         >
                             @svg('icon-trash')
