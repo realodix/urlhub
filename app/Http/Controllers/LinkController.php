@@ -133,13 +133,18 @@ class LinkController extends Controller implements HasMiddleware
 
         $url->delete();
 
+        $message = 'Link was successfully deleted.';
+
         // if requst from shorten url details page, return to home
         if (request()->routeIs('link_detail.delete')) {
             return to_route('home');
         }
 
-        return redirect()->back()
-            ->with('flash_success', 'Link was successfully deleted.');
+        if (request()->routeIs('link.delete.fromTable')) {
+            return redirect()->back()->with('flash_success', $message);
+        }
+
+        return to_route('dashboard')->with('flash_success', $message);
     }
 
     /**

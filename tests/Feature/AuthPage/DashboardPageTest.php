@@ -33,11 +33,31 @@ class DashboardPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->from(route('dashboard'))
             ->get(route('link.delete', $url->keyword));
 
         $response
             ->assertRedirectToRoute('dashboard')
+            ->assertSessionHas('flash_success');
+        $this->assertCount(0, Url::all());
+    }
+
+    /**
+     * Test that an authenticated user can delete a link from table.
+     *
+     * @see App\Http\Controllers\LinkController::delete()
+     */
+    #[PHPUnit\Test]
+    #[PHPUnit\TestWith(['dashboard'])]
+    #[PHPUnit\TestWith(['dboard.allurl'])]
+    public function canDelete_fromTable($route): void
+    {
+        $url = Url::factory()->create();
+        $response = $this->actingAs($url->author)
+            ->from(route($route))
+            ->get(route('link.delete.fromTable', $url->keyword));
+
+        $response
+            ->assertRedirectToRoute($route)
             ->assertSessionHas('flash_success');
         $this->assertCount(0, Url::all());
     }

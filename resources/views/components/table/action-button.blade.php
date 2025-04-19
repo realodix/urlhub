@@ -6,6 +6,7 @@
     </a>
     <a role="button" href="{{ $delete_link }}" title="Delete"
         class="btn btn-delete btn-square btn-xs"
+        onclick="return confirm('Are you sure you want to delete this link?');"
     >
         @svg('icon-trash')
     </a>
