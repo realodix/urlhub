@@ -17,9 +17,9 @@ Route::get('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('li
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () {
     // Dashboard (My URLs)
     Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-    Route::get('/links/{url:keyword}/delete', [LinkController::class, 'delete'])->name('link.delete');
     Route::get('/links/{url:keyword}/edit', [LinkController::class, 'edit'])->name('link.edit');
     Route::post('/links/{url:keyword}/edit', [LinkController::class, 'update'])->name('link.update');
+    Route::get('/links/{url:keyword}/delete', [LinkController::class, 'delete'])->name('link.delete');
     Route::get('/links/{url:keyword}/password/create', [LinkPasswordController::class, 'create'])->name('link.password.create');
     Route::post('/links/{url:keyword}/password/store', [LinkPasswordController::class, 'store'])->name('link.password.store');
     Route::get('/links/{url:keyword}/password/edit', [LinkPasswordController::class, 'edit'])->name('link.password.edit');
