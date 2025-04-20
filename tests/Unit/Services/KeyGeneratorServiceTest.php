@@ -196,8 +196,7 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testKeywordCountBasedOnStringLength(): void
     {
-        $settings = app(\App\Settings\GeneralSettings::class);
-        $keywordLength = $settings->key_len + 1;
+        $keywordLength = 5;
         settings()->fill(['key_len' => $keywordLength])->save();
 
         Url::factory()->create([
@@ -214,12 +213,12 @@ class KeyGeneratorServiceTest extends TestCase
         // Karena panjang karakter 'keyword' berbeda dengan dengan 'key_len',
         // maka ini tidak ikut terhitung.
         Url::factory()->create([
-            'keyword' => str_repeat('b', $settings->key_len + 2),
+            'keyword' => str_repeat('b', $keywordLength + 2),
             'is_custom' => true,
         ]);
         $this->assertSame(2, $this->keyGen->keywordCount());
 
-        settings()->fill(['key_len' => $settings->key_len + 3])->save();
+        settings()->fill(['key_len' => $keywordLength + 3])->save();
         $this->assertSame(0, $this->keyGen->keywordCount());
         $this->assertSame($this->totalUrl, $this->url->count());
     }
