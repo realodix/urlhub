@@ -72,198 +72,140 @@
 
                 <div class="mt-22">
                     @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-                        <div x-data="{ activeTab: 'tabDay' }">
-                            <div class="flex space-x-4 -mb-px ml-2">
-                                <button @click="activeTab = 'tabDay'"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabDay', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabDay' }"
-                                    class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
-                                >
-                                    Day
-                                </button>
-                                <button @click="activeTab = 'tabWeek'"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabWeek', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabWeek' }"
-                                    class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
-                                >
-                                    Week
-                                </button>
-                                <button @click="activeTab = 'tabMonth'"
-                                    :class="{ 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700': activeTab === 'tabMonth', 'text-dark-500 dark:hover:text-emerald-700': activeTab !== 'tabMonth' }"
-                                    class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
-                                >
-                                    Month
-                                </button>
-                            </div>
-                            <div class="card p-1">
-                                <div x-show="activeTab === 'tabDay'">
-                                    @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
-                                </div>
-                                <div x-show="activeTab === 'tabWeek'">
-                                    @livewire(\App\Livewire\Chart\LinkVisitPerWeekChart::class, ['model' => $url])
-                                </div>
-                                <div x-show="activeTab === 'tabMonth'">
-                                    @livewire(\App\Livewire\Chart\LinkVisitPerMonthChart::class, ['model' => $url])
-                                </div>
-                            </div>
-                        </div>
+                        <x-tabs
+                            :tabs="['day' => 'Day', 'week' => 'Week', 'month' => 'Month']"
+                            activeTabClass="!bg-gray-50 dark:!bg-dark-800"
+                            contentClass="p-1"
+                        >
+                            <x-slot:day>
+                                @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                            </x-slot>
+                            <x-slot:week>
+                                @livewire(\App\Livewire\Chart\LinkVisitPerWeekChart::class, ['model' => $url])
+                            </x-slot>
+                            <x-slot:month>
+                                @livewire(\App\Livewire\Chart\LinkVisitPerMonthChart::class, ['model' => $url])
+                            </x-slot>
+                        </x-tabs>
 
                         <br>
 
-                        <div x-data="{activeTab: 'topReferrers'}" class="mb-8">
-                            <div class="">
-                                <ul class="flex space-x-4 -mb-px ml-2">
+                        <x-tabs
+                            :tabs="['a' => 'Referrers', 'b' => 'Browsers', 'c' => 'OS']"
+                            activeTabClass="!bg-gray-50 dark:!bg-dark-800"
+                            contentClass="px-4 md:px-8 md:py-4"
+                        >
+                            <x-slot:a>
+                                <p class="text-gray-500 dark:text-dark-400 mb-2">
+                                    The most common sources of traffic to all short URLs.
+                                </p>
+                                <div>
                                     @php
-                                        $activeTabClasses = 'bg-gray-50 dark:bg-dark-800 text-gray-800 dark:text-emerald-500 border-l border-r border-t border-border-300 dark:border-dark-700';
-                                        $inactiveTabClasses = 'text-dark-500 dark:hover:text-emerald-700';
+                                        $topReferrers = $visitService->topReferrers($url);
                                     @endphp
-                                    <li class="mr-2">
-                                        <button
-                                            @click="activeTab = 'topReferrers'"
-                                            :class="{ '{{ $activeTabClasses }}': activeTab === 'topReferrers', '{{ $inactiveTabClasses }}': activeTab !== 'topReferrers' }"
-                                            class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
-                                            type="button"
-                                        >
-                                            Referrers
-                                        </button>
-                                    </li>
-                                    <li class="mr-2">
-                                        <button
-                                            @click="activeTab = 'topBrowsers'"
-                                            :class="{ '{{ $activeTabClasses }}': activeTab === 'topBrowsers', '{{ $inactiveTabClasses }}': activeTab !== 'topBrowsers' }"
-                                            class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
-                                            type="button"
-                                        >
-                                            Browsers
-                                        </button>
-                                    </li>
-                                    <li class="mr-2">
-                                        <button
-                                            @click="activeTab = 'topOperatingSystems'"
-                                            :class="{ '{{ $activeTabClasses }}': activeTab === 'topOperatingSystems', '{{ $inactiveTabClasses }}': activeTab !== 'topOperatingSystems' }"
-                                            class="px-4 py-2 rounded-t-lg font-medium focus:outline-none cursor-pointer"
-                                            type="button"
-                                        >
-                                            OS
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!-- Horizontal Tab Content -->
-                            <div class="card p-1">
-                                <div class="pt-2 px-4 rounded-lg dark:!bg-dark-950/50 dark:ring-1 dark:ring-neutral-800">
-                                    <div x-show="activeTab === 'topReferrers'">
-                                        <p class="text-gray-500 dark:text-dark-400 mb-2">
-                                            The most common sources of traffic to all short URLs.
-                                        </p>
-                                        <div>
-                                            @php
-                                                $topReferrers = $visitService->topReferrers($url);
-                                            @endphp
-                                            @forelse ($topReferrers as $index => $referrerData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
-                                                    <div class="flex-1">
-                                                        <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                                            <div>
-                                                                <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                                                <span class="text-gray-600 mt-1">
-                                                                    @if ($referrerData->referer)
-                                                                        <a href="{{ $referrerData->referer }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline">
-                                                                            {{ Str::limit($referrerData->referer, 50) }}
-                                                                        </a>
-                                                                    @else
-                                                                        <span class="dark:text-dark-400">
-                                                                            Direct / Unknown
-                                                                        </span>
-                                                                    @endif
+                                    @forelse ($topReferrers as $index => $referrerData)
+                                        <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
+                                            <div class="flex-1">
+                                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                                    <div>
+                                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                                        <span class="text-gray-600 mt-1">
+                                                            @if ($referrerData->referer)
+                                                                <a href="{{ $referrerData->referer }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline">
+                                                                    {{ Str::limit($referrerData->referer, 50) }}
+                                                                </a>
+                                                            @else
+                                                                <span class="dark:text-dark-400">
+                                                                    Direct / Unknown
                                                                 </span>
-                                                            </div>
+                                                            @endif
+                                                        </span>
+                                                    </div>
 
-                                                            @php
-                                                                $percentage = round(($referrerData->total/$visitsCount) * 100, 2);
-                                                            @endphp
-                                                            <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                                {{ number_format($referrerData->total) }} ({{ $percentage }}%)
-                                                            </div>
-                                                        </div>
-                                                        <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
+                                                    @php
+                                                        $percentage = round(($referrerData->total/$visitsCount) * 100, 2);
+                                                    @endphp
+                                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                                        {{ number_format($referrerData->total) }} ({{ $percentage }}%)
                                                     </div>
                                                 </div>
-                                            @empty
-                                                <p class="text-gray-500 text-center">Data is not yet available.</p>
-                                            @endforelse
+                                                <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div x-show="activeTab === 'topBrowsers'">
-                                        <p class="text-gray-500 dark:text-dark-400 mb-2">
-                                            The most common browsers used to visit all short URLs.
-                                        </p>
-                                        <div>
-                                            @php
-                                                $topBrowsers = $visitService->topBrowsers($url);
-                                            @endphp
-                                            @forelse ($topBrowsers as $index => $browserData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
-                                                    <div class="flex-1">
-                                                        <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                                            <div>
-                                                                <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                                                <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                                                    @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
-                                                                </span>
-                                                            </div>
-
-                                                            @php
-                                                                $percentage = round(($browserData->total/$visitsCount) * 100, 2);
-                                                            @endphp
-                                                            <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                                {{ number_format($browserData->total) }} ({{ $percentage }}%)
-                                                            </div>
-                                                        </div>
-                                                        <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
-                                                    </div>
-                                                </div>
-                                            @empty
-                                                <p class="text-gray-500 text-center">Data is not yet available.</p>
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                    <div x-show="activeTab === 'topOperatingSystems'">
-                                        <p class="text-gray-500 dark:text-dark-400 mb-2">
-                                            The most common operating systems used to visit all short URLs.
-                                        </p>
-                                        <div>
-                                            @php
-                                                $topOS = $visitService->topOperatingSystems($url);
-                                            @endphp
-                                            @forelse ($topOS as $index => $osData)
-                                                <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
-                                                    <div class="flex-1">
-                                                        <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                                            <div>
-                                                                <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                                                <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                                                    @if($osData->os) {{ $osData->os }} @else Unknown  @endif
-                                                                </span>
-                                                            </div>
-
-                                                            @php
-                                                                $percentage = round(($osData->total/$visitsCount) * 100, 2);
-                                                            @endphp
-                                                            <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                                {{ number_format($osData->total) }}
-                                                            </div>
-                                                        </div>
-                                                        <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
-                                                    </div>
-                                                </div>
-                                            @empty
-                                                <p class="text-gray-500 text-center">Data is not yet available.</p>
-                                            @endforelse
-                                        </div>
-                                    </div>
+                                    @empty
+                                        <p class="text-gray-500 text-center">Data is not yet available.</p>
+                                    @endforelse
                                 </div>
-                            </div>
-                        </div>
+                            </x-slot>
+                            <x-slot:b>
+                                <p class="text-gray-500 dark:text-dark-400 mb-2">
+                                    The most common browsers used to visit all short URLs.
+                                </p>
+                                <div>
+                                    @php
+                                        $topBrowsers = $visitService->topBrowsers($url);
+                                    @endphp
+                                    @forelse ($topBrowsers as $index => $browserData)
+                                        <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
+                                            <div class="flex-1">
+                                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                                    <div>
+                                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
+                                                            @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
+                                                        </span>
+                                                    </div>
+
+                                                    @php
+                                                        $percentage = round(($browserData->total/$visitsCount) * 100, 2);
+                                                    @endphp
+                                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                                        {{ number_format($browserData->total) }} ({{ $percentage }}%)
+                                                    </div>
+                                                </div>
+                                                <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <p class="text-gray-500 text-center">Data is not yet available.</p>
+                                    @endforelse
+                                </div>
+                            </x-slot>
+                            <x-slot:c>
+                                <p class="text-gray-500 dark:text-dark-400 mb-2">
+                                    The most common operating systems used to visit all short URLs.
+                                </p>
+                                <div>
+                                    @php
+                                        $topOS = $visitService->topOperatingSystems($url);
+                                    @endphp
+                                    @forelse ($topOS as $index => $osData)
+                                        <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
+                                            <div class="flex-1">
+                                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
+                                                    <div>
+                                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
+                                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
+                                                            @if($osData->os) {{ $osData->os }} @else Unknown  @endif
+                                                        </span>
+                                                    </div>
+
+                                                    @php
+                                                        $percentage = round(($osData->total/$visitsCount) * 100, 2);
+                                                    @endphp
+                                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
+                                                        {{ number_format($osData->total) }} ({{ $percentage }}%)
+                                                    </div>
+                                                </div>
+                                                <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <p class="text-gray-500 text-center">Data is not yet available.</p>
+                                    @endforelse
+                                </div>
+                            </x-slot>
+                        </x-tabs>
                     @else
                         <div class="bg-orange-50 border border-border-200 p-4 text-center
                             dark:bg-transparent dark:border-dark-700 dark:text-dark-400"
