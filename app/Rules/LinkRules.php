@@ -33,7 +33,7 @@ class LinkRules
 
         return [
             new AlphaNumDash,
-            "min:{$minLen}", "max:{$maxLen}", 'lowercase:field',
+            "min:{$minLen}", "max:{$maxLen}",
             'unique:App\Models\Url,keyword',
             new NotBlacklistedKeyword,
         ];

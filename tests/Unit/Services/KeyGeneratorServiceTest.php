@@ -76,11 +76,17 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testStringIsAlreadyInUse(): void
     {
-        $value = $this->keyGen->generate('https://github.com/realodix');
+        $standardKey = 'fOo';
+        Url::factory()->create(['keyword' => $standardKey, 'is_custom' => false]);
+        $this->assertFalse($this->keyGen->verify($standardKey));
+        $this->assertTrue($this->keyGen->verify(strtoupper($standardKey)));
+        $this->assertTrue($this->keyGen->verify(strtolower($standardKey)));
 
-        Url::factory()->create(['keyword' => $value]);
-
-        $this->assertFalse($this->keyGen->verify($value));
+        $customeKey = 'bAr';
+        Url::factory()->create(['keyword' => $customeKey, 'is_custom' => true]);
+        $this->assertFalse($this->keyGen->verify($customeKey));
+        $this->assertFalse($this->keyGen->verify(strtoupper($customeKey)));
+        $this->assertFalse($this->keyGen->verify(strtolower($customeKey)));
     }
 
     /**

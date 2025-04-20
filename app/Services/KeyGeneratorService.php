@@ -81,10 +81,13 @@ class KeyGeneratorService
      */
     public function verify(string $keyword): bool
     {
-        $keywordExists = Url::where('keyword', $keyword)->exists();
+        $keyExists = Url::where('keyword', $keyword)
+            ->where('is_custom', false)->exists();
+        $customKeyExists = Url::whereRaw('LOWER(keyword) = ?', [strtolower($keyword)])
+            ->where('is_custom', true)->exists();
         $keyIsReserved = $this->reservedKeyword()->contains(strtolower($keyword));
 
-        if ($keywordExists || $keyIsReserved) {
+        if ($keyExists || $customKeyExists || $keyIsReserved) {
             return false;
         }
 
