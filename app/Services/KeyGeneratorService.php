@@ -175,6 +175,44 @@ class KeyGeneratorService
     */
 
     /**
+     * The capacity of the URL shortener is the number of unique strings that can
+     * be generated minus the number of reserved keywords.
+     */
+    public function capacity(): int
+    {
+        return $this->maxUniqueStrings() - $this->reservedKeywordWeight();
+    }
+
+    /**
+     * Calculate the number of unique random strings that can still be generated.
+     */
+    public function remainingCapacity(): int
+    {
+        // max() is used to avoid negative values
+        return max($this->capacity() - $this->keywordCount(), 0);
+    }
+
+    /**
+     * Calculates the number of keywords that have the same length as the configured
+     * keyword length and contain only characters allowed in the keyword.
+     */
+    public function keywordCount(): int
+    {
+        $length = $this->settings->key_len;
+
+        return Url::whereRaw('LENGTH(keyword) = ?', [$length])
+            ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql',
+                function (Builder $query) use ($length): void {
+                    $query->where('keyword', '~', '^['.self::ALPHABET.']{'.$length.'}$');
+                },
+                function (Builder $query) use ($length): void {
+                    $query->where('keyword', 'REGEXP', '^['.self::ALPHABET.']{'.$length.'}$');
+                },
+            )
+            ->count();
+    }
+
+    /**
      * Calculates the maximum number of unique strings that can be generated using
      * the allowed character and the specified keyword length.
      *
@@ -194,35 +232,12 @@ class KeyGeneratorService
         return $maxUniqueStrings;
     }
 
-    /**
-     * Total number of keywords
-     *
-     * Calculates the total number of keywords with the correct length and format.
-     * The length of the generated string (random string) and the length of the
-     * reserved string must be identical.
-     */
-    public function keywordCount(): int
+    public function reservedKeywordWeight(): int
     {
-        $length = $this->settings->key_len;
+        $settings = app(GeneralSettings::class);
 
-        return Url::whereRaw('LENGTH(keyword) = ?', [$length])
-            ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql',
-                function (Builder $query) use ($length): void {
-                    $query->where('keyword', '~', '^['.self::ALPHABET.']{'.$length.'}$');
-                },
-                function (Builder $query) use ($length): void {
-                    $query->where('keyword', 'REGEXP', '^['.self::ALPHABET.']{'.$length.'}$');
-                },
-            )
+        return $this->reservedKeyword()
+            ->filter(fn($value) => strlen($value) == $settings->key_len)
             ->count();
-    }
-
-    /**
-     * Calculate the number of unique random strings that can still be generated.
-     */
-    public function remainingCapacity(): int
-    {
-        // max() is used to avoid negative values
-        return max($this->maxUniqueStrings() - $this->keywordCount(), 0);
     }
 }

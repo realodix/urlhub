@@ -169,26 +169,36 @@ class KeyGeneratorServiceTest extends TestCase
         );
     }
 
-    /**
-     * Menguji apakah fungsi maxUniqueStrings mengembalikan nilai yang sesuai.
-     *
-     * maxUniqueStrings mengembalikan jumlah kombinasi string yang mungkin
-     * dihasilkan oleh generator keyword. Jika panjang keyword yang dihasilkan
-     * terlalu panjang maka fungsi ini mengembalikan nilai PHP_INT_MAX.
-     *
-     * Kondisi 1: Panjang keyword yang dihasilkan relatif pendek.
-     * Kondisi 2: Panjang keyword yang dihasilkan relatif panjang.
-     */
     #[PHPUnit\Test]
-    public function maxUniqueStrings(): void
+    public function filterCollisionCandidates(): void
     {
-        $charLen = strlen($this->keyGen::ALPHABET);
+        $actual = array_merge(
+            [
+                'css',
+                'reset-password',
 
-        settings()->fill(['key_len' => 2])->save();
-        $this->assertSame(pow($charLen, 2), $this->keyGen->maxUniqueStrings());
+                '.',
+                '..',
+                '.htaccess',
+                'favicon.ico',
 
-        settings()->fill(['key_len' => 12])->save();
-        $this->assertSame(PHP_INT_MAX, $this->keyGen->maxUniqueStrings());
+                '+{url}',
+                '/',
+                '_debugbar',
+                '_debugbar/assets/javascript',
+                'admin/about',
+                'admin/user/{user}/changepassword',
+                'admin/links/u/{user}',
+            ],
+            config('urlhub.reserved_keyword'),
+        );
+
+        $expected = ['css', 'reset-password'];
+
+        $this->assertEquals(
+            $expected,
+            $this->keyGen->filterCollisionCandidates($actual)->toArray(),
+        );
     }
 
     /**
@@ -240,7 +250,7 @@ class KeyGeneratorServiceTest extends TestCase
     {
         $mock = $this->partialMock(KeyGeneratorService::class);
         $mock->shouldReceive([
-            'maxUniqueStrings' => $mus,
+            'capacity' => $mus,
             'keywordCount' => $kc,
         ]);
         $actual = $mock->remainingCapacity();
@@ -250,7 +260,7 @@ class KeyGeneratorServiceTest extends TestCase
 
     public static function remainingCapacityProvider(): array
     {
-        // maxUniqueStrings(), keywordCount(), expected_result
+        // capacity(), keywordCount(), expected_result
         return [
             [1, 2, 0],
             [3, 2, 1],
@@ -260,36 +270,41 @@ class KeyGeneratorServiceTest extends TestCase
         ];
     }
 
+    /**
+     * Menguji apakah fungsi maxUniqueStrings mengembalikan nilai yang sesuai.
+     *
+     * maxUniqueStrings mengembalikan jumlah kombinasi string yang mungkin
+     * dihasilkan oleh generator keyword. Jika panjang keyword yang dihasilkan
+     * terlalu panjang maka fungsi ini mengembalikan nilai PHP_INT_MAX.
+     *
+     * Kondisi 1: Panjang keyword yang dihasilkan relatif pendek.
+     * Kondisi 2: Panjang keyword yang dihasilkan relatif panjang.
+     */
     #[PHPUnit\Test]
-    public function filterCollisionCandidates(): void
+    public function maxUniqueStrings(): void
     {
-        $actual = array_merge(
-            [
-                'css',
-                'reset-password',
+        $charLen = strlen($this->keyGen::ALPHABET);
 
-                '.',
-                '..',
-                '.htaccess',
-                'favicon.ico',
+        settings()->fill(['key_len' => 2])->save();
+        $this->assertSame(pow($charLen, 2), $this->keyGen->maxUniqueStrings());
 
-                '+{url}',
-                '/',
-                '_debugbar',
-                '_debugbar/assets/javascript',
-                'admin/about',
-                'admin/user/{user}/changepassword',
-                'admin/links/u/{user}',
-            ],
-            config('urlhub.reserved_keyword'),
-        );
+        settings()->fill(['key_len' => 12])->save();
+        $this->assertSame(PHP_INT_MAX, $this->keyGen->maxUniqueStrings());
+    }
 
-        $expected = ['css', 'reset-password'];
+    #[PHPUnit\Test]
+    public function reservedKeywordWeight(): void
+    {
+        settings()->fill(['key_len' => 2])->save();
 
-        $this->assertEquals(
-            $expected,
-            $this->keyGen->filterCollisionCandidates($actual)->toArray(),
-        );
+        $mock = $this->partialMock(KeyGeneratorService::class);
+        $mock->shouldReceive([
+            'routeCollisionList' => ['ab', 'foo'],
+            'publicPathCollisionList' => ['cd', 'bar'],
+        ]);
+        $actual = $mock->reservedKeywordWeight();
+
+        $this->assertSame(2, $actual);
     }
 
     public function tearDown(): void

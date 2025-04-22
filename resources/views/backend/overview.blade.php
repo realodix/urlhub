@@ -114,24 +114,18 @@
         </x-tabs>
 
         <h3 class="text-xl">Random String</h3>
-        <p class="font-light text-sm dark:text-dark-400">Random String Generator for Short URLs</p>
+        <p class="font-light text-sm dark:text-dark-400">Capacity is the estimated maximum number of random strings that can be generated to create short links. The generator will reject when the randomly generated string reaches the maximum limit of the capacity.</p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
-                        Max Unique Strings
+                        Capacity
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
                         @if ($keyGenService->maxUniqueStrings() === PHP_INT_MAX)
                             (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
                         @else
-                            @php
-                                $number = strlen($keyGenService::ALPHABET);
-                                $powNumber = settings()->key_len;
-                                $result = number_format($keyGenService->maxUniqueStrings());
-                            @endphp
-
-                            ( {{ $number }}<sup>{{ $powNumber }}</sup> ) {{ $result }}
+                            {{ number_format($keyGenService->capacity()) }}
                         @endif
                     </dd>
                 </div>
