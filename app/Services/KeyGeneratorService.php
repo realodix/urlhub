@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Url;
 use App\Settings\GeneralSettings;
 use Composer\Pcre\Preg;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class KeyGeneratorService
@@ -201,12 +200,12 @@ class KeyGeneratorService
         $length = $this->settings->key_len;
 
         return Url::whereRaw('LENGTH(keyword) = ?', [$length])
-            ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql',
-                function (Builder $query) use ($length): void {
-                    $query->where('keyword', '~', '^['.self::ALPHABET.']{'.$length.'}$');
+            ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'sqlite',
+                function (\Illuminate\Database\Eloquent\Builder $query): void {
+                    $query->whereRaw("keyword NOT LIKE ? ESCAPE '\'", ['%\_%']);
                 },
-                function (Builder $query) use ($length): void {
-                    $query->where('keyword', 'REGEXP', '^['.self::ALPHABET.']{'.$length.'}$');
+                function (\Illuminate\Database\Eloquent\Builder $query): void {
+                    $query->whereNotLike('keyword', '%\\_%');
                 },
             )
             ->count();

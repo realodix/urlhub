@@ -238,10 +238,17 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testKeywordCountBasedOnStringCharacters(): void
     {
-        settings()->fill(['key_len' => 5])->save();
+        settings()->fill(['key_len' => 3])->save();
 
-        Url::factory()->create(['keyword' => 'ab-cd']);
-        $this->assertSame(0, $this->keyGen->keywordCount());
+        Url::factory()->count(5)->sequence(
+            ['keyword' => 'abc'],
+            ['keyword' => 'foo'],
+            ['keyword' => 'f1_'],
+            ['keyword' => '_12'],
+            ['keyword' => 'f_2'],
+        )->create();
+
+        $this->assertSame(2, $this->keyGen->keywordCount());
     }
 
     #[PHPUnit\Test]
