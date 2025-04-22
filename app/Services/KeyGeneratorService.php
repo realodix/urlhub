@@ -193,8 +193,8 @@ class KeyGeneratorService
     }
 
     /**
-     * Calculates the number of keywords that have the same length as the configured
-     * keyword length and contain only characters allowed in the keyword.
+     * Counts the number of valid keywords, where the keywords have a length equal
+     * to the configured keyword length and contain only allowed characters.
      */
     public function keywordCount(): int
     {
