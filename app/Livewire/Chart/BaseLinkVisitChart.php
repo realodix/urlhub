@@ -16,6 +16,8 @@ abstract class BaseLinkVisitChart extends ChartWidget
 {
     protected static ?string $maxHeight = '250px';
 
+    protected static ?string $pollingInterval = null;
+
     public User|Url|null $model = null;
 
     /** {@inheritdoc} */
