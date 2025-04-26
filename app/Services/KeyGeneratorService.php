@@ -214,8 +214,6 @@ class KeyGeneratorService
     /**
      * Calculates the maximum number of unique strings that can be generated using
      * the allowed character and the specified keyword length.
-     *
-     * @throws \RuntimeException
      */
     public function maxUniqueStrings(): int
     {
@@ -224,7 +222,9 @@ class KeyGeneratorService
 
         $maxUniqueStrings = pow($charSize, $strLen);
 
-        if ($maxUniqueStrings > PHP_INT_MAX) {
+        // Check if it's an integer that exceeds the maximum allowed value
+        // or if the result is not an integer (due to overflow)
+        if ($maxUniqueStrings > PHP_INT_MAX || !is_int($maxUniqueStrings)) {
             return PHP_INT_MAX;
         }
 
