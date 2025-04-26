@@ -104,6 +104,7 @@ class KeyGeneratorServiceTest extends TestCase
         config(['urlhub.reserved_keyword' => [$value]]);
 
         $this->assertFalse($this->keyGen->verify($value));
+        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
     }
 
     /**
@@ -116,6 +117,7 @@ class KeyGeneratorServiceTest extends TestCase
             ->first();
 
         $this->assertFalse($this->keyGen->verify($route));
+        $this->assertFalse($this->keyGen->verify(strtoupper($route)));
     }
 
     /**
@@ -129,6 +131,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         File::makeDirectory(public_path($value));
         $this->assertFalse($this->keyGen->verify($value));
+        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
     }
 
     /**
@@ -142,6 +145,7 @@ class KeyGeneratorServiceTest extends TestCase
 
         File::put(public_path($value), '');
         $this->assertFalse($this->keyGen->verify($value));
+        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
     }
 
     /**
@@ -300,7 +304,7 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function reservedKeywordWeight(): void
+    public function reservedKeywordSpaceUsed(): void
     {
         settings()->fill(['key_len' => 2])->save();
 
@@ -309,9 +313,10 @@ class KeyGeneratorServiceTest extends TestCase
             'routeCollisionList' => ['ab', 'foo'],
             'publicPathCollisionList' => ['cd', 'bar'],
         ]);
-        $actual = $mock->reservedKeywordWeight();
+        $actual = $mock->reservedKeywordSpaceUsed();
 
-        $this->assertSame(2, $actual);
+        // (2^2) * 2
+        $this->assertSame(8, $actual);
     }
 
     public function tearDown(): void

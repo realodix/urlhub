@@ -82,9 +82,9 @@ class KeyGeneratorService
     public function verify(string $keyword): bool
     {
         $keywordExists = Url::where('keyword', $keyword)->exists();
-        $keywordIsReserved = $this->reservedKeyword()->contains($keyword);
+        $keyIsReserved = $this->reservedKeyword()->contains(strtolower($keyword));
 
-        if ($keywordExists || $keywordIsReserved) {
+        if ($keywordExists || $keyIsReserved) {
             return false;
         }
 
@@ -174,12 +174,13 @@ class KeyGeneratorService
     */
 
     /**
-     * The capacity of the URL shortener is the number of unique strings that can
-     * be generated minus the number of reserved keywords.
+     * The maximum number of unique random keywords that can be generated based on
+     * the current character length configuration, minus weighted value for reserved
+     * keywords.
      */
     public function capacity(): int
     {
-        return $this->maxUniqueStrings() - $this->reservedKeywordWeight();
+        return $this->maxUniqueStrings() - $this->reservedKeywordSpaceUsed();
     }
 
     /**
@@ -231,12 +232,23 @@ class KeyGeneratorService
         return $maxUniqueStrings;
     }
 
-    public function reservedKeywordWeight(): int
+    /**
+     * Calculates the estimated impact of reserved keywords on the total keyspace,
+     * considering case variants.
+     *
+     * This weighting estimates how many potential keywords are effectively
+     * unavailable because a single reserved keyword must be avoided in all its
+     * potential case variants (e.g., 'admin' implies 'Admin', 'ADMIN', etc.,
+     * should also be avoided). The result represents the estimated portion of
+     * the keyspace considered occupied by these reserved keywords.
+     */
+    public function reservedKeywordSpaceUsed(): int
     {
         $settings = app(GeneralSettings::class);
-
-        return $this->reservedKeyword()
+        $count = $this->reservedKeyword()
             ->filter(fn($value) => strlen($value) == $settings->key_len)
             ->count();
+
+        return $count * pow(2, $settings->key_len);
     }
 }
