@@ -83,7 +83,7 @@
                             class="form-input mt-4 md:mt-3 max-w-100 @error('redirect_cache_max_age') !border-red-300 @enderror">
                     </div>
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-labTrack bot visits</label>
+                        <label class="form-label">Track bot visits</label>
                         <div class="font-light text-sm dark:text-dark-400">Determine whether bot visits count as visitors or not. If enabled, bot visits will be counted as visitors.</div>
                         <label class="switch float-right mt-6">
                             <input type="checkbox" name="track_bot_visits" value="1" {{ $settings->track_bot_visits ? 'checked' : '' }}>
