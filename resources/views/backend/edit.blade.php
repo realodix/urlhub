@@ -124,7 +124,7 @@
                                         @svg('icon-key', 'mr-1') Edit Password
                                     </a>
 
-                                    <a href="{{ route('link.password.delete', $url) }}" class="btn btn-delete-danger btn-sm" onclick="return confirm('Are you sure you want to remove the password?')">
+                                    <a href="{{ route('link.password.delete', $url) }}" class="btn btn-delete-danger btn-sm dark:!text-red-700 dark:hover:!text-red-400 dark:!border-red-900" onclick="return confirm('Are you sure you want to remove the password?')">
                                         Remove Password
                                     </a>
                                 @else
