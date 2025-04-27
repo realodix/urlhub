@@ -204,7 +204,7 @@ class LinkTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->from(route('link.password.create', $url))
+            ->from(route('link.edit', $url))
             ->post(route('link.password.store', $url), [
                 'password' => 'password',
                 'password_confirmation' => 'password',
@@ -223,7 +223,7 @@ class LinkTest extends TestCase
     {
         $url = Url::factory()->create(['password' => 'password']);
         $response = $this->actingAs($url->author)
-            ->from(route('link.password.edit', $url))
+            ->from(route('link.edit', $url))
             ->post(route('link.password.update', $url), [
                 'password' => 'new-password',
                 'password_confirmation' => 'new-password',

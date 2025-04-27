@@ -139,33 +139,6 @@ class LinkAuthorizationTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function password_create_userCanAccessPage()
-    {
-        $url = Url::factory()->create();
-        $this->actingAs($url->author)
-            ->get(route('link.password.create', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_create_adminCanAccessAllPage()
-    {
-        $url = Url::factory()->create();
-        $this->actingAs($this->adminUser())
-            ->get(route('link.password.create', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_create_otherUserCantAccessPage()
-    {
-        $url = Url::factory()->create();
-        $this->actingAs($this->basicUser())
-            ->get(route('link.password.create', $url))
-            ->assertForbidden();
-    }
-
-    #[PHPUnit\Test]
     public function password_store_adminCanAccessAll()
     {
         $url = Url::factory()->create();
@@ -190,33 +163,6 @@ class LinkAuthorizationTest extends TestCase
             ->assertForbidden();
 
         $this->assertNull($url->fresh()->password);
-    }
-
-    #[PHPUnit\Test]
-    public function password_edit_userCanAccessPage()
-    {
-        $url = Url::factory()->create(['password' => 'password']);
-        $this->actingAs($url->author)
-            ->get(route('link.password.edit', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_edit_adminCanAccessAllPage()
-    {
-        $url = Url::factory()->create(['password' => 'password']);
-        $this->actingAs($this->adminUser())
-            ->get(route('link.password.edit', $url))
-            ->assertSuccessful();
-    }
-
-    #[PHPUnit\Test]
-    public function password_edit_otherUserCantAccessPage()
-    {
-        $url = Url::factory()->create(['password' => 'password']);
-        $this->actingAs($this->basicUser())
-            ->get(route('link.password.edit', $url))
-            ->assertForbidden();
     }
 
     #[PHPUnit\Test]

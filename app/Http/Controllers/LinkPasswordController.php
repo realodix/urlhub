@@ -10,20 +10,6 @@ use Illuminate\Validation\Rules\Password;
 class LinkPasswordController extends Controller
 {
     /**
-     * Show the form for creating a new password.
-     *
-     * @return \Illuminate\Contracts\View\View
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function create(Url $url)
-    {
-        Gate::authorize('authorOrAdmin', $url);
-
-        return view('backend.linkpassword.create', ['url' => $url]);
-    }
-
-    /**
      * Store a newly created password in storage.
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -43,20 +29,6 @@ class LinkPasswordController extends Controller
 
         return to_route('link.edit', $url)
             ->with('flash_success', 'Password has been set!');
-    }
-
-    /**
-     * Show the form for editing the specified password.
-     *
-     * @return \Illuminate\Contracts\View\View
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function edit(Url $url)
-    {
-        Gate::authorize('authorOrAdmin', $url);
-
-        return view('backend.linkpassword.edit', ['url' => $url]);
     }
 
     /**

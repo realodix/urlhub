@@ -120,17 +120,17 @@
                                 <label class="form-label"># Password</label>
                                 <p class="font-light text-sm dark:text-dark-400 mb-2">Protect your link with a password.</p>
                                 @if($url->password)
-                                    <a href="{{ route('link.password.edit', $url) }}" class="btn btn-sm" title="Edit Password">
+                                    <button type="button" title="Add Password" x-on:click="$dispatch('open-modal', 'edit-password-modal')" class="btn btn-sm">
                                         @svg('icon-key', 'mr-1') Edit Password
-                                    </a>
+                                    </button>
 
-                                    <a href="{{ route('link.password.delete', $url) }}" class="btn btn-delete-danger btn-sm dark:!text-red-700 dark:hover:!text-red-400 dark:!border-red-900" onclick="return confirm('Are you sure you want to remove the password?')">
+                                    <a href="{{ route('link.password.delete', $url) }}" onclick="return confirm('Are you sure you want to remove the password?')" class="btn btn-delete-danger btn-sm dark:!text-red-700 dark:hover:!text-red-400 dark:!border-red-900">
                                         Remove Password
                                     </a>
                                 @else
-                                    <a href="{{ route('link.password.create', $url) }}" class="btn btn-sm" title="Add Password">
+                                    <button type="button" title="Add Password" x-on:click="$dispatch('open-modal', 'add-password-modal')" class="btn btn-sm">
                                         @svg('icon-key', 'mr-1') Add Password
-                                    </a>
+                                    </button>
                                 @endif
                             </div>
 
@@ -189,5 +189,13 @@
             </div>
         </form>
     </div>
+
+    {{-- Password Modal
+        Because this is a form, it must be placed outside the main form --}}
+    @if(!$url->password)
+        @include('backend.linkpassword.create')
+    @else
+        @include('backend.linkpassword.edit')
+    @endif
 </div>
 @endsection
