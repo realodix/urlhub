@@ -13,7 +13,7 @@
             <p class="text-2xl">All Users</p>
             <div class="flex justify-end">
                 <a href="{{ route('user.new') }}" title="Add New User" class="btn btn-primary">
-                    @svg('icon-add-link', '!h-[1.5em] mr-1')
+                    @svg('icon-user-add', 'mr-1')
                     <p class="hidden sm:inline">Add New User</p>
                 </a>
             </div>
