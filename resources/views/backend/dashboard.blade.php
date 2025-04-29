@@ -45,10 +45,6 @@
                     @svg('icon-overview', '!h-[1.5em] mr-1')
                     <p class="hidden sm:inline">Overview</p>
                 </a>
-                <a href="{{ url('./') }}" target="_blank" title="Add URL" class="btn btn-primary ml-2">
-                    @svg('icon-add-link', '!h-[1.5em] mr-1')
-                    <p class="hidden sm:inline">Add URL</p>
-                </a>
             </div>
         </div>
 
