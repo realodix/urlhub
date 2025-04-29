@@ -238,8 +238,7 @@ class KeyGeneratorService
      *
      * This weighting estimates how many potential keywords are effectively
      * unavailable because a single reserved keyword must be avoided in all its
-     * potential case variants (e.g., 'admin' implies 'Admin', 'ADMIN', etc.,
-     * should also be avoided). The result represents the estimated portion of
+     * potential case variants. The result represents the estimated portion of
      * the keyspace considered occupied by these reserved keywords.
      */
     public function reservedKeywordSpaceUsed(): int
