@@ -6,15 +6,19 @@
         }
     @endphp
 
-    <a href="{{ route('link.edit', $model) }}" class="{{ $linkClasses }}">
-        {{ urlDisplay($destination, $limit) }}
+    <span>
+        <img src="https://icons.duckduckgo.com/ip3/{{ uri($model->destination)->host() }}.ico" class="h-4 inline">
+        <a href="{{ route('link.edit', $model) }}" class="{{ $linkClasses }}">
+            {{ urlDisplay($destination, $limit) }}
+        </a>
+        <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer"
+            class="text-slate-600 dark:text-dark-400"
+        >
+            @svg('open-link-in-new')
     </a>
+    </span>
 
-    <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer"
-        class="text-slate-600 dark:text-dark-400"
-    >
-        @svg('open-link-in-new')
-    </a>
+
 </div>
 
 @if ($tableName == 'all_urls_table')
