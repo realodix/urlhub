@@ -25,8 +25,9 @@ class ValidationTest extends TestCase
     {
         return [
             ['foobar'],
+            ['123'],
             ['f0ob4r'],
-            ['foo_bar'],
+            ['foo-b4r'],
         ];
     }
 
@@ -62,7 +63,7 @@ class ValidationTest extends TestCase
     {
         return [
             ['fooBar'],
-            ['foo-bar'],
+            ['foo_bar'],
             ['fonts'], // reserved keyword
             ['login'], // registered route
         ];

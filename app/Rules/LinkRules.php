@@ -32,7 +32,7 @@ class LinkRules
         $maxLen = $settings->cst_key_max_len;
 
         return [
-            new AlphaNumUnderscore,
+            new AlphaNumDash,
             "min:{$minLen}", "max:{$maxLen}", 'lowercase:field',
             'unique:App\Models\Url,keyword',
             new NotBlacklistedKeyword,
