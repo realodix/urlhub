@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\UserType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -128,6 +129,50 @@ class Url extends Model
                 return $value;
             },
         );
+    }
+
+    /**
+     * Scope a query to filter URLs by composition and keyword length.
+     *
+     * @param Builder<self> $query
+     * @param string $composition The type of keyword composition to filter
+     * @param int|null $length The length of the keyword
+     * @return Builder<self>
+     */
+    public function scopeComposition(Builder $query, string $composition, ?int $length = null): Builder
+    {
+        // 1. Filter by length if specified
+        $query->when($length > 0, function (Builder $q) use ($length) {
+            return $q->whereRaw('LENGTH(keyword) = ?', [$length]);
+        });
+
+        // 2. Filter by composition
+        match ($composition) {
+            // only letters
+            'alpha' => $query->where('keyword', 'REGEXP', '^[a-zA-Z]+$'),
+            // contains at least one letter and either a number or symbol, but not both.
+            'has_num_or_symbol' => $query
+                ->where('keyword', 'REGEXP', '[a-zA-Z]')
+                ->where(function (Builder $q) {
+                    $q->where(function (Builder $subQ) {
+                        $subQ->where('keyword', 'REGEXP', '[0-9]')
+                            ->where('keyword', 'NOT REGEXP', '[-]');
+                    })->orWhere(function (Builder $subQ) {
+                        $subQ->where('keyword', 'REGEXP', '[-]')
+                            ->where('keyword', 'NOT REGEXP', '[0-9]');
+                    });
+                }),
+            // contains at least one letter, a number, and symbol.
+            'has_num_and_symbol' => $query
+                ->where('keyword', 'REGEXP', '[a-zA-Z]')
+                ->where('keyword', 'REGEXP', '[0-9]')
+                ->where('keyword', 'REGEXP', '[-]'),
+            // only numbers and/or symbol, with no letters.
+            'only_num_symbol' => $query
+                ->where('keyword', 'REGEXP', '^[0-9-]+$'),
+        };
+
+        return $query;
     }
 
     /**
