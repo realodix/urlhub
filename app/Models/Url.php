@@ -138,15 +138,15 @@ class Url extends Model
      * @param string $composition The type of keyword composition to filter
      * @param int|null $length The length of the keyword
      * @return Builder<self>
+     *
+     * @throws \UnhandledMatchError
      */
     public function scopeComposition(Builder $query, string $composition, ?int $length = null): Builder
     {
-        // 1. Filter by length if specified
         $query->when($length > 0, function (Builder $q) use ($length) {
             return $q->whereRaw('LENGTH(keyword) = ?', [$length]);
         });
 
-        // 2. Filter by composition
         match ($composition) {
             // only letters
             'alpha' => $query->where('keyword', 'REGEXP', '^[a-zA-Z]+$'),
