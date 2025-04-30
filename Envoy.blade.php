@@ -1,4 +1,4 @@
-@servers(['localhost' => '127.0.0.1'])
+@servers(['web' => 'nathanr@100.64.0.11'])
 
 @setup
 $repo              = 'git@github.com:lionslair/urlhub.git';
@@ -19,7 +19,7 @@ $pushover_token    = 'adcjmiis4t9buh3uq95zcqx8nnokz1';
 
 @endsetup
 
-@macro('deploy', ['on' => 'localhost'])
+@macro('deploy', ['on' => 'web'])
 git
 run_composer
 compile_assets
