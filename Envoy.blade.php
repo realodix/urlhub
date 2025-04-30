@@ -3,13 +3,13 @@
 @setup
 $repo              = 'git@github.com:lionslair/urlhub.git';
 $defaultBranch     = 'master';
-$env_file          = getcwd() . '/.env';
-$release_directory = getcwd() . '/releases';
-$current           = getcwd() . '/current';
+$env_file          = '/home/nathanr/websites/urlhub/.env';
+$release_directory = '/home/nathanr/websites/urlhub/releases';
+$current           = '/home/nathanr/websites/urlhub/current';
 $release           = date('YmdHis');
 $current_release   = $release_directory . '/' . $release;
-$storage           = getcwd(). '/storage';
-$cwd               = getcwd();
+$storage           = '/home/nathanr/websites/urlhub/storage';
+$cwd               = '/home/nathanr/websites/urlhub';
 $chmods            = ['storage', 'public'];
 $user              = 'nathanr';
 $group             = 'nathanr';
@@ -168,15 +168,15 @@ cd {{ $current_release }}
 {{--php artisan queue:restart--}}
 @endtask
 
-@error
-echo "TASK FAILED: ". $task;
-curl --data "user={{ $pushover_user }}" --data "token={{ $pushover_token }}" --data "title=Envoy deploy FAILED --data "message=Envoy deployment FAILED for urlhub. Died at task $task  Release folder was: {{ $current_release }}" "https://api.pushover.net/1/messages.json";
+{{--@error--}}
+{{--echo "TASK FAILED: ". $task;--}}
+{{--curl --data "user={{ $pushover_user }}" --data "token={{ $pushover_token }}" --data "title=Envoy deploy FAILED --data "message=Envoy deployment FAILED for urlhub. Died at task $task  Release folder was: {{ $current_release }}" "https://api.pushover.net/1/messages.json";--}}
 {{--@slack('https://hooks.slack.com/services/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', '#devops', "Envoy deployment FAILED for Project Starter. Died at task $task | Release folder was: " . $current_release);--}}
-exit;
-@enderror
+{{--exit;--}}
+{{--@enderror--}}
 
-@finished
-curl --data "user={{ $pushover_user }}" --data "token={{ $pushover_token }}" --data "title=Wedding Website Deployment" --data "message=Envoy task {{ $task }} ran on rzepeckisrvr.com  Release folder was: {{ $current_release }}" "https://api.pushover.net/1/messages.json";
+{{--@finished--}}
+{{--curl --data "user={{ $pushover_user }}" --data "token={{ $pushover_token }}" --data "title=Wedding Website Deployment" --data "message=Envoy task {{ $task }} ran on rzepeckisrvr.com  Release folder was: {{ $current_release }}" "https://api.pushover.net/1/messages.json";--}}
 {{--@slack('https://hooks.slack.com/services/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', '#devops', "Envoy deployed Project Starter. Release folder was: " . $current_release);--}}
-echo "Deployment Complete";
-@endfinished
+{{--echo "Deployment Complete";--}}
+{{--@endfinished--}}
