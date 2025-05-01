@@ -11,7 +11,7 @@ final class UrlTableByUser extends BaseUrlTable
 {
     public string $tableName = 'url_table_by_user';
 
-    public ?int $user_id;
+    public ?int $user_id = null;
 
     protected function scopeDatasource(Builder $query): Builder
     {
