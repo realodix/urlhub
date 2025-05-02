@@ -44,13 +44,13 @@
                     </div>
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Min. Custom Keyword Length</label>
-                        <div class="font-light text-sm dark:text-dark-400">Specify the minimum number of characters allowed for the custom keyword. This value must be between 2 and 19.</div>
+                        <div class="font-light text-sm dark:text-dark-400">Specify the minimum number of characters allowed for the custom keyword. This value must be between 2 and 29.</div>
                         <input name="custom_keyword_min_length" required value="{{ $settings->cst_key_min_len }}"
                             class="form-input mt-4 md:mt-3 max-w-100 @error('custom_keyword_min_length') !border-red-300 @enderror">
                     </div>
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Max. Custom Keyword Length</label>
-                        <div class="font-light text-sm dark:text-dark-400">Specify the maximum number of characters allowed for the custom keyword. This value must be between 3 and 20.</div>
+                        <div class="font-light text-sm dark:text-dark-400">Specify the maximum number of characters allowed for the custom keyword. This value must be between 3 and 30.</div>
                         <input name="custom_keyword_max_length" required value="{{ $settings->cst_key_max_len }}"
                             class="form-input mt-4 md:mt-3 max-w-100 @error('custom_keyword_max_length') !border-red-300 @enderror">
                     </div>

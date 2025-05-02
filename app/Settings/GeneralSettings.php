@@ -33,8 +33,8 @@ class GeneralSettings extends Settings
     {
         request()->validate([
             'keyword_length' => ['required', 'numeric', 'between:2,20'],
-            'custom_keyword_min_length' => ['required', 'numeric', 'between:2,19'],
-            'custom_keyword_max_length' => ['required', 'numeric', 'between:3,20'],
+            'custom_keyword_min_length' => ['required', 'numeric', 'between:2,29'],
+            'custom_keyword_max_length' => ['required', 'numeric', 'between:3,30'],
             'redirect_cache_max_age' => ['required', 'numeric', 'between:0,31536000'],
         ]);
 

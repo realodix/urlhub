@@ -40,7 +40,7 @@ class SettingsPageTest extends TestCase
     }
 
     #[PHPUnit\TestWith([1])]
-    #[PHPUnit\TestWith([20])]
+    #[PHPUnit\TestWith([30])]
     public function test_validate_custom_keyword_min_length($value): void
     {
         $data = ['custom_keyword_min_length' => $value];
@@ -50,7 +50,7 @@ class SettingsPageTest extends TestCase
     }
 
     #[PHPUnit\TestWith([2])]
-    #[PHPUnit\TestWith([21])]
+    #[PHPUnit\TestWith([31])]
     public function test_validate_custom_keyword_max_length($value): void
     {
         $data = ['custom_keyword_max_length' => $value];
