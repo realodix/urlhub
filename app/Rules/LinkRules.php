@@ -7,7 +7,7 @@ use Composer\Pcre\Preg;
 class LinkRules
 {
     /**
-     * Maximum length of link.
+     * Maximum length of link
      *
      * @var int
      */
