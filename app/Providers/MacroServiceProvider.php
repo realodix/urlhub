@@ -22,7 +22,7 @@ class MacroServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Set the timezone based on the user's timezone
-        Carbon::macro('inUserTz', static function () {
+        Carbon::macro('inUserTz', function () {
             $userTimezone = auth()->user()->timezone ?? config('app.timezone');
 
             return self::this()->copy()->tz($userTimezone);
