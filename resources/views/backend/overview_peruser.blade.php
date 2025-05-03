@@ -73,7 +73,7 @@
                                             {{ $url->keyword }}
                                         </a>
                                         <a href="{{ route('link.edit', $url) }}" class="dark:text-dark-400 hover:underline">
-                                            {{ Str::limit($url->destination, 70) }}
+                                            {{ Str::limit($url->destination, 50) }}
                                         </a>
                                     </span>
                                 </div>
