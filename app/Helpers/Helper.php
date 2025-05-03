@@ -37,6 +37,19 @@ class Helper
     }
 
     /**
+     * Return the URL of a favicon for a given URL.
+     *
+     * @param string $url The URL to get the favicon for
+     * @return string The URL of the favicon
+     */
+    public static function faviconUrl(string $url): string
+    {
+        $host = Uri::of($url)->host();
+
+        return "https://icons.duckduckgo.com/ip3/{$host}.ico";
+    }
+
+    /**
      * Format URL links for display.
      *
      * @param string $value URL links

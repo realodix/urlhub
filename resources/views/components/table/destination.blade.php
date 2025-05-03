@@ -6,8 +6,8 @@
         }
     @endphp
 
-    <span>
-        <img src="https://icons.duckduckgo.com/ip3/{{ uri($model->destination)->host() }}.ico" class="h-4 inline">
+    <div class="flex items-center gap-1">
+        <img src="{{ \App\Helpers\Helper::faviconUrl($model->destination) }}" class="h-4 inline rounded">
         <a href="{{ route('link.edit', $model) }}" class="{{ $linkClasses }}">
             {{ urlDisplay($destination, $limit) }}
         </a>
@@ -16,7 +16,7 @@
         >
             @svg('open-link-in-new')
         </a>
-    </span>
+    </div>
 </div>
 
 <div>

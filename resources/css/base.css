@@ -155,3 +155,20 @@ main {
         @apply dark:bg-dark-800/80 dark:text-dark-400/50;
     }
 }
+
+.link-card__icon-container {
+    @apply border border-border-200 dark:border-dark-950;
+    @apply bg-gray-100 dark:bg-dark-950;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 2.5rem;
+
+    & img {
+        border-radius: 50%;
+        height: 1.7rem;
+        width: 1.7rem;
+    }
+}
