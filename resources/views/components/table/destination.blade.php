@@ -19,25 +19,25 @@
     </span>
 </div>
 
-@if ($tableName == 'all_urls_table')
-<span class="text-[11px] text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-dark-800 rounded-sm px-1">
-    @svg('icon-person')
-    <a href="{{ route('dboard.allurl.u-user', $model->author) }}">
-        {{ $model->author->name }}
-    </a>
-</span>
-@endif
+<div>
+    @if ($tableName == 'all_urls_table')
+    <span class="text-[11px] text-gray-800 dark:text-indigo-300 bg-gray-100 dark:bg-dark-800 rounded-sm px-1">
+        @svg('icon-person')
+        <a href="{{ route('dboard.allurl.u-user', $model->author) }}">
+            {{ $model->author->name }}
+        </a>
+    </span>
+    @endif
 
-@if ($model->password)
-<span class="text-[11px] text-emerald-600 dark:text-emerald-300 bg-emerald-100 dark:bg-dark-800 rounded-sm px-1 ml-1">
-    @svg('icon-key', ['title' => 'Password protected'])
-    Password protected
-</span>
-@endif
+    @if ($model->password)
+    <span title="Password protected" class="ml-1 first:ml-0 text-[11px] text-gray-800 dark:text-emerald-300 bg-gray-100 dark:bg-dark-800 rounded-sm px-1">
+        @svg('icon-key')
+    </span>
+    @endif
 
-@if ($model->isExpired())
-<span class="text-[11px] text-red-600 dark:text-red-300 bg-red-100 dark:bg-dark-800 rounded-sm px-1 ml-1">
-    @svg('icon-link-expired')
-    Expired
-</span>
-@endif
+    @if ($model->isExpired())
+    <span title="Expired" class="ml-1 first:ml-0 text-[11px] text-gray-800 dark:text-red-300 bg-gray-100 dark:bg-dark-800 rounded-sm px-1">
+        @svg('icon-link-expired')
+    </span>
+    @endif
+</div>
