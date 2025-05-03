@@ -15,10 +15,8 @@
             class="text-slate-600 dark:text-dark-400"
         >
             @svg('open-link-in-new')
-    </a>
+        </a>
     </span>
-
-
 </div>
 
 @if ($tableName == 'all_urls_table')
