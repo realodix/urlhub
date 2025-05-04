@@ -38,7 +38,7 @@
 
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Keyword Length</label>
-                        <div class="font-light text-sm dark:text-dark-400">Specify the number of characters to be used in the generated short URL keywords. This value must be between 2 and 20.</div>
+                        <div class="font-light text-sm dark:text-dark-400">Specify the number of characters to be used in the generated short URL keywords. This value must be between 2 and 11.</div>
                         <input name="keyword_length" required value="{{ $settings->key_len }}"
                             class="form-input mt-4 md:mt-3 max-w-100 @error('keyword_length') !border-red-300 @enderror">
                     </div>

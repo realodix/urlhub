@@ -32,7 +32,7 @@ class GeneralSettings extends Settings
     public function update(): void
     {
         request()->validate([
-            'keyword_length' => ['required', 'numeric', 'between:2,20'],
+            'keyword_length' => ['required', 'numeric', 'between:2,11'],
             'custom_keyword_min_length' => ['required', 'numeric', 'between:2,29'],
             'custom_keyword_max_length' => ['required', 'numeric', 'between:3,30'],
             'redirect_cache_max_age' => ['required', 'numeric', 'between:0,31536000'],
