@@ -256,6 +256,21 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    #[PHPUnit\TestWith([2, 1, 1])]
+    #[PHPUnit\TestWith([1, 2, 0])] // negative value
+    public function capacity($max, $used, $expected): void
+    {
+        $mock = $this->partialMock(KeyGeneratorService::class);
+        $mock->shouldReceive([
+            'maxUniqueStrings' => $max,
+            'reservedKeywordSpaceUsed' => $used,
+        ]);
+        $actual = $mock->remainingCapacity();
+
+        $this->assertSame($expected, $actual);
+    }
+
+    #[PHPUnit\Test]
     #[PHPUnit\TestWith([1, 2, 0])]
     #[PHPUnit\TestWith([3, 2, 1])]
     #[PHPUnit\TestWith([100, 99, 1])]

@@ -181,7 +181,8 @@ class KeyGeneratorService
      */
     public function capacity(): int
     {
-        return $this->maxUniqueStrings() - $this->reservedKeywordSpaceUsed();
+        // max() is used to avoid negative values
+        return max($this->maxUniqueStrings() - $this->reservedKeywordSpaceUsed(), 0);
     }
 
     /**
@@ -207,7 +208,7 @@ class KeyGeneratorService
      */
     public function standardKeywordSpaceUsed(): int
     {
-        $length = $this->settings->key_len;
+        $length = app(GeneralSettings::class)->key_len;
 
         return Url::where('is_custom', false)
             ->whereRaw('LENGTH(keyword) = ?', [$length])
@@ -222,7 +223,7 @@ class KeyGeneratorService
      */
     public function customKeywordSpaceUsed(): int
     {
-        $length = $this->settings->key_len;
+        $length = app(GeneralSettings::class)->key_len;
 
         // Evaluate by categorizing them into several types:
         $regular = Url::where('is_custom', true)
