@@ -12,6 +12,13 @@ class KeyGeneratorService
     /** @var string */
     const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
+    /**
+     * The maximum number of random key generation attempts
+     *
+     * @var int
+     */
+    const MAX_RANDOM_STRING_ATTEMPTS = 200;
+
     public function __construct(
         protected GeneralSettings $settings,
     ) {}
@@ -31,8 +38,14 @@ class KeyGeneratorService
 
         // If the string is still not unique, then generate a random string
         // until it is unique
+        $attempts = 0;
         do {
+            if ($attempts >= self::MAX_RANDOM_STRING_ATTEMPTS) {
+                throw new \App\Exceptions\CouldNotGenerateUniqueKeyException;
+            }
+
             $randomString = $this->randomString();
+            $attempts++;
         } while (!$this->verify($randomString));
 
         return $randomString;

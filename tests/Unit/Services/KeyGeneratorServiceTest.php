@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services;
 
+use App\Exceptions\CouldNotGenerateUniqueKeyException;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Illuminate\Support\Facades\File;
@@ -68,6 +69,30 @@ class KeyGeneratorServiceTest extends TestCase
         $actual = $this->keyGen->generate($inputString);
         $this->assertSame($strLen, strlen($actual));
         $this->assertNotSame(strlen($inputString), strlen($actual));
+    }
+
+    #[PHPUnit\Test]
+    public function generateThrowsExceptionIfUniqueKeyCannotBeFoundAfterMaxAttempts(): void
+    {
+        $this->expectException(CouldNotGenerateUniqueKeyException::class);
+
+        $keyGenMock = $this->partialMock(KeyGeneratorService::class);
+
+        // 1. Ensure the initial shortHash is considered "already taken"
+        $keyGenMock->shouldReceive('shortHash')->once()->andReturn('taken_initial_hash');
+
+        // 2. Ensure verify() always returns false, forcing the loop to continue.
+        //    This will be called for 'taken_initial_hash' first, then for the random string.
+        $keyGenMock->shouldReceive('verify')->andReturn(false);
+
+        // 3. We expect randomString() to be called MAX_RANDOM_STRING_ATTEMPTS times
+        //    before the exception is thrown.
+        $keyGenMock->shouldReceive('randomString')
+            ->times(KeyGeneratorService::MAX_RANDOM_STRING_ATTEMPTS)
+            // The actual return value is not very important here because verify is mocked
+            ->andReturn('any_random_string');
+
+        $keyGenMock->generate('some_long_url');
     }
 
     /**
