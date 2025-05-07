@@ -145,13 +145,13 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Menguji apakah fungsi reservedActiveKeyword mengembalikan nilai yang sesuai.
+     * Tests if the reservedActiveKeyword function returns the appropriate value.
      *
-     * reservedActiveKeyword mengembalikan keyword yang terdaftar sebagai reserved
-     * keyword dan sudah digunakan sebagai custom keyword.
+     * reservedActiveKeyword returns keywords that are registered as reserved
+     * keywords and are already in use as custom keywords.
      *
-     * Kondisi 1: Belum ada reserved keyword yang digunakan.
-     * Kondisi 2: Ada beberapa reserved keyword yang sudah digunakan.
+     * Condition 1: No reserved keywords are in use yet.
+     * Condition 2: Some reserved keywords are already in use.
      */
     public function testReservedActiveKeyword()
     {
