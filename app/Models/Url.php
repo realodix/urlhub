@@ -134,10 +134,10 @@ class Url extends Model
     /**
      * Scope a query to filter URLs by composition and keyword length.
      *
-     * @param Builder<self> $query
+     * @param \Illuminate\Database\Eloquent\Builder<self> $query
      * @param string $composition The type of keyword composition to filter
      * @param int|null $length The length of the keyword
-     * @return Builder<self>
+     * @return \Illuminate\Database\Eloquent\Builder<self>
      *
      * @throws \UnhandledMatchError
      */
