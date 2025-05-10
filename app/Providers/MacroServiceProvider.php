@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,5 +37,39 @@ class MacroServiceProvider extends ServiceProvider
                 return mb_ereg($pattern, $value) !== false ? 1 : 0;
             });
         }
+
+        Builder::macro('whereRegexp', function ($column, string $pattern) {
+            $driverName = DB::connection()->getDriverName();
+            $wrappedColumn = $this->getGrammar()->wrap($column);
+
+            switch ($driverName) {
+                case 'mysql':
+                case 'sqlite':
+                    return $this->whereRaw("{$wrappedColumn} REGEXP ?", [$pattern]);
+                case 'pgsql':
+                    return $this->whereRaw("{$wrappedColumn} ~ ?", [$pattern]);
+                default:
+                    throw new \RuntimeException(
+                        "whereRegexp is not currently supported for the {$driverName} database driver.",
+                    );
+            }
+        });
+
+        Builder::macro('whereNotRegexp', function ($column, string $pattern) {
+            $driverName = DB::connection()->getDriverName();
+            $wrappedColumn = $this->getGrammar()->wrap($column);
+
+            switch ($driverName) {
+                case 'mysql':
+                case 'sqlite':
+                    return $this->whereRaw("{$wrappedColumn} NOT REGEXP ?", [$pattern]);
+                case 'pgsql':
+                    return $this->whereRaw("{$wrappedColumn} !~ ?", [$pattern]);
+                default:
+                    throw new \RuntimeException(
+                        "whereNotRegexp is not currently supported for the {$driverName} database driver.",
+                    );
+            }
+        });
     }
 }

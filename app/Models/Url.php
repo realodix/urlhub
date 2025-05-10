@@ -149,27 +149,27 @@ class Url extends Model
 
         match ($composition) {
             // only letters
-            'alpha' => $query->where('keyword', 'REGEXP', '^[a-zA-Z]+$'),
+            'alpha' => $query->whereRegexp('keyword', '^[a-zA-Z]+$'),
             // contains at least one letter and either a number or symbol, but not both.
             'has_num_or_symbol' => $query
-                ->where('keyword', 'REGEXP', '[a-zA-Z]')
+                ->whereRegexp('keyword', '[a-zA-Z]')
                 ->where(function (Builder $q) {
                     $q->where(function (Builder $subQ) {
-                        $subQ->where('keyword', 'REGEXP', '[0-9]')
-                            ->where('keyword', 'NOT REGEXP', '[-]');
+                        $subQ->whereRegexp('keyword', '[0-9]')
+                            ->whereNotRegexp('keyword', '[-]');
                     })->orWhere(function (Builder $subQ) {
-                        $subQ->where('keyword', 'REGEXP', '[-]')
-                            ->where('keyword', 'NOT REGEXP', '[0-9]');
+                        $subQ->whereRegexp('keyword', '[-]')
+                            ->whereNotRegexp('keyword', '[0-9]');
                     });
                 }),
             // contains at least one letter, a number, and symbol.
             'has_num_and_symbol' => $query
-                ->where('keyword', 'REGEXP', '[a-zA-Z]')
-                ->where('keyword', 'REGEXP', '[0-9]')
-                ->where('keyword', 'REGEXP', '[-]'),
+                ->whereRegexp('keyword', '[a-zA-Z]')
+                ->whereRegexp('keyword', '[0-9]')
+                ->whereRegexp('keyword', '[-]'),
             // only numbers and/or symbol, with no letters.
             'only_num_symbol' => $query
-                ->where('keyword', 'REGEXP', '^[0-9-]+$'),
+                ->whereRegexp('keyword', '^[0-9-]+$'),
         };
 
         return $query;
