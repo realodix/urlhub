@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int|null $user_id
- * @property UserType $user_type
+ * @property UserType|null $user_type
  * @property string $keyword
  * @property bool $is_custom
  * @property string $destination
@@ -19,16 +19,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $dest_ios
  * @property string|null $title
  * @property string|null $password
- * @property \Carbon\Carbon|null $expires_at
+ * @property \Illuminate\Support\Carbon|null $expires_at
  * @property int|null $expired_clicks
  * @property string|null $expired_url
  * @property string|null $expired_notes
  * @property bool $forward_query
  * @property string $user_uid
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read User $author
- * @property-read Visit $visits
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \App\Models\User $author
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Visit> $visits
  * @property-read string $short_url
  */
 class Url extends Model

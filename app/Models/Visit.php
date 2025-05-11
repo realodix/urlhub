@@ -11,15 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $url_id
- * @property UserType $user_type
+ * @property UserType|null $user_type
  * @property bool $is_first_click
  * @property string|null $referer
  * @property string|null $browser
  * @property string|null $os
  * @property string $user_uid
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read Url $urls
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read Url|null $url
  */
 class Visit extends Model
 {

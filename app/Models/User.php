@@ -20,9 +20,9 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $two_factor_secret
  * @property string $two_factor_recovery_codes
  * @property string $remember_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read Url $urls
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Url> $urls
  */
 class User extends Authenticatable
 {
