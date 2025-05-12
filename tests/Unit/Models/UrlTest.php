@@ -5,6 +5,7 @@ namespace Tests\Unit\Models;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
+use App\Rules\LinkRules;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -113,7 +114,7 @@ class UrlTest extends TestCase
      */
     public function testSetTitleLength(): void
     {
-        $lengthLimit = Url::TITLE_LENGTH;
+        $lengthLimit = LinkRules::TITLE_MAX_LENGTH;
 
         $url = Url::factory()->create(['title' => str_repeat('a', $lengthLimit)]);
         $this->assertEquals($lengthLimit, strlen($url->title));

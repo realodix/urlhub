@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\UserType;
+use App\Rules\LinkRules;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,16 +39,6 @@ class Url extends Model
 
     /** @var null */
     const GUEST_ID = null;
-
-    /** @var int */
-    const TITLE_LENGTH = 255;
-
-    /**
-     * The minimum length of the password.
-     *
-     * @var int
-     */
-    const PWD_MIN_LENGTH = 3;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -122,8 +113,8 @@ class Url extends Model
     {
         return Attribute::make(
             set: function ($value) {
-                if (mb_strlen($value) > self::TITLE_LENGTH) {
-                    return mb_strimwidth($value, 0, self::TITLE_LENGTH, '...');
+                if (mb_strlen($value) > LinkRules::TITLE_MAX_LENGTH) {
+                    return mb_strimwidth($value, 0, LinkRules::TITLE_MAX_LENGTH, '...');
                 }
 
                 return $value;
