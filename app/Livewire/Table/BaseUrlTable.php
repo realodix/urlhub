@@ -25,10 +25,6 @@ abstract class BaseUrlTable extends PowerGridComponent
 
     public string $sortDirection = 'desc';
 
-    public string $sortField = 'urls.id';
-
-    public string $primaryKey = 'urls.id';
-
     abstract protected function scopeDatasource(Builder $query): Builder;
 
     public function setUp(): array
