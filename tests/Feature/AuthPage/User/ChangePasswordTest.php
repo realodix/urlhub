@@ -223,7 +223,6 @@ class ChangePasswordTest extends TestCase
      * The new password must be different from the current password.
      */
     #[PHPUnit\Test]
-    #[PHPUnit\DataProvider('newPasswordFailProvider')]
     public function newPasswordmustBeDifferent(): void
     {
         $user = $this->user;
