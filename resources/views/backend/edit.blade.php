@@ -144,7 +144,7 @@
                                         <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
                                         <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}"
                                             :options="['time_24hr' => true, 'disableMobile' => true]"
-                                            class="form-input"
+                                            class="flatpickr-input form-input"
                                         />
                                     </div>
 
