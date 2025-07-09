@@ -150,7 +150,7 @@
 
                                     <div>
                                         <p class="font-light text-sm dark:text-dark-400">Click limit</p>
-                                        <input name="expired_clicks" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
+                                        <input name="expired_clicks" type="number" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
                                     </div>
                                 </div>
 
