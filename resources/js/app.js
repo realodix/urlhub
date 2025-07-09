@@ -69,7 +69,7 @@ clipboard.on('success', (e) => {
 /**
  * https://flatpickr.js.org/
  *
- * App\View\Components\FlatPickr
+ * \resources\views\components\flat-pickr.blade.php
  */
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
