@@ -58,7 +58,7 @@
         @csrf
             <div class="content-container card card-master">
                 <div class="grid grid-cols-6 gap-6">
-                    <div class="col-span-6 lg:col-span-4">
+                    <div class="col-span-6">
                         <label class="form-label">Short URL</label>
                         <div class="grid grid-cols-2">
                             <div>
