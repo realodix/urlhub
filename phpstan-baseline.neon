@@ -11,15 +11,3 @@ parameters:
 			identifier: staticMethod.notFound
 			count: 1
 			path: app/Providers/MacroServiceProvider.php
-
-		-
-			message: '#^Method App\\View\\Components\\FlatPickr\:\:jsonOptions\(\) should return string but returns string\|false\.$#'
-			identifier: return.type
-			count: 1
-			path: app/View/Components/FlatPickr.php
-
-		-
-			message: '#^Property App\\View\\Components\\FlatPickr\:\:\$value \(string\) does not accept array\|string\|null\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: app/View/Components/FlatPickr.php
