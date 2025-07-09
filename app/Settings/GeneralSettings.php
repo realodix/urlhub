@@ -18,6 +18,8 @@ class GeneralSettings extends Settings
 
     public bool $autofill_link_title;
 
+    public string $favicon_provider = 'google';
+
     public bool $forward_query;
 
     public int $redirect_cache_max_age;
@@ -45,6 +47,7 @@ class GeneralSettings extends Settings
             'cst_key_min_len' => request()->input('custom_keyword_min_length'),
             'cst_key_max_len' => request()->input('custom_keyword_max_length'),
             'autofill_link_title' => request()->boolean('autofill_link_title'),
+            'favicon_provider' => request()->input('favicon_provider'),
             'forward_query' => request()->boolean('forward_query'),
             'redirect_cache_max_age' => request()->input('redirect_cache_max_age'),
             'track_bot_visits' => request()->boolean('track_bot_visits'),

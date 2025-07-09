@@ -75,6 +75,7 @@ class SettingsPageTest extends TestCase
             'custom_keyword_min_length' => 5,
             'custom_keyword_max_length' => 10,
             'autofill_link_title' => true,
+            'favicon_provider' => 'duckduckgo',
             'forward_query' => true,
             'redirect_cache_max_age' => 1,
             'track_bot_visits' => true,

@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Settings\GeneralSettings;
 use Composer\Pcre\Preg;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
@@ -46,7 +47,12 @@ class Helper
     {
         $host = Uri::of($url)->host();
 
-        return "https://icons.duckduckgo.com/ip3/{$host}.ico";
+        $provider = app(GeneralSettings::class)->favicon_provider;
+
+        return match ($provider) {
+            'google'     => "https://www.google.com/s2/favicons?domain={$host}",
+            'duckduckgo' => "https://icons.duckduckgo.com/ip3/{$host}.ico",
+        };
     }
 
     /**

@@ -62,6 +62,14 @@
                             <span class="slider"></span>
                         </label>
                     </div>
+                    <div class="col-span-6 lg:col-span-5">
+                        <label class="form-label">Favicon Provider</label>
+                        <div class="font-light text-sm dark:text-dark-400">Select the favicon provider to use.</div>
+                        <select name="favicon_provider" class="form-input max-w-100 mt-6">
+                            <option value="duckduckgo" @selected($settings->favicon_provider == 'duckduckgo')>DuckDuckGo</option>
+                            <option value="google" @selected($settings->favicon_provider == 'google')>Google</option>
+                        </select>
+                    </div>
 
                     <hr class="col-span-6 lg:col-span-5">
                     <h3 class="col-span-6 lg:col-span-5">Redirection</h3>
