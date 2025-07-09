@@ -34,7 +34,7 @@
                     </div>
 
                     <hr class="col-span-6 lg:col-span-5">
-                    <h3 class="col-span-6 lg:col-span-5">Short URL Keyword</h3>
+                    <h3 class="col-span-6 lg:col-span-5">Short URL</h3>
 
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Keyword Length</label>
