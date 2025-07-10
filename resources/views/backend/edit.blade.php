@@ -101,7 +101,13 @@
                     </div>
 
                     <!-- Accordion Container -->
-                    <div x-data="{ open: false }" class="col-span-6">
+                    @php
+                        $advOptSessionId = 'linkOpts-'.substr(session()->getId(), 0, 10).$url->keyword;
+                    @endphp
+                    <div x-data="{ open: sessionStorage.getItem('{{ $advOptSessionId }}') === 'true' }"
+                        x-init="$watch('open', val => sessionStorage.setItem('{{ $advOptSessionId }}', val))"
+                        class="col-span-6"
+                    >
                         <!-- Accordion Header -->
                         <button type="button" @click="open = !open" class="cursor-pointer flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-500 bg-gray-100 rounded-md dark:bg-dark-800 dark:text-gray-400 hover:bg-dark-200 dark:hover:bg-dark-700 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                             <span>Advanced Options</span>
