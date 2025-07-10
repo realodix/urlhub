@@ -1,4 +1,6 @@
-<x-modal name="add-password-modal" title="Add Password for {{ $url->keyword }}" maxWidth="md">
+<x-modal name="add-password-modal" maxWidth="md">
+    <x-slot:title>Add Password for <span class="font-semibold">{{ $url->keyword }}</span></x-slot:title>
+
     <form method="post" action="{{ route('link.password.store', $url) }}" class="space-y-6">
         @csrf
         <div class="grid grid-cols-6 gap-6">

@@ -1,4 +1,6 @@
-<x-modal name="edit-password-modal" title="Edit Password for {{ $url->keyword }}" maxWidth="md">
+<x-modal name="edit-password-modal" maxWidth="md">
+    <x-slot:title>Edit Password for <span class="font-semibold">{{ $url->keyword }}</span></x-slot:title>
+
     <form method="post" action="{{ route('link.password.update', $url) }}" class="space-y-6">
         @csrf
         <div class="grid grid-cols-6 gap-6">
