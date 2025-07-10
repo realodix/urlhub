@@ -14,7 +14,7 @@ class HelperTest extends TestCase
     {
         $this->assertInstanceOf(
             \App\Settings\GeneralSettings::class,
-            settings()
+            settings(),
         );
     }
 
