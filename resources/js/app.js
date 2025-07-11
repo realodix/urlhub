@@ -1,5 +1,6 @@
 import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
 
+
 /**
  * Dark mode toggle
  */
@@ -65,6 +66,7 @@ clipboard.on('success', (e) => {
         target.innerHTML = currentLabel;
     }, 3000);
 });
+
 
 /**
  * https://flatpickr.js.org/
