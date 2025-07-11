@@ -77,7 +77,7 @@ class RedirectToDestination
 
         return !empty($currentQuery) // Query parameters are present
             && $settings->forward_query === true  // Enabled on global level
-            && $url->author->forward_query === true // Enabled on author level
+            && $url->author->forward_query === true // Enabled on account level
             && $url->forward_query === true;       // Enabled on URL item level
     }
 }
