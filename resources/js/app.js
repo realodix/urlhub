@@ -72,5 +72,4 @@ clipboard.on('success', (e) => {
  * \resources\views\components\flat-pickr.blade.php
  */
 import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
 flatpickr(element, {});
