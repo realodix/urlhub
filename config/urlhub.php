@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app_version' => 'v1.16.0',
+    'app_version' => '1.17.x-dev',
 
     /*
      * List of non allowed domain
