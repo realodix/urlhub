@@ -42,6 +42,8 @@ class Helper
      *
      * @param string $url The URL to get the favicon for
      * @return string The URL of the favicon
+     *
+     * @throws \UnhandledMatchError
      */
     public static function faviconUrl(string $url): string
     {
