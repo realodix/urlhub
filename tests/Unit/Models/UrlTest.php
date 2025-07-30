@@ -143,4 +143,38 @@ class UrlTest extends TestCase
         $this->assertSame('https://example.com', $dest_1->destination);
         $this->assertSame('https://example.org', $dest_2->destination);
     }
+
+    #[PHPUnit\Test]
+    public function isExpired(): void
+    {
+        // Not expired - no limits set
+        $url = Url::factory()->create([
+            'expires_at' => null,
+            'expired_clicks' => null,
+        ]);
+        $this->assertFalse($url->isExpired());
+
+        // Not expired - expires_at is in the future
+        $url = Url::factory()->create(['expires_at' => now()->addDay()]);
+        $this->assertFalse($url->isExpired());
+
+        // Not expired - clicks are less than expired_clicks
+        $url = Url::factory()->create(['expired_clicks' => 2]);
+        Visit::factory()->for($url)->create();
+        $this->assertFalse($url->isExpired());
+
+        // Expired - expires_at is in the past
+        $url = Url::factory()->create(['expires_at' => now()->subDay()]);
+        $this->assertTrue($url->isExpired());
+
+        // Expired - clicks are equal to expired_clicks
+        $url = Url::factory()->create(['expired_clicks' => 1]);
+        Visit::factory()->for($url)->create();
+        $this->assertTrue($url->isExpired());
+
+        // Not expired - expired_clicks is 0
+        $url = Url::factory()->create(['expired_clicks' => 0]);
+        Visit::factory()->for($url)->create();
+        $this->assertFalse($url->isExpired());
+    }
 }
