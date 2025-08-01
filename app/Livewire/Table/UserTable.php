@@ -32,6 +32,9 @@ final class UserTable extends PowerGridComponent
         ];
     }
 
+    /**
+     * @return Builder<User>
+     */
     public function datasource(): Builder
     {
         return User::withCount('urls');

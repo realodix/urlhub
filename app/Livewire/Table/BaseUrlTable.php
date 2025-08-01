@@ -25,6 +25,10 @@ abstract class BaseUrlTable extends PowerGridComponent
 
     public string $sortDirection = 'desc';
 
+    /**
+     * @param Builder<Url> $query
+     * @return Builder<Url>
+     */
     abstract protected function scopeDatasource(Builder $query): Builder;
 
     public function setUp(): array
@@ -39,6 +43,9 @@ abstract class BaseUrlTable extends PowerGridComponent
         ];
     }
 
+    /**
+     * @return Builder<Url>
+     */
     public function datasource(): Builder
     {
         return Url::where(fn(Builder $query) => $this->scopeDatasource($query))
