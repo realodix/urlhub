@@ -20,7 +20,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     Route::get('/links/{url:keyword}/edit', [LinkController::class, 'edit'])->name('link.edit');
     Route::post('/links/{url:keyword}/edit', [LinkController::class, 'update'])->name('link.update');
     Route::get('/links/{url:keyword}/delete', [LinkController::class, 'delete'])->name('link.delete');
-    Route::get('/links{url:keyword}/table/delete', [LinkController::class, 'delete'])->name('link.delete.fromTable');
+    Route::get('/links/{url:keyword}/table/delete', [LinkController::class, 'delete'])->name('link.delete.fromTable');
     Route::post('/links/{url:keyword}/password/store', [LinkPasswordController::class, 'store'])->name('link.password.store');
     Route::post('/links/{url:keyword}/password/update', [LinkPasswordController::class, 'update'])->name('link.password.update');
     Route::get('/links/{url:keyword}/password/delete', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
