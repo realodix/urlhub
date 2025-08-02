@@ -17,19 +17,19 @@ Route::get('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('li
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () {
     // Dashboard (My URLs)
     Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-    Route::get('/links/{url:keyword}/edit', [LinkController::class, 'edit'])->name('link.edit');
-    Route::post('/links/{url:keyword}/edit', [LinkController::class, 'update'])->name('link.update');
-    Route::get('/links/{url:keyword}/delete', [LinkController::class, 'delete'])->name('link.delete');
-    Route::get('/links/{url:keyword}/table/delete', [LinkController::class, 'delete'])->name('link.delete.fromTable');
-    Route::post('/links/{url:keyword}/password/store', [LinkPasswordController::class, 'store'])->name('link.password.store');
-    Route::post('/links/{url:keyword}/password/update', [LinkPasswordController::class, 'update'])->name('link.password.update');
-    Route::get('/links/{url:keyword}/password/delete', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
+    Route::get('/links/edit/{url:keyword}', [LinkController::class, 'edit'])->name('link.edit');
+    Route::post('/links/edit/{url:keyword}', [LinkController::class, 'update'])->name('link.update');
+    Route::get('/links/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete');
+    Route::get('/links/table/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete.fromTable');
+    Route::post('/links/password/store/{url:keyword}', [LinkPasswordController::class, 'store'])->name('link.password.store');
+    Route::post('/links/password/update/{url:keyword}', [LinkPasswordController::class, 'update'])->name('link.password.update');
+    Route::get('/links/password/delete/{url:keyword}', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
     Route::get('/overview', [DashboardController::class, 'overview'])->name('dboard.overview');
     Route::get('/{user:name}/overview', [DashboardController::class, 'overviewPerUser'])->name('user.overview');
 
     // All URLs
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
-    Route::get('/links/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
+    Route::get('/{user:name}/links', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
     // User
     Route::prefix('user')->group(function () {
