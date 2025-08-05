@@ -22,7 +22,7 @@ final class UrlTable extends BaseUrlTable
      */
     protected function scopeDatasource(Builder $query): Builder
     {
-        return $query->with('author')->where('urls.user_type', UserType::User);
+        return $query->where('urls.user_type', UserType::User);
     }
 
     /**
