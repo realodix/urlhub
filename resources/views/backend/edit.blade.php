@@ -100,6 +100,7 @@
                         <input name="dest_ios" placeholder="https://apps.apple.com/us/charts/iphone" value="{{ $url->dest_ios }}" class="form-input">
                     </div>
 
+                    @if($url->user_id !== \App\Models\Url::GUEST_ID)
                     <!-- Accordion Container -->
                     @php
                         $advOptSessionId = 'linkOpts-'.substr(session()->getId(), 0, 10).$url->keyword;
@@ -185,6 +186,7 @@
                         </div>
                     </div>
                     <!-- End Accordion Container -->
+                    @endif
                 </div>
 
                 <div class="flex items-center justify-end mt-8 text-right">
