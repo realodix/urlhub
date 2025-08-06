@@ -179,9 +179,15 @@ class Url extends Model
     public function isExpired(): bool
     {
         $isExpiredAt = $this->expires_at && $this->expires_at->isBefore(now());
+
+        // Use the loaded 'visits_count' attribute if it exists to avoid N+1 queries.
+        // The 'visits_count' attribute is automatically loaded by the 'withCount('visits')'
+        // method in the BaseUrlTable component.
+        $visitsCount = $this->visits_count ?? $this->visits()->count();
+
         $isExpiredAfterClick = $this->expired_clicks
             && $this->expired_clicks > 0
-            && $this->visits()->count() >= $this->expired_clicks;
+            && $visitsCount >= $this->expired_clicks;
 
         return $isExpiredAt || $isExpiredAfterClick;
     }
