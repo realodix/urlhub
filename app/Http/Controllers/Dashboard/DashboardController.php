@@ -85,8 +85,7 @@ class DashboardController extends Controller implements HasMiddleware
     public function userLinkView(string $author)
     {
         return view('backend.url-list-by-user', [
-            'authorName' => $author,
-            'authorId' => User::findIdByName($author),
+            'author' => $author,
         ]);
     }
 
