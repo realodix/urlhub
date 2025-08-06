@@ -10,7 +10,12 @@
             <br>
             <div class="inline sm:block mr-2 text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-person', 'mr-1')
-                {{ $url->author->name }}
+                @php
+                    $urlAuthorName = $url->user_id ? $url->author->name : 'guests';
+                @endphp
+                <a href="{{ route('dboard.allurl.u-user', $urlAuthorName) }}" class="underline decoration-dotted" title="View all links from this user">
+                    {{ $url->author->name }}
+                </a>
             </div>
             <div class="inline sm:block text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-calendar', 'mr-1')
