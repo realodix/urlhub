@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\AuthPage;
 
+use App\Models\User;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -48,7 +49,7 @@ class UrlListPageSingleUserTest extends TestCase
     public function adminCanAccessTheUrlListPageOfAGuestUser(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get(route('dboard.allurl.u-user', ['user' => 'guests']));
+            ->get(route('dboard.allurl.u-user', User::GUEST_NAME));
         $response->assertOk();
     }
 
@@ -61,7 +62,7 @@ class UrlListPageSingleUserTest extends TestCase
     public function basicUsersCantAccessTheUrlListPageOfAGuestUser(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get(route('dboard.allurl.u-user', ['user' => 'guests']));
+            ->get(route('dboard.allurl.u-user', User::GUEST_NAME));
         $response->assertForbidden();
     }
 }

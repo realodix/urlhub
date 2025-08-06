@@ -11,7 +11,7 @@
             <div class="inline sm:block mr-2 text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-person', 'mr-1')
                 @php
-                    $urlAuthorName = $url->user_id ? $url->author->name : 'guests';
+                    $urlAuthorName = $url->user_id ? $url->author->name : \App\Models\User::GUEST_NAME;
                 @endphp
                 <a href="{{ route('dboard.allurl.u-user', $urlAuthorName) }}" class="underline decoration-dotted" title="View all links from this user">
                     {{ $url->author->name }}
@@ -106,7 +106,7 @@
                     </div>
 
                     <!-- Accordion Container -->
-                    @if($url->user_id !== \App\Models\Url::GUEST_ID)
+                    @if($url->user_id !== \App\Models\User::GUEST_ID)
                     @php
                         $advOptSessionId = 'linkOpts-'.substr(session()->getId(), 0, 10).$url->keyword;
                     @endphp

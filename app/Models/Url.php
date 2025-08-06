@@ -37,9 +37,6 @@ class Url extends Model
     /** @use HasFactory<\Database\Factories\UrlFactory> */
     use HasFactory;
 
-    /** @var null */
-    const GUEST_ID = null;
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -73,9 +70,7 @@ class Url extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id')
-            ->withDefault([
-                'name' => 'Guest Author',
-            ]);
+            ->withDefault(['name' => User::GUEST_NAME]);
     }
 
     /**
@@ -91,7 +86,7 @@ class Url extends Model
     protected function userId(): Attribute
     {
         return Attribute::make(
-            set: fn($value) => empty($value) ? self::GUEST_ID : $value,
+            set: fn($value) => empty($value) ? User::GUEST_ID : $value,
         );
     }
 

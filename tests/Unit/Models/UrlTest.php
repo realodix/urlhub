@@ -25,7 +25,7 @@ class UrlTest extends TestCase
     {
         $m = Url::factory()->guest()->create();
 
-        $this->assertSame(Url::GUEST_ID, $m->user_id);
+        $this->assertSame(User::GUEST_ID, $m->user_id);
         $this->assertSame(\App\Enums\UserType::Guest, $m->user_type);
     }
 
@@ -79,7 +79,7 @@ class UrlTest extends TestCase
     {
         $url = Url::factory()->create(['user_id' => $value]);
 
-        $this->assertSame(Url::GUEST_ID, $url->user_id);
+        $this->assertSame(User::GUEST_ID, $url->user_id);
     }
 
     /**
