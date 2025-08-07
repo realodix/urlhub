@@ -67,8 +67,10 @@ abstract class BaseLinkVisitChart extends ChartWidget
      */
     protected function getPeriodData(CarbonPeriod $period)
     {
-        // Check if the data is already cached to avoid querying the database
-        // multiple times. Once for total visits and once for unique visitors.
+        // The `getData()` calls this function via `chartData()` twice per render:
+        // "total visits" and "unique visitors". We cache the query result in
+        // `$this->visitsData` on the first run to ensure the database is only
+        // hit once per request, preventing duplicate queries.
         if ($this->visitsData === null) {
             $this->visitsData = Visit::query()
                 ->when($this->model instanceof User, function ($query) {
