@@ -30,6 +30,9 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     // All URLs
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
     Route::get('/links/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
+    Route::get('/links/restricted', [DashboardController::class, 'restrictedLinkView'])->name('dboard.links.restricted');
+    Route::get('/links/restricted/{user:name}', [DashboardController::class, 'userRestrictedLinkView'])
+        ->name('dboard.links.user.restricted');
 
     // User
     Route::prefix('user')->group(function () {

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Table;
 
+use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -12,7 +13,7 @@ final class UrlTableByRestricted extends BaseUrlTable
 {
     public string $tableName = 'url_table_by_restricted';
 
-    public User $author;
+    public ?User $author;
 
     /**
      * @param Builder<\App\Models\Url> $query
@@ -20,7 +21,10 @@ final class UrlTableByRestricted extends BaseUrlTable
      */
     protected function scopeDatasource(Builder $query): Builder
     {
-        return $query->where('urls.user_id', $this->author->id)
+        return $query->where('urls.user_type', UserType::User)
+            ->when($this->author instanceof User, function ($query) {
+                $query->where('urls.user_id', $this->author->id);
+            })
             ->where(function (Builder $query) {
                 $query->whereNotNull('password')
                     ->orWhere(fn(Builder $q) => $this->scopeExpired($q));

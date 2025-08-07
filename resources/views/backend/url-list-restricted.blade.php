@@ -11,7 +11,7 @@
         <div class="content-container card card-master">
             <div class="content-header"><p class="text-2xl">Restricted URLs</p></div>
 
-            @livewire('table.UrlTableByRestricted', ['author' => $author])
+            @livewire('table.UrlTableByRestricted', ['author' => $author ?? null])
         </div>
     </div>
 @endsection

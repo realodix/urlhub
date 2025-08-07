@@ -13,6 +13,24 @@ use Tests\TestCase;
 class UrlTableByRestrictedTest extends TestCase
 {
     #[PHPUnit\Test]
+    public function allUsesr(): void
+    {
+        $urlForUser1 = Url::factory()->create([
+            'expires_at' => now()->subDay(),
+        ]);
+        $urlForUser2 = Url::factory()->create([
+            'expires_at' => now()->subDay(),
+        ]);
+
+        $component = Livewire::test(UrlTableByRestricted::class, ['author' => null]);
+        $urls = $component->instance()->datasource()->get();
+
+        $this->assertCount(2, $urls);
+        $this->assertTrue($urls->contains($urlForUser1));
+        $this->assertTrue($urls->contains($urlForUser2));
+    }
+
+    #[PHPUnit\Test]
     public function specificUser(): void
     {
         $urlForUser1 = Url::factory()->create([

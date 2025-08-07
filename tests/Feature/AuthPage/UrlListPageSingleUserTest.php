@@ -26,37 +26,7 @@ class UrlListPageSingleUserTest extends TestCase
     }
 
     /**
-     * Non admin users can't access user links and guest links table page.
-     *
-     * @see App\Http\Controllers\Dashboard\DashboardController::userLinkView()
-     */
-    #[PHPUnit\Test]
-    public function basicUsersCantAccessUserLinksTablePage(): void
-    {
-        $user = $this->basicUser();
-        $response = $this->actingAs($user)
-            ->get(route('dboard.allurl.u-user', $this->adminUser()->name));
-
-        $response->assertForbidden();
-    }
-
-    /**
-     * Admin can access User-restricted links table page.
-     *
-     * @see App\Http\Controllers\Dashboard\DashboardController::restrictedLinkView()
-     */
-    #[PHPUnit\Test]
-    public function restrictedLinkView_admin(): void
-    {
-        $user = $this->adminUser();
-        $response = $this->actingAs($user)
-            ->get(route('dboard.links.restricted', $user->name));
-
-        $response->assertOk();
-    }
-
-    /**
-     * Non admin users can't access User-restricted links table page.
+     * Non admin users can't access restricted links table page.
      *
      * @see App\Http\Controllers\Dashboard\DashboardController::restrictedLinkView()
      */
@@ -65,7 +35,37 @@ class UrlListPageSingleUserTest extends TestCase
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
-            ->get(route('dboard.links.restricted', $this->adminUser()->name));
+            ->get(route('dboard.links.restricted'));
+
+        $response->assertForbidden();
+    }
+
+    /**
+     * Admin can access User-restricted links table page.
+     *
+     * @see App\Http\Controllers\Dashboard\DashboardController::userRestrictedLinkView()
+     */
+    #[PHPUnit\Test]
+    public function userRestrictedLinkView_admin(): void
+    {
+        $user = $this->adminUser();
+        $response = $this->actingAs($user)
+            ->get(route('dboard.links.user.restricted', $user->name));
+
+        $response->assertOk();
+    }
+
+    /**
+     * Non admin users can't access User-restricted links table page.
+     *
+     * @see App\Http\Controllers\Dashboard\DashboardController::userRestrictedLinkView()
+     */
+    #[PHPUnit\Test]
+    public function userRestrictedLinkView_basicUser(): void
+    {
+        $user = $this->basicUser();
+        $response = $this->actingAs($user)
+            ->get(route('dboard.links.user.restricted', $this->adminUser()->name));
 
         $response->assertForbidden();
     }
