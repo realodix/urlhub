@@ -17,7 +17,10 @@ class DashboardController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [new Middleware('role:admin', except: ['view', 'overviewPerUser'])];
+        return [new Middleware(
+            'role:admin',
+            except: ['view', 'overviewPerUser', 'restrictedLinkView']),
+        ];
     }
 
     /**
@@ -86,6 +89,20 @@ class DashboardController extends Controller implements HasMiddleware
     {
         return view('backend.url-list-by-user', [
             'author' => $author,
+        ]);
+    }
+
+    /**
+     * Show all restricted short URLs created by specific users.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function restrictedLinkView(User $user)
+    {
+        Gate::authorize('authorOrAdmin', $user);
+
+        return view('backend.url-list-restricted', [
+            'author' => $user,
         ]);
     }
 
