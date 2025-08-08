@@ -76,6 +76,7 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "test": [
+            "@php artisan config:clear --ansi",
             "./vendor/bin/phpunit"
         ]
     }
