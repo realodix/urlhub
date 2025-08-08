@@ -39,7 +39,7 @@
         </form>
 
         <div class="text-center mt-4">
-            <p>Know your password? <a class="text-primary-700 dark:text-primary-600 hover:text-primary-500 dark:hover:text-primary-600/90 font-medium" href="{{ route('login') }}">Login</a></p>
+            <p>Know your password? <a class="text-primary-700 dark:text-primary-600 hover:text-primary-700 font-medium" href="{{ route('login') }}">Login</a></p>
         </div>
     </div>
 </div>

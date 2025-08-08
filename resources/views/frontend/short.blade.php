@@ -60,7 +60,7 @@
                         <img src="{{ \App\Helpers\Helper::faviconUrl($url->destination) }}" class="">
                     </div>
                     <div>
-                        <p class="text-primary-700 dark:text-emerald-500 font-bold text-xl sm:text-2xl">
+                        <p class="text-primary-800 dark:text-emerald-500 font-bold text-xl sm:text-2xl">
                             <a href="{{ $url->short_url }}" target="_blank" id="copy">
                                 {{ urlDisplay($url->short_url, scheme: false) }}
                             </a>

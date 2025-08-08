@@ -7,4 +7,17 @@
     --color-uh-logo-dark: oklch(62.3% 0.165 263.41);
     --color-border-200: #e5e7eb;
     --color-border-300: #d1d5db;
+
+    --color-theme-primary-element: #005FB8;
+    --color-primary-50: #f7fafd;
+    --color-primary-100: #e3eef7;
+    --color-primary-200: #cee0f1;
+    --color-primary-300: #b7d2eb;
+    --color-primary-400: #98bee2;
+    --color-primary-500: #6fa4d7;
+    --color-primary-600: #4288ca;
+    --color-primary-700: #1a6ebd;
+    --color-primary-800: #155b9c;
+    --color-primary-900: #0f416f;
+    --color-primary-950: #092845;
 }

@@ -20,7 +20,6 @@ export default {
     theme: {
         extend: {
             colors: {
-                'primary': colors.blue,
                 'dark': colors.neutral,
                 'pg-primary': colors.gray, // PowerGrid
             },
