@@ -12,7 +12,7 @@
         <div class="content-header">
             <p class="text-2xl">List of All URLs</p>
             <div class="flex justify-end">
-                <a href="{{ route('dboard.allurl.u-user', \App\Models\User::GUEST_NAME) }}" title="Shortened links by Guests" class="btn btn-primary">
+                <a href="{{ route('dboard.allurl.u-user', \App\Models\User::GUEST_NAME) }}" title="Shortened links by Guests" class="btn btn-secondary">
                     By Guest
                 </a>
             </div>
