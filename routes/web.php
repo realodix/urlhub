@@ -54,8 +54,6 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
 
     Route::get('/settings', [SettingController::class, 'view'])->name('dboard.settings');
     Route::post('/settings', [SettingController::class, 'update'])->name('dboard.settings.update');
-
-    // About Page
     Route::get('/about', [DashboardController::class, 'aboutView'])->name('dboard.about');
 });
 
