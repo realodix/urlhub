@@ -25,11 +25,11 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     Route::post('/links/password/update/{url:keyword}', [LinkPasswordController::class, 'update'])->name('link.password.update');
     Route::get('/links/password/delete/{url:keyword}', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
     Route::get('/overview', [DashboardController::class, 'overview'])->name('dboard.overview');
-    Route::get('/{user:name}/overview', [DashboardController::class, 'overviewPerUser'])->name('user.overview');
+    Route::get('/overview/{user:name}', [DashboardController::class, 'overviewPerUser'])->name('user.overview');
 
     // All URLs
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
-    Route::get('/{user:name}/links', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
+    Route::get('/links/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
     // User
     Route::prefix('user')->group(function () {
