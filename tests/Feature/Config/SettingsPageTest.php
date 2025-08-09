@@ -69,8 +69,8 @@ class SettingsPageTest extends TestCase
     private function formData(?array $value = null): array
     {
         $data = [
-            'anyone_can_shorten' => true,
-            'anyone_can_register' => true,
+            'public_shortening' => true,
+            'public_registration' => true,
             'keyword_length' => 7,
             'custom_keyword_min_length' => 5,
             'custom_keyword_max_length' => 10,

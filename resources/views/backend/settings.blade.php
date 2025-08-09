@@ -17,18 +17,18 @@
             @csrf
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-label">Allow Anyone to Shorten URLs</label>
-                        <div class="font-light text-sm dark:text-dark-400">Enable to allow anyone to create short URLs. If disabled, only registered users can create them.</div>
+                        <label class="form-label">Public Shortening</label>
+                        <div class="font-light text-sm dark:text-dark-400">Allow non-registered users to create new short URLs. If this is disabled, only logged-in users can use the shortener.</div>
                         <label class="switch float-right mt-6">
-                            <input type="checkbox" name="anyone_can_shorten" value="1" {{ $settings->anyone_can_shorten ? 'checked' : '' }}>
+                            <input type="checkbox" name="public_shortening" value="1" {{ $settings->public_shortening ? 'checked' : '' }}>
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-label">Allow User Registration</label>
-                        <div class="font-light text-sm dark:text-dark-400">Enable to allow new user registrations. If disabled, no new user registrations are allowed.</div>
+                        <label class="form-label">Public Registration</label>
+                        <div class="font-light text-sm dark:text-dark-400">Allow new users to register an account. If disabled, new accounts can only be created by an administrator.</div>
                         <label class="switch float-right mt-6">
-                            <input type="checkbox" name="anyone_can_register" value="1" {{ $settings->anyone_can_register ? 'checked' : '' }}>
+                            <input type="checkbox" name="public_registration" value="1" {{ $settings->public_registration ? 'checked' : '' }}>
                             <span class="slider"></span>
                         </label>
                     </div>

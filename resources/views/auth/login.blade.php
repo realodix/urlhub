@@ -39,7 +39,7 @@
             </button>
         </form>
 
-        @if (Route::has('register') && settings()->anyone_can_register)
+        @if (Route::has('register') && settings()->public_registration)
         <div class="mt-6 text-center text-sm text-gray-600 dark:text-dark-400">
             Don't have an account?
             <a href="{{ route('register') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-700 font-medium">Sign up</a>

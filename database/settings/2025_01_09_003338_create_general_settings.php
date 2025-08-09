@@ -6,8 +6,8 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('general.anyone_can_shorten', true);
-        $this->migrator->add('general.anyone_can_register', true);
+        $this->migrator->add('general.public_shortening', true);
+        $this->migrator->add('general.public_registration', true);
 
         $this->migrator->add('general.key_len', 5);
         $this->migrator->add('general.cst_key_min_len', 3);

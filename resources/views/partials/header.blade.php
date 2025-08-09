@@ -69,7 +69,7 @@
                 <a href="{{ route('login') }}" class="block pl-3 pr-4 py-2 font-medium">
                     Log in
                 </a>
-                @if (Route::has('register') && settings()->anyone_can_register)
+                @if (Route::has('register') && settings()->public_registration)
                     <a href="{{ route('register') }}" class="block pl-3 pr-4 py-2 font-medium">
                         Sign up
                     </a>

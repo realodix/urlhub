@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="pt-16 sm:pt-28">
-    @if (!auth()->check() && !settings()->anyone_can_shorten)
+    @if (!auth()->check() && !settings()->public_shortening)
         <div class="flex flex-wrap md:justify-center">
             <div class="w-full md:w-8/12 font-thin text-5xl text-slate-600 text-center">
                 Please login to shorten URLs

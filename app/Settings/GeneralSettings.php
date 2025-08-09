@@ -6,9 +6,9 @@ use Spatie\LaravelSettings\Settings;
 
 class GeneralSettings extends Settings
 {
-    public bool $anyone_can_shorten;
+    public bool $public_shortening;
 
-    public bool $anyone_can_register;
+    public bool $public_registration;
 
     public int $key_len;
 
@@ -41,8 +41,8 @@ class GeneralSettings extends Settings
         ]);
 
         $this->fill([
-            'anyone_can_shorten' => request()->boolean('anyone_can_shorten'),
-            'anyone_can_register' => request()->boolean('anyone_can_register'),
+            'public_shortening' => request()->boolean('public_shortening'),
+            'public_registration' => request()->boolean('public_registration'),
             'key_len' => request()->input('keyword_length'),
             'cst_key_min_len' => request()->input('custom_keyword_min_length'),
             'cst_key_max_len' => request()->input('custom_keyword_max_length'),
