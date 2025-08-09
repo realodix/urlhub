@@ -9,7 +9,7 @@
         </div>
 
         <div class="content-container card card-master">
-            <div class="content-header"><p class="text-2xl">Restricted URLs</p></div>
+            <div class="content-header"><p class="text-2xl">Restricted Links</p></div>
 
             @livewire('table.UrlTableByRestricted', ['author' => $author ?? null])
         </div>
