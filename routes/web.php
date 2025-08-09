@@ -35,9 +35,6 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
             ->name('dboard.links.user.restricted');
     });
 
-    Route::get('/overview', [DashboardController::class, 'overview'])->name('dboard.overview');
-    Route::get('/overview/{user:name}', [DashboardController::class, 'overviewPerUser'])->name('user.overview');
-
     // User
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'view'])->name('user.index');
@@ -52,6 +49,8 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
         Route::post('/{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
     });
 
+    Route::get('/overview', [DashboardController::class, 'overview'])->name('dboard.overview');
+    Route::get('/overview/{user:name}', [DashboardController::class, 'overviewPerUser'])->name('user.overview');
     Route::get('/settings', [SettingController::class, 'view'])->name('dboard.settings');
     Route::post('/settings', [SettingController::class, 'update'])->name('dboard.settings.update');
     Route::get('/about', [DashboardController::class, 'aboutView'])->name('dboard.about');
