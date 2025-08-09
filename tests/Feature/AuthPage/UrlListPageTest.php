@@ -34,4 +34,34 @@ class UrlListPageTest extends TestCase
             ->get(route('dboard.allurl'));
         $response->assertForbidden();
     }
+
+    /**
+     * Non admin users can't access user links and guest links table page.
+     *
+     * @see App\Http\Controllers\Dashboard\DashboardController::userLinkView()
+     */
+    #[PHPUnit\Test]
+    public function basicUsersCantAccessUserLinksTablePage(): void
+    {
+        $user = $this->basicUser();
+        $response = $this->actingAs($user)
+            ->get(route('dboard.allurl.u-user', $this->adminUser()->name));
+
+        $response->assertForbidden();
+    }
+
+    /**
+     * Admin can access restricted links table page.
+     *
+     * @see App\Http\Controllers\Dashboard\DashboardController::restrictedLinkView()
+     */
+    #[PHPUnit\Test]
+    public function restrictedLinkView_admin(): void
+    {
+        $user = $this->adminUser();
+        $response = $this->actingAs($user)
+            ->get(route('dboard.links.restricted'));
+
+        $response->assertOk();
+    }
 }
