@@ -33,7 +33,6 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
     Route::get('/links/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
-
     // User
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'view'])->name('user.index');
