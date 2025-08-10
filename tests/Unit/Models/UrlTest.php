@@ -5,6 +5,7 @@ namespace Tests\Unit\Models;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
+use App\Rules\LinkRules;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -24,7 +25,7 @@ class UrlTest extends TestCase
     {
         $m = Url::factory()->guest()->create();
 
-        $this->assertSame(Url::GUEST_ID, $m->user_id);
+        $this->assertSame(User::GUEST_ID, $m->user_id);
         $this->assertSame(\App\Enums\UserType::Guest, $m->user_type);
     }
 
@@ -78,7 +79,7 @@ class UrlTest extends TestCase
     {
         $url = Url::factory()->create(['user_id' => $value]);
 
-        $this->assertSame(Url::GUEST_ID, $url->user_id);
+        $this->assertSame(User::GUEST_ID, $url->user_id);
     }
 
     /**
@@ -113,7 +114,7 @@ class UrlTest extends TestCase
      */
     public function testSetTitleLength(): void
     {
-        $lengthLimit = Url::TITLE_LENGTH;
+        $lengthLimit = LinkRules::TITLE_MAX_LENGTH;
 
         $url = Url::factory()->create(['title' => str_repeat('a', $lengthLimit)]);
         $this->assertEquals($lengthLimit, strlen($url->title));
@@ -141,5 +142,39 @@ class UrlTest extends TestCase
 
         $this->assertSame('https://example.com', $dest_1->destination);
         $this->assertSame('https://example.org', $dest_2->destination);
+    }
+
+    #[PHPUnit\Test]
+    public function isExpired(): void
+    {
+        // Not expired - no limits set
+        $url = Url::factory()->create([
+            'expires_at' => null,
+            'expired_clicks' => null,
+        ]);
+        $this->assertFalse($url->isExpired());
+
+        // Not expired - expires_at is in the future
+        $url = Url::factory()->create(['expires_at' => now()->addDay()]);
+        $this->assertFalse($url->isExpired());
+
+        // Not expired - clicks are less than expired_clicks
+        $url = Url::factory()->create(['expired_clicks' => 2]);
+        Visit::factory()->for($url)->create();
+        $this->assertFalse($url->isExpired());
+
+        // Expired - expires_at is in the past
+        $url = Url::factory()->create(['expires_at' => now()->subDay()]);
+        $this->assertTrue($url->isExpired());
+
+        // Expired - clicks are equal to expired_clicks
+        $url = Url::factory()->create(['expired_clicks' => 1]);
+        Visit::factory()->for($url)->create();
+        $this->assertTrue($url->isExpired());
+
+        // Not expired - expired_clicks is 0
+        $url = Url::factory()->create(['expired_clicks' => 0]);
+        Visit::factory()->for($url)->create();
+        $this->assertFalse($url->isExpired());
     }
 }

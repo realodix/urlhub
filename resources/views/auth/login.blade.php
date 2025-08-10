@@ -1,9 +1,7 @@
-@extends('layouts.auth')
+@extends('layouts.general')
 
 @section('title', 'Login')
-
 @section('css_class', 'auth')
-
 @section('content')
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
     <div class="logo text-4xl sm:text-6xl">
@@ -31,7 +29,7 @@
             </div>
 
             <div class="flex items-center justify-end">
-                <a href="{{ route('password.request') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-500 dark:hover:text-primary-600/90 font-medium">
+                <a href="{{ route('password.request') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-700 font-medium">
                     Forgot password?
                 </a>
             </div>
@@ -41,10 +39,10 @@
             </button>
         </form>
 
-        @if (Route::has('register') && settings()->anyone_can_register)
+        @if (Route::has('register') && settings()->public_registration)
         <div class="mt-6 text-center text-sm text-gray-600 dark:text-dark-400">
             Don't have an account?
-            <a href="{{ route('register') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-500 dark:hover:text-primary-600/90 font-medium">Sign up</a>
+            <a href="{{ route('register') }}" class="text-primary-700 dark:text-primary-600 hover:text-primary-700 font-medium">Sign up</a>
         </div>
         @endif
     </div>

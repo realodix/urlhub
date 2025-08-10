@@ -33,7 +33,7 @@
                         </div>
                         @if (settings()->forward_query)
                             <div class="col-span-6">
-                                <label class="form-label">Parameter Passing</label>
+                                <label class="form-label">Forward Query Parameters</label>
                                 <p class="font-light text-sm dark:text-dark-400">Forward query parameters from your short link to the destination URL. For example, <code class="text-slate-600 dark:text-dark-400 dark:underline dark:decoration-dotted">https://short.link/abc?utm_medium=social</code> will redirect to <code class="text-slate-600 dark:text-dark-400 dark:underline dark:decoration-dotted">https://example.com?utm_medium=social</code>.</p>
                                 <label class="switch float-right mt-6">
                                     <input type="checkbox" name="forward_query" value="1" {{ $user->forward_query ? 'checked' : '' }}>

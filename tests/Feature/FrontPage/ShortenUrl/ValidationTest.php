@@ -3,6 +3,7 @@
 namespace Tests\Feature\FrontPage\ShortenUrl;
 
 use App\Livewire\Validation\ValidateCustomKeyword;
+use App\Models\Url;
 use Livewire\Livewire;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
@@ -59,40 +60,48 @@ class ValidationTest extends TestCase
             ->assertHasNoErrors('keyword');
     }
 
-    public static function customKeyFailProvider(): array
-    {
-        return [
-            ['fooBar'],
-            ['foo_bar'],
-            ['fonts'], // reserved keyword
-            ['login'], // registered route
-        ];
-    }
-
     /**
      * @see App\Http\Requests\StoreUrlRequest
+     * @see App\Livewire\Validation\ValidateCustomKeyword
      */
-    #[PHPUnit\DataProvider('customKeyFailProvider')]
+    #[PHPUnit\TestWith(['foo_bar'])] // symbol
+    #[PHPUnit\TestWith(['fonts'])] // reserved keyword
+    #[PHPUnit\TestWith(['login'])] // registered route
     public function testCustomKeyValidationShouldFail($value): void
     {
         $response = $this->post(route('link.create'), [
             'long_url' => 'https://laravel.com/',
             'custom_key' => $value,
         ]);
-
         $response->assertRedirectToRoute('home')
             ->assertSessionHasErrors('custom_key');
-    }
 
-    /**
-     * @see App\Livewire\Validation\ValidateCustomKeyword
-     */
-    #[PHPUnit\DataProvider('customKeyFailProvider')]
-    public function testLivewireCustomKeyValidationShouldFail($value): void
-    {
         $component = Livewire::test(ValidateCustomKeyword::class);
         $component->set('keyword', $value)
             ->assertHasErrors('keyword');
+    }
+
+    /**
+     * @see App\Http\Requests\StoreUrlRequest
+     * @see App\Livewire\Validation\ValidateCustomKeyword
+     */
+    #[PHPUnit\TestWith(['foo'])] // already exists
+    #[PHPUnit\TestWith(['fonts'])] // reserved keyword
+    #[PHPUnit\TestWith(['login'])] // registered route
+    public function testCustomKeyWithCaseVariantsValidationShouldFail($value): void
+    {
+        Url::factory()->create(['keyword' => 'foo', 'is_custom' => true]);
+
+        $response = $this->post(route('link.create'), [
+            'long_url' => 'https://laravel.com/',
+            'custom_key' => strtoupper($value),
+        ]);
+        $response->assertRedirectToRoute('home')
+            ->assertSessionHasErrors(['custom_key' => 'Not available.']);
+
+        $component = Livewire::test(ValidateCustomKeyword::class);
+        $component->set('keyword', strtoupper($value))
+            ->assertHasErrors(['keyword' => 'Not available.']);
     }
 
     /**

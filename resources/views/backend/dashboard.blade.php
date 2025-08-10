@@ -43,11 +43,7 @@
             <div class="flex justify-end">
                 <a href="{{ route('user.overview', auth()->user()) }}" title="Overview" class="btn btn-secondary">
                     @svg('icon-overview', '!h-[1.5em] mr-1')
-                    <p class="hidden sm:inline"> Overview </p>
-                </a>
-                <a href="{{ url('./') }}" target="_blank" title="Add URL" class="btn btn-primary ml-2">
-                    @svg('icon-add-link', '!h-[1.5em] mr-1')
-                    <p class="hidden sm:inline">Add URL</p>
+                    <p class="hidden sm:inline">Overview</p>
                 </a>
             </div>
         </div>

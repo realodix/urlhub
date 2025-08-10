@@ -17,19 +17,23 @@ Route::get('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('li
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () {
     // Dashboard (My URLs)
     Route::get('/', [DashboardController::class, 'view'])->name('dashboard');
-    Route::get('/links/{url:keyword}/edit', [LinkController::class, 'edit'])->name('link.edit');
-    Route::post('/links/{url:keyword}/edit', [LinkController::class, 'update'])->name('link.update');
-    Route::get('/links/{url:keyword}/delete', [LinkController::class, 'delete'])->name('link.delete');
-    Route::get('/links{url:keyword}/table/delete', [LinkController::class, 'delete'])->name('link.delete.fromTable');
-    Route::post('/links/{url:keyword}/password/store', [LinkPasswordController::class, 'store'])->name('link.password.store');
-    Route::post('/links/{url:keyword}/password/update', [LinkPasswordController::class, 'update'])->name('link.password.update');
-    Route::get('/links/{url:keyword}/password/delete', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
-    Route::get('/overview', [DashboardController::class, 'overview'])->name('dboard.overview');
-    Route::get('/{user:name}/overview', [DashboardController::class, 'overviewPerUser'])->name('user.overview');
 
-    // All URLs
-    Route::get('/links', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
-    Route::get('/links/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
+    // Link
+    Route::prefix('links')->group(function () {
+        Route::get('/', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
+        Route::get('/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
+
+        Route::get('/edit/{url:keyword}', [LinkController::class, 'edit'])->name('link.edit');
+        Route::post('/edit/{url:keyword}', [LinkController::class, 'update'])->name('link.update');
+        Route::get('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete');
+        Route::get('/table/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete.fromTable');
+        Route::post('/password/store/{url:keyword}', [LinkPasswordController::class, 'store'])->name('link.password.store');
+        Route::post('/password/update/{url:keyword}', [LinkPasswordController::class, 'update'])->name('link.password.update');
+        Route::get('/password/delete/{url:keyword}', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
+        Route::get('/restricted', [DashboardController::class, 'restrictedLinkView'])->name('dboard.links.restricted');
+        Route::get('/restricted/{user:name}', [DashboardController::class, 'userRestrictedLinkView'])
+            ->name('dboard.links.user.restricted');
+    });
 
     // User
     Route::prefix('user')->group(function () {
@@ -45,10 +49,10 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
         Route::post('/{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
     });
 
+    Route::get('/overview', [DashboardController::class, 'overview'])->name('dboard.overview');
+    Route::get('/overview/{user:name}', [DashboardController::class, 'overviewPerUser'])->name('user.overview');
     Route::get('/settings', [SettingController::class, 'view'])->name('dboard.settings');
     Route::post('/settings', [SettingController::class, 'update'])->name('dboard.settings.update');
-
-    // About Page
     Route::get('/about', [DashboardController::class, 'aboutView'])->name('dboard.about');
 });
 

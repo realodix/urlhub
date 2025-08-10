@@ -55,19 +55,26 @@
                     @endif
                 </div>
 
-                <p class="text-primary-700 dark:text-emerald-500 font-bold text-xl sm:text-2xl">
-                    <a href="{{ $url->short_url }}" target="_blank" id="copy">
-                        {{ urlDisplay($url->short_url, scheme: false) }}
-                    </a>
-                </p>
-
                 <div class="flex gap-x-2 mt-2">
-                    <div class="hidden md:block dark:text-dark-400">@svg('icon-arrow-turn-right', 'dark:text-dark-400')</div>
-                    <p class="break-all max-w-2xl dark:text-dark-400">
-                        <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
-                            {{ $url->destination }}
-                        </a>
-                    </p>
+                    <div class="link-card__icon-container">
+                        <img src="{{ \App\Helpers\Helper::faviconUrl($url->destination) }}" class="">
+                    </div>
+                    <div>
+                        <p class="text-primary-800 dark:text-emerald-500 font-bold text-xl sm:text-2xl">
+                            <a href="{{ $url->short_url }}" target="_blank" id="copy">
+                                {{ urlDisplay($url->short_url, scheme: false) }}
+                            </a>
+                        </p>
+
+                        <div class="flex gap-x-2 mt-2">
+                            <div class="hidden md:block dark:text-dark-400">@svg('icon-arrow-turn-right', 'dark:text-dark-400')</div>
+                            <p class="break-all max-w-2xl dark:text-dark-400">
+                                <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
+                                    {{ $url->destination }}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mt-22">

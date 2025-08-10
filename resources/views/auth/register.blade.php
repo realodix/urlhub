@@ -1,9 +1,7 @@
-@extends('layouts.auth')
+@extends('layouts.general')
 
 @section('title', 'Register')
-
 @section('css_class', 'auth')
-
 @section('content')
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
     <div class="logo text-4xl sm:text-6xl">
@@ -11,7 +9,7 @@
     </div>
 
     <div class="auth-box card">
-        @if (settings()->anyone_can_register === false)
+        @if (settings()->public_registration === false)
             <p class="text-muted">Sorry, we are closed for registrations at this time.</p>
         @else
             <form method="post" action="{{ route('register') }}" aria-label="Register" class="space-y-4">

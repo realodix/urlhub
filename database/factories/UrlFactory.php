@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Enums\UserType;
-use App\Models\Url;
 use App\Models\User;
 use App\Services\KeyGeneratorService;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -38,7 +37,7 @@ class UrlFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'user_id' => Url::GUEST_ID,
+                'user_id' => User::GUEST_ID,
                 'user_type' => UserType::Guest,
                 'forward_query' => false,
             ];

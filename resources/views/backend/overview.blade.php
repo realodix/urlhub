@@ -114,7 +114,9 @@
         </x-tabs>
 
         <h3 class="text-xl">Random String</h3>
-        <p class="font-light text-sm dark:text-dark-400">Capacity is the estimated maximum number of random strings that can be generated to create short links. The generator will reject when the randomly generated string reaches the maximum limit of the capacity.</p>
+        <p class="font-light text-sm dark:text-dark-400">
+            <strong>Capacity</strong> is the maximum number of unique random keywords that can be generated, minus the weighted value for the space used by the reserved keywords. <strong>Keyword Space Used</strong> indicating how much of the total capacity has been filled. The closer this number gets to the capacity, the fewer new random combinations remain available. Note: based on the current character length configuration.
+        </p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
@@ -122,19 +124,15 @@
                         Capacity
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1">
-                        @if ($keyGenService->maxUniqueStrings() === PHP_INT_MAX)
-                            (<code>PHP_INT_MAX</code>) {{ number_format(PHP_INT_MAX) }}
-                        @else
-                            {{ number_format($keyGenService->capacity()) }}
-                        @endif
+                        {{ number_format($keyGenService->capacity()) }}
                     </dd>
                 </div>
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1 md:w-64">
-                        Generated
+                        Keyword Space Used
                     </dt>
                     <dd class="-mt-1 font-normal text-gray-900 dark:text-emerald-500 md:mt-1 md:w-64">
-                        {{ number_format($keyGenService->keywordCount()) }}
+                        {{ number_format($keyGenService->totalKeywordSpaceUsed()) }}
                     </dd>
                 </div>
             </dl>
@@ -166,7 +164,7 @@
                                             {{ $url->keyword }}
                                         </a>
                                         <a href="{{ route('link.edit', $url) }}" class="dark:text-dark-400 hover:underline ">
-                                            {{ Str::limit($url->destination, 70) }}
+                                            {{ Str::limit($url->destination, 50) }}
                                         </a>
                                     </span>
                                 </div>

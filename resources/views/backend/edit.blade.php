@@ -10,7 +10,12 @@
             <br>
             <div class="inline sm:block mr-2 text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-person', 'mr-1')
-                {{ $url->author->name }}
+                @php
+                    $urlAuthorName = $url->user_id ? $url->author->name : \App\Models\User::GUEST_NAME;
+                @endphp
+                <a href="{{ route('dboard.allurl.u-user', $urlAuthorName) }}" class="underline decoration-dotted" title="View all links from this user">
+                    {{ $url->author->name }}
+                </a>
             </div>
             <div class="inline sm:block text-sm text-slate-600 dark:text-dark-400">
                 @svg('icon-calendar', 'mr-1')
@@ -58,18 +63,18 @@
         @csrf
             <div class="content-container card card-master">
                 <div class="grid grid-cols-6 gap-6">
-                    <div class="col-span-6 lg:col-span-4">
+                    <div class="col-span-6">
                         <label class="form-label">Short URL</label>
                         <div class="grid grid-cols-2">
                             <div>
                                 @svg('open-link-in-new')
-                                <span class="text-primary-700 dark:text-emerald-500">
+                                <span class="text-primary-800 dark:text-emerald-500">
                                     <a href="{{ $url->short_url }}" target="_blank">{{ urlDisplay($url->short_url, scheme: false) }}</a>
                                 </span>
                             </div>
                             <div>
                                 @svg('icon-item-detail')
-                                <span class="text-primary-700 dark:text-emerald-500">
+                                <span class="text-primary-800 dark:text-emerald-500">
                                     <a href="{{ route('link_detail', $url) }}" target="_blank">{{ urlDisplay(route('link_detail', $url), scheme: false) }}</a>
                                 </span>
                             </div>
@@ -101,9 +106,16 @@
                     </div>
 
                     <!-- Accordion Container -->
-                    <div x-data="{ open: false }" class="col-span-6">
+                    @if($url->user_id !== \App\Models\User::GUEST_ID)
+                    @php
+                        $advOptSessionId = 'linkOpts-'.substr(session()->getId(), 0, 10).$url->keyword;
+                    @endphp
+                    <div x-data="{ open: sessionStorage.getItem('{{ $advOptSessionId }}') === 'true' }"
+                        x-init="$watch('open', val => sessionStorage.setItem('{{ $advOptSessionId }}', val))"
+                        class="col-span-6"
+                    >
                         <!-- Accordion Header -->
-                        <button type="button" @click="open = !open" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-500 bg-gray-100 rounded-md dark:bg-dark-800 dark:text-gray-400 hover:bg-dark-200 dark:hover:bg-dark-700 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                        <button type="button" @click="open = !open" class="cursor-pointer flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-left text-gray-500 bg-gray-100 rounded-md dark:bg-dark-800 dark:text-gray-400 hover:bg-dark-200 dark:hover:bg-dark-700 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                             <span>Advanced Options</span>
                             <svg x-show="!open" class="w-5 h-5 transition-transform transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -144,13 +156,13 @@
                                         <p class="font-light text-sm dark:text-dark-400">Link expiration date (UTC)</p>
                                         <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}"
                                             :options="['time_24hr' => true, 'disableMobile' => true]"
-                                            class="form-input"
+                                            class="flatpickr-input form-input"
                                         />
                                     </div>
 
                                     <div>
                                         <p class="font-light text-sm dark:text-dark-400">Click limit</p>
-                                        <input name="expired_clicks" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
+                                        <input name="expired_clicks" type="number" placeholder="0" value="{{ $url->expired_clicks }}" class="form-input">
                                     </div>
                                 </div>
 
@@ -163,10 +175,10 @@
                                 <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
                             </div>
 
-                            <!-- Parameter Passing -->
+                            <!-- Forward Query Parameters -->
                             @if (settings()->forward_query && $url->author->forward_query)
                                 <div class="col-span-6 mt-6">
-                                    <label class="form-label"># Parameter Passing</label>
+                                    <label class="form-label"># Forward Query Parameters</label>
                                     <p class="font-light text-sm dark:text-dark-400">Forward query parameters from your short link to the destination URL. For example, <code class="text-slate-600 dark:text-dark-400 dark:underline dark:decoration-dotted">https://short.link/abc?utm_medium=social</code> will redirect to <code class="text-slate-600 dark:text-dark-400 dark:underline dark:decoration-dotted">https://example.com?utm_medium=social</code>.</p>
                                     <label class="switch float-right mt-6">
                                         <input type="checkbox" name="forward_query" value="1" {{ $url->forward_query ? 'checked' : '' }}>
@@ -178,6 +190,7 @@
                             @endif
                         </div>
                     </div>
+                    @endif
                     <!-- End Accordion Container -->
                 </div>
 

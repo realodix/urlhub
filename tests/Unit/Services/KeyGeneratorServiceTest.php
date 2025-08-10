@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services;
 
+use App\Exceptions\CouldNotGenerateUniqueKeyException;
 use App\Models\Url;
 use App\Services\KeyGeneratorService;
 use Illuminate\Support\Facades\File;
@@ -11,25 +12,15 @@ use Tests\TestCase;
 #[PHPUnit\Group('services')]
 class KeyGeneratorServiceTest extends TestCase
 {
-    private const N_URL_WITH_USER_ID = 1;
-    private const N_URL_WITHOUT_USER_ID = 2;
     private const RESOURCE_PREFIX = 'zzz';
 
-    private Url $url;
-
     private KeyGeneratorService $keyGen;
-
-    private int $totalUrl;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->url = new Url;
-
         $this->keyGen = app(KeyGeneratorService::class);
-
-        $this->totalUrl = self::N_URL_WITH_USER_ID + self::N_URL_WITHOUT_USER_ID;
     }
 
     public function testGenerateUniqueString(): void
@@ -80,17 +71,47 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertNotSame(strlen($inputString), strlen($actual));
     }
 
+    #[PHPUnit\Test]
+    public function generateThrowsExceptionIfUniqueKeyCannotBeFoundAfterMaxAttempts(): void
+    {
+        $this->expectException(CouldNotGenerateUniqueKeyException::class);
+
+        $keyGenMock = $this->partialMock(KeyGeneratorService::class);
+
+        // 1. Ensure the initial shortHash is considered "already taken"
+        $keyGenMock->shouldReceive('shortHash')->once()->andReturn('taken_initial_hash');
+
+        // 2. Ensure verify() always returns false, forcing the loop to continue.
+        //    This will be called for 'taken_initial_hash' first, then for the random string.
+        $keyGenMock->shouldReceive('verify')->andReturn(false);
+
+        // 3. We expect randomString() to be called MAX_RANDOM_STRING_ATTEMPTS times
+        //    before the exception is thrown.
+        $keyGenMock->shouldReceive('randomString')
+            ->times(KeyGeneratorService::MAX_RANDOM_STRING_ATTEMPTS)
+            // The actual return value is not very important here because verify is mocked
+            ->andReturn('any_random_string');
+
+        $keyGenMock->generate('some_long_url');
+    }
+
     /**
      * The `verify` function should return `false` when the string is already
      * used as a short link keyword
      */
-    public function testStringIsAlreadyUsedAsAShortLinkKeyword(): void
+    public function testStringIsAlreadyInUse(): void
     {
-        $value = $this->keyGen->generate('https://github.com/realodix');
+        $standardKey = 'fOo';
+        Url::factory()->create(['keyword' => $standardKey, 'is_custom' => false]);
+        $this->assertFalse($this->keyGen->verify($standardKey));
+        $this->assertTrue($this->keyGen->verify(strtoupper($standardKey)));
+        $this->assertTrue($this->keyGen->verify(strtolower($standardKey)));
 
-        Url::factory()->create(['keyword' => $value]);
-
-        $this->assertFalse($this->keyGen->verify($value));
+        $customeKey = 'bAr';
+        Url::factory()->create(['keyword' => $customeKey, 'is_custom' => true]);
+        $this->assertFalse($this->keyGen->verify($customeKey));
+        $this->assertFalse($this->keyGen->verify(strtoupper($customeKey)));
+        $this->assertFalse($this->keyGen->verify(strtolower($customeKey)));
     }
 
     /**
@@ -149,13 +170,13 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * Menguji apakah fungsi reservedActiveKeyword mengembalikan nilai yang sesuai.
+     * Tests if the reservedActiveKeyword function returns the appropriate value.
      *
-     * reservedActiveKeyword mengembalikan keyword yang terdaftar sebagai reserved
-     * keyword dan sudah digunakan sebagai custom keyword.
+     * reservedActiveKeyword returns keywords that are registered as reserved
+     * keywords and are already in use as custom keywords.
      *
-     * Kondisi 1: Belum ada reserved keyword yang digunakan.
-     * Kondisi 2: Ada beberapa reserved keyword yang sudah digunakan.
+     * Condition 1: No reserved keywords are in use yet.
+     * Condition 2: Some reserved keywords are already in use.
      */
     public function testReservedActiveKeyword()
     {
@@ -205,53 +226,73 @@ class KeyGeneratorServiceTest extends TestCase
         );
     }
 
-    /**
-     * Pengujian dilakukan berdasarkan panjang karakternya.
-     */
-    public function testKeywordCountBasedOnStringLength(): void
+    #[PHPUnit\Test]
+    public function totalKeywordSpaceUsed(): void
     {
-        $keywordLength = 5;
-        settings()->fill(['key_len' => $keywordLength])->save();
+        $keyLen = 3;
 
-        Url::factory()->create([
-            'keyword' => $this->keyGen->randomString(),
-        ]);
-        $this->assertSame(1, $this->keyGen->keywordCount());
+        settings()->fill(['key_len' => $keyLen])->save();
+        Url::factory()->create(['keyword' => 'foo', 'is_custom' => false]); // 1
+        Url::factory()->create(['keyword' => 'bar', 'is_custom' => true]); // 8
+        $this->assertSame(9, $this->keyGen->totalKeywordSpaceUsed());
 
-        Url::factory()->create([
-            'keyword' => str_repeat('a', $keywordLength),
-            'is_custom' => true,
-        ]);
-        $this->assertSame(2, $this->keyGen->keywordCount());
-
-        // 'keyword' length is not match with 'key_len', so it is not counted.
-        Url::factory()->create([
-            'keyword' => str_repeat('b', $keywordLength + 2),
-            'is_custom' => true,
-        ]);
-        $this->assertSame(2, $this->keyGen->keywordCount());
-
-        settings()->fill(['key_len' => $keywordLength + 3])->save();
-        $this->assertSame(0, $this->keyGen->keywordCount());
-        $this->assertSame($this->totalUrl, $this->url->count());
+        // Character length does not meet criteria
+        settings()->fill(['key_len' => $keyLen + 1])->save();
+        $this->assertSame(0, $this->keyGen->totalKeywordSpaceUsed());
+        settings()->fill(['key_len' => $keyLen - 1])->save();
+        $this->assertSame(0, $this->keyGen->totalKeywordSpaceUsed());
     }
 
-    /**
-     * Only alphanumeric characters.
-     */
-    public function testKeywordCountBasedOnStringCharacters(): void
+    #[PHPUnit\Test]
+    public function standardKeywordSpaceUsed(): void
     {
-        settings()->fill(['key_len' => 3])->save();
+        $keyLen = 3;
 
-        Url::factory()->count(5)->sequence(
-            ['keyword' => 'abc'],
-            ['keyword' => 'foo'],
-            ['keyword' => 'f1_'],
-            ['keyword' => '_12'],
-            ['keyword' => 'f_2'],
-        )->create();
+        settings()->fill(['key_len' => $keyLen])->save();
+        Url::factory()->create(['keyword' => 'foo', 'is_custom' => false]);
+        Url::factory()->create(['keyword' => 'bar', 'is_custom' => false]);
+        $this->assertSame(2, $this->keyGen->standardKeywordSpaceUsed());
 
-        $this->assertSame(2, $this->keyGen->keywordCount());
+        // Character length does not meet criteria
+        settings()->fill(['key_len' => $keyLen + 1])->save();
+        $this->assertSame(0, $this->keyGen->standardKeywordSpaceUsed());
+        settings()->fill(['key_len' => $keyLen - 1])->save();
+        $this->assertSame(0, $this->keyGen->standardKeywordSpaceUsed());
+    }
+
+    #[PHPUnit\Test]
+    public function customKeywordSpaceUsed(): void
+    {
+        $keyLen = 3;
+
+        settings()->fill(['key_len' => $keyLen])->save();
+        Url::factory()->create(['keyword' => 'abc', 'is_custom' => true]); // 8
+        Url::factory()->create(['keyword' => 'a2c', 'is_custom' => true]); // 4
+        Url::factory()->create(['keyword' => 'a-c', 'is_custom' => true]); // 4
+        Url::factory()->create(['keyword' => 'a2-', 'is_custom' => true]); // 2
+        Url::factory()->create(['keyword' => '-12', 'is_custom' => true]); // 1
+        $this->assertSame(19, $this->keyGen->customKeywordSpaceUsed());
+
+        // Character length does not meet criteria
+        settings()->fill(['key_len' => $keyLen + 1])->save();
+        $this->assertSame(0, $this->keyGen->customKeywordSpaceUsed());
+        settings()->fill(['key_len' => $keyLen - 1])->save();
+        $this->assertSame(0, $this->keyGen->customKeywordSpaceUsed());
+    }
+
+    #[PHPUnit\Test]
+    #[PHPUnit\TestWith([2, 1, 1])]
+    #[PHPUnit\TestWith([1, 2, 0])] // negative value
+    public function capacity($max, $used, $expected): void
+    {
+        $mock = $this->partialMock(KeyGeneratorService::class);
+        $mock->shouldReceive([
+            'maxUniqueStrings' => $max,
+            'reservedKeywordSpaceUsed' => $used,
+        ]);
+        $actual = $mock->remainingCapacity();
+
+        $this->assertSame($expected, $actual);
     }
 
     #[PHPUnit\Test]
@@ -265,7 +306,7 @@ class KeyGeneratorServiceTest extends TestCase
         $mock = $this->partialMock(KeyGeneratorService::class);
         $mock->shouldReceive([
             'capacity' => $capacity,
-            'keywordCount' => $used,
+            'totalKeywordSpaceUsed' => $used,
         ]);
         $actual = $mock->remainingCapacity();
 

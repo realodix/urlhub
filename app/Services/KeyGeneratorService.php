@@ -12,6 +12,13 @@ class KeyGeneratorService
     /** @var string */
     const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
+    /**
+     * The maximum number of random key generation attempts
+     *
+     * @var int
+     */
+    const MAX_RANDOM_STRING_ATTEMPTS = 200;
+
     public function __construct(
         protected GeneralSettings $settings,
     ) {}
@@ -31,8 +38,14 @@ class KeyGeneratorService
 
         // If the string is still not unique, then generate a random string
         // until it is unique
+        $attempts = 0;
         do {
+            if ($attempts >= self::MAX_RANDOM_STRING_ATTEMPTS) {
+                throw new \App\Exceptions\CouldNotGenerateUniqueKeyException;
+            }
+
             $randomString = $this->randomString();
+            $attempts++;
         } while (!$this->verify($randomString));
 
         return $randomString;
@@ -81,10 +94,13 @@ class KeyGeneratorService
      */
     public function verify(string $keyword): bool
     {
-        $keywordExists = Url::where('keyword', $keyword)->exists();
+        $keyExists = Url::where('keyword', $keyword)
+            ->where('is_custom', false)->exists();
+        $customKeyExists = Url::whereRaw('LOWER(keyword) = ?', [strtolower($keyword)])
+            ->where('is_custom', true)->exists();
         $keyIsReserved = $this->reservedKeyword()->contains(strtolower($keyword));
 
-        if ($keywordExists || $keyIsReserved) {
+        if ($keyExists || $customKeyExists || $keyIsReserved) {
             return false;
         }
 
@@ -174,42 +190,68 @@ class KeyGeneratorService
     */
 
     /**
-     * The maximum number of unique random keywords that can be generated based on
-     * the current character length configuration, minus weighted value for reserved
-     * keywords.
+     * Calculate the maximum number of unique random strings that can be generated.
      */
     public function capacity(): int
     {
-        return $this->maxUniqueStrings() - $this->reservedKeywordSpaceUsed();
+        // max() is used to avoid negative values
+        return max($this->maxUniqueStrings() - $this->reservedKeywordSpaceUsed(), 0);
     }
 
     /**
-     * Calculate the number of unique random strings that can still be generated.
+     * Calculate the remaining capacity for generating new random strings.
      */
     public function remainingCapacity(): int
     {
         // max() is used to avoid negative values
-        return max($this->capacity() - $this->keywordCount(), 0);
+        return max($this->capacity() - $this->totalKeywordSpaceUsed(), 0);
     }
 
     /**
-     * Counts the number of valid keywords, where the keywords have a length equal
-     * to the configured keyword length and contain only allowed characters.
+     * Calculates the total occupancy within the available keyspace.
      */
-    public function keywordCount(): int
+    public function totalKeywordSpaceUsed(): int
     {
-        $length = $this->settings->key_len;
+        return $this->standardKeywordSpaceUsed() + $this->customKeywordSpaceUsed();
+    }
 
-        return Url::whereRaw('LENGTH(keyword) = ?', [$length])
-            ->when(\Illuminate\Support\Facades\DB::getDriverName() === 'sqlite',
-                function (\Illuminate\Database\Eloquent\Builder $query): void {
-                    $query->whereRaw("keyword NOT LIKE ? ESCAPE '\'", ['%\_%']);
-                },
-                function (\Illuminate\Database\Eloquent\Builder $query): void {
-                    $query->whereNotLike('keyword', '%\\_%');
-                },
-            )
+    /**
+     * Calculates the keyspace used by standard keywords, based on the current
+     * character length configuration.
+     */
+    public function standardKeywordSpaceUsed(): int
+    {
+        $length = app(GeneralSettings::class)->key_len;
+
+        return Url::where('is_custom', false)
+            ->whereRaw('LENGTH(keyword) = ?', [$length])
             ->count();
+    }
+
+    /**
+     * Calculates the amount of keyspace used by custom keywords based on their
+     * composition and the current character length configuration. Custom keywords
+     * use more space within the total capacity than their simple count suggests
+     * due to the generator potentially needing to avoid case variants.
+     */
+    public function customKeywordSpaceUsed(): int
+    {
+        $length = app(GeneralSettings::class)->key_len;
+
+        // Evaluate by categorizing them into several types:
+        $regular = Url::where('is_custom', true)
+            ->composition('alpha', $length)
+            ->count() * pow(2, $length);
+        $numOrSymbol = Url::where('is_custom', true)
+            ->composition('has_num_or_symbol', $length)
+            ->count() * pow(2, $length - 1);
+        $numAndSymbol = Url::where('is_custom', true)
+            ->composition('has_num_and_symbol', $length)
+            ->count() * pow(2, $length - 2);
+        $onlyNumSymbol = Url::where('is_custom', true)
+            ->composition('only_num_symbol', $length)->count();
+
+        return $regular + $numOrSymbol + $numAndSymbol + $onlyNumSymbol;
     }
 
     /**
@@ -238,8 +280,7 @@ class KeyGeneratorService
      *
      * This weighting estimates how many potential keywords are effectively
      * unavailable because a single reserved keyword must be avoided in all its
-     * potential case variants (e.g., 'admin' implies 'Admin', 'ADMIN', etc.,
-     * should also be avoided). The result represents the estimated portion of
+     * potential case variants. The result represents the estimated portion of
      * the keyspace considered occupied by these reserved keywords.
      */
     public function reservedKeywordSpaceUsed(): int

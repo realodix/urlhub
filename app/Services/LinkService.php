@@ -6,6 +6,7 @@ use App\Enums\UserType;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
 use App\Models\User;
+use App\Rules\LinkRules;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Str;
 
@@ -38,7 +39,7 @@ class LinkService
                 false,
             );
 
-            if (is_string($title) && mb_strlen($title) > Url::TITLE_LENGTH) {
+            if (is_string($title) && mb_strlen($title) > LinkRules::TITLE_MAX_LENGTH) {
                 return $defaultTitle;
             }
 

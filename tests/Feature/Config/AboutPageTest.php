@@ -231,8 +231,8 @@ class AboutPageTest extends TestCase
     */
 
     #[PHPUnit\Test]
-    public function keywordCount(): void
+    public function standardKeywordSpaceUsed(): void
     {
-        $this->assertSame(self::KEYWORD_COUNT, $this->keyGen->keywordCount());
+        $this->assertSame(self::KEYWORD_COUNT, $this->keyGen->standardKeywordSpaceUsed());
     }
 }

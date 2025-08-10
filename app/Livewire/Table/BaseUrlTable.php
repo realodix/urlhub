@@ -25,10 +25,10 @@ abstract class BaseUrlTable extends PowerGridComponent
 
     public string $sortDirection = 'desc';
 
-    public string $sortField = 'urls.id';
-
-    public string $primaryKey = 'urls.id';
-
+    /**
+     * @param Builder<Url> $query
+     * @return Builder<Url>
+     */
     abstract protected function scopeDatasource(Builder $query): Builder;
 
     public function setUp(): array
@@ -43,9 +43,13 @@ abstract class BaseUrlTable extends PowerGridComponent
         ];
     }
 
+    /**
+     * @return Builder<Url>
+     */
     public function datasource(): Builder
     {
         return Url::where(fn(Builder $query) => $this->scopeDatasource($query))
+            ->with('author')
             ->withCount([
                 'visits',
                 'visits as unique_visit_count' => function (Builder $query) {

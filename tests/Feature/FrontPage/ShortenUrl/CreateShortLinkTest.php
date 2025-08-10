@@ -113,6 +113,26 @@ class CreateShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
+    #[PHPUnit\Test]
+    public function shortenUrlFailsAndShowsErrorPageWhenMaxAttemptsReached(): void
+    {
+        $this->mock(KeyGeneratorService::class, function ($mock) {
+            // Allow the UrlHubLinkChecker middleware to pass
+            $mock->shouldReceive('remainingCapacity')->andReturn(1);
+
+            // Simulate that the generate() method will always fail after
+            // trying multiple times and throw an exception.
+            $mock->shouldReceive('generate')->once()
+                ->andThrow(new \App\Exceptions\CouldNotGenerateUniqueKeyException);
+        });
+
+        $longUrl = 'https://example.com/some-url-that-triggers-failure';
+        $response = $this->post(route('link.create'), ['long_url' => $longUrl]);
+
+        $response->assertStatus(503);
+        $response->assertViewIs('errors.key_generation_failed');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Custom key already exist

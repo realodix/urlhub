@@ -1,9 +1,7 @@
-@extends('layouts.auth')
+@extends('layouts.general')
 
 @section('title', 'Reset Password')
-
 @section('css_class', 'auth')
-
 @section('content')
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
     @include('partials.messages')

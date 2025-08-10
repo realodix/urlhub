@@ -1,5 +1,6 @@
 import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
 
+
 /**
  * Dark mode toggle
  */
@@ -66,10 +67,11 @@ clipboard.on('success', (e) => {
     }, 3000);
 });
 
+
 /**
  * https://flatpickr.js.org/
- * https://blade-ui-kit.com/docs/0.x/flatpickr
+ *
+ * \resources\views\components\flat-pickr.blade.php
  */
 import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
 flatpickr(element, {});

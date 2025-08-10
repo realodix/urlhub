@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Settings\GeneralSettings;
 use Composer\Pcre\Preg;
 use Illuminate\Support\Str;
 use Illuminate\Support\Uri;
@@ -34,6 +35,26 @@ class Helper
         $device->parse();
 
         return $device;
+    }
+
+    /**
+     * Return the URL of a favicon for a given URL.
+     *
+     * @param string $url The URL to get the favicon for
+     * @return string The URL of the favicon
+     *
+     * @throws \UnhandledMatchError
+     */
+    public static function faviconUrl(string $url): string
+    {
+        $host = Uri::of($url)->host();
+
+        $provider = app(GeneralSettings::class)->favicon_provider;
+
+        return match ($provider) {
+            'google'     => "https://www.google.com/s2/favicons?domain={$host}",
+            'duckduckgo' => "https://icons.duckduckgo.com/ip3/{$host}.ico",
+        };
     }
 
     /**

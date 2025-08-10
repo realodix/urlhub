@@ -20,14 +20,20 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $two_factor_secret
  * @property string $two_factor_recovery_codes
  * @property string $remember_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read Url $urls
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Url> $urls
  */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, HasRoles, Notifiable;
+
+    /** @var null */
+    const GUEST_ID = null;
+
+    /** @var string */
+    const GUEST_NAME = 'guest';
 
     /**
      * The attributes that are mass assignable.
@@ -55,6 +61,23 @@ class User extends Authenticatable
             'password' => 'hashed',
             'forward_query' => 'boolean',
         ];
+    }
+
+    /**
+     * Find a user ID by name, or return the GUEST_ID for guests.
+     *
+     * @param string $name The name of the user or 'guests'.
+     * @return int|null The user ID or null for guests.
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public static function findIdByName(string $name): ?int
+    {
+        if ($name === self::GUEST_NAME) {
+            return self::GUEST_ID;
+        }
+
+        return self::where('name', $name)->firstOrFail()->id;
     }
 
     /**

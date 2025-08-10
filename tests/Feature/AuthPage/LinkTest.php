@@ -47,7 +47,7 @@ class LinkTest extends TestCase
             ->post(
                 route('link.update', $url->keyword),
                 Helper::updateLinkData($url, [
-                    'title' => str_repeat('a', Url::TITLE_LENGTH + 1)],
+                    'title' => str_repeat('a', LinkRules::TITLE_MAX_LENGTH + 1)],
                 ),
             );
 
@@ -84,7 +84,7 @@ class LinkTest extends TestCase
      */
     public function test_update_validates_long_url_max_length(): void
     {
-        $veryLongUrl = 'https://laravel.com/'.str_repeat('a', LinkRules::LENGTH);
+        $veryLongUrl = 'https://laravel.com/'.str_repeat('a', LinkRules::MAX_LENGTH);
 
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)

@@ -9,11 +9,16 @@
     </div>
 
     <div class="content-container card card-master">
-        <div class="content-header">
+        <div class="content-header !grid-cols-1 md:!grid-cols-2">
             <p class="text-2xl">List of All URLs</p>
-            <div class="flex justify-end">
-                <a href="{{ route('dboard.allurl.u-user', ['user' => 'guests']) }}" title="Shortened links by Guests" class="btn btn-primary">
+
+            <div class="md:flex justify-end mt-4 md:mt-0">
+                <a href="{{ route('dboard.allurl.u-user', \App\Models\User::GUEST_NAME) }}" title="Shortened links by Guests" class="btn btn-secondary">
                     By Guest
+                </a>
+
+                <a href="{{ route('dboard.links.restricted') }}" title="Restricted links" class="btn btn-secondary ml-2">
+                    Restricted
                 </a>
             </div>
         </div>

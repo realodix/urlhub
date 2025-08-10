@@ -7,6 +7,7 @@ use App\Actions\RedirectToDestination;
 use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
+use App\Rules\LinkRules;
 use App\Services\LinkService;
 use App\Services\UserService;
 use App\Services\VisitService;
@@ -101,7 +102,7 @@ class LinkController extends Controller implements HasMiddleware
         Gate::authorize('authorOrAdmin', $url);
 
         $request->validate([
-            'title' => ['max:'.Url::TITLE_LENGTH],
+            'title' => ['max:'.LinkRules::TITLE_MAX_LENGTH],
         ]);
 
         $url->title = $request->title;

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\UserType;
+use App\Rules\LinkRules;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int|null $user_id
- * @property UserType $user_type
+ * @property UserType|null $user_type
  * @property string $keyword
  * @property bool $is_custom
  * @property string $destination
@@ -18,35 +20,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $dest_ios
  * @property string|null $title
  * @property string|null $password
- * @property \Carbon\Carbon|null $expires_at
+ * @property \Illuminate\Support\Carbon|null $expires_at
  * @property int|null $expired_clicks
  * @property string|null $expired_url
  * @property string|null $expired_notes
  * @property bool $forward_query
  * @property string $user_uid
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read User $author
- * @property-read Visit $visits
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \App\Models\User $author
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Visit> $visits
  * @property-read string $short_url
  */
 class Url extends Model
 {
     /** @use HasFactory<\Database\Factories\UrlFactory> */
     use HasFactory;
-
-    /** @var null */
-    const GUEST_ID = null;
-
-    /** @var int */
-    const TITLE_LENGTH = 255;
-
-    /**
-     * The minimum length of the password.
-     *
-     * @var int
-     */
-    const PWD_MIN_LENGTH = 3;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -81,9 +70,7 @@ class Url extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id')
-            ->withDefault([
-                'name' => 'Guest Author',
-            ]);
+            ->withDefault(['name' => User::GUEST_NAME]);
     }
 
     /**
@@ -99,7 +86,7 @@ class Url extends Model
     protected function userId(): Attribute
     {
         return Attribute::make(
-            set: fn($value) => empty($value) ? self::GUEST_ID : $value,
+            set: fn($value) => empty($value) ? User::GUEST_ID : $value,
         );
     }
 
@@ -121,13 +108,57 @@ class Url extends Model
     {
         return Attribute::make(
             set: function ($value) {
-                if (mb_strlen($value) > self::TITLE_LENGTH) {
-                    return mb_strimwidth($value, 0, self::TITLE_LENGTH, '...');
+                if (mb_strlen($value) > LinkRules::TITLE_MAX_LENGTH) {
+                    return mb_strimwidth($value, 0, LinkRules::TITLE_MAX_LENGTH, '...');
                 }
 
                 return $value;
             },
         );
+    }
+
+    /**
+     * Scope a query to filter URLs by composition and keyword length.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder<self> $query
+     * @param string $composition The type of keyword composition to filter
+     * @param int|null $length The length of the keyword
+     * @return \Illuminate\Database\Eloquent\Builder<self>
+     *
+     * @throws \UnhandledMatchError
+     */
+    public function scopeComposition(Builder $query, string $composition, ?int $length = null): Builder
+    {
+        $query->when($length > 0, function (Builder $q) use ($length) {
+            return $q->whereRaw('LENGTH(keyword) = ?', [$length]);
+        });
+
+        match ($composition) {
+            // only letters
+            'alpha' => $query->whereRegexp('keyword', '^[a-zA-Z]+$'),
+            // contains at least one letter and either a number or symbol, but not both.
+            'has_num_or_symbol' => $query
+                ->whereRegexp('keyword', '[a-zA-Z]')
+                ->where(function (Builder $q) {
+                    $q->where(function (Builder $subQ) {
+                        $subQ->whereRegexp('keyword', '[0-9]')
+                            ->whereNotRegexp('keyword', '[-]');
+                    })->orWhere(function (Builder $subQ) {
+                        $subQ->whereRegexp('keyword', '[-]')
+                            ->whereNotRegexp('keyword', '[0-9]');
+                    });
+                }),
+            // contains at least one letter, a number, and symbol.
+            'has_num_and_symbol' => $query
+                ->whereRegexp('keyword', '[a-zA-Z]')
+                ->whereRegexp('keyword', '[0-9]')
+                ->whereRegexp('keyword', '[-]'),
+            // only numbers and/or symbol, with no letters.
+            'only_num_symbol' => $query
+                ->whereRegexp('keyword', '^[0-9-]+$'),
+        };
+
+        return $query;
     }
 
     /**
@@ -143,9 +174,15 @@ class Url extends Model
     public function isExpired(): bool
     {
         $isExpiredAt = $this->expires_at && $this->expires_at->isBefore(now());
+
+        // Use the loaded 'visits_count' attribute if it exists to avoid N+1 queries.
+        // The 'visits_count' attribute is automatically loaded by the 'withCount('visits')'
+        // method in the BaseUrlTable component.
+        $visitsCount = $this->visits_count ?? $this->visits()->count();
+
         $isExpiredAfterClick = $this->expired_clicks
             && $this->expired_clicks > 0
-            && $this->visits()->count() >= $this->expired_clicks;
+            && $visitsCount >= $this->expired_clicks;
 
         return $isExpiredAt || $isExpiredAfterClick;
     }

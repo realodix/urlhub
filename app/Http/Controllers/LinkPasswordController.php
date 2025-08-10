@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Url;
+use App\Rules\LinkRules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Password;
@@ -21,7 +22,7 @@ class LinkPasswordController extends Controller
         Gate::authorize('authorOrAdmin', $url);
 
         $request->validate([
-            'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
+            'password' => ['required', Password::min(LinkRules::PWD_MIN_LENGTH), 'confirmed'],
         ]);
 
         $url->password = $request->password;
@@ -43,7 +44,7 @@ class LinkPasswordController extends Controller
         Gate::authorize('authorOrAdmin', $url);
 
         $request->validate([
-            'password' => ['required', Password::min(Url::PWD_MIN_LENGTH), 'confirmed'],
+            'password' => ['required', Password::min(LinkRules::PWD_MIN_LENGTH), 'confirmed'],
         ]);
 
         $url->password = $request->password;

@@ -10,6 +10,15 @@ use Tests\TestCase;
 class HelperTest extends TestCase
 {
     #[PHPUnit\Test]
+    public function settings(): void
+    {
+        $this->assertInstanceOf(
+            \App\Settings\GeneralSettings::class,
+            settings(),
+        );
+    }
+
+    #[PHPUnit\Test]
     public function urlDisplay(): void
     {
         $this->assertSame(
