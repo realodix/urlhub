@@ -13,6 +13,7 @@ class UserRules
             'string', 'alpha_num:ascii', 'min:4', 'max:20',
             'unique:App\Models\User,name',
             Rule::notIn(['guest', 'guests']),
+            Rule::notIn(config('urlhub.username_blacklist')),
         ];
     }
 
