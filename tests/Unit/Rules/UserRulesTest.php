@@ -35,6 +35,12 @@ class UserRulesTest extends TestCase
         $this->assertTrue($val->fails());
     }
 
+    public function testNameMinFail(): void
+    {
+        $val = validator(['name' => str_repeat('a', 3)], ['name' => UserRules::name()]);
+        $this->assertTrue($val->fails());
+    }
+
     public function testNameUniqueFail(): void
     {
         $user = User::factory()->create(['name' => 'test']);
