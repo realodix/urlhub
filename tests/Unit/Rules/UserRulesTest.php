@@ -21,11 +21,24 @@ class UserRulesTest extends TestCase
     #[PHPUnit\TestWith(['foÖ123'])] // non-ascii
     #[PHPUnit\TestWith(['foo_123'])]
     #[PHPUnit\TestWith(['foo-123'])]
-    #[PHPUnit\TestWith(['guest'])]
-    #[PHPUnit\TestWith(['guests'])]
     public function testNameFail($value): void
     {
         $val = validator(['name' => $value], ['name' => UserRules::name()]);
+        $this->assertTrue($val->fails());
+    }
+
+    #[PHPUnit\TestWith(['guest'])]
+    #[PHPUnit\TestWith(['guests'])]
+    public function testNameFail_Blacklist_Guest($value): void
+    {
+        $val = validator(['name' => $value], ['name' => UserRules::name()]);
+        $this->assertTrue($val->fails());
+    }
+
+    public function testNameFail_Blacklist_Config(): void
+    {
+        config(['urlhub.username_blacklist' => ['laravel']]);
+        $val = validator(['name' => 'laravel'], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }
 
