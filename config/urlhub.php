@@ -14,17 +14,7 @@ return [
     ],
 
     /*
-     * List of reserved or not allowed URL ending
-     *
-     * Some of them represent things that look like folder names in public
-     * folders. Feel free to add keywords that you want to prevent, for
-     * example rude words.
      */
-    'reserved_keyword' => [
-        // Reserved for future use
-        'build', 'hot', // When Vite is running in development
-        'vendor',       // Packages (ex: laravel/telescope)
-        'assets', 'fonts', 'images', 'img', 'storage',
     ],
 
     /*

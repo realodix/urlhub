@@ -13,6 +13,17 @@ class KeyGeneratorService
     const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
+     * Reserved for future use
+     *
+     * @var string[]
+     */
+    const RESERVED_KEYWORD = [
+        'build', 'hot', // When Vite is running in development
+        'vendor',       // Packages (ex: laravel/telescope)
+        'assets', 'fonts', 'images', 'img', 'storage',
+    ];
+
+    /**
      * The maximum number of random key generation attempts
      *
      * @var int
@@ -113,7 +124,7 @@ class KeyGeneratorService
     public function reservedKeyword(): Collection
     {
         $data = [
-            config('urlhub.reserved_keyword'),
+            self::RESERVED_KEYWORD,
             $this->routeCollisionList(),
             $this->publicPathCollisionList(),
         ];
@@ -179,7 +190,7 @@ class KeyGeneratorService
     {
         return collect($value)
             ->filter(fn($value) => Preg::isMatch('/^([0-9a-zA-Z\-])+$/', $value))
-            ->reject(fn($value) => in_array($value, config('urlhub.reserved_keyword')))
+            ->reject(fn($value) => in_array($value, self::RESERVED_KEYWORD))
             ->unique();
     }
 

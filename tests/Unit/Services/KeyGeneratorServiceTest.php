@@ -43,10 +43,14 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertSame('mocked_random_string', $mock->generate($value));
     }
 
+    /**
+     * Tests the scenario when a reserved keyword is used as a value for the
+     * generation of a unique string. The random string should be used instead
+     * of the reserved keyword.
+     */
     public function testGenerateUniqueStringWithReservedKeyword(): void
     {
-        $reserved_keyword = 'foo';
-        config(['urlhub.reserved_keyword' => [$reserved_keyword]]);
+        $reserved_keyword = KeyGeneratorService::RESERVED_KEYWORD[0];
 
         $mock = $this->partialMock(KeyGeneratorService::class);
         $mock->shouldReceive([
@@ -54,7 +58,10 @@ class KeyGeneratorServiceTest extends TestCase
             'randomString' => 'mocked_random_string',
         ]);
 
-        $this->assertSame('mocked_random_string', $mock->generate($reserved_keyword));
+        $this->assertSame(
+            'mocked_random_string',
+            $mock->generate($reserved_keyword),
+        );
     }
 
     /**
@@ -120,9 +127,7 @@ class KeyGeneratorServiceTest extends TestCase
      */
     public function testStringIsAReservedKeyword(): void
     {
-        $value = 'foobar';
-
-        config(['urlhub.reserved_keyword' => [$value]]);
+        $value = KeyGeneratorService::RESERVED_KEYWORD[0];
 
         $this->assertFalse($this->keyGen->verify($value));
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
@@ -197,26 +202,23 @@ class KeyGeneratorServiceTest extends TestCase
     #[PHPUnit\Test]
     public function filterCollisionCandidates(): void
     {
-        $actual = array_merge(
-            [
-                'css',
-                'reset-password',
+        $actual = [
+            'css',
+            'reset-password',
 
-                '.',
-                '..',
-                '.htaccess',
-                'favicon.ico',
+            '.',
+            '..',
+            '.htaccess',
+            'favicon.ico',
 
-                '+{url}',
-                '/',
-                '_debugbar',
-                '_debugbar/assets/javascript',
-                'admin/about',
-                'admin/user/{user}/changepassword',
-                'admin/links/u/{user}',
-            ],
-            config('urlhub.reserved_keyword'),
-        );
+            '+{url}',
+            '/',
+            '_debugbar',
+            '_debugbar/assets/javascript',
+            'admin/about',
+            'admin/user/{user}/changepassword',
+            'admin/links/u/{user}',
+        ];
 
         $expected = ['css', 'reset-password'];
 

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Rules;
 
 use App\Rules\NotBlacklistedKeyword;
+use App\Services\KeyGeneratorService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
@@ -55,9 +56,7 @@ class NotBlacklistedKeywordTest extends TestCase
      */
     public function testCustomKeywordIsReservedKeyword(): void
     {
-        $value = 'reserved_keyword';
-        config(['urlhub.reserved_keyword' => [$value]]);
-
+        $value = KeyGeneratorService::RESERVED_KEYWORD[0];
         $val = validator(['foo' => $value], ['foo' => new NotBlacklistedKeyword]);
 
         $this->assertTrue($val->fails());
