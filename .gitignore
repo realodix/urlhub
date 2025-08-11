@@ -33,6 +33,7 @@ package-lock.json
 npm-debug.log
 bun.lock
 bun.lockb
+pnpm-lock.yaml
 yarn.lock
 yarn-error.log
 
