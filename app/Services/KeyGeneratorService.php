@@ -15,7 +15,7 @@ class KeyGeneratorService
     /**
      * Reserved for future use
      *
-     * @var string[]
+     * @var array<string>
      */
     const RESERVED_KEYWORD = [
         'build', 'hot', // When Vite is running in development

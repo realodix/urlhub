@@ -9,7 +9,7 @@ class NotBlacklistedDomain implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
-        /** @var string[] $blackLists */
+        /** @var array<string> $blackLists */
         $blackLists = config('urlhub.blacklist_domain');
         $longUrl = rtrim($value, '/');
         $bool = true;
