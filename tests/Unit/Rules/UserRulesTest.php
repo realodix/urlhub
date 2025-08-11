@@ -42,6 +42,12 @@ class UserRulesTest extends TestCase
         $this->assertTrue($val->fails());
     }
 
+    public function testNameFail_Lowercase(): void
+    {
+        $val = validator(['name' => 'Laravel'], ['name' => UserRules::name()]);
+        $this->assertTrue($val->fails());
+    }
+
     public function testNameMaxFail(): void
     {
         $val = validator(['name' => str_repeat('a', 21)], ['name' => UserRules::name()]);

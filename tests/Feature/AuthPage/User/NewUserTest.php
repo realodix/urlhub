@@ -67,18 +67,16 @@ class NewUserTest extends TestCase
         $this->assertCount(2, User::all()); // 2 (adminUser & $user)
     }
 
-    public function testStoreUsernameAndEmailAsLowerCase(): void
+    public function testStoreEmailAsLowerCase(): void
     {
-        $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), [
-                'username' => 'Test',
-                'email' => 'Email@example.com',
-                'password' => 'password',
-            ]);
+        $this->post('/register', [
+            'name' => 'usernametest',
+            'email' => 'John@example.com',
+            'password' => 'i-love-laravel',
+            'password_confirmation' => 'i-love-laravel',
+        ]);
 
-        $user = User::where('name', 'test')->first();
-        $this->assertEquals('test', $user->name);
-        $this->assertEquals('email@example.com', $user->email);
+        $this->assertSame('john@example.com', User::first()->email);
     }
 
     public function testCreateNewUserWithRoleAdmin(): void
