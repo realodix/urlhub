@@ -67,17 +67,13 @@
         <h3 class="text-xl">Shortened Links</h3>
         <dl>
             <dt class="mt-2">
-                <code>blacklist_domain</code>
-                <p class="font-light text-sm dark:text-dark-400">This is a list of domain names that are not allowed to be shortened.</p>
+                <code>redirection_status_code</code>
+                <p class="font-light text-sm dark:text-dark-400">
+                    The HTTP status code to use when redirecting a visitor to the original URL.
+                </p>
             </dt>
             <dd class="mt-2">
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
-                    @if ($domainBlacklist->isNotEmpty())
-                        <code>{{ $domainBlacklist->implode(', ') }}</code>
-                    @else
-                        <code>None</code>
-                    @endif
-                </div>
+                {{ config('urlhub.redirection_status_code') }}
             </dd>
 
             <dt class="mt-2 mb-2">
@@ -112,13 +108,17 @@
             </dd>
 
             <dt class="mt-2">
-                <code>redirection_status_code</code>
-                <p class="font-light text-sm dark:text-dark-400">
-                    The HTTP status code to use when redirecting a visitor to the original URL.
-                </p>
+                <code>blacklist_domain</code>
+                <p class="font-light text-sm dark:text-dark-400">This is a list of domain names that are not allowed to be shortened.</p>
             </dt>
             <dd class="mt-2">
-                {{ config('urlhub.redirection_status_code') }}
+                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
+                    @if ($domainBlacklist->isNotEmpty())
+                        <code>{{ $domainBlacklist->implode(', ') }}</code>
+                    @else
+                        <code>None</code>
+                    @endif
+                </div>
             </dd>
         </dl>
     </div>
