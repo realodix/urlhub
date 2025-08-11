@@ -27,21 +27,6 @@ class UserRulesTest extends TestCase
         $this->assertTrue($val->fails());
     }
 
-    #[PHPUnit\TestWith(['guest'])]
-    #[PHPUnit\TestWith(['guests'])]
-    public function testNameFail_Blacklist_Guest($value): void
-    {
-        $val = validator(['name' => $value], ['name' => UserRules::name()]);
-        $this->assertTrue($val->fails());
-    }
-
-    public function testNameFail_Blacklist_Config(): void
-    {
-        config(['urlhub.username_blacklist' => ['laravel']]);
-        $val = validator(['name' => 'laravel'], ['name' => UserRules::name()]);
-        $this->assertTrue($val->fails());
-    }
-
     public function testNameFail_Lowercase(): void
     {
         $val = validator(['name' => 'Laravel'], ['name' => UserRules::name()]);
@@ -80,6 +65,21 @@ class UserRulesTest extends TestCase
         $user = User::factory()->create(['email' => 'test@example.com']);
 
         $val = validator(['email' => $user->email], ['email' => UserRules::email()]);
+        $this->assertTrue($val->fails());
+    }
+
+    #[PHPUnit\TestWith(['guest'])]
+    #[PHPUnit\TestWith(['guests'])]
+    public function testNameFail_Blacklist_Guest($value): void
+    {
+        $val = validator(['name' => $value], ['name' => UserRules::name()]);
+        $this->assertTrue($val->fails());
+    }
+
+    public function testNameFail_Blacklist_Config(): void
+    {
+        config(['urlhub.username_blacklist' => ['laravel']]);
+        $val = validator(['name' => 'laravel'], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }
 }
