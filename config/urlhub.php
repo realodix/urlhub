@@ -14,7 +14,11 @@ return [
     ],
 
     /*
+     * A list of keywords that are not allowed to be used as short URL keys,
+     * either for custom links or randomly generated ones.
      */
+    'keyword_blacklist' => [
+        // ...
     ],
 
     /*

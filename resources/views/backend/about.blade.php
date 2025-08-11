@@ -81,9 +81,9 @@
             </dd>
 
             <dt class="mt-2 mb-2">
-                <code>reserved_keyword</code>
+                <code>Forbidden Keywords</code>
                 <p class="font-light text-sm dark:text-dark-400">
-                    Reserved keywords are strings that cannot be used as a shortened URL keyword. The route list and folder/file names in the public folder are also included in this list.
+                    Strings that cannot be used as short URL keywords because they are reserved by the system or added to a blacklist.
                 </p>
             </dt>
             <dd class="mt-2 mb-2">
