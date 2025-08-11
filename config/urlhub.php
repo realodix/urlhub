@@ -27,7 +27,7 @@ return [
         'assets', 'fonts', 'images', 'img', 'storage',
     ],
 
-    /**
+    /*
      * The HTTP status code to use when redirecting a visitor to the original URL.
      */
     'redirection_status_code' => 302,
