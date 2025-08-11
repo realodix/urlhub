@@ -13,7 +13,7 @@ class NotBlacklistedDomainTest extends TestCase
     {
         parent::setUp();
 
-        config(['urlhub.domain_blacklist' => ['github.com', 't.co']]);
+        config(['urlhub.blacklist_domain' => ['github.com', 't.co']]);
     }
 
     #[PHPUnit\DataProvider('notBlacklistedDomainDataProvider')]

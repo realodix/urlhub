@@ -72,7 +72,7 @@ class KeyGeneratorServiceTest extends TestCase
     public function testGenerateUniqueStringWithBlacklistedString(): void
     {
         $blacklisted_string = 'blacklisted_keyword';
-        config(['urlhub.keyword_blacklist' => [$blacklisted_string]]);
+        config(['urlhub.blacklist_keyword' => [$blacklisted_string]]);
 
         $mock = $this->partialMock(KeyGeneratorService::class);
         $mock->shouldReceive([
@@ -157,12 +157,12 @@ class KeyGeneratorServiceTest extends TestCase
 
     /**
      * The `verify` function should return `false` when the string is in the
-     * keyword_blacklist list
+     * blacklist_keyword list
      */
     public function testStringIsABlacklistedString(): void
     {
         $value = 'foobar';
-        config(['urlhub.keyword_blacklist' => [$value]]);
+        config(['urlhub.blacklist_keyword' => [$value]]);
 
         $this->assertFalse($this->keyGen->verify($value));
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));

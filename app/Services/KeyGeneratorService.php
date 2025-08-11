@@ -127,7 +127,7 @@ class KeyGeneratorService
             self::RESERVED_KEYWORD,
             $this->routeCollisionList(),
             $this->publicPathCollisionList(),
-            config('urlhub.keyword_blacklist'),
+            config('urlhub.blacklist_keyword'),
         ];
 
         return collect($data)->flatten()->unique()->sort();

@@ -109,7 +109,7 @@ class LinkTest extends TestCase
      */
     public function test_update_validates_long_url_not_blacklisted()
     {
-        config(['urlhub.domain_blacklist' => ['t.co']]);
+        config(['urlhub.blacklist_domain' => ['t.co']]);
         $blacklistedDomain = 'https://t.co/about';
         $url = Url::factory()->create();
 

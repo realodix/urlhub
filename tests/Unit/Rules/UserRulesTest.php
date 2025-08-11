@@ -78,7 +78,7 @@ class UserRulesTest extends TestCase
 
     public function testNameFail_Blacklist_Config(): void
     {
-        config(['urlhub.username_blacklist' => ['laravel']]);
+        config(['urlhub.blacklist_username' => ['laravel']]);
         $val = validator(['name' => 'laravel'], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }

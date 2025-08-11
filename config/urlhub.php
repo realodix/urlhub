@@ -9,7 +9,7 @@ return [
      * This list is used to prevent shortening of urls that contain one of the
      * domains below.
      */
-    'domain_blacklist' => [
+    'blacklist_domain' => [
         // 'bit.ly',
     ],
 
@@ -17,7 +17,7 @@ return [
      * A list of keywords that are not allowed to be used as short URL keys,
      * either for custom links or randomly generated ones.
      */
-    'keyword_blacklist' => [
+    'blacklist_keyword' => [
         // ...
     ],
 
@@ -26,7 +26,7 @@ return [
      */
     'redirection_status_code' => 302,
 
-    'username_blacklist' => [
+    'blacklist_username' => [
         // 'advertise',
     ],
 ];

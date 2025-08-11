@@ -54,7 +54,7 @@
     </div>
 
     @php
-        $domainBlacklist = collect(config('urlhub.domain_blacklist'))->sort();
+        $domainBlacklist = collect(config('urlhub.blacklist_domain'))->sort();
         $reservedActiveKeyList = $keyGenService->reservedActiveKeyword()->toArray();
         $reservedKeyword = $keyGenService->reservedKeyword();
     @endphp
@@ -67,7 +67,7 @@
         <h3 class="text-xl">Shortened Links</h3>
         <dl>
             <dt class="mt-2">
-                <code>domain_blacklist</code>
+                <code>blacklist_domain</code>
                 <p class="font-light text-sm dark:text-dark-400">This is a list of domain names that are not allowed to be shortened.</p>
             </dt>
             <dd class="mt-2">

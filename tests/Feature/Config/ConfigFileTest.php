@@ -9,9 +9,9 @@ use Tests\TestCase;
 class ConfigFileTest extends TestCase
 {
     #[PHPUnit\Test]
-    public function domain_blacklist(): void
+    public function blacklist_domain(): void
     {
-        $this->assertIsList(config('urlhub.domain_blacklist'));
+        $this->assertIsList(config('urlhub.blacklist_domain'));
     }
 
     #[PHPUnit\Test]
