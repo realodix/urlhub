@@ -109,9 +109,9 @@ class KeyGeneratorService
             ->where('is_custom', false)->exists();
         $customKeyExists = Url::whereRaw('LOWER(keyword) = ?', [strtolower($keyword)])
             ->where('is_custom', true)->exists();
-        $keyIsReserved = $this->reservedKeyword()->contains(strtolower($keyword));
+        $disallowed = $this->disallowedKeyword()->contains(strtolower($keyword));
 
-        if ($keyExists || $customKeyExists || $keyIsReserved) {
+        if ($keyExists || $customKeyExists || $disallowed) {
             return false;
         }
 
@@ -119,9 +119,15 @@ class KeyGeneratorService
     }
 
     /**
-     * The keywords that are currently in use as reserved keywords.
+     * Returns a list of keywords that cannot be used for generated short URLs
+     * endings.
+     *
+     * This method consolidates various sources of disallowed keywords, including
+     * reserved keywords and blacklisted keywords from configuration.
+     *
+     * @return \Illuminate\Support\Collection<string>
      */
-    public function reservedKeyword(): Collection
+    public function disallowedKeyword(): Collection
     {
         $data = [
             self::RESERVED_KEYWORD,
@@ -134,15 +140,16 @@ class KeyGeneratorService
     }
 
     /**
-     * The keywords that are currently in use as reserved keywords, but on the other
-     * hand also used as active keywords.
+     * Returns disallowed keywords that are currently active (used as short URL endings).
+     *
+     * @return \Illuminate\Support\Collection<string>
      */
-    public function reservedActiveKeyword(): Collection
+    public function disallowedKeywordsInUse(): Collection
     {
-        $reservedKeyword = $this->reservedKeyword();
-        $activeKeyword = Url::pluck('keyword')->toArray();
+        $disallowedKey = $this->disallowedKeyword();
+        $usedKey = Url::pluck('keyword')->toArray();
 
-        return $reservedKeyword->intersect($activeKeyword);
+        return $disallowedKey->intersect($usedKey);
     }
 
     /**
@@ -207,7 +214,7 @@ class KeyGeneratorService
     public function capacity(): int
     {
         // max() is used to avoid negative values
-        return max($this->maxUniqueStrings() - $this->reservedKeywordSpaceUsed(), 0);
+        return max($this->maxUniqueStrings() - $this->disallowedKeywordSpaceUsed(), 0);
     }
 
     /**
@@ -287,18 +294,18 @@ class KeyGeneratorService
     }
 
     /**
-     * Calculates the estimated impact of reserved keywords on the total keyspace,
+     * Calculates the estimated impact of disallowed keywords on the total keyspace,
      * considering case variants.
      *
      * This weighting estimates how many potential keywords are effectively
-     * unavailable because a single reserved keyword must be avoided in all its
+     * unavailable because a single disallowed keyword must be avoided in all its
      * potential case variants. The result represents the estimated portion of
-     * the keyspace considered occupied by these reserved keywords.
+     * the keyspace considered occupied by these disallowed keywords.
      */
-    public function reservedKeywordSpaceUsed(): int
+    public function disallowedKeywordSpaceUsed(): int
     {
         $settings = app(GeneralSettings::class);
-        $count = $this->reservedKeyword()
+        $count = $this->disallowedKeyword()
             ->filter(fn($value) => strlen($value) == $settings->key_len)
             ->count();
 

@@ -55,8 +55,8 @@
 
     @php
         $domainBlacklist = collect(config('urlhub.blacklist_domain'))->sort();
-        $reservedActiveKeyList = $keyGenService->reservedActiveKeyword()->toArray();
-        $reservedKeyword = $keyGenService->reservedKeyword();
+        $disallowedKeys = $keyGenService->disallowedKeyword();
+        $usedDisallowedKeys = $keyGenService->disallowedKeywordsInUse()->toArray();
     @endphp
     <div class="config content-container card card-master">
         <h1 class="text-2xl">
@@ -77,30 +77,30 @@
             </dd>
 
             <dt class="mt-2 mb-2">
-                <code>Forbidden Keywords</code>
+                <code>Disallowed Keywords</code>
                 <p class="font-light text-sm dark:text-dark-400">
-                    Strings that cannot be used as short URL keywords because they are reserved by the system or added to a blacklist.
+                    Strings blocked from use in short URL endings due to system reservations, blacklisting, or potential conflicts.
                 </p>
             </dt>
             <dd class="mt-2 mb-2">
                 <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
-                    <code class="text-slate-500 dark:text-dark-600">// {{ $reservedKeyword->count() }} Strings</code> <br>
-                    @foreach ($reservedKeyword as $reservedKeywordItem)
+                    <code class="text-slate-500 dark:text-dark-600">// {{ $disallowedKeys->count() }} Strings</code> <br>
+                    @foreach ($disallowedKeys as $disallowedKey)
                         @php $separator = $loop->last ? '.' : ','; @endphp
-                        <code class="dark:text-dark-400">{{ $reservedKeywordItem }}</code>
+                        <code class="dark:text-dark-400">{{ $disallowedKey }}</code>
                         {{$separator}}
                     @endforeach
 
-                    @if (!empty($reservedActiveKeyList))
+                    @if (!empty($usedDisallowedKeys))
                         <br><br>
                         <code class="text-red-400 dark:text-orange-600">// Unfortunately the list below is already used </code> <br>
                         <code class="text-red-400 dark:text-orange-600">// as shortened URL keyword</code> <br>
 
-                        @foreach ($reservedActiveKeyList as $reservedActiveKey)
+                        @foreach ($usedDisallowedKeys as $usedDisallowedKey)
                             @php $separator = $loop->last ? '.' : ','; @endphp
-                            <code><a href="{{ route('link_detail', $reservedActiveKey) }}" target="_blank"
+                            <code><a href="{{ route('link_detail', $usedDisallowedKey) }}" target="_blank"
                                 class="underline decoration-dotted">
-                                {{ $reservedActiveKey }}</a></code>
+                                {{ $usedDisallowedKey }}</a></code>
                             {{$separator}}
                         @endforeach
                     @endif

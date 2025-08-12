@@ -128,7 +128,8 @@ class KeyGeneratorServiceTest extends TestCase
      * The `verify` function should return `false` when the string is already
      * used as a short link keyword
      */
-    public function testStringIsAlreadyInUse(): void
+    #[PHPUnit\Test]
+    public function verify_stringIsAlreadyInUse(): void
     {
         $standardKey = 'fOo';
         Url::factory()->create(['keyword' => $standardKey, 'is_custom' => false]);
@@ -144,93 +145,69 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     /**
-     * The `verify` function should return `false` when the string is in the
-     * list of reserved keywords
-     */
-    public function testStringIsAReservedKeyword(): void
-    {
-        $value = KeyGeneratorService::RESERVED_KEYWORD[0];
-
-        $this->assertFalse($this->keyGen->verify($value));
-        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
-    }
-
-    /**
-     * The `verify` function should return `false` when the string is in the
-     * blacklist_keyword list
-     */
-    public function testStringIsABlacklistedString(): void
-    {
-        $value = 'foobar';
-        config(['urlhub.blacklist_keyword' => [$value]]);
-
-        $this->assertFalse($this->keyGen->verify($value));
-        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
-    }
-
-    /**
-     * The `verify` function should return `false` when the string is similar
-     * to the route path name
-     */
-    public function testStringIsRegisteredRoute(): void
-    {
-        $route = collect($this->keyGen->routeCollisionList())
-            ->first();
-
-        $this->assertFalse($this->keyGen->verify($route));
-        $this->assertFalse($this->keyGen->verify(strtoupper($route)));
-    }
-
-    /**
-     * The `verify` function should return `false` when the string is a valid
-     * directory name in the public directory
+     * The `verify` function should return `false` when the string is in
+     * the disallow list.
      */
     #[PHPUnit\Test]
-    public function stringIsADirectoryInsideThePubicDirectory(): void
+    public function verify_stringIsDisallowed(): void
     {
-        $value = self::RESOURCE_PREFIX.fake()->word();
+        // Reserved
+        $value = KeyGeneratorService::RESERVED_KEYWORD[0];
+        $this->assertFalse($this->keyGen->verify($value));
+        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
 
+        // Blacklisted
+        $value = 'foobar';
+        config(['urlhub.blacklist_keyword' => [$value]]);
+        $this->assertFalse($this->keyGen->verify($value));
+        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
+
+        // Route
+        $value = collect($this->keyGen->routeCollisionList())
+            ->first();
+        $this->assertFalse($this->keyGen->verify($value));
+        $this->assertFalse($this->keyGen->verify(strtoupper($value)));
+
+        // Public directory
+        $value = self::RESOURCE_PREFIX.fake()->word();
         File::makeDirectory(public_path($value));
         $this->assertFalse($this->keyGen->verify($value));
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
-    }
 
-    /**
-     * The `verify` function should return `false` when the string is a valid
-     * file name in the public directory
-     */
-    #[PHPUnit\Test]
-    public function stringIsAFileInsideThePublicDirectory(): void
-    {
+        // File name in public directory
         $value = self::RESOURCE_PREFIX.fake()->word();
-
         File::put(public_path($value), '');
         $this->assertFalse($this->keyGen->verify($value));
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
     }
 
     /**
-     * Tests if the reservedActiveKeyword function returns the appropriate value.
+     * Test the identification of active keywords that are also disallowed.
      *
-     * reservedActiveKeyword returns keywords that are registered as reserved
-     * keywords and are already in use as custom keywords.
+     * This test verifies that the `disallowedKeywordsInUse` method accurately
+     * finds keywords that are currently in use but are also on the disallowed
+     * list.
      *
-     * Condition 1: No reserved keywords are in use yet.
-     * Condition 2: Some reserved keywords are already in use.
+     * It checks two primary scenarios:
+     * 1. When no disallowed keywords are in use, the method should return
+     *    an empty list.
+     * 2. When some disallowed keywords are actively in use, the method should
+     *    return a list containing only those keywords.
      */
-    public function testReservedActiveKeyword()
+    #[PHPUnit\Test]
+    public function disallowed_keywordInUse()
     {
         // Test case 1: No reserved keywords already in use
-        $this->assertEmpty($this->keyGen->reservedActiveKeyword()->all());
+        $this->assertEmpty($this->keyGen->disallowedKeywordsInUse()->all());
 
         // Test case 2: Some reserved keywords already in use
-        $activeKeyword = self::RESOURCE_PREFIX.fake()->word();
+        $activeKeyword = 'disallowed_keyword';
         Url::factory()->create(['keyword' => $activeKeyword]);
+        config(['urlhub.blacklist_keyword' => [$activeKeyword]]);
 
-        File::makeDirectory(public_path($activeKeyword));
         $this->assertEquals(
             $activeKeyword,
-            $this->keyGen->reservedActiveKeyword()->implode(''),
+            $this->keyGen->disallowedKeywordsInUse()->implode(''),
         );
     }
 
@@ -325,7 +302,7 @@ class KeyGeneratorServiceTest extends TestCase
         $mock = $this->partialMock(KeyGeneratorService::class);
         $mock->shouldReceive([
             'maxUniqueStrings' => $max,
-            'reservedKeywordSpaceUsed' => $used,
+            'disallowedKeywordSpaceUsed' => $used,
         ]);
         $actual = $mock->remainingCapacity();
 
@@ -373,7 +350,7 @@ class KeyGeneratorServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function reservedKeywordSpaceUsed(): void
+    public function disallowedKeywordSpaceUsed(): void
     {
         settings()->fill(['key_len' => 2])->save();
 
@@ -382,7 +359,7 @@ class KeyGeneratorServiceTest extends TestCase
             'routeCollisionList' => ['ab', 'foo'],
             'publicPathCollisionList' => ['cd', 'bar'],
         ]);
-        $actual = $mock->reservedKeywordSpaceUsed();
+        $actual = $mock->disallowedKeywordSpaceUsed();
 
         // (2^2) * 2
         $this->assertSame(8, $actual);
