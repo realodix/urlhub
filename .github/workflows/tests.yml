@@ -51,4 +51,4 @@ jobs:
           npm run build
 
       - name: Execute Tests
-        run: ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+        run: ./vendor/bin/phpunit
