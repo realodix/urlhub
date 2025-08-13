@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Url;
 use App\Settings\GeneralSettings;
-use Composer\Pcre\Preg;
 
 class KeyGeneratorService
 {
@@ -138,12 +137,11 @@ class KeyGeneratorService
     {
         $data = [
             self::RESERVED_KEYWORD,
-            $this->routeCollisionList(),
-            $this->publicPathCollisionList(),
             config('urlhub.blacklist_keyword'),
         ];
 
-        return collect($data)->flatten()->unique()->sort();
+        return app(BlockedStringService::class)->blocked()
+            ->merge($data)->flatten()->unique()->sort();
     }
 
     /**
@@ -158,54 +156,6 @@ class KeyGeneratorService
         $usedKey = Url::pluck('keyword')->toArray();
 
         return $disallowedKey->intersect($usedKey);
-    }
-
-    /**
-     * Get all route paths that could conflict with generated keywords.
-     *
-     * Extracts URIs from registered routes and filters them to match the keyword
-     * format. Prevents generating keywords that match existing routes.
-     */
-    public function routeCollisionList(): array
-    {
-        return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
-            ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
-            ->pipe(fn($paths) => $this->filterCollisionCandidates($paths))
-            ->toArray();
-    }
-
-    /**
-     * Get all file/folder names in the public directory that could conflict
-     * with generated keywords.
-     *
-     * Scans the public directory and filters results to match the keyword format.
-     * Prevents generating keywords that match existing files or folders.
-     */
-    public function publicPathCollisionList(): array
-    {
-        $publicPathList = scandir(public_path());
-        // @codeCoverageIgnoreStart
-        if ($publicPathList === false) {
-            return [];
-        }
-        // @codeCoverageIgnoreEnd
-
-        return collect($publicPathList)
-            ->pipe(fn($paths) => $this->filterCollisionCandidates($paths))
-            ->toArray();
-    }
-
-    /**
-     * Filter strings that match the allowed keyword format.
-     *
-     * @param array|\Illuminate\Support\Collection $value
-     */
-    public function filterCollisionCandidates($value)
-    {
-        return collect($value)
-            ->filter(fn($value) => Preg::isMatch('/^([0-9a-zA-Z\-])+$/', $value))
-            ->reject(fn($value) => in_array($value, self::RESERVED_KEYWORD))
-            ->unique();
     }
 
     /*

@@ -4,6 +4,7 @@ namespace Tests\Unit\Services;
 
 use App\Exceptions\CouldNotGenerateUniqueKeyException;
 use App\Models\Url;
+use App\Services\BlockedStringService;
 use App\Services\KeyGeneratorService;
 use Illuminate\Support\Facades\File;
 use PHPUnit\Framework\Attributes as PHPUnit;
@@ -16,11 +17,14 @@ class KeyGeneratorServiceTest extends TestCase
 
     private KeyGeneratorService $keyGen;
 
+    private BlockedStringService $blocked;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->keyGen = app(KeyGeneratorService::class);
+        $this->blocked = app(BlockedStringService::class);
     }
 
     public function testGenerateUniqueString(): void
@@ -163,8 +167,7 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
 
         // Route
-        $value = collect($this->keyGen->routeCollisionList())
-            ->first();
+        $value = $this->blocked->routeList()->first();
         $this->assertFalse($this->keyGen->verify($value));
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
 
@@ -208,35 +211,6 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertEquals(
             $activeKeyword,
             $this->keyGen->disallowedKeywordsInUse()->implode(''),
-        );
-    }
-
-    #[PHPUnit\Test]
-    public function filterCollisionCandidates(): void
-    {
-        $actual = [
-            'css',
-            'reset-password',
-
-            '.',
-            '..',
-            '.htaccess',
-            'favicon.ico',
-
-            '+{url}',
-            '/',
-            '_debugbar',
-            '_debugbar/assets/javascript',
-            'admin/about',
-            'admin/user/{user}/changepassword',
-            'admin/links/u/{user}',
-        ];
-
-        $expected = ['css', 'reset-password'];
-
-        $this->assertEquals(
-            $expected,
-            $this->keyGen->filterCollisionCandidates($actual)->toArray(),
         );
     }
 
