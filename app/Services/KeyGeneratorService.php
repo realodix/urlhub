@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Url;
 use App\Settings\GeneralSettings;
 use Composer\Pcre\Preg;
-use Illuminate\Support\Collection;
 
 class KeyGeneratorService
 {
@@ -135,7 +134,7 @@ class KeyGeneratorService
      *
      * @return \Illuminate\Support\Collection<string>
      */
-    public function disallowedKeyword(): Collection
+    public function disallowedKeyword()
     {
         $data = [
             self::RESERVED_KEYWORD,
@@ -153,7 +152,7 @@ class KeyGeneratorService
      *
      * @return \Illuminate\Support\Collection<string>
      */
-    public function disallowedKeywordsInUse(): Collection
+    public function disallowedKeywordsInUse()
     {
         $disallowedKey = $this->disallowedKeyword();
         $usedKey = Url::pluck('keyword')->toArray();
@@ -198,8 +197,10 @@ class KeyGeneratorService
 
     /**
      * Filter strings that match the allowed keyword format.
+     *
+     * @param array|\Illuminate\Support\Collection $value
      */
-    public function filterCollisionCandidates(array|Collection $value): Collection
+    public function filterCollisionCandidates($value)
     {
         return collect($value)
             ->filter(fn($value) => Preg::isMatch('/^([0-9a-zA-Z\-])+$/', $value))
