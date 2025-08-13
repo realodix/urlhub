@@ -35,8 +35,12 @@ class KeyGeneratorService
     ) {}
 
     /**
-     * Generate a short string that can be used as a unique key for the shortened
-     * url.
+     * Generate a unique short string to use as the shortened url endings.
+     *
+     * First, attempts to create a hash-based string from the given value.
+     * If that string is already taken or disallowed, repeatedly generates
+     * random strings until a unique and valid key is found, up to a maximum
+     * number of attempts.
      *
      * @return string A unique string to use as the shortened url key
      */
@@ -101,7 +105,12 @@ class KeyGeneratorService
     }
 
     /**
-     * Verifies whether a string can be used as a keyword.
+     * Check if the given string is allowed to be used as a keyword.
+     *
+     * A keyword is considered invalid if:
+     * - It already exists as a system-generated keyword.
+     * - It already exists as a custom keyword (case-insensitive).
+     * - It is in the disallowed keyword list.
      */
     public function verify(string $keyword): bool
     {
@@ -153,11 +162,10 @@ class KeyGeneratorService
     }
 
     /**
-     * Returns a list of route paths that may conflict with generated keywords.
+     * Get all route paths that could conflict with generated keywords.
      *
-     * This method retrieves all defined routes and filters them to identify potential
-     * conflicts with the format used for generating keywords. This list is used to
-     * prevent the generation of keywords that match existing routes.
+     * Extracts URIs from registered routes and filters them to match the keyword
+     * format. Prevents generating keywords that match existing routes.
      */
     public function routeCollisionList(): array
     {
@@ -168,13 +176,11 @@ class KeyGeneratorService
     }
 
     /**
-     * Returns a list of file/folder names in the public directory that may
-     * conflict with generated keywords.
+     * Get all file/folder names in the public directory that could conflict
+     * with generated keywords.
      *
-     * This method scans the public directory and filters the results to identify
-     * potential conflicts with the format used for generating keywords. This list
-     * is used to prevent the generation of keywords that match existing files
-     * or folders in the public directory.
+     * Scans the public directory and filters results to match the keyword format.
+     * Prevents generating keywords that match existing files or folders.
      */
     public function publicPathCollisionList(): array
     {
@@ -191,8 +197,7 @@ class KeyGeneratorService
     }
 
     /**
-     * Filters a collection of strings to identify strings that could conflict
-     * with generated keywords.
+     * Filter strings that match the allowed keyword format.
      */
     public function filterCollisionCandidates(array|Collection $value): Collection
     {
@@ -248,10 +253,11 @@ class KeyGeneratorService
     }
 
     /**
-     * Calculates the amount of keyspace used by custom keywords based on their
-     * composition and the current character length configuration. Custom keywords
-     * use more space within the total capacity than their simple count suggests
-     * due to the generator potentially needing to avoid case variants.
+     * Calculate the total keyspace used by custom keywords.
+     *
+     * The calculation is based on keyword composition and the configured keyword
+     * length. Certain compositions consume more keyspace because the generator
+     * avoids some case variants.
      */
     public function customKeywordSpaceUsed(): int
     {
@@ -274,8 +280,8 @@ class KeyGeneratorService
     }
 
     /**
-     * Calculates the maximum number of unique strings that can be generated using
-     * the allowed character and the specified keyword length.
+     * Calculates the maximum number of possible unique strings
+     * based on the alphabet size and configured length.
      */
     public function maxUniqueStrings(): int
     {
