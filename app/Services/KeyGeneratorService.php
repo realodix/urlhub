@@ -152,10 +152,8 @@ class KeyGeneratorService
      */
     public function disallowedKeywordsInUse()
     {
-        $disallowedKey = $this->disallowedKeyword();
-        $usedKey = Url::pluck('keyword')->toArray();
-
-        return $disallowedKey->intersect($usedKey);
+        return $this->disallowedKeyword()
+            ->intersect(Url::pluck('keyword'));
     }
 
     /*
