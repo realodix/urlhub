@@ -128,11 +128,10 @@ class KeyGeneratorService
     }
 
     /**
-     * Returns a list of keywords that cannot be used for generated short URLs
-     * endings.
+     * Returns all keywords that are not allowed for short URL endings.
      *
-     * This method consolidates various sources of disallowed keywords, including
-     * reserved keywords and blacklisted keywords from configuration.
+     * Includes reserved system keywords, configured blacklist, and strings
+     * blocked generically.
      *
      * @return \Illuminate\Support\Collection<string>
      */
@@ -149,7 +148,8 @@ class KeyGeneratorService
     }
 
     /**
-     * Returns disallowed keywords that are currently active (used as short URL endings).
+     * Returns disallowed keywords that are currently active
+     * (used as short URL endings).
      *
      * @return \Illuminate\Support\Collection<string>
      */
