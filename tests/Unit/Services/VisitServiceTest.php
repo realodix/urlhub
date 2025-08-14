@@ -140,7 +140,7 @@ class VisitServiceTest extends TestCase
             })->create();
     }
 
-    public function test_get_top_referrers()
+    public function testGetTopReferrers()
     {
         Visit::factory()->count(5)->create();
         $topReferrers = $this->visitService->topReferrers();
@@ -154,7 +154,8 @@ class VisitServiceTest extends TestCase
         $this->assertEquals(2, $topReferrers->count());
     }
 
-    public function test_get_top_referrers_for_auth_user()
+    #[PHPUnit\Test]
+    public function getTopReferrers_AuthUser()
     {
         // Create a user and authenticate them
         $user = User::factory()->create();
@@ -185,14 +186,16 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('https://example.com', $topReferrers->pluck('referer')->toArray());
     }
 
-    public function test_get_top_referrers_for_auth_user_with_no_visits()
+    #[PHPUnit\Test]
+    public function getTopReferrers_AuthUserWithNoVisits()
     {
         $user = User::factory()->create();
         $topReferrers = $this->visitService->topReferrers($user);
         $this->assertCount(0, $topReferrers);
     }
 
-    public function test_get_top_referrers_for_url()
+    #[PHPUnit\Test]
+    public function getTopReferrers_Url()
     {
         // Create a URL
         $url = Url::factory()->create();
@@ -222,14 +225,15 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('https://example.com', $topReferrers->pluck('referer')->toArray());
     }
 
-    public function test_get_top_referrers_for_url_with_no_visits()
+    #[PHPUnit\Test]
+    public function getTopReferrers_urlWithNoVisits()
     {
         $url = Url::factory()->create();
         $topReferrers = $this->visitService->topReferrers($url);
         $this->assertCount(0, $topReferrers);
     }
 
-    public function test_get_top_browsers()
+    public function testGetTopBrowsers()
     {
         // Create some visits with different browsers
         Visit::factory()->count(5)->create(['browser' => 'foo']);
@@ -252,7 +256,8 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('baz', $topBrowsers->pluck('browser')->toArray());
     }
 
-    public function test_get_top_browsers_for_auth_user()
+    #[PHPUnit\Test]
+    public function topBrowsers_AuthUser()
     {
         // Create a user and authenticate them
         $user = User::factory()->create();
@@ -280,14 +285,16 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('Safari', $topBrowsers->pluck('browser')->toArray());
     }
 
-    public function test_get_top_browsers_for_auth_user_with_no_visits()
+    #[PHPUnit\Test]
+    public function topBrowsers_AuthUserWithNoVisits()
     {
         $user = User::factory()->create();
         $topBrowsers = $this->visitService->topBrowsers($user);
         $this->assertCount(0, $topBrowsers);
     }
 
-    public function test_get_top_browsers_for_url()
+    #[PHPUnit\Test]
+    public function topBrowsers_Url()
     {
         // Create a URL
         $url = Url::factory()->create();
@@ -315,14 +322,15 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('Safari', $topBrowsers->pluck('browser')->toArray());
     }
 
-    public function test_get_top_browsers_for_url_with_no_visits()
+    #[PHPUnit\Test]
+    public function topBrowsers_UrlWithNoVisits()
     {
         $url = Url::factory()->create();
         $topBrowsers = $this->visitService->topBrowsers($url);
         $this->assertCount(0, $topBrowsers);
     }
 
-    public function test_get_top_operating_systems()
+    public function testGetTopOperatingSystems()
     {
         // Create some visits with different operating systems
         Visit::factory()->count(5)->create(['os' => 'foo']);
@@ -344,7 +352,8 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('Android', $topOS->pluck('os')->toArray());
     }
 
-    public function test_get_top_operating_systems_for_auth_user()
+    #[PHPUnit\Test]
+    public function getTopOperatingSystems_AuthUser()
     {
         // Create a user and authenticate them
         $user = User::factory()->create();
@@ -372,14 +381,16 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('Linux', $topOS->pluck('os')->toArray());
     }
 
-    public function test_get_top_operating_systems_for_auth_user_with_no_visits()
+    #[PHPUnit\Test]
+    public function getTopOperatingSystems_AuthUserWithNoVisits()
     {
         $user = User::factory()->create();
         $topOS = $this->visitService->topOperatingSystems($user);
         $this->assertCount(0, $topOS);
     }
 
-    public function test_get_top_operating_systems_for_url()
+    #[PHPUnit\Test]
+    public function getTopOperatingSystems_Url()
     {
         // Create a URL
         $url = Url::factory()->create();
@@ -407,7 +418,8 @@ class VisitServiceTest extends TestCase
         $this->assertNotContains('Linux', $topOS->pluck('os')->toArray());
     }
 
-    public function test_get_top_operating_systems_for_url_with_no_visits()
+    #[PHPUnit\Test]
+    public function getTopOperatingSystems_UrlWithNoVisits()
     {
         $url = Url::factory()->create();
         $topOS = $this->visitService->topOperatingSystems($url);

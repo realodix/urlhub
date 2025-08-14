@@ -12,19 +12,19 @@ class BlockedStringServiceTest extends TestCase
 {
     private const RESOURCE_PREFIX = 'zzz';
 
-    private BlockedStringService $blocked;
+    private BlockedStringService $blockedService;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->blocked = app(BlockedStringService::class);
+        $this->blockedService = app(BlockedStringService::class);
     }
 
     #[PHPUnit\Test]
     public function routeList(): void
     {
-        $value = collect($this->blocked->routeList())
+        $value = collect($this->blockedService->routeList())
             ->toArray();
 
         $this->assertContains('login', $value);
@@ -38,7 +38,7 @@ class BlockedStringServiceTest extends TestCase
         File::makeDirectory(public_path($dirName));
         $this->assertContains(
             $dirName,
-            $this->blocked->publicPathList()->toArray(),
+            $this->blockedService->publicPathList()->toArray(),
         );
 
         // File
@@ -46,7 +46,7 @@ class BlockedStringServiceTest extends TestCase
         File::put(public_path($fileName), '');
         $this->assertContains(
             $fileName,
-            $this->blocked->publicPathList()->toArray(),
+            $this->blockedService->publicPathList()->toArray(),
         );
     }
 
@@ -75,7 +75,7 @@ class BlockedStringServiceTest extends TestCase
 
         $this->assertEquals(
             $expected,
-            $this->blocked->filterCandidates($actual)->values()->toArray(),
+            $this->blockedService->filterCandidates($actual)->values()->toArray(),
         );
     }
 

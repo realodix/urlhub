@@ -92,7 +92,7 @@ class LinkServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function getTopUrlsByVisitsForAuthUser(): void
+    public function getTopUrlsByVisits_AuthUser(): void
     {
         // Create a user and authenticate them
         $user = User::factory()->create();
