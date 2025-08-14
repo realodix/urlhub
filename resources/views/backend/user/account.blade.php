@@ -27,10 +27,20 @@
                             <input name="name" value="{{ $user->name }}" class="form-input mt-1" disabled>
                             <small class="block text-red-600 dark:text-red-500"><i>Usernames cannot be changed.</i></small>
                         </div>
+
                         <div class="col-span-6 lg:col-span-4">
                             <label class="form-label">E-mail Address</label>
                             <input type="email" name="email" placeholder="{{ $user->email }}" class="form-input mt-1">
                         </div>
+
+                        <div class="col-span-6 lg:col-span-4">
+                            <label class="form-label">Timezone</label>
+                            <p class="font-light text-sm dark:text-dark-400">
+                                Select the timezone offset that you want to use for your account.
+                            </p>
+                            <div class="mt-4">{!! $timezoneList !!}</div>
+                        </div>
+
                         @if (settings()->forward_query)
                             <div class="col-span-6">
                                 <label class="form-label">Forward Query Parameters</label>
@@ -43,14 +53,6 @@
                         @else
                             <input type="hidden" name="forward_query" value="{{ $user->forward_query ? true : false }}">
                         @endif
-
-                        <div class="col-span-6 lg:col-span-4">
-                            <label class="form-label">Timezone</label>
-                            <p class="font-light text-sm dark:text-dark-400">
-                                Select the timezone offset that you want to use for your account.
-                            </p>
-                            <div class="mt-4">{!! $timezoneList !!}</div>
-                        </div>
                     </div>
 
                     <div class="flex items-center justify-end mt-8 text-right">
