@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Url;
 use App\Settings\GeneralSettings;
+use Illuminate\Support\Facades\DB;
 
 class KeyGeneratorService
 {
@@ -152,8 +153,11 @@ class KeyGeneratorService
      */
     public function disallowedKeywordsInUse()
     {
-        return $this->disallowedKeyword()
-            ->intersect(Url::pluck('keyword'));
+        $disallowed = $this->disallowedKeyword()
+            ->map(fn($value) => strtolower($value));
+
+        return Url::whereIn(DB::raw('LOWER(keyword)'), $disallowed)
+            ->pluck('keyword');
     }
 
     /*

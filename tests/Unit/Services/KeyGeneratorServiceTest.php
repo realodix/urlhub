@@ -204,13 +204,17 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertEmpty($this->keyGen->disallowedKeywordsInUse()->all());
 
         // Test case 2: Some reserved keywords already in use
-        $activeKeyword = 'disallowed_keyword';
-        Url::factory()->create(['keyword' => $activeKeyword]);
-        config(['urlhub.blacklist_keyword' => [$activeKeyword]]);
+        $keywordLowerCase = 'laravel';
+        $keywordUpperCase = 'Laravel';
+        $otherKeyword = 'some_other_keyword';
+        Url::factory()->create(['keyword' => $keywordLowerCase]);
+        Url::factory()->create(['keyword' => $keywordUpperCase]);
+        Url::factory()->create(['keyword' => $otherKeyword]);
+        config(['urlhub.blacklist_keyword' => [$keywordLowerCase]]);
 
-        $this->assertEquals(
-            $activeKeyword,
-            $this->keyGen->disallowedKeywordsInUse()->implode(''),
+        $this->assertEqualsCanonicalizing(
+            [$keywordLowerCase, $keywordUpperCase],
+            $this->keyGen->disallowedKeywordsInUse()->all(),
         );
     }
 
