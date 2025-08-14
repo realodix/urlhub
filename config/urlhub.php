@@ -16,9 +16,12 @@ return [
     /*
      * A list of keywords that are not allowed to be used as short URL keys,
      * either for custom links or randomly generated ones.
+     *
+     * Enter a keyword in one format only (e.g.: laravel), and all its variations
+     * (e.g.: Laravel, LaRaVeL) will be blocked.
      */
     'blacklist_keyword' => [
-        // ...
+        // 'laravel',
     ],
 
     /*
