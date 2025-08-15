@@ -21,14 +21,16 @@ class NewUserTest extends TestCase
         return route('user.store');
     }
 
-    public function testCanAccessThisPage(): void
+    #[PHPUnit\Test]
+    public function access_Page_Admin_WillBeOk(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get($this->getRoute());
         $response->assertOk();
     }
 
-    public function testBasicUserCantAccessThisPagea(): void
+    #[PHPUnit\Test]
+    public function access_Page_BasicUser_WillBeForbidden(): void
     {
         $respons = $this->actingAs($this->basicUser())
             ->get($this->getRoute());

@@ -77,8 +77,6 @@ class ChangePasswordTest extends TestCase
         $response->assertForbidden();
     }
 
-
-
     /**
      * Admin can change the password of all users.
      *

@@ -16,7 +16,7 @@ class UrlListPageSingleUserTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::userLinkView()
      */
     #[PHPUnit\Test]
-    public function linkTable_SpecificUser_AdminCanAccess(): void
+    public function access_LinkTable_SpecificUser_AdminCanAccess(): void
     {
         $user = $this->adminUser();
         $response = $this->actingAs($user)
@@ -35,7 +35,7 @@ class UrlListPageSingleUserTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::userLinkView()
      */
     #[PHPUnit\Test]
-    public function linkTable_SpecificUser_BasicUserCantAccess(): void
+    public function access_LinkTable_SpecificUser_BasicUserCantAccess(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
@@ -54,7 +54,7 @@ class UrlListPageSingleUserTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::guestLinkView()
      */
     #[PHPUnit\Test]
-    public function linkTable_Guest_AdminCanAccess(): void
+    public function access_LinkTable_Guest_AdminCanAccess(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('dboard.allurl.u-user', User::GUEST_NAME));
@@ -67,7 +67,7 @@ class UrlListPageSingleUserTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::guestLinkView()
      */
     #[PHPUnit\Test]
-    public function linkTable_Guest_BasicUsersCantAccess(): void
+    public function access_LinkTable_Guest_BasicUsersCantAccess(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('dboard.allurl.u-user', User::GUEST_NAME));
@@ -80,7 +80,7 @@ class UrlListPageSingleUserTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::restrictedLinkView()
      */
     #[PHPUnit\Test]
-    public function restrictedLinkView_basicUser(): void
+    public function access_RestrictedLinkView_BasicUsersCantAccess(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
@@ -95,7 +95,7 @@ class UrlListPageSingleUserTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::userRestrictedLinkView()
      */
     #[PHPUnit\Test]
-    public function userRestrictedLinkView_admin(): void
+    public function access_UserRestrictedLinkView_AdminCanAccess(): void
     {
         $user = $this->adminUser();
         $response = $this->actingAs($user)
@@ -110,7 +110,7 @@ class UrlListPageSingleUserTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::userRestrictedLinkView()
      */
     #[PHPUnit\Test]
-    public function userRestrictedLinkView_basicUser(): void
+    public function access_UserRestrictedLinkView_BasicUsersCantAccess(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)

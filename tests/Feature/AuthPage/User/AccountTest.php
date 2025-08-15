@@ -28,7 +28,7 @@ class AccountTest extends TestCase
      * the operation is successful by asserting an OK response.
      */
     #[PHPUnit\Test]
-    public function  access_Page_Myself(): void
+    public function access_Page_Myself(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)

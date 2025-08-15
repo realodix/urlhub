@@ -16,7 +16,7 @@ class UserListPageTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\User\UserController::view()
      */
     #[PHPUnit\Test]
-    public function canAccessUserListPage(): void
+    public function access_UserListPage_Admin_WillBeOk(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('user.index'));
@@ -30,7 +30,7 @@ class UserListPageTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\User\UserController::view()
      */
     #[PHPUnit\Test]
-    public function basicUserCantAccessUserListPage(): void
+    public function access_UserListPage_BasicUser_WillBeForbidden(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('user.index'));

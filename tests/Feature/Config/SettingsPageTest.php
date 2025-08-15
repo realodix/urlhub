@@ -14,7 +14,8 @@ class SettingsPageTest extends TestCase
         return route('dboard.settings.update');
     }
 
-    public function test_settings_page(): void
+    #[PHPUnit\Test]
+    public function access_Page_Admin_WillBeOk(): void
     {
         $this->actingAs($this->adminUser())
             ->get(route('dboard.settings'))
@@ -22,7 +23,8 @@ class SettingsPageTest extends TestCase
             ->assertViewIs('backend.settings');
     }
 
-    public function test_settings_page_for_normal_user(): void
+    #[PHPUnit\Test]
+    public function access_Page_BasicUser_WillBeForbidden(): void
     {
         $this->actingAs($this->basicUser())
             ->get(route('dboard.settings'))

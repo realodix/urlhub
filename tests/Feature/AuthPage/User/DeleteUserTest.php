@@ -15,7 +15,8 @@ class DeleteUserTest extends TestCase
         return route('user.delete', $user);
     }
 
-    public function testAdminCanDeleteAnyAccount(): void
+    #[PHPUnit\Test]
+    public function delete_OtherUser_ByAdmin_WillBeOk(): void
     {
         $user = User::factory()->create();
 
@@ -29,7 +30,8 @@ class DeleteUserTest extends TestCase
         $this->assertNull(User::find($user->id));
     }
 
-    public function testUserCantDeleteAnyAccount(): void
+    #[PHPUnit\Test]
+    public function delete_OtherUser_ByUser_WillBeForbidden(): void
     {
         $user = User::factory()->create();
 
@@ -40,7 +42,8 @@ class DeleteUserTest extends TestCase
         $this->assertNotNull(User::find($user->id));
     }
 
-    public function testAdminCantDeleteTheirOwnAccount(): void
+    #[PHPUnit\Test]
+    public function delete_OwnAccount_ByAdmin_WillBeForbidden(): void
     {
         $admin = $this->adminUser();
         $response = $this->actingAs($admin)
@@ -50,7 +53,8 @@ class DeleteUserTest extends TestCase
         $this->assertNotNull(User::find($admin->id));
     }
 
-    public function testUserCantDeleteTheirOwnAccount(): void
+    #[PHPUnit\Test]
+    public function delete_OwnAccount_ByUser_WillBeForbidden(): void
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)
@@ -62,7 +66,7 @@ class DeleteUserTest extends TestCase
 
     #[PHPUnit\DataProvider('acdpWithOtherUserProvider')]
     #[PHPUnit\Test]
-    public function accessConfirmDeletePage_withOtherUser($user, $actingAs, $expectedStatus): void
+    public function access_ConfirmDeletePage_ForOtherUser($user, $actingAs, $expectedStatus): void
     {
         $user = $user($this);
         $response = $this->actingAs($actingAs($this))
@@ -89,7 +93,7 @@ class DeleteUserTest extends TestCase
 
     #[PHPUnit\DataProvider('acdpThemselvesProvider')]
     #[PHPUnit\Test]
-    public function accessConfirmDeletePage_themselves($user): void
+    public function access_ConfirmDeletePage_ForSelf($user): void
     {
         $user = $user($this);
         $response = $this->actingAs($user)

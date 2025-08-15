@@ -39,7 +39,8 @@ class LinkTest extends TestCase
     /**
      * @see \App\Http\Controllers\LinkController::update()
      */
-    public function test_update_validates_title_length(): void
+    #[PHPUnit\Test]
+    public function validate_update__title_length(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
@@ -59,7 +60,8 @@ class LinkTest extends TestCase
     /**
      * @see \App\Http\Controllers\LinkController::update()
      */
-    public function test_update_validates_long_url_is_url(): void
+    #[PHPUnit\Test]
+    public function validate_update__long_url_is_url(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
@@ -82,7 +84,8 @@ class LinkTest extends TestCase
     /**
      * @see \App\Http\Controllers\LinkController::update()
      */
-    public function test_update_validates_long_url_max_length(): void
+    #[PHPUnit\Test]
+    public function validate_update__long_url_max_length(): void
     {
         $veryLongUrl = 'https://laravel.com/'.str_repeat('a', LinkRules::MAX_LENGTH);
 
@@ -107,7 +110,8 @@ class LinkTest extends TestCase
     /**
      * @see \App\Http\Controllers\LinkController::update()
      */
-    public function test_update_validates_long_url_not_blacklisted()
+    #[PHPUnit\Test]
+    public function validate_update__long_url_not_blacklisted()
     {
         config(['urlhub.blacklist_domain' => ['t.co']]);
         $blacklistedDomain = 'https://t.co/about';

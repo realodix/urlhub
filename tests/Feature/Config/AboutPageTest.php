@@ -104,7 +104,7 @@ class AboutPageTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::aboutView()
      */
     #[PHPUnit\Test]
-    public function auAdminCanAccessThisPage(): void
+    public function access_AboutPage_Admin_WillBeOk(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('dboard.about'));
@@ -121,7 +121,7 @@ class AboutPageTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::aboutView()
      */
     #[PHPUnit\Test]
-    public function auNormalUserCantAccessThisPage(): void
+    public function access_AboutPage_BasicUser_WillBeForbidden(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('dboard.about'));

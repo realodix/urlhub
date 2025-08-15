@@ -63,7 +63,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function overviewPage_AdminCanAccess(): void
+    public function access_OverviewPage_AdminCanAccess(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('dboard.overview'));
@@ -71,7 +71,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function overviewPage_UserCantAccess(): void
+    public function access_OverviewPage_UserCantAccess(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('dboard.overview'));
@@ -79,7 +79,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function overviewPage_UserCanAccesOwnPage(): void
+    public function access_UserOverviewPage_UserCanAccesOwnPage(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
@@ -88,7 +88,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function overviewPage_AdminCanAccessOtherUsersPage(): void
+    public function access_UserOverviewPage_AdminCanAccessOtherUsersPage(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('user.overview', $this->basicUser()));
@@ -96,7 +96,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function overviewPage_UserCantAccessOtherUsersPage(): void
+    public function access_UserOverviewPage_UserCantAccessOtherUsersPage(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)

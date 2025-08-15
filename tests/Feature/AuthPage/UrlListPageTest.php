@@ -15,7 +15,7 @@ class UrlListPageTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::allUrlView()
      */
     #[PHPUnit\Test]
-    public function linkTable_AdminCasAccess(): void
+    public function access_LinkTable_AdminCanAccess(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('dboard.allurl'));
@@ -28,7 +28,7 @@ class UrlListPageTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::allUrlView()
      */
     #[PHPUnit\Test]
-    public function linkTable_BasicUserCantAccess(): void
+    public function access_LinkTable_BasicUserCantAccess(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('dboard.allurl'));
@@ -41,7 +41,7 @@ class UrlListPageTest extends TestCase
      * @see \App\Http\Controllers\Dashboard\DashboardController::restrictedLinkView()
      */
     #[PHPUnit\Test]
-    public function restrictedLinkView_admin(): void
+    public function access_RestrictedLinkView_AdminCasAccess(): void
     {
         $user = $this->adminUser();
         $response = $this->actingAs($user)

@@ -109,7 +109,7 @@ class LinkAuthorizationTest extends TestCase
      * @see \App\Http\Controllers\LinkController::delete()
      */
     #[PHPUnit\Test]
-    public function adminCanDeleteAnotherUsersLink(): void
+    public function delete_AnotherUsersLink_ByAdmin_WillBeOk(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
@@ -127,7 +127,7 @@ class LinkAuthorizationTest extends TestCase
      * @see \App\Http\Controllers\LinkController::delete()
      */
     #[PHPUnit\Test]
-    public function basicUserCantDeleteAnotherUsersLink(): void
+    public function delete_AnotherUsersLink_ByBasicUser_WillBeForbidden(): void
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
