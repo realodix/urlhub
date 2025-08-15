@@ -12,7 +12,7 @@ class DebugbarEnableTest extends TestCase
     /**
      * Test that the Debugbar is enabled for a logged in user.
      *
-     * @see App\Http\Middleware\DebugbarEnable::handle()
+     * @see \App\Http\Middleware\DebugbarEnable::handle()
      */
     public function testDebugbarIsEnabledForLoggedInUser()
     {
@@ -33,7 +33,7 @@ class DebugbarEnableTest extends TestCase
     /**
      * Test that the Debugbar is disabled for a basic user.
      *
-     * @see App\Http\Middleware\DebugbarEnable::handle()
+     * @see \App\Http\Middleware\DebugbarEnable::handle()
      */
     public function testDebugbarIsDisabledForBasicUser()
     {
@@ -54,7 +54,7 @@ class DebugbarEnableTest extends TestCase
     /**
      * Test that the Debugbar is disabled for a guest user.
      *
-     * @see App\Http\Middleware\DebugbarEnable::handle()
+     * @see \App\Http\Middleware\DebugbarEnable::handle()
      */
     public function testDebugbarIsDisabledForGuestUser()
     {

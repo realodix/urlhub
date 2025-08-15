@@ -22,7 +22,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * @see App\Models\User::timezone()
+     * @see \App\Models\User::timezone()
      */
     #[PHPUnit\Test]
     public function getTimezone(): void

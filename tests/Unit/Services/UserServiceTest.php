@@ -34,6 +34,15 @@ class UserServiceTest extends TestCase
         $this->assertSame(1, app(UserService::class)->guestUsers());
     }
 
+    /**
+     * Tests the signature method of UserService.
+     *
+     * It verifies that the signature method of UserService returns the correct
+     * value for different types of users.
+     *
+     * - user => user id
+     * - guest => random string
+     */
     public function testSignature(): void
     {
         $userService = app(UserService::class);
@@ -44,7 +53,8 @@ class UserServiceTest extends TestCase
         $this->assertEquals($user->id, $userService->signature());
     }
 
-    public function testUserTypesUser(): void
+    #[PHPUnit\Test]
+    public function userType_User(): void
     {
         Auth::login(User::factory()->create());
 
@@ -56,12 +66,14 @@ class UserServiceTest extends TestCase
         $this->assertSame(UserType::User, app(UserService::class)->userType());
     }
 
-    public function testUserTypesGuest(): void
+    #[PHPUnit\Test]
+    public function userType_Guest(): void
     {
         $this->assertSame(UserType::Guest, app(UserService::class)->userType());
     }
 
-    public function testUserTypesBot(): void
+    #[PHPUnit\Test]
+    public function userType_Bot(): void
     {
         $this->partialMock(CrawlerDetect::class)
             ->shouldReceive(['isCrawler' => true]);

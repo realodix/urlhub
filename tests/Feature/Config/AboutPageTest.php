@@ -101,7 +101,7 @@ class AboutPageTest extends TestCase
      * This test simulates an admin user trying to access the about page, verifies
      * that the operation is successful by checking for an ok response.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::aboutView()
+     * @see \App\Http\Controllers\Dashboard\DashboardController::aboutView()
      */
     #[PHPUnit\Test]
     public function auAdminCanAccessThisPage(): void
@@ -118,7 +118,7 @@ class AboutPageTest extends TestCase
      * and verifies that access is forbidden by checking for a forbidden
      * response.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::aboutView()
+     * @see \App\Http\Controllers\Dashboard\DashboardController::aboutView()
      */
     #[PHPUnit\Test]
     public function auNormalUserCantAccessThisPage(): void

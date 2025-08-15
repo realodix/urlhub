@@ -13,7 +13,7 @@ class DashboardPageTest extends TestCase
     /**
      * Test that an authenticated user can access the dashboard page.
      *
-     * @see App\Http\Controllers\Dashboard\DashboardController::view()
+     * @see \App\Http\Controllers\Dashboard\DashboardController::view()
      */
     #[PHPUnit\Test]
     public function canAccessPage(): void
@@ -26,7 +26,7 @@ class DashboardPageTest extends TestCase
     /**
      * Test that an authenticated user can delete a link.
      *
-     * @see App\Http\Controllers\LinkController::delete()
+     * @see \App\Http\Controllers\LinkController::delete()
      */
     #[PHPUnit\Test]
     public function canDelete(): void
@@ -44,11 +44,11 @@ class DashboardPageTest extends TestCase
     /**
      * Test that an authenticated user can delete a link from table.
      *
-     * @see App\Http\Controllers\LinkController::delete()
+     * @see \App\Http\Controllers\LinkController::delete()
      */
-    #[PHPUnit\Test]
     #[PHPUnit\TestWith(['dashboard'])]
     #[PHPUnit\TestWith(['dboard.allurl'])]
+    #[PHPUnit\Test]
     public function canDelete_fromTable($route): void
     {
         $url = Url::factory()->create();
@@ -63,7 +63,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function adminCanAccessOverviewPage(): void
+    public function overviewPage_AdminCanAccess(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('dboard.overview'));
@@ -71,7 +71,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userCantAccessOverviewPage(): void
+    public function overviewPage_UserCantAccess(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get(route('dboard.overview'));
@@ -79,7 +79,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userCanAccesOwnOverviewPage(): void
+    public function overviewPage_UserCanAccesOwnPage(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
@@ -88,7 +88,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function adminCanAccessOtherOverviewPage(): void
+    public function overviewPage_AdminCanAccessOtherUsersPage(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get(route('user.overview', $this->basicUser()));
@@ -96,7 +96,7 @@ class DashboardPageTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function userCantAccessOtherOverviewPage(): void
+    public function overviewPage_UserCantAccessOtherUsersPage(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)

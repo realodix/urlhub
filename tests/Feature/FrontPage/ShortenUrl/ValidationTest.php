@@ -33,7 +33,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see App\Http\Requests\StoreUrlRequest
+     * @see \App\Http\Requests\StoreUrlRequest
      */
     #[PHPUnit\DataProvider('customKeyPassProvider')]
     public function testCustomKeyValidationShouldPass($value): void
@@ -48,7 +48,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see App\Livewire\Validation\ValidateCustomKeyword
+     * @see \App\Livewire\Validation\ValidateCustomKeyword
      */
     #[PHPUnit\DataProvider('customKeyPassProvider')]
     public function testLivewireCustomKeyValidationShouldPass($value): void
@@ -61,8 +61,8 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see App\Http\Requests\StoreUrlRequest
-     * @see App\Livewire\Validation\ValidateCustomKeyword
+     * @see \App\Http\Requests\StoreUrlRequest
+     * @see \App\Livewire\Validation\ValidateCustomKeyword
      */
     #[PHPUnit\TestWith(['foo_bar'])] // symbol
     #[PHPUnit\TestWith(['fonts'])] // reserved keyword
@@ -82,8 +82,8 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see App\Http\Requests\StoreUrlRequest
-     * @see App\Livewire\Validation\ValidateCustomKeyword
+     * @see \App\Http\Requests\StoreUrlRequest
+     * @see \App\Livewire\Validation\ValidateCustomKeyword
      */
     #[PHPUnit\TestWith(['foo'])] // already exists
     #[PHPUnit\TestWith(['fonts'])] // reserved keyword
@@ -105,7 +105,7 @@ class ValidationTest extends TestCase
     }
 
     /**
-     * @see App\Livewire\Validation\ValidateCustomKeyword
+     * @see \App\Livewire\Validation\ValidateCustomKeyword
      */
     public function testLivewireCustomKeywordLengthValidation(): void
     {

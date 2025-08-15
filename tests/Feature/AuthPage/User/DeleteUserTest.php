@@ -60,8 +60,8 @@ class DeleteUserTest extends TestCase
         $this->assertNotNull(User::find($user->id));
     }
 
-    #[PHPUnit\Test]
     #[PHPUnit\DataProvider('acdpWithOtherUserProvider')]
+    #[PHPUnit\Test]
     public function accessConfirmDeletePage_withOtherUser($user, $actingAs, $expectedStatus): void
     {
         $user = $user($this);
@@ -87,8 +87,8 @@ class DeleteUserTest extends TestCase
         ];
     }
 
-    #[PHPUnit\Test]
     #[PHPUnit\DataProvider('acdpThemselvesProvider')]
+    #[PHPUnit\Test]
     public function accessConfirmDeletePage_themselves($user): void
     {
         $user = $user($this);

@@ -16,9 +16,9 @@ class CreateShortLinkTest extends TestCase
      * Users shorten the URLs, they don't fill in the custom keyword field. The
      * is_custom column (Urls table) must be filled with 0 / false.
      */
-    #[PHPUnit\Test]
     #[PHPUnit\Group('forward-query')]
-    public function shortenUrl(): void
+    #[PHPUnit\Test]
+    public function shortenLink_User(): void
     {
         $this->partialMock(UserService::class)
             ->shouldReceive(['signature' => 'mocked_signature']);
@@ -35,7 +35,8 @@ class CreateShortLinkTest extends TestCase
     }
 
     #[PHPUnit\Group('forward-query')]
-    public function testGuestCanShortenUrl(): void
+    #[PHPUnit\Test]
+    public function shortenLink_Guest(): void
     {
         $this->partialMock(UserService::class)
             ->shouldReceive(['signature' => 'mocked_signature']);
@@ -55,7 +56,8 @@ class CreateShortLinkTest extends TestCase
      * keyword column (Urls table) must be filled with the keywords requested
      * by the user and the is_custom column must be filled with 1 / true.
      */
-    public function testShortenUrlWithCustomKeyword(): void
+    #[PHPUnit\Test]
+    public function shortenLink_CustomKeyword(): void
     {
         $this->partialMock(UserService::class)
             ->shouldReceive(['signature' => 'mocked_signature']);
@@ -80,11 +82,12 @@ class CreateShortLinkTest extends TestCase
      * keywords (all keywords have been used). UrlHub must prevent users from
      * shortening URLs.
      *
-     * @see App\Http\Controllers\LinkController::create()
-     * @see App\Http\Middleware\UrlHubLinkChecker
-     * @see App\Services\KeyGeneratorService::remainingCapacity()
+     * @see \App\Http\Controllers\LinkController::create()
+     * @see \App\Http\Middleware\UrlHubLinkChecker
+     * @see \App\Services\KeyGeneratorService::remainingCapacity()
      */
-    public function testShortenUrlWhenRemainingSpaceIsNotEnough(): void
+    #[PHPUnit\Test]
+    public function shortenLink_RemainingSpaceIsNotEnough(): void
     {
         $this->mock(KeyGeneratorService::class)
             ->shouldReceive(['remainingCapacity' => 0]);
@@ -96,8 +99,19 @@ class CreateShortLinkTest extends TestCase
             ->assertSessionHas('flash_error');
     }
 
-    public function testShortenUrlWithInternalLink(): void
+    /**
+     * Test shortening a URL with an internal link.
+     *
+     * Test that shortening a URL with an internal link fails and shows an error
+     * message.
+     *
+     * @see \App\Http\Controllers\LinkController::create()
+     * @see \App\Http\Middleware\UrlHubLinkChecker
+     */
+    #[PHPUnit\Test]
+    public function shortenLink_InternalLink(): void
     {
+        // Test with the current host
         $response = $this->actingAs($this->basicUser())
             ->post(route('link.create'), ['long_url' => request()->getHost()]);
         $response
@@ -105,6 +119,7 @@ class CreateShortLinkTest extends TestCase
             ->assertSessionHas('flash_error');
         $this->assertCount(0, Url::all());
 
+        // Test with the app URL
         $response = $this->actingAs($this->basicUser())
             ->post(route('link.create'), ['long_url' => config('app.url')]);
         $response
@@ -113,6 +128,15 @@ class CreateShortLinkTest extends TestCase
         $this->assertCount(0, Url::all());
     }
 
+    /**
+     * Test that shortening a URL fails and shows the error page when the maximum
+     * number of attempts to generate a unique key is reached.
+     *
+     * @see \App\Http\Controllers\LinkController::create()
+     * @see \App\Http\Middleware\UrlHubLinkChecker
+     * @see \App\Services\KeyGeneratorService::generate()
+     * @see \App\Exceptions\CouldNotGenerateUniqueKeyException
+     */
     #[PHPUnit\Test]
     public function shortenUrlFailsAndShowsErrorPageWhenMaxAttemptsReached(): void
     {

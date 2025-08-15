@@ -7,7 +7,7 @@ use App\Models\Url;
 class Helper
 {
     /**
-     * @see App\Http\Controllers\LinkController::update()
+     * @see \App\Http\Controllers\LinkController::update()
      */
     public static function updateLinkData(Url $model, array $replacements): array
     {

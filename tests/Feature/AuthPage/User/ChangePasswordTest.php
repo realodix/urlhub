@@ -38,7 +38,7 @@ class ChangePasswordTest extends TestCase
      * User can access change password page.
      */
     #[PHPUnit\Test]
-    public function canAccessChangePasswordPage(): void
+    public function access_Page_Myself(): void
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)
@@ -55,7 +55,7 @@ class ChangePasswordTest extends TestCase
      * a successful response.
      */
     #[PHPUnit\Test]
-    public function adminCanAccessOtherUsersChangePasswordPage(): void
+    public function access_Page_Admin_OtherUsers(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get($this->getRoute($this->basicUser()->name));
@@ -70,36 +70,14 @@ class ChangePasswordTest extends TestCase
      * checking for a forbidden response.
      */
     #[PHPUnit\Test]
-    public function basicUserCantAccessOtherUsersChangePasswordPage(): void
+    public function access_Page_BasicUser_OtherUsers(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get($this->getRoute($this->adminUser()->name));
         $response->assertForbidden();
     }
 
-    /**
-     * Test that a user can successfully change their password when providing
-     * correct current and new password credentials.
-     */
-    #[PHPUnit\Test]
-    public function changePasswordWithCorrectCredentials(): void
-    {
-        $response = $this->actingAs($this->user)
-            ->from($this->getRoute($this->user->name))
-            ->post($this->postRoute($this->user->name), [
-                'current_password' => self::PASSWORD,
-                'new_password' => 'new-awesome-password',
-                'new_password_confirmation' => 'new-awesome-password',
-            ]);
 
-        $this->assertTrue(
-            Hash::check('new-awesome-password', $this->user->fresh()->password),
-        );
-
-        $response
-            ->assertRedirect($this->getRoute($this->user->name))
-            ->assertSessionHas('flash_success');
-    }
 
     /**
      * Admin can change the password of all users.
@@ -110,7 +88,7 @@ class ChangePasswordTest extends TestCase
      * database.
      */
     #[PHPUnit\Test]
-    public function adminCanChangeOtherUsersPassword(): void
+    public function access_ChangePassword_Admin_OtherUsers(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($this->user->name))
@@ -138,7 +116,7 @@ class ChangePasswordTest extends TestCase
      * response, and confirms that the password is unchanged in the database.
      */
     #[PHPUnit\Test]
-    public function basicUserCantChangeOtherUsersPassword(): void
+    public function access_ChangePassword_BasicUser_OtherUsers(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->from($this->getRoute($this->user->name))
@@ -155,6 +133,30 @@ class ChangePasswordTest extends TestCase
     }
 
     /**
+     * Test that a user can successfully change their password when providing
+     * correct current and new password credentials.
+     */
+    #[PHPUnit\Test]
+    public function validate_pass_AllCorrect(): void
+    {
+        $response = $this->actingAs($this->user)
+            ->from($this->getRoute($this->user->name))
+            ->post($this->postRoute($this->user->name), [
+                'current_password' => self::PASSWORD,
+                'new_password' => 'new-awesome-password',
+                'new_password_confirmation' => 'new-awesome-password',
+            ]);
+
+        $this->assertTrue(
+            Hash::check('new-awesome-password', $this->user->fresh()->password),
+        );
+
+        $response
+            ->assertRedirect($this->getRoute($this->user->name))
+            ->assertSessionHas('flash_success');
+    }
+
+    /**
      * Test that a user cannot change their password if the current password is incorrect.
      *
      * This test ensures that a password change request fails when the provided
@@ -163,7 +165,7 @@ class ChangePasswordTest extends TestCase
      * and that the user's password remains unchanged.
      */
     #[PHPUnit\Test]
-    public function currentPasswordDoesNotMatch(): void
+    public function validate_fail_CurrentPassword_NotMatch(): void
     {
         $response = $this->actingAs($this->user)
             ->from($this->getRoute($this->user->name))
@@ -182,9 +184,9 @@ class ChangePasswordTest extends TestCase
         );
     }
 
-    #[PHPUnit\Test]
     #[PHPUnit\DataProvider('newPasswordFailProvider')]
-    public function newPasswordValidateFail($data1, $data2): void
+    #[PHPUnit\Test]
+    public function validate_fail_NewPassword($data1, $data2): void
     {
         $user = $this->user;
 
@@ -223,7 +225,7 @@ class ChangePasswordTest extends TestCase
      * The new password must be different from the current password.
      */
     #[PHPUnit\Test]
-    public function newPasswordmustBeDifferent(): void
+    public function validate_fail_NewPassword_MustBeDifferent(): void
     {
         $user = $this->user;
 

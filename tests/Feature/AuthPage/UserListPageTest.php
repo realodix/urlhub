@@ -13,7 +13,7 @@ class UserListPageTest extends TestCase
      * A user with the admin role should be able to access the user list page.
      * This test asserts that an admin user is able to access the page.
      *
-     * @see App\Http\Controllers\Dashboard\User\UserController::view()
+     * @see \App\Http\Controllers\Dashboard\User\UserController::view()
      */
     #[PHPUnit\Test]
     public function canAccessUserListPage(): void
@@ -27,7 +27,7 @@ class UserListPageTest extends TestCase
      * A basic user should not be able to access the user list page. This test
      * asserts that a normal user is redirected to the forbidden page.
      *
-     * @see App\Http\Controllers\Dashboard\User\UserController::view()
+     * @see \App\Http\Controllers\Dashboard\User\UserController::view()
      */
     #[PHPUnit\Test]
     public function basicUserCantAccessUserListPage(): void

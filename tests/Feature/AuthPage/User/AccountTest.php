@@ -27,7 +27,8 @@ class AccountTest extends TestCase
      * This test checks that when a user attempts to access their own account page,
      * the operation is successful by asserting an OK response.
      */
-    public function testCanAccessThisPage(): void
+    #[PHPUnit\Test]
+    public function  access_Page_Myself(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
@@ -43,10 +44,10 @@ class AccountTest extends TestCase
      * verifies that the operation is successful by checking for an ok response,
      * and confirms that the user is on the target page.
      *
-     * @see App\Http\Controllers\Dashboard\User\UserController::edit()
+     * @see \App\Http\Controllers\Dashboard\User\UserController::edit()
      */
     #[PHPUnit\Test]
-    public function adminCanAccessOtherUsersAccountPage(): void
+    public function access_AccountPage_Admin_OtherUsers(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->get($this->getRoute($this->basicUser()->name));
@@ -61,10 +62,10 @@ class AccountTest extends TestCase
      * page of an admin user, the operation is forbidden by asserting that the
      * response is forbidden.
      *
-     * @see App\Http\Controllers\Dashboard\User\UserController::edit()
+     * @see \App\Http\Controllers\Dashboard\User\UserController::edit()
      */
     #[PHPUnit\Test]
-    public function basicUserCantAccessOtherUsersAccountPage(): void
+    public function access_AccountPage_BasicUser_OtherUsers(): void
     {
         $response = $this->actingAs($this->basicUser())
             ->get($this->getRoute($this->adminUser()->name));
@@ -72,7 +73,8 @@ class AccountTest extends TestCase
         $response->assertForbidden();
     }
 
-    public function testCanUpdateEmail(): void
+    #[PHPUnit\Test]
+    public function email_CanUpdate(): void
     {
         $user = $this->basicUser();
         $newEmail = 'new_user_email@urlhub.test';
@@ -96,10 +98,10 @@ class AccountTest extends TestCase
      * verifies that the operation is successful by checking for a redirect
      * and a success flash message, and confirms the email change in the database.
      *
-     * @see App\Http\Controllers\Dashboard\User\UserController::update()
+     * @see \App\Http\Controllers\Dashboard\User\UserController::update()
      */
     #[PHPUnit\Test]
-    public function adminCanChangeOtherUsersEmail(): void
+    public function access_EmailChange_Admin_OtherUsers(): void
     {
         $user = User::factory()->create(['email' => 'user_email@urlhub.test']);
 
@@ -123,10 +125,10 @@ class AccountTest extends TestCase
      * verifies that the operation is forbidden by checking for a forbidden response,
      * and confirms that the email is unchanged in the database.
      *
-     * @see App\Http\Controllers\Dashboard\User\UserController::update()
+     * @see \App\Http\Controllers\Dashboard\User\UserController::update()
      */
     #[PHPUnit\Test]
-    public function basicUserCantChangeOtherUsersEmail(): void
+    public function access_EmailChange_BasicUser_OtherUsers(): void
     {
         $user = User::factory()->create(['email' => 'user2@urlhub.test']);
 
@@ -140,7 +142,8 @@ class AccountTest extends TestCase
         $this->assertSame('user2@urlhub.test', $user->email);
     }
 
-    public function testValidateEmailUnique(): void
+    #[PHPUnit\Test]
+    public function validate_Email_Unique(): void
     {
         $user = $this->basicUser();
         $response = $this->actingAs($user)
@@ -161,7 +164,12 @@ class AccountTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    public function testUserCanDisableForwardQuery()
+    /**
+     * Tests that a user can disable forward query.
+     */
+    #[PHPUnit\Group('forward-query')]
+    #[PHPUnit\Test]
+    public function forwardQuery()
     {
         $user = $this->basicUser();
         $request = new Request([
@@ -177,7 +185,11 @@ class AccountTest extends TestCase
         $this->assertSame(false, $user->fresh()->forward_query);
     }
 
-    public function testUserChangeTimezone()
+    /**
+     * Tests that a user can change their timezone.
+     */
+    #[PHPUnit\Test]
+    public function timezone()
     {
         $user = $this->basicUser();
         $timezone = 'America/New_York';

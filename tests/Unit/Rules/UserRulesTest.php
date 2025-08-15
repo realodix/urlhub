@@ -11,7 +11,8 @@ use Tests\TestCase;
 class UserRulesTest extends TestCase
 {
     #[PHPUnit\TestWith(['foo123'])]
-    public function testNamePass($value): void
+    #[PHPUnit\Test]
+    public function name_Pass($value): void
     {
         $val = validator(['name' => $value], ['name' => UserRules::name()]);
 
@@ -21,31 +22,36 @@ class UserRulesTest extends TestCase
     #[PHPUnit\TestWith(['foÖ123'])] // non-ascii
     #[PHPUnit\TestWith(['foo_123'])]
     #[PHPUnit\TestWith(['foo-123'])]
-    public function testNameFail($value): void
+    #[PHPUnit\Test]
+    public function name_Fail($value): void
     {
         $val = validator(['name' => $value], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }
 
-    public function testNameFail_Lowercase(): void
+    #[PHPUnit\Test]
+    public function name_Fail_Lowercase(): void
     {
         $val = validator(['name' => 'Laravel'], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }
 
-    public function testNameMaxFail(): void
+    #[PHPUnit\Test]
+    public function name_Fail_Max(): void
     {
         $val = validator(['name' => str_repeat('a', 21)], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }
 
-    public function testNameMinFail(): void
+    #[PHPUnit\Test]
+    public function name_Fail_Min(): void
     {
         $val = validator(['name' => str_repeat('a', 3)], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }
 
-    public function testNameUniqueFail(): void
+    #[PHPUnit\Test]
+    public function name_Fail_Unique(): void
     {
         $user = User::factory()->create(['name' => 'test']);
 
@@ -53,33 +59,37 @@ class UserRulesTest extends TestCase
         $this->assertTrue($val->fails());
     }
 
-    #[PHPUnit\TestWith(['foo'])]
-    public function testEmailFail($value): void
-    {
-        $val = validator(['email' => $value], ['email' => UserRules::email()]);
-        $this->assertTrue($val->fails());
-    }
-
-    public function testEmailUniqueFail(): void
-    {
-        $user = User::factory()->create(['email' => 'test@example.com']);
-
-        $val = validator(['email' => $user->email], ['email' => UserRules::email()]);
-        $this->assertTrue($val->fails());
-    }
-
     #[PHPUnit\TestWith(['guest'])]
     #[PHPUnit\TestWith(['guests'])]
-    public function testNameFail_Blacklist_Guest($value): void
+    #[PHPUnit\Test]
+    public function name_Fail_Blacklist_Guest($value): void
     {
         $val = validator(['name' => $value], ['name' => UserRules::name()]);
         $this->assertTrue($val->fails());
     }
 
-    public function testNameFail_Blacklist_Config(): void
+    #[PHPUnit\Test]
+    public function name_Fail_Blacklist_Config(): void
     {
         config(['urlhub.blacklist_username' => ['laravel']]);
         $val = validator(['name' => 'laravel'], ['name' => UserRules::name()]);
+        $this->assertTrue($val->fails());
+    }
+
+    #[PHPUnit\TestWith(['foo'])]
+    #[PHPUnit\Test]
+    public function email_Fail($value): void
+    {
+        $val = validator(['email' => $value], ['email' => UserRules::email()]);
+        $this->assertTrue($val->fails());
+    }
+
+    #[PHPUnit\Test]
+    public function email_Fail_Unique(): void
+    {
+        $user = User::factory()->create(['email' => 'test@example.com']);
+
+        $val = validator(['email' => $user->email], ['email' => UserRules::email()]);
         $this->assertTrue($val->fails());
     }
 }

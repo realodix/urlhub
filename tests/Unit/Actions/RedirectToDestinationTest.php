@@ -26,7 +26,11 @@ class RedirectToDestinationTest extends TestCase
         $this->rtd = app(RedirectToDestination::class);
     }
 
-    public function testAndroidRedirectsToSpecificUrl()
+    /**
+     * Redirects to the Android-specific URL when the user is on Android.
+     */
+    #[PHPUnit\Test]
+    public function redirect_Android_ToSpecificUrl()
     {
         $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('AND')]);
@@ -40,7 +44,8 @@ class RedirectToDestinationTest extends TestCase
      * When user its on Android and no Android URL is set,
      * it will redirects to the default URL
      */
-    public function testAndroidRedirectsToDefaultUrl()
+    #[PHPUnit\Test]
+    public function redirect_Android_ToDefaultUrl()
     {
         $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('AND')]);
@@ -54,7 +59,11 @@ class RedirectToDestinationTest extends TestCase
         $this->assertSame($url->destination, $response->headers->get('Location'));
     }
 
-    public function testIosRedirectsToSpecificUrl()
+    /**
+     * Redirects to the iOS-specific URL when the user is on iOS.
+     */
+    #[PHPUnit\Test]
+    public function redirect_Ios_ToSpecificUrl()
     {
         $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('IOS')]);
@@ -68,7 +77,8 @@ class RedirectToDestinationTest extends TestCase
      * When user its on iOS and no iOS URL is set,
      * it will redirects to the default URL
      */
-    public function testIosRedirectsToDefaultUrl()
+    #[PHPUnit\Test]
+    public function redirect_Ios_ToDefaultUrl()
     {
         $this->partialMock(DeviceDetectorService::class)
             ->shouldReceive(['getOs' => OS::getNameFromId('IOS')]);
@@ -86,7 +96,8 @@ class RedirectToDestinationTest extends TestCase
      * Visitors are redirected to destinations with source query parameters
      */
     #[PHPUnit\Group('forward-query')]
-    public function testRedirectWithSourceQuery(): void
+    #[PHPUnit\Test]
+    public function forwardQuery_General(): void
     {
         // New query parameters
         $url = Url::factory()->create(['destination' => 'https://example.com']);
@@ -102,12 +113,11 @@ class RedirectToDestinationTest extends TestCase
     }
 
     /**
-     * It asserts that query parameters are not forwarded to the destination URL
-     * when the 'forward_query' option is explicitly set to false on the URL item.
+     * Query parameters are not forwarded when disabled on the URL item.
      */
-    #[PHPUnit\Test]
     #[PHPUnit\Group('forward-query')]
-    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnUrlItem(): void
+    #[PHPUnit\Test]
+    public function forwardQuery_Disabled_UrlItemScope(): void
     {
         $url = Url::factory()->create(['forward_query' => false]);
         Request::merge(['a' => '1', 'b' => '2']);
@@ -117,12 +127,11 @@ class RedirectToDestinationTest extends TestCase
     }
 
     /**
-     * It asserts that query parameters are not forwarded to the destination URL
-     * when the 'forward_query' option is set to false on the URL's author.
+     * Query parameters are not forwarded when disabled on the author's settings.
      */
-    #[PHPUnit\Test]
     #[PHPUnit\Group('forward-query')]
-    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledOnAuthor(): void
+    #[PHPUnit\Test]
+    public function forwardQuery_Disabled_AuthorScope(): void
     {
         $url = Url::factory()
             // ->for(\App\Models\User::factory()->state(['forward_query' => false]), 'author')
@@ -135,12 +144,11 @@ class RedirectToDestinationTest extends TestCase
     }
 
     /**
-     * It asserts that query parameters are not forwarded to the destination URL
-     * when the global 'forward_query' setting is disabled.
+     * Query parameters are not forwarded when disabled globally.
      */
-    #[PHPUnit\Test]
     #[PHPUnit\Group('forward-query')]
-    public function itDoesntPassQueryParametersWhenForwardQueryIsDisabledGlobally(): void
+    #[PHPUnit\Test]
+    public function forwardQuery_Disabled_GlobalScope(): void
     {
         settings()->fill(['forward_query' => false])->save();
 

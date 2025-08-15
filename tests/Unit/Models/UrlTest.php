@@ -70,11 +70,11 @@ class UrlTest extends TestCase
     /**
      * The default guest id must be GUEST_ID.
      *
-     * @see App\Models\Url::userId()
+     * @see \App\Models\Url::userId()
      */
-    #[PHPUnit\Test]
     #[PHPUnit\TestWith([null])]
     #[PHPUnit\TestWith([0])]
+    #[PHPUnit\Test]
     public function setUserIdAttributeMustBeGuestId($value): void
     {
         $url = Url::factory()->create(['user_id' => $value]);
@@ -83,7 +83,7 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @see App\Models\Url::destination()
+     * @see \App\Models\Url::destination()
      */
     #[PHPUnit\Test]
     public function setLongUrlAttribute(): void
@@ -96,7 +96,7 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @see App\Models\Url::shortUrl()
+     * @see \App\Models\Url::shortUrl()
      */
     #[PHPUnit\Test]
     public function getShortUrlAttribute(): void
@@ -110,7 +110,7 @@ class UrlTest extends TestCase
     }
 
     /**
-     * @see App\Models\Url::title()
+     * @see \App\Models\Url::title()
      */
     public function testSetTitleLength(): void
     {

@@ -19,7 +19,7 @@ class HelperTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function urlDisplay(): void
+    public function urlDisplay_General(): void
     {
         $this->assertSame(
             'https://example.com/abcde/',
@@ -48,7 +48,7 @@ class HelperTest extends TestCase
      * Test the urlDisplay() method with too long host.
      */
     #[PHPUnit\Test]
-    public function urlDisplayWithTooLongHost(): void
+    public function urlDisplay_TooLongHost(): void
     {
         $url = 'http://theofficialabsolutelongestdomainnameregisteredontheworldwideweb.international/search?client=firefox-b-d&q=longets+domain';
 
@@ -68,9 +68,9 @@ class HelperTest extends TestCase
         );
     }
 
-    #[PHPUnit\Test]
     #[PHPUnit\DataProvider('urlDisplayWithoutSchemeProvider')]
-    public function urlDisplayWithoutScheme($expected, $actual): void
+    #[PHPUnit\Test]
+    public function urlDisplay_WithoutScheme($expected, $actual): void
     {
         $this->assertSame($expected, Helper::urlDisplay($actual, scheme: false));
     }
