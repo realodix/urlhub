@@ -43,7 +43,9 @@ class LinkVisitChart extends BaseLinkVisitChart
         if ($visitor) {
             // Group by day, then calculate unique `user_uid` per day
             $rawData = $visits->groupBy($groupByFormat)
-                ->map(fn(Collection $dailyVisits) => $dailyVisits->pluck('user_uid')->unique()->count());
+                ->map(function (Collection $dailyVisits) {
+                    return $dailyVisits->pluck('user_uid')->unique()->count();
+                });
         } else {
             $rawData = $visits->countBy($groupByFormat);
         }

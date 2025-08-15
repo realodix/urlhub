@@ -40,7 +40,9 @@ class LinkVisitPerMonthChart extends BaseLinkVisitChart
         if ($visitor) {
             // Group by month, then calculate the unique `user_uid` per month
             $rawData = $visits->groupBy($groupByFormat)
-                ->map(fn(Collection $monthlyVisits) => $monthlyVisits->pluck('user_uid')->unique()->count());
+                ->map(function (Collection $monthlyVisits) {
+                    return $monthlyVisits->pluck('user_uid')->unique()->count();
+                });
         } else {
             $rawData = $visits->countBy($groupByFormat);
         }

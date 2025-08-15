@@ -40,7 +40,9 @@ class LinkVisitPerWeekChart extends BaseLinkVisitChart
         if ($visitor) {
             // Group by week, then calculate unique `user_uid` per week
             $rawData = $visits->groupBy($groupByFormat)
-                ->map(fn(Collection $weeklyVisits) => $weeklyVisits->pluck('user_uid')->unique()->count());
+                ->map(function (Collection $weeklyVisits) {
+                    return $weeklyVisits->pluck('user_uid')->unique()->count();
+                });
         } else {
             $rawData = $visits->countBy($groupByFormat);
         }
