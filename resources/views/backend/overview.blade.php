@@ -115,7 +115,7 @@
 
         <h3 class="text-xl">Random String</h3>
         <p class="font-light text-sm dark:text-dark-400">
-            <strong>Capacity</strong> is the maximum number of unique random keywords that can be generated, minus the weighted value for the space used by the disallowed keywords. <strong>Keyword Space Used</strong> indicating how much of the total capacity has been filled. The closer this number gets to the capacity, the fewer new random combinations remain available. Note: based on the current character length configuration.
+            <strong>Capacity</strong> is the maximum number of unique random keywords that can be generated, minus the weighted value for the space used by the disallowed keywords. <strong>Keyword Space Used</strong> indicating how much of the total capacity has been filled. As this number approaches the capacity, fewer unique keywords are available. Note: based on the current character length configuration.
         </p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
