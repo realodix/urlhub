@@ -67,7 +67,6 @@ abstract class BaseUrlTable extends PowerGridComponent
             })
             ->add('destination', function (Url $url) {
                 return view('components.table.destination', [
-                    'tableName' => $this->tableName,
                     'model' => $url,
                     'title' => $url->title,
                     'destination' => $url->destination,

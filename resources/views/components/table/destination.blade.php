@@ -21,7 +21,7 @@
 
 <div>
     @if (
-        $tableName == 'all_urls_table'
+        Route::currentRouteName() == 'dboard.allurl'
         || Route::currentRouteName() == 'dboard.links.restricted'
         || Route::currentRouteName() == 'dboard.links.user.restricted'
     )
