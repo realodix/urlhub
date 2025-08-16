@@ -46,7 +46,7 @@
                     <input type="password" name="password_confirmation" required class="form-input mt-1">
                 </div>
 
-                <button type="submit" class="btn btn-primary w-full !mt-6">Create Account</button>
+                <button type="submit" class="btn btn-primary w-full mt-6!">Create Account</button>
             </form>
         @endif
     </div>

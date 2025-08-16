@@ -54,7 +54,7 @@
 
     h3 {
         font-weight: 600; line-height: 1.25;
-        @apply mt-6 mb-2 first:!mt-0 ;
+        @apply mt-6 mb-2 first:mt-0!;
     }
 
     hr + h3 {
@@ -70,8 +70,8 @@
     }
 
     table {
-        /* Terpakasa menggunakan @layer utilities !important, karena PG juga menggunakan !important */
-        @layer utilities { @apply dark:!bg-transparent; }
+        /* I had to use @layer utilities !important, because PG also uses !important. */
+        @layer utilities { @apply dark:bg-transparent!; }
 
         thead {
             @apply shadow-none;
@@ -154,7 +154,7 @@
 .fi-wi-chart {
     section {
         @apply rounded-lg ring-0 shadow-none;
-        @apply dark:!bg-dark-950/50 dark:ring-1 dark:ring-[#282828];
+        @apply dark:bg-dark-950/50! dark:ring-1 dark:ring-[#282828];
     }
 }
 

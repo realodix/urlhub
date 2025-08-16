@@ -40,19 +40,19 @@
                         <label class="form-label">Keyword Length</label>
                         <div class="font-light text-sm dark:text-dark-400">Specify the number of characters to be used in the generated short URL keywords. This value must be between 2 and 11.</div>
                         <input name="keyword_length" type="number" required value="{{ $settings->key_len }}"
-                            class="form-input mt-4 md:mt-3 max-w-100 @error('keyword_length') !border-red-300 @enderror">
+                            class="form-input mt-4 md:mt-3 max-w-100 @error('keyword_length') border-red-300! @enderror">
                     </div>
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Min. Custom Keyword Length</label>
                         <div class="font-light text-sm dark:text-dark-400">Specify the minimum number of characters allowed for the custom keyword. This value must be between 2 and 29.</div>
                         <input name="custom_keyword_min_length" type="number" required value="{{ $settings->cst_key_min_len }}"
-                            class="form-input mt-4 md:mt-3 max-w-100 @error('custom_keyword_min_length') !border-red-300 @enderror">
+                            class="form-input mt-4 md:mt-3 max-w-100 @error('custom_keyword_min_length') border-red-300! @enderror">
                     </div>
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Max. Custom Keyword Length</label>
                         <div class="font-light text-sm dark:text-dark-400">Specify the maximum number of characters allowed for the custom keyword. This value must be between 3 and 30.</div>
                         <input name="custom_keyword_max_length" type="number" required value="{{ $settings->cst_key_max_len }}"
-                            class="form-input mt-4 md:mt-3 max-w-100 @error('custom_keyword_max_length') !border-red-300 @enderror">
+                            class="form-input mt-4 md:mt-3 max-w-100 @error('custom_keyword_max_length') border-red-300! @enderror">
                     </div>
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Autofill Link Title</label>
@@ -83,12 +83,12 @@
                         </label>
                     </div>
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-label !inline">Redirect Cache Lifetime (max-age)</label>
+                        <label class="form-label inline!">Redirect Cache Lifetime (max-age)</label>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#max-age" target="_blank">
                             @svg('icon-help', 'ml-1 hover:scale-110 text-gray-500 dark:text-amber-400')</a>
                         <div class="font-light text-sm dark:text-dark-400">Set the maximum time (in seconds) that a redirect can be cached by a browser. Set to 0 to prevent caching.</div>
                         <input name="redirect_cache_max_age" type="number" required value="{{ $settings->redirect_cache_max_age }}"
-                            class="form-input mt-4 md:mt-3 max-w-100 @error('redirect_cache_max_age') !border-red-300 @enderror">
+                            class="form-input mt-4 md:mt-3 max-w-100 @error('redirect_cache_max_age') border-red-300! @enderror">
                     </div>
                     <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Track bot visits</label>
@@ -102,7 +102,7 @@
 
                 <hr class="col-span-6 lg:col-span-5">
 
-                <div class="!mt-6 !mb-4 flex justify-end">
+                <div class="mt-6! mb-4! flex justify-end">
                     <button type="submit" class="btn btn-primary mt-2">
                         Save Changes
                     </button>

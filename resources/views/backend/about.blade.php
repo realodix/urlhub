@@ -13,7 +13,7 @@
         <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4 dark:shadow-xs shadow-orange-600">
             <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-orange-600"></div>
             <p class="mb-2 flex items-center gap-x-2 text-orange-600">
-                @svg('icon-sign-warning', '!size-5')
+                @svg('icon-sign-warning', 'size-5!')
                 <span class="text-xs/4 font-medium">Warning</span>
             </p>
             <ul class="text-slate-600 dark:text-dark-400">
@@ -83,7 +83,7 @@
                 </p>
             </dt>
             <dd class="mt-2 mb-2">
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-3 py-2 text-sm">
                     <code class="text-slate-500 dark:text-dark-600">// {{ $disallowedKeys->count() }} Strings</code> <br>
                     @foreach ($disallowedKeys as $disallowedKey)
                         @php $separator = $loop->last ? '.' : ','; @endphp
@@ -112,7 +112,7 @@
                 <p class="font-light text-sm dark:text-dark-400">This is a list of domain names that are not allowed to be shortened.</p>
             </dt>
             <dd class="mt-2">
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-3 py-2 text-sm">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-3 py-2 text-sm">
                     @if ($domainBlacklist->isNotEmpty())
                         <code>{{ $domainBlacklist->implode(', ') }}</code>
                     @else

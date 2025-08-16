@@ -46,7 +46,7 @@
             <div role="alert" class="card relative mb-4 scroll-mt-7 py-3.5 pl-6.5 pr-4 dark:shadow-xs shadow-orange-600">
                 <div class="absolute inset-y-2 left-2 w-0.5 rounded-full bg-orange-600"></div>
                 <p class="mb-2 flex items-center gap-x-2 text-orange-600">
-                    @svg('icon-sign-warning', '!size-5') <span class="text-xs/4 font-medium">Warning</span>
+                    @svg('icon-sign-warning', 'size-5!') <span class="text-xs/4 font-medium">Warning</span>
                 </p>
                 <p class="text-slate-600 dark:text-dark-400">
                     This link has expired and
@@ -136,7 +136,7 @@
                                         @svg('icon-key', 'mr-1') Edit Password
                                     </button>
 
-                                    <a href="{{ route('link.password.delete', $url) }}" onclick="return confirm('Are you sure you want to remove the password?')" class="btn btn-delete-danger btn-sm dark:!text-red-700 dark:hover:!text-red-400 dark:!border-red-900">
+                                    <a href="{{ route('link.password.delete', $url) }}" onclick="return confirm('Are you sure you want to remove the password?')" class="btn btn-delete-danger btn-sm dark:text-red-700! dark:hover:text-red-400! dark:border-red-900!">
                                         Remove Password
                                     </a>
                                 @else
@@ -166,11 +166,11 @@
                                     </div>
                                 </div>
 
-                                <label class="form-label !m-[0.5rem_0_0]">Expiration URL</label>
+                                <label class="form-label m-[0.5rem_0_0]!">Expiration URL</label>
                                 <p class="font-light text-sm dark:text-dark-400">Visitors will be redirected her after the link expires.</p>
                                 <input name="expired_url" placeholder="https://example.com/" value="{{ $url->expired_url }}" class="form-input">
 
-                                <label class="form-label !m-[0.5rem_0_0]">Expiration Notes</label>
+                                <label class="form-label m-[0.5rem_0_0]!">Expiration Notes</label>
                                 <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
                                 <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
                             </div>

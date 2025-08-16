@@ -81,7 +81,7 @@
                     @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
                         <x-tabs
                             :tabs="['day' => 'Day', 'week' => 'Week', 'month' => 'Month']"
-                            activeTabClass="!bg-gray-50 dark:!bg-dark-800"
+                            activeTabClass="bg-gray-50! dark:bg-dark-800!"
                             contentClass="p-1"
                         >
                             <x-slot:day>
@@ -99,7 +99,7 @@
 
                         <x-tabs
                             :tabs="['a' => 'Referrers', 'b' => 'Browsers', 'c' => 'OS']"
-                            activeTabClass="!bg-gray-50 dark:!bg-dark-800"
+                            activeTabClass="bg-gray-50! dark:bg-dark-800!"
                             contentClass="px-4 md:px-8 md:py-4"
                         >
                             <x-slot:a>

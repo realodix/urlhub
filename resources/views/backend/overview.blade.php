@@ -12,7 +12,7 @@
         <h3 class="text-xl">Users</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         User
                     </dt>
@@ -20,7 +20,7 @@
                         <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
                     </dd>
                 </div>
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         Guest
                     </dt>
@@ -42,7 +42,7 @@
                     $visitsOnGuestLinks = $visitService->visitsOnGuestLinks();
                 @endphp
 
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         Total
                     </dt>
@@ -50,7 +50,7 @@
                         <span title="{{ number_format($linkCount) }}">{{ n_abb($linkCount) }}</span>
                     </dd>
                 </div>
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         User
                     </dt>
@@ -59,7 +59,7 @@
                         <span title="{{ number_format($visitsOnUserLinks) }}">({{ n_abb($visitsOnUserLinks) }} visits)</span>
                     </dd>
                 </div>
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         Guest
                     </dt>
@@ -74,7 +74,7 @@
         <h3 class="text-xl">Visits</h3>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 gap-2.5 sm:gap-3 md:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         Total
                     </dt>
@@ -82,7 +82,7 @@
                         {{ n_abb($visitCount) }} visits / {{ n_abb($visitService->visitors()) }} visitors
                     </dd>
                 </div>
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         User
                     </dt>
@@ -90,7 +90,7 @@
                         {{ n_abb($visitService->userVisits()) }} visits / {{ n_abb($visitService->userVisitors()) }} visitors
                     </dd>
                 </div>
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         Guest
                     </dt>
@@ -119,7 +119,7 @@
         </p>
         <div class="mt-4 mb-6 px-0">
             <dl class="grid grid-cols-1 md:grid-flow-col md:auto-cols-auto gap-2.5 sm:gap-3">
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1">
                         Capacity
                     </dt>
@@ -127,7 +127,7 @@
                         {{ number_format($keyGenService->capacity()) }}
                     </dd>
                 </div>
-                <div class="card !bg-gray-50 dark:!bg-dark-950/50 !rounded px-4 py-2">
+                <div class="card bg-gray-50! dark:bg-dark-950/50! rounded! px-4 py-2">
                     <dt class="text-sm font-medium text-gray-600 dark:text-dark-300 md:mt-1 md:w-64">
                         Keyword Space Used
                     </dt>

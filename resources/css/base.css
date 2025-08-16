@@ -5,7 +5,7 @@
     h2 { font-size: 1.75em; }
     h3 { font-size: 1.5em; }
 
-    hr { @apply !border-border-200 dark:!border-dark-700; }
+    hr { @apply border-border-200! dark:border-dark-700!; }
 }
 
 main {

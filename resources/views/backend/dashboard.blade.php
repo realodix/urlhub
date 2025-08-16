@@ -42,7 +42,7 @@
             <p class="text-2xl">My URLs</p>
             <div class="flex justify-end">
                 <a href="{{ route('user.overview', auth()->user()) }}" title="Overview" class="btn btn-secondary">
-                    @svg('icon-overview', '!h-[1.5em] mr-1')
+                    @svg('icon-overview', 'h-[1.5em]! mr-1')
                     <p class="hidden sm:inline">Overview</p>
                 </a>
             </div>

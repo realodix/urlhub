@@ -9,7 +9,7 @@
     </div>
 
     <div class="content-container card card-master">
-        <div class="content-header !grid-cols-1 md:!grid-cols-2">
+        <div class="content-header grid-cols-1! md:grid-cols-2!">
             <p class="text-2xl">List of All URLs</p>
 
             <div class="md:flex justify-end mt-4 md:mt-0">

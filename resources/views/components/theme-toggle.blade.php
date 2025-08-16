@@ -27,7 +27,7 @@
             text-gray-500 hover:text-gray-800 dark:hover:text-emerald-500
             ml-2"
         :class="$store.darkMode.mode == 'dark' ?
-            'bg-dark-950 !text-emerald-500 ring ring-dark-700'
+            'bg-dark-950 text-emerald-500! ring ring-dark-700'
             : ''"
     >
         <span class="text-base">

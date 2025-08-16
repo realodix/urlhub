@@ -2,7 +2,7 @@
     @php
         $linkClasses = 'text-slate-700 dark:text-dark-400';
         if ($model->isExpired()) {
-            $linkClasses .= ' line-through !text-red-500 dark:!text-red-400';
+            $linkClasses .= ' line-through text-red-500! dark:text-red-400!';
         }
     @endphp
 

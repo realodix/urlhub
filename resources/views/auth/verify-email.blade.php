@@ -5,7 +5,7 @@
 @section('content')
 <div class="flex flex-col min-h-screen sm:justify-center items-center pt-6 sm:pt-0">
     @if (session('status') == 'verification-link-sent')
-        <div class="alert alert-success !mb-10">
+        <div class="alert alert-success mb-10!">
             A new verification link has been sent to the email address you provided during registration.
         </div>
     @endif

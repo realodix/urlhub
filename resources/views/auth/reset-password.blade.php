@@ -26,7 +26,7 @@
                 <input type="password" name="password_confirmation" required autocomplete="new_password" class="form-input mt-1">
             </div>
 
-            <button type="submit" class="btn btn-primary w-full !mt-6">
+            <button type="submit" class="btn btn-primary w-full mt-6!">
                 Reset Password
             </button>
         </form>

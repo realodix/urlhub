@@ -4,9 +4,9 @@
 
 @section('content')
 <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="card !rounded-2xl  relative mx-auto mt-4 w-full max-w-screen-lg overflow-hidden p-6 text-center sm:p-10 sm:px-0">
+    <div class="card rounded-2xl! relative mx-auto mt-4 w-full max-w-5xl overflow-hidden p-6 text-center sm:p-10 sm:px-0">
         <div class="relative mx-auto flex w-full max-w-md flex-col items-center">
-            <x-icon-link-expired class="!w-32 !h-32 text-orange-500 animate-pulse" />
+            <x-icon-link-expired class="w-32! h-32! text-orange-500 animate-pulse" />
 
             <h1 class="font-display mt-10 text-center text-4xl font-medium text-gray-900 dark:text-dark-200 sm:text-5xl sm:leading-[1.15]">
                 Expired link
