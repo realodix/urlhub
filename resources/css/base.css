@@ -156,9 +156,12 @@ main {
     }
 }
 
+.link_icon {
+    @apply ring ring-border-200 dark:ring-dark-950;
+    @apply bg-gray-100;
+}
+
 .link-card__icon-container {
-    @apply border border-border-200 dark:border-dark-950;
-    @apply bg-gray-100 dark:bg-dark-950;
     border-radius: 50%;
     display: flex;
     justify-content: center;

@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="flex gap-x-2 mt-2">
-                    <div class="link-card__icon-container">
+                    <div class="link_icon link-card__icon-container">
                         <img src="{{ \App\Helpers\Helper::faviconUrl($url->destination) }}" class="">
                     </div>
                     <div>

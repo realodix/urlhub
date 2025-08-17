@@ -7,7 +7,7 @@
     @endphp
 
     <div class="flex items-center gap-1">
-        <img src="{{ \App\Helpers\Helper::faviconUrl($model->destination) }}" class="h-4 inline rounded">
+        <img src="{{ \App\Helpers\Helper::faviconUrl($model->destination) }}" class="link_icon h-4 inline rounded">
         <a href="{{ route('link.edit', $model) }}" class="{{ $linkClasses }}">
             {{ urlDisplay($destination, $limit) }}
         </a>
