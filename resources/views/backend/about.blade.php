@@ -21,7 +21,7 @@
                     <li>The environment was expected to be <span class="env_value env_value_expected">production</span>, but actually was <span class="env_value env_value_actual">{{ $env }}</span>.</li>
                 @endif
                 @if ($debug === true)
-                    <li>The debug mode was expected to be <span class="env_value env_value_expected">false</span>, but actually was <span class="env_value  env_value_actual">true</span>.</li>
+                    <li>The debug mode was expected to be <span class="env_value env_value_expected">false</span>, but actually was <span class="env_value env_value_actual">true</span>.</li>
                 @endif
             </ul>
         </div>
