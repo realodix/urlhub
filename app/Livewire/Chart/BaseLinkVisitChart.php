@@ -43,6 +43,7 @@ abstract class BaseLinkVisitChart extends ChartWidget
                     'backgroundColor' => 'rgba('.Color::Blue[400].', 0.5)',
                     'borderColor' => 'rgb('.Color::Blue[400].')',
                     'fill' => true,
+                    'tension' => 0.4,
                 ],
                 [
                     'label' => 'Visitors',
@@ -50,6 +51,7 @@ abstract class BaseLinkVisitChart extends ChartWidget
                     'backgroundColor' => 'rgba('.Color::Emerald[400].', 0.7)',
                     'borderColor' => 'rgb('.Color::Emerald[400].')',
                     'fill' => true,
+                    'tension' => 0.4,
                 ],
             ],
             'labels' => $this->chartLabel(),
