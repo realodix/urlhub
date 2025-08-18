@@ -21,7 +21,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
     // Link
     Route::prefix('links')->group(function () {
         Route::get('/', [DashboardController::class, 'allUrlView'])->name('dboard.allurl');
-        Route::get('/u/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
+        Route::get('/user/{user:name}', [DashboardController::class, 'userLinkView'])->name('dboard.allurl.u-user');
 
         Route::get('/edit/{url:keyword}', [LinkController::class, 'edit'])->name('link.edit');
         Route::post('/edit/{url:keyword}', [LinkController::class, 'update'])->name('link.update');
@@ -30,8 +30,8 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
         Route::post('/password/store/{url:keyword}', [LinkPasswordController::class, 'store'])->name('link.password.store');
         Route::post('/password/update/{url:keyword}', [LinkPasswordController::class, 'update'])->name('link.password.update');
         Route::get('/password/delete/{url:keyword}', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
-        Route::get('/restricted', [DashboardController::class, 'restrictedLinkView'])->name('dboard.links.restricted');
-        Route::get('/restricted/{user:name}', [DashboardController::class, 'userRestrictedLinkView'])
+        Route::get('/tag/restricted', [DashboardController::class, 'restrictedLinkView'])->name('dboard.links.restricted');
+        Route::get('/tag/restricted/{user:name}', [DashboardController::class, 'userRestrictedLinkView'])
             ->name('dboard.links.user.restricted');
     });
 
