@@ -136,7 +136,9 @@
                                         @svg('icon-key', 'mr-1') Edit Password
                                     </button>
 
-                                    <button type="button" x-on:click="$dispatch('open-modal', 'remove-password-modal')" class="btn btn-delete-danger btn-sm dark:text-red-700! dark:hover:text-red-400! dark:border-red-900!">
+                                    <button type="button" x-on:click="$dispatch('open-modal', 'remove-password-modal')"
+                                        class="btn btn-delete-danger btn-sm dark:text-red-700! dark:hover:text-red-400! dark:border-red-900!"
+                                    >
                                         Remove Password
                                     </button>
                                 @else
