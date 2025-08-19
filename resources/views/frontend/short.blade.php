@@ -46,6 +46,7 @@
                         <a href="{{ route('link.edit', $url) }}" title="Edit" class="btn btn-secondary btn-square btn-sm mr-6">
                             @svg('icon-edit')
                         </a>
+
                         <form method="post" action="{{ route('link.delete', $url) }}"
                             onsubmit="return confirm('Are you sure you want to delete this link?');"
                             class="inline"
