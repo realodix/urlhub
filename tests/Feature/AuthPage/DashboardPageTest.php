@@ -33,7 +33,10 @@ class DashboardPageTest extends TestCase
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
-            ->get(route('link.delete', $url->keyword));
+            ->delete(
+                route('link.delete', $url->keyword),
+                ['redirect_to' => 'dashboard'],
+            );
 
         $response
             ->assertRedirectToRoute('dashboard')
@@ -54,7 +57,7 @@ class DashboardPageTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route($route))
-            ->get(route('link.delete.fromTable', $url->keyword));
+            ->delete(route('link.delete', $url->keyword));
 
         $response
             ->assertRedirectToRoute($route)

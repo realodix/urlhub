@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'frontend.homepage')->name('home');
 Route::post('/shorten', [LinkController::class, 'create'])->name('link.create');
 Route::get('/+{url:keyword}', [LinkController::class, 'showDetail'])->name('link_detail');
-Route::get('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link_detail.delete');
 
 Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () {
     // Dashboard (My URLs)
@@ -25,8 +24,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
 
         Route::get('/edit/{url:keyword}', [LinkController::class, 'edit'])->name('link.edit');
         Route::post('/edit/{url:keyword}', [LinkController::class, 'update'])->name('link.update');
-        Route::get('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete');
-        Route::get('/table/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete.fromTable');
+        Route::delete('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete');
         Route::post('/password/store/{url:keyword}', [LinkPasswordController::class, 'store'])->name('link.password.store');
         Route::post('/password/update/{url:keyword}', [LinkPasswordController::class, 'update'])->name('link.password.update');
         Route::get('/password/delete/{url:keyword}', [LinkPasswordController::class, 'delete'])->name('link.password.delete');

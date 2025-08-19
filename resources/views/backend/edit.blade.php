@@ -30,12 +30,16 @@
             @endif
 
             <div class="inline sm:block text-sm text-red-600 dark:text-red-500 mt-4">
-                @svg('icon-trash', 'mr-1')
-                <a role="button" href="{{ route('link.delete', $url) }}" title="Delete"
-                    onclick="return confirm('Are you sure you want to delete this link?');"
+                <form method="post" action="{{ route('link.delete', $url) }}"
+                    onsubmit="return confirm('Are you sure you want to delete this link?');"
                 >
-                    Delete
-                </a>
+                    @csrf @method('DELETE')
+                    <input type="hidden" name="redirect_to" value="dashboard">
+                    <button type="submit" class="text-red-600 dark:text-red-500 hover:underline">
+                        @svg('icon-trash', 'mr-1')
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
     </div>
