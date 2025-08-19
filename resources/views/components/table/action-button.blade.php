@@ -4,10 +4,13 @@
     >
         @svg('icon-item-detail')
     </a>
-    <a role="button" href="{{ $delete_link }}" title="Delete"
-        class="btn btn-delete btn-square btn-xs"
-        onclick="return confirm('Are you sure you want to delete this link?');"
+    <form method="post" action="{{ $delete_link }}"
+        onsubmit="return confirm('Are you sure you want to delete this link?');"
+        class="inline"
     >
-        @svg('icon-trash')
-    </a>
+        @csrf @method('DELETE')
+        <button type="submit" title="Delete" class="btn btn-delete btn-square btn-xs">
+            @svg('icon-trash')
+        </button>
+    </form>
 </div>

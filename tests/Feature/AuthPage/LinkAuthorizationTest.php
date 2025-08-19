@@ -114,7 +114,7 @@ class LinkAuthorizationTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($this->adminUser())
             ->from(route('dboard.allurl'))
-            ->get(route('link.delete.fromTable', $url->keyword));
+            ->delete(route('link.delete', $url->keyword));
 
         $response->assertRedirectToRoute('dboard.allurl')
             ->assertSessionHas('flash_success');
@@ -132,7 +132,7 @@ class LinkAuthorizationTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($this->basicUser())
             ->from(route('dboard.allurl'))
-            ->get(route('link.delete', $url->keyword));
+            ->delete(route('link.delete', $url->keyword));
 
         $response->assertForbidden();
         $this->assertCount(1, Url::all());

@@ -128,24 +128,21 @@ class LinkController extends Controller implements HasMiddleware
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Url $url)
+    public function delete(Request $request, Url $url)
     {
         Gate::authorize('authorOrAdmin', $url);
-
         $url->delete();
 
         $message = 'Link was successfully deleted.';
 
-        // if requst from shorten url details page, return to home
-        if (request()->routeIs('link_detail.delete')) {
+        if ($request->redirect_to === 'home') {
             return to_route('home');
         }
-
-        if (request()->routeIs('link.delete.fromTable')) {
-            return redirect()->back()->with('flash_success', $message);
+        if ($request->redirect_to === 'dashboard') {
+            return to_route('dashboard')->with('flash_success', $message);
         }
 
-        return to_route('dashboard')->with('flash_success', $message);
+        return redirect()->back()->with('flash_success', $message);
     }
 
     /**

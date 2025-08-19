@@ -46,12 +46,16 @@
                         <a href="{{ route('link.edit', $url) }}" title="Edit" class="btn btn-secondary btn-square btn-sm mr-6">
                             @svg('icon-edit')
                         </a>
-                        <a href="{{ route('link_detail.delete', $url) }}" title="Delete"
-                            onclick="return confirm('Are you sure you want to delete this link?');"
-                            class="btn btn-delete btn-square btn-sm"
+                        <form method="post" action="{{ route('link.delete', $url) }}"
+                            onsubmit="return confirm('Are you sure you want to delete this link?');"
+                            class="inline"
                         >
-                            @svg('icon-trash')
-                        </a>
+                            @csrf @method('DELETE')
+                            <input type="hidden" name="redirect_to" value="home">
+                            <button type="submit" title="Delete" class="btn btn-delete btn-square btn-sm">
+                                @svg('icon-trash')
+                            </button>
+                        </form>
                     @endif
                 </div>
 
