@@ -27,7 +27,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
         Route::delete('/delete/{url:keyword}', [LinkController::class, 'delete'])->name('link.delete');
         Route::post('/password/store/{url:keyword}', [LinkPasswordController::class, 'store'])->name('link.password.store');
         Route::post('/password/update/{url:keyword}', [LinkPasswordController::class, 'update'])->name('link.password.update');
-        Route::get('/password/delete/{url:keyword}', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
+        Route::delete('/password/delete/{url:keyword}', [LinkPasswordController::class, 'delete'])->name('link.password.delete');
         Route::get('/tag/restricted', [DashboardController::class, 'restrictedLinkView'])->name('dboard.links.restricted');
         Route::get('/tag/restricted/{user:name}', [DashboardController::class, 'userRestrictedLinkView'])
             ->name('dboard.links.user.restricted');

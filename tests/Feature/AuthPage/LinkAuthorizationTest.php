@@ -196,7 +196,7 @@ class LinkAuthorizationTest extends TestCase
     {
         $url = Url::factory()->create(['password' => 'password']);
         $this->actingAs($this->adminUser())
-            ->get(route('link.password.delete', $url));
+            ->delete(route('link.password.delete', $url));
 
         $this->assertNull($url->fresh()->password);
     }
