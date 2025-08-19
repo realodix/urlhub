@@ -29,11 +29,6 @@ class ChangePasswordTest extends TestCase
         return route('user.password.show', $value);
     }
 
-    private function postRoute(mixed $value): string
-    {
-        return route('user.password.store', $value);
-    }
-
     /**
      * User can access change password page.
      */
@@ -90,7 +85,7 @@ class ChangePasswordTest extends TestCase
     {
         $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($this->user->name))
-            ->post($this->postRoute($this->user->name), [
+            ->post(route('user.password.update', $this->user->name), [
                 // An Admin will enter their own password, not the password of a User
                 'current_password' => self::$adminPass,
                 'new_password' => 'new-awesome-password',
@@ -118,7 +113,7 @@ class ChangePasswordTest extends TestCase
     {
         $response = $this->actingAs($this->basicUser())
             ->from($this->getRoute($this->user->name))
-            ->post($this->postRoute($this->user->name), [
+            ->post(route('user.password.update', $this->user->name), [
                 'current_password' => $this->user->password,
                 'new_password' => 'new-awesome-password',
                 'new_password_confirmation' => 'new-awesome-password',
@@ -139,7 +134,7 @@ class ChangePasswordTest extends TestCase
     {
         $response = $this->actingAs($this->user)
             ->from($this->getRoute($this->user->name))
-            ->post($this->postRoute($this->user->name), [
+            ->post(route('user.password.update', $this->user->name), [
                 'current_password' => self::PASSWORD,
                 'new_password' => 'new-awesome-password',
                 'new_password_confirmation' => 'new-awesome-password',
@@ -167,7 +162,7 @@ class ChangePasswordTest extends TestCase
     {
         $response = $this->actingAs($this->user)
             ->from($this->getRoute($this->user->name))
-            ->post($this->postRoute($this->user->name), [
+            ->post(route('user.password.update', $this->user->name), [
                 'current_password' => 'laravel',
                 'new_password' => 'new-awesome-password',
                 'new_password_confirmation' => 'new-awesome-password',
@@ -190,7 +185,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
+            ->post(route('user.password.update', $user->name), [
                 'current_password' => self::PASSWORD,
                 'new_password' => $data1,
                 'new_password_confirmation' => $data2,
@@ -229,7 +224,7 @@ class ChangePasswordTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
+            ->post(route('user.password.update', $user->name), [
                 'current_password' => self::PASSWORD,
                 'new_password' => self::PASSWORD,
                 'new_password_confirmation' => self::PASSWORD,

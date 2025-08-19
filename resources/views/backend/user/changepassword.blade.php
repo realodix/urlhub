@@ -17,7 +17,7 @@
     <div class="w-full md:w-8/12 lg:w-6/12 mt-5 md:mt-0 md:ml-4">
         @include('partials.messages')
 
-        <form method="post" action="{{ route('user.password.store', $user) }}">
+        <form method="post" action="{{ route('user.password.update', $user) }}">
         @csrf
             <div class="content-container card card-master">
                 <div class="grid grid-cols-6 gap-6" x-data="{show: true}">

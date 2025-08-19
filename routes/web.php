@@ -44,7 +44,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.session'])->group(function () 
         Route::get('/{user:name}/delete', [UserController::class, 'confirmDelete'])->name('user.delete.confirm');
 
         Route::get('/{user:name}/changepassword', [ChangePasswordController::class, 'view'])->name('user.password.show');
-        Route::post('/{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.store');
+        Route::post('/{user:name}/changepassword', [ChangePasswordController::class, 'update'])->name('user.password.update');
     });
 
     Route::get('/overview', [DashboardController::class, 'overview'])->name('dboard.overview');
