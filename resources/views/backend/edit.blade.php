@@ -136,9 +136,9 @@
                                         @svg('icon-key', 'mr-1') Edit Password
                                     </button>
 
-                                    <a href="{{ route('link.password.delete', $url) }}" onclick="return confirm('Are you sure you want to remove the password?')" class="btn btn-delete-danger btn-sm dark:text-red-700! dark:hover:text-red-400! dark:border-red-900!">
+                                    <button type="button" x-on:click="$dispatch('open-modal', 'remove-password-modal')" class="btn btn-delete-danger btn-sm dark:text-red-700! dark:hover:text-red-400! dark:border-red-900!">
                                         Remove Password
-                                    </a>
+                                    </button>
                                 @else
                                     <button type="button" title="Add Password" x-on:click="$dispatch('open-modal', 'add-password-modal')" class="btn btn-sm">
                                         @svg('icon-key', 'mr-1') Add Password
@@ -209,6 +209,26 @@
         @include('backend.linkpassword.create')
     @else
         @include('backend.linkpassword.edit')
+
+        <x-modal name="remove-password-modal" maxWidth="md">
+            <x-slot:title>Remove Password for <span class="font-semibold">{{ $url->keyword }}</span></x-slot:title>
+            <form method="post" action="{{ route('link.password.delete', $url) }}" class="space-y-6">
+                @csrf @method('DELETE')
+                <p class="font-light text-sm dark:text-dark-400 mt-2 mb-2">
+                    Are you sure you want to remove the password for this link? This action cannot be undone.
+                </p>
+
+                <div class="flex justify-end items-center">
+                    <button type="button"
+                        x-on:click="$dispatch('close-modal', 'remove-password-modal')"
+                        class="btn btn-secondary mr-2"
+                    >
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-delete-danger">Remove Password</button>
+                </div>
+            </form>
+        </x-modal>
     @endif
 </div>
 @endsection
