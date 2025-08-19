@@ -32,7 +32,6 @@
             <div class="inline sm:block text-sm text-red-600 dark:text-red-500 mt-4">
                 <form method="post" action="{{ route('link.delete', $url) }}"
                     onsubmit="return confirm('Are you sure you want to delete this link?');"
-                    class="inline"
                 >
                     @csrf @method('DELETE')
                     <input type="hidden" name="redirect_to" value="dashboard">

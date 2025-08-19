@@ -4,6 +4,7 @@
     >
         @svg('icon-item-detail')
     </a>
+
     <form method="post" action="{{ $delete_link }}"
         onsubmit="return confirm('Are you sure you want to delete this link?');"
         class="inline"
