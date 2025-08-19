@@ -14,20 +14,10 @@ class LoginTest extends TestCase
         return route('home');
     }
 
-    private function getRoute(): string
-    {
-        return route('login');
-    }
-
-    private function postRoute(): string
-    {
-        return route('login');
-    }
-
     #[PHPUnit\Test]
     public function userCanViewALoginForm(): void
     {
-        $response = $this->get($this->getRoute());
+        $response = $this->get(route('login'));
 
         $response->assertSuccessful();
     }
@@ -35,7 +25,7 @@ class LoginTest extends TestCase
     #[PHPUnit\Test]
     public function userCanSeeTheLoginPage(): void
     {
-        $response = $this->get($this->getRoute());
+        $response = $this->get(route('login'));
 
         $response->assertSuccessful()
             ->assertViewIs('auth.login');
@@ -49,7 +39,7 @@ class LoginTest extends TestCase
     public function userCannotViewALoginFormWhenAuthenticated(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get($this->getRoute());
+            ->get(route('login'));
 
         $response->assertRedirect(route('dashboard'));
     }
@@ -64,10 +54,11 @@ class LoginTest extends TestCase
             'password' => $password = 'i-love-laravel',
         ]);
 
-        $response = $this->post($this->postRoute(), [
-            'identity' => $user->email,
-            'password' => $password,
-        ]);
+        $response = $this->from(route('login'))
+            ->post(route('login.store'), [
+                'identity' => $user->email,
+                'password' => $password,
+            ]);
 
         $response->assertRedirect($this->successfulLoginRoute());
         $this->assertAuthenticatedAs($user);
@@ -79,14 +70,14 @@ class LoginTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotLoginWithIncorrectPassword(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('login'))
+            ->post(route('login.store'), [
                 'identity' => $this->basicUser()->email,
                 'password' => 'invalid-password',
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('login'))
             ->assertSessionHasErrors('error');
 
         $this->assertTrue(session()->hasOldInput('identity'));
@@ -101,7 +92,7 @@ class LoginTest extends TestCase
     #[PHPUnit\Test]
     public function unauthenticatedUsersCantAccessTheDashboard(): void
     {
-        $this->get('/admin')->assertRedirect('/login');
+        $this->get('/admin')->assertRedirect(route('login'));
     }
 
     /**
@@ -111,14 +102,14 @@ class LoginTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotLoginWithEmailThatDoesNotExist(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('login'))
+            ->post(route('login.store'), [
                 'identity' => 'nobody@example.com',
                 'password' => 'invalid-password',
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('login'))
             ->assertSessionHasErrors('error');
 
         $this->assertTrue(session()->hasOldInput('identity'));

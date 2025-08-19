@@ -11,25 +11,10 @@ use Tests\TestCase;
 #[PHPUnit\Group('auth-page')]
 class ForgotPasswordTest extends TestCase
 {
-    private function requestRoute(): string
-    {
-        return route('password.request');
-    }
-
-    private function getRoute(): string
-    {
-        return route('password.email');
-    }
-
-    private function postRoute(): string
-    {
-        return route('password.email');
-    }
-
     #[PHPUnit\Test]
     public function userCanViewAnEmailPasswordForm(): void
     {
-        $response = $this->get($this->requestRoute());
+        $response = $this->get(route('password.request'));
 
         $response->assertSuccessful();
     }
@@ -37,7 +22,7 @@ class ForgotPasswordTest extends TestCase
     #[PHPUnit\Test]
     public function userCanSeeTheForgotPasswordPage(): void
     {
-        $response = $this->get($this->requestRoute());
+        $response = $this->get(route('password.request'));
 
         $response->assertSuccessful()
             ->assertViewIs('auth.forgot-password');
@@ -52,9 +37,10 @@ class ForgotPasswordTest extends TestCase
             'email' => 'john@example.com',
         ]);
 
-        $this->post($this->postRoute(), [
-            'email' => 'john@example.com',
-        ]);
+        $this->from(route('password.request'))
+            ->post(route('password.email'), [
+                'email' => 'john@example.com',
+            ]);
 
         $token = DB::table('password_reset_tokens')->first();
         $this->assertNotNull($token);
@@ -69,13 +55,13 @@ class ForgotPasswordTest extends TestCase
     {
         Notification::fake();
 
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('password.request'))
+            ->post(route('password.email'), [
                 'email' => 'nobody@example.com',
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('password.request'))
             ->assertSessionHasErrors('email');
 
         Notification::assertNotSentTo(User::factory()->make(['email' => 'nobody@example.com']), ResetPassword::class);
@@ -84,24 +70,24 @@ class ForgotPasswordTest extends TestCase
     #[PHPUnit\Test]
     public function emailIsRequired(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), []);
+        $response = $this->from(route('password.request'))
+            ->post(route('password.email'), []);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('password.request'))
             ->assertSessionHasErrors('email');
     }
 
     #[PHPUnit\Test]
     public function emailIsAValidEmail(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('password.request'))
+            ->post(route('password.email'), [
                 'email' => 'invalid-email',
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('password.request'))
             ->assertSessionHasErrors('email');
     }
 
@@ -115,14 +101,14 @@ class ForgotPasswordTest extends TestCase
         $this->post('/forgot-password', ['email' => $email]);
 
         // Reset password
-        $response = $this->post('/reset-password', [
+        $response = $this->post(route('password.update'), [
             'token' => Password::createToken($user),
             'email' => $email,
             'password' => $newPassword,
             'password_confirmation' => $newPassword,
         ]);
         $response->assertStatus(302);
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
 
         // Check if password was reset
         $this->assertTrue(Hash::check($newPassword, $user->fresh()->password));

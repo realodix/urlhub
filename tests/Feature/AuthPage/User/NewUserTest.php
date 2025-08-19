@@ -11,21 +11,11 @@ use Tests\TestCase;
 #[PHPUnit\Group('user-page')]
 class NewUserTest extends TestCase
 {
-    private function getRoute(): string
-    {
-        return route('user.new');
-    }
-
-    private function postRoute(): string
-    {
-        return route('user.store');
-    }
-
     #[PHPUnit\Test]
     public function access_Page_Admin_WillBeOk(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->get($this->getRoute());
+            ->get(route('user.new'));
         $response->assertOk();
     }
 
@@ -33,14 +23,14 @@ class NewUserTest extends TestCase
     public function access_Page_BasicUser_WillBeForbidden(): void
     {
         $respons = $this->actingAs($this->basicUser())
-            ->get($this->getRoute());
+            ->get(route('user.new'));
         $respons->assertForbidden();
     }
 
     public function testCreateNewUser(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), [
+            ->post(route('user.store'), [
                 'username' => 'test',
                 'email' => 'test@urlhub.test',
                 'password' => 'password',
@@ -59,7 +49,7 @@ class NewUserTest extends TestCase
     {
         $user = User::factory()->create(['name' => 'test']);
         $response = $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), [
+            ->post(route('user.store'), [
                 'username' => $user->name,
                 'email' => 'test@urlhub.test',
                 'password' => 'password',
@@ -84,7 +74,7 @@ class NewUserTest extends TestCase
     public function testCreateNewUserWithRoleAdmin(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), [
+            ->post(route('user.store'), [
                 'username' => 'test',
                 'email' => 'test@urlhub.test',
                 'password' => 'password',
@@ -103,7 +93,7 @@ class NewUserTest extends TestCase
     public function testFormCannotBeFilledWithEmptyData(): void
     {
         $response = $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), [
+            ->post(route('user.store'), [
                 'username' => '',
                 'email' => '',
                 'password' => '',

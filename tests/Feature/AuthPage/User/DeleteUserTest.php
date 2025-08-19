@@ -10,11 +10,6 @@ use Tests\TestCase;
 #[PHPUnit\Group('user-page')]
 class DeleteUserTest extends TestCase
 {
-    private function getRoute($user): string
-    {
-        return route('user.delete', $user);
-    }
-
     #[PHPUnit\Test]
     public function delete_OtherUser_ByAdmin_WillBeOk(): void
     {
@@ -22,7 +17,7 @@ class DeleteUserTest extends TestCase
 
         $response = $this->actingAs($this->adminUser())
             ->from(route('user.delete.confirm', $user))
-            ->delete($this->getRoute($user));
+            ->delete(route('user.delete', $user));
 
         $response
             ->assertRedirectToRoute('user.index')
@@ -36,7 +31,7 @@ class DeleteUserTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($this->basicUser())
-            ->delete($this->getRoute($user));
+            ->delete(route('user.delete', $user));
 
         $response->assertForbidden();
         $this->assertNotNull(User::find($user->id));
@@ -47,7 +42,7 @@ class DeleteUserTest extends TestCase
     {
         $admin = $this->adminUser();
         $response = $this->actingAs($admin)
-            ->delete($this->getRoute($admin));
+            ->delete(route('user.delete', $admin));
 
         $response->assertForbidden();
         $this->assertNotNull(User::find($admin->id));
@@ -58,7 +53,7 @@ class DeleteUserTest extends TestCase
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)
-            ->delete($this->getRoute($user));
+            ->delete(route('user.delete', $user));
 
         $response->assertForbidden();
         $this->assertNotNull(User::find($user->id));

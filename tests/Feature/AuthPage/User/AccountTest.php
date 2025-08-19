@@ -16,11 +16,6 @@ class AccountTest extends TestCase
         return route('user.edit', $value);
     }
 
-    private function postRoute(mixed $value): string
-    {
-        return route('user.update', $value);
-    }
-
     /**
      * Verifies that a user can access their own account page.
      *
@@ -81,7 +76,7 @@ class AccountTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
+            ->post(route('user.update', $user->name), [
                 'email' => $newEmail,
             ]);
 
@@ -107,7 +102,7 @@ class AccountTest extends TestCase
 
         $response = $this->actingAs($this->adminUser())
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
+            ->post(route('user.update', $user->name), [
                 'email' => 'new_user_email@urlhub.test',
             ]);
 
@@ -134,7 +129,7 @@ class AccountTest extends TestCase
 
         $response = $this->actingAs($this->basicUser())
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), [
+            ->post(route('user.update', $user->name), [
                 'email' => 'new_email_user2@urlhub.test',
             ]);
 
@@ -150,14 +145,14 @@ class AccountTest extends TestCase
             ->from($this->getRoute($user->name));
 
         $response
-            ->post($this->postRoute($user->name), [
+            ->post(route('user.update', $user->name), [
                 'email' => $user->email, // same with self
             ])
             ->assertRedirect($this->getRoute($user->name))
             ->assertSessionHasErrors('email');
 
         $response
-            ->post($this->postRoute($user->name), [
+            ->post(route('user.update', $user->name), [
                 'email' => $this->adminUser()->email, // same with others
             ])
             ->assertRedirect($this->getRoute($user->name))
@@ -178,7 +173,7 @@ class AccountTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), $request->all());
+            ->post(route('user.update', $user->name), $request->all());
 
         $response->assertRedirect($this->getRoute($user->name));
         $this->assertDatabaseHas(User::class, ['forward_query' => 0]);
@@ -199,7 +194,7 @@ class AccountTest extends TestCase
 
         $response = $this->actingAs($user)
             ->from($this->getRoute($user->name))
-            ->post($this->postRoute($user->name), $request->all());
+            ->post(route('user.update', $user->name), $request->all());
 
         $response->assertRedirect($this->getRoute($user->name));
         $this->assertSame($timezone, $user->fresh()->timezone);

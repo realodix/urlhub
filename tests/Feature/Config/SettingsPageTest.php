@@ -9,11 +9,6 @@ use Tests\TestCase;
 #[PHPUnit\Group('auth-page')]
 class SettingsPageTest extends TestCase
 {
-    private function postRoute(): string
-    {
-        return route('dboard.settings.update');
-    }
-
     #[PHPUnit\Test]
     public function access_Page_Admin_WillBeOk(): void
     {
@@ -37,7 +32,7 @@ class SettingsPageTest extends TestCase
     {
         $data = ['keyword_length' => $value];
         $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), $this->formData($data))
+            ->post(route('dboard.settings.update'), $this->formData($data))
             ->assertInvalid();
     }
 
@@ -47,7 +42,7 @@ class SettingsPageTest extends TestCase
     {
         $data = ['custom_keyword_min_length' => $value];
         $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), $this->formData($data))
+            ->post(route('dboard.settings.update'), $this->formData($data))
             ->assertInvalid();
     }
 
@@ -57,14 +52,14 @@ class SettingsPageTest extends TestCase
     {
         $data = ['custom_keyword_max_length' => $value];
         $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), $this->formData($data))
+            ->post(route('dboard.settings.update'), $this->formData($data))
             ->assertInvalid();
     }
 
     public function test_validForm(): void
     {
         $this->actingAs($this->adminUser())
-            ->post($this->postRoute(), $this->formData())
+            ->post(route('dboard.settings.update'), $this->formData())
             ->assertValid();
     }
 

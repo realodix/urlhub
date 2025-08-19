@@ -5,6 +5,7 @@ namespace Tests\Feature\AuthPage;
 use App\Models\Url;
 use App\Rules\LinkRules;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\Support\Helper;
 use Tests\TestCase;
@@ -13,6 +14,14 @@ use Tests\TestCase;
 #[PHPUnit\Group('link-page')]
 class LinkTest extends TestCase
 {
+    private function postLinkUpdateRequest(Url $url, array $data): TestResponse
+    {
+        return $this->post(
+            route('link.update', $url->keyword),
+            Helper::updateLinkData($url, $data),
+        );
+    }
+
     /**
      * Test that an authorized user can update a link.
      *
@@ -25,10 +34,7 @@ class LinkTest extends TestCase
         $newLongUrl = 'https://phpunit.readthedocs.io/en/9.1';
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, ['long_url' => $newLongUrl]),
-            );
+            ->postLinkUpdateRequest($url, ['long_url' => $newLongUrl]);
 
         $response
             ->assertRedirectToRoute('link.edit', $url->keyword)
@@ -45,12 +51,9 @@ class LinkTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, [
-                    'title' => str_repeat('a', LinkRules::TITLE_MAX_LENGTH + 1)],
-                ),
-            );
+            ->postLinkUpdateRequest($url, [
+                'title' => str_repeat('a', LinkRules::TITLE_MAX_LENGTH + 1),
+            ]);
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
@@ -66,15 +69,12 @@ class LinkTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, [
-                    'long_url' => 'invalid-url',
-                    'dest_android' => 'invalid-url',
-                    'dest_ios' => 'invalid-url',
-                    'expired_url' => 'invalid-url',
-                ]),
-            );
+            ->postLinkUpdateRequest($url, [
+                'long_url' => 'invalid-url',
+                'dest_android' => 'invalid-url',
+                'dest_ios' => 'invalid-url',
+                'expired_url' => 'invalid-url',
+            ]);
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
@@ -92,15 +92,12 @@ class LinkTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, [
-                    'long_url' => $veryLongUrl,
-                    'dest_android' => $veryLongUrl,
-                    'dest_ios' => $veryLongUrl,
-                    'expired_url' => $veryLongUrl,
-                ]),
-            );
+            ->postLinkUpdateRequest($url, [
+                'long_url' => $veryLongUrl,
+                'dest_android' => $veryLongUrl,
+                'dest_ios' => $veryLongUrl,
+                'expired_url' => $veryLongUrl,
+            ]);
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
@@ -119,15 +116,12 @@ class LinkTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, [
-                    'long_url' => $blacklistedDomain,
-                    'dest_android' => $blacklistedDomain,
-                    'dest_ios' => $blacklistedDomain,
-                    'expired_url' => $blacklistedDomain,
-                ]),
-            );
+            ->postLinkUpdateRequest($url, [
+                'long_url' => $blacklistedDomain,
+                'dest_android' => $blacklistedDomain,
+                'dest_ios' => $blacklistedDomain,
+                'expired_url' => $blacklistedDomain,
+            ]);
 
         $response
             ->assertRedirect(route('link.edit', $url->keyword))
@@ -140,10 +134,7 @@ class LinkTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, ['expires_at' => now()->addDay()->format('Y-m-d')]),
-            );
+            ->postLinkUpdateRequest($url, ['expires_at' => now()->addDay()->format('Y-m-d')]);
 
         $response
             ->assertRedirectToRoute('link.edit', $url->keyword)
@@ -152,10 +143,7 @@ class LinkTest extends TestCase
 
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, ['expires_at' => null]),
-            ); // remove expires_at
+            ->postLinkUpdateRequest($url, ['expires_at' => null]); // remove expires_at
 
         $response
             ->assertRedirectToRoute('link.edit', $url->keyword)
@@ -169,10 +157,7 @@ class LinkTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, ['expires_at' => now()->subMinute()]),
-            );
+            ->postLinkUpdateRequest($url, ['expires_at' => now()->subMinute()]);
 
         $response
             ->assertRedirectToRoute('link.edit', $url->keyword)
@@ -184,14 +169,11 @@ class LinkTest extends TestCase
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
             ->from(route('link.edit', $url->keyword))
-            ->post(
-                route('link.update', $url->keyword),
-                Helper::updateLinkData($url, [
-                    'dest_android' => '',
-                    'dest_ios' => '',
-                    'expired_url' => '',
-                ]),
-            );
+            ->postLinkUpdateRequest($url, [
+                'dest_android' => '',
+                'dest_ios' => '',
+                'expired_url' => '',
+            ]);
 
         $response
             ->assertRedirectToRoute('link.edit', $url->keyword)

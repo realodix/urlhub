@@ -16,20 +16,10 @@ class RegisterTest extends TestCase
         return route('home');
     }
 
-    private function getRoute(): string
-    {
-        return route('register');
-    }
-
-    private function postRoute(): string
-    {
-        return route('register');
-    }
-
     #[PHPUnit\Test]
     public function userCanViewARegistrationForm(): void
     {
-        $response = $this->get($this->getRoute());
+        $response = $this->get(route('register'));
 
         $response->assertSuccessful();
     }
@@ -37,7 +27,7 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCanSeeTheRegisterPage(): void
     {
-        $response = $this->get($this->getRoute());
+        $response = $this->get(route('register'));
 
         $response->assertSuccessful()
             ->assertViewIs('auth.register');
@@ -47,7 +37,7 @@ class RegisterTest extends TestCase
     public function userCannotViewARegistrationFormWhenAuthenticated(): void
     {
         $response = $this->actingAs($this->basicUser())
-            ->get($this->getRoute());
+            ->get(route('register'));
 
         $response->assertRedirect(route('dashboard'));
     }
@@ -57,12 +47,13 @@ class RegisterTest extends TestCase
     {
         Event::fake();
 
-        $response = $this->post($this->postRoute(), [
-            'name' => 'usernametest',
-            'email' => 'email@example.com',
-            'password' => 'i-love-laravel',
-            'password_confirmation' => 'i-love-laravel',
-        ]);
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
+                'name' => 'usernametest',
+                'email' => 'email@example.com',
+                'password' => 'i-love-laravel',
+                'password_confirmation' => 'i-love-laravel',
+            ]);
 
         $user = User::where('name', 'usernametest')->first();
 
@@ -82,12 +73,13 @@ class RegisterTest extends TestCase
     public function usernameMustBeUnique(): void
     {
         $user = User::factory()->create(['name' => 'test']);
-        $response = $this->post('/register', [
-            'name' => $user->name,
-            'email' => 'john@example.com',
-            'password' => 'i-love-laravel',
-            'password_confirmation' => 'i-love-laravel',
-        ]);
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
+                'name' => $user->name,
+                'email' => 'john@example.com',
+                'password' => 'i-love-laravel',
+                'password_confirmation' => 'i-love-laravel',
+            ]);
 
         $response
             ->assertStatus(302)
@@ -97,12 +89,13 @@ class RegisterTest extends TestCase
 
     public function testStoreEmailAsLowerCase(): void
     {
-        $this->post('/register', [
-            'name' => 'usernametest',
-            'email' => 'John@example.com',
-            'password' => 'i-love-laravel',
-            'password_confirmation' => 'i-love-laravel',
-        ]);
+        $this->from(route('register'))
+            ->post(route('register.store'), [
+                'name' => 'usernametest',
+                'email' => 'John@example.com',
+                'password' => 'i-love-laravel',
+                'password_confirmation' => 'i-love-laravel',
+            ]);
 
         $this->assertSame('john@example.com', User::first()->email);
     }
@@ -117,8 +110,8 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotRegisterWithoutName(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
                 'name' => '',
                 'email' => 'john@example.com',
                 'password' => 'i-love-laravel',
@@ -126,7 +119,7 @@ class RegisterTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('register'))
             ->assertSessionHasErrors('name');
 
         $this->assertCount(0, User::all());
@@ -138,8 +131,8 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotRegisterWithoutEmail(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
                 'name' => 'usernametest',
                 'email' => '',
                 'password' => 'i-love-laravel',
@@ -147,7 +140,7 @@ class RegisterTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('register'))
             ->assertSessionHasErrors('email');
 
         $this->assertCount(0, User::all());
@@ -159,8 +152,8 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotRegisterWithInvalidEmail(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
                 'name' => 'usernametest',
                 'email' => 'invalid-email',
                 'password' => 'i-love-laravel',
@@ -168,7 +161,7 @@ class RegisterTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('register'))
             ->assertSessionHasErrors('email');
 
         $this->assertCount(0, User::all());
@@ -181,9 +174,10 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function emailShouldNotBeTooLong(): void
     {
-        $response = $this->post('/register', [
-            'email' => str_repeat('a', 247).'@test.com', // 256
-        ]);
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
+                'email' => str_repeat('a', 247).'@test.com', // 256
+            ]);
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors('email');
@@ -192,8 +186,8 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotRegisterWithoutPassword(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
                 'name' => 'usernametest',
                 'email' => 'john@example.com',
                 'password' => '',
@@ -201,7 +195,7 @@ class RegisterTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('register'))
             ->assertSessionHasErrors('password');
 
         $this->assertCount(0, User::all());
@@ -214,8 +208,8 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotRegisterWithoutPasswordConfirmation(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
                 'name' => 'usernametest',
                 'email' => 'john@example.com',
                 'password' => 'i-love-laravel',
@@ -223,7 +217,7 @@ class RegisterTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('register'))
             ->assertSessionHasErrors('password');
 
         $this->assertCount(0, User::all());
@@ -236,8 +230,8 @@ class RegisterTest extends TestCase
     #[PHPUnit\Test]
     public function userCannotRegisterWithPasswordsNotMatching(): void
     {
-        $response = $this->from($this->getRoute())
-            ->post($this->postRoute(), [
+        $response = $this->from(route('register'))
+            ->post(route('register.store'), [
                 'name' => 'usernametest',
                 'email' => 'john@example.com',
                 'password' => 'i-love-laravel',
@@ -245,7 +239,7 @@ class RegisterTest extends TestCase
             ]);
 
         $response
-            ->assertRedirect($this->getRoute())
+            ->assertRedirect(route('register'))
             ->assertSessionHasErrors('password');
 
         $this->assertCount(0, User::all());
