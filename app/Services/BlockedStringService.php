@@ -7,7 +7,7 @@ use Composer\Pcre\Preg;
 class BlockedStringService
 {
     /**
-     * Returns all strings that are not allowed to be used.
+     * Get all strings that are not allowed to be used.
      *
      * @return \Illuminate\Support\Collection<string>
      */

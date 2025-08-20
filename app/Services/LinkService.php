@@ -17,13 +17,23 @@ class LinkService
         protected GeneralSettings $settings,
     ) {}
 
+    /**
+     * Determines the short URL key to be used for a new link.
+     *
+     * It prioritizes a custom key provided in the request. If no custom key
+     * is given, a new random string will be generated.
+     */
     public function getKeyword(StoreUrlRequest $request): string
     {
         return $request->custom_key ?? $this->keyGen->generate($request->long_url);
     }
 
     /**
-     * Get the title from the web.
+     * Fetches the title of a webpage from its URL.
+     *
+     * The title is retrieved only if the `autofill_link_title` setting is enabled.
+     * If the retrieval fails or the title exceeds the maximum allowed length,
+     * it returns null.
      *
      * @param string $value A webpage's URL
      * @return string|null
@@ -50,7 +60,7 @@ class LinkService
     }
 
     /**
-     * The number of short links created by all registered users.
+     * Counts the total number of short links created by registered users.
      */
     public function userLinks(): int
     {
@@ -59,7 +69,7 @@ class LinkService
     }
 
     /**
-     * The number of short links created by all guest users.
+     * Counts the total number of short links created by all guest users.
      */
     public function guestLinks(): int
     {

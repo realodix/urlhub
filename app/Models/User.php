@@ -81,7 +81,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the urls associated with the user.
+     * Get the short URLs created by the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<Url, $this>
      */

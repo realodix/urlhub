@@ -35,7 +35,7 @@ class Visit extends Model
     }
 
     /**
-     * Get the url that owns the visit.
+     * Get the short URL that this visit belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -56,8 +56,10 @@ class Visit extends Model
     }
 
     /**
-     * Check if the visitor has clicked the link before. If the visitor has not
-     * clicked the link before, return true.
+     * Determine if a user is visiting a URL for the first time.
+     *
+     * This method checks the visit history for a given URL against the user's
+     * unique signature to determine if they have ever visited it before.
      *
      * @param Url $url \App\Models\Url
      */

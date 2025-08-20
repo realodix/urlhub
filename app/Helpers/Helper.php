@@ -38,7 +38,8 @@ class Helper
     }
 
     /**
-     * Return the URL of a favicon for a given URL.
+     * Generates the URL for a favicon based on the provided URL and configured
+     * favicon provider.
      *
      * @param string $url The URL to get the favicon for
      * @return string The URL of the favicon
@@ -58,7 +59,14 @@ class Helper
     }
 
     /**
-     * Format URL links for display.
+     * Formats a URL string for display purposes.
+     *
+     * This utility method provides flexible formatting options:
+     * - Removes or retains the URL scheme (http/https).
+     * - Removes or retains the trailing slash.
+     * - Truncates the URL to a specified limit, applying smart truncation if
+     *   the host itself is long or if the limit is smaller than the host's
+     *   length, using '...' as a marker.
      *
      * @param string $value URL links
      * @param int|null $limit Length string will be truncated to, including suffix

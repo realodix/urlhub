@@ -11,9 +11,10 @@ use Illuminate\Support\Uri;
 class VisitService
 {
     /**
-     * Get the referer host
+     * Get the referer host.
      *
-     * Only input the URL host into the referer column.
+     * This method ensures that only the base host URL (e.g., 'https://example.com')
+     * is returned, stripping any paths or query parameters.
      */
     public function getRefererHost(?string $value): ?string
     {
@@ -27,7 +28,11 @@ class VisitService
     }
 
     /**
-     * The number of clicks from links created by all registered users.
+     * Counts the total number of visits on short links created by registered
+     * users.
+     *
+     * This aggregates all clicks associated with URLs where the `user_type` is
+     * `User`.
      */
     public function visitsOnUserLinks(): int
     {
@@ -36,7 +41,10 @@ class VisitService
     }
 
     /**
-     * The number of clicks from links created by all guest users.
+     * Counts the total number of visits on short links created by guest users.
+     *
+     * This aggregates all clicks associated with URLs where the `user_type` is
+     * `Guest`.
      */
     public function visitsOnGuestLinks(): int
     {
@@ -45,7 +53,7 @@ class VisitService
     }
 
     /**
-     *  Total users who clicked on a link.
+     * Counts the total number of visits by registered users.
      */
     public function userVisits(bool $unique = false): int
     {
@@ -55,7 +63,7 @@ class VisitService
     }
 
     /**
-     * Total guest users who clicked on a link.
+     * Counts the total number of visits by guest users.
      *
      * @param bool $unique Whether to count unique guest users or all guest visits.
      * @return int
@@ -68,7 +76,7 @@ class VisitService
     }
 
     /**
-     *  Total visitors who clicked on a link.
+     * Counts the total number of unique visitors across all links.
      */
     public function visitors(): int
     {
@@ -76,7 +84,7 @@ class VisitService
     }
 
     /**
-     *  Total unique users who clicked on a link.
+     * Counts the total number of unique users visitors.
      */
     public function userVisitors(): int
     {
@@ -84,7 +92,7 @@ class VisitService
     }
 
     /**
-     * Total unique guest users who clicked on a link.
+     * Counts the total number of unique guest visitors.
      */
     public function guestVisitors(): int
     {

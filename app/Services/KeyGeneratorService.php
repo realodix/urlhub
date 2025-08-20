@@ -36,10 +36,10 @@ class KeyGeneratorService
     /**
      * Generate a unique short string to use as the shortened url endings.
      *
-     * First, attempts to create a hash-based string from the given value.
-     * If that string is already taken or disallowed, repeatedly generates
-     * random strings until a unique and valid key is found, up to a maximum
-     * number of attempts.
+     * This method first attempts to create a deterministic hash-based string
+     * from the provided value. If the hash is already in use or is a disallowed
+     * keyword, it falls back to generating a random string until a unique
+     * string is found.
      *
      * @return string A unique string to use as the shortened url key
      */
@@ -104,12 +104,15 @@ class KeyGeneratorService
     }
 
     /**
-     * Check if the given string is allowed to be used as a keyword.
+     * Verifies if a given string can be used as a unique short URL key.
      *
-     * A keyword is considered invalid if:
+     * A keyword is considered invalid:
      * - It already exists as a system-generated keyword.
      * - It already exists as a custom keyword (case-insensitive).
      * - It is in the disallowed keyword list.
+     *
+     * @param string $keyword The keyword to verify.
+     * @return bool True if the keyword is valid and available, false otherwise.
      */
     public function verify(string $keyword): bool
     {
@@ -253,13 +256,12 @@ class KeyGeneratorService
     }
 
     /**
-     * Calculates the estimated impact of disallowed keywords on the total keyspace,
-     * considering case variants.
+     * Calculates the total keyspace consumed by disallowed keywords.
      *
-     * This weighting estimates how many potential keywords are effectively
-     * unavailable because a single disallowed keyword must be avoided in all its
-     * potential case variants. The result represents the estimated portion of
-     * the keyspace considered occupied by these disallowed keywords.
+     * This method accounts for all potential case variants of each disallowed
+     * keyword that matches the configured key length, treating each variant as
+     * a unique entry that occupies space. This provides an estimated measure of
+     * how much of the total keyspace is effectively unusable.
      */
     public function disallowedKeywordSpaceUsed(): int
     {

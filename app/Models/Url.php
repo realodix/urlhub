@@ -63,7 +63,7 @@ class Url extends Model
     }
 
     /**
-     * Get the user that owns the Url.
+     * Get the user that created the short URL.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -74,7 +74,7 @@ class Url extends Model
     }
 
     /**
-     * Get the visits for the Url.
+     * Get the visits for the short URL.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<Visit, $this>
      */
@@ -162,14 +162,12 @@ class Url extends Model
     }
 
     /**
-     * Determine if the URL is expired
+     * Checks if the URL has expired.
      *
-     * - It checks if the 'expires_at' field is set and if it is before
-     *   the current time.
-     * - It also checks if the number of clicks is greater than or equal to
-     *   the 'expired_clicks' field.
+     * A URL is considered expired if its expiration date is in the past or
+     * if the number of clicks has reached the maximum allowed clicks.
      *
-     * @return bool Whether the URL is expired or not
+     * @return bool Whether the URL is expired or not.
      */
     public function isExpired(): bool
     {

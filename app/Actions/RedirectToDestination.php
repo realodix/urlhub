@@ -11,7 +11,8 @@ use Illuminate\Support\Uri;
 class RedirectToDestination
 {
     /**
-     * Handles the redirect logic and visitor creation.
+     * Handles the redirection of a short URL request to its destination and
+     * records the visit.
      *
      * @param Url $url \App\Models\Url
      * @return \Illuminate\Http\RedirectResponse
@@ -40,6 +41,11 @@ class RedirectToDestination
 
     /**
      * Resolve the target link for the redirect.
+     *
+     * This method checks the device-specific destination URL first. If no
+     * device-specific URL is set or matches, it defaults to the main
+     * destination. Additionally, it appends current request query
+     * parameters if allowed by settings.
      *
      * @param Url $url \App\Models\Url
      */
