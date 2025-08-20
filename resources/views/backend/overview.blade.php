@@ -284,7 +284,7 @@
                                 <div>
                                     <span class="dark:text-emerald-500 dark:font-semibold">#{{ $index + 1 }} -</span>
                                     <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                        @if($osData->os) {{ $osData->os }} @else Unknown  @endif
+                                        @if($osData->os) {{ $osData->os }} @else Unknown @endif
                                     </span>
                                 </div>
 

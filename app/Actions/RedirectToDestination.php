@@ -76,7 +76,7 @@ class RedirectToDestination
         $settings = app(GeneralSettings::class);
 
         return !empty($currentQuery) // Query parameters are present
-            && $settings->forward_query === true  // Enabled on global level
+            && $settings->forward_query === true // Enabled on global level
             && $url->author->forward_query === true // Enabled on account level
             && $url->forward_query === true;       // Enabled on URL item level
     }

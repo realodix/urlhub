@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-@section('title', 'Links  >  '. $author)
+@section('title', 'Links > '. $author)
 
 @section('content')
 <div class="container-alt max-w-340">
