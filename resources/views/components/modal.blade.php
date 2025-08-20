@@ -33,8 +33,8 @@ $maxWidthClasses = [
         x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
+        x-on:click="showModal = false" {{-- Close on overlay click --}}
         class="fixed inset-0 bg-gray-50/50 bg-opacity-75 dark:bg-dark-950/50 transition-opacity"
-        @click="showModal = false" {{-- Close on overlay click --}}
     ></div>
 
     {{-- Modal Content --}}
@@ -52,7 +52,7 @@ $maxWidthClasses = [
         {{-- Close Button --}}
         <button
             aria-label="Close modal"
-            @click="showModal = false"
+            x-on:click="showModal = false"
             class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none"
         >
             @svg('icon-close', 'size-4 text-gray-500 dark:text-red-400')

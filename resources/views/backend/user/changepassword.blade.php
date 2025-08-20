@@ -29,10 +29,10 @@
                     <div class="col-span-6 lg:col-span-4">
                         <label class="form-label">New Password</label>
                         <div class="relative">
-                            <input :type="show ? 'password' : 'text'" name="new_password" required placeholder="Enter a new password" class="form-input mt-1" >
+                            <input x-bind:type="show ? 'password' : 'text'" name="new_password" required placeholder="Enter a new password" class="form-input mt-1" >
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                                <x-icon-eye-slash x-on:click="show=!show" ::class="{'hidden!': !show, 'block': show}" />
-                                <x-icon-eye x-on:click="show=!show" ::class="{'block text-red-700': !show, 'hidden!': show}" />
+                                <x-icon-eye-slash x-on:click="show=!show" x-bind:class="{'hidden!': !show, 'block': show}" />
+                                <x-icon-eye x-on:click="show=!show" x-bind:class="{'block text-red-700': !show, 'hidden!': show}" />
                             </div>
                         </div>
                     </div>
@@ -40,10 +40,10 @@
                     <div class="col-span-6 lg:col-span-4">
                         <label class="form-label">Confirmation</label>
                         <div class="relative">
-                            <input :type="show ? 'password' : 'text'" name="new_password_confirmation" required placeholder="Retype the new password" class="form-input mt-1">
+                            <input x-bind:type="show ? 'password' : 'text'" name="new_password_confirmation" required placeholder="Retype the new password" class="form-input mt-1">
                             <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                                <x-icon-eye-slash x-on:click="show=!show" ::class="{'hidden!': !show, 'block': show}" />
-                                <x-icon-eye x-on:click="show=!show" ::class="{'block text-red-700': !show, 'hidden!': show}" />
+                                <x-icon-eye-slash x-on:click="show=!show" x-bind:class="{'hidden!': !show, 'block': show}" />
+                                <x-icon-eye x-on:click="show=!show" x-bind:class="{'block text-red-700': !show, 'hidden!': show}" />
                             </div>
                         </div>
                     </div>

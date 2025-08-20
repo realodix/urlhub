@@ -1,10 +1,10 @@
 <header class="navbar" x-data="{ open: false, atTop: false }"
     @if (request()->is('admin*'))
-        :class="{ 'sticky top-0 z-50': atTop }"
-        @scroll.window="atTop = (window.pageYOffset < 65) ? false: true"
+        x-bind:class="{ 'sticky top-0 z-50': atTop }"
+        x-on:scroll.window="atTop = (window.pageYOffset < 65) ? false : true" {{-- Sticky on scroll --}}
     @endif
 >
-    <div class="container-alt px-4 flex h-16 justify-between" :class="{ 'sm:hidden': atTop }">
+    <div class="container-alt px-4 flex h-16 justify-between" x-bind:class="{ 'sm:hidden': atTop }">
         <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
         <div class="flex items-center">
@@ -20,10 +20,10 @@
                     x-on:click="open = ! open"
                 >
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
+                        <path x-bind:class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
                         </path>
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
+                        <path x-bind:class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
@@ -33,7 +33,7 @@
 
     {{-- Responsive Navigation Menu (Mobile) --}}
     <div class="navbar-mobile sm:hidden block"
-        :class="{'block': open, 'hidden': ! open}" x-show="open"
+        x-bind:class="{'block': open, 'hidden': ! open}" x-show="open"
         x-transition
         {{-- Prevent blinking --}}
         style="display: none;"
