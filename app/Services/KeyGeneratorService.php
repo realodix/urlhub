@@ -23,11 +23,14 @@ class KeyGeneratorService
     ];
 
     /**
-     * The maximum number of random key generation attempts
+     * The maximum number of times generate() can loop.
+     *
+     * This is a safety measure to prevents infinite loops if the length of
+     * the random value is very small.
      *
      * @var int
      */
-    const MAX_RANDOM_STRING_ATTEMPTS = 200;
+    const MAXIMUM_TRIES = 200;
 
     public function __construct(
         protected GeneralSettings $settings,
@@ -54,7 +57,7 @@ class KeyGeneratorService
         // until it is unique
         $attempts = 0;
         do {
-            if ($attempts >= self::MAX_RANDOM_STRING_ATTEMPTS) {
+            if ($attempts >= self::MAXIMUM_TRIES) {
                 throw new \App\Exceptions\CouldNotGenerateUniqueKeyException;
             }
 

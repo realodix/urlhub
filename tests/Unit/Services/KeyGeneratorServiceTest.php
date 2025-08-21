@@ -126,10 +126,10 @@ class KeyGeneratorServiceTest extends TestCase
         //    This will be called for 'taken_initial_hash' first, then for the random string.
         $keyGenMock->shouldReceive('verify')->andReturn(false);
 
-        // 3. We expect randomString() to be called MAX_RANDOM_STRING_ATTEMPTS times
+        // 3. We expect randomString() to be called MAXIMUM_TRIES times
         //    before the exception is thrown.
         $keyGenMock->shouldReceive('randomString')
-            ->times(KeyGeneratorService::MAX_RANDOM_STRING_ATTEMPTS)
+            ->times(KeyGeneratorService::MAXIMUM_TRIES)
             // The actual return value is not very important here because verify is mocked
             ->andReturn('any_random_string');
 
