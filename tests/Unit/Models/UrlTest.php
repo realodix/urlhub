@@ -126,6 +126,16 @@ class UrlTest extends TestCase
         $this->assertEquals($lengthLimit, strlen($url->title));
     }
 
+    /**
+     * @see \App\Models\Url::expiredClicks()
+     */
+    #[PHPUnit\Test]
+    public function setExpiredClicks(): void
+    {
+        $url = Url::factory()->create(['expired_clicks' => 0]);
+        $this->assertNull($url->expired_clicks);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | General

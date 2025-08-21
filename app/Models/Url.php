@@ -118,6 +118,16 @@ class Url extends Model
     }
 
     /**
+     * Set the expired_clicks attribute.
+     */
+    protected function expiredClicks(): Attribute
+    {
+        return Attribute::make(
+            set: fn($value) => empty($value) ? null : $value,
+        );
+    }
+
+    /**
      * Scope a query to filter URLs by composition and keyword length.
      *
      * @param \Illuminate\Database\Eloquent\Builder<self> $query
