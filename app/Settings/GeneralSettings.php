@@ -2,10 +2,29 @@
 
 namespace App\Settings;
 
+use Illuminate\Validation\Rule;
 use Spatie\LaravelSettings\Settings;
 
 class GeneralSettings extends Settings
 {
+    /** @var int */
+    const KEY_LEN_LOW = 2;
+
+    /** @var int */
+    const KEY_LEN_UP = 11;
+
+    /** @var int */
+    const CST_KEY_MIN_LEN_LOW = 2;
+
+    /** @var int */
+    const CST_KEY_MIN_LEN_UP = 29;
+
+    /** @var int */
+    const CST_KEY_MAX_LEN_LOW = 3;
+
+    /** @var int */
+    const CST_KEY_MAX_LEN_UP = 30;
+
     public bool $public_shortening;
 
     public bool $public_registration;
@@ -34,9 +53,18 @@ class GeneralSettings extends Settings
     public function update(): void
     {
         request()->validate([
-            'keyword_length' => ['required', 'numeric', 'between:2,11'],
-            'custom_keyword_min_length' => ['required', 'numeric', 'between:2,29'],
-            'custom_keyword_max_length' => ['required', 'numeric', 'between:3,30'],
+            'keyword_length' => [
+                'required', 'numeric',
+                Rule::numeric()->between(self::KEY_LEN_LOW, self::KEY_LEN_UP),
+            ],
+            'custom_keyword_min_length' => [
+                'required', 'numeric',
+                Rule::numeric()->between(self::CST_KEY_MIN_LEN_LOW, self::CST_KEY_MIN_LEN_UP),
+            ],
+            'custom_keyword_max_length' => [
+                'required', 'numeric',
+                Rule::numeric()->between(self::CST_KEY_MAX_LEN_LOW, self::CST_KEY_MAX_LEN_UP),
+            ],
             'redirect_cache_max_age' => ['required', 'numeric', 'between:0,31536000'],
         ]);
 
