@@ -1,5 +1,3 @@
-@use('App\Services\KeyGeneratorService')
-
 @extends('layouts.backend')
 
 @section('title', 'Settings')
