@@ -181,7 +181,15 @@
 
                                 <label class="form-label m-[0.5rem_0_0]!">Expiration Notes</label>
                                 <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
-                                <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
+                                <div x-data="{ count: {{ strlen($url->expired_notes) }} }">
+                                    <textarea name="expired_notes" placeholder="Expired notes"
+                                        maxlength="200" x-on:input="count = $event.target.value.length"
+                                        class="form-input"
+                                    >{{ $url->expired_notes }}</textarea>
+                                    <div class="text-sm text-slate-600 dark:text-dark-400 text-right">
+                                        <span x-text="count"></span> / 200
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Forward Query Parameters -->
