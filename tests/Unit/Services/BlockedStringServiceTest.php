@@ -26,8 +26,30 @@ class BlockedStringServiceTest extends TestCase
     {
         $value = collect($this->blockedService->routeList())
             ->toArray();
-
         $this->assertContains('login', $value);
+
+        $mockRoute1 = $this->mock(\Illuminate\Routing\Route::class);
+        $mockRoute1->uri = 'admin';
+        $mockRoute2 = $this->mock(\Illuminate\Routing\Route::class);
+        $mockRoute2->uri = 'dashboard/{id}';
+        $mockRoute3 = $this->mock(\Illuminate\Routing\Route::class);
+        $mockRoute3->uri = 'user/profile';
+        $mockRouteCollection = $this->mock(\Illuminate\Routing\RouteCollection::class);
+        $mockRouteCollection->shouldReceive('get')->andReturn([
+            $mockRoute1,
+            $mockRoute2,
+            $mockRoute3,
+        ]);
+
+        \Illuminate\Support\Facades\Route::shouldReceive('getRoutes')
+            ->andReturn($mockRouteCollection);
+        $blockedRoutes = $this->blockedService->routeList();
+        $this->assertCount(1, $blockedRoutes);
+        $this->assertTrue($blockedRoutes->contains('admin'));
+        $this->assertFalse($blockedRoutes->contains('profile'));
+        $this->assertFalse($blockedRoutes->contains('dashboard'));
+        $this->assertFalse($blockedRoutes->contains('user'));
+        $this->assertFalse($blockedRoutes->contains('{id}'));
     }
 
     #[PHPUnit\Test]
