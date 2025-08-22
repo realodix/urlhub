@@ -128,6 +128,30 @@ class Url extends Model
     }
 
     /**
+     * Set the expired_url attribute.
+     */
+    protected function expiredUrl(): Attribute
+    {
+        $missing = empty($this->expires_at) && empty($this->expired_clicks);
+
+        return Attribute::make(
+            set: fn($value) => $missing ? null : $value,
+        );
+    }
+
+    /**
+     * Set the expired_notes attribute.
+     */
+    protected function expiredNotes(): Attribute
+    {
+        $missing = empty($this->expires_at) && empty($this->expired_clicks);
+
+        return Attribute::make(
+            set: fn($value) => $missing ? null : $value,
+        );
+    }
+
+    /**
      * Scope a query to filter URLs by composition and keyword length.
      *
      * @param \Illuminate\Database\Eloquent\Builder<self> $query

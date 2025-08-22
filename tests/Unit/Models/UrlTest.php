@@ -136,6 +136,50 @@ class UrlTest extends TestCase
         $this->assertNull($url->expired_clicks);
     }
 
+    /**
+     * @see \App\Models\Url::expiredUrl()
+     */
+    #[PHPUnit\Test]
+    public function setExpiredUrl(): void
+    {
+        $url = Url::factory()->create([
+            'expires_at' => null,
+            'expired_clicks' => 1,
+            'expired_url' => 'https://laravel.com/'
+        ]);
+        $this->assertSame('https://laravel.com/', $url->expired_url);
+
+        // expired_url must be null if expired_clicks and expires_at are null
+        $url = Url::factory()->create([
+            'expires_at' => null,
+            'expired_clicks' => null,
+            'expired_url' => 'https://laravel.com/'
+        ]);
+        $this->assertNull($url->expired_url);
+    }
+
+    /**
+     * @see \App\Models\Url::expiredNotes()
+     */
+    #[PHPUnit\Test]
+    public function setExpiredNotes(): void
+    {
+        $url = Url::factory()->create([
+            'expires_at' => null,
+            'expired_clicks' => 1,
+            'expired_notes' => 'laravel'
+        ]);
+        $this->assertSame('laravel', $url->expired_notes);
+
+        // expired_notes must be null if expired_clicks and expires_at are null
+        $url = Url::factory()->create([
+            'expires_at' => null,
+            'expired_clicks' => null,
+            'expired_notes' => 'laravel'
+        ]);
+        $this->assertNull($url->expired_notes);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | General

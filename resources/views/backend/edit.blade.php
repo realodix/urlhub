@@ -181,7 +181,7 @@
 
                                 <label class="form-label m-[0.5rem_0_0]!">Expiration Notes</label>
                                 <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
-                                <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}</textarea>
+                                <textarea name="expired_notes" placeholder="Expired notes" class="form-input">{{ $url->expired_notes }}{{ old('expired_notes') }}</textarea>
                             </div>
 
                             <!-- Forward Query Parameters -->
