@@ -181,10 +181,16 @@
 
                                 <label class="form-label m-[0.5rem_0_0]!">Expiration Notes</label>
                                 <p class="font-light text-sm dark:text-dark-400">Notes for users who visit your expired link.</p>
-                                <div x-data="{ count: {{ strlen($url->expired_notes) }} }">
-                                    <textarea name="expired_notes" placeholder="Expired notes"
-                                        maxlength="200" x-on:input="count = $event.target.value.length"
-                                        class="form-input"
+                                <div x-data="{
+                                        count: {{ strlen($url->expired_notes) }},
+                                        resize(e) { e.style.height = 'auto'; e.style.height = e.scrollHeight + 'px'; }
+                                    }"
+                                    x-init="$nextTick(() => resize($refs.ta_expired_notes))"
+                                >
+                                    <textarea name="expired_notes" placeholder="Expired notes" maxlength="200"
+                                        x-ref="ta_expired_notes"
+                                        x-on:input="count = $event.target.value.length; resize($event.target)"
+                                        class="form-input overflow-hidden resize-none"
                                     >{{ $url->expired_notes }}</textarea>
                                     <div class="text-sm text-slate-600 dark:text-dark-400 text-right">
                                         <span x-text="count"></span> / 200
