@@ -145,7 +145,7 @@ class UrlTest extends TestCase
         $url = Url::factory()->create([
             'expires_at' => null,
             'expired_clicks' => 1,
-            'expired_url' => 'https://laravel.com/'
+            'expired_url' => 'https://laravel.com/',
         ]);
         $this->assertSame('https://laravel.com/', $url->expired_url);
 
@@ -153,7 +153,7 @@ class UrlTest extends TestCase
         $url = Url::factory()->create([
             'expires_at' => null,
             'expired_clicks' => null,
-            'expired_url' => 'https://laravel.com/'
+            'expired_url' => 'https://laravel.com/',
         ]);
         $this->assertNull($url->expired_url);
     }
@@ -167,7 +167,7 @@ class UrlTest extends TestCase
         $url = Url::factory()->create([
             'expires_at' => null,
             'expired_clicks' => 1,
-            'expired_notes' => 'laravel'
+            'expired_notes' => 'laravel',
         ]);
         $this->assertSame('laravel', $url->expired_notes);
 
@@ -175,7 +175,7 @@ class UrlTest extends TestCase
         $url = Url::factory()->create([
             'expires_at' => null,
             'expired_clicks' => null,
-            'expired_notes' => 'laravel'
+            'expired_notes' => 'laravel',
         ]);
         $this->assertNull($url->expired_notes);
     }
