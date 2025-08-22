@@ -81,16 +81,14 @@ class BlockedStringServiceTest extends TestCase
 
             '.',
             '..',
-            '.htaccess',
-            'favicon.ico',
-
             '+{url}',
             '/',
             '_debugbar',
-            '_debugbar/assets/javascript',
             'admin/about',
-            'admin/user/{user}/changepassword',
-            'admin/links/u/{user}',
+            'storage/{path}',
+
+            '.htaccess',
+            'favicon.ico',
         ];
 
         $expected = ['css', 'reset-password'];
