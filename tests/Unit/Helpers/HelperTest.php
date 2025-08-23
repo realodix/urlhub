@@ -108,4 +108,17 @@ class HelperTest extends TestCase
             ->shouldReceive(['setUserAgent' => null]);
         $this->assertEquals(null, Helper::deviceDetector()->getUserAgent());
     }
+
+    #[PHPUnit\Test]
+    public function isDomainBlacklisted()
+    {
+        config(['urlhub.blacklist_domain' => ['laravel.com']]);
+
+        $this->assertTrue(
+            Helper::isDomainBlacklisted('https://laravel.com/docs/'),
+        );
+        $this->assertTrue(
+            Helper::isDomainBlacklisted('https://api.laravel.com/docs/12.x/index.html'),
+        );
+    }
 }

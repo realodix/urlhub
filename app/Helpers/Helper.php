@@ -116,4 +116,26 @@ class Helper
 
         return $value;
     }
+
+    /**
+     * Check if a given URL's domain is blacklisted.
+     *
+     * @param string $url The URL to check.
+     * @return bool True if the domain is blacklisted, false otherwise.
+     */
+    public static function isDomainBlacklisted(string $url): bool
+    {
+        $domain = parse_url($url, PHP_URL_HOST);
+        if ($domain === false || $domain === null) {
+            return false;
+        }
+
+        foreach (config('urlhub.blacklist_domain') as $blacklistedDomain) {
+            if ($domain === $blacklistedDomain || str_ends_with($domain, $blacklistedDomain)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

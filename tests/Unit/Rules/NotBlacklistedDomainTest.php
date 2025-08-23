@@ -53,6 +53,7 @@ class NotBlacklistedDomainTest extends TestCase
     {
         return [
             ['https://github.com/laravel/laravel'],
+            ['https://docs.github.com/en'],
             ['https://t.co/about'],
         ];
     }
