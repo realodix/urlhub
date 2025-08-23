@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Rules;
 
-use App\Rules\NotBlacklistedDomain;
+use App\Rules\AllowedDomain;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
 #[PHPUnit\Group('validation-rule')]
-class NotBlacklistedDomainTest extends TestCase
+class AllowedDomainTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -16,19 +16,21 @@ class NotBlacklistedDomainTest extends TestCase
         config(['urlhub.blacklist_domain' => ['github.com', 't.co']]);
     }
 
-    #[PHPUnit\DataProvider('notBlacklistedDomainDataProvider')]
-    public function testIsNotBlacklistedDomain($value): void
+    #[PHPUnit\DataProvider('allowedDomainDataProvider')]
+    #[PHPUnit\Test]
+    public function allowedDomainPasses($value): void
     {
-        $val = validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
+        $val = validator(['foo' => $value], ['foo' => new AllowedDomain]);
 
         $this->assertTrue($val->passes());
         $this->assertSame([], $val->messages()->messages());
     }
 
-    #[PHPUnit\DataProvider('blacklistedDomainDataProvider')]
-    public function testIsBlacklistedDomain($value): void
+    #[PHPUnit\DataProvider('disallowedDomainDataProvider')]
+    #[PHPUnit\Test]
+    public function disallowedDomainFails($value): void
     {
-        $val = validator(['foo' => $value], ['foo' => new NotBlacklistedDomain]);
+        $val = validator(['foo' => $value], ['foo' => new AllowedDomain]);
 
         $this->assertTrue($val->fails());
         $this->assertSame([
@@ -39,7 +41,7 @@ class NotBlacklistedDomainTest extends TestCase
         ], $val->messages()->messages());
     }
 
-    public static function notBlacklistedDomainDataProvider(): array
+    public static function allowedDomainDataProvider(): array
     {
         return [
             ['http://t.com/about'],
@@ -49,7 +51,7 @@ class NotBlacklistedDomainTest extends TestCase
         ];
     }
 
-    public static function blacklistedDomainDataProvider(): array
+    public static function disallowedDomainDataProvider(): array
     {
         return [
             ['https://github.com/laravel/laravel'],

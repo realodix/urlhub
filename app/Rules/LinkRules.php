@@ -30,7 +30,7 @@ class LinkRules
     public static function link(): array
     {
         return [
-            'max:'.self::MAX_LENGTH, new NotBlacklistedDomain,
+            'max:'.self::MAX_LENGTH, new AllowedDomain,
             function ($attribute, $value, $fail) {
                 if (!Preg::isMatch('/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\/[^\s]+$/', $value)) {
                     $fail('The :attribute field must be a valid link.');

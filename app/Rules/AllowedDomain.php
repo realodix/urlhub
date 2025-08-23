@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Helpers\Helper;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class NotBlacklistedDomain implements ValidationRule
+class AllowedDomain implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
