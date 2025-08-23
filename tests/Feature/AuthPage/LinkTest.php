@@ -106,6 +106,7 @@ class LinkTest extends TestCase
 
     /**
      * @see \App\Http\Controllers\LinkController::update()
+     * @see \App\Rules\NotBlacklistedDomain
      */
     #[PHPUnit\Test]
     public function validate_update__long_url_not_blacklisted()
