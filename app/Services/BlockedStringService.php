@@ -32,7 +32,7 @@ class BlockedStringService
     public function routeList()
     {
         return collect(\Illuminate\Support\Facades\Route::getRoutes()->get())
-            ->map(fn(\Illuminate\Routing\Route $route) => $route->uri)
+            ->pluck('uri')
             ->pipe(fn($paths) => $this->filterCandidates($paths));
     }
 
