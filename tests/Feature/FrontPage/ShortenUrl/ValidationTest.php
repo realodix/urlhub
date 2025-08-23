@@ -61,6 +61,7 @@ class ValidationTest extends TestCase
     }
 
     /**
+     * @see \App\Rules\LinkRules::customKeyword()
      * @see \App\Http\Requests\StoreUrlRequest
      * @see \App\Livewire\Validation\ValidateCustomKeyword
      */
@@ -82,6 +83,7 @@ class ValidationTest extends TestCase
     }
 
     /**
+     * @see \App\Rules\LinkRules::customKeyword()
      * @see \App\Http\Requests\StoreUrlRequest
      * @see \App\Livewire\Validation\ValidateCustomKeyword
      */

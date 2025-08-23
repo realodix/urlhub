@@ -49,7 +49,7 @@ class LinkRules
             new AlphaNumDash,
             "min:{$minLen}", "max:{$maxLen}",
             'unique:App\Models\Url,keyword',
-            new NotBlacklistedKeyword,
+            new AllowedKeyword,
         ];
     }
 }
