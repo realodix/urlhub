@@ -1,7 +1,6 @@
 @extends('layouts.frontend')
 
 @section('css_class', 'frontend home')
-
 @section('content')
 <div class="pt-16 sm:pt-28">
     @if (!auth()->check() && !settings()->public_shortening)

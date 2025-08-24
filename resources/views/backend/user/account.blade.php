@@ -1,9 +1,7 @@
 @extends('layouts.backend')
 
 @section('title', 'Edit Account "'.$user->name.'" ‹ '.str()->title(auth()->user()->name))
-
 @section('content')
-
 <div class="container-alt max-w-340">
     <div class="flex flex-wrap">
         <div class="md:w-3/12 flex justify-between">

@@ -1,7 +1,6 @@
 @extends('layouts.frontend')
 
 @section('css_class', 'frontend home')
-
 @section('content')
 <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="card rounded-2xl! relative mx-auto mt-4 w-full max-w-5xl overflow-hidden p-6 text-center sm:p-10 sm:px-0">

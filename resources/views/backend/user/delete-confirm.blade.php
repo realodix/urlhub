@@ -1,7 +1,6 @@
 @extends('layouts.backend')
 
 @section('title', $user->name)
-
 @section('content')
 <div class="container-alt">
     <div class="card max-w-4xl ml-0 lg:ml-12 p-8">

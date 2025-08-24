@@ -1,7 +1,6 @@
 @extends('layouts.backend')
 
 @section('title', 'URLs List')
-
 @section('content')
 <div class="container-alt max-w-340">
     <div class="w-full md:max-w-md">

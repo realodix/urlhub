@@ -1,9 +1,7 @@
 @extends('layouts.backend')
 
 @section('title', 'Settings')
-
 @section('content')
-
 <div class="container-alt">
     <div class="max-w-4xl ml-0 lg:ml-12">
         @include('partials.messages')

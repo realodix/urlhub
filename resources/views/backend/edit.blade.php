@@ -1,7 +1,6 @@
 @extends('layouts.backend')
 
 @section('title', 'Edit "'.$url->keyword.'" ‹ '.str()->title(auth()->user()->name))
-
 @section('content')
 <div class="container-alt max-w-340 flex flex-wrap">
     <div class="md:w-3/12 flex justify-between">
