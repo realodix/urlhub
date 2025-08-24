@@ -131,7 +131,7 @@ class Helper
         }
 
         foreach (config('urlhub.blacklist_domain') as $blacklistedDomain) {
-            if ($domain === $blacklistedDomain || str_ends_with($domain, $blacklistedDomain)) {
+            if ($domain === $blacklistedDomain || str_ends_with($domain, '.'.$blacklistedDomain)) {
                 return true;
             }
         }

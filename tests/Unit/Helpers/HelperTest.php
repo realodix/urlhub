@@ -120,5 +120,13 @@ class HelperTest extends TestCase
         $this->assertTrue(
             Helper::isDomainBlacklisted('https://api.laravel.com/docs/12.x/index.html'),
         );
+
+        // Non-blacklisted but containing string
+        $this->assertFalse(
+            Helper::isDomainBlacklisted('https://backpackforlaravel.com/'),
+        );
+        $this->assertFalse(
+            Helper::isDomainBlacklisted('https://madewithlaravel.com/'),
+        );
     }
 }
