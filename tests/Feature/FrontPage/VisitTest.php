@@ -13,7 +13,8 @@ use Tests\TestCase;
 #[PHPUnit\Group('front-page')]
 class VisitTest extends TestCase
 {
-    public function testUrlRedirection(): void
+    #[PHPUnit\Test]
+    public function urlRedirection(): void
     {
         $url = Url::factory()->create();
 
@@ -28,7 +29,7 @@ class VisitTest extends TestCase
      * @see \App\Services\VisitService::create()
      * @see \App\Services\UserService::userType()
      */
-    public function testUsertVisitor(): void
+    public function testUserVisitor(): void
     {
         $url = Url::factory()->create();
 
@@ -45,7 +46,7 @@ class VisitTest extends TestCase
      * @see \App\Services\UserService::userType()
      */
     #[PHPUnit\Test]
-    public function usertVisitorWithBotUserAgent(): void
+    public function userVisitorWithBotUserAgent(): void
     {
         settings()->fill(['track_bot_visits' => false])->save();
         $url = Url::factory()->create();

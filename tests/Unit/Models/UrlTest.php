@@ -187,7 +187,8 @@ class UrlTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testKeywordColumnIsCaseSensitive(): void
+    #[PHPUnit\Test]
+    public function keywordColumnIsCaseSensitive(): void
     {
         $url_1 = Url::factory()->create(['keyword' => 'foo', 'destination' => 'https://example.com']);
         $url_2 = Url::factory()->create(['keyword' => 'Foo', 'destination' => 'https://example.org']);
