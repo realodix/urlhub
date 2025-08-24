@@ -131,7 +131,7 @@ class LinkTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function updateExpiresAt_Valid()
+    public function validate_update__ExpiresAt_Valid()
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
@@ -154,7 +154,7 @@ class LinkTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function updateExpiresAt_Invalid()
+    public function validate_update__ExpiresAt_Invalid()
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
@@ -166,7 +166,8 @@ class LinkTest extends TestCase
             ->assertSessionHasErrors(['expires_at']);
     }
 
-    public function testUpdateWithNullableValue()
+    #[PHPUnit\Test]
+    public function validate_update__WithNullableValue()
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
@@ -188,7 +189,8 @@ class LinkTest extends TestCase
     /**
      * @see \App\Http\Controllers\LinkPasswordController
      */
-    public function testAddPasswordToLink()
+    #[PHPUnit\Test]
+    public function validate_AddPasswordToLink()
     {
         $url = Url::factory()->create();
         $response = $this->actingAs($url->author)
@@ -207,7 +209,8 @@ class LinkTest extends TestCase
     /**
      * @see \App\Http\Controllers\LinkPasswordController
      */
-    public function testUpdatePasswordFromLink()
+    #[PHPUnit\Test]
+    public function validate_PasswordFromLink()
     {
         $url = Url::factory()->create(['password' => 'password']);
         $response = $this->actingAs($url->author)
@@ -226,7 +229,8 @@ class LinkTest extends TestCase
     /**
      * @see \App\Http\Controllers\LinkPasswordController
      */
-    public function testRemovePasswordFromLink()
+    #[PHPUnit\Test]
+    public function validate_RemovePasswordFromLink()
     {
         $url = Url::factory()->create(['password' => 'password']);
         $response = $this->actingAs($url->author)

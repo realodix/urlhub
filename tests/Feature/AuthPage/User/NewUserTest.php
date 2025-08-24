@@ -27,7 +27,8 @@ class NewUserTest extends TestCase
         $respons->assertForbidden();
     }
 
-    public function testCreateNewUser(): void
+    #[PHPUnit\Test]
+    public function validate_CreateNewUser(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->post(route('user.store'), [
@@ -45,7 +46,8 @@ class NewUserTest extends TestCase
         $this->assertFalse($user->hasRole('admin'));
     }
 
-    public function testUsernameMustBeUnique(): void
+    #[PHPUnit\Test]
+    public function validate_UsernameMustBeUnique(): void
     {
         $user = User::factory()->create(['name' => 'test']);
         $response = $this->actingAs($this->adminUser())
@@ -59,7 +61,8 @@ class NewUserTest extends TestCase
         $this->assertCount(2, User::all()); // 2 (adminUser & $user)
     }
 
-    public function testStoreEmailAsLowerCase(): void
+    #[PHPUnit\Test]
+    public function validate_StoreEmailAsLowerCase(): void
     {
         $this->post('/register', [
             'name' => 'usernametest',
@@ -71,7 +74,8 @@ class NewUserTest extends TestCase
         $this->assertSame('john@example.com', User::first()->email);
     }
 
-    public function testCreateNewUserWithRoleAdmin(): void
+    #[PHPUnit\Test]
+    public function validate_CreateNewUserWithRoleAdmin(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->post(route('user.store'), [
@@ -90,7 +94,8 @@ class NewUserTest extends TestCase
         $this->assertTrue($user->hasRole('admin'));
     }
 
-    public function testFormCannotBeFilledWithEmptyData(): void
+    #[PHPUnit\Test]
+    public function validate_FormCannotBeFilledWithEmptyData(): void
     {
         $response = $this->actingAs($this->adminUser())
             ->post(route('user.store'), [

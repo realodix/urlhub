@@ -12,7 +12,8 @@ class ParameterPassingTest extends TestCase
 {
     const LABEL = 'Forward Query Parameters';
 
-    public function testAllEnabled(): void
+    #[PHPUnit\Test]
+    public function allEnabled(): void
     {
         $url = Url::factory()->create();
 

@@ -166,7 +166,8 @@ class CreateShortLinkTest extends TestCase
     /**
      * This test is to make sure that the custom key is not used by other users.
      */
-    public function testCustomKeyAlreadyExist(): void
+    #[PHPUnit\Test]
+    public function validate_CustomKeyAlreadyExist(): void
     {
         $url = Url::factory()->create();
 
@@ -187,7 +188,8 @@ class CreateShortLinkTest extends TestCase
      * With authenticated user.
      * This test is to make sure that the custom key is not used by other users.
      */
-    public function testCustomKeyAlreadyExist2(): void
+    #[PHPUnit\Test]
+    public function validate_CustomKeyAlreadyExist2(): void
     {
         $url = Url::factory()->create();
 

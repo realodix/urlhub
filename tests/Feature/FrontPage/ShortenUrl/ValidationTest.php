@@ -11,7 +11,8 @@ use Tests\TestCase;
 #[PHPUnit\Group('front-page')]
 class ValidationTest extends TestCase
 {
-    public function testShortUrlGenerationWithIncorrecturlDisplay(): void
+    #[PHPUnit\Test]
+    public function shortUrlGenerationWithIncorrecturlDisplay(): void
     {
         $response = $this->post(route('link.create'), [
             'long_url' => 'wrong-url-format',
@@ -36,7 +37,8 @@ class ValidationTest extends TestCase
      * @see \App\Http\Requests\StoreUrlRequest
      */
     #[PHPUnit\DataProvider('customKeyPassProvider')]
-    public function testCustomKeyValidationShouldPass($value): void
+    #[PHPUnit\Test]
+    public function customKeyValidationShouldPass($value): void
     {
         $response = $this->post(route('link.create'), [
             'long_url' => 'https://laravel.com/',
@@ -51,7 +53,8 @@ class ValidationTest extends TestCase
      * @see \App\Livewire\Validation\ValidateCustomKeyword
      */
     #[PHPUnit\DataProvider('customKeyPassProvider')]
-    public function testLivewireCustomKeyValidationShouldPass($value): void
+    #[PHPUnit\Test]
+    public function livewireCustomKeyValidationShouldPass($value): void
     {
         $component = Livewire::test(ValidateCustomKeyword::class);
 
@@ -68,7 +71,8 @@ class ValidationTest extends TestCase
     #[PHPUnit\TestWith(['foo_bar'])] // symbol
     #[PHPUnit\TestWith(['fonts'])] // reserved keyword
     #[PHPUnit\TestWith(['login'])] // registered route
-    public function testCustomKeyValidationShouldFail($value): void
+    #[PHPUnit\Test]
+    public function customKeyValidationShouldFail($value): void
     {
         $response = $this->post(route('link.create'), [
             'long_url' => 'https://laravel.com/',
@@ -90,7 +94,8 @@ class ValidationTest extends TestCase
     #[PHPUnit\TestWith(['foo'])] // already exists
     #[PHPUnit\TestWith(['fonts'])] // reserved keyword
     #[PHPUnit\TestWith(['login'])] // registered route
-    public function testCustomKeyWithCaseVariantsValidationShouldFail($value): void
+    #[PHPUnit\Test]
+    public function customKeyWithCaseVariantsValidationShouldFail($value): void
     {
         Url::factory()->create(['keyword' => 'foo', 'is_custom' => true]);
 
@@ -109,7 +114,8 @@ class ValidationTest extends TestCase
     /**
      * @see \App\Livewire\Validation\ValidateCustomKeyword
      */
-    public function testLivewireCustomKeywordLengthValidation(): void
+    #[PHPUnit\Test]
+    public function livewireCustomKeywordLengthValidation(): void
     {
         $component = Livewire::test(ValidateCustomKeyword::class);
 
