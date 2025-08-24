@@ -112,7 +112,8 @@ class UrlTest extends TestCase
     /**
      * @see \App\Models\Url::title()
      */
-    public function testSetTitleLength(): void
+    #[PHPUnit\Test]
+    public function setTitleLength(): void
     {
         $lengthLimit = LinkRules::TITLE_MAX_LENGTH;
 

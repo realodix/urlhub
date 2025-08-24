@@ -6,7 +6,7 @@ use App\Models\Url;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('front-page')]
+#[PHPUnit\Group('front-page')]
 class DetailPageTest extends TestCase
 {
     #[PHPUnit\Test]

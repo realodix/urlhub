@@ -7,7 +7,7 @@ use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('front-page')]
+#[PHPUnit\Group('front-page')]
 class DeleteShortLinkTest extends TestCase
 {
     private function deleteRequest(Url $url): TestResponse

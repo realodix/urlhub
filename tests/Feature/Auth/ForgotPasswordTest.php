@@ -91,7 +91,8 @@ class ForgotPasswordTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
-    public function test_user_can_reset_password()
+    #[PHPUnit\Test]
+    public function userCanResetPassword()
     {
         $email = 'test@example.com';
         $newPassword = 'newPassword';

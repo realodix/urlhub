@@ -9,7 +9,7 @@ use App\Services\UserService;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('front-page')]
+#[PHPUnit\Group('front-page')]
 class CreateShortLinkTest extends TestCase
 {
     /**

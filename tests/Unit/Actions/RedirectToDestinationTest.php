@@ -159,7 +159,8 @@ class RedirectToDestinationTest extends TestCase
         $this->assertSame($url->destination, $response->headers->get('Location'));
     }
 
-    public function testRedirectResponse_MaxAgeSet()
+    #[PHPUnit\Test]
+    public function redirectResponse_MaxAgeSet()
     {
         settings()->fill(['redirect_cache_max_age' => 3600])->save();
 
@@ -168,7 +169,8 @@ class RedirectToDestinationTest extends TestCase
         $this->assertSame('max-age=3600, private', $response->headers->get('Cache-Control'));
     }
 
-    public function testRedirectResponse_MaxAgeIsZero()
+    #[PHPUnit\Test]
+    public function redirectResponse_MaxAgeIsZero()
     {
         settings()->fill(['redirect_cache_max_age' => 0])->save();
 

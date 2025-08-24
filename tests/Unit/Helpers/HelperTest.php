@@ -96,7 +96,8 @@ class HelperTest extends TestCase
         $this->assertSame('6.79K', n_abb(6789));
     }
 
-    public function testDeviceDetector()
+    #[PHPUnit\Test]
+    public function deviceDetector()
     {
         // Can get from request
         $userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0';

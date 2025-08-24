@@ -87,7 +87,8 @@ class RegisterTest extends TestCase
         $this->assertCount(1, User::all()); // 1 ($user)
     }
 
-    public function testStoreEmailAsLowerCase(): void
+    #[PHPUnit\Test]
+    public function storeEmailAsLowerCase(): void
     {
         $this->from(route('register'))
             ->post(route('register.store'), [

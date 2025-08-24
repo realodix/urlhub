@@ -10,7 +10,7 @@ use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use PHPUnit\Framework\Attributes as PHPUnit;
 use Tests\TestCase;
 
-#[\PHPUnit\Framework\Attributes\Group('front-page')]
+#[PHPUnit\Group('front-page')]
 class VisitTest extends TestCase
 {
     public function testUrlRedirection(): void
@@ -199,7 +199,8 @@ class VisitTest extends TestCase
      * @see \App\Http\Controllers\RedirectController::__invoke()
      * @see \App\Http\Controllers\LinkController::password()
      */
-    public function testLinkWithPassword_form()
+    #[PHPUnit\Test]
+    public function linkWithPassword_form()
     {
         // Password is set
         // form page must be shown when the link has a password
