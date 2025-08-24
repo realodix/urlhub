@@ -1,7 +1,8 @@
 <header class="navbar" x-data="{ open: false, atTop: false }"
     @if (request()->is('admin*'))
         x-bind:class="{ 'sticky top-0 z-50': atTop }"
-        x-on:scroll.window="atTop = (window.pageYOffset < 65) ? false : true" {{-- Sticky on scroll --}}
+        {{-- Sticky on scroll --}}
+        x-on:scroll.window="if (window.pageYOffset > 65) { atTop = true } else if (window.pageYOffset === 0) { atTop = false }"
     @endif
 >
     <div class="container-alt px-4 flex h-16 justify-between" x-bind:class="{ 'sm:hidden': atTop }">
