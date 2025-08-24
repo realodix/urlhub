@@ -19,8 +19,10 @@ class DashboardController extends Controller implements HasMiddleware
     {
         return [new Middleware(
             'role:admin',
-            except: ['view', 'overviewPerUser', 'userRestrictedLinkView']),
-        ];
+            except: [
+                'view', 'overviewPerUser', 'userRestrictedLinkView',
+            ],
+        )];
     }
 
     /**
