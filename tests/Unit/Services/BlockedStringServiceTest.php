@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services;
 
+use App\Models\Url;
 use App\Services\BlockedStringService;
 use Illuminate\Support\Facades\File;
 use PHPUnit\Framework\Attributes as PHPUnit;
@@ -19,6 +20,40 @@ class BlockedStringServiceTest extends TestCase
         parent::setUp();
 
         $this->blockedService = app(BlockedStringService::class);
+    }
+
+    /**
+     * Test the identification of active keywords that are also disallowed.
+     *
+     * This test verifies that the `disallowedkeywordInUse` method accurately
+     * finds keywords that are currently in use but are also on the disallowed
+     * list.
+     *
+     * It checks two primary scenarios:
+     * 1. When no disallowed keywords are in use, the method should return
+     *    an empty list.
+     * 2. When some disallowed keywords are actively in use, the method should
+     *    return a list containing only those keywords.
+     */
+    #[PHPUnit\Test]
+    public function blocked_keywordInUse()
+    {
+        // Test case 1: No reserved keywords already in use
+        $this->assertEmpty($this->blockedService->keywordInUse()->all());
+
+        // Test case 2: Some reserved keywords already in use
+        $keywordLowerCase = 'laravel';
+        $keywordUpperCase = 'Laravel';
+        $otherKeyword = 'some_other_keyword';
+        Url::factory()->create(['keyword' => $keywordLowerCase]);
+        Url::factory()->create(['keyword' => $keywordUpperCase]);
+        Url::factory()->create(['keyword' => $otherKeyword]);
+        config(['urlhub.blacklist_keyword' => [$keywordLowerCase]]);
+
+        $this->assertEqualsCanonicalizing(
+            [$keywordLowerCase, $keywordUpperCase],
+            $this->blockedService->keywordInUse()->all(),
+        );
     }
 
     #[PHPUnit\Test]

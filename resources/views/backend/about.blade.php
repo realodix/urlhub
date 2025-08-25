@@ -56,7 +56,7 @@
     @php
         $domainBlacklist = collect(config('urlhub.blacklist_domain'))->sort();
         $disallowedKeys = $keyGenService->disallowedKeyword();
-        $usedDisallowedKeys = $keyGenService->disallowedKeywordsInUse()->toArray();
+        $keywordInUse = $blockedStringService->keywordInUse();
     @endphp
     <div class="config content-container card card-master">
         <h1 class="text-2xl">
@@ -91,16 +91,15 @@
                         {{$separator}}
                     @endforeach
 
-                    @if (!empty($usedDisallowedKeys))
+                    @if ($keywordInUse->isNotEmpty())
                         <br><br>
-                        <code class="text-red-400 dark:text-orange-600">// Unfortunately the list below is already used </code> <br>
-                        <code class="text-red-400 dark:text-orange-600">// as shortened URL keyword</code> <br>
-
-                        @foreach ($usedDisallowedKeys as $usedDisallowedKey)
+                        <code class="text-red-400 dark:text-orange-600">// Unfortunately the list below is already used </code>
+                        <br>
+                        @foreach ($keywordInUse as $keyword)
                             @php $separator = $loop->last ? '.' : ','; @endphp
-                            <code><a href="{{ route('link_detail', $usedDisallowedKey) }}" target="_blank"
+                            <code><a href="{{ route('link_detail', $keyword) }}" target="_blank"
                                 class="underline decoration-dotted">
-                                {{ $usedDisallowedKey }}</a></code>
+                                {{ $keyword }}</a></code>
                             {{$separator}}
                         @endforeach
                     @endif

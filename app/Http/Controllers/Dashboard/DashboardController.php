@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
+use App\Services\BlockedStringService;
 use App\Services\KeyGeneratorService;
 use App\Services\LinkService;
 use App\Services\UserService;
@@ -127,6 +128,7 @@ class DashboardController extends Controller implements HasMiddleware
     {
         return view('backend.about', [
             'keyGenService' => app(KeyGeneratorService::class),
+            'blockedStringService' => app(BlockedStringService::class),
         ]);
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Url;
 use Composer\Pcre\Preg;
+use Illuminate\Support\Facades\DB;
 
 class BlockedStringService
 {
@@ -19,6 +21,21 @@ class BlockedStringService
         ];
 
         return collect($data)->flatten()->unique()->sort();
+    }
+
+    /**
+     * Returns blocked keywords that are currently active
+     * (used as short URL endings).
+     *
+     * @return \Illuminate\Support\Collection<string>
+     */
+    public function keywordInUse()
+    {
+        $blockedKey = app(KeyGeneratorService::class)->disallowedKeyword()
+            ->map(fn($value) => strtolower($value));
+
+        return Url::whereIn(DB::raw('LOWER(keyword)'), $blockedKey)
+            ->pluck('keyword');
     }
 
     /**
