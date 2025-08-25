@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\RedirectToDestination;
+use App\Helpers\Helper;
 use App\Models\Url;
 use Illuminate\Support\Facades\Gate;
 
@@ -29,6 +30,11 @@ class RedirectController extends Controller
             }
 
             return to_route('link.expired', $url);
+        }
+
+        // Check if the domain is in the blacklist
+        if (Helper::isDomainBlacklisted($url->destination)) {
+            return abort(404);
         }
 
         return app(RedirectToDestination::class)->handle($url);

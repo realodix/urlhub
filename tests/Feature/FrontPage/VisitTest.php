@@ -301,4 +301,26 @@ class VisitTest extends TestCase
         $response = $this->get(route('link.expired', $url));
         $response->assertRedirect(route('link_detail', $url->keyword));
     }
+
+    /**
+     * When a link has a blacklisted domain, it should be redirected
+     * to the landing page.
+     *
+     * @see \App\Http\Controllers\RedirectController::__invoke()
+     */
+    #[PHPUnit\Test]
+    public function linkHasBlacklistedDomain()
+    {
+        // Test case 1: domain is not blacklisted
+        $url = Url::factory()->create([
+            'destination' => 'https://laravel.com/docs',
+        ]);
+        $response = $this->get($url->keyword);
+        $response->assertStatus(config('urlhub.redirection_status_code'));
+
+        // Test case 2: domain is blacklisted
+        config(['urlhub.blacklist_domain' => ['laravel.com']]);
+        $response = $this->get($url->keyword);
+        $response->assertNotFound();
+    }
 }
