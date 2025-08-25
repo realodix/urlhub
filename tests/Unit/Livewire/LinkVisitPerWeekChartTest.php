@@ -197,7 +197,7 @@ class LinkVisitPerWeekChartTest extends TestCase
 
         // Assert
         $this->assertCount($period->count(), $chartLabel);
-        $this->assertEquals('Jul 01 - Jul 07', $chartLabel[0]);
+        $this->assertEquals('Oct 21 - Oct 27', $chartLabel[0]);
         $this->assertEquals('Dec 30 - Jan 05', $chartLabel[$period->count() - 1]);
     }
 }

@@ -255,7 +255,7 @@ class LinkVisitChartTest extends TestCase
         // 2. Explicitly check the first and last labels based on frozen time
         // Start date = Oct 26 - 1 quarter = Jul 26
         $this->assertEquals(
-            'Oct 01',
+            'Nov 19',
             $chartLabel[0],
             'First label does not match the formatted start date.',
         );

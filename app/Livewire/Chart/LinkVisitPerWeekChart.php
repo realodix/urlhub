@@ -15,7 +15,7 @@ class LinkVisitPerWeekChart extends BaseLinkVisitChart
      */
     public function getDescription(): ?string
     {
-        return 'Stats for past six months (week by week)';
+        return 'Stats for the past 10 weeks';
     }
 
     /**
@@ -25,7 +25,7 @@ class LinkVisitPerWeekChart extends BaseLinkVisitChart
      */
     public function period()
     {
-        $startDate = Carbon::now()->subMonths(6)->startOfWeek(); // Monday
+        $startDate = Carbon::now()->subWeeks(10)->startOfWeek(); // Monday
         $endDate = Carbon::now()->endOfWeek(); // Sunday
 
         return CarbonPeriod::create($startDate, '1 week', $endDate);

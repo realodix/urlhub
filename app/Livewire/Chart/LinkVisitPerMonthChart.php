@@ -15,7 +15,7 @@ class LinkVisitPerMonthChart extends BaseLinkVisitChart
      */
     public function getDescription(): ?string
     {
-        return 'Stats for past one year (month by month)';
+        return 'Stats for the past one year';
     }
 
     /**

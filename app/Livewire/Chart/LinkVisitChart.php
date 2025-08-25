@@ -15,7 +15,7 @@ class LinkVisitChart extends BaseLinkVisitChart
      */
     public function getDescription(): ?string
     {
-        return 'Stats for past quarter';
+        return 'Stats for the past 6 weeks';
     }
 
     /**
@@ -25,7 +25,7 @@ class LinkVisitChart extends BaseLinkVisitChart
      */
     public function period()
     {
-        $startDate = Carbon::now()->subQuarter();
+        $startDate = Carbon::now()->subWeeks(6);
         $endDate = Carbon::now();
 
         return CarbonPeriod::create($startDate, '1 day', $endDate);
