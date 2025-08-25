@@ -118,9 +118,8 @@
 
                         @if ($domainInUses->isNotEmpty())
                             <br><br>
-                            <code class="text-red-400 dark:text-orange-600">// Unfortunately the list below is already used </code> <br>
-                            <code class="text-red-400 dark:text-orange-600">// as shortened URL destination</code> <br>
-
+                            <code class="text-red-400 dark:text-orange-600">// Unfortunately the list below is already used</code>
+                            <br>
                             @foreach ($domainInUses as $domainInUse)
                                 @php
                                     $domainInUseKey = $domainInUse->keyword;

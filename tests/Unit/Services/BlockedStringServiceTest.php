@@ -69,11 +69,11 @@ class BlockedStringServiceTest extends TestCase
 
         config(['urlhub.blacklist_domain' => ['laravel.com', 'github.com']]);
 
-        $this->assertEqualsCanonicalizing(
+        $this->assertEquals(
             [
-                'https://laravel.com',
                 'https://api.laravel.com/docs/12.x/index.html',
                 'https://github.com/realodix/urlhub',
+                'https://laravel.com',
             ],
             $this->blockedService->domainInUse()->pluck('destination')->toArray(),
         );
