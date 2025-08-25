@@ -38,6 +38,25 @@ class BlockedStringService
     }
 
     /**
+     * Returns disallowed domains that are currently active
+     * (used as short URL destinations).
+     *
+     * @return \Illuminate\Support\Collection<string>
+     */
+    public function domainInUse()
+    {
+        /** @var list<string> */
+        $domains = config('urlhub.blacklist_domain');
+
+        return Url::where(function ($query) use ($domains) {
+            foreach ($domains as $domain) {
+                $query->orWhere('destination', 'like', '%://'.$domain.'%')
+                    ->orWhere('destination', 'like', '%.'.$domain.'%');
+            }
+        })->get();
+    }
+
+    /**
      * Get all route paths that could conflict with generated keywords.
      *
      * Extracts URIs from registered routes and filters them to match the keyword

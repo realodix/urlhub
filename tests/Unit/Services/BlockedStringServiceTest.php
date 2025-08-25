@@ -60,6 +60,26 @@ class BlockedStringServiceTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    public function blocked_domainInUse()
+    {
+        Url::factory()->create(['destination' => 'https://laravel.com']);
+        Url::factory()->create(['destination' => 'https://api.laravel.com/docs/12.x/index.html']);
+        Url::factory()->create(['destination' => 'https://github.com/realodix/urlhub']);
+        Url::factory()->create(['destination' => 'https://backpackforlaravel.com/']);
+
+        config(['urlhub.blacklist_domain' => ['laravel.com', 'github.com']]);
+
+        $this->assertEqualsCanonicalizing(
+            [
+                'https://laravel.com',
+                'https://api.laravel.com/docs/12.x/index.html',
+                'https://github.com/realodix/urlhub',
+            ],
+            $this->blockedService->domainInUse()->pluck('destination')->toArray(),
+        );
+    }
+
+    #[PHPUnit\Test]
     public function routeList(): void
     {
         $value = collect($this->blockedService->routeList())
