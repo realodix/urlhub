@@ -54,7 +54,7 @@ class BlockedStringService
                 $query->orWhere('destination', 'like', '%://'.$domain.'%')
                     ->orWhere('destination', 'like', '%.'.$domain.'%');
             }
-        })->get();
+        })->orderBy('destination')->get();
     }
 
     /**
