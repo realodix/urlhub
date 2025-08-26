@@ -95,7 +95,7 @@ class BlockedStringServiceTest extends TestCase
     public function publicPathList(): void
     {
         // Directory
-        $dirName = self::RESOURCE_PREFIX.fake()->word();
+        $dirName = self::RESOURCE_PREFIX.fake()->unique()->word();
         File::makeDirectory(public_path($dirName));
         $this->assertContains(
             $dirName,
@@ -103,7 +103,7 @@ class BlockedStringServiceTest extends TestCase
         );
 
         // File
-        $fileName = self::RESOURCE_PREFIX.fake()->word();
+        $fileName = self::RESOURCE_PREFIX.fake()->unique()->word();
         File::put(public_path($fileName), '');
         $this->assertContains(
             $fileName,

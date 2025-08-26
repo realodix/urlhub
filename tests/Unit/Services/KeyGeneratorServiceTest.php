@@ -180,13 +180,13 @@ class KeyGeneratorServiceTest extends TestCase
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
 
         // Public directory
-        $value = self::RESOURCE_PREFIX.fake()->word();
+        $value = self::RESOURCE_PREFIX.fake()->unique()->word();
         File::makeDirectory(public_path($value));
         $this->assertFalse($this->keyGen->verify($value));
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
 
         // File name in public directory
-        $value = self::RESOURCE_PREFIX.fake()->word();
+        $value = self::RESOURCE_PREFIX.fake()->unique()->word();
         File::put(public_path($value), '');
         $this->assertFalse($this->keyGen->verify($value));
         $this->assertFalse($this->keyGen->verify(strtoupper($value)));
