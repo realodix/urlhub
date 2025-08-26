@@ -24,8 +24,7 @@ class BlockedStringService
     }
 
     /**
-     * Returns blocked keywords that are currently active
-     * (used as short URL endings).
+     * Get all blocked keywords that are already in use as short URL endings.
      *
      * @return \Illuminate\Support\Collection<string>
      */

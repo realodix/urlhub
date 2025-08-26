@@ -38,18 +38,21 @@ class BlockedStringServiceTest extends TestCase
     #[PHPUnit\Test]
     public function blocked_keywordInUse()
     {
-        // Test case 1: No reserved keywords already in use
-        $this->assertEmpty($this->blockedService->keywordInUse()->all());
-
-        // Test case 2: Some reserved keywords already in use
         $keywordLowerCase = 'laravel';
         $keywordUpperCase = 'Laravel';
         $otherKeyword = 'some_other_keyword';
         Url::factory()->create(['keyword' => $keywordLowerCase]);
         Url::factory()->create(['keyword' => $keywordUpperCase]);
         Url::factory()->create(['keyword' => $otherKeyword]);
-        config(['urlhub.blacklist_keyword' => [$keywordLowerCase]]);
 
+        // Test case 1: No reserved keywords already in use
+        config(['urlhub.blacklist_keyword' => []]);
+        $this->assertEmpty($this->blockedService->keywordInUse()->all());
+        config(['urlhub.blacklist_keyword' => ['foo']]);
+        $this->assertEmpty($this->blockedService->keywordInUse()->all());
+
+        // Test case 2: Some reserved keywords already in use
+        config(['urlhub.blacklist_keyword' => [$keywordLowerCase]]);
         $this->assertEqualsCanonicalizing(
             [$keywordLowerCase, $keywordUpperCase],
             $this->blockedService->keywordInUse()->all(),
