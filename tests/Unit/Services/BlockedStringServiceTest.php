@@ -79,8 +79,20 @@ class BlockedStringServiceTest extends TestCase
         Url::factory()->create(['destination' => 'https://github.com/realodix/urlhub']);
         Url::factory()->create(['destination' => 'https://backpackforlaravel.com/']);
 
-        config(['urlhub.blacklist_domain' => ['laravel.com', 'github.com']]);
+        // Test case 1: No disallowed domains already in use
+        config(['urlhub.blacklist_domain' => []]);
+        $this->assertEquals(
+            [],
+            $this->blockedService->domainInUse()->pluck('destination')->toArray(),
+        );
+        config(['urlhub.blacklist_domain' => ['bitly.com']]);
+        $this->assertEquals(
+            [],
+            $this->blockedService->domainInUse()->pluck('destination')->toArray(),
+        );
 
+        // Test case 2: Some disallowed domains already in use
+        config(['urlhub.blacklist_domain' => ['laravel.com', 'github.com']]);
         $this->assertEquals(
             [
                 'https://api.laravel.com/docs/12.x/index.html',

@@ -50,6 +50,12 @@ class BlockedStringService
         /** @var list<string> */
         $domains = config('urlhub.blacklist_domain');
 
+        // If the blacklist is empty, there is no need to query the database.
+        // Without this, it will fetch all URLs from the database.
+        if (empty($domains)) {
+            return collect();
+        }
+
         return Url::where(function ($query) use ($domains) {
             foreach ($domains as $domain) {
                 $query->orWhere('destination', 'like', '%://'.$domain.'%')
