@@ -59,6 +59,44 @@ class BlockedStringServiceTest extends TestCase
         );
     }
 
+    /**
+     * Test the identification of active URLs that contain disallowed domains.
+     *
+     * This test verifies that the `domainInUse` method accurately finds URLs
+     * that are currently in use but are also on the disallowed domains list.
+     *
+     * It checks two primary scenarios:
+     * 1. When no disallowed domains are in use, the method should return
+     *    an empty list.
+     * 2. When some disallowed domains are actively in use, the method should
+     *    return a list containing only those URLs.
+     */
+    #[PHPUnit\Test]
+    public function blocked_domainInUse()
+    {
+        Url::factory()->create(['destination' => 'https://laravel.com']);
+        Url::factory()->create(['destination' => 'https://api.laravel.com/docs/12.x/index.html']);
+        Url::factory()->create(['destination' => 'https://github.com/realodix/urlhub']);
+        Url::factory()->create(['destination' => 'https://backpackforlaravel.com/']);
+
+        // Test case 1: No disallowed domains already in use
+        config(['urlhub.blacklist_domain' => []]);
+        $this->assertEmpty($this->blockedService->domainInUse()->pluck('destination')->toArray());
+        config(['urlhub.blacklist_domain' => ['bitly.com']]);
+        $this->assertEmpty($this->blockedService->domainInUse()->pluck('destination')->toArray());
+
+        // Test case 2: Some disallowed domains already in use
+        config(['urlhub.blacklist_domain' => ['laravel.com', 'github.com']]);
+        $this->assertEquals(
+            [
+                'https://api.laravel.com/docs/12.x/index.html',
+                'https://github.com/realodix/urlhub',
+                'https://laravel.com',
+            ],
+            $this->blockedService->domainInUse()->pluck('destination')->toArray(),
+        );
+    }
+
     #[PHPUnit\Test]
     public function routeList(): void
     {

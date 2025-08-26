@@ -38,6 +38,33 @@ class BlockedStringService
     }
 
     /**
+     * Get all URLs that have a blacklisted domain.
+     *
+     * This method finds URLs that are currently in use but are also contains
+     * domain names that are in a configured blacklist.
+     *
+     * @return \Illuminate\Support\Collection<Url>
+     */
+    public function domainInUse()
+    {
+        /** @var list<string> */
+        $domains = config('urlhub.blacklist_domain');
+
+        // If the blacklist is empty, there is no need to query the database.
+        // Without this, it will fetch all URLs from the database.
+        if (empty($domains)) {
+            return collect();
+        }
+
+        return Url::where(function ($query) use ($domains) {
+            foreach ($domains as $domain) {
+                $query->orWhere('destination', 'like', '%://'.$domain.'%')
+                    ->orWhere('destination', 'like', '%.'.$domain.'%');
+            }
+        })->orderBy('destination')->get();
+    }
+
+    /**
      * Get all route paths that could conflict with generated keywords.
      *
      * Extracts URIs from registered routes and filters them to match the keyword
