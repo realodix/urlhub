@@ -59,6 +59,18 @@ class BlockedStringServiceTest extends TestCase
         );
     }
 
+    /**
+     * Test the identification of active URLs that contain disallowed domains.
+     *
+     * This test verifies that the `domainInUse` method accurately finds URLs
+     * that are currently in use but are also on the disallowed domains list.
+     *
+     * It checks two primary scenarios:
+     * 1. When no disallowed domains are in use, the method should return
+     *    an empty list.
+     * 2. When some disallowed domains are actively in use, the method should
+     *    return a list containing only those URLs.
+     */
     #[PHPUnit\Test]
     public function blocked_domainInUse()
     {

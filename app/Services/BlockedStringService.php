@@ -38,10 +38,12 @@ class BlockedStringService
     }
 
     /**
-     * Returns disallowed domains that are currently active
-     * (used as short URL destinations).
+     * Get all URLs that have a blacklisted domain.
      *
-     * @return \Illuminate\Support\Collection<string>
+     * This method finds URLs that are currently in use but are also contains
+     * domain names that are in a configured blacklist.
+     *
+     * @return \Illuminate\Support\Collection<Url>
      */
     public function domainInUse()
     {
