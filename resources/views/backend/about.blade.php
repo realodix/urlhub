@@ -57,7 +57,7 @@
         $domainBlacklist = collect(config('urlhub.blacklist_domain'))->sort();
         $disallowedKeys = $keyGenService->disallowedKeyword();
         $keywordInUse = $blockedStringService->keywordInUse();
-        $domainInUses = $blockedStringService->domainInUse();
+        $domainInUse = $blockedStringService->domainInUse();
     @endphp
     <div class="config content-container card card-master">
         <h1 class="text-2xl">
@@ -116,13 +116,13 @@
                     @if ($domainBlacklist->isNotEmpty())
                         <code>{{ $domainBlacklist->implode(', ') }}</code>
 
-                        @if ($domainInUses->isNotEmpty())
+                        @if ($domainInUse->isNotEmpty())
                             <br><br>
                             <code class="text-red-400 dark:text-orange-600">// Unfortunately the list below is already used</code>
                             <br>
-                            @foreach ($domainInUses as $domainInUse)
+                            @foreach ($domainInUse as $domain)
                                 <code>
-                                    [{{ $domainInUse->keyword }}] {{ $domainInUse->destination }}
+                                    [{{ $domain->keyword }}] {{ $domain->destination }}
                                 </code>
                                 <br>
                             @endforeach
