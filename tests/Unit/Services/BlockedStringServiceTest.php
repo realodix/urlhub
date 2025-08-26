@@ -81,15 +81,9 @@ class BlockedStringServiceTest extends TestCase
 
         // Test case 1: No disallowed domains already in use
         config(['urlhub.blacklist_domain' => []]);
-        $this->assertEquals(
-            [],
-            $this->blockedService->domainInUse()->pluck('destination')->toArray(),
-        );
+        $this->assertEmpty($this->blockedService->domainInUse()->pluck('destination')->toArray());
         config(['urlhub.blacklist_domain' => ['bitly.com']]);
-        $this->assertEquals(
-            [],
-            $this->blockedService->domainInUse()->pluck('destination')->toArray(),
-        );
+        $this->assertEmpty($this->blockedService->domainInUse()->pluck('destination')->toArray());
 
         // Test case 2: Some disallowed domains already in use
         config(['urlhub.blacklist_domain' => ['laravel.com', 'github.com']]);
