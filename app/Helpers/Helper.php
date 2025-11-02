@@ -54,7 +54,7 @@ class Helper
 
         return match ($provider) {
             'google'     => "https://www.google.com/s2/favicons?domain={$host}&sz=64",
-            'duckduckgo' => "https://icons.duckduckgo.com/ip3/{$host}.ico",
+            'duckduckgo' => "https://icons.duckduckgo.com/ip3/{$host}.ico&sz=64",
         };
     }
 
