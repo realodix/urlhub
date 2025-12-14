@@ -1,5 +1,7 @@
 @import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css';
 @import 'tailwindcss';
+@import '../../vendor/filament/support/resources/css/index.css';
+@import '../../vendor/filament/widgets/resources/css/index.css';
 @config '../../tailwind.config.js';
 
 @theme {

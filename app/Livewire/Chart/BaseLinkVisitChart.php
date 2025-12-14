@@ -6,7 +6,6 @@ use App\Models\Url;
 use App\Models\User;
 use App\Models\Visit;
 use Carbon\CarbonPeriod;
-use Filament\Support\Colors\Color;
 use Filament\Widgets\ChartWidget;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -15,9 +14,9 @@ use Illuminate\Database\Eloquent\Collection;
  */
 abstract class BaseLinkVisitChart extends ChartWidget
 {
-    protected static ?string $maxHeight = '250px';
+    protected ?string $maxHeight = '250px';
 
-    protected static ?string $pollingInterval = null;
+    protected ?string $pollingInterval = null;
 
     public User|Url|null $model = null;
 
@@ -40,16 +39,18 @@ abstract class BaseLinkVisitChart extends ChartWidget
                 [
                     'label' => 'Visits',
                     'data' => $this->chartData(),
-                    'backgroundColor' => 'rgba('.Color::Blue[400].', 0.5)',
-                    'borderColor' => 'rgb('.Color::Blue[400].')',
+                    'backgroundColor' => 'oklch(0.707 0.165 254.624 / 50%)',
+                    'borderColor' => 'oklch(0.707 0.165 254.624)', // blue-400
+                    'pointBackgroundColor' => 'oklch(0.707 0.165 254.624)',
                     'fill' => true,
                     'tension' => 0.4,
                 ],
                 [
                     'label' => 'Visitors',
                     'data' => $this->chartData(visitor: true),
-                    'backgroundColor' => 'rgba('.Color::Emerald[400].', 0.7)',
-                    'borderColor' => 'rgb('.Color::Emerald[400].')',
+                    'backgroundColor' => 'oklch(0.765 0.177 163.223 / 70%)',
+                    'borderColor' => 'oklch(0.765 0.177 163.223)', // emerald-400
+                    'pointBackgroundColor' => 'oklch(0.765 0.177 163.223)',
                     'fill' => true,
                     'tension' => 0.4,
                 ],
