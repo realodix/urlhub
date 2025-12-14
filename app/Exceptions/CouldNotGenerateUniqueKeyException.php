@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 
 class CouldNotGenerateUniqueKeyException extends \Exception
 {
-    /** @phpstan-ignore missingType.property */
     protected $message = 'Sorry, our system could not create a short link for you at this time.
                         Please try again in a few moments.a';
 
