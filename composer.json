@@ -19,7 +19,7 @@
         "matomo/device-detector": "^6.5",
         "power-components/livewire-powergrid": "^6.8",
         "realodix/timezone": "^0.1.0",
-        "spatie/laravel-permission": "^6.24",
+        "spatie/laravel-permission": "^7.0",
         "spatie/laravel-settings": "^3.7"
     },
     "require-dev": {
