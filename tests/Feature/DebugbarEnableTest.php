@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Middleware\DebugbarEnable;
-use Barryvdh\Debugbar\Facades\Debugbar;
+use Fruitcake\LaravelDebugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 use Tests\TestCase;
 
