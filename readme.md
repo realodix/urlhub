@@ -1,9 +1,7 @@
 ![screenshot](https://i.imgur.com/MeZvgiz.png)
 
 [![LaravelVersion](https://img.shields.io/badge/Laravel-12-f53003.svg?style=flat-square)](https://laravel.com/docs/12.x/releases#laravel-12)
-![PHPVersion](https://img.shields.io/badge/PHP-8.3-777BB4.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/github/license/realodix/urlhub.svg?style=flat-square)](https://github.com/realodix/urlhub/blob/master/LICENSE)
-![Build Status](https://github.com/realodix/urlhub/actions/workflows/tests.yml/badge.svg)
 [![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/1049-shield.svg)](https://madewithlaravel.com/p/plur/shield-link)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/realodix/urlhub)
 
