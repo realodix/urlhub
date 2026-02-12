@@ -43,7 +43,7 @@ class BlockedStringService
      * This method finds URLs that are currently in use but are also contains
      * domain names that are in a configured blacklist.
      *
-     * @return \Illuminate\Support\Collection<Url>
+     * @return \Illuminate\Support\Collection<Url>|\Illuminate\Support\Collection
      */
     public function domainInUse()
     {
