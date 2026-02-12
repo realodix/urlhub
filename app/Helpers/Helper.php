@@ -53,7 +53,7 @@ class Helper
         $provider = app(GeneralSettings::class)->favicon_provider;
 
         return match ($provider) {
-            'google'     => "https://www.google.com/s2/favicons?domain={$host}",
+            'google'     => "https://www.google.com/s2/favicons?domain={$host}&sz=32",
             'duckduckgo' => "https://icons.duckduckgo.com/ip3/{$host}.ico",
         };
     }
