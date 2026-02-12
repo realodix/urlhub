@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Url;
 use App\Settings\GeneralSettings;
-use Random\Randomizer;
 
 class KeyGeneratorService
 {
@@ -81,29 +80,12 @@ class KeyGeneratorService
 
     /**
      * @codeCoverageIgnore
-     * Random\Randomizer::getBytesFromString
-     *
-     * https://www.php.net/manual/en/random-randomizer.getbytesfromstring.php
      */
     public function randomString(): string
     {
-        $characters = self::ALPHABET;
-        $length = $this->settings->key_len;
+        $randomizer = new \Random\Randomizer;
 
-        if (\PHP_VERSION_ID < 80300) {
-            $charLength = strlen($characters);
-
-            $randomString = '';
-            for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[mt_rand(0, $charLength - 1)];
-            }
-
-            return $randomString;
-        }
-
-        $randomizer = new Randomizer;
-
-        return $randomizer->getBytesFromString($characters, $length);
+        return $randomizer->getBytesFromString(self::ALPHABET, $this->settings->key_len);
     }
 
     /**
