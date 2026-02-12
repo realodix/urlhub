@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Url;
 use App\Settings\GeneralSettings;
+use Random\Randomizer;
 
 class KeyGeneratorService
 {
@@ -100,7 +101,7 @@ class KeyGeneratorService
             return $randomString;
         }
 
-        $randomizer = new \Random\Randomizer;
+        $randomizer = new Randomizer;
 
         return $randomizer->getBytesFromString($characters, $length);
     }
