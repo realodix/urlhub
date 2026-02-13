@@ -83,8 +83,6 @@ From the projects root folder run
 - or `composer test`
 - or `./vendor/bin/phpunit`
 
-![phpunit_image](https://github.com/user-attachments/assets/3beb22f3-673c-44b3-a2f3-a14172971db7)
-
 
 ## Bug Report
 If you've found a problem in UrlHub which is not a security risk, do a search on [GitHub under Issues](https://github.com/realodix/urlhub/issues) in case it has already been reported. If you are unable to find any open GitHub issues addressing the problem you found, your next step will be to [open a new one](https://github.com/realodix/urlhub/issues/new/choose).
