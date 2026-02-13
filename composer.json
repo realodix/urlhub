@@ -30,7 +30,7 @@
         "laravel/dusk": "^8.3",
         "mockery/mockery": "^1.6",
         "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpunit/phpunit": "^12.5",
+        "phpunit/phpunit": "^13.0",
         "realodix/relax": "^1.20",
         "spatie/laravel-ignition": "^2.10"
     },
