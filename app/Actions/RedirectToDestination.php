@@ -24,7 +24,7 @@ class RedirectToDestination
         return DB::transaction(function () use ($url) {
             app(RecordVisit::class)->handle($url);
 
-            $statusCode = config('urlhub.redirection_status_code');
+            $statusCode = config('urlhub.redirect_status_code');
             $maxAge = app(GeneralSettings::class)->redirect_cache_max_age;
             $destinationUrl = $this->resolveTargetLink($url);
 

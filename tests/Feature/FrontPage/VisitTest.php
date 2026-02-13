@@ -20,7 +20,7 @@ class VisitTest extends TestCase
 
         $response = $this->get($url->keyword);
         $response->assertRedirect($url->destination)
-            ->assertStatus(config('urlhub.redirection_status_code'));
+            ->assertStatus(config('urlhub.redirect_status_code'));
 
         $this->assertCount(1, Visit::all());
     }
@@ -316,7 +316,7 @@ class VisitTest extends TestCase
             'destination' => 'https://laravel.com/docs',
         ]);
         $response = $this->get($url->keyword);
-        $response->assertStatus(config('urlhub.redirection_status_code'));
+        $response->assertStatus(config('urlhub.redirect_status_code'));
 
         // Test case 2: domain is blacklisted
         config(['urlhub.blacklist_domain' => ['laravel.com']]);

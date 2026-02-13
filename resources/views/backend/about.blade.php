@@ -68,13 +68,13 @@
         <h3 class="text-xl">Shortened Links</h3>
         <dl>
             <dt class="mt-2">
-                <code>redirection_status_code</code>
+                <code>redirect_status_code</code>
                 <p class="font-light text-sm dark:text-dark-400">
                     The HTTP status code to use when redirecting a visitor to the original URL.
                 </p>
             </dt>
             <dd class="mt-2">
-                {{ config('urlhub.redirection_status_code') }}
+                {{ config('urlhub.redirect_status_code') }}
             </dd>
 
             <dt class="mt-2 mb-2">

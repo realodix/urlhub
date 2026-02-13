@@ -15,9 +15,9 @@ class ConfigFileTest extends TestCase
     }
 
     #[PHPUnit\Test]
-    public function redirection_status_code(): void
+    public function redirect_status_code(): void
     {
-        $code = config('urlhub.redirection_status_code');
+        $code = config('urlhub.redirect_status_code');
 
         $this->assertIsInt($code);
         $this->assertGreaterThanOrEqual(301, $code);

@@ -26,14 +26,6 @@ return [
     ],
 
     /*
-     * The HTTP status code for redirects
-     *
-     * Specifies the HTTP status code used when redirecting a short URL to
-     * its original destination.
-     */
-    'redirection_status_code' => 302,
-
-    /*
      * List of blocked usernames
      *
      * Usernames that are blocked and cannot be used during new user registration.
@@ -41,4 +33,9 @@ return [
     'blacklist_username' => [
         // 'advertise',
     ],
+
+    /*
+     * The HTTP status code used for redirect responses.
+     */
+    'redirect_status_code' => 302,
 ];
