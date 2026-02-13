@@ -16,7 +16,6 @@ return new class extends SettingsMigration
         $this->migrator->add('general.favicon_provider', 'google');
 
         $this->migrator->add('general.forward_query', true);
-        $this->migrator->add('general.redirect_cache_max_age', 30);
         $this->migrator->add('general.track_bot_visits', false);
     }
 };

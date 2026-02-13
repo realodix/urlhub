@@ -25,13 +25,13 @@ class RedirectToDestination
             app(RecordVisit::class)->handle($url);
 
             $statusCode = config('urlhub.redirect_status_code');
-            $maxAge = app(GeneralSettings::class)->redirect_cache_max_age;
+            $cacheLifetime = config('urlhub.redirect_cache_lifetime');
             $destinationUrl = $this->resolveTargetLink($url);
 
             $response = redirect()->away($destinationUrl, $statusCode);
-            $response->setMaxAge($maxAge);
+            $response->setMaxAge($cacheLifetime);
 
-            if ($maxAge < 1) {
+            if ($cacheLifetime < 1) {
                 $response->headers->addCacheControlDirective('must-revalidate');
             }
 

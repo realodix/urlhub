@@ -88,14 +88,6 @@
                         </label>
                     </div>
                     <div class="col-span-6 lg:col-span-5">
-                        <label class="form-label inline!">Redirect Cache Lifetime (max-age)</label>
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#max-age" target="_blank">
-                            @svg('icon-help', 'ml-1 hover:scale-110 text-gray-500 dark:text-amber-400')</a>
-                        <div class="font-light text-sm dark:text-dark-400">Set the maximum time (in seconds) that a redirect can be cached by a browser. Set to 0 to prevent caching.</div>
-                        <input name="redirect_cache_max_age" type="number" required value="{{ $settings->redirect_cache_max_age }}"
-                            class="form-input mt-4 md:mt-3 max-w-100 @error('redirect_cache_max_age') border-red-300! @enderror">
-                    </div>
-                    <div class="col-span-6 lg:col-span-5">
                         <label class="form-label">Track bot visits</label>
                         <div class="font-light text-sm dark:text-dark-400">When enabled, visits from web crawlers and bots will be recorded in the database and included in your link statistics. If disabled, these visits will be ignored and not stored.</div>
                         <label class="switch float-right mt-6">

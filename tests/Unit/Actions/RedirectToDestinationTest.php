@@ -162,7 +162,7 @@ class RedirectToDestinationTest extends TestCase
     #[PHPUnit\Test]
     public function redirectResponse_MaxAgeSet()
     {
-        settings()->fill(['redirect_cache_max_age' => 3600])->save();
+        config(['urlhub.redirect_cache_lifetime' => 3600]);
 
         $url = Url::factory()->create();
         $response = $this->rtd->handle($url);
@@ -172,7 +172,7 @@ class RedirectToDestinationTest extends TestCase
     #[PHPUnit\Test]
     public function redirectResponse_MaxAgeIsZero()
     {
-        settings()->fill(['redirect_cache_max_age' => 0])->save();
+        config(['urlhub.redirect_cache_lifetime' => 0]);
 
         $url = Url::factory()->create();
         $response = $this->rtd->handle($url);

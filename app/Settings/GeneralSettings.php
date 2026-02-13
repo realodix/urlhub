@@ -41,8 +41,6 @@ class GeneralSettings extends Settings
 
     public bool $forward_query;
 
-    public int $redirect_cache_max_age;
-
     public bool $track_bot_visits;
 
     public static function group(): string
@@ -65,7 +63,6 @@ class GeneralSettings extends Settings
                 'required', 'numeric',
                 Rule::numeric()->between(self::CST_KEY_MAX_LEN_LOW, self::CST_KEY_MAX_LEN_UP),
             ],
-            'redirect_cache_max_age' => ['required', 'numeric', 'between:0,31536000'],
         ]);
 
         $this->fill([
@@ -77,7 +74,6 @@ class GeneralSettings extends Settings
             'autofill_link_title' => request()->boolean('autofill_link_title'),
             'favicon_provider' => request()->input('favicon_provider'),
             'forward_query' => request()->boolean('forward_query'),
-            'redirect_cache_max_age' => request()->input('redirect_cache_max_age'),
             'track_bot_visits' => request()->boolean('track_bot_visits'),
         ]);
 

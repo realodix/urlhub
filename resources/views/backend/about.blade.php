@@ -77,6 +77,16 @@
                 {{ config('urlhub.redirect_status_code') }}
             </dd>
 
+            <dt class="mt-2">
+                <code>redirect_cache_lifetime</code>
+                <p class="font-light text-sm dark:text-dark-400">
+                    The maximum time (in seconds) a redirect response may be cached.
+                </p>
+            </dt>
+            <dd class="mt-2">
+                {{ config('urlhub.redirect_cache_lifetime') }}
+            </dd>
+
             <dt class="mt-2 mb-2">
                 <code>Disallowed Keywords</code>
                 <p class="font-light text-sm dark:text-dark-400">

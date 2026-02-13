@@ -23,4 +23,14 @@ class ConfigFileTest extends TestCase
         $this->assertGreaterThanOrEqual(301, $code);
         $this->assertLessThanOrEqual(302, $code);
     }
+
+    #[PHPUnit\Test]
+    public function redirect_cache_lifetime(): void
+    {
+        $value = config('urlhub.redirect_cache_lifetime');
+
+        $this->assertIsInt($value);
+        $this->assertGreaterThanOrEqual(0, $value);
+        $this->assertLessThanOrEqual(31536000, $value);
+    }
 }

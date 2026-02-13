@@ -38,4 +38,10 @@ return [
      * The HTTP status code used for redirect responses.
      */
     'redirect_status_code' => 302,
+
+    /*
+     * Specify the Cache-Control max-age (in seconds) for redirect responses.
+     * Set to 0 to prevent caching.
+     */
+    'redirect_cache_lifetime' => 30,
 ];

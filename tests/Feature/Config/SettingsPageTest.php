@@ -77,7 +77,6 @@ class SettingsPageTest extends TestCase
             'autofill_link_title' => true,
             'favicon_provider' => 'duckduckgo',
             'forward_query' => true,
-            'redirect_cache_max_age' => 1,
             'track_bot_visits' => true,
         ];
 
