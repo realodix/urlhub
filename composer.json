@@ -26,7 +26,7 @@
         "brianium/paratest": "^7.8",
         "fakerphp/faker": "^1.24",
         "fruitcake/laravel-debugbar": "^4.0",
-        "larastan/larastan": "^3.9",
+        "larastan/larastan": "^3.10",
         "laravel/dusk": "^8.3",
         "mockery/mockery": "^1.6",
         "phpstan/phpstan-deprecation-rules": "^2.0",
