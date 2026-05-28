@@ -40,6 +40,7 @@ class MacroServiceProvider extends ServiceProvider
 
         Builder::macro('whereRegexp', function ($column, string $pattern) {
             $driverName = DB::connection()->getDriverName();
+            /** @var literal-string */
             $wrappedColumn = $this->getGrammar()->wrap($column);
 
             switch ($driverName) {
@@ -57,6 +58,7 @@ class MacroServiceProvider extends ServiceProvider
 
         Builder::macro('whereNotRegexp', function ($column, string $pattern) {
             $driverName = DB::connection()->getDriverName();
+            /** @var literal-string */
             $wrappedColumn = $this->getGrammar()->wrap($column);
 
             switch ($driverName) {
