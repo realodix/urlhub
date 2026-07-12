@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 6
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -32,7 +32,7 @@ jobs:
   #   timeout-minutes: 6
   #   steps:
   #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  #       uses: actions/checkout@v7
   #       with:
   #         fetch-depth: 0
 
