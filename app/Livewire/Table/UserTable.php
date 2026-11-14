@@ -54,8 +54,8 @@ final class UserTable extends PowerGridComponent
 
                 return
                     '<span title="'.$date->toDayDateTimeString().' '.$offset.'" class="dark:text-dark-400">'
-                        .$date->shortRelativeDiffForHumans().
-                    '</span>';
+                        .$date->shortRelativeDiffForHumans()
+                    .'</span>';
             })
             ->add('action', function (User $user) {
                 return view('components.table.action-button_user', [
