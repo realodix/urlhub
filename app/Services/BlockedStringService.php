@@ -103,7 +103,7 @@ class BlockedStringService
     public function filterCandidates($value)
     {
         return collect($value)
-            ->filter(fn($value) => Preg::isMatch('/^([0-9a-zA-Z\-])+$/', $value))
+            ->filter(fn(string $value) => Preg::isMatch('/^([0-9a-zA-Z\-])+$/', $value))
             ->unique();
     }
 }
