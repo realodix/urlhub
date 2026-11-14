@@ -87,9 +87,6 @@ abstract class BaseUrlTable extends PowerGridComponent
             });
     }
 
-    /**
-     * @return array<Column>
-     */
     public function columns(): array
     {
         return [

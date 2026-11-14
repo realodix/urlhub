@@ -66,9 +66,6 @@ final class UserTable extends PowerGridComponent
             });
     }
 
-    /**
-     * @return array<Column>
-     */
     public function columns(): array
     {
         return [

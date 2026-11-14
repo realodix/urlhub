@@ -24,9 +24,6 @@ final class UrlTable extends BaseUrlTable
         return $query->where('urls.user_type', UserType::User);
     }
 
-    /**
-     * @return array<Column>
-     */
     public function columns(): array
     {
         return [
