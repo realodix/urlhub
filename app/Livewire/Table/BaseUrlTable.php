@@ -8,6 +8,7 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use Illuminate\Support\HtmlString;
 
 /**
  * @codeCoverageIgnore
@@ -57,33 +58,33 @@ abstract class BaseUrlTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('keyword', function (Url $url) {
-                return view('components.table.keyword', ['model' => $url])->render();
+            ->add('keyword', function (Url $url): HtmlString {
+                return new HtmlString(view('components.table.keyword', ['model' => $url])->render());
             })
-            ->add('destination', function (Url $url) {
-                return view('components.table.destination', [
+            ->add('destination_fmt', function (Url $url): HtmlString {
+                return new HtmlString(view('components.table.destination', [
                     'model' => $url,
                     'title' => $url->title,
                     'destination' => $url->destination,
                     'limit' => static::STR_LIMIT,
-                ])->render();
+                ])->render());
             })
-            ->add('visits_count', function (Url $url) {
-                return view('components.table.visit', [
+            ->add('visits_count', function (Url $url): HtmlString {
+                return new HtmlString(view('components.table.visit', [
                     'clicks' => $url->visits_count,
                     'uniqueClicks' => $url->unique_visit_count,
-                ])->render();
+                ])->render());
             })
-            ->add('created_at_formatted', function (Url $url) {
-                return view('components.table.date-created', [
+            ->add('created_at_formatted', function (Url $url): HtmlString {
+                return new HtmlString(view('components.table.date-created', [
                     'date' => $url->created_at->inUserTz(),
-                ])->render();
+                ])->render());
             })
-            ->add('action', function (Url $url) {
-                return view('components.table.action-button', [
+            ->add('action', function (Url $url): HtmlString {
+                return new HtmlString(view('components.table.action-button', [
                     'detail_link' => route('link_detail', $url->keyword),
                     'delete_link' => route('link.delete', $url),
-                ])->render();
+                ])->render());
             });
     }
 
@@ -93,7 +94,7 @@ abstract class BaseUrlTable extends PowerGridComponent
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),
-            Column::make('Destination URL', 'destination')
+            Column::make('Destination URL', 'destination_fmt', 'destination')
                 ->sortable()
                 ->searchable(),
             Column::make('Clicks', 'visits_count')

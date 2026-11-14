@@ -8,6 +8,7 @@ use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use Illuminate\Support\HtmlString;
 
 /**
  * @codeCoverageIgnore
@@ -43,26 +44,28 @@ final class UserTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('name', function (User $user) {
-                return view('components.table.user-username', ['model' => $user])
-                    ->render();
+            ->add('name', function (User $user): HtmlString {
+                return new HtmlString(view('components.table.user-username', ['model' => $user])
+                    ->render(),
+                );
             })
             ->add('email')
-            ->add('created_at_formatted', function (User $user) {
+            ->add('created_at_formatted', function (User $user): HtmlString {
                 $date = $user->created_at->inUserTz();
                 $offset = '('.$date->getOffsetString().')';
 
-                return
+                return new HtmlString(
                     '<span title="'.$date->toDayDateTimeString().' '.$offset.'" class="dark:text-dark-400">'
                         .$date->shortRelativeDiffForHumans()
-                    .'</span>';
+                    .'</span>',
+                );
             })
-            ->add('action', function (User $user) {
-                return view('components.table.action-button_user', [
+            ->add('action', function (User $user): HtmlString {
+                return new HtmlString(view('components.table.action-button_user', [
                     'model' => $user,
                     'cp_link' => route('user.password.show', $user),
                     'delete_link' => route('user.delete.confirm', $user),
-                ])->render();
+                ])->render());
             });
     }
 

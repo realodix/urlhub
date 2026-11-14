@@ -30,7 +30,7 @@ final class UrlTable extends BaseUrlTable
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),
-            Column::make('Destination URL', 'destination')
+            Column::make('Destination URL', 'destination_fmt', 'destination')
                 ->sortable()
                 ->searchable(),
             Column::make('Clicks', 'visits_count')
