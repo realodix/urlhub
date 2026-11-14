@@ -1,0 +1,5 @@
+{
+    "intelephense.diagnostics.exclude": {
+        "*.php": ["P1005"]
+    }
+}
