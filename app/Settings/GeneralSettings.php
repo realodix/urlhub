@@ -29,6 +29,7 @@ class GeneralSettings extends Settings
 
     public bool $public_registration;
 
+    /** @var int<2, 11> */
     public int $key_len;
 
     public int $cst_key_min_len;
