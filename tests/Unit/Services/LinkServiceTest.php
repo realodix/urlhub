@@ -27,11 +27,11 @@ class LinkServiceTest extends TestCase
     public function getWebTitle(): void
     {
         settings()->fill(['autofill_link_title' => false])->save();
-        $actual = $this->linkService->getWebTitle('https://example123456789.com');
+        $actual = $this->linkService->getWebTitle('https://example0123456789.com');
         $this->assertSame(null, $actual);
 
         settings()->fill(['autofill_link_title' => true])->save();
-        $actual = $this->linkService->getWebTitle('https://example123456789.com');
+        $actual = $this->linkService->getWebTitle('https://example0123456789.com');
         $this->assertSame(null, $actual);
         $actual = $this->linkService->getWebTitle('whatsapp://send?text=WHATEVER_YOU_WANT');
         $this->assertSame(null, $actual);
