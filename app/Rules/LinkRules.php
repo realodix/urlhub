@@ -6,22 +6,16 @@ class LinkRules
 {
     /**
      * Maximum length of link
-     *
-     * @var int
      */
     const MAX_LENGTH = 7000;
 
     /**
      * Maximum length of title
-     *
-     * @var int
      */
     const TITLE_MAX_LENGTH = 255;
 
     /**
      * The minimum length of the password
-     *
-     * @var int
      */
     const PWD_MIN_LENGTH = 3;
 

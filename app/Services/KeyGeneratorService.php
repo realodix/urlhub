@@ -7,13 +7,10 @@ use App\Settings\GeneralSettings;
 
 class KeyGeneratorService
 {
-    /** @var string */
     const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
      * Reserved for future use
-     *
-     * @var list<string>
      */
     const RESERVED_KEYWORD = [
         'build', 'hot', // When Vite is running in development
@@ -26,8 +23,6 @@ class KeyGeneratorService
      *
      * This is a safety measure to prevents infinite loops if the length of
      * the random value is very small.
-     *
-     * @var int
      */
     const MAXIMUM_TRIES = 200;
 

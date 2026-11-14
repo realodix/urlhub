@@ -11,7 +11,6 @@ use PowerComponents\LivewirePowerGrid\Column;
  */
 final class UrlTable extends BaseUrlTable
 {
-    /** @var int */
     const STR_LIMIT = 80;
 
     public string $tableName = 'all_urls_table';

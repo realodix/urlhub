@@ -7,22 +7,11 @@ use Spatie\LaravelSettings\Settings;
 
 class GeneralSettings extends Settings
 {
-    /** @var int */
     const KEY_LEN_LOW = 2;
-
-    /** @var int */
     const KEY_LEN_UP = 11;
-
-    /** @var int */
     const CST_KEY_MIN_LEN_LOW = 2;
-
-    /** @var int */
     const CST_KEY_MIN_LEN_UP = 29;
-
-    /** @var int */
     const CST_KEY_MAX_LEN_LOW = 3;
-
-    /** @var int */
     const CST_KEY_MAX_LEN_UP = 30;
 
     public bool $public_shortening;

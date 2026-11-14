@@ -29,10 +29,8 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, HasRoles, Notifiable;
 
-    /** @var null */
     const GUEST_ID = null;
 
-    /** @var string */
     const GUEST_NAME = 'guest';
 
     /**

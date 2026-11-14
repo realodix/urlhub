@@ -14,13 +14,8 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
  */
 abstract class BaseUrlTable extends PowerGridComponent
 {
-    /** @var int */
     const STR_LIMIT = 90;
-
-    /** @var int */
     const PER_PAGE = 25;
-
-    /** @var list<int> */
     const PER_PAGE_VALUES = [10, 25, 50, 100];
 
     public string $sortDirection = 'desc';
