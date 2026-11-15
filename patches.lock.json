@@ -1,0 +1,27 @@
+{
+    "_hash": "95be1aa9bd159486e1c528e7f243511b3cc7bdd5bb38c1b4c221942fd5c4044b",
+    "patches": {
+        "power-components/livewire-powergrid": [
+            {
+                "package": "power-components/livewire-powergrid",
+                "description": "0",
+                "url": "patches/power-components-livewire-powergrid-resources-views-components-themes-tailwind-pagination-blade-php.patch",
+                "sha256": "d7c372a5283a50bfd9fe15d1264995a88f3a86962cf13a38e7251dc701114a3b",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "power-components/livewire-powergrid",
+                "description": "1",
+                "url": "patches/power-components-livewire-powergrid-src-themes-tailwind-php.patch",
+                "sha256": "60d0cb567ce7d6be300656e3d8d4f28e382b66698027e193141eafa882d7cdec",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

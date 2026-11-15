@@ -63,10 +63,43 @@
 }
 
 
-#power-grid-table-base {
+.pg-table-wrapper {
     div:has(> div > table) {
         @apply border-border-200 dark:border-dark-700;
         scrollbar-width: thin;
+    }
+
+    .header-lay-cont {
+        @apply dark:bg-dark-900;
+        @apply rounded-t-xl ring ring-border-200 dark:ring-dark-700;
+
+        /* [data-cy="toggle-columns-panel"] */
+        .dd-wrapper {
+            svg {
+                @apply text-slate-800 dark:text-dark-400;
+            }
+
+            .header-tc-panel {
+                button, input {
+                    /* @apply focus-within:focus:ring-gray-400 focus-within:ring-gray-400 focus-within:ring-1; */
+                    /* @apply dark:focus-within:focus:ring-dark-600 dark:focus-within:ring-dark-600; */
+                    @apply dark:bg-dark-900 dark:ring-dark-700;
+                    @apply border border-border-200 dark:border-dark-700;
+                }
+
+                input {
+                    @apply focus:ring-offset-1 focus:ring-offset-gray-400 ;
+                }
+
+                .dd-apply {
+                    @apply dark:text-emerald-500 dark:hover:text-emerald-700;
+                }
+
+                .dd-reset {
+                    @apply bg-transparent border-transparent;
+                }
+            }
+        }
     }
 
     table {
@@ -102,7 +135,7 @@
         @apply border-border-300/70 dark:border-dark-700;
     }
 
-    button[data-cy^="toggle-columns-"] {
+    /* button[data-cy^="toggle-columns-"] {
         @apply text-slate-800 bg-gray-100 hover:bg-gray-50 active:bg-gray-100 focus-within:ring-1;
         @apply dark:bg-dark-800 dark:hover:bg-dark-700;
         @apply duration-300 ease-out;
@@ -119,14 +152,20 @@
         svg {
             @apply text-slate-800 dark:text-dark-400;
         }
-    }
+    } */
 
-    div[wire\:target="loadMore" i] {
-        .dark\:text-pg-primary-300 {
+    #pg-footer {
+        @apply border-none;
+        @apply dark:bg-dark-900;
+
+        .pagination-records_text {
             @apply dark:text-dark-400;
         }
+        nav {
+            /* .pagination-item {
+                @apply border-border-300/70 dark:border-dark-700;
+            } */
 
-        nav[aria-label="Pagination Navigation"] {
             span, a {
                 @apply border-border-300/70 dark:border-dark-700;
             }
@@ -137,16 +176,11 @@
             }
 
             a {
-                @apply bg-gray-100 hover:bg-gray-50 hover:text-slate-800 hover:font-semibold;
-                @apply dark:bg-dark-800 dark:text-dark-400 dark:hover:text-emerald-500;
+                @apply bg-gray-100 hover:bg-gray-50 hover:text-slate-800;
+                @apply dark:bg-dark-800 dark:hover:bg-dark-800! dark:text-dark-400 dark:hover:text-emerald-500;
                 @apply first:border-r-0 nth-last-[-n+2]:border-l-0;
             }
         }
-    }
-
-    #pg-footer {
-        @apply border-border-200;
-        @apply dark:bg-dark-900 dark:border-dark-700;
     }
 }
 

@@ -8,6 +8,7 @@
         "php": "^8.4",
         "blade-ui-kit/blade-icons": "^1.10",
         "composer/pcre": "^3.3",
+        "cweagans/composer-patches": "^2.0",
         "embed/embed": "^4.4",
         "endroid/qr-code": "^6.0",
         "filament/widgets": "^5.2",
@@ -32,7 +33,8 @@
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpunit/phpunit": "^13.0",
         "realodix/relax": "^1.20",
-        "spatie/laravel-ignition": "^2.10"
+        "spatie/laravel-ignition": "^2.10",
+        "symplify/vendor-patches": "^12.2"
     },
     "minimum-stability": "stable",
     "autoload": {
@@ -50,11 +52,20 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "cweagans/composer-patches": true
+        }
     },
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "patches": {
+            "power-components/livewire-powergrid": [
+                "patches/power-components-livewire-powergrid-resources-views-components-themes-tailwind-pagination-blade-php.patch",
+                "patches/power-components-livewire-powergrid-src-themes-tailwind-php.patch"
+            ]
         }
     },
     "scripts": {

@@ -1,0 +1,29 @@
+--- ../resources/views/components/themes/tailwind/pagination.blade.php
++++ ../resources/views/components/themes/tailwind/pagination.blade.php
+@@ -9,7 +9,7 @@
+                 <div @class(['mr-3' => $paginator->hasPages()])>
+                     <div @class([
+                         'mr-2' => $paginator->hasPages(),
+-                        theme('pagination.records_text', 'leading-5 text-center text-zinc-700 text-md dark:text-zinc-300 sm:text-right'),
++                        theme('pagination.records_text', 'pagination-records_text leading-5 text-center text-zinc-700 text-md dark:text-zinc-300 sm:text-right'),
+                     ])>
+                         {{ trans('livewire-powergrid::datatable.pagination.showing') }}
+                         <span class="font-semibold firstItem">{{ $paginator->firstItem() }}</span>
+@@ -24,7 +24,7 @@
+                 <div @class(['mr-3' => $paginator->hasPages()])>
+                     <p @class([
+                         'mr-2' => $paginator->hasPages(),
+-                        theme('pagination.records_text', 'leading-5 text-center text-zinc-700 text-md dark:text-zinc-300 sm:text-right'),
++                        theme('pagination.records_text', 'pagination-records_text leading-5 text-center text-zinc-700 text-md dark:text-zinc-300 sm:text-right'),
+                     ])>
+                         <span class="font-semibold firstItem"> {{ $paginator->firstItem() }}</span>
+                         -
+@@ -37,7 +37,7 @@
+                 <div @class(['mr-3' => $paginator->hasPages()])>
+                     <p @class([
+                         'mr-2' => $paginator->hasPages(),
+-                        theme('pagination.records_text', 'leading-5 text-center text-zinc-700 text-md dark:text-zinc-300 sm:text-right'),
++                        theme('pagination.records_text', 'pagination-records_text leading-5 text-center text-zinc-700 text-md dark:text-zinc-300 sm:text-right'),
+                     ])>
+                         <span class="font-semibold firstItem"> {{ $paginator->firstItem() }}</span>
+                         -
