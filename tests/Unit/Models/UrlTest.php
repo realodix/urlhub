@@ -12,15 +12,6 @@ use Tests\TestCase;
 #[PHPUnit\Group('model')]
 class UrlTest extends TestCase
 {
-    private Url $url;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->url = new Url;
-    }
-
     public function testFactory(): void
     {
         $m = Url::factory()->guest()->create();

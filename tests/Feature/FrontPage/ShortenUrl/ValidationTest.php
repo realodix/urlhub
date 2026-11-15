@@ -46,7 +46,7 @@ class ValidationTest extends TestCase
         ]);
 
         $response
-            ->assertSessionHasNoErrors('custom_key');
+            ->assertSessionHasNoErrors();
     }
 
     /**
