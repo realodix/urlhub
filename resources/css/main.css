@@ -64,6 +64,9 @@
 
 
 .pg-table-wrapper {
+    @apply border-none;
+    @apply bg-transparent;
+
     div:has(> div > table) {
         @apply border-border-200 dark:border-dark-700;
         scrollbar-width: thin;
@@ -71,9 +74,8 @@
 
     .header-lay-cont {
         @apply dark:bg-dark-900;
-        @apply rounded-t-xl ring ring-border-200 dark:ring-dark-700;
+        @apply rounded-t-xl;
 
-        /* [data-cy="toggle-columns-panel"] */
         .dd-wrapper {
             svg {
                 @apply text-slate-800 dark:text-dark-400;
@@ -81,8 +83,6 @@
 
             .header-tc-panel {
                 button, input {
-                    /* @apply focus-within:focus:ring-gray-400 focus-within:ring-gray-400 focus-within:ring-1; */
-                    /* @apply dark:focus-within:focus:ring-dark-600 dark:focus-within:ring-dark-600; */
                     @apply dark:bg-dark-900 dark:ring-dark-700;
                     @apply border border-border-200 dark:border-dark-700;
                 }
@@ -93,6 +93,14 @@
 
                 .dd-apply {
                     @apply dark:text-emerald-500 dark:hover:text-emerald-700;
+                    /* btn btn-secondary with bg-dark-900 */
+                    @apply inline-flex items-center justify-center px-4 h-10 min-h-10 ;
+                    @apply border border-border-300 rounded-md duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
+                    @apply text-base text-slate-800 hover:bg-gray-100 font-normal text-center no-underline align-middle tracking-wide;
+                    @apply dark:text-dark-400 dark:border-dark-700;
+
+                    @apply bg-gray-100 hover:bg-gray-50 active:bg-gray-100 hover:border-stone-400/70;
+                    @apply dark:hover:text-emerald-500 dark:bg-dark-900 dark:hover:bg-dark-800 dark:hover:border-emerald-500;
                 }
 
                 .dd-reset {
@@ -100,6 +108,10 @@
                 }
             }
         }
+    }
+
+    .pg-table-responsive {
+        @apply border border-b-0 dark:border-dark-700 rounded-t-xl;
     }
 
     table {
@@ -135,37 +147,14 @@
         @apply border-border-300/70 dark:border-dark-700;
     }
 
-    /* button[data-cy^="toggle-columns-"] {
-        @apply text-slate-800 bg-gray-100 hover:bg-gray-50 active:bg-gray-100 focus-within:ring-1;
-        @apply dark:bg-dark-800 dark:hover:bg-dark-700;
-        @apply duration-300 ease-out;
-
-        & + div:has(> [role="none"] > [wire\:key^="toggle-column-"]) {
-            @apply ring-border-300;
-            @apply dark:ring-dark-700 dark:bg-dark-800;
-
-            [wire\:key^="toggle-column-"] {
-                @apply dark:hover:bg-dark-900/50;
-            }
-        }
-
-        svg {
-            @apply text-slate-800 dark:text-dark-400;
-        }
-    } */
-
     #pg-footer {
-        @apply border-none;
+        @apply border border-t-0;
         @apply dark:bg-dark-900;
 
         .pagination-records_text {
             @apply dark:text-dark-400;
         }
         nav {
-            /* .pagination-item {
-                @apply border-border-300/70 dark:border-dark-700;
-            } */
-
             span, a {
                 @apply border-border-300/70 dark:border-dark-700;
             }
