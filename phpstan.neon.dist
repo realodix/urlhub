@@ -15,3 +15,5 @@ parameters:
         - messages:
             - '#^Call to an undefined method Illuminate\\Support\\Carbon::inUserTz\(\)\.$#'
             - '#^Call to an undefined method App\\Providers\\MacroServiceProvider::copy\(#'
+        - path: app\Livewire\Table
+          message: '#setUp\(\) should return array<string, mixed> but returns#'

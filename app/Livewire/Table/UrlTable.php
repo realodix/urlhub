@@ -24,16 +24,13 @@ final class UrlTable extends BaseUrlTable
         return $query->where('urls.user_type', UserType::User);
     }
 
-    /**
-     * @return array<Column>
-     */
     public function columns(): array
     {
         return [
             Column::make('Short URL', 'keyword')
                 ->sortable()
                 ->searchable(),
-            Column::make('Destination URL', 'destination')
+            Column::make('Destination URL', 'destination_fmt', 'destination')
                 ->sortable()
                 ->searchable(),
             Column::make('Clicks', 'visits_count')
