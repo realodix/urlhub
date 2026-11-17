@@ -28,6 +28,24 @@ class NewUserTest extends TestCase
     }
 
     #[PHPUnit\Test]
+    public function create_NewUserWithRoleAdmin_ByBasicUser_WillBeForbidden(): void
+    {
+        $response = $this->actingAs($this->basicUser())
+            ->post(route('user.store'), [
+                'username' => 'test',
+                'email' => 'test@urlhub.test',
+                'password' => 'password',
+                'role' => 'admin',
+            ]);
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseMissing('users', [
+            'name' => 'test',
+        ]);
+    }
+
+    #[PHPUnit\Test]
     public function validate_CreateNewUser(): void
     {
         $response = $this->actingAs($this->adminUser())

@@ -13,7 +13,7 @@ class UserController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        return [new Middleware('role:admin', only: ['view', 'create'])];
+        return [new Middleware('role:admin', only: ['view', 'create', 'store'])];
     }
 
     /**
