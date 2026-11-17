@@ -3,7 +3,12 @@
     "description": "URL shortener web application based on the Laravel PHP Framework.",
     "license": "MIT",
     "type": "project",
-    "keywords": ["laravel", "url-shortener", "shorten-urls", "shorturl"],
+    "keywords": [
+        "laravel",
+        "url-shortener",
+        "shorten-urls",
+        "shorturl"
+    ],
     "require": {
         "php": "^8.4",
         "blade-ui-kit/blade-icons": "^1.10",
