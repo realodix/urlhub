@@ -4,11 +4,11 @@ namespace App\Livewire\Table;
 
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\HtmlString;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
-use Illuminate\Support\HtmlString;
 
 /**
  * @codeCoverageIgnore
