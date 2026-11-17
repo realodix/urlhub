@@ -16,9 +16,9 @@ class DeviceDetectorServiceTest extends TestCase
         $device->setUserAgent($userAgent);
         $device->parse();
 
-        $this->assertEquals('Chrome Mobile iOS', $device->getClientAttr('name'));
-        $this->assertEquals('iPadOS', $device->getOsAttr('name'));
-        $this->assertEquals('iOS', $device->getOsAttr('family'));
+        $this->assertEquals('Chrome Mobile iOS', $device->getClient('name'));
+        $this->assertEquals('iPadOS', $device->getOs('name'));
+        $this->assertEquals('iOS', $device->getOs('family'));
     }
 
     public function testOsNameIsCorrect(): void

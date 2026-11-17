@@ -37,9 +37,9 @@ class UserService
         $device = Helper::deviceDetector();
         $deviceInfo = implode([
             request()->ip(),
-            $device->getClientAttr('name'),
-            $device->getOsAttr('name'),
-            $device->getOsAttr('version'),
+            $device->getClient('name'),
+            $device->getOs('name'),
+            $device->getOs('version'),
             request()->getPreferredLanguage(),
         ]);
 

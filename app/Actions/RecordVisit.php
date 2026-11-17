@@ -38,8 +38,8 @@ class RecordVisit
         $visit->user_uid = $this->userService->signature();
         $visit->is_first_click = $visit->isFirstClick($url);
         $visit->referer = $this->visitService->getRefererHost($referer);
-        $visit->browser = $deviceDetector->getClientAttr('name');
-        $visit->os = $deviceDetector->getOsAttr('family');
+        $visit->browser = $deviceDetector->getClient('name');
+        $visit->os = $deviceDetector->getOs('family');
         $visit->save();
     }
 }

@@ -17,3 +17,10 @@ parameters:
             - '#^Call to an undefined method App\\Providers\\MacroServiceProvider::copy\(#'
         - path: app\Livewire\Table
           message: '#setUp\(\) should return array<string, mixed> but returns#'
+        # matomo/device-detector
+        - path: app\Actions\RecordVisit.php
+          messages:
+            - '#::\$browser \(string\|null\) does not accept array\|string\|null#'
+            - '#::\$os \(string\|null\) does not accept array\|string\|null#'
+        - path: app\Services\UserService.php
+          rawMessage: 'Parameter #1 $array of function implode expects array<string>, array<int, array|string|null> given.'
