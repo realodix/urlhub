@@ -15,7 +15,6 @@ export default {
         extend: {
             colors: {
                 'dark': colors.neutral,
-                'pg-primary': colors.gray, // PowerGrid
             },
         },
     },
