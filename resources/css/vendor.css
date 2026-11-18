@@ -1,0 +1,117 @@
+.fi-wi-chart {
+    section {
+        @apply rounded-lg ring-0 shadow-none;
+        @apply dark:bg-dark-950/50! dark:ring-1 dark:ring-[#282828];
+    }
+}
+
+
+.pg-table-wrapper {
+    @apply border-none;
+    @apply bg-transparent;
+
+    div:has(> div > table) {
+        @apply border-border-200 dark:border-dark-700;
+        scrollbar-width: thin;
+    }
+
+    .header-lay-cont {
+        @apply dark:bg-dark-900;
+        @apply rounded-t-xl;
+
+        .dd-wrapper {
+            svg {
+                @apply text-slate-800 dark:text-dark-400;
+            }
+
+            .header-tc-panel {
+                button, input {
+                    @apply dark:bg-dark-900 dark:ring-dark-700;
+                    @apply border border-border-200 dark:border-dark-700;
+                }
+
+                input {
+                    @apply focus:ring-offset-1 focus:ring-offset-gray-400 ;
+                }
+
+                .dd-apply {
+                    @apply dark:text-emerald-500 dark:hover:text-emerald-700;
+                    /* btn btn-secondary with bg-dark-900 */
+                    @apply inline-flex items-center justify-center px-4 h-10 min-h-10 ;
+                    @apply border border-border-300 rounded-md duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
+                    @apply text-base text-slate-800 hover:bg-gray-100 font-normal text-center no-underline align-middle tracking-wide;
+                    @apply dark:text-dark-400 dark:border-dark-700;
+
+                    @apply bg-gray-100 hover:bg-gray-50 active:bg-gray-100 hover:border-stone-400/70;
+                    @apply dark:hover:text-emerald-500 dark:bg-dark-900 dark:hover:bg-dark-800 dark:hover:border-emerald-500;
+                }
+
+                .dd-reset {
+                    @apply bg-transparent border-transparent;
+                }
+            }
+        }
+    }
+
+    .pg-table-responsive {
+        @apply border border-b-0 dark:border-dark-700 rounded-t-xl;
+    }
+
+    table {
+        /* I had to use @layer utilities !important, because PG also uses !important. */
+        @layer utilities { @apply dark:bg-transparent!; }
+
+        thead {
+            @apply shadow-none;
+        }
+
+        tr {
+            @apply hover:bg-primary-50/40;
+            @apply dark:bg-dark-900 dark:hover:bg-dark-900/85;
+        }
+
+        td {
+            @apply border border-border-200 dark:border-dark-700;
+            @apply first:border-l-0 last:border-r-0;
+        }
+    }
+
+    button, input, select {
+        @apply focus-within:focus:ring-gray-400 focus-within:ring-gray-400 focus-within:ring-1;
+        @apply dark:bg-dark-800 dark:ring-dark-700 dark:focus-within:focus:ring-dark-600 dark:focus-within:ring-dark-600;
+    }
+
+    input, button {
+        @apply ring-border-300 hover:ring-stone-400/70;
+        @apply dark:ring-dark-700 dark:hover:ring-dark-600;
+    }
+
+    select {
+        @apply border-border-300/70 dark:border-dark-700;
+    }
+
+    #pg-footer {
+        @apply border border-t-0;
+        @apply dark:bg-dark-900;
+
+        .pagination-records_text {
+            @apply dark:text-dark-400;
+        }
+        nav {
+            span, a {
+                @apply border-border-300/70 dark:border-dark-700;
+            }
+
+            span {
+                @apply bg-white text-slate-800 dark:bg-dark-800 dark:text-emerald-500;
+                @apply first:rounded-l-md last:rounded-r-md;
+            }
+
+            a {
+                @apply bg-gray-100 hover:bg-gray-50 hover:text-slate-800;
+                @apply dark:bg-dark-800 dark:hover:bg-dark-800! dark:text-dark-400 dark:hover:text-emerald-500;
+                @apply first:border-r-0 nth-last-[-n+2]:border-l-0;
+            }
+        }
+    }
+}
