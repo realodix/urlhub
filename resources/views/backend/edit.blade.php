@@ -184,7 +184,7 @@
                                         count: {{ strlen($url->expired_notes) }},
                                         resize(e) { e.style.height = 'auto'; e.style.height = e.scrollHeight + 'px'; }
                                     }"
-                                    x-init="$nextTick(() => resize($refs.ta_expired_notes))"
+                                    x-effect="if (open) $nextTick(() => resize($refs.ta_expired_notes))"
                                 >
                                     <textarea name="expired_notes" placeholder="Expired notes" maxlength="200"
                                         x-ref="ta_expired_notes"
