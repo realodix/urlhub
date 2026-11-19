@@ -1,4 +1,4 @@
-<header class="navbar" x-data="{ open: false, atTop: false }"
+<header class="navbar relative z-40" x-data="{ open: false, atTop: false }"
     @if (request()->is('admin*'))
         x-bind:class="{ 'sticky top-0 z-50': atTop }"
         {{-- Sticky on scroll --}}
