@@ -1,6 +1,6 @@
 <div>
     <a role="button" href="{{ $detail_link }}" target="_blank" title="Details"
-        class="btn btn-secondary btn-square btn-xs"
+        class="btn btn-sec-subtle btn-square btn-xs"
     >
         @svg('icon-item-detail')
     </a>
@@ -10,7 +10,7 @@
         class="inline"
     >
         @csrf @method('DELETE')
-        <button type="submit" title="Delete" class="btn btn-delete btn-square btn-xs">
+        <button type="submit" title="Delete" class="btn btn-del-subtle btn-square btn-xs">
             @svg('icon-trash')
         </button>
     </form>

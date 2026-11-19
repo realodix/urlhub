@@ -12,7 +12,7 @@
             {{ urlDisplay($destination, $limit) }}
         </a>
         <a href="{{ $destination }}" target="_blank" title="{{ $destination }}" rel="noopener noreferrer"
-            class="text-slate-600 dark:text-dark-400"
+            class="text-slate-600 dark:text-dark-400 hover:text-emerald-700 dark:hover:text-emerald-400"
         >
             @svg('open-link-in-new')
         </a>

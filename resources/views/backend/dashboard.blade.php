@@ -11,7 +11,7 @@
         <div class="card card-master shadow-xs p-4">
             <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
                 <span class="text-sm font-medium">Links</span>
-                @svg('icon-link', 'mr-1.5 size-4')
+                @svg('icon-link', 'mr-1.5 size-4 text-emerald-600 dark:text-emerald-400')
             </div>
             <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
                 {{ n_abb(auth()->user()->urls()->count()) }}
@@ -20,7 +20,7 @@
         <div class="card card-master shadow-xs p-4">
             <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
                 <span class="text-sm font-medium">Visits</span>
-                @svg('icon-chart-line-alt', 'mr-1.5 size-4')
+                @svg('icon-chart-line-alt', 'mr-1.5 size-4 text-amber-600 dark:text-amber-400')
             </div>
             <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
                 {{ n_abb(auth()->user()->visits()->count()) }}
@@ -29,7 +29,7 @@
         <div class="card card-master shadow-xs p-4">
             <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
                 <span class="text-sm font-medium">Visitors</span>
-                @svg('icon-people', 'mr-1.5 size-4')
+                @svg('icon-people', 'mr-1.5 size-4 text-emerald-600 dark:text-emerald-400')
             </div>
             <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
                 {{ n_abb(auth()->user()->visits()->distinct('visits.user_uid')->count()) }}

@@ -138,12 +138,12 @@
                                 <label class="form-label"># Password</label>
                                 <p class="font-light text-sm dark:text-dark-400 mb-2">Protect your link with a password.</p>
                                 @if($url->password)
-                                    <button type="button" title="Add Password" x-on:click="$dispatch('open-modal', 'edit-password-modal')" class="btn btn-sm">
+                                    <button type="button" title="Add Password" x-on:click="$dispatch('open-modal', 'edit-password-modal')" class="btn btn-sec-subtle btn-sm">
                                         @svg('icon-key', 'mr-1') Edit Password
                                     </button>
 
                                     <button type="button" x-on:click="$dispatch('open-modal', 'remove-password-modal')"
-                                        class="btn btn-delete-danger btn-sm dark:text-red-700! dark:hover:text-red-400! dark:border-red-900!"
+                                        class="btn btn-del-subtle btn-sm"
                                     >
                                         Remove Password
                                     </button>
@@ -233,21 +233,21 @@
         @include('backend.linkpassword.edit')
 
         <x-modal name="remove-password-modal" maxWidth="md">
-            <x-slot:title>Remove Password for <span class="font-semibold">{{ $url->keyword }}</span></x-slot:title>
+            <x-slot:title>Remove Password for <span class="font-semibold dark:text-emerald-500">{{ $url->keyword }}</span></x-slot:title>
             <form method="post" action="{{ route('link.password.delete', $url) }}" class="space-y-6">
                 @csrf @method('DELETE')
                 <p class="font-light text-sm dark:text-dark-400 mt-2 mb-2">
                     Are you sure you want to remove the password for this link? This action cannot be undone.
                 </p>
 
-                <div class="flex justify-end items-center">
+                <div class="flex justify-end items-center mt-10">
+                    <button type="submit" class="btn btn-del btn-sm mr-2">Remove Password</button>
                     <button type="button"
                         x-on:click="$dispatch('close-modal', 'remove-password-modal')"
-                        class="btn btn-secondary mr-2"
+                        class="btn btn-secondary btn-sm"
                     >
                         Cancel
                     </button>
-                    <button type="submit" class="btn btn-delete-danger">Remove Password</button>
                 </div>
             </form>
         </x-modal>
