@@ -53,10 +53,10 @@ $maxWidthClasses = [
         <button
             aria-label="Close modal"
             x-on:click="showModal = false"
-            class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none
+            class="absolute top-3 right-3 focus:outline-none hover:bg-gray-100 dark:hover:bg-transparent
                 border border-border-200 dark:border-dark-700 rounded-lg pr-1 pl-1"
         >
-            @svg('icon-close', 'size-4 text-gray-500')
+            @svg('icon-close', 'size-4 text-gray-500 dark:hover:text-red-400')
         </button>
 
         @if ($title)
