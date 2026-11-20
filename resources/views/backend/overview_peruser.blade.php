@@ -4,32 +4,79 @@
 @section('content')
 <div class="container-alt max-w-340">
     <div class="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
-        <div class="card card-master shadow-xs p-4">
-            <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
-                <span class="text-sm font-medium">Links</span>
-                @svg('icon-link', 'mr-1.5 size-4')
+        <!-- Card 1: Links -->
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+            <!-- Subtle decorative background glow -->
+            <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-emerald-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-emerald-400/10"></div>
+
+            <div class="flex items-start justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-neutral-400">
+                        Links
+                    </p>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{ n_abb(auth()->user()->urls()->count()) }}
+                    </p>
+                </div>
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-emerald-200/60 bg-emerald-50 text-emerald-600 dark:border-emerald-800/40 dark:bg-emerald-950/60 dark:text-emerald-400">
+                    @svg('icon-link', 'size-5')
+                </div>
             </div>
-            <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
-                {{ n_abb(auth()->user()->urls()->count()) }}
-            </p>
+
+            <div class="mt-4 flex items-center gap-1.5 border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-neutral-800 dark:text-neutral-400">
+                <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span>Your shortened URLs</span>
+            </div>
         </div>
-        <div class="card card-master shadow-xs p-4">
-            <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
-                <span class="text-sm font-medium">Visits</span>
-                @svg('icon-chart-line-alt', 'mr-1.5 size-4')
+
+        <!-- Card 2: Visits -->
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+            <!-- Subtle decorative background glow -->
+            <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-amber-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-amber-400/10"></div>
+
+            <div class="flex items-start justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-neutral-400">
+                        Visits
+                    </p>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{ n_abb(auth()->user()->visits()->count()) }}
+                    </p>
+                </div>
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-amber-200/60 bg-amber-50 text-amber-600 dark:border-amber-800/40 dark:bg-amber-950/60 dark:text-amber-400">
+                    @svg('icon-chart-line-alt', 'size-5')
+                </div>
             </div>
-            <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
-                {{ n_abb(auth()->user()->visits()->count()) }}
-            </p>
+
+            <div class="mt-4 flex items-center gap-1.5 border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-neutral-800 dark:text-neutral-400">
+                <span class="inline-block h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+                <span>Total clicks on your links</span>
+            </div>
         </div>
-        <div class="card card-master shadow-xs p-4">
-            <div class="flex justify-between items-end text-slate-600 dark:text-dark-400">
-                <span class="text-sm font-medium">Visitors</span>
-                @svg('icon-people', 'mr-1.5 size-4')
+
+        <!-- Card 3: Visitors -->
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+            <!-- Subtle decorative background glow -->
+            <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-blue-400/10"></div>
+
+            <div class="flex items-start justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-neutral-400">
+                        Visitors
+                    </p>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{ n_abb(auth()->user()->visits()->distinct('visits.user_uid')->count()) }}
+                    </p>
+                </div>
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-200/60 bg-blue-50 text-blue-600 dark:border-blue-800/40 dark:bg-blue-950/60 dark:text-blue-400">
+                    @svg('icon-people', 'size-5')
+                </div>
             </div>
-            <p class="text-2xl font-bold text-slate-700 dark:text-dark-200 inline-flex items-center space-x-2">
-                {{ n_abb(auth()->user()->visits()->distinct('visits.user_uid')->count()) }}
-            </p>
+
+            <div class="mt-4 flex items-center gap-1.5 border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-neutral-800 dark:text-neutral-400">
+                <span class="inline-block h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+                <span>Unique visitors reached</span>
+            </div>
         </div>
     </div>
 
@@ -47,171 +94,319 @@
 
     <br>
 
-    {{-- Start Grid Container for Statistics --}}
-    <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-4">
-        @php
-            $tVisits = $user->visits()->count();
-        @endphp
-        {{-- Visited URLs Card (Col 1, Row 1 - Wider) --}}
-        <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-4">
-                <h2 class="text-2xl dark:text-dark-200 tracking-tight">Visited URLs</h2>
-                <p class="mt-2 text-md text-gray-600 dark:text-dark-400">A list of your short URLs with the highest number of visits.</p>
+    @php
+        $tVisits = $user->visits()->count();
+        $topUrls = $linkService->getTopUrlsByVisits($user);
+        $topReferrers = $visitService->topReferrers($user);
+        $topBrowsers = $visitService->topBrowsers($user);
+        $topOS = $visitService->topOperatingSystems($user);
+    @endphp
+
+    {{-- First Row: Visited URLs & Referrers --}}
+    <div class="grid grid-cols-1 gap-5 lg:grid-cols-[3fr_2fr]">
+        {{-- Visited URLs --}}
+        <div class="rounded-xl border border-gray-200 bg-white dark:border-dark-800 dark:bg-dark-900">
+            <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4 dark:border-dark-800">
+                <div>
+                    <h2 class="text-sm font-semibold text-gray-900 dark:text-white">
+                        Visited URLs
+                    </h2>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-dark-400">
+                        Most visited short links
+                    </p>
+                </div>
+
+                <span class="text-xs text-gray-400 dark:text-dark-500">
+                    Top links
+                </span>
             </div>
-            <div>
-                @php
-                    $topUrls = $linkService->getTopUrlsByVisits($user);
-                @endphp
+
+            <div class="p-2">
                 @forelse ($topUrls as $index => $url)
-                    <div class="flex items-center py-2">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                <div>
-                                    <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                    <span class="text-gray-600 mt-1">
-                                        <a href="{{ $url->short_url }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline font-medium">
+                    @php
+                        $percentage = $tVisits > 0
+                            ? round(($url->visits_count / $tVisits) * 100, 1)
+                            : 0;
+                    @endphp
+
+                    <div class="group rounded-lg px-3 py-3 transition-colors hover:bg-gray-50 dark:hover:bg-dark-800/50">
+                        <div class="flex items-center justify-between gap-4">
+                            <div class="flex min-w-0 items-center gap-3">
+                                <span class="w-5 shrink-0 text-xs tabular-nums text-gray-400 dark:text-dark-500">
+                                    {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                </span>
+
+                                <div class="min-w-0">
+                                    <div class="flex min-w-0 items-center gap-2">
+                                        <a
+                                            href="{{ $url->short_url }}"
+                                            target="_blank"
+                                            class="truncate text-sm font-medium text-gray-900 hover:text-emerald-600 dark:text-white dark:hover:text-emerald-400"
+                                        >
                                             {{ $url->keyword }}
                                         </a>
-                                        <a href="{{ route('link.edit', $url) }}" class="dark:text-dark-400 hover:underline">
-                                            {{ Str::limit($url->destination, 50) }}
-                                        </a>
-                                    </span>
-                                </div>
 
-                                @php
-                                    $percentage = round(($url->visits_count/$tVisits) * 100, 2);
-                                @endphp
-                                <span class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                    {{ $url->visits_count }} ({{ $percentage }}%)
+                                        <a
+                                            href="{{ route('link.edit', $url) }}"
+                                            class="shrink-0 text-xs text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-gray-700 dark:hover:text-dark-200"
+                                        >
+                                            Edit
+                                        </a>
+                                    </div>
+
+                                    <p class="mt-0.5 truncate text-xs text-gray-500 dark:text-dark-400" title="{{ $url->destination }}">
+                                        {{ Str::limit($url->destination, 55) }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex shrink-0 items-center gap-3 text-right tabular-nums">
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ number_format($url->visits_count) }}
+                                </span>
+
+                                <span class="w-10 text-xs text-gray-400 dark:text-dark-500">
+                                    {{ $percentage }}%
                                 </span>
                             </div>
-                            <x-progress-bar percentage="{{ $percentage }}" />
+                        </div>
+
+                        <div class="mt-2 ml-8 h-1 overflow-hidden rounded-full bg-gray-100 dark:bg-dark-800">
+                            <div
+                                class="h-full rounded-full bg-emerald-500/80 transition-all duration-300"
+                                style="width: {{ min($percentage, 100) }}%"
+                            ></div>
                         </div>
                     </div>
                 @empty
-                    <p class="text-gray-500 text-center">Data is not yet available.</p>
+                    <div class="flex h-40 flex-col items-center justify-center text-center">
+                        <p class="text-sm text-gray-500 dark:text-dark-400">
+                            No visit data yet
+                        </p>
+                        <p class="mt-1 text-xs text-gray-400 dark:text-dark-500">
+                            Share your links to start tracking clicks.
+                        </p>
+                    </div>
                 @endforelse
             </div>
         </div>
 
-        {{-- Referrers Card (Col 2, Row 1 - Smaller) --}}
-        <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-4">
-                <h2 class="text-2xl dark:text-dark-200 tracking-tight">Referrers</h2>
-                <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common sources of traffic to your short URLs.</p>
+        {{-- Referrers --}}
+        <div class="rounded-xl border border-gray-200 bg-white dark:border-dark-800 dark:bg-dark-900">
+            <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4 dark:border-dark-800">
+                <div>
+                    <h2 class="text-sm font-semibold text-gray-900 dark:text-white">
+                        Referrers
+                    </h2>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-dark-400">
+                        Where your visitors come from
+                    </p>
+                </div>
+
+                <span class="text-xs text-gray-400 dark:text-dark-500">
+                    Sources
+                </span>
             </div>
-            <div>
-                @php
-                    $topReferrers = $visitService->topReferrers($user);
-                @endphp
+
+            <div class="p-2">
                 @forelse ($topReferrers as $index => $referrerData)
-                    <div class="flex items-center py-2">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                <div>
-                                    <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                    <span class="text-gray-600 mt-1">
-                                        @if ($referrerData->referer)
-                                            <a href="{{ $referrerData->referer }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline">
-                                                {{ Str::limit($referrerData->referer, 50) }}
-                                            </a>
-                                        @else
-                                            <span class="dark:text-dark-400">
-                                                Direct / Unknown
-                                            </span>
-                                        @endif
-                                    </span>
-                                </div>
+                    @php
+                        $percentage = $tVisits > 0
+                            ? round(($referrerData->total / $tVisits) * 100, 1)
+                            : 0;
+                    @endphp
 
-                                @php
-                                    $percentage = round(($referrerData->total/$tVisits) * 100, 2);
-                                @endphp
-                                <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                    {{ number_format($referrerData->total) }} ({{ $percentage }}%)
+                    <div class="rounded-lg px-3 py-3 transition-colors hover:bg-gray-50 dark:hover:bg-dark-800/50">
+                        <div class="flex items-center justify-between gap-3">
+                            <div class="flex min-w-0 items-center gap-3">
+                                <span class="w-5 shrink-0 text-xs tabular-nums text-gray-400 dark:text-dark-500">
+                                    {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                </span>
+
+                                <div class="min-w-0">
+                                    @if ($referrerData->referer)
+                                        <a
+                                            href="{{ $referrerData->referer }}"
+                                            target="_blank"
+                                            title="{{ $referrerData->referer }}"
+                                            class="block truncate text-sm font-medium text-gray-800 hover:text-emerald-600 dark:text-dark-200 dark:hover:text-emerald-400"
+                                        >
+                                            {{ Str::limit($referrerData->referer, 42) }}
+                                        </a>
+                                    @else
+                                        <span class="text-sm font-medium text-gray-500 dark:text-dark-400">
+                                            Direct / Unknown
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
-                            <x-progress-bar percentage="{{ $percentage }}" />
+
+                            <div class="flex shrink-0 items-center gap-3 text-right tabular-nums">
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ number_format($referrerData->total) }}
+                                </span>
+
+                                <span class="w-10 text-xs text-gray-400 dark:text-dark-500">
+                                    {{ $percentage }}%
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 ml-8 h-1 overflow-hidden rounded-full bg-gray-100 dark:bg-dark-800">
+                            <div
+                                class="h-full rounded-full bg-amber-400/80 transition-all duration-300"
+                                style="width: {{ min($percentage, 100) }}%"
+                            ></div>
                         </div>
                     </div>
                 @empty
-                    <p class="text-gray-500 text-center">Data is not yet available.</p>
+                    <div class="flex h-40 flex-col items-center justify-center text-center">
+                        <p class="text-sm text-gray-500 dark:text-dark-400">
+                            No referrer data yet
+                        </p>
+                        <p class="mt-1 text-xs text-gray-400 dark:text-dark-500">
+                            Traffic sources will appear here once visited.
+                        </p>
+                    </div>
                 @endforelse
             </div>
         </div>
-    </div> {{-- End First Row Grid Container --}}
+    </div>
 
-    {{-- Start Second Row Grid Container (Browsers & OS) --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-        {{-- Browsers Card (Col 1, Row 2 - Same Width) --}}
-        <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-4">
-                <h2 class="text-2xl dark:text-dark-200 tracking-tight">Browsers</h2>
-                <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common browsers used to visit your short URLs.</p>
+    {{-- Second Row: Browsers & Operating Systems --}}
+    <div class="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+        {{-- Browsers --}}
+        <div class="rounded-xl border border-gray-200 bg-white dark:border-dark-800 dark:bg-dark-900">
+            <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4 dark:border-dark-800">
+                <div>
+                    <h2 class="text-sm font-semibold text-gray-900 dark:text-white">
+                        Browsers
+                    </h2>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-dark-400">
+                        Browsers used by your visitors
+                    </p>
+                </div>
+
+                <span class="text-xs text-gray-400 dark:text-dark-500">
+                    Clients
+                </span>
             </div>
-            <div>
-                @php
-                    $topBrowsers = $visitService->topBrowsers($user);
-                @endphp
+
+            <div class="p-2">
                 @forelse ($topBrowsers as $index => $browserData)
-                    <div class="flex items-center py-2">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                <div>
-                                    <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                    <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                        @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
-                                    </span>
-                                </div>
+                    @php
+                        $percentage = $tVisits > 0
+                            ? round(($browserData->total / $tVisits) * 100, 1)
+                            : 0;
+                    @endphp
 
-                                @php
-                                    $percentage = round(($browserData->total/$tVisits) * 100, 2);
-                                @endphp
-                                <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                    {{ number_format($browserData->total) }} ({{ $percentage }}%)
-                                </div>
+                    <div class="rounded-lg px-3 py-3 transition-colors hover:bg-gray-50 dark:hover:bg-dark-800/50">
+                        <div class="flex items-center justify-between gap-3">
+                            <div class="flex min-w-0 items-center gap-3">
+                                <span class="w-5 shrink-0 text-xs tabular-nums text-gray-400 dark:text-dark-500">
+                                    {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                </span>
+
+                                <span class="truncate text-sm font-medium text-gray-800 dark:text-dark-200">
+                                    {{ $browserData->browser ?: 'Unknown' }}
+                                </span>
                             </div>
-                            <x-progress-bar percentage="{{ $percentage }}" />
+
+                            <div class="flex shrink-0 items-center gap-3 text-right tabular-nums">
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ number_format($browserData->total) }}
+                                </span>
+
+                                <span class="w-10 text-xs text-gray-400 dark:text-dark-500">
+                                    {{ $percentage }}%
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 ml-8 h-1 overflow-hidden rounded-full bg-gray-100 dark:bg-dark-800">
+                            <div
+                                class="h-full rounded-full bg-indigo-400/80 transition-all duration-300"
+                                style="width: {{ min($percentage, 100) }}%"
+                            ></div>
                         </div>
                     </div>
                 @empty
-                    <p class="text-gray-500 text-center">Data is not yet available.</p>
+                    <div class="flex h-40 flex-col items-center justify-center text-center">
+                        <p class="text-sm text-gray-500 dark:text-dark-400">
+                            No browser data yet
+                        </p>
+                        <p class="mt-1 text-xs text-gray-400 dark:text-dark-500">
+                            Visitor browser stats will appear here.
+                        </p>
+                    </div>
                 @endforelse
             </div>
         </div>
 
-        {{-- Operating Systems Card (Col 2, Row 2 - Same Width) --}}
-        <div class="card card-master overflow-hidden p-4 md:p-8">
-            <div class="mb-4">
-                <h2 class="text-2xl dark:text-dark-200 tracking-tight">Operating Systems</h2>
-                <p class="mt-2 text-md text-gray-600 dark:text-dark-400">The most common operating systems used to visit your short URLs.</p>
-            </div>
-            <div>
-                @php
-                    $topOS = $visitService->topOperatingSystems($user);
-                @endphp
-                @forelse ($topOS as $index => $osData)
-                    <div class="flex items-center py-2">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                <div>
-                                    <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                    <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                        @if($osData->os) {{ $osData->os }} @else Unknown @endif
-                                    </span>
-                                </div>
+        {{-- Operating Systems --}}
+        <div class="rounded-xl border border-gray-200 bg-white dark:border-dark-800 dark:bg-dark-900">
+            <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4 dark:border-dark-800">
+                <div>
+                    <h2 class="text-sm font-semibold text-gray-900 dark:text-white">
+                        Operating Systems
+                    </h2>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-dark-400">
+                        Platforms used by your visitors
+                    </p>
+                </div>
 
-                                @php
-                                    $percentage = round(($osData->total/$tVisits) * 100, 2);
-                                @endphp
-                                <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                    {{ number_format($osData->total) }} ({{ $percentage }}%)
-                                </div>
+                <span class="text-xs text-gray-400 dark:text-dark-500">
+                    Platforms
+                </span>
+            </div>
+
+            <div class="p-2">
+                @forelse ($topOS as $index => $osData)
+                    @php
+                        $percentage = $tVisits > 0
+                            ? round(($osData->total / $tVisits) * 100, 1)
+                            : 0;
+                    @endphp
+
+                    <div class="rounded-lg px-3 py-3 transition-colors hover:bg-gray-50 dark:hover:bg-dark-800/50">
+                        <div class="flex items-center justify-between gap-3">
+                            <div class="flex min-w-0 items-center gap-3">
+                                <span class="w-5 shrink-0 text-xs tabular-nums text-gray-400 dark:text-dark-500">
+                                    {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                </span>
+
+                                <span class="truncate text-sm font-medium text-gray-800 dark:text-dark-200">
+                                    {{ $osData->os ?: 'Unknown' }}
+                                </span>
                             </div>
-                            <x-progress-bar percentage="{{ $percentage }}" />
+
+                            <div class="flex shrink-0 items-center gap-3 text-right tabular-nums">
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ number_format($osData->total) }}
+                                </span>
+
+                                <span class="w-10 text-xs text-gray-400 dark:text-dark-500">
+                                    {{ $percentage }}%
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 ml-8 h-1 overflow-hidden rounded-full bg-gray-100 dark:bg-dark-800">
+                            <div
+                                class="h-full rounded-full bg-blue-400/80 transition-all duration-300"
+                                style="width: {{ min($percentage, 100) }}%"
+                            ></div>
                         </div>
                     </div>
                 @empty
-                    <p class="text-gray-500 text-center">Data is not yet available.</p>
+                    <div class="flex h-40 flex-col items-center justify-center text-center">
+                        <p class="text-sm text-gray-500 dark:text-dark-400">
+                            No OS data yet
+                        </p>
+                        <p class="mt-1 text-xs text-gray-400 dark:text-dark-500">
+                            Visitor platform stats will appear here.
+                        </p>
+                    </div>
                 @endforelse
             </div>
         </div>
