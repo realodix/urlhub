@@ -1,4 +1,4 @@
-![screenshot](https://i.imgur.com/MeZvgiz.png)
+<img width="1024" height="254" alt="image" src="https://github.com/user-attachments/assets/6752fc9d-c580-410b-83d5-89a7f2342d14" />
 
 [![LaravelVersion](https://img.shields.io/badge/Laravel-13-f53003.svg?style=flat-square)](https://laravel.com/docs/13.x/releases)
 [![GitHub license](https://img.shields.io/github/license/realodix/urlhub.svg?style=flat-square)](https://github.com/realodix/urlhub/blob/master/LICENSE)
