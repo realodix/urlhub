@@ -60,8 +60,8 @@ main {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
     &.btn-primary {
-        @apply text-white bg-theme-primary-element border-primary-600 hover:bg-primary-700 active:bg-primary-900;
-        @apply dark:text-emerald-500 dark:bg-dark-950 dark:hover:bg-dark-900/50 dark:border-dark-700 dark:hover:border-emerald-500;
+        @apply text-white bg-black border-black hover:bg-neutral-800 hover:ring-4 hover:ring-neutral-200;
+        @apply dark:text-emerald-500 dark:bg-dark-950 dark:hover:bg-dark-900/50 dark:border-dark-700 dark:hover:border-emerald-500 dark:hover:ring-0;
     }
 
     &.btn-secondary {
