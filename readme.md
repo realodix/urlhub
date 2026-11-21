@@ -1,4 +1,4 @@
-<img width="1024" height="254" alt="image" src="https://github.com/user-attachments/assets/6752fc9d-c580-410b-83d5-89a7f2342d14" />
+<img width="1024" height="254" alt="image" src="resources/art/banner.png" />
 
 [![LaravelVersion](https://img.shields.io/badge/Laravel-13-f53003.svg?style=flat-square)](https://laravel.com/docs/13.x/releases)
 [![GitHub license](https://img.shields.io/github/license/realodix/urlhub.svg?style=flat-square)](https://github.com/realodix/urlhub/blob/master/LICENSE)
@@ -13,17 +13,40 @@ UrlHub was created, and is maintained by [Budi Hermawan](https://github.com/real
 - **Reliable link shortner:** Does the job really well and it is very consistent. UrlHub is definitely one of the most reliable self-hosted URL shortener out there. Would recommend easily.
 - **Custom URLs (ex: example.com/laravel):** Allows users to create more descriptive short URLs rather than a randomly generated mix of letters and numbers.
 - **QR Code Generation:** The fastest way to access to this data is most likely opening the link from a phone. Though short URLs are handy for typing, a more convenient approach to transfer a web link to a mobile phone is through QR codes scanning.
-- **Edit or delete your links:** You can change both the address and the destination URL. You can even delete your URL, a feature that is not available with most shorteners.
 - **Device-Aware Redirection**: Redirect mobile visitors to the appropriate URL depending on the operating system.
 - **Password protection:** Limit access to the destination URL with a password.
 - **Link expiration:** Set the expiration date and time to create temporary short links. Specify the expiration URL where visitors will be redirected after the old link has expired.
 - **Parameter Passing**: Forward query parameters from your short link to the destination URL.
-- **View where link goes:** It's nice to see where the link goes before clicking on it so you can avoid sketchy links.
 - **Dark mode**: Switch to a darker color scheme for a more comfortable experience in low-light environments.
 - **Power of customisation:** Do you want your site to be just for your use, so no one can register? No problem. It's in the configuration. Users must be registered to create Short URL? That's okay. It's in the configuration. From configuration file, you can edit pretty everything of your website. The choice is yours.
-- **Sortable list of shortened URLs.**
-- **Modern and simple interface.**
 - **Made with :heart: &amp; :coffee:.**
+
+## A look around
+
+<table>
+    <tr>
+        <td colspan="2">
+            <img src="resources/art/homepage.png" width="100%">
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" valign="top">
+            <img src="resources/art/dashboard.png" width="100%">
+        </td>
+        <td width="50%" valign="top">
+            <img src="resources/art/shortlink_item.png" width="100%">
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" valign="top">
+            <img src="resources/art/overview.png" width="100%">
+        </td>
+        <td width="50%" valign="top">
+            <img src="resources/art/shortlink_item_edit.png" width="100%">
+        </td>
+    </tr>
+
+</table>
 
 
 ## Requirements
@@ -79,8 +102,7 @@ Anybody can help by doing any of the following:
 ### Running Tests
 
 From the projects root folder run
-- `php artisan test`
-- or `composer test`
+- `composer test`
 - or `./vendor/bin/phpunit`
 
 
