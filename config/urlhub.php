@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app_version' => 'v1.20.x-dev',
+    'app_version' => '1.20.x-dev',
 
     /*
      * List of blocked domain
