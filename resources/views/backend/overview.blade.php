@@ -266,7 +266,11 @@
         <div>
             <h3 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Random String</h3>
             <p class="mt-1 text-sm font-light leading-relaxed text-gray-600 dark:text-dark-400">
-                <strong class="font-medium text-gray-800 dark:text-dark-200">Capacity</strong> is the maximum number of unique random keywords that can be generated, minus the weighted value for the space used by the disallowed keywords. <strong class="font-medium text-gray-800 dark:text-dark-200">Keyword Space Used</strong> indicating how much of the total capacity has been filled. As this number approaches the capacity, fewer unique keywords are available. Note: based on the current character length configuration.
+                <strong class="font-medium text-gray-800 dark:text-dark-200">Capacity</strong> is the total number of unique keywords that can be generated, after accounting for keywords that are not allowed. <strong class="font-medium text-gray-800 dark:text-dark-200">Keyword Space Used</strong> shows how much of this capacity is already occupied. As more keyword space is used, fewer unique keywords remain available.
+            </p>
+            <br>
+            <p class="mt-1 text-sm font-light leading-relaxed text-gray-600 dark:text-dark-400">
+                Note: based on the current character length configuration.
             </p>
             <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <!-- Capacity -->
@@ -291,7 +295,7 @@
 
                     <div class="mt-4 flex items-center gap-1.5 border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-dark-800 dark:text-dark-400">
                         <span class="inline-block h-1.5 w-1.5 rounded-full bg-purple-500"></span>
-                        <span>Maximum available keyspace</span>
+                        <span>Maximum number of available keywords</span>
                     </div>
                 </div>
 
