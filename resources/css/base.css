@@ -56,8 +56,6 @@ main {
     @apply border border-border-300 rounded-md duration-300 ease-out cursor-pointer select-none disabled:opacity-25;
     @apply text-base text-slate-800 hover:bg-gray-100 font-normal text-center no-underline align-middle tracking-wide;
     @apply dark:text-dark-400 dark:bg-dark-950 dark:hover:bg-dark-900 dark:border-dark-700;
-    /* box-shadow: 0px 1.6px 2px rgba(0,0,0,0.13), 0px 0px 2px rgba(0,0,0,0.11) !important;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 
     &.btn-primary {
         @apply text-white bg-black border-black hover:bg-neutral-800 hover:ring-4 hover:ring-neutral-200;
@@ -135,8 +133,8 @@ main {
         height: 0; width: 0;
 
         &:checked + .slider {
-            @apply bg-primary-700 dark:bg-dark-800;
-            @apply border border-primary-700 dark:border-dark-700;
+            @apply bg-emerald-600 dark:bg-dark-800;
+            @apply border border-emerald-600 dark:border-dark-700;
 
             @apply before:bg-white dark:before:bg-emerald-500;
             @apply before:translate-x-6.5;
