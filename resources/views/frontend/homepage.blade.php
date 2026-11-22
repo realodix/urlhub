@@ -181,7 +181,7 @@
                                 x-transition:enter="transition ease-out duration-200"
                                 x-transition:enter-start="opacity-0 -translate-y-1"
                                 x-transition:enter-end="opacity-100 translate-y-0"
-                                class="mt-2.5 rounded-2xl border border-slate-200/70 bg-slate-50/80 p-3 dark:border-dark-800 dark:bg-dark-950/60"
+                                class="mt-2.5 rounded-2xl border border-slate-200 bg-slate-50/80 p-3 dark:border-dark-800 dark:bg-dark-950/60"
                             >
                                 <div class="flex flex-col gap-2 sm:flex-row sm:items-start">
                                     <span class="inline-flex h-11 shrink-0 items-center rounded-xl border border-slate-200 bg-white px-3.5 font-mono text-sm font-medium text-slate-500 shadow-2xs dark:border-dark-700 dark:bg-dark-900 dark:text-slate-400">
@@ -222,8 +222,7 @@
             {{-- Accessory Components: Feature Highlights Bento Grid --}}
             <div class="mx-auto mt-16 max-w-4xl sm:mt-20">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                    {{-- Feature 1 --}}
-                    <div class="group rounded-2xl border border-slate-200/70 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-blue-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
+                    <div class="group rounded-2xl border border-slate-200 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-blue-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
                         <div class="mb-3.5 inline-flex size-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 ring-1 ring-inset ring-blue-500/20 transition-transform duration-200 group-hover:scale-105 dark:text-blue-400">
                             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
@@ -234,9 +233,7 @@
                             Engineered for ultra-low latency redirection so your visitors reach their destination without delay.
                         </p>
                     </div>
-
-                    {{-- Feature 2 --}}
-                    <div class="group rounded-2xl border border-slate-200/70 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-emerald-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
+                    <div class="group rounded-2xl border border-slate-200 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-emerald-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
                         <div class="mb-3.5 inline-flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 ring-1 ring-inset ring-emerald-500/20 transition-transform duration-200 group-hover:scale-105 dark:text-emerald-400">
                             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -247,10 +244,8 @@
                             Craft readable, trustworthy custom keywords that boost click-through rates across social platforms.
                         </p>
                     </div>
-
-                    {{-- Feature 3 --}}
-                    <div class="group rounded-2xl border border-slate-200/70 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-indigo-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
-                        <div class="mb-3.5 inline-flex size-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 ring-1 ring-inset ring-indigo-500/20 transition-transform duration-200 group-hover:scale-105 dark:text-indigo-400">
+                    <div class="group rounded-2xl border border-slate-200 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-amber-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
+                        <div class="mb-3.5 inline-flex size-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 ring-1 ring-inset ring-amber-500/20 transition-transform duration-200 group-hover:scale-105 dark:text-amber-400">
                             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                             </svg>
@@ -258,6 +253,39 @@
                         <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100">Click Analytics</h3>
                         <p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
                             Monitor link performance and visitor insights effortlessly from your personal dashboard.
+                        </p>
+                    </div>
+                    <div class="group rounded-2xl border border-slate-200 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-indigo-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
+                        <div class="mb-3.5 inline-flex size-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 ring-1 ring-inset ring-indigo-500/20 transition-transform duration-200 group-hover:scale-105 dark:text-indigo-400">
+                            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3,11H5V13H3V11M11,5H13V9H11V5M9,11H13V15H11V13H9V11M15,11H17V13H19V11H21V13H19V15H21V19H19V21H17V19H13V21H11V17H15V15H17V13H15V11M19,19V15H17V19H19M15,3H21V9H15V3M17,5V7H19V5H17M3,3H9V9H3V3M5,5V7H7V5H5M3,15H9V21H3V15M5,17V19H7V17H5Z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100">QR Codes</h3>
+                        <p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                            Generate personalized and branded QR codes that connect your audience to your content instantly.
+                        </p>
+                    </div>
+                    <div class="group rounded-2xl border border-slate-200 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-rose-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-rose-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
+                        <div class="mb-3.5 inline-flex size-10 items-center justify-center rounded-xl bg-rose-500/10 text-rose-600 ring-1 ring-inset ring-rose-500/20 transition-transform duration-200 group-hover:scale-105 dark:text-rose-400">
+                            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24">
+                                <g><rect fill="none" height="24" width="24" x="0"></rect></g><g><g><g><path d="M12,17c1.1,0,2-0.9,2-2s-0.9-2-2-2s-2,0.9-2,2S10.9,17,12,17z M18,8h-1V6c0-2.76-2.24-5-5-5S7,3.24,7,6v2H6 c-1.1,0-2,0.9-2,2v10c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V10C20,8.9,19.1,8,18,8z M8.9,6c0-1.71,1.39-3.1,3.1-3.1 s3.1,1.39,3.1,3.1v2H8.9V6z M18,20H6V10h12V20z"></path></g></g></g>
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100">Protected URL</h3>
+                        <p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                            Increase security by protecting your link with a password.
+                        </p>
+                    </div>
+                    <div class="group rounded-2xl border border-slate-200 bg-white/60 p-5 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-500/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/40 dark:border-dark-800/80 dark:bg-dark-900/50 dark:hover:border-cyan-500/30 dark:hover:bg-dark-900 dark:hover:shadow-none">
+                        <div class="mb-3.5 inline-flex size-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-600 ring-1 ring-inset ring-cyan-500/20 transition-transform duration-200 group-hover:scale-105 dark:text-cyan-400">
+                            <svg class="size-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0V0z" fill="none"></path><path d="M7 11h2v2H7v-2zm14-5v14c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2l.01-14c0-1.1.88-2 1.99-2h1V2h2v2h8V2h2v2h1c1.1 0 2 .9 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14zm-4-7h2v-2h-2v2zm-4 0h2v-2h-2v2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-100">Custom Validity</h3>
+                        <p class="mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                            Set date and time limit for your link. The link will be accessible only in specified time.
                         </p>
                     </div>
                 </div>
