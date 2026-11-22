@@ -39,18 +39,18 @@ abstract class BaseLinkVisitChart extends ChartWidget
                 [
                     'label' => 'Visits',
                     'data' => $this->chartData(),
-                    'backgroundColor' => 'oklch(0.707 0.165 254.624 / 50%)',
-                    'borderColor' => 'oklch(0.707 0.165 254.624)', // blue-400
-                    'pointBackgroundColor' => 'oklch(0.707 0.165 254.624)',
+                    'backgroundColor' => 'oklch(62.3% 0.214 259.815 / 20%)',
+                    'borderColor' => 'oklch(62.3% 0.214 259.815)', // blue-500
+                    'pointBackgroundColor' => 'oklch(62.3% 0.214 259.815)',
                     'fill' => true,
                     'tension' => 0.4,
                 ],
                 [
                     'label' => 'Visitors',
                     'data' => $this->chartData(visitor: true),
-                    'backgroundColor' => 'oklch(0.765 0.177 163.223 / 70%)',
-                    'borderColor' => 'oklch(0.765 0.177 163.223)', // emerald-400
-                    'pointBackgroundColor' => 'oklch(0.765 0.177 163.223)',
+                    'backgroundColor' => 'oklch(69.6% 0.17 162.48 / 20%)',
+                    'borderColor' => 'oklch(69.6% 0.17 162.48)', // emerald-500
+                    'pointBackgroundColor' => 'oklch(69.6% 0.17 162.48)',
                     'fill' => true,
                     'tension' => 0.4,
                 ],
