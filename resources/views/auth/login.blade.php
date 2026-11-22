@@ -47,20 +47,21 @@
                     </div>
 
                     <div>
-                        <div class="flex items-center justify-between">
-                            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">
-                                Password
-                            </label>
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="text-xs font-medium text-gray-500 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-white">
-                                    Forgot password?
-                                </a>
-                            @endif
-                        </div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 dark:text-neutral-300">
+                            Password
+                        </label>
                         <input type="password" name="password" required autocomplete="current-password" placeholder="••••••••"
                             id="password"
                             class="mt-1.5 block w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 shadow-xs transition focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:placeholder-neutral-500 dark:focus:border-white dark:focus:ring-white/10"
                         >
+
+                        <div class="flex items-center justify-end mt-4 mb-4">
+                        @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}" class="text-xs font-medium text-gray-500 transition hover:text-gray-900 dark:text-neutral-400 dark:hover:text-white">
+                                Forgot password?
+                            </a>
+                        @endif
+                        </div>
                     </div>
 
                     <button
