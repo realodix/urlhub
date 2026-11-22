@@ -32,7 +32,7 @@
             </div>
             <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <!-- Registered Users -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         <span title="{{ number_format($userCount) }}">{{ n_abb($userCount) }}</span>
                     </dd>
 
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Guest Users -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         <span title="{{ number_format($guestUsers) }}">{{ n_abb($guestUsers) }}</span>
                     </dd>
 
@@ -90,7 +90,7 @@
             </div>
             <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <!-- Total Links -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-emerald-50/40 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-emerald-950/20">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-emerald-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-emerald-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -105,7 +105,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         <span title="{{ number_format($linkCount) }}">{{ n_abb($linkCount) }}</span>
                     </dd>
 
@@ -115,7 +115,7 @@
                 </div>
 
                 <!-- User Links -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -130,7 +130,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         <span title="{{ number_format($userLinks) }}">{{ n_abb($userLinks) }}</span>
                     </dd>
 
@@ -140,7 +140,7 @@
                 </div>
 
                 <!-- Guest Links -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -155,7 +155,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         <span title="{{ number_format($guestUrlCount) }}">{{ n_abb($guestUrlCount) }}</span>
                     </dd>
 
@@ -173,7 +173,7 @@
             </div>
             <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <!-- Total Visits -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-amber-50/40 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-amber-950/20">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-amber-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-amber-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -188,7 +188,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         {{ n_abb($visitCount) }}
                     </dd>
 
@@ -198,7 +198,7 @@
                 </div>
 
                 <!-- User Visits -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -213,7 +213,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         {{ n_abb($visitService->userVisits()) }}
                     </dd>
 
@@ -223,7 +223,7 @@
                 </div>
 
                 <!-- Guest Visits -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-5 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
+                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -238,7 +238,7 @@
                         </div>
                     </div>
 
-                    <dd class="mt-3 text-3xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
+                    <dd class="mt-3 text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white">
                         {{ n_abb($visitService->guestVisits()) }}
                     </dd>
 
@@ -274,15 +274,15 @@
             </p>
             <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <!-- Capacity -->
-                <div class="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 dark:border-dark-800 dark:bg-dark-900">
-                    <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-500/5 dark:bg-purple-400/10"></div>
+                <div class="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 dark:border-dark-800 dark:bg-dark-900">
+                    <div class="pointer-events-none absolute -right-6 -top-6 h-22 w-22 rounded-full bg-purple-500/5 dark:bg-purple-400/10"></div>
 
                     <div class="flex items-start justify-between gap-4">
                         <div class="min-w-0">
                             <dt class="text-sm font-medium text-gray-500 dark:text-dark-400">
                                 Capacity
                             </dt>
-                            <dd class="mt-2 truncate text-xl sm:text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white" title="{{ number_format($capacity) }}">
+                            <dd class="mt-2 truncate text-xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white" title="{{ number_format($capacity) }}">
                                 {{ number_format($capacity) }}
                             </dd>
                         </div>
@@ -293,22 +293,22 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 flex items-center gap-1.5 border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-dark-800 dark:text-dark-400">
+                    <div class="flex items-center gap-1.5 pt-3 text-xs text-gray-500 dark:border-dark-800 dark:text-dark-400">
                         <span class="inline-block h-1.5 w-1.5 rounded-full bg-purple-500"></span>
                         <span>Maximum number of available keywords</span>
                     </div>
                 </div>
 
                 <!-- Keyword Space Used -->
-                <div class="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 dark:border-dark-800 dark:bg-dark-900">
-                    <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-rose-500/5 dark:bg-rose-400/10"></div>
+                <div class="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 dark:border-dark-800 dark:bg-dark-900">
+                    <div class="pointer-events-none absolute -right-6 -top-6 h-22 w-22 rounded-full bg-rose-500/5 dark:bg-rose-400/10"></div>
 
                     <div class="flex items-start justify-between gap-4">
                         <div class="min-w-0">
                             <dt class="text-sm font-medium text-gray-500 dark:text-dark-400">
                                 Keyword Space Used
                             </dt>
-                            <dd class="mt-2 truncate text-xl sm:text-2xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white" title="{{ number_format($spaceUsed) }}">
+                            <dd class="mt-2 truncate text-xl font-bold tracking-tight text-gray-900 tabular-nums dark:text-white" title="{{ number_format($spaceUsed) }}">
                                 {{ number_format($spaceUsed) }}
                             </dd>
                         </div>
@@ -320,7 +320,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 flex items-center justify-between border-t border-gray-100 pt-3 text-xs text-gray-500 dark:border-dark-800 dark:text-dark-400">
+                    <div class="flex items-center justify-between pt-3 text-xs text-gray-500 dark:border-dark-800 dark:text-dark-400">
                         <div class="flex items-center gap-1.5">
                             <span class="inline-block h-1.5 w-1.5 rounded-full bg-rose-500"></span>
                             <span>{{ $spacePercentage }}</span>

@@ -9,16 +9,16 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
         <!-- Card 1: Links -->
-        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
             <!-- Subtle decorative background glow -->
-            <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-emerald-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-emerald-400/10"></div>
+            <div class="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-emerald-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-emerald-400/10"></div>
 
             <div class="flex items-start justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500 dark:text-neutral-400">
                         Total Links
                     </p>
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <p class="mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {{ n_abb(auth()->user()->urls()->count()) }}
                     </p>
                 </div>
@@ -34,16 +34,16 @@
         </div>
 
         <!-- Card 2: Visits -->
-        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
             <!-- Subtle decorative background glow -->
-            <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-amber-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-amber-400/10"></div>
+            <div class="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-amber-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-amber-400/10"></div>
 
             <div class="flex items-start justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500 dark:text-neutral-400">
                         Total Visits
                     </p>
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <p class="mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {{ n_abb(auth()->user()->visits()->count()) }}
                     </p>
                 </div>
@@ -59,16 +59,16 @@
         </div>
 
         <!-- Card 3: Visitors -->
-        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
             <!-- Subtle decorative background glow -->
-            <div class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-blue-400/10"></div>
+            <div class="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-blue-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-blue-400/10"></div>
 
             <div class="flex items-start justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-500 dark:text-neutral-400">
                         Unique Visitors
                     </p>
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <p class="mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                         {{ n_abb(auth()->user()->visits()->distinct('visits.user_uid')->count()) }}
                     </p>
                 </div>
