@@ -90,7 +90,7 @@
                             <p class="text-xs leading-relaxed text-gray-500 dark:text-dark-400">
                                 Number of characters used in generated short URL keywords.
                             </p>
-                            <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums dark:bg-dark-800 dark:text-dark-300">
+                            <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums dark:bg-dark-800 dark:text-emerald-300">
                                 Range: {{ $settings::KEY_LEN_LOW }} – {{ $settings::KEY_LEN_UP }}
                             </span>
                         </div>
@@ -115,7 +115,7 @@
                             <p class="text-xs leading-relaxed text-gray-500 dark:text-dark-400">
                                 Minimum number of characters allowed when creating a custom keyword.
                             </p>
-                            <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums dark:bg-dark-800 dark:text-dark-300">
+                            <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums dark:bg-dark-800 dark:text-emerald-300">
                                 Range: {{ $settings::CST_KEY_MIN_LEN_LOW }} – {{ $settings::CST_KEY_MIN_LEN_UP }}
                             </span>
                         </div>
@@ -140,7 +140,7 @@
                             <p class="text-xs leading-relaxed text-gray-500 dark:text-dark-400">
                                 Maximum number of characters allowed when creating a custom keyword.
                             </p>
-                            <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums dark:bg-dark-800 dark:text-dark-300">
+                            <span class="inline-block rounded-md bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums dark:bg-dark-800 dark:text-emerald-300">
                                 Range: {{ $settings::CST_KEY_MAX_LEN_LOW }} – {{ $settings::CST_KEY_MAX_LEN_UP }}
                             </span>
                         </div>
