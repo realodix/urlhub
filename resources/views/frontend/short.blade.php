@@ -2,232 +2,349 @@
 
 @section('css_class', 'frontend view_short')
 @section('content')
-<div class="max-w-7xl mx-auto mb-12">
-    <div class="md:w-10/12 mt-6 lg:mt-8 px-4 sm:p-6">
-        @if (settings()->autofill_link_title)
-        <div class="text-xl sm:text-2xl lg:text-3xl md:mb-4">{{ $url->title }}</div>
-        @endif
+@php
+    $canManage = auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin'));
+@endphp
 
-        <ul class="mb-4">
-            @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-            <li class="inline-block pr-4 mt-4 lg:mt-0">
-                @svg('icon-chart-line-alt')
-                <i>
-                    <span title="{{ number_format($visitsCount) }}" class="font-bold">
-                        {{ n_abb($visitsCount) }}
+<div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
+    <!-- Top Link Overview Card -->
+    <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
+        <!-- Card Header: Metadata & Action Buttons -->
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 bg-gray-50/60 px-6 py-4 dark:border-dark-800 dark:bg-dark-950/40">
+            <div class="flex flex-wrap items-center gap-2.5 text-xs text-gray-500 dark:text-dark-400">
+                <span class="inline-flex items-center gap-1.5 rounded-md border border-gray-200/80 bg-white px-2.5 py-1 font-medium text-gray-600 dark:border-dark-700 dark:bg-dark-800 dark:text-dark-300">
+                    @svg('icon-calendar', 'size-3.5 text-gray-400 dark:text-dark-400')
+                    <span>{{ $createdAt->toFormattedDateString() }}</span>
+                </span>
+
+                @if ($canManage)
+                    <span class="inline-flex items-center gap-1.5 rounded-md border border-emerald-200/70 bg-emerald-50 px-2.5 py-1 font-medium text-emerald-700 tabular-nums dark:border-emerald-800/40 dark:bg-emerald-950/60 dark:text-emerald-400" title="{{ number_format($visitsCount) }} total clicks">
+                        @svg('icon-chart-line-alt', 'size-3.5')
+                        <span>{{ n_abb($visitsCount) }} {{ Str::plural('click', $visitsCount) }}</span>
                     </span>
-                </i>
-            </li>
-            @endif
-            <li class="inline-block pr-4">
-                @svg('icon-calendar')
-                <i>{{ $createdAt->toFormattedDateString() }}</i>
-            </li>
-        </ul>
-    </div>
-
-    <div class="card card-master mt-6 sm:mt-0 px-4 py-5 sm:p-6">
-        <div class="grid grid-cols-1 sm:grid-cols-4">
-            <div class="grid justify-items-center md:mt-10">
-                <img class="qrcode h-fit" src="{{ $qrCode->getDataUri() }}" alt="QR Code">
+                @endif
             </div>
 
-            <div class="col-span-3 pt-4">
-                <div class="flex justify-end pr-6 my-[2rem_3rem] sm:my-0">
-                    <button id="clipboard_shortlink"
-                        title="Copy the shortened URL to clipboard"
-                        data-clipboard-text="{{ $url->short_url }}"
-                        class="btn btn-sec-subtle btn-square btn-sm mr-6"
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button
+                    id="clipboard_shortlink"
+                    type="button"
+                    title="Copy the shortened URL to clipboard"
+                    data-clipboard-text="{{ $url->short_url }}"
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 shadow-2xs transition hover:border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-black/10 dark:border-dark-700 dark:bg-dark-800 dark:text-dark-200 dark:hover:border-dark-600 dark:hover:bg-dark-700"
+                >
+                    @svg('icon-clone', 'size-3.5')
+                    <span>Copy</span>
+                </button>
+
+                @if ($canManage)
+                    <a
+                        href="{{ route('link.edit', $url) }}"
+                        title="Edit link"
+                        class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 shadow-2xs transition hover:border-gray-300 hover:bg-gray-50 dark:border-dark-700 dark:bg-dark-800 dark:text-dark-200 dark:hover:border-dark-600 dark:hover:bg-dark-700"
                     >
-                        @svg('icon-clone')
-                    </button>
+                        @svg('icon-edit', 'size-3.5')
+                        <span>Edit</span>
+                    </a>
 
-                    @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-                        <a href="{{ route('link.edit', $url) }}" title="Edit" class="btn btn-sec-subtle btn-square btn-sm mr-6">
-                            @svg('icon-edit')
-                        </a>
-
-                        <form method="post" action="{{ route('link.delete', $url) }}"
-                            onsubmit="return confirm('Are you sure you want to delete this link?');"
-                            class="inline"
+                    <form
+                        method="post"
+                        action="{{ route('link.delete', $url) }}"
+                        onsubmit="return confirm('Are you sure you want to delete this link?');"
+                        class="inline"
+                    >
+                        @csrf @method('DELETE')
+                        <input type="hidden" name="redirect_to" value="home">
+                        <button
+                            type="submit"
+                            title="Delete link"
+                            class="inline-flex items-center gap-1.5 rounded-lg border border-red-200/80 bg-white px-3 py-1.5 text-xs font-medium text-red-600 shadow-2xs transition hover:border-red-300 hover:bg-red-50 dark:border-red-900/50 dark:bg-dark-800 dark:text-red-400 dark:hover:bg-red-950/40"
                         >
-                            @csrf @method('DELETE')
-                            <input type="hidden" name="redirect_to" value="home">
-                            <button type="submit" title="Delete" class="btn btn-del-subtle btn-square btn-sm">
-                                @svg('icon-trash')
-                            </button>
-                        </form>
-                    @endif
-                </div>
-
-                <div class="flex gap-x-2 mt-2">
-                    <div class="link_icon link-card__icon-container">
-                        <img src="{{ \App\Helpers\Helper::faviconUrl($url->destination) }}" class="">
-                    </div>
-                    <div>
-                        <p class="text-primary-800 dark:text-emerald-500 font-bold text-xl sm:text-2xl">
-                            <a href="{{ $url->short_url }}" target="_blank" id="copy">
-                                {{ urlDisplay($url->short_url, scheme: false) }}
-                            </a>
-                        </p>
-
-                        <div class="flex gap-x-2 mt-2">
-                            <div class="hidden md:block dark:text-dark-400">@svg('icon-arrow-turn-right', 'dark:text-dark-400')</div>
-                            <p class="break-all max-w-2xl dark:text-dark-400">
-                                <a href="{{ $url->destination }}" target="_blank" rel="noopener noreferrer">
-                                    {{ $url->destination }}
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-22">
-                    @if (auth()->check() && (auth()->user()->id === $url->user_id || auth()->user()->hasRole('admin')))
-                        <x-tabs
-                            :tabs="['day' => 'Day', 'week' => 'Week', 'month' => 'Month']"
-                            activeTabClass="bg-gray-50! dark:bg-dark-800!"
-                            contentClass="p-1"
-                        >
-                            <x-slot:day>
-                                @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
-                            </x-slot>
-                            <x-slot:week>
-                                @livewire(\App\Livewire\Chart\LinkVisitPerWeekChart::class, ['model' => $url])
-                            </x-slot>
-                            <x-slot:month>
-                                @livewire(\App\Livewire\Chart\LinkVisitPerMonthChart::class, ['model' => $url])
-                            </x-slot>
-                        </x-tabs>
-
-                        <br>
-
-                        <x-tabs
-                            :tabs="['a' => 'Referrers', 'b' => 'Browsers', 'c' => 'OS']"
-                            activeTabClass="bg-gray-50! dark:bg-dark-800!"
-                            contentClass="px-4 md:px-8 md:py-4"
-                        >
-                            <x-slot:a>
-                                <p class="text-gray-500 dark:text-dark-400 mb-2">
-                                    The most common sources of traffic to all short URLs.
-                                </p>
-                                <div>
-                                    @php
-                                        $topReferrers = $visitService->topReferrers($url);
-                                    @endphp
-                                    @forelse ($topReferrers as $index => $referrerData)
-                                        <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
-                                            <div class="flex-1">
-                                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                                    <div>
-                                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                                        <span class="text-gray-600 mt-1">
-                                                            @if ($referrerData->referer)
-                                                                <a href="{{ $referrerData->referer }}" target="_blank" class="text-blue-600 dark:text-emerald-400 hover:underline">
-                                                                    {{ Str::limit($referrerData->referer, 50) }}
-                                                                </a>
-                                                            @else
-                                                                <span class="dark:text-dark-400">
-                                                                    Direct / Unknown
-                                                                </span>
-                                                            @endif
-                                                        </span>
-                                                    </div>
-
-                                                    @php
-                                                        $percentage = round(($referrerData->total/$visitsCount) * 100, 2);
-                                                    @endphp
-                                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                        {{ number_format($referrerData->total) }} ({{ $percentage }}%)
-                                                    </div>
-                                                </div>
-                                                <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <p class="text-gray-500 text-center">Data is not yet available.</p>
-                                    @endforelse
-                                </div>
-                            </x-slot>
-                            <x-slot:b>
-                                <p class="text-gray-500 dark:text-dark-400 mb-2">
-                                    The most common browsers used to visit all short URLs.
-                                </p>
-                                <div>
-                                    @php
-                                        $topBrowsers = $visitService->topBrowsers($url);
-                                    @endphp
-                                    @forelse ($topBrowsers as $index => $browserData)
-                                        <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
-                                            <div class="flex-1">
-                                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                                    <div>
-                                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                                            @if($browserData->browser) {{ $browserData->browser }} @else Unknown @endif
-                                                        </span>
-                                                    </div>
-
-                                                    @php
-                                                        $percentage = round(($browserData->total/$visitsCount) * 100, 2);
-                                                    @endphp
-                                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                        {{ number_format($browserData->total) }} ({{ $percentage }}%)
-                                                    </div>
-                                                </div>
-                                                <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <p class="text-gray-500 text-center">Data is not yet available.</p>
-                                    @endforelse
-                                </div>
-                            </x-slot>
-                            <x-slot:c>
-                                <p class="text-gray-500 dark:text-dark-400 mb-2">
-                                    The most common operating systems used to visit all short URLs.
-                                </p>
-                                <div>
-                                    @php
-                                        $topOS = $visitService->topOperatingSystems($url);
-                                    @endphp
-                                    @forelse ($topOS as $index => $osData)
-                                        <div class="flex items-center border-b border-border-200 dark:border-dark-800 last:border-b-0 py-2">
-                                            <div class="flex-1">
-                                                <div class="flex justify-between items-center text-sm md:text-base mb-1">
-                                                    <div>
-                                                        <span class="dark:text-dark-300 dark:font-semibold">#{{ $index + 1 }} -</span>
-                                                        <span class="text-gray-600 dark:text-dark-400 mt-1">
-                                                            @if($osData->os) {{ $osData->os }} @else Unknown @endif
-                                                        </span>
-                                                    </div>
-
-                                                    @php
-                                                        $percentage = round(($osData->total/$visitsCount) * 100, 2);
-                                                    @endphp
-                                                    <div class="text-sm font-medium text-blue-600 dark:text-emerald-400">
-                                                        {{ number_format($osData->total) }} ({{ $percentage }}%)
-                                                    </div>
-                                                </div>
-                                                <x-progress-bar percentage="{{ $percentage }}" class="sm:w-36 float-end" />
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <p class="text-gray-500 text-center">Data is not yet available.</p>
-                                    @endforelse
-                                </div>
-                            </x-slot>
-                        </x-tabs>
-                    @else
-                        <div class="bg-orange-50 border border-border-200 p-4 text-center
-                            dark:bg-transparent dark:border-dark-700 dark:text-dark-400"
-                        >
-                            If this is a link you created from your account, please <a href="{{ route('login') }}" class="text-orange-700 dark:text-orange-600 hover:text-orange-500 dark:hover:text-orange-600/90 font-medium">log in</a> to view the statistics for this link.
-                        </div>
-                    @endif
-                </div>
+                            @svg('icon-trash', 'size-3.5')
+                            <span class="hidden sm:inline">Delete</span>
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
+
+        <!-- Card Body: Link Info (Left) & QR Code (Right) -->
+        <div class="grid grid-cols-1 gap-6 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
+            <div class="min-w-0 space-y-4">
+                @if (settings()->autofill_link_title && $url->title)
+                    <h1 class="text-lg font-semibold leading-snug tracking-tight text-gray-900 sm:text-xl dark:text-white">
+                        {{ $url->title }}
+                    </h1>
+                @endif
+
+                <div class="flex items-start gap-3.5">
+                    <!-- Favicon Badge -->
+                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gray-200/80 bg-gray-50 p-2 dark:border-dark-700 dark:bg-dark-800">
+                        <img
+                            src="{{ \App\Helpers\Helper::faviconUrl($url->destination) }}"
+                            alt=""
+                            class="h-6 w-6 rounded-full object-contain"
+                        >
+                    </div>
+
+                    <div class="min-w-0 flex-1">
+                        <!-- Short URL -->
+                        <div class="flex items-center gap-2">
+                            <a
+                                href="{{ $url->short_url }}"
+                                target="_blank"
+                                id="copy"
+                                class="truncate text-xl font-bold tracking-tight text-gray-900 transition sm:text-2xl dark:text-white dark:hover:text-emerald-400"
+                            >
+                                {{ urlDisplay($url->short_url, scheme: false) }}
+                            </a>
+                        </div>
+
+                        <!-- Destination URL -->
+                        <div class="mt-1.5 flex items-start gap-1.5 text-sm text-gray-500 dark:text-dark-400">
+                            <span class="mt-0.5 shrink-0 text-gray-400 dark:text-dark-500">
+                                @svg('icon-arrow-turn-right', 'size-4')
+                            </span>
+                            <a
+                                href="{{ $url->destination }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="break-all transition hover:text-gray-800 hover:underline dark:hover:text-dark-200"
+                            >
+                                {{ $url->destination }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Code Box -->
+            <div class="flex flex-col items-center justify-center self-center rounded-2xl border border-gray-200/80 bg-gray-50/70 p-4 dark:border-dark-800 dark:bg-dark-950/50">
+                <div class="overflow-hidden rounded-xl bg-white p-2.5 shadow-2xs ring-1 ring-gray-200/60">
+                    <img class="qrcode h-28 w-28 sm:h-32 sm:w-32" src="{{ $qrCode->getDataUri() }}" alt="QR Code">
+                </div>
+                <span class="mt-2 text-[11px] font-medium tracking-wide text-gray-400 uppercase dark:text-dark-500">
+                    QR Code
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Section -->
+    <div class="mt-6">
+        @if ($canManage)
+            <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs sm:p-6 dark:border-dark-800 dark:bg-dark-900">
+                <x-tabs
+                    :tabs="['day' => 'Day', 'week' => 'Week', 'month' => 'Month']"
+                    activeTabClass="bg-gray-50! dark:bg-dark-800!"
+                    contentClass="p-1"
+                >
+                    <x-slot:day>
+                        @livewire(\App\Livewire\Chart\LinkVisitChart::class, ['model' => $url])
+                    </x-slot>
+                    <x-slot:week>
+                        @livewire(\App\Livewire\Chart\LinkVisitPerWeekChart::class, ['model' => $url])
+                    </x-slot>
+                    <x-slot:month>
+                        @livewire(\App\Livewire\Chart\LinkVisitPerMonthChart::class, ['model' => $url])
+                    </x-slot>
+                </x-tabs>
+
+                <br>
+
+                <x-tabs
+                    :tabs="['a' => 'Referrers', 'b' => 'Browsers', 'c' => 'OS']"
+                    activeTabClass="bg-gray-50! dark:bg-dark-800!"
+                    contentClass="px-4 md:px-8 md:py-4"
+                >
+                    {{-- Referrers --}}
+                    <x-slot:a>
+                        @php
+                            $topReferrers = $visitService->topReferrers($url);
+                        @endphp
+
+                        @forelse ($topReferrers as $index => $referrerData)
+                            @php
+                                $percentage = $visitsCount > 0
+                                    ? round(($referrerData->total / $visitsCount) * 100, 2)
+                                    : 0;
+                            @endphp
+
+                            <div class="py-3.5 border-b border-border-200 dark:border-dark-800 last:border-b-0">
+                                <div class="flex items-center justify-between gap-4 mb-2">
+                                    {{-- Referrer --}}
+                                    <div class="min-w-0 flex items-center gap-3">
+                                        <span class="shrink-0 text-xs tabular-nums text-gray-400 dark:text-dark-500">
+                                            {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                        </span>
+
+                                        @if ($referrerData->referer)
+                                            <a
+                                                href="{{ $referrerData->referer }}"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="truncate text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-dark-200 dark:hover:text-emerald-400 transition-colors"
+                                            >
+                                                {{ Str::limit($referrerData->referer, 60) }}
+                                            </a>
+                                        @else
+                                            <span class="text-sm font-medium text-gray-500 dark:text-dark-400">
+                                                Direct / Unknown
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    {{-- Visits --}}
+                                    <div class="shrink-0 flex items-center gap-2">
+                                        <span class="text-sm font-semibold tabular-nums text-gray-900 dark:text-white">
+                                            {{ number_format($referrerData->total) }}
+                                        </span>
+
+                                        <span class="text-xs tabular-nums text-gray-500 dark:text-dark-400">
+                                            {{ $percentage }}%
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{-- Progress --}}
+                                <div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-dark-800">
+                                    <div
+                                        class="h-full rounded-full bg-blue-500 dark:bg-emerald-500 transition-all duration-500"
+                                        style="width: {{ $percentage }}%"
+                                    ></div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="py-8 text-sm text-center text-gray-500 dark:text-dark-400">
+                                Data is not yet available.
+                            </p>
+                        @endforelse
+                    </x-slot:a>
+
+                    {{-- Browsers --}}
+                    <x-slot:b>
+                        @php
+                            $topBrowsers = $visitService->topBrowsers($url);
+                        @endphp
+
+                        @forelse ($topBrowsers as $index => $browserData)
+                            @php
+                                $percentage = $visitsCount > 0
+                                    ? round(($browserData->total / $visitsCount) * 100, 2)
+                                    : 0;
+                            @endphp
+
+                            <div class="py-3.5 border-b border-border-200 dark:border-dark-800 last:border-b-0">
+                                <div class="flex items-center justify-between gap-4 mb-2">
+                                    {{-- Browser --}}
+                                    <div class="min-w-0 flex items-center gap-3">
+                                        <span class="shrink-0 text-xs tabular-nums text-gray-400 dark:text-dark-500">
+                                            {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                        </span>
+
+                                        <span class="truncate text-sm font-medium text-gray-700 dark:text-dark-200">
+                                            {{ $browserData->browser ?: 'Unknown' }}
+                                        </span>
+                                    </div>
+
+                                    {{-- Visits --}}
+                                    <div class="shrink-0 flex items-center gap-2">
+                                        <span class="text-sm font-semibold tabular-nums text-gray-900 dark:text-white">
+                                            {{ number_format($browserData->total) }}
+                                        </span>
+
+                                        <span class="text-xs tabular-nums text-gray-500 dark:text-dark-400">
+                                            {{ $percentage }}%
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{-- Progress --}}
+                                <div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-dark-800">
+                                    <div
+                                        class="h-full rounded-full bg-blue-500 dark:bg-emerald-500 transition-all duration-500"
+                                        style="width: {{ $percentage }}%"
+                                    ></div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="py-8 text-sm text-center text-gray-500 dark:text-dark-400">
+                                Data is not yet available.
+                            </p>
+                        @endforelse
+                    </x-slot:b>
+
+                    {{-- Operating Systems --}}
+                    <x-slot:c>
+                        @php
+                            $topOS = $visitService->topOperatingSystems($url);
+                        @endphp
+
+                        @forelse ($topOS as $index => $osData)
+                            @php
+                                $percentage = $visitsCount > 0
+                                    ? round(($osData->total / $visitsCount) * 100, 2)
+                                    : 0;
+                            @endphp
+
+                            <div class="py-3.5 border-b border-border-200 dark:border-dark-800 last:border-b-0">
+                                <div class="flex items-center justify-between gap-4 mb-2">
+                                    {{-- OS --}}
+                                    <div class="min-w-0 flex items-center gap-3">
+                                        <span class="shrink-0 text-xs tabular-nums text-gray-400 dark:text-dark-500">
+                                            {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                        </span>
+
+                                        <span class="truncate text-sm font-medium text-gray-700 dark:text-dark-200">
+                                            {{ $osData->os ?: 'Unknown' }}
+                                        </span>
+                                    </div>
+
+                                    {{-- Visits --}}
+                                    <div class="shrink-0 flex items-center gap-2">
+                                        <span class="text-sm font-semibold tabular-nums text-gray-900 dark:text-white">
+                                            {{ number_format($osData->total) }}
+                                        </span>
+
+                                        <span class="text-xs tabular-nums text-gray-500 dark:text-dark-400">
+                                            {{ $percentage }}%
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {{-- Progress --}}
+                                <div class="h-1.5 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-dark-800">
+                                    <div
+                                        class="h-full rounded-full bg-blue-500 dark:bg-emerald-500 transition-all duration-500"
+                                        style="width: {{ $percentage }}%"
+                                    ></div>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="py-8 text-sm text-center text-gray-500 dark:text-dark-400">
+                                Data is not yet available.
+                            </p>
+                        @endforelse
+                    </x-slot:c>
+                </x-tabs>
+            </div>
+        @else
+            <!-- Guest / Unauthorized Notice -->
+            <div class="flex flex-col items-center justify-center rounded-2xl border border-gray-200/80 bg-white px-6 py-10 text-center shadow-xs dark:border-dark-800 dark:bg-dark-900">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl border border-amber-200/70 bg-amber-50 text-amber-600 dark:border-amber-800/40 dark:bg-amber-950/60 dark:text-amber-400">
+                    @svg('icon-chart-line-alt', 'size-5')
+                </div>
+                <h3 class="mt-3 text-sm font-semibold text-gray-900 dark:text-white">
+                    Link Analytics Restricted
+                </h3>
+                <p class="mt-1 max-w-md text-xs leading-relaxed text-gray-500 dark:text-dark-400">
+                    If this is a link you created from your account, please
+                    <a href="{{ route('login') }}" class="font-medium text-gray-900 underline underline-offset-4 hover:text-emerald-600 dark:text-white dark:hover:text-emerald-400">log in</a>
+                    to view detailed click statistics.
+                </p>
+            </div>
+        @endif
     </div>
 </div>
 @endsection
