@@ -72,11 +72,9 @@
         <!-- Card Body: Link Info (Left) & QR Code (Right) -->
         <div class="grid grid-cols-1 gap-6 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
             <div class="min-w-0 space-y-4">
-                @if (settings()->autofill_link_title && $url->title)
-                    <h1 class="text-lg font-semibold leading-snug tracking-tight text-gray-900 sm:text-xl dark:text-white">
-                        {{ $url->title }}
-                    </h1>
-                @endif
+                <h1 class="text-lg font-semibold leading-snug tracking-tight text-gray-900 sm:text-xl dark:text-white">
+                    {{ $url->title }}
+                </h1>
 
                 <div class="flex items-start gap-3.5">
                     <!-- Favicon Badge -->

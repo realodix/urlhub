@@ -84,12 +84,10 @@
                         </div>
                     </div>
 
-                    @if (settings()->autofill_link_title)
                     <div class="col-span-6">
                         <label class="form-label">Title</label>
-                        <input name="title" required placeholder="Title" value="{{ $url->title }}" class="form-input">
+                        <input name="title" placeholder="Title" value="{{ $url->title }}" class="form-input">
                     </div>
-                    @endif
 
                     <div class="col-span-6">
                         <label class="form-label">Destination URL</label>
