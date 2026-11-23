@@ -1,6 +1,9 @@
 <header class="navbar relative z-40" x-data="{ open: false, atTop: false }"
     @if (request()->is('admin*'))
-        x-bind:class="{ 'sticky top-0 z-50': atTop }"
+        x-bind:class="{
+            'sticky top-0 z-50': atTop,
+            'bg-white/40! dark:dark:bg-dark-950/40! backdrop-blur-lg': atTop,
+        }"
         {{-- Sticky on scroll --}}
         x-on:scroll.window="if (window.pageYOffset > 65) { atTop = true } else if (window.pageYOffset === 0) { atTop = false }"
     @endif
