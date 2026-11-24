@@ -31,14 +31,14 @@
                 </div>
 
                 <div class="divide-y divide-gray-100 px-6 dark:divide-dark-800">
-                    <!-- Public Shortening -->
+                    <!-- Guest Shortening -->
                     <div class="flex items-start justify-between gap-6 py-5">
                         <div class="space-y-1">
                             <label for="public_shortening" class="block text-sm font-medium text-gray-900 dark:text-white">
-                                Public Shortening
+                                Guest Shortening
                             </label>
                             <p class="text-xs leading-relaxed text-gray-500 dark:text-dark-400">
-                                Allow non-registered users to create new short URLs. If disabled, only logged-in users can use the shortener.
+                                Allow visitors without an account to create short links. When disabled, users must sign in to shorten URLs.
                             </p>
                         </div>
                         <div class="shrink-0 pt-0.5">
@@ -49,14 +49,14 @@
                         </div>
                     </div>
 
-                    <!-- Public Registration -->
+                    <!-- Account Registration -->
                     <div class="flex items-start justify-between gap-6 py-5">
                         <div class="space-y-1">
                             <label for="public_registration" class="block text-sm font-medium text-gray-900 dark:text-white">
-                                Public Registration
+                                Account Registration
                             </label>
                             <p class="text-xs leading-relaxed text-gray-500 dark:text-dark-400">
-                                Allow new users to register an account. If disabled, new accounts can only be created by an administrator.
+                                Allow visitors to create a new account. When disabled, only administrators can add new users.
                             </p>
                         </div>
                         <div class="shrink-0 pt-0.5">
