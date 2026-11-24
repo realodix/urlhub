@@ -32,7 +32,7 @@
             </div>
             <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <!-- Registered Users -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Guest Users -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -90,7 +90,7 @@
             </div>
             <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <!-- Total Links -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-emerald-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-emerald-950/20">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-emerald-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-emerald-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -115,7 +115,7 @@
                 </div>
 
                 <!-- User Links -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -140,7 +140,7 @@
                 </div>
 
                 <!-- Guest Links -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -173,7 +173,7 @@
             </div>
             <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <!-- Total Visits -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-amber-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-amber-950/20">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-amber-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-amber-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -198,7 +198,7 @@
                 </div>
 
                 <!-- User Visits -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-indigo-50/40 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-indigo-950/20">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -223,7 +223,7 @@
                 </div>
 
                 <!-- Guest Visits -->
-                <div class="rounded-2xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
+                <div class="rounded-xl border border-gray-200/80 bg-linear-to-br from-white via-white to-slate-100/50 p-4 dark:border-dark-800 dark:from-dark-900 dark:via-dark-900 dark:to-slate-800/25">
                     <div class="flex items-center justify-between gap-2">
                         <div class="flex items-center gap-2">
                             <dt class="text-sm font-medium text-gray-600 dark:text-dark-300">
@@ -274,7 +274,7 @@
             </p>
             <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <!-- Capacity -->
-                <div class="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 dark:border-dark-800 dark:bg-dark-900">
+                <div class="relative overflow-hidden rounded-xl border border-gray-200/80 bg-white p-4 dark:border-dark-800 dark:bg-dark-900">
                     <div class="pointer-events-none absolute -right-6 -top-6 h-22 w-22 rounded-full bg-purple-500/5 dark:bg-purple-400/10"></div>
 
                     <div class="flex items-start justify-between gap-4">
@@ -300,7 +300,7 @@
                 </div>
 
                 <!-- Keyword Space Used -->
-                <div class="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 dark:border-dark-800 dark:bg-dark-900">
+                <div class="relative overflow-hidden rounded-xl border border-gray-200/80 bg-white p-4 dark:border-dark-800 dark:bg-dark-900">
                     <div class="pointer-events-none absolute -right-6 -top-6 h-22 w-22 rounded-full bg-rose-500/5 dark:bg-rose-400/10"></div>
 
                     <div class="flex items-start justify-between gap-4">
