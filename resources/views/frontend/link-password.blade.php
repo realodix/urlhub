@@ -11,7 +11,7 @@
 
 <body class="min-h-screen bg-[#fafafa] font-sans antialiased text-slate-900 selection:bg-blue-500/20 selection:text-blue-700 dark:bg-dark-950 dark:text-slate-100">
     <div class="relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
-        {{-- Dub-style Subtle Grid & Ambient Radial Glow --}}
+        {{-- Subtle Grid & Ambient Radial Glow --}}
         <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
             <div class="absolute -top-36 left-1/2 -translate-x-1/2 transform-gpu blur-3xl" aria-hidden="true">
                 <div class="aspect-1155/678 w-240 bg-linear-to-tr from-blue-500/20 via-indigo-500/15 to-emerald-400/15 opacity-75 dark:from-blue-600/15 dark:via-indigo-600/10 dark:to-emerald-500/10"

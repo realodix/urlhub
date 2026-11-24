@@ -3,7 +3,7 @@
 @section('css_class', 'frontend home')
 @section('content')
 <div class="relative isolate flex min-h-[calc(100vh-8rem)] items-center justify-center overflow-hidden px-4 py-14 sm:px-6 lg:px-8">
-    {{-- Dub-style Subtle Grid & Warm Ambient Glow --}}
+    {{-- Subtle Grid & Warm Ambient Glow --}}
     <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div class="absolute -top-32 left-1/2 -translate-x-1/2 transform-gpu blur-3xl" aria-hidden="true">
             <div class="aspect-1155/678 w-248 bg-linear-to-tr from-amber-500/20 via-orange-500/15 to-rose-400/15 opacity-70 dark:from-amber-500/15 dark:via-orange-500/10 dark:to-rose-500/10"
