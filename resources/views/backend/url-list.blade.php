@@ -7,22 +7,36 @@
         @include('partials.messages')
     </div>
 
-    <div class="content-container card card-master">
-        <div class="content-header grid-cols-1! md:grid-cols-2!">
-            <p class="text-2xl">List of All URLs</p>
+    <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200/80 bg-gray-50/60 px-6 py-4 dark:border-dark-800 dark:bg-dark-950/40">
+            <div>
+                <h1 class="text-lg font-semibold tracking-tight text-gray-900 sm:text-xl dark:text-white">
+                    List of All URLs
+                </h1>
+            </div>
 
-            <div class="md:flex justify-end mt-4 md:mt-0">
-                <a href="{{ route('dboard.allurl.u-user', \App\Models\User::GUEST_NAME) }}" title="Shortened links by Guests" class="btn btn-secondary">
-                    By Guest
+            <div class="flex items-center gap-2">
+                <a
+                    href="{{ route('dboard.allurl.u-user', \App\Models\User::GUEST_NAME) }}"
+                    title="Shortened links by Guests"
+                    class="btn btn-secondary btn-sm"
+                >
+                    <span>By Guest</span>
                 </a>
 
-                <a href="{{ route('dboard.links.restricted') }}" title="Restricted links" class="btn btn-secondary ml-2">
-                    Restricted
+                <a
+                    href="{{ route('dboard.links.restricted') }}"
+                    title="Restricted links"
+                    class="btn btn-secondary btn-sm"
+                >
+                    <span>Restricted</span>
                 </a>
             </div>
         </div>
 
-        @livewire('table.UrlTable')
+        <div class="p-6">
+            @livewire('table.UrlTable')
+        </div>
     </div>
 </div>
 @endsection

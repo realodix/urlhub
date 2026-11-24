@@ -84,18 +84,29 @@
         </div>
     </div>
 
-    <div class="content-container card card-master">
-        <div class="content-header">
-            <p class="text-2xl">My URLs</p>
-            <div class="flex justify-end">
-                <a href="{{ route('user.overview', auth()->user()) }}" title="Overview" class="btn btn-secondary">
-                    @svg('icon-overview', 'h-[1.5em]! mr-1')
-                    <p class="hidden sm:inline">Overview</p>
+    <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200/80 bg-gray-50/60 px-6 py-4 dark:border-dark-800 dark:bg-dark-950/40">
+            <div>
+                <h1 class="text-lg font-semibold tracking-tight text-gray-900 sm:text-xl dark:text-white">
+                    My URLs
+                </h1>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <a
+                    href="{{ route('user.overview', auth()->user()) }}"
+                    title="Overview"
+                    class="btn btn-secondary btn-sm"
+                >
+                    @svg('icon-overview', 'size-3.5')
+                    <span class="hidden sm:inline">Overview</span>
                 </a>
             </div>
         </div>
 
-        @livewire('table.UrlTableByUser', ['user_id' => auth()->id()])
+        <div class="p-6">
+            @livewire('table.UrlTableByUser', ['user_id' => auth()->id()])
+        </div>
     </div>
 </div>
 @endsection
