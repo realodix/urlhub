@@ -57,7 +57,7 @@
                     @endif
                 </div>
 
-                <a href="https://www.php.net/ChangeLog-8.php#{{ phpversion() }}" target="_blank" class="group flex items-center gap-3.5 p-4 sm:px-6 transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40">
+                <a href="https://www.php.net/ChangeLog-8.php#{{ phpversion() }}" target="_blank" class="group flex items-center gap-3.5 p-4 sm:px-6 transition-colors hover:bg-linear-to-br hover:from-white hover:via-white hover:to-indigo-50/40 dark:hover:from-dark-900 dark:hover:via-dark-900 dark:hover:to-indigo-950/20">
                     <span class="relative isolate flex shrink-0 items-center justify-center overflow-hidden bg-linear-to-b shadow-[inset_0_1px_0_rgb(255_255_255/0.9)] ring-1 ring-slate-200/80 ring-inset dark:ring-dark-700 dark:shadow-[inset_0_1px_0_rgb(255_255_255/0.06)] size-10 rounded-xl">
                         <span aria-hidden="true" class="absolute inset-0 -z-10 bg-radial-[circle_at_50%_75%] from-[#777bb4]/22 to-transparent to-70%"></span>
                         <div class="text-[#777bb4]">
@@ -74,7 +74,7 @@
                     </div>
                 </a>
 
-                <a href="https://github.com/laravel/framework/releases/tag/v{{ app()->version() }}" target="_blank" class="group flex items-center gap-3.5 p-4 sm:px-6 transition-colors hover:bg-slate-50/80 dark:hover:bg-slate-800/40">
+                <a href="https://github.com/laravel/framework/releases/tag/v{{ app()->version() }}" target="_blank" class="group flex items-center gap-3.5 p-4 sm:px-6 transition-colors hover:bg-linear-to-br hover:from-white hover:via-white hover:to-amber-50/40 dark:hover:from-dark-900 dark:hover:via-dark-900 dark:hover:to-amber-950/20">
                     <span class="relative isolate flex shrink-0 items-center justify-center overflow-hidden bg-linear-to-b shadow-[inset_0_1px_0_rgb(255_255_255/0.9)] ring-1 ring-slate-200/80 ring-inset dark:ring-dark-700 dark:shadow-[inset_0_1px_0_rgb(255_255_255/0.06)] size-10 rounded-xl">
                         <span aria-hidden="true" class="absolute inset-0 -z-10 bg-radial-[circle_at_50%_75%] from-[#f97556]/22 to-transparent to-70%"></span>
                         <div class="text-[#f53003]">
