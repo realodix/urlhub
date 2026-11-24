@@ -133,8 +133,8 @@ main {
         height: 0; width: 0;
 
         &:checked + .slider {
-            @apply bg-emerald-600 dark:bg-dark-800;
-            @apply border border-emerald-600 dark:border-dark-700;
+            @apply bg-slate-900 dark:bg-dark-800;
+            @apply border border-slate-900 dark:border-dark-700;
 
             @apply before:bg-white dark:before:bg-emerald-500;
             @apply before:translate-x-6.5;
