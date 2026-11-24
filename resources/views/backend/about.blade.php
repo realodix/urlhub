@@ -28,7 +28,7 @@
         @endif
 
         <div class="card card-master overflow-hidden rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-dark-900 shadow-xs">
-            <div class="grid grid-cols-1 divide-y divide-slate-200/80 dark:divide-slate-800 md:grid-cols-[1.5fr_1fr_1fr] md:divide-x md:divide-y-0">
+            <div class="grid grid-cols-1 divide-y divide-slate-200/80 dark:divide-dark-800 md:grid-cols-[1.5fr_1fr_1fr] md:divide-x md:divide-y-0">
                 <div class="flex items-center justify-between p-4 sm:px-6">
                     <div>
                         <p class="text-xs font-medium text-slate-500 dark:text-slate-400">UrlHub</p>
