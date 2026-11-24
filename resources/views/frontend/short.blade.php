@@ -10,7 +10,7 @@
     <!-- Top Link Overview Card -->
     <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
         <!-- Card Header: Metadata & Action Buttons -->
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 bg-gray-50/60 px-6 py-4 dark:border-dark-800 dark:bg-dark-950/40">
+        <div class="flex flex-wrap items-center justify-between gap-4 px-6 py-4 bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800">
             <div class="flex flex-wrap items-center gap-2.5 text-xs text-gray-500 dark:text-dark-400">
                 <span class="inline-flex items-center gap-1.5 rounded-md border border-gray-200/80 bg-white px-2.5 py-1 font-medium text-gray-600 dark:border-dark-700 dark:bg-dark-800 dark:text-dark-300">
                     @svg('icon-calendar', 'size-3.5 text-gray-400 dark:text-dark-400')

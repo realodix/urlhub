@@ -21,7 +21,7 @@
 
             <!-- Card 1: General Access -->
             <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900">
-                <div class="border-b border-gray-100 px-6 py-4 dark:border-dark-800">
+                <div class="bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800 px-6 py-4">
                     <h2 class="text-base font-semibold text-gray-900 dark:text-white">
                         General Access
                     </h2>
@@ -71,7 +71,7 @@
 
             <!-- Card 2: Short URL -->
             <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900">
-                <div class="border-b border-gray-100 px-6 py-4 dark:border-dark-800">
+                <div class="bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800 px-6 py-4">
                     <h2 class="text-base font-semibold text-gray-900 dark:text-white">
                         Short URL
                     </h2>
@@ -200,7 +200,7 @@
 
             <!-- Card 3: Redirection -->
             <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900">
-                <div class="border-b border-gray-100 px-6 py-4 dark:border-dark-800">
+                <div class="bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800 px-6 py-4">
                     <h2 class="text-base font-semibold text-gray-900 dark:text-white">
                         Redirection
                     </h2>
