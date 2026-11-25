@@ -153,7 +153,7 @@ class LinkController extends Controller implements HasMiddleware
      */
     public function password(Url $url)
     {
-        if (!$url->password) {
+        if (!$url->isProtected()) {
             return to_route('link_detail', $url->keyword);
         }
 

@@ -19,7 +19,7 @@ class RedirectController extends Controller
     public function __invoke(Url $url)
     {
         // If the link has a password, redirect to the password form
-        if ($url->password && ! Gate::allows('authorOrAdmin', $url)) {
+        if ($url->isProtected() && ! Gate::allows('authorOrAdmin', $url)) {
             return to_route('link.password', $url->keyword);
         }
 

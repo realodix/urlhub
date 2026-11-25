@@ -224,4 +224,16 @@ class UrlTest extends TestCase
         Visit::factory()->for($url)->create();
         $this->assertFalse($url->isExpired());
     }
+
+    #[PHPUnit\Test]
+    public function isProtected(): void
+    {
+        $url = Url::factory()->create();
+        $this->assertFalse($url->isProtected());
+
+        $url = Url::factory()->create([
+            'password' => 'pass',
+        ]);
+        $this->assertTrue($url->isProtected());
+    }
 }

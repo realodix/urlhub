@@ -27,7 +27,7 @@
                             Active
                         </span>
                     @endif
-                    @if ($url->password)
+                    @if ($url->isProtected())
                         <span class="inline-flex items-center gap-1 rounded-full border border-blue-200/80 bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-400">
                             <svg class="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
@@ -277,7 +277,7 @@
                                             </p>
                                         </div>
                                         <div class="flex shrink-0 items-center gap-2">
-                                            @if($url->password)
+                                            @if($url->isProtected())
                                                 <button type="button" x-on:click="$dispatch('open-modal', 'edit-password-modal')"
                                                     class="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 shadow-2xs transition-colors hover:bg-slate-50 dark:border-dark-700 dark:bg-dark-900 dark:text-slate-200 dark:hover:bg-dark-800">
                                                     @svg('icon-key', 'size-3.5')
@@ -449,7 +449,7 @@
     </div>
 
     {{-- Password Modals (kept outside the main form) --}}
-    @if(!$url->password)
+    @if(!$url->isProtected())
         @include('backend.linkpassword.create')
     @else
         @include('backend.linkpassword.edit')

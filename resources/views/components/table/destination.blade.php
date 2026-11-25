@@ -33,7 +33,7 @@
     </span>
     @endif
 
-    @if ($model->password)
+    @if ($model->isProtected())
     <a href="{{ route('dboard.links.user.restricted', $model->author) }}" title="Password protected"
         class="ml-1 first:ml-0 text-[11px] text-gray-800 dark:text-emerald-300 bg-gray-100 dark:bg-dark-800 rounded-sm px-1">
         @svg('icon-key')

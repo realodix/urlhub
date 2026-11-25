@@ -218,4 +218,12 @@ class Url extends Model
 
         return $isExpiredAt || $isExpiredAfterClick;
     }
+
+    /**
+     * Checks whether the URL is password protected.
+     */
+    public function isProtected(): bool
+    {
+        return $this->password !== null;
+    }
 }
