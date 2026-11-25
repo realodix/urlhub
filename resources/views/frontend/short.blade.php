@@ -99,20 +99,22 @@
                             </a>
                         </div>
 
-                        <!-- Destination URL -->
-                        <div class="mt-1.5 flex items-start gap-1.5 text-sm text-gray-500 dark:text-dark-400">
-                            <span class="mt-0.5 shrink-0 text-gray-400 dark:text-dark-500">
-                                @svg('icon-arrow-turn-right', 'size-4')
-                            </span>
-                            <a
-                                href="{{ $url->destination }}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="break-all transition hover:text-gray-800 hover:underline dark:hover:text-dark-200"
-                            >
-                                {{ $url->destination }}
-                            </a>
-                        </div>
+                        @if (!$url->isProtected() || $canManage)
+                            <!-- Destination URL -->
+                            <div class="mt-1.5 flex items-start gap-1.5 text-sm text-gray-500 dark:text-dark-400">
+                                <span class="mt-0.5 shrink-0 text-gray-400 dark:text-dark-500">
+                                    @svg('icon-arrow-turn-right', 'size-4')
+                                </span>
+                                <a
+                                    href="{{ $url->destination }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="break-all transition hover:text-gray-800 hover:underline dark:hover:text-dark-200"
+                                >
+                                    {{ $url->destination }}
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -18,4 +18,26 @@ class DetailPageTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    #[PHPUnit\Test]
+    public function password_protected(): void
+    {
+        $url = Url::factory()->create(['password' => 'secret']);
+
+        $response = $this->actingAs($url->author)
+            ->get(route('link_detail', $url->keyword));
+        $response->assertSee($url->destination);
+
+        $response = $this->actingAs($this->adminUser())
+            ->get(route('link_detail', $url->keyword));
+        $response->assertSee($url->destination);
+
+        $response = $this->actingAs($this->basicUser())
+            ->get(route('link_detail', $url->keyword));
+        $response->assertDontSee($url->destination);
+
+        $response = $this->actingAsGuest()
+            ->get(route('link_detail', $url->keyword));
+        $response->assertDontSee($url->destination);
+    }
 }
