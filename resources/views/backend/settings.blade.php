@@ -20,7 +20,7 @@
             @csrf
 
             <!-- Card 1: General Access -->
-            <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900">
+            <div class="overflow-hidden rounded-lg border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900 shadow-xs">
                 <div class="bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800 px-6 py-4">
                     <h2 class="text-base font-semibold text-gray-900 dark:text-white">
                         General Access
@@ -70,7 +70,7 @@
             </div>
 
             <!-- Card 2: Short URL -->
-            <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900">
+            <div class="overflow-hidden rounded-lg border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900 shadow-xs">
                 <div class="bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800 px-6 py-4">
                     <h2 class="text-base font-semibold text-gray-900 dark:text-white">
                         Short URL
@@ -199,7 +199,7 @@
             </div>
 
             <!-- Card 3: Redirection -->
-            <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900">
+            <div class="overflow-hidden rounded-lg border border-gray-200/80 bg-white dark:border-dark-800 dark:bg-dark-900 shadow-xs">
                 <div class="bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800 px-6 py-4">
                     <h2 class="text-base font-semibold text-gray-900 dark:text-white">
                         Redirection
@@ -252,7 +252,7 @@
             </div>
 
             <!-- Sticky Global Action Bar -->
-            <div class="sticky bottom-4 z-20 flex items-center justify-between rounded-2xl border border-gray-200/90 bg-white/90 px-6 py-3.5 shadow-lg backdrop-blur-md dark:border-dark-700/80 dark:bg-dark-900/90">
+            <div class="sticky bottom-4 z-20 flex items-center justify-between rounded-lg border border-gray-200/90 bg-white/90 px-6 py-3.5 shadow-lg backdrop-blur-md dark:border-dark-700/80 dark:bg-dark-900/90">
                 <p class="text-xs text-gray-500 dark:text-dark-400">
                     Changes take effect immediately after saving.
                 </p>

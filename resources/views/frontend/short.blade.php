@@ -8,7 +8,7 @@
 
 <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
     <!-- Top Link Overview Card -->
-    <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
+    <div class="overflow-hidden rounded-lg border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
         <!-- Card Header: Metadata & Action Buttons -->
         <div class="flex flex-wrap items-center justify-between gap-4 px-6 py-4 bg-gray-50/60 dark:bg-dark-950/40 border-b border-gray-200/80 dark:border-dark-800">
             <div class="flex flex-wrap items-center gap-2.5 text-xs text-gray-500 dark:text-dark-400">
@@ -134,7 +134,7 @@
     <!-- Analytics Section -->
     <div class="mt-6">
         @if ($canManage)
-            <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs sm:p-6 dark:border-dark-800 dark:bg-dark-900">
+            <div class="overflow-hidden rounded-lg border border-gray-200/80 bg-white p-5 shadow-xs sm:p-6 dark:border-dark-800 dark:bg-dark-900">
                 <x-tabs
                     :tabs="['day' => 'Day', 'week' => 'Week', 'month' => 'Month']"
                     activeTabClass="bg-gray-50! dark:bg-dark-800!"

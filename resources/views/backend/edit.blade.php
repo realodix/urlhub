@@ -62,7 +62,7 @@
         @include('partials.messages')
 
         @if ($url->isExpired())
-            <div role="alert" class="rounded-2xl border border-amber-200/90 bg-amber-50/80 p-4 dark:border-amber-500/30 dark:bg-amber-500/10">
+            <div role="alert" class="rounded-lg border border-amber-200/90 bg-amber-50/80 p-4 dark:border-amber-500/30 dark:bg-amber-500/10 shadow-xs">
                 <div class="flex items-start gap-3">
                     <div class="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400">
                         @svg('icon-sign-warning', 'size-4.5!')
@@ -90,7 +90,7 @@
          Desktop (lg): Left Column [Metadata + Delete Short Link] | Right Column [Edit Form] --}}
     <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-8 lg:gap-y-6">
         {{-- 1. Link Metadata Card --}}
-        <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900 lg:col-span-4 lg:col-start-1 lg:row-start-1">
+        <div class="overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900 lg:col-span-4 lg:col-start-1 lg:row-start-1">
             <div class="border-b border-slate-200/80 px-5 py-3.5 dark:border-dark-800 bg-gray-50/60 dark:bg-dark-950/60">
                 <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-dark-400">
                     Link Metadata
@@ -137,7 +137,7 @@
         <div class="lg:col-span-8 lg:col-start-5 lg:row-span-2 lg:row-start-1">
             <form method="post" action="{{ route('link.update', $url) }}">
                 @csrf
-                <div class="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
+                <div class="overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
                     <div class="divide-y divide-slate-200/80 dark:divide-dark-800">
                         {{-- Short URL Summary --}}
                         <div class="p-6">
@@ -172,7 +172,7 @@
                                     name="title"
                                     placeholder="e.g. Q4 Product Launch Campaign"
                                     value="{{ $url->title }}"
-                                    class="mt-2 h-10 w-full rounded-xl border border-slate-200 bg-white px-3.5 text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                    class="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
                                 >
                             </div>
 
@@ -186,7 +186,7 @@
                                     required
                                     placeholder="https://example.com/your-long-url"
                                     value="{{ $url->destination }}"
-                                    class="mt-2 h-10 w-full rounded-xl border border-slate-200 bg-white px-3.5 font-mono text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                    class="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 font-mono text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
                                 >
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                                         name="dest_android"
                                         placeholder="https://play.google.com/store/apps"
                                         value="{{ $url->dest_android }}"
-                                        class="mt-1.5 h-10 w-full rounded-xl border border-slate-200 bg-white px-3.5 font-mono text-xs text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                        class="mt-1.5 h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 font-mono text-xs text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
                                     >
                                 </div>
 
@@ -227,7 +227,7 @@
                                         name="dest_ios"
                                         placeholder="https://apps.apple.com/us/charts/iphone"
                                         value="{{ $url->dest_ios }}"
-                                        class="mt-1.5 h-10 w-full rounded-xl border border-slate-200 bg-white px-3.5 font-mono text-xs text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                        class="mt-1.5 h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 font-mono text-xs text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
                                     >
                                 </div>
                             </div>
@@ -316,7 +316,7 @@
                                                 </label>
                                                 <x-flat-pickr name="expires_at" value="{{ $url->expires_at }}"
                                                     :options="['time_24hr' => true, 'disableMobile' => true]"
-                                                    class="flatpickr-input mt-1.5 h-10 w-full rounded-xl border border-slate-200 bg-white px-3.5 text-sm text-slate-900 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                                    class="flatpickr-input mt-1.5 h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 text-sm text-slate-900 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:focus:border-slate-400 dark:focus:ring-white/10"
                                                 />
                                             </div>
 
@@ -330,7 +330,7 @@
                                                     type="number"
                                                     placeholder="0 (unlimited)"
                                                     value="{{ $url->expired_clicks }}"
-                                                    class="mt-1.5 h-10 w-full rounded-xl border border-slate-200 bg-white px-3.5 text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                                    class="mt-1.5 h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
                                                 >
                                             </div>
                                         </div>
@@ -347,7 +347,7 @@
                                                 name="expired_url"
                                                 placeholder="https://example.com/"
                                                 value="{{ $url->expired_url }}"
-                                                class="mt-1.5 h-10 w-full rounded-xl border border-slate-200 bg-white px-3.5 font-mono text-xs text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                                class="mt-1.5 h-10 w-full rounded-lg border border-slate-200 bg-white px-3.5 font-mono text-xs text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
                                             >
                                         </div>
 
@@ -375,7 +375,7 @@
                                                 maxlength="200"
                                                 x-ref="ta_expired_notes"
                                                 x-on:input="count = $event.target.value.length; resize($event.target)"
-                                                class="mt-1.5 min-h-19 w-full resize-none overflow-hidden rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
+                                                class="mt-1.5 min-h-19 w-full resize-none overflow-hidden rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-900 placeholder-slate-400 shadow-2xs transition-all focus:border-slate-900 focus:outline-none focus:ring-4 focus:ring-slate-900/10 dark:border-dark-700 dark:bg-dark-950 dark:text-white dark:placeholder-slate-500 dark:focus:border-slate-400 dark:focus:ring-white/10"
                                             >{{ $url->expired_notes }}</textarea>
                                         </div>
                                     </div>
@@ -425,7 +425,7 @@
         </div>
 
         {{-- 3. Danger Zone Card --}}
-        <div class="overflow-hidden rounded-2xl border border-rose-200/80 bg-white shadow-xs dark:border-rose-500/25 dark:bg-dark-900 lg:col-span-4 lg:col-start-1 lg:row-start-2">
+        <div class="overflow-hidden rounded-lg border border-rose-200/80 bg-white shadow-xs dark:border-rose-500/25 dark:bg-dark-900 lg:col-span-4 lg:col-start-1 lg:row-start-2">
             <div class="p-5">
                 <h3 class="text-sm font-semibold text-rose-600 dark:text-rose-400">
                     Delete Short Link

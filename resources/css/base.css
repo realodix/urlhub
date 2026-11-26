@@ -42,7 +42,7 @@ main {
 }
 
 .card {
-    @apply bg-white border border-border-200 rounded-xl;
+    @apply bg-white border border-border-200 rounded-lg;
     @apply dark:bg-dark-900 dark:border-dark-700;
 
     &.card-master {

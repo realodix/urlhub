@@ -60,7 +60,7 @@
     }
 
     .pg-table-responsive {
-        @apply border border-b-0 dark:border-dark-700 rounded-t-xl;
+        @apply border border-b-0 dark:border-dark-700 rounded-t-lg;
     }
 
     table {
@@ -68,7 +68,7 @@
         @layer utilities { @apply dark:bg-transparent!; }
 
         thead {
-            @apply shadow-none;
+            @apply shadow-none rounded-t-lg;
         }
 
         tr {
@@ -97,7 +97,7 @@
     }
 
     #pg-footer {
-        @apply border border-t-0;
+        @apply border border-t-0 rounded-b-lg;
         @apply dark:bg-dark-900;
 
         .pagination-records_text {

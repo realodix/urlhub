@@ -9,7 +9,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
         <!-- Card 1: Links -->
-        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+        <div class="group relative overflow-hidden rounded-xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
             <!-- Subtle decorative background glow -->
             <div class="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-emerald-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-emerald-400/10"></div>
 
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Card 2: Visits -->
-        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+        <div class="group relative overflow-hidden rounded-xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
             <!-- Subtle decorative background glow -->
             <div class="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-amber-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-amber-400/10"></div>
 
@@ -59,7 +59,7 @@
         </div>
 
         <!-- Card 3: Visitors -->
-        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+        <div class="group relative overflow-hidden rounded-xl border border-gray-200/80 bg-white p-4 shadow-xs duration-200 hover:border-gray-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
             <!-- Subtle decorative background glow -->
             <div class="pointer-events-none absolute -right-7 -top-7 h-24 w-24 rounded-full bg-blue-500/5 transition-transform duration-300 group-hover:scale-125 dark:bg-blue-400/10"></div>
 
@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <div class="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
+    <div class="overflow-hidden rounded-lg border border-gray-200/80 bg-white shadow-xs dark:border-dark-800 dark:bg-dark-900">
         <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200/80 bg-gray-50/60 px-6 py-4 dark:border-dark-800 dark:bg-dark-950/40">
             <div>
                 <h1 class="text-lg font-semibold tracking-tight text-gray-900 sm:text-xl dark:text-white">
