@@ -8,6 +8,7 @@ use App\Http\Middleware\UrlHubLinkChecker;
 use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
 use App\Rules\LinkRules;
+use App\Services\KeyGeneratorService;
 use App\Services\LinkService;
 use App\Services\UserService;
 use App\Services\VisitService;
@@ -33,12 +34,11 @@ class LinkController extends Controller implements HasMiddleware
     {
         $url = new Url;
         $userService = app(UserService::class);
-        $linkService = app(LinkService::class);
 
         $url->user_id = (int) auth()->id();
-        $url->keyword = $linkService->getKeyword($request);
+        $url->keyword = $request->custom_key ?? app(KeyGeneratorService::class)->generate($request->long_url);
         $url->destination = $request->long_url;
-        $url->title = $linkService->getWebTitle($request->long_url);
+        $url->title = app(LinkService::class)->getWebTitle($request->long_url);
         $url->forward_query = auth()->check() ? true : false;
         $url->is_custom = isset($request->custom_key) ? true : false;
         $url->user_type = $userService->userType();

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Enums\UserType;
-use App\Http\Requests\StoreUrlRequest;
 use App\Models\Url;
 use App\Models\User;
 use App\Rules\LinkRules;
@@ -16,17 +15,6 @@ class LinkService
         protected KeyGeneratorService $keyGen,
         protected GeneralSettings $settings,
     ) {}
-
-    /**
-     * Determines the short URL key to be used for a new link.
-     *
-     * It prioritizes a custom key provided in the request. If no custom key
-     * is given, a new random string will be generated.
-     */
-    public function getKeyword(StoreUrlRequest $request): string
-    {
-        return $request->custom_key ?? $this->keyGen->generate($request->long_url);
-    }
 
     /**
      * Fetches the title of a webpage from its URL.
