@@ -99,7 +99,7 @@
                             </a>
                         </div>
 
-                        @if (!$url->isProtected() || $canManage)
+                        @if ((!$url->isExpired() && !$url->isProtected()) || $canManage)
                             <!-- Destination URL -->
                             <div class="mt-1.5 flex items-start gap-1.5 text-sm text-gray-500 dark:text-dark-400">
                                 <span class="mt-0.5 shrink-0 text-gray-400 dark:text-dark-500">
